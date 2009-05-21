@@ -1,0 +1,12 @@
+<% content_for :header do -%>
+	<%= link_to 'Party types', party_types_path %>
+<% end -%>
+
+<p>
+  <b>Name:</b>
+  <%=h @party_type.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_party_type_path(@party_type) %> |
+<%= link_to 'Back', party_types_path %>

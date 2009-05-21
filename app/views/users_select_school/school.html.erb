@@ -1,0 +1,35 @@
+<div class="filter">
+  <span style="font-size:14px">Show</span> <a href="javascript:showUniversity()" title="" class="a_buton"> University</a> <a href="javascript:showCollege()" title="" class="a_buton">College</a> <a href="javascript:showAll()" title="" class="a_buton">All</a>
+</div>
+<div id="ul_list_universities">
+  <span class="list_title">List of universities in your location</span>
+  <ul>
+    <% for university in @schools_university %>
+      <li>
+        <% if @get_department == "yes" %>
+          <%= radio_button "#{@model_name}", "school_id", university.id, :onClick => "getSchoolName('#{university.name}');getDepartment('#{university.id}')" %>
+          <label onClick="getSchoolName(this.innerHTML)" for="<%= @model_name  %>_school_id_<%= university.id %>"><%= university.name %></label>
+        <% else %>
+          <%= radio_button "#{@model_name}", "school_id", university.id, :onClick => "getSchoolName('#{university.name}');" %>
+          <label onClick="getSchoolName(this.innerHTML)" for="<%= @model_name  %>_school_id_<%= university.id %>"><%= university.name %></label>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div id="ul_list_colleges">
+<span class="list_title">List of colleges in your location</span>
+<ul>
+  <% for college in @schools_college %>
+    <li>
+    <% if @get_department == "yes" %>
+      <%= radio_button "#{@model_name}", "school_id", college.id, :onClick => "getSchoolName('#{college.name}');getDepartment('#{college.id}')" %>
+      <label onClick="getSchoolName(this.innerHTML)" for="<%= @model_name  %>_school_id_<%= college.id %>"><%= college.name %></label>
+    <% else %>
+      <%= radio_button "#{@model_name}", "school_id", college.id, :onClick => "getSchoolName('#{college.name}')" %>
+      <label onClick="getSchoolName(this.innerHTML)" for="<%= @model_name  %>_school_id_<%= college.id %>"><%= college.name %></label>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+</div>

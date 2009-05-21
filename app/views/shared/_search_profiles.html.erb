@@ -1,0 +1,34 @@
+<form name="search" action="/profile">
+<div id="search-form"><!-- search form -->
+  <a href="/profile" title="Your title goes here" class="link_bt">
+
+    <span class="ltblue_l"></span>
+    <span class="ltblue_c btf">Members</span>
+    <span class="ltblue_r"></span>
+  </a>
+
+  <input type="text" name="search[name]" value="<%= search_name || "Enter your search keywords..." %>" id="search-b" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" style="float:left"> <!-- search text box --	>
+
+                            <!-- post  button -->
+  <a href="/posts/new" title="Post" class="btfr link_bt">
+
+    <span class="ltred_l"></span>
+    <span class="ltred_c btf">Post</span>
+    <span class="ltred_r"></span>
+  </a>
+  <!-- end post button -->
+
+                            <!-- search button -->
+  <a href="javascript:document.search.submit()" title="Search" class="btfr link_bt_g s-pos">
+    <span class="ltgray_l"></span>
+    <span class="ltgray_c btf">Search</span>
+
+    <span class="ltgray_r"></span>
+  </a>
+  <!-- end search button -->
+  <ul id="droplistsearch">
+    <li><a href="#" title="Click to select" id="expand_list"><span class="">Profiles</span></a>
+    </li>
+  </ul>
+</div><!-- end search form -->	
+</form>

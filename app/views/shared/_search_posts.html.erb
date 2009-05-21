@@ -1,0 +1,160 @@
+<form id="action_post_search" name="search" action="<%= search_post_path %>">
+  <div id="top-search" style="padding-right:0px;padding-left:0px"><!-- search on top wrapper-->
+    <div id="search-form"><!-- search form -->
+      <a href="/profile" title="Members" class="link_bt">
+        <span class="ltblue_l"></span>
+        <span class="ltblue_c btf">Members</span>
+        <span class="ltblue_r"></span>
+      </a>
+
+      <input type="text" name="search[name]" value="<%= search_name || "Enter your search keywords..." %>" id="search-b" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" style="float:left" /> <!-- search text box --	>
+      <input id="post_type_name" type="hidden" name="search[type_name]" value="<%= type_name %>"/>
+      <!-- post  button -->
+      <a id="link_new_post" href="<%= new_post_path %>" title="Post" class="btfr link_bt">
+        <span class="ltred_l"></span>
+        <span class="ltred_c btf">Post</span>
+        <span class="ltred_r"></span>
+      </a>
+      <!-- end post button -->
+
+      <!-- search button -->
+      <a href="javascript:document.search.submit()" title="Search" class="btfr link_bt_g s-pos">
+        <span class="ltgray_l"></span>
+        <span class="ltgray_c btf">Search</span>
+        <span class="ltgray_r"></span>
+      </a>
+      <!-- end search button -->
+      <ul id="droplistsearch">
+        <li><a href="#" title="Click to select" id="expand_list" onclick="javascript:showlayer('select_list')"><span id="post_type_select" class=""><%= type_name %></span></a>
+
+          <ul id="select_list" class="submenu" style="display:none">
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Assignments</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Tests</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Projects</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Exams</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Education</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Tutors</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Books</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Jobs</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Party</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Student Awareness</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Housing</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" title="">
+                <span onclick="getPostType(this.innerHTML)">Team Up</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- end search form -->
+
+  </div><!-- end search on top wrapper -->
+</form>
+
+<script language="javascript">
+  function getPostType(post_type){
+    action = "";
+    link_new_post = "";
+    switch(post_type)
+    {
+      case "Assignments":
+        action = "/posts";
+        link_new_post = "/posts/new?type_name=Assignments";
+        break;
+      case "Tests":
+        action = "/posts";
+        link_new_post = "/posts/new?type_name=Tests";
+        break;
+      case "Projects":
+        action = "/posts";
+        link_new_post = "/posts/new?type_name=Projects";
+        break;
+      case "Exams":
+        action = "/posts";
+        link_new_post = "/posts/new?type_name=Exams";
+        break;
+      case "Education":
+        action = "/post_educations";
+        link_new_post = "/post_educations/new";
+        break;
+      case "Tutors":
+        action = "/post_tutors";
+        link_new_post = "/post_tutors/new";
+        break;
+      case "Books":
+        action = "/post_books";
+        link_new_post = "/post_books/new";
+        break;
+      case "Jobs":
+        action = "/post_jobs";
+        link_new_post = "/post_jobs/new";
+        break;
+      case "Party":
+        action = "/post_parties";
+        link_new_post = "/post_parties/new";
+        break;
+      case "Student Awareness":
+        action = "/post_awarenesses";
+        link_new_post = "/post_awarenesses/new";
+        break;
+      case "Housing":
+        action = "/post_housings";
+        link_new_post = "/post_housings/new";
+        break;
+      case "Team Up":
+        action = "/post_teamups";
+        link_new_post = "/post_teamups/new";
+        break;
+    }
+    $('action_post_search').action = action;
+    $('link_new_post').setAttribute('href', link_new_post);
+    $('post_type_name').value = post_type;
+    $('post_type_select').update(post_type);
+    showlayer('select_list');
+  }
+</script>

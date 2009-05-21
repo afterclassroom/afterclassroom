@@ -1,0 +1,49 @@
+<div id="main-administration-menu"><!-- administration menu -->
+  <div class="admin-menu">
+    <fieldset>
+      <legend><strong>Universities &amp;Locations</strong></legend>
+      <ul>
+        <li><%= link_to "States", states_url %></li>
+        <li><%= link_to "Cities", cities_url %></li>
+        <li><%= link_to "Schools", schools_url %></li>
+        <li><%= link_to "Departments", departments_url %></li>
+        <li><%= link_to "Department Categories", department_categories_url %></li>
+      </ul>
+    </fieldset>
+  </div>
+
+  <div class="admin-menu">
+    <fieldset>
+      <legend><strong>Post Management</strong></legend>
+      <ul>
+        <li><%= link_to "Post Categories", post_categories_url %></li>
+        <li><%= link_to "Education Categories", education_categories_url %></li>
+        <li><%= link_to "Housing Categories", housing_categories_url %></li>
+        <li><%= link_to "TeamUp Categories", teamup_categories_url %></li>
+        <li><%= link_to "Job Types", job_types_url %></li>
+        <li><%= link_to "Party Types", party_types_url %></li>
+        <li><%= link_to "Awareness Issues", awareness_issues_url %></li>
+        <li><%= link_to "Shipping Methods", shipping_methods_url %></li>
+        <li><%= link_to "Functional Experiences", functional_experiences_url %></li>
+      </ul>
+    </fieldset>
+  </div>
+
+  <div class="admin-menu">
+    <fieldset>
+      <legend><strong>User management</strong></legend>
+      <ul>
+        <li><%= link_to "Manage user accounts", admin_users_url %></li>
+      </ul>
+    </fieldset>
+  </div>
+
+  <div class="admin-menu">
+    <fieldset>
+      <legend><strong>Settings</strong></legend>
+      <ul>
+        <li><%= link_to "Site settings", admin_settings_url %></li>
+      </ul>
+    </fieldset>
+  </div>
+</div><!-- end administration menu-->

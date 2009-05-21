@@ -1,0 +1,179 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Musics", :action_path => "#{musics_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<div id="posting-section"><!-- posting-section-->
+  <h3 class="post_header">Posting your music</h3>
+  <% form_for(@music, :html => {:id => "form", :name => "form", :multipart => true }) do |f| %>
+    <ul>
+      <li><label>Title*</label>
+        <div class="user_ri"><%= f.text_field :title, :class => "required" %>
+      </div></li>
+      <li><label>Tag line</label>
+        <div class="user_ri"><%= text_field_tag 'tag_list', "#{@tag_list}" %>
+      </div></li>
+      <li><label>Description</label>
+        <div class="user_ri">
+          <%= f.text_area :description %>
+      </div></li>
+      <li><label>Who can see this</label>
+        <div class="user_ri"><%= text_field_tag 'who_can_see_name', "#{@who_can_see_name || "Everyone"}", :class => "required tb_arrow", :readonly => "readonly" %>
+          <div id="who_can_see_div" class="menu_select" style="display:none;">
+            <ul>
+              <li>
+                <%= radio_button("music", "who_can_see", "0", :onclick => "getWhoCanSee('Everyone')") %>
+                <label onclick="getWhoCanSee('Everyone')" for="music_who_can_see_0">Everyone</label>
+              </li>
+              <li>
+                <%= radio_button("music", "who_can_see", "1", :onclick => "getWhoCanSee('Friends')") %>
+                <label onclick="getWhoCanSee('Friends')" for="music_who_can_see_1">Friends</label>
+              </li>
+              <li>
+                <%= radio_button("music", "who_can_see", "2", :onclick => "getWhoCanSee('Private')") %>
+                <label onclick="getWhoCanSee('Private')" for="music_who_can_see_2">Private</label>
+              </li>
+            </ul>
+          </div>
+      </div></li>
+      <li><label>Adding to Album</label>
+        <div class="user_ri"><%= text_field_tag 'music_album_name', "#{@music_album_name}", :class => "required tb_arrow", :readonly => "readonly" %>
+          <div id="music_album_div" class="menu_select" style="display:none;">
+            <ul>
+              <% for album in @music_albums %>
+                <li>
+                  <%= radio_button "music", "music_album_id", album.id, :onClick => "getMusicAlbum('#{album.name}')" %>
+                  <label onClick="getMusicAlbum(this.innerHTML)" for="music_music_album_id_<%= album.id %>"><%= album.name %></label>
+                </li>
+              <% end %>
+            </ul>
+            <div style="float:left; width:100%; margin:5px">
+              <ul>
+                <li>
+                  <label for="create_new_album" style="cursor:pointer" onclick="showlayer('create_album')">Create new album</label>
+                  <div id="create_album" style="display:none">
+                    <ul>
+                      <li><label>Name</label>
+                        <div class="user_ri"><input id="album_name" type="text" value="" />
+                      </div></li>
+                      <li><div class="post_cbt">
+                          <!-- post  button -->
+                          <a href="javascript:createAlbum()" title="Post" class="link_bt">
+                            <span class="ltred_l"></span>
+                            <span class="ltred_c btf">Create</span>
+                            <span class="ltred_r"></span>
+                          </a>
+                          <!-- end post button -->
+                      </div></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div></li>
+      <li><label>Music:</label>
+      <div class="user_ri"><%= f.file_field :music_attach %></div></li>
+      <li>
+        <div class="post_cbt">
+          <!-- post  button -->
+          <a href="javascript:submit()" title="Post" class="link_bt">
+            <span class="ltred_l"></span>
+            <span class="ltred_c btf">Upload</span>
+            <span class="ltred_r"></span>
+          </a>
+          <!-- end post button -->
+        </div>
+      </li>
+      <li>
+        <label><div class="user_ri">(* indicates required field)</div></label>
+      </li>
+    </ul>
+    <div id="elements_store"></div>
+  <% end %>
+</div><!-- end posting-section-->
+
+<script language="javascript">
+  function getWhoCanSee(name){
+    $('who_can_see_name').value = name;
+  }
+
+  function getMusicAlbum(name){
+    $('music_album_name').value = name;
+  }
+
+  function createAlbum(){
+    create_album_path = "/musics/create_album";
+    div_update = "music_album_div";
+    album_name = $("album_name").value;
+    if (album_name != ""){
+      new Ajax.Updater(div_update, create_album_path,
+      {asynchronous:true,
+        evalScripts:true,
+        method:'get',
+        on500:function(request){alert('Sorry, there was an error.'.l); return false},
+        parameters:{album_name:album_name}
+      }
+    );
+    }
+  }
+
+  new Tip('who_can_see_name', $('who_can_see_div'), {
+    width: 'auto',
+    title: 'Select one',
+    showOn: 'click',
+    hideOthers: true,
+    hideOn: { element: 'closeButton', event: 'click'},
+    hook: { target: 'bottomLeft', tip: 'topLeft' },
+    offset: {x:0, y:0} });
+
+  new Tip('music_album_name', $('music_album_div'), {
+    width: 'auto',
+    title: 'Select one',
+    showOn: 'click',
+    hideOthers: true,
+    hideOn: { element: 'closeButton', event: 'click'},
+    hook: { target: 'bottomLeft', tip: 'topLeft' },
+    offset: {x:0, y:0} });
+
+  var valid = new Validation('form', {immediate : true, onSubmit:false});
+  function submit(){
+    var result = valid.validate();
+    if (result && validate("music_music_attach")) {
+      Tips.hideAll();
+      $$('.prototip').each(function(element){
+        $('elements_store').insert(element, { position: content });
+      });
+      $('form').submit();
+    }
+  }
+   function validate(file_id) {
+    var OK = new Array ('mp3', 'wav', 'mpeg3');
+    var filename = $(file_id).value;
+    var ext = getExt(filename);
+    var fileOK = 0;
+
+    for (i = 0; i < OK.length; i++) {
+      if (OK[i] == ext) {
+        fileOK = 1; // one of the file extensions found
+      }
+    }
+
+    if (fileOK == 0) {
+      alert ("The file is not an music file");
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  function getExt(filename) {
+    var dot_pos = filename.lastIndexOf(".");
+    if(dot_pos == -1)
+      return "";
+    return filename.substr(dot_pos+1).toLowerCase();
+  }
+</script>

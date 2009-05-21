@@ -1,0 +1,38 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Musics", :action_path => "#{musics_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<ul>
+  <% for album in @music_albums %>
+    <li>
+      <%= radio_button "music", "music_album_id", album.id, :onClick => "getMusicAlbum('#{album.name}')" %>
+      <label onClick="getMusicAlbum(this.innerHTML)" for="music_music_album_id_<%= album.id %>"><%= album.name %></label>
+    </li>
+  <% end %>
+</ul>
+<div style="float:left; width:100%; margin:5px">
+<ul>
+  <li>
+    <label for="create_new_album" style="cursor:pointer" onclick="showlayer('create_album')">Create new album</label>
+    <div id="create_album" style="display:none">
+      <ul>
+        <li><label>Name</label>
+          <div class="user_ri"><input type="text" value="" />
+        </div></li>
+        <li><div class="post_cbt">
+            <!-- post  button -->
+            <a href="javascript:createAlbum()" title="Post" class="link_bt">
+              <span class="ltred_l"></span>
+              <span class="ltred_c btf">Create</span>
+              <span class="ltred_r"></span>
+            </a>
+            <!-- end post button -->
+        </div></li>
+      </ul>
+    </div>
+  </li>
+</ul>

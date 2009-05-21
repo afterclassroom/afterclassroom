@@ -1,0 +1,141 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_profiles', :locals => {:search_name => @search_name} %>
+<% end -%>
+
+<% content_for :select_your_school do -%>
+  <%= select_your_school("user", "shared/select_school", {"target" => "bottomLeft", "tip" => "topLeft"}) %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => "shared/ads_vertical" %>
+<% end -%>
+
+<!--Content-->
+<% for user in @users %>
+  <div class="member-profile-box" id="user_<%= user.id %>">
+
+    <div class="member-profile-avatar">
+      <%= link_to image_tag(user.avatar.url(:thumb)), {:action => "show_profile", :id => user.id} %>
+    </div>
+
+    <ul class="member-profile-invites">
+      <li><label>Name</label><%= link_to user.full_name, {:action => "show_profile", :id => user.id} %></li>
+      <li><label>Unversity/College</label><%= user.school.name %></li>
+      <li><label>Major</label><%= user.user_education.major %>&nbsp;</li>
+      <li><label>Level</label><%= user.user_education.level %>&nbsp;</li>
+      <li><label>Award</label><%= user.user_information.award %>&nbsp;</li>
+      <li><label>Flirting score</label>1000</li>
+      <li><label>My flirting expertise</label>To make people laugh instantly</li>
+    </ul>
+
+    <div class="member-profile-tools">
+      <% if current_user %>
+        <ul>
+          <li><span>Available to flirt</span></li>
+          <li><span rel_email="<%= user.id %>" full_name="<%= user.full_name %>" to="<%= user.login %>">Send a message</span></li>
+          <li><span>Review his rating</span></li>
+          <li>
+            <%= friend_status(current_user, user) %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+<% end -%>
+
+<p>
+  <%= will_paginate @users, :class => "digg_pagination" %>
+</p>
+<% if current_user %>
+  <script language="javascript">
+    var user_id = "<%= current_user.id %>";
+    document.observe('dom:loaded', function() {
+      $$('span[rel_invite]').each(function(element) {
+        show_invite_path = '/profile/show_invite?id=' + element.readAttribute("rel_invite");
+        new Tip(element, {
+          ajax: {
+            url: show_invite_path,
+            options: {
+              asynchronous:true,
+              evalScripts:true,
+              method: 'get'
+            }
+          },
+          fixed: true,
+          viewport: true,
+          width: 'auto',
+          title: 'Send invite message',
+          showOn: 'click',
+          hideOthers: true,
+          hideOn: { element: 'closeButton', event: 'click'},
+          hook: { target: 'bottomLeft', tip: 'topRight' },
+          offset: {x:-10, y:5} });
+      });
+    });
+    document.observe('dom:loaded', function() {
+      $$('span[rel_email]').each(function(element) {
+        show_email_path = "/messages/show_email";
+        id = element.readAttribute("rel_email");
+        to = element.readAttribute("to");
+        full_name = element.readAttribute("full_name");
+        new Tip(element, {
+          ajax: {
+            url: show_email_path,
+            options: {
+              method: 'get',
+              parameters:{user_id:user_id,id:id, to:to, full_name:full_name}
+            }
+          },
+          fixed: true,
+          viewport: true,
+          width: 'auto',
+          title: 'Send Email to ' + full_name,
+          showOn: 'click',
+          hideOn: { element: 'closeButton', event: 'click'},
+          hook: { target: 'bottomLeft', tip: 'topRight' },
+          offset: {x:0, y:2} });
+        element.observe('prototip:shown', function() {
+          $('send_message_alert_'+id).hide();
+          $('send_message_wraper_'+id).show();
+        });
+        element.observe('prototip:hidden', function() {
+          $('message_subject_'+id).value = "";
+          $('message_body_'+id).value = "";
+        });
+      });
+    });
+    function sendInviteMessage(id){
+      user_id = $("user_id_friend_" + id).value;
+      message = $("message_" + id).value;
+      new Ajax.Request('/invite/send_invite_message',
+      {asynchronous:true,
+        evalScripts:true,
+        method:'get',
+        on500:function(request){alert('Sorry, there was an error.'.l); return false},
+        parameters:{user_id_friend:user_id, invite_message:message},
+        onSuccess:function(){
+          $("invite_user_id_" + user_id).update("You sended an invite message.");
+          $("send_invite_message").hide();
+          $("send_invite_message_alert").show();
+        }}
+    );
+    }
+    function sendEmail(id, to){
+      send_email_path = "/messages/send_message";
+      subject = $("message_subject_"+id).value;
+      body = $("message_body_"+id).value;
+      new Ajax.Request(send_email_path,
+      {asynchronous:true,
+        evalScripts:true,
+        method:'get',
+        on500:function(request){alert('Sorry, there was an error.'.l); return false},
+        parameters:{user_id:user_id, message_to:to, message_subject:subject, message_body:body},
+        onSuccess:function(){
+          $('send_message_alert_'+id).show();
+          $('send_message_wraper_'+id).hide();
+        }}
+    );
+    }
+  </script>
+<% end %>
+<!--Content-->

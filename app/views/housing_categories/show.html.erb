@@ -1,0 +1,12 @@
+<% content_for :header do -%>
+	<%= link_to 'Housing categories', housing_categories_path %>
+<% end -%>
+
+<p>
+  <b>Name:</b>
+  <%=h @housing_category.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_housing_category_path(@housing_category) %> |
+<%= link_to 'Back', housing_categories_path %>

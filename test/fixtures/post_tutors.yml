@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  post: 
+  tutoring_rate: MyString
+  per: MyString
+  currency: MyString
+  from: 2009-02-12 15:56:08
+  to: 2009-02-12 15:56:08
+
+two:
+  post: 
+  tutoring_rate: MyString
+  per: MyString
+  currency: MyString
+  from: 2009-02-12 15:56:08
+  to: 2009-02-12 15:56:08

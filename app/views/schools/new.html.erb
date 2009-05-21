@@ -1,0 +1,52 @@
+<% content_for :header do -%>
+  <%= link_to 'Schools', schools_path %>
+<% end -%>
+
+<div id="posting-section">
+  <% form_for(@school, :html => {:id => "form"}) do |f| %>
+    <fieldset>
+      <legend><strong>New school</strong></legend>
+      <ul>
+        <%= render :partial => "select_city", :locals => {:countries => @countries, :states => nil, :cities => nil, :country_name => nil, :state_name => nil, :city_name => nil, :action_name => "new"} %>
+        <li><label>School name</label>
+          <div class="user_ri">
+            <%= f.text_field :name %>
+          </div>
+        </li>
+        <li><label>Type</label>
+          <div class="user_ri">
+            <%= radio_button "school", "type_school", "University", :checked => true %> University
+            <%= radio_button "school", "type_school", "College"%> College
+          </div>
+        </li>
+        <%= render :partial => "department", :locals => {:department_name => @department_name, :department_categories => @department_categories, :check => true} %>
+        <li>
+          <div class="post_cbt">
+            <!-- post  button -->
+            <a href="javascript:submit()" title="Post" class="link_bt">
+              <span class="ltred_l"></span>
+              <span class="ltred_c btf">Create</span>
+              <span class="ltred_r"></span>
+            </a>
+            <!-- end post button -->
+          </div>
+        </li>
+      </ul>
+      <div id="elements_store"></div>
+    </fieldset>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  var valid = new Validation('form', {immediate : true, onSubmit:false});
+  function submit(){
+    var result = valid.validate();
+    if (result) {
+      Tips.hideAll();
+      $$('.prototip').each(function(element){
+        $('elements_store').insert(element, { position: content });
+      });
+      $('form').submit();
+    }
+  }
+</script>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  post: 
+  prepare_post: false
+  responsibilities: MyText
+  required_skills: MyText
+  desirable_skills: MyText
+  edu_experience_require: MyText
+  compensation: MyString
+
+two:
+  post: 
+  prepare_post: false
+  responsibilities: MyText
+  required_skills: MyText
+  desirable_skills: MyText
+  edu_experience_require: MyText
+  compensation: MyString

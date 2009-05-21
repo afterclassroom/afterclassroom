@@ -1,0 +1,96 @@
+body{
+	background:#252525;
+	padding-top:5px;
+}
+#wrapper{
+	background:#FFF;
+	padding:5px;
+}
+/* begin top-nav main-nav*/
+#top-nav ul li{
+	float:left;
+	padding:5px 5px 2px 5px;
+	font: 90% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+#top-nav ul li a{
+	text-decoration: none;
+	color:#19B7D4;
+}
+#top-nav ul li a:hover{
+	border-bottom: 1px dotted #999;
+}
+/* end top-nav */
+
+/* begin main-nav */
+#main-nav ul li{
+	float:left;
+	padding:10px 5px 10px 15px;
+	font: 100% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+#main-nav ul li a{
+	text-decoration: none;
+	color: #333;
+}
+#main-nav ul li a:hover{
+	color:#19B7D4;
+}
+/* end main-nav */
+#top-search{
+	background:#E5E5E5;
+	clear: both;
+	padding-top:10px;
+}
+	#top-search input[type="text"]{
+		height:25px;
+		font: 110% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+		padding-top:5px;
+		color:#32332F;
+		border:1px solid #D1D0D0;
+		width:425px;
+		padding-left:5px;
+		margin-left:20px;
+		margin-top:3px;
+	}
+/* inner box */
+.inner-box .front-title li{
+	padding-top:10px;
+	padding-left:5px;
+	padding-bottom:5px;
+	color:#4f4f4f;
+	font: 120% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+.inner-box .sub-post-title{
+
+	font: 80% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+.inner-box .sub-post-title li{
+		padding:3px 5px;
+}
+.inner-box {
+	font: 80% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+	border:2px solid #494949;
+}
+.inner-box a{
+	text-decoration: none;
+	font-weight: bold;
+	color:#19B7D4;
+}
+.inner-box a:hover{
+	color:#007ba3;
+}
+.more-link{
+	text-align: right;
+	padding-right:10px;
+}
+/* date time*/
+.post-datetime{
+	font: 70% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+#copyright a{
+	color:#19B7D4;
+	text-decoration: none;
+		font-weight: bold;
+}
+#copyright a:hover{
+	color:#007ba3;
+}

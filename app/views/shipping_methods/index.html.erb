@@ -1,0 +1,22 @@
+<% content_for :header do -%>
+	Shiping methods
+<% end -%>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for shipping_method in @shipping_methods %>
+  <tr>
+    <td><%=h shipping_method.name %></td>
+    <td><%= link_to 'Show', shipping_method %></td>
+    <td><%= link_to 'Edit', edit_shipping_method_path(shipping_method) %></td>
+    <td><%= link_to 'Destroy', shipping_method, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New shipping_method', new_shipping_method_path %>

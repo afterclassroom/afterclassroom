@@ -1,0 +1,22 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Musics", :action_path => "#{musics_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<h1>New music_album</h1>
+
+<% form_for(@music_album) do |f| %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', music_albums_path %>

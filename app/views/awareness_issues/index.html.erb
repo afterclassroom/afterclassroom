@@ -1,0 +1,22 @@
+<% content_for :header do -%>
+	Awareness issues
+<% end -%>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for awareness_issue in @awareness_issues %>
+  <tr>
+    <td><%=h awareness_issue.name %></td>
+    <td><%= link_to 'Show', awareness_issue %></td>
+    <td><%= link_to 'Edit', edit_awareness_issue_path(awareness_issue) %></td>
+    <td><%= link_to 'Destroy', awareness_issue, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New awareness_issue', new_awareness_issue_path %>

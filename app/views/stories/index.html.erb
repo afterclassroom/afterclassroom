@@ -1,0 +1,35 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Stories", :action_path => "#{stories_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<div class="user_status_listing"><!--user_status_listing-->
+<!-- user-post-story -->
+  <div id="user-post-story">
+    <input type="button" id="" class="post-story-bt" value="Write your story" onclick="document.location.href='<%= new_story_path %>'">
+  </div><!-- #user-post-story	 -->
+  <% for story in @stories %>
+    <!-- user-story -->
+    <div class="user-story">
+      <div class="small_thumb_ava"><%= image_tag story.user.avatar.url(:thumb) %> </div>
+      <div class="user-story-content">
+        <p><%= story.content %>
+        </p>
+        <span class="last_update_status">
+        <span class="status-time"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></span> | <%= link_to "Comment", story %></span>
+      </div><!-- .user-story-content -->
+      <% if current_user == story.user %>
+      <div class="editable-box">
+        <span class="delete"><%= link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete %></span><br /><span class="edit"><%= link_to 'Edit', edit_story_path(story) %></span>
+      </div><!-- .editable-box -->
+      <% end %>
+    </div>
+    <!-- end .user-story -->
+  <% end %>
+  <%= will_paginate @stories, :class => "digg_pagination" %>
+</div> <!--user_status_listing-->
+<div class="app_add_on">
+</div>

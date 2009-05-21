@@ -1,0 +1,20 @@
+<% content_for :header do -%>
+  <%= link_to 'Departments', departments_path %>
+<% end -%>
+
+<p>
+  <b>Department Category:</b>
+  <%=h @department.department_category.name %>
+</p>
+
+<p>
+  <b>Department Name:</b>
+  <%=h @department.name %>
+</p>
+
+<%= link_to 'Edit', edit_department_path(@department) %>
+
+
+<script type="text/javascript">
+  var valid = new Validation('form', {immediate : true});
+</script>

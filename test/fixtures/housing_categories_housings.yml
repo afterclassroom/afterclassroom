@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  housing_category_id: 1
+  post_housing_id: 1
+
+two:
+  housing_category_id: 1
+  post_housing_id: 1

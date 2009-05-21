@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  video_album: 
+  title: MyString
+  description: MyText
+  who_can_see: false
+
+two:
+  user: 
+  video_album: 
+  title: MyString
+  description: MyText
+  who_can_see: false

@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  post_party: 
+  where: MyString
+  when: 2009-03-18 10:53:01
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  tel: MyString
+  message: MyText
+
+two:
+  post_party: 
+  where: MyString
+  when: 2009-03-18 10:53:01
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  tel: MyString
+  message: MyText

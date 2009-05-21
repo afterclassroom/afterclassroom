@@ -1,0 +1,22 @@
+<% content_for :header do -%>
+  <%= link_to 'States', states_path %>
+<% end -%>
+
+<p>
+  <b>Country:</b>
+  <%=h @state.country.printable_name %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @state.name %>
+</p>
+
+<p>
+  <b>Alias:</b>
+  <%=h @state.alias %>
+</p>
+
+
+<%= link_to 'Edit', edit_state_path(@state) %> |
+<%= link_to 'Back', states_path %>

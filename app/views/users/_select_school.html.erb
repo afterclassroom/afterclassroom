@@ -1,0 +1,227 @@
+<!--Select School-->
+<label>Your school</label>
+<div class="user_ri">
+  <%= text_field_tag 'school_name', "#{school.name if school}", :class => "required tb_arrow", :readonly => "readonly" %>
+</div>
+<div id="select_school" class="acr_window" style="display:none;">
+  <div class="rounded-top">
+    <span class="tlr_c"></span>
+    <span class="cbi"></span>
+    <span class="trr_c"></span>
+  </div>
+  <div class="window-title" style="background:#FFF">
+    <h3>You're in <%= city.full_address_city %>.</h3>
+    <span>Please select your right location and your university or college.</span>
+  </div>
+  <div class="window-content" style="background:#FFF">
+    <div id="wizard-steps">
+
+      <span class="fist_step">Select your location</span>
+      <span class="second_step">Select your university or college</span>
+
+    </div>
+    <div id="subwindow_l">
+      <div id="list_csc">
+        <ul id="droplist_country">Country
+          <li><a title="Click to select" id="expand_list" style="cursor:pointer;" ><span id="select_country" class=""> <%= city.country.printable_name  %> </span></a>
+          </li>
+        </ul>
+        <div id="select_country_div" class="menu_select" style="display:none">
+          <ul>
+            <% for country in @countries %>
+              <li>
+                <%= radio_button "state", "country_id", country.id, :onClick => "getState(#{country.id}, '#{country.printable_name}')" %>
+                <label onClick="getState(<%= country.id %>, '<%= country.printable_name %>')" for="state_country_id_<%= country.id %>"><%= country.printable_name %></label>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div id="select_state_or_city_div">
+          <ul id="droplist_state">State
+            <li><a title="Click to select" id="expand_list" style="cursor:pointer;" ><span id="select_state" class=""> <%= city.state.name %> </span></a>
+            </li>
+          </ul>
+          <div id="select_state_div" class="menu_select" style="display:none">
+            <ul>
+              <% for state in city.country.states %>
+                <li>
+                  <%= radio_button "city", "state_id", state.id, :onClick => "getCity(#{state.id}, '#{state.name}')" %>
+                  <label onClick="getCity(<%= state.id %>, '<%= state.name %>')" for="city_state_id_<%= state.id %>"><%= state.name %></label>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <ul id="droplist_city">City
+            <li><a title="Click to select" id="expand_list" style="cursor:pointer;" ><span id="select_city" class=""> <%= city.name %> </span></a>
+            </li>
+          </ul>
+          <div id="select_city_div" class="menu_select" style="display:none">
+            <ul>
+              <%
+              if city.state
+                cities = city.state.cities
+              else
+                cities = city.country.cities
+              end
+            %>
+              <% for city_item in cities %>
+                <li>
+                  <%= radio_button "school", "city_id", city_item.id, :onClick => "getSchool(#{city_item.id}, '#{city_item.name}')" %>
+                  <label onClick="getSchool(<%= city_item.id %>, '<%= city_item.name %>')" for="school_city_id_<%= city_item.id %>"><%= city_item.name %></label>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="subwindow_r">
+      <div id="select_school_div">
+        <div class="filter">
+          <span style="font-size:14px">Show</span> <a href="javascript:showUniversity()" title="" class="a_buton"> University</a> <a href="javascript:showCollege()" title="" class="a_buton">College</a> <a href="javascript:showAll()" title="" class="a_buton">All</a>
+        </div>
+        <div id="ul_list_universities">
+          <span class="list_title">List of universities in your location</span>
+          <ul>
+            <%
+            universities = city.schools.find_all_by_type_school('University')
+            for university in universities %>
+              <li>
+                <% if school && school.id == university.id %>
+                  <%= radio_button "#{model_name}", "school_id", university.id, :onClick => "getSchoolName('#{university.name}')", :checked => true %>
+                <% else %>
+                  <%= radio_button "#{model_name}", "school_id", university.id, :onClick => "getSchoolName('#{university.name}')" %>
+                <% end %>
+              <label onClick="getSchoolName(this.innerHTML)" for="<%= model_name %>_school_id_<%= university.id %>"><%= university.name %></label></li>
+            <% end %>
+          </ul>
+        </div>
+        <div id="ul_list_colleges">
+          <span class="list_title">List of colleges in your location</span>
+          <ul>
+            <%
+            colleges = city.schools.find_all_by_type_school('College')
+            for college in colleges %>
+              <li>
+                <% if school && school.id == college.id %>
+                  <%= radio_button "#{model_name}", "school_id", college.id, :onClick => "getSchoolName('#{college.name}')", :checked => true %>
+                <% else %>
+                  <%= radio_button "#{model_name}", "school_id", college.id, :onClick => "getSchoolName('#{college.name}')" %>
+                <% end %>
+              <label onClick="getSchoolName(this.innerHTML)" for="<%= model_name %>_school_id_<%= college.id %>"><%= college.name %></label></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!--Select School-->
+<script language="javascript">
+  var state_path = "/users_select_school/state_or_city";
+  var city_path = "/users_select_school/city";
+  var school_path = "/users_select_school/school";
+  var city = "<%= city.full_address_city %>";
+  var school_name = "<%= school.name if school %>";
+  var model_name = "<%= model_name %>";
+  var target = "<%= options["target"] %>";
+  var tip = "<%= options["tip"] %>";
+  function getState(country_id, country_name){
+    div_update = "select_state_div";
+    $('select_country').update(country_name);
+    new Ajax.Updater(div_update, state_path,
+    {asynchronous:true,
+      evalScripts:true,
+      method:'get',
+      on500:function(request){alert('Sorry, there was an error.'.l); return false},
+      parameters:{country_id:country_id, model:model_name},
+      onSuccess: function(){
+        $('select_state').update('Select your state');
+        $('select_city').update('Select your city');
+        $('select_city_div').update('');
+      }
+    }
+  );
+  }
+  function getCity(state_id, state_name){
+    div_update = "select_city_div";
+    $('select_state').update(state_name);
+    new Ajax.Updater(div_update, city_path,
+    {asynchronous:true,
+      evalScripts:true,
+      method:'get',
+      on500:function(request){alert('Sorry, there was an error.'.l); return false},
+      parameters:{state_id:state_id, model:model_name}}
+  );
+  }
+  function getSchool(city_id, city_name){
+    div_update = "select_school_div";
+    school_name = "";
+    $('select_city').update(city_name);
+    new Ajax.Updater(div_update, school_path,
+    {asynchronous:true,
+      evalScripts:true,
+      method:'get',
+      on500:function(request){alert('Sorry, there was an error.'.l); return false},
+      parameters:{city_id:city_id, model:model_name, get_department:"no"}}
+  );
+  }
+  function getSchoolName(school_select){
+    school_name = school_select;
+  }
+  function getFullAddress(full_address){
+    $('you_are_in_city').update(full_address);
+    city = full_address;
+  }
+  function showUniversity(){
+    $('ul_list_universities').show();
+    $('ul_list_colleges').hide();
+  }
+  function showCollege(){
+    $('ul_list_universities').hide();
+    $('ul_list_colleges').show();
+  }
+  function showAll(){
+    $('ul_list_universities').show();
+    $('ul_list_colleges').show();
+  }
+  new Tip('school_name', $('select_school'), {
+    width: 'auto',
+    title: 'Select Your School',
+    showOn: 'click',
+    hideOn: { element: 'closeButton', event: 'click'},
+    hook: { target: target, tip: tip },
+    offset: {x:0, y:0} });
+  $('school_name').observe('prototip:shown', function() {
+    //
+  });
+  $('school_name').observe('prototip:hidden', function() {
+    if (school_name != ""){
+      $('school_name').value = school_name;
+      if ($('advice-required-school_name'))
+        $('advice-required-school_name').hide();
+    }
+  });
+  new Tip('droplist_country', $('select_country_div'), {
+    width: 'auto',
+    title: 'Select Country',
+    showOn: 'click',
+    hideOn: { element: 'closeButton', event: 'click'},
+    hook: { target: 'bottomLeft', tip: 'topLeft' },
+    offset: {x:0, y:-8} });
+  new Tip('droplist_state', $('select_state_div'), {
+    width: 'auto',
+    title: 'Select State',
+    showOn: 'click',
+    hideOn: { element: 'closeButton', event: 'click'},
+    hook: { target: 'bottomLeft', tip: 'topLeft' },
+    offset: {x:0, y:-8} });
+  new Tip('droplist_city', $('select_city_div'), {
+    width: 'auto',
+    title: 'Select City',
+    showOn: 'click',
+    hideOn: { element: 'closeButton', event: 'click'},
+    hook: { target: 'bottomLeft', tip: 'topLeft' },
+    offset: {x:0, y:-8} });
+</script>

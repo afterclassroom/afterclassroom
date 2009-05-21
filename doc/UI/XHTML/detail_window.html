@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Details Window</title>
+<style type="text/css">
+	#detail_window{
+		width:600px;
+		padding:10px;
+		font: 85% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+		overflow:hidden;
+		background:#A6B89C;
+		
+	}
+	#detail_window .dw_title{
+		width:280px;
+		float:left;
+		padding:5px;
+	}
+	#detail_window .dw_location{
+		width:170px;
+		float:left;
+		padding:5px;		
+	}
+	#detail_window .dw_datetime{
+		float:left;
+			padding:5px;
+			width:100px;	
+	}
+	.detail-info{
+		
+	}	.detail-info ul{
+			padding-left:10px;
+		}	
+		.detail-info ul li{
+			padding-bottom:10px;
+		}
+		.detail-info ul li a{
+			color:#204a87;
+			text-decoration: none;
+		}
+		.detail-info ul li label{
+			font-weight: bold;
+			float:left;
+			text-align:left;
+			width:100px;
+		}
+		.download-link{
+			float:right;
+		}
+		.download-link a{
+			color:#204a87;
+			text-decoration: none;
+		}
+		.detail-l{
+			float:left;width:200px;
+			cursor: pointer;
+			<!--[if gte IE 7]>cursor:hand;<![endif]-->
+		}
+</style>
+</head>
+
+<body>
+
+	
+	<div id="detail_window">
+		
+		<div class="dw_title">
+		Title
+		</div>
+		
+		<div class="dw_location">
+		Description
+		</div>
+		
+		<div class="dw_datetime">
+			Datetime
+		</div>
+		<div class="detail-info"><!-- detail-info-->
+			<ul>
+				<li><label>Description:</label>Here we go, ale ale ale. Here we go, ale ale ale. Here we go, ale ale ale. Here we go, ale ale ale. Here we go, ale ale ale. Here we go, ale ale ale</li>
+				<li><label>Professor:</label>James Cameron</li>	
+				<li><label>Posted by:</label>Kristin Duns</li>													
+				<li><label>Due date:</label>28th, Febuary, 2009</li>
+        <li><label>Due date:</label>&nbsp;&nbsp;</li>
+        <li><label>Due date:</label>&nbsp;&nbsp;</li>
+        <li><label>Due date:</label>&nbsp;&nbsp;</li>
+				<li><a href="http://some-site.com/">Click here</a> to send Email to Kristin</li>																									
+			</ul>	
+		</div><!-- end detail-info-->
+		
+		<div class="info-link-box"><!--info-link-box-->
+			<div class="detail-l">
+				&raquo; Detail
+			</div>	
+			<div class="download-link">
+				<a href="#" title="">Download</a> | <a href="#" title="">More like this</a>
+			</div>	
+		</div><!--end info-link-box-->
+	</div>
+</body>
+</html>
+

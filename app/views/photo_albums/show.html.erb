@@ -1,0 +1,37 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Photos", :action_path => "#{photos_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<div id="r_c" class="width70p">
+
+  <div id="post-your-photo"><!-- post  button -->
+    <a href="/photos/new?photo_album_id=<%= @photo_album.id %>" title="Post" class="btfl link_bt">
+      <span class="ltred_l"></span>
+      <span class="ltred_c btf">Post your photo here...</span>
+      <span class="ltred_r"></span>
+    </a>
+  </div>
+  <!-- end post button -->
+  <fieldset class="fs_title"><!-- my photo album-->
+    <legend><%=h @photo_album.name %></legend>
+    <% for photo in @photo_album.photos %>
+      <div class="p_album"><!-- album -->
+        <%=h photo.title %>
+        <a href="<%= photo.photo_attach.url() %>" class="lightwindow" rel="My Albums[<%= @photo_album.name %>]" title="<%= photo.title %>" caption="" author="<%= photo.user.full_name %>">
+          <%= image_tag photo.photo_attach.url(:thumb) %>
+        </a>
+        <div class="p_album-ctrl">
+          <%= link_to 'Edit', edit_photo_path(photo) %> | <%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div><!-- end album -->
+    <% end %>
+  </fieldset><!-- end my photo album-->
+
+
+</div>
+<div id="right">
+</div>	

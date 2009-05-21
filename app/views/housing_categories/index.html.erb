@@ -1,0 +1,22 @@
+<% content_for :header do -%>
+	Housing categories
+<% end -%>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for housing_category in @housing_categories %>
+  <tr>
+    <td><%=h housing_category.name %></td>
+    <td><%= link_to 'Show', housing_category %></td>
+    <td><%= link_to 'Edit', edit_housing_category_path(housing_category) %></td>
+    <td><%= link_to 'Destroy', housing_category, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New housing_category', new_housing_category_path %>

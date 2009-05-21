@@ -1,0 +1,124 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Team Up", :new_post_path => "/post_teamups/new", :search_post_path => "/post_teamups"} %>
+<% end -%>
+
+<% content_for :select_your_school do -%>
+  <div id="target_select_school">
+    <span>&nbsp;</span>
+  </div>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => "shared/ads_vertical" %>
+<% end -%>
+<!--Content-->
+
+<!-- you favorite-->
+<%= your_favorite_today() %>
+<!-- you favorite-->
+
+<div id="detail_window" style="background: #f1f1f1;">
+  <%= ratings_for @post %>
+  <div class="dw_title">
+    <%= @post.title %>
+  </div>
+
+  <div class="dw_location">
+    <%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>,
+    <% if @post.user.school.website %>
+      <%= link_to @post.user.school.name, @post.user.school.website, :target => "_blank" %>
+    <% else %>
+      <%= @post.user.school.name %>
+    <% end %>
+  </div>
+
+  <div class="dw_datetime">
+    <%= @post.created_at.strftime("%B %d, %Y") %>
+  </div>
+  <div class="detail-info"><!-- detail-info-->
+    <ul>
+      <li><label>Category:</label><%= @post.post_teamup.teamup_category.name %></li>
+      <li><label>Industry experience:</label><%= @post.post_teamup.functional_experience.name %>&nbsp;&nbsp;</li>
+      <li><label>Opportunity Type:</label><%= @post.post_teamup.opportunity_type %>&nbsp;&nbsp;</li>
+      <li><label>Overview of position and responsibilities:</label><%= @post.post_teamup.position_title %>&nbsp;&nbsp;</li>
+      <li><label>Time commitment:</label><%= @time_commitments[@post.post_teamup.expected_time_commit] %>&nbsp;&nbsp;</li>
+      <li><label>Compensation:</label><%= @post.post_teamup.compensation_offered %>&nbsp;&nbsp;</li>
+      <% if current_user %>
+        <% if @post.allow_response %>
+          <li><span style="cursor:pointer" id="show_send_message">Click here</span> to send email to <%= @post.user.full_name %></li>
+          <script language="javascript">
+            var show_email_path = "/messages/show_email";
+            var post_id = "<%= @post.id %>";
+            var to = "<%= @post.user.login %>";
+            var user_id = "<%= @post.user.id %>";
+            var full_name = "<%= @post.user.full_name %>";
+            new Tip('show_send_message', {
+              ajax: {
+                url: show_email_path,
+                options: {
+                  method: 'get',
+                  parameters:{user_id:user_id,id:post_id, to:to, full_name:full_name}
+                }
+              },
+              fixed: true,
+              viewport: true,
+              width: 'auto',
+              title: 'Send Email to <%= @post.user.full_name %>',
+              showOn: 'click',
+              hideOn: { element: 'closeButton', event: 'click'},
+              hook: { target: 'bottomLeft', tip: 'topLeft' },
+              offset: {x:0, y:2} });
+            $('show_send_message').observe('prototip:shown', function() {
+              $('send_message_alert_'+post_id).hide();
+              $('send_message_wraper_'+post_id).show();
+            });
+            $('show_send_message').observe('prototip:hidden', function() {
+              $('message_subject_'+post_id).value = "";
+              $('message_body_'+post_id).value = "";
+            });
+
+            var send_email_path = "/messages/send_message";
+            var user_id = "<%= current_user.id %>";
+            function sendEmail(post_id, to){
+              subject = $("message_subject_"+post_id).value;
+              body = $("message_body_"+post_id).value;
+              new Ajax.Request(send_email_path,
+              {asynchronous:true,
+                evalScripts:true,
+                method:'get',
+                on500:function(request){alert('Sorry, there was an error.'.l); return false},
+                parameters:{user_id:user_id, message_to:to, message_subject:subject, message_body:body},
+                onSuccess:function(){
+                  $('send_message_alert_'+post_id).show();
+                  $('send_message_wraper_'+post_id).hide();
+                }}
+            );
+            }
+          </script>
+        <% end %>
+        <li>
+          <span id="add_to_favorite"><%= link_to_remote "Add to your favorite", :update => "list_favorites", :url => {:controller => "posts", :action => "add_to_favorite", :post_id => @post.id} %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div><!-- end detail-info-->
+  <div class="info-link-box"><!--info-link-box-->
+    <div class="download-link">
+      <% if @post.allow_download && @post.attach_file_name %>
+        <a href="javascript:downloadFile('<%= @post.attach.url %>')" class="downarrow">Download</a>
+      <% else %>
+        <span>Download</span>
+      <% end %>
+      | <a href="/post_teamups?more_like_this_id=<%= @post.id %>" title="">More like this</a>
+    </div>
+  </div><!--end info-link-box-->
+  <div id="comment_wraper">
+    <%= render :partial => "posts/list_comment", :locals => {:post => @post, :comments => @comments} %>
+  </div>
+</div>
+<!--Content-->
+<script language="javascript">
+  function downloadFile(path){
+    document.location.href = path;
+  }
+</script>

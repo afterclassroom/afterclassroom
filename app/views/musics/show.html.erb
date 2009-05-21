@@ -1,0 +1,36 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Musics", :action_path => "#{musics_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<p>
+  <b>User:</b>
+  <%=h @music.user.full_name %>
+</p>
+
+<p>
+  <b>Music album:</b>
+  <%=h @music.music_album.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @music.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @music.description %>
+</p>
+
+<p>
+  <b>Who can see:</b>
+  <%=h @music.who_can_see %>
+</p>
+
+<%= image_tag @music.music_attach.url(:medium) %>
+<%= link_to 'Edit', edit_music_path(@music) %> |
+<%= link_to 'Back', musics_path %>

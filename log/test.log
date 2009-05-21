@@ -1,0 +1,682 @@
+# Logfile created on Mon Feb 16 10:19:12 +0700 2009Unable to load admin_user, underlying cause no such file to load -- admin_user 
+
+ C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test/functional/admin/../../test_helper.rb:35
+./test/functional/admin/dashboard_controller_test.rb:1:in `require'
+./test/functional/admin/dashboard_controller_test.rb:1
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5:in `load'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5:in `each'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+Unable to load roles_user, underlying cause no such file to load -- roles_user 
+
+ C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test/functional/admin/../../test_helper.rb:35
+./test/functional/admin/dashboard_controller_test.rb:1:in `require'
+./test/functional/admin/dashboard_controller_test.rb:1
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5:in `load'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5:in `each'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+Unable to load admin_user, underlying cause no such file to load -- admin_user 
+
+ C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test/test_helper.rb:35
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+./test/functional/awareness_issues_controller_test.rb:1
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5:in `each'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+Unable to load roles_user, underlying cause no such file to load -- roles_user 
+
+ C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test/test_helper.rb:35
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+./test/functional/awareness_issues_controller_test.rb:1
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5:in `each'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+Unable to load admin_user, underlying cause no such file to load -- admin_user 
+
+ C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test/functional/../test_helper.rb:35
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+./test/functional/sessions_controller_test.rb:1
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5:in `each'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+Unable to load roles_user, underlying cause no such file to load -- roles_user 
+
+ C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test/functional/../test_helper.rb:35
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+C:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+./test/functional/sessions_controller_test.rb:1
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:503:in `load'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5:in `each'
+C:/InstantRails/ruby/lib/ruby/gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb:5
+Unable to load admin_user, underlying cause no such file to load -- admin_user 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load awareness_issues_post_awareness, underlying cause no such file to load -- awareness_issues_post_awareness 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load favourite, underlying cause no such file to load -- favourite 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load housing_categories_housing, underlying cause no such file to load -- housing_categories_housing 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load job_types_post_job, underlying cause no such file to load -- job_types_post_job 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load party_types_post_party, underlying cause no such file to load -- party_types_post_party 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load roles_user, underlying cause no such file to load -- roles_user 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load users_can_see_music, underlying cause no such file to load -- users_can_see_music 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load users_can_see_photo, underlying cause no such file to load -- users_can_see_photo 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load users_can_see_video, underlying cause no such file to load -- users_can_see_video 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mROLLBACK[0m
+Unable to load admin_user, underlying cause no such file to load -- admin_user 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load awareness_issues_post_awareness, underlying cause no such file to load -- awareness_issues_post_awareness 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load favourite, underlying cause no such file to load -- favourite 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load housing_categories_housing, underlying cause no such file to load -- housing_categories_housing 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load job_types_post_job, underlying cause no such file to load -- job_types_post_job 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load party_types_post_party, underlying cause no such file to load -- party_types_post_party 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load roles_user, underlying cause no such file to load -- roles_user 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load users_can_see_music, underlying cause no such file to load -- users_can_see_music 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load users_can_see_photo, underlying cause no such file to load -- users_can_see_photo 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load users_can_see_video, underlying cause no such file to load -- users_can_see_video 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mROLLBACK[0m
+Unable to load admin_user, underlying cause no such file to load -- admin_user 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load awareness_issues_post_awareness, underlying cause no such file to load -- awareness_issues_post_awareness 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load favourite, underlying cause no such file to load -- favourite 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load housing_categories_housing, underlying cause no such file to load -- housing_categories_housing 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load job_types_post_job, underlying cause no such file to load -- job_types_post_job 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load party_types_post_party, underlying cause no such file to load -- party_types_post_party 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+Unable to load roles_user, underlying cause no such file to load -- roles_user 
+
+ c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:510:in `require'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:102:in `require_or_load'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:61:in `depend_on'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:457:in `require_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:855:in `try_to_load_dependency'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:870:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `each'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:867:in `require_fixture_classes'
+C:/InstantRails/rails_apps/after_class_room/vendor/rails/activerecord/lib/active_record/fixtures.rb:850:in `fixtures'
+./test_helper.rb:35
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+c:/InstantRails/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+unit/post_test.rb:1
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mROLLBACK[0m

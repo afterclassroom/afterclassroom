@@ -1,0 +1,34 @@
+<% content_for :header do -%>
+	Application Settings
+<% end -%>
+
+<% content_for :sidebar do -%>
+	<p>
+		These are site-wide settings. They will be used through-out your application.
+	</p>
+	<p>
+		To add new settings, simple create a migration (see migration #006 for an example), and add  your 
+		settings code here to allow the administrator to edit it.
+	</p>
+<% end -%>
+
+<% form_tag :action => 'update' do %>
+
+<h3>General</h3>
+	
+	
+	
+<%= settings_field(Setting.load(:site_name)) %>
+<%= settings_field(Setting.load(:company_name)) %>
+<%= settings_field(Setting.load(:site_url)) %>
+
+<h3>Support</h3>
+	
+<%= settings_field(Setting.load(:support_name)) %>
+<%= settings_field(Setting.load(:support_email)) %>
+
+<div id="submitbutton">
+	<p><%= submit_tag 'Save Settings' %></p>
+</div>
+
+<% end %>

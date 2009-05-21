@@ -1,0 +1,18 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Friends", :action_path => "#{list_friends_user_path(current_user)}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<div id="profile_wrapper"><!-- profile wrapper -->
+  <%= render :partial => "shared/edit_profile_menu" %>
+  <div id="profile_update_zone">
+
+    Email: <%= @user.email %>, <%= link_to 'Change', edit_email_user_url(@user) %> <br/>
+    Password: <%= "*"*8 %>, <%= link_to 'Change', edit_password_user_url(@user) %> <br/>
+    Account created: <%= @user.created_at.to_s(:long) %> <br/>
+    Last updated: <%= @user.updated_at.to_s(:long) %>
+  </div>
+</div><!-- profile wrapper -->

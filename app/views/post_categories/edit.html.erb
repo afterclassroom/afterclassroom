@@ -1,0 +1,46 @@
+<% content_for :header do -%>
+	<%= link_to 'Post categories', post_categories_path %>
+<% end -%>
+
+<div id="posting-section">
+  <% form_for(@post_category, :html => {:id => "form"}) do |f| %>
+    <fieldset>
+      <legend><strong>Edit category</strong></legend>
+      <ul>
+        <li>
+          <label>Name*:</label>
+          <div class="user_ri"><%= f.text_field :name, :class => "required" %></div>
+        </li>
+        <li>
+          <div class="post_cbt">
+            <!-- post  button -->
+            <a href="javascript:submit()" title="Post" class="link_bt">
+              <span class="ltred_l"></span>
+              <span class="ltred_c btf">Update</span>
+              <span class="ltred_r"></span>
+            </a>
+            <!-- end post button -->
+          </div>
+        </li>
+      </ul>
+      <div id="elements_store"></div>
+    </fieldset>
+<% end %>
+</div>
+
+<script type="text/javascript">
+  var valid = new Validation('form', {immediate : true, onSubmit:false});
+  function submit(){
+    var result = valid.validate();
+    if (result) {
+      Tips.hideAll();
+      $$('.prototip').each(function(element){
+        $('elements_store').insert(element, { position: content });
+      });
+      $('form').submit();
+    }
+  }
+</script>
+
+<%= link_to 'Show', @post_category %> |
+<%= link_to 'Back', post_categories_path %>

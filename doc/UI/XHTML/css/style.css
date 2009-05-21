@@ -1,0 +1,129 @@
+body{
+	background:#252525;
+	padding-top:5px;
+}
+#wrapper{
+	background:#FFF;
+	padding:5px;
+}
+/*logo*/
+#logo h3{
+	height:0;
+	width:250px;
+	overflow:hidden;
+	padding-top:93px;;
+	background:#FFF url('../images/afterclassroom-logo.png') no-repeat top left;
+}
+#logo img{
+	border:none;
+}
+/* end logo */
+/* begin top-nav main-nav*/
+#top-nav ul li{
+	float:left;
+	padding:5px 5px 2px 5px;
+	font: 90% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+#top-nav ul li a{
+	text-decoration: none;
+	color:#19B7D4;
+}
+#top-nav ul li a:hover{
+	border-bottom: 1px dotted #999;
+}
+/* end top-nav */
+
+/* begin main-nav */
+#main-nav{
+	width: 711px;font-size:15px;margin-top: 20px;
+	float:right;
+	}
+#main-nav ul li{
+	padding:10px 5px 10px 10px;
+	font: 100% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+	display:block;	
+	float:left;
+}
+#main-nav ul li a{
+	text-decoration: none;
+	color: #333;
+	font-weight:bold;
+}
+#main-nav ul li a:hover{
+	color:#19B7D4;
+}
+/* end main-nav */
+#top-search{
+	background:#E5E5E5;
+	clear: both;
+	padding-top:10px;
+}
+	#top-search input[type="text"]{
+		height:25px;
+		font: 110% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+		padding-top:5px;
+		color:#32332F;
+		border:1px solid #D1D0D0;
+		width:425px;
+		padding-left:5px;
+		margin-left:20px;
+		margin-top:3px;
+	}
+/* inner box */
+.inner-box .front-title li{
+	padding-top:10px;
+	padding-left:5px;
+	padding-bottom:5px;
+	color:#4f4f4f;
+	font: 120% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+.inner-box .sub-post-title{
+
+	font: 80% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+.inner-box .sub-post-title li{
+		padding:3px 5px;
+}
+.inner-box {
+	font: 80% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+	border:2px solid #494949;
+}
+.inner-box a{
+	text-decoration: none;
+	font-weight: bold;
+	color:#19B7D4;
+}
+.inner-box a:hover{
+	color:#007ba3;
+}
+.more-link{
+	text-align: right;
+	padding-right:10px;
+}
+/* date time*/
+.post-datetime{
+	font: 70% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+#copyright a{
+	color:#19B7D4;
+	text-decoration: none;
+		font-weight: bold;
+}
+#copyright a:hover{
+	color:#007ba3;
+}
+.fs_title{
+	border:none;
+	margin-top:10px;	
+	border-top: 1px solid #999;
+}
+fieldset.fs_title legend{
+	font: 110% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+#post-your-photo{
+	float:left;
+	clear:both;
+	width:670px;
+	padding:5px;
+	background:#FFFFF1;
+}

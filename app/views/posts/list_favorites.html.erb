@@ -1,0 +1,91 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => @type_name, :new_post_path => @new_post_path, :search_post_path => "/posts"} %>
+<% end -%>
+
+<% content_for :select_your_school do -%>
+  <%= select_your_school("user", "shared/select_school", {"target" => "bottomLeft", "tip" => "topLeft"}) %>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => "shared/ads" %>
+<% end -%>
+<!--Content-->
+
+<!-- you favorite-->
+<%= your_favorite_today() %>
+<!-- you favorite-->
+
+<div id="main-listing">
+  <div class="expandable-box"><!--expandable-box-->
+    <% for favorite in @list_favorites %>
+      <div class="exp-box-wrap"><!--exp-box-wrap-->
+        <div class="exp-box1">
+          <%= favorite.post.title %>
+        </div>
+        <div class="exp-box2">
+          <%= favorite.post.user.full_name %>, <%= favorite.post.user.school.name %>
+        </div>
+        <div class="exp-box3">
+          <%= favorite.post.created_at.strftime("%B %d, %Y") %>
+        </div>
+        <div class="info-link-box"><!--info-link-box-->
+          <div class="details-link">
+            <span rel="<%= show_post_dialog(favorite.post) %>" style="cursor:pointer">View Detail</span>
+          </div>
+          <div class="download-rel-link">
+            <a href="#" title="">Download</a> | <a href="#" title="">More like this</a>
+          </div>
+        </div><!--end info-link-box-->
+      </div>	<!--end exp-box-wrap-->
+    <% end %>
+  </div>	<!--end expandable-box-->
+</div>
+
+<%= will_paginate @list_favorites, :class => "digg_pagination" %>
+
+<script language="javascript">
+  document.observe('dom:loaded', function() {
+    $$('span[rel]').each(function(element) {
+      show_detail_path = element.readAttribute("rel");
+      new Tip(element, {
+        ajax: {
+          url: show_detail_path,
+          options: {
+            asynchronous:true,
+            evalScripts:true,
+            method: 'get'
+          }
+        },
+        width: 'auto',
+        title: 'Detail',
+        showOn: 'click',
+        hideOthers: true,
+        hideOn: { element: 'closeButton', event: 'click'},
+        hook: { target: 'bottomLeft', tip: 'topLeft' },
+        offset: {x:0, y:5} });
+    });
+  });
+<% if current_user %>
+    var send_email_path = "/messages/send_message";
+    var user_id = "<%= current_user.id %>";
+    function sendEmail(post_id, to){
+      subject = $("message_subject_"+post_id).value;
+      body = $("message_body_"+post_id).value;
+      new Ajax.Request(send_email_path,
+      {asynchronous:true,
+        evalScripts:true,
+        method:'get',
+        on500:function(request){alert('Sorry, there was an error.'.l); return false},
+        parameters:{user_id:user_id, message_to:to, message_subject:subject, message_body:body},
+        onSuccess:function(){
+          $('send_message_alert_'+post_id).show();
+          $('send_message_wraper_'+post_id).hide();
+        }}
+    );
+    }
+<% end %>
+  function downloadFile(path){
+    document.location.href = path;
+  }
+</script>
+<!--Content-->

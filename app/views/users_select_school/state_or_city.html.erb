@@ -1,0 +1,8 @@
+<ul>
+  <% for state in @states %>
+    <li>
+      <%= radio_button "city", "state_id", state.id, :onClick => "getCity(#{state.id}, '#{state.name}')" %>
+      <label onClick="getCity(<%= state.id %>, '<%= state.name %>')" for="city_state_id_<%= state.id %>"><%= state.name %></label>
+    </li>
+  <% end %>
+</ul>

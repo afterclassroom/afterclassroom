@@ -1,0 +1,4 @@
+
+For more information on named_scope_for_time_attr, 
+see http://nsfta.rubyforge.org/
+

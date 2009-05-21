@@ -1,0 +1,56 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Home", :action_path => "#{dashboard_user_path(current_user)}"} %>
+<% end -%>
+
+<% content_for :function_button do %>
+  <ul>
+    <li><!-- compose button -->
+      <a href="<%= new_user_message_path(@user) %>" title="Compose" class="link_bt_g">
+        <span class="ltblue_l"></span>
+        <span class="ltblue_c btf">Compose</span>
+        <span class="ltblue_r"></span>
+      </a>
+    <!-- end compose button --></li>
+  </ul>
+<% end %>
+
+<% form_for @message, :url => user_messages_path(@user) do |f| %>
+  <p>
+    To:<br />
+    <div id="list_friend_div">
+      <%= text_field_tag "username", "#{@message.to}", :readonly => true %>
+      <%= error_message_on @message, :to %>
+      <% if @message.to %>
+        <%= hidden_field_tag "message[to]", @message.to %>
+      <% else %>
+        <% for friend in @friends %>
+          <%= radio_button "message", "to", friend.login, :onClick => "getUsername('#{friend.full_name}')" %>
+          <label onClick="getUsername(this.innerHTML)" for="message_to_<%= friend.id %>"><%= friend.full_name %></label>
+        <% end %>
+      <% end %>
+    </div>
+  </p>
+  <p>
+    Subject:<br />
+    <%= f.text_field :subject %>
+    <%= error_message_on @message, :subject %>
+  </p>
+  <p>
+    Message<br />
+    <%= f.text_area :body %>
+    <%= error_message_on @message, :body %>
+  </p>
+  <p>
+    <%= submit_tag "Send" %>
+  </p>
+<% end %>
+
+<script language="javascript">
+  function getUsername(username){
+    $("username").value = username;
+  }
+  Event.addBehavior.reassignAfterAjax = true;
+  Event.addBehavior({
+    'div.digg_pagination a' : Remote.Link
+  })
+</script>

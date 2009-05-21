@@ -1,0 +1,71 @@
+--- 
+javascripts: 
+- application:
+  - prototype
+  - effects
+  - dragdrop
+  - controls
+  - application
+  - validation
+  - lowpro
+  - frontend
+  - prototip
+  - prototype_ajax_upload
+  - lightwindow
+- signin:
+  - prototype
+  - effects
+  - dragdrop
+  - controls
+  - application
+  - validation
+  - pwd_strength
+  - lowpro
+  - frontend
+  - prototip
+- admin:
+  - prototype
+  - effects
+  - dragdrop
+  - controls
+  - application
+  - validation
+  - lowpro
+  - frontend
+  - prototip
+stylesheets: 
+- application:
+  - reset
+  - layout
+  - style
+  - buttons
+  - search
+  - pagination
+  - prototip
+  - windows
+  - account
+  - listing
+  - posting
+  - default
+  - lightwindow
+- signin:
+  - reset
+  - layout
+  - style
+  - search
+  - buttons
+  - signinup
+  - prototip
+  - windows
+- admin:
+  - admin_reset
+  - admin_layout
+  - admin_style
+  - admin_icons
+  - pagination
+  - prototip
+  - windows
+  - listing
+  - posting
+  - buttons
+  - search

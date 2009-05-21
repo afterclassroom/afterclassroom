@@ -1,0 +1,22 @@
+<% content_for :header do -%>
+	Party types
+<% end -%>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for party_type in @party_types %>
+  <tr>
+    <td><%=h party_type.name %></td>
+    <td><%= link_to 'Show', party_type %></td>
+    <td><%= link_to 'Edit', edit_party_type_path(party_type) %></td>
+    <td><%= link_to 'Destroy', party_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New party_type', new_party_type_path %>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  post_awareness_id: 1
+  awareness_issue_id: 1
+
+two:
+  post_awareness_id: 1
+  awareness_issue_id: 1

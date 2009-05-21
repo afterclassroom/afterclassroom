@@ -1,0 +1,45 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Videos", :action_path => "#{videos_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<h1>Listing my video_albums</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% for video_album in @my_video_albums %>
+    <tr>
+      <td><%=h video_album.name %></td>
+      <td><%= link_to 'Show', video_album %></td>
+      <td><%= link_to 'Edit', edit_video_album_path(video_album) %></td>
+      <td><%= link_to 'Destroy', video_album, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<h1>Listing my friends video_albums</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% if @my_friend_video_albums %>
+    <% for friend_video_albums in @my_friend_video_albums %>
+      <tr>
+        <td><%=h friend_video_albums.name %></td>
+        <td><%= link_to 'Show', friend_video_albums %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<br />
+<%= link_to 'New video_album', new_video_album_path %>

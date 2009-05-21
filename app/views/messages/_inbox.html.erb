@@ -1,0 +1,28 @@
+<table width="746" border="0" cellspacing="2" cellpadding="2">
+  <tr>
+    <th width="20" scope="col"></th>
+    <th width="156" scope="col">From</th>
+    <th width="360" scope="col">Subject</th>
+    <th width="115" scope="col">Date</th>
+  </tr>
+  <% if @messages.size == 0 %>
+    <tr>
+      <td colspan="4">
+        The mail box is empty
+      </td>
+    </tr>
+  <% else %>
+    <% for message in @messages %>
+      <tr>
+        <td><%= check_box_tag "delete[]", message.id %></td>
+        <td><%= link_to h(message.sender.login), {:controller => "profile", :action => "show_profile", :id => message.sender.id} %></td>
+        <td><% if message.read? %>
+            <%= link_to h(message.subject), user_message_path(@user, message) %>
+          <% else %>
+            <%= link_to "#{h(message.subject)} (unread)", user_message_path(@user, message) %>
+          <% end %></td>
+        <td><%=h message.created_at.to_s(:long) %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

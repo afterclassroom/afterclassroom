@@ -1,0 +1,41 @@
+<% content_for :sidebar do -%>
+  <% form_tag session_path, :name => "form", :id => "form" do -%>
+    <span class="dred_box">WELCOME BACK</span>
+    <% if flash[:notice] %>
+      <div id="notice"><%= flash[:notice] %></div>
+    <% end %>
+
+    <% if flash[:warning] %>
+      <div id="warning"><%= flash[:warning] %></div>
+    <% end %>
+
+    <% if flash[:error] %>
+      <div id="error"><%= flash[:error] %></div>
+    <% end %>
+    <div class="signup-form">
+      <label>Username</label><%= text_field_tag 'login' %><br />
+      <label>Password</label><%= password_field_tag 'password' %>
+      <div class="bt-signin">
+        <!-- button -->
+        <a href="#" onclick="document.form.submit()" class="link_bt">
+          <span class="ltred_l"></span>
+          <span class="ltred_c btf">Sign In</span>
+          <span class="ltred_r"></span>
+        </a>
+        <!-- endbutton -->
+      </div>
+      <ul class="login-sup w3">
+        <li><%= link_to "Forgot Username", user_forgot_login_url %></li>
+        <li>|</li>
+        <li><%= link_to "Forgot Password", user_forgot_password_url %></li>
+        <li>|</li>
+        <li><a href="#" title="Help">Help</a></li>
+      </ul>
+    </div>
+    <span class="dred_box signup-sug">No Account? <%= link_to "Sign up for an AfterClassroom Account!", signup_url %></span>
+  <% end -%>
+<% end -%>
+
+<!--Content-->
+<%= render :partial => "signin_introduction" %>
+<!--Content-->

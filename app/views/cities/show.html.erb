@@ -1,0 +1,21 @@
+<% content_for :header do -%>
+  <%= link_to 'Cities', cities_path %>
+<% end -%>
+
+<p>
+  <b>Country:</b>
+  <%=h @city.country.printable_name %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%=h @city.state.name if @city.state %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @city.name %>
+</p>
+
+<%= link_to 'Edit', edit_city_path(@city) %> |
+<%= link_to 'Back', cities_path %>

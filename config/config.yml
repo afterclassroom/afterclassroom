@@ -1,0 +1,21 @@
+# Configuration options can be accessed as
+#   configatron.site_name
+
+development: &local
+    site_name: AfterClassroom
+    site_url: http://localhost:3000
+    
+    company_name: AfterClassroom
+    admin_email: admin@afterclassroom.com
+    
+    support_name: Support
+    support_email: support@afterclassroom.com
+
+production:
+  <<: *local
+  
+staging:
+  <<: *local
+
+test:
+  <<: *local

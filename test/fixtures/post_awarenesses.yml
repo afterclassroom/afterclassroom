@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  post: 
+  campaign_start: 2009-02-12 16:24:43
+  campaign_end: 2009-02-12 16:24:43
+
+two:
+  post: 
+  campaign_start: 2009-02-12 16:24:43
+  campaign_end: 2009-02-12 16:24:43

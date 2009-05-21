@@ -1,0 +1,45 @@
+<div class="menu_select_long" style="float: left; min-height: 100px; position: relative; margin-top: 45px;">
+  <%
+  if (@departments.size > 0)
+    department_category_name = ""
+    department_categories = []
+    for department in @departments
+      if department_category_name == ""
+        department_category_name = department.department_category.name
+        department_categories << department.department_category
+      %>
+        <fieldset rel="<%= department.department_category.id %>">
+          <legend>
+          <%= department_category_name %></legend>
+          <ul>
+          <%
+          elsif department_category_name != department.department_category.name
+            department_category_name = department.department_category.name
+            department_categories << department.department_category
+          %>
+          </ul>
+        </fieldset>
+        <fieldset rel="<%= department.department_category.id %>">
+          <legend>
+          <%= department_category_name %></legend>
+          <ul>
+          <% end %>
+          <li>
+            <%= radio_button "post", "department_id", department.id, :onClick => "getDepartmentName('#{department.name}')" %>
+            <label onClick="getDepartmentName('<%= department.name %>')" for="post_department_id_<%= department.id %>"><%= department.name %></label>
+          </li>
+        <%
+        end
+      %>
+      </ul>
+    </fieldset>
+  <% end %>
+</div>
+<div style="float: left; position: absolute; clear: both; margin-bottom: 30px;">
+  <label>Filter Category</label>
+  <div class="user_ri">
+    <% if department_categories %>
+      <%= select("department", "department_category_id", department_categories.collect {|p| [ p.name, p.id ] }, { :include_blank => true }, {:onclick => "getDepartmentCategory(this)"}) %>
+    <% end %>
+  </div>
+</div>

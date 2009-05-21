@@ -1,0 +1,148 @@
+.acr_window{
+	width:800px;
+	font: 0.9em/1.5em "Lucida Grande", "Lucida Sans Unicode", helvetica, verdana, arial, sans-serif;
+	border:1px solid #EBEBEB;
+	padding:5px;
+	overflow:hidden;
+}
+.window-title{
+	text-align: center;
+	margin-top:10px;
+}
+.window-title h3{
+	padding-top:20px;
+	color:#1E90FF;
+	font-size: 110%;
+
+}
+.filter{
+	height:20px;
+	padding:10px;
+	padding-top:5px;
+	background:#efefef;
+	margin-bottom: 1em;
+}
+.filter a{
+	text-decoration: none;
+	background: #AA8847;
+	padding:2px 10px;
+	color:#FFF;
+}
+.filter a:hover{
+	background: #F58559;
+}
+.window-title span{
+	font-size: 0.9em;
+	padding-bottom:10px;		
+}
+.list_title{
+	margin-top:10px;
+	padding:2px 20px;
+	background:#EBEBEB;
+}
+.window-content ul{
+	overflow:hidden;
+	margin-bottom: 1em;
+	border:1px solid #EBEBEB;
+}
+.window-content ul li{
+	float:left;
+	width:260px;
+}
+/*window*/
+.window_2{
+	background:transparent;
+}
+.close_this_bt{
+	float:right;
+	height:20px;
+	font-size:11px;
+}
+.rounded-top{
+	float:left;
+	height:11px;
+	width:800px;
+}
+.tlr_c{
+	background: transparent url('../images/ltr_c.gif') no-repeat top left;
+	width:20px;
+	height:10px;
+	float:left;
+}
+.cbi{
+	background: transparent url('../images/cbi.png') repeat-x top right;
+	width:20px;
+	height:10px;
+	float:left;
+	width:760px;
+}
+.trr_c{
+	background: transparent url('../images/trr_c.gif') no-repeat top right;
+	height:10px;
+	width:20px;
+	float:left;
+}
+#wizard-steps{
+	height:45px;
+	padding-top:20px;
+	margin-bottom:12px;
+}
+	.fist_step{
+	background: transparent url('../images/1r.png') no-repeat top left;
+	padding:10px;
+	padding-left:45px;
+	float:left;
+	margin-left:5px;
+	width:230px;
+	}
+	.second_step{
+	background: transparent url('../images/2r.png') no-repeat top left;
+	padding:10px;
+	padding-left:45px;
+	float:left;
+	margin-left:65px;
+	width:230px;
+	}
+/*--- subwindow_l ---*/
+	 #subwindow_l{
+		float:left;
+		margin-right: 2px;
+		background:#FFF;
+		margin-top: -10px;
+		width:250px;	
+		padding:5px 10px 5px 10px;	
+	}
+	#list_csc{
+		margin-top:10px;
+		float:left;
+	}
+	#subwindow_l ul{
+		border:none;
+	}
+	#subwindow_l ul li{
+		float:left;
+		width:150px;
+		margin-bottom:10px;
+			
+	}
+/*--- end subwindow_r ---*/
+	#subwindow_r{
+		margin-top: -10px;
+		float:left;
+		background:#FFF;
+		width:528px;
+	}
+/*--- end subwindow_r ---*/
+
+/*--- topwindow ---*/
+	.topwindow{
+		float:left;
+		background:#FFF;
+	}
+		.w_step1{
+			
+		}
+		.w_step2{
+			
+		}
+/*--- end topwindow ---*/

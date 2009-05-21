@@ -1,0 +1,6 @@
+<%= text_field_tag "username", "" %>
+<%= error_message_on @message, :to %>
+<% for friend in @friends %>
+  <%= radio_button "message", "to", friend.login, :onClick => "getUsername('#{friend.full_name}')" %>
+  <label onClick="getUsername(this.innerHTML)" for="message_to_<%= friend.id %>"><%= friend.full_name %></label>
+<% end %>

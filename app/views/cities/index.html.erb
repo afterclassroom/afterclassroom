@@ -1,0 +1,28 @@
+<% content_for :header do -%>
+	Cities
+<% end -%>
+
+<%= render :partial => "search", :locals => {:country_name => @country_name, :state_name => @state_name, :countries => @countries, :states => @states} %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>State</th>
+    <th>Country</th>
+  </tr>
+
+<% for city in @cities %>
+  <tr>
+    <td><%=h city.name %></td>
+    <td><%=h city.state.name if city.state %></td>
+    <td><%=h city.country.printable_name %></td>
+    <td><%= link_to 'Show', city %></td>
+    <td><%= link_to 'Edit', edit_city_path(city) %></td>
+    <td><%= link_to 'Destroy', city, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @cities, :class => "digg_pagination" %>
+<br />
+
+<%= link_to 'New city', new_city_path %>

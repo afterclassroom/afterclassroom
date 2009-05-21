@@ -1,0 +1,12 @@
+<% content_for :header do -%>
+	<%= link_to 'Shiping methods', shipping_methods_path %>
+<% end -%>
+
+<p>
+  <b>Name:</b>
+  <%=h @shipping_method.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_shipping_method_path(@shipping_method) %> |
+<%= link_to 'Back', shipping_methods_path %>

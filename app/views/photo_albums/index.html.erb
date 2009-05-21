@@ -1,0 +1,76 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Photos", :action_path => "#{photos_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<div id="r_c" class="width70p">
+
+  <div id="post-your-photo"><!-- post  button -->
+    <a href="<%= new_photo_path %>" title="Post" class="btfl link_bt">
+      <span class="ltred_l"></span>
+      <span class="ltred_c btf">Post your photo here...</span>
+      <span class="ltred_r"></span>
+    </a>
+  </div>
+  <!-- end post button -->
+  <fieldset class="fs_title"><!-- my photo album-->
+    <legend>My Photo Album</legend>
+    <% for photo_album in @my_photo_albums %>
+      <div class="p_album"><!-- album -->
+        <%= photo_album.name %>
+        <% if photo_album.photos.size > 0 %>
+          <%
+          first = true
+          for photo in photo_album.photos %>
+            <a href="<%= photo.photo_attach.url() %>" class="lightwindow <%= first == true ? "page-options" : "hidden" %>" rel="My Albums[<%= photo_album.name %>]" title="<%= photo.title %>" caption="<%= photo.description %>" author="<%= photo.user.full_name %>">
+              <% if first == true %>
+                <%= image_tag photo.photo_attach.url(:thumb) %>
+              <% else %>
+                <%= photo.title %>
+              <% end %>
+            </a>
+            <%
+            first = false
+          end
+        %>
+        <% end %>
+        <div class="p_album-ctrl">
+          <%= link_to 'Edit', edit_photo_album_path(photo_album) %> | <%= link_to 'Destroy', photo_album, :confirm => 'Are you sure?', :method => :delete %>
+        </div>
+      </div><!-- end album -->
+    <% end %>
+  </fieldset><!-- end my photo album-->
+
+  <fieldset class="fs_title"><!-- friend's photo album-->
+    <legend>My Friend's Photo Album</legend>
+    <% if @my_friend_photo_albums %>
+      <% for friend_photo_album in @my_friend_photo_albums %>
+        <div class="p_album"><!-- album -->
+          <%= friend_photo_album.name %>
+          <% if friend_photo_album.photos.size > 0 %>
+            <%
+            first_frnd = true
+            for photo_frnd in friend_photo_album.photos %>
+              <a href="<%= photo_frnd.photo_attach.url() %>" class="lightwindow <%= first_frnd == true ? "page-options" : "hidden" %>" rel="My Friend's Albums[<%= friend_photo_album.name %>]" title="<%= photo_frnd.title %>" caption="<%= photo_frnd.description %>" author="<%= photo_frnd.user.full_name %>">
+                <% if first_frnd == true %>
+                  <%= image_tag photo_frnd.photo_attach.url(:thumb) %>
+                <% else %>
+                  <%= photo_frnd.title %>
+                <% end %>
+              </a>
+              <%
+              first_frnd = false
+            end
+          %>
+          <% end %>
+        </div><!-- end album -->
+      <% end %>
+      <%= will_paginate @my_friend_photo_albums, :class => "digg_pagination" %>
+    <% end %>
+  </fieldset><!-- end friend's photo album-->
+</div>
+<div id="right">
+</div>	

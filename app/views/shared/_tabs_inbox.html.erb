@@ -1,0 +1,136 @@
+<div class="u_avatar"><!-- user avatar -->
+  <%= image_tag current_user.avatar.url(:thumb), :id => 'image_avatar' %>
+  <a id="upload_button" href="#" title="">Upload</a>
+</div><!-- end user avatar -->
+
+<div class="u_blas_update"><!-- users update their status message -->
+  <div class="left_arrow"></div>
+  <div class="u_blas_content">
+
+    <div id="i_am_doing_button" class="status_update_bt" style="display:none"><!-- status_update_bt -->
+      <!-- Update button -->
+      <a href="javascript:hiddenEdit()" title="Update" class="btfr link_bt" style="margin: 4px 20px 0px 0px;">
+        <span class="ltred_l"></span>
+        <span class="ltred_c btf">Cancel</span>
+        <span class="ltred_r"></span>
+      </a>
+      <!-- end Update button -->
+
+      <!-- Update button -->
+      <a href="javascript:updateEdit()" title="Update" class="btfr link_bt" style="margin: 4px 20px 0px 0px;">
+        <span class="ltred_l"></span>
+        <span class="ltred_c btf">Update</span>
+        <span class="ltred_r"></span>
+      </a>
+      <!-- end Update button -->
+    </div><!-- end status_update_bt -->
+    <div id="i_am_doing" class="user_status_input" onclick="showEdit()">
+      <%= current_user.user_information.i_am_doing.nil? ? 'What are you doing after classroom?' : current_user.user_information.i_am_doing %>
+    </div>
+  </div>
+</div><!-- end users update their status message -->
+
+<div class="user_menu">
+  <ul>
+    <li><%= tab_to "Home", [{:controller => dashboard_user_path(current_user)}] %></li>
+    <li><%= tab_to "Inbox", [{:controller => user_messages_path(current_user)}] %></li>
+    <li><%= tab_to "Profile", [{:controller => user_path(current_user)}] %></li>
+    <li><%= tab_to "Share a Story", [{:controller => stories_path}] %></li>
+    <li><%= tab_to "Photo Album", [{:controller => photo_albums_path}] %></li>
+    <li><%= tab_to "Music", [{:controller => music_albums_path}] %></li>
+    <li><%= tab_to "Video", [{:controller => video_albums_path}] %></li>
+    <li><%= tab_to "My Friends", [{:controller => list_friends_user_path(current_user)}] %></li>
+    <li><%= tab_to "My Favorites", [{:controller => my_favorite_user_path(current_user)}] %></li>
+  </ul>
+</div>	
+
+<script type="text/javascript">
+  var path_update = "<%= update_i_am_doing_user_path(@user) %>";
+  var i_am_doing = "";
+  i_am_doing = $('i_am_doing').innerHTML;
+  function showEdit(){
+    $('i_am_doing').contentEditable='true';
+    $('i_am_doing_button').show();
+  }
+  function hiddenEdit(){
+    $('i_am_doing').update(i_am_doing);
+    $('i_am_doing').contentEditable='false';
+    $('i_am_doing_button').hide();
+  }
+
+  function updateEdit(){
+    new Ajax.Request(path_update,
+    {
+      method:'put',
+      parameters: {i_am_doing: $('i_am_doing').innerHTML},
+      onSuccess: function(transport){
+        i_am_doing = transport.responseText;
+        $('i_am_doing').update(transport.responseText);
+        $('i_am_doing').contentEditable='false';
+        $('i_am_doing_button').hide();
+      },
+      onFailure: function(){ alert('Something went wrong...') }
+    });
+  }
+</script>
+<script type="text/javascript">
+  /*<![CDATA[*/
+  var avatar_update = "<%= update_avatar_user_path(@user) %>";
+  document.observe("dom:loaded", function() {
+    var image_avatar = $('image_avatar');
+    var button = $('upload_button');
+    new Ajax_upload('#upload_button', {
+      // Location of the server-side upload script
+      action: avatar_update,
+      // File upload name
+      name: 'user[avatar]',
+      // Additional data to send
+      data: {
+      },
+      // Fired when user selects file
+      // You can return false to cancel upload
+      // @param file basename of uploaded file
+      // @param extension of that file
+      onSubmit: function(file, extension) {
+        if (! (extension && /^(jpg|png|jpeg|gif)$/.test(extension))){
+          // extension is not allowed
+          alert('Error: invalid file extension');
+          // cancel upload
+          return false;
+        }
+
+        // change button text, when user selects file
+        button.update('Uploading');
+
+        // If you want to allow uploading only 1 file at time,
+        // you can disable upload button
+        this.disable();
+
+        // Animating upload button
+        // Uploding -> Uploading. -> Uploading...
+        interval = window.setInterval(function(){
+          var text = button.innerHTML;
+          if (text.length < 13){
+            button.update(text + '.');
+          } else {
+            button.update('Uploading');
+          }
+        }, 200);
+      },
+      // Fired when file upload is completed
+      // @param file basename of uploaded file
+      // @param response server response
+      onComplete: function(file, response) {
+        //alert(response);
+        button.update('Upload');
+        image_avatar.src = response;
+        window.clearInterval(interval);
+
+        // enable upload button
+        this.enable();
+      }
+    });
+
+  });
+  /*]]>*/
+</script>

@@ -1,0 +1,10 @@
+<% if states %>
+  <ul>
+    <% for state in states %>
+      <li>
+        <%= radio_button "city", "state_id", state.id, :onClick => "getState('#{state.name}')" %>
+        <label onClick="getState(this.innerHTML)" for="city_state_id_<%= state.id %>"><%= state.name %></label>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

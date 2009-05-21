@@ -1,0 +1,12 @@
+<% content_for :header do -%>
+	<%= link_to 'Awareness issues', awareness_issues_path %>
+<% end -%>
+
+<p>
+  <b>Name:</b>
+  <%=h @awareness_issue.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_awareness_issue_path(@awareness_issue) %> |
+<%= link_to 'Back', awareness_issues_path %>

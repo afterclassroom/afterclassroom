@@ -1,0 +1,39 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Home", :action_path => "#{dashboard_user_path(current_user)}"} %>
+<% end -%>
+
+<% content_for :function_button do %>
+  <ul>
+    <li><!-- compose button -->
+      <a href="<%= new_user_message_path(@user) %>" title="Compose" class="link_bt_g">
+        <span class="ltblue_l"></span>
+        <span class="ltblue_c btf">Compose</span>
+        <span class="ltblue_r"></span>
+      </a>
+    <!-- end compose button --></li>
+    <% if @message.recipient == @user %>
+      <li> <!-- Reply button -->
+        <a href="<%= new_user_message_path(@user, :reply_to => @message) %>" title="Reply" class="link_bt_g ">
+          <span class="ltgray_l"></span>
+          <span class="ltgray_c btf">Reply</span>
+          <span class="ltgray_r"></span>
+        </a>
+      <!-- end Reply button --></li>
+      <li> <!-- Forward button -->
+        <a href="<%= new_user_message_path(@user, :forward_to => @message) %>" title="Forward" class="link_bt_g">
+          <span class="ltgray_l"></span>
+          <span class="ltgray_c btf">Forward</span>
+          <span class="ltgray_r"></span>
+        </a>
+      <!-- end Forward button --></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p><strong>From:</strong> <%= @message.sender == @user ? link_to("You", user_path(@user)) : link_to(h(@message.sender.login), {:controller => "profile", :action => "show_profile", :id => @message.sender.id}) %></p>
+<p><strong>Received:</strong> <%= @message.created_at.to_s(:long) %></p>
+<p><strong>To:</strong> <%= @message.recipient == @user ? link_to("You", user_path(@user)) : link_to(h(@message.recipient.login), {:controller => "profile", :action => "show_profile", :id => @message.recipient.id}) %></p>
+<p>
+  <strong>Message</strong><br />
+  <%=h @message.body %>
+</p>

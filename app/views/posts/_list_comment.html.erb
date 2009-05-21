@@ -1,0 +1,58 @@
+<% if current_user %>
+  <% if post.allow_comment %>
+    <div id="send_comment">
+      <div id="send_comment_wraper">
+        <form name="form" action="/posts/create_comment" method="get">
+          <ul>
+            <li>
+              <label>Write comment</label>
+            </li>
+            <li><textarea name="comment" id="comment"></textarea></li>
+            <li>
+              <input type="hidden" name="post_id" id="post_id" value="<%= post.id %>" />
+              <!-- post  button -->
+              <a href="javascript:sendComment()" title="Send" class="btfr link_bt" style="margin: 4px 20px 0px 0px;">
+                <span class="ltred_l"></span>
+                <span class="ltred_c btf">Send</span>
+                <span class="ltred_r"></span>
+              </a>
+              <!-- end post button -->
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<div id="list_comment_wraper">
+  <% for comnt in comments %>
+    <div class="comment-item">
+      <%= image_tag comnt.user.avatar.url(:thumb) %>
+      <span class="comment-person">
+        <%= link_to comnt.user.full_name, {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %>
+      </span>
+      <div class="comment-content">
+        <%= comnt.comment %>
+      </div>
+      <span class="comment-time"><%= distance_of_time_in_words_to_now(comnt.created_at) + " ago." %></span>
+    </div>
+  <% end %>
+</div>
+<div>
+  <%= link_to "More", "/posts/list_comments?post_id=#{post.id.to_s}" %>
+</div>
+<script language="javascript">
+  var create_comment_path = "/posts/create_comment";
+  function sendComment(){
+    post_id = $("post_id").value;
+    comment = $("comment").value;
+    new Ajax.Updater('comment_wraper', create_comment_path,
+    {asynchronous:true,
+      evalScripts:true,
+      method:'get',
+      on500:function(request){alert('Sorry, there was an error.'.l); return false},
+      parameters:{post_id:post_id, comment:comment}
+    }
+  );
+  }
+</script>

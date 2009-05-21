@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  post: 
+  price: MyString
+  currency: MyString
+  accept_payment: 1
+  shipping_method: 1
+  in_stock: MyString
+
+two:
+  post: 
+  price: MyString
+  currency: MyString
+  accept_payment: 1
+  shipping_method: 1
+  in_stock: MyString

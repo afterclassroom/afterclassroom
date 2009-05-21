@@ -1,0 +1,28 @@
+<div id="send_message_<%= @id %>">
+  <div id="send_message_alert_<%= @id %>" style="display:none">
+    You sended an email.
+  </div>
+  <div id="send_message_wraper_<%= @id %>">
+    <form name="form_send_message">
+      <ul>
+        <li>
+          <label>Subject</label>
+          <div class="user_ri"><input id="message_subject_<%= @id %>" name="subject" size="30" type="text" />
+          </div>
+        </li>
+        <li>
+          <label>Message</label>
+          <div class="user_ri"><textarea cols="35" id="message_body_<%= @id %>" name="body" rows="10"></textarea>
+          </div>
+        </li>
+      </ul>
+      <!-- post  button -->
+      <a href="javascript:sendEmail(<%= @id %>, '<%= @to %>')" title="Send" class="btfr link_bt" style="margin: 4px 20px 0px 0px;">
+        <span class="ltred_l"></span>
+        <span class="ltred_c btf">Send to <%= @full_name %></span>
+        <span class="ltred_r"></span>
+      </a>
+      <!-- end post button -->
+    </form>
+  </div>
+</div>

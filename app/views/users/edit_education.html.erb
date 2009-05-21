@@ -1,0 +1,64 @@
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<div id="profile_wrapper"><!-- profile wrapper -->
+  <%= render :partial => "shared/edit_profile_menu" %>
+  <div id="profile_update_zone">
+    <div id="posting-section"><!-- posting-section-->
+      <h3 class="post_header">Education</h3>
+      <% form_for :user, @user, :url => update_information_user_url(@user), :html => {:id => "form", :method => :put} do |f| %>
+        <ul>
+          <% fields_for @user.user_education do |info| %>
+            <li><label>Grad School</label>
+              <div class="user_ri"><%= info.text_field :grad_school %>
+            </div></li>
+            <li><label>College</label>
+              <div class="user_ri"><%= info.text_field :college %>
+            </div></li>
+            <li><label>High School</label>
+              <div class="user_ri"><%= info.text_field :high_school %>
+            </div></li>
+            <li><label>Elementary</label>
+              <div class="user_ri"><%= info.text_field :elementary %>
+            </div></li>
+            <li><label>Favourite School</label>
+              <div class="user_ri"><%= info.text_field :favourite_school %>
+            </div></li>
+            <li><label>Major</label>
+              <div class="user_ri"><%= info.text_field :major %>
+            </div></li>
+            <li><label>Level</label>
+              <div class="user_ri"><%= info.text_field :level %>
+            </div></li>
+          <% end %>
+          <li>
+            <div class="post_cbt">
+              <!-- post  button -->
+              <a href="javascript:submit()" title="Post" class="link_bt">
+                <span class="ltred_l"></span>
+                <span class="ltred_c btf">Update</span>
+                <span class="ltred_r"></span>
+              </a>
+              <!-- end post button -->
+          </div></li>
+        </ul>
+        <div id="elements_store"></div>
+      <% end %>
+    </div><!-- end posting-section-->
+  </div>
+</div><!-- profile wrapper -->
+
+<script type="text/javascript">
+  var valid = new Validation('form', {immediate : true, onSubmit:false});
+  function submit(){
+    var result = valid.validate();
+    if (result) {
+      Tips.hideAll();
+      $$('.prototip').each(function(element){
+        $('elements_store').insert(element, { position: content });
+      });
+      $('form').submit();
+    }
+  }
+</script>

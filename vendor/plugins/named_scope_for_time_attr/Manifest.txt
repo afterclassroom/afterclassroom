@@ -1,0 +1,12 @@
+History.txt
+Manifest.txt
+PostInstall.txt
+README.rdoc
+Rakefile
+init.rb
+lib/named_scope_for_time_attr.rb
+lib/named_scope_for_time_attr/named_scope_for_time_attr.rb
+script/destroy
+script/generate
+test/test_helper.rb
+test/test_named_scope_for_time_attr.rb

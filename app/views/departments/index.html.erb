@@ -1,0 +1,26 @@
+<% content_for :header do -%>
+	Departments
+<% end -%>
+
+<%= render :partial => "search", :locals => {:department => @department} %>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Department Name</th>
+  </tr>
+
+<% for department in @departments %>
+  <tr>
+    <td><%=h department.department_category.name %></td>
+    <td><%=h department.name %></td>
+    <td><%= link_to 'Show', department %></td>
+    <td><%= link_to 'Edit', edit_department_path(department) %></td>
+    <td><%= link_to 'Destroy', department, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @departments, :class => "digg_pagination" %>
+<br />
+
+<%= link_to 'New department', new_department_path %>

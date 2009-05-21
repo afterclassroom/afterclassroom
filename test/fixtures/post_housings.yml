@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  post: 
+  rent: MyString
+  currency: MyString
+  street: MyString
+  intersection: MyString
+  city: MyString
+  state: MyString
+
+two:
+  post: 
+  rent: MyString
+  currency: MyString
+  street: MyString
+  intersection: MyString
+  city: MyString
+  state: MyString

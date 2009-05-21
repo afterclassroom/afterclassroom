@@ -1,0 +1,12 @@
+<% content_for :header do -%>
+	<%= link_to 'Department Categories', department_categories_path %>
+<% end -%>
+
+<p>
+  <b>Name:</b>
+  <%=h @department_category.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_department_category_path(@department_category) %> |
+<%= link_to 'Back', department_categories_path %>

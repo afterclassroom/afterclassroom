@@ -1,0 +1,11 @@
+<% content_for :header do -%>
+	<%= link_to 'Teamup categories', teamup_categories_path %>
+<% end -%>
+
+<p>
+  <b>Name:</b>
+  <%=h @teamup_category.name %>
+</p>
+
+<%= link_to 'Edit', edit_teamup_category_path(@teamup_category) %> |
+<%= link_to 'Back', teamup_categories_path %>

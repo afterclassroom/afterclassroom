@@ -1,0 +1,13 @@
+class CreatePostAwarenesses < ActiveRecord::Migration
+  def self.up
+    create_table :post_awarenesses do |t|
+      t.belongs_to :post, :null => false
+      t.datetime :campaign_start
+      t.datetime :campaign_end
+    end
+  end
+
+  def self.down
+    drop_table :post_awarenesses
+  end
+end

@@ -1,0 +1,56 @@
+<% content_for :header do -%>
+  <%= link_to 'States', states_path %>
+<% end -%>
+
+<div id="posting-section">
+  <% form_for(@state, :html => {:id => "form"}) do |f| %>
+    <fieldset>
+      <legend><strong>New State</strong></legend>
+      <ul>
+        <li>
+          <label>Country*</label>
+          <div class="user_ri">
+            <%= render :partial => "country", :locals => {:countries => @countries, :country_name => @state.country.name} %>
+          </div>
+        </li>
+        <li>
+          <label>State name*</label>
+          <div class="user_ri">
+            <%= f.text_field :name, :class => "required" %>
+          </div>
+        </li>
+        <li>
+          <label>Alias*</label>
+          <div class="user_ri">
+            <%= f.text_field :alias, :class => "required" %>
+          </div>
+        </li>
+        <li>
+          <div class="post_cbt">
+            <!-- post  button -->
+            <a href="javascript:submit()" title="Post" class="link_bt">
+              <span class="ltred_l"></span>
+              <span class="ltred_c btf">Create</span>
+              <span class="ltred_r"></span>
+            </a>
+            <!-- end post button -->
+          </div>
+        </li>
+      </ul>
+      <div id="elements_store"></div>
+    </fieldset>
+  <% end %>
+</div>
+<script type="text/javascript">
+  var valid = new Validation('form', {immediate : true, onSubmit:false});
+  function submit(){
+    var result = valid.validate();
+    if (result) {
+      Tips.hideAll();
+      $$('.prototip').each(function(element){
+        $('elements_store').insert(element, { position: content });
+      });
+      $('form').submit();
+    }
+  }
+</script>

@@ -1,0 +1,28 @@
+<li>
+  <p class="sharing_options">Sharing Options: Allow comments, responses, ratings, downloading by default. <span style="cursor:pointer" id="choose_options">Choose option</span></p>
+  <div id="choose_options_div" style="display:none">
+    <ul>
+      <li>
+        <%= f.check_box(:allow_comment) %> Allow Comment
+      </li>
+      <li>
+        <%= f.check_box(:allow_response) %> Allow Response
+      </li>
+      <li>
+        <%= f.check_box(:allow_rate) %> Allow Rate
+      </li>
+      <li>
+        <%= f.check_box(:allow_download) %> Allow Download
+      </li>
+    </ul>
+  </div>
+</li>
+<script language="javascript">
+  new Tip('choose_options', $('choose_options_div'), {
+    width: 'auto',
+    title: 'Choose Options',
+    showOn: 'click',
+    hideOn: { element: 'closeButton', event: 'click'},
+    hook: { target: 'bottomRight', tip: 'topRight' },
+    offset: {x:0, y:0} });
+</script>

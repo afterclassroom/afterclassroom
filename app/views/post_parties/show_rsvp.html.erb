@@ -1,0 +1,84 @@
+<div id="detail_window" style="background: #f1f1f1;">
+  <div class="dw_title">
+    <%= @post.title %>
+  </div>
+
+  <div class="dw_location">
+    <%= @post.user.full_name %>, <%= @post.user.school.name %>
+  </div>
+
+  <div class="dw_datetime">
+    <%= @post.created_at.strftime("%B %d, %Y") %>
+  </div>
+  <div class="detail-info"><!-- detail-info-->
+    <div id="rsvp_alert_<%= @post.id %>" style="display:none">
+      You sended RSVP.
+    </div>
+    <div id="rsvp_wraper_<%= @post.id %>">
+      <div id="posting-section">
+        <form id="form_rsvp_<%= @post.id %>" name="form_rsvp_<%= @post.id %>">
+          <ul>
+            <li>
+              <label>Where:</label>
+              <div class="user_ri"><%= text_field_tag "where_#{@post.id}", "" %></div>
+            </li>
+            <li>
+              <label>When:</label>
+              <div class="user_ri"><%= calendar_field 'form', "when_#{@post.id}",
+                  { :class => 'date',
+                  :field_title => 'When',
+                  :button_image => 'calendar.gif',
+                  :button_title => 'Show calendar' },
+                  { :firstDay => 1,
+                  :step => 1,
+                  :timeFormat => "12",
+                  :showsTime => true}
+              %></div>
+            </li>
+            <li>
+              <label>First Name*:</label>
+              <div class="user_ri"><%= text_field_tag "first_name_#{@post.id}", "", :class => "required" %></div>
+            </li>
+            <li>
+              <label>Last Name*:</label>
+              <div class="user_ri"><%= text_field_tag "last_name_#{@post.id}", "", :class => "required" %></div>
+            </li>
+            <li>
+              <label>Email*:</label>
+              <div class="user_ri"><%= text_field_tag "email_#{@post.id}", "", :class => "required validate-email" %></div>
+            </li>
+            <li>
+              <label>Tel*:</label>
+              <div class="user_ri"><%= text_field_tag "tel_#{@post.id}", "", :class => "required" %></div>
+            </li>
+            <li>
+              <label>Message:</label>
+              <div class="user_ri"><%= text_area_tag "message_#{@post.id}", nil, :rows => 10, :cols => 60 %></div>
+            </li>
+            <li>
+              <div class="post_cbt">
+                <!-- post  button -->
+                <a href="javascript:submit_rsvp(<%= @post.id %>)" title="Post" class="link_bt">
+                  <span class="ltred_l"></span>
+                  <span class="ltred_c btf">RSVP</span>
+                  <span class="ltred_r"></span>
+                </a>
+                <!-- end post button -->
+              </div>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div><!-- end detail-info-->
+  <div class="info-link-box"><!--info-link-box-->
+    <div class="download-link">
+      <% if @post.allow_download && @post.attach_file_name %>
+        <a href="javascript:downloadFile('<%= @post.attach.url %>')" class="downarrow">Download</a>
+      <% else %>
+        <span>Download</span>
+      <% end %>
+      | <a href="?more_like_this_id=<%= @post.id %>" title="">More like this</a>
+    </div>
+  </div><!--end info-link-box-->
+</div>

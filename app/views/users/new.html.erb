@@ -1,0 +1,97 @@
+<% @user.password = @user.password_confirmation = nil %>
+
+<% content_for :sidebar do -%>
+  <% form_for :user, :url => users_path, :html => {:id => "form_signup", :name => "form_signup"} do |f| -%>
+    <span class="dred_box">Create your</span>
+    <% if flash[:notice] %>
+      <div id="notice"><%= flash[:notice] %></div>
+    <% end %>
+
+    <% if flash[:warning] %>
+      <div id="warning"><%= flash[:warning] %></div>
+    <% end %>
+
+    <% if flash[:error] %>
+      <div id="error"><%= flash[:error] %></div>
+    <% end %>
+    <div class="signup-form">
+      <label>Username</label><%= f.text_field :login, :class => "required validate-alphanum" %><br />
+      <label>Password</label><%= f.password_field :password, :class => "required validate-password", :onkeyup => "runPassword(this.value, 'mypassword');" %><br />
+      <label>Password strength</label><br />
+      <div style="width: 100px;">
+        <div id="mypassword_text" style="font-size: 10px;"></div>
+        <div id="mypassword_bar" style="font-size: 1px; height: 2px; width: 0px; border: 1px solid white;"></div>
+      </div>
+      <br />
+      <label>Re-enter password</label><%= f.password_field :password_confirmation, :class => "required validate-password-confirm" %><br />
+      <label>Email</label><%= f.text_field :email, :class => "required validate-email" %><br />
+      <%= select_your_school("user", "select_school", {"target" => "bottomRight", "tip" => "topRight"}) %>
+      <br />
+      <%= f.check_box :allow_search_by_email %> Let others find my post on Afterclassroom <br />if they have my email.
+      <div id="elements_store"></div>
+      <div class="bt-signup">
+        <!-- button -->
+        <a href="javascript:submit()" title="Create my account" class="link_bt">
+          <span class="ltred_l"></span>
+          <span class="ltred_c btf">Create My Account</span>
+          <span class="ltred_r"></span>
+        </a>
+        <!-- endbutton -->
+      </div>
+    </div>
+  <% end %>
+  <script type="text/javascript">
+    var valid = new Validation('form_signup', {immediate : true, onSubmit:false});
+    Validation.addAllThese([
+      ['validate-password', 'Your password must be more than 5 characters and not be "password" or the same as your name',
+        {
+          minLength : 5,
+          notOneOf : ['password','PASSWORD','12345','01234'],
+          notEqualToField : 'user_login'
+        }],
+      ['validate-password-confirm', 'Your confirmation password does not match your first password, please try again.',
+        {
+          equalToField : 'user_password'
+        }]
+    ]);
+    function submit(){
+      var result = valid.validate();
+      if (result) {
+        Tips.hideAll();
+        $$('.prototip').each(function(element){
+          $('elements_store').insert(element, { position: content });
+        });
+        $('form_signup').submit();
+      }
+    }
+  </script>
+<% end -%>
+
+<!--Content-->
+<%= render :partial => "sessions/signin_introduction" %>
+<% form_tag session_path, :name => "form_login", :id => "form_login" do -%>
+  <div id="signin-form">
+    <span class="froma_box"><strong>Already have an account?</strong></span>
+
+    <label>Username</label><%= text_field_tag 'login' %><br />
+
+    <label>Password</label><%= password_field_tag 'password' %>
+    <div class="bt-signin">
+      <!-- button -->
+      <a href="#" onclick="$('form_login').submit();" class="link_bt">
+        <span class="ltred_l"></span>
+        <span class="ltred_c btf">Sign In</span>
+        <span class="ltred_r"></span>
+      </a>
+      <!-- endbutton -->
+    </div>
+    <ul class="login-sup">
+      <li><%= link_to "Forgot Username", user_forgot_login_url %></li>
+      <li>|</li>
+      <li><%= link_to "Forgot Password", user_forgot_password_url %></li>
+      <li>|</li>
+      <li><a href="#" title="Help">Help</a></li>
+    </ul>
+  </div>
+<% end -%>
+<!--Content-->

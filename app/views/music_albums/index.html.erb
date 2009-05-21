@@ -1,0 +1,45 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Musics", :action_path => "#{musics_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<h1>Listing my music_albums</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% for music_album in @my_music_albums %>
+    <tr>
+      <td><%=h music_album.name %></td>
+      <td><%= link_to 'Show', music_album %></td>
+      <td><%= link_to 'Edit', edit_music_album_path(music_album) %></td>
+      <td><%= link_to 'Destroy', music_album, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<h1>Listing my friends music_albums</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% if @my_friend_music_albums %>
+    <% for friend_music_albums in @my_friend_music_albums %>
+      <tr>
+        <td><%=h friend_music_albums.name %></td>
+        <td><%= link_to 'Show', friend_music_albums %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<br />
+<%= link_to 'New music_album', new_music_album_path %>

@@ -1,0 +1,163 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Party", :new_post_path => "/post_parties/new", :search_post_path => "/post_parties"} %>
+<% end -%>
+
+<% content_for :select_your_school do -%>
+  <div id="target_select_school">
+    <span>&nbsp;</span>
+  </div>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <div id="post_guide_r">
+    <h3>About Posting</h3>
+    <p>
+      Upload would take any where from 1 to 5 minutes.
+      It depends on your internet connections.
+    </p>
+  </div>
+<% end -%>
+<!--Content-->
+<div id="posting-section"><!-- posting-section-->
+  <h3 class="post_header">Posting to the world</h3>
+  <% form_for(@post_party, :html => {:id => "form", :name => "form", :multipart => true }) do |f| %>
+    <% fields_for @post_party.post do |post| %>
+      <ul>
+        <li>
+          <%= render :partial => "posts/post_category", :locals => {:post_categories => @post_categories, :post_category_name => @post_category_name} %>
+        </li>
+        <li>
+          <label>Party Type*</label>
+          <div class="user_ri">
+            <%= text_field_tag 'party_type_name', '', :class => "required tb_arrow" %>
+            <div id="select_party_type_div" class="menu_select" style="display:none;">
+              <ul>
+                <% for party_type in @party_types %>
+                  <li>
+                    <%= check_box_tag("post_party[party_type_ids][]",
+                      party_type.id,
+                      @post_party.party_types.include?(party_type), :id => "post_party_party_types_id_#{party_type.id}", :title => "#{party_type.name}", :onclick => "getPartyType()") %>
+                    <label onClick="getPartyType()" for="post_party_party_types_id_<%= party_type.id %>"><%= party_type.name %></label>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li><label>Title*</label>
+          <div class="user_ri"><%= post.text_field :title, :class => "required", :style=>"width:450px" %>
+        </div></li>
+        <li><label>Description*</label>
+          <div class="user_ri">
+            <font color=#666666>(900 characters max.) <strong><span id="count_post_description" >900</span></strong> remaining</font>
+        <%= post.text_area :description, :rows => 10, :cols => 70, :class => "required", :onkeypress => "return LimitThis('post_description')", :onkeyup => "return CountThis('post_description', 'count_post_description')", :onmouseover => "return CountThis('post_description', 'count_post_description')", :wrap => "physical", :maxLength => "900"%></div></li>
+        <li><label>Start Time</label>
+          <div class="user_ri"><%= calendar_field 'post_party', 'start_time',
+              { :class => 'date',
+              :field_title => 'From',
+              :button_image => 'calendar.gif',
+              :button_title => 'Show calendar' },
+              { :firstDay => 1,
+              :step => 1,
+              :timeFormat => "12",
+              :showsTime => true}
+          %>
+        </div></li>
+        <li><label>End Time</label>
+          <div class="user_ri"><%= calendar_field 'post_party', 'end_time',
+              { :class => 'date',
+              :field_title => 'From',
+              :button_image => 'calendar.gif',
+              :button_title => 'Show calendar' },
+              { :firstDay => 1,
+              :step => 1,
+              :timeFormat => "12",
+              :showsTime => true}
+          %>
+        </div></li>
+        <%= select_your_school("post", "posts/select_school", {"target" => "bottomLeft", "tip" => "topLeft"}) %>
+        <li><label>Location*</label>
+          <div class="user_ri"><%= f.text_field :location, :class => "required" %>
+        </div></li>
+        <li><label>Street*</label>
+          <div class="user_ri"><%= f.text_field :street, :class => "required" %>
+        </div></li>
+        <li><label>Intersection</label>
+          <div class="user_ri"><%= f.text_field :intersection %>
+        </div></li>
+        <li><label>City/Town*</label>
+        <div class="user_ri"><%= f.text_field :city, :class => "required" %></div></li>
+        <li><label>Email</label>
+        <div class="user_ri"><%= post.text_field :email, :class => "validate-email" %></div></li>
+        <li><label></label><%= radio_button "post", "use_this_email", true %> Use this email address.</li>
+        <li><label></label><%= radio_button "post", "use_this_email", false, :checked => true %> Reply to (post category) - xxx@afterclassroom.com.</li>
+        <li><label>Telephone</label>
+        <div class="user_ri"><%= post.text_field :telephone %></div></li>
+        <%= render :partial => "posts/choose_options", :locals => {:f => post } %>
+        <li>
+          <div class="post_cbt">
+            <!-- post  button -->
+            <a href="javascript:submit()" title="Post" class="link_bt">
+              <span class="ltred_l"></span>
+              <span class="ltred_c btf">Create Event</span>
+              <span class="ltred_r"></span>
+            </a>
+            <!-- end post button -->
+          </div>
+        </li>
+        <li>
+          <label><div class="user_ri">(* indicates required field)</div></label>
+        </li>
+      </ul>
+      <div id="elements_store"></div>
+    </div><!-- end posting-section-->
+  <% end %>
+<% end %>
+<!--Content-->
+<script type="text/javascript">
+  var valid = new Validation('form', {immediate : true, onSubmit:false});
+  function submit(){
+    var result = valid.validate();
+    if (result) {
+      Tips.hideAll();
+      $$('.prototip').each(function(element){
+        $('elements_store').insert(element, { position: content });
+      });
+      $('form').submit();
+    }
+  }
+  function getPartyType(){
+    $('party_type_name').value = get_check_value();
+    if ($('advice-required-party_type_name'))
+      $('advice-required-party_type_name').hide();
+  }
+  new Tip('party_type_name', $('select_party_type_div'), {
+    width: 'auto',
+    title: 'Select Party Type',
+    showOn: 'click',
+    hideOthers: true,
+    hideOn: { element: 'closeButton', event: 'click'},
+    hook: { target: 'bottomLeft', tip: 'topLeft' },
+    offset: {x:0, y:0} });
+  function get_check_value()
+  {
+    var f = $$('input[name="post_party[party_type_ids][]"]');
+    var s = '';
+    for(var i=0; i<f.length; i++){
+      if (f[i].checked)
+        s += f[i].readAttribute("title") + ', ';
+    }
+    return s;
+  }
+</script>
+
+<script language = "Javascript">
+  function LimitThis(object_id) {
+    if ($(object_id).value.length == $(object_id).readAttribute("maxLength")*1) return false;
+  }
+
+  function CountThis(object_id, visCnt) {
+    if ($(object_id).value.length>$(object_id).readAttribute("maxLength")*1) $(object_id).value = $(object_id).value.substring(0,$(object_id).readAttribute("maxLength")*1);
+    if ($(visCnt)) $(visCnt).update($(object_id).readAttribute("maxLength")-$(object_id).value.length);
+  }
+</script>

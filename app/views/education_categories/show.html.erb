@@ -1,0 +1,12 @@
+<% content_for :header do -%>
+	<%= link_to 'Education categories', education_categories_path %>
+<% end -%>
+
+<p>
+  <b>Name:</b>
+  <%=h @education_category.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_education_category_path(@education_category) %> |
+<%= link_to 'Back', education_categories_path %>

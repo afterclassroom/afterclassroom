@@ -1,0 +1,28 @@
+<% content_for :header do -%>
+  Schools
+<% end -%>
+
+  <%= render :partial => "search", :locals => {:countries => @countries, :states => @states, :cities => @cities, :country_name => @country_name, :state_name => @state_name, :city_name => @city_name} %>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Type</th>
+    </tr>
+
+    <% for school in @schools %>
+      <tr>
+        <td><%=h school.name %></td>
+        <td><%=h school.city.full_address_city %></td>
+        <td><%=h school.type_school %></td>
+        <td><%= link_to 'Show', school %></td>
+        <td><%= link_to 'Edit', edit_school_path(school) %></td>
+        <td><%= link_to 'Destroy', school, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @schools, :class => "digg_pagination" %>
+  <br />
+
+  <%= link_to 'New school', new_school_path %>

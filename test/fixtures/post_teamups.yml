@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  post: 
+  teamup_category: 
+  opportunity_type: MyString
+  position_title: MyString
+  expected_time_commit: 1
+  desired_funct_experience: 1
+  compensation_offered: 1
+
+two:
+  post: 
+  teamup_category: 
+  opportunity_type: MyString
+  position_title: MyString
+  expected_time_commit: 1
+  desired_funct_experience: 1
+  compensation_offered: 1

@@ -1,0 +1,20 @@
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<div id="profile_wrapper"><!-- profile wrapper -->
+  <%= render :partial => "shared/edit_profile_menu" %>
+  <div id="profile_update_zone">
+    <% form_for :user, @user, :url => update_email_user_url(@user), :html => {:method => :put} do |f| %>
+
+      <h3>Your new email address</h3>
+
+      <p>Please enter your new email address below. Please double-check it, because you may need it later to retrieve your password.</p>
+
+      <p><%= text_field_tag 'email', '', :size => 20 %></p>
+
+      <p><%= submit_tag "Change my email address" %>
+
+    <% end %>
+  </div>
+</div><!-- profile wrapper -->

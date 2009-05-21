@@ -1,0 +1,57 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Stories", :action_path => "#{stories_path}"} %>
+<% end -%>
+
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<div class="user_status_listing"><!--user_status_listing-->
+
+  <div class="user-story">
+    <div class="small_thumb_ava"><%= image_tag @story.user.avatar.url(:thumb) %></div>
+    <div class="user-story-content">
+      <p><%=h @story.content %>
+      </p>
+      <span class="last_update_status">
+      <span class="status-time"><%= distance_of_time_in_words_to_now(@story.created_at) + " ago." %></span>
+    </div><!-- .user-story-content -->
+
+  </div>
+  <!-- end .user-story -->
+
+  <div id="add-comments">
+    <h3>Add your comment to <!-- anh Dung add username vao day --> <%= @story.user.full_name %>'s story</h3>
+    <form name="form" action="create_comment" method="get">
+      <textarea name="comment" id="comment" rows="8" cols="20"></textarea>
+      <input type="hidden" value="<%= @story.id %>" name="story_id" />
+      <div id="comment-bt-box">
+        <input id="value" name="value" value="Submit" type="submit"/>
+      </div><!-- #comment-bt-box -->
+    </form>
+  </div>
+
+  <div id="list-other-comment">
+    <h3>What are people saying on this story</h3>
+    <% for comnt in @story.comments.find(:all, :order => "created_at DESC") %>
+    <div class="user-story">
+
+      <span class="last_update_status">
+        <span class="comment-info">
+          <span class="comment-author"><%= link_to comnt.user.full_name, {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %>
+          <span class="status-time-comment"><%= distance_of_time_in_words_to_now(comnt.created_at) + " ago." %></span>
+        </span>
+      </span>
+
+      <div class="small_thumb_ava"><%= image_tag comnt.user.avatar.url(:thumb) %></div>
+
+      <div class="user-story-content">
+        <p><%= comnt.comment %>
+        </p>
+      </div><!-- .user-story-content -->
+    </div>	<!-- .user-story -->
+    <% end %>
+  </div>
+</div> <!--user_status_listing-->
+<div class="app_add_on">
+</div>

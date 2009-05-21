@@ -1,0 +1,142 @@
+.intro-features{
+	padding-left:20px;
+	margin-top:10px;
+}
+.intro-features li{
+	padding-bottom:10px;
+}
+.signupintro{
+	font: 80% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;			
+	line-height:18px;
+	color:#313131;
+}
+	.lb_box{
+		margin-bottom:10px;
+		float:left;
+		width:552px;
+		clear:both;
+		padding:20px;
+		border:3px solid #015ca2;
+		margin-left:-4px;
+		background:#0099cc;
+		color:#FFF;
+		font-size:18px;
+		text-align:center;
+	}
+	.froma_box{
+		margin-top:40px;
+		margin-bottom:10px;
+		float:left;
+		width:552px;
+		clear:both;
+		padding:20px;
+		border:3px solid #202021;
+		margin-left:-4px;
+		background:#95967B;
+		color:#FFF;
+		font-size:18px;
+		text-align:center;
+	}
+	
+.dred_box{
+	margin-bottom:10px;
+	float:right;
+	padding:20px;
+	border:3px solid #81020e;
+	margin-right:-4px;
+	width:315px;
+	font: 80% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;	
+	font-size:18px;
+	line-height:18px;
+	text-align:center;
+	background:#cf0014;
+	color:#FFF;
+}	
+
+#signin-form{
+	font: 110% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;	
+	padding-right:10px;
+	color:#565656;	
+	margin-bottom:20px;
+}
+#signin-form label{
+	width:170px;
+	float:left;
+	text-align:right;
+	padding-right:10px;
+}
+#signin-form input[type="text"]{
+	margin-bottom:10px;
+	width:250px;
+	line-height:18px;
+	font-size:18px;
+	border:1px solid #cacaca;
+	padding:2px;
+}
+.signup-form{
+	float:right;
+	font: 90% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;	
+	padding-right:0px;
+	color:#565656;	
+	margin-bottom:20px;
+}
+
+.signup-form label{
+	width:140px;
+	text-align:left;
+	float:left;
+	padding-top:5px;
+	padding-right:5px;
+	margin-bottom:5px;
+}
+.signup-form input{
+	margin-bottom:10px;
+	width:190px;
+	line-height:18px;
+	font-size:18px;
+	border:1px solid #cacaca;
+	padding:2px;
+}
+.bt-signup,.bt-signin{
+	width:200px;margin:10px auto;text-align:center;padding-left:70px
+}
+.bt-signin{
+	margin-top:0px;
+	padding-left:150px
+}
+.login-sup{
+	text-align:center;
+	clear:both;
+	margin:0 auto;	
+	width:400px;
+	margin-left:140px;
+}
+	.w3{
+		width:340px;
+		margin: 0;
+	}
+.login-sup li{
+	padding:5px;
+	float:left;
+}
+.login-sup li a{
+	text-decoration:none;
+	color:#19B7D4;
+}
+.login-sup li a:hover{
+	color:#007BA3;
+}
+.signup-sug{
+	background:#95967B;border:3px solid #202021
+}
+.signup-sug a{
+	color:#32332F;
+	text-decoration: none;
+}
+#sign-up{
+	
+}
+
+#sign-in{
+	
+}

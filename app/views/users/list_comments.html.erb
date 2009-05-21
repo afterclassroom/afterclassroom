@@ -1,0 +1,57 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Home", :action_path => "#{dashboard_user_path(current_user)}"} %>
+<% end -%>
+
+<% for comnt in @comments %>
+  <div>
+    <%= image_tag comnt.user.avatar.url(:thumb) %><%= link_to comnt.user.full_name, {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %>
+    <div>
+      <%= comnt.comment %>
+    </div>
+    <%= distance_of_time_in_words_to_now(comnt.created_at) + " ago." %>
+    <div>
+      <%= link_to "Delete", delete_comment_user_path(:id => @user.id, :comment_id => comnt.id), :confirm => "Are you sure?" %>
+    </div>
+  </div>
+<% end %>
+<%= will_paginate @comments, :class => "digg_pagination" %>
+
+<script language="javascript">
+  var create_comment_path = "<%= create_comment_user_url(@user) %>";
+  function sendComment(){
+    user_id = $("user_id_friend").value;
+    comment = $("comment").value;
+    new Ajax.Request(create_comment_path,
+    {asynchronous:true,
+      evalScripts:true,
+      method:'get',
+      on500:function(request){alert('Sorry, there was an error.'.l); return false},
+      parameters:{user_id_friend:user_id, comment:comment},
+      onSuccess:function(){
+        $('send_comment_alert').show();
+        $('send_comment_wraper').hide();
+      }}
+  );
+  }
+  document.observe('dom:loaded', function() {
+    $$('span[rel]').each(function(element) {
+      new Tip(element, $('send_comment'), {
+        width: 'auto',
+        title: 'Send Comment',
+        showOn: 'click',
+        hideOthers: true,
+        hideOn: { element: 'closeButton', event: 'click'},
+        hook: { target: 'bottomLeft', tip: 'topLeft' },
+        offset: {x:0, y:5} });
+      element.observe('prototip:shown', function() {
+        $('user_id_friend').value = element.readAttribute("rel");
+      });
+      element.observe('prototip:hidden', function() {
+        $('send_comment_alert').hide();
+        $('send_comment_wraper').show();
+        $('user_id_friend').value = "";
+        $('comment').value = "";
+      });
+    });
+  });
+</script>

@@ -1,0 +1,10 @@
+<ul class="front-title">
+  <li>Books of a day</li>
+  <ul class="sub-post-title"><!-- begin listing -->
+    <% for book in  books %>
+      <li><%= link_to "#{book.title}", post_books_path %> for <%= book.post_book.currency %> <%= book.post_book.price %> from <%= book.user.full_name %>, <%= book.school.name %>. <br /><span class="post-datetime"><%= book.created_at.strftime("%B %d, %Y") %></span></li>
+    <% end %>
+  </ul><!-- end listing -->
+
+  <li class="more-link"><%= link_to "More...", post_books_path %></li>
+</ul>

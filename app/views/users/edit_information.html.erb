@@ -1,0 +1,75 @@
+<% content_for :tabs_inbox do -%>
+  <%= render :partial => 'shared/tabs_inbox' %>
+<% end -%>
+
+<div id="profile_wrapper"><!-- profile wrapper -->
+  <%= render :partial => "shared/edit_profile_menu" %>
+  <div id="profile_update_zone">
+    <div id="posting-section"><!-- posting-section-->
+      <h3 class="post_header">Information</h3>
+      <% form_for :user, @user, :url => update_information_user_url(@user), :html => {:id => "form", :method => :put} do |f| %>
+        <ul>
+        <li><label>Name</label>
+          <div class="user_ri"><%= f.text_field :name %>
+        </div></li>
+        <li><%= select_your_school_for_edit_information("user", "select_school", @user, {"target" => "bottomLeft", "tip" => "topLeft"}) %></li>
+        <li>
+          <div class="user_ri"><%= f.check_box :allow_search_by_email  %>
+            Let others find my post on AfterClassroom if they have my email address
+        </div></li>
+        <% fields_for @user.user_information do |info| %>
+          <li><label>Sex</label>
+            <div class="user_ri"><%= select_tag 'user_information[sex]', options_for_select(@select_sex, @user.user_information.sex), {:id => 'user_information_sex'} %>
+          </div></li>
+          <li><label>Age</label>
+            <div class="user_ri"><%= info.text_field :age %>
+          </div></li>
+          <li><label>Relationship Status</label>
+            <div class="user_ri"><%= select_tag 'user_information[relationship_status]', options_for_select(@select_relation, @user.user_information.relationship_status), {:id => 'user_information_relationship_status'} %>
+          </div></li>
+          <li><label>Home Town</label>
+            <div class="user_ri"><%= info.text_field :home_town %>
+          </div></li>
+          <li><label>Current Town</label>
+            <div class="user_ri"><%= info.text_field :current_town %>
+          </div></li>
+          <li><label>Polictical View</label>
+            <div class="user_ri"><%= info.text_area :polictical_view %>
+          </div></li>
+          <li><label>Interest</label>
+            <div class="user_ri"><%= info.text_area :interest %>
+          </div></li>
+          <li><label>Award</label>
+            <div class="user_ri"><%= info.text_area :award %>
+          </div></li>
+        <% end %>
+        <li>
+          <div class="post_cbt">
+          <!-- post  button -->
+          <a href="javascript:submit()" title="Post" class="link_bt">
+            <span class="ltred_l"></span>
+            <span class="ltred_c btf">Update</span>
+            <span class="ltred_r"></span>
+          </a>
+          <!-- end post button -->
+        </div></li>
+        </ul>
+        <div id="elements_store"></div>
+      <% end %>
+    </div><!-- end posting-section-->
+  </div>
+</div><!-- profile wrapper -->
+
+<script type="text/javascript">
+  var valid = new Validation('form', {immediate : true, onSubmit:false});
+  function submit(){
+    var result = valid.validate();
+    if (result) {
+      Tips.hideAll();
+      $$('.prototip').each(function(element){
+        $('elements_store').insert(element, { position: content });
+      });
+      $('form').submit();
+    }
+  }
+</script>

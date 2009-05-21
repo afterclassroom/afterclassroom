@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>:: <%= configatron.site_name %> ::</title>
+
+    <%= stylesheet_link_merged :signin %>
+    <%= javascript_include_merged :signin %>
+
+  </head>
+  <body>
+    <div id="wrapper"><!-- begin wrapper -->
+      <div id="header"><!-- header -->
+        <div id="top-nav"><!-- top nav -->
+          <%= render :partial => 'shared/global_links' %>
+        </div><!-- end top nav -->
+        <div id="logo"><!-- logo -->
+          <%= link_to "<h3></h3>", "/" %>
+        </div><!-- end logo -->
+        <div id="main-nav"><!-- main nav -->
+          <%= render :partial => 'shared/tabs' %>
+        </div><!-- end main nav-->
+        <div id="top-search">
+          <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Assignments", :post_category_id => nil} %>
+        </div>
+      </div>
+
+      <div class="toggle-search">
+        <span>&nbsp;</span>
+      </div>
+
+      <div id="content"><!-- begin content -->
+        <div id="r_c" class=width60p signupintro"><!-- begin left content -->
+          <%= yield %>
+        </div>
+
+        <div id="l_c" class="width40p">
+          <%= yield_or_default(yield(:sidebar)) %>
+        </div>
+      </div>
+      <div id="footer">
+        <%= render :partial => 'shared/footer' %>
+      </div>
+
+    </div><!-- end wrapper -->
+
+  </body>
+</html>

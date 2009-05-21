@@ -1,0 +1,12 @@
+<% content_for :header do -%>
+	<%= link_to 'Job types', job_types_path %>
+<% end -%>
+
+<p>
+  <b>Name:</b>
+  <%=h @job_type.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_type_path(@job_type) %> |
+<%= link_to 'Back', job_types_path %>
