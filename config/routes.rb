@@ -1,9 +1,6 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
-  map.resources :department_categories
-
-  map.resources :department_categories
-
+  
   # RESTful rewrites
   map.signup   '/signup',   :controller => 'users',    :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate'
@@ -56,6 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :schools, :collection => {:state_or_city => :get, :city => :get}
   
   # Department
+  map.resources :department_categories
   map.resources :departments, :collection => {:create_department => :get}
 
   # Post Categories
