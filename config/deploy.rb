@@ -35,9 +35,9 @@ task :afterclassroom do
   role :db, '174.129.195.49', :primary => true
   set :environment_database, Proc.new { production_database }
   set :dbuser,        'afterclassroom'
-  set :dbpass,        'V7sCs4e1Ms'
+  set :dbpass,        '4rasc36Mpj'
   set :user,          'afterclassroom'
-  set :password,      'V7sCs4e1Ms'
+  set :password,      '4rasc36Mpj'
   set :runner,        'afterclassroom'
 end
 
@@ -47,3 +47,4 @@ end
 after "deploy", "deploy:cleanup"
 after "deploy:migrations", "deploy:cleanup"
 after "deploy:update_code","deploy:symlink_configs"
+
