@@ -3,7 +3,7 @@
 require "eycap/recipes"
 
 set :keep_releases, 5
-set :application,   'afterclassroom'
+set :application,   'after'
 set :repository,    'git@github.com:afterclassroom/afterclassroom.git'
 set :deploy_to,     "/data/#{application}"
 set :deploy_via,    :export
@@ -11,7 +11,7 @@ set :monit_group,   "#{application}"
 set :scm,           :git
 
 # This is the same database name for all environments
-set :production_database,'afterclassroom_production'
+set :production_database,'after_production'
 
 set :environment_host, 'localhost'
 set :deploy_via, :remote_cache
