@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   geocode_ip_address
 
   # Temp
-  USER_NAME, PASSWORD = "demo", "demo123"
+  USER_NAME, PASSWORD = "afterclassroom", "afterclassroom01"
 
   before_filter :authenticate
 
