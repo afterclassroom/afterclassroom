@@ -1,0 +1,3 @@
+andre-geokit
+fastercsv
+rmagick
