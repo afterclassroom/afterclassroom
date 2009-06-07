@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate
 
-
   private
 
   def authenticate

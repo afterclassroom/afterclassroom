@@ -77,7 +77,8 @@ ActionController::Routing::Routes.draw do |map|
     :post_dispatch => :get,
     :list_favorites => :get,
     :add_to_favorite => :get,
-    :show_dialog => :get
+    :show_dialog => :get,
+    :download => :get
   }
   map.resources :post_teamups, :collection => {
     :show_dialog => :get

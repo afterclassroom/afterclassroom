@@ -102,7 +102,7 @@
   <div class="info-link-box"><!--info-link-box-->
     <div class="download-link">
       <% if @post.allow_download && @post.attach_file_name %>
-        <a href="javascript:downloadFile('<%= @post.attach.url %>')" class="downarrow">Download</a>
+        <%= link_to "Download", {:controller => "posts", :action => "download", :path => @post.attach.url}, {:class => "downarrow", :target => "_blank"} %>
       <% else %>
         <span>Download</span>
       <% end %>

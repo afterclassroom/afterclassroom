@@ -48,3 +48,11 @@ after "deploy", "deploy:cleanup"
 after "deploy:migrations", "deploy:cleanup"
 after "deploy:update_code","deploy:symlink_configs"
 
+namespace :deploy do
+ desc "Create asset packages for production" 
+ task :after_update_code, :roles => [:web] do
+   run <<-EOF
+     cd #{release_path} && rake asset:packager:build_all
+   EOF
+ end
+end

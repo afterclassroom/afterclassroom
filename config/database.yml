@@ -17,9 +17,9 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: after_development
-  username: afterclassroom
-  password: 4rasc36Mpj
+  database: afterclassroom_development
+  username: root
+  password: 
   # JRuby doesn't support socket:
   host: 127.0.0.1
   #socket: /tmp/mysql.sock
@@ -30,7 +30,7 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: after_test
+  database: afterclassroom_test
   username: root
   password:
   # JRuby doesn't support socket:
@@ -40,9 +40,9 @@ test:
 production:
   adapter: mysql
   encoding: utf8
-  database: after_production
-  username: afterclassroom
-  password: 4rasc36Mpj
+  database: afterclassroom_production
+  username: root
+  password: 
   # JRuby doesn't support socket:
   host: localhost
   #socket: /tmp/mysql.sock
