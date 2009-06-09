@@ -20,7 +20,7 @@ set :deploy_via, :remote_cache
 # before "deploy:migrate", "db:dump"
 
 # comment out if it gives you trouble. newest net/ssh needs this set.
-ssh_options[:paranoid] = false
+ssh_options[:paranoid] = true
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true # required for svn+ssh:// andf git:// sometimes
@@ -28,6 +28,7 @@ default_run_options[:pty] = true # required for svn+ssh:// andf git:// sometimes
 # This will execute the Git revision parsing on the *remote* server rather than locally
 set :real_revision, 			lambda { source.query_revision(revision) { |cmd| capture(cmd) } }
 
+set :ssh_options, :keys => [ File.expand_path("C:/Users/dungtqa/.ssh/afterclassroom_rsa") ]
 
 task :afterclassroom do
   role :web, '174.129.195.49'
@@ -40,7 +41,6 @@ task :afterclassroom do
   set :password,      '4rasc36Mpj'
   set :runner,        'afterclassroom'
 end
-
 
 # TASKS
 # Don't change unless you know what you are doing!

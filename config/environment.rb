@@ -31,10 +31,10 @@ Rails::Initializer.run do |config|
   config.active_record.observers = :user_observer
 end
 ActionMailer::Base.smtp_settings = {
-  :address  => "mail.datadancing.com",
-  :port  => 25, 
-  :domain  => "datadancing.com",
-  :user_name  => "dung.tran@datadancing.com",
-  :password  => "dt321",
-  :authentication  => :login
+  :address  => "smtp.gmail.com",
+  :port  => 587, 
+  :domain  => "afterclassroom.com",
+  :user_name  => "dungtqa@gmail.com",
+  :password  => "dungtqa990478",
+  :authentication  => :plain
 }
