@@ -33,7 +33,7 @@ end
 ActionMailer::Base.smtp_settings = {
   :address  => "smtp.gmail.com",
   :port  => 587, 
-  :domain  => "afterclassroom.com",
+  #:domain  => "afterclassroom.com",
   :user_name  => "dungtqa@gmail.com",
   :password  => "dungtqa990478",
   :authentication  => :plain
