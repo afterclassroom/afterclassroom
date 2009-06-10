@@ -1,9 +1,9 @@
 require "yaml"
 require "socket"
-require "json"
 
 module Juggernaut
-  CONFIG = YAML::load_file("#{RAILS_ROOT}/config/juggernaut_hosts.yml").freeze
+  CONFIG = YAML::load(ERB.new(IO.read("#{RAILS_ROOT}/config/juggernaut_hosts.yml")).result).freeze
+  CR = "\0"
   
   class << self
     
@@ -73,53 +73,60 @@ module Juggernaut
       send_data(fc)
     end
     
-    # Shows all users if client_ids isn't specified
-    def show_users(client_ids = [])
+    def show_clients
       fc = {
-        :command    => :query,
-        :type       => :show_users,
-        :client_ids => client_ids
+        :command  => :query,
+        :type     => :show_clients
       }
-      send_data(fc)
+      send_data(fc, true).flatten
     end
     
-    def show_user(client_id)
+    def show_client(client_id)
       fc = {
         :command    => :query,
-        :type       => :show_user,
+        :type       => :show_client,
         :client_id  => client_id
       }
-      send_data(fc)
+      send_data(fc, true).flatten[0]
     end
     
-    def show_users_for_channel(channel)
+    def show_clients_for_channels(channels)
       fc = {
         :command    => :query,
-        :type       => :show_users_for_channels,
-        :channels   => channel
+        :type       => :show_clients_for_channels,
+        :channels   => channels
       }
-      send_data(fc)
+      send_data(fc, true).flatten
     end
+    alias show_clients_for_channel show_clients_for_channels
 
-    def send_data(hash)
-      hash[:channels] = hash[:channels].to_a if hash[:channels]
+    def send_data(hash, response = false)
+      hash[:channels]   = hash[:channels].to_a   if hash[:channels]
       hash[:client_ids] = hash[:client_ids].to_a if hash[:client_ids]
-                  
-      CONFIG[:hosts].select {|h| !h[:environment] or h[:environment] == ENV['RAILS_ENV'].to_sym }.each do |address|
+      
+      res = []
+      hosts.each do |address|
         begin
           hash[:secret_key] = address[:secret_key] if address[:secret_key]
           
           @socket = TCPSocket.new(address[:host], address[:port])
           # the \0 is to mirror flash
-          @socket.print(hash.to_json + "\0")
+          @socket.print(hash.to_json + CR)
           @socket.flush
-        # rescue => e
-          # puts e
-          # false
+          res << @socket.readline(CR) if response
         ensure
-          @socket.close if @socket
+          @socket.close if @socket and !@socket.closed?
         end
       end
+      res.collect {|r| ActiveSupport::JSON.decode(r.chomp!(CR)) } if response
+    end
+    
+  private
+    
+    def hosts
+      CONFIG[:hosts].select {|h| 
+        !h[:environment] or h[:environment].to_s == ENV['RAILS_ENV']
+      }
     end
     
   end
@@ -130,7 +137,8 @@ module Juggernaut
     end
     
     module InstanceMethods
-      protected
+      # We can't protect these as ActionMailer complains
+      # protected
 
         def render_with_juggernaut(options = nil, old_local_assigns={}, &block)
           if options == :juggernaut or (options.is_a?(Hash) and options[:juggernaut])
@@ -138,7 +146,6 @@ module Juggernaut
             @template.send! :evaluate_assigns
 
             generator = ActionView::Helpers::PrototypeHelper::JavaScriptGenerator.new(@template, &block)
-            response.content_type = Mime::JS
             render_for_juggernaut(generator.to_s, options.is_a?(Hash) ? options[:juggernaut] : nil)
           else
             render_without_juggernaut(options, old_local_assigns, &block)
