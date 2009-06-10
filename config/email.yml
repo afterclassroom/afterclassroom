@@ -6,9 +6,9 @@ development:
     username: dungtqa@wheeree.com
     password: dungtqa990478
 production:
-    server: smtp.gmail.com
-    port: 587
-    domain: mail.wheeree.com
-    authentication: plain
-    username: dungtqa@wheeree.com
-    password: dungtqa990478
+    server: mail.datadancing.com
+    port: 25
+    domain: datadancing.com
+    authentication: login
+    username: dung.tran@datadancing.com
+    password: dt321
