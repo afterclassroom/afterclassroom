@@ -24,7 +24,7 @@
           <%= render :partial => 'shared/tabs' %>
         </div><!-- end main nav-->
         <div id="top-search">
-          <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Assignments", :post_category_id => nil} %>
+          <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Assignments", :new_post_path => "/posts/new?type_name=Assignments", :search_post_path => "/posts"} %>
         </div>
       </div>
 
