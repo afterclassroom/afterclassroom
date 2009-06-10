@@ -1,1 +1,0 @@
-require 'yaml_mail_config'

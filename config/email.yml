@@ -8,8 +8,7 @@ development:
 production:
     server: smtp.gmail.com
     port: 587
-    domain: wheeree.com
+    domain: mail.wheeree.com
     authentication: plain
     username: dungtqa@wheeree.com
     password: dungtqa990478
-    tls: true
