@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090430101854) do
+ActiveRecord::Schema.define(:version => 20090611092231) do
+
+  create_table "acos", :force => true do |t|
+    t.integer "object_id"
+    t.string  "alias",     :default => "", :null => false
+    t.integer "lft"
+    t.integer "rght"
+  end
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -76,6 +83,28 @@ ActiveRecord::Schema.define(:version => 20090430101854) do
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "flirting_chanels", :force => true do |t|
+    t.integer "user_id"
+    t.integer "user_id_target"
+    t.string  "status"
+  end
+
+  create_table "flirting_messages", :force => true do |t|
+    t.integer  "flirting_chanel_id"
+    t.integer  "user_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "flirting_sharrings", :force => true do |t|
+    t.integer "flirting_chanel_id"
+    t.integer "user_id"
+    t.string  "sharring_type"
+    t.integer "sharring_id"
+    t.boolean "accepted"
   end
 
   create_table "functional_experiences", :force => true do |t|
@@ -429,6 +458,7 @@ ActiveRecord::Schema.define(:version => 20090430101854) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "online",                                   :default => false
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
