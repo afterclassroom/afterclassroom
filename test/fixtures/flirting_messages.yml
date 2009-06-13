@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  flirting_chanel: 
+  user: 
+  message: MyString
+
+two:
+  flirting_chanel: 
+  user: 
+  message: MyString

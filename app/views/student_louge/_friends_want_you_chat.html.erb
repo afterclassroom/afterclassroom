@@ -1,0 +1,7 @@
+<ul>Friends want chat chit with you
+	<% for friend_want in friends_want %>
+	<li>
+		<%= image_tag friend_want.user.avatar.url(:thumb) %>
+	</li>
+	<% end %>
+<ul>

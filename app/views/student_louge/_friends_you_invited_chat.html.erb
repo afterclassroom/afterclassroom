@@ -1,0 +1,7 @@
+<ul>Friends you invited to chat chit
+	<% for friend_invite in friends_invite %>
+	<li>
+		<%= image_tag friend_invite.user_target.avatar.url(:thumb) %>
+	</li>
+	<% end %>
+<ul>

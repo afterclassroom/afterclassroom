@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  flirting_chanel: 
+  user: 
+  sharring_type: MyString
+  sharring_id: 1
+  accepted: false
+
+two:
+  flirting_chanel: 
+  user: 
+  sharring_type: MyString
+  sharring_id: 1
+  accepted: false
