@@ -28,17 +28,20 @@ class User < ActiveRecord::Base
   has_one :user_information, :dependent => :destroy
   has_one :user_education, :dependent => :destroy
   has_one :user_employment, :dependent => :destroy
-  has_many :stories
-  has_many :photo_albums
-  has_many :music_albums
-  has_many :video_albums
-  has_many :photos
-  has_many :musics
-  has_many :videos
-  has_many :users_can_see_photos
-  has_many :users_can_see_musics
-  has_many :users_can_see_videos
-  has_many :favorites
+  has_many :stories, :dependent => :destroy
+  has_many :photo_albums, :dependent => :destroy
+  has_many :music_albums, :dependent => :destroy
+  has_many :video_albums, :dependent => :destroy
+  has_many :photos, :dependent => :destroy
+  has_many :musics, :dependent => :destroy
+  has_many :videos, :dependent => :destroy
+  has_many :users_can_see_photos, :dependent => :destroy
+  has_many :users_can_see_musics, :dependent => :destroy
+  has_many :users_can_see_videos, :dependent => :destroy
+  has_many :favorites, :dependent => :destroy
+	has_many :flirting_chanels, :dependent => :destroy
+	has_many :flirting_messages, :dependent => :destroy
+	has_many :flirting_sharrings, :dependent => :destroy
 
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]
@@ -130,6 +133,31 @@ class User < ActiveRecord::Base
   def full_name
     self.name == "" ? self.login : self.name
   end
+	
+	def check_user_in_chatting_session(user_id)
+		cond = Caboose::EZ::Condition.new :flirting_chanels do
+      status === "Chat"
+      any{user_id === "#{self.id}"; user_id_target === "#{user_id}"}
+    end
+		flirting_chanels = FlirtingChanel.find :all, :conditions => cond.to_sql()
+		if flirting_chanels.size > 0 then
+			return true
+		else
+			return false
+		end
+	end
+	
+	def friends_change_message
+		return FlirtingMessage.find :all, :include => :flirting_chanel, :conditions => "flirting_chanel_id IN (Select id From flirting_chanels where status = 'Chat' And (user_id = #{self.id} Or user_id_target = #{self.id}))"
+	end
+	
+	def friends_want_chat
+		return FlirtingChanel.find_all_by_user_id_target_and_status(self.id, "Invite")
+	end
+	
+	def friends_invite_chat
+		return FlirtingChanel.find_all_by_user_id_and_status(self.id, "Invite")
+	end
     
   protected
 

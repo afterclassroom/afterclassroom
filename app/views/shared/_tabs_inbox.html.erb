@@ -33,6 +33,7 @@
 <div class="user_menu">
   <ul>
     <li><%= tab_to "Home", [{:controller => dashboard_user_path(current_user)}] %></li>
+		<li><%= tab_to "Student Louge", [{:controller => "/student_louge"}] %></li>
     <li><%= tab_to "Inbox", [{:controller => user_messages_path(current_user)}] %></li>
     <li><%= tab_to "Profile", [{:controller => user_path(current_user)}] %></li>
     <li><%= tab_to "Share a Story", [{:controller => stories_path}] %></li>

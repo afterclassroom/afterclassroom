@@ -19,6 +19,7 @@
     </div>
 
     <ul class="member-profile-invites">
+			<li><label><%= chat_available(current_user, user) if current_user %></label></li>
       <li><label>Name</label><%= link_to user.full_name, {:action => "show_profile", :id => user.id} %></li>
       <li><label>Unversity/College</label><%= user.school.name %></li>
       <li><label>Major</label><%= user.user_education.major %>&nbsp;</li>
@@ -31,7 +32,7 @@
     <div class="member-profile-tools">
       <% if current_user %>
         <ul>
-          <li><span>Available to flirt</span></li>
+          <li><span><%= link_to "Add to chat", {:controller => "student_louge", :action => "index", :user => user.login} %></span></li>
           <li><span rel_email="<%= user.id %>" full_name="<%= user.full_name %>" to="<%= user.login %>">Send a message</span></li>
           <li><span>Review his rating</span></li>
           <li>

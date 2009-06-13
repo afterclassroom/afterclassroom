@@ -13,6 +13,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+		self.current_user.online = false
+		self.current_user.save
     logout_killing_session!
     flash[:notice] = "You have been logged out."
     redirect_back_or_default(root_path)
@@ -60,6 +62,8 @@ class SessionsController < ApplicationController
     handle_remember_cookie! new_cookie_flag
     redirect_back_or_default(dashboard_user_path(current_user))
     session[:your_school] = self.current_user.school.id if self.current_user.school
+		self.current_user.online = true
+		self.current_user.save
     flash[:notice] = "Logged in successfully"
   end
 

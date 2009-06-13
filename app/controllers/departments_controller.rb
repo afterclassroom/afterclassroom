@@ -1,3 +1,4 @@
+# © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class DepartmentsController < ApplicationController
   require_role :admin
   layout 'admin'
