@@ -32,9 +32,9 @@
     <div class="member-profile-tools">
       <% if current_user %>
         <ul>
-          <li><span><%= link_to "Add to chat", {:controller => "student_louge", :action => "index", :user => user.login} %></span></li>
+          <li><span><%= go_to_chat(current_user, user)%></span></li>
           <li><span rel_email="<%= user.id %>" full_name="<%= user.full_name %>" to="<%= user.login %>">Send a message</span></li>
-          <li><span>Review his rating</span></li>
+          <li><span>Review picture</span></li>
           <li>
             <%= friend_status(current_user, user) %>
           </li>

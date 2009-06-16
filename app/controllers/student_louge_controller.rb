@@ -29,6 +29,7 @@ class StudentLougeController < ApplicationController
 		@friends_change = current_user.friends_change_message
 		@friends_want = current_user.friends_want_chat
 		@friends_invite = current_user.friends_invite_chat
+		@friends_in_chat = current_user.friends_in_chat
   end
 
 end

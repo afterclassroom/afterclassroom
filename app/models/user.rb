@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
   def self.paginated_users_conditions_with_search(params)
     user_name = params[:search][:name] if params[:search]
     cond = Caboose::EZ::Condition.new :users do
-      state === "active"
+      state == "active"
       any{login =~ "%#{user_name}%"; name =~ "%#{user_name}%"} if user_name
       login! === ['admin']
     end
@@ -135,9 +135,18 @@ class User < ActiveRecord::Base
   end
 	
 	def check_user_in_chatting_session(user_id)
+		flirting_chanels = FlirtingChanel.find :all, :conditions => "status = 'Chat' And ((user_id = #{self.id} And user_id_target = #{user_id}) Or (user_id = #{user_id} And user_id_target = #{self.id}))"
+		if flirting_chanels.size > 0 then
+			return true
+		else
+			return false
+		end
+	end
+	
+	def check_user_in_chat(member_id)
 		cond = Caboose::EZ::Condition.new :flirting_chanels do
-      status === "Chat"
-      any{user_id === "#{self.id}"; user_id_target === "#{user_id}"}
+      status == "Chat"
+      any{ user_id == "#{member_id}"; user_id_target == "#{member_id}" }
     end
 		flirting_chanels = FlirtingChanel.find :all, :conditions => cond.to_sql()
 		if flirting_chanels.size > 0 then
@@ -157,6 +166,14 @@ class User < ActiveRecord::Base
 	
 	def friends_invite_chat
 		return FlirtingChanel.find_all_by_user_id_and_status(self.id, "Invite")
+	end
+	
+	def friends_in_chat
+		friends = []
+		for friend in self.user_friends
+			friends << friend if check_user_in_chat(friend.id)
+		end
+		return friends
 	end
     
   protected
