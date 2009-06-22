@@ -1,17 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <title>:: <%= configatron.site_name %> ::</title>
 
-    <%= stylesheet_link_merged :application %>
-    <%= javascript_include_merged :application %>
+    <%= stylesheet_link_merged :student_louge %>
+    <%= javascript_include_merged :student_louge %>
+		<%= javascript_include_tag :juggernaut %>
 
   </head>
-  <body>
+  <body onload="mydows_init();">
     <div id="wrapper"><!-- begin wrapper -->
       <div id="header"><!-- header -->
         <div id="top-nav"><!-- top nav -->

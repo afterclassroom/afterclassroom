@@ -12,6 +12,13 @@ javascripts:
   - prototip
   - prototype_ajax_upload
   - lightwindow
+- student_louge:
+  - prototype
+  - effects
+  - dragdrop
+  - controls
+  - application
+  - mydows
 - signin:
   - prototype
   - effects
@@ -48,6 +55,18 @@ stylesheets:
   - posting
   - default
   - lightwindow
+- student_louge:
+  - reset
+  - layout
+  - style
+  - buttons
+  - search
+  - pagination
+  - windows
+  - account
+  - listing
+  - posting
+  - default
 - signin:
   - reset
   - layout

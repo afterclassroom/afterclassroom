@@ -134,6 +134,11 @@ class User < ActiveRecord::Base
     self.name == "" ? self.login : self.name
   end
 	
+	def get_chanel(user_id)
+		flirting_chanel = FlirtingChanel.find :first, :conditions => "Not status = 'Stop' And ((user_id = #{self.id} And user_id_target = #{user_id}) Or (user_id = #{user_id} And user_id_target = #{self.id}))"
+		return flirting_chanel
+	end
+	
 	def check_user_in_chatting_session(user_id)
 		flirting_chanels = FlirtingChanel.find :all, :conditions => "status = 'Chat' And ((user_id = #{self.id} And user_id_target = #{user_id}) Or (user_id = #{user_id} And user_id_target = #{self.id}))"
 		if flirting_chanels.size > 0 then

@@ -1,4 +1,23 @@
+<%= juggernaut :debug => true, :type => :send_to_client_on_channels, :client_id => "#{current_user}", :chanels => ["chanel_dungkin_dungtqa"] %>
 <%= render :partial => "friends_changed_message", :locals => {:friends_change => @friends_change} %>
 <%= render :partial => "friends_want_you_chat", :locals => {:friends_want => @friends_want} %>
 <%= render :partial => "friends_you_invited_chat", :locals => {:friends_invite => @friends_invite} %>
 <%= render :partial => "friends_in_chatting", :locals => {:friends_in_chat => @friends_in_chat} %>
+<script>
+	function load_windows() {
+		show_close_button=1;
+		show_maximize_button=1;
+		var w=new_mydow("My Window");
+		mydow_load(w.handle, "/student_louge/chanel_chat_content?user_id=2");
+	}
+	load_windows();
+</script>
+<%= form_remote_tag(
+        :url => { :action => :send_data },
+        :complete => "$('chat_input').value = ''" ) %>
+			<%= text_field_tag( 'chat_input', '', { :size => 20, :id => 'chat_input'} ) %>
+			<%= submit_tag "Add" %>
+		</form>
+
+
+  

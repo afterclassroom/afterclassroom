@@ -13,6 +13,17 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+		#Set all chanel have current_user to stop status and delete all current_user's messages 
+		flirting_chanels = FlirtingChanel.find :all, :conditions => "user_id = #{current_user.id} Or user_id_target = #{current_user.id}"
+		for chanel in flirting_chanels
+			if chanel.status == 'Stop'
+				chanel.flirting_messages.delete_all
+			else
+				chanel.status = 'Stop'
+			end
+			chanel.save
+		end
+		#Set user offline
 		self.current_user.online = false
 		self.current_user.save
     logout_killing_session!
@@ -62,6 +73,7 @@ class SessionsController < ApplicationController
     handle_remember_cookie! new_cookie_flag
     redirect_back_or_default(dashboard_user_path(current_user))
     session[:your_school] = self.current_user.school.id if self.current_user.school
+		#Set user online
 		self.current_user.online = true
 		self.current_user.save
     flash[:notice] = "Logged in successfully"
