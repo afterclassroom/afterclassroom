@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
 		flirting_chanels = FlirtingChanel.find :all, :conditions => "user_id = #{current_user.id} Or user_id_target = #{current_user.id}"
 		for chanel in flirting_chanels
 			if chanel.status == 'Stop'
+				chanel.status = 'End'
 				chanel.flirting_messages.delete_all
 			else
 				chanel.status = 'Stop'

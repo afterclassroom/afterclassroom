@@ -11,5 +11,9 @@
 			<%= image_tag friend_change.user.avatar.url(:thumb) %>
 		<% end %>
 	</li>
+	<script>
+		var <%= "window_" + friend_change.user.login %>=new_mydow("<%= friend_change.user.full_name %>");
+		mydow_load(<%= "window_" + friend_change.user.login %>.handle, "/student_louge/chanel_chat_content?user_id=<%= friend_change.user.id %>");
+</script>
 	<% end %>
 <ul>

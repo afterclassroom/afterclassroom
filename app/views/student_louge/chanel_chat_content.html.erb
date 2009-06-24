@@ -1,7 +1,10 @@
-<ul id="chat_data">
+<ul id="<%= @chanel.chanel_name %>">
 	<% for message in @messages %>
 	<li>
 		<%= message.message %>
 	</li>
 	<% end %>
 <ul>
+
+<input type="text" value="" size="20" name="chat_input_<%= @user_chat.id %>" id="chat_input_<%= @user_chat.id %>"/>
+<input type="button" value="Add" name="commit" onClick="send_data('<%= @user_chat.id %>')"/>

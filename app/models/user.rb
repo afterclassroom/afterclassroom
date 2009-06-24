@@ -134,8 +134,19 @@ class User < ActiveRecord::Base
     self.name == "" ? self.login : self.name
   end
 	
+	def get_all_chanels_name
+		flirting_chanels = FlirtingChanel.find :all, :select => "chanel_name",  :conditions => "Not status = 'End' And (user_id = #{self.id} Or user_id_target = #{self.id})"
+		flirting_chanels_name = []
+		
+		for flirting_chanel in flirting_chanels
+			flirting_chanels_name << flirting_chanel.chanel_name
+		end
+		
+		return flirting_chanels_name
+	end
+	
 	def get_chanel(user_id)
-		flirting_chanel = FlirtingChanel.find :first, :conditions => "Not status = 'Stop' And ((user_id = #{self.id} And user_id_target = #{user_id}) Or (user_id = #{user_id} And user_id_target = #{self.id}))"
+		flirting_chanel = FlirtingChanel.find :first, :conditions => "Not status = 'End' And ((user_id = #{self.id} And user_id_target = #{user_id}) Or (user_id = #{user_id} And user_id_target = #{self.id}))"
 		return flirting_chanel
 	end
 	
@@ -162,15 +173,18 @@ class User < ActiveRecord::Base
 	end
 	
 	def friends_change_message
-		return FlirtingMessage.find :all, :include => :flirting_chanel, :conditions => "flirting_chanel_id IN (Select id From flirting_chanels where status = 'Chat' And (user_id = #{self.id} Or user_id_target = #{self.id}))"
+		friends_change = FlirtingMessage.find :all, :include => :flirting_chanel, :conditions => "flirting_chanel_id IN (Select id From flirting_chanels where Not status = 'End' And Not status = 'Invite' And (user_id = #{self.id} Or user_id_target = #{self.id}))", :order => "created_at DESC", :group => "user_id"
+		return friends_change
 	end
 	
 	def friends_want_chat
-		return FlirtingChanel.find_all_by_user_id_target_and_status(self.id, "Invite")
+		friends_want = FlirtingChanel.find_all_by_user_id_target_and_status(self.id, "Invite")
+		return friends_want
 	end
 	
 	def friends_invite_chat
-		return FlirtingChanel.find_all_by_user_id_and_status(self.id, "Invite")
+		friends_invite = FlirtingChanel.find_all_by_user_id_and_status(self.id, "Invite")
+		return friends_invite
 	end
 	
 	def friends_in_chat
