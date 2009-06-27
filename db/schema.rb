@@ -11,13 +11,6 @@
 
 ActiveRecord::Schema.define(:version => 20090611092231) do
 
-  create_table "acos", :force => true do |t|
-    t.integer "object_id"
-    t.string  "alias",     :default => "", :null => false
-    t.integer "lft"
-    t.integer "rght"
-  end
-
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
     t.string   "action",     :limit => 50
@@ -88,13 +81,15 @@ ActiveRecord::Schema.define(:version => 20090611092231) do
   create_table "flirting_chanels", :force => true do |t|
     t.integer "user_id"
     t.integer "user_id_target"
-    t.string  "status"
+    t.string  "chanel_name"
+    t.string  "status",         :default => "Invite"
   end
 
   create_table "flirting_messages", :force => true do |t|
     t.integer  "flirting_chanel_id"
     t.integer  "user_id"
     t.string   "message"
+    t.boolean  "notify",             :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

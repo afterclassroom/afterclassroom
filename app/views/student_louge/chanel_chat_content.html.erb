@@ -1,10 +1,20 @@
-<ul id="<%= @chanel.chanel_name %>">
-	<% for message in @messages %>
-	<li>
-		<%= message.message %>
-	</li>
-	<% end %>
-<ul>
-
-<input type="text" value="" size="20" name="chat_input_<%= @user_chat.id %>" id="chat_input_<%= @user_chat.id %>"/>
-<input type="button" value="Add" name="commit" onClick="send_data('<%= @user_chat.id %>')"/>
+<div id="chat_content_wraper">
+	<div id="chat_image">
+	<%= image_tag @user_chat.avatar.url(:thumb)%>
+	<%= radio_button_tag "Flirting", "Flirting", true %> Flirting 
+	<%= radio_button_tag "Stop Flirting", "Stop Flirting"%> Stop Flirting 
+	</div>
+	<div id="chat_content" style="height:100px; overflow-y:auto;">
+		<ul id="<%= @chanel.chanel_name %>">
+			<% for message in @messages %>
+				<li>
+					<%= message.user.full_name %>: <%= message.message %>
+				</li>
+			<% end %>
+		<ul>
+	</div>
+	<div id="chat_form">
+		<input type="text" value="" size="20" name="chat_input_<%= @user_chat.id %>" id="chat_input_<%= @user_chat.id %>"/>
+		<input type="button" value="Send" name="send" onClick="send_data('<%= @user_chat.id %>')"/>
+	</div>
+</div>

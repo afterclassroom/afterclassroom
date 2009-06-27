@@ -4,6 +4,7 @@ class CreateFlirtingMessages < ActiveRecord::Migration
       t.belongs_to :flirting_chanel
       t.belongs_to :user
       t.string :message
+			t.boolean :notify_msg, :default => false
 
       t.timestamps
     end

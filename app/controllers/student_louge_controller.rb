@@ -18,13 +18,13 @@ class StudentLougeController < ApplicationController
 				if flirting_chanel_invited.status == "End"
 					flirting_chanel_invited.status = "Invite"
 				else
-					flirting_chanel_invited.status = "Chat" if @flirting_chanel.status = "Invite"
+					flirting_chanel_invited.status = "Chat" if flirting_chanel_invited.status = "Invite"
 				end
 				flirting_chanel_invited.save
 				@flirting_chanel = flirting_chanel_invited
 			end
 			if @flirting_chanel.status == "Invite" and @flirting_chanel.flirting_messages.size == 0
-				flirting_massage = FlirtingMessage.new({:user_id => current_user.id, :message => "#{current_user.full_name} invite #{user_invite_chat.full_name} to chat."})
+				flirting_massage = FlirtingMessage.new({:user_id => current_user.id, :message => "#{current_user.full_name} invite #{user_invite_chat.full_name} to chat.", :notify_msg => true})
 				@flirting_chanel.flirting_messages << flirting_massage
 				@flirting_chanel.save
 			end
@@ -43,8 +43,11 @@ class StudentLougeController < ApplicationController
 		user_chat = User.find(user_id)
 		chanel = current_user.get_chanel(user_chat.id)
 		if chanel
-			render :juggernaut do |page|
-				page.insert_html :bottom, chanel.chanel_name, "<li>#{h message}</li>"
+			msg = FlirtingMessage.new({:user_id => current_user.id, :message => message})
+			chanel.flirting_messages << msg
+			chanel.save
+			render :juggernaut => {:type => :send_to_channel, :channel => chanel.chanel_name} do |page|
+				page.insert_html :bottom, chanel.chanel_name, "<li>#{h current_user.full_name}: #{h message}</li>"
 			end
 		end
 		
