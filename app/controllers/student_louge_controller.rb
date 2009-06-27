@@ -46,7 +46,7 @@ class StudentLougeController < ApplicationController
 			msg = FlirtingMessage.new({:user_id => current_user.id, :message => message})
 			chanel.flirting_messages << msg
 			chanel.save
-			render :juggernaut => {:type => :send_to_channel, :channel => chanel.chanel_name} do |page|
+			render :juggernaut do |page|
 				page.insert_html :bottom, chanel.chanel_name, "<li>#{h current_user.full_name}: #{h message}</li>"
 			end
 		end
