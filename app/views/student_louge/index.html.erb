@@ -1,4 +1,4 @@
-<%= juggernaut :debug => false, :type => :send_to_client_on_channels, :client_id => current_user.login, :chanels => @chanels_name %>
+<%= juggernaut :debug => true, :type => :send_to_client_on_channels, :client_id => current_user.login, :chanels => @chanels_name %>
 <%= render :partial => "friends_changed_message", :locals => {:friends_change => @friends_change} %>
 <%= render :partial => "friends_want_you_chat", :locals => {:friends_want => @friends_want} %>
 <%= render :partial => "friends_you_invited_chat", :locals => {:friends_invite => @friends_invite} %>
