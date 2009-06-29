@@ -10,10 +10,10 @@ class StudentLougeController < ApplicationController
 		if user_invite_chat
 			flirting_chanel_invited = FlirtingChanel.find_by_user_id_and_user_id_target(user_invite_chat.id, current_user.id)#Use check current user invited
 			if flirting_chanel_invited == nil
-				@flirting_chanel = FlirtingChanel.find_or_create_by_user_id_and_user_id_target(current_user.id, user_invite_chat.id)
-				@flirting_chanel.chanel_name = "chanel_" + current_user.login + "_" + user_invite_chat.login if !@flirting_chanel.chanel_name
-				@flirting_chanel.status = "Invite" if @flirting_chanel.status == "End" 
-				@flirting_chanel.save
+				flirting_chanel = FlirtingChanel.find_or_create_by_user_id_and_user_id_target(current_user.id, user_invite_chat.id)
+				flirting_chanel.chanel_name = "chanel_" + current_user.login + "_" + user_invite_chat.login if !flirting_chanel.chanel_name
+				flirting_chanel.status = "Invite" if flirting_chanel.status == "End" 
+				flirting_chanel.save
 			else
 				if flirting_chanel_invited.status == "End"
 					flirting_chanel_invited.status = "Invite"
@@ -21,20 +21,20 @@ class StudentLougeController < ApplicationController
 					flirting_chanel_invited.status = "Chat" if flirting_chanel_invited.status = "Invite"
 				end
 				flirting_chanel_invited.save
-				@flirting_chanel = flirting_chanel_invited
+				flirting_chanel = flirting_chanel_invited
 			end
-			if @flirting_chanel.status == "Invite" and @flirting_chanel.flirting_messages.size == 0
+			if flirting_chanel.status == "Invite" and flirting_chanel.flirting_messages.size == 0
 				flirting_massage = FlirtingMessage.new({:user_id => current_user.id, :message => "#{current_user.full_name} invite #{user_invite_chat.full_name} to chat.", :notify_msg => true})
-				@flirting_chanel.flirting_messages << flirting_massage
-				@flirting_chanel.save
+				flirting_chanel.flirting_messages << flirting_massage
+				flirting_chanel.save
 			end
 		end
-		@chanels_name = current_user.get_all_chanels_name
+		
 		@friends_change = current_user.friends_change_message
 		@friends_want = current_user.friends_want_chat
 		@friends_invite = current_user.friends_invite_chat
 		@friends_in_chat = current_user.friends_in_chat
-	
+
   end
 	
 	def send_data
@@ -43,15 +43,20 @@ class StudentLougeController < ApplicationController
 		user_chat = User.find(user_id)
 		chanel = current_user.get_chanel(user_chat.id)
 		if chanel
+			chanel.status = "Chat" if chanel.status == "Invite" && chanel.user_id_target == current_user.id
 			msg = FlirtingMessage.new({:user_id => current_user.id, :message => message})
 			chanel.flirting_messages << msg
 			chanel.save
-			render :juggernaut do |page|
+			render :juggernaut => {:type => :send_to_clients, :client_ids => [user_chat.login, current_user.login]} do |page|
 				page.insert_html :bottom, chanel.chanel_name, "<li>#{h current_user.full_name}: #{h message}</li>"
 			end
 		end
 		
     render :nothing => true
+	end
+	
+	def stop_chat
+	
 	end
 	
 	def chanel_chat_content

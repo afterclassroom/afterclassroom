@@ -150,6 +150,11 @@ class User < ActiveRecord::Base
 		return flirting_chanel
 	end
 	
+	def get_all_chanels
+		flirting_chanels = FlirtingChanel.find :all, :conditions => "Not status = 'End' And (user_id = #{self.id} Or user_id_target = #{self.id})"
+		return flirting_chanels
+	end
+	
 	def check_user_in_chatting_session(user_id)
 		flirting_chanels = FlirtingChanel.find :all, :conditions => "status = 'Chat' And ((user_id = #{self.id} And user_id_target = #{user_id}) Or (user_id = #{user_id} And user_id_target = #{self.id}))"
 		if flirting_chanels.size > 0 then
@@ -173,7 +178,7 @@ class User < ActiveRecord::Base
 	end
 	
 	def friends_change_message
-		friends_change = FlirtingMessage.find :all, :include => :flirting_chanel, :conditions => "flirting_chanel_id IN (Select id From flirting_chanels where Not status = 'End' And Not status = 'Invite' And (user_id = #{self.id} Or user_id_target = #{self.id}))", :order => "created_at DESC", :group => "user_id"
+		friends_change = FlirtingMessage.find :all, :include => :flirting_chanel, :conditions => "flirting_chanel_id IN (Select id From flirting_chanels where Not status = 'End' And Not status = 'Invite' And (user_id = #{self.id} Or user_id_target = #{self.id})) And Not user_id = #{self.id}", :order => "created_at DESC", :group => "user_id"
 		return friends_change
 	end
 	

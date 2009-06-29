@@ -8,7 +8,7 @@
 		<ul id="<%= @chanel.chanel_name %>">
 			<% for message in @messages %>
 				<li>
-					<%= message.user.full_name %>: <%= message.message %>
+					<%= message.user.full_name + ":" if !message.notify_msg %> <%= message.message %>
 				</li>
 			<% end %>
 		<ul>

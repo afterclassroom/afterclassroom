@@ -1,14 +1,14 @@
-<ul>Friends changed their message
+<ul id="friends_changed_their_message">Friends changed their message
 	<% for friend_change in friends_change %>
 	<li>
 		<% if current_user == friend_change.user %>
 			<% if friend_change.user == friend_change.flirting_chanel.user %>
-				<%= image_tag friend_change.flirting_chanel.user_target.avatar.url(:thumb) %>
+				<%= image_tag friend_change.flirting_chanel.user_target.avatar.url(:thumb), :onclick => "mydow_open('#{friend_change.flirting_chanel.user_target.full_name}')" %>
 			<% else %>
-				<%= image_tag friend_change.flirting_chanel.user.avatar.url(:thumb) %>
+				<%= image_tag friend_change.flirting_chanel.user.avatar.url(:thumb), :onclick => "mydow_open('#{friend_change.flirting_chanel.user.full_name}')" %>
 			<% end %>
 		<% else %>
-			<%= image_tag friend_change.user.avatar.url(:thumb) %>
+			<%= image_tag friend_change.user.avatar.url(:thumb), :onclick => "mydow_open('#{friend_change.user.full_name}')" %>
 		<% end %>
 	</li>
 	<script>

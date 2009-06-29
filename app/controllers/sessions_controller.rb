@@ -14,15 +14,27 @@ class SessionsController < ApplicationController
 
   def destroy
 		#Set all chanel have current_user to stop status and delete all current_user's messages 
-		flirting_chanels = FlirtingChanel.find :all, :conditions => "user_id = #{current_user.id} Or user_id_target = #{current_user.id}"
+		flirting_chanels = self.current_user.get_all_chanels
 		for chanel in flirting_chanels
 			if chanel.status == 'Stop'
 				chanel.status = 'End'
 				chanel.flirting_messages.delete_all
 			else
 				chanel.status = 'Stop'
+				message = FlirtingMessage.new({:user_id => current_user.id, :message => "#{current_user.full_name} stop chatting.S", :notify_msg => true})
+				chanel.flirting_messages << message
 			end
 			chanel.save
+			
+			if chanel.user_id == current_user.id
+				client_id = chanel.user_target.login
+			else
+				client_id = chanel.user.login
+			end
+			
+			render :juggernaut => {:type => :send_to_client, :client_id => client_id} do |page|
+				page.insert_html :bottom, chanel.chanel_name, "<li>#{h current_user.full_name} stop chatting</li>"
+			end
 		end
 		#Set user offline
 		self.current_user.online = false
