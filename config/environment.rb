@@ -19,14 +19,9 @@ Rails::Initializer.run do |config|
   # in the database in UTC, and return them converted to the specified local zone.
   config.time_zone = 'UTC'
   
-  # Your secret key for verifying cookie session data integrity.
-  # If you change this key, all old sessions will become invalid!
-  # Make sure the secret is at least 30 characters and all random, 
-  # no regular words or you'll be exposed to dictionary attacks.
-  config.action_controller.session = {
-    :session_key => '_base_session',
-    :secret      => '7389ea9180b15f1495a5e73a69a893311f859ccff1ffd0fa2d7ea25fdf1fa324f280e6ba06e3e5ba612e71298d8fbe7f15fd7da2929c45a9c87fe226d2f77347'
-  }
+  # Use the database for sessions instead of the file system
+  # (create the session table with 'rake db:sessions:create')
+  config.action_controller.session_store = :active_record_store
   
   config.active_record.observers = :user_observer
 end

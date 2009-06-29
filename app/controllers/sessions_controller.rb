@@ -36,9 +36,7 @@ class SessionsController < ApplicationController
 				page.insert_html :bottom, chanel.chanel_name, "<li>#{h current_user.full_name} stop chatting</li>"
 			end
 		end
-		#Set user offline
-		self.current_user.online = false
-		self.current_user.save
+  
     logout_killing_session!
     flash[:notice] = "You have been logged out."
     redirect_back_or_default(root_path)
@@ -85,11 +83,18 @@ class SessionsController < ApplicationController
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
     redirect_back_or_default(dashboard_user_path(current_user))
+    #Set session your school
     session[:your_school] = self.current_user.school.id if self.current_user.school
-		#Set user online
-		self.current_user.online = true
-		self.current_user.save
     flash[:notice] = "Logged in successfully"
+		#Set all chanel'status stop to end and delete all messages
+		flirting_chanels = self.current_user.get_all_chanels
+		for chanel in flirting_chanels
+			if chanel.status == 'Stop'
+				chanel.status = 'End'
+				chanel.flirting_messages.delete_all
+			end
+			chanel.save
+		end
   end
 
   def note_failed_signin

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => '9fe6825f97cc334d88925fde5c4808a8'
+  protect_from_forgery :secret => '9fe6825f97cc334d88925fde5c4808a8'
 
   # Pick a unique cookie name to distinguish our session data from others
   session :session_key => '_geokit_session_id'
@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
   USER_NAME, PASSWORD = "afterclassroom", "afterclassroom01"
 
   before_filter :authenticate
-
+  before_filter :session_update
+  
   private
 
   def authenticate
@@ -34,5 +35,11 @@ class ApplicationController < ActionController::Base
     end
 
   end
+  
+  def session_update
+    session.model.update_attribute(:user_id, session[:user_id])
+    session.model.update_attribute(:last_url_visited, request.url)
+  end
+
   # Temp
 end

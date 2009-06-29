@@ -23,7 +23,7 @@ module ProfileHelper
 	
 	def chat_available(current_user, user_member)
 		str = ""
-		if user_member.online
+		if user_member.check_user_online
 			if user_member.check_user_in_chatting_session(current_user.id)
 				str = "In chit chatting session"
 			else 
@@ -39,7 +39,7 @@ module ProfileHelper
 		if current_user == user_member
 			str = link_to "Go to chat", {:controller => "student_louge", :action => "index"}
 		else
-			if user_member.online == true
+			if user_member.check_user_online == true
 				if user_member.check_user_in_chatting_session(current_user.id)
 					str = link_to "Go to chat", {:controller => "student_louge", :action => "index", :user => user_member.login}
 				else 

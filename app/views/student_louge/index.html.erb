@@ -1,4 +1,4 @@
-<%= juggernaut :debug => true, :client_id => current_user.login %>
+<%= juggernaut :debug => false, :client_id => current_user.login %>
 <%= render :partial => "friends_changed_message", :locals => {:friends_change => @friends_change} %>
 <%= render :partial => "friends_want_you_chat", :locals => {:friends_want => @friends_want} %>
 <%= render :partial => "friends_you_invited_chat", :locals => {:friends_invite => @friends_invite} %>
@@ -6,15 +6,31 @@
 
 <script>
 	function send_data(id) {
-		
 		new Ajax.Request('/student_louge/send_data', 
 		{asynchronous:true, 
 		 evalScripts:true, 
 		 method:'get',
 		 onComplete:function(request){
-		 $('chat_input_'+id).value = ''}, 
+			$('chat_input_'+id).value = '';
+		 }, 
 		 parameters: { user_id: id, chat_input: $('chat_input_'+id).value } 
 		}); 
+	}
+	
+	function stop_chat(id, window_name){
+		new Ajax.Request('/student_louge/stop_chat', 
+			{asynchronous:true, 
+			 evalScripts:true, 
+			 method:'get',
+			 onComplete:function(request){
+				kill_mydow(window_name);
+			 }, 
+			 parameters: { user_id: id } 
+			});
+	}
+	
+	function scroll_div(id){
+		$(id).scrollTop = $(id).scrollHeight
 	}
 </script>
 			

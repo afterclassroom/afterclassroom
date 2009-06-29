@@ -1,11 +1,8 @@
 <ul id="friends_want_chat">Friends want chat chit with you
 	<% for friend_want in friends_want %>
 	<li>
-		<%= image_tag friend_want.user.avatar.url(:thumb), :onclick => "mydow_open('#{friend_want.user.full_name}')" %>
+		<%= image_tag friend_want.user.avatar.url(:thumb), :onclick => "mydow_open('#{friend_want.user.id}', '#{friend_want.user.full_name}')" %>
 	</li>
-	<script>
-		var <%= "window_" + friend_want.user.login %>=new_mydow("<%= friend_want.user.full_name %>");
-		mydow_load(<%= "window_" + friend_want.user.login %>.handle, "/student_louge/chanel_chat_content?user_id=<%= friend_want.user.id %>");
-	</script>
 	<% end %>
+	<li></li>
 <ul>

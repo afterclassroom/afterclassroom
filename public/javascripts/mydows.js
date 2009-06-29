@@ -528,8 +528,13 @@ function new_mydow(handle) {
 		};
 	}
 
-function mydow_open(handle){
-  $(handle+"_frame").show();
+function mydow_open(user_id, handle){
+  if(!mydows.get(handle)) {
+    new_mydow(handle);
+    mydow_load(handle, "/student_louge/chanel_chat_content?user_id=" + user_id);
+  }else{
+    $(handle+"_frame").show();
+  }
 }
 
 function mydow_property(handle, prop, val) {

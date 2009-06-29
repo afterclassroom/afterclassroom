@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090611092231) do
+ActiveRecord::Schema.define(:version => 20090629065557) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20090611092231) do
     t.integer  "flirting_chanel_id"
     t.integer  "user_id"
     t.string   "message"
-    t.boolean  "notify",             :default => false
+    t.boolean  "notify_msg",         :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -334,6 +334,18 @@ ActiveRecord::Schema.define(:version => 20090611092231) do
     t.string  "type_school", :default => "", :null => false
     t.string  "website"
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id",       :default => "", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "last_url_visited"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "settings", :force => true do |t|
     t.string   "label"

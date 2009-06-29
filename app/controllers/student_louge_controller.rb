@@ -49,6 +49,7 @@ class StudentLougeController < ApplicationController
 			chanel.save
 			render :juggernaut => {:type => :send_to_clients, :client_ids => [user_chat.login, current_user.login]} do |page|
 				page.insert_html :bottom, chanel.chanel_name, "<li>#{h current_user.full_name}: #{h message}</li>"
+				page.call 'scroll_div', 'chat_content_' + chanel.chanel_name
 			end
 		end
 		
@@ -56,7 +57,26 @@ class StudentLougeController < ApplicationController
 	end
 	
 	def stop_chat
-	
+		user_id = params[:user_id]
+		user_chat = User.find(user_id)
+		chanel = current_user.get_chanel(user_chat.id)
+		if chanel
+			if chanel.status == "Stop"
+				chanel.status = "End"
+				chanel.flirting_messages.delete_all
+			else
+				chanel.status = "Stop"
+			end
+			chanel.save
+			if chanel.status == "Stop"
+				message = "#{current_user.full_name} stoped chatting."
+				render :juggernaut => {:type => :send_to_client, :client_id => user_chat.login} do |page|
+					page.insert_html :bottom, chanel.chanel_name, "<li>#{h message}</li>"
+				end
+			end
+		end
+		
+    render :nothing => true
 	end
 	
 	def chanel_chat_content

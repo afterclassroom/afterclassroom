@@ -1,10 +1,10 @@
-<div id="chat_content_wraper">
-	<div id="chat_image">
+<div id="chat_content_wraper_<%= @chanel.chanel_name %>">
+	<div id="chat_image_<%= @chanel.chanel_name %>">
 	<%= image_tag @user_chat.avatar.url(:thumb)%>
-	<%= radio_button_tag "Flirting", "Flirting", true %> Flirting 
-	<%= radio_button_tag "Stop Flirting", "Stop Flirting"%> Stop Flirting 
+	<%= radio_button_tag "stop_#{@user_chat.id}", "Flirting", true %> Flirting 
+	<%= radio_button_tag "stop_#{@user_chat.id}", "Stop Flirting", false, :onclick => "stop_chat(#{@user_chat.id}, '#{@user_chat.login}')"%> Stop Flirting 
 	</div>
-	<div id="chat_content" style="height:100px; overflow-y:auto;">
+	<div id="chat_content_<%= @chanel.chanel_name %>" style="height:100px; overflow-y:auto;">
 		<ul id="<%= @chanel.chanel_name %>">
 			<% for message in @messages %>
 				<li>
