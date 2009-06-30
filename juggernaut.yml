@@ -32,7 +32,7 @@
      #
      :allowed_ips: 
                   - 127.0.0.1
-                  # - 192.168.0.1
+                  - 174.129.195.49
 
      # 2) Via HTTP request
      # 
@@ -56,7 +56,7 @@
      # You shouldn't authenticate broadcasts from subscribed clients using this method
      # since the secret_key will be easily visible in the page (and not so secret any more)!
      # 
-     # :secret_key: ea86830abcf8d3e1fd9c518ccd119c11d64763de
+     # :secret_key: 48430a07ec18456f83729bbfd6a948294f049938
 
      # == Subscription Logout ==
 
@@ -93,5 +93,5 @@
      
      # Defaults to value of :port. If you are doing port forwarding you'll need to configure this to the same 
      # value as :public_port in the juggernaut_hosts.yml file
-     # :public_port: 5001
+     :public_port: 9001
 
