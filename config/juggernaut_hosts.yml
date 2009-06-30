@@ -11,8 +11,6 @@
 
 :hosts:
   - :port: 9001
-    :host: 127.0.0.1
-    :public_port: 9001
-    :public_host: 174.129.195.49
+    :host: 174.129.195.49
     # :secret_key: your_secret_key
     # :environment: :production
