@@ -11,8 +11,6 @@
 
 :hosts:
   - :port: 5001
-    :host: 174.129.195.49
-    :public_host: 174.129.195.49
-    :public_port: 5001
+     :public_port: 5001
     # :secret_key: your_secret_key
     # :environment: :production
