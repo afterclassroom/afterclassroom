@@ -11,6 +11,8 @@
 
 :hosts:
   - :port: 9001
-    :host: 174.129.195.49
+    :host: 127.0.0.1
+    :public_host: afterclassroom.com
+    :public_port: 5001 
     # :secret_key: your_secret_key
     # :environment: :production
