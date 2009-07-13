@@ -2,7 +2,7 @@
 	<div id="chat_image_<%= @chanel.chanel_name %>">
 	<%= image_tag @user_chat.avatar.url(:thumb)%>
 	<%= radio_button_tag "stop_#{@user_chat.id}", "Flirting", true %> Flirting 
-	<%= radio_button_tag "stop_#{@user_chat.id}", "Stop Flirting", false, :onclick => "stop_chat(#{@user_chat.id}, '#{@user_chat.login}')"%> Stop Flirting 
+	<%= radio_button_tag "stop_#{@user_chat.id}", "Stop Flirting", false, :onclick => "stop_chat(#{@user_chat.id}, '#{@chanel.chanel_name}', '#{@user_chat.login}')"%> Stop Flirting 
 	</div>
 	<div id="chat_content_<%= @chanel.chanel_name %>" style="height:100px; overflow-y:auto;">
 		<ul id="<%= @chanel.chanel_name %>">
@@ -15,6 +15,6 @@
 	</div>
 	<div id="chat_form">
 		<input type="text" value="" size="20" name="chat_input_<%= @user_chat.id %>" id="chat_input_<%= @user_chat.id %>"/>
-		<input type="button" value="Send" name="send" onClick="send_data('<%= @user_chat.id %>')"/>
+		<input type="button" value="Send" name="send" onClick="send_data('<%= @user_chat.id %>', '<%= @chanel.chanel_name %>')"/>
 	</div>
 </div>

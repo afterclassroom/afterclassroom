@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090629065557) do
+ActiveRecord::Schema.define(:version => 20090707145926) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -79,10 +79,9 @@ ActiveRecord::Schema.define(:version => 20090629065557) do
   end
 
   create_table "flirting_chanels", :force => true do |t|
-    t.integer "user_id"
-    t.integer "user_id_target"
-    t.string  "chanel_name"
-    t.string  "status",         :default => "Invite"
+    t.string   "chanel_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "flirting_messages", :force => true do |t|
@@ -100,6 +99,15 @@ ActiveRecord::Schema.define(:version => 20090629065557) do
     t.string  "sharring_type"
     t.integer "sharring_id"
     t.boolean "accepted"
+  end
+
+  create_table "flirting_user_inchats", :force => true do |t|
+    t.integer  "flirting_chanel_id"
+    t.integer  "user_id"
+    t.integer  "user_id_invite"
+    t.string   "status",             :default => "Invite"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "functional_experiences", :force => true do |t|

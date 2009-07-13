@@ -5,7 +5,19 @@
 <%= render :partial => "friends_in_chatting", :locals => {:friends_in_chat => @friends_in_chat} %>
 
 <script>
-	function send_data(id) {
+	function invite_chat(login) {
+		new Ajax.Request('/student_louge/invite_chat', 
+		{asynchronous:true, 
+		 evalScripts:true, 
+		 method:'get',
+		 onComplete:function(request){
+			//
+		 }, 
+		 parameters: { user: login } 
+		}); 
+	}
+	
+	function send_data(id, chanel_name) {
 		new Ajax.Request('/student_louge/send_data', 
 		{asynchronous:true, 
 		 evalScripts:true, 
@@ -13,11 +25,11 @@
 		 onComplete:function(request){
 			$('chat_input_'+id).value = '';
 		 }, 
-		 parameters: { user_id: id, chat_input: $('chat_input_'+id).value } 
+		 parameters: { user_id: id, chanel_name: chanel_name, chat_input: $('chat_input_'+id).value } 
 		}); 
 	}
 	
-	function stop_chat(id, window_name){
+	function stop_chat(id, chanel_name, window_name){
 		new Ajax.Request('/student_louge/stop_chat', 
 			{asynchronous:true, 
 			 evalScripts:true, 
@@ -25,7 +37,7 @@
 			 onComplete:function(request){
 				kill_mydow(window_name);
 			 }, 
-			 parameters: { user_id: id } 
+			 parameters: { user_id: id , chanel_name: chanel_name} 
 			});
 	}
 	
@@ -33,6 +45,8 @@
 		$(id).scrollTop = $(id).scrollHeight
 	}
 </script>
-			
-
-  
+<% if @user_invite_chat %>			
+<script>
+  window.onload(invite_chat('<%= @user_invite_chat.login %>'));
+</script>
+<% end %>

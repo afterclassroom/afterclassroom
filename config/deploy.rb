@@ -47,6 +47,8 @@ end
 after "deploy", "deploy:cleanup"
 after "deploy:migrations", "deploy:cleanup"
 after "deploy:update_code","deploy:symlink_configs"
+after "deploy:update_code","juggernaut:symlink_configs"
+after "deploy:update_code","juggernaut:start"
 
 namespace :deploy do
  desc "Create asset packages for production" 
