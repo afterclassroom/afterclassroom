@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   end
   
   def password_required?
-    new_record? ? not_using_openid? && (crypted_password.blank? || !password.blank?) : !password.blank?
+    new_record? ? (crypted_password.blank? || !password.blank?) : !password.blank?
   end
   
   # Creates a new password for the user, and notifies him with an email
@@ -122,27 +122,6 @@ class User < ActiveRecord::Base
     self.name == "" ? self.login : self.name
   end
 	
-	def get_all_chanels_name
-		flirting_chanels = FlirtingChanel.find :all, :select => "chanel_name",  :conditions => "Not status = 'End' And (user_id = #{self.id} Or user_id_target = #{self.id})"
-		flirting_chanels_name = []
-		
-		for flirting_chanel in flirting_chanels
-			flirting_chanels_name << flirting_chanel.chanel_name
-		end
-		
-		return flirting_chanels_name
-	end
-	
-	def get_chanel(user_id)
-		flirting_chanel = FlirtingChanel.find :first, :conditions => "Not status = 'End' And ((user_id = #{self.id} And user_id_target = #{user_id}) Or (user_id = #{user_id} And user_id_target = #{self.id}))"
-		return flirting_chanel
-	end
-	
-	def get_all_chanels
-		flirting_chanels = FlirtingChanel.find :all, :conditions => "Not status = 'End' And (user_id = #{self.id} Or user_id_target = #{self.id})"
-		return flirting_chanels
-	end
-	
 	def check_user_online
 		check = false
 		online_sessions = CGI::Session::ActiveRecordStore::Session.find( :all,
@@ -153,21 +132,34 @@ class User < ActiveRecord::Base
 	end
 	
 	def check_user_in_chatting_session(user_id)
-		flirting_chanels = FlirtingChanel.find :all, :conditions => "status = 'Chat' And ((user_id = #{self.id} And user_id_target = #{user_id}) Or (user_id = #{user_id} And user_id_target = #{self.id}))"
-		if flirting_chanels.size > 0 then
+		flirting_user_inchats = FlirtingUserInchat.find :all, :conditions => "(user_id = #{self.id} And user_id_invite = #{user_id}) Or (user_id = #{user_id} And user_id_invite = #{self.id})"
+		if flirting_user_inchats.size > 0 then
 			return true
 		else
 			return false
 		end
 	end
 	
-	def check_user_in_chat(member_id)
-		cond = Caboose::EZ::Condition.new :flirting_chanels do
-      status == "Chat"
-      any{ user_id == "#{member_id}"; user_id_target == "#{member_id}" }
-    end
-		flirting_chanels = FlirtingChanel.find :all, :conditions => cond.to_sql()
-		if flirting_chanels.size > 0 then
+	def check_user_in_chat(v_user_id)
+		cond = Caboose::EZ::Condition.new :flirting_user_inchats do
+			status == "Chat"
+			any{ user_id == v_user_id; user_id_invite == v_user_id }
+		end
+		flirting_user_inchats = FlirtingUserInchat.find :all, :conditions => cond.to_sql()
+		if flirting_user_inchats.size > 0 then
+			return true
+		else
+			return false
+		end
+	end
+	
+	def check_user_in_chanel(v_user_id, v_chanel_id)
+		cond = Caboose::EZ::Condition.new :flirting_user_inchats do
+			flirting_chanel_id == v_chanel_id
+			any{ user_id == v_user_id; user_id_invite == v_user_id }
+		end
+		flirting_user_inchats = FlirtingUserInchat.find :all, :include => :flirting_chanel, :conditions => cond.to_sql()
+		if flirting_user_inchats.size > 0 then
 			return true
 		else
 			return false
@@ -175,18 +167,31 @@ class User < ActiveRecord::Base
 	end
 	
 	def friends_change_message
-		friends_change = FlirtingMessage.find :all, :include => :flirting_chanel, :conditions => "flirting_chanel_id IN (Select id From flirting_chanels where status = 'Chat' And (user_id = #{self.id} Or user_id_target = #{self.id})) And Not user_id = #{self.id}", :order => "created_at DESC", :group => "user_id"
+		v_user_id = self.id
+		cond = Caboose::EZ::Condition.new :flirting_user_inchats do
+			status == "Chat"
+			any{ user_id == v_user_id; user_id_invite == v_user_id }
+		end
+		friends_change = FlirtingUserInchat.find :all, :conditions => cond.to_sql
 		return friends_change
 	end
 	
 	def friends_want_chat
-		friends_want = FlirtingChanel.find_all_by_user_id_target_and_status(self.id, "Invite")
+		friends_want = FlirtingUserInchat.find_all_by_user_id_and_status(self.id, "Invite")
 		return friends_want
 	end
 	
 	def friends_invite_chat
-		friends_invite = FlirtingChanel.find_all_by_user_id_and_status(self.id, "Invite")
+		friends_invite = FlirtingUserInchat.find_all_by_user_id_invite_and_status(self.id, "Invite")
 		return friends_invite
+	end
+	
+	def friends_with_chanel(chanel_id)
+		friends = []
+		for friend in self.user_friends
+			friends << friend if !check_user_in_chanel(friend.id, chanel_id)
+		end
+		return friends
 	end
 	
 	def friends_in_chat

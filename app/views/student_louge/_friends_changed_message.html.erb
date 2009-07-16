@@ -2,13 +2,9 @@
 	<% for friend_change in friends_change %>
 	<li>
 		<% if current_user == friend_change.user %>
-			<% if friend_change.user == friend_change.flirting_chanel.user %>
-				<%= image_tag friend_change.flirting_chanel.user_target.avatar.url(:thumb), :onclick => "mydow_open('#{friend_change.flirting_chanel.user_target.id}', '#{friend_change.flirting_chanel.user_target.full_name}')" %>
-			<% else %>
-				<%= image_tag friend_change.flirting_chanel.user.avatar.url(:thumb), :onclick => "mydow_open('#{friend_change.flirting_chanel.user.id}', '#{friend_change.flirting_chanel.user_target.full_name}')" %>
-			<% end %>
+			<%= image_tag friend_change.user_invite.avatar.url(:thumb), :onclick => "mydow_open('#{friend_change.flirting_chanel.chanel_name}', '#{friend_change.user_invite.full_name}')" %>
 		<% else %>
-			<%= image_tag friend_change.user.avatar.url(:thumb), :onclick => "mydow_open('#{friend_change.user.id}', '#{friend_change.flirting_chanel.user_target.full_name}')" %>
+			<%= image_tag friend_change.user.avatar.url(:thumb), :onclick => "mydow_open('#{friend_change.flirting_chanel.chanel_name}', '#{friend_change.user_invite.full_name}')" %>
 		<% end %>
 	</li>
 	<% end %>

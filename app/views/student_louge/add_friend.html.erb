@@ -1,0 +1,13 @@
+<ul>
+			<% for user_friend in current_user.friends_with_chanel %>
+				<li>
+					<%= check_box_tag "users_id[]", user_friend.id, user_friend.full_name %> 
+				</li>
+				<% end %>
+			</ul>
+			<input type="button" value="Inivte" name="invite" onClick="add_users_to_chat('<%= @chanel.chanel_name %>')"/>
+<script>
+function add_users_to_chat(chanel_name){
+		
+	}
+</script>

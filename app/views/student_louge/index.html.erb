@@ -17,6 +17,30 @@
 		}); 
 	}
 	
+	function add_users_to_chat(chanel_name){
+	  obj_form = document.forms['form_' + chanel_name];
+		len = obj_form.elements.length;
+		val = "";
+		var i=0;
+		for(i=0; i<len ; i++) 
+		{
+			if(obj_form.elements[i].type == "checkbox" && obj_form.elements[i].checked) 
+			{
+				val += obj_form.elements[i].value + ";";
+			}
+		}   
+		
+		new Ajax.Request('/student_louge/add_users_to_chat', 
+		{asynchronous:true, 
+		 evalScripts:true, 
+		 method:'get',
+		 onComplete:function(request){
+			//
+		 }, 
+		 parameters: { chanel_name: chanel_name, users_id: val } 
+		});
+	}
+	
 	function send_data(id, chanel_name) {
 		new Ajax.Request('/student_louge/send_data', 
 		{asynchronous:true, 
@@ -25,7 +49,7 @@
 		 onComplete:function(request){
 			$('chat_input_'+id).value = '';
 		 }, 
-		 parameters: { user_id: id, chanel_name: chanel_name, chat_input: $('chat_input_'+id).value } 
+		 parameters: {chanel_name: chanel_name, chat_input: $('chat_input_'+id).value } 
 		}); 
 	}
 	
