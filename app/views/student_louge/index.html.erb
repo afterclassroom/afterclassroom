@@ -1,7 +1,9 @@
 <%= juggernaut :debug => true, :client_id => current_user.login %>
 <%= render :partial => "friends_changed_message", :locals => {:friends_change => @friends_change} %>
-<%= render :partial => "friends_want_you_chat", :locals => {:friends_want => @friends_want} %>
-<%= render :partial => "friends_you_invited_chat", :locals => {:friends_invite => @friends_invite} %>
+<div id="div_friends_want_you_chat">
+</div>
+<div id="div_friends_you_invited_to_chat">
+</div>
 <%= render :partial => "friends_in_chatting", :locals => {:friends_in_chat => @friends_in_chat} %>
 
 <script>
@@ -53,16 +55,30 @@
 		}); 
 	}
 	
-	function stop_chat(id, chanel_name, window_name){
+	function stop_chat(chanel_name){
 		new Ajax.Request('/student_louge/stop_chat', 
 			{asynchronous:true, 
 			 evalScripts:true, 
 			 method:'get',
 			 onComplete:function(request){
-				kill_mydow(window_name);
+				kill_mydow(chanel_name);
 			 }, 
-			 parameters: { user_id: id , chanel_name: chanel_name} 
+			 parameters: {chanel_name: chanel_name} 
 			});
+	}
+	
+	function friends_you_invited_chat(){
+		new Ajax.Updater('div_friends_you_invited_to_chat', '/student_louge/friends_you_invited_chat', 
+			{asynchronous:true, 
+			 evalScripts:true, 
+			 method:'get'}); 
+	}
+	
+	function friends_want_you_chat(){
+		new Ajax.Updater('div_friends_want_you_chat', '/student_louge/friends_want_you_chat',
+			{asynchronous:true, 
+			 evalScripts:true, 
+			 method:'get'}); 
 	}
 	
 	function scroll_div(id){
@@ -72,5 +88,7 @@
 <% if @user_invite_chat %>			
 <script>
   window.onload(invite_chat('<%= @user_invite_chat.login %>'));
+	friends_you_invited_chat();
+	friends_want_you_chat();
 </script>
 <% end %>

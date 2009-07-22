@@ -6,10 +6,7 @@ class StudentLougeController < ApplicationController
 		user_login = params[:user]
     @user_invite_chat = User.find_by_login(user_login) if user_login != current_user.login
 		@friends_change = current_user.friends_change_message
-		@friends_want = current_user.friends_want_chat
-		@friends_invite = current_user.friends_invite_chat
 		@friends_in_chat = current_user.friends_in_chat
-
   end
 	
 	def invite_chat
@@ -19,14 +16,23 @@ class StudentLougeController < ApplicationController
 		#Check and create chanel
 		if user_invite_chat
       chanel_name = "chanel_" + current_user.login + "_" + user_invite_chat.login
+			message = "#{current_user.full_name} invite #{user_invite_chat.full_name} to chat."
 			flirting_chanel = FlirtingChanel.create({:chanel_name => chanel_name})
-      flirting_massage = FlirtingMessage.new({:user_id => current_user.id, :message => "#{current_user.full_name} invite #{user_invite_chat.full_name} to chat.", :notify_msg => true})
+      flirting_massage = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
       flirting_chanel.flirting_messages << flirting_massage
       flirting_chanel.flirting_user_inchats << FlirtingUserInchat.new({:user_id => current_user.id, :user_id_invite => user_invite_chat.id, :status => "Create"})
       flirting_chanel.flirting_user_inchats << FlirtingUserInchat.new({:user_id => user_invite_chat.id, :user_id_invite => current_user.id})
       flirting_chanel.save
-      render :juggernaut => {:type => :send_to_client, :client_id => user_invite_chat.login} do |page|
-        page.insert_html :top, "friends_want_chat", "<li>" + image_tag(current_user.avatar.url(:thumb), :onclick => "mydow_open('#{current_user.id}', '#{current_user.full_name}')") + "</li>"
+			client_ids = []
+			for user_inchat in flirting_chanel.flirting_user_inchats
+				client_ids << user_inchat.user.login if user_inchat.user.login != current_user.login 
+			end
+      render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
+				page.call 'friends_you_invited_chat', ''
+				page.call 'friends_want_you_chat', ''
+				#Push message
+				page.insert_html :bottom, flirting_chanel.chanel_name, "<li>" + message + "</li>"
+				page.call 'scroll_div', 'chat_content_' + flirting_chanel.chanel_name
       end
 		end
 		
@@ -38,6 +44,7 @@ class StudentLougeController < ApplicationController
 		arr_id = users_id.split(";")
     chanel_name = params[:chanel_name]
 		chanel = FlirtingChanel.find_by_chanel_name(chanel_name)
+		arr_msg = ""
 		for id in arr_id
 			user_chat = User.find(id)
 			user_in_chat = chanel.flirting_user_inchats.find_by_user_id(id)
@@ -45,22 +52,24 @@ class StudentLougeController < ApplicationController
 				user_in_chat = FlirtingUserInchat.new({:user_id => user_chat.id, :user_id_invite => current_user.id})
 				chanel.flirting_user_inchats << user_in_chat
 				chanel.save
-				client_ids = []
-				for user_inchat in chanel.flirting_user_inchats
-					client_ids << user_inchat.user.login if user_inchat.user.login != current_user.login 
-				end
 				message = "#{current_user.full_name} add #{user_chat.full_name} to chat"
+				arr_msg = "<li>" + message + "</li>"
 				msg = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
 				chanel.flirting_messages << msg
 				chanel.save
-				render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
-					#Push message
-					page.insert_html :bottom, chanel.chanel_name, "<li>#{h current_user.full_name}: #{h message}</li>"
-					page.call 'scroll_div', 'chat_content_' + chanel.chanel_name
-				end
 			end
 		end
-		
+		client_ids = []
+		for user_inchat in chanel.flirting_user_inchats
+			client_ids << user_inchat.user.login if user_inchat.user.login != current_user.login 
+		end
+		render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
+			page.call 'friends_you_invited_chat', ''
+			page.call 'friends_want_you_chat', ''
+			#Push message
+			page.insert_html :bottom, chanel.chanel_name, arr_msg
+			page.call 'scroll_div', 'chat_content_' + chanel.chanel_name
+		end
     render :nothing => true
   end
   
@@ -89,31 +98,30 @@ class StudentLougeController < ApplicationController
 	end
 	
 	def stop_chat
-		user_id = params[:user_id]
     chanel_name = params[:chanel_name]
     
-		user_chat = User.find(user_id)
 		chanel = FlirtingChanel.find_by_chanel_name(chanel_name)
     
-		if chanel
-      user_in_chat = FlirtingUserInchat.find_by_user_id(user_id)
-      user_in_chat.destroy if user_in_chat
-      
-			if chanel.flirting_user_inchats.size == 0
+		if chanel  
+			if chanel.flirting_user_inchats.size == 1
 				chanel.destroy
       else
-        client_ids = []
+        user_in_chat = FlirtingUserInchat.find_by_user_id(current_user.id)
+				user_in_chat.destroy if user_in_chat
+				client_ids = []
         for user_inchat in chanel.flirting_user_inchats
           client_ids << user_inchat.user.login
         end
         message = "#{current_user.full_name} stoped chatting."
-        msg = FlirtingMessage.new({:user_id => current_user.id, :message => message})
+        msg = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
         chanel.flirting_messages << msg
         render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
           page.insert_html :bottom, chanel.chanel_name, "<li>#{h message}</li>"
+					page.call 'friends_you_invited_chat', ''
+					page.call 'friends_want_you_chat', ''
         end
+				chanel.save
 			end
-			chanel.save
 		end
 		
     render :nothing => true
@@ -128,5 +136,12 @@ class StudentLougeController < ApplicationController
 			@messages = @chanel.flirting_messages
 		end
 	end
-
+	
+	def friends_you_invited_chat
+		@friends_invite = current_user.friends_invite_chat
+	end
+	
+	def friends_want_you_chat
+		@friends_want = current_user.friends_want_chat
+	end
 end

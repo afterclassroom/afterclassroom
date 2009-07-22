@@ -16,7 +16,7 @@
 			<input type="button" value="Inivte" name="invite" onClick="add_users_to_chat('<%= @chanel.chanel_name %>')"/>
 		</div>
 	<%= radio_button_tag "stop_#{@user_with_chat.id}", "Flirting", true %> Flirting 
-	<%= radio_button_tag "stop_#{@user_with_chat.id}", "Stop Flirting", false, :onclick => "stop_chat(#{@user_with_chat.id}, '#{@chanel.chanel_name}', '#{@user_with_chat.login}')"%> Stop Flirting 
+	<%= radio_button_tag "stop_#{@user_with_chat.id}", "Stop Flirting", false, :onclick => "stop_chat('#{@chanel.chanel_name}')"%> Stop Flirting 
 	</div>
 	<div id="chat_content_<%= @chanel.chanel_name %>" style="height:100px; overflow-y:auto;">
 		<ul id="<%= @chanel.chanel_name %>">

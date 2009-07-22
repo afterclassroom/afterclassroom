@@ -528,10 +528,10 @@ function new_mydow(handle) {
 		};
 	}
 
-function mydow_open(chanel_name, handle){
+function mydow_open(handle){
   if(!mydows.get(handle)) {
     new_mydow(handle);
-    mydow_load(handle, "/student_louge/chanel_chat_content?chanel_name=" + chanel_name);
+    mydow_load(handle, "/student_louge/chanel_chat_content?chanel_name=" + handle);
   }else{
     $(handle+"_frame").show();
   }
