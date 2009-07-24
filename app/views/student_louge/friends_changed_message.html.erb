@@ -1,5 +1,5 @@
 <ul id="friends_changed_their_message">Friends changed their message
-	<% for friend_change in friends_change %>
+	<% for friend_change in @friends_change %>
 	<li>
 		<% if current_user == friend_change.user %>
 			<%= image_tag friend_change.user_invite.avatar.url(:thumb), :onclick => "mydow_open('#{friend_change.flirting_chanel.chanel_name}')" %>

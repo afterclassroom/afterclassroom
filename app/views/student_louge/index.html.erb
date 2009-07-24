@@ -1,11 +1,11 @@
-<%= juggernaut :debug => true, :client_id => current_user.login %>
-<%= render :partial => "friends_changed_message", :locals => {:friends_change => @friends_change} %>
+<%= juggernaut :debug => false, :client_id => current_user.login %>
+<div id="div_friends_changed_their_message">
+</div>
 <div id="div_friends_want_you_chat">
 </div>
 <div id="div_friends_you_invited_to_chat">
 </div>
-<%= render :partial => "friends_in_chatting", :locals => {:friends_in_chat => @friends_in_chat} %>
-
+<%= render :partial => 'friends_in_chatting', :locals => {:friends_in_chat => @friends_in_chat} %>
 <script>
 	function invite_chat(login) {
 		new Ajax.Request('/student_louge/invite_chat', 
@@ -67,7 +67,14 @@
 			});
 	}
 	
-	function friends_you_invited_chat(){
+	function friends_changed_message(){
+		new Ajax.Updater('div_friends_changed_their_message', '/student_louge/friends_changed_message', 
+			{asynchronous:true, 
+			 evalScripts:true, 
+			 method:'get'}); 
+	}
+  
+  function friends_you_invited_chat(){
 		new Ajax.Updater('div_friends_you_invited_to_chat', '/student_louge/friends_you_invited_chat', 
 			{asynchronous:true, 
 			 evalScripts:true, 
@@ -81,14 +88,22 @@
 			 method:'get'}); 
 	}
 	
+	function insert_text_to_chatcontent(chanel_name, text_chat){
+		if($(chanel_name)){
+			Element.insert(chanel_name, {bottom:text_chat});
+			scroll_div('chat_content_' + chanel_name);
+		}
+	}
+	
 	function scroll_div(id){
 		$(id).scrollTop = $(id).scrollHeight
 	}
-</script>
-<% if @user_invite_chat %>			
+</script>			
 <script>
-  window.onload(invite_chat('<%= @user_invite_chat.login %>'));
+	<% if @user_invite_chat %>
+		window.onload(invite_chat('<%= @user_invite_chat.login %>'));
+	<% end %>
+	friends_changed_message();
 	friends_you_invited_chat();
 	friends_want_you_chat();
 </script>
-<% end %>
