@@ -172,7 +172,7 @@ class User < ActiveRecord::Base
 			status == "Chat"
 			any{ user_id == v_user_id; user_id_invite == v_user_id }
 		end
-		friends_change = FlirtingUserInchat.find :all, :conditions => cond.to_sql
+		friends_change = FlirtingUserInchat.find :all, :conditions => cond.to_sql, :order => "created_at DESC"
 		return friends_change
 	end
 	

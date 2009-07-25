@@ -115,12 +115,12 @@ class StudentLougeController < ApplicationController
 			if chanel.flirting_user_inchats.size == 1
 				chanel.destroy
       else
-        user_in_chat = FlirtingUserInchat.find_by_user_id(current_user.id)
-				user_in_chat.destroy if user_in_chat
 				client_ids = []
         for user_inchat in chanel.flirting_user_inchats
           client_ids << user_inchat.user.login
         end
+				user_in_chat = FlirtingUserInchat.find_by_user_id(current_user.id)
+				user_in_chat.destroy if user_in_chat
         message = "#{current_user.full_name} stoped chatting."
         msg = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
         chanel.flirting_messages << msg
