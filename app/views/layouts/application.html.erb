@@ -1,55 +1,514 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>:: <%= configatron.site_name %> ::</title>
+	
+  <%= stylesheet_link_merged :application %>
+  <%= javascript_include_merged :application %>
+	
+  <!--Ajax rating-->
+  <%= ajaxful_rating_style %>
+  <!--Ajax rating-->
+  <!--Date select-->
+  <%= dhtml_calendar_includes %>
+  <!--Date select-->
+    
+</head>
 
-    <title>:: <%= configatron.site_name %> ::</title>
-
-    <%= stylesheet_link_merged :application %>
-    <%= javascript_include_merged :application %>
-
-    <!--Ajax rating-->
-    <%= ajaxful_rating_style %>
-    <!--Ajax rating-->
-    <!--Date select-->
-    <%= dhtml_calendar_includes %>
-    <!--Date select-->
-  </head>
-  <body>
-    <div id="wrapper"><!-- begin wrapper -->
-      <div id="header"><!-- header -->
-        <div id="top-nav"><!-- top nav -->
-          <%= render :partial => 'shared/global_links' %>
-        </div><!-- end top nav -->
-        <div id="logo"><!-- logo -->
-          <%= link_to "<h3></h3>", "/" %>
-        </div><!-- end logo -->
-        <div id="main-nav"><!-- main nav -->
-          <%= render :partial => 'shared/tabs' %>
-        </div><!-- end main nav-->
-        <div id="top-search">
-          <%= yield_or_default(yield(:search)) %><span>&nbsp;</span>
-        </div>
-      </div>
-
-      <div class="toggle-search">
-        <%= yield_or_default(yield(:select_your_school)) %><span>&nbsp;</span>
-      </div>
+<body>
+	<div id="main-layout">
+		<div id="header">
+			<div id="logo">
+				<a href="/" title="Afterclassroom logo">Afterclassroom Logo</a>
+			</div><!-- #logo -->
+			
+      <%= render :partial => 'shared/tabs' %>
       
-      <div id="content"><!-- begin content -->
-        <%= yield_or_default(yield(:tabs_inbox)) %>
-        <%= yield %>
-        <div id="right">
-          <%= yield_or_default(yield(:sidebar)) %>
+      <%= render :partial => 'shared/login' %>
+			
+		<div id="search-box">
+			<div id="search-left">
+			</div><!-- #search-left -->
+			<div id="search-right">
+			</div><!-- #search-right -->
+			<div id="search-text">
+					<form action="index_submit" method="post" accept-charset="utf-8">
+						<input type="text" value="" name="text-search" />
+						<input type="submit" value="Search" class="search-button" />
+					</form>
+			</div><!-- #search-text-drop -->
+			
+            <div class="sep-search"></div><!-- #sep-search -->
+            
+            <div id="simple-signup">
+              <%= link_to "Simple SignUp", signup_url %>
+            </div><!-- #simple signup -->
+		</div><!-- #search-box -->	
+		
+        <div id="sub-header">
+        	<div class="student-lounges">
+            	<a href="#" title="Student Lounges">Studen Lounges</a>
+            </div>
+            <span class="header-notify"><a href="#" title="Click here to search your school information without login.">
+            Click here </a>to search your school information without login.</span>
+            
+            <div class="post-button">
+            <a href="#" title="Post button.">
+				Post button
+            </a>
+            </div>
+        </div><!-- #sub-header-->
+        
+		</div><!-- #header -->
+        
+        <div id="main-content">
+<!-- ASSIGNMENT OF A DAY -->        
+        	<div class="front-box">
+
+            	<div class="front-box-header">
+                	<span class="white-text-header">Assignments of a day</span>
+                    <span class="view-all-text"><a href="#" title="View All">View all</a></span>
+                </div><!-- .front-box-header -->
+				
+                <ul class="front-box-content">
+                
+                	<li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                </ul>
+            </div><!-- front-box -->
+<!-- END OF ASSIGNMENT OF A DAY -->            
+
+<!-- JOBS OF A DAY -->
+<div class="front-box">
+
+            	<div class="front-box-header">
+                	<span class="white-text-header">Jobs of a day</span>
+                    <span class="view-all-text"><a href="#" title="View All">View all</a></span>
+                </div><!-- .front-box-header -->
+				
+                <ul class="front-box-content">
+                
+                	<li><!-- block -->
+                    
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                </ul>
+            </div><!-- front-box -->
+<!-- END OF JOBS OF A DAY -->            
+
+<!-- BOOKS OF A DAY -->        
+        	<div class="front-box">
+
+            	<div class="front-box-header">
+                	<span class="white-text-header">Books of a day</span>
+                    <span class="view-all-text"><a href="#" title="View All">View all</a></span>
+                </div><!-- .front-box-header -->
+				
+                <ul class="front-box-content">
+                
+                	<li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	<div class="avatar-image">
+                        	<a href="#" title="Avatar"><img src="images/avatar.png" width="34" height="34" alt="Avatar" /></a>
+                        </div><!-- .avatar-image -->
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                </ul>
+            </div><!-- front-box -->
+<!-- END OF BOOKS OF A DAY -->  
+
+<!-- RROJECTS OF A DAY -->
+<div class="front-box">
+
+            	<div class="front-box-header">
+                	<span class="white-text-header">Projects of a day</span>
+                    <span class="view-all-text"><a href="#" title="View All">View all</a></span>
+                </div><!-- .front-box-header -->
+				
+                <ul class="front-box-content">
+                
+                	<li><!-- block -->
+                    
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    	
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                    
+                    <li><!-- block -->
+                    
+                        <div class="front-headline">
+                            <div class="front-title">
+                                Assignment header title
+                            </div><!-- .front-title -->
+                            <div class="headline-info">
+                            	By <a href="#" title="HuyQuach">HuyQuach</a> from McMaster posted MAT1B05
+                            </div>
+                        </div><!-- .front headline -->
+                        <div class="front-datetime">
+                        	<span>
+                            	9:00 AM EST
+                            </span>
+                        </div>
+                    </li>	<!-- end of block -->
+                </ul>
+            </div><!-- front-box -->
+<!-- END OF RROJECTS OF A DAY -->  
+        </div><!-- #main-content -->
+        <div id="sub-footer">
+        	<ul class="your-account">
+            	<h3>YOUR ACCOUNT</h3>
+                <li>Inbox</li>
+                <li>Contact</li>
+                <li>Blog</li>
+                <li>Subscriptions</li>
+                <li>Jobs</li>
+            </ul>
+            
+            <ul class="help-information">
+	            <h3>HELP & INFORMATION</h3>
+                <li>Help Resources</li>
+                <li>Community Help Forum</li>
+                <li>AfterClassroom Handbook</li>
+                <li>Advertising</li>                                          
+            </ul>
+            
+            <ul class="afterclassroom">
+            	<h3>AFTERCLASSROOM</h3>
+                <li>Company Info</li>
+                <li>Terms of Use</li>
+                <li>Privacy Policy</li>
+                <li>Press</li>                                                
+            </ul>
         </div>
-      </div>
-      <div id="footer">
-        <%= render :partial => 'shared/footer' %>
-      </div>
-
-    </div><!-- end wrapper -->
-
-  </body>
+		<div id="footer">
+			
+            <span class="copyright">
+            &copy; 2008 After Classroom. All rights reserved.
+            </span>
+		</div><!-- #footer -->
+	</div><!-- #main-layout-->	
+</body>
 </html>

@@ -1,0 +1,7 @@
+<div id="user-login">
+  <% form_tag session_path, :name => "form_login", :id => "form_login" do -%>
+    <%= text_field_tag 'login', 'Username', :class => 'userlogin-un' %>
+    <%= password_field_tag 'password', 'Password', :class => 'userlogin-pw' %>
+    <input type="submit" value="Sign In" class="userlogin-sib" />
+	<% end -%>
+</div><!-- #user-login -->

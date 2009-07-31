@@ -28,10 +28,11 @@ class StudentLougeController < ApplicationController
 			end
       render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
 				#Refressh
-				page.call 'friends_you_invited_chat', ''
+				page.call 'friends_you_invited_
+				chat', ''
 				page.call 'friends_want_you_chat', ''
 				#Push message
-				page.call 'insert_text_to_chatcontent', chanel.chanel_name, "<li>" + message + "</li>"
+				page.call 'insert_text_to_chatcontent', flirting_chanel.chanel_name, "<li>" + message + "</li>"
       end
 		end
 		
@@ -112,29 +113,30 @@ class StudentLougeController < ApplicationController
 		chanel = FlirtingChanel.find_by_chanel_name(chanel_name)
     
 		if chanel  
-			if chanel.flirting_user_inchats.size == 1
+			client_ids = []
+      for user_inchat in chanel.flirting_user_inchats
+        client_ids << user_inchat.user.login
+      end
+			
+			if chanel.flirting_user_inchats.size == 2
 				chanel.destroy
       else
-				client_ids = []
-        for user_inchat in chanel.flirting_user_inchats
-          client_ids << user_inchat.user.login
-        end
 				user_in_chat = FlirtingUserInchat.find_by_user_id(current_user.id)
 				user_in_chat.destroy if user_in_chat
-        message = "#{current_user.full_name} stoped chatting."
-        msg = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
-        chanel.flirting_messages << msg
-        render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
-					#Push message
-					page.call 'insert_text_to_chatcontent', chanel.chanel_name, "<li>#{h message}</li>"
-					
-					#Refresh
-					page.call 'friends_changed_message', ''
-					page.call 'friends_you_invited_chat', ''
-					page.call 'friends_want_you_chat', ''
-        end
 				chanel.save
 			end
+			message = "#{current_user.full_name} stoped chatting."
+      msg = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
+      chanel.flirting_messages << msg
+      render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
+				#Push message
+				page.call 'insert_text_to_chatcontent', chanel.chanel_name, "<li>#{h message}</li>"
+					
+				#Refresh
+				page.call 'friends_changed_message', ''
+				page.call 'friends_you_invited_chat', ''
+				page.call 'friends_want_you_chat', ''
+      end
 		end
 		
     render :nothing => true

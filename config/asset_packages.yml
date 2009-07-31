@@ -42,18 +42,11 @@ javascripts:
   - prototip
 stylesheets: 
 - application:
-  - reset
-  - layout
+  - main
   - style
-  - buttons
-  - search
+  - typography
   - pagination
   - prototip
-  - windows
-  - account
-  - listing
-  - posting
-  - default
   - lightwindow
 - student_louge:
   - reset

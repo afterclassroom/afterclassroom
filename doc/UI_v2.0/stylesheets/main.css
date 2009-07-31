@@ -1,0 +1,155 @@
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
+/*Main Layout*/
+#main-layout{
+	width:1010px;
+	margin:0 auto;
+	min-height:300px;
+}
+
+/*header*/
+#header{
+	background:#FFF;
+	padding:10px;
+	width:990px;
+}
+#header{overflow:hidden;}
+#header #logo {
+	width: 215px;
+	height: 75px;
+	float:left;
+}
+#header ul#top-nav{
+	float:right;
+}
+#header ul#top-nav li{
+	float:left;
+	padding-left:10px;
+}
+#header #search-box{
+	margin:0 auto;
+	clear:both;
+	width:990px;
+	background:url('../images/search-bg.png') repeat-x top left;
+	height:70px;
+}
+#header #search-box #search-left{
+	width: 12px;
+	height:70px;	
+	background: url('../images/search-left.png') no-repeat;
+	float:left;
+}
+#header #search-box #search-right{
+	height:70px;
+	width:12px;
+	background:url('../images/search-right.png') no-repeat top right;
+	float:right;
+}
+#header #search-box #search-text{
+	background:transparent url('../images/search-text-drop.png') no-repeat top left;
+	width:670px;
+	height:34px;
+	float:left;
+	margin-top:18px;
+}
+#header #search-box #search-text form input[type="text"]{
+background:transparent;
+height: 25px;
+margin-left:5px;
+line-height: 30px;
+font-size: 20px;
+padding-top:4px;
+color:#fefefe;
+width:390px;
+border:none;
+float:left;
+}
+#header #sub-header{
+	padding-top:10px;
+	text-align:center;
+	}
+#header #sub-header .student-lounges{
+	width:178px;
+	height:34px;
+	float:left
+	}
+#header #sub-header .post-button{
+	width:108px;
+	height:34px;
+	float:right;
+	}	
+.header-notify{
+	width:500px;
+	margin:0 auto;
+	}
+/* main-content */
+#main-content{
+	overflow:hidden;
+	padding-top:10px;
+	}
+/*front box content*/
+.front-box{
+	float:left;
+	width:495px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border:1px solid #CCC;
+	min-height:345px;
+	}
+.front-box-header .view-all-text{
+	float:right;
+	}
+.front-box-content{
+	}
+.front-box-content li{
+	border-bottom:1px solid #63b4d9;
+	overflow:hidden;
+	padding:10px 0;
+	}	
+.front-headline{
+	width:380px;
+	overflow:hidden;
+	float:left;
+	}
+.front-datetime{
+	float:right;
+	width:70px;
+	padding:10px 0;
+	}	
+#sub-footer{
+	clear:both;
+	float:left;
+	margin-top:10px;
+	margin-bottom:10px;
+	}
+#sub-footer .your-account{
+	padding:10px;
+	width:200px;
+	float:left;
+	min-height:160px;
+}	
+#sub-footer .help-information{
+	padding:10px;
+	float:left;
+	margin-left:20px;
+	width:400px;
+	min-height:160px;
+	}	
+#sub-footer .afterclassroom{
+	padding:10px;
+	width:310px;
+	float:left;
+	margin-left:20px;	
+	min-height:160px;	
+	}
+#sub-footer .your-account li, #sub-footer .help-information li, #sub-footer .afterclassroom li{
+	border-bottom:1px solid #dfe2e4;
+	padding-bottom:5px;
+	margin-bottom:5px;
+	}
+#footer{
+	padding-top:40px;
+	clear:both;
+	text-align:center;
+	height:60px;
+	margin-bottom:10px;
+	}	
