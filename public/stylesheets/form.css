@@ -1,57 +1,161 @@
-input.disabled {
-    border: 1px solid #F2F2F2;
-    background-color: #F2F2F2;
+/*Form*/
+.user-form{
+	float:left;
+	clear:both;
+	width:100%;
+	margin:5px 0px;
+	padding-top:20px;
+}
+.user-form .block {
+	min-height: 35px;
+	padding:5px 0;
+	display:block;
+}
+.user-form .block:hover{
+background-color: #f8f8f8;
+}
+.user-form .block label{
+	color:#767676;
+	float:left;
+	min-width:150px;
+	padding:5px 5px 0px 5px;
+}
+.user-form .block .error{
+	float:right;
+	padding-right:10px;
+	color:#d38776;
+	background:#FFF url('/images/error-arrow.png') no-repeat top left;
+	padding-left:20px;
+	font-size:13px;
+}
+.user-form .block input[type="text"]{
+	border:none;
+	background:transparent url('/images/text-input-bg.png') no-repeat top left;
+	line-height: 25px;
+	padding:5px;
+	height:30px;
+	width:240px;
+	color:#afafaf;
+}
+.status-box input[type="text"]{
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	width:340px;
+	line-height: 25px;
+	padding:2px;
+	width:400px;
+	color:#afafaf;
+	float:left;
+	margin-right:5px;
+}
+.logmeinbt {
+	margin-top:5px;
+	border:none;
+	width: 99px;
+	height: 0;
+	font-size: 1em;
+	padding-top: 34px;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url('/images/logmein-bt.png') no-repeat;
+}
+.logmeinbt:hover{
+	background-position:0 -34px;
+}
+.logmeinbt:focus{
+	background-position:0 -68px;
+}
+.createnow-bt {
+	margin-top:5px;
+	border:none;
+	width: 99px;
+	height: 0;
+	font-size: 1em;
+	padding-top: 34px;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url('/images/create-now-bt.png') no-repeat;
+}
+.createnow-bt:hover{
+	background-position:0 -34px;
+}
+.createnow-bt:focus{
+	background-position:0 -68px;
+}
+.update-bt {
+	width: 99px;
+	height: 0;
+	font-size: 1em;
+	padding-top: 34px;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url('/images/update-bt.png') no-repeat;
+	border:none;
+}
+.update-bt:hover{
+	background-position:0 -34px;
+}
+.update-bt:focus{
+	background-position:0 -68px;
+}
+.view-all-updates-bt{
+	margin-top:10px;
+	float:left;
+	width: 195px;
+	height: 25px;
+	background: url('/images/view-all-update-bt.png') no-repeat;
 }
 
-input.required, textarea.required {
-    border: 1px solid #00A8E6;
-}
-input.validation-failed, textarea.validation-failed {
-    border: 1px solid #FF3300;
-    color : #FF3300;
-}
-input.validation-passed, textarea.validation-passed {
-    border: 1px solid #00CC00;
-    color : #000;
-}
-
-.validation-advice {
-    margin: 5px 0;
-    padding: 5px;
-    background-color: #FF3300;
-    color : #FFF;
-    font-weight: bold;
+.view-all-updates-bt a{
+	display: block;
+	width: 195px;
+	height: 0;
+	font-size: 1em;
+	padding-top: 25px;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url('/images/view-all-update-bt.png') no-repeat;
+	border:none;
 }
 
-.custom-advice {
-    margin: 5px 0;
-    padding: 5px;
-    background-color: #C8AA00;
-    color : #FFF;
-    font-weight: bold;
+.view-all-updates-bt a:hover{
+	background-position:0 -25px;
+}
+.view-all-updates-bt a:focus{
+	background-position:0 -50px;
+}
+.delete-bt {
+	width: 60px;
+	height: 0;
+	font-size: 1em;
+	padding-top: 25px;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url('/images/delete-bt.png') no-repeat;
+}
+.delete-bt:hover{
+	background-position:0 -26px;
+}
+.delete-bt:focus{
+	background-position:0 -51px;
 }
 
-fieldset {
-    padding: 1em;
-    margin-bottom: 0.5em;
+.reply-bt {
+	width: 60px;
+	height: 0;
+	font-size: 1em;
+	padding-top: 25px;
+	text-indent: -2000px;
+	overflow: hidden;
+	background: url('/images/reply-bt.png') no-repeat;
+}
+.reply-bt:hover{
+	background-position:0 -26px;
+}
+.reply-bt:focus{
+	background-position:0 -51px;
 }
 
-label {
-    font-weight: bold;
-}
-.form-row {
-    clear: both;
-    padding: 0.5em;
-}
-
-.field-label {
-
-}
-
-.field-widget {
-
-}
-
-.menu_select {
-    width:500px;
+.reqMark {
+  color:red;
+  margin:0 3px;
 }

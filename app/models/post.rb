@@ -34,6 +34,9 @@ class Post < ActiveRecord::Base
 
   # Tracker
   acts_as_activity :user
+  
+  # Ferret
+  acts_as_ferret :fields => [:title, :description]
 
   # Named scopes
   named_scope :has_educations, :conditions => "id IN (Select post_id From post_educations)", :order => "created_at DESC"

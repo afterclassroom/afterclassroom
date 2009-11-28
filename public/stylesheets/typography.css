@@ -1,6 +1,30 @@
+.strong{
+	font-weight: bold;
+}
 #header{
 font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
 font-size:15px;
+}
+.top-sitemap{
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+}
+.top-sitemap a{
+	color:#fffaf4;
+}
+.wrapper-blue-line{
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+}
+.wrapper-blue-line h3{
+	font-size: 15px;
+	padding-left:10px;
+		color:#459ac8;
+}
+.bluer-bg{
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-left:10px;
+	color:#FFF;
+	margin-left:5px;
 }
 .header-notify{
 	font-style:italic;
@@ -21,6 +45,29 @@ font-size:15px;
 	font-size:12px;
 	color:#FFF;
 	}	
+.nobold-text{
+	font-size: 13px;
+}
+ul.rintro{
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-style:italic;
+font-size: 14px;
+}
+
+.nobold-text a{
+	color:#767676;
+}
+.nobold-text a:hover{
+	color:#459ac8;
+}
+.rintro-title{
+	font-style:italic;
+	font-size:18px;
+}
+.tab{
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;	
+	font-size: 14px;
+}
 #sub-footer .your-account h3, #sub-footer .help-information h3 ,#sub-footer .afterclassroom h3{
 	font-weight:bold;
 	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;	
@@ -36,3 +83,29 @@ font-size:15px;
 	font-size:12px;
 	font-weight:bold;
 	}	
+/*UPDATE MOOD*/	
+.sub-content .sub-content-main .update-mood-box input[type="text"]{
+font-family: 'Lucida Grande',sans-serif;
+line-height:1.1;
+height:2.5em;
+font-size: 1.15em;
+color:#333333;
+}
+.sub-content .sub-content-main .update-mood-box .lastest-mood{
+	font-family: 'Lucida Grande',sans-serif;
+	font-size: 11px;
+}
+.sub-content .sub-content-main .update-mood-box .lastest-mood p{
+	padding-top:3px;
+	text-align: justify;
+	color:#666;
+}
+.sub-content .sub-content-main .update-mood-box .lastest-mood p span.timestamp-update {
+	color:#999;
+	font-style:italic;
+}
+/*message*/
+.inbox-content .message-body{
+	font-family:  Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}

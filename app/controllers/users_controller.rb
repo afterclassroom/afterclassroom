@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   # render new.rhtml
   def new
     @user = User.new
-    render :layout => "signin"
   end
 
   def forgot_login

@@ -11,7 +11,9 @@ class InsertPostCategories < ActiveRecord::Migration
     "Party",
     "Student Awareness",
     "Housing",
-    "Team Up"
+    "Team Up",
+    "MyX",
+    "Foods"
    ].each do |s|
       PostCategory.new(:name => s).save
     end

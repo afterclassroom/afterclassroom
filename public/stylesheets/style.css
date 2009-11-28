@@ -1,4 +1,4 @@
-html{
+/images/{
 	background:#dfe2e4;
 }
 /*main layout*/
@@ -18,7 +18,7 @@ html{
 }
 /*logo*/
 #logo {
-	background: url('../images/logo.png') no-repeat;
+	background: url('/images/logo.png') no-repeat;
 }
 
 #logo a {
@@ -29,7 +29,7 @@ html{
 	padding-top: 75px;
 	text-indent: -2000px;
 	overflow: hidden;
-	background: url('../images/logo.png') no-repeat;
+	background: url('/images/logo.png') no-repeat;
 }
 
 /*top nav*/
@@ -57,7 +57,7 @@ padding-top:20px;
 	font-size: 1em;
 	padding-top: 35px;
 	overflow: hidden;
-	background: transparent url('../images/tb_username.png') no-repeat top left;
+	background: transparent url('/images/tb_username.png') no-repeat top left;
 	border:none;
 	color:#d9d9d9;
 }
@@ -68,7 +68,7 @@ padding-top:20px;
 	font-size: 1em;
 	padding-top: 35px;
 	overflow: hidden;
-	background:transparent url('../images/tb_password.png')no-repeat top left;
+	background:transparent url('/images/tb_password.png')no-repeat top left;
 	border:none;
 	color:#d9d9d9;
 }
@@ -87,13 +87,13 @@ padding-top:20px;
 	padding-top: 34px;
 	text-indent: -2000px;
 	overflow: hidden;
-	background:transparent url('../images/search-button.png') no-repeat;
+	background:transparent url('/images/search-button.png') no-repeat;
 	border:none;
 	float:right;
 	padding-left:10px;
 }
 #header #search-box .sep-search{
-	background:url(../images/sep-search.png);
+	background:url(/images/sep-search.png);
 	width:1px;
 	height:68px;
 	float:left;
@@ -109,7 +109,7 @@ padding-top:20px;
 	width:239px;
 	height:0;
 	padding-top:48px;
-	background:transparent url(../images/simple-signup.png) no-repeat top left;
+	background:transparent url(/images/simple-signup.png) no-repeat top left;
 	overflow:hidden;
 	float:left;
 	text-indent:-2000px;
@@ -119,7 +119,7 @@ padding-top:20px;
 	width:178px;
 	height:0;
 	padding-top:34px;
-	background:url(../images/button-student-lounges.png) no-repeat top left;
+	background:url(/images/button-student-lounges.png) no-repeat top left;
 	overflow:hidden;
 	text-indent:-2000px;
 	float:left;
@@ -128,7 +128,7 @@ padding-top:20px;
 	width:108px;
 	height:0;
 	padding-top:34px;
-	background:url(../images/button-post.png) no-repeat top left;
+	background:url(/images/button-post.png) no-repeat top left;
 	overflow:hidden;
 	text-indent:-2000px;
 	float:right;
@@ -145,7 +145,7 @@ padding-top:20px;
 	margin-left:5px;
 }
 .front-box-header{
-	background:url(../images/blue-bar.png) repeat-x top left;
+	background:url(/images/blue-bar.png) repeat-x top left;
 	height:26px;
 	padding-top:6px;
 	}

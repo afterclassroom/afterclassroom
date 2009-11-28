@@ -45,9 +45,11 @@ stylesheets:
   - main
   - style
   - typography
+  - form
   - pagination
   - prototip
   - lightwindow
+  - validation
 - student_louge:
   - reset
   - layout
