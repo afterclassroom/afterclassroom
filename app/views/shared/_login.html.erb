@@ -1,7 +1,30 @@
-<div id="user-login">
-  <% form_tag session_path, :name => "form_login", :id => "form_login" do -%>
-    <%= text_field_tag 'login', 'Username', :class => 'userlogin-un' %>
-    <%= password_field_tag 'password', 'Password', :class => 'userlogin-pw' %>
-    <input type="submit" value="Sign In" class="userlogin-sib" />
-	<% end -%>
-</div><!-- #user-login -->
+<div class="login">
+			<div class="signin">
+        <% if logged_in? %>
+          <ul>
+            <li class="signinSelect"><%= link_to "Welcome #{current_user.full_name}", dashboard_user_path(current_user), :class => "signinFrist" %></li>
+            <li><%= link_to "<span>Sign out</span>", logout_url, :method => :delete %></li>
+            <li><a href="#"><span>Help</span></a></li>
+            <li><a href="#"><span>Suggest improvement</span></a></li>
+          </ul>
+        <% else %>
+          <ul>
+            <li><a href="#" class="signinFrist"><span>Help</span></a></li>
+            <li><%= link_to "<span>Sign in</span>", login_url %></li>
+            <li><%= link_to "<span>Simple sign up</span></a>", signup_url %></li>
+            <li><%= link_to "<span>Forget username<u>", user_forgot_login_url %></li>
+            <li><%= link_to "<span>Forget password<u>", user_forgot_password_url %></li>
+          </ul>
+        <% end %>
+				
+			</div>
+      <% if !logged_in? %>
+        <div class="log">
+          <% form_tag session_path, :name => "form_login", :id => "form_login" do -%>
+            <span class="log-user"><%= text_field_tag 'login', 'Username...', :class => 'userlogin-un', :onclick => "username_onclick(this)", :onblur => "username_onblur(this)" %></span>
+            <span class="log-pass"><%= password_field_tag 'password', 'Password...', :class => 'userlogin-pw', :onclick => "password_onclick(this)", :onblur => "password_onblur(this)" %></span>
+            <span class="log-btm"><a href="javascript:void();" onClick="$('form_login').submit();">Sign in</a></span>
+          <% end -%>
+        </div>
+      <% end -%>
+</div>

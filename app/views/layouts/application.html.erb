@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>:: <%= configatron.site_name %> ::</title>
-	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>:: <%= configatron.site_name %> ::</title>
   <%= stylesheet_link_merged :application %>
   <%= javascript_include_merged :application %>
 	
@@ -15,87 +13,299 @@
   <!--Date select-->
   <%= dhtml_calendar_includes %>
   <!--Date select-->
-    
+
 </head>
 
 <body>
-	<div id="main-layout">
-		<div id="header">
-			<div id="logo">
-				<a href="/" title="Afterclassroom logo">Afterclassroom Logo</a>
-			</div><!-- #logo -->
+<div class="top">
+	<div class="banner">
+		<div class="logo"><a href="/"><img alt="classroom" src="images/logo.png" /></a></div>
+		<%= render :partial => 'shared/login' %>
+	</div>
+</div>
+<div class="menu">
+	<div class="menusearch">
+		<div class="menuMain">
+			<ul>
+				<li class="select"><a class="menuFirst" href="#"><span>Homeworks</span></a></li>
+				<li><a href="#"><span>Q.As</span></a></li>
+				<li><a href="#"><span>Tutors</span></a></li>
+				<li><a href="#"><span>Books</span></a></li>
+				<li><a href="#"><span>Jobs</span></a></li>
+				<li><a href="#"><span>Foods</span></a></li>
+				<li><a href="#"><span>Party</span></a></li>
+				<li><a href="#"><span>MyX</span></a></li>
+				<li><a href="#"><span>Student Awareness</span></a></li>
+				<li><a href="#"><span>Housing</span></a></li>
+				<li><a href="#"><span>TeamUp</span></a></li>
+			</ul>
+		</div>
+		<div class="search">
+			<div class="textS"><input name="Text1" type="text" /></div>
+			<div class="selectS"><select name="Select1"><option>Assignments</option></select></div>
+			<div class="btmS"><a href=""><img src="images/icon-search.png" /></a></div>
+		</div>
+	</div>
+</div>
+<div class="abLink">
+	<div class="abLinkL">You are here: <a href="#">Home</a><a href="#" class="abLink-detail">Assignments</a></div>
+	<div class="menuRR">
+		<span class="RmenuRtext"><a href="#">Click here</a>to choose your school</span>
+		<span class="RmenuRbtm1"><a href="#">Student lounges</a></span>
+		<span class="RmenuRbtm2"><a href="#">Post</a></span>
+	</div>
+
+</div>
+<div class="sponsor">
+	<div class="sponsorLink">
+		<div class="menuRL">
+			<div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Assignments</span></span></a></div>
+			<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Projects</span></span></a></div>
+			<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Past Tests</span></span></a></div>
+			<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Past Exams</span></span></a></div>
+		</div>
+	</div>
+	
+
+</div>
+<div class="contMain">
+<div class="contMainL">
+	<div class="col451 assignment">
+		<div class="col451in">
+			<div class="col451Cont">
 			
-      <%= render :partial => 'shared/tabs' %>
-      
-      <%= render :partial => 'shared/login' %>
-			
-		<div id="search-box">
-			<div id="search-left">
-			</div><!-- #search-left -->
-			<div id="search-right">
-			</div><!-- #search-right -->
-			<div id="search-text">
-					<form action="index_submit" method="post" accept-charset="utf-8">
-						<input type="text" value="" name="text-search" />
-						<input type="submit" value="Search" class="search-button" />
-					</form>
-			</div><!-- #search-text-drop -->
-			
-            <div class="sep-search"></div><!-- #sep-search -->
-            
-            <div id="simple-signup">
-              <%= link_to "Simple SignUp", signup_url %>
-            </div><!-- #simple signup -->
-		</div><!-- #search-box -->	
-		
-        <div id="sub-header">
-        	<div class="student-lounges">
-            	<a href="#" title="Student Lounges">Studen Lounges</a>
-            </div>
-            <span class="header-notify"><a href="#" title="Click here to search your school information without login.">
-            Click here </a>to search your school information without login.</span>
-            
-            <div class="post-button">
-            <a href="#" title="Post button.">
-				Post button
-            </a>
-            </div>
-        </div><!-- #sub-header-->
-        
-		</div><!-- #header -->
-        
-        <div id="main-content">
-          <%= yield %>        
-        </div><!-- #main-content -->
-        <div id="sub-footer">
-        	<ul class="your-account">
-            	<h3>YOUR ACCOUNT</h3>
-                <li>Inbox</li>
-                <li>Contact</li>
-                <li>Blog</li>
-                <li>Subscriptions</li>
-                <li>Jobs</li>
-            </ul>
-            
-            <ul class="help-information">
-	            <h3>HELP & INFORMATION</h3>
-                <li>Help Resources</li>
-                <li>Community Help Forum</li>
-                <li>AfterClassroom Handbook</li>
-                <li>Advertising</li>                                          
-            </ul>
-            
-            <ul class="afterclassroom">
-            	<h3>AFTERCLASSROOM</h3>
-                <li>Company Info</li>
-                <li>Terms of Use</li>
-                <li>Privacy Policy</li>
-                <li>Press</li>                                                
-            </ul>
-        </div>
-		<div id="footer">
-			<%= render :partial => 'shared/footer' %>
-		</div><!-- #footer -->
-	</div><!-- #main-layout-->	
+				<div class="assDrop">
+					<span class="assDrop1"><select name="Select1"><option>Choose faculty</option></select></span>
+					<span class="assDrop2"><select name="Select1"><option>1st Year</option></select></span>
+					<span class="assDrop3"><select name="Select1"><option>List over 30 days</option></select></span>
+				</div>
+				<div class="assItem">
+					<div class="assItemL">
+						<div class="assImg"><div><a href="#"><img src="pictures/pic4.png" /></a></div></div>
+						<div class="assContT">
+							<h2 class="titleH2"><a href="#">Physics (Lorem Ipsum Dolor sitamet)</a></h2>
+							<div class="assCate"><span>Category: </span><a href="#">Assignments Category</a></div>
+							<div class="assCate"><span>From: </span><a href="#">University of California</a></div>
+						</div>
+						<div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
+					</div>
+					<div class="asslinkdown"><div class="morelink"><a href="#">More like this</a></div><div class="down"><a href="#">Download</a></div></div>
+					<div class="assItemB">	
+						<div class="assPic"><div><img src="pictures/pic2.png" /></div></div>
+						<div class="assInfT">
+							<div class="assInfT">
+								<div class="assInfL">
+									<div><span>Posted by: </span><a href="#">Vu Nguyen</a></div>
+									<div><span>Comments: </span><a href="#">23 Comments</a></div>
+								</div>
+								<div class="assInfR"><a href="#">more</a></div>
+							</div>
+							<div class="assInfB">
+								<div><a href="#">9:00 AM EST</a></div>
+								<div class="vie"><a href="#">View (20)</a></div>
+								<div class="fav"><a href="#">Favorite (10)</a></div>
+								<div class="com"><a href="#">Comments (100)</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="assItem">
+					<div class="assItemL">
+						<div class="assImg"><div><a href="#"><img src="pictures/pic4.png" /></a></div></div>
+						<div class="assContT">
+							<h2 class="titleH2"><a href="#">Physics (Lorem Ipsum Dolor sitamet)</a></h2>
+							<div class="assCate"><span>Category:</span><a href="#">Assignments Category</a></div>
+							<div class="assCate"><span>From:</span><a href="#">University of California</a></div>
+						</div>
+						<div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
+					</div>
+					<div class="asslinkdown"><div class="morelink"><a href="#">More like this</a></div><div class="down"><a href="#">Download</a></div></div>
+					<div class="assItemB">	
+						<div class="assPic"><div><img src="pictures/pic2.png" /></div></div>
+						<div class="assInfT">
+							<div class="assInfT">
+								<div class="assInfL">
+									<div><span>Posted by: </span><a href="#">Vu Nguyen</a></div>
+									<div><span>Comments: </span><a href="#">23 Comments</a></div>
+								</div>
+								<div class="assInfR"><a href="#">more</a></div>
+							</div>
+							<div class="assInfB">
+								<div><a href="#">9:00 AM EST</a></div>
+								<div class="vie"><a href="#">View (20)</a></div>
+								<div class="fav"><a href="#">Favorite (10)</a></div>
+								<div class="com"><a href="#">Comments (100)</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="assPage">
+					<span class="numPage">Page 1 of 22</span>
+					<span class="firstPage"><a href="#">First Page</a></span>
+					<span class="prevPage"><a href="#">Prev</a></span>
+					<span class="currentPage">
+						<a href="#" class="selected">6</a>
+						<a href="#">7</a>
+						<a href="#">8</a>
+						<a href="#">9</a>
+						<a href="#">10</a>
+					</span>
+					<span class="nextPage"><a href="#">Next</a></span>
+					<span class="lastPage"><a href="#">Last Page</a></span>
+				</div>
+				<div class="goTop"><a href="#">Top</a></div>
+			</div>
+		</div>
+	</div>
+
+</div>
+	
+<div class="contMainC">
+	<div class="col195 dueDate">
+	<div class="col195in">
+		<h1 class="col195Title">Due Date</h1>
+		<div class="col195Cont">
+			<div class="dueDItem">
+				<div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet...</a></div>
+				<div class="dueDTime">November 25th 2009</div>
+			</div>
+			<div class="dueDItem">
+				<div class="dueDTitle"><a href="#">Pellentesque et tincidunt...</a></div>
+				<div class="dueDTime">November 27th 2009</div>
+			</div>
+			<div class="dueDItem">
+				<div class="dueDTitle"><a href="#">Quisque odio mi...</a></div>
+				<div class="dueDTime">November 30th 2009</div>
+			</div>
+			<div class="dueDItem">
+				<div class="dueDTitle"><a href="#">Suspendisse orci erat...</a></div>
+				<div class="dueDTime">November 25th 2009</div>
+			</div>
+			<div class="dueDbutton"><a href="#">View more Due Date</a></div>
+		</div>
+	</div>
+	</div>
+	<div class="col195 intPro">
+	<div class="col195in">
+		<h1 class="col195Title">Interesting Projects</h1>
+		<div class="col195Cont">
+			<div class="dueDItem">
+				<div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet...</a></div>
+				<div class="dueDTime">November 25th 2009</div>
+			</div>
+			<div class="dueDItem">
+				<div class="dueDTitle"><a href="#">Pellentesque et tincidunt...</a></div>
+				<div class="dueDTime">November 27th 2009</div>
+			</div>
+			<div class="dueDItem">
+				<div class="dueDTitle"><a href="#">Quisque odio mi...</a></div>
+				<div class="dueDTime">November 30th 2009</div>
+			</div>
+			<div class="dueDItem">
+				<div class="dueDTitle"><a href="#">Suspendisse orci erat...</a></div>
+				<div class="dueDTime">November 25th 2009</div>
+			</div>
+			<div class="dueDbutton"><a href="#">View more Interesting Projects</a></div>
+		</div>
+	</div>
+	</div>
+
+</div>
+	
+<div class="contMainR">
+	<div class="col300 Br-by-sub">
+	<div class="col300in">
+		<h1 class="col300Title">Browser by subject</h1>
+		<div class="col300Cont">
+			<div class="tabClouse">
+				<a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
+				<a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
+				<a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
+				<a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="advert">
+		<div class="advertTitle">Advertisement</div>
+		<div class="Dani">DaniWeb - IT Discussion Community</div>
+		<div class="advertImg"><img src="pictures/pic6.png" /></div>
+		<div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+		<div class="advertInf">
+			<div class="advertInfL">
+				<a href="#" class="adverta">482</a><a href="#" class="advertb">12</a><a href="#" class="advertc">10 Comments</a>
+			</div>
+			<div class="advertInfR">
+				<span class="pre"><a href="#">&nbsp;</a></span>
+				<span class="next"><a href="#">&nbsp;</a></span></div>
+		</div>
+	</div>
+	<div class="col300 Recent">
+	<div class="col300in">
+		<h1 class="col300Title">Recent requested Assignments</h1>
+		<div class="col300Cont">
+			<div class="recentItem">
+				<div class="recentImg"><div><a href="#"><img src="pictures/pic1.png" /></a></div></div>
+				<div class="recentInf">
+					<div class="recentName"><a href="#">Vu Nguyen</a></div>
+					<div class="recentUni"><span>at </span><a href="#">University of California</a></div>
+					<div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+				</div>
+			</div>
+			<div class="recentItem">
+				<div class="recentImg"><div><a href="#"><img src="pictures/noimg.png" /></a></div></div>
+				<div class="recentInf">
+					<div class="recentName"><a href="#">Dang Nguyen</a></div>
+					<div class="recentUni"><span>at </span><a href="#">University of San Francisco</a></div>
+					<div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
+				</div>
+			</div>
+			<div class="recentBottom">&nbsp;</div>
+		</div>
+	</div>
+</div>
+
+
+</div>
+</div>
+
+<div class="footer">
+<div class="footer1">
+	<table cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="account">
+				<h2 class="footTitle">Your Account</h2>
+				<div class="footItem"><a href="#">Inbox</a></div>
+				<div class="footItem"><a href="#">Contact</a></div>
+				<div class="footItem"><a href="#">Blog</a></div>
+				<div class="footItem"><a href="#">Subscriptions</a></div>
+				<div class="footItem"><a href="#">Jobs</a></div>
+			</td>
+			<td class="help">
+				<h2 class="footTitle">Help & Information</h2>
+				<div class="footItem"><a href="#">Help Resources</a></div>
+				<div class="footItem"><a href="#">Community Help Forum</a></div>
+				<div class="footItem"><a href="#">AfterClassroom Handbook</a></div>
+				<div class="footItem"><a href="#">Advertising</a></div>
+			</td>
+			<td class="after">
+				<h2 class="footTitle">After Classroom</h2>
+				<div class="footItem"><a href="#">Company Information</a></div>
+				<div class="footItem"><a href="#">Terms of use</a></div>
+				<div class="footItem"><a href="#">Privacy Policy</a></div>
+				<div class="footItem"><a href="#">Press</a></div>
+			</td>
+		</tr>
+	</table>
+	<div class="flogo">
+		<div class="flogoimg"><img alt="classroom" src="images/logo.png" /></div>
+		<div class="flogoinf">© 2009 AfterClassroom. All rights reserved. - Content created and posted by AfterClassroom users is dedicated to the public domain.</div>
+	</div>
+</div>
+</div>
+
 </body>
+
 </html>

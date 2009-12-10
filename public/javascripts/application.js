@@ -24,3 +24,23 @@ function $RF(el, radioGroup) {
         );
     return (checked) ? $F(checked) : null;
 }
+
+function username_onclick(obj){
+    if (obj.value == "Username...")
+      obj.value = "";
+  }
+  
+  function username_onblur(obj){
+    if (obj.value == "")
+      obj.value = "Username...";
+  }
+  
+  function password_onclick(obj){
+    if (obj.value == "Password...")
+      obj.value = "";
+  }
+  
+  function password_onblur(obj){
+    if (obj.value == "")
+      obj.value = "Password...";
+  }
