@@ -49,7 +49,8 @@ def create_demo_people
                  :password => "foobar",
                  :password_confirmation => "foobar",
                  :name => "Guest User",
-                 :school => school)
+                 :school => school,
+                 :state => "active")
   description = "This is a description for "
   %w[male female].each do |gender|
     filename = File.join(DATA_DIRECTORY, "#{gender}_names.txt")
@@ -59,26 +60,19 @@ def create_demo_people
     names.each_with_index do |name, i|
       name.strip!
       school = School.find(rand(School.count) + 1)
-      user = User.create!(:login => name.downcase,
+      user = User.create(:login => name.downcase,
                               :email => "#{name.downcase}@example.com",
                               :password => password, 
                               :password_confirmation => password,
                               :name => name,
                               :school => school,
-                              :uploaded_data => uploaded_file(avatars[i], 'image/jpg'))
+                              :state => "active")
+      user.avatar = uploaded_file(avatars[i], 'image/jpg')
     end
   end
 end
 
 def uploaded_file(filename, content_type)
-    t = Tempfile.new(filename.split('/').last)
-    t.binmode
-    path = File.join(RAILS_ROOT, filename)
-    FileUtils.copy_file(path, t.path)
-    (class << t; self; end).class_eval do
-      alias local_path path
-      define_method(:original_filename) {filename}
-      define_method(:content_type) {content_type}
-    end
-    return t
+  f = File.new(File.join(RAILS_ROOT, filename))
+  return f
 end
