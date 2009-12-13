@@ -43,14 +43,6 @@ def departments_for_schools
 end
 
 def create_demo_people
-  school = School.find(rand(School.count) + 1)
-  User.create!(:login => "guest",
-                 :email => "guest@example.com",
-                 :password => "foobar",
-                 :password_confirmation => "foobar",
-                 :name => "Guest User",
-                 :school => school,
-                 :state => "active")
   description = "This is a description for "
   %w[male female].each do |gender|
     filename = File.join(DATA_DIRECTORY, "#{gender}_names.txt")
@@ -60,14 +52,21 @@ def create_demo_people
     names.each_with_index do |name, i|
       name.strip!
       school = School.find(rand(School.count) + 1)
-      user = User.create(:login => name.downcase,
-                              :email => "#{name.downcase}@example.com",
-                              :password => password, 
-                              :password_confirmation => password,
-                              :name => name,
-                              :school => school,
-                              :state => "active")
+      user = User.create do |u|
+        u.login = name.downcase
+        u.password = password
+        u.email = "#{name.downcase}@example.com"
+        u.name = name
+        u.school = school
+        u.user_information = UserInformation.new()
+        u.user_education = UserEducation.new()
+        u.user_employment = UserEmployment.new()
+      end
+      
       user.avatar = uploaded_file(avatars[i], 'image/jpg')
+      
+      user.register!
+      user.activate!
     end
   end
 end

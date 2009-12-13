@@ -26,18 +26,18 @@ module ApplicationHelper
     url = all_options.is_a?(Array) ? all_options[0].merge({:only_path => false}) : "#"
 
     current_url = url_for(:action => @current_action, :only_path => false)
-    html_options = {}
+    link_current = ""
 
     if all_options.is_a?(Array)
       all_options.each do |o|
         if url_for(o.merge({:only_path => false})) == current_url
-          html_options = {:class => "current"}
+          link_current = "select"
           break
         end
       end  
     end
 
-    link_to(name, url, html_options)
+    "<li class='#{link_current}' >" + link_to("<span>" + name + "</span>", url, {}) + "</li>"
   end
 
   # Return true if the currently logged in user is an admin

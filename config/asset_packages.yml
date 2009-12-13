@@ -43,9 +43,6 @@ javascripts:
 stylesheets: 
 - application:
   - main
-  - style
-  - typography
-  - form
   - pagination
   - prototip
   - lightwindow
