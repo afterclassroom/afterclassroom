@@ -8,8 +8,9 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      #departments_for_schools
+      departments_for_schools
       create_demo_people
+      create_demo_posts_assignments
     end
     
     desc 'Remove demo data'
@@ -67,6 +68,25 @@ def create_demo_people
       
       user.register!
       user.activate!
+    end
+  end
+end
+
+def create_demo_posts_assignments
+  post_category = PostCategory.find_by_name("Assignments")
+  20.times do
+    user = User.find(rand(User.count) + 1)
+    school = School.find(rand(School.count) + 1)
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraph
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
     end
   end
 end
