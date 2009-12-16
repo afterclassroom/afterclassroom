@@ -80,6 +80,9 @@ ActionController::Routing::Routes.draw do |map|
     :show_dialog => :get,
     :download => :get
   }
+  map.resources :post_assignments, :collection => {
+    :show_dialog => :get
+  }
   map.resources :post_teamups, :collection => {
     :show_dialog => :get
   }
