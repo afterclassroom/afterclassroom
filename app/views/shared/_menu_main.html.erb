@@ -1,6 +1,6 @@
 <div class="menuMain">
 			<ul>
-				<li><a class="menuFirst" href="#"><span>Homeworks</span></a></li>
+				<%= tab_to "Homeworks", [{:controller => post_assignments_path}] %>
 				<li><a href="#"><span>Q.As</span></a></li>
 				<%= tab_to "Tutors", [{:controller => post_tutors_path}] %>
 				<%= tab_to "Books", [{:controller => post_books_path}] %>

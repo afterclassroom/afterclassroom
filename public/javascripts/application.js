@@ -44,3 +44,7 @@ function username_onclick(obj){
     if (obj.value == "")
       obj.value = "Password...";
   }
+  
+  function downloadFile(path){
+    document.location.href = path;
+  }

@@ -59,12 +59,11 @@ def create_demo_people
         u.email = "#{name.downcase}@example.com"
         u.name = name
         u.school = school
+        u.avatar = uploaded_file(avatars[i], 'image/jpg')
         u.user_information = UserInformation.new()
         u.user_education = UserEducation.new()
         u.user_employment = UserEmployment.new()
       end
-      
-      user.avatar = uploaded_file(avatars[i], 'image/jpg')
       
       user.register!
       user.activate!
@@ -81,7 +80,7 @@ def create_demo_posts_assignments
       p.user = user
       p.post_category = post_category
       p.title = Faker::Lorem.sentence
-      p.description = Faker::Lorem.paragraph
+      p.description = Faker::Lorem.paragraphs
       p.school = school
       p.department = school.departments.find(:first)
       p.email = Faker::Internet.email

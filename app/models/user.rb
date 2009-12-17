@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,
     :default_url => "/images/missing_:style_avatar.gif",
     :styles => { :medium => "300x300>",
-    :thumb => "100x100>" }
+    :thumb => "45x45>" }
   validates_attachment_content_type :avatar, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
   
   # HACK HACK HACK -- how to do attr_accessible from here?

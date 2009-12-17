@@ -43,9 +43,6 @@ javascripts:
 stylesheets: 
 - application:
   - main
-  - pagination
-  - prototip
-  - lightwindow
   - validation
 - student_louge:
   - reset

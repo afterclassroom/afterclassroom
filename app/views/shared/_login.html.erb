@@ -12,11 +12,10 @@
             <li><a href="#" class="signinFrist"><span>Help</span></a></li>
             <li><%= link_to "<span>Sign in</span>", login_url %></li>
             <li><%= link_to "<span>Simple sign up</span></a>", signup_url %></li>
-            <li><%= link_to "<span>Forget username<u>", user_forgot_login_url %></li>
-            <li><%= link_to "<span>Forget password<u>", user_forgot_password_url %></li>
+            <li><%= link_to "<span>Forget username</span>", user_forgot_login_url %></li>
+            <li><%= link_to "<span>Forget password</span>", user_forgot_password_url %></li>
           </ul>
         <% end %>
-				
 			</div>
       <% if !logged_in? %>
         <div class="log">
