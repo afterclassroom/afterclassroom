@@ -20,8 +20,8 @@
       <% if !logged_in? %>
         <div class="log">
           <% form_tag session_path, :name => "form_login", :id => "form_login" do -%>
-            <span class="log-user"><%= text_field_tag 'login', 'Username...', :class => 'userlogin-un', :onclick => "username_onclick(this)", :onblur => "username_onblur(this)" %></span>
-            <span class="log-pass"><%= password_field_tag 'password', 'Password...', :class => 'userlogin-pw', :onclick => "password_onclick(this)", :onblur => "password_onblur(this)" %></span>
+            <span class="log-user"><%= text_field_tag 'login', 'Username...', :class => 'userlogin-un', :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></span>
+            <span class="log-pass"><%= password_field_tag 'password', 'Password...', :class => 'userlogin-pw', :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></span>
             <span class="log-btm"><a href="javascript:void();" onClick="$('form_login').submit();">Sign in</a></span>
           <% end -%>
         </div>

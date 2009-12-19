@@ -4,6 +4,7 @@ class InsertPostCategories < ActiveRecord::Migration
     "Tests",
     "Projects",
     "Exams",
+    "QAs",
     "Education",
     "Tutors",
     "Books",

@@ -2,6 +2,7 @@
 class PostAssignmentsController < ApplicationController
   include Viewable
   
+  before_filter :params_search_post, :only => [:index, :show, :edit]
   before_filter :login_required, :except => [:index, :show]
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
@@ -120,6 +121,13 @@ class PostAssignmentsController < ApplicationController
   end
 
   protected
+  
+  def params_search_post
+    @search_name = params[:search][:name] if params[:search] 
+    @type_search = PostCategory.find_by_name("Assignments").id
+    @search_post_path = post_assignments_path
+    @new_post_path = new_post_assignment_path
+  end
 
   def require_current_user
     @user ||= PostJob.find(params[:post_job_id] || params[:id]).post.user

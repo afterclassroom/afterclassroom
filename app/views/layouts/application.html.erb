@@ -24,10 +24,17 @@
 <div class="menu">
 	<div class="menusearch">
     <%= render :partial => 'shared/menu_main' %>
-    <%= render :partial => 'shared/search_posts' %>
+    <%= render :partial => 'shared/search_posts', :locals => {:search_post_path => @search_post_path, :type_search => @type_search, :search_name => @search_name} %>
 	</div>
 </div>
-<%= render :partial => 'shared/post_button' %>
+<div class="abLink">
+	<div class="abLinkL">
+    <%= yield_or_default(yield(:you_are_here)) %>
+  </div>
+	<div class="menuRR">
+		<%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+	</div>
+</div>
 <div class="sponsor">
 	<div class="sponsorLink">
 		<div class="menuRL">

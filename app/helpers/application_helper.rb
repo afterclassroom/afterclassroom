@@ -157,5 +157,11 @@ module ApplicationHelper
       "N/A"
     end
   end
-
+  
+  def truncate_words(text, length = 30, end_string = '...')
+    return if text.blank?
+    words = strip_tags(text).split()
+    words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
+  end
+  
 end

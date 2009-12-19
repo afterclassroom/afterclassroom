@@ -24,27 +24,60 @@ function $RF(el, radioGroup) {
         );
     return (checked) ? $F(checked) : null;
 }
-
-function username_onclick(obj){
-    if (obj.value == "Username...")
-      obj.value = "";
-  }
-  
-  function username_onblur(obj){
-    if (obj.value == "")
-      obj.value = "Username...";
-  }
-  
-  function password_onclick(obj){
-    if (obj.value == "Password...")
-      obj.value = "";
-  }
-  
-  function password_onblur(obj){
-    if (obj.value == "")
-      obj.value = "Password...";
-  }
   
   function downloadFile(path){
     document.location.href = path;
+  }
+  
+  function getPostSearchType(post_type){
+    action = "";
+    switch(post_type)
+    {
+      case "Assignments":
+        action = "/post_assignments";
+        break;
+      case "Tests":
+        action = "/post_tests";
+        break;
+      case "Projects":
+        action = "/post_projects";
+        break;
+      case "Exams":
+        action = "/post_exams";
+        break;
+      case "QAs":
+        action = "/post_qas";
+        break;
+      case "Education":
+        action = "/post_educations";
+        break;
+      case "Tutors":
+        action = "/post_tutors";
+        break;
+      case "Books":
+        action = "/post_books";
+        break;
+      case "Jobs":
+        action = "/post_jobs";
+        break;
+      case "Party":
+        action = "/post_parties";
+        break;
+      case "Student Awareness":
+        action = "/post_awarenesses";
+        break;
+      case "Housing":
+        action = "/post_housings";
+        break;
+      case "Team Up":
+        action = "/post_teamups";
+        break;
+      case "MyX":
+        action = "/post_myxs";
+        break;
+      case "Foods":
+        action = "/post_foods";
+        break;
+    }
+    $('action_post_search').action = action;
   }

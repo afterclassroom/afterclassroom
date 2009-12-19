@@ -56,6 +56,7 @@ body input, body textarea, body select{
 	_height:100%;
 	margin:0px auto;
 	padding-top:5px;
+	padding-bottom:10px;
 }
 .logo{
 	float:left;
@@ -129,7 +130,7 @@ div.signin ul li.signinSelect a:hover span{
 	color:#d00;
 }
 .log{
-	padding:10px 0px;
+	padding-top:10px;
 }
 .log-user, .log-pass{
 /*	background:url('/images/bg-user.png') no-repeat;*/
@@ -206,8 +207,8 @@ div.signin ul li.signinSelect a:hover span{
 	border:0px;	
 	color:#929383;
 	width:163px;
-	height:26px;
-	line-height:24px;
+	height:20px;
+	padding-top:6px;
 	text-indent:3px;
 	background-color:transparent;
 }
@@ -263,10 +264,11 @@ div.menuMain ul li.select a.menuFirst, div.menuMain ul li a.menuFirst:hover span
 	margin:0px auto;
 	overflow:hidden;
 	padding-top:8px;
+	padding-bottom:7px;
 	_height:100%;
 }
 .abLinkL{
-	line-height:30px;
+	line-height:25px;
 	float:left;
 }
 .abLinkL a, .abLinkL a:link, .abLinkL a:visited{
@@ -569,7 +571,7 @@ h2.footTitle{
 	_height:100%;
 }
 h1.col300Title, h1.col195Title, h1.titleH1{
-	margin:0px 0px 3px 0px;
+	margin:0px 0px 5px 0px;
 	padding:0px 0px 5px 0px;
 	font-size:12px;
 	color:#0a81c4;
@@ -705,6 +707,9 @@ h2.titleH2 a:hover{
 	color:#0a81c4;
 	font-size:11px;
 }
+.recentUni span{
+	padding-right:3px;
+}
 .recentUni span, .recentDes{
 	color:#6f6f63;
 	font-size:11px;
@@ -773,14 +778,18 @@ h2.titleH2 a:hover{
 .assDrop select{
 	width:135px;
 	font-size:11px;
-	border:1px #dbdbdb solid!important;
+	border:1px #c9c9c9 solid!important;
 	color:#646464;
+	height:20px;
 }
 .assDrop span{
 	padding:0px 3px;
 }
 .assItem{
 	padding:9px 0px;
+	clear:both;
+	overflow:hidden;
+	_height:100%;
 	border-bottom:1px #e4e4e4 solid;
 }
 .assItemL{
@@ -823,6 +832,7 @@ h2.titleH2 a:hover{
 }
 .assCate span, .assInfL span{
 	color:#6f6f63;
+	padding-right:3px;
 }
 .assItemB{
 	clear:both;
@@ -841,7 +851,6 @@ h2.titleH2 a:hover{
 	height:45px;
 }
 .assInfT{
-	padding-bottom:5px;
 	overflow:hidden;
 	_height:100%;
 }
@@ -872,7 +881,7 @@ h2.titleH2 a:hover{
 .assInfB{
 	color:#969696;
 	font-size:10px;
-	padding-top:2px;
+	padding-top:5px;
 }
 .assInfB a:link, .assInfB a:visited{
 	color:#969696;
@@ -908,16 +917,16 @@ h2.titleH2 a:hover{
 	background:url('/images/icon-morelink.gif') no-repeat left 2px;
 	padding:0px 0px 4px 15px;
 }
-.asslinkdown .down{
-	background:url('/images/icon-down.gif') no-repeat left 1px;
+.asslinkdown .comment{
+	background:url('/images/comment.png') no-repeat left 3px;
 	padding:0px 0px 0px 15px;
 }
 .morelink a, .morelink a:link, .morelink a:visited,
-.down a, .down a:link, .down a:visited{
+.comment a, .comment a:link, .comment a:visited{
 	color:#969696;
 	text-decoration:none;
 }
-.morelink a:hover, .down a:hover{
+.morelink a:hover, .comment a:hover{
 	color:#d00;
 }
 .assPage{
@@ -986,7 +995,6 @@ h2.titleH2 a:hover{
 	padding-left:10px;
 }
 .AsDsearch{
-	margin: 4px 0 0 2px;
 	float:right;
 	width:248px;
 	height:24px;
@@ -1006,9 +1014,9 @@ h2.titleH2 a:hover{
 	margin:1px 0px 0px 2px;
 	background-color:transparent;
 	padding:0px;
-	height:22px;
-	line-height:20px;
+	height:20px;
 	text-indent:3px;
+	padding-top:3px;
 }
 .AsDsearch img{
 	border:0px;
@@ -1024,6 +1032,14 @@ h2.titleH2 a:hover{
 .AsDContLin span, .AsDContLask span{
 	color:#0b8ccb;
 	padding:0px 4px;
+}
+.AsDContLask a, .AsDContLask a:link, .AsDContLask a:visited{
+	color:#0b8ccb;
+	padding:0px 4px;
+	text-decoration:none;
+}
+.AsDContLask a:hover{
+	color:#d00;text-decoration:none;
 }
 .AsDContLdes{
 	padding:5px 0px;  
@@ -1147,7 +1163,7 @@ span.btmDown a:hover{
 	background:url('/images/btmDownH.png') no-repeat;
 }
 
-.AsDContBtm a:link{
+.AsDContBtm a:link, .AsDContBtm a:visited{
 	color:#797979;
 	text-decoration:none;
 	cursor:pointer;
@@ -1209,15 +1225,18 @@ span.btmDown a:hover{
 	padding-left:30px;
 	line-height:22px;
 	background:url('/images/icon-request.png') no-repeat 0px 0px;
-
 }
 .Request .col300Cont{
 	padding-top:5px;
 }
 .Request select{
+}
+.reqSe select{
 	width:280px;
 	color:#969696;
 	font-family:Arial;
+	height:20px;
+	border:1px #c9c9c9 solid;
 }
 .reqTi{
 	background:url('/images/bgInput280.png') no-repeat 0px 0px;
@@ -1229,9 +1248,9 @@ span.btmDown a:hover{
 	color:#969696;	
 	width:277px;
 	background-color:transparent;
-	height:20px;
-	line-height:20px;
+	height:18px;
 	text-indent:2px;
+	padding-top:4px;
 }
 .reqEn{
 	background:url('/images/bgText280.png') no-repeat 0px 0px;
@@ -1244,6 +1263,7 @@ span.btmDown a:hover{
 	height:96px;
 	line-height:14px;
 	text-indent:2px;
+	*width:275px;
 }
 .reqKey{
 	height:110px;
@@ -1266,7 +1286,8 @@ span.btmDown a:hover{
 	background-color:transparent;
 	border:0px;
 	text-align:center;
-	line-height:16px;
+	padding-top:3px;
+	*padding-top:2px;
 }
 .submit a{
 	background:url('/images/btm48.png') no-repeat;
@@ -1295,14 +1316,18 @@ span.btmDown a:hover{
 .AsDcomImg{
 	float:left;
 	width:60px;
-	background:url('/images/bgi-col300.png') no-repeat;
 }
 .AsDcomImg div{
 	padding:3px;	
+	background:url('/images/bgi-col300.png') no-repeat;
+}
+.AsDcomImg a:hover div{
+	background:url('/images/bgi-col300H.png') no-repeat;
 }
 .AsDcomImg img{
 	width:45px;
 	height:45px;
+	border:0px;
 }
 .AsDcomIn{
 	float:left;
@@ -1341,7 +1366,8 @@ span.btmDown a:hover{
 .AsDcomLW select{
 	width:165px;
 	color:#323232;
-	border:1px #e3e9ef solid;
+	border:1px #c9c9c9 solid;
+	height:20px;
 }
 
 .AsDcomItem{
@@ -1362,7 +1388,7 @@ span.btmDown a:hover{
 }
 .AsDcomName a, .AsDcomName a:link, .AsDcomName a:visited{
 	color:#0b8ccb;
-	padding:0px 5px;
+	padding:0px 4px;
 	text-decoration:none;
 }
 .AsDcomName a:hover{
@@ -1558,10 +1584,28 @@ span.btmDown a:hover{
 	padding-left:1px;
 }
 .qashdU, .qashdD{
-	padding:0px 5px;
-	border-left:1px #969696 solid;
-	line-height:20px;
+	background:url('/images/bor-ad.png') no-repeat left top;
+	padding:0px 7px;
 }
+.qashdU a{
+	background:url('/images/icon-hdup.gif') no-repeat right center;
+	display:block;
+	padding-right:17px;
+}
+.qashdU a:hover{
+	background:url('/images/icon-hdupH.gif') no-repeat right center;
+	padding-right:17px;
+}
+.qashdD a{
+	background:url('/images/icon-hdd.gif') no-repeat left center;
+	display:block;
+	padding-left:17px;
+}
+.qashdD a:hover{
+	background:url('/images/icon-hddH.gif') no-repeat left center;
+	padding-left:17px;
+}
+
 /*** Qas detail **/
 .QasDetail .AsDContBtm span.btmAns a{
 	background:url('/images/btm119.png') no-repeat;
@@ -1570,14 +1614,21 @@ span.btmDown a:hover{
 	color:#fff;
 	padding-left:0px;
 }
-span.btmPre{
+span.btmPre a{
 	background:url('/images/btmPre.png') no-repeat;
 	width:122px;
 }
-span.btmAbuse{
+span.btmPre a:hover{
+	background:url('/images/btmPreH.png') no-repeat;
+}
+span.btmAbuse a{
 	background:url('/images/btmAbuse.png') no-repeat;
 	width:108px;
 }
+span.btmAbuse a:hover{
+	background:url('/images/btmAbuseH.png') no-repeat;
+}
+
 /**/
 /********************************/
 /******* Post ***********/
@@ -1593,21 +1644,33 @@ span.btmAbuse{
 	color:#6f6f63;
 }
 .postErr{
-	background:url('/images/postbgerr.png') no-repeat;
+	background:url('/images/postbgerr.png') no-repeat 8px 7px;
 	width:632px;
-	height:31px;
+	background-color:#fffdee;
+	border:1px #fee203 solid;
+	overflow:hidden;
+	_height:100%;
 }
 .postErrNote{
 	float:left;
-	width:540px;
-	padding:9px 0px 0px 30px;
+	width:560px;
+	padding:8px 0px 8px 30px;
+	font-style:italic;
 }
 .postErrClo{
 	float:right;
 	margin:1px;
 }
-.postErrClo img{
-	border:0px;
+.postErrClo a{
+	background:url('/images/postClose.jpg') no-repeat;
+	height:16px;
+	width:16px;
+	display:block;
+	text-decoration:none;
+}
+.postErrClo a:hover{
+	text-decoration:none;	
+	background:url('/images/postCloseH.png') no-repeat;
 }
 .postItem{
 	padding:3px 0px 3px 10px;
@@ -1624,9 +1687,13 @@ span.btmAbuse{
 .postItem .postInp input{
 	border:1px #cecece solid;
 	width:250px;
+	height:15px;
+	padding-top:3px;
 }
 .postItem select{
 	width:253px;
+	height:20px;
+	border:1px #cecece solid;
 }
 .postItem textarea{
 	border:1px #cecece solid;
@@ -1659,8 +1726,19 @@ div.postInf{
 	font-weight:bold;
 	padding-right:5px;
 }
+.postShare a, .postShare a:link, .postShare a:visited{
+	color:#6f6f63;
+	text-decoration:none;
+}
+.postShare a:hover{
+	color:#d00;
+	text-decoration:none;
+}
 .post .submit{
 	padding:10px 20px;
+}
+.postDesInf{
+	padding-bottom:3px;
 }
 /** Post detail **/
 .AsDContBtm span.btmReply a{
@@ -1673,20 +1751,15 @@ div.postInf{
 
 /*****************************************/
 /********** Tutor **************/
-.assInfB .share{
+.Tutor .asslinkdown{
+	width:100px;
 }
 .assInfB .share a{
 	background:url('/images/icon-share.png') no-repeat;
 	padding-left:17px;
 }
-/*
-.assInfB .share a:hover{
-	background:url('/images/icon-shareH.png') no-repeat;
-}
-*/
 .Tutor .qashdU,.Tutor .qashdD{
-	border-left:0px;
-	border-right:1px #969696 solid;
+	background-position:right;
 }
 .assInfB .share a:link, .assInfB .share a:visited{
 	color:#969696;
@@ -1700,10 +1773,17 @@ div.postInf{
 	text-align:right;
 }
 .mySco{
-	color:#0a81c4;
 	font-style:italic;
 	text-align:right;
 	padding-top:10px;
+}
+.mySco a, .mySco a:link, .mySco a:visited{
+	color:#0a81c4;	
+	text-decoration:none;
+}
+.mySco a:hover{
+	color:#d00;
+	text-decoration:none;
 }
 .tutorEff .dueDTitle{
 	background:url('/images/icon-tutor.png') no-repeat;	
@@ -1736,4 +1816,231 @@ div.postInf{
 }
 .Book .Bookdont{
 	background:url('/images/icon-dontbuy.png') no-repeat;	
+}
+/****************************************************/
+/********** Sign in - Sign up ************************/
+.welBack h1.col300Title{
+	padding-left:30px;
+	line-height:22px;
+	background:url('/images/welBack.png') no-repeat 0px 0px;
+}
+.welBackCont{
+	padding:10px 5px 20px 5px;
+	color:#6f6f63;	
+}
+.welBackLink{
+	padding:0 5px 3px 5px;
+}
+.welBackLink a, .welBackLink a:link, .welBackLink a:visited{
+	color:#1fa6f3;
+	text-decoration:underline;
+}
+.welBackLink a:hover{
+	color:#d00;
+	text-decoration:underline;
+}
+.befTitle{
+	background:url('/images/benefit.png') no-repeat 0px 0px;
+	color:#ba0404;
+	padding-left:45px;
+	height:47px;
+	padding-top:12px;
+	font-size:12px;
+}
+.befItem{
+	background:url('/images/dotGray.png') no-repeat 0px 5px;
+	padding-bottom:7px;
+	padding-right:4px;
+	padding-left:9px;
+}
+.befItem a, .befItem a:link, .befItem a:visited{
+	color:#6f6f63;
+	text-decoration:none;
+}
+.befItem a:hover{
+	color:#d00;
+	text-decoration:none;
+}
+/**/
+.signinCont, .signUpCont{
+	padding:10px 0px 20px 10px;
+}
+.signinItem{
+	padding:3px 0px 3px 10px;
+	overflow:hidden;
+	_height:100%;
+}
+.signinItem div{
+	float:left;
+}
+.signinItem .signinInp input{
+	border:1px #cecece solid;
+	width:250px;
+	height:18px;
+	padding:0px;
+	padding-top:3px;
+}
+.signUpCont .signinInp select{
+	width:252px;
+	font-size:11px;
+	border:1px #c9c9c9 solid!important;
+	color:#646464;
+	height:20px;
+}
+.signinTit{
+	width:70px;
+	font-weight:bold;
+	line-height:24px;
+	color:#6f6f63;
+}
+.signUpCont .signinTit{
+	width:100px;
+}
+div.signinInf{
+	color:#be2626;
+	line-height:24px;
+	padding-left:8px;
+	font-style:italic;
+}
+.signincCheck{
+	padding-left:76px;
+	padding-top:5px;
+	overflow:hidden;
+}
+.signincCheck div{
+	float:left;
+}
+.signincCheckTxt{
+	line-height:20px;
+	padding-left:4px;
+}
+.signincCheckTxt a, .signincCheckTxt a:link, .signincCheckTxt a:visited{
+	color:#0a81c4;
+	text-decoration:underline;
+}
+.signincCheckTxt a:hover{
+	color:#d00;	
+}
+.btmLogme, .btmCreAc{
+	padding-left:76px;
+	padding-top:10px;
+}
+.signUpCont .signincCheck, .signUpCont .btmLogme, .signUpCont .btmCreAc{
+	padding-left:116px;
+}
+.btmLogme a, .btmCreAc a{
+	background:url('/images/btm62.png') no-repeat;
+	width:62px;
+	height:25px;
+	line-height:25px;
+	text-align:center;
+	display:block;
+}
+.btmCreAc a{
+	width:106px;
+	background:url('/images/btm106.png') no-repeat;
+}
+.btmLogme a:hover{
+	background:url('/images/btm62Red.png') no-repeat;
+}
+.btmCreAc a:hover{
+	background:url('/images/btm106Red.png') no-repeat;
+}
+.btmLogme a, .btmLogme a:link, .btmLogme a:visited, .btmLogme a:hover,
+.btmCreAc a, .btmCreAc a:link, .btmCreAc a:visited, .btmCreAc a:hover{
+	color:#fff;
+	text-decoration:none;
+}
+.forgotPass{
+	padding-left:76px;
+	padding-top:15px;
+}
+.forgotPass a, .forgotPass a:link, .forgotPass a:visited{
+	color:#1c97dd;
+	text-decoration:underline;
+	font-style:italic;
+}
+.forgotPass a:hover{
+	color:#d00;
+}
+.forgotPass span.forgot{
+	padding-right:8px;
+	margin-right:8px;
+	border-right:1px #1c97dd solid;
+}
+.signNode{
+	color:#be2626;
+	font-style:italic;
+	padding-left:10px;
+	padding-bottom:5px;
+}
+/************************************/
+/******** Book ********************/
+.Bookdont .dueDTitle{
+	background:url('/images/icon-dontbuy.png') no-repeat;	
+}
+.Bookgood .dueDTitle{
+	background:url('/images/icon-goodB.png') no-repeat;	
+}
+.Bookfree .dueDTitle{
+	background:url('/images/icon-free.png') no-repeat;	
+}
+.Book .qashdU,.Book .qashdD{
+	background-position:right;
+}
+.Book .qashdU{
+	padding-left:0px;
+}
+span.btmBuy a{
+	background:url('/images/btm62Red.png') no-repeat;
+	text-align:center;
+	width:62px;
+	color:#fff;
+	padding-left:0px;
+}
+span.btmBuy a:link, span.btmBuy a:visited{
+	color:#fff;
+}
+span.btmBuy a:hover{
+	background:url('/images/btm62.png') no-repeat;
+}
+.Parti h1.col300Title{
+	padding-left:30px;
+	line-height:22px;
+	background:url('/images/book-ask.png') no-repeat 0px 0px;
+}
+.AsDContBtm span.btmhand{
+	float:left;
+	margin-right:0px;
+}
+.AsDContBtm .btmhand span{
+	float:left;
+	padding:0px 7px;
+	margin-right:0px;
+}
+.AsDContBtm .btmhand span.handU{
+	background:url('/images/handU.png') no-repeat 0px 0px;
+	border-right:1px #cac8c9 solid;
+}
+.AsDContBtm .btmhand span.handD{
+	background:url('/images/handD.png') no-repeat right 0px;
+}
+.AsDContBtm .btmhand span.handU a{
+	background:url('/images/icon-hdup.gif') no-repeat 0px 7px;
+	padding-left:17px;
+}
+.AsDContBtm .btmhand span.handD a{
+	background:url('/images/icon-hdd.gif') no-repeat right 7px;
+	padding-right:17px;
+}
+.AsDContBtm .btmhand span.handU a:hover{
+	background:url('/images/icon-hdupH.gif') no-repeat 0px 7px;
+	padding-left:17px;
+}
+.AsDContBtm .btmhand span.handD a:hover{
+	background:url('/images/icon-hddH.gif') no-repeat right 7px;
+	padding-right:17px;
+}
+.AsDContBtm .btmhand a:hover{
+	color:#d00;
 }
