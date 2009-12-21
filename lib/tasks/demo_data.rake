@@ -15,6 +15,7 @@ namespace :db do
       create_demo_posts_projects
       create_demo_posts_exams
       create_demo_posts_myx
+      #my new comment
     end
     
     desc 'Remove demo data'
