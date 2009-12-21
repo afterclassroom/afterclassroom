@@ -1,5 +1,5 @@
 andre-geokit
 fastercsv
 rmagick
-jon
+json
 eventmachine
