@@ -27,7 +27,7 @@
 								<div class="assInfR"><%= link_to "more", post %></div>
 							</div>
 							<div class="assInfB">
-								<div><a href="#">9:00 AM EST</a></div>
+								<div><a href="#"><%= post.created_at.strftime("%I:%M %p %Z") %></a></div>
 								<div class="vie"><%= link_to "View (#{post.count_view})", "#" %></div>
 								<div class="fav"><%= link_to "Favorite (#{post.favorites.size})", "#" %></div>
 								<div class="com"><%= link_to "Comments (#{post.comments.size})", "#" %></div>

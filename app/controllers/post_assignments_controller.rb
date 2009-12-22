@@ -10,17 +10,21 @@ class PostAssignmentsController < ApplicationController
   # GET /post_books
   # GET /post_books.xml
   def index
+    @list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
+    @list_overs = [["Over 30 days", "30days"], ["Over 3 months", "3months"], ["Over 6 months", "6months"], ["Over 9 months", "9months"], ["Over 1 year", "1year"]]
+    @year = params[:year] if params[:year] 
+    @over = params[:over] if params[:over] 
     if params[:more_like_this_id]
       post = Post.find_by_id(params[:more_like_this_id])
-      @posts = PostBook.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
+      @posts = PostAssignment.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
     else
       school = session[:your_school]
-      @posts = PostBook.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
+      @posts = PostAssignment.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @post_books }
+      format.xml  { render :xml => @posts }
     end
   end
 
@@ -112,7 +116,7 @@ class PostAssignmentsController < ApplicationController
     updated = update_view_count(obj)
   end
 
-  protected
+  private
 
 def params_search_post
     @query = params[:search][:query] if params[:search] 
@@ -122,7 +126,7 @@ def params_search_post
 end
   
   def require_current_user
-    @user ||= PostBook.find(params[:post_book_id] || params[:id]).post.user
+    @user ||= PostAssignment.find(params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end
