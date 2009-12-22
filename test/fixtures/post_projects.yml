@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  belongs_to: 
+  due_date: 2009-12-21 20:17:20
+
+two:
+  belongs_to: 
+  due_date: 2009-12-21 20:17:20

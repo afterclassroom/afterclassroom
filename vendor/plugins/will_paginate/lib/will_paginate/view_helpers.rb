@@ -23,16 +23,16 @@ module WillPaginate
     # default options that can be overridden on the global level
     @@pagination_options = {
       :class          => 'pagination',
-      :previous_label => '&laquo; Previous',
-      :next_label     => 'Next &raquo;',
-      :inner_window   => 4, # links around the current page
+      :previous_label => 'Prev',
+      :next_label     => 'Next',
+      :inner_window   => 2, # links around the current page
       :outer_window   => 1, # links around beginning and end
       :separator      => ' ', # single space is friendly to spiders and non-graphic browsers
       :param_name     => :page,
       :params         => nil,
       :renderer       => 'WillPaginate::LinkRenderer',
       :page_links     => true,
-      :container      => true
+      :container      => false
     }
     mattr_reader :pagination_options
 
@@ -168,17 +168,12 @@ module WillPaginate
       entry_name = options[:entry_name] ||
         (collection.empty?? 'entry' : collection.first.class.name.underscore.sub('_', ' '))
       
-      if collection.total_pages < 2
-        case collection.size
-        when 0; "No #{entry_name.pluralize} found"
-        when 1; "Displaying <b>1</b> #{entry_name}"
-        else;   "Displaying <b>all #{collection.size}</b> #{entry_name.pluralize}"
-        end
+      if collection.size == 0
+        "No #{entry_name.pluralize} found"
       else
-        %{Displaying #{entry_name.pluralize} <b>%d&nbsp;-&nbsp;%d</b> of <b>%d</b> in total} % [
-          collection.offset + 1,
-          collection.offset + collection.length,
-          collection.total_entries
+        %{Page %d of %d} % [
+          collection.current_page,
+          collection.total_pages
         ]
       end
     end
@@ -295,8 +290,7 @@ module WillPaginate
       text ||= page.to_s
       
       if page and page != current_page
-        classnames = span_class && span_class.index(' ') && span_class.split(' ', 2).last
-        page_link page, text, :rel => rel_value(page), :class => classnames
+        page_link page, text, :rel => rel_value(page), :class => span_class
       else
         page_span page, text, :class => span_class
       end

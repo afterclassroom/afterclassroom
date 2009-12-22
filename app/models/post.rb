@@ -29,6 +29,9 @@ class Post < ActiveRecord::Base
   # Comments
   acts_as_commentable
   
+  # Tags
+  acts_as_taggable
+  
   # Rating
   ajaxful_rateable :stars => 5
 
@@ -36,7 +39,10 @@ class Post < ActiveRecord::Base
   acts_as_activity :user
   
   # Ferret
-  acts_as_ferret :fields => [:title, :description]
+  acts_as_ferret :fields => {
+                                        :title => {:strore => :yes}, 
+                                        :description => {:strore => :yes}
+                                      }
 
   # Named scopes
   named_scope :has_educations, :conditions => "id IN (Select post_id From post_educations)", :order => "created_at DESC"
@@ -50,16 +56,20 @@ class Post < ActiveRecord::Base
 
   def self.paginated_post_conditions_with_search(params, school)
     if params[:search]
-      search_name = params[:search][:name]
-      search_type_name = params[:search][:type_name]
+      query = params[:search][:query]
+      type = params[:search][:type]
     end
-    search_type_name = search_type_name ? search_type_name : "Assignments"
+    
     cond = Caboose::EZ::Condition.new :posts do
-      type_name == search_type_name if search_type_name
-      any{title =~ "%#{search_name}%"; description =~ "%#{search_name}%"} if search_name
+      post_category_id == type if type
       school_id == school.id if school
     end
-    Post.find :all, :conditions => cond.to_sql(), :order => "created_at DESC"
+    
+    if query
+      Post.find_with_ferret(query, :conditions => cond.to_sql(), :order => "created_at DESC")
+    else
+      Post.find(:all, :conditions => cond.to_sql(), :order => "created_at DESC")
+    end
   end
 
   def self.paginated_post_more_like_this(post)
@@ -69,4 +79,5 @@ class Post < ActiveRecord::Base
     end
     Post.find :all, :conditions => cond.to_sql(), :order => "created_at DESC"
   end
+  
 end

@@ -24,7 +24,7 @@
 <div class="menu">
 	<div class="menusearch">
     <%= render :partial => 'shared/menu_main' %>
-    <%= render :partial => 'shared/search_posts', :locals => {:search_post_path => @search_post_path, :type_search => @type_search, :search_name => @search_name} %>
+    <%= render :partial => 'shared/search_posts', :locals => {:search_post_path => @search_post_path, :type => @type, :query => @query} %>
 	</div>
 </div>
 <div class="abLink">

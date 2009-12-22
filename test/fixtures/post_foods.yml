@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  belongs_to: 
+  street: 
+  city: 
+  state: 
+  phone: 
+
+two:
+  belongs_to: 
+  street: 
+  city: 
+  state: 
+  phone: 

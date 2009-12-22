@@ -7,11 +7,6 @@ javascripts:
   - controls
   - application
   - validation
-  - lowpro
-  - frontend
-  - prototip
-  - prototype_ajax_upload
-  - lightwindow
 - student_louge:
   - prototype
   - effects
@@ -43,6 +38,7 @@ javascripts:
 stylesheets: 
 - application:
   - main
+  - pagination
   - validation
 - student_louge:
   - reset

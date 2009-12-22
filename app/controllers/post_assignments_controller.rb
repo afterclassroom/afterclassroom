@@ -7,39 +7,35 @@ class PostAssignmentsController < ApplicationController
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index]
-  # GET /post_jobs
-  # GET /post_jobs.xml
+  # GET /post_books
+  # GET /post_books.xml
   def index
     if params[:more_like_this_id]
       post = Post.find_by_id(params[:more_like_this_id])
-      @posts = Post.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
+      @posts = PostBook.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
     else
-      if params[:search]
-        @search_name = params[:search][:name]
-      end
-
       school = session[:your_school]
-      @posts = Post.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
+      @posts = PostBook.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @posts}
+      format.xml  { render :xml => @post_books }
     end
   end
 
-  # GET /post_jobs/1
-  # GET /post_jobs/1.xml
+  # GET /post_books/1
+  # GET /post_books/1.xml
   def show
-    @post_job = PostJob.find(params[:id])
-    @post = @post_job.post
+    @post_book = PostBook.find(params[:id])
+    @post = @post_book.post
     @post_category_id = @post.post_category_id
     @type_name = @post.post_category.name
     @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_job.post)
+    update_views(@post_book.post)
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_job }
+      format.xml  { render :xml => @post_book }
     end
   end
 
@@ -49,69 +45,65 @@ class PostAssignmentsController < ApplicationController
     render :layout => false
   end
 
-  # GET /post_jobs/new
-  # GET /post_jobs/new.xml
+  # GET /post_books/new
+  # GET /post_books/new.xml
   def new
-    @post_job = PostJob.new
+    @post_book = PostBook.new
     post = Post.new
-    @post_job.post = post
+    @post_book.post = post
     @post_categories = PostCategory.find(:all)
-    @post_category_name = "Jobs"
-    @prepare_post = {'Yes' => true, 'No' => false}
-    @job_types = JobType.find(:all)
+    @post_category_name = "Books"
+    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
+    @currency = ['USD', 'CAD']
+    @shipping_methods = ShippingMethod.find(:all)
     @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @post_job }
+      format.xml  { render :xml => @post_book }
     end
   end
 
-  # GET /post_jobs/1/edit
+  # GET /post_books/1/edit
   def edit
-    @post_job = PostJob.find(params[:id])
-    @post = @post_job.post
+    @post_book = PostBook.find(params[:id])
+    @post = @post_book.post
     @post_categories = PostCategory.find(:all)
-    @prepare_post = {'No' => false, 'Yes' => true}
-    @job_types = JobType.find(:all)
+    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
+    @currency = ['USD', 'CAD']
+    @shipping_methods = ShippingMethod.find(:all)
     @countries = Country.has_cities
-    @school = @post_job.post.school
-    @department = @post_job.post.department
-    @post_job_type = ""
-    for job_type in @post_job.job_types
-      @post_job_type += job_type.name + ", "
-    end
+    @school = @post_book.post.school
+    @department = @post_book.post.department
   end
 
-  # POST /post_jobs
-  # POST /post_jobs.xml
+  # POST /post_books
+  # POST /post_books.xml
   def create
-    @post_job = PostJob.new(params[:post_job])
+    @post_book = PostBook.new(params[:post_book])
     post = Post.new(params[:post])
     post.user = current_user
     post.save
-    @post_job.post = post
-
-    if @post_job.save
+    @post_book.post = post
+    if @post_book.save
       redirect_to my_post_user_url(current_user)
     end
   end
 
-  # PUT /post_jobs/1
-  # PUT /post_jobs/1.xml
+  # PUT /post_books/1
+  # PUT /post_books/1.xml
   def update
-    params[:post_job][:job_type_ids] ||= []
-    @post_job = PostJob.find(params[:id])
+    @post_book = PostBook.find(params[:id])
 
-    if (@post_job.update_attributes(params[:post_job]) && @post_job.post.update_attributes(params[:post]))
+    if (@post_book.update_attributes(params[:post_book]) && @post_book.post.update_attributes(params[:post]))
       redirect_to my_post_user_url(current_user)
     end
   end
 
-  # DELETE /post_jobs/1
-  # DELETE /post_jobs/1.xml
+  # DELETE /post_books/1
+  # DELETE /post_books/1.xml
   def destroy
-    @post_job = PostJob.find(params[:id])
-    @post_job.destroy
+    @post_book = PostBook.find(params[:id])
+    @post_book.destroy
 
     redirect_to my_post_user_url(current_user)
   end
@@ -121,16 +113,16 @@ class PostAssignmentsController < ApplicationController
   end
 
   protected
-  
-  def params_search_post
-    @search_name = params[:search][:name] if params[:search] 
-    @type_search = PostCategory.find_by_name("Assignments").id
+
+def params_search_post
+    @query = params[:search][:query] if params[:search] 
+    @type = PostCategory.find_by_name("Assignments").id
     @search_post_path = post_assignments_path
     @new_post_path = new_post_assignment_path
-  end
-
+end
+  
   def require_current_user
-    @user ||= PostJob.find(params[:post_job_id] || params[:id]).post.user
+    @user ||= PostBook.find(params[:post_book_id] || params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090707145926) do
+ActiveRecord::Schema.define(:version => 20091221155049) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -17,6 +17,15 @@ ActiveRecord::Schema.define(:version => 20090707145926) do
     t.integer  "item_id"
     t.string   "item_type"
     t.datetime "created_at"
+  end
+
+  create_table "answers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_qa_id"
+    t.integer  "thumb_up"
+    t.integer  "thumb_down"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "awareness_issues", :force => true do |t|
@@ -205,6 +214,11 @@ ActiveRecord::Schema.define(:version => 20090707145926) do
     t.datetime "photo_attach_updated_at"
   end
 
+  create_table "post_assignments", :force => true do |t|
+    t.integer  "post_id"
+    t.datetime "due_dates"
+  end
+
   create_table "post_awarenesses", :force => true do |t|
     t.integer  "post_id",        :null => false
     t.datetime "campaign_start"
@@ -227,6 +241,14 @@ ActiveRecord::Schema.define(:version => 20090707145926) do
   create_table "post_educations", :force => true do |t|
     t.integer "post_id",               :null => false
     t.integer "education_category_id", :null => false
+  end
+
+  create_table "post_foods", :force => true do |t|
+    t.integer "post_id"
+    t.string  "street"
+    t.string  "city"
+    t.string  "state"
+    t.string  "phone"
   end
 
   create_table "post_housings", :force => true do |t|
@@ -270,6 +292,20 @@ ActiveRecord::Schema.define(:version => 20090707145926) do
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "post_projects", :force => true do |t|
+    t.integer  "post_id"
+    t.datetime "due_date"
+  end
+
+  create_table "post_qa_categories", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "post_qas", :force => true do |t|
+    t.integer "post_id"
+    t.integer "post_qa_category_id"
   end
 
   create_table "post_teamups", :force => true do |t|
@@ -326,6 +362,19 @@ ActiveRecord::Schema.define(:version => 20090707145926) do
 
   add_index "rates", ["post_id"], :name => "index_rates_on_post_id"
   add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
+
+  create_table "report_abuse_categories", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "report_abuses", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.integer  "report_abuse_category_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string "name"

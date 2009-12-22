@@ -8,9 +8,10 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      departments_for_schools
-      create_demo_people
-      create_demo_posts_assignments
+      #departments_for_schools
+      #create_demo_people
+      #create_demo_posts_assignments
+      create_demo_post_books
     end
     
     desc 'Remove demo data'
@@ -73,7 +74,7 @@ end
 
 def create_demo_posts_assignments
   post_category = PostCategory.find_by_name("Assignments")
-  20.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
     post = Post.create do |p|
@@ -88,6 +89,38 @@ def create_demo_posts_assignments
       p.type_name = post_category.name
     end
   end
+end
+
+def create_demo_post_books
+  post_category = PostCategory.find_by_name("Books")
+    200.times do
+      user = User.find(rand(User.count) + 1)
+      school = School.find(rand(School.count) + 1)
+      post = Post.create do |p|
+        p.user = user
+        p.post_category = post_category
+        p.title = Faker::Lorem.sentence
+        p.description = Faker::Lorem.paragraphs
+        p.school = school
+        p.department = school.departments.find(:first)
+        p.email = Faker::Internet.email
+        p.telephone = Faker::PhoneNumber.phone_number
+        p.type_name = post_category.name
+      end
+      
+      accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
+      currency = ['USD', 'CAD']
+      
+      post_book = PostBook.create do |b|
+        b.post = post
+        b.price = "500"
+        b.currency = currency[rand(currency.size) + 1]
+        b.accept_payment = accept_payment[rand(accept_payment.size)]
+        b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count))
+        b.in_stock = "Stock"
+      end
+      
+    end
 end
 
 def uploaded_file(filename, content_type)

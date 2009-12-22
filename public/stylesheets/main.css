@@ -929,44 +929,6 @@ h2.titleH2 a:hover{
 .morelink a:hover, .comment a:hover{
 	color:#d00;
 }
-.assPage{
-	float:left;
-	padding:10px 0px 10px 0px;
-	color:#6f6f63;
-	font-size:11px;
-}
-.currentPage{
-	padding:0px 8px;
-}
-.currentPage a{
-	padding:0px 4px
-}
-.currentPage a, .currentPage a:link, .currentPage a:visited{
-	color:#6f6f63;
-	text-decoration:none;
-}
-.currentPage a.selected, .currentPage a:hover{
-	width:14px;
-	height:14px;
-	background:url('/images/bgdivpage.png') no-repeat 50% 50%;
-	color:#fff!important;
-	cursor:default;
-}
-.numPage{
-	padding-right:20px;
-}
-.nextPage, .firstPage{
-	padding-right:8px;
-}
-.nextPage a, .nextPage a:link, .nextPage a:visited, .lastPage a, .lastPage a:link, .lastPage a:visited,
-.prevPage a, .prevPage a:link, .prevPage a:visited, .firstPage a, .firstPage a:link, .firstPage a:visited{
-	color:#6f6f63;
-	text-decoration:none;
-}
-.nextPage a:hover, .lastPage a:hover, .prevPage a:hover, .firstPage a:hover{
-	color:#d00;
-	text-decoration:none;
-}
 .goTop{
 	float:right;
 	padding-top:10px;	
