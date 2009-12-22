@@ -8,9 +8,13 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      #departments_for_schools
-      #create_demo_people
-      #create_demo_posts_assignments
+      departments_for_schools
+      create_demo_people
+      create_demo_posts_assignments
+      create_demo_posts_tests
+      create_demo_posts_projects
+      create_demo_posts_exams
+      create_demo_posts_myx
       create_demo_post_books
     end
     
@@ -91,6 +95,82 @@ def create_demo_posts_assignments
   end
 end
 
+def create_demo_posts_tests
+  post_category = PostCategory.find_by_name("Tests")
+  20.times do
+    user = User.find(rand(User.count) + 1)
+    school = School.find(rand(School.count) + 1)
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+    end
+  end
+end
+
+def create_demo_posts_projects
+  post_category = PostCategory.find_by_name("Projects")
+  20.times do
+    user = User.find(rand(User.count) + 1)
+    school = School.find(rand(School.count) + 1)
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+    end
+  end
+end
+
+def create_demo_posts_exams
+  post_category = PostCategory.find_by_name("Exams")
+  20.times do
+    user = User.find(rand(User.count) + 1)
+    school = School.find(rand(School.count) + 1)
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+    end
+  end
+end
+
+def create_demo_posts_myx
+  post_category = PostCategory.find_by_name("MyX")
+  20.times do
+    user = User.find(rand(User.count) + 1)
+    school = School.find(rand(School.count) + 1)
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+    end
+  end
+end
+
 def create_demo_post_books
   post_category = PostCategory.find_by_name("Books")
     200.times do
@@ -119,7 +199,6 @@ def create_demo_post_books
         b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count))
         b.in_stock = "Stock"
       end
-      
     end
 end
 
