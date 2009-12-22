@@ -9,12 +9,12 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       departments_for_schools
-      create_demo_people
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
+      #create_demo_people
+      #create_demo_posts_assignments
+      #create_demo_posts_tests
+      #create_demo_posts_projects
+      #create_demo_posts_exams
+      #create_demo_posts_myx
       create_demo_post_books
     end
     
@@ -194,9 +194,9 @@ def create_demo_post_books
       post_book = PostBook.create do |b|
         b.post = post
         b.price = "500"
-        b.currency = currency[rand(currency.size) + 1]
+        b.currency = currency[rand(currency.size)]
         b.accept_payment = accept_payment[rand(accept_payment.size)]
-        b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count))
+        b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count)+1)
         b.in_stock = "Stock"
       end
     end
