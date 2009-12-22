@@ -9,13 +9,15 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       departments_for_schools
-      #create_demo_people
-      #create_demo_posts_assignments
-      #create_demo_posts_tests
-      #create_demo_posts_projects
-      #create_demo_posts_exams
-      #create_demo_posts_myx
+      create_demo_people
+      create_demo_posts_assignments
+      create_demo_posts_tests
+      create_demo_posts_projects
+      create_demo_posts_exams
+      create_demo_posts_myx
       create_demo_post_books
+      
+      create_demo_post_tutors
     end
     
     desc 'Remove demo data'
@@ -198,6 +200,38 @@ def create_demo_post_books
         b.accept_payment = accept_payment[rand(accept_payment.size)]
         b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count)+1)
         b.in_stock = "Stock"
+      end
+    end
+end
+
+def create_demo_post_tutors
+  post_category = PostCategory.find_by_name("Tutors")
+    200.times do
+      user = User.find(rand(User.count) + 1)
+      school = School.find(rand(School.count) + 1)
+      post = Post.create do |p|
+        p.user = user
+        p.post_category = post_category
+        p.title = Faker::Lorem.sentence
+        p.description = Faker::Lorem.paragraphs
+        p.school = school
+        p.department = school.departments.find(:first)
+        p.email = Faker::Internet.email
+        p.telephone = Faker::PhoneNumber.phone_number
+        p.type_name = post_category.name
+      end
+      
+	  per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
+      tutoring_rate = ['Good','Bad','Average']
+      currency = ['USD', 'CAD']
+      
+      post_tutor = PostTutor.create do |t|
+        t.post = post
+        t.tutoring_rate=tutoring_rate[rand(tutoring_rate.size)]
+        t.per=per[rand(per.size)]
+        t.currency=currency[rand(currency.size)]
+        t.from=DateTime.now
+        t.to=DateTime.now+3
       end
     end
 end
