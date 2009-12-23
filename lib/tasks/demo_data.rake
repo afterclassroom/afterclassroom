@@ -8,17 +8,18 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      departments_for_schools
+      #departments_for_schools
       
-      create_demo_people
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_post_books
+      #create_demo_people
+      #create_demo_posts_assignments
+      #create_demo_posts_tests
+      #create_demo_posts_projects
+      #create_demo_posts_exams
+      #create_demo_posts_myx
+      #create_demo_post_books
       
-      create_demo_post_tutors
+      #create_demo_post_tutors
+      create_demo_post_jobs
     end
     
     desc 'Remove demo data'
@@ -233,6 +234,41 @@ def create_demo_post_tutors
         t.currency=currency[rand(currency.size)]
         t.from=DateTime.now
         t.to=DateTime.now+3
+      end
+    end
+end
+
+def create_demo_post_jobs
+  post_category = PostCategory.find_by_name("Jobs")
+    100.times do
+      user = User.find(rand(User.count) + 1)
+      school = School.find(rand(School.count) + 1)
+      post = Post.create do |p|
+        p.user = user
+        p.post_category = post_category
+        p.title = Faker::Lorem.sentence
+        p.description = Faker::Lorem.paragraphs
+        p.school = school
+        p.department = school.departments.find(:first)
+        p.email = Faker::Internet.email
+        p.telephone = Faker::PhoneNumber.phone_number
+        p.type_name = post_category.name
+      end
+      
+      responsibilities=['role1','role2','role3']
+      required_skills=['skill1','skill2','skill3']
+      desirable_skills=['skillA','skillB','skillC']
+      edu_experience_require=['levelA','levelB','levelC']
+      compensation=['111','222','333']
+      
+      post_tutor = PostJob.create do |j|
+        j.post = post
+        j.responsibilities = responsibilities[rand(responsibilities.size)]
+        j.required_skills = required_skills[rand(required_skills.size)]
+        j.desirable_skills = desirable_skills[rand(desirable_skills.size)]
+        j.edu_experience_require = edu_experience_require[rand(edu_experience_require.size)]
+        j.compensation = compensation[rand(compensation.size)]
+        j.prepare_post = rand(100)+1;
       end
     end
 end
