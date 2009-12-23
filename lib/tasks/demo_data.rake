@@ -8,17 +8,17 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      #departments_for_schools
+      departments_for_schools
       
-      #create_demo_people
-      #create_demo_posts_assignments
-      #create_demo_posts_tests
-      #create_demo_posts_projects
-      #create_demo_posts_exams
-      #create_demo_posts_myx
-      #create_demo_post_books
+      create_demo_people
+      create_demo_posts_assignments
+      create_demo_posts_tests
+      create_demo_posts_projects
+      create_demo_posts_exams
+      create_demo_posts_myx
+      create_demo_post_books
       
-      #create_demo_post_tutors
+      create_demo_post_tutors
       create_demo_post_jobs
       create_demo_post_educations
     end
