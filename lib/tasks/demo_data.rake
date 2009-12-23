@@ -20,6 +20,7 @@ namespace :db do
       
       #create_demo_post_tutors
       create_demo_post_jobs
+      create_demo_post_educations
     end
     
     desc 'Remove demo data'
@@ -261,7 +262,7 @@ def create_demo_post_jobs
       edu_experience_require=['levelA','levelB','levelC']
       compensation=['111','222','333']
       
-      post_tutor = PostJob.create do |j|
+      post_job = PostJob.create do |j|
         j.post = post
         j.responsibilities = responsibilities[rand(responsibilities.size)]
         j.required_skills = required_skills[rand(required_skills.size)]
@@ -269,6 +270,32 @@ def create_demo_post_jobs
         j.edu_experience_require = edu_experience_require[rand(edu_experience_require.size)]
         j.compensation = compensation[rand(compensation.size)]
         j.prepare_post = rand(100)+1;
+      end
+    end
+end
+
+def create_demo_post_educations
+  post_category = PostCategory.find_by_name("Education")
+    100.times do
+      user = User.find(rand(User.count) + 1)
+      school = School.find(rand(School.count) + 1)
+      post = Post.create do |p|
+        p.user = user
+        p.post_category = post_category
+        p.title = Faker::Lorem.sentence
+        p.description = Faker::Lorem.paragraphs
+        p.school = school
+        p.department = school.departments.find(:first)
+        p.email = Faker::Internet.email
+        p.telephone = Faker::PhoneNumber.phone_number
+        p.type_name = post_category.name
+      end
+      
+      education_category=EducationCategory.find(rand(EducationCategory.count) + 1)
+      
+      post_edu = PostEducation.create do |e|
+        e.post = post
+        e.education_category = education_category
       end
     end
 end
