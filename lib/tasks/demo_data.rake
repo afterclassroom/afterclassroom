@@ -269,7 +269,7 @@ def create_demo_post_jobs
         j.desirable_skills = desirable_skills[rand(desirable_skills.size)]
         j.edu_experience_require = edu_experience_require[rand(edu_experience_require.size)]
         j.compensation = compensation[rand(compensation.size)]
-        j.prepare_post = rand(100)+1;
+        j.prepare_post = rand(2);
       end
     end
 end
