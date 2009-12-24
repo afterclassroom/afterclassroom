@@ -13,6 +13,7 @@ class Post < ActiveRecord::Base
   belongs_to :school
   belongs_to :department
   belongs_to :post_category
+  has_one :post_assignment, :dependent => :destroy
   has_one :post_education, :dependent => :destroy
   has_one :post_tutor, :dependent => :destroy
   has_one :post_book, :dependent => :destroy

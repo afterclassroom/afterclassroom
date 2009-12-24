@@ -197,11 +197,13 @@ def create_demo_post_books
       currency = ['USD', 'CAD']
       
       post_book = PostBook.create do |b|
-        b.post = post
+        b.post = post 
         b.price = "500"
         b.currency = currency[rand(currency.size)]
         b.accept_payment = accept_payment[rand(accept_payment.size)]
-        b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count)+1)
+
+        b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count) + 1)
+
         b.in_stock = "Stock"
       end
     end

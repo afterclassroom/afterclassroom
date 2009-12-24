@@ -17,8 +17,8 @@
         <!--Options-->
 				<div class="assDrop">
 					<span class="assDrop1"><select name="Select1"><option>Choose faculty</option></select></span>
-					<span class="assDrop2"><select name="Select1"><option>1st Year</option></select></span>
-					<span class="assDrop3"><select name="Select1"><option>List over 30 days</option></select></span>
+					<span class="assDrop2"><%= select_tag ("year", options_for_select(@list_years, @year), :onChange => "") %></span>
+					<span class="assDrop3"><%= select_tag ("over", options_for_select(@list_overs, @over), :onChange => "") %></span>
 				</div>
         <!--Options-->
 				
