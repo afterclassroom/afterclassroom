@@ -293,6 +293,7 @@ def create_demo_post_educations
       
       education_category=EducationCategory.find(rand(EducationCategory.count) + 1)
       
+      
       post_edu = PostEducation.create do |e|
         e.post = post
         e.education_category = education_category
