@@ -10,17 +10,17 @@ namespace :db do
     task :load => :environment do |t|
       departments_for_schools
       
-      create_demo_people
+      #create_demo_people
       create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_post_books
+      #create_demo_posts_tests
+      #create_demo_posts_projects
+      #create_demo_posts_exams
+      #create_demo_posts_myx
+      #create_demo_post_books
       
-      create_demo_post_tutors
-      create_demo_post_jobs
-      create_demo_post_educations
+      #create_demo_post_tutors
+      #create_demo_post_jobs
+      #create_demo_post_educations
     end
     
     desc 'Remove demo data'
@@ -83,9 +83,10 @@ end
 
 def create_demo_posts_assignments
   post_category = PostCategory.find_by_name("Assignments")
-  200.times do
+  10.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
+    
     post = Post.create do |p|
       p.user = user
       p.post_category = post_category
@@ -97,6 +98,12 @@ def create_demo_posts_assignments
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
     end
+    
+    post_asm = PostAssignment.create do |pa|
+    	pa.post = post
+    	pa.due_dates = DateTime.now+3
+	end
+    
   end
 end
 
@@ -135,6 +142,12 @@ def create_demo_posts_projects
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
     end
+    
+    post_asm = PostProject.create do |prj|
+    	prj.post = post
+    	prj.due_dates = DateTime.now+3
+	end    
+    
   end
 end
 
