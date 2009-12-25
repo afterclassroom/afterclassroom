@@ -101,7 +101,7 @@ def create_demo_posts_assignments
     
     post_asm = PostAssignment.create do |pa|
     	pa.post = post
-    	pa.due_dates = DateTime.now+3
+    	pa.due_dates = DateTime.now + rand(20)
 	end
     
   end
@@ -145,7 +145,7 @@ def create_demo_posts_projects
     
     post_asm = PostProject.create do |prj|
     	prj.post = post
-    	prj.due_dates = DateTime.now+3
+    	prj.due_dates = DateTime.now + rand(20)
 	end    
     
   end
