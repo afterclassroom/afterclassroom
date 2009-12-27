@@ -9,24 +9,24 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       #departments_for_schools
-      
       #create_demo_people
-      create_demo_posts_assignments
+      # Posts
+      #create_demo_posts_assignments
       #create_demo_posts_tests
       #create_demo_posts_projects
       #create_demo_posts_exams
       #create_demo_posts_myx
-      #create_demo_post_books
-      
-      #create_demo_post_tutors
-      #create_demo_post_jobs
-      #create_demo_post_educations
+      create_demo_post_books
+      create_demo_post_tutors
+      create_demo_post_jobs
+      create_demo_post_educations
     end
     
     desc 'Remove demo data'
     task :remove => :environment do |t|
       Rake::Task["db:migrate:reset"].invoke
       #Remove images to avoid accumulation.
+      system("rm -rf index/developments")
       system("rm -rf public/attaches")
       system("rm -rf public/avatars")
       system("rm -rf public/music_attaches")
@@ -101,8 +101,8 @@ def create_demo_posts_assignments
     
     post_asm = PostAssignment.create do |pa|
     	pa.post = post
-    	pa.due_dates = DateTime.now + rand(20)
-	end
+    	pa.due_date = DateTime.now + rand(20)
+    end
     
   end
 end
@@ -143,9 +143,9 @@ def create_demo_posts_projects
       p.type_name = post_category.name
     end
     
-    post_asm = PostProject.create do |prj|
+    post_proj = PostProject.create do |prj|
     	prj.post = post
-    	prj.due_dates = DateTime.now + rand(20)
+    	prj.due_date = DateTime.now + rand(20)
 	end    
     
   end

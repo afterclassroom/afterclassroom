@@ -216,7 +216,7 @@ ActiveRecord::Schema.define(:version => 20091221155049) do
 
   create_table "post_assignments", :force => true do |t|
     t.integer  "post_id"
-    t.datetime "due_dates"
+    t.datetime "due_date"
   end
 
   create_table "post_awarenesses", :force => true do |t|
