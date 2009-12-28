@@ -11,11 +11,18 @@ class PostAssignment < ActiveRecord::Base
       query = params[:search][:query]
     end
     
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
+    
     type = PostCategory.find_by_name("Assignments").id
     
     cond = Caboose::EZ::Condition.new :posts do
       post_category_id == type if type
       school_id == school.id if school
+      school_year == year if year
+      department_id == department if department
+      created_at > Time.now - over.day
     end
     
     if query
