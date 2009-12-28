@@ -16,10 +16,11 @@ namespace :db do
       #create_demo_posts_projects
       #create_demo_posts_exams
       #create_demo_posts_myx
-      create_demo_post_books
-      create_demo_post_tutors
-      create_demo_post_jobs
-      create_demo_post_educations
+      #create_demo_post_books
+      #create_demo_post_tutors
+      #create_demo_post_jobs
+      #create_demo_post_educations
+      create_demo_post_housings
     end
     
     desc 'Remove demo data'
@@ -314,6 +315,53 @@ def create_demo_post_educations
         e.education_category = education_category
       end
     end
+end
+
+def create_demo_post_housings
+  post_category = PostCategory.find_by_name("Housing")
+    5.times do
+      user = User.find(rand(User.count) + 1)
+      school = School.find(rand(School.count) + 1)
+      post = Post.create do |p|
+        p.user = user
+        p.post_category = post_category
+        p.title = Faker::Lorem.sentence
+        p.description = Faker::Lorem.paragraphs
+        p.school = school
+        p.department = school.departments.find(:first)
+        p.email = Faker::Internet.email
+        p.telephone = Faker::PhoneNumber.phone_number
+        p.type_name = post_category.name
+      end
+      
+      rent = ['rentA','rentB', 'rentC']
+      currency = ['USD', 'CAD']
+      intersection = ['intersectionA', 'intersectionB', 'intersectionC']
+      
+      
+      phouse = PostHousing.create do |ph|
+      	ph.post = post
+      	ph.street = Faker::Address.street_name
+      	ph.city = Faker::Address.city
+      	ph.state = Faker::Address.us_state
+      	ph.rent = rent[rand(rent.size)]
+      	ph.currency = currency[rand(currency.size)]
+      	ph.intersection = intersection[rand(intersection.size)]
+  	  end
+  	  
+  	  #generate number of housingCategory that PostHousing belongs to
+  	  noOfMapping = rand(HousingCategory.count) + 1
+  	  pivotArray = [false,false,false,false]
+  	  
+  	  noOfMapping.times do
+  	  	index = rand(HousingCategory.count) + 1
+  	  	while (pivotArray[index]==true)
+  	  		index = rand(HousingCategory.count) + 1
+  	  	end
+  	  	pivotArray[index] = true;
+        phouse.housing_categories << HousingCategory.find(index)
+      end
+    end	
 end
 
 def uploaded_file(filename, content_type)
