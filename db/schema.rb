@@ -342,6 +342,7 @@ ActiveRecord::Schema.define(:version => 20091221155049) do
     t.boolean  "allow_rate",          :default => true
     t.boolean  "allow_download",      :default => true
     t.string   "type_name"
+    t.string   "school_year"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "attach_file_name"
