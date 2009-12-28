@@ -319,7 +319,7 @@ end
 
 def create_demo_post_housings
   post_category = PostCategory.find_by_name("Housing")
-    5.times do
+    100.times do
       user = User.find(rand(User.count) + 1)
       school = School.find(rand(School.count) + 1)
       post = Post.create do |p|
