@@ -15,6 +15,7 @@ class CreatePosts < ActiveRecord::Migration
       t.boolean :allow_rate, :default => 1
       t.boolean :allow_download, :default => 1
       t.string :type_name
+      t.string :school_year
 
       t.timestamps
     end

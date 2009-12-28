@@ -2,7 +2,7 @@
 					<div class="assItemL">
 						<div class="assImg"><div><%= link_to image_tag("noimg.png"), post %></div></div>
 						<div class="assContT">
-							<h2 class="titleH2"><%= link_to post.title, post %></h2>
+							<h2 class="titleH2"><%= link_to post.title, post_assignment_path(post) %></h2>
 							<div class="assCate"><span>Category:</span><%= link_to post.post_category.name, "#" %></div>
 							<div class="assCate"><span>From:</span><%= link_to post.school.name, "#" %></div>
 						</div>
@@ -24,7 +24,7 @@
 									<div><span>Posted by:</span><%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
 									<div><span>Comments:</span><%= link_to "#{post.user.comments.size} Comment#{"s" if post.user.comments.size > 1}", "#" %></div>
 								</div>
-								<div class="assInfR"><%= link_to "more", post %></div>
+								<div class="assInfR"><%= link_to "more", post_assignment_path(post) %></div>
 							</div>
 							<div class="assInfB">
 								<div><a href="#"><%= post.created_at.strftime("%I:%M %p %Z") %></a></div>
