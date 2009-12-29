@@ -21,6 +21,7 @@ namespace :db do
       create_demo_post_jobs
       create_demo_post_educations
       create_demo_post_housings
+      create_demo_post_parties
     end
     
     desc 'Remove demo data'
@@ -383,6 +384,55 @@ def create_demo_post_housings
       end
     end	
 end
+
+def create_demo_post_parties
+  post_category = PostCategory.find_by_name("Party")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
+ 
+  location = ['locationA','locationB', 'locationC']
+  intersection = ['intersectionA', 'intersectionB', 'intersectionC']
+  
+    100.times do
+      user = User.find(rand(User.count) + 1)
+      school = School.find(rand(School.count) + 1)
+      post = Post.create do |p|
+        p.user = user
+        p.post_category = post_category
+        p.title = Faker::Lorem.sentence
+        p.description = Faker::Lorem.paragraphs
+        p.school = school
+        p.department = school.departments.find(:first)
+        p.email = Faker::Internet.email
+        p.telephone = Faker::PhoneNumber.phone_number
+        p.type_name = post_category.name
+        p.school_year = schoolyear[rand(schoolyear.size)]
+      end
+      
+      pty = PostParty.create do |pt|
+      	pt.post = post
+      	pt.start_time=DateTime.now
+      	pt.end_time=DateTime.now+rand(3)
+      	pt.location=location[rand(location.size)]
+      	pt.street=Faker::Address.street_name
+      	pt.intersection=intersection[rand(intersection.size)]
+      	pt.city=Faker::Address.city
+  	  end
+
+  	  #generate number of partyTypes that PostParty belongs to
+  	  noOfMapping = rand(PartyType.count) + 1
+  	  pivotArray = [false,false,false,false,false,false,false,false,false,false]
+  	  
+  	  noOfMapping.times do
+  	  	index = rand(PartyType.count) + 1
+  	  	while (pivotArray[index]==true)
+  	  		index = rand(PartyType.count) + 1
+  	  	end
+  	  	pivotArray[index] = true;
+        pty.party_types << PartyType.find(index)
+      end
+      
+  end #END LOOP
+end #END METHOD
 
 def uploaded_file(filename, content_type)
   f = File.new(File.join(RAILS_ROOT, filename))
