@@ -23,7 +23,8 @@ namespace :db do
       #create_demo_post_housings
       #create_demo_post_parties
       #create_demo_posts_teamups
-      create_demo_posts_awarenesses
+      #create_demo_posts_awarenesses
+      create_demo_posts_foods
     end
     
     desc 'Remove demo data'
@@ -509,6 +510,36 @@ def create_demo_posts_awarenesses
         post_aq.awareness_issues << AwarenessIssue.find(index)
   	end#END MAPPING
   end#END LOOP
+end
+
+def create_demo_posts_foods
+  post_category = PostCategory.find_by_name("Foods")
+  100.times do
+    user = User.find(rand(User.count) + 1)
+    school = School.find(rand(School.count) + 1)
+    schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
+    end
+    
+    pf = PostFood.create do |p|
+    	p.post = post
+    	p.street = Faker::Address.street_name
+    	p.city = Faker::Address.city
+    	p.state = Faker::Address.us_state
+    	p.phone = Faker::PhoneNumber.phone_number
+    end
+    
+  end
 end
 
 def uploaded_file(filename, content_type)
