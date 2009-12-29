@@ -441,7 +441,7 @@ def create_demo_posts_teamups
   position = ["position 1","position 2","position 3"]
   expectedTime = ["expectedTime 1","expectedTime 2","expectedTime 3"]
   compensation = ["compensation A","compensation B","compensation C"]
-  10.times do
+  100.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
