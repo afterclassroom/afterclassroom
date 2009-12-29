@@ -8,18 +8,19 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      #departments_for_schools
-      #create_demo_people
+      departments_for_schools
+      create_demo_people
       # Posts
-      #create_demo_posts_assignments
-      #create_demo_posts_tests
-      #create_demo_posts_projects
-      #create_demo_posts_exams
-      #create_demo_posts_myx
+      create_demo_posts_assignments
+      create_demo_posts_tests
+      create_demo_posts_projects
+      create_demo_posts_exams
+      create_demo_posts_myx
       create_demo_post_books
       create_demo_post_tutors
       create_demo_post_jobs
       create_demo_post_educations
+      create_demo_post_housings
     end
     
     desc 'Remove demo data'
@@ -86,7 +87,7 @@ def create_demo_posts_assignments
   10.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
-    
+    schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     post = Post.create do |p|
       p.user = user
       p.post_category = post_category
@@ -97,6 +98,7 @@ def create_demo_posts_assignments
       p.email = Faker::Internet.email
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
     end
     
     post_asm = PostAssignment.create do |pa|
@@ -109,6 +111,8 @@ end
 
 def create_demo_posts_tests
   post_category = PostCategory.find_by_name("Tests")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
+  
   20.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
@@ -122,12 +126,14 @@ def create_demo_posts_tests
       p.email = Faker::Internet.email
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
     end
   end
 end
 
 def create_demo_posts_projects
   post_category = PostCategory.find_by_name("Projects")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   20.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
@@ -141,6 +147,7 @@ def create_demo_posts_projects
       p.email = Faker::Internet.email
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
     end
     
     post_proj = PostProject.create do |prj|
@@ -153,6 +160,7 @@ end
 
 def create_demo_posts_exams
   post_category = PostCategory.find_by_name("Exams")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   20.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
@@ -166,12 +174,14 @@ def create_demo_posts_exams
       p.email = Faker::Internet.email
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
     end
   end
 end
 
 def create_demo_posts_myx
   post_category = PostCategory.find_by_name("MyX")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   20.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
@@ -185,12 +195,14 @@ def create_demo_posts_myx
       p.email = Faker::Internet.email
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
     end
   end
 end
 
 def create_demo_post_books
   post_category = PostCategory.find_by_name("Books")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     200.times do
       user = User.find(rand(User.count) + 1)
       school = School.find(rand(School.count) + 1)
@@ -204,6 +216,7 @@ def create_demo_post_books
         p.email = Faker::Internet.email
         p.telephone = Faker::PhoneNumber.phone_number
         p.type_name = post_category.name
+        p.school_year = schoolyear[rand(schoolyear.size)]
       end
       
       accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
@@ -224,6 +237,7 @@ end
 
 def create_demo_post_tutors
   post_category = PostCategory.find_by_name("Tutors")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     200.times do
       user = User.find(rand(User.count) + 1)
       school = School.find(rand(School.count) + 1)
@@ -237,6 +251,7 @@ def create_demo_post_tutors
         p.email = Faker::Internet.email
         p.telephone = Faker::PhoneNumber.phone_number
         p.type_name = post_category.name
+        p.school_year = schoolyear[rand(schoolyear.size)]
       end
       
 	  per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
@@ -256,6 +271,7 @@ end
 
 def create_demo_post_jobs
   post_category = PostCategory.find_by_name("Jobs")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     100.times do
       user = User.find(rand(User.count) + 1)
       school = School.find(rand(School.count) + 1)
@@ -269,6 +285,7 @@ def create_demo_post_jobs
         p.email = Faker::Internet.email
         p.telephone = Faker::PhoneNumber.phone_number
         p.type_name = post_category.name
+        p.school_year = schoolyear[rand(schoolyear.size)]
       end
       
       responsibilities=['role1','role2','role3']
@@ -291,6 +308,7 @@ end
 
 def create_demo_post_educations
   post_category = PostCategory.find_by_name("Education")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     100.times do
       user = User.find(rand(User.count) + 1)
       school = School.find(rand(School.count) + 1)
@@ -304,6 +322,7 @@ def create_demo_post_educations
         p.email = Faker::Internet.email
         p.telephone = Faker::PhoneNumber.phone_number
         p.type_name = post_category.name
+        p.school_year = schoolyear[rand(schoolyear.size)]
       end
       
       education_category=EducationCategory.find(rand(EducationCategory.count) + 1)
@@ -314,6 +333,55 @@ def create_demo_post_educations
         e.education_category = education_category
       end
     end
+end
+
+def create_demo_post_housings
+  post_category = PostCategory.find_by_name("Housing")
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
+    100.times do
+      user = User.find(rand(User.count) + 1)
+      school = School.find(rand(School.count) + 1)
+      post = Post.create do |p|
+        p.user = user
+        p.post_category = post_category
+        p.title = Faker::Lorem.sentence
+        p.description = Faker::Lorem.paragraphs
+        p.school = school
+        p.department = school.departments.find(:first)
+        p.email = Faker::Internet.email
+        p.telephone = Faker::PhoneNumber.phone_number
+        p.type_name = post_category.name
+        p.school_year = schoolyear[rand(schoolyear.size)]
+      end
+      
+      rent = ['rentA','rentB', 'rentC']
+      currency = ['USD', 'CAD']
+      intersection = ['intersectionA', 'intersectionB', 'intersectionC']
+      
+      
+      phouse = PostHousing.create do |ph|
+      	ph.post = post
+      	ph.street = Faker::Address.street_name
+      	ph.city = Faker::Address.city
+      	ph.state = Faker::Address.us_state
+      	ph.rent = rent[rand(rent.size)]
+      	ph.currency = currency[rand(currency.size)]
+      	ph.intersection = intersection[rand(intersection.size)]
+  	  end
+  	  
+  	  #generate number of housingCategory that PostHousing belongs to
+  	  noOfMapping = rand(HousingCategory.count) + 1
+  	  pivotArray = [false,false,false,false]
+  	  
+  	  noOfMapping.times do
+  	  	index = rand(HousingCategory.count) + 1
+  	  	while (pivotArray[index]==true)
+  	  		index = rand(HousingCategory.count) + 1
+  	  	end
+  	  	pivotArray[index] = true;
+        phouse.housing_categories << HousingCategory.find(index)
+      end
+    end	
 end
 
 def uploaded_file(filename, content_type)
