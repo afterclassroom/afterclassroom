@@ -22,7 +22,8 @@ namespace :db do
       #create_demo_post_educations
       #create_demo_post_housings
       #create_demo_post_parties
-      create_demo_posts_teamups
+      #create_demo_posts_teamups
+      create_demo_posts_awarenesses
     end
     
     desc 'Remove demo data'
@@ -469,6 +470,45 @@ def create_demo_posts_teamups
     end
     
   end
+end
+
+def create_demo_posts_awarenesses
+  post_category = PostCategory.find_by_name("Student Awareness")
+  100.times do
+    user = User.find(rand(User.count) + 1)
+    school = School.find(rand(School.count) + 1)
+    schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
+    end
+    
+    pivotArray = [false,false,false]
+    noOfMapping = rand(AwarenessIssue.count) + 1
+    
+    post_aq = PostAwareness.create do |pa|
+    	pa.post = post
+    	pa.campaign_start = DateTime.now + rand(20)
+    	pa.campaign_end = DateTime.now + rand(20)+3
+    end
+    
+    noOfMapping.times do
+  	  	index = rand(AwarenessIssue.count) + 1
+  	  	while (pivotArray[index]==true)
+  	  		index = rand(AwarenessIssue.count) + 1
+  	  	end
+  	  	pivotArray[index] = true;
+        post_aq.awareness_issues << AwarenessIssue.find(index)
+  	end#END MAPPING
+  end#END LOOP
 end
 
 def uploaded_file(filename, content_type)
