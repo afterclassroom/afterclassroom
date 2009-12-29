@@ -9,9 +9,12 @@
   .assPage span.disabled {
 	}
   .assPage span.current {
+	-moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
     width:14px;
 	height:14px;
-	background:url('/images/bgdivpage.png') no-repeat 50% 50%;
+	background: #2E6AB1;
 	color:#fff!important;
 	cursor:default; }
   .assPage a {
@@ -22,9 +25,12 @@
 	color:#d00;
     text-decoration: none;}
 .assPage a.current:hover {
+	-moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
 	width:14px;
 	height:14px;
-	background:url('/images/bgdivpage.png') no-repeat 50% 50%;
+	background: #2E6AB1;
 	color:#fff!important;
     text-decoration: none;}
 .numPage{

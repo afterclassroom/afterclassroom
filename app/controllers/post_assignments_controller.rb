@@ -11,7 +11,7 @@ class PostAssignmentsController < ApplicationController
   # GET /post_books.xml
   def index
     @list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
-    @list_overs = [["Over 30 days", "30days"], ["Over 3 months", "3months"], ["Over 6 months", "6months"], ["Over 9 months", "9months"], ["Over 1 year", "1year"]]
+    @list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months", "180"], ["Over 9 months", "270"], ["Over 1 year", "365"]]
     @year = params[:year] if params[:year] 
     @over = params[:over] if params[:over] 
     if params[:more_like_this_id]

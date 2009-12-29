@@ -1,19 +1,11 @@
 body{
-	font-family:Arial;
-	font-size:11px;
-	background-color:#ebebeb;
-	margin:0px;
+	font-family:Arial;font-size:11px;background-color:#ebebeb;margin:0px;
 }
 body input, body textarea, body select{
-	font-family:Arial;
-	font-size:11px;
-	color:#646464;
+	font-family:Arial;font-size:11px;color:#646464;
 }
 .sponsor{
-	width:962px;
-	margin:0px auto;
-	padding-bottom:7px;
-	overflow:hidden;
+	width:962px;margin:0px auto;padding-bottom:7px;overflow:hidden;
 }
 .contMain{
 	overflow:hidden;
@@ -23,23 +15,18 @@ body input, body textarea, body select{
 	padding-bottom:10px;
 }
 .contMainL{
-	width:459px;
-	float:left;
+	width:459px;float:left;
 }
 .contMainC{
-	width:203px;
-	float:left;
+	width:203px;float:left;
 }
 .contMainR{
-	width:300px;
-	float:right;
+	width:300px;float:right;
+	overflow:hidden;
 }
 .contDetL{
-	width:662px;
-	float:left;
+	width:662px;float:left;overflow:hidden;padding-bottom:5px;
 	background:url('/images/bot654.png') no-repeat left bottom;
-	overflow:hidden;
-	padding-bottom:5px;
 	_height:100%;
 }
 .contDetLin{
@@ -51,23 +38,17 @@ body input, body textarea, body select{
 	background-color:white;
 }
 .banner{
-	width:962px;
-	overflow:hidden;
+	width:962px;overflow:hidden;margin:0px auto;padding-top:5px;padding-bottom:10px;
 	_height:100%;
-	margin:0px auto;
-	padding-top:5px;
-	padding-bottom:10px;
 }
 .logo{
 	float:left;
 }
 .logo img{
-	border:0px;
-	padding-top:10px;
+	border:0px;padding-top:10px;
 }
 .login{
-	float:right;
-	width:500px;
+	float:right;width:500px;
 }
 .signin a{
 	background:url('/images/help.png') no-repeat left 4px;
@@ -80,26 +61,13 @@ body input, body textarea, body select{
 	float:right;
 }
 .signin ul,.signin ul li{
-	list-style:none;
-	display:inline-block;
-	float:left;
-	padding:0px;
-	margin:0px;
+	list-style:none;display:inline-block;float:left;padding:0px;margin:0px;
 }
 .signin a span{
-	height:23px;
-	line-height:23px;
-	display:block;
-	float:left;
-	color:#1fa6f3;
-	font-size:12px;
-	padding-left:7px;
+	height:23px;line-height:23px;display:block;float:left;color:#1fa6f3;font-size:12px;padding-left:7px;
 }
 .signin a{
-	text-decoration:none;	
-	float:left;	
-	padding-right:7px;
-	cursor:pointer;
+	text-decoration:none;float:left;padding-right:7px;cursor:pointer;
 }
 .signin a:hover, .signin ul li.signinSelect a{
 	background:url('/images/signinR.png') no-repeat right top;
@@ -111,16 +79,6 @@ body input, body textarea, body select{
 div.signin ul li.select a:hover{
 	color:#1fa6f3;
 }
-/*
-div.signin ul li.signinSelect a:hover, div.signin ul li.signinSelect a.signinFrist:hover span{
-	background-image:none;
-}
-/*
-div.signin ul li.signinSelect a:hover span{
-	background:url('/images/help.png') no-repeat left 4px;
-	color:#1fa6f3;
-}
-*/
 .forget a, .forget a:link, .forget a:visited{
 	color:#1fa6f3;
 	padding-left:5px;
@@ -133,7 +91,6 @@ div.signin ul li.signinSelect a:hover span{
 	padding-top:10px;
 }
 .log-user, .log-pass{
-/*	background:url('/images/bg-user.png') no-repeat;*/
 	width:165px;
 	height:24px;
 	display:inline-block;
@@ -188,15 +145,15 @@ div.signin ul li.signinSelect a:hover span{
 	float:left;	
 }
 .selectS{
-	padding-top:8px;
+	padding-top:7px;
 	*padding-top:6px;
 	padding-left:3px;
 }
 .selectS select{
-	border:0px!important;
 	color:#929383;
 	font-size:10px;
 	width:95px;
+	line-height:16px;	
 }
 .textS{
 	padding-top:2px;
@@ -682,10 +639,14 @@ h2.titleH2 a:hover{
 .recentImg{
 	float:left;
 	width:60px;
-	background:url('/images/bgi-col300.png') no-repeat;
 }
 .recentImg div{
 	padding:3px;	
+	background:url('/images/bgi-col300.png') no-repeat;
+}
+.recentImg a:hover div{
+	padding:3px;	
+	background:url('/images/bgi-col300H.png') no-repeat;
 }
 .recentInf{
 	float:right;
@@ -725,7 +686,6 @@ h2.titleH2 a:hover{
 }
 .dueDate .dueDTitle{
 	background:url('/images/icon-duedate.png') no-repeat;	
-
 }
 .intPro .dueDTitle{
 	background:url('/images/icon-intpro.png') no-repeat;
@@ -771,6 +731,9 @@ h2.titleH2 a:hover{
 	
 }
 /**** 451 Assignment ****/
+.assignment .asslinkdown{
+	width:80px;
+}
 .assDrop{
 	border-bottom:1px #dbdbdb solid;
 	padding-bottom:5px;
@@ -778,9 +741,7 @@ h2.titleH2 a:hover{
 .assDrop select{
 	width:135px;
 	font-size:11px;
-	border:1px #c9c9c9 solid!important;
 	color:#646464;
-	height:20px;
 }
 .assDrop span{
 	padding:0px 3px;
@@ -845,6 +806,9 @@ h2.titleH2 a:hover{
 	background:url('/images/bgi-col300.png') no-repeat;
 	padding:3px;
 }
+.assPic a:hover div{
+	background:url('/images/bgi-col300H.png') no-repeat;
+}
 .assPic img{
 	border:0px;
 	width:45px;
@@ -898,11 +862,11 @@ h2.titleH2 a:hover{
 	font-size:11px;
 	padding-top:2px;
 	float:right;
-	width:80px;
+	width:100px;
 }
 .assInfB .vie{
 	background:url('/images/icon-view.gif') no-repeat;
-	padding:0px 5px 0px 15px;
+	padding:0px 5px 0px 14px;
 	margin-left:5px;
 }
 .assInfB .fav{
@@ -921,13 +885,65 @@ h2.titleH2 a:hover{
 	background:url('/images/comment.png') no-repeat left 3px;
 	padding:0px 0px 0px 15px;
 }
+.asslinkdown .down{
+	background:url('/images/icon-down.gif') no-repeat left 1px;
+	padding:0px 0px 0px 15px;
+}
 .morelink a, .morelink a:link, .morelink a:visited,
-.comment a, .comment a:link, .comment a:visited{
+.comment a, .comment a:link, .comment a:visited,
+.down a, .down a:link, .down a:visited{
 	color:#969696;
 	text-decoration:none;
 }
-.morelink a:hover, .comment a:hover{
+.morelink a:hover, .comment a:hover, .down a:hover{
 	color:#d00;
+}
+.assPage{
+	float:left;
+	padding:10px 0px 10px 0px;
+	color:#6f6f63;
+	font-size:11px;
+}
+.currentPage{
+	padding:0px 6px;
+}
+.currentPage a{
+	margin:0px 1px;
+}
+.currentPage a span{
+	padding:0px 4px;
+}
+.currentPage a, .currentPage a:link, .currentPage a:visited{
+	color:#6f6f63;
+	text-decoration:none;
+}
+.currentPage a.selected, .currentPage a:hover{
+	height:14px;
+	background:url('/images/bgdivpageL.png') no-repeat left top;
+	color:#fff!important;
+	cursor:pointer;
+}
+.currentPage a.selected span, .currentPage a:hover span{
+	height:14px;
+	background:url('/images/bgdivpageR.png') no-repeat right top;
+	color:#fff!important;
+	cursor:pointer;
+}
+
+.numPage{
+	padding-right:15px;
+}
+.nextPage, .firstPage{
+	padding-right:6px;
+}
+.nextPage a, .nextPage a:link, .nextPage a:visited, .lastPage a, .lastPage a:link, .lastPage a:visited,
+.prevPage a, .prevPage a:link, .prevPage a:visited, .firstPage a, .firstPage a:link, .firstPage a:visited{
+	color:#6f6f63;
+	text-decoration:none;
+}
+.nextPage a:hover, .lastPage a:hover, .prevPage a:hover, .firstPage a:hover{
+	color:#d00;
+	text-decoration:none;
 }
 .goTop{
 	float:right;
@@ -954,11 +970,10 @@ h2.titleH2 a:hover{
 	float:left;
 	border:0px;
 	padding-top:4px;
-	padding-left:10px;
 }
 .AsDsearch{
 	float:right;
-	width:248px;
+	width:250px;
 	height:24px;
 	background:url('/images/AsD-bgS.png') no-repeat left top;
 }
@@ -1017,14 +1032,19 @@ h2.titleH2 a:hover{
 .AsDContImg{
 	float:left;
 	width:60px;
-	background:url('/images/bgi-col300.png') no-repeat;
 }
 .AsDContImg div{
 	padding:3px;	
+	background:url('/images/bgi-col300.png') no-repeat;
+}
+.AsDContImg a:hover div{
+	padding:3px;	
+	background:url('/images/bgi-col300H.png') no-repeat;
 }
 .AsDContImg img{
 	width:45px;
 	height:45px;
+	border:0px;
 }
 .AsDContR{
 	float:right;
@@ -1061,6 +1081,7 @@ h2.titleH2 a:hover{
 }
 .AsDContBtm{
 	clear:both;
+	margin-right:15px;
 	padding-bottom:5px;
 	padding-top:3px;
 	overflow:hidden;
@@ -1142,10 +1163,14 @@ span.btmDown a:hover{
 .yourProImg{
 	float:left;
 	width:60px;
-	background:url('/images/bgi-col300.png') no-repeat;
 }
 .yourProImg div{
 	padding:3px;	
+	background:url('/images/bgi-col300.png') no-repeat;
+}
+.yourProImg a:hover div{
+	padding:3px;	
+	background:url('/images/bgi-col300H.png') no-repeat;
 }
 .yourProImg img{
 	border:0px;
@@ -1191,14 +1216,10 @@ span.btmDown a:hover{
 .Request .col300Cont{
 	padding-top:5px;
 }
-.Request select{
-}
 .reqSe select{
 	width:280px;
 	color:#969696;
 	font-family:Arial;
-	height:20px;
-	border:1px #c9c9c9 solid;
 }
 .reqTi{
 	background:url('/images/bgInput280.png') no-repeat 0px 0px;
@@ -1328,8 +1349,6 @@ span.btmDown a:hover{
 .AsDcomLW select{
 	width:165px;
 	color:#323232;
-	border:1px #c9c9c9 solid;
-	height:20px;
 }
 
 .AsDcomItem{
@@ -1492,6 +1511,9 @@ span.btmDown a:hover{
 }
 /**************************************/
 /****** QAs ***********/
+.QAs .asslinkdown{
+	width:80px;
+}
 .QAsTopic .dueDTitle{
 	background:url('/images/icon-QAsTopic.png') no-repeat;
 	padding-left:24px;
@@ -1547,7 +1569,7 @@ span.btmDown a:hover{
 }
 .qashdU, .qashdD{
 	background:url('/images/bor-ad.png') no-repeat left top;
-	padding:0px 7px;
+	padding:0px 6px;
 }
 .qashdU a{
 	background:url('/images/icon-hdup.gif') no-repeat right center;
@@ -1567,7 +1589,21 @@ span.btmDown a:hover{
 	background:url('/images/icon-hddH.gif') no-repeat left center;
 	padding-left:17px;
 }
-
+.numAns{
+	background:url('/images/bgNumAns.png') no-repeat left top;
+	width:51px;
+	height:51px;
+	margin-left:17px;
+	text-align:center;
+}
+.numAnsA{
+	line-height:30px;
+	font-size:26px;
+	padding-top:5px;
+}
+.numAnsB{
+	font-size:10px;
+}
 /*** Qas detail **/
 .QasDetail .AsDContBtm span.btmAns a{
 	background:url('/images/btm119.png') no-repeat;
@@ -1654,8 +1690,6 @@ span.btmAbuse a:hover{
 }
 .postItem select{
 	width:253px;
-	height:20px;
-	border:1px #cecece solid;
 }
 .postItem textarea{
 	border:1px #cecece solid;
@@ -1707,15 +1741,12 @@ div.postInf{
 	background:url('/images/btm48.png') no-repeat;
 	text-align:center;
 	width:48px;
-	color:#fff;
+	color:#fff!important;
 	padding-left:0px;
 }
 
 /*****************************************/
 /********** Tutor **************/
-.Tutor .asslinkdown{
-	width:100px;
-}
 .assInfB .share a{
 	background:url('/images/icon-share.png') no-repeat;
 	padding-left:17px;
@@ -1731,8 +1762,8 @@ div.postInf{
 	color:#d00;
 }
 .moreTutor{
-	font-weight:bold;
 	text-align:right;
+	color:#1e1e1e;
 }
 .mySco{
 	font-style:italic;
@@ -1845,9 +1876,7 @@ div.postInf{
 .signUpCont .signinInp select{
 	width:252px;
 	font-size:11px;
-	border:1px #c9c9c9 solid!important;
 	color:#646464;
-	height:20px;
 }
 .signinTit{
 	width:70px;
@@ -1988,16 +2017,16 @@ span.btmBuy a:hover{
 	background:url('/images/handD.png') no-repeat right 0px;
 }
 .AsDContBtm .btmhand span.handU a{
-	background:url('/images/icon-hdup.gif') no-repeat 0px 7px;
-	padding-left:17px;
+	background:url('/images/icon-hdup.gif') no-repeat right 7px;
+	padding-right:17px;
 }
 .AsDContBtm .btmhand span.handD a{
 	background:url('/images/icon-hdd.gif') no-repeat right 7px;
 	padding-right:17px;
 }
 .AsDContBtm .btmhand span.handU a:hover{
-	background:url('/images/icon-hdupH.gif') no-repeat 0px 7px;
-	padding-left:17px;
+	background:url('/images/icon-hdupH.gif') no-repeat right 7px;
+	padding-right:17px;
 }
 .AsDContBtm .btmhand span.handD a:hover{
 	background:url('/images/icon-hddH.gif') no-repeat right 7px;
@@ -2005,4 +2034,331 @@ span.btmBuy a:hover{
 }
 .AsDContBtm .btmhand a:hover{
 	color:#d00;
+}
+/****************************************/
+/*************** Job *********************/
+.jobBad .dueDTitle{
+	background:url('/images/icon-jobBad.png') no-repeat;
+	padding-left:20px;
+}
+.jobGood .dueDTitle{
+	background:url('/images/icon-jobGood.png') no-repeat;
+	padding-left:20px;
+}
+.jobInfo .dueDTitle{
+	background:url('/images/icon-jobInfo.png') no-repeat;
+	padding-left:20px;
+}
+span.btmJobList a{
+	background:url('/images/btmJobList.png') no-repeat;
+	width:91px;
+}
+span.btmJobList a:hover{
+	background:url('/images/btmJobListH.png') no-repeat;
+}
+span.btmCom a{
+	background:url('/images/btmCom.png') no-repeat;
+	width:95px;
+}
+span.btmCom a:hover{
+	background:url('/images/btmComH.png') no-repeat;
+}
+.AsDContBtm span.btmApp a{
+	background:url('/images/btm71.png') no-repeat;
+	text-align:center;
+	width:71px;
+	color:#fff;
+	padding-left:0px;
+}
+.JobDetail .AsDContBtm{
+	border-bottom:0px;
+}
+.JobDetail .AsDcom{
+	padding-top:0px;
+}
+.jobCom{
+	overflow:hidden;
+	padding-bottom:3px;
+	margin-right:10px;
+	border-top:1px #e3e3e3 solid;
+}
+.jobCom .titleH1{
+	float:left;
+	padding-top:6px;
+}
+.jobComMenu{
+	float:right;
+	border:1px #e3e3e3 solid;
+	border-top:0px;
+	background-color:#f5f5f5;
+}
+.trans{
+	border-left:1px #e3e3e3 solid;
+	border-right:1px #e3e3e3 solid;	
+}
+.jobComMenu div{
+	float:left;
+	padding:7px 12px;
+}
+.jobComMenu a, .jobComMenu a:link, .jobComMenu a:visited{
+	color:#0a81c4;
+	font-weight:bold;
+	text-decoration:none;
+}
+.jobComMenu a:hover{
+	color:#d00;
+	text-decoration:none;
+}
+.wantJob h1.col300Title{
+	padding-left:28px;
+	line-height:22px;
+	background:url('/images/searchJob.png') no-repeat 0px 0px;
+}
+/**************************************************/
+/********************* Foods **********************/
+.topFood .dueDTitle{
+	background:url('/images/icon-topFood.png') no-repeat;	
+}
+.Foods .AsDTop{
+	margin:0px;
+}
+.Foods .assPic{
+	width:58px;
+}
+.cheap{
+	padding:0px 3px;
+	border-left:1px #cfd0ca solid;border-right:1px #cfd0ca solid;
+}
+.coupon a{
+	background:url('/images/icon-coupon.png') no-repeat;
+	padding-left:14px;
+}
+.Foods .qashdU{
+	background-image:none;
+	padding-left:0px;
+	padding-right:4px;
+}
+.Foods .qashdU a{
+	padding-right:15px;
+}
+.Foods .qashdD{
+	background-position:right top;
+	padding:0 4px;
+	margin-right:2px;
+}
+.Foods .qashdD a{
+	padding-left:15px;
+}
+.Foods .share{
+	padding-right:4px;
+}
+.Foods .share a{
+	padding-left:15px;
+}
+.Foods .fav{
+	padding-right:4px;
+	padding-left:15px;
+}
+.Foods h1.titleH1{
+	padding-bottom:0px;
+}
+/** poster **/
+.posterItem{
+	overflow:hidden;
+	padding:5px 0px;
+	_height:100%;
+}
+div.posterC{
+	margin:0px 10px;
+}
+.posterL, .posterC, .posterR{
+	float:left;
+	width:51px;
+}
+.posterL div, .posterC div, .posterR div{
+	padding:3px;	
+	background:url('/images/bgi-col300.png') no-repeat;
+}
+.posterL a:hover div, .posterC a:hover div, .posterR a:hover div{
+	padding:3px;	
+	background:url('/images/bgi-col300H.png') no-repeat;
+}
+
+.posterL img, .posterC img, .posterR img{
+	border:0px;
+	width:45px;
+	height:45px;
+}
+.Poster .dueDbutton{
+	padding-top:10px;
+}
+span.btmFoodList a{
+	background:url('/images/btmFoodList.png') no-repeat;
+	width:90px;
+}
+span.btmFoodList a:hover{
+	background:url('/images/btmFoodListH.png') no-repeat;
+}
+.requestFood h1.col300Title{
+	padding-left:30px;
+	line-height:22px;
+	background:url('/images/requestFood.png') no-repeat 0px 0px;
+}
+/********************************/
+/************** Party ***********/
+.clubBar .dueDTitle{
+	background:url('/images/icon-bar.png') no-repeat left 3px;	
+}
+.requestParty h1.col300Title{
+	padding-left:30px;
+	line-height:22px;
+	background:url('/images/icon-reParty.png') no-repeat 0px 0px;
+}
+.Party .AsDTop{
+	margin:0px;
+}
+.Party h1.titleH1{
+	padding-bottom:0px;
+}
+.Party .share{
+	padding-right:5px;
+}
+.Party .qashdU{
+	background-image:none;
+	padding-left:0px;
+}
+.Party .qashdD{
+	background-position:right top;
+	padding:0 5px;
+	margin-right:3px;
+}
+/************** MyX ***********/
+.MyX .share{
+	padding-right:5px;
+}
+.MyX h1.titleH1{
+	padding-bottom:0px;
+}
+.MyX .qashdU{
+	background-image:none;
+	padding-left:0px;
+}
+.MyX .qashdD{
+	background-position:right top;
+	padding:0 5px;
+	margin-right:3px;
+}
+.teacherItem{
+	padding:6px 0px 5px 0px;
+	border-bottom:1px #e4e4e4 solid;
+	overflow:hidden;
+	_height:100%;
+}
+.teacherInf{
+	float:left;
+}
+.teacherInf a, .teacherInf a:link, .teacherInf a:visited{
+	color:#0a81c4;
+	text-decoration:none;
+	font-size:12px;
+	font-weight:bold;
+}
+.teacherInf a:hover{
+	color:#d00;
+}
+.teacherInf .recentDes{
+	font-weight:bold;
+	padding-top:2px;
+}
+/************************** MyX *************************/
+.MyX .AsDTop{
+	margin:0px;
+}
+.myXcheck{
+	padding-bottom:10px;
+	padding-left:5px;
+}
+.myXcheck input{
+	margin-right:3px;
+}
+.requestMyX h1.col300Title{
+	padding-left:30px;
+	line-height:22px;
+	background:url('/images/icon-reMyX.png') no-repeat 0px 0px;
+}
+/************** Student *************************/
+.student .AsDTop{
+	margin:0px;
+}
+.student .com{
+	padding-right:5px;
+}
+.student .qashdU{
+	background-position:right top;
+	padding-left:0px;
+}
+.student .qashdD{
+	background-position:right top;
+}
+.studentItem{
+	padding:6px 0px 5px 0px;
+	border-bottom:1px #e4e4e4 solid;
+	overflow:hidden;
+	_height:100%;
+}
+.studentImg img{
+	border:0px;
+	width:26px;
+	height:26px;
+}
+.studentImg{
+	float:left;
+	width:35px;
+}
+.studentImg div{
+	padding:2px;	
+	background:url('/images/bgStudent.png') no-repeat;
+
+}
+.studentImg a:hover div{
+	background:url('/images/bgStudentH.png') no-repeat;
+}
+
+.studentInf{
+	float:right;
+	width:140px;
+}
+.studentInf a, .studentInf a:link, .studentInf a:visited{
+	color:#1e1e1e;
+	text-decoration:none;
+}
+.studentInf a:hover{
+	color:#d00;
+	text-decoration:none;
+}
+.support{
+	float:right;
+	padding-right:3px;
+	padding-bottom:5px;
+}
+.support a{
+	background:url('/images/support.png') no-repeat;
+	width:66px;
+	height:19px;
+	text-align:center;
+	display:block;
+	line-height:19px;
+}
+.support a, .support a:link, .support a:visited{
+	text-decoration:none;
+	color:#8c8c8c;	
+}
+.support a:hover{
+	text-decoration:none;
+	color:#fff;
+	background:url('/images/supportH.png') no-repeat;
+}
+.student .mySco{
+	clear:both;	
+	padding-top:0px;
 }

@@ -17,7 +17,7 @@
           </div>
           <!--info-link-box-->
 					<div class="assItemB">	
-						<div class="assPic"><div><%= link_to image_tag(post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div></div>
+						<div class="assPic"><%= link_to "<div>#{image_tag(post.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
 						<div class="assInfT">
 							<div class="assInfT">
 								<div class="assInfL">
