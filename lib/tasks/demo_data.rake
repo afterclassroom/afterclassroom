@@ -9,19 +9,20 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       departments_for_schools
-      create_demo_people
+      #create_demo_people
       # Posts
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_post_books
-      create_demo_post_tutors
-      create_demo_post_jobs
-      create_demo_post_educations
-      create_demo_post_housings
-      create_demo_post_parties
+      #create_demo_posts_assignments
+      #create_demo_posts_tests
+      #create_demo_posts_projects
+      #create_demo_posts_exams
+      #create_demo_posts_myx
+      #create_demo_post_books
+      #create_demo_post_tutors
+      #create_demo_post_jobs
+      #create_demo_post_educations
+      #create_demo_post_housings
+      #create_demo_post_parties
+      create_demo_posts_teamups
     end
     
     desc 'Remove demo data'
@@ -433,6 +434,42 @@ def create_demo_post_parties
       
   end #END LOOP
 end #END METHOD
+
+def create_demo_posts_teamups
+  post_category = PostCategory.find_by_name("Team Up")
+  opportunity = ["opportunity 1","opportunity 2","opportunity 3"]
+  position = ["position 1","position 2","position 3"]
+  expectedTime = ["expectedTime 1","expectedTime 2","expectedTime 3"]
+  compensation = ["compensation A","compensation B","compensation C"]
+  10.times do
+    user = User.find(rand(User.count) + 1)
+    school = School.find(rand(School.count) + 1)
+    schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
+    end
+    
+    pteam = PostTeamup.create do |pt|
+    	pt.post = post
+    	pt.teamup_category_id = TeamupCategory.find(rand(TeamupCategory.count)+1)
+    	pt.opportunity_type = opportunity[rand(opportunity.size)]
+    	pt.position_title = position[rand(position.size)]
+    	pt.expected_time_commit = expectedTime[rand(expectedTime.size)]
+    	pt.functional_experience_id = rand(10)+1
+    	pt.compensation_offered = compensation[rand(compensation.size)]
+    end
+    
+  end
+end
 
 def uploaded_file(filename, content_type)
   f = File.new(File.join(RAILS_ROOT, filename))
