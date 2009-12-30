@@ -24,7 +24,8 @@ namespace :db do
       #create_demo_post_parties
       #create_demo_posts_teamups
       #create_demo_posts_awarenesses
-      create_demo_posts_foods
+      #create_demo_posts_foods
+      create_demo_posts_qas
     end
     
     desc 'Remove demo data'
@@ -106,9 +107,9 @@ def create_demo_posts_assignments
     end
     
     post_asm = PostAssignment.create do |pa|
-    	pa.post = post
+      pa.post = post
       pa.professor = Faker::Name.name
-    	pa.due_date = DateTime.now + rand(20)
+      pa.due_date = DateTime.now + rand(20)
     end
     
   end
@@ -543,6 +544,44 @@ def create_demo_posts_foods
   end
 end
 
+def create_demo_posts_qas
+  post_category = PostCategory.find_by_name("QAs")
+  
+  #Create fake data for post_qa_categories table
+  qaCategory = ["Cat QA 1","Cat QA 2","Cat QA 3","Cat QA 4","Cat QA 5"]
+  (0..5).each do |i|
+  	pc = PostQaCategory.create do |p|
+  		p.name = qaCategory[i]
+  	end
+  end
+  
+  10.times do
+    user = User.find(rand(User.count) + 1)
+    school = School.find(rand(School.count) + 1)
+    schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
+    
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
+    end
+    
+    qaCat = PostQaCategory.find(rand(PostQaCategory.count) + 1)
+    
+    post_qa = PostQa.create do |p|
+      p.post = post
+      p.post_qa_category = qaCat
+    end
+    
+  end
+end
 def uploaded_file(filename, content_type)
   f = File.new(File.join(RAILS_ROOT, filename))
   return f

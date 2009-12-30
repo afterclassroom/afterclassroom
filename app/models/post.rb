@@ -24,6 +24,7 @@ class Post < ActiveRecord::Base
   has_one :post_housing, :dependent => :destroy
   has_one :post_teamup, :dependent => :destroy
   has_many :favorites, :dependent => :destroy
+  has_one :post_qa, :dependent => :destroy
 
   # Attach file
   has_attached_file :attach
