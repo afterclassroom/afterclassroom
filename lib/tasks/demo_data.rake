@@ -107,6 +107,7 @@ def create_demo_posts_assignments
     
     post_asm = PostAssignment.create do |pa|
     	pa.post = post
+      pa.professor = Faker::Name.name
     	pa.due_date = DateTime.now + rand(20)
     end
     

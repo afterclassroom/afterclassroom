@@ -7,8 +7,8 @@ class PostAssignmentsController < ApplicationController
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index]
-  # GET /post_books
-  # GET /post_books.xml
+  # GET /post_assignments
+  # GET /post_assignments.xml
   def index
     @list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
     @list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months", "180"], ["Over 9 months", "270"], ["Over 1 year", "365"]]
@@ -28,18 +28,18 @@ class PostAssignmentsController < ApplicationController
     end
   end
 
-  # GET /post_books/1
-  # GET /post_books/1.xml
+  # GET /post_assignments/1
+  # GET /post_assignments/1.xml
   def show
-    @post_book = PostBook.find(params[:id])
-    @post = @post_book.post
+    @post_assignment = PostAssignment.find(params[:id])
+    @post = @post_assignment.post
     @post_category_id = @post.post_category_id
     @type_name = @post.post_category.name
     @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_book.post)
+    update_views(@post_assignment.post)
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_book }
+      format.xml  { render :xml => @post_assignment }
     end
   end
 
@@ -49,12 +49,12 @@ class PostAssignmentsController < ApplicationController
     render :layout => false
   end
 
-  # GET /post_books/new
-  # GET /post_books/new.xml
+  # GET /post_assignments/new
+  # GET /post_assignments/new.xml
   def new
-    @post_book = PostBook.new
+    @post_assignment = PostBook.new
     post = Post.new
-    @post_book.post = post
+    @post_assignment.post = post
     @post_categories = PostCategory.find(:all)
     @post_category_name = "Books"
     @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
@@ -63,51 +63,51 @@ class PostAssignmentsController < ApplicationController
     @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @post_book }
+      format.xml  { render :xml => @post_assignment }
     end
   end
 
-  # GET /post_books/1/edit
+  # GET /post_assignments/1/edit
   def edit
-    @post_book = PostBook.find(params[:id])
-    @post = @post_book.post
+    @post_assignment = PostBook.find(params[:id])
+    @post = @post_assignment.post
     @post_categories = PostCategory.find(:all)
     @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
     @currency = ['USD', 'CAD']
     @shipping_methods = ShippingMethod.find(:all)
     @countries = Country.has_cities
-    @school = @post_book.post.school
-    @department = @post_book.post.department
+    @school = @post_assignment.post.school
+    @department = @post_assignment.post.department
   end
 
-  # POST /post_books
-  # POST /post_books.xml
+  # POST /post_assignments
+  # POST /post_assignments.xml
   def create
-    @post_book = PostBook.new(params[:post_book])
+    @post_assignment = PostBook.new(params[:post_assignment])
     post = Post.new(params[:post])
     post.user = current_user
     post.save
-    @post_book.post = post
-    if @post_book.save
+    @post_assignment.post = post
+    if @post_assignment.save
       redirect_to my_post_user_url(current_user)
     end
   end
 
-  # PUT /post_books/1
-  # PUT /post_books/1.xml
+  # PUT /post_assignments/1
+  # PUT /post_assignments/1.xml
   def update
-    @post_book = PostBook.find(params[:id])
+    @post_assignment = PostBook.find(params[:id])
 
-    if (@post_book.update_attributes(params[:post_book]) && @post_book.post.update_attributes(params[:post]))
+    if (@post_assignment.update_attributes(params[:post_assignment]) && @post_assignment.post.update_attributes(params[:post]))
       redirect_to my_post_user_url(current_user)
     end
   end
 
-  # DELETE /post_books/1
-  # DELETE /post_books/1.xml
+  # DELETE /post_assignments/1
+  # DELETE /post_assignments/1.xml
   def destroy
-    @post_book = PostBook.find(params[:id])
-    @post_book.destroy
+    @post_assignment = PostBook.find(params[:id])
+    @post_assignment.destroy
 
     redirect_to my_post_user_url(current_user)
   end
