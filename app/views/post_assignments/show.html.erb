@@ -25,7 +25,7 @@
 				<div class="AsDContLin">in<span><%= link_to @type_name, post_assignments_path %></span></div>
 				<div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
 				<div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
-				<div class="AsDContLinf"><span>Professor:</span>McCain</div>
+				<div class="AsDContLinf"><span>Professor:</span><%= @post_assignment.professor %></div>
 				<div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
 				<div class="AsDContLinf"><span>Due date:</span><%= @post_assignment.due_date.strftime("%B %d, %Y") %></div>
 			</div>
