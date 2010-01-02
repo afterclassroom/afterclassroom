@@ -12,20 +12,20 @@ namespace :db do
       create_demo_people
       # Posts
 
-      #create_demo_posts_assignments
-      #create_demo_posts_tests
-      #create_demo_posts_projects
-      #create_demo_posts_exams
-      #create_demo_posts_myx
-      #create_demo_post_books
-      #create_demo_post_tutors
-      #create_demo_post_jobs
-      #create_demo_post_educations
-      #create_demo_post_housings
-      #create_demo_post_parties
-      #create_demo_posts_teamups
-      #create_demo_posts_awarenesses
-      #create_demo_posts_foods
+      create_demo_posts_assignments
+      create_demo_posts_tests
+      create_demo_posts_projects
+      create_demo_posts_exams
+      create_demo_posts_myx
+      create_demo_post_books
+      create_demo_post_tutors
+      create_demo_post_jobs
+      create_demo_post_educations
+      create_demo_post_housings
+      create_demo_post_parties
+      create_demo_posts_teamups
+      create_demo_posts_awarenesses
+      create_demo_posts_foods
       create_demo_posts_qas
 
     end
@@ -548,14 +548,6 @@ end
 
 def create_demo_posts_qas
   post_category = PostCategory.find_by_name("QAs")
-  
-  #Create fake data for post_qa_categories table
-  qaCategory = ["Cat QA 1","Cat QA 2","Cat QA 3","Cat QA 4","Cat QA 5"]
-  (0..5).each do |i|
-  	pc = PostQaCategory.create do |p|
-  		p.name = qaCategory[i]
-  	end
-  end
   
   10.times do
     user = User.find(rand(User.count) + 1)
