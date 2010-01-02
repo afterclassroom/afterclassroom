@@ -11,22 +11,7 @@ namespace :db do
       departments_for_schools
       create_demo_people
       # Posts
-<<<<<<< HEAD:lib/tasks/demo_data.rake
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_post_books
-      create_demo_post_tutors
-      create_demo_post_jobs
-      create_demo_post_educations
-      create_demo_post_housings
-      create_demo_post_parties
-      create_demo_posts_teamups
-      create_demo_posts_awarenesses
-      create_demo_posts_foods
-=======
+
       #create_demo_posts_assignments
       #create_demo_posts_tests
       #create_demo_posts_projects
@@ -42,7 +27,7 @@ namespace :db do
       #create_demo_posts_awarenesses
       #create_demo_posts_foods
       create_demo_posts_qas
->>>>>>> 974bbca3fd0a16f287e0eda6e8365e1dd00ccb80:lib/tasks/demo_data.rake
+
     end
     
     desc 'Remove demo data'
