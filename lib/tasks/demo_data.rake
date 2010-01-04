@@ -8,25 +8,25 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      departments_for_schools
-      create_demo_people
+      #departments_for_schools
+      #create_demo_people
       # Posts
 
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
+      #create_demo_posts_assignments
+      #create_demo_posts_tests
+      #create_demo_posts_projects
+      #create_demo_posts_exams
       create_demo_posts_myx
-      create_demo_post_books
-      create_demo_post_tutors
-      create_demo_post_jobs
-      create_demo_post_educations
-      create_demo_post_housings
-      create_demo_post_parties
-      create_demo_posts_teamups
-      create_demo_posts_awarenesses
-      create_demo_posts_foods
-      create_demo_posts_qas
+      #create_demo_post_books
+      #create_demo_post_tutors
+      #create_demo_post_jobs
+      #create_demo_post_educations
+      #create_demo_post_housings
+      #create_demo_post_parties
+      #create_demo_posts_teamups
+      #create_demo_posts_awarenesses
+      #create_demo_posts_foods
+      #create_demo_posts_qas
 
     end
     
@@ -190,6 +190,7 @@ end
 def create_demo_posts_myx
   post_category = PostCategory.find_by_name("MyX")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
+  prof_status = ["Best of the best", "Good", "Not bad", "Bad"]
   20.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
@@ -204,8 +205,13 @@ def create_demo_posts_myx
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
       p.school_year = schoolyear[rand(schoolyear.size)]
+    end #END OBJECT INSTANTIATION
+    post_asm = PostMyx.create do |px|
+      px.post = post
+      px.professor = Faker::Name.name
+      px.prof_status = prof_status[rand(prof_status.size)]
     end
-  end
+  end #END LOOP
 end
 
 def create_demo_post_books
