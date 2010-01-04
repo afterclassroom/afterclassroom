@@ -16,10 +16,10 @@ class PostAssignmentsController < ApplicationController
     @over = params[:over] if params[:over] 
     if params[:more_like_this_id]
       post = Post.find_by_id(params[:more_like_this_id])
-      @posts = PostAssignment.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
+      @posts = PostAssignment.paginated_post_more_like_this(post)
     else
       school = session[:your_school]
-      @posts = PostAssignment.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
+      @posts = PostAssignment.paginated_post_conditions_with_search(params, school)
     end
 
     respond_to do |format|
@@ -118,12 +118,12 @@ class PostAssignmentsController < ApplicationController
 
   private
 
-def params_search_post
+  def params_search_post
     @query = params[:search][:query] if params[:search] 
     @type = PostCategory.find_by_name("Assignments").id
     @search_post_path = post_assignments_path
     @new_post_path = new_post_assignment_path
-end
+  end
   
   def require_current_user
     @user ||= PostAssignment.find(params[:id]).post.user

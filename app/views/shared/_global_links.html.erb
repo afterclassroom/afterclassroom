@@ -1,16 +1,15 @@
 <% if logged_in? %>
   <ul>
-
- 	<li><strong><%= link_to current_user.full_name, dashboard_user_path(current_user) %></strong></li>
- 	<li>|</li>
-	<li><%= link_to "Help", "#" %></li>
-	<li>|</li>
-	<li><%= link_to "Sign out", logout_url, :method => :delete %></li>
-	</ul>
+    <li><strong><%= link_to current_user.full_name, dashboard_user_path(current_user) %></strong></li>
+    <li>|</li>
+    <li><%= link_to "Help", "#" %></li>
+    <li>|</li>
+    <li><%= link_to "Sign out", logout_url, :method => :delete %></li>
+  </ul>
 <% else %>
   <ul>
-	<li><%= link_to "Sign up", signup_url %> </li><li>|</li>
+    <li><%= link_to "Sign up", signup_url %> </li><li>|</li>
     <li><%= link_to "Help", "#" %></li> <li>|</li>
-	<li><%= link_to "Sign in", login_url %></li>
-	</ul>
+    <li><%= link_to "Sign in", login_url %></li>
+  </ul>
 <% end %>

@@ -26,9 +26,9 @@ class PostAssignment < ActiveRecord::Base
     end
     
     if query
-      Post.find_with_ferret(query, :conditions => cond.to_sql(), :order => "created_at DESC")
+      Post.find_with_ferret(query, {:page => params[:page], :per_page => 10, :lazy => true}, {:conditions => ["post_category_id = ?", type], :order => "created_at DESC"})
     else
-      Post.find(:all, :conditions => cond.to_sql(), :order => "created_at DESC")
+      Post.find(:all, :conditions => cond.to_sql(), :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     end
   end
 
@@ -37,7 +37,8 @@ class PostAssignment < ActiveRecord::Base
     cond = Caboose::EZ::Condition.new :posts do
       post_category_id == type if type
       department_id == post.department_id
+      school_year == post.school_year
     end
-    Post.find :all, :conditions => cond.to_sql(), :order => "created_at DESC"
+    Post.find(:all, :conditions => cond.to_sql(), :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
   end
 end

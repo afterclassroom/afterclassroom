@@ -56,35 +56,6 @@
 <%= will_paginate @posts, :class => "digg_pagination" %>
 
 <script language="javascript">
-  document.observe('dom:loaded', function() {
-    $$('span[rel]').each(function(element) {
-      show_detail_path = '/post_awarenesses/show_dialog?id=' + element.readAttribute("rel");
-      new Tip(element, {
-        ajax: {
-          url: show_detail_path,
-          options: {
-            asynchronous:true,
-            evalScripts:true,
-            method: 'get'
-          }
-        },
-        fixed: true,
-        viewport: true,
-        width: 'auto',
-        title: 'Detail',
-        showOn: 'click',
-        hideOthers: true,
-        hideOn: { element: 'closeButton', event: 'click'},
-        hook: { target: 'bottomLeft', tip: 'topLeft' },
-        offset: {x:-10, y:5} });
-      element.observe('prototip:shown', function() {
-        //
-      });
-      element.observe('prototip:hidden', function() {
-        $('show_send_message_' + element.getAttribute("rel")).prototip.hide();
-      });
-    });
-  });
 <% if current_user %>
     var send_email_path = "/messages/send_message";
     var user_id = "<%= current_user.id %>";

@@ -43,10 +43,11 @@ class Post < ActiveRecord::Base
   
   # Ferret
   acts_as_ferret :fields => {
-                                        :title => {:strore => :yes}, 
-                                        :description => {:strore => :yes}
-                                      }
-
+    :post_category_id => {:strore => :no, :index => :untokenized},
+    :title => {:strore => :yes},
+    :description => {:strore => :yes}
+  }, :remote => true
+  
   # Named scopes
   named_scope :has_educations, :conditions => "id IN (Select post_id From post_educations)", :order => "created_at DESC"
   named_scope :has_tutors, :conditions => "id IN (Select post_id From post_tutors)", :order => "created_at DESC"

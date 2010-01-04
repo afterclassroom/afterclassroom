@@ -1,41 +1,65 @@
-<% content_for :sidebar do -%>
-  <% form_tag session_path, :name => "form", :id => "form" do -%>
-    <span class="dred_box">WELCOME BACK</span>
-    <% if flash[:notice] %>
-      <div id="notice"><%= flash[:notice] %></div>
-    <% end %>
-
-    <% if flash[:warning] %>
-      <div id="warning"><%= flash[:warning] %></div>
-    <% end %>
-
-    <% if flash[:error] %>
-      <div id="error"><%= flash[:error] %></div>
-    <% end %>
-    <div class="signup-form">
-      <label>Username</label><%= text_field_tag 'login' %><br />
-      <label>Password</label><%= password_field_tag 'password' %>
-      <div class="bt-signin">
-        <!-- button -->
-        <a href="#" onclick="document.form.submit()" class="link_bt">
-          <span class="ltred_l"></span>
-          <span class="ltred_c btf">Sign In</span>
-          <span class="ltred_r"></span>
-        </a>
-        <!-- endbutton -->
-      </div>
-      <ul class="login-sup w3">
-        <li><%= link_to "Forgot Username", user_forgot_login_url %></li>
-        <li>|</li>
-        <li><%= link_to "Forgot Password", user_forgot_password_url %></li>
-        <li>|</li>
-        <li><a href="#" title="Help">Help</a></li>
-      </ul>
-    </div>
-    <span class="dred_box signup-sug">No Account? <%= link_to "Sign up for an AfterClassroom Account!", signup_url %></span>
-  <% end -%>
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Signin", login_url, :class => "abLink-detail" %>
 <% end -%>
 
 <!--Content-->
-<%= render :partial => "signin_introduction" %>
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="AsDTop">
+      <h1 class="titleH1">Sign In</h1>
+    </div>
+    <div class="signinCont">
+      <%= render :partial => "shared/alert" %>
+      <div class="postReq">*(asterisk) is required.</div>
+      <% form_tag session_path, :name => "form", :id => "form" do -%>
+        <div class="signinItem">
+          <div class="signinTit">Username*</div>
+          <div class="signinInp"><%= text_field_tag 'login', '', :class => 'required' %></div>
+        </div>
+        <div class="signinItem">
+          <div class="signinTit">Password*</div>
+          <div class="signinInp"><%= password_field_tag 'password', '', :class => 'required' %></div>
+        </div>
+        <div class="signincCheck">
+          <div><%= check_box_tag('remember_me') %> </div>
+          <div class="signincCheckTxt">Remember me for next login</div>
+        </div>
+        <div class="btmLogme"><a href="javascript:void();" onclick="submit()">Log me in</a></div>
+        <div class="forgotPass"><span><%= link_to "Forgot Username", user_forgot_login_url %> or <%= link_to "Forgot Password", user_forgot_password_url %></span></div>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<div class="contMainR">
+  <%= render :partial => "welcome" %>
+
+  <div class="advert">
+    <div class="advertTitle">Advertisement</div>
+    <div class="Dani">DaniWeb - IT Discussion Community</div>
+    <div class="advertImg"><img src="pictures/pic6.png"/></div>
+    <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+    <div class="advertInf">
+      <div class="advertInfL">
+        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+      </div>
+      <div class="advertInfR">
+        <span class="pre"><a href="#"> </a></span>
+        <span class="next"><a href="#"> </a></span></div>
+    </div>
+  </div>
+
+  <%= render :partial => "benefit" %>
+
+</div>
 <!--Content-->
+
+<script type="text/javascript">
+  var valid = new Validation('form', {immediate : true, onSubmit:false});
+  function submit(){
+    var result = valid.validate();
+    if (result) {
+      $('form').submit();
+    }
+  }
+</script>
