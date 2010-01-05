@@ -83,6 +83,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :post_assignments, :collection => {
     :show_dialog => :get
   }
+  map.resources :post_myxes, :collection => {
+    :show_dialog => :get
+  }
   map.resources :post_projects, :collection => {
     :show_dialog => :get
   }
