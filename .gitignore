@@ -1,4 +1,6 @@
-tmp/*
-log/*
+db/schema.rb
+test/*
+log
+tmp
+public/avatars
 index/*
-public/avatars/*

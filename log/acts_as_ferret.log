@@ -16834,3 +16834,6 @@ E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/activesupport/lib/a
 E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/railties/lib/commands/server.rb:39
 script/server:3:in `require'
 script/server:3
+Will use remote index server which should be available at druby://localhost:9010
+Will use remote index server which should be available at druby://localhost:9010
+Will use remote index server which should be available at druby://localhost:9010

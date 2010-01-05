@@ -42,12 +42,12 @@ class Post < ActiveRecord::Base
   # Tracker
   acts_as_activity :user
   
-  # Ferret
-  acts_as_ferret :fields => {
-    :post_category_id => {:strore => :no, :index => :untokenized},
-    :title => {:strore => :yes},
-    :description => {:strore => :yes}
-  }, :remote => true
+  # ThinkSphinx
+  define_index do
+    indexes title, :sortable => true
+    indexes description
+    has post_category_id, school_id
+  end
   
   # Named scopes
   named_scope :has_educations, :conditions => "id IN (Select post_id From post_educations)", :order => "created_at DESC"
@@ -59,30 +59,41 @@ class Post < ActiveRecord::Base
   named_scope :has_housings, :conditions => "id IN (Select post_id From post_housings)", :order => "created_at DESC"
   named_scope :has_teamups, :conditions => "id IN (Select post_id From post_teamups)", :order => "created_at DESC"
 
-  def self.paginated_post_conditions_with_search(params, school)
+  def self.paginated_post_conditions_with_search(params, school, type)
     if params[:search]
       query = params[:search][:query]
-      type = params[:search][:type]
+     
+      if school
+        Post.search(query, :with => {:post_category_id => type, :school_id => school.id}, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+      else
+        Post.search(query, :with => {:post_category_id => type}, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+      end
     end
-    
+  end
+
+  def self.paginated_post_conditions_with_option(params, school, type)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
+
     cond = Caboose::EZ::Condition.new :posts do
       post_category_id == type if type
       school_id == school.id if school
+      school_year == year if year
+      department_id == department if department
+      created_at > Time.now - over.day
     end
-    
-    if query
-      Post.find_with_ferret(query, :conditions => cond.to_sql(), :order => "created_at DESC")
-    else
-      Post.find(:all, :conditions => cond.to_sql(), :order => "created_at DESC")
-    end
+
+    Post.find(:all, :conditions => cond.to_sql(), :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
   end
 
   def self.paginated_post_more_like_this(post)
     cond = Caboose::EZ::Condition.new :posts do
       type_name == post.type_name
       department_id == post.department_id
+      school_year == post.school_year
     end
-    Post.find :all, :conditions => cond.to_sql(), :order => "created_at DESC"
+    Post.find(:all, :conditions => cond.to_sql(), :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
   end
   
 end
