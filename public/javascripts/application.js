@@ -34,46 +34,46 @@ function $RF(el, radioGroup) {
     switch(post_type)
     {
       case "Assignments":
-        action = "/post_assignments";
+        action = "/post_assignments/search";
         break;
       case "Tests":
-        action = "/post_tests";
+        action = "/post_tests/search";
         break;
       case "Projects":
-        action = "/post_projects";
+        action = "/post_projects/search";
         break;
       case "Exams":
-        action = "/post_exams";
+        action = "/post_exams/search";
         break;
       case "QAs":
-        action = "/post_qas";
+        action = "/post_qas/search";
         break;
       case "Education":
-        action = "/post_educations";
+        action = "/post_educations/search";
         break;
       case "Tutors":
-        action = "/post_tutors";
+        action = "/post_tutors/search";
         break;
       case "Books":
-        action = "/post_books";
+        action = "/post_books/search";
         break;
       case "Jobs":
-        action = "/post_jobs";
+        action = "/post_jobs/search";
         break;
       case "Party":
-        action = "/post_parties";
+        action = "/post_parties/search";
         break;
       case "Student Awareness":
-        action = "/post_awarenesses";
+        action = "/post_awarenesses/search";
         break;
       case "Housing":
-        action = "/post_housings";
+        action = "/post_housings/search";
         break;
       case "Team Up":
-        action = "/post_teamups";
+        action = "/post_teamups/search";
         break;
       case "MyX":
-        action = "/post_myxs";
+        action = "/post_myxes/search";
         break;
       case "Foods":
         action = "/post_foods";

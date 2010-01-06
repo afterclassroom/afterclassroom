@@ -81,7 +81,7 @@ ActionController::Routing::Routes.draw do |map|
     :download => :get
   }
   map.resources :post_assignments, :collection => {
-    :show_dialog => :get
+    :search => :get, :due_date => :get
   }
   map.resources :post_myxes, :collection => {
     :show_dialog => :get
