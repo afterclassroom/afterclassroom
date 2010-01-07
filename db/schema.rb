@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100104125952) do
+ActiveRecord::Schema.define(:version => 20100107132317) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -245,8 +245,8 @@ ActiveRecord::Schema.define(:version => 20100104125952) do
   end
 
   create_table "post_exams", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "post_id"
+    t.datetime "due_date"
   end
 
   create_table "post_foods", :force => true do |t|
@@ -328,6 +328,11 @@ ActiveRecord::Schema.define(:version => 20100104125952) do
     t.string  "expected_time_commit"
     t.integer "functional_experience_id"
     t.string  "compensation_offered"
+  end
+
+  create_table "post_tests", :force => true do |t|
+    t.integer  "post_id"
+    t.datetime "due_date"
   end
 
   create_table "post_tutors", :force => true do |t|

@@ -8,25 +8,25 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      #departments_for_schools
-      #create_demo_people
-      # Posts
+      departments_for_schools
+      create_demo_people
 
-      #create_demo_posts_assignments
-      #create_demo_posts_tests
-      #create_demo_posts_projects
-      #create_demo_posts_exams
+      # Begin creating Posts data
+      create_demo_posts_assignments
+      create_demo_posts_tests
+      create_demo_posts_projects
+      create_demo_posts_exams
       create_demo_posts_myx
-      #create_demo_post_books
-      #create_demo_post_tutors
-      #create_demo_post_jobs
-      #create_demo_post_educations
-      #create_demo_post_housings
-      #create_demo_post_parties
-      #create_demo_posts_teamups
-      #create_demo_posts_awarenesses
-      #create_demo_posts_foods
-      #create_demo_posts_qas
+      create_demo_post_books
+      create_demo_post_tutors
+      create_demo_post_jobs
+      create_demo_post_educations
+      create_demo_post_housings
+      create_demo_post_parties
+      create_demo_posts_teamups
+      create_demo_posts_awarenesses
+      create_demo_posts_foods
+      create_demo_posts_qas
 
     end
     
@@ -135,7 +135,13 @@ def create_demo_posts_tests
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
       p.school_year = schoolyear[rand(schoolyear.size)]
+    end#END CREATE OBJECT
+    
+    post_asm = PostTest.create do |pt|
+      pt.post = post
+      pt.due_date = DateTime.now + rand(20)
     end
+    
   end
 end
 
@@ -183,7 +189,13 @@ def create_demo_posts_exams
       p.telephone = Faker::PhoneNumber.phone_number
       p.type_name = post_category.name
       p.school_year = schoolyear[rand(schoolyear.size)]
+    end#END OBJECT CREATION
+
+    post_asm = PostExam.create do |pe|
+      pe.post = post
+      pe.due_date = DateTime.now + rand(20)
     end
+
   end
 end
 

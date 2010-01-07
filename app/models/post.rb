@@ -14,6 +14,8 @@ class Post < ActiveRecord::Base
   belongs_to :department
   belongs_to :post_category
   has_one :post_assignment, :dependent => :destroy
+  has_one :post_test, :dependent => :destroy
+  has_one :post_exam, :dependent => :destroy
   has_one :post_myx, :dependent => :destroy
   has_one :post_project, :dependent => :destroy
   has_one :post_education, :dependent => :destroy
