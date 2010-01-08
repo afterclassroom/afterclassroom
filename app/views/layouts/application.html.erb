@@ -1,50 +1,56 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>:: <%= configatron.site_name %> ::</title>
-  <%= stylesheet_link_merged :application %>
-  <%= javascript_include_merged :application %>
-	
-  <!--Ajax rating-->
-  <%= ajaxful_rating_style %>
-  <!--Ajax rating-->
-  <!--Date select-->
-  <%= dhtml_calendar_includes %>
-  <!--Date select-->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>:: <%= configatron.site_name %> ::</title>
+    <%= stylesheet_link_merged :application %>
+    <%= javascript_include_merged :application %>
 
-</head>
-<body>
-<div class="top">
-	<div class="banner">
-		<div class="logo"><a href="/"><img alt="classroom" src="/images/logo.png" /></a></div>
-		<%= render :partial => 'shared/login' %>
-	</div>
-</div>
-<div class="menu">
-	<div class="menusearch">
-    <%= render :partial => 'shared/menu_main' %>
-    <%= render :partial => 'shared/search_posts', :locals => {:search_post_path => @search_post_path, :type => @type, :query => @query} %>
-	</div>
-</div>
-<div class="abLink">
-	<div class="abLinkL">
-    <%= yield_or_default(yield(:you_are_here)) %>
-  </div>
-	<div class="menuRR">
-		<%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
-	</div>
-</div>
-<div class="sponsor">
-	<div class="sponsorLink">
-		<div class="menuRL">
-			<%= yield_or_default(yield(:menu_sub)) %>
-		</div>
-	</div>
-</div>
-<div class="contMain">
-  <%= yield %>
-</div>
-<%= render :partial => 'shared/footer' %>
-</body>
+    <!--Ajax rating-->
+    <%= ajaxful_rating_style %>
+    <!--Ajax rating-->
+    <!--Date select-->
+    <%= dhtml_calendar_includes %>
+    <!--Date select-->
+
+  </head>
+  <body>
+    <div class="top">
+      <div class="banner">
+        <div class="logo"><a href="/"><img alt="classroom" src="/images/logo.png" /></a></div>
+        <%= render :partial => 'shared/login' %>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="menusearch">
+        <%= render :partial => 'shared/menu_main' %>
+        <%= render :partial => 'shared/search_posts', :locals => {:search_post_path => @search_post_path, :type => @type, :query => @query} %>
+      </div>
+    </div>
+    <div class="abLink">
+      <div class="abLinkL">
+        <%= yield_or_default(yield(:you_are_here)) %>
+      </div>
+      <div class="menuRR">
+        <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+      </div>
+    </div>
+    <div class="sponsor">
+      <div class="sponsorLink">
+        <div class="menuRL">
+          <%= yield_or_default(yield(:menu_sub)) %>
+        </div>
+      </div>
+    </div>
+    <div class="contMain">
+      <%= yield %>
+    </div>
+    <%= render :partial => 'shared/footer' %>
+    <!--Debugs-->
+    <% if RAILS_ENV == 'development' %>
+      <center><button onclick="show_debug_popup(); return false;">Show debug popup</button></center>
+      <%= debug_popup %>
+    <% end %>
+    <!--Debugs-->
+  </body>
 </html>

@@ -7,6 +7,7 @@ javascripts:
   - controls
   - application
   - validation
+  - redbox
 - student_louge:
   - prototype
   - effects
@@ -40,6 +41,8 @@ stylesheets:
   - main
   - pagination
   - validation
+  - sexy_flash
+  - redbox
 - student_louge:
   - reset
   - layout
