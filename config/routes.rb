@@ -89,6 +89,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :post_projects, :collection => {
     :search => :get, :due_date => :get
   }
+  map.resources :post_tests, :collection => {
+    :search => :get, :due_date => :get
+  }
   map.resources :post_exams, :collection => {
     :show_dialog => :get
   }
