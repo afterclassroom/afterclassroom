@@ -1,4 +1,3 @@
-
 var RedBox = {
 
   showInline: function(id)
@@ -17,15 +16,14 @@ var RedBox = {
 
   addHiddenContent: function(id)
   {
-    this.removeChildrenFromNode($('RB_window'));
-    this.moveChildren($(id), $('RB_window'));
-    this.activateRBWindow();
-  },
-  
-  activateRBWindow: function()
-  {
-    Element.hide('RB_loading');
-    this.setWindowPositions();
+    if (!$('RB_loading')) {
+      setTimeout("RedBox.addHiddenContent('" + id + "')",500);
+    } else {
+      this.removeChildrenFromNode($('RB_window'));
+      this.moveChildren($(id), $('RB_window'));
+      this.activateRBWindow();
+      loading_done = false;
+    }
   },
 
   close: function()
@@ -82,8 +80,8 @@ var RedBox = {
 		
 		var boxTop = arrayPageScroll[1] + (arrayPageSize[3] / 10);
 		var boxLeft = arrayPageScroll[0];
-		Element.setTop(window_id, boxTop);
-		Element.setLeft(window_id, boxLeft);
+		$(window_id).style.top = boxTop +"px";
+    $(window_id).style.left = boxLeft +"px";
   },
   
   //

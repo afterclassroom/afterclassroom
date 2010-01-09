@@ -82,8 +82,8 @@ var RedBox = {
 		
 		var boxTop = arrayPageScroll[1] + (arrayPageSize[3] / 10);
 		var boxLeft = arrayPageScroll[0];
-		Element.setTop(window_id, boxTop);
-		Element.setLeft(window_id, boxLeft);
+		$(window_id).style.top = boxTop +“px”;
+    $(window_id).style.left = boxLeft +“px”;
   },
   
   //
