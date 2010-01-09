@@ -29,8 +29,9 @@ module SexyFlashViewHelper
         duration = flash_options[:duration] || global_duration
         show_effect = flash_options[:show_effect] || global_show_effect
         hide_effect = flash_options[:hide_effect] || global_hide_effect
-
-        the_flash += content_tag(:div, flash[key], :class => 'flash', :id => "flash_#{key}")
+        the_close = content_tag(:div, "<a href='javascript:void();' onClick=\"new Effect.#{hide_effect}('flash_#{key}');\"> </a>", :class => 'postErrClo')
+        the_content = content_tag(:div, flash[key], :class => 'postErrNote')
+        the_flash += content_tag(:div, the_content + the_close, :id => "flash_#{key}")
         the_flash += content_tag :script, :type => 'text/javascript' do
             "$('flash_#{key}').style.display = 'none';" + 
             "new Effect.#{show_effect}('flash_#{key}', {duration: #{duration}});"

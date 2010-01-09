@@ -1,25 +1,22 @@
 /*
  * flash styles, sexy_flash plugin
  * Iconset: Knobs => http://itweek.deviantart.com/art/Knob-Buttons-Toolbar-icons-73463960
- */
+*/
 
 #flash_notice, #flash_error, #flash_warning, #flash_info{
-  margin: 10px auto;
-  padding:13px 10px 13px 50px;
-  border: 1px solid #FEE203;
-  width: 90%;
-  background-repeat: no-repeat;
-  background-position: 10px center;
+    border:1px solid #FEE203;
+    overflow:hidden;
+    width:632px;
 }
 
 #flash_error {
-  background-image: url('/images/icons/sexy_flash/error.png');
+    background:#FFFDEE url('/images/icons/sexy_flash/error.png') no-repeat scroll 8px 7px;
 }
 
 #flash_warning{
-  background-image: url('/images/icons/sexy_flash/warning.png');
+    background:#FFFDEE url('/images/icons/sexy_flash/warning.png') no-repeat scroll 8px 7px;
 }
 
 #flash_notice, #flash_info{
-  background-image: url('/images/icons/sexy_flash/info.png');
+    background:#FFFDEE url('/images/icons/sexy_flash/info.png') no-repeat scroll 8px 7px;
 }
