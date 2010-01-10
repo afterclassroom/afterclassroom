@@ -72,33 +72,13 @@
 </div>
 
 <div class="contMainR">
-  <div class="col300 Br-by-sub">
-    <div class="col300in">
-      <h1 class="col300Title">Browser by subject</h1>
-      <div class="col300Cont">
-        <div class="tabClouse">
-          <a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
-          <a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
-          <a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
-          <a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="advert">
-    <div class="advertTitle">Advertisement</div>
-    <div class="Dani">DaniWeb - IT Discussion Community</div>
-    <div class="advertImg"><img src="pictures/pic6.png" /></div>
-    <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-    <div class="advertInf">
-      <div class="advertInfL">
-        <a href="#" class="adverta">482</a><a href="#" class="advertb">12</a><a href="#" class="advertc">10 Comments</a>
-      </div>
-      <div class="advertInfR">
-        <span class="pre"><a href="#">&nbsp;</a></span>
-        <span class="next"><a href="#">&nbsp;</a></span></div>
-    </div>
-  </div>
+  <!--Browser by subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
   <div class="col300 Request">
     <div class="col300in">
       <h1 class="col300Title">Requests Assignments</h1>
