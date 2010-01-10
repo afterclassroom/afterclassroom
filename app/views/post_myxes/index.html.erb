@@ -1,0 +1,138 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Myx", post_myxes_path, :class => "abLink-detail" %>
+<% end -%>
+
+<!--Content-->
+<div class="contMainL">
+	<div class="col451 assignment">
+		<div class="col451in">
+			<div class="col451Cont">
+				<div class="AsDTop">
+					<h1 class="titleH1">MyX</h1>
+				</div>
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post}%>
+        <% end %>
+        <!--List Items-->
+        
+        <!--Pagination-->
+				<div class="assPage">
+					<span class="numPage"><%= page_entries_info @posts %></span>
+					<%= will_paginate @posts %>
+				</div>
+        <!--Pagination-->
+				<div class="goTop"><a href="#">Top</a></div>
+			</div>
+		</div>
+	</div>
+
+</div>
+	
+<div class="contMainC">
+	<div class="col195 clubBar">
+		<div class="col195in">
+			<h1 class="col195Title">Worse Teacher/Prof</h1>
+			<div class="col195Cont">
+				<%= render :partial => "worse_prof" %>
+			</div>
+			<div class="dueDbutton"><a href="#">View more worse teacher/prof</a></div>
+		</div>
+	</div>
+
+	<div class="col195 Poster">
+		<div class="col195in">
+			<h1 class="col195Title">Good Teacher/Prof</h1>
+			<div class="col195Cont">
+				<%= render :partial => "good_prof" %>
+			</div>
+
+			<div class="dueDbutton"><a href="#">View more good teacher/prof</a></div>
+		</div>
+	</div>
+	<div class="col195 QAsPoll">
+		<div class="col195in">
+			<h1 class="col195Title">Poll this MyX</h1>
+			<div class="col195Cont">
+				<div class="QAsPCont">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum bibendum neque non nisl commodo quis luctus nulla auctor.</div>
+				<div class="QAsDet"><input type="radio" name="Radio1"/>Best of the best</div>
+				<div class="QAsDet"><input type="radio" name="Radio1"/>Good</div>
+				<div class="QAsDet"><input type="radio" name="Radio1"/>Not bad</div>
+				<div class="QAsDet"><input type="radio" name="Radio1"/>Bad</div>
+				<div class="submit"><a href="#">Submit</a></div>
+				<div class="PollView">[<a href="">View results</a>]</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+	
+<div class="contMainR">
+	<div class="col300 Br-by-sub">
+	<div class="col300in">
+		<h1 class="col300Title">Browser by subject</h1>
+		<div class="col300Cont">
+			<div class="tabClouse">
+				<a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
+				<a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
+				<a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
+				<a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="advert">
+		<div class="advertTitle">Advertisement</div>
+		<div class="Dani">DaniWeb - IT Discussion Community</div>
+		<div class="advertImg"><img src="pictures/pic6.png" /></div>
+		<div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+		<div class="advertInf">
+			<div class="advertInfL">
+				<a href="#" class="adverta">482</a><a href="#" class="advertb">12</a><a href="#" class="advertc">10 Comments</a>
+			</div>
+			<div class="advertInfR">
+				<span class="pre"><a href="#">&nbsp;</a></span>
+				<span class="next"><a href="#">&nbsp;</a></span></div>
+		</div>
+	</div>
+  <div class="col300 Request">
+	<div class="col300in">
+		<h1 class="col300Title">Requests Assignments</h1>
+		<div class="col300Cont">
+			<div class="reqTi"><input type="text" value="Title..." name="Text1"/></div>
+			<div class="reqEn"><textarea name="TextArea1">Enter your request...</textarea></div>
+			<div class="reqKey">
+			</div>
+			<div class="submit"><a href="#">Submit</a></div>
+		</div>
+	</div>
+	</div>
+	
+	
+	<div class="col300in">
+		<h1 class="col300Title">Recent requested to rate</h1>
+		<div class="col300Cont">
+			<div class="recentItem">
+				<div class="recentImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+				<div class="recentInf">
+					<div class="recentName"><a href="#">Vu Nguyen</a></div>
+					<div class="recentUni"><span>at </span><a href="#">University of California</a></div>
+					<div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+				</div>
+			</div>
+			<div class="recentItem">
+				<div class="recentImg"><a href="#"><div><img src="pictures/noimg.png"/></div></a></div>
+				<div class="recentInf">
+					<div class="recentName"><a href="#">Dang Nguyen</a></div>
+					<div class="recentUni"><span>at </span><a href="#">University of San Francisco</a></div>
+					<div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
+				</div>
+			</div>
+			<div class="recentBottom"> </div>
+		</div>
+	</div>
+	
+	
+</div>
+<!--Content-->
