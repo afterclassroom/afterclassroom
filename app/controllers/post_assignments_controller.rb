@@ -2,7 +2,6 @@
 class PostAssignmentsController < ApplicationController
   include Viewable
   
-  before_filter :params_search_post, :only => [:index, :show, :search, :due_date, :edit]
   before_filter :login_required, :except => [:index, :show, :search, :due_date]
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
@@ -31,10 +30,6 @@ class PostAssignmentsController < ApplicationController
 
   def search
     @query = params[:search][:query] if params[:search]
-    @list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
-    @list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months", "180"], ["Over 9 months", "270"], ["Over 1 year", "365"]]
-    @year = params[:year] if params[:year]
-    @over = params[:over] if params[:over]
     type = PostCategory.find_by_name("Assignments").id
     if params[:search]
       school = session[:your_school]
@@ -48,10 +43,6 @@ class PostAssignmentsController < ApplicationController
   end
 
   def due_date
-    @list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
-    @list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months", "180"], ["Over 9 months", "270"], ["Over 1 year", "365"]]
-    @year = params[:year] if params[:year]
-    @over = params[:over] if params[:over]
     type = PostCategory.find_by_name("Assignments").id
     school = session[:your_school]
     @posts = PostAssignment.paginated_post_conditions_with_due_date(params, school, type)
@@ -140,14 +131,10 @@ class PostAssignmentsController < ApplicationController
     redirect_to my_post_user_url(current_user)
   end
 
-  def update_views(obj)
-    updated = update_view_count(obj)
-  end
-
   private
 
-  def params_search_post
-    
+  def update_views(obj)
+    updated = update_view_count(obj)
   end
   
   def require_current_user

@@ -229,8 +229,4 @@ module ApplicationHelper
     end
     render :partial => "shared/search_posts", :locals => {:type => type, :search_post_path => search_post_path, :new_post_path => new_post_path, :query => query}
   end
-
-  def show_options
-    
-  end
 end
