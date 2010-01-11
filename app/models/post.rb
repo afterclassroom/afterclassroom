@@ -18,7 +18,6 @@ class Post < ActiveRecord::Base
   has_one :post_exam, :dependent => :destroy
   has_one :post_myx, :dependent => :destroy
   has_one :post_project, :dependent => :destroy
-  has_one :post_education, :dependent => :destroy
   has_one :post_tutor, :dependent => :destroy
   has_one :post_book, :dependent => :destroy
   has_one :post_job, :dependent => :destroy
@@ -51,16 +50,6 @@ class Post < ActiveRecord::Base
     has post_category_id, school_id
   end
   
-  # Named scopes
-  named_scope :has_educations, :conditions => "id IN (Select post_id From post_educations)", :order => "created_at DESC"
-  named_scope :has_tutors, :conditions => "id IN (Select post_id From post_tutors)", :order => "created_at DESC"
-  named_scope :has_books, :conditions => "id IN (Select post_id From post_books)", :order => "created_at DESC"
-  named_scope :has_jobs, :conditions => "id IN (Select post_id From post_jobs)", :order => "created_at DESC"
-  named_scope :has_parties, :conditions => "id IN (Select post_id From post_parties)", :order => "created_at DESC"
-  named_scope :has_awarenesses, :conditions => "id IN (Select post_id From post_awarenesses)", :order => "created_at DESC"
-  named_scope :has_housings, :conditions => "id IN (Select post_id From post_housings)", :order => "created_at DESC"
-  named_scope :has_teamups, :conditions => "id IN (Select post_id From post_teamups)", :order => "created_at DESC"
-
   def self.paginated_post_conditions_with_search(params, school, type)
     if params[:search]
       query = params[:search][:query]
