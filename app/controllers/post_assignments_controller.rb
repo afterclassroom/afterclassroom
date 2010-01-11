@@ -30,6 +30,7 @@ class PostAssignmentsController < ApplicationController
   end
 
   def search
+    @query = params[:search][:query] if params[:search]
     @list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
     @list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months", "180"], ["Over 9 months", "270"], ["Over 1 year", "365"]]
     @year = params[:year] if params[:year]
@@ -146,10 +147,7 @@ class PostAssignmentsController < ApplicationController
   private
 
   def params_search_post
-    @query = params[:search][:query] if params[:search] 
-    @type = PostCategory.find_by_name("Assignments").id
-    @search_post_path = search_post_assignments_path
-    @new_post_path = new_post_assignment_path
+    
   end
   
   def require_current_user

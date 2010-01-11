@@ -24,7 +24,7 @@
     <div class="menu">
       <div class="menusearch">
         <%= render :partial => 'shared/menu_main' %>
-        <%= show_search_form( @controller.controller_name, params[:search][:query]) %>
+        <%= show_search_form( @controller.controller_name, @query) %>
       </div>
     </div>
     <div class="abLink">

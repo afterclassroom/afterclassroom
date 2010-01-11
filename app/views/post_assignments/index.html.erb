@@ -15,13 +15,7 @@
     <div class="col451in">
       <div class="col451Cont">
         <!--Options-->
-        <form id="action_option" name="option" action="" method="Get">
-          <div class="assDrop">
-            <span class="assDrop1"><select name="Select1"><option>Choose faculty</option></select></span>
-            <span class="assDrop2"><%= select_tag ("year", options_for_select(@list_years, @year), :onChange => "$('action_option').submit();") %></span>
-            <span class="assDrop3"><%= select_tag ("over", options_for_select(@list_overs, @over), :onChange => "$('action_option').submit();") %></span>
-          </div>
-        </form>
+        <%= show_options() %>
         <!--Options-->
 
         <!--List Items-->
