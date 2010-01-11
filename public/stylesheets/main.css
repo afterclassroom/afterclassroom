@@ -246,6 +246,18 @@ div.menuMain ul li.select a.menuFirst, div.menuMain ul li a.menuFirst:hover span
 	margin-bottom:10px;
 	overflow:hidden;
 }
+.creAd{
+	float:left;
+	font-size:10px;
+}
+.creAd a, .creAd a:link, .creAd a:visited{
+	color:#c8c8c8;
+	text-decoration:none;
+}
+.creAd a:hover{
+	color:#d00;
+	text-decoration:none;
+}
 .advertTitle{
 	text-align:right;
 	font-size:10px;
@@ -1626,8 +1638,6 @@ span.btmAbuse a{
 span.btmAbuse a:hover{
 	background:url('/images/btmAbuseH.png') no-repeat;
 }
-
-/**/
 /********************************/
 /******* Post ***********/
 .postLink{
@@ -1744,7 +1754,126 @@ div.postInf{
 	color:#fff!important;
 	padding-left:0px;
 }
+/* PopUp */
+.popup{
+	background:url('/images/popupBot.png') no-repeat left bottom;
+	overflow:hidden;
+	width:610px;
 
+	_height:100%;
+}
+.popup1{
+	background:url('/images/popupTop.png') no-repeat;
+
+	padding-bottom:5px;
+}
+.popup2{
+	background:url('/images/popupRe.png') repeat-y;
+	overflow:hidden;
+	width:610px;
+	padding-bottom:5px;	
+	_height:100%;
+}
+.poppClose{
+	height:20px;
+}
+.poppClose a{
+	margin:2px;
+	float:right;
+	background:url('/images/popupClose.png') no-repeat;
+	width:25px;
+	height:20px;
+}
+.poppClose a:hover{
+	background:url('/images/popupCloseH.png') no-repeat;
+}
+.popupItem{
+	padding-left:10px;
+	clear:both;
+	overflow:hidden;
+	height:42px;
+	*height:38px;
+}
+.popupL, .popupL div,.popupR, .popupR div{
+	float:left;
+}
+.popupR{
+	padding-left:20px;
+}
+.popupNumb{
+	width:23px;
+	height:23px;
+	text-align:center;
+	line-height:23px;
+	background:url('/images/popupNum.png') no-repeat;
+	color:#fff;
+	font-size:15px;
+	font-weight:bold;
+}
+.popupCoun{
+	line-height:23px;
+	padding:0px 8px;
+	color:#646464;
+	font-size:11px;
+	font-weight:bold;
+}
+.popupSelect{
+	padding-top:2px;
+}
+.popupSelect select{
+	width:190px;
+}
+.filter{
+	color:#646464;
+	font-size:11px;
+	font-style:italic;
+	padding-left:10px;
+	background:url('/images/popupAl.png') no-repeat 170px 9px;
+}
+.popupAl{
+	padding-left:5px;
+	padding-top:10px;
+}
+.popupAl a{
+	margin:0px 4px;
+	font-size:11px;
+	float:left;
+	width:16px;
+	height:16px;
+	line-height:16px;
+	text-align:center;
+	display:block;
+	_margin:0px 4px 0px 3px;
+}
+.popupAl a, .popupAl a:link, .popupAl a:visited{
+	color:#1d96db;
+	text-decoration:none;
+}
+.popupAl a.selected, .popupAl a:hover{
+	background:url('/images/popupCha.gif') no-repeat;
+	display:block;
+	color:#fff!important;
+}
+.popupBtm{
+	padding-left:10px;
+	padding-top:7px;
+	clear:both;
+}
+.popupBtm a{
+	background:url('/images/btmPop.png') no-repeat;
+	width:48px;
+	height:25px;
+	line-height:25px;
+	text-align:center;
+	text-decoration:none;
+	display:block;
+}
+.popupBtm a, .popupBtm a:link, .popupBtm a:visited{
+	color:#fff;
+}
+.popupBtm a:hover{
+	background:url('/images/btmPopH.png') no-repeat;	
+}
 /*****************************************/
 /********** Tutor **************/
 .assInfB .share a{
@@ -1769,6 +1898,7 @@ div.postInf{
 	font-style:italic;
 	text-align:right;
 	padding-top:10px;
+	padding-right:2px;
 }
 .mySco a, .mySco a:link, .mySco a:visited{
 	color:#0a81c4;	
@@ -2361,4 +2491,71 @@ span.btmFoodList a:hover{
 .student .mySco{
 	clear:both;	
 	padding-top:0px;
+}
+div.stuDetail span.btmhand{
+	margin-right:5px;
+}
+.reStuEmail{
+	background:url('/images/restu.png') no-repeat left 2px;
+	padding-left:19px;
+}
+.reStuCom{
+	background:url('/images/icon-comnent.gif') no-repeat left 2px;
+	padding-left:19px;
+}
+
+.reStuItem{
+	padding:5px 0px;
+}
+.reStuItem a, .reStuItem a:link, .reStuItem a:visited{
+	padding-left:4px;
+	color:#0a81c4;
+	text-decoration:none;
+}
+.reStuItem a:hover{
+	color:#d00;
+	text-decoration:none;
+}
+.reStuDate{
+	padding-left:19px;
+	padding-top:1px;
+	font-style:italic;
+}
+.reStuIn{
+	color:#646464;
+	padding-left:19px;
+}
+/*********************** Housing ****************************/
+.requestHous h1.col300Title{
+	padding-left:30px;
+	line-height:22px;
+	background:url('/images/reHouse.png') no-repeat 0px 0px;
+}
+span.btmFavList a{
+	background:url('/images/btmFavL.png') no-repeat;
+	width:99px;
+}
+span.btmFavList a:hover{
+	background:url('/images/btmFavLH.png') no-repeat;
+}
+.AsDcomSite{
+	padding:4px 0px;
+}
+.AsDcomSite a, .AsDcomSite a:link, .AsDcomSite a:visited{
+	color:#0a81c4;	
+	text-decoration:none;
+}
+.AsDcomSite a:hover{
+	color:#d00;
+}
+.HouseDetail .AsDcomRe{
+	padding-top:5px;
+}
+/************* TeamUp ****************************/
+span.btmFan a{
+	background:url('/images/btmFan.png') no-repeat;
+	width:105px;
+}
+span.btmFan a:hover{
+	background:url('/images/btmFanH.png') no-repeat;
 }

@@ -11,137 +11,137 @@
 
 <!--Content-->
 <div class="contMainL">
-	<div class="col451 assignment">
-		<div class="col451in">
-			<div class="col451Cont">
+  <div class="col451 assignment">
+    <div class="col451in">
+      <div class="col451Cont">
         <!--Options-->
-          <form id="action_option" name="option" action="" method="Get">
-            <div class="assDrop">
-              <span class="assDrop1"><select name="Select1"><option>Choose faculty</option></select></span>
-              <span class="assDrop2"><%= select_tag ("year", options_for_select(@list_years, @year), :onChange => "$('action_option').submit();") %></span>
-              <span class="assDrop3"><%= select_tag ("over", options_for_select(@list_overs, @over), :onChange => "$('action_option').submit();") %></span>
-            </div>
-          </form>
+        <form id="action_option" name="option" action="" method="Get">
+          <div class="assDrop">
+            <span class="assDrop1"><select name="Select1"><option>Choose faculty</option></select></span>
+            <span class="assDrop2"><%= select_tag ("year", options_for_select(@list_years, @year), :onChange => "$('action_option').submit();") %></span>
+            <span class="assDrop3"><%= select_tag ("over", options_for_select(@list_overs, @over), :onChange => "$('action_option').submit();") %></span>
+          </div>
+        </form>
         <!--Options-->
-				
+
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post}%>
         <% end %>
         <!--List Items-->
-        
+
         <!--Pagination-->
-				<div class="assPage">
-					<span class="numPage"><%= page_entries_info @posts %></span>
-					<%= will_paginate @posts %>
-				</div>
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
         <!--Pagination-->
-				<div class="goTop"><a href="#">Top</a></div>
-			</div>
-		</div>
-	</div>
+        <div class="goTop"><a href="#">Top</a></div>
+      </div>
+    </div>
+  </div>
 
 </div>
-	
+
 <div class="contMainC">
-	<div class="col195 dueDate">
-	<div class="col195in">
-		<h1 class="col195Title">Due Date</h1>
-		<div class="col195Cont">
-			<%= render :partial => "due_date" %>
-		</div>
-	</div>
-	</div>
-	<div class="col195 intPro">
-	<div class="col195in">
-		<h1 class="col195Title">Interesting Projects</h1>
-		<div class="col195Cont">
-			<div class="dueDItem">
-				<div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet...</a></div>
-				<div class="dueDTime">November 25th 2009</div>
-			</div>
-			<div class="dueDItem">
-				<div class="dueDTitle"><a href="#">Pellentesque et tincidunt...</a></div>
-				<div class="dueDTime">November 27th 2009</div>
-			</div>
-			<div class="dueDItem">
-				<div class="dueDTitle"><a href="#">Quisque odio mi...</a></div>
-				<div class="dueDTime">November 30th 2009</div>
-			</div>
-			<div class="dueDItem">
-				<div class="dueDTitle"><a href="#">Suspendisse orci erat...</a></div>
-				<div class="dueDTime">November 25th 2009</div>
-			</div>
-			<div class="dueDbutton"><a href="#">View more Interesting Projects</a></div>
-		</div>
-	</div>
-	</div>
+  <div class="col195 dueDate">
+    <div class="col195in">
+      <h1 class="col195Title">Due Date</h1>
+      <div class="col195Cont">
+        <%= render :partial => "due_date" %>
+      </div>
+    </div>
+  </div>
+  <div class="col195 intPro">
+    <div class="col195in">
+      <h1 class="col195Title">Interesting Projects</h1>
+      <div class="col195Cont">
+        <div class="dueDItem">
+          <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet...</a></div>
+          <div class="dueDTime">November 25th 2009</div>
+        </div>
+        <div class="dueDItem">
+          <div class="dueDTitle"><a href="#">Pellentesque et tincidunt...</a></div>
+          <div class="dueDTime">November 27th 2009</div>
+        </div>
+        <div class="dueDItem">
+          <div class="dueDTitle"><a href="#">Quisque odio mi...</a></div>
+          <div class="dueDTime">November 30th 2009</div>
+        </div>
+        <div class="dueDItem">
+          <div class="dueDTitle"><a href="#">Suspendisse orci erat...</a></div>
+          <div class="dueDTime">November 25th 2009</div>
+        </div>
+        <div class="dueDbutton"><a href="#">View more Interesting Projects</a></div>
+      </div>
+    </div>
+  </div>
 
 </div>
-	
+
 <div class="contMainR">
-	<div class="col300 Br-by-sub">
-	<div class="col300in">
-		<h1 class="col300Title">Browser by subject</h1>
-		<div class="col300Cont">
-			<div class="tabClouse">
-				<a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
-				<a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
-				<a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
-				<a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
-			</div>
-		</div>
-	</div>
-	</div>
-	<div class="advert">
-		<div class="advertTitle">Advertisement</div>
-		<div class="Dani">DaniWeb - IT Discussion Community</div>
-		<div class="advertImg"><img src="pictures/pic6.png" /></div>
-		<div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-		<div class="advertInf">
-			<div class="advertInfL">
-				<a href="#" class="adverta">482</a><a href="#" class="advertb">12</a><a href="#" class="advertc">10 Comments</a>
-			</div>
-			<div class="advertInfR">
-				<span class="pre"><a href="#">&nbsp;</a></span>
-				<span class="next"><a href="#">&nbsp;</a></span></div>
-		</div>
-	</div>
+  <div class="col300 Br-by-sub">
+    <div class="col300in">
+      <h1 class="col300Title">Browser by subject</h1>
+      <div class="col300Cont">
+        <div class="tabClouse">
+          <a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
+          <a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
+          <a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
+          <a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="advert">
+    <div class="advertTitle">Advertisement</div>
+    <div class="Dani">DaniWeb - IT Discussion Community</div>
+    <div class="advertImg"><img src="pictures/pic6.png" /></div>
+    <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+    <div class="advertInf">
+      <div class="advertInfL">
+        <a href="#" class="adverta">482</a><a href="#" class="advertb">12</a><a href="#" class="advertc">10 Comments</a>
+      </div>
+      <div class="advertInfR">
+        <span class="pre"><a href="#">&nbsp;</a></span>
+        <span class="next"><a href="#">&nbsp;</a></span></div>
+    </div>
+  </div>
   <div class="col300 Request">
-	<div class="col300in">
-		<h1 class="col300Title">Requests Assignments</h1>
-		<div class="col300Cont">
-			<div class="reqTi"><input type="text" value="Title..." name="Text1"/></div>
-			<div class="reqEn"><textarea name="TextArea1">Enter your request...</textarea></div>
-			<div class="reqKey">
-			</div>
-			<div class="submit"><a href="#">Submit</a></div>
-		</div>
-	</div>
-	</div>
-	<div class="col300 Recent">
-	<div class="col300in">
-		<h1 class="col300Title">Recent requested Assignments</h1>
-		<div class="col300Cont">
-			<div class="recentItem">
-				<div class="recentImg"><div><a href="#"><img src="pictures/pic1.png" /></a></div></div>
-				<div class="recentInf">
-					<div class="recentName"><a href="#">Vu Nguyen</a></div>
-					<div class="recentUni"><span>at</span><a href="#">University of California</a></div>
-					<div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-				</div>
-			</div>
-			<div class="recentItem">
-				<div class="recentImg"><div><a href="#"><img src="pictures/noimg.png" /></a></div></div>
-				<div class="recentInf">
-					<div class="recentName"><a href="#">Dang Nguyen</a></div>
-					<div class="recentUni"><span>at</span><a href="#">University of San Francisco</a></div>
-					<div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
-				</div>
-			</div>
-			<div class="recentBottom">&nbsp;</div>
-		</div>
-	</div>
-</div>
+    <div class="col300in">
+      <h1 class="col300Title">Requests Assignments</h1>
+      <div class="col300Cont">
+        <div class="reqTi"><input type="text" value="Title..." name="Text1"/></div>
+        <div class="reqEn"><textarea name="TextArea1">Enter your request...</textarea></div>
+        <div class="reqKey">
+        </div>
+        <div class="submit"><a href="#">Submit</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="col300 Recent">
+    <div class="col300in">
+      <h1 class="col300Title">Recent requested Assignments</h1>
+      <div class="col300Cont">
+        <div class="recentItem">
+          <div class="recentImg"><div><a href="#"><img src="pictures/pic1.png" /></a></div></div>
+          <div class="recentInf">
+            <div class="recentName"><a href="#">Vu Nguyen</a></div>
+            <div class="recentUni"><span>at</span><a href="#">University of California</a></div>
+            <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+          </div>
+        </div>
+        <div class="recentItem">
+          <div class="recentImg"><div><a href="#"><img src="pictures/noimg.png" /></a></div></div>
+          <div class="recentInf">
+            <div class="recentName"><a href="#">Dang Nguyen</a></div>
+            <div class="recentUni"><span>at</span><a href="#">University of San Francisco</a></div>
+            <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
+          </div>
+        </div>
+        <div class="recentBottom">&nbsp;</div>
+      </div>
+    </div>
+  </div>
 </div>
 <!--Content-->

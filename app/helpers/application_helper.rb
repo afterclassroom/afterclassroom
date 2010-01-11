@@ -163,5 +163,42 @@ module ApplicationHelper
     words = strip_tags(text).split()
     words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
   end
-  
+
+  def show_search_form(ctrl_name, query)
+    case ctrl_name
+      when "post_assignments"
+        type = PostCategory.find_by_name("Assignments").id
+        search_post_path = search_post_assignments_path
+        new_post_path = new_post_assignment_path
+        render :partial => "shared/search_posts", :locals => {:type => type, :search_post_path => search_post_path, :new_post_path => new_post_path, :query => query}
+      when "post_projects"
+
+      when "post_tests"
+
+      when "post_exams"
+
+      when "post_qas"
+
+      when "post_tutors"
+
+      when "post_books"
+
+      when "post_jobs"
+
+      when "post_foods"
+
+      when "post_parties"
+
+      when "post_myxes"
+
+      when "post_awarenesses"
+
+      when "post_housings"
+
+      when "post_teamups"
+        
+      else
+        
+    end
+  end
 end
