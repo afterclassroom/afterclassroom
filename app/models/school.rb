@@ -14,7 +14,7 @@ class School < ActiveRecord::Base
     @city = City.find(city_id)
     @countryname = Country.find(@city.country_id).name
     @statename = State.find(@city.state_id).name
-    @address = @city.name + ', ' +  @countryname +  ', ' + @statename
+    @address = name +', ' +@city.name + ', ' +  @countryname +  ', ' + @statename
   end
 
   def self.paginated_schools_conditions_with_search(params)
