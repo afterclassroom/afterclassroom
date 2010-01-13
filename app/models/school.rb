@@ -10,6 +10,13 @@ class School < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_and_belongs_to_many :departments
 
+  def address
+    @city = City.find(city_id)
+    @countryname = Country.find(@city.country_id).name
+    @statename = State.find(@city.state_id).name
+    @address = @city.name + ', ' +  @countryname +  ', ' + @statename
+  end
+
   def self.paginated_schools_conditions_with_search(params)
     search = {}
     search['name'] = params[:school][:name] || nil if params[:school]
