@@ -26,9 +26,9 @@
 								<div class="assInfR"><%= link_to "more", post_myx_path(post) %></div>
 							</div>
 							<div class="assInfB">
-								<div class="qashdU"><a href="#">25</a></div>
-								<div class="cheap"><a href="#">Bored</a></div>
-								<div class="qashdD"><a href="#">2</a></div>
+								<div class="qashdU"><a href="#"> <%= post.post_myx.good %> </a></div>
+								<div class="cheap"><a href="#">Bored(<%= post.post_myx.bored %>)</a></div>
+								<div class="qashdD"><a href="#"><%= post.post_myx.bad %></a></div>
 								<div class="share"><a href="#">Share</a></div>
 							</div>
 						</div>

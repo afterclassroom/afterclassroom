@@ -76,10 +76,6 @@ ActiveRecord::Schema.define(:version => 20100107132317) do
     t.integer "department_id", :null => false
   end
 
-  create_table "education_categories", :force => true do |t|
-    t.string "name", :default => "", :null => false
-  end
-
   create_table "favorites", :force => true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
@@ -239,11 +235,6 @@ ActiveRecord::Schema.define(:version => 20100107132317) do
     t.string "name", :default => "", :null => false
   end
 
-  create_table "post_educations", :force => true do |t|
-    t.integer "post_id",               :null => false
-    t.integer "education_category_id", :null => false
-  end
-
   create_table "post_exams", :force => true do |t|
     t.integer  "post_id"
     t.datetime "due_date"
@@ -281,6 +272,9 @@ ActiveRecord::Schema.define(:version => 20100107132317) do
     t.integer "post_id"
     t.string  "professor"
     t.string  "prof_status"
+    t.integer "good"
+    t.integer "bored"
+    t.integer "bad"
   end
 
   create_table "post_parties", :force => true do |t|

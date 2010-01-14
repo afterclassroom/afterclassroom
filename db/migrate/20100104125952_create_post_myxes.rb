@@ -4,6 +4,9 @@ class CreatePostMyxes < ActiveRecord::Migration
       t.belongs_to :post
       t.string :professor
       t.string :prof_status
+      t.integer :good
+      t.integer :bored
+      t.integer :bad
     end
 
   end
