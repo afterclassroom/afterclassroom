@@ -1,9 +1,9 @@
 <!--Select School-->
 <div id="target_select_school">
   <% if school %>
-    Your are at <%= school.name %> - <a href="#" id="select_school_link">Click here</a> to choose your school.
+    Your are at <%= school.name %> - <%= link_to("Click here", "javascript:;", :id => "show_select_school") %> to choose another school.
   <% else %>
-    <a href="#" id="select_school_link">Click here</a> to choose your school without login.
+    <%= link_to("Click here", "javascript:;", :id => "show_select_school") %> to choose your school without login.
   <% end %>
 </div>
 
@@ -96,7 +96,7 @@
                 <% else %>
                   <%= radio_button "#{model_name}", "school_id", university.id, :onClick => "getSchoolName('#{university.name}');getDepartment('#{university.id}')" %>
                 <% end %>
-              <label onClick="getSchoolName(this.innerHTML)" for="<%= model_name %>_school_id_<%= university.id %>"><%= university.name %></label></li>
+                <label onClick="getSchoolName(this.innerHTML)" for="<%= model_name %>_school_id_<%= university.id %>"><%= university.name %></label></li>
             <% end %>
           </ul>
         </div>
@@ -112,7 +112,7 @@
                 <% else %>
                   <%= radio_button "#{model_name}", "school_id", college.id, :onClick => "getSchoolName('#{college.name}');getDepartment('#{college.id}')" %>
                 <% end %>
-              <label onClick="getSchoolName(this.innerHTML)" for="<%= model_name %>_school_id_<%= college.id %>"><%= college.name %></label></li>
+                <label onClick="getSchoolName(this.innerHTML)" for="<%= model_name %>_school_id_<%= college.id %>"><%= college.name %></label></li>
             <% end %>
           </ul>
         </div>
@@ -193,33 +193,13 @@
     $('ul_list_universities').show();
     $('ul_list_colleges').show();
   }
-  new Tip('select_school_link', $('select_school'), {
-    target: 'target_select_school',
-    width: 'auto',
-    title: 'Select Your School',
-    showOn: 'click',
-    hideOn: { element: 'closeButton', event: 'click'},
-    hook: { target: target, tip: tip },
-    offset: {x:50, y:0} });
-  new Tip('droplist_country', $('select_country_div'), {
-    width: 'auto',
-    title: 'Select Country',
-    showOn: 'click',
-    hideOn: { element: 'closeButton', event: 'click'},
-    hook: { target: 'bottomLeft', tip: 'topLeft' },
-    offset: {x:0, y:-8} });
-  new Tip('droplist_state', $('select_state_div'), {
-    width: 'auto',
-    title: 'Select State',
-    showOn: 'click',
-    hideOn: { element: 'closeButton', event: 'click'},
-    hook: { target: 'bottomLeft', tip: 'topLeft' },
-    offset: {x:0, y:-8} });
-  new Tip('droplist_city', $('select_city_div'), {
-    width: 'auto',
-    title: 'Select City',
-    showOn: 'click',
-    hideOn: { element: 'closeButton', event: 'click'},
-    hook: { target: 'bottomLeft', tip: 'topLeft' },
-    offset: {x:0, y:-8} });
+  Dialogs.load();
+  new Dialog({
+    handle:'#show_select_school',
+    title:'Select School',
+    target:{
+      id:'select_school',
+      auto:true
+    }
+  });
 </script>

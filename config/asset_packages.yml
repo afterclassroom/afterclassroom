@@ -7,7 +7,7 @@ javascripts:
   - controls
   - application
   - validation
-  - redbox
+  - dialog
 - student_louge:
   - prototype
   - effects
@@ -15,17 +15,6 @@ javascripts:
   - controls
   - application
   - mydows
-- signin:
-  - prototype
-  - effects
-  - dragdrop
-  - controls
-  - application
-  - validation
-  - pwd_strength
-  - lowpro
-  - frontend
-  - prototip
 - admin:
   - prototype
   - effects
@@ -42,7 +31,7 @@ stylesheets:
   - pagination
   - validation
   - sexy_flash
-  - redbox
+  - dialog
 - student_louge:
   - reset
   - layout
@@ -55,15 +44,6 @@ stylesheets:
   - listing
   - posting
   - default
-- signin:
-  - reset
-  - layout
-  - style
-  - search
-  - buttons
-  - signinup
-  - prototip
-  - windows
 - admin:
   - admin_reset
   - admin_layout
