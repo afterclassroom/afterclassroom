@@ -6,10 +6,6 @@ class PostMyx < ActiveRecord::Base
   # Relations
   belongs_to :post
 
-
-
-
-
   def self.paginated_post_conditions_with_search(params, school)
     if params[:search]
       query = params[:search][:query]
