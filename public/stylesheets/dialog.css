@@ -20,7 +20,7 @@
     overflow:hidden;
     z-index:901;
     text-align:left;
-    behavior: url(border-radius.htc);
+    behavior: url(/stylesheets/border-radius.htc);
 }
 
 /* DIALOG TOP */

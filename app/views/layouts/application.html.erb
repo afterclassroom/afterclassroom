@@ -47,4 +47,10 @@
     </div>
     <%= render :partial => 'shared/footer' %>
   </body>
+  <!--Debugs-->
+  <% if RAILS_ENV == 'development' %>
+    <center><button onclick="show_debug_popup(); return false;">Show debug popup</button></center>
+    <%= debug_popup %>
+  <% end %>
+  <!--Debugs-->
 </html>
