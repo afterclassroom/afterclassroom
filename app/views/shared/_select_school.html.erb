@@ -6,18 +6,12 @@
     <%= link_to("Click here", "javascript:;", :id => "show_select_school") %> to choose your school without login.
   <% end %>
 </div>
-
 <div id="select_school" class="acr_window" style="display:none;">
-  <div class="rounded-top">
-    <span class="tlr_c"></span>
-    <span class="cbi"></span>
-    <span class="trr_c"></span>
-  </div>
-  <div class="window-title" style="background:#FFF">
+  <div class="window-title">
     <h3>You're in <%= city.full_address_city %>.</h3>
     <span>Please select your right location and your university or college.</span>
   </div>
-  <div class="window-content" style="background:#FFF">
+  <div class="window-content">
     <div id="wizard-steps">
 
       <span class="fist_step">Select your location</span>
