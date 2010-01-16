@@ -202,7 +202,7 @@ end
 def create_demo_posts_myx
   post_category = PostCategory.find_by_name("MyX")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-  prof_status = ["Best of the best", "Good", "Not bad", "Bad"]
+  prof_status = ["Best of the best", "Good", "Bored", "Worse"]
   20.times do
     user = User.find(rand(User.count) + 1)
     school = School.find(rand(School.count) + 1)
@@ -218,15 +218,21 @@ def create_demo_posts_myx
       p.type_name = post_category.name
       p.school_year = schoolyear[rand(schoolyear.size)]
     end #END OBJECT INSTANTIATION
+
     post_asm = PostMyx.create do |px|
       px.post = post
       px.professor = Faker::Name.name
-      px.prof_status = prof_status[rand(prof_status.size)]
+      #px.prof_status = prof_status[rand(prof_status.size)]
       px.good = rand(100)
       px.bored = rand(100)
       px.bad = rand(100)
-
-    end
+      score = (px.good.to_f / (px.good.to_f + px.bored.to_f + px.bad.to_f)) * 100
+      if score > 50
+        px.prof_status = prof_status[1]#Good
+      else
+          px.prof_status = prof_status[3]#worse
+      end
+    end#END OBJECT CREATION
   end #END LOOP
 end
 

@@ -15,7 +15,7 @@ class School < ActiveRecord::Base
     @countryname = Country.find(@city.country_id).name
     @statename = State.find(@city.state_id).name
     name + ', ' + @city.name + ', ' +  @countryname +  ', ' + @statename
-    #name+', '+self.city.name+', '+ self.city.country.name+', '+ self.city.country.states.name
+    #name+', '+self.city.name+', '+ self.city.country.name+', '+ self.city.state.name
 
   end
 
