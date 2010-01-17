@@ -12,7 +12,6 @@
             <li><a href="#" class="signinFrist"><span>Help</span></a></li>
             <li><%= link_to "<span>Sign in</span>", login_url %></li>
             <li><%= link_to "<span>Simple sign up</span>", signup_url %></li>
-            <li><%= link_to "<span>Forget username</span>", user_forgot_login_url %></li>
             <li><%= link_to "<span>Forget password</span>", user_forgot_password_url %></li>
           </ul>
         <% end %>
@@ -20,7 +19,7 @@
       <% if !logged_in? %>
         <div class="log">
           <% form_tag session_path, :name => "form_login", :id => "form_login" do -%>
-            <span class="log-user"><%= text_field_tag 'login', 'Username...', :class => 'userlogin-un', :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></span>
+            <span class="log-user"><%= text_field_tag 'email', 'Email...', :class => 'userlogin-un', :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></span>
             <span class="log-pass"><%= password_field_tag 'password', 'Password...', :class => 'userlogin-pw', :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></span>
             <span class="log-btm"><a href="javascript:void();" onclick="$('form_login').submit();">Sign in</a></span>
           <% end -%>

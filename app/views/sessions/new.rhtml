@@ -13,8 +13,8 @@
       <div class="postReq">*(asterisk) is required.</div>
       <% form_tag session_path, :name => "form", :id => "form" do -%>
         <div class="signinItem">
-          <div class="signinTit">Username*</div>
-          <div class="signinInp"><%= text_field_tag 'login', '', :class => 'required' %></div>
+          <div class="signinTit">Email*</div>
+          <div class="signinInp"><%= text_field_tag 'email', '', :class => 'required validate-email' %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">Password*</div>
@@ -25,7 +25,7 @@
           <div class="signincCheckTxt">Remember me for next login</div>
         </div>
         <div class="btmLogme"><a href="javascript:void();" onclick="submit()">Log me in</a></div>
-        <div class="forgotPass"><span><%= link_to "Forgot Username", user_forgot_login_url %> or <%= link_to "Forgot Password", user_forgot_password_url %></span></div>
+        <div class="forgotPass"><span><%= link_to "Forgot Password", user_forgot_password_url %></span></div>
       <% end -%>
     </div>
   </div>
@@ -55,7 +55,7 @@
 <!--Content-->
 
 <script type="text/javascript">
-  var valid = new Validation('form', {immediate : true, onSubmit:false});
+  var valid = new Validation('form', {immediate : false, onSubmit:false, stopOnFirst : true});
   function submit(){
     var result = valid.validate();
     if (result) {

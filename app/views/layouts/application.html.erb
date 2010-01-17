@@ -32,7 +32,7 @@
         <%= yield_or_default(yield(:you_are_here)) %>
       </div>
       <div class="menuRR">
-        <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+        <%= yield_or_default(yield(:post_button)) %>
       </div>
     </div>
     <div class="sponsor">
