@@ -319,11 +319,11 @@ class UsersController < ApplicationController
     flash[:notice] << " We're sending you an email with your activation code."
   end
   
-  def failed_creation(message = 'Sorry, there was an error occured while creating account. Username or email already exist.')
+  def failed_creation(message = 'Sorry, there was an error occured while creating account. Email already exist.')
     flash[:error] = message
     @countries = Country.has_cities
     @user = User.new
     @model_name = "user"
-    render :action => :new, :layout => "signin"
+    render :action => :new
   end
 end

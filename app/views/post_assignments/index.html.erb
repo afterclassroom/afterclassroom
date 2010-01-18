@@ -2,6 +2,10 @@
   You are here: <a href="/">Home</a><%= link_to "Assignments", post_assignments_path, :class => "abLink-detail" %>
 <% end -%>
 
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
 <% content_for :menu_sub do -%>
   <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Assignments</span></span></a></div>
   <div class="menuRItem"><a href="<%= post_projects_path %>"><span class="span1"><span class="span2">Projects</span></span></a></div>

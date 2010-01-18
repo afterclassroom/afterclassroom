@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -32,7 +32,7 @@
         <%= yield_or_default(yield(:you_are_here)) %>
       </div>
       <div class="menuRR">
-        <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+        <%= yield_or_default(yield(:post_button)) %>
       </div>
     </div>
     <div class="sponsor">
@@ -47,4 +47,10 @@
     </div>
     <%= render :partial => 'shared/footer' %>
   </body>
+  <!--Debugs-->
+  <% if RAILS_ENV == 'development' %>
+    <center><button onclick="show_debug_popup(); return false;">Show debug popup</button></center>
+    <%= debug_popup %>
+  <% end %>
+  <!--Debugs-->
 </html>

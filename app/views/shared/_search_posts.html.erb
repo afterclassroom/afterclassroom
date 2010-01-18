@@ -1,9 +1,9 @@
-<form id="action_post_search" name="search" action="<%= search_post_path %>" method="Get">
+<form id="action_post_search" name="search" action="<%= search_post_path %>" method="get">
   <div class="search">
     <div class="textS">
       <input type="text" name="search[query]" value="<%= query || "Enter your search keywords..." %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" />
     </div>
-    <div class="selectS"><%= select_tag ("search[type]", options_for_select(PostCategory.find(:all).map {|cat| [cat.name,cat.id]}, type), :onChange => "getPostSearchType(this.options[this.selectedIndex].text);") %></div>
+    <div class="selectS"><%= select_tag ("search[type]", options_for_select(PostCategory.find(:all).map {|cat| [cat.name,cat.id]}, type), :onchange => "getPostSearchType(this.options[this.selectedIndex].text);", :id => "search_type") %></div>
     <div class="btmS"><a href="javascript:document.search.submit()"><img src="/images/icon-search.png" /></a></div>
   </div>
 </form>

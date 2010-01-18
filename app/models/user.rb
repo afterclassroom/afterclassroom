@@ -75,9 +75,9 @@ class User < ActiveRecord::Base
     list.include?(role.to_s) || list.include?('admin')
   end
 
-  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, password)
-    u = find_in_state :first, :active, :conditions => {:login => login} # need to get the salt
+  # Authenticates a user by their email and unencrypted password.  Returns the user or nil.
+  def self.authenticate(email, password)
+    u = find_in_state :first, :active, :conditions => {:email => email} # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
   

@@ -1,7 +1,7 @@
 /**
- * Dialog
- *
  * @author      Roland Franssen <franssen.roland@gmail.com>
+ * @website     http://roland.devarea.nl/dialog/
+ * @copyright   2008 http://roland.devarea.nl/dialog/
  * @license     MIT
  * @version     2.1
  **/
@@ -19,13 +19,13 @@ var Dialogs = {
     Default:{
         handle:         null,                    // css rule | element | null
         autoOpen:       false,                   // true | false
-        background:     ['#000', '#fff'],        // array
+        background:     ['#000', '#EBEBEB'],        // array
         width:          'auto',                  // auto | max | integer
         height:         'auto',                  // auto | max | integer
         minWidth:       null,                    // null | pixel value
         minHeight:      null,                    // null | pixel value
         innerScroll:    true,                    // true | false
-        opacity:        .90,                     // float | false
+        opacity:        .75,                     // float | false
         margin:         10,                      // integer
         padding:        10,                      // integer
         title:          null,                    // string | null
@@ -46,7 +46,9 @@ var Dialogs = {
             esc:          true,                    // true | false
             overlay:      true                     // true | false
         },
+        beforeOpen:     Prototype.emptyFunction, // function
         afterOpen:      Prototype.emptyFunction, // function
+        beforeClose:    Prototype.emptyFunction, // function
         afterClose:     Prototype.emptyFunction, // function
         afterClick:     Prototype.emptyFunction, // function
         afterIframeLoad:Prototype.emptyFunction  // function
@@ -57,6 +59,7 @@ var Dialogs = {
 };
 
 Object.extend(Dialogs, {
+    instance: null,
     _exec:false,
     _open:false,
     _elements:{
@@ -82,7 +85,7 @@ Object.extend(Dialogs, {
         data = {
             width:dim.width,
             height:dim.height
-        };
+            };
         if(Dialogs.fix.scroll){
             var scroll = view.getScrollOffsets();
             data.top  = scroll.top;
@@ -93,7 +96,7 @@ Object.extend(Dialogs, {
     elm:function(elm){
         return Dialogs._elements[elm];
     },
-    load:function(domready){
+    load:function(){
         if(!!Dialogs._exec) return;
         Dialogs._exec = true;
         var e = Dialogs._elements;
@@ -103,40 +106,52 @@ Object.extend(Dialogs, {
                 style:'display:none'
             };
             if(d[1]) a['id'] = d[1];
-            if(d[2]) a['className'] = d[2];
+            //~ if(d[2]) a['className'] = d[2];
             switch(d[0]){
                 case 'a':
                     a['href'] = 'javascript:;';
                     break;
             }
             var el = new Element(d[0], a);
+            if(d[2]) {
+                el.addClassName(d[2]);
+            }
             if(Dialogs.Lang[x]) el.update(Dialogs.Lang[x]);
             Dialogs._elements[x] = el;
         }
-        var load = function(){
-            var e = Dialogs._elements;
-            $(document.body)
-            .insert(e['overlay'])
-            .insert(e['container']
-                .insert(e['top']
-                    .insert(e['title'])
-                    .insert(e['close'])
-                    )
-                .insert(e['content'])
-                .insert(e['bottom']
-                    .insert(e['prev'])
-                    .insert(e['curr'])
-                    .insert(e['next'])
-                    )
-                );
-            if(Dialogs.Browser.IE6) e['top'].insert(new Element('div', {
-                style:'clear:both'
-            }));
-        };
-        if(!!domready) document.observe('dom:loaded', load);
-        else load.call();
+
+        $(document).observe('dom:loaded', Dialogs._insertElements);
     },
+
+    _insertElements: function()
+    {
+        if(!!Dialogs._inserted) return;
+        Dialogs._inserted == true;
+        var e = Dialogs._elements;
+        $(document.body)
+        .insert({
+            top: e['overlay']
+            })
+        .insert({
+            top: e['container']
+            .insert(e['top']
+                .insert(e['title'])
+                .insert(e['close'])
+                )
+            .insert(e['content'])
+            .insert(e['bottom']
+                .insert(e['prev'])
+                .insert(e['curr'])
+                .insert(e['next'])
+                )
+        });
+        if(Dialogs.Browser.IE6) e['top'].insert(new Element('div', {
+            style:'clear:both'
+        }));
+    },
+
     close:function(){
+        Dialogs.instance = null;
         [Dialogs.elm('title'), Dialogs.elm('content'), Dialogs.elm('curr')].invoke('update', '');
         for(var x in Dialogs._elements) Dialogs._elements[x].writeAttribute('style', 'display:none');
         Dialogs.elm('container').setStyle('left:-99999px;top:-99999px');
@@ -199,21 +214,25 @@ Object.extend(Dialogs, {
         c.open();
     }
 });
+Dialogs.load();
 var Dialog = Class.create();
 Dialog.prototype = {
     initialize:function(opt){
+        if (! Dialogs._inserted) {
+            Dialogs._insertElements();
+        }
         this.opt = Object.extend(Object.clone(Dialogs.Default), opt || {});
         var c = this.opt.content;
         if(Object.isFunction(c))
             Object.extend(this.opt, {
                 content:c()
-            });
+                });
         c = this.opt.content;
         if(Object.isString(this.opt.target.id) || Object.isElement(this.opt.target.id)){
             var b = $(this.opt.target.id);
             Object.extend(this.opt, {
                 content:b.innerHTML
-            });
+                });
             if(this.opt.target.auto){
                 var a = /#(.+)$/.exec(window.location);
                 if(Object.isArray(a) && Object.isString(a[1])){
@@ -230,6 +249,7 @@ Dialog.prototype = {
             };
         this.attachEvents();
         if(this.opt.autoOpen) this.open();
+        Dialogs.instance = this;
     },
     exec:function(bool){
         return Dialogs._open == this._open && Dialogs.elm('overlay').visible() && bool;
@@ -305,7 +325,7 @@ Dialog.prototype = {
         m = {
             width:(d.width-o.m),
             height:(d.height-o.m-o.t-o.b)
-        },
+            },
         h = this.opt.height,
         w = this.opt.width,
         x = y = false;
@@ -331,7 +351,7 @@ Dialog.prototype = {
         var s = {
             w:w,
             h:(h+o.t+o.b)
-        };
+            };
         c.setStyle('width:'+s.w+'px;height:'+s.h+'px;top:50%;left:50%;margin:-'+parseInt(s.h/2)+'px 0 0 -'+parseInt(s.w/2)+'px');
         if(Dialogs.fix.scroll){
             Dialogs.elm('overlay').setStyle('width:'+d.width+'px;height:'+d.height+'px');
@@ -383,7 +403,7 @@ Dialog.prototype = {
             Dialogs.elm('loading').hide();
             f.setStyle('width:100%;height:100%');
             this.setDimensions();
-            if(Object.isFunction(this.opt.afterIframeLoad)) this.opt.afterIframeLoad();
+            if(Object.isFunction(this.opt.afterIframeLoad)) this.opt.afterIframeLoad.call(this);
         }.bindAsEventListener(this));
     },
     setSteps:function(ev){
@@ -433,6 +453,7 @@ Dialog.prototype = {
         }.bind(this));
     },
     open:function(){
+        if(Object.isFunction(this.opt.beforeOpen)) this.opt.beforeOpen();
         if(Dialogs.fix.select)
             $$('select').select(function(el){
                 return el.visible();
@@ -447,7 +468,7 @@ Dialog.prototype = {
         [o, c, t].invoke('show');
         o.setOpacity(this.opt.opacity || 1).setStyle({
             background:this.opt.background[0] || '#000'
-        });
+            });
         c.writeAttribute('style', 'left:-99999px;top:-99999px;background:'+(this.opt.background[1] || '#fff'));
         t.writeAttribute('class', this.opt.className || '');
         Dialogs._open = new Date().getTime();
@@ -456,6 +477,7 @@ Dialog.prototype = {
         if(Object.isFunction(this.opt.afterOpen)) this.opt.afterOpen();
     },
     close:function(){
+        if(Object.isFunction(this.opt.beforeClose)) this.opt.beforeClose();
         Dialogs.close();
         if(Object.isFunction(this.opt.afterClose)) this.opt.afterClose();
     }

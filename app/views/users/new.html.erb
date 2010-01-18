@@ -1,103 +1,62 @@
-<% @user.password = @user.password_confirmation = nil %>
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Signin", login_url, :class => "abLink-detail" %>
+<% end -%>
 
-<div class="content">
-				
-				<div class="top-sitemap">
-					<span class="smtext"><a title="Sign Up" href="#">Sign up</a>, if you not have an account yet.</span>
-				</div><!-- .sitemap-instruct -->
-				
-				<div class="intro-mess">
-					<div class="simple-sign-mesg">
-						
-					</div><!-- .simple-sign-mesg -->
-				</div><!-- .intro-mess -->
-				
-				<div class="wrapper-blue-line">
-					<h3 class="blue-line">ACCOUNT SETUP</h3>	
-				
-					<!-- SIGN IN FORM -->
-					<div class="user-form">
-            <% form_for :user, :url => users_path, :html => {:id => "form_signup", :name => "form_signup"} do |f| -%>
-              <div class="block">
-                <label>Username</label>
-                <%= f.text_field :login, :class => "required validate-alphanum" %>	
-                <span class="reqMark">*</span>
-              </div><!-- .block -->
-              
-              <div class="block">
-                <label>Password</label>
-                <%= f.password_field :password, :class => "required validate-password" %>
-                <span class="reqMark">*</span>
-              </div><!-- .block -->
-              
-              <div class="block">
-              <label>Re-type Password</label>
-              <%= f.password_field :password_confirmation, :class => "required validate-password-confirm" %>
-              <span class="reqMark">*</span>
-              </div><!-- .block -->
-              
-              <div class="block">
-              <label>Email</label>
-              <%= f.text_field :email, :class => "required validate-email" %>
-              <span class="reqMark">*</span>
-              </div><!-- .block -->
-              
-              <div class="block">
-                <p class="pleft160">
-                <%= f.check_box :allow_search_by_email %>
-                <span class="nobold-text">Let others find my post on Afterclassroom if they have my email address.</span>
-                </p>
-                <p class="pleft160">
-                <input type="checkbox" value="Remember me for next login." name="agree_term"/>
-                <span class="nobold-text">I agree to the <a title="Terms of Service" href="#">Terms of Service</a> and <a title="Privacy policy" href="#">Privacy policy</a>.</span>
-                </p>
-                <p class="pleft160">
-                  <input type="submit" class="createnow-bt" value="submit" name="submit"/>
-                </p>
-              </div><!-- .block -->
-						<% end -%>
-					</div><!-- .user-form -->
-					<!-- END SIGN IN FORM -->
-					
-				</div><!-- .wrapper-blue-line -->
-				<!-- RIGHT SIDE BAR -->
-				<div class="rsb">
-					<div class="rintro-title">
-						Get full befenits with your Afterclassroom account:
-					</div><!-- .rintro-title -->
-					<ul class="rintro">
-					<li>Search and browse millions of
+<!--Content-->
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="AsDTop">
+      <h1 class="titleH1">Sign Up</h1>
+    </div>
+    <div class="signUpCont">
+      <%= render :partial => "shared/alert" %>
+      <% form_for :user, :url => users_path, :html => {:id => "form_signup", :name => "form_signup"} do |f| -%>
+        <div class="signNode">*(asterisk) is required.</div>
+        <div class="signinItem">
+          <div class="signinTit">First Name*:</div>
+          <div class="signinInp"><%= text_field_tag :first_name, "",  :class => "required" %></div>
+        </div>
+        <div class="signinItem">
+          <div class="signinTit">Last Name*:</div>
+          <div class="signinInp"><%= text_field_tag :last_name, "", :class => "required" %></div>
+        </div>
+        <div class="signinItem">
+          <div class="signinTit">Email*:</div>
+          <div class="signinInp"><%= f.text_field :email, :class => "required validate-email" %></div>
+        </div>
+        <div class="signinItem">
+          <div class="signinTit">New Password*:</div>
+          <div class="signinInp"><%= f.text_field :password, :class => "required validate-alphanum" %></div>
+        </div>
+        <div class="signinItem">
+          <div class="signinTit">Your school*:</div>
+          <div class="signinInp"><select name="Select1"><option>Select your school...</option></select></div>
+        </div>
+        <div class="signincCheck">
+          <div><%= f.check_box :allow_search_by_email %></div>
+          <div class="signincCheckTxt">Let others find my post on Afterclassroom if they have my email address.</div>
+        </div>
+        <div class="btmCreAc"><a href="javascript:void();" onclick="submit();">Create my account</a></div>
+        <div class="signincCheck">
+          By clicking "Create my account", you agree to Afterclassroom <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        </div>
+      <% end -%>
+    </div
+  </div>
+</div>
 
-					<li>Buy/Sale used and new books.</li>
+<div class="contMainR">
+  <%= render :partial => "welcome_back" %>
+  <%= render :partial => "ads/show_vertical_ads" %>
+</div>
+<!--Content-->
 
-					<li>Find part-time, full-time jobs while you
-					are studying or right after you graduated.</li>
-
-					<li>Find party surrounding your school.</li>
-
-					<li>Find vaction deals on your school break.</li>
-
-					<li>Find your comfortable place for schooling.</li>
-
-					<li>Find partner to startup your own business
-					or sport team during school time or 
-					after completed your study.</li>
-					</ul>
-				</div><!-- .rsb -->
-				<!-- END RIGHT SIDEBAR -->
-			</div>
 <script type="text/javascript">
- new Validation('form_signup', {immediate : true, onSubmit:true});
- Validation.addAllThese([
-      ['validate-password', '<p>Your password must be more than 5 characters and not be "password" or the same as your name.</p>',
-        {
-          minLength : 5,
-          notOneOf : ['password','PASSWORD','12345','01234'],
-          notEqualToField : 'user_login'
-        }],
-      ['validate-password-confirm', '<p>Your confirmation password does not match your first password, please try again.</p>',
-        {
-          equalToField : 'user_password'
-        }]
-    ]);
+  var valid = new Validation('form_signup', {immediate : false, onSubmit:false, stopOnFirst : true});
+  function submit(){
+    var result = valid.validate();
+    if (result) {
+      $('form_signup').submit();
+    }
+  }
 </script>
