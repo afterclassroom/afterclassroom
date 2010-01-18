@@ -2,7 +2,6 @@
       
       worseProf = PostMyx.find(:all,:conditions=>['prof_status LIKE ?',"Worse"], :limit => 5, :order => "prof_status DESC")
     %>
-
       <% if worseProf.size > 0 %>
         <%
         worseProf.each do |wp|
@@ -14,9 +13,6 @@
             <div class="recentDes"><%= wp.post.school.name %></div>
           </div>
         </div>
-
-
-
         <%
         end
       %>
