@@ -1,4 +1,4 @@
-body{
+popup2body{
 	font-family:Arial;font-size:11px;background-color:#ebebeb;margin:0px;
 }
 body input, body textarea, body select{
@@ -1768,7 +1768,6 @@ div.postInf{
 	padding-bottom:5px;
 }
 .popup2{
-	background:url('/images/popupRe.png') repeat-y;
 	overflow:hidden;
 	width:610px;
 	padding-bottom:5px;	
@@ -1816,6 +1815,7 @@ div.postInf{
 	color:#646464;
 	font-size:11px;
 	font-weight:bold;
+        width:50px;
 }
 .popupSelect{
 	padding-top:2px;

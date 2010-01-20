@@ -50,52 +50,6 @@ module ApplicationHelper
     mail_to email, nil, :encode => 'javascript'
   end
 
-  def select_your_school_for_edit_information(model_name, partial_path, user, options={})
-    if user.school
-      school = user.school
-      city = user.school.city
-    else
-      school = School.find(:first)
-      city = school.city
-    end
-    @countries = Country.has_cities
-    render :partial => partial_path, :locals => {:countries => @countries, :city => city, :school => school, :model_name => model_name, :options => options}
-  end
-
-  def select_your_school_for_edit_post(model_name, partial_path, school, department, options={})
-    @countries = Country.has_cities
-    render :partial => partial_path, :locals => {:countries => @countries, :city => school.city, :school => school, :department => department, :model_name => model_name, :options => options}
-  end
-  
-  def select_your_school(model_name, partial_path, options={})
-    @countries = Country.has_cities
-    if session[:your_school]
-      @your_school = School.find(session[:your_school])
-    else
-      if current_user && current_user.school
-        @your_school = current_user.school
-        session[:your_school] = @your_school
-      end
-    end
-    if @your_school
-      render :partial => partial_path, :locals => {:countries => @countries, :city => @your_school.city, :school => @your_school, :department => nil, :model_name => model_name, :options => options}
-    else
-      # location is a GeoLoc instance
-      location = session[:geo_location]
-      if location
-        country_code = location.country_code
-        name = location.city
-        @city = City.search_by_country_code({:country_code => country_code})
-        if !@city
-          @city = City.first_city_has_schools.first
-        end
-      else
-        @city = City.first_city_has_schools.first
-      end
-      render :partial => partial_path, :locals => {:countries => @countries, :city => @city, :school => nil, :department => nil, :model_name => model_name, :options => options}
-    end
-  end
-
   def action_to_text(activity)
     case activity.action
     when "updated_profile"

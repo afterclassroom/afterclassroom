@@ -1,5 +1,9 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class UsersSelectSchoolController < ApplicationController
+  def show
+    @countries = Country.has_cities
+  end
+  
   def state_or_city
     country_id = params[:country_id]
     @model_name = params[:model]
