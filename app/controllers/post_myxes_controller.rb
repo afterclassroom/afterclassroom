@@ -23,6 +23,10 @@ class PostMyxesController < ApplicationController
       school = session[:your_school]
       @posts = PostMyx.paginated_post_conditions_with_search(params, school)
     end
+    #@goodprof = PostMyx.all
+    @badprof = PostMyx.find_by_prof_status("Good")
+    @badprof = PostMyx.find_by_prof_status("Bad")
+    #@comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
