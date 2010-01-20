@@ -1,8 +1,8 @@
-db/schema.rb
-db/sphinx/development
-test/*
-log
-tmp
-public/avatars
-index/*
-nbproject/*
+*~
+*.cache
+*.log
+*.pid
+log/*.log
+tmp/**/*
+db/sphinx/**
+public/avatars/**
