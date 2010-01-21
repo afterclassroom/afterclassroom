@@ -44,11 +44,15 @@ class PostMyxesController < ApplicationController
     @post_myx = PostMyx.find(params[:id])
     if params[:rateType] == "Good"
       @post_myx.good = @post_myx.good+1
+      @post_myx.update_attribute("good", @post_myx.good)
     elsif params[:rateType] == "Worse"
       @post_myx.bad = @post_myx.bad + 1
+      @post_myx.update_attribute("bad", @post_myx.bad)
     else
       @post_myx.bored = @post_myx.bored + 1
+      @post_myx.update_attribute("bored", @post_myx.bored)
     end
+    #ate_attributes(params[:employee])
     @post_myx
   end
 
