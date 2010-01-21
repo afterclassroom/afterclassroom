@@ -2,33 +2,44 @@
 class UsersSelectSchoolController < ApplicationController
   def show
     @countries = Country.has_cities
-  end
-  
-  def state_or_city
-    country_id = params[:country_id]
-    @model_name = params[:model]
-    @states = State.find_all_by_country_id(country_id)
-    if @states.size <= 0
-      render :action => "city"
+    if session[:your_school]
+      @school = School.find(session[:your_school])
+      @city = @school.city
+      @state = @city.state
+      @country = @state.country
+      @states = @country.states
+      @cities = @state.cities
+      @schools = @city.schools
+    else
+      @country = @countries.first
+      @states = @country.states
+      @state = @states.first
+      @cities = @state.cities
+      @city = @cities.first
+      @schools = @city.schools
+      @school = @schools.first
     end
   end
 
-  def city
-    state_id = params[:state_id]
-    @model_name = params[:model]
-    @cities = City.find_all_by_state_id(state_id)
+  def update_form  
+    @city = City.find(params[:city])
+    @state = @city.state
+    @country = @state.country
+
+    @countries = Country.has_cities
+    @states = @country.states
+    @cities = @state.cities
+    @schools = @city.schools
+    @school = @schools.first
   end
 
-  def school
+  def list_school
+    alphabet = params[:alphabet]
     city_id = params[:city_id]
-    @model_name = params[:model]
-    @get_department = params[:get_department]
-    @schools_university = School.find_all_by_city_id_and_type_school(city_id, 'University')
-    @schools_college = School.find_all_by_city_id_and_type_school(city_id, 'College')
-  end
-
-  def department
-    school_id = params[:school_id]
-    @departments = School.find(school_id).departments.find(:all, :order => "department_category_id")
+    if alphabet == ""
+      @schools = City.find(city_id).schools
+    else
+      @schools = School.list_school(city_id, alphabet)
+    end
   end
 end

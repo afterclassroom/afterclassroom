@@ -56,37 +56,18 @@
         <div class="submit"><a href="#">Submit</a></div>
       </div>
     </div>
+    <% if @post.comments.size > 0 %>
     <div class="AsDcomL">
       <h1 class="titleH1"><a href="#">Comments (4)</a></h1>
       <div class="AsDcomLW">
         <span>View</span>
         <span><select name="Select2"><option>All answers</option></select></span>
       </div>
-      <div class="AsDcomItem">
-        <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-        <div class="AsDcomItemR">
-          <div class="AsDcomName">Comment by<a href="#">Huy Quach</a>- 35 minutes ago</div>
-          <div class="AsDcomDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis. Proin ultricies dignissim ante vitae euismod. Aliquam vitae sem vel nisi posuere molestie eu venenatis urna.</div>
-          <div class="AsDcomRe">
-            <div class="AsDcomRe1"><a href="#">10</a></div>
-            <div class="AsDcomRe2"><a href="#">2</a></div>
-            <div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="AsDcomItem">
-        <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-        <div class="AsDcomItemR">
-          <div class="AsDcomName">Comment by<a href="#">Huy Quach</a>- 35 minutes ago</div>
-          <div class="AsDcomDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis. Proin ultricies dignissim ante vitae euismod. Aliquam vitae sem vel nisi posuere molestie eu venenatis urna.</div>
-          <div class="AsDcomRe">
-            <div class="AsDcomRe1"><a href="#">1</a></div>
-            <div class="AsDcomRe2"><a href="#">200</a></div>
-            <div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
-          </div>
-        </div>
-      </div>
+      <% @post.comments.each do |comnt| %>
+        <%= render :partial => "item_comment", :objects => comnt %>
+      <% end %>
     </div>
+    <% end %>
     <div class="goback"><a onclick="history.go(-1);" href="javascript:void();"><span>Go back</span></a></div>
     <div class="comPage">
       <span class="compre"><a href="#"> </a></span>

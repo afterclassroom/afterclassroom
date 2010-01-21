@@ -10,13 +10,15 @@ class School < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_and_belongs_to_many :departments
 
+  # Named Scope
+  named_scope :list_school, lambda {|*args| {:conditions => ["city_id = ? AND SUBSTR(LOWER(name), 1, 1) LIKE ?", args[0], args[1]]}}
+
   def address
     @city = City.find(city_id)
     @countryname = Country.find(@city.country_id).name
     @statename = State.find(@city.state_id).name
     name + ', ' + @city.name + ', ' +  @countryname +  ', ' + @statename
     #name+', '+self.city.name+', '+ self.city.country.name+', '+ self.city.state.name
-
   end
 
   def self.paginated_schools_conditions_with_search(params)

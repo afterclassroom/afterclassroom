@@ -11,9 +11,6 @@
 <!--Select School-->
 <script language="javascript">
   var select_school_path = "/users_select_school/show";
-  var state_path = "/users_select_school/state_or_city";
-  var city_path = "/users_select_school/city";
-  var school_path = "/users_select_school/school";
 
   Dialogs.load();
   new Dialog({
@@ -26,21 +23,4 @@
       }
     }
   });
-
-  function getState(country_id){
-    div_update = "select_state_div";
-    new Ajax.Updater(div_update, state_path,
-    {asynchronous:true,
-      evalScripts:true,
-      method:'get',
-      on500:function(request){alert('Sorry, there was an error.'.l); return false},
-      parameters:{country_id:country_id, model:model_name},
-      onSuccess: function(){
-        $('select_state').update('Select your state');
-        $('select_city').update('Select your city');
-        $('select_city_div').update('');
-      }
-    }
-  );
-  }
 </script>

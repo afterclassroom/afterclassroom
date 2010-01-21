@@ -5,7 +5,7 @@ class PostAssignmentsController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search, :due_date]
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index]
+  after_filter :store_location, :only => [:index, :show]
   # GET /post_assignments
   # GET /post_assignments.xml
   def index
@@ -58,10 +58,7 @@ class PostAssignmentsController < ApplicationController
   def show
     @post_assignment = PostAssignment.find(params[:id])
     @post = @post_assignment.post
-    @post_category_id = @post.post_category_id
-    @type_name = @post.post_category.name
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_assignment.post)
+    update_view_count(@post_assignment.post)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_assignment }
@@ -132,10 +129,6 @@ class PostAssignmentsController < ApplicationController
   end
 
   private
-
-  def update_views(obj)
-    updated = update_view_count(obj)
-  end
   
   def require_current_user
     @user ||= PostAssignment.find(params[:id]).post.user
