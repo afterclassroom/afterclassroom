@@ -3,7 +3,7 @@ class PostMyxesController < ApplicationController
   include Viewable
 
   before_filter :params_search_post, :only => [:index, :show, :edit]
-  before_filter :login_required, :except => [:index, :show]
+  before_filter :login_required, :except => [:index, :show, :profrating]
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index]
@@ -38,6 +38,32 @@ class PostMyxesController < ApplicationController
     @post = Post.find(params[:id])
     update_views(@post)
     render :layout => false
+  end
+
+  def profrating
+    @post_myx = PostMyx.find(params[:id])
+    if params[:rateType] == "Good"
+      @post_myx.good = @post_myx.good+1
+      @post_myx.update_attribute("good", @post_myx.good)
+    elsif params[:rateType] == "Worse"
+      @post_myx.bad = @post_myx.bad + 1
+      @post_myx.update_attribute("bad", @post_myx.bad)
+    else
+      @post_myx.bored = @post_myx.bored + 1
+      @post_myx.update_attribute("bored", @post_myx.bored)
+    end
+
+    score = (@post_myx.good.to_f / (@post_myx.good.to_f + @post_myx.bored.to_f + @post_myx.bad.to_f)) * 100
+    if score > 50
+      @post_myx.prof_status = "Good"
+      @post_myx.update_attribute("prof_status", @post_myx.prof_status)
+    else
+      @post_myx.prof_status = "Worse"
+      @post_myx.update_attribute("prof_status", @post_myx.prof_status)
+    end
+
+
+    @post_myx
   end
 
   # GET /post_myxes/1
