@@ -52,7 +52,17 @@ class PostMyxesController < ApplicationController
       @post_myx.bored = @post_myx.bored + 1
       @post_myx.update_attribute("bored", @post_myx.bored)
     end
-    #ate_attributes(params[:employee])
+
+    score = (@post_myx.good.to_f / (@post_myx.good.to_f + @post_myx.bored.to_f + @post_myx.bad.to_f)) * 100
+    if score > 50
+      @post_myx.prof_status = "Good"
+      @post_myx.update_attribute("prof_status", @post_myx.prof_status)
+    else
+      @post_myx.prof_status = "Worse"
+      @post_myx.update_attribute("prof_status", @post_myx.prof_status)
+    end
+
+
     @post_myx
   end
 
