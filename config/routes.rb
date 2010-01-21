@@ -84,7 +84,8 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :due_date => :get
   }
   map.resources :post_myxes, :collection => {
-    :search => :get, :due_date => :get
+    :search => :get, :due_date => :get,
+    :profrating => :get
   }
   map.resources :post_projects, :collection => {
     :search => :get, :due_date => :get

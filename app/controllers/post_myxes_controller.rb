@@ -3,7 +3,7 @@ class PostMyxesController < ApplicationController
   include Viewable
 
   before_filter :params_search_post, :only => [:index, :show, :edit]
-  before_filter :login_required, :except => [:index, :show]
+  before_filter :login_required, :except => [:index, :show, :profrating]
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index]
@@ -38,6 +38,18 @@ class PostMyxesController < ApplicationController
     @post = Post.find(params[:id])
     update_views(@post)
     render :layout => false
+  end
+
+  def profrating
+    @post_myx = PostMyx.find(params[:id])
+    if params[:rateType] == "Good"
+      @post_myx.good = @post_myx.good+1
+    elsif params[:rateType] == "Worse"
+      @post_myx.bad = @post_myx.bad + 1
+    else
+      @post_myx.bored = @post_myx.bored + 1
+    end
+    @post_myx
   end
 
   # GET /post_myxes/1

@@ -1,36 +1,50 @@
-				<div class="assItem">
-					<div class="assItemL">
-						<div class="assImg"><div><%= link_to image_tag("noimg.png"), post %></div></div>
-						<div class="assContT">
-							<h2 class="titleH2"><%= link_to post.title, post_myx_path(post) %></h2>
-							<div class="assCate"><span>Category:</span><%= link_to post.post_category.name, "#" %></div>
-							<div class="assCate"><span>Neighborhood:</span><a href="#">University of California</a></div>
-						</div>
-						<div class="assDes"><%= truncate_words(post.description) %></div>
-					</div>
-					<div class="asslinkdown">
-						<div class="Star">
-							<img src="images/starRed.png"/><img src="images/starRed.png"/><img src="images/starRed.png"/><img src="images/starRW.png"/><img src="images/starWhite.png"/>
-						</div>
-						<div class="moreTutor"><%= post.school.address %></div>
-						<div class="mySco"><a href="#">View score</a></div>
-					</div>
-					<div class="assItemB">
-						<div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
-						<div class="assInfT">
-							<div class="assInfT">
-								<div class="assInfL">
-									<div><span>Posted by:</span><%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
-									<div><span>Comments:</span><%= "#{post.user.comments.size} Comment#{"s" if post.user.comments.size > 1}" %></div>
-								</div>
-								<div class="assInfR"><%= link_to "more", post_myx_path(post) %></div>
-							</div>
-							<div class="assInfB">
-								<div class="qashdU"><a href="#"> <%= post.post_myx.good %> </a></div>
-								<div class="cheap"><a href="#">Bored(<%= post.post_myx.bored %>)</a></div>
-								<div class="qashdD"><a href="#"><%= post.post_myx.bad %></a></div>
-								<div class="share"><a href="#">Share</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
+<%= javascript_include_tag :defaults %>
+<div class="assItem">
+  <div class="assItemL">
+    <div class="assImg"><div><%= link_to image_tag("noimg.png"), post %></div></div>
+    <div class="assContT">
+      <h2 class="titleH2"><%= link_to post.title, post_myx_path(post) %></h2>
+      <div class="assCate"><span>Category:</span><%= link_to post.post_category.name, "#" %></div>
+      <div class="assCate"><span>Neighborhood:</span><a href="#">University of California</a></div>
+    </div>
+    <div class="assDes"><%= truncate_words(post.description) %></div>
+  </div>
+  <div class="asslinkdown">
+    <div class="Star">
+      <img src="images/starRed.png"/><img src="images/starRed.png"/><img src="images/starRed.png"/><img src="images/starRW.png"/><img src="images/starWhite.png"/>
+    </div>
+    <div class="moreTutor"><%= post.school.address %></div>
+    <div class="mySco"><a href="#">View score</a></div>
+  </div>
+  <div class="assItemB">
+    <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
+    <div class="assInfT">
+      <div class="assInfT">
+        <div class="assInfL">
+          <div><span>Posted by:</span><%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
+          <div><span>Comments:</span><%= "#{post.user.comments.size} Comment#{"s" if post.user.comments.size > 1}" %></div>
+        </div>
+        <div class="assInfR"><%= link_to "more", post_myx_path(post) %></div>
+      </div>
+      <div class="assInfB">
+        <div id="ratingdiv">
+          <div class="qashdU">
+            <%= link_to_remote( post.post_myx.good,:controller => 'post_myxes' ,
+              :url =>{:controller => 'post_myxes' , :action => 'profrating',
+                :id => post.post_myx, :rateType => "Good",:method=>'get' }) %>
+          </div>
+          <div class="cheap">
+            <%= link_to_remote( "Bored("+post.post_myx.bored.to_s+")",:controller => 'post_myxes' ,
+              :url =>{:controller => 'post_myxes' , :action => 'profrating',
+                :id => post.post_myx, :rateType => "Bored",:method=>'get' }) %>
+          </div>
+          <div class="qashdD">
+            <%= link_to_remote( post.post_myx.bad.to_s,:controller => 'post_myxes' ,
+              :url =>{:controller => 'post_myxes' , :action => 'profrating',
+                :id => post.post_myx, :rateType => "Worse",:method=>'get' }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
