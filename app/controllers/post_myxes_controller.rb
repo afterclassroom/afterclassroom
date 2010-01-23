@@ -3,7 +3,7 @@ class PostMyxesController < ApplicationController
   include Viewable
 
   before_filter :params_search_post, :only => [:index, :show, :edit]
-  before_filter :login_required, :except => [:index, :show, :profrating, :more_worse]
+  before_filter :login_required, :except => [:index, :show, :profrating, :more_worse, :more_good]
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index]
