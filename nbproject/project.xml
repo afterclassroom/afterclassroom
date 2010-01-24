@@ -3,11 +3,7 @@
     <type>org.netbeans.modules.ruby.railsprojects</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/rails-project/1">
-<<<<<<< HEAD:nbproject/project.xml
             <name>afterclassroom</name>
-=======
-            <name>after_class_room</name>
->>>>>>> ca0fe7a20326c023d0aea9425e314716328e6074:nbproject/project.xml
         </data>
     </configuration>
 </project>

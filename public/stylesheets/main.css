@@ -747,8 +747,9 @@ h2.titleH2 a:hover{
     width:80px;
 }
 .assDrop{
-    border-bottom:1px #dbdbdb solid;
+    border-bottom:1px solid #DBDBDB;
     padding-bottom:5px;
+    min-height:20px;
 }
 .assDrop select{
     width:135px;

@@ -1,13 +1,10 @@
 --- 
 javascripts: 
 - application:
-  - prototype
-  - effects
-  - dragdrop
-  - controls
-  - application
-  - validation
-  - dialog
+  - jquery
+  - jquery-ui
+  - jrails
+  - jquery-mcdropdown
 - student_louge:
   - prototype
   - effects
@@ -28,10 +25,7 @@ javascripts:
 stylesheets: 
 - application:
   - main
-  - pagination
-  - validation
-  - sexy_flash
-  - dialog
+  - jquery-mcdropdown
 - student_louge:
   - reset
   - layout

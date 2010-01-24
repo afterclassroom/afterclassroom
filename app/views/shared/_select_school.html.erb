@@ -9,18 +9,3 @@
   <% end %>
 </div>
 <!--Select School-->
-<script language="javascript">
-  var select_school_path = "/users_select_school/show";
-
-  Dialogs.load();
-  new Dialog({
-    handle:'#show_select_school',
-    title:'Select School',
-    ajax:{
-      url:select_school_path,
-      options:{
-        method:'get'
-      }
-    }
-  });
-</script>

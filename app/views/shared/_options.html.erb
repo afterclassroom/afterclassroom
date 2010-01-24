@@ -1,0 +1,66 @@
+<div class="assDrop">
+  <form id="action_option" name="option" action="" method="Get">
+    <div class="option_item"><input type="text" name="department" id="department" value="<%= department %>" /></div>
+    <div class="option_item"><input type="text" name="year" id="year" value="<%= year %>" /></div>
+    <div class="option_item"><input type="text" name="over" id="over" value="<%= over %>" /></div>
+  </form>
+</div>
+<ul id="department_menu" class="mcdropdown_menu">
+  <li rel="">
+    Chose department
+  </li>
+  <%
+    category_id = ""
+  %>
+  <% @departments.each do |department| %>
+    <% if category_id == "" %>
+      <li rel="category_id_<%= department.department_category.id %>">
+        <%= department.department_category.name %>
+        <ul>
+          <li rel="<%= department.id %>"><%= department.name %></li>
+    <% elsif category_id == department.department_category.id %>
+          <li rel="<%= department.id %>"><%= department.name %></li>
+    <% else %>
+         </ul>
+      </li>
+      <li rel="category_id_<%= department.department_category.id %>">
+        <%= department.department_category.name %>
+        <ul>
+          <li rel="<%= department.id %>"><%= department.name %></li>
+    <% end %>
+    <% category_id = department.department_category.id %>
+  <% end %>
+        </ul>
+    </li>
+</ul>
+<%
+list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
+%>
+<ul id="year_menu" class="mcdropdown_menu">
+  <% list_years.each do |year| %>
+    <li rel="<%= year[1] %>">
+      <%= year[0] %>
+    </li>
+  <% end %>
+</ul>
+<%
+list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months", "180"], ["Over 9 months", "270"], ["Over 1 year", "365"]]
+%>
+<ul id="over_menu" class="mcdropdown_menu">
+  <% list_overs.each do |over| %>
+    <li rel="<%= over[1] %>">
+      <%= over[0] %>
+    </li>
+  <% end %>
+</ul>
+<script type="text/javascript">
+  $(document).ready(function (){
+    $("#department").mcDropdown("#department_menu", {width: 120, select: option_submit});
+    $("#year").mcDropdown("#year_menu", {width: 120, select: option_submit});
+    $("#over").mcDropdown("#over_menu", {width: 120, select: option_submit});
+  });
+  
+  function option_submit(){
+    $("#action_option").submit();
+  }
+</script>

@@ -9,16 +9,22 @@ class PostAssignmentsController < ApplicationController
   # GET /post_assignments
   # GET /post_assignments.xml
   def index
-    @list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
-    @list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months", "180"], ["Over 9 months", "270"], ["Over 1 year", "365"]]
-    @year = params[:year] if params[:year] 
-    @over = params[:over] if params[:over]
+    @department = params[:department] if params[:department]
+    @year = params[:year] if params[:year]
+    @over = params[:over] ? params[:over] : "30"
     type = PostCategory.find_by_name("Assignments").id
+    school = session[:your_school]
+    
+    if school
+      @departments = school.departments.find(:all, :order => "department_category_id ASC")
+    else
+      @departments = Department.find(:all, :order => "department_category_id ASC")
+    end
+    
     if params[:more_like_this_id]
       post = Post.find_by_id(params[:more_like_this_id])
       @posts = Post.paginated_post_more_like_this(post)
     else
-      school = session[:your_school]
       @posts = Post.paginated_post_conditions_with_option(params, school, type)
     end
 
