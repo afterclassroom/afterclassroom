@@ -15,6 +15,7 @@ goodProf = PostMyx.find(:all,:conditions=>['prof_status LIKE ?',"Good"], :limit 
   <%
   end
 %>
-<%
+       <div class="dueDbutton"><%= link_to "View more Good Teacher/Prof", more_good_post_myxes_path %></div>
+ <%
 end
 %>
