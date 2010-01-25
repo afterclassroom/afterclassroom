@@ -9,6 +9,9 @@ class Department < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_and_belongs_to_many :schools
 
+  # Named Scope
+  named_scope :of_school, lambda {|c| return {} if c.nil?; {:joins => :departments_schools, :conditions => ["departments_schools.school_id = ?", c], :order => "department_category_id ASC"}}
+
   def self.paginated_departments_conditions_with_search(params)
     search = {}
     search['name'] = params[:department][:name] || nil if params[:department]

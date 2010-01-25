@@ -1,9 +1,19 @@
 /* 
 	styles for the psuedo-select box 
 */
-.option_item{
+.option_item_1{
     float: left;
-    width: 138px;
+    width: 200px;
+    margin-right: 5px;
+}
+.option_item_2{
+    float: left;
+    width: 100px;
+    margin-right: 5px;
+}
+.option_item_3{
+    float: left;
+    width: 107px;
     margin-right: 5px;
 }
 div.mcdropdown {

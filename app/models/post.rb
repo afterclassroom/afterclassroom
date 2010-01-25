@@ -55,7 +55,7 @@ class Post < ActiveRecord::Base
       query = params[:search][:query]
      
       if school
-        Post.search(query, :with => {:post_category_id => type, :school_id => school.id}, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+        Post.search(query, :with => {:post_category_id => type, :school_id => school}, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
       else
         Post.search(query, :with => {:post_category_id => type}, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
       end
@@ -69,7 +69,7 @@ class Post < ActiveRecord::Base
 
     cond = Caboose::EZ::Condition.new :posts do
       post_category_id == type if type
-      school_id == school.id if school
+      school_id == school if school
       school_year == year if year
       department_id == department if department
       created_at > Time.now - over.day

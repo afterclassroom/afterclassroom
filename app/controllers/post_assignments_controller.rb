@@ -1,10 +1,10 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostAssignmentsController < ApplicationController
   include Viewable
-  
+
+  before_filter :get_variables, :only => [:index, :search, :due_date]
   before_filter :login_required, :except => [:index, :show, :search, :due_date]
-  before_filter :require_current_user,
-    :only => [:edit, :update, :destroy]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show]
   # GET /post_assignments
   # GET /post_assignments.xml
@@ -12,20 +12,14 @@ class PostAssignmentsController < ApplicationController
     @department = params[:department] if params[:department]
     @year = params[:year] if params[:year]
     @over = params[:over] ? params[:over] : "30"
-    type = PostCategory.find_by_name("Assignments").id
-    school = session[:your_school]
     
-    if school
-      @departments = school.departments.find(:all, :order => "department_category_id ASC")
-    else
-      @departments = Department.find(:all, :order => "department_category_id ASC")
-    end
+    @departments = Department.of_school(@school)
     
     if params[:more_like_this_id]
       post = Post.find_by_id(params[:more_like_this_id])
       @posts = Post.paginated_post_more_like_this(post)
     else
-      @posts = Post.paginated_post_conditions_with_option(params, school, type)
+      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
     end
 
     respond_to do |format|
@@ -36,10 +30,8 @@ class PostAssignmentsController < ApplicationController
 
   def search
     @query = params[:search][:query] if params[:search]
-    type = PostCategory.find_by_name("Assignments").id
     if params[:search]
-      school = session[:your_school]
-      @posts = Post.paginated_post_conditions_with_search(params, school, type)
+      @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
     
     respond_to do |format|
@@ -49,9 +41,7 @@ class PostAssignmentsController < ApplicationController
   end
 
   def due_date
-    type = PostCategory.find_by_name("Assignments").id
-    school = session[:your_school]
-    @posts = PostAssignment.paginated_post_conditions_with_due_date(params, school, type)
+    @posts = PostAssignment.paginated_post_conditions_with_due_date(params, @school, @type)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -135,7 +125,12 @@ class PostAssignmentsController < ApplicationController
   end
 
   private
-  
+
+  def get_variables
+    @type = PostCategory.find_by_name("Assignments").id
+    @school = session[:your_school]
+  end
+
   def require_current_user
     @user ||= PostAssignment.find(params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))

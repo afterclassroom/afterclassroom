@@ -1,8 +1,8 @@
 <div class="assDrop">
   <form id="action_option" name="option" action="" method="Get">
-    <div class="option_item"><input type="text" name="department" id="department" value="<%= department %>" /></div>
-    <div class="option_item"><input type="text" name="year" id="year" value="<%= year %>" /></div>
-    <div class="option_item"><input type="text" name="over" id="over" value="<%= over %>" /></div>
+    <div class="option_item_1"><input type="text" name="department" id="department" value="<%= department %>" /></div>
+    <div class="option_item_2"><input type="text" name="year" id="year" value="<%= year %>" /></div>
+    <div class="option_item_3"><input type="text" name="over" id="over" value="<%= over %>" /></div>
   </form>
 </div>
 <ul id="department_menu" class="mcdropdown_menu">
@@ -55,9 +55,9 @@ list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months",
 </ul>
 <script type="text/javascript">
   $(document).ready(function (){
-    $("#department").mcDropdown("#department_menu", {width: 120, select: option_submit});
-    $("#year").mcDropdown("#year_menu", {width: 120, select: option_submit});
-    $("#over").mcDropdown("#over_menu", {width: 120, select: option_submit});
+    $("#department").mcDropdown("#department_menu", {width: 170, select: option_submit});
+    $("#year").mcDropdown("#year_menu", {width: 75, select: option_submit});
+    $("#over").mcDropdown("#over_menu", {width: 80, select: option_submit});
   });
   
   function option_submit(){
