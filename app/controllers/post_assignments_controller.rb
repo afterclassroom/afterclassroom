@@ -5,7 +5,7 @@ class PostAssignmentsController < ApplicationController
   before_filter :get_variables, :only => [:index, :search, :due_date]
   before_filter :login_required, :except => [:index, :show, :search, :due_date]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show]
+  after_filter :store_location, :only => [:index, :show, :search, :due_date]
   # GET /post_assignments
   # GET /post_assignments.xml
   def index

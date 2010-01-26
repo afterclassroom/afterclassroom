@@ -5,6 +5,7 @@ javascripts:
   - jquery-ui
   - jrails
   - jquery-mcdropdown
+  - thickbox
 - student_louge:
   - prototype
   - effects
@@ -26,6 +27,7 @@ stylesheets:
 - application:
   - main
   - jquery-mcdropdown
+  - thickbox
   - sexy_flash
 - student_louge:
   - reset

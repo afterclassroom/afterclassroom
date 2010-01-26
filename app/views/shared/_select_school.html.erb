@@ -3,9 +3,9 @@
   <% if session[:your_school]
       school = School.find(session[:your_school])
   %>
-    Your are at <%= school.name %> - <%= link_to("Click here", "javascript:;", :id => "show_select_school") %> to choose another school.
+    Your are at <%= school.name %> - <%= link_to("Click here", "/users_select_school/show?height=220&width=400", :class => "thickbox", :title => "Select Schoools") %> to choose another school.
   <% else %>
-    <%= link_to("Click here", "javascript:;", :id => "show_select_school") %> to choose your school without login.
+     <%= link_to("Click here", "/users_select_school/show?height=220&width=400", :class => "thickbox", :title => "Select Schoools") %> to choose your school without login.
   <% end %>
 </div>
 <!--Select School-->
