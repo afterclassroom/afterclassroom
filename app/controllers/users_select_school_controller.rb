@@ -22,16 +22,36 @@ class UsersSelectSchoolController < ApplicationController
     render :layout => false
   end
 
-  def update_form  
-    @city = City.find(params[:city])
-    @state = @city.state
-    @country = @state.country
-
+  def update_form
+    type = params[:type]
+    id = params[:id]
     @countries = Country.has_cities
-    @states = @country.states
-    @cities = @state.cities
-    @schools = @city.schools
-    @school = @schools.first
+    case type
+      when "country"
+        @country = Country.find(id)
+        @states = @country.states
+        @state = @states.first
+        @cities = @state.cities
+        @city = @cities.first
+        @schools = @city.schools
+        @school = @schools.first
+      when "state"
+        @state = State.find(id)
+        @country = @state.country
+        @states = @country.states
+        @cities = @state.cities
+        @city = @cities.first
+        @schools = @city.schools
+        @school = @schools.first
+      when "city"
+        @city = City.find(id)
+        @state = @city.state
+        @country = @state.country
+        @states = @country.states
+        @cities = @state.cities
+        @schools = @city.schools
+        @school = @schools.first
+    end
     render :layout => false
   end
 

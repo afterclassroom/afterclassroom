@@ -58,21 +58,31 @@ function getPostSearchType(post_type){
     $('#action_post_search').action = action;
 }
 
-function update_form(){
+function update_form(type_select, id){
     $.ajax({
         url: '/users_select_school/update_form',
         type: 'GET',
         dataType: 'html',
         data: ({
-            country : $('#country').val(),
-            state : $('#state').val(),
-            city : $('#city').val()
+            type : type_select,
+            id : id
             }),
         success: function(html){
             $('#select_school').replaceWith(html);
             load_menus();
         }
     });
+}
+function select_country(){
+    update_form("country", $('#country').val());
+}
+
+function select_state(){
+    update_form("state", $('#state').val());
+}
+
+function select_city(){
+    update_form("city", $('#city').val());
 }
 
 function select_school(){
@@ -92,17 +102,17 @@ function load_menus (){
     $("#country").mcDropdown("#country_menu", {
         width: 170,
         valueAttr: "rel_country",
-        select: update_form
+        select: select_country
     });
     $("#state").mcDropdown("#state_menu", {
         width: 170,
         valueAttr: "rel_state",
-        select: update_form
+        select: select_state
     });
     $("#city").mcDropdown("#city_menu", {
         width: 170,
         valueAttr: "rel_city",
-        select: update_form
+        select: select_city
     });
     $("#school").mcDropdown("#school_menu", {
         valueAttr: "rel_school",
