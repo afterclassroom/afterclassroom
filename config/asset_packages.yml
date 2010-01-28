@@ -1,6 +1,7 @@
 --- 
 javascripts: 
 - application:
+  - application
   - jquery
   - jquery-ui
   - jrails

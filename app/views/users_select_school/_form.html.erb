@@ -1,35 +1,68 @@
-  <div class="popupItem">
-    <% form_tag('', :id => 'select_school_form') do %>
+<div class="popupItem">
+  <% form_tag('', :id => 'select_school_form') do %>
     <div class="popupL">
       <div class="popupNumb">1</div>
       <div class="popupCoun">Country</div>
       <div class="popupSelect">
-        <%= select_tag ("country", options_for_select(countries.map {|count| [count.name,count.id]}, country.id)) %>
+        <input type="text" name="country" id="country" value="<%= country.id %>" />
       </div>
     </div>
     <div class="popupR">
       <div class="popupNumb">2</div>
       <div class="popupCoun">State</div>
-      <div class="popupSelect"><%= select_tag ("state", options_for_select(states.map {|st| [st.name,st.id]}, state.id)) %></div>
+      <div class="popupSelect">
+        <input type="text" name="state" id="state" value="<%= state.id %>" />
+      </div>
     </div>
     <div class="popupL">
       <div class="popupNumb">3</div>
       <div class="popupCoun">City</div>
-      <div class="popupSelect"><%= select_tag ("city", options_for_select(cities.map {|ct| [ct.name,ct.id]}, city.id)) %></div>
+      <div class="popupSelect">
+        <input type="text" name="city" id="city" value="<%= city.id %>" />
+      </div>
     </div>
-    <% end %>
     <div class="popupR">
       <div class="popupNumb">4</div>
       <div class="popupCoun">School</div>
-      <div class="popupSelect" id="list_school"><%= select_tag ("school", options_for_select(schools.map {|sc| [sc.name,sc.id]}, school.id)) %></div>
+      <div class="popupSelect">
+        <input type="text" name="school" id="school" value="<%= school.id %>" />
+      </div>
     </div>
-  </div>
-  <div class="filter">Filter your school by alphabets</div>
-  <div class="popupAl" id="list_alphabet">
-    <%= link_to_remote "All", :update => "list_school", :url => {:controller => "users_select_school", :action => "list_school"}, :with => "'alphabet=&city_id=' + $('city').value", :html => {:id => "alphabet_all", :class => "selected"}, :success => "select_alphabet('alphabet_all')" %>
-    <% ('A'..'Z').each do |a| %>
-      <%= link_to_remote a.to_a, :update => "list_school", :url => {:controller => "users_select_school", :action => "list_school"}, :with => "'alphabet=#{a.to_a}&city_id=' + $('city').value", :html => {:id => "alphabet_#{a.to_a}"}, :success => "select_alphabet('alphabet_#{a.to_a}')" %>
-    <% end %>
-  </div>
-  <div class="popupBtm"><a href="javascript: void();" onclick="select_school();">Select</a></div>
-<%= observe_form :select_school_form, :url  => {:controller => 'users_select_school', :action => 'update_form'}, :frequency => 0.25, :update => 'select_school' %>
+  <% end %>
+</div>
+<div class="filter">Filter your school by alphabets</div>
+<div class="popupAl" id="list_alphabet">
+  <%= link_to_remote "All", :update => "list_school", :url => {:controller => "users_select_school", :action => "list_school"}, :with => "'alphabet=&city_id=' + $('#city').val()", :html => {:id => "alphabet_all", :class => "selected"}, :success => "select_alphabet('#alphabet_all')" %>
+  <% ('A'..'Z').each do |a| %>
+    <%= link_to_remote a.to_a, :update => "list_school", :url => {:controller => "users_select_school", :action => "list_school"}, :with => "'alphabet=#{a.to_a}&city_id=' + $('#city').val()", :html => {:id => "alphabet_#{a.to_a}"}, :success => "select_alphabet('#alphabet_#{a.to_a}')" %>
+  <% end %>
+</div>
+<div class="popupBtm"><a href="javascript:;" onclick="select_school();">Select</a></div>
+<ul id="country_menu" class="mcdropdown_menu">
+  <% countries.each do |c| %>
+    <li rel_country="<%= c.id %>">
+      <%= c.name %>
+    </li>
+  <% end %>
+</ul>
+<ul id="state_menu" class="mcdropdown_menu">
+  <% states.each do |s| %>
+    <li rel_state="<%= s.id %>">
+      <%= s.name %>
+    </li>
+  <% end %>
+</ul>
+<ul id="city_menu" class="mcdropdown_menu">
+  <% cities.each do |ct| %>
+    <li rel_city="<%= ct.id %>">
+      <%= ct.name %>
+    </li>
+  <% end %>
+</ul>
+<ul id="school_menu" class="mcdropdown_menu">
+  <% schools.each do |sc| %>
+    <li rel_school="<%= sc.id %>">
+      <%= sc.name %>
+    </li>
+  <% end %>
+</ul>

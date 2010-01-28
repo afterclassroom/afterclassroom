@@ -1,3 +1,6 @@
 <div class="popup2" id="select_school">
   <%= render :partial => "form", :locals => {:countries => @countries, :states => @states, :cities => @cities, :schools => @schools, :country => @country, :state => @state, :city => @city, :school => @school} %>
 </div>
+<script type="text/javascript">
+  $(document).ready(load_menus);
+</script>

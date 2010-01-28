@@ -1759,45 +1759,19 @@ div.postInf{
     padding-left:0px;
 }
 /* PopUp */
-.popup{
-    background:url('/images/popupBot.png') no-repeat left bottom;
-    overflow:hidden;
-    width:610px;
-
-    _height:100%;
-}
-.popup1{
-    background:url('/images/popupTop.png') no-repeat;
-
-    padding-bottom:5px;
-}
 .popup2{
     overflow:hidden;
     width:610px;
     padding-bottom:5px;
     _height:100%;
 }
-.poppClose{
-    height:20px;
-}
-.poppClose a{
-    margin:2px;
-    float:right;
-    background:url('/images/popupClose.png') no-repeat;
-    width:25px;
-    height:20px;
-}
-.poppClose a:hover{
-    background:url('/images/popupCloseH.png') no-repeat;
-}
 .popupItem{
     padding-left:10px;
     clear:both;
     overflow:hidden;
     min-height:42px;
-    *height:38px;
 }
-.popupL, .popupL div,.popupR, .popupR div{
+.popupL, .popupR{
     float:left;
     margin-bottom:10px;
 }
@@ -1813,6 +1787,7 @@ div.postInf{
     color:#fff;
     font-size:15px;
     font-weight:bold;
+    float: left;
 }
 .popupCoun{
     line-height:23px;
@@ -1821,12 +1796,12 @@ div.postInf{
     font-size:11px;
     font-weight:bold;
     width:50px;
+    float: left;
 }
 .popupSelect{
     padding-top:2px;
-}
-.popupSelect select{
-    width:190px;
+    width: 187px;
+    float: left;
 }
 .filter{
     color:#646464;

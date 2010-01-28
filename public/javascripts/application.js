@@ -1,30 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-/**
-   * Returns the value of the selected radio button in the radio group, null if
-   * none are selected, and false if the button group doesn't exist
-   *
-   * @param {radio Object} or {radio id} el
-   * OR
-   * @param {form Object} or {form id} el
-   * @param {radio group name} radioGroup
-   */
-function $RF(el, radioGroup) {
-    if($(el).type && $(el).type.toLowerCase() == 'radio') {
-        var radioGroup = $(el).name;
-        var el = $(el).form;
-    } else if ($(el).tagName.toLowerCase() != 'form') {
-        return false;
-    }
 
-    var checked = $(el).getInputs('radio', radioGroup).find(
-        function(re) {
-            return re.checked;
-        }
-        );
-    return (checked) ? $F(checked) : null;
-}
-  
 function downloadFile(path){
     document.location.href = path;
 }
@@ -79,11 +55,28 @@ function getPostSearchType(post_type){
             action = "/post_foods";
             break;
     }
-    $('action_post_search').action = action;
+    $('#action_post_search').action = action;
+}
+
+function update_form(){
+    $.ajax({
+        url: '/users_select_school/update_form',
+        type: 'GET',
+        dataType: 'html',
+        data: ({
+            country : $('#country').val(),
+            state : $('#state').val(),
+            city : $('#city').val()
+            }),
+        success: function(html){
+            $('#select_school').replaceWith(html);
+            load_menus();
+        }
+    });
 }
 
 function select_school(){
-    var school_id = $('school').value;
+    var school_id = $('#school').val();
     if (school_id != ""){
         document.location.href = "/session/change_school?school_id=" + school_id;
         Dialogs.close();
@@ -91,8 +84,28 @@ function select_school(){
 }
 
 function select_alphabet(id){
-    $$('a.selected').select(function(el){
-        el.removeClassName('selected');
+    $('a.selected').removeClass('selected');
+    $(id).addClass('selected');
+}
+
+function load_menus (){
+    $("#country").mcDropdown("#country_menu", {
+        width: 170,
+        valueAttr: "rel_country",
+        select: update_form
     });
-    $(id).addClassName('selected');
+    $("#state").mcDropdown("#state_menu", {
+        width: 170,
+        valueAttr: "rel_state",
+        select: update_form
+    });
+    $("#city").mcDropdown("#city_menu", {
+        width: 170,
+        valueAttr: "rel_city",
+        select: update_form
+    });
+    $("#school").mcDropdown("#school_menu", {
+        valueAttr: "rel_school",
+        width: 170
+    });
 }

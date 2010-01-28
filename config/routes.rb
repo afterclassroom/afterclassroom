@@ -58,7 +58,6 @@ ActionController::Routing::Routes.draw do |map|
 
   # Post Categories
   map.resources :post_categories
-  map.resources :education_categories
   map.resources :housing_categories
   map.resources :teamup_categories
   map.resources :party_types
@@ -118,9 +117,6 @@ ActionController::Routing::Routes.draw do |map|
     :show_dialog => :get
   }
   map.resources :post_housings, :collection => {
-    :show_dialog => :get
-  }
-  map.resources :post_educations, :collection => {
     :show_dialog => :get
   }
 

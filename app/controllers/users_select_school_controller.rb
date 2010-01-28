@@ -19,6 +19,7 @@ class UsersSelectSchoolController < ApplicationController
       @schools = @city.schools
       @school = @schools.first
     end
+    render :layout => false
   end
 
   def update_form  
@@ -31,6 +32,7 @@ class UsersSelectSchoolController < ApplicationController
     @cities = @state.cities
     @schools = @city.schools
     @school = @schools.first
+    render :layout => false
   end
 
   def list_school
@@ -41,5 +43,6 @@ class UsersSelectSchoolController < ApplicationController
     else
       @schools = School.list_school(city_id, alphabet)
     end
+    render :layout => false
   end
 end
