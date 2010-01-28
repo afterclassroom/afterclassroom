@@ -1,5 +1,5 @@
 <%
-goodProf = PostMyx.find(:all,:conditions=>['prof_status LIKE ?',"Good"], :limit => 5, :order => "prof_status DESC")
+goodProf = PostMyx.prof_filter("Good")
 %>
 <% if goodProf.size > 0 %>
   <%
