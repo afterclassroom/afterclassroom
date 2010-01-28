@@ -50,7 +50,7 @@ class PostMyxesController < ApplicationController
   end
 
   def more_good
-    @post = PostMyx.paginated_post_conditions_with_more_worse(params)
+    @post = PostMyx.paginated_post_conditions_with_more_good(params)
 
     respond_to do |format|
       format.html # index.html.erb

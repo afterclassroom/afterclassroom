@@ -1,5 +1,12 @@
-      <%
-      
+<!--
+T?o ra name scope ? ?ây
+T?o ra 2 name scope:
+1. là limit, ?? gi?i h?n k?t qu? tr? v?
+2. là ?i?u ki?n ?? search
+
+-->
+
+<%
       worseProf = PostMyx.find(:all,:conditions=>['prof_status LIKE ?',"Worse"], :limit => 5, :order => "prof_status DESC")
     %>
       <% if worseProf.size > 0 %>
