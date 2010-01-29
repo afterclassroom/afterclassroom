@@ -62,13 +62,14 @@ function update_form(type_select, id){
     $.ajax({
         url: '/users_select_school/update_form',
         type: 'GET',
+        cache: false,
         dataType: 'html',
         data: ({
             type : type_select,
             id : id
-            }),
-        success: function(html){
-            $('#select_school').replaceWith(html);
+        }),
+        success: function(data){
+            $('#select_school').html(data);
             load_menus();
         }
     });
@@ -89,7 +90,6 @@ function select_school(){
     var school_id = $('#school').val();
     if (school_id != ""){
         document.location.href = "/session/change_school?school_id=" + school_id;
-        Dialogs.close();
     }
 }
 
@@ -118,4 +118,26 @@ function load_menus (){
         valueAttr: "rel_school",
         width: 170
     });
+}
+
+function load_options (){
+    $("#department").mcDropdown("#department_menu", {
+        width: 170,
+        valueAttr: "rel_department",
+        select: option_submit
+    });
+    $("#year").mcDropdown("#year_menu", {
+        width: 75,
+        valueAttr: "rel_year",
+        select: option_submit
+    });
+    $("#over").mcDropdown("#over_menu", {
+        width: 80,
+        valueAttr: "rel_over",
+        select: option_submit
+    });
+}
+
+function option_submit(){
+    $("#action_option").submit();
 }

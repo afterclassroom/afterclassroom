@@ -8,13 +8,7 @@ class PostAssignmentsController < ApplicationController
   after_filter :store_location, :only => [:index, :show, :search, :due_date]
   # GET /post_assignments
   # GET /post_assignments.xml
-  def index
-    @department = params[:department] if params[:department]
-    @year = params[:year] if params[:year]
-    @over = params[:over] ? params[:over] : "30"
-    
-    @departments = Department.of_school(@school)
-    
+  def index  
     if params[:more_like_this_id]
       post = Post.find_by_id(params[:more_like_this_id])
       @posts = Post.paginated_post_more_like_this(post)
@@ -129,6 +123,7 @@ class PostAssignmentsController < ApplicationController
   def get_variables
     @type = PostCategory.find_by_name("Assignments").id
     @school = session[:your_school]
+    @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user

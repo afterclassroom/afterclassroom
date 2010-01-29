@@ -201,6 +201,16 @@ class User < ActiveRecord::Base
 		end
 		return friends
 	end
+
+  def has_role?(role)
+    list ||= self.roles.collect(&:name)
+    list.include?(role.to_s) || list.include?('admin')
+  end
+
+  def has_favorite?(post)
+    list ||= self.favorites.collect(&:post_id)
+    list.include?(post.id)
+  end
     
   protected
 

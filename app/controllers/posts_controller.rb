@@ -206,26 +206,21 @@ class PostsController < ApplicationController
 
   def add_to_favorite
     post_id = params[:post_id]
-    favorite = Favorite.find_or_create_by_user_id_and_post_id(current_user.id, post_id)
-    favorite.created_at = DateTime.now
-    if favorite.save
-      @favorites = current_user.favorites.find(:all, :conditions => ["date(created_at) = ?", Date.today.to_s], :order => "created_at DESC", :limit => 10)
-      render :partial => "list_favorite", :locals => {:favorites => @favorites}
-    end
-  end
-
-  def update_views(obj)
-    updated = update_view_count(obj)
+    post = Post.find(post_id)
+    favorite = Favorite.new
+    favorite.user = current_user
+    post.favorites << favorite
+    render :text => "Favorite (#{post.favorites.size})"
   end
   
   def download()
     path = params['path']
-      #Set the X-Accel-Redirect header with the path relative to the /downloads location in nginx
-      response.headers['X-Accel-Redirect'] = path
-      #Set the Content-Type header as nginx won't change it and Rails will send text/html
-      response.headers['Content-Type'] = 'application/octet-stream'
-      #Make sure we don't render anything
-      render :nothing => true
+    #Set the X-Accel-Redirect header with the path relative to the /downloads location in nginx
+    response.headers['X-Accel-Redirect'] = path
+    #Set the Content-Type header as nginx won't change it and Rails will send text/html
+    response.headers['Content-Type'] = 'application/octet-stream'
+    #Make sure we don't render anything
+    render :nothing => true
   end
   
   protected

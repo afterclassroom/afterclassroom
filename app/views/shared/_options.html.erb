@@ -6,39 +6,42 @@
   </form>
 </div>
 <ul id="department_menu" class="mcdropdown_menu">
-  <li rel="">
+  <%
+  departments = Department.of_school(school)
+%>
+  <li rel_department="">
     Chose department
   </li>
   <%
-    category_id = ""
-  %>
-  <% @departments.each do |department| %>
+  category_id = ""
+%>
+  <% departments.each do |dp| %>
     <% if category_id == "" %>
-      <li rel="category_id_<%= department.department_category.id %>">
-        <%= department.department_category.name %>
+      <li rel="category_id_<%= dp.department_category.id %>">
+        <%= dp.department_category.name %>
         <ul>
-          <li rel="<%= department.id %>"><%= department.name %></li>
-    <% elsif category_id == department.department_category.id %>
-          <li rel="<%= department.id %>"><%= department.name %></li>
-    <% else %>
-         </ul>
-      </li>
-      <li rel="category_id_<%= department.department_category.id %>">
-        <%= department.department_category.name %>
-        <ul>
-          <li rel="<%= department.id %>"><%= department.name %></li>
-    <% end %>
-    <% category_id = department.department_category.id %>
-  <% end %>
+          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
+        <% elsif category_id == dp.department_category.id %>
+          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
+        <% else %>
         </ul>
-    </li>
+      </li>
+      <li rel="category_id_<%= dp.department_category.id %>">
+        <%= dp.department_category.name %>
+        <ul>
+          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
+        <% end %>
+        <% category_id = dp.department_category.id %>
+      <% end %>
+    </ul>
+  </li>
 </ul>
 <%
 list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
 %>
 <ul id="year_menu" class="mcdropdown_menu">
   <% list_years.each do |year| %>
-    <li rel="<%= year[1] %>">
+    <li rel_year="<%= year[1] %>">
       <%= year[0] %>
     </li>
   <% end %>
@@ -48,19 +51,11 @@ list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months",
 %>
 <ul id="over_menu" class="mcdropdown_menu">
   <% list_overs.each do |over| %>
-    <li rel="<%= over[1] %>">
+    <li rel_over="<%= over[1] %>">
       <%= over[0] %>
     </li>
   <% end %>
 </ul>
 <script type="text/javascript">
-  $(document).ready(function (){
-    $("#department").mcDropdown("#department_menu", {width: 170, select: option_submit});
-    $("#year").mcDropdown("#year_menu", {width: 75, select: option_submit});
-    $("#over").mcDropdown("#over_menu", {width: 80, select: option_submit});
-  });
-  
-  function option_submit(){
-    $("#action_option").submit();
-  }
+  $(document).ready(load_options);
 </script>

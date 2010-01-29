@@ -75,11 +75,6 @@ module ApplicationHelper
     image_tag user.avatar.url(:thumb)
   end
 
-  def your_favorite_today
-    @favorites = current_user.favorites.find(:all, :conditions => ["date(created_at) = ?", Date.today.to_s], :order => "created_at DESC", :limit => 10) if current_user
-    render :partial => "posts/your_favorite_today", :locals => {:favorites => @favorites}
-  end
-
   def show_post_with_title(post)
     post_category_name = post.post_category.name
     case post_category_name
@@ -182,5 +177,23 @@ module ApplicationHelper
         new_post_path = new_post_assignment_path
     end
     render :partial => "shared/search_posts", :locals => {:type => type, :search_post_path => search_post_path, :new_post_path => new_post_path, :query => query}
+  end
+
+  def show_options(school, params)
+    department = params[:department] if params[:department]
+    year = params[:year] if params[:year]
+    over = params[:over] ? params[:over] : "30"
+
+    render :partial => "shared/options", :locals => {:school => school, :department => department, :year => year, :over => over}
+  end
+
+  def show_favorite(post)
+    if !logged_in?
+      "Favorite (#{post.favorites.size})"
+    elsif current_user.has_favorite?(post)
+      "Favorite (#{post.favorites.size})"
+    else
+      link_to_remote "Favorite (#{post.favorites.size})", { :update => "post_favorite_#{post.id}", :url => {:controller => "posts", :action => "add_to_favorite", :post_id => post.id } }
+    end
   end
 end

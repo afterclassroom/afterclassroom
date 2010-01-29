@@ -19,7 +19,7 @@
     <div class="col451in">
       <div class="col451Cont">
         <!--Options-->
-        <%= render :partial => "shared/options", :locals => {:department => @department, :department => @department, :year => @year, :over => @over} %>
+        <%= show_options(@school, params) %>
         <!--Options-->
 
         <!--List Items-->
