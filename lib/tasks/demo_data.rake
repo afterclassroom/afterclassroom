@@ -16,11 +16,10 @@ namespace :db do
       #create_demo_posts_tests
       #create_demo_posts_projects
       #create_demo_posts_exams
-      create_demo_posts_myx
+      #create_demo_posts_myx
       #create_demo_post_books
       #create_demo_post_tutors
       #create_demo_post_jobs
-      #create_demo_post_educations
       #create_demo_post_housings
       #create_demo_post_parties
       #create_demo_posts_teamups
@@ -93,7 +92,7 @@ def create_demo_posts_assignments
   post_category = PostCategory.find_by_name("Assignments")
   10.times do
     user = User.find(rand(User.count) + 1)
-    school = School.find(rand(School.count) + 1)
+    school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     post = Post.create do |p|
       p.user = user
@@ -123,7 +122,7 @@ def create_demo_posts_tests
   
   20.times do
     user = User.find(rand(User.count) + 1)
-    school = School.find(rand(School.count) + 1)
+    school = user.school
     post = Post.create do |p|
       p.user = user
       p.post_category = post_category
@@ -150,7 +149,7 @@ def create_demo_posts_projects
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   20.times do
     user = User.find(rand(User.count) + 1)
-    school = School.find(rand(School.count) + 1)
+    school = user.school
     post = Post.create do |p|
       p.user = user
       p.post_category = post_category
@@ -177,7 +176,7 @@ def create_demo_posts_exams
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   20.times do
     user = User.find(rand(User.count) + 1)
-    school = School.find(rand(School.count) + 1)
+    school = user.school
     post = Post.create do |p|
       p.user = user
       p.post_category = post_category
@@ -205,7 +204,7 @@ def create_demo_posts_myx
   prof_status = ["Best of the best", "Good", "Bored", "Worse"]
   20.times do
     user = User.find(rand(User.count) + 1)
-    school = School.find(rand(School.count) + 1)
+    school = user.school
     post = Post.create do |p|
       p.user = user
       p.post_category = post_category
@@ -241,7 +240,7 @@ def create_demo_post_books
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     200.times do
       user = User.find(rand(User.count) + 1)
-      school = School.find(rand(School.count) + 1)
+      school = user.school
       post = Post.create do |p|
         p.user = user
         p.post_category = post_category
@@ -276,7 +275,7 @@ def create_demo_post_tutors
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     200.times do
       user = User.find(rand(User.count) + 1)
-      school = School.find(rand(School.count) + 1)
+      school = user.school
       post = Post.create do |p|
         p.user = user
         p.post_category = post_category
@@ -310,7 +309,7 @@ def create_demo_post_jobs
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     100.times do
       user = User.find(rand(User.count) + 1)
-      school = School.find(rand(School.count) + 1)
+      school = user.school
       post = Post.create do |p|
         p.user = user
         p.post_category = post_category
@@ -342,41 +341,12 @@ def create_demo_post_jobs
     end
 end
 
-def create_demo_post_educations
-  post_category = PostCategory.find_by_name("Education")
-  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-    100.times do
-      user = User.find(rand(User.count) + 1)
-      school = School.find(rand(School.count) + 1)
-      post = Post.create do |p|
-        p.user = user
-        p.post_category = post_category
-        p.title = Faker::Lorem.sentence
-        p.description = Faker::Lorem.paragraphs
-        p.school = school
-        p.department = school.departments.find(:first)
-        p.email = Faker::Internet.email
-        p.telephone = Faker::PhoneNumber.phone_number
-        p.type_name = post_category.name
-        p.school_year = schoolyear[rand(schoolyear.size)]
-      end
-      
-      education_category=EducationCategory.find(rand(EducationCategory.count) + 1)
-      
-      
-      post_edu = PostEducation.create do |e|
-        e.post = post
-        e.education_category = education_category
-      end
-    end
-end
-
 def create_demo_post_housings
   post_category = PostCategory.find_by_name("Housing")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     100.times do
       user = User.find(rand(User.count) + 1)
-      school = School.find(rand(School.count) + 1)
+      school = user.school
       post = Post.create do |p|
         p.user = user
         p.post_category = post_category
@@ -429,7 +399,7 @@ def create_demo_post_parties
   
     100.times do
       user = User.find(rand(User.count) + 1)
-      school = School.find(rand(School.count) + 1)
+      school = user.school
       post = Post.create do |p|
         p.user = user
         p.post_category = post_category
@@ -477,7 +447,7 @@ def create_demo_posts_teamups
   compensation = ["compensation A","compensation B","compensation C"]
   100.times do
     user = User.find(rand(User.count) + 1)
-    school = School.find(rand(School.count) + 1)
+    school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     post = Post.create do |p|
       p.user = user
@@ -509,7 +479,7 @@ def create_demo_posts_awarenesses
   post_category = PostCategory.find_by_name("Student Awareness")
   100.times do
     user = User.find(rand(User.count) + 1)
-    school = School.find(rand(School.count) + 1)
+    school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     post = Post.create do |p|
       p.user = user
@@ -548,7 +518,7 @@ def create_demo_posts_foods
   post_category = PostCategory.find_by_name("Foods")
   100.times do
     user = User.find(rand(User.count) + 1)
-    school = School.find(rand(School.count) + 1)
+    school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     post = Post.create do |p|
       p.user = user
@@ -579,7 +549,7 @@ def create_demo_posts_qas
   
   10.times do
     user = User.find(rand(User.count) + 1)
-    school = School.find(rand(School.count) + 1)
+    school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
     
     post = Post.create do |p|
