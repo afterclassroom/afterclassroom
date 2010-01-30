@@ -91,12 +91,12 @@ class PostMyxesController < ApplicationController
   # GET /post_myxes/1
   # GET /post_myxes/1.xml
   def show
-    @post_myx = PostMyx.find(params[:id])
-    @post = @post_myx.post
+    @post = Post.find(params[:id])
+    @post_myx = @post.post_myx
     @post_category_id = @post.post_category_id
     @type_name = @post.post_category.name
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_myx.post)
+#    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
+#    update_views(@post_myx.post)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_myx }
