@@ -2,11 +2,12 @@
   You are here: <a href="/">Home</a><%= link_to "Assignments", post_assignments_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
 <% end -%>
 
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
 <% content_for :menu_sub do -%>
-  <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Assignments</span></span></a></div>
-  <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Projects</span></span></a></div>
-  <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Past Tests</span></span></a></div>
-  <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Past Exams</span></span></a></div>
+  <%= render :partial => "submenu" %>
 <% end -%>
 
 <!--Content-->
@@ -15,14 +16,13 @@
     <div class="AsDTop">
       <h1 class="titleH1">Assignments details</h1>
       <div class="AsDsearch">
-        <div class="AsDST"><input type="text" name="Text1"/></div>
-        <div class="AsDSB"><a href="#"><img src="/images/AsD-iconS.png"/></a></div>
+        <%= render :partial => "shared/search_indetail", :locals => {:url_search => post_assignments_path} %>
       </div>
     </div>
     <div class="AsDCont">
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">in<span><%= link_to @type_name, post_assignments_path %></span></div>
+        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_assignments_path %></span></div>
         <div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
         <div class="AsDContLinf"><span>Professor:</span><%= @post_assignment.professor %></div>
@@ -41,7 +41,8 @@
         <span class="btmMail"><a href="#"><span>Email</span></a></span>
         <span class="btmShare"><a href="#"><span>Share</span></a></span>
         <span class="btmFav"><a href="#"><span>Favorite</span></a></span>
-        <span class="btmMore"><a href="#"><span>More like this</span></a></span>
+        <%= addthis_share_button %>
+        <span class="btmMore"><%= link_to "<span>More like this</span>", :controller => "post_assignments", :action => "index", :more_like_this_id => @post %></span>
         <% if @post.allow_download && @post.attach_file_name %>
           <span class="btmDown"><a href="javascript:downloadFile('<%= @post.attach.url %>')" class="downarrow"><span>Download</span></a></span>
         <% end %>

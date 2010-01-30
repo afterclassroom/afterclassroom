@@ -1,0 +1,14 @@
+/*===DataDemo===*/
+rake db:demo_data:load
+rake db:demo_data:remove
+rake db:demo_data:reload
+
+/*===Sphinx===*/
+rake thinking_sphinx:index
+rake thinking_sphinx:start
+rake thinking_sphinx:stop
+rake thinking_sphinx:rebuild
+rake thinking_sphinx:reindex
+rake thinking_sphinx:configure
+rake thinking_sphinx:version
+

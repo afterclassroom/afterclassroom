@@ -47,17 +47,16 @@ class Post < ActiveRecord::Base
   define_index do
     indexes title, :sortable => true
     indexes description
-    has post_category_id, school_id
+    has post_category_id, school_id, created_at
   end
   
   def self.paginated_post_conditions_with_search(params, school, type)
     if params[:search]
       query = params[:search][:query]
-     
       if school
-        Post.search(query, :with => {:post_category_id => type, :school_id => school}, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+        Post.search(query, :match_mode => :any, :with => {:post_category_id => type, :school_id => school}, :order => "created_at DESC", :page => params[:page], :per_page => 10)
       else
-        Post.search(query, :with => {:post_category_id => type}, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+        Post.search(query, :match_mode => :any, :with => {:post_category_id => type}, :order => "created_at DESC", :page => params[:page], :per_page => 10)
       end
     end
   end
@@ -66,10 +65,12 @@ class Post < ActiveRecord::Base
     over = 30 || params[:over].to_i
     year = params[:year]
     department = params[:department]
-
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
     cond = Caboose::EZ::Condition.new :posts do
       post_category_id == type if type
-      school_id == school if school
+      school_id == with_school if with_school
       school_year == year if year
       department_id == department if department
       created_at > Time.now - over.day
@@ -78,7 +79,7 @@ class Post < ActiveRecord::Base
     Post.find(:all, :conditions => cond.to_sql(), :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
   end
 
-  def self.paginated_post_more_like_this(post)
+  def self.paginated_post_more_like_this(params, post)
     cond = Caboose::EZ::Condition.new :posts do
       type_name == post.type_name
       department_id == post.department_id

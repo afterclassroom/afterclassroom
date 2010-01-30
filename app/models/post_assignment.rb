@@ -6,12 +6,13 @@ class PostAssignment < ActiveRecord::Base
   # Relations
   belongs_to :post
 
-  def self.paginated_post_conditions_with_due_date(params, school, type)
-    cond = Caboose::EZ::Condition.new :post_assignments do
-      due_date > Time.now
-    end
+  # Named Scope
+  named_scope :due_date, lambda {|sc| return {:conditions => ["due_date > ?", Time.now], :order => "due_date DESC"} if sc.nil?; {:joins => :post, :conditions => ["school_id = ? AND due_date > ?", sc, Time.now], :order => "due_date DESC"}}
+  named_scope :with_limit, :limit => 5
+
+  def self.paginated_post_conditions_with_due_date(params, school)
     posts = []
-    post_as = PostAssignment.find(:all, :conditions => cond.to_sql(), :order => "due_date DESC")
+    post_as = self.due_date(school)
     post_as.select {|p| posts << p.post}
     posts.paginate :page => params[:page], :per_page => 10
   end

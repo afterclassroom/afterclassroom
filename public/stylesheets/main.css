@@ -4,6 +4,7 @@ body{
 body input, body textarea, body select{
     font-family:Arial;font-size:11px;color:#646464;
 }
+.match{font-weight:bold;}
 .sponsor{
     width:962px;margin:0px auto;padding-bottom:7px;overflow:hidden;
 }

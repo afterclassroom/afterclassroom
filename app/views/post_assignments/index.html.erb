@@ -7,10 +7,7 @@
 <% end -%>
 
 <% content_for :menu_sub do -%>
-  <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Assignments</span></span></a></div>
-  <div class="menuRItem"><a href="<%= post_projects_path %>"><span class="span1"><span class="span2">Projects</span></span></a></div>
-  <div class="menuRItem"><a href="<%= post_tests_path %>"><span class="span1"><span class="span2">Past Tests</span></span></a></div>
-  <div class="menuRItem"><a href="<%= post_exams_path %>"><span class="span1"><span class="span2">Past Exams</span></span></a></div>
+  <%= render :partial => "submenu" %>
 <% end -%>
 
 <!--Content-->
@@ -24,7 +21,7 @@
 
         <!--List Items-->
         <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post}%>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
         <% end %>
         <!--List Items-->
 

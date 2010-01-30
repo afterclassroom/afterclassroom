@@ -2,7 +2,7 @@
 class PostAssignmentsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :search, :due_date]
+  before_filter :get_variables, :only => [:index, :show, :search, :due_date]
   before_filter :login_required, :except => [:index, :show, :search, :due_date]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date]
@@ -10,8 +10,9 @@ class PostAssignmentsController < ApplicationController
   # GET /post_assignments.xml
   def index  
     if params[:more_like_this_id]
-      post = Post.find_by_id(params[:more_like_this_id])
-      @posts = Post.paginated_post_more_like_this(post)
+      id = params[:more_like_this_id]
+      post = Post.find_by_id(id)
+      @posts = Post.paginated_post_more_like_this(params, post)
     else
       @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
     end
@@ -35,7 +36,7 @@ class PostAssignmentsController < ApplicationController
   end
 
   def due_date
-    @posts = PostAssignment.paginated_post_conditions_with_due_date(params, @school, @type)
+    @posts = PostAssignment.paginated_post_conditions_with_due_date(params, @school)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -46,9 +47,9 @@ class PostAssignmentsController < ApplicationController
   # GET /post_assignments/1
   # GET /post_assignments/1.xml
   def show
-    @post_assignment = PostAssignment.find(params[:id])
-    @post = @post_assignment.post
-    update_view_count(@post_assignment.post)
+    @post = Post.find(params[:id])
+    @post_assignment = @post.post_assignment
+    update_view_count(@post)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_assignment }
@@ -121,6 +122,7 @@ class PostAssignmentsController < ApplicationController
   private
 
   def get_variables
+    @new_post_path = new_post_assignment_path
     @type = PostCategory.find_by_name("Assignments").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]

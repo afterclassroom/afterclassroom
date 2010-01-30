@@ -3,7 +3,7 @@
     <h1 class="col195Title">Due date</h1>
     <div class="col195Cont">
       <%
-      assignments_due_date = PostAssignment.find(:all, :conditions => ["due_date > ?", Time.now], :limit => 5, :order => "due_date DESC")
+      assignments_due_date = PostAssignment.due_date(@school).with_limit
     %>
       <% if assignments_due_date.size > 0 %>
         <%
