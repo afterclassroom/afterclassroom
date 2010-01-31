@@ -1,0 +1,1 @@
+Jaap3::Addthis::DEFAULT_OPTIONS[:offset_top] = -15
