@@ -1,18 +1,25 @@
-<%
-  assignments_due_date = PostAssignment.find(:all, :conditions => ["due_date > ?", Time.now], :limit => 5, :order => "due_date DESC")
-%>
-<% if assignments_due_date.size > 0 %>
-  <%
-    assignments_due_date.each do |asg|
-  %>
-  <div class="dueDItem">
-          <div class="dueDTitle"><%= link_to truncate_words(asg.post.title, 4), post_assignment_path(asg) %></div>
-          <div class="dueDTime"><%= asg.due_date.strftime("%B %d, %Y")%></div>
-        </div>
-   <%
-    end
-   %> 
-<div class="dueDbutton"><a href="#">View more Due Date</a></div>
-<%
-    end
-   %>
+<div class="col195 dueDate">
+  <div class="col195in">
+    <h1 class="col195Title">Due date</h1>
+    <div class="col195Cont">
+      <%
+      projects_due_date = PostProject.due_date(@school).with_limit
+    %>
+      <% if projects_due_date.size > 0 %>
+        <%
+        projects_due_date.each do |asg|
+        %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(asg.post.title, 4), post_project_path(asg) %></div>
+            <div class="dueDTime"><%= asg.due_date.strftime("%B %d, %Y")%></div>
+          </div>
+        <%
+        end
+      %>
+        <div class="dueDbutton"><%= link_to "View more Due Date", due_date_post_projects_path %></div>
+      <%
+      end
+    %>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,7 @@ stylesheets:
   - jquery-mcdropdown
   - thickbox
   - sexy_flash
+  - pagination
 - student_louge:
   - reset
   - layout
