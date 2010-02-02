@@ -164,7 +164,7 @@ module ApplicationHelper
         search_post_path = search_post_awarenesses_path
         new_post_path = new_post_awareness_path
       when "post_housings"
-        type = PostCategory.find_by_name("Housings").id
+        type = PostCategory.find_by_name("Housing").id
         search_post_path = search_post_housings_path
         new_post_path = new_post_housing_path
       when "post_teamups"
