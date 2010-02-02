@@ -76,7 +76,6 @@ ActionController::Routing::Routes.draw do |map|
     :post_dispatch => :get,
     :list_favorites => :get,
     :add_to_favorite => :get,
-    :show_dialog => :get,
     :download => :get
   }
   map.resources :post_assignments, :collection => {
@@ -88,13 +87,13 @@ ActionController::Routing::Routes.draw do |map|
     :more_good => :get
   }
   map.resources :post_projects, :collection => {
-    :search => :get, :due_date => :get
+    :search => :get, :due_date => :get, :interesting => :get
   }
   map.resources :post_tests, :collection => {
     :search => :get, :due_date => :get
   }
   map.resources :post_exams, :collection => {
-    :show_dialog => :get
+    :search => :get, :due_date => :get
   }
   map.resources :post_teamups, :collection => {
     :show_dialog => :get

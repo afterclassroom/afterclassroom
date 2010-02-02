@@ -2,10 +2,10 @@
 class PostProjectsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :due_date]
-  before_filter :login_required, :except => [:index, :show, :search, :due_date]
+  before_filter :get_variables, :only => [:index, :show, :search, :due_date, :interesting]
+  before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :due_date]
+  after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting]
   # GET /post_projects
   # GET /post_projects.xml
   def index
@@ -44,15 +44,24 @@ class PostProjectsController < ApplicationController
     end
   end
 
+  def interesting
+    @posts = PostProject.paginated_post_conditions_with_interesting(params, @school)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
+    end
+  end
+
   # GET /post_projects/1
   # GET /post_projects/1.xml
   def show
     @post = Post.find(params[:id])
-    @post_assignment = @post.post_assignment
+    @post_project = @post.post_project
     update_view_count(@post)
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_assignment }
+      format.xml  { render :xml => @post_project }
     end
   end
 

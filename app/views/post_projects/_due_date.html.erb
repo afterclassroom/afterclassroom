@@ -7,11 +7,11 @@
     %>
       <% if projects_due_date.size > 0 %>
         <%
-        projects_due_date.each do |asg|
+        projects_due_date.each do |pr|
         %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(asg.post.title, 4), post_project_path(asg) %></div>
-            <div class="dueDTime"><%= asg.due_date.strftime("%B %d, %Y")%></div>
+            <div class="dueDTitle"><%= link_to truncate_words(pr.post.title, 4), post_project_path(pr) %></div>
+            <div class="dueDTime"><%= pr.due_date.strftime("%B %d, %Y")%></div>
           </div>
         <%
         end

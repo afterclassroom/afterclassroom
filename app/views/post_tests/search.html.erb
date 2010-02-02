@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Tests", post_tests_path, :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Tests", post_tests_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -15,13 +15,9 @@
   <div class="col451 test">
     <div class="col451in">
       <div class="col451Cont">
-        <!--Options-->
-        <%= show_options(@school, params) %>
-        <!--Options-->
-
         <!--List Items-->
         <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
         <% end %>
         <!--List Items-->
 
@@ -37,6 +33,7 @@
   </div>
 
 </div>
+
 <div class="contMainC">
   <!--Browser Due Date-->
   <%= render :partial => "due_date" %>

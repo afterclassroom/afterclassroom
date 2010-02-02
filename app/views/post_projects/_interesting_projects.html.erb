@@ -2,23 +2,18 @@
   <div class="col195in">
     <h1 class="col195Title">Interesting Projects</h1>
     <div class="col195Cont">
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet...</a></div>
-        <div class="dueDTime">November 25th 2009</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Pellentesque et tincidunt...</a></div>
-        <div class="dueDTime">November 27th 2009</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Quisque odio mi...</a></div>
-        <div class="dueDTime">November 30th 2009</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Suspendisse orci erat...</a></div>
-        <div class="dueDTime">November 25th 2009</div>
-      </div>
-      <div class="dueDbutton"><a href="#">View more Interesting Projects</a></div>
+      <%
+      interesting_projects = PostProject.with_school(@school).interesting.with_limit
+    %>
+      <% if interesting_projects.size > 0 %>
+        <% interesting_projects.each do |p| %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(p.post.title, 4), post_project_path(p) %></div>
+            <div class="dueDTime"><%= p.post.created_at.strftime("%B %d, %Y")%></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more Interesting Projects", interesting_post_projects_path %></div>
+      <% end %>
     </div>
   </div>
 </div>

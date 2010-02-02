@@ -10,6 +10,7 @@ class CreateAdminRoleAndUser < ActiveRecord::Migration
       u.user_information = UserInformation.new()
       u.user_education = UserEducation.new()
       u.user_employment = UserEmployment.new()
+      u.school = School.find(:first)
     end
 
     user.register!
