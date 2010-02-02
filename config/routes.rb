@@ -117,9 +117,8 @@ ActionController::Routing::Routes.draw do |map|
     :show_dialog => :get
   }
   map.resources :post_housings, :collection => {
-    :show_dialog => :get
+    :search => :get#:show_dialog => :get
   }
-
   # Stories
   map.resources :stories, :collection => {:create_comment => :get, :delete_comment => :get}
 

@@ -2,6 +2,7 @@
 class PostHousingsController < ApplicationController
   include Viewable
   
+  before_filter :get_variables, :only => [:index]
   before_filter :login_required, :except => [:index, :show]
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
@@ -119,8 +120,17 @@ class PostHousingsController < ApplicationController
     updated = update_view_count(obj)
   end
 
-  protected
 
+  private
+
+  def get_variables
+    @new_post_path = new_post_housing_path
+    @type = PostCategory.find_by_name("Housing").id
+    @school = session[:your_school]
+    @query = params[:search][:query] if params[:search]
+  end
+
+  #This action apply for user need to edit, update, delete created-post
   def require_current_user
     @user ||= PostHousing.find(params[:post_housing_id] || params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))
@@ -128,4 +138,5 @@ class PostHousingsController < ApplicationController
     end
     return @user
   end
+
 end
