@@ -17,13 +17,13 @@
     <div class="AsDTop">
       <h1 class="titleH1">Project detail</h1>
       <div class="AsDsearch">
-        <%= render :partial => "shared/search_indetail", :locals => {:url_search => post_projectts_path} %>
+        <%= render :partial => "shared/search_indetail", :locals => {:url_search => post_projects_path} %>
       </div>
     </div>
     <div class="AsDCont">
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">in<span><%= link_to @type_name, post_projects_path %></span></div>
+        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_projects_path %></span></div>
         <div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
         <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>

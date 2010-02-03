@@ -1142,7 +1142,7 @@ span.btmShare a:hover{
 }
 span.btmFav a{
     background:url('/images/btmFav.png') no-repeat;
-    width:81px;
+    width:100px;
 }
 span.btmFav a:hover{
     background:url('/images/btmFavH.png') no-repeat;
