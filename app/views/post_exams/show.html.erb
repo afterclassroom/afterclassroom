@@ -1,164 +1,83 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Assignments", post_assignments_path, :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Exams", post_Exams_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
 
 <% content_for :menu_sub do -%>
-  <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Assignments</span></span></a></div>
-  <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Projects</span></span></a></div>
-  <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Past Tests</span></span></a></div>
-  <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Past Exams</span></span></a></div>
+  <%= render :partial => "submenu" %>
 <% end -%>
 
 <!--Content-->
 <div class="contDetL">
-	<div class="contDetLin">
-		<div class="AsDTop">
-			<h1 class="titleH1">Assignments details</h1>
-			<div class="AsDsearch">
-				<div class="AsDST"><input type="text" name="Text1"/></div>
-				<div class="AsDSB"><a href="#"><img src="/images/AsD-iconS.png"/></a></div>
-			</div>
-		</div>
-		<div class="AsDCont">
-			<div class="AsDContL">
-				<h2 class="titleH2"><%= @post.title %></h2>
-				<div class="AsDContLin">in<span><%= link_to @type_name, post_assignments_path %></span></div>
-				<div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
-				<div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
-				<div class="AsDContLinf"><span>Professor:</span><%= @post_assignment.professor %></div>
-				<div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
-				<div class="AsDContLinf"><span>Due date:</span><%= @post_assignment.due_date.strftime("%B %d, %Y") %></div>
-			</div>
-			<div class="AsDContImg"><%= link_to "<div>#{image_tag(@post.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
-			<div class="AsDContR">
-				<div class="fan"><a href="#">Become a Fan</a></div>
-				<div class="friend"><a href="#">Invite Friend</a></div>
-				<div class="chat"><a href="#">Invite Chat</a></div>
-				<div class="mail"><a href="#">Send Mail</a></div>
-			</div>
-			<div class="AsDContBtm">
-				<span class="btmComment"><a href="#">Comment</a></span>
-				<span class="btmMail"><a href="#"><span>Email</span></a></span>
-				<span class="btmShare"><a href="#"><span>Share</span></a></span>
-				<span class="btmFav"><a href="#"><span>Favorite</span></a></span>
-				<span class="btmMore"><a href="#"><span>More like this</span></a></span>
-        <% if @post.allow_download && @post.attach_file_name %>
-        <span class="btmDown"><a href="javascript:downloadFile('<%= @post.attach.url %>')" class="downarrow"><span>Download</span></a></span>
+  <div class="contDetLin">
+    <div class="AsDTop">
+      <h1 class="titleH1">Exam detail</h1>
+      <div class="AsDsearch">
+        <%= render :partial => "shared/search_indetail", :locals => {:url_search => post_Exams_path} %>
+      </div>
+    </div>
+    <div class="AsDCont">
+      <div class="AsDContL">
+        <h2 class="titleH2"><%= @post.title %></h2>
+        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_Exams_path %></span></div>
+        <div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
+        <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
+        <div class="AsDContLinf"><span>Professor:</span><%= @post_Exam.professor %></div>
+        <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
+        <div class="AsDContLinf"><span>Due date:</span><%= @post_Exam.due_date.strftime("%B %d, %Y") %></div>
+      </div>
+      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user} %>
+      <%= render :partial => "post_actions", :locals => {:post => @post} %>
+    </div>
+
+    <div class="AsDcom" id="form_comment" style="display: none">
+      <h1 class="titleH1">Leave your comments</h1>
+      <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+      <div class="AsDcomIn">
+        <div class="AsDcomTxt"><textarea name="TextArea1" ></textarea></div>
+        <div class="submit"><a href="#">Submit</a></div>
+      </div>
+    </div>
+    <% if @post.comments.size > 0 %>
+    <div class="AsDcomL">
+      <h1 class="titleH1"><a href="#">Comments (4)</a></h1>
+      <div class="AsDcomLW">
+        <span>View</span>
+        <span><select name="Select2"><option>All answers</option></select></span>
+      </div>
+      <% @post.comments.each do |comnt| %>
+        <%= render :partial => "item_comment", :objects => comnt %>
       <% end %>
-			</div>
-		</div>	
-		
-		<div class="AsDcom">
-			<h1 class="titleH1">Leave your comments</h1>
-			<div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-			<div class="AsDcomIn">
-				<div class="AsDcomTxt"><textarea name="TextArea1" ></textarea></div>
-				<div class="submit"><a href="#">Submit</a></div>
-			</div>
-		</div>
-		<div class="AsDcomL">
-			<h1 class="titleH1"><a href="#">Comments (4)</a></h1>
-			<div class="AsDcomLW">
-				<span>View</span>
-				<span><select name="Select2"><option>All answers</option></select></span>
-			</div>
-			<div class="AsDcomItem">
-				<div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-				<div class="AsDcomItemR">
-					<div class="AsDcomName">Comment by<a href="#">Huy Quach</a>- 35 minutes ago</div>
-					<div class="AsDcomDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis. Proin ultricies dignissim ante vitae euismod. Aliquam vitae sem vel nisi posuere molestie eu venenatis urna.</div>
-					<div class="AsDcomRe">
-						<div class="AsDcomRe1"><a href="#">10</a></div>
-						<div class="AsDcomRe2"><a href="#">2</a></div>
-						<div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
-					</div>
-				</div>
-			</div>
-			<div class="AsDcomItem">
-				<div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-				<div class="AsDcomItemR">
-					<div class="AsDcomName">Comment by<a href="#">Huy Quach</a>- 35 minutes ago</div>
-					<div class="AsDcomDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis. Proin ultricies dignissim ante vitae euismod. Aliquam vitae sem vel nisi posuere molestie eu venenatis urna.</div>
-					<div class="AsDcomRe">
-						<div class="AsDcomRe1"><a href="#">1</a></div>
-						<div class="AsDcomRe2"><a href="#">200</a></div>
-						<div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="goback"><a href="#"><span>Go back</span></a></div>
-		<div class="comPage">
-				<span class="compre"><a href="#"> </a></span>
-				<span class="comnext"><a href="#"> </a></span>
-		</div>
-		<div class="AsDOr">
-			<h1 class="titleH1">Related Requests Assignments in Assignments Category</h1>
-			<div class="AsDOrItem"><a href="#">Chemistry (Lorem Ipsum Dolor sitamet)</a></div>
-			<div class="AsDOrItem"><a href="#">Sociology (Nulla ac massa id risus ornare condimentum)</a></div>
-		</div>
-		<div class="goTop"><a href="#">Top</a></div>
-	</div>
+    </div>
+    <% end %>
+    <div class="goback"><a onclick="history.go(-1);" href="javascript:void();"><span>Go back</span></a></div>
+    <div class="comPage">
+      <span class="compre"><a href="#"> </a></span>
+      <span class="comnext"><a href="#"> </a></span>
+    </div>
+    <div class="AsDOr">
+      <h1 class="titleH1">Related Requests Exams in Exams Category</h1>
+      <div class="AsDOrItem"><a href="#">Chemistry (Lorem Ipsum Dolor sitamet)</a></div>
+      <div class="AsDOrItem"><a href="#">Sociology (Nulla ac massa id risus ornare condimentum)</a></div>
+    </div>
+    <div class="goTop"><a href="#">Top</a></div>
+  </div>
 </div>	
 
 <div class="contMainR">
-	
-	<div class="advert">
-		<div class="advertTitle">Advertisement</div>
-		<div class="Dani">DaniWeb - IT Discussion Community</div>
-		<div class="advertImg"><img src="pictures/pic6.png"/></div>
-		<div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-		<div class="advertInf">
-			<div class="advertInfL">
-				<a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-			</div>
-			<div class="advertInfR">
-				<span class="pre"><a href="#"> </a></span>
-				<span class="next"><a href="#"> </a></span></div>
-		</div>
-	</div>
-
-	<div class="advert">
-		<div class="advertTitle">Advertisement</div>
-		<div class="Dani">DaniWeb - IT Discussion Community</div>
-		<div class="advertImg"><img src="pictures/pic6.png"/></div>
-		<div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-		<div class="advertInf">
-			<div class="advertInfL">
-				<a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-			</div>
-			<div class="advertInfR">
-				<span class="pre"><a href="#"> </a></span>
-				<span class="next"><a href="#"> </a></span></div>
-		</div>
-	</div>
-	<div class="col300 Request">
-	<div class="col300in">
-		<h1 class="col300Title">Requests Assignments</h1>
-		<div class="col300Cont">
-			<div class="reqSe"><select name="Select1"><option>Select a category</option></select></div>
-			<div class="reqTi"><input type="text" value="Title..." name="Text1"/></div>
-			<div class="reqEn"><textarea name="TextArea1">Enter your request...</textarea></div>
-			<div class="reqKey">
-				<div class="reqKeyImg"><img src="pictures/key.png"/></div>
-				<div class="reqKeyText"><input type="text" name="Text2"/></div>
-			</div>
-			<div class="submit"><a href="#">Submit</a></div>
-		</div>
-	</div>
-	</div>
-	<div class="col300 Br-by-sub">
-	<div class="col300in">
-		<h1 class="col300Title">Browser by subject</h1>
-		<div class="col300Cont">
-			<div class="tabClouse">
-				<a class="sub1" href="#">turpis </a><a class="sub1" href="#">Lorem ipsum sitamet </a><a class="sub1" href="#">consectetur </a>
-				<a class="sub6" href="#">Curabitur auctor </a><a class="sub1" href="#">Pellentesque </a><a class="sub4" href="#">Quam Mauris </a>
-				<a class="sub1" href="#">Metus </a><a class="sub3" href="#">Porttitor semper </a><a class="sub1" href="#">Curabitur auctor </a>
-				<a class="sub5" href="#">Fusce </a><a class="sub6" href="#">Curabitur auctor </a><a class="sub2" href="#">Fusce </a>
-			</div>
-		</div>
-	</div>
-	</div>
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+  
+  <!--Request Exam-->
+  <%= render :partial => "form_request_Exam" %>
+  <!--Request Exam-->
+  
+  <!--Recent Request Exams-->
+  <%= render :partial => "recent_request_Exams" %>
+  <!--Recent Request Exams-->
 </div>
 <!--Content-->
