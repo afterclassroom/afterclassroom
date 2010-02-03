@@ -102,7 +102,7 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get
   }
   map.resources :post_teamups, :collection => {
-    :show_dialog => :get
+    :search => :get
   }
   map.resources :post_parties, :collection => {
     :show_dialog => :get,
@@ -110,7 +110,7 @@ ActionController::Routing::Routes.draw do |map|
     :create_rsvp => :get
   }
   map.resources :post_awarenesses, :collection => {
-    :show_dialog => :get
+    :search => :get
   }
   map.resources :post_jobs, :collection => {
     :show_dialog => :get

@@ -1,111 +1,285 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Team Up", :new_post_path => "/post_teamups/new"} %>
-<% end -%>
+<div class="abLink">
+	<div class="abLinkL">You are here: <a href="#">Home</a><a href="#" class="abLink-detail">TeamUp</a></div>
+	<div class="menuRR">
+		<span class="RmenuRtext"><a href="#">Click here</a>to choose your school</span>
+		<span class="RmenuRbtm1"><a href="#">Student lounges</a></span>
+		<span class="RmenuRbtm2"><a href="#">Post</a></span>
+	</div>
 
-<% content_for :select_your_school do -%>
-  <%= select_your_school("user", "shared/select_school", {"target" => "bottomLeft", "tip" => "topLeft"}) %>
-<% end -%>
+</div>
+<div class="sponsor">
+	<div class="sponsorLink">
+		<div class="menuRL">
+			<div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Teamup for Sports</span></span></a></div>
+			<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Teamup for Student Clubs</span></span></a></div>
+		</div>
+	</div>
+</div>
+<div class="contMain">
+<div class="contMainL">
+	<div class="col451 student">
+		<div class="col451in">
+			<div class="col451Cont">
+				<div class="AsDTop">
+					<h1 class="titleH1">TeamUp</h1>
+				</div>
 
-<% content_for :sidebar do -%>
-  <%= render :partial => "shared/ads_vertical" %>
-<% end -%>
-<!--Content-->
+				<div class="assItem">
+					<div class="assItemL">
+						<div class="assImg"><div><a href="#"><img src="pictures/noimg2.png" /></a></div></div>
+						<div class="assContT">
+							<h2 class="titleH2"><a href="#">Lorem Ipsum dolor sit amet</a></h2>
+							<div class="assCate"><span>Category:</span><a href="#">Housing Category</a></div>
+							<div class="assCate"><span>Organization:</span><a href="#">University of California</a></div>
+						</div>
+						<div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
+					</div>
+					<div class="asslinkdown">
+						<div class="moreTutor"><b>"Our Status"</b> Founded in: 2009 Members: 350</div>
+						<div class="mySco"><a href="#">Our score (8/10)</a></div>
+					</div>
+					<div class="assItemB">
+						<div class="assPic"><a href="#"><div><img src="pictures/pic2.png" /></div></a></div>
+						<div class="assInfT">
+							<div class="assInfT">
+								<div class="assInfL">
+									<div><span>Posted by:</span><a href="#">Vu Nguyen - 1 hour 32 minutes ago</a></div>
+									<div><span>Comments:</span><a href="#">23 Comments</a></div>
+								</div>
+								<div class="assInfR"><a href="#">more</a></div>
+							</div>
+							<div class="assInfB">
+								<div class="qashdU"><a href="#">20</a></div>
+								<div class="qashdD"><a href="#">4</a></div>
+								<div class="vie"><a href="#">View (20)</a></div>
+								<div class="com"><a href="#">Comments (10)</a></div>
+								<div class="share"><a href="#">Share</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="assItem">
+					<div class="assItemL">
+						<div class="assImg"><div><a href="#"><img src="pictures/pic4.png" /></a></div></div>
+						<div class="assContT">
+							<h2 class="titleH2"><a href="#">Physics (Lorem Ipsum dolor) $10.99</a></h2>
+							<div class="assCate"><span>Category:</span><a href="#">Housing Category</a></div>
+							<div class="assCate"><span>Organization:</span><a href="#">University of California</a></div>
+						</div>
+						<div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
+					</div>
+					<div class="asslinkdown">
+						<div class="moreTutor"><b>"Our Status"</b> Founded in: 2009 Members: 350</div>
+						<div class="mySco"><a href="#">Our score (8/10)</a></div>
+					</div>
+					<div class="assItemB">
+						<div class="assPic"><a href="#"><div><img src="pictures/noimg.png" /></div></a></div>
+						<div class="assInfT">
+							<div class="assInfT">
+								<div class="assInfL">
+									<div><span>Posted by:</span><a href="#">Vu Nguyen - 1 hour 32 minutes ago</a></div>
+									<div><span>Comments:</span><a href="#">23 Comments</a></div>
+								</div>
+								<div class="assInfR"><a href="#">more</a></div>
+							</div>
+							<div class="assInfB">
+								<div class="qashdU"><a href="#">20</a></div>
+								<div class="qashdD"><a href="#">4</a></div>
+								<div class="vie"><a href="#">View (20)</a></div>
+								<div class="com"><a href="#">Comments (10)</a></div>
+								<div class="share"><a href="#">Share</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-<!-- you favorite-->
-<%= your_favorite_today() %>
-<!-- you favorite-->
 
-<div id="main-listing">
-  <div id="top-sub-nav">
-  </div>
-  <div class="expandable-box"><!--expandable-box-->
-    <% for post in @posts %>
-      <div class="exp-box-wrap <%= cycle('lgrayb', 'lgrayc') %>"><!--exp-box-wrap-->
-        <div class="exp-box1">
-          <%= link_to post.title, post.post_teamup %>
-        </div>
-        <div class="exp-box2">
-          <%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %>,
-          <% if post.user.school.website %>
-            <%= link_to post.user.school.name, post.user.school.website, :target => "_blank" %>
-          <% else %>
-            <%= post.user.school.name %>
-          <% end %>
-        </div>
-        <div class="exp-box3">
-          <%= post.created_at.strftime("%B %d, %Y") %>
-        </div>
-        <div class="info-link-box"><!--info-link-box-->
-          <div class="details-link">
-            <span rel="<%= post.id %>" style="cursor:pointer">View Detail</span>
-          </div>
-          <div class="download-rel-link">
-            <% if post.allow_download && post.attach_file_name %>
-              <a href="javascript:downloadFile('<%= post.attach.url %>')" class="downarrow">Download</a>
-            <% else %>
-              <span>Download</span>
-            <% end %>
-            | <a href="?more_like_this_id=<%= post.id %>" title="">More like this</a>
-          </div>
-        </div><!--end info-link-box-->
-      </div>	<!--end exp-box-wrap-->
-    <% end %>
-  </div>	<!--end expandable-box-->
+				<div class="assPage">
+					<span class="numPage">Page 1 of 22</span>
+					<span class="firstPage"><a href="#">First Page</a></span>
+					<span class="prevPage"><a href="#">Prev</a></span>
+					<span class="currentPage">
+						<a href="#" class="selected"><span>6</span></a>
+						<a href="#"><span>7</span></a>
+						<a href="#"><span>8</span></a>
+						<a href="#"><span>9</span></a>
+						<a href="#"><span>10</span></a>
+					</span>
+					<span class="nextPage"><a href="#">Next</a></span>
+					<span class="lastPage"><a href="#">Last Page</a></span>
+				</div>
+				<div class="goTop"><a href="#">Top</a></div>
+			</div>
+		</div>
+	</div>
+
+</div>
+	
+<div class="contMainC">
+	<div class="col195 student195">
+	<div class="col195in">
+		<h1 class="col195Title">TeamUp for Start-up</h1>
+		<div class="col195Cont">
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
+			</div>
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
+			</div>
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/pic9.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Quisque odio mi</a></div>
+			</div>
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
+			</div>
+			<div class="dueDbutton"><a href="#">View more TeamUp for Start-up</a></div>
+		</div>
+	</div>
+	</div>
+	<div class="col195 student195">
+	<div class="col195in">
+		<h1 class="col195Title">Good organizations</h1>
+		<div class="col195Cont">
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
+			</div>
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/pic8.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
+			</div>
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Quisque odio mi</a></div>
+			</div>
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
+			</div>
+			<div class="dueDbutton"><a href="#">View more Good organizations</a></div>
+		</div>
+	</div>
+	</div>
+	<div class="col195 student195">
+	<div class="col195in">
+		<h1 class="col195Title">Bad organizations</h1>
+		<div class="col195Cont">
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
+			</div>
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/pic8.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
+			</div>
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/pic9.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Quisque odio mi</a></div>
+			</div>
+			<div class="studentItem">
+				<div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
+				<div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
+			</div>
+			<div class="dueDbutton"><a href="#">View more Bad organizations</a></div>
+		</div>
+	</div>
+	</div>
+	
+</div>
+	
+<div class="contMainR">
+	<div class="col300 Br-by-sub">
+	<div class="col300in">
+		<h1 class="col300Title">Browser by subject</h1>
+		<div class="col300Cont">
+			<div class="tabClouse">
+				<a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
+				<a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
+				<a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
+				<a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="advert">
+		<div class="creAd"><a href="#">Create an Ad</a></div>
+		<div class="advertTitle">Advertisement</div>
+		<div class="Dani">DaniWeb - IT Discussion Community</div>
+		<div class="advertImg"><img src="pictures/pic6.png" /></div>
+		<div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+		<div class="advertInf">
+			<div class="advertInfL">
+				<a href="#" class="adverta">482</a><a href="#" class="advertb">12</a><a href="#" class="advertc">10 Comments</a>
+			</div>
+			<div class="advertInfR">
+				<span class="pre"><a href="#">&nbsp;</a></span>
+				<span class="next"><a href="#">&nbsp;</a></span></div>
+		</div>
+	</div>
+	<div class="col300 QAsRecent">
+	<div class="col300in">
+		<h1 class="col300Title">Recent Comments</h1>
+		<div class="col300Cont">
+			<div class="recentItem">
+				<div class="recentImg"><a href="#"><div><img src="pictures/pic1.png" /></div></a></div>
+				<div class="recentInf">
+					<div class="recentName"><a href="#">Vu Nguyen</a></div>
+					<div class="recentUni"><span>at </span><a href="#">University of California</a></div>
+					<div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+				</div>
+			</div>
+			<div class="recentItem">
+				<div class="recentImg"><a href="#"><div><img src="pictures/noimg.png" /></div></a></div>
+				<div class="recentInf">
+					<div class="recentName"><a href="#">Dang Nguyen</a></div>
+					<div class="recentUni"><span>at </span><a href="#">University of San Francisco</a></div>
+					<div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
+				</div>
+			</div>
+			<div class="recentBottom">&nbsp;</div>
+		</div>
+	</div>
 </div>
 
-<%= will_paginate @posts, :class => "digg_pagination" %>
 
-<script language="javascript">
-  document.observe('dom:loaded', function() {
-    $$('span[rel]').each(function(element) {
-      show_detail_path = '/post_teamups/show_dialog?id=' + element.readAttribute("rel");
-      new Tip(element, {
-        ajax: {
-          url: show_detail_path,
-          options: {
-            asynchronous:true,
-            evalScripts:true,
-            method: 'get'
-          }
-        },
-        fixed: true,
-        viewport: true,
-        width: 'auto',
-        title: 'Detail',
-        showOn: 'click',
-        hideOthers: true,
-        hideOn: { element: 'closeButton', event: 'click'},
-        hook: { target: 'bottomLeft', tip: 'topLeft' },
-        offset: {x:-10, y:5} });
-      element.observe('prototip:shown', function() {
-        //
-      });
-      element.observe('prototip:hidden', function() {
-        $('show_send_message_' + element.getAttribute("rel")).prototip.hide();
-      });
-    });
-  });
-<% if current_user %>
-    var send_email_path = "/messages/send_message";
-    var user_id = "<%= current_user.id %>";
-    function sendEmail(post_id, to){
-      subject = $("message_subject_"+post_id).value;
-      body = $("message_body_"+post_id).value;
-      new Ajax.Request(send_email_path,
-      {asynchronous:true,
-        evalScripts:true,
-        method:'get',
-        on500:function(request){alert('Sorry, there was an error.'.l); return false},
-        parameters:{user_id:user_id, message_to:to, message_subject:subject, message_body:body},
-        onSuccess:function(){
-          $('send_message_alert_'+post_id).show();
-          $('send_message_wraper_'+post_id).hide();
-        }}
-    );
-    }
-<% end %>
-function downloadFile(path){
-  document.location.href = path;
-}
-</script>
-<!--Content-->
+</div>
+</div>
+
+<div class="footer">
+<div class="footer1">
+	<table cellspacing="0" cellpadding="0">
+		<tr>
+			<td class="account">
+				<h2 class="footTitle">Your Account</h2>
+				<div class="footItem"><a href="#">Inbox</a></div>
+				<div class="footItem"><a href="#">Contact</a></div>
+				<div class="footItem"><a href="#">Blog</a></div>
+				<div class="footItem"><a href="#">Subscriptions</a></div>
+				<div class="footItem"><a href="#">Jobs</a></div>
+			</td>
+			<td class="help">
+				<h2 class="footTitle">Help & Information</h2>
+				<div class="footItem"><a href="#">Help Resources</a></div>
+				<div class="footItem"><a href="#">Community Help Forum</a></div>
+				<div class="footItem"><a href="#">AfterClassroom Handbook</a></div>
+				<div class="footItem"><a href="#">Advertising</a></div>
+			</td>
+			<td class="after">
+				<h2 class="footTitle">After Classroom</h2>
+				<div class="footItem"><a href="#">Company Information</a></div>
+				<div class="footItem"><a href="#">Terms of use</a></div>
+				<div class="footItem"><a href="#">Privacy Policy</a></div>
+				<div class="footItem"><a href="#">Press</a></div>
+			</td>
+		</tr>
+	</table>
+	<div class="flogo">
+		<div class="flogoimg"><img alt="classroom" src="images/logo.png" /></div>
+		<div class="flogoinf">© 2009 AfterClassroom. All rights reserved. - Content created and posted by AfterClassroom users is dedicated to the public domain.</div>
+	</div>
+</div>
+</div>

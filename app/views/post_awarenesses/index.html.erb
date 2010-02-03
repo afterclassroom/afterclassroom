@@ -1,20 +1,3 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Student Awareness", :new_post_path => "/post_awarenesses/new"} %>
-<% end -%>
-
-<% content_for :select_your_school do -%>
-  <%= select_your_school("user", "shared/select_school", {"target" => "bottomLeft", "tip" => "topLeft"}) %>
-<% end -%>
-
-<% content_for :sidebar do -%>
-  <%= render :partial => "shared/ads_vertical" %>
-<% end -%>
-<!--Content-->
-
-<!-- you favorite-->
-<%= your_favorite_today() %>
-<!-- you favorite-->
-
 <div id="main-listing">
   <div id="top-sub-nav">
   </div>
