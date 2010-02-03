@@ -96,7 +96,7 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :due_date => :get
   }
   map.resources :post_teamups, :collection => {
-    :show_dialog => :get
+    :search => :get
   }
   map.resources :post_parties, :collection => {
     :show_dialog => :get,
