@@ -104,7 +104,7 @@ ActionController::Routing::Routes.draw do |map|
     :create_rsvp => :get
   }
   map.resources :post_awarenesses, :collection => {
-    :show_dialog => :get
+    :search => :get
   }
   map.resources :post_jobs, :collection => {
     :show_dialog => :get

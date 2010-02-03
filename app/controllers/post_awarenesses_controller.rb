@@ -2,6 +2,7 @@
 class PostAwarenessesController < ApplicationController
   include Viewable
 
+  before_filter :get_variables, :only => [:index, :show, :search, :due_date]
   before_filter :login_required, :except => [:index, :show]
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy]
@@ -117,7 +118,14 @@ class PostAwarenessesController < ApplicationController
     updated = update_view_count(obj)
   end
 
-  protected
+  private
+
+  def get_variables
+    @new_post_path = new_post_assignment_path
+    @type = PostCategory.find_by_name("Assignments").id
+    @school = session[:your_school]
+    @query = params[:search][:query] if params[:search]
+  end
 
   def require_current_user
     @user ||= PostAwareness.find(params[:post_awareness_id] || params[:id]).post.user
