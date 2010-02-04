@@ -57,22 +57,8 @@
       <div class="col195in">
         <h1 class="col195Title">TeamUp for Start-up</h1>
         <div class="col195Cont">
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic9.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Quisque odio mi</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
-          </div>
+
+          <%= render :partial => "startup"%>
           <div class="dueDbutton"><a href="#">View more TeamUp for Start-up</a></div>
         </div>
       </div>
@@ -81,22 +67,9 @@
       <div class="col195in">
         <h1 class="col195Title">Good organizations</h1>
         <div class="col195Cont">
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic8.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Quisque odio mi</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
-          </div>
+
+          <%= render :partial => "goodorg"%>
+
           <div class="dueDbutton"><a href="#">View more Good organizations</a></div>
         </div>
       </div>
@@ -105,22 +78,7 @@
       <div class="col195in">
         <h1 class="col195Title">Bad organizations</h1>
         <div class="col195Cont">
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic8.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic9.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Quisque odio mi</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
-          </div>
+          <%= render :partial => "badorg"%>
           <div class="dueDbutton"><a href="#">View more Bad organizations</a></div>
         </div>
       </div>
@@ -160,63 +118,15 @@
     <div class="col300 QAsRecent">
       <div class="col300in">
         <h1 class="col300Title">Recent Comments</h1>
+
         <div class="col300Cont">
-          <div class="recentItem">
-            <div class="recentImg"><a href="#"><div><img src="pictures/pic1.png" /></div></a></div>
-            <div class="recentInf">
-              <div class="recentName"><a href="#">Vu Nguyen</a></div>
-              <div class="recentUni"><span>at </span><a href="#">University of California</a></div>
-              <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            </div>
-          </div>
-          <div class="recentItem">
-            <div class="recentImg"><a href="#"><div><img src="pictures/noimg.png" /></div></a></div>
-            <div class="recentInf">
-              <div class="recentName"><a href="#">Dang Nguyen</a></div>
-              <div class="recentUni"><span>at </span><a href="#">University of San Francisco</a></div>
-              <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
-            </div>
-          </div>
+          <%= render :partial => "recentcomment"%>
+
           <div class="recentBottom">&nbsp;</div>
         </div>
       </div>
     </div>
 
 
-  </div>
-</div>
-
-<div class="footer">
-  <div class="footer1">
-    <table cellspacing="0" cellpadding="0">
-      <tr>
-        <td class="account">
-          <h2 class="footTitle">Your Account</h2>
-          <div class="footItem"><a href="#">Inbox</a></div>
-          <div class="footItem"><a href="#">Contact</a></div>
-          <div class="footItem"><a href="#">Blog</a></div>
-          <div class="footItem"><a href="#">Subscriptions</a></div>
-          <div class="footItem"><a href="#">Jobs</a></div>
-        </td>
-        <td class="help">
-          <h2 class="footTitle">Help & Information</h2>
-          <div class="footItem"><a href="#">Help Resources</a></div>
-          <div class="footItem"><a href="#">Community Help Forum</a></div>
-          <div class="footItem"><a href="#">AfterClassroom Handbook</a></div>
-          <div class="footItem"><a href="#">Advertising</a></div>
-        </td>
-        <td class="after">
-          <h2 class="footTitle">After Classroom</h2>
-          <div class="footItem"><a href="#">Company Information</a></div>
-          <div class="footItem"><a href="#">Terms of use</a></div>
-          <div class="footItem"><a href="#">Privacy Policy</a></div>
-          <div class="footItem"><a href="#">Press</a></div>
-        </td>
-      </tr>
-    </table>
-    <div class="flogo">
-      <div class="flogoimg"><img alt="classroom" src="images/logo.png" /></div>
-      <div class="flogoinf">© 2009 AfterClassroom. All rights reserved. - Content created and posted by AfterClassroom users is dedicated to the public domain.</div>
-    </div>
   </div>
 </div>
