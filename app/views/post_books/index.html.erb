@@ -1,111 +1,67 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Books", :new_post_path => "/post_books/new"} %>
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Books", post_books_path, :class => "abLink-detail" %>
 <% end -%>
 
-<% content_for :select_your_school do -%>
-  <%= select_your_school("user", "shared/select_school", {"target" => "bottomLeft", "tip" => "topLeft"}) %>
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
 
-<% content_for :sidebar do -%>
-  <%= render :partial => "shared/ads_vertical" %>
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
 <% end -%>
+
 <!--Content-->
+<div class="contMainL">
+  <div class="col451 book">
+    <div class="col451in">
+      <div class="col451Cont">
+        <!--Options-->
+        <%= show_options(@school, params) %>
+        <!--Options-->
 
-<!-- you favorite-->
-<%= your_favorite_today() %>
-<!-- you favorite-->
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+        <% end %>
+        <!--List Items-->
 
-<div id="main-listing">
-  <div id="top-sub-nav">
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="#">Top</a></div>
+      </div>
+    </div>
   </div>
-  <div class="expandable-box"><!--expandable-box-->
-    <% for post in @posts %>
-      <div class="exp-box-wrap <%= cycle('lgrayb', 'lgrayc') %>"><!--exp-box-wrap-->
-        <div class="exp-box1">
-          <%= link_to post.title, post.post_book %>
-        </div>
-        <div class="exp-box2">
-          <%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %>,
-          <% if post.user.school.website %>
-            <%= link_to post.user.school.name, post.user.school.website, :target => "_blank" %>
-          <% else %>
-            <%= post.user.school.name %>
-          <% end %>
-        </div>
-        <div class="exp-box3">
-          <%= post.created_at.strftime("%B %d, %Y") %>
-        </div>
-        <div class="info-link-box"><!--info-link-box-->
-          <div class="details-link">
-            <span rel="<%= post.id %>" style="cursor:pointer">View Detail</span>
-          </div>
-          <div class="download-rel-link">
-            <% if post.allow_download && post.attach_file_name %>
-              <a href="javascript:downloadFile('<%= post.attach.url %>')" class="downarrow">Download</a>
-            <% else %>
-              <span>Download</span>
-            <% end %>
-            | <a href="?more_like_this_id=<%= post.id %>" title="">More like this</a>
-          </div>
-        </div><!--end info-link-box-->
-      </div>	<!--end exp-box-wrap-->
-    <% end %>
-  </div>	<!--end expandable-box-->
+
+</div>
+<div class="contMainC">
+  <!--Browser Don't Buy-->
+  <%= render :partial => "dont_buy" %>
+  <!--Browser Don't Buy-->
+
+  <!--Browser Good Books->
+  <%= render :partial => "good_book" %>
+  <!--Browser Good Books-->
+
+  <!--Browser Poll Free Books-->
+  <%= render :partial => "free_book" %>
+  <!--Browser Poll Free Books-->
 </div>
 
-<%= will_paginate @posts, :class => "digg_pagination" %>
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by Subject-->
 
-<script language="javascript">
-  document.observe('dom:loaded', function() {
-    $$('span[rel]').each(function(element) {
-      show_detail_path = '/post_books/show_dialog?id=' + element.readAttribute("rel");
-      new Tip(element, {
-        ajax: {
-          url: show_detail_path,
-          options: {
-            asynchronous:true,
-            evalScripts:true,
-            method: 'get'
-          }
-        },
-        fixed: true,
-        viewport: true,
-        width: 'auto',
-        title: 'Detail',
-        showOn: 'click',
-        hideOthers: true,
-        hideOn: { element: 'closeButton', event: 'click'},
-        hook: { target: 'bottomLeft', tip: 'topLeft' },
-        offset: {x:-10, y:5} });
-      element.observe('prototip:shown', function() {
-        //
-      });
-      element.observe('prototip:hidden', function() {
-        $('show_send_message_' + element.getAttribute("rel")).prototip.hide();
-      });
-    });
-  });
-<% if current_user %>
-    var send_email_path = "/messages/send_message";
-    var user_id = "<%= current_user.id %>";
-    function sendEmail(post_id, to){
-      subject = $("message_subject_"+post_id).value;
-      body = $("message_body_"+post_id).value;
-      new Ajax.Request(send_email_path,
-      {asynchronous:true,
-        evalScripts:true,
-        method:'get',
-        on500:function(request){alert('Sorry, there was an error.'.l); return false},
-        parameters:{user_id:user_id, message_to:to, message_subject:subject, message_body:body},
-        onSuccess:function(){
-          $('send_message_alert_'+post_id).show();
-          $('send_message_wraper_'+post_id).hide();
-        }}
-    );
-    }
-<% end %>
-  function downloadFile(path){
-    document.location.href = path;
-  }
-</script>
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Request Assignment-->
+  <%= render :partial => "form_request_book" %>
+  <!--Request Assignment-->
+</div>
 <!--Content-->

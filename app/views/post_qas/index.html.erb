@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Assignments", post_assignments_path, :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "QAs", post_qas_path, :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -12,13 +12,15 @@
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 assignment">
+  <div class="col451 QAs">
     <div class="col451in">
       <div class="col451Cont">
-        <!--Options-->
-        <%= show_options(@school, params) %>
-        <!--Options-->
-
+        <div class="AsDTop">
+          <h1 class="titleH1">Q.As</h1>
+          <div class="AsDsearch">
+            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_qas_path} %>
+          </div>
+        </div>
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
@@ -37,14 +39,19 @@
   </div>
 
 </div>
-<div class="contMainC">
-  <!--Browser Due Date-->
-  <%= render :partial => "due_date" %>
-  <!--Browser Due Date-->
 
-  <!--Browser Interesting Projest-->
-  <%= render :partial => "post_projects/interesting_projects" %>
-  <!--Browser Interesting Projest-->
+<div class="contMainC">
+  <!--Browser Top Answers-->
+  <%= render :partial => "top_answers" %>
+  <!--Browser Top Answers-->
+
+  <!--Browser Interesting questions-->
+  <%= render :partial => "top_answers" %>
+  <!--Browser Interesting questions-->
+
+  <!--Browser Poll Q.As-->
+  <%= render :partial => "top_answers" %>
+  <!--Browser Poll Q.As-->
 </div>
 
 <div class="contMainR">
@@ -56,12 +63,12 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Request Assignment-->
-  <%= render :partial => "form_request_assignment" %>
-  <!--Request Assignment-->
+  <!--Request Question-->
+  <%= render :partial => "form_request_qa" %>
+  <!--Request Question-->
 
-  <!--Recent Request Assignments-->
-  <%= render :partial => "recent_request_assignments" %>
-  <!--Recent Request Assignments-->
+  <!--Recent Request Questions-->
+  <%= render :partial => "recent_request_qas" %>
+  <!--Recent Request Questions-->
 </div>
 <!--Content-->

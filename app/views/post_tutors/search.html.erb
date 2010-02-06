@@ -1,11 +1,11 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Tests", post_tests_path, :class => "abLink-detail" %><%= link_to "Due Date", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Tutors", post_tutors_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
   <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
-  
+
 <% content_for :menu_sub do -%>
   <%= render :partial => "submenu" %>
 <% end -%>
@@ -16,14 +16,14 @@
     <div class="col451in">
       <div class="col451Cont">
         <div class="AsDTop">
-          <h1 class="titleH1">Tests</h1>
+          <h1 class="titleH1">Tutors</h1>
           <div class="AsDsearch">
-            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_tests_path} %>
+            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_tutors_path} %>
           </div>
         </div>
         <!--List Items-->
         <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
         <% end %>
         <!--List Items-->
 
@@ -59,12 +59,12 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Request test-->
-  <%= render :partial => "form_request_test" %>
-  <!--Request test-->
+  <!--Request Assignment-->
+  <%= render :partial => "form_request_tutor" %>
+  <!--Request Assignment-->
 
-  <!--Recent Request tests-->
-  <%= render :partial => "recent_request_tests" %>
-  <!--Recent Request tests-->
+  <!--Recent Request Tutors-->
+  <%= render :partial => "recent_request_tutors" %>
+  <!--Recent Request Tutors-->
 </div>
 <!--Content-->

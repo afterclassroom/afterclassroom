@@ -105,7 +105,7 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get
   }
   map.resources :post_parties, :collection => {
-    :show_dialog => :get,
+    :search => :get,
     :show_rsvp => :get,
     :create_rsvp => :get
   }
@@ -113,16 +113,16 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get
   }
   map.resources :post_jobs, :collection => {
-    :show_dialog => :get
+    :search => :get
   }
   map.resources :post_books, :collection => {
-    :show_dialog => :get
+    :search => :get
   }
   map.resources :post_tutors, :collection => {
-    :show_dialog => :get
+    :search => :get
   }
   map.resources :post_housings, :collection => {
-    :search => :get#:show_dialog => :get
+    :search => :get
   }
   # Stories
   map.resources :stories, :collection => {:create_comment => :get, :delete_comment => :get}

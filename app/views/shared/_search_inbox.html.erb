@@ -7,10 +7,10 @@
       <span class="ltblue_r"></span>
     </a>
 
-    <input type="text" name="search[name]" value="<%= search_name || "Enter your search keywords..." %>" id="search-b" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" style="float:left">
+    <input type="text" name="search[name]" value="<%= search_name || "Enter your search keywords..." %>" id="search-b" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" style="float:left"/>
     <!-- search text box -->
 
-                            <!-- inbox  button -->
+    <!-- inbox  button -->
     <a href="/posts/new" title="inbox" class="btfr link_bt">
 
       <span class="ltred_l"></span>
@@ -19,7 +19,7 @@
     </a>
     <!-- end inbox button -->
 
-                            <!-- search button -->
+    <!-- search button -->
     <a href="javascript:document.search.submit()" title="Search" class="btfr link_bt_g s-pos">
       <span class="ltgray_l"></span>
       <span class="ltgray_c btf">Search</span>
@@ -97,9 +97,9 @@
       case "Favorites":
         action = "<%= my_favorite_user_path(current_user) %>";
         break;
+      }
+      $('action_inbox_search').action = action;
+      $('inbox_type_select').update(inbox_type);
+      showlayer('select_list');
     }
-    $('action_inbox_search').action = action;
-    $('inbox_type_select').update(inbox_type);
-    showlayer('select_list');
-  }
 </script>

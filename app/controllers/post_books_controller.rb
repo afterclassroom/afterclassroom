@@ -1,51 +1,50 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostBooksController < ApplicationController
   include Viewable
-  
-  before_filter :login_required, :except => [:index, :show]
-  before_filter :require_current_user,
-    :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index]
-  # GET /post_books
-  # GET /post_books.xml
+
+  before_filter :get_variables, :only => [:index, :show, :search]
+  before_filter :login_required, :except => [:index, :show, :search]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  after_filter :store_location, :only => [:index, :show, :search]
+  # GET /post_tutors
+  # GET /post_tutors.xml
   def index
     if params[:more_like_this_id]
-      post = Post.find_by_id(params[:more_like_this_id])
-      @posts = PostBook.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
+      id = params[:more_like_this_id]
+      post = Post.find_by_id(id)
+      @posts = Post.paginated_post_more_like_this(params, post)
     else
-      if params[:search]
-        @search_name = params[:search][:name]
-      end
-
-      school = session[:your_school]
-      @posts = PostBook.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
+      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @post_books }
+      format.xml  { render :xml => @posts }
     end
   end
 
-  # GET /post_books/1
-  # GET /post_books/1.xml
+  def search
+    @query = params[:search][:query] if params[:search]
+    if params[:search]
+      @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
+    end
+  end
+
+  # GET /post_tutors/1
+  # GET /post_tutors/1.xml
   def show
-    @post_book = PostBook.find(params[:id])
-    @post = @post_book.post
-    @post_category_id = @post.post_category_id
-    @type_name = @post.post_category.name
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_book.post)
+    @post = Post.find(params[:id])
+    @post_book = @post.post_book
+    update_view_count(@post)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_book }
     end
-  end
-
-  def show_dialog
-    @post = Post.find(params[:id])
-    update_views(@post)
-    render :layout => false
   end
 
   # GET /post_books/new
@@ -115,10 +114,17 @@ class PostBooksController < ApplicationController
     updated = update_view_count(obj)
   end
 
-  protected
+  private
+
+  def get_variables
+    @new_post_path = new_post_book_path
+    @type = PostCategory.find_by_name("Books").id
+    @school = session[:your_school]
+    @query = params[:search][:query] if params[:search]
+  end
 
   def require_current_user
-    @user ||= PostBook.find(params[:post_book_id] || params[:id]).post.user
+    @user ||= PostTutor.find(params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

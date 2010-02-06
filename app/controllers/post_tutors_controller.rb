@@ -2,50 +2,49 @@
 class PostTutorsController < ApplicationController
   include Viewable
 
-  before_filter :login_required, :except => [:index, :show]
-  before_filter :require_current_user,
-    :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index]
+  before_filter :get_variables, :only => [:index, :show, :search]
+  before_filter :login_required, :except => [:index, :show, :search]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  after_filter :store_location, :only => [:index, :show, :search]
   # GET /post_tutors
   # GET /post_tutors.xml
   def index
     if params[:more_like_this_id]
-      post = Post.find_by_id(params[:more_like_this_id])
-      @posts = PostTutor.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
+      id = params[:more_like_this_id]
+      post = Post.find_by_id(id)
+      @posts = Post.paginated_post_more_like_this(params, post)
     else
-      if params[:search]
-        @search_name = params[:search][:name]
-      end
-
-      school = session[:your_school]
-      @posts = PostTutor.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
+      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @post_tutors }
+      format.xml  { render :xml => @posts }
+    end
+  end
+
+  def search
+    @query = params[:search][:query] if params[:search]
+    if params[:search]
+      @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
     end
   end
 
   # GET /post_tutors/1
   # GET /post_tutors/1.xml
   def show
-    @post_tutor = PostTutor.find(params[:id])
-    @post = @post_tutor.post
-    @post_category_id = @post.post_category_id
-    @type_name = @post.post_category.name
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_tutor.post)
+    @post = Post.find(params[:id])
+    @post_qa = @post.post_qa
+    update_view_count(@post)
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_tutor }
+      format.xml  { render :xml => @post_qa }
     end
-  end
-
-  def show_dialog
-    @post = Post.find(params[:id])
-    update_views(@post)
-    render :layout => false
   end
 
   # GET /post_tutors/new
@@ -115,10 +114,17 @@ class PostTutorsController < ApplicationController
     updated = update_view_count(obj)
   end
 
-  protected
+  private
+
+  def get_variables
+    @new_post_path = new_post_qa_path
+    @type = PostCategory.find_by_name("Tutors").id
+    @school = session[:your_school]
+    @query = params[:search][:query] if params[:search]
+  end
 
   def require_current_user
-    @user ||= PostTutor.find(params[:post_tutor_id] || params[:id]).post.user
+    @user ||= PostTutor.find(params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

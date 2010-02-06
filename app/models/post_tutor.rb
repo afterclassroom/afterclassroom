@@ -6,24 +6,7 @@ class PostTutor < ActiveRecord::Base
   # Relations
   belongs_to :post
 
-  def self.paginated_post_conditions_with_search(params, school)
-    if params[:search]
-      search_name = params[:search][:name]
-    end
-
-    cond = Caboose::EZ::Condition.new :posts do
-      any{title =~ "%#{search_name}%"; description =~ "%#{search_name}%"} if search_name
-      school_id == school.id if school
-    end
-    cond << "id IN (Select post_id From post_tutors)"
-    Post.find :all, :conditions => cond.to_sql(), :order => "created_at DESC"
-  end
-
-  def self.paginated_post_more_like_this(post)
-    cond = Caboose::EZ::Condition.new :posts do
-      department_id == post.department_id
-    end
-    cond << "id IN (Select post_id From post_tutors)"
-    Post.find :all, :conditions => cond.to_sql(), :order => "created_at DESC"
-  end
+  # Named Scope
+  named_scope :with_limit, :limit => 5
+  named_scope :with_shool, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
 end

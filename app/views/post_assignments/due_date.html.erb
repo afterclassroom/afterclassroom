@@ -12,8 +12,14 @@
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 assignment">
+  <div class="col451 QAs">
     <div class="col451in">
+      <div class="AsDTop">
+          <h1 class="titleH1">Assignments</h1>
+          <div class="AsDsearch">
+            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_assignments_path} %>
+          </div>
+        </div>
       <div class="col451Cont">
         <!--List Items-->
         <% @posts.each do |post| %>

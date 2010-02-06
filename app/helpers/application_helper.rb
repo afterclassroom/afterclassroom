@@ -118,65 +118,50 @@ module ApplicationHelper
       when "post_assignments"
         type = PostCategory.find_by_name("Assignments").id
         search_post_path = search_post_assignments_path
-        new_post_path = new_post_assignment_path
       when "post_projects"
         type = PostCategory.find_by_name("Projects").id
         search_post_path = search_post_projects_path
-        new_post_path = new_post_project_path
       when "post_tests"
         type = PostCategory.find_by_name("Tests").id
         search_post_path = search_post_tests_path
-        new_post_path = new_post_test_path
       when "post_exams"
         type = PostCategory.find_by_name("Exams").id
         search_post_path = search_post_assignments_path
-        new_post_path = new_post_assignment_path
       when "post_qas"
         type = PostCategory.find_by_name("QAs").id
         search_post_path = search_post_qas_path
-        new_post_path = new_post_qa_path
       when "post_tutors"
         type = PostCategory.find_by_name("Tutors").id
         search_post_path = search_post_tutors_path
-        new_post_path = new_post_tutor_path
       when "post_books"
         type = PostCategory.find_by_name("Books").id
         search_post_path = search_post_books_path
-        new_post_path = new_post_book_path
       when "post_jobs"
         type = PostCategory.find_by_name("Jobs").id
         search_post_path = search_post_jobs_path
-        new_post_path = new_post_job_path
       when "post_foods"
         type = PostCategory.find_by_name("Foods").id
         search_post_path = search_post_foods_path
-        new_post_path = new_post_food_path
       when "post_parties"
         type = PostCategory.find_by_name("Parties").id
         search_post_path = search_post_parties_path
-        new_post_path = new_post_party_path
       when "post_myxes"
         type = PostCategory.find_by_name("MyX").id
         search_post_path = search_post_myxes_path
-        new_post_path = new_post_myx_path
       when "post_awarenesses"
         type = PostCategory.find_by_name("Student Awareness").id
         search_post_path = search_post_awarenesses_path
-        new_post_path = new_post_awareness_path
       when "post_housings"
         type = PostCategory.find_by_name("Housing").id
         search_post_path = search_post_housings_path
-        new_post_path = new_post_housing_path
       when "post_teamups"
         type = PostCategory.find_by_name("Team Up").id
         search_post_path = search_post_teamups_path
-        new_post_path = new_post_teamup_path
       else
         type = PostCategory.find_by_name("Assignments").id
         search_post_path = search_post_assignments_path
-        new_post_path = new_post_assignment_path
     end
-    render :partial => "shared/search_posts", :locals => {:type => type, :search_post_path => search_post_path, :new_post_path => new_post_path, :query => query}
+    render :partial => "shared/search_posts", :locals => {:type => type, :search_post_path => search_post_path, :query => query}
   end
 
   def show_options(school, params)
