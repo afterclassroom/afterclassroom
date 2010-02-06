@@ -57,23 +57,13 @@
       <div class="col195in">
         <h1 class="col195Title">Good House/Apt</h1>
         <div class="col195Cont">
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic9.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Quisque odio mi</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
-          </div>
+
+          <%= render :partial => "goodhouse" %>
           <div class="dueDbutton"><a href="#">View more Good House/Apt</a></div>
+
+
+
+
         </div>
       </div>
     </div>
@@ -81,22 +71,12 @@
       <div class="col195in">
         <h1 class="col195Title">Bad House/Apt</h1>
         <div class="col195Cont">
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic8.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Quisque odio mi</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
-          </div>
+
+
+
+          <%= render :partial => "badhouse" %>
+
+
           <div class="dueDbutton"><a href="#">View more Bad House/Apt</a></div>
         </div>
       </div>
@@ -105,6 +85,7 @@
       <div class="col195in">
         <h1 class="col195Title">Current Market Price</h1>
         <div class="col195Cont">
+
           <div class="studentItem">
             <div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
             <div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
@@ -122,11 +103,30 @@
             <div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
           </div>
           <div class="dueDbutton"><a href="#">View more Current Market Price</a></div>
+
+
+
+
         </div>
       </div>
     </div>
 
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <div class="contMainR">
     <div class="col300 Br-by-sub">
@@ -157,29 +157,20 @@
           <span class="next"><a href="#">&nbsp;</a></span></div>
       </div>
     </div>
+    
     <div class="col300 QAsRecent">
+
       <div class="col300in">
         <h1 class="col300Title">I need a place</h1>
+
         <div class="col300Cont">
-          <div class="recentItem">
-            <div class="recentImg"><a href="#"><div><img src="pictures/pic1.png" /></div></a></div>
-            <div class="recentInf">
-              <div class="recentName"><a href="#">Vu Nguyen</a></div>
-              <div class="recentUni"><span>at </span><a href="#">University of California</a></div>
-              <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-            </div>
-          </div>
-          <div class="recentItem">
-            <div class="recentImg"><a href="#"><div><img src="pictures/noimg.png" /></div></a></div>
-            <div class="recentInf">
-              <div class="recentName"><a href="#">Dang Nguyen</a></div>
-              <div class="recentUni"><span>at </span><a href="#">University of San Francisco</a></div>
-              <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
-            </div>
-          </div>
+
+          <%= render :partial => "needplace" %>
+
           <div class="recentBottom">&nbsp;</div>
         </div>
       </div>
+
     </div>
 
 
