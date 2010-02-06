@@ -1,137 +1,117 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Party", :new_post_path => "/post_parties/new"} %>
-<% end -%>
+<div class="contMain">
+  <div class="contMainL">
+    <div class="col451 Party">
+      <div class="col451in">
+        <div class="col451Cont">
+          <div class="AsDTop">
+            <h1 class="titleH1">Party</h1>
+          </div>
 
-<% content_for :select_your_school do -%>
-  <%= select_your_school("user", "shared/select_school", {"target" => "bottomLeft", "tip" => "topLeft"}) %>
-<% end -%>
-
-<% content_for :sidebar do -%>
-  <%= render :partial => "shared/ads_vertical" %>
-<% end -%>
-<!--Content-->
-
-<!-- you favorite-->
-<%= your_favorite_today() %>
-<!-- you favorite-->
-
-<div id="main-listing">
-  <div id="top-sub-nav">
-  </div>
-  <div class="expandable-box"><!--expandable-box-->
-    <% for post in @posts %>
-      <div class="exp-box-wrap <%= cycle('lgrayb', 'lgrayc') %>"><!--exp-box-wrap-->
-        <div class="exp-box1">
-          <%= link_to post.title, post.post_party %>
-        </div>
-        <div class="exp-box2">
-          <%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %>,
-          <% if post.user.school.website %>
-            <%= link_to post.user.school.name, post.user.school.website, :target => "_blank" %>
-          <% else %>
-            <%= post.user.school.name %>
+          <% @posts.each do |post| %>
+            <%= render :partial => "item", :locals => {:post => post}%>
           <% end %>
-        </div>
-        <div class="exp-box3">
-          <%= post.created_at.strftime("%B %d, %Y") %>
-        </div>
-        <div class="info-link-box"><!--info-link-box-->
-          <div class="details-link">
-            <span rel="<%= post.id %>" style="cursor:pointer">View Detail</span>
+
+
+          <div class="assPage">
+            <span class="numPage">Page 1 of 22</span>
+            <span class="firstPage"><a href="#">First Page</a></span>
+            <span class="prevPage"><a href="#">Prev</a></span>
+            <span class="currentPage">
+              <a href="#" class="selected"><span>6</span></a>
+              <a href="#"><span>7</span></a>
+              <a href="#"><span>8</span></a>
+              <a href="#"><span>9</span></a>
+              <a href="#"><span>10</span></a>
+            </span>
+            <span class="nextPage"><a href="#">Next</a></span>
+            <span class="lastPage"><a href="#">Last Page</a></span>
           </div>
-          <div class="download-rel-link">
-            <% if post.allow_download && post.attach_file_name %>
-              <a href="javascript:downloadFile('<%= post.attach.url %>')" class="downarrow">Download</a>
-            <% else %>
-              <span>Download</span>
-            <% end %>
-            | <a href="?more_like_this_id=<%= post.id %>" title="">More like this</a>
+          <div class="goTop"><a href="#">Top</a></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="contMainC">
+    <div class="col195 clubBar">
+      <div class="col195in">
+        <h1 class="col195Title">Top club/bar</h1>
+        <div class="col195Cont">
+
+          <%= render :partial => "topclub" %>
+          <div class="dueDbutton"><a href="#">View more club/bar</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="col195 Poster">
+      <div class="col195in">
+        <h1 class="col195Title">Top posters</h1>
+        <div class="col195Cont">
+          <%= render :partial => "topclub" %>
+
+          <div class="dueDbutton"><a href="#">View more posters</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="col195 QAsPoll">
+      <div class="col195in">
+        <h1 class="col195Title">Poll this Party</h1>
+        <div class="col195Cont">
+          <div class="QAsPCont">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum bibendum neque non nisl commodo quis luctus nulla auctor.</div>
+          <div class="QAsDet"><input name="Radio1" type="radio" />Best of the best</div>
+          <div class="QAsDet"><input name="Radio1" type="radio" />Good</div>
+          <div class="QAsDet"><input name="Radio1" type="radio" />Not bad</div>
+          <div class="QAsDet"><input name="Radio1" type="radio" />Bad</div>
+          <div class="submit"><a href="#">Submit</a></div>
+          <div class="PollView">[<a href="">View results</a>]</div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="contMainR">
+    <div class="col300 Br-by-sub">
+      <div class="col300in">
+        <h1 class="col300Title">Browser by subject</h1>
+        <div class="col300Cont">
+          <div class="tabClouse">
+            <a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
+            <a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
+            <a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
+            <a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
           </div>
-        </div><!--end info-link-box-->
-      </div>	<!--end exp-box-wrap-->
-    <% end %>
-  </div>	<!--end expandable-box-->
+        </div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="advertTitle">Advertisement</div>
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="pictures/pic6.png" /></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a href="#" class="adverta">482</a><a href="#" class="advertb">12</a><a href="#" class="advertc">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="col300 QAsRecent">
+      <div class="col300in">
+        <h1 class="col300Title">Recent Party Requested</h1>
+        <div class="col300Cont">
+          <%= render :partial => "recentRequested" %>
+
+          <div class="recentBottom">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
 </div>
 
-<%= will_paginate @posts, :class => "digg_pagination" %>
-
-<script language="javascript">
-  document.observe('dom:loaded', function() {
-    $$('span[rel]').each(function(element) {
-      show_detail_path = '/post_parties/show_dialog?id=' + element.readAttribute("rel");
-      new Tip(element, {
-        ajax: {
-          url: show_detail_path,
-          options: {
-            asynchronous:true,
-            evalScripts:true,
-            method: 'get'
-          }
-        },
-        fixed: true,
-        viewport: true,
-        width: 'auto',
-        title: 'Detail',
-        showOn: 'click',
-        hideOthers: true,
-        hideOn: { element: 'closeButton', event: 'click'},
-        hook: { target: 'bottomLeft', tip: 'topLeft' },
-        offset: {x:-10, y:5} });
-      element.observe('prototip:shown', function() {
-        //
-      });
-      element.observe('prototip:hidden', function() {
-        $('show_send_message_' + element.getAttribute("rel")).prototip.hide();
-      });
-    });
-  });
-<% if current_user %>
-    var send_email_path = "/messages/send_message";
-    var user_id = "<%= current_user.id %>";
-    function sendEmail(post_id, to){
-      subject = $("message_subject_"+post_id).value;
-      body = $("message_body_"+post_id).value;
-      new Ajax.Request(send_email_path,
-      {asynchronous:true,
-        evalScripts:true,
-        method:'get',
-        on500:function(request){alert('Sorry, there was an error.'.l); return false},
-        parameters:{user_id:user_id, message_to:to, message_subject:subject, message_body:body},
-        onSuccess:function(){
-          $('send_message_alert_'+post_id).show();
-          $('send_message_wraper_'+post_id).hide();
-        }}
-    );
-    }
-
-    function submit_rsvp(post_id){
-      valid = new Validation('form_rsvp_' + post_id, {immediate : true, onSubmit:false});
-      result = valid.validate();
-      if (result) {
-        where = $('where_'+post_id).value;
-        when = $('form_when_'+post_id).value;
-        first_name = $('first_name_'+post_id).value;
-        last_name = $('last_name_'+post_id).value;
-        email = $('email_'+post_id).value;
-        tel = $('tel_'+post_id).value;
-        message = $('message_'+post_id).value;
-        create_rsvp_path = "/post_parties/create_rsvp";
-        new Ajax.Request(create_rsvp_path,
-        {asynchronous:true,
-          evalScripts:true,
-          method:'get',
-          on500:function(request){alert('Sorry, there was an error.'.l); return false},
-          parameters:{post_id:post_id, where:where, when:when, first_name:first_name, last_name:last_name, email:email, tel:tel, message:message},
-          onSuccess:function(){
-            $('rsvp_alert_'+post_id).show();
-            $('rsvp_wraper_'+post_id).hide();
-          }}
-      );
-      }
-    }
-<% end %>
-function downloadFile(path){
-  document.location.href = path;
-}
-</script>
-<!--Content-->

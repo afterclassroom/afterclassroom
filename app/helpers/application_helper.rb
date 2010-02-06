@@ -143,7 +143,7 @@ module ApplicationHelper
         type = PostCategory.find_by_name("Foods").id
         search_post_path = search_post_foods_path
       when "post_parties"
-        type = PostCategory.find_by_name("Parties").id
+        type = PostCategory.find_by_name("Party").id
         search_post_path = search_post_parties_path
       when "post_myxes"
         type = PostCategory.find_by_name("MyX").id
