@@ -75,30 +75,6 @@ module ApplicationHelper
     image_tag user.avatar.url(:thumb)
   end
 
-  def show_post_with_title(post)
-    post_category_name = post.post_category.name
-    case post_category_name
-    when "Education"
-      link_to post.title, post.post_education
-    when "Tutors"
-      link_to post.title, post.post_tutor
-    when "Books"
-      link_to post.title, post.post_book
-    when "Jobs"
-      link_to post.title, post.post_job
-    when "Party"
-      link_to post.title, post.post_party
-    when "Student Awareness"
-      link_to post.title, post.post_awareness
-    when "Housing"
-      link_to post.title, post.post_housing
-    when "Team Up"
-      link_to post.title, post.post_teamup
-    else
-      link_to post.title, post
-    end
-  end
-
   def getGender(sex)
     if sex
       sex == true ? "Male" : "Female"

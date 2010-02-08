@@ -1,51 +1,50 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostJobsController < ApplicationController
   include Viewable
-  
-  before_filter :login_required, :except => [:index, :show]
-  before_filter :require_current_user,
-    :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index]
+
+  before_filter :get_variables, :only => [:index, :show, :search]
+  before_filter :login_required, :except => [:index, :show, :search]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  after_filter :store_location, :only => [:index, :show, :search]
   # GET /post_jobs
   # GET /post_jobs.xml
   def index
     if params[:more_like_this_id]
-      post = Post.find_by_id(params[:more_like_this_id])
-      @posts = PostJob.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
+      id = params[:more_like_this_id]
+      post = Post.find_by_id(id)
+      @posts = Post.paginated_post_more_like_this(params, post)
     else
-      if params[:search]
-        @search_name = params[:search][:name]
-      end
-
-      school = session[:your_school]
-      @posts = PostJob.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
+      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @post_jobs }
+      format.xml  { render :xml => @posts }
+    end
+  end
+
+  def search
+    @query = params[:search][:query] if params[:search]
+    if params[:search]
+      @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
     end
   end
 
   # GET /post_jobs/1
   # GET /post_jobs/1.xml
   def show
-    @post_job = PostJob.find(params[:id])
-    @post = @post_job.post
-    @post_category_id = @post.post_category_id
-    @type_name = @post.post_category.name
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_job.post)
+    @post = Post.find(params[:id])
+    @post_qa = @post.post_qa
+    update_view_count(@post)
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_job }
+      format.xml  { render :xml => @post_qa }
     end
-  end
-
-  def show_dialog
-    @post = Post.find(params[:id])
-    update_views(@post)
-    render :layout => false
   end
 
   # GET /post_jobs/new
@@ -56,8 +55,8 @@ class PostJobsController < ApplicationController
     @post_job.post = post
     @post_categories = PostCategory.find(:all)
     @post_category_name = "Jobs"
-    @prepare_post = {'Yes' => true, 'No' => false}
-    @job_types = JobType.find(:all)
+    @per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
+    @currency = ['USD', 'CAD']
     @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
@@ -70,15 +69,11 @@ class PostJobsController < ApplicationController
     @post_job = PostJob.find(params[:id])
     @post = @post_job.post
     @post_categories = PostCategory.find(:all)
-    @prepare_post = {'No' => false, 'Yes' => true}
-    @job_types = JobType.find(:all)
+    @per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
+    @currency = ['USD', 'CAD']
     @countries = Country.has_cities
     @school = @post_job.post.school
     @department = @post_job.post.department
-    @post_job_type = ""
-    for job_type in @post_job.job_types
-      @post_job_type += job_type.name + ", "
-    end
   end
 
   # POST /post_jobs
@@ -98,12 +93,12 @@ class PostJobsController < ApplicationController
   # PUT /post_jobs/1
   # PUT /post_jobs/1.xml
   def update
-    params[:post_job][:job_type_ids] ||= []
     @post_job = PostJob.find(params[:id])
 
     if (@post_job.update_attributes(params[:post_job]) && @post_job.post.update_attributes(params[:post]))
       redirect_to my_post_user_url(current_user)
     end
+
   end
 
   # DELETE /post_jobs/1
@@ -119,10 +114,17 @@ class PostJobsController < ApplicationController
     updated = update_view_count(obj)
   end
 
-  protected
+  private
+
+  def get_variables
+    @new_post_path = new_post_qa_path
+    @type = PostCategory.find_by_name("Jobs").id
+    @school = session[:your_school]
+    @query = params[:search][:query] if params[:search]
+  end
 
   def require_current_user
-    @user ||= PostJob.find(params[:post_job_id] || params[:id]).post.user
+    @user ||= PostJob.find(params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end
