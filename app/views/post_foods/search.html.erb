@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Assignments", post_assignments_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Foods", post_foods_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -12,36 +12,39 @@
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 assignment">
+  <div class="col451 QAs">
     <div class="col451in">
-      <div class="col451Cont">
-        <!--List Items-->
-        <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
-        <% end %>
-        <!--List Items-->
-
-        <!--Pagination-->
-        <div class="assPage">
-          <span class="numPage"><%= page_entries_info @posts %></span>
-          <%= will_paginate @posts %>
+      <div class="AsDTop">
+        <h1 class="titleH1">Foods</h1>
+        <div class="AsDsearch">
+          <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_foods_path} %>
         </div>
-        <!--Pagination-->
-        <div class="goTop"><a href="#">Top</a></div>
       </div>
+      <!--List Items-->
+      <% @posts.each do |post| %>
+        <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
+      <% end %>
+      <!--List Items-->
+
+      <!--Pagination-->
+      <div class="assPage">
+        <span class="numPage"><%= page_entries_info @posts %></span>
+        <%= will_paginate @posts %>
+      </div>
+      <!--Pagination-->
+      <div class="goTop"><a href="#">Top</a></div>
     </div>
   </div>
-
 </div>
 
 <div class="contMainC">
-  <!--Browser Due Date-->
-  <%= render :partial => "due_date" %>
-  <!--Browser Due Date-->
+  <!--Browser Top food providers-->
+  <%= render :partial => "top_food_providers" %>
+  <!--Browser Top food providers-->
 
-  <!--Browser Interesting Projest-->
-  <%= render :partial => "post_projects/interesting_projects" %>
-  <!--Browser Interesting Projest-->
+  <!--Browser Top food posters-->
+  <%= render :partial => "top_food_posters" %>
+  <!--Browser Top food posters-->
 </div>
 
 <div class="contMainR">
@@ -53,12 +56,12 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Request Assignment-->
-  <%= render :partial => "form_request_assignment" %>
-  <!--Request Assignment-->
+  <!--Request food-->
+  <%= render :partial => "form_request_food" %>
+  <!--Request food-->
 
-  <!--Recent Request Assignments-->
-  <%= render :partial => "recent_request_assignments" %>
-  <!--Recent Request Assignments-->
+  <!--Recent Request foods-->
+  <%= render :partial => "recent_request_foods" %>
+  <!--Recent Request foods-->
 </div>
 <!--Content-->

@@ -1921,6 +1921,9 @@ div.postInf{
 .Book .Bookdont{
     background:url('/images/icon-dontbuy.png') no-repeat;
 }
+.Book .AsDTop{
+    margin:0px;
+}
 /****************************************************/
 /********** Sign in - Sign up ************************/
 .welBack h1.col300Title{

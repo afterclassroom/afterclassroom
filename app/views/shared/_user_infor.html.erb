@@ -4,4 +4,7 @@
   <div class="friend"><a href="#">Invite Friend</a></div>
   <div class="chat"><a href="#">Invite Chat</a></div>
   <div class="mail"><a href="#">Send Mail</a></div>
+  <% if @controller.controller_name == "post_parties" %>
+  <div class="rsvp"><a href="#">RSVP</a></div>
+  <% end %>
 </div>

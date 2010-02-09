@@ -12,7 +12,7 @@
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 QAs">
+  <div class="col451 Book">
     <div class="col451in">
       <div class="col451Cont">
         <div class="AsDTop">
@@ -21,6 +21,7 @@
             <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_books_path} %>
           </div>
         </div>
+
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
@@ -39,19 +40,18 @@
   </div>
 
 </div>
-
 <div class="contMainC">
   <!--Browser Don't Buy-->
   <%= render :partial => "dont_buy" %>
   <!--Browser Don't Buy-->
 
-  <!--Browser Good Books->
+  <!--Browser Good Books-->
   <%= render :partial => "good_book" %>
   <!--Browser Good Books-->
 
-  <!--Browser Poll Free Books-->
+  <!--Browser Free Books-->
   <%= render :partial => "free_book" %>
-  <!--Browser Poll Free Books-->
+  <!--Browser Free Books-->
 </div>
 
 <div class="contMainR">

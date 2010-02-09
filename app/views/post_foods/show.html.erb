@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Assignments", post_assignments_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Foods", post_foods_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -14,20 +14,17 @@
 <div class="contDetL">
   <div class="contDetLin">
     <div class="AsDTop">
-      <h1 class="titleH1">Assignment detail</h1>
+      <h1 class="titleH1">Food detail</h1>
       <div class="AsDsearch">
-        <%= render :partial => "shared/search_indetail", :locals => {:url_search => post_assignments_path} %>
+        <%= render :partial => "shared/search_indetail", :locals => {:url_search => post_foods_path} %>
       </div>
     </div>
     <div class="AsDCont">
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_assignments_path %></span></div>
+        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_foods_path %></span></div>
         <div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
-        <div class="AsDContLinf"><span>Professor:</span><%= @post_assignment.professor %></div>
-        <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
-        <div class="AsDContLinf"><span>Due date:</span><%= @post_assignment.due_date.strftime("%B %d, %Y") %></div>
       </div>
       <%= render :partial => "shared/user_infor", :locals => {:user => @post.user} %>
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
@@ -59,7 +56,7 @@
       <span class="comnext"><a href="#"> </a></span>
     </div>
     <div class="AsDOr">
-      <h1 class="titleH1">Related Requests Assignments in Assignments Category</h1>
+      <h1 class="titleH1">Related Requests Foods in Foods Category</h1>
       <div class="AsDOrItem"><a href="#">Chemistry (Lorem Ipsum Dolor sitamet)</a></div>
       <div class="AsDOrItem"><a href="#">Sociology (Nulla ac massa id risus ornare condimentum)</a></div>
     </div>
@@ -72,12 +69,12 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
   
-  <!--Request Assignment-->
-  <%= render :partial => "form_request_assignment" %>
-  <!--Request Assignment-->
+  <!--Request Food-->
+  <%= render :partial => "form_request_food" %>
+  <!--Request Food-->
   
-  <!--Recent Request Assignments-->
-  <%= render :partial => "recent_request_assignments" %>
-  <!--Recent Request Assignments-->
+  <!--Recent Request Foods-->
+  <%= render :partial => "recent_request_foods" %>
+  <!--Recent Request Foods-->
 </div>
 <!--Content-->

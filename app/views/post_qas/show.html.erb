@@ -12,11 +12,11 @@
 
 <!--Content-->
 <div class="contDetL">
-  <div class="contDetLin">
+  <div class="contDetLin QasDetail">
     <div class="AsDTop">
-      <h1 class="titleH1">Assignment detail</h1>
+      <h1 class="titleH1">Q.As details</h1>
       <div class="AsDsearch">
-        <%= render :partial => "shared/search_indetail", :locals => {:url_search => post_assignments_path} %>
+        <%= render :partial => "shared/search_indetail", :locals => {:url_search => post_qas_path} %>
       </div>
     </div>
     <div class="AsDCont">
@@ -24,60 +24,76 @@
         <h2 class="titleH2"><%= @post.title %></h2>
         <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_assignments_path %></span></div>
         <div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
-        <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
-        <div class="AsDContLinf"><span>Professor:</span><%= @post_assignment.professor %></div>
-        <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
-        <div class="AsDContLinf"><span>Due date:</span><%= @post_assignment.due_date.strftime("%B %d, %Y") %></div>
+        <div class="AsDContLdes"><span>Description:</span>><%= @post.description %></div>
       </div>
       <%= render :partial => "shared/user_infor", :locals => {:user => @post.user} %>
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
     </div>
 
-    <div class="AsDcom" id="form_comment" style="display: none">
-      <h1 class="titleH1">Leave your comments</h1>
+    <div class="AsDcom">
+      <h1 class="titleH1">Leave your answer</h1>
       <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
       <div class="AsDcomIn">
-        <div class="AsDcomTxt"><textarea name="TextArea1" ></textarea></div>
+        <div class="AsDcomTxt"><textarea name="TextArea1"></textarea></div>
         <div class="submit"><a href="#">Submit</a></div>
       </div>
     </div>
-    <% if @post.comments.size > 0 %>
     <div class="AsDcomL">
-      <h1 class="titleH1"><a href="#">Comments (4)</a></h1>
+      <h1 class="titleH1"><a href="#">Answer (4)</a></h1>
       <div class="AsDcomLW">
         <span>View</span>
         <span><select name="Select2"><option>All answers</option></select></span>
       </div>
-      <% @post.comments.each do |comnt| %>
-        <%= render :partial => "item_comment", :objects => comnt %>
-      <% end %>
+      <div class="AsDcomItem">
+        <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+        <div class="AsDcomItemR">
+          <div class="AsDcomName">Comment by<a href="#">Huy Quach</a>- 35 minutes ago</div>
+          <div class="AsDcomDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis. Proin ultricies dignissim ante vitae euismod. Aliquam vitae sem vel nisi posuere molestie eu venenatis urna.</div>
+          <div class="AsDcomRe">
+            <div class="AsDcomRe1"><a href="#">10</a></div>
+            <div class="AsDcomRe2"><a href="#">2</a></div>
+            <div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="AsDcomItem">
+        <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+        <div class="AsDcomItemR">
+          <div class="AsDcomName">Comment by<a href="#">Huy Quach</a>- 35 minutes ago</div>
+          <div class="AsDcomDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis. Proin ultricies dignissim ante vitae euismod. Aliquam vitae sem vel nisi posuere molestie eu venenatis urna.</div>
+          <div class="AsDcomRe">
+            <div class="AsDcomRe1"><a href="#">10</a></div>
+            <div class="AsDcomRe2"><a href="#">2</a></div>
+            <div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <% end %>
-    <div class="goback"><a onclick="history.go(-1);" href="javascript:void();"><span>Go back</span></a></div>
+    <div class="goback"><a href="#"><span>Go back</span></a></div>
     <div class="comPage">
       <span class="compre"><a href="#"> </a></span>
       <span class="comnext"><a href="#"> </a></span>
     </div>
     <div class="AsDOr">
-      <h1 class="titleH1">Related Requests Assignments in Assignments Category</h1>
+      <h1 class="titleH1">Related Requests Q.As in Q.As Category</h1>
       <div class="AsDOrItem"><a href="#">Chemistry (Lorem Ipsum Dolor sitamet)</a></div>
       <div class="AsDOrItem"><a href="#">Sociology (Nulla ac massa id risus ornare condimentum)</a></div>
     </div>
     <div class="goTop"><a href="#">Top</a></div>
   </div>
-</div>	
+</div>
 
 <div class="contMainR">
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
-  
-  <!--Request Assignment-->
-  <%= render :partial => "form_request_assignment" %>
-  <!--Request Assignment-->
-  
-  <!--Recent Request Assignments-->
-  <%= render :partial => "recent_request_assignments" %>
-  <!--Recent Request Assignments-->
+
+  <!--Request QAs-->
+  <%= render :partial => "form_request_qa" %>
+  <!--Request QAs-->
+
+  <!--Recent Request QAs-->
+  <%= render :partial => "recent_request_qas" %>
+  <!--Recent Request QAs-->
 </div>
 <!--Content-->
