@@ -8,24 +8,9 @@ class PostMyx < ActiveRecord::Base
 
   named_scope :prof_filter, lambda {|c| return {} if c.nil?; {:conditions => ["prof_status = ?", c], :order => "prof_status DESC", :limit => 5}}
 
-  def self.paginated_post_conditions_with_more_worse(params)
-    cond = Caboose::EZ::Condition.new :post_myxes do
-      prof_status == 'Worse'
-    end
-    postMyxes = []
-    post_as = PostMyx.find(:all, :conditions => cond.to_sql())
-    post_as.select {|p| postMyxes << p.post}
-    postMyxes.paginate :page => params[:page], :per_page => 10
-  end
-
-  def self.paginated_post_conditions_with_more_good(params)
-    cond = Caboose::EZ::Condition.new :post_myxes do
-      prof_status == 'Good'
-    end
-    postMyxes = []
-    post_as = PostMyx.find(:all, :conditions => cond.to_sql())
-    post_as.select {|p| postMyxes << p.post}
-    postMyxes.paginate :page => params[:page], :per_page => 10
-  end
+  # Named Scope
+  named_scope :with_limit, :limit => 5
+  named_scope :with_shool, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
+  named_scope :due_date, :conditions => ["due_date > ?", Time.now], :order => "due_date DESC"
 
 end
