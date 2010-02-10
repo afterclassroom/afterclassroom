@@ -1,52 +1,51 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostHousingsController < ApplicationController
   include Viewable
-  
+
+  before_filter :get_variables, :only => [:index, :show, :search]
   before_filter :get_variables, :only => [:index]
-  before_filter :login_required, :except => [:index, :show]
-  before_filter :require_current_user,
-    :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index]
+  before_filter :login_required, :except => [:index, :show, :search]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  after_filter :store_location, :only => [:index, :show, :search]
   # GET /post_housings
   # GET /post_housings.xml
   def index
     if params[:more_like_this_id]
-      post = Post.find_by_id(params[:more_like_this_id])
-      @posts = PostHousing.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
+      id = params[:more_like_this_id]
+      post = Post.find_by_id(id)
+      @posts = Post.paginated_post_more_like_this(params, post)
     else
-      if params[:search]
-        @search_name = params[:search][:name]
-      end
-
-      school = session[:your_school]
-      @posts = PostHousing.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
+      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @post_housings }
+      format.xml  { render :xml => @posts }
+    end
+  end
+
+  def search
+    @query = params[:search][:query] if params[:search]
+    if params[:search]
+      @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
     end
   end
 
   # GET /post_housings/1
   # GET /post_housings/1.xml
   def show
-    @post_housing = PostHousing.find(params[:id])
-    @post = @post_housing.post
-    @post_category_id = @post.post_category_id
-    @type_name = @post.post_category.name
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_housing.post)
+    @post = Post.find(params[:id])
+    @post_housing = @post.post_housing
+    update_view_count(@post)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_housing }
     end
-  end
-
-  def show_dialog
-    @post = Post.find(params[:id])
-    update_views(@post)
-    render :layout => false
   end
 
   # GET /post_housings/new
@@ -116,11 +115,6 @@ class PostHousingsController < ApplicationController
     redirect_to my_post_user_url(current_user)
   end
 
-  def update_views(obj)
-    updated = update_view_count(obj)
-  end
-
-
   private
 
   def get_variables
@@ -130,9 +124,8 @@ class PostHousingsController < ApplicationController
     @query = params[:search][:query] if params[:search]
   end
 
-  #This action apply for user need to edit, update, delete created-post
   def require_current_user
-    @user ||= PostHousing.find(params[:post_housing_id] || params[:id]).post.user
+    @user ||= PostHousing.find(params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

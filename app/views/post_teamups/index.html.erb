@@ -1,132 +1,67 @@
-<div class="abLink">
-  <div class="abLinkL">You are here: <a href="#">Home</a><a href="#" class="abLink-detail">TeamUp</a></div>
-  <div class="menuRR">
-    <span class="RmenuRtext"><a href="#">Click here</a>to choose your school</span>
-    <span class="RmenuRbtm1"><a href="#">Student lounges</a></span>
-    <span class="RmenuRbtm2"><a href="#">Post</a></span>
-  </div>
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Team Up", post_teamups_path, :class => "abLink-detail" %>
+<% end -%>
 
-</div>
-<div class="sponsor">
-  <div class="sponsorLink">
-    <div class="menuRL">
-      <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Teamup for Sports</span></span></a></div>
-      <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Teamup for Student Clubs</span></span></a></div>
-    </div>
-  </div>
-</div>
-<div class="contMain">
-  <div class="contMainL">
-    <div class="col451 student">
-      <div class="col451in">
-        <div class="col451Cont">
-          <div class="AsDTop">
-            <h1 class="titleH1">TeamUp</h1>
-          </div>
-          <!--List Items-->
-          <% @posts.each do |post| %>
-            <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
-          <% end %>
-          <!--List Items-->
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
 
-
-
-          <div class="assPage">
-            <span class="numPage">Page 1 of 22</span>
-            <span class="firstPage"><a href="#">First Page</a></span>
-            <span class="prevPage"><a href="#">Prev</a></span>
-            <span class="currentPage">
-              <a href="#" class="selected"><span>6</span></a>
-              <a href="#"><span>7</span></a>
-              <a href="#"><span>8</span></a>
-              <a href="#"><span>9</span></a>
-              <a href="#"><span>10</span></a>
-            </span>
-            <span class="nextPage"><a href="#">Next</a></span>
-            <span class="lastPage"><a href="#">Last Page</a></span>
-          </div>
-          <div class="goTop"><a href="#">Top</a></div>
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+  
+<!--Content-->
+<div class="contMainL">
+  <div class="col451 student">
+    <div class="col451in">
+      <div class="col451Cont">
+        <div class="AsDTop">
+          <h1 class="titleH1">Team Up</h1>
         </div>
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+        <% end %>
+        <!--List Items-->
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="#">Top</a></div>
       </div>
     </div>
-
-  </div>
-
-  <div class="contMainC">
-    <div class="col195 student195">
-      <div class="col195in">
-        <h1 class="col195Title">TeamUp for Start-up</h1>
-        <div class="col195Cont">
-
-          <%= render :partial => "startup"%>
-          <div class="dueDbutton"><a href="#">View more TeamUp for Start-up</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="col195 student195">
-      <div class="col195in">
-        <h1 class="col195Title">Good organizations</h1>
-        <div class="col195Cont">
-
-          <%= render :partial => "goodorg"%>
-
-          <div class="dueDbutton"><a href="#">View more Good organizations</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="col195 student195">
-      <div class="col195in">
-        <h1 class="col195Title">Bad organizations</h1>
-        <div class="col195Cont">
-          <%= render :partial => "badorg"%>
-          <div class="dueDbutton"><a href="#">View more Bad organizations</a></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="contMainR">
-    <div class="col300 Br-by-sub">
-      <div class="col300in">
-        <h1 class="col300Title">Browser by subject</h1>
-        <div class="col300Cont">
-          <div class="tabClouse">
-            <a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
-            <a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
-            <a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
-            <a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="advert">
-      <div class="creAd"><a href="#">Create an Ad</a></div>
-      <div class="advertTitle">Advertisement</div>
-      <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="pictures/pic6.png" /></div>
-      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-      <div class="advertInf">
-        <div class="advertInfL">
-          <a href="#" class="adverta">482</a><a href="#" class="advertb">12</a><a href="#" class="advertc">10 Comments</a>
-        </div>
-        <div class="advertInfR">
-          <span class="pre"><a href="#">&nbsp;</a></span>
-          <span class="next"><a href="#">&nbsp;</a></span></div>
-      </div>
-    </div>
-    <div class="col300 QAsRecent">
-      <div class="col300in">
-        <h1 class="col300Title">Recent Comments</h1>
-
-        <div class="col300Cont">
-          <%= render :partial => "recentcomment"%>
-
-          <div class="recentBottom">&nbsp;</div>
-        </div>
-      </div>
-    </div>
-
-
   </div>
 </div>
+
+<div class="contMainC">
+  <!--Browser Startup-->
+  <%= render :partial => "startup"%>
+  <!--Browser Startup-->
+
+  <!--Browser Good organizations-->
+  <%= render :partial => "goodorg"%>
+  <!--Browser Good organizations-->
+
+  <!--Browser Bad organizations-->
+  <%= render :partial => "badorg"%>
+  <!--Browser Bad organizations-->
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Recent Request Comments-->
+  <%= render :partial => "shared/recent_comment" %>
+  <!--Recent Request Comments-->
+  
+</div>
+<!--Content-->

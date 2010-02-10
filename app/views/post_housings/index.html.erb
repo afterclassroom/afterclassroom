@@ -1,179 +1,67 @@
-<div class="abLink">
-  <div class="abLinkL">You are here: <a href="#">Home</a><a href="#" class="abLink-detail">Housing</a></div>
-  <div class="menuRR">
-    <span class="RmenuRtext"><a href="#">Click here</a>to choose your school</span>
-    <span class="RmenuRbtm1"><a href="#">Student lounges</a></span>
-    <span class="RmenuRbtm2"><a href="#">Post</a></span>
-  </div>
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Housing", post_housings_path, :class => "abLink-detail" %>
+<% end -%>
 
-</div>
-<div class="sponsor">
-  <div class="sponsorLink">
-    <div class="menuRL">
-      <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">House for Rent</span></span></a></div>
-      <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Apartment for rent</span></span></a></div>
-      <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Room for Share</span></span></a></div>
-    </div>
-  </div>
-</div>
-<div class="contMain">
-  <div class="contMainL">
-    <div class="col451 student">
-      <div class="col451in">
-        <div class="col451Cont">
-          <div class="AsDTop">
-            <h1 class="titleH1">Housing</h1>
-          </div>
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
 
-          <!--List Items-->
-          <% @posts.each do |post| %>
-            <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
-          <% end %>
-          <!--List Items-->
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
 
-          <div class="assPage">
-            <span class="numPage">Page 1 of 22</span>
-            <span class="firstPage"><a href="#">First Page</a></span>
-            <span class="prevPage"><a href="#">Prev</a></span>
-            <span class="currentPage">
-              <a href="#" class="selected"><span>6</span></a>
-              <a href="#"><span>7</span></a>
-              <a href="#"><span>8</span></a>
-              <a href="#"><span>9</span></a>
-              <a href="#"><span>10</span></a>
-            </span>
-            <span class="nextPage"><a href="#">Next</a></span>
-            <span class="lastPage"><a href="#">Last Page</a></span>
-          </div>
-          <div class="goTop"><a href="#">Top</a></div>
+<!--Content-->
+<div class="contMainL">
+  <div class="col451 student">
+    <div class="col451in">
+      <div class="col451Cont">
+        <div class="AsDTop">
+          <h1 class="titleH1">Housing</h1>
         </div>
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+        <% end %>
+        <!--List Items-->
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="#">Top</a></div>
       </div>
     </div>
-
-  </div>
-
-  <div class="contMainC">
-    <div class="col195 student195">
-      <div class="col195in">
-        <h1 class="col195Title">Good House/Apt</h1>
-        <div class="col195Cont">
-
-          <%= render :partial => "goodhouse" %>
-          <div class="dueDbutton"><a href="#">View more Good House/Apt</a></div>
-
-
-
-
-        </div>
-      </div>
-    </div>
-    <div class="col195 student195">
-      <div class="col195in">
-        <h1 class="col195Title">Bad House/Apt</h1>
-        <div class="col195Cont">
-
-
-
-          <%= render :partial => "badhouse" %>
-
-
-          <div class="dueDbutton"><a href="#">View more Bad House/Apt</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="col195 student195">
-      <div class="col195in">
-        <h1 class="col195Title">Current Market Price</h1>
-        <div class="col195Cont">
-
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic8.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic9.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Quisque odio mi</a></div>
-          </div>
-          <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
-          </div>
-          <div class="dueDbutton"><a href="#">View more Current Market Price</a></div>
-
-
-
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="contMainR">
-    <div class="col300 Br-by-sub">
-      <div class="col300in">
-        <h1 class="col300Title">Browser by subject</h1>
-        <div class="col300Cont">
-          <div class="tabClouse">
-            <a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
-            <a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
-            <a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
-            <a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="advert">
-      <div class="creAd"><a href="#">Create an Ad</a></div>
-      <div class="advertTitle">Advertisement</div>
-      <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="pictures/pic6.png" /></div>
-      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-      <div class="advertInf">
-        <div class="advertInfL">
-          <a href="#" class="adverta">482</a><a href="#" class="advertb">12</a><a href="#" class="advertc">10 Comments</a>
-        </div>
-        <div class="advertInfR">
-          <span class="pre"><a href="#">&nbsp;</a></span>
-          <span class="next"><a href="#">&nbsp;</a></span></div>
-      </div>
-    </div>
-    
-    <div class="col300 QAsRecent">
-
-      <div class="col300in">
-        <h1 class="col300Title">I need a place</h1>
-
-        <div class="col300Cont">
-
-          <%= render :partial => "needplace" %>
-
-          <div class="recentBottom">&nbsp;</div>
-        </div>
-      </div>
-
-    </div>
-
-
   </div>
 </div>
+
+<div class="contMainC">
+  <!--Browser Good House-->
+  <%= render :partial => "goodhouse" %>
+  <!--Browser Good House-->
+
+  <!--Browser Bad House-->
+  <%= render :partial => "badhouse" %>
+  <!--Browser Bad House-->
+
+  <!--Browser Current Market Price-->
+  <%= render :partial => "current_market_price" %>
+  <!--Browser Current Market Price-->
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Browser I need a place-->
+  <%= render :partial => "need_place" %>
+  <!--Browser I need a place-->
+</div>
+<!--Content-->
 

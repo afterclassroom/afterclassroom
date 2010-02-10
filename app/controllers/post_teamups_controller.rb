@@ -1,53 +1,50 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostTeamupsController < ApplicationController
   include Viewable
-  
-  before_filter :login_required, :except => [:index, :show]
-  before_filter :require_current_user,
-    :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index]
+
+  before_filter :get_variables, :only => [:index, :show, :search]
+  before_filter :login_required, :except => [:index, :show, :search]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  after_filter :store_location, :only => [:index, :show, :search]
   # GET /post_teamups
   # GET /post_teamups.xml
   def index
     if params[:more_like_this_id]
-      post = Post.find_by_id(params[:more_like_this_id])
-      @posts = PostTeamup.paginated_post_more_like_this(post).paginate :page => params[:page], :per_page => 10
+      id = params[:more_like_this_id]
+      post = Post.find_by_id(id)
+      @posts = Post.paginated_post_more_like_this(params, post)
     else
-      if params[:search]
-        @search_name = params[:search][:name]
-      end
-
-      school = session[:your_school]
-      @posts = PostTeamup.paginated_post_conditions_with_search(params, school).paginate :page => params[:page], :per_page => 10
+      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
     end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @post_teamups }
+      format.xml  { render :xml => @posts }
     end
   end
 
+  def search
+    @query = params[:search][:query] if params[:search]
+    if params[:search]
+      @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
+    end
+  end
+  
   # GET /post_teamups/1
   # GET /post_teamups/1.xml
   def show
-    @post_teamup = PostTeamup.find(params[:id])
-    @post = @post_teamup.post
-    @post_category_id = @post.post_category_id
-    @type_name = @post.post_category.name
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    @time_commitments = {'1' => '1-10 hrs', '2' => '11-20 hrs', '3' => '21-39 hrs', '4' => '40 hrs', '5' => 'Negotiable'}
-    update_views(@post_teamup.post)
+    @post = Post.find(params[:id])
+    @post_teamup = @post.post_teamup
+    update_view_count(@post)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_teamup }
     end
-  end
-
-  def show_dialog
-    @post = Post.find(params[:id])
-    @time_commitments = {'1' => '1-10 hrs', '2' => '11-20 hrs', '3' => '21-39 hrs', '4' => '40 hrs', '5' => 'Negotiable'}
-    update_views(@post)
-    render :layout => false
   end
 
   # GET /post_teamups/new
@@ -118,14 +115,17 @@ class PostTeamupsController < ApplicationController
     redirect_to my_post_user_url(current_user)
   end
 
-  def update_views(obj)
-    updated = update_view_count(obj)
+  private
+
+  def get_variables
+    @new_post_path = new_post_teamup_path
+    @type = PostCategory.find_by_name("Team Up").id
+    @school = session[:your_school]
+    @query = params[:search][:query] if params[:search]
   end
 
-  protected
-
   def require_current_user
-    @user ||= PostTeamup.find(params[:post_teamup_id] || params[:id]).post.user
+    @user ||= PostTeamup.find(params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end
