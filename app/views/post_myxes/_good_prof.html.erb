@@ -1,21 +1,28 @@
-<%
-goodProf = PostMyx.prof_filter("Good")
-%>
-<% if goodProf.size > 0 %>
-  <%
-  goodProf.each do |gp|
-  %>
-    <div class="teacherItem">
-      <div class="recentImg"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
-      <div class="teacherInf">
-        <div class="recentName"><a href="#"><%= gp.professor   %></a></div>
-        <div class="recentDes"><%= gp.post.school.name %></div>
-      </div>
+<div class="col195 Poster">
+  <div class="col195in">
+    <h1 class="col195Title">Good Teacher/Prof</h1>
+    <div class="col195Cont">
+      <%
+      goodProf = PostMyx.prof_filter("Good")
+    %>
+      <% if goodProf.size > 0 %>
+        <%
+        goodProf.each do |gp|
+        %>
+          <div class="teacherItem">
+            <div class="recentImg"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
+            <div class="teacherInf">
+              <div class="recentName"><a href="#"><%= gp.professor   %></a></div>
+              <div class="recentDes"><%= gp.post.school.name %></div>
+            </div>
+          </div>
+        <%
+        end
+      %>
+        <div class="dueDbutton"><%= link_to "View more Good Teacher/Prof", more_good_post_myxes_path %></div>
+      <%
+      end
+    %>
     </div>
-  <%
-  end
-%>
-       <div class="dueDbutton"><%= link_to "View more Good Teacher/Prof", more_good_post_myxes_path %></div>
- <%
-end
-%>
+  </div>
+</div>

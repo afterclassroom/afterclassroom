@@ -55,7 +55,7 @@ function getPostSearchType(post_type){
             action = "/post_foods";
             break;
     }
-    $('#action_post_search').action = action;
+    $('#action_post_search').attr("action", action);
 }
 
 function update_form(type_select, id){

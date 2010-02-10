@@ -1,65 +1,68 @@
-<div id="main-listing">
-  <div id="top-sub-nav">
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Student Awareness", post_awarenesses_path, :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contMainL">
+  <div class="col451 student">
+    <div class="col451in">
+      <div class="col451Cont">
+        <div class="AsDTop">
+          <h1 class="titleH1">Student Awareness</h1>
+        </div>
+
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+        <% end %>
+        <!--List Items-->
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="#">Top</a></div>
+      </div>
+    </div>
   </div>
-  <div class="expandable-box"><!--expandable-box-->
-    <% for post in @posts %>
-      <div class="exp-box-wrap <%= cycle('lgrayb', 'lgrayc') %>"><!--exp-box-wrap-->
-        <div class="exp-box1">
-          <%= link_to post.title, post.post_awareness %>
-        </div>
-        <div class="exp-box2">
-          <%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %>,
-          <% if post.user.school.website %>
-            <%= link_to post.user.school.name, post.user.school.website, :target => "_blank" %>
-          <% else %>
-            <%= post.user.school.name %>
-          <% end %>
-        </div>
-        <div class="exp-box3">
-          <%= post.created_at.strftime("%B %d, %Y") %>
-        </div>
-        <div class="info-link-box"><!--info-link-box-->
-          <div class="details-link">
-            <span rel="<%= post.id %>" style="cursor:pointer">View Detail</span>
-          </div>
-          <div class="download-rel-link">
-            <% if post.allow_download && post.attach_file_name %>
-              <a href="javascript:downloadFile('<%= post.attach.url %>')" class="downarrow">Download</a>
-            <% else %>
-              <span>Download</span>
-            <% end %>
-            | <a href="?more_like_this_id=<%= post.id %>" title="">More like this</a>
-          </div>
-        </div><!--end info-link-box-->
-      </div>	<!--end exp-box-wrap-->
-    <% end %>
-  </div>	<!--end expandable-box-->
+
+</div>
+<div class="contMainC">
+  <!--Browser Schedules-->
+  <%= render :partial => "schedules" %>
+  <!--Browser Schedules-->
+
+  <!--Browser Deadline Bulletin-->
+  <%= render :partial => "deadline_bulletin" %>
+  <!--Browser Deadline Bulletin-->
+
+  <!--Browser General Bulletin-->
+  <%= render :partial => "general_bulletin" %>
+  <!--Browser General Bulletin-->
 </div>
 
-<%= will_paginate @posts, :class => "digg_pagination" %>
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by Subject-->
 
-<script language="javascript">
-<% if current_user %>
-    var send_email_path = "/messages/send_message";
-    var user_id = "<%= current_user.id %>";
-    function sendEmail(post_id, to){
-      subject = $("message_subject_"+post_id).value;
-      body = $("message_body_"+post_id).value;
-      new Ajax.Request(send_email_path,
-      {asynchronous:true,
-        evalScripts:true,
-        method:'get',
-        on500:function(request){alert('Sorry, there was an error.'.l); return false},
-        parameters:{user_id:user_id, message_to:to, message_subject:subject, message_body:body},
-        onSuccess:function(){
-          $('send_message_alert_'+post_id).show();
-          $('send_message_wraper_'+post_id).hide();
-        }}
-    );
-    }
-<% end %>
-function downloadFile(path){
-    document.location.href = path;
-  }
-</script>
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Recent Request Comments-->
+  <%= render :partial => "shared/recent_comment" %>
+  <!--Recent Request Comments-->
+  
+</div>
 <!--Content-->

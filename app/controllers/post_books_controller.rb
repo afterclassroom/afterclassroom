@@ -6,8 +6,8 @@ class PostBooksController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search]
-  # GET /post_tutors
-  # GET /post_tutors.xml
+  # GET /post_books
+  # GET /post_books.xml
   def index
     if params[:more_like_this_id]
       id = params[:more_like_this_id]
@@ -35,8 +35,8 @@ class PostBooksController < ApplicationController
     end
   end
 
-  # GET /post_tutors/1
-  # GET /post_tutors/1.xml
+  # GET /post_books/1
+  # GET /post_books/1.xml
   def show
     @post = Post.find(params[:id])
     @post_book = @post.post_book

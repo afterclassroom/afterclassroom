@@ -1,0 +1,71 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Student Awareness", post_awarenesses_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contMainL">
+  <div class="col451 student">
+    <div class="col451in">
+      <div class="col451Cont">
+        <div class="AsDTop">
+          <h1 class="titleH1">Student Awareness</h1>
+          <div class="AsDsearch">
+            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_awarenesses_path} %>
+          </div>
+        </div>
+
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
+        <% end %>
+        <!--List Items-->
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="#">Top</a></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="contMainC">
+  <!--Browser Schedules-->
+  <%= render :partial => "schedules" %>
+  <!--Browser Schedules-->
+
+  <!--Browser Deadline Bulletin-->
+  <%= render :partial => "deadline_bulletin" %>
+  <!--Browser Deadline Bulletin-->
+
+  <!--Browser General Bulletin-->
+  <%= render :partial => "general_bulletin" %>
+  <!--Browser General Bulletin-->
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Recent Request Comments-->
+  <%= render :partial => "shared/recent_comment" %>
+  <!--Recent Request Comments-->
+
+</div>
+<!--Content-->

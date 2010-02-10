@@ -1,25 +1,21 @@
-<!--
-T?o ra name scope ? ?�y
-T?o ra 2 name scope:
-1. l� limit, ?? gi?i h?n k?t qu? tr? v?
-2. l� ?i?u ki?n ?? search
-
--->
-
-<%
+<div class="col195 clubBar">
+  <div class="col195in">
+    <h1 class="col195Title">Worse Teacher/Prof</h1>
+    <div class="col195Cont">
+      <%
       worseProf = PostMyx.prof_filter("Worse")
     %>
       <% if worseProf.size > 0 %>
         <%
         worseProf.each do |wp|
         %>
-        <div class="teacherItem">
-          <div class="recentImg"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
-          <div class="teacherInf">
-            <div class="recentName"><a href="#"><%= wp.professor   %></a></div>
-            <div class="recentDes"><%= wp.post.school.name %></div>
+          <div class="teacherItem">
+            <div class="recentImg"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
+            <div class="teacherInf">
+              <div class="recentName"><a href="#"><%= wp.professor   %></a></div>
+              <div class="recentDes"><%= wp.post.school.name %></div>
+            </div>
           </div>
-        </div>
         <%
         end
       %>
@@ -27,6 +23,12 @@ T?o ra 2 name scope:
       <%
       end
     %>
+
+    </div>
+
+  </div>
+</div>
+
 
 
 
