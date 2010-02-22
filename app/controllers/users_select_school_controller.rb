@@ -1,6 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class UsersSelectSchoolController < ApplicationController
   def show
+    @alphabet = ""
     @countries = Country.has_cities
     if session[:your_school]
       @school = School.find(session[:your_school])
@@ -25,6 +26,7 @@ class UsersSelectSchoolController < ApplicationController
   def update_form
     type = params[:type]
     id = params[:id]
+    @alphabet = ""
     @countries = Country.has_cities
     case type
       when "country"
@@ -56,13 +58,20 @@ class UsersSelectSchoolController < ApplicationController
   end
 
   def list_school
-    alphabet = params[:alphabet]
     city_id = params[:city_id]
-    if alphabet == ""
+    @alphabet = params[:alphabet]
+    @countries = Country.has_cities
+    @city = City.find(city_id)
+    @state = @city.state
+    @country = @state.country
+    @states = @country.states
+    @cities = @state.cities
+    if @alphabet == ""
       @schools = City.find(city_id).schools
     else
-      @schools = School.list_school(city_id, alphabet)
+      @schools = School.list_school(city_id, @alphabet)
     end
+    @school ||= @schools.first if @schools.size > 0
     render :layout => false
   end
 end

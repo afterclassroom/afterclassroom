@@ -93,30 +93,48 @@ function select_school(){
     }
 }
 
-function select_alphabet(id){
-    $('a.selected').removeClass('selected');
-    $(id).addClass('selected');
+function select_alphabet(alphabet){
+    city_id = $('#city').val();
+    $.ajax({
+        url: '/users_select_school/list_school',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            city_id : city_id,
+            alphabet : alphabet
+        }),
+        success: function(data){
+            $('#select_school').html(data);
+            load_menus();
+        }
+    });
 }
 
+var country_dd;
+var state_dd;
+var city_dd;
+var school_dd;
+
 function load_menus (){
-    $("#country").mcDropdown("#country_menu", {
+    country_dd = $("#country").mcDropdown("#country_menu", {
         width: 170,
         valueAttr: "rel_country",
         select: select_country
     });
-    $("#state").mcDropdown("#state_menu", {
+    state_dd = $("#state").mcDropdown("#state_menu", {
         width: 170,
         valueAttr: "rel_state",
         select: select_state
     });
-    $("#city").mcDropdown("#city_menu", {
+    city_dd = $("#city").mcDropdown("#city_menu", {
         width: 170,
         valueAttr: "rel_city",
         select: select_city
     });
-    $("#school").mcDropdown("#school_menu", {
-        valueAttr: "rel_school",
-        width: 170
+    school_dd = $("#school").mcDropdown("#school_menu", {
+        width: 170,
+        valueAttr: "rel_school"   
     });
 }
 

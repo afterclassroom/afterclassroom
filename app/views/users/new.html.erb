@@ -22,11 +22,11 @@
         </div>
         <div class="signinItem">
           <div class="signinTit">Email*:</div>
-          <div class="signinInp"><%= f.text_field :email, :class => "required validate-email" %></div>
+          <div class="signinInp"><%= f.text_field :email, :class => "required email" %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">New Password*:</div>
-          <div class="signinInp"><%= f.text_field :password, :class => "required validate-alphanum" %></div>
+          <div class="signinInp"><%= f.password_field :password, :class => "required password" %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">Your school*:</div>
@@ -36,7 +36,7 @@
           <div><%= f.check_box :allow_search_by_email %></div>
           <div class="signincCheckTxt">Let others find my post on Afterclassroom if they have my email address.</div>
         </div>
-        <div class="btmCreAc"><a href="javascript:void();" onclick="submit();">Create my account</a></div>
+        <div class="btmCreAc"><a href="javascript:;" onclick="submit();">Create my account</a></div>
         <div class="signincCheck">
           By clicking "Create my account", you agree to Afterclassroom <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
         </div>
@@ -52,11 +52,10 @@
 <!--Content-->
 
 <script type="text/javascript">
-  var valid = new Validation('form_signup', {immediate : false, onSubmit:false, stopOnFirst : true});
-  function submit(){
-    var result = valid.validate();
+ function submit(){
+    var result = $("#form_signup").validate();
     if (result) {
-      $('form_signup').submit();
+      $("#form_signup").submit();
     }
   }
 </script>

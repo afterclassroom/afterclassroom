@@ -14,7 +14,7 @@
       <% form_tag session_path, :name => "form", :id => "form" do -%>
         <div class="signinItem">
           <div class="signinTit">Email*</div>
-          <div class="signinInp"><%= text_field_tag 'email', '', :class => 'required validate-email' %></div>
+          <div class="signinInp"><%= text_field_tag 'email', '', :class => 'required email' %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">Password*</div>
@@ -24,7 +24,7 @@
           <div><%= check_box_tag('remember_me') %> </div>
           <div class="signincCheckTxt">Remember me for next login</div>
         </div>
-        <div class="btmLogme"><a href="javascript:void();" onclick="submit()">Log me in</a></div>
+        <div class="btmLogme"><a href="javascript:;" onclick="submit()">Log me in</a></div>
         <div class="forgotPass"><span><%= link_to "Forgot Password", user_forgot_password_url %></span></div>
       <% end -%>
     </div>
@@ -55,11 +55,10 @@
 <!--Content-->
 
 <script type="text/javascript">
-  var valid = new Validation('form', {immediate : false, onSubmit:false, stopOnFirst : true});
   function submit(){
-    var result = valid.validate();
+    var result = $("#form").validate();
     if (result) {
-      $('form').submit();
+      $("#form").submit();
     }
   }
 </script>

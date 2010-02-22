@@ -7,6 +7,7 @@ javascripts:
   - jrails
   - jquery-mcdropdown
   - thickbox
+  - jquery-validate
 - student_louge:
   - prototype
   - effects
