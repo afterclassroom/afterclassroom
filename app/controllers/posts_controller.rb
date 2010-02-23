@@ -48,12 +48,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def show_dialog
-    @post = Post.find(params[:id])
-    update_views(@post)
-    render :layout => false
-  end
-
   # GET /posts/new
   # GET /posts/new.xml
   def new
@@ -161,18 +155,17 @@ class PostsController < ApplicationController
   end
   
   def create_comment
+    @path = params[:path]
     post_id = params[:post_id]
     comment = params[:comment]
     if comment && post_id
-      obj_comment = Comment.new()
-      obj_comment.comment = comment
-      obj_comment.user = current_user
+      @obj_comment = Comment.new()
+      @obj_comment.comment = comment
+      @obj_comment.user = current_user
       post = Post.find_by_id(params[:post_id])
-      post.comments << obj_comment
+      post.comments << @obj_comment
     end
-    @post = Post.find(post_id)
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    render :partial => "list_comment", :locals => {:post => @post, :comments => @comments}
+    render :layout => false
   end
 
   def delete_comment
@@ -181,8 +174,6 @@ class PostsController < ApplicationController
     if comment_id && post_id
       current_user.posts.find_by_id(post_id).comments.find(comment_id).destroy
     end
-
-    redirect_to :controller => "posts", :action => "list_comments", :post_id => post_id
   end
  
   def rate

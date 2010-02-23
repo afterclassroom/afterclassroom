@@ -111,28 +111,23 @@ function select_alphabet(alphabet){
     });
 }
 
-var country_dd;
-var state_dd;
-var city_dd;
-var school_dd;
-
 function load_menus (){
-    country_dd = $("#country").mcDropdown("#country_menu", {
+    $("#country").mcDropdown("#country_menu", {
         width: 170,
         valueAttr: "rel_country",
         select: select_country
     });
-    state_dd = $("#state").mcDropdown("#state_menu", {
+    $("#state").mcDropdown("#state_menu", {
         width: 170,
         valueAttr: "rel_state",
         select: select_state
     });
-    city_dd = $("#city").mcDropdown("#city_menu", {
+    $("#city").mcDropdown("#city_menu", {
         width: 170,
         valueAttr: "rel_city",
         select: select_city
     });
-    school_dd = $("#school").mcDropdown("#school_menu", {
+    $("#school").mcDropdown("#school_menu", {
         width: 170,
         valueAttr: "rel_school"   
     });
@@ -158,4 +153,32 @@ function load_options (){
 
 function option_submit(){
     $("#action_option").submit();
+}
+
+function send_comment(path, post_id){
+    comment = $('#comment').val();
+    if (comment != ""){
+        $.ajax({
+            url: '/posts/create_comment',
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                path : path,
+                post_id : post_id,
+                comment : comment
+            }),
+            success: function(data){
+                $('#list_comments').append(data);
+                $('#comment').val('');
+                goToByScroll('go_back');
+            }
+        });
+    }
+}
+
+function goToByScroll(id){
+    $('html,body').animate({
+        scrollTop: $("#"+id).offset().top
+        },'slow');
 }

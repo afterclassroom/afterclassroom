@@ -22,8 +22,8 @@
     <div class="AsDCont">
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_assignments_path %></span></div>
-        <div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
+        <div class="AsDContLin">in <span><%= link_to @post.post_category.name, post_assignments_path %></span></div>
+        <div class="AsDContLask">asked by <%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
         <div class="AsDContLinf"><span>Professor:</span><%= @post_assignment.professor %></div>
         <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
@@ -35,25 +35,27 @@
 
     <div class="AsDcom" id="form_comment" style="display: none">
       <h1 class="titleH1">Leave your comments</h1>
-      <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-      <div class="AsDcomIn">
-        <div class="AsDcomTxt"><textarea name="TextArea1" ></textarea></div>
-        <div class="submit"><a href="#">Submit</a></div>
-      </div>
-    </div>
-    <% if @post.comments.size > 0 %>
-    <div class="AsDcomL">
-      <h1 class="titleH1"><a href="#">Comments (4)</a></h1>
-      <div class="AsDcomLW">
-        <span>View</span>
-        <span><select name="Select2"><option>All answers</option></select></span>
-      </div>
-      <% @post.comments.each do |comnt| %>
-        <%= render :partial => "item_comment", :objects => comnt %>
+      <% if logged_in? %>
+        <div class="AsDcomImg"><%= link_to "<div>#{image_tag(current_user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+        <div class="AsDcomIn">
+          <form name="form_comment" id="form_comment" action="" method="get">
+            <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
+            <div class="submit"><a href="javascript:;" onclick="send_comment('post_assignmets', '<%= @post.id %>');" >Submit</a></div>
+          </form>
+        </div>
+      <% else %>
+        You must be <%= link_to "logged in", login_url %> to post a comment.
       <% end %>
     </div>
-    <% end %>
-    <div class="goback"><a onclick="history.go(-1);" href="javascript:void();"><span>Go back</span></a></div>
+    <div class="AsDcomL" id="list_comments">
+      <% if @post.comments.size > 0 %>
+        <h1 class="titleH1"><a href="javascript:;">Comments (<%= @post.comments.size %>)</a></h1>
+        <% @post.comments.each do |c| %>
+          <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="goback" id="go_back"><a onclick="history.go(-1);" href="javascript:;"><span>Go back</span></a></div>
     <div class="comPage">
       <span class="compre"><a href="#"> </a></span>
       <span class="comnext"><a href="#"> </a></span>
@@ -63,7 +65,7 @@
       <div class="AsDOrItem"><a href="#">Chemistry (Lorem Ipsum Dolor sitamet)</a></div>
       <div class="AsDOrItem"><a href="#">Sociology (Nulla ac massa id risus ornare condimentum)</a></div>
     </div>
-    <div class="goTop"><a href="#">Top</a></div>
+    <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
   </div>
 </div>	
 
@@ -71,11 +73,11 @@
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
-  
+
   <!--Request Assignment-->
   <%= render :partial => "form_request_assignment" %>
   <!--Request Assignment-->
-  
+
   <!--Recent Request Assignments-->
   <%= render :partial => "recent_request_assignments" %>
   <!--Recent Request Assignments-->

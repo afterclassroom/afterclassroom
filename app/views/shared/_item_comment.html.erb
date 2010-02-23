@@ -1,0 +1,12 @@
+<div class="AsDcomItem" id="item_comment_<%= comnt.id %>">
+  <div class="AsDcomImg"><%= link_to "<div>#{image_tag(comnt.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %></div>
+  <div class="AsDcomItemR">
+    <div class="AsDcomName">Comment by<%= link_to comnt.user.full_name, {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %></div>
+    <div class="AsDcomDes"><%= comnt.comment %></div>
+    <div class="AsDcomRe">
+      <div class="AsDcomRe1"><a href="#">1</a></div>
+      <div class="AsDcomRe2"><a href="#">200</a></div>
+      <div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
+    </div>
+  </div>
+</div>
