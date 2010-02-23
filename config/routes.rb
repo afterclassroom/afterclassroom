@@ -102,7 +102,8 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get
   }
   map.resources :post_teamups, :collection => {
-    :search => :get
+    :search => :get,
+    :more_startup => :get
   }
   map.resources :post_parties, :collection => {
     :search => :get,
