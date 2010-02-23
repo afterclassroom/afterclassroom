@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100107132317) do
+ActiveRecord::Schema.define(:version => 20100203161418) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(:version => 20100107132317) do
     t.integer "school_id",     :null => false
     t.integer "department_id", :null => false
   end
+
+  create_table "fans", :force => true do |t|
+    t.integer  "fannable_id",   :default => 0,  :null => false
+    t.string   "fannable_type", :default => "", :null => false
+    t.integer  "user_id",       :default => 0,  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "fans", ["user_id"], :name => "fk_fans_user"
 
   create_table "favorites", :force => true do |t|
     t.integer  "user_id"
@@ -322,6 +332,10 @@ ActiveRecord::Schema.define(:version => 20100107132317) do
     t.string  "expected_time_commit"
     t.integer "functional_experience_id"
     t.string  "compensation_offered"
+    t.boolean "teamupType"
+    t.string  "ourStatus"
+    t.string  "founded_in"
+    t.string  "noOfMember"
   end
 
   create_table "post_tests", :force => true do |t|

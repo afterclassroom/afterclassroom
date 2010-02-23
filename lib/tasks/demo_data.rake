@@ -52,12 +52,12 @@ end
 
 def departments_for_schools
   #Set departments for Schools
-    schools = School.find(:all)
-    schools.each do |school|
-      5.times do
-        school.departments << Department.find(rand(Department.count) + 1)
-      end
+  schools = School.find(:all)
+  schools.each do |school|
+    5.times do
+      school.departments << Department.find(rand(Department.count) + 1)
     end
+  end
 end
 
 def create_demo_people
@@ -166,7 +166,7 @@ def create_demo_posts_projects
     post_proj = PostProject.create do |prj|
     	prj.post = post
     	prj.due_date = DateTime.now + rand(20)
-	end    
+    end
     
   end
 end
@@ -229,7 +229,7 @@ def create_demo_posts_myx
       if score > 50
         px.prof_status = prof_status[1]#Good
       else
-          px.prof_status = prof_status[3]#worse
+        px.prof_status = prof_status[3]#worse
       end
     end#END OBJECT CREATION
   end #END LOOP
@@ -238,156 +238,156 @@ end
 def create_demo_post_books
   post_category = PostCategory.find_by_name("Books")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-    200.times do
-      user = User.find(rand(User.count) + 1)
-      school = user.school
-      post = Post.create do |p|
-        p.user = user
-        p.post_category = post_category
-        p.title = Faker::Lorem.sentence
-        p.description = Faker::Lorem.paragraphs
-        p.school = school
-        p.department = school.departments.find(:first)
-        p.email = Faker::Internet.email
-        p.telephone = Faker::PhoneNumber.phone_number
-        p.type_name = post_category.name
-        p.school_year = schoolyear[rand(schoolyear.size)]
-      end
-      
-      accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-      currency = ['USD', 'CAD']
-      
-      post_book = PostBook.create do |b|
-        b.post = post 
-        b.price = "500"
-        b.currency = currency[rand(currency.size)]
-        b.accept_payment = accept_payment[rand(accept_payment.size)]
-
-        b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count) + 1)
-
-        b.in_stock = "Stock"
-      end
+  200.times do
+    user = User.find(rand(User.count) + 1)
+    school = user.school
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
     end
+      
+    accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
+    currency = ['USD', 'CAD']
+      
+    post_book = PostBook.create do |b|
+      b.post = post
+      b.price = "500"
+      b.currency = currency[rand(currency.size)]
+      b.accept_payment = accept_payment[rand(accept_payment.size)]
+
+      b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count) + 1)
+
+      b.in_stock = "Stock"
+    end
+  end
 end
 
 def create_demo_post_tutors
   post_category = PostCategory.find_by_name("Tutors")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-    200.times do
-      user = User.find(rand(User.count) + 1)
-      school = user.school
-      post = Post.create do |p|
-        p.user = user
-        p.post_category = post_category
-        p.title = Faker::Lorem.sentence
-        p.description = Faker::Lorem.paragraphs
-        p.school = school
-        p.department = school.departments.find(:first)
-        p.email = Faker::Internet.email
-        p.telephone = Faker::PhoneNumber.phone_number
-        p.type_name = post_category.name
-        p.school_year = schoolyear[rand(schoolyear.size)]
-      end
+  200.times do
+    user = User.find(rand(User.count) + 1)
+    school = user.school
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
+    end
       
 	  per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
-      tutoring_rate = ['Good','Bad','Average']
-      currency = ['USD', 'CAD']
+    tutoring_rate = ['Good','Bad','Average']
+    currency = ['USD', 'CAD']
       
-      post_tutor = PostTutor.create do |t|
-        t.post = post
-        t.tutoring_rate=tutoring_rate[rand(tutoring_rate.size)]
-        t.per=per[rand(per.size)]
-        t.currency=currency[rand(currency.size)]
-        t.from=DateTime.now
-        t.to=DateTime.now+3
-      end
+    post_tutor = PostTutor.create do |t|
+      t.post = post
+      t.tutoring_rate=tutoring_rate[rand(tutoring_rate.size)]
+      t.per=per[rand(per.size)]
+      t.currency=currency[rand(currency.size)]
+      t.from=DateTime.now
+      t.to=DateTime.now+3
     end
+  end
 end
 
 def create_demo_post_jobs
   post_category = PostCategory.find_by_name("Jobs")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-    100.times do
-      user = User.find(rand(User.count) + 1)
-      school = user.school
-      post = Post.create do |p|
-        p.user = user
-        p.post_category = post_category
-        p.title = Faker::Lorem.sentence
-        p.description = Faker::Lorem.paragraphs
-        p.school = school
-        p.department = school.departments.find(:first)
-        p.email = Faker::Internet.email
-        p.telephone = Faker::PhoneNumber.phone_number
-        p.type_name = post_category.name
-        p.school_year = schoolyear[rand(schoolyear.size)]
-      end
-      
-      responsibilities=['role1','role2','role3']
-      required_skills=['skill1','skill2','skill3']
-      desirable_skills=['skillA','skillB','skillC']
-      edu_experience_require=['levelA','levelB','levelC']
-      compensation=['111','222','333']
-      
-      post_job = PostJob.create do |j|
-        j.post = post
-        j.responsibilities = responsibilities[rand(responsibilities.size)]
-        j.required_skills = required_skills[rand(required_skills.size)]
-        j.desirable_skills = desirable_skills[rand(desirable_skills.size)]
-        j.edu_experience_require = edu_experience_require[rand(edu_experience_require.size)]
-        j.compensation = compensation[rand(compensation.size)]
-        j.prepare_post = rand(2);
-      end
+  100.times do
+    user = User.find(rand(User.count) + 1)
+    school = user.school
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
     end
+      
+    responsibilities=['role1','role2','role3']
+    required_skills=['skill1','skill2','skill3']
+    desirable_skills=['skillA','skillB','skillC']
+    edu_experience_require=['levelA','levelB','levelC']
+    compensation=['111','222','333']
+      
+    post_job = PostJob.create do |j|
+      j.post = post
+      j.responsibilities = responsibilities[rand(responsibilities.size)]
+      j.required_skills = required_skills[rand(required_skills.size)]
+      j.desirable_skills = desirable_skills[rand(desirable_skills.size)]
+      j.edu_experience_require = edu_experience_require[rand(edu_experience_require.size)]
+      j.compensation = compensation[rand(compensation.size)]
+      j.prepare_post = rand(2);
+    end
+  end
 end
 
 def create_demo_post_housings
   post_category = PostCategory.find_by_name("Housing")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-    100.times do
-      user = User.find(rand(User.count) + 1)
-      school = user.school
-      post = Post.create do |p|
-        p.user = user
-        p.post_category = post_category
-        p.title = Faker::Lorem.sentence
-        p.description = Faker::Lorem.paragraphs
-        p.school = school
-        p.department = school.departments.find(:first)
-        p.email = Faker::Internet.email
-        p.telephone = Faker::PhoneNumber.phone_number
-        p.type_name = post_category.name
-        p.school_year = schoolyear[rand(schoolyear.size)]
-      end
+  100.times do
+    user = User.find(rand(User.count) + 1)
+    school = user.school
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
+    end
       
-      rent = ['rentA','rentB', 'rentC']
-      currency = ['USD', 'CAD']
-      intersection = ['intersectionA', 'intersectionB', 'intersectionC']
+    rent = ['rentA','rentB', 'rentC']
+    currency = ['USD', 'CAD']
+    intersection = ['intersectionA', 'intersectionB', 'intersectionC']
       
       
-      phouse = PostHousing.create do |ph|
-      	ph.post = post
-      	ph.street = Faker::Address.street_name
-      	ph.city = Faker::Address.city
-      	ph.state = Faker::Address.us_state
-      	ph.rent = rent[rand(rent.size)]
-      	ph.currency = currency[rand(currency.size)]
-      	ph.intersection = intersection[rand(intersection.size)]
-  	  end
+    phouse = PostHousing.create do |ph|
+      ph.post = post
+      ph.street = Faker::Address.street_name
+      ph.city = Faker::Address.city
+      ph.state = Faker::Address.us_state
+      ph.rent = rent[rand(rent.size)]
+      ph.currency = currency[rand(currency.size)]
+      ph.intersection = intersection[rand(intersection.size)]
+    end
   	  
-  	  #generate number of housingCategory that PostHousing belongs to
-  	  noOfMapping = rand(HousingCategory.count) + 1
-  	  pivotArray = [false,false,false,false]
+    #generate number of housingCategory that PostHousing belongs to
+    noOfMapping = rand(HousingCategory.count) + 1
+    pivotArray = [false,false,false,false]
   	  
-  	  noOfMapping.times do
-  	  	index = rand(HousingCategory.count) + 1
-  	  	while (pivotArray[index]==true)
-  	  		index = rand(HousingCategory.count) + 1
-  	  	end
-  	  	pivotArray[index] = true;
-        phouse.housing_categories << HousingCategory.find(index)
+    noOfMapping.times do
+      index = rand(HousingCategory.count) + 1
+      while (pivotArray[index]==true)
+        index = rand(HousingCategory.count) + 1
       end
-    end	
+      pivotArray[index] = true;
+      phouse.housing_categories << HousingCategory.find(index)
+    end
+  end
 end
 
 def create_demo_post_parties
@@ -397,44 +397,44 @@ def create_demo_post_parties
   location = ['locationA','locationB', 'locationC']
   intersection = ['intersectionA', 'intersectionB', 'intersectionC']
   
-    100.times do
-      user = User.find(rand(User.count) + 1)
-      school = user.school
-      post = Post.create do |p|
-        p.user = user
-        p.post_category = post_category
-        p.title = Faker::Lorem.sentence
-        p.description = Faker::Lorem.paragraphs
-        p.school = school
-        p.department = school.departments.find(:first)
-        p.email = Faker::Internet.email
-        p.telephone = Faker::PhoneNumber.phone_number
-        p.type_name = post_category.name
-        p.school_year = schoolyear[rand(schoolyear.size)]
-      end
+  100.times do
+    user = User.find(rand(User.count) + 1)
+    school = user.school
+    post = Post.create do |p|
+      p.user = user
+      p.post_category = post_category
+      p.title = Faker::Lorem.sentence
+      p.description = Faker::Lorem.paragraphs
+      p.school = school
+      p.department = school.departments.find(:first)
+      p.email = Faker::Internet.email
+      p.telephone = Faker::PhoneNumber.phone_number
+      p.type_name = post_category.name
+      p.school_year = schoolyear[rand(schoolyear.size)]
+    end
       
-      pty = PostParty.create do |pt|
-      	pt.post = post
-      	pt.start_time=DateTime.now
-      	pt.end_time=DateTime.now+rand(3)
-      	pt.location=location[rand(location.size)]
-      	pt.street=Faker::Address.street_name
-      	pt.intersection=intersection[rand(intersection.size)]
-      	pt.city=Faker::Address.city
-  	  end
+    pty = PostParty.create do |pt|
+      pt.post = post
+      pt.start_time=DateTime.now
+      pt.end_time=DateTime.now+rand(3)
+      pt.location=location[rand(location.size)]
+      pt.street=Faker::Address.street_name
+      pt.intersection=intersection[rand(intersection.size)]
+      pt.city=Faker::Address.city
+    end
 
-  	  #generate number of partyTypes that PostParty belongs to
-  	  noOfMapping = rand(PartyType.count) + 1
-  	  pivotArray = [false,false,false,false,false,false,false,false,false,false]
+    #generate number of partyTypes that PostParty belongs to
+    noOfMapping = rand(PartyType.count) + 1
+    pivotArray = [false,false,false,false,false,false,false,false,false,false]
   	  
-  	  noOfMapping.times do
-  	  	index = rand(PartyType.count) + 1
-  	  	while (pivotArray[index]==true)
-  	  		index = rand(PartyType.count) + 1
-  	  	end
-  	  	pivotArray[index] = true;
-        pty.party_types << PartyType.find(index)
+    noOfMapping.times do
+      index = rand(PartyType.count) + 1
+      while (pivotArray[index]==true)
+        index = rand(PartyType.count) + 1
       end
+      pivotArray[index] = true;
+      pty.party_types << PartyType.find(index)
+    end
       
   end #END LOOP
 end #END METHOD
@@ -445,6 +445,7 @@ def create_demo_posts_teamups
   position = ["position 1","position 2","position 3"]
   expectedTime = ["expectedTime 1","expectedTime 2","expectedTime 3"]
   compensation = ["compensation A","compensation B","compensation C"]
+  teamType = [false,true]
   100.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
@@ -470,6 +471,10 @@ def create_demo_posts_teamups
     	pt.expected_time_commit = expectedTime[rand(expectedTime.size)]
     	pt.functional_experience_id = rand(10)+1
     	pt.compensation_offered = compensation[rand(compensation.size)]
+      pt.teamupType = teamType[rand(teamType.size)]
+      pt.ourStatus = Faker::Lorem.sentence
+      pt.founded_in = DateTime.now - rand(30)
+      pt.noOfMember = rand(200)
     end
     
   end
@@ -504,12 +509,12 @@ def create_demo_posts_awarenesses
     end
     
     noOfMapping.times do
-  	  	index = rand(AwarenessIssue.count) + 1
-  	  	while (pivotArray[index]==true)
-  	  		index = rand(AwarenessIssue.count) + 1
-  	  	end
-  	  	pivotArray[index] = true;
-        post_aq.awareness_issues << AwarenessIssue.find(index)
+      index = rand(AwarenessIssue.count) + 1
+      while (pivotArray[index]==true)
+        index = rand(AwarenessIssue.count) + 1
+      end
+      pivotArray[index] = true;
+      post_aq.awareness_issues << AwarenessIssue.find(index)
   	end#END MAPPING
   end#END LOOP
 end

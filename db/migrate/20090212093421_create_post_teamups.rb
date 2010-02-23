@@ -8,6 +8,10 @@ class CreatePostTeamups < ActiveRecord::Migration
       t.string :expected_time_commit
       t.belongs_to :functional_experience
       t.string :compensation_offered
+      t.boolean :teamupType #true: teamup for Sport
+      t.string :ourStatus
+      t.string :founded_in
+      t.string :noOfMember
     end
   end
 
