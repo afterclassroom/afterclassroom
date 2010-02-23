@@ -1,24 +1,28 @@
 <div class="col195 student195">
   <div class="col195in">
-    <h1 class="col195Title">TeamUp for Start-up</h1>
+    <h1 class="col195Title">TeamUp for Sport</h1>
     <div class="col195Cont">
-      <div class="studentItem">
-        <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-        <div class="studentInf"><a href="#">Lorem ipsum dolor</a></div>
-      </div>
-      <div class="studentItem">
-        <div class="studentImg"><a href="#"><div><img src="pictures/noimg1.png" /></div></a></div>
-        <div class="studentInf"><a href="#">Pellentesque et tincidunt</a></div>
-      </div>
-      <div class="studentItem">
-        <div class="studentImg"><a href="#"><div><img src="pictures/pic9.png" /></div></a></div>
-        <div class="studentInf"><a href="#">Quisque odio mi</a></div>
-      </div>
-      <div class="studentItem">
-        <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-        <div class="studentInf"><a href="#">Suspendisse orci erat</a></div>
-      </div>
-      <div class="dueDbutton"><a href="#">View more TeamUp for Start-up</a></div>
+
+      <%
+      teamStartup = PostTeamup.team_filter(true)#true is Sport-team
+      %>
+      <% if teamStartup.size > 0 %>
+        <%
+        teamStartup.each do |ts|
+        %>
+            <div class="studentItem">
+              <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
+              <div class="studentInf"><a href="#"><%= ts.post.title   %></a></div>
+            </div>
+
+        <%
+        end
+      %>
+        <div class="dueDbutton"><%= link_to "View more TeamUp for Sport", more_startup_post_teamups_path %></div>
+      <%
+      end
+    %>
+
     </div>
   </div>
 </div>

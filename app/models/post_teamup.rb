@@ -9,6 +9,8 @@ class PostTeamup < ActiveRecord::Base
   belongs_to :teamup_category
   belongs_to :functional_experience
 
+  named_scope :team_filter, lambda {|c| return {} if c.nil?; {:conditions => ["teamupType = ?", c], :order => "founded_in DESC", :limit => 5}}
+
   def self.paginated_post_conditions_with_search(params, school)
     if params[:search]
       search_name = params[:search][:name]
