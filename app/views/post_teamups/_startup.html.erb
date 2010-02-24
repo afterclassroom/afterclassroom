@@ -1,10 +1,10 @@
 <div class="col195 student195">
   <div class="col195in">
-    <h1 class="col195Title">TeamUp for Sport</h1>
+    <h1 class="col195Title">TeamUp for Start-up</h1>
     <div class="col195Cont">
 
       <%
-      teamStartup = PostTeamup.team_filter(true)#true is Sport-team
+      teamStartup = PostTeamup.team_filter#true is Sport-team
       %>
       <% if teamStartup.size > 0 %>
         <%
@@ -18,7 +18,7 @@
         <%
         end
       %>
-        <div class="dueDbutton"><%= link_to "View more TeamUp for Sport", more_startup_post_teamups_path %></div>
+        <div class="dueDbutton"><%= link_to "View more TeamUp for Start-up", more_startup_post_teamups_path %></div>
       <%
       end
     %>
