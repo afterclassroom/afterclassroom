@@ -17,11 +17,30 @@ class PostTeamupsController < ApplicationController
       @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
     end
 
+    @testparam = params[:teamType].to_s
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
+
+  def index1
+    if params[:more_like_this_id]
+      id = params[:more_like_this_id]
+      post = Post.find_by_id(id)
+      @posts = Post.paginated_post_more_like_this(params, post)
+    else
+      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
+    end
+  end
+
 
   def search
     @query = params[:search][:query] if params[:search]
