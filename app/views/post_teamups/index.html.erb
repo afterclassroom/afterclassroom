@@ -9,7 +9,7 @@
 <% content_for :menu_sub do -%>
   <%= render :partial => "submenu" %>
 <% end -%>
-  
+
 <!--Content-->
 <div class="contMainL">
   <div class="col451 student">
@@ -19,8 +19,14 @@
           <h1 class="titleH1">Team Up</h1>
         </div>
         <!--List Items-->
-        <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+        <% if @clubs != nil %>
+          <% @clubs.each do |club| %>
+            <%= render :partial => "item", :locals => {:post => club.post, :title => club.post.title, :description => club.post.description}%>
+          <% end %>
+        <% else %>
+          <% @posts.each do |post| %>
+            <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+          <% end %>
         <% end %>
         <!--List Items-->
 
@@ -62,6 +68,6 @@
   <!--Recent Request Comments-->
   <%= render :partial => "shared/recent_comment" %>
   <!--Recent Request Comments-->
-  
+
 </div>
 <!--Content-->

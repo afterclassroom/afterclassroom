@@ -9,7 +9,10 @@ class PostTeamup < ActiveRecord::Base
   belongs_to :teamup_category
   belongs_to :functional_experience
 
-  named_scope :team_filter, lambda {|c| return {} if c.nil?; {:conditions => ["teamupType = ?", c], :order => "founded_in DESC", :limit => 5}}
+  named_scope :team_startup, lambda {|c| { :order => "founded_in DESC", :limit => 5}}
+  
+  named_scope :team_filter, lambda {|c| return {} if c.nil?; {:conditions => ["teamupType = ?", c]}}
+  #true: teamup for Sport, false: teamup for club
 
   def self.paginated_post_conditions_with_search(params, school)
     if params[:search]
