@@ -23,6 +23,15 @@ class ApplicationController < ActionController::Base
 
   #before_filter :authenticate
   before_filter :session_update
+
+  def help
+    Helper.instance
+  end
+
+  class Helper
+    include Singleton
+    include ActionView::Helpers::UrlHelper
+  end
   
   private
 

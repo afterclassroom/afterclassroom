@@ -85,6 +85,8 @@
 }
 
 #TB_ajaxWindowTitle{
+    color:#0A81C4;
+    font-size:12px;
     float:left;
     font-weight:bold;
     padding:7px 0 5px 10px;

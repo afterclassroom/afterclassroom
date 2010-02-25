@@ -155,7 +155,6 @@ class PostsController < ApplicationController
   end
   
   def create_comment
-    @path = params[:path]
     post_id = params[:post_id]
     comment = params[:comment]
     if comment && post_id
@@ -202,6 +201,15 @@ class PostsController < ApplicationController
     favorite.user = current_user
     post.favorites << favorite
     render :text => "Favorite (#{post.favorites.size})"
+  end
+
+  def add_to_favorite_in_detail
+    post_id = params[:post_id]
+    post = Post.find(post_id)
+    favorite = Favorite.new
+    favorite.user = current_user
+    post.favorites << favorite
+    render :text => help.link_to("<span>Favorite (#{post.favorites.size})</span>", "javascript:;")
   end
   
   def download()

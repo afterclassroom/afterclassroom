@@ -157,4 +157,22 @@ module ApplicationHelper
       link_to_remote "Favorite (#{post.favorites.size})", { :update => "post_favorite_#{post.id}", :url => {:controller => "posts", :action => "add_to_favorite", :post_id => post.id } }
     end
   end
+
+  def show_favorite_in_detail(post)
+    if !logged_in?
+      link_to "<span>Favorite (#{post.favorites.size})</span>", "javascript:;"
+    elsif current_user.has_favorite?(post)
+      link_to "<span>Favorite (#{post.favorites.size})</span>", "javascript:;"
+    else
+      link_to_remote "<span>Favorite (#{post.favorites.size})</span>", { :update => "post_favorite_#{post.id}", :url => {:controller => "posts", :action => "add_to_favorite_in_detail", :post_id => post.id } }
+    end
+  end
+
+  def show_email(post)
+    if !logged_in?
+      link_to "<span>Email</span>", login_url
+    else
+      link_to("<span>Email</span>", "#{show_email_user_messages_path(post.user)}?user_id=#{post.user.id}&height=200&width=280", :class => "thickbox", :title => "Send to #{post.user.full_name}")
+    end
+  end
 end

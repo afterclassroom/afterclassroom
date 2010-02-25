@@ -76,6 +76,7 @@ ActionController::Routing::Routes.draw do |map|
     :post_dispatch => :get,
     :list_favorites => :get,
     :add_to_favorite => :get,
+    :add_to_favorite_in_detail => :get,
     :download => :get
   }
   map.resources :post_assignments, :collection => {

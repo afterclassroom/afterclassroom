@@ -1,28 +1,8 @@
-<div id="send_message_<%= @id %>">
-  <div id="send_message_alert_<%= @id %>" style="display:none">
-    You sended an email.
-  </div>
-  <div id="send_message_wraper_<%= @id %>">
-    <form name="form_send_message">
-      <ul>
-        <li>
-          <label>Subject</label>
-          <div class="user_ri"><input id="message_subject_<%= @id %>" name="subject" size="30" type="text" />
-          </div>
-        </li>
-        <li>
-          <label>Message</label>
-          <div class="user_ri"><textarea cols="35" id="message_body_<%= @id %>" name="body" rows="10"></textarea>
-          </div>
-        </li>
-      </ul>
-      <!-- post  button -->
-      <a href="javascript:sendEmail(<%= @id %>, '<%= @to %>')" title="Send" class="btfr link_bt" style="margin: 4px 20px 0px 0px;">
-        <span class="ltred_l"></span>
-        <span class="ltred_c btf">Send to <%= @full_name %></span>
-        <span class="ltred_r"></span>
-      </a>
-      <!-- end post button -->
-    </form>
-  </div>
+<div class="col300Cont" id="div_send_message">
+  <form name="form_send_message">
+    <div class="reqTi"><input id="message_subject" name="subject" size="30" type="text" value="Subject..." onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" /></div>
+    <div class="reqEn"><textarea id="message_body" name="body" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" >Message...</textarea></div>
+    <br />
+    <div class="submit"><a href="javascript:;" onclick="sendEmail(<%= @user_id %>)">Send</a></div>
+  </form>
 </div>

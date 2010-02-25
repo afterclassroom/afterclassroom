@@ -155,7 +155,7 @@ function option_submit(){
     $("#action_option").submit();
 }
 
-function send_comment(path, post_id){
+function send_comment(post_id){
     comment = $('#comment').val();
     if (comment != ""){
         $.ajax({
@@ -164,7 +164,6 @@ function send_comment(path, post_id){
             cache: false,
             dataType: 'html',
             data: ({
-                path : path,
                 post_id : post_id,
                 comment : comment
             }),
@@ -172,6 +171,27 @@ function send_comment(path, post_id){
                 $('#list_comments').append(data);
                 $('#comment').val('');
                 goToByScroll('go_back');
+            }
+        });
+    }
+}
+
+function sendEmail(user_id){
+    subject = $('#message_subject').val();
+    body = $('#message_body').val();
+    if (subject != "" && body != ""){
+        $.ajax({
+            url: '/users/' + user_id + '/messages/send_message',
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                recipient_id : user_id,
+                subject : subject,
+                body : body
+            }),
+            success: function(data){
+                $('#div_send_message').html(data);
             }
         });
     }

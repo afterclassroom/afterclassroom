@@ -1,7 +1,9 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class MessagesController < ApplicationController
   layout 'inbox'
-  before_filter :set_user
+  
+  before_filter :login_required
+  before_filter :set_user, :except => :show_email
   
   def index
     if params[:mailbox] == "sent"
@@ -49,7 +51,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     @message.sender = @user
-    @message.recipient = User.find_by_login(params[:message][:to])
+    @message.recipient = User.find_by_email(params[:message][:email])
 
     if @message.save
       flash[:notice] = "Message sent"
@@ -73,21 +75,20 @@ class MessagesController < ApplicationController
   end
 
   def show_email
-    @id = params[:id]
-    @to = params[:to]
-    @full_name = params[:full_name]
+    @user_id = params[:user_id]
     render :layout => false
   end
   
   def send_message
     @message = Message.new()
     @message.sender = @user
-    @message.recipient = User.find_by_login(params[:message_to])
-    @message.subject = params[:message_subject]
-    @message.body = params[:message_body]
+    recipient = User.find(params[:recipient_id])
+    @message.recipient = recipient
+    @message.subject = params[:subject]
+    @message.body = params[:body]
 
     if @message.save
-      render :text => "Success"
+      render :text => "You sent an email to #{recipient.full_name}."
     end
   end
   
