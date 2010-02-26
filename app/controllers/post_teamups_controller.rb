@@ -3,7 +3,7 @@ class PostTeamupsController < ApplicationController
   include Viewable
 
   before_filter :get_variables, :only => [:index, :show, :search]
-  before_filter :login_required, :except => [:index, :show, :search]
+  before_filter :login_required, :except => [:index, :show, :search,:teamrating]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search]
   # GET /post_teamups
@@ -45,6 +45,10 @@ class PostTeamupsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
+  end
+
+  def teamrating
+    @post_teamup = "Refer to Post Myx to complete this object"
   end
   
   # GET /post_teamups/1

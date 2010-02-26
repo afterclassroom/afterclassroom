@@ -19,24 +19,16 @@
           <h1 class="titleH1">Team Up</h1>
         </div>
         <!--List Items-->
-        <% if @clubs != nil %>
-          <% @clubs.each do |club| %>
-            <%= render :partial => "item", :locals => {:post => club.post, :title => club.post.title, :description => club.post.description}%>
-          <% end %>
-        <% else %>
-          <% @clubs.each do |club| %>
-            <%= render :partial => "item", :locals => {:post => club.post, :title => club.post.title, :description => club.post.description}%>
-          <% end %>
-          <%# @posts.each do |post| %>
-            <%#= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
-          <%# end %>
+        <% @clubs.each do |club| %>
+          <%= render :partial => "item", :locals => {:post => club.post, :title => club.post.title, :description => club.post.description}%>
         <% end %>
         <!--List Items-->
 
         <!--Pagination-->
         <div class="assPage">
-          <%#*<span class="numPage"><%= page_entries_info @posts %></span>%>
-          <%#= will_paginate @posts %>
+<%#*<span class="numPage"><%= page_entries_info @posts %>
+        <%#*</span>%>
+<%#= will_paginate @posts %>
         </div>
         <!--Pagination-->
         <div class="goTop"><a href="#">Top</a></div>
