@@ -3,7 +3,7 @@ class PostTeamupsController < ApplicationController
   include Viewable
 
   before_filter :get_variables, :only => [:index, :show, :search]
-  before_filter :login_required, :except => [:index, :show, :search]
+  before_filter :login_required, :except => [:index, :show, :search,:teamrating]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search]
   # GET /post_teamups
@@ -12,17 +12,20 @@ class PostTeamupsController < ApplicationController
 
     if params[:teamType].to_s == "club"#teamup for club
       @clubs = PostTeamup.team_filter(false)
-      #else#teamup for sport
+    elsif params[:teamType].to_s == "startup"#team just startup
+      @clubs = PostTeamup.more_startup
+    else #team for sport
+      @clubs = PostTeamup.team_filter(true)
     end
     
-    if params[:more_like_this_id]
-      id = params[:more_like_this_id]
-      post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
-      @clubs = nil
-    else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
-    end
+#    if params[:more_like_this_id]
+#      id = params[:more_like_this_id]
+#      post = Post.find_by_id(id)
+#      @posts = Post.paginated_post_more_like_this(params, post)
+#      @clubs = nil
+#    else
+#      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
+#    end
 
 
 
@@ -42,6 +45,10 @@ class PostTeamupsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
+  end
+
+  def teamrating
+    @post_teamup = "Refer to Post Myx to complete this object"
   end
   
   # GET /post_teamups/1

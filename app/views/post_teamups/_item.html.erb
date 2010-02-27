@@ -24,8 +24,26 @@
         <div class="assInfR"><%= link_to "more", post_teamup_path(post) %></div>
       </div>
       <div class="assInfB">
-        <div class="qashdU"><a href="#">20</a></div>
-        <div class="qashdD"><a href="#">4</a></div>
+
+
+
+
+
+
+
+        <!--Ajax declaration part-->
+        <div id="ratingdiv">
+          <div class="qashdU">
+            <%= link_to_remote( 'our good status',:controller => 'post_teamups' ,
+              :url =>{:controller => 'post_teamups' , :action => 'teamrating',
+                :id => post.post_teamup, :rateType => "Good",:method=>'get' }) %>
+          </div>
+          <div class="qashdU"><a href="#">20</a></div>
+          <div class="qashdD"><a href="#">4</a></div>
+        </div>
+        <!--END Ajax declaration part-->
+
+
         <div class="vie"><%= "View (#{post.count_view})" %></div>
         <div class="com"><%= link_to "Comments (#{post.comments.size})", "#" %></div>
         <div class="share"><a href="#">Share</a></div>
