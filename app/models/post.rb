@@ -34,11 +34,11 @@ class Post < ActiveRecord::Base
   # Comments
   acts_as_commentable
   
-  # Tags
-  acts_as_taggable
-  
   # Rating
   ajaxful_rateable :stars => 5
+
+  # Rating for Good or Bad
+  acts_as_rated
 
   # Tracker
   acts_as_activity :user

@@ -80,7 +80,7 @@ ActionController::Routing::Routes.draw do |map|
     :download => :get
   }
   map.resources :post_assignments, :collection => {
-    :search => :get, :due_date => :get
+    :search => :get, :due_date => :get, :tag => :get
   }
   map.resources :post_myxes, :collection => {
     :search => :get, :due_date => :get,

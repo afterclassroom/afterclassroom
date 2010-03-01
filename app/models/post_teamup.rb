@@ -15,6 +15,9 @@ class PostTeamup < ActiveRecord::Base
   named_scope :team_filter, lambda {|c| return {} if c.nil?; {:conditions => ["teamupType = ?", c]}}
   #true: teamup for Sport, false: teamup for club
 
+  # Tags
+  acts_as_taggable
+  
 #  def self.paginated_post_conditions_with_search(params, school)
 #    if params[:search]
 #      search_name = params[:search][:name]

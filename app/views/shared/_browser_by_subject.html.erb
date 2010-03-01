@@ -3,10 +3,9 @@
     <h1 class="col300Title">Browser by subject</h1>
     <div class="col300Cont">
       <div class="tabClouse">
-        <a href="#" class="sub1">turpis </a><a href="#" class="sub1">Lorem ipsum sitamet </a><a href="#" class="sub1">consectetur </a>
-        <a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub1">Pellentesque </a><a href="#" class="sub4">Quam Mauris </a>
-        <a href="#" class="sub1">Metus </a><a href="#" class="sub3">Porttitor semper </a><a href="#" class="sub1">Curabitur auctor </a>
-        <a href="#" class="sub5">Fusce </a><a href="#" class="sub6">Curabitur auctor </a><a href="#" class="sub2">Fusce </a>
+        <% tag_cloud tags, %w(sub1 sub2 sub3 sub4 sub5 sub6) do |tag, css_class| %>
+          <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+        <% end %>
       </div>
     </div>
   </div>

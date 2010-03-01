@@ -12,6 +12,9 @@ class PostProject < ActiveRecord::Base
   named_scope :due_date, :conditions => ["due_date > ?", Time.now], :order => "due_date DESC"
   named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where post_id = id) > ?", 10]
 
+  # Tags
+  acts_as_taggable
+
   def self.paginated_post_conditions_with_due_date(params, school)
     posts = []
     post_as = self.with_school(school).due_date

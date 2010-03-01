@@ -6,6 +6,7 @@ class PostAssignmentsController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search, :due_date]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date]
+  
   # GET /post_assignments
   # GET /post_assignments.xml
   def index  
@@ -42,6 +43,10 @@ class PostAssignmentsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
+  end
+
+  def tag
+    
   end
 
   # GET /post_assignments/1
@@ -122,6 +127,7 @@ class PostAssignmentsController < ApplicationController
   private
 
   def get_variables
+    @tags = PostAssignment.tag_counts
     @new_post_path = new_post_assignment_path
     @type = PostCategory.find_by_name("Assignments").id
     @school = session[:your_school]

@@ -58,8 +58,8 @@ class User < ActiveRecord::Base
   
   # Avatar
   has_attached_file :avatar,
-    :default_url => "/images/missing_:style_avatar.gif",
-    :styles => { :medium => "300x300>",
+    :default_url => "/images/icons/:style/members.png",
+    :styles => { :medium => "169x169>",
     :thumb => "45x45>" }
   validates_attachment_content_type :avatar, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
   

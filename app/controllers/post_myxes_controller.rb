@@ -6,7 +6,8 @@ class PostMyxesController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search, :profrating, :more_worse, :more_good]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search]
-
+  after_filter :update_status, :only => [:create, :update]
+  
   # GET /post_myxes
   # GET /post_myxes.xml
   def index
@@ -172,4 +173,11 @@ class PostMyxesController < ApplicationController
     return @user
   end
 
+  def update_status
+    if @post_myx.score > 50
+      @post_myx.prof_status = "Good"
+    else
+      @post_myx.prof_status = "Worse"
+    end
+  end
 end

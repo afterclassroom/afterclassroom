@@ -1,5 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 module ApplicationHelper
+  include TagsHelper
   # Yield the content for a given block. If the block yiels nothing, the optionally specified default text is shown. 
   #
   #   yield_or_default(:user_status)

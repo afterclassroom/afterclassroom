@@ -14,4 +14,7 @@ class PostJob < ActiveRecord::Base
   # Named Scope
   named_scope :with_limit, :limit => 5
   named_scope :with_shool, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
+
+  # Tags
+  acts_as_taggable
 end

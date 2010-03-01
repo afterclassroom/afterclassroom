@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100203161418) do
+ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -190,6 +190,34 @@ ActiveRecord::Schema.define(:version => 20100203161418) do
     t.datetime "music_attach_updated_at"
   end
 
+  create_table "my_statistics", :force => true do |t|
+    t.integer "rated_id"
+    t.string  "rated_type"
+    t.integer "rating_count"
+    t.integer "rating_total", :limit => 10, :precision => 10, :scale => 0
+    t.decimal "rating_avg",                 :precision => 10, :scale => 2
+  end
+
+  add_index "my_statistics", ["rated_type", "rated_id"], :name => "index_my_statistics_on_rated_type_and_rated_id"
+
+  create_table "my_stats_ratings", :force => true do |t|
+    t.integer "rater_id"
+    t.integer "rated_id"
+    t.string  "rated_type"
+    t.integer "rating",     :limit => 10, :precision => 10, :scale => 0
+  end
+
+  add_index "my_stats_ratings", ["rater_id"], :name => "index_my_stats_ratings_on_rater_id"
+  add_index "my_stats_ratings", ["rated_type", "rated_id"], :name => "index_my_stats_ratings_on_rated_type_and_rated_id"
+
+  create_table "no_rater_ratings", :force => true do |t|
+    t.integer "rated_id"
+    t.string  "rated_type"
+    t.integer "rating",     :limit => 10, :precision => 10, :scale => 0
+  end
+
+  add_index "no_rater_ratings", ["rated_type", "rated_id"], :name => "index_no_rater_ratings_on_rated_type_and_rated_id"
+
   create_table "party_types", :force => true do |t|
     t.string "name", :default => "", :null => false
   end
@@ -353,28 +381,31 @@ ActiveRecord::Schema.define(:version => 20100203161418) do
   end
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id",                               :null => false
-    t.integer  "post_category_id",                      :null => false
-    t.string   "title",               :default => "",   :null => false
-    t.text     "description",                           :null => false
-    t.integer  "school_id",                             :null => false
-    t.integer  "department_id",                         :null => false
-    t.string   "email",               :default => "",   :null => false
+    t.integer  "user_id",                                                                            :null => false
+    t.integer  "post_category_id",                                                                   :null => false
+    t.string   "title",                                                            :default => "",   :null => false
+    t.text     "description",                                                                        :null => false
+    t.integer  "school_id",                                                                          :null => false
+    t.integer  "department_id",                                                                      :null => false
+    t.string   "email",                                                            :default => "",   :null => false
     t.boolean  "use_this_email"
     t.string   "telephone"
-    t.boolean  "allow_comment",       :default => true
-    t.boolean  "allow_response",      :default => true
-    t.boolean  "allow_rate",          :default => true
-    t.boolean  "allow_download",      :default => true
+    t.boolean  "allow_comment",                                                    :default => true
+    t.boolean  "allow_response",                                                   :default => true
+    t.boolean  "allow_rate",                                                       :default => true
+    t.boolean  "allow_download",                                                   :default => true
     t.string   "type_name"
     t.string   "school_year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rating_count"
+    t.integer  "rating_total",        :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "rating_avg",                        :precision => 10, :scale => 2
     t.string   "attach_file_name"
     t.string   "attach_content_type"
     t.integer  "attach_file_size"
     t.datetime "attach_updated_at"
-    t.integer  "count_view",          :default => 0
+    t.integer  "count_view",                                                       :default => 0
   end
 
   create_table "rates", :force => true do |t|
@@ -388,6 +419,26 @@ ActiveRecord::Schema.define(:version => 20100203161418) do
 
   add_index "rates", ["post_id"], :name => "index_rates_on_post_id"
   add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
+
+  create_table "rating_statistics", :force => true do |t|
+    t.integer "rated_id"
+    t.string  "rated_type"
+    t.integer "rating_count"
+    t.integer "rating_total", :limit => 10, :precision => 10, :scale => 0
+    t.decimal "rating_avg",                 :precision => 10, :scale => 2
+  end
+
+  add_index "rating_statistics", ["rated_type", "rated_id"], :name => "index_rating_statistics_on_rated_type_and_rated_id"
+
+  create_table "ratings", :force => true do |t|
+    t.integer "rater_id"
+    t.integer "rated_id"
+    t.string  "rated_type"
+    t.integer "rating",     :limit => 10, :precision => 10, :scale => 0
+  end
+
+  add_index "ratings", ["rater_id"], :name => "index_ratings_on_rater_id"
+  add_index "ratings", ["rated_type", "rated_id"], :name => "index_ratings_on_rated_type_and_rated_id"
 
   create_table "report_abuse_categories", :force => true do |t|
     t.string "name"
@@ -449,6 +500,16 @@ ActiveRecord::Schema.define(:version => 20100203161418) do
     t.string  "name",       :limit => 50, :default => "", :null => false
     t.string  "alias",      :limit => 2,  :default => "", :null => false
   end
+
+  create_table "stats_ratings", :force => true do |t|
+    t.integer "rater_id"
+    t.integer "rated_id"
+    t.string  "rated_type"
+    t.integer "rating",     :limit => 10, :precision => 10, :scale => 0
+  end
+
+  add_index "stats_ratings", ["rater_id"], :name => "index_stats_ratings_on_rater_id"
+  add_index "stats_ratings", ["rated_type", "rated_id"], :name => "index_stats_ratings_on_rated_type_and_rated_id"
 
   create_table "stories", :force => true do |t|
     t.integer  "user_id",    :null => false

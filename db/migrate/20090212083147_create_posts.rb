@@ -19,9 +19,12 @@ class CreatePosts < ActiveRecord::Migration
 
       t.timestamps
     end
+    Post.add_ratings_columns
   end
 
   def self.down
+    # Remove the columns we added
+    Post.remove_ratings_columns
     drop_table :posts
   end
 end

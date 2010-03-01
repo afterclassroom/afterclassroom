@@ -111,6 +111,7 @@ def create_demo_posts_assignments
       pa.post = post
       pa.professor = Faker::Name.name
       pa.due_date = DateTime.now + rand(20)
+      pa.tag_list = get_random_list_tags
     end
     
   end
@@ -139,6 +140,7 @@ def create_demo_posts_tests
     post_asm = PostTest.create do |pt|
       pt.post = post
       pt.due_date = DateTime.now + rand(20)
+      pt.tag_list = get_random_list_tags
     end
     
   end
@@ -166,6 +168,7 @@ def create_demo_posts_projects
     post_proj = PostProject.create do |prj|
     	prj.post = post
     	prj.due_date = DateTime.now + rand(20)
+      prj.tag_list = get_random_list_tags
     end
     
   end
@@ -193,6 +196,7 @@ def create_demo_posts_exams
     post_asm = PostExam.create do |pe|
       pe.post = post
       pe.due_date = DateTime.now + rand(20)
+      pe.tag_list = get_random_list_tags
     end
 
   end
@@ -221,16 +225,16 @@ def create_demo_posts_myx
     post_asm = PostMyx.create do |px|
       px.post = post
       px.professor = Faker::Name.name
-      #px.prof_status = prof_status[rand(prof_status.size)]
       px.good = rand(100)
       px.bored = rand(100)
       px.bad = rand(100)
-      score = (px.good.to_f / (px.good.to_f + px.bored.to_f + px.bad.to_f)) * 100
-      if score > 50
+      
+      if px.score > 50
         px.prof_status = prof_status[1]#Good
       else
         px.prof_status = prof_status[3]#worse
       end
+      px.tag_list = get_random_list_tags
     end#END OBJECT CREATION
   end #END LOOP
 end
@@ -262,10 +266,9 @@ def create_demo_post_books
       b.price = "500"
       b.currency = currency[rand(currency.size)]
       b.accept_payment = accept_payment[rand(accept_payment.size)]
-
       b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count) + 1)
-
       b.in_stock = "Stock"
+      b.tag_list = get_random_list_tags
     end
   end
 end
@@ -300,6 +303,7 @@ def create_demo_post_tutors
       t.currency=currency[rand(currency.size)]
       t.from=DateTime.now
       t.to=DateTime.now+3
+      t.tag_list = get_random_list_tags
     end
   end
 end
@@ -337,6 +341,7 @@ def create_demo_post_jobs
       j.edu_experience_require = edu_experience_require[rand(edu_experience_require.size)]
       j.compensation = compensation[rand(compensation.size)]
       j.prepare_post = rand(2);
+      j.tag_list = get_random_list_tags
     end
   end
 end
@@ -373,6 +378,7 @@ def create_demo_post_housings
       ph.rent = rent[rand(rent.size)]
       ph.currency = currency[rand(currency.size)]
       ph.intersection = intersection[rand(intersection.size)]
+      ph.tag_list = get_random_list_tags
     end
   	  
     #generate number of housingCategory that PostHousing belongs to
@@ -421,6 +427,7 @@ def create_demo_post_parties
       pt.street=Faker::Address.street_name
       pt.intersection=intersection[rand(intersection.size)]
       pt.city=Faker::Address.city
+      pt.tag_list = get_random_list_tags
     end
 
     #generate number of partyTypes that PostParty belongs to
@@ -475,6 +482,7 @@ def create_demo_posts_teamups
       pt.ourStatus = Faker::Lorem.sentence
       pt.founded_in = DateTime.now - rand(30)
       pt.noOfMember = rand(200)
+      pt.tag_list = get_random_list_tags
     end
     
   end
@@ -506,6 +514,7 @@ def create_demo_posts_awarenesses
     	pa.post = post
     	pa.campaign_start = DateTime.now + rand(20)
     	pa.campaign_end = DateTime.now + rand(20)+3
+      pa.tag_list = get_random_list_tags
     end
     
     noOfMapping.times do
@@ -544,6 +553,7 @@ def create_demo_posts_foods
     	p.city = Faker::Address.city
     	p.state = Faker::Address.us_state
     	p.phone = Faker::PhoneNumber.phone_number
+      p.tag_list = get_random_list_tags
     end
     
   end
@@ -575,11 +585,25 @@ def create_demo_posts_qas
     post_qa = PostQa.create do |p|
       p.post = post
       p.post_qa_category = qaCat
+      p.tag_list = get_random_list_tags
     end
     
   end
 end
+
 def uploaded_file(filename, content_type)
   f = File.new(File.join(RAILS_ROOT, filename))
   return f
+end
+
+def get_random_list_tags
+  arr_list_tag = [
+    "tag 1, tag 2, tag 3, tag 4",
+    "tag 11, tag 12, tag 13, tag 14",
+    "tag 21, tag 22, tag 23, tag 24",
+    "tag 31, tag 32, tag 33, tag 34",
+    "tag 41, tag 42, tag 43, tag 44",
+    "tag 51, tag 52, tag 53, tag 54"
+  ]
+  arr_list_tag[rand(arr_list_tag.size)]
 end

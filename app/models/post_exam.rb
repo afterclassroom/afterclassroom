@@ -11,6 +11,9 @@ class PostExam < ActiveRecord::Base
   named_scope :with_shool, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :due_date, :conditions => ["due_date > ?", Time.now], :order => "due_date DESC"
 
+  # Tags
+  acts_as_taggable
+
   def self.paginated_post_conditions_with_due_date(params, school)
     posts = []
     post_as = self.with_shool(school).due_date

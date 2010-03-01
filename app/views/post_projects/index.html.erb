@@ -44,13 +44,13 @@
   <!--Browser Due Date-->
 
   <!--Browser Interesting Projest-->
-  <%= render :partial => "post_projects/interesting_projects" %>
+  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
   <!--Browser Interesting Projest-->
 </div>
 
 <div class="contMainR">
   <!--Browser by Subject-->
-  <%= render :partial => "shared/browser_by_subject" %>
+  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
   <!--Browser by Subject-->
 
   <!--Ads-->
