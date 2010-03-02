@@ -11,6 +11,8 @@ class PostAssignment < ActiveRecord::Base
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_shool, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :due_date, :conditions => ["due_date > ?", Time.now], :order => "due_date DESC"
+  named_scope :previous, lambda { |att| {:conditions => ["id < ?", att]} }
+  named_scope :next, lambda { |att| {:conditions => ["id > ?", att]} }
 
   # Tags
   acts_as_taggable

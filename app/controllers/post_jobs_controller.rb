@@ -117,6 +117,7 @@ class PostJobsController < ApplicationController
   private
 
   def get_variables
+    @tags = PostJob.tag_counts
     @new_post_path = new_post_qa_path
     @type = PostCategory.find_by_name("Jobs").id
     @school = session[:your_school]

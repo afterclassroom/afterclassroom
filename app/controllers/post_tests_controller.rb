@@ -126,6 +126,7 @@ class PostTestsController < ApplicationController
   private
 
   def get_variables
+    @tags = PostTest.tag_counts
     @new_post_path = new_post_test_path
     @type = PostCategory.find_by_name("Tests").id
     @school = session[:your_school]

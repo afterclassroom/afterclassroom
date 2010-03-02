@@ -143,6 +143,7 @@ class PostPartiesController < ApplicationController
   private
 
   def get_variables
+    @tags = PostParty.tag_counts
     @new_post_path = new_post_assignment_path
     @type = PostCategory.find_by_name("Party").id
     @school = session[:your_school]

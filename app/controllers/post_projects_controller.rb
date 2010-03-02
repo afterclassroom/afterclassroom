@@ -131,6 +131,7 @@ class PostProjectsController < ApplicationController
   private
 
   def get_variables
+    @tags = PostProject.tag_counts
     @new_post_path = new_post_assignment_path
     @type = PostCategory.find_by_name("Projects").id
     @school = session[:your_school]

@@ -8,6 +8,9 @@ class Comment < ActiveRecord::Base
   
   # NOTE: Comments belong to a user
   belongs_to :user
+
+  # Rating for Good or Bad
+  acts_as_rated
   
   # Helper class method to lookup all comments assigned
   # to all commentable types for a given user.

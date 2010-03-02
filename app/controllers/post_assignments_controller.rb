@@ -2,10 +2,10 @@
 class PostAssignmentsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :due_date]
-  before_filter :login_required, :except => [:index, :show, :search, :due_date]
+  before_filter :get_variables, :only => [:index, :show, :search, :due_date, :tag]
+  before_filter :login_required, :except => [:index, :show, :search, :due_date, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :due_date]
+  after_filter :store_location, :only => [:index, :show, :search, :due_date, :tag]
   
   # GET /post_assignments
   # GET /post_assignments.xml
@@ -46,7 +46,12 @@ class PostAssignmentsController < ApplicationController
   end
 
   def tag
-    
+    tag_id = params[:tag_id]
+    @tag = Tag.find(tag_id)
+    arr_p = []
+    post_as = PostAssignment.with_shool(@school).find_tagged_with(@tag.name)
+    post_as.select {|p| arr_p << p.post}
+    @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
   # GET /post_assignments/1
@@ -55,6 +60,11 @@ class PostAssignmentsController < ApplicationController
     @post = Post.find(params[:id])
     @post_assignment = @post.post_assignment
     update_view_count(@post)
+    posts_as = PostAssignment.with_shool(@school)
+    as_next = posts_as.next(@post_assignment.id).first
+    as_prev = posts_as.previous(@post_assignment.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_assignment }

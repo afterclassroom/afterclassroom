@@ -117,6 +117,7 @@ class PostBooksController < ApplicationController
   private
 
   def get_variables
+    @tags = PostBook.tag_counts
     @new_post_path = new_post_book_path
     @type = PostCategory.find_by_name("Books").id
     @school = session[:your_school]

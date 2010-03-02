@@ -115,6 +115,7 @@ class PostAwarenessesController < ApplicationController
   private
 
   def get_variables
+    @tags = PostAwareness.tag_counts
     @new_post_path = new_post_awareness_path
     @type = PostCategory.find_by_name("Student Awareness").id
     @school = session[:your_school]

@@ -57,8 +57,8 @@
     </div>
     <div class="goback" id="go_back"><a onclick="history.go(-1);" href="javascript:;"><span>Go back</span></a></div>
     <div class="comPage">
-      <span class="compre"><a href="#"> </a></span>
-      <span class="comnext"><a href="#"> </a></span>
+      <span class="compre"><%= link_to "", post_assignment_path(@prev) if @prev %> </span>
+      <span class="comnext"><%= link_to "", post_assignment_path(@next) if @next %></span>
     </div>
     <div class="AsDOr">
       <h1 class="titleH1">Related Requests Assignments in Assignments Category</h1>

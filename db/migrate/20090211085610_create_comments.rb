@@ -10,6 +10,7 @@ class CreateComments < ActiveRecord::Migration
     end
   
     add_index "comments", ["user_id"], :name => "fk_comments_user"
+    Comment.add_ratings_columns
   end
 
   def self.down

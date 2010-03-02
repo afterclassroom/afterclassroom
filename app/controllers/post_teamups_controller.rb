@@ -134,6 +134,7 @@ class PostTeamupsController < ApplicationController
   private
 
   def get_variables
+    @tags = PostTeamup.tag_counts
     @new_post_path = new_post_teamup_path
     @type = PostCategory.find_by_name("Team Up").id
     @school = session[:your_school]

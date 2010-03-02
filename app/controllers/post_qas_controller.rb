@@ -113,6 +113,7 @@ class PostQasController < ApplicationController
   private
 
   def get_variables
+    @tags = PostQa.tag_counts
     @new_post_path = new_post_qa_path
     @type = PostCategory.find_by_name("QAs").id
     @school = session[:your_school]
