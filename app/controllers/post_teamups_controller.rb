@@ -11,21 +11,21 @@ class PostTeamupsController < ApplicationController
   def index
 
     if params[:teamType].to_s == "club"#teamup for club
-      @clubs = PostTeamup.team_filter(false)
+      @posts = PostTeamup.paginated_post_conditions_with_club(params,@school)
     elsif params[:teamType].to_s == "startup"#team just startup
-      @clubs = PostTeamup.more_startup
+      @posts = PostTeamup.paginated_post_conditions_with_juststartup(params,@school)
     else #team for sport
-      @clubs = PostTeamup.team_filter(true)
+      @posts = PostTeamup.paginated_post_conditions_with_sport(params,@school)
     end
     
-#    if params[:more_like_this_id]
-#      id = params[:more_like_this_id]
-#      post = Post.find_by_id(id)
-#      @posts = Post.paginated_post_more_like_this(params, post)
-#      @clubs = nil
-#    else
-#      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
-#    end
+    #    if params[:more_like_this_id]
+    #      id = params[:more_like_this_id]
+    #      post = Post.find_by_id(id)
+    #      @posts = Post.paginated_post_more_like_this(params, post)
+    #      @clubs = nil
+    #    else
+    #      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
+    #    end
 
 
 

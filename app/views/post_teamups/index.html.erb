@@ -19,10 +19,17 @@
           <h1 class="titleH1">Team Up</h1>
         </div>
         <!--List Items-->
-        <% @clubs.each do |club| %>
-          <%= render :partial => "item", :locals => {:post => club.post, :title => club.post.title, :description => club.post.description}%>
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
         <% end %>
         <!--List Items-->
+
+        <!--List Items-->
+        <%# @clubs.each do |club| %>
+          <%#= render :partial => "item", :locals => {:post => club.post, :title => club.post.title, :description => club.post.description}%>
+        <%# end %>
+        <!--List Items-->
+        
 
         <!--Pagination-->
         <div class="assPage">
