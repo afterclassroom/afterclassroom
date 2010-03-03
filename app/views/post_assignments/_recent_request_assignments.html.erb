@@ -3,7 +3,7 @@
     <h1 class="col300Title">Recent requested Assignments</h1>
     <div class="col300Cont">
       <%
-      assignments_recent = PostAssignment.with_shool(@school).recent.with_limit
+      assignments_recent = PostAssignment.with_school(@school).recent.with_limit
     %>
       <% if assignments_recent.size > 0 %>
         <%

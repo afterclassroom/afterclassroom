@@ -2,10 +2,11 @@
 class PostProjectsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :due_date, :interesting]
-  before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting]
+  before_filter :get_variables, :only => [:index, :show, :search, :due_date, :interesting, :tag]
+  before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting]
+  after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting, :tag]
+  after_filter :store_go_back_url, :only => [:index, :search, :due_date, :interesting, :tag]
   # GET /post_projects
   # GET /post_projects.xml
   def index
@@ -53,12 +54,26 @@ class PostProjectsController < ApplicationController
     end
   end
 
+  def tag
+    tag_id = params[:tag_id]
+    @tag = Tag.find(tag_id)
+    arr_p = []
+    post_pr = PostProject.with_school(@school).find_tagged_with(@tag.name)
+    post_pr.select {|p| arr_p << p.post}
+    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+  end
+
   # GET /post_projects/1
   # GET /post_projects/1.xml
   def show
     @post = Post.find(params[:id])
     @post_project = @post.post_project
     update_view_count(@post)
+    posts_as = PostProject.with_school(@school)
+    as_next = posts_as.next(@post_project.id).first
+    as_prev = posts_as.previous(@post_project.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_project }
@@ -68,7 +83,7 @@ class PostProjectsController < ApplicationController
   # GET /post_projects/new
   # GET /post_projects/new.xml
   def new
-    @post_project = PostBook.new
+    @post_project = PostProject.new
     post = Post.new
     @post_project.post = post
     @post_categories = PostCategory.find(:all)
@@ -85,7 +100,7 @@ class PostProjectsController < ApplicationController
 
   # GET /post_projects/1/edit
   def edit
-    @post_project = PostBook.find(params[:id])
+    @post_project = PostProject.find(params[:id])
     @post = @post_project.post
     @post_categories = PostCategory.find(:all)
     @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
@@ -99,7 +114,7 @@ class PostProjectsController < ApplicationController
   # POST /post_projects
   # POST /post_projects.xml
   def create
-    @post_project = PostBook.new(params[:post_project])
+    @post_project = PostProject.new(params[:post_project])
     post = Post.new(params[:post])
     post.user = current_user
     post.save
@@ -112,7 +127,7 @@ class PostProjectsController < ApplicationController
   # PUT /post_projects/1
   # PUT /post_projects/1.xml
   def update
-    @post_project = PostBook.find(params[:id])
+    @post_project = PostProject.find(params[:id])
 
     if (@post_project.update_attributes(params[:post_project]) && @post_project.post.update_attributes(params[:post]))
       redirect_to my_post_user_url(current_user)
@@ -122,7 +137,7 @@ class PostProjectsController < ApplicationController
   # DELETE /post_projects/1
   # DELETE /post_projects/1.xml
   def destroy
-    @post_project = PostBook.find(params[:id])
+    @post_project = PostProject.find(params[:id])
     @post_project.destroy
 
     redirect_to my_post_user_url(current_user)
@@ -132,7 +147,7 @@ class PostProjectsController < ApplicationController
 
   def get_variables
     @tags = PostProject.tag_counts
-    @new_post_path = new_post_assignment_path
+    @new_post_path = new_post_project_path
     @type = PostCategory.find_by_name("Projects").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]

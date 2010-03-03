@@ -8,9 +8,11 @@ class Comment < ActiveRecord::Base
   
   # NOTE: Comments belong to a user
   belongs_to :user
+  has_one :rating_statistic
+  has_many :ratings
 
   # Rating for Good or Bad
-  acts_as_rated
+  acts_as_rated :rating_class => 'NoRaterRating', :no_rater => true, :rating_range => 0..1, :with_stats_table => true
   
   # Helper class method to lookup all comments assigned
   # to all commentable types for a given user.
@@ -34,5 +36,13 @@ class Comment < ActiveRecord::Base
   # given the commentable class name and id 
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
+  end
+
+  def total_good
+    self.ratings.count(:conditions => ["rating = ?", 1])
+  end
+
+  def total_bad
+    self.ratings.count(:conditions => ["rating = ?", 0])
   end
 end

@@ -2,11 +2,12 @@
 class PostHousingsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search]
+  before_filter :get_variables, :only => [:index, :show, :search, :tag]
   before_filter :get_variables, :only => [:index]
-  before_filter :login_required, :except => [:index, :show, :search]
+  before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search]
+  after_filter :store_location, :only => [:index, :show, :search, :tag]
+  after_filter :store_go_back_url, :only => [:index, :search, :tag]
   # GET /post_housings
   # GET /post_housings.xml
   def index

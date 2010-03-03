@@ -19,7 +19,6 @@ class CreatePosts < ActiveRecord::Migration
 
       t.timestamps
     end
-    Post.add_ratings_columns
   end
 
   def self.down

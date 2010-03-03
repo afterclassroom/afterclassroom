@@ -160,20 +160,36 @@ module ApplicationHelper
   end
 
   def show_favorite_in_detail(post)
+    id = "#favorite_action"
+    str_login = "You must be #{link_to "logged in", login_url} to favorite this post."
+    str_favorited = "It's already in your favourite list."
+    
     if !logged_in?
-      link_to "<span>Favorite (#{post.favorites.size})</span>", "javascript:;"
+      link_to("<span id='favorite_action'>Favorite (#{post.favorites.size})</span>", "javascript:;") + "<script>#{tool_tip(id, str_login)}</script>"
     elsif current_user.has_favorite?(post)
-      link_to "<span>Favorite (#{post.favorites.size})</span>", "javascript:;"
+      link_to("<span id='favorite_action'>Favorite (#{post.favorites.size})</span>", "javascript:;") + "<script>#{tool_tip(id, str_favorited)}</script>"
     else
       link_to_remote "<span>Favorite (#{post.favorites.size})</span>", { :update => "post_favorite_#{post.id}", :url => {:controller => "posts", :action => "add_to_favorite_in_detail", :post_id => post.id } }
     end
   end
 
   def show_email(post)
+    id = "#email_action"
+    str_login = "You must be #{link_to "logged in", login_url} to send an email."
     if !logged_in?
-      link_to "<span>Email</span>", login_url
+      link_to("<span id='email_action'>Email</span>", "javascript:;") + "<script>#{tool_tip(id, str_login)}</script>"
     else
       link_to("<span>Email</span>", "#{show_email_user_messages_path(post.user)}?user_id=#{post.user.id}&height=200&width=280", :class => "thickbox", :title => "Send to #{post.user.full_name}")
     end
+  end
+
+  def show_go_back
+    link_to "<span>Go back</span>", session[:go_back_url]
+  end
+
+  private
+
+  def tool_tip(id, content)
+    "$('#{id}').bt('#{content}', {trigger: 'click', positions: 'top'});"
   end
 end

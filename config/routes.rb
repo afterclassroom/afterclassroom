@@ -85,48 +85,49 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :post_myxes, :collection => {
     :search => :get, :due_date => :get,
     :profrating => :get, :more_worse => :get,
-    :more_good => :get
+    :more_good => :get, :tag => :get
   }
   map.resources :post_projects, :collection => {
-    :search => :get, :due_date => :get, :interesting => :get
+    :search => :get, :due_date => :get, 
+    :interesting => :get, :tag => :get
   }
   map.resources :post_tests, :collection => {
-    :search => :get, :due_date => :get
+    :search => :get, :due_date => :get,
+    :tag => :get
   }
   map.resources :post_exams, :collection => {
-    :search => :get, :due_date => :get
+    :search => :get, :due_date => :get,
+    :tag => :get
   }
   map.resources :post_qas, :collection => {
-    :search => :get
+    :search => :get, :tag => :get
   }
   map.resources :post_foods, :collection => {
-    :search => :get
+    :search => :get, :tag => :get
   }
   map.resources :post_teamups, :collection => {
-    :search => :get,
-    :more_startup => :get,
-    :index => :get,
-    :teamrating => :get
+    :search => :get, :more_startup => :get,
+    :index => :get, :teamrating => :get,
+    :tag => :get
   }
   map.resources :post_parties, :collection => {
-    :search => :get,
-    :show_rsvp => :get,
-    :create_rsvp => :get
+    :search => :get, :show_rsvp => :get,
+    :create_rsvp => :get, :tag => :get
   }
   map.resources :post_awarenesses, :collection => {
-    :search => :get
+    :search => :get, :tag => :get
   }
   map.resources :post_jobs, :collection => {
-    :search => :get
+    :search => :get, :tag => :get
   }
   map.resources :post_books, :collection => {
-    :search => :get
+    :search => :get, :tag => :get
   }
   map.resources :post_tutors, :collection => {
     :search => :get
   }
   map.resources :post_housings, :collection => {
-    :search => :get
+    :search => :get, :tag => :get
   }
   # Stories
   map.resources :stories, :collection => {:create_comment => :get, :delete_comment => :get}

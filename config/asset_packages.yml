@@ -8,6 +8,7 @@ javascripts:
   - jquery-mcdropdown
   - thickbox
   - jquery-validate
+  - jquery-bt
 - student_louge:
   - prototype
   - effects

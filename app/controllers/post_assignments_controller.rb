@@ -6,6 +6,7 @@ class PostAssignmentsController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search, :due_date, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date, :tag]
+  after_filter :store_go_back_url, :only => [:index, :search, :due_date, :tag]
   
   # GET /post_assignments
   # GET /post_assignments.xml
@@ -49,7 +50,7 @@ class PostAssignmentsController < ApplicationController
     tag_id = params[:tag_id]
     @tag = Tag.find(tag_id)
     arr_p = []
-    post_as = PostAssignment.with_shool(@school).find_tagged_with(@tag.name)
+    post_as = PostAssignment.with_school(@school).find_tagged_with(@tag.name)
     post_as.select {|p| arr_p << p.post}
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
@@ -60,11 +61,11 @@ class PostAssignmentsController < ApplicationController
     @post = Post.find(params[:id])
     @post_assignment = @post.post_assignment
     update_view_count(@post)
-    posts_as = PostAssignment.with_shool(@school)
+    posts_as = PostAssignment.with_school(@school)
     as_next = posts_as.next(@post_assignment.id).first
     as_prev = posts_as.previous(@post_assignment.id).first
     @next = as_next.post if as_next
-    @prev = as_prev if as_prev
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_assignment }
@@ -74,7 +75,7 @@ class PostAssignmentsController < ApplicationController
   # GET /post_assignments/new
   # GET /post_assignments/new.xml
   def new
-    @post_assignment = PostBook.new
+    @post_assignment = PostAssignment.new
     post = Post.new
     @post_assignment.post = post
     @post_categories = PostCategory.find(:all)
@@ -91,7 +92,7 @@ class PostAssignmentsController < ApplicationController
 
   # GET /post_assignments/1/edit
   def edit
-    @post_assignment = PostBook.find(params[:id])
+    @post_assignment = PostAssignment.find(params[:id])
     @post = @post_assignment.post
     @post_categories = PostCategory.find(:all)
     @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
@@ -105,7 +106,7 @@ class PostAssignmentsController < ApplicationController
   # POST /post_assignments
   # POST /post_assignments.xml
   def create
-    @post_assignment = PostBook.new(params[:post_assignment])
+    @post_assignment = PostAssignment.new(params[:post_assignment])
     post = Post.new(params[:post])
     post.user = current_user
     post.save
@@ -118,7 +119,7 @@ class PostAssignmentsController < ApplicationController
   # PUT /post_assignments/1
   # PUT /post_assignments/1.xml
   def update
-    @post_assignment = PostBook.find(params[:id])
+    @post_assignment = PostAssignment.find(params[:id])
 
     if (@post_assignment.update_attributes(params[:post_assignment]) && @post_assignment.post.update_attributes(params[:post]))
       redirect_to my_post_user_url(current_user)
@@ -128,7 +129,7 @@ class PostAssignmentsController < ApplicationController
   # DELETE /post_assignments/1
   # DELETE /post_assignments/1.xml
   def destroy
-    @post_assignment = PostBook.find(params[:id])
+    @post_assignment = PostAssignment.find(params[:id])
     @post_assignment.destroy
 
     redirect_to my_post_user_url(current_user)

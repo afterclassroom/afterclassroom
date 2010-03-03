@@ -14,10 +14,10 @@ class Post < ActiveRecord::Base
   belongs_to :department
   belongs_to :post_category
   has_one :post_assignment, :dependent => :destroy
+  has_one :post_project, :dependent => :destroy
   has_one :post_test, :dependent => :destroy
   has_one :post_exam, :dependent => :destroy
   has_one :post_myx, :dependent => :destroy
-  has_one :post_project, :dependent => :destroy
   has_one :post_tutor, :dependent => :destroy
   has_one :post_book, :dependent => :destroy
   has_one :post_job, :dependent => :destroy
@@ -36,9 +36,6 @@ class Post < ActiveRecord::Base
   
   # Rating
   ajaxful_rateable :stars => 5
-
-  # Rating for Good or Bad
-  acts_as_rated
 
   # Tracker
   acts_as_activity :user
