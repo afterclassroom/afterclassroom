@@ -1,23 +1,24 @@
 <div class="col300 Recent">
   <div class="col300in">
-    <h1 class="col300Title">Recent requested Assignments</h1>
+    <h1 class="col300Title">Recent requested Tests</h1>
     <div class="col300Cont">
-      <div class="recentItem">
-        <div class="recentImg"><div><a href="#"><img src="pictures/pic1.png" /></a></div></div>
-        <div class="recentInf">
-          <div class="recentName"><a href="#">Vu Nguyen</a></div>
-          <div class="recentUni"><span>at</span><a href="#">University of California</a></div>
-          <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        </div>
-      </div>
-      <div class="recentItem">
-        <div class="recentImg"><div><a href="#"><img src="pictures/noimg.png" /></a></div></div>
-        <div class="recentInf">
-          <div class="recentName"><a href="#">Dang Nguyen</a></div>
-          <div class="recentUni"><span>at</span><a href="#">University of San Francisco</a></div>
-          <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
-        </div>
-      </div>
+      <%
+      tests_recent = PostTest.with_school(@school).recent.with_limit
+    %>
+      <% if tests_recent.size > 0 %>
+        <%
+        tests_recent.each do |pt|
+        %>
+          <div class="recentItem">
+            <div class="recentImg"><div><%= link_to image_tag(pt.post.user.avatar.url(:thumb)), {:controller => "ptofile", :action => "show_ptofile", :id => pt.post.user.id} %></div></div>
+            <div class="recentInf">
+              <div class="recentName"><%= link_to pt.post.user.full_name, {:controller => "ptofile", :action => "show_ptofile", :id => pt.post.user.id} %></div>
+              <div class="recentUni"><span>at</span><%= link_to pt.post.school.name, :controller => "post_tests", :action => "index", :from_school => pt.post.school %></div>
+              <div class="recentDes"><%= link_to pt.post.title, post_test_path(pt.post) %></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
       <div class="recentBottom">&nbsp;</div>
     </div>
   </div>

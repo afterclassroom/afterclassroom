@@ -33,7 +33,7 @@
           <%= will_paginate @posts %>
         </div>
         <!--Pagination-->
-        <div class="goTop"><a href="#">Top</a></div>
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
     </div>
   </div>
@@ -46,11 +46,11 @@
   <!--Browser Top Answers-->
 
   <!--Browser Interesting questions-->
-  <%= render :partial => "top_answers" %>
+  <%= render :partial => "interesting" %>
   <!--Browser Interesting questions-->
 
   <!--Browser Poll Q.As-->
-  <%= render :partial => "top_answers" %>
+  <%= render :partial => "poll" %>
   <!--Browser Poll Q.As-->
 </div>
 

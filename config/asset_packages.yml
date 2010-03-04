@@ -33,6 +33,7 @@ stylesheets:
   - thickbox
   - sexy_flash
   - pagination
+  - jquery-bt
 - student_louge:
   - reset
   - layout

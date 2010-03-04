@@ -4,9 +4,8 @@
  * note: canvas (the tip itself) cannot be styled here. use javascript options for that.
  */
 .bt-content {
-  font-size: small;
-  color: #000;
   line-height: normal;
+  background-color: #EBEBEB;
 }
 
 /* styling for active target elements - usually for background hilighting */

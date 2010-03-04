@@ -45,12 +45,26 @@ class PostTestsController < ApplicationController
     end
   end
 
+  def tag
+    tag_id = params[:tag_id]
+    @tag = Tag.find(tag_id)
+    arr_p = []
+    post_pr = PostTest.with_school(@school).find_tagged_with(@tag.name)
+    post_pr.select {|p| arr_p << p.post}
+    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+  end
+
   # GET /post_tests/1
   # GET /post_tests/1.xml
   def show
     @post = Post.find(params[:id])
     @post_test = @post.post_test
     update_view_count(@post)
+    posts_as = PostTest.with_school(@school)
+    as_next = posts_as.next(@post_test.id).first
+    as_prev = posts_as.previous(@post_test.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_test }

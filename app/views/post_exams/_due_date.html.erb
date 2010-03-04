@@ -3,7 +3,7 @@
     <h1 class="col195Title">Due date</h1>
     <div class="col195Cont">
       <%
-      exams_due_date = PostExam.with_shool(@school).due_date.with_limit
+      exams_due_date = PostExam.with_school(@school).due_date.with_limit
     %>
       <% if exams_due_date.size > 0 %>
         <%
