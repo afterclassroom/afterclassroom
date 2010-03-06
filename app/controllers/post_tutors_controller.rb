@@ -15,7 +15,9 @@ class PostTutorsController < ApplicationController
       post = Post.find_by_id(id)
       @posts = Post.paginated_post_more_like_this(params, post)
     else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
+      @tutor_type_id = params[:tutor_type_id]
+      @tutor_type_id ||= TutorType.find(:first).id
+      @posts = PostTutor.paginated_post_conditions_with_option(params, @school, @tutor_type_id)
     end
 
     respond_to do |format|
@@ -34,6 +36,16 @@ class PostTutorsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
+  end
+
+  def tag
+    tag_id = params[:tag_id]
+    @tag = Tag.find(tag_id)
+
+    arr_p = []
+    post_as = PostTutor.with_school(@school).find_tagged_with(@tag.name)
+    post_as.select {|p| arr_p << p.post}
+    @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
   # GET /post_tutors/1

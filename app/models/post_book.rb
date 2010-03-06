@@ -8,6 +8,7 @@ class PostBook < ActiveRecord::Base
   # Relations
   belongs_to :post
   belongs_to :shipping_method
+  belongs_to :book_type
 
   # Tags
   acts_as_taggable

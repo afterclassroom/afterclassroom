@@ -2,6 +2,7 @@ class CreatePostBooks < ActiveRecord::Migration
   def self.up
     create_table :post_books do |t|
       t.belongs_to :post, :null => false
+      t.belongs_to :book_type
       t.string :price, :null => false
       t.string :currency
       t.string :accept_payment

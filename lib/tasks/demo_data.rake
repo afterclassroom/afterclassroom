@@ -90,7 +90,7 @@ end
 
 def create_demo_posts_assignments
   post_category = PostCategory.find_by_name("Assignments")
-  10.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
@@ -121,7 +121,7 @@ def create_demo_posts_tests
   post_category = PostCategory.find_by_name("Tests")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   
-  20.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     post = Post.create do |p|
@@ -149,7 +149,7 @@ end
 def create_demo_posts_projects
   post_category = PostCategory.find_by_name("Projects")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-  20.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     post = Post.create do |p|
@@ -177,7 +177,7 @@ end
 def create_demo_posts_exams
   post_category = PostCategory.find_by_name("Exams")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-  20.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     post = Post.create do |p|
@@ -206,7 +206,7 @@ def create_demo_posts_myx
   post_category = PostCategory.find_by_name("MyX")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   prof_status = ["Best of the best", "Good", "Bored", "Worse"]
-  20.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     post = Post.create do |p|
@@ -263,6 +263,7 @@ def create_demo_post_books
       
     post_book = PostBook.create do |b|
       b.post = post
+      b.book_type = BookType.find(rand(BookType.count) + 1)
       b.price = "500"
       b.currency = currency[rand(currency.size)]
       b.accept_payment = accept_payment[rand(accept_payment.size)]
@@ -298,6 +299,7 @@ def create_demo_post_tutors
       
     post_tutor = PostTutor.create do |t|
       t.post = post
+      t.tutor_type = TutorType.find(rand(TutorType.count) + 1)
       t.tutoring_rate=tutoring_rate[rand(tutoring_rate.size)]
       t.per=per[rand(per.size)]
       t.currency=currency[rand(currency.size)]
@@ -311,7 +313,7 @@ end
 def create_demo_post_jobs
   post_category = PostCategory.find_by_name("Jobs")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-  100.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     post = Post.create do |p|
@@ -349,7 +351,7 @@ end
 def create_demo_post_housings
   post_category = PostCategory.find_by_name("Housing")
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-  100.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     post = Post.create do |p|
@@ -403,7 +405,7 @@ def create_demo_post_parties
   location = ['locationA','locationB', 'locationC']
   intersection = ['intersectionA', 'intersectionB', 'intersectionC']
   
-  100.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     post = Post.create do |p|
@@ -453,7 +455,7 @@ def create_demo_posts_teamups
   expectedTime = ["expectedTime 1","expectedTime 2","expectedTime 3"]
   compensation = ["compensation A","compensation B","compensation C"]
   teamType = [false,true]
-  100.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
@@ -490,7 +492,7 @@ end
 
 def create_demo_posts_awarenesses
   post_category = PostCategory.find_by_name("Student Awareness")
-  100.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
@@ -530,7 +532,7 @@ end
 
 def create_demo_posts_foods
   post_category = PostCategory.find_by_name("Foods")
-  100.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
@@ -562,7 +564,7 @@ end
 def create_demo_posts_qas
   post_category = PostCategory.find_by_name("QAs")
   
-  10.times do
+  200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]

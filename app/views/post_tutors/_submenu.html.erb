@@ -1,2 +1,3 @@
-<div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Tutor providers</span></span></a></div>
-<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Requested for tutor services</span></span></a></div>
+<% TutorType.find(:all).each do |tt| %>
+<div class="menuRItem <%= "menuRselect" if @tutor_type_id && @tutor_type_id.to_i == tt.id %>"><a href="<%= "#{post_tutors_path}?tutor_type_id=#{tt.id}" %>"><span class="span1"><span class="span2"><%= tt.name %></span></span></a></div>
+<% end %>

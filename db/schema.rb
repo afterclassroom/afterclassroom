@@ -37,6 +37,10 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.integer "awareness_issue_id", :null => false
   end
 
+  create_table "book_types", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "cities", :force => true do |t|
     t.string  "name",       :limit => 100, :default => "", :null => false
     t.integer "state_id",                                  :null => false
@@ -262,6 +266,7 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "post_books", :force => true do |t|
     t.integer "post_id",                            :null => false
+    t.integer "book_type_id"
     t.string  "price",              :default => "", :null => false
     t.string  "currency"
     t.string  "accept_payment"
@@ -373,6 +378,7 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "post_tutors", :force => true do |t|
     t.integer  "post_id"
+    t.integer  "tutor_type_id"
     t.string   "tutoring_rate"
     t.string   "per"
     t.string   "currency"
@@ -381,31 +387,28 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   end
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id",                                                                            :null => false
-    t.integer  "post_category_id",                                                                   :null => false
-    t.string   "title",                                                            :default => "",   :null => false
-    t.text     "description",                                                                        :null => false
-    t.integer  "school_id",                                                                          :null => false
-    t.integer  "department_id",                                                                      :null => false
-    t.string   "email",                                                            :default => "",   :null => false
+    t.integer  "user_id",                               :null => false
+    t.integer  "post_category_id",                      :null => false
+    t.string   "title",               :default => "",   :null => false
+    t.text     "description",                           :null => false
+    t.integer  "school_id",                             :null => false
+    t.integer  "department_id",                         :null => false
+    t.string   "email",               :default => "",   :null => false
     t.boolean  "use_this_email"
     t.string   "telephone"
-    t.boolean  "allow_comment",                                                    :default => true
-    t.boolean  "allow_response",                                                   :default => true
-    t.boolean  "allow_rate",                                                       :default => true
-    t.boolean  "allow_download",                                                   :default => true
+    t.boolean  "allow_comment",       :default => true
+    t.boolean  "allow_response",      :default => true
+    t.boolean  "allow_rate",          :default => true
+    t.boolean  "allow_download",      :default => true
     t.string   "type_name"
     t.string   "school_year"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "rating_count"
-    t.integer  "rating_total",        :limit => 10, :precision => 10, :scale => 0
-    t.decimal  "rating_avg",                        :precision => 10, :scale => 2
     t.string   "attach_file_name"
     t.string   "attach_content_type"
     t.integer  "attach_file_size"
     t.datetime "attach_updated_at"
-    t.integer  "count_view",                                                       :default => 0
+    t.integer  "count_view",          :default => 0
   end
 
   create_table "rates", :force => true do |t|
@@ -445,9 +448,10 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   end
 
   create_table "report_abuses", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
     t.integer  "report_abuse_category_id"
+    t.integer  "reporter_id"
+    t.integer  "reported_id"
+    t.string   "reported_type"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -534,6 +538,10 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "teamup_categories", :force => true do |t|
     t.string "name", :default => "", :null => false
+  end
+
+  create_table "tutor_types", :force => true do |t|
+    t.string "name"
   end
 
   create_table "user_educations", :force => true do |t|

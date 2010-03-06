@@ -2,6 +2,7 @@ class CreatePostTutors < ActiveRecord::Migration
   def self.up
     create_table :post_tutors do |t|
       t.belongs_to :post
+      t.belongs_to :tutor_type
       t.string :tutoring_rate
       t.string :per
       t.string :currency

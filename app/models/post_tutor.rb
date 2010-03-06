@@ -5,6 +5,7 @@ class PostTutor < ActiveRecord::Base
 
   # Relations
   belongs_to :post
+  belongs_to :tutor_type
   has_one :rating_statistic
   has_many :ratings
 
@@ -21,6 +22,27 @@ class PostTutor < ActiveRecord::Base
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   named_scope :previous, lambda { |att| {:conditions => ["id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["id > ?", att]} }
+
+  def self.paginated_post_conditions_with_option(params, school, type_id)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
+
+    post_tutors = PostTutor.ez_find(:all, :include => [:post, :tutor_type]) do |post_tutor, post, tutor_type|
+      tutor_type.id == type_id
+      post.school_id == with_school if with_school
+      post.school_year == year if year
+      post.department_id == department if department
+      post.created_at > Time.now - over.day
+    end
+
+    posts = []
+    post_tutors.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
   
   def self.related_posts(school)
     posts = []

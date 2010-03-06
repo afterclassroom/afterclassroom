@@ -3,6 +3,13 @@
     <div class="option_item_1"><input type="text" name="department" id="department" value="<%= department %>" /></div>
     <div class="option_item_2"><input type="text" name="year" id="year" value="<%= year %>" /></div>
     <div class="option_item_3"><input type="text" name="over" id="over" value="<%= over %>" /></div>
+    <%
+    list_hidden = ""
+    if options
+      options.each_pair {|key, value| list_hidden << hidden_field_tag(key, value)}
+    end
+    %>
+    <%= list_hidden %>
   </form>
 </div>
 <ul id="department_menu" class="mcdropdown_menu">
