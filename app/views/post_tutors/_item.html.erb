@@ -12,8 +12,8 @@
     <div class="Star">
       <img src="images/starRed.png"/><img src="images/starRed.png"/><img src="images/starRed.png"/><img src="images/starRW.png"/><img src="images/starWhite.png"/>
     </div>
-    <div class="moreTutor">4305 Locust St Philadelphia, PA 19176 (415) 751-9987</div>
-    <div class="mySco"><a href="#">My score (15/20)</a></div>
+    <div class="moreTutor"><%= post.post_tutor.address %></div>
+    <div class="mySco"><a href="#"><%= post.post_tutor.show_score %></a></div>
   </div>
   <!--info-link-box-->
   <div class="assItemB">
@@ -27,8 +27,22 @@
         <div class="assInfR"><%= link_to "more", post_tutor_path(post) %></div>
       </div>
       <div class="assInfB">
-        <div class="qashdU"><a href="#">20</a></div>
-        <div class="qashdD"><a href="#">4</a></div>
+        <div id="rate_<%= post.id %>">
+          <div class="qashdU">
+            <% if logged_in? && !PostTutor.find_rated_by(current_user).include?(post.post_tutor) %>
+              <%= link_to_remote post.post_tutor.total_good, { :update => "rate_#{post.id}", :url => {:controller => "post_tutors", :action => "rate", :post_id => post.id, :rating => "1" } } %>
+            <% else %>
+              <%= link_to post.post_tutor.total_good, "javascript:;" %>
+            <% end %> 
+          </div>
+          <div class="qashdD">
+            <% if logged_in? && !PostTutor.find_rated_by(current_user).include?(post.post_tutor) %>
+              <%= link_to_remote post.post_tutor.total_bad, { :update => "rate_#{post.id}", :url => {:controller => "post_tutors", :action => "rate", :post_id => post.id, :rating => "0" } } %>
+            <% else %>
+              <%= link_to post.post_tutor.total_bad, "javascript:;" %>
+            <% end %>
+          </div>
+         </div>
         <div class="vie"><%= "View (#{post.count_view})" %></div>
         <div class="fav" id="post_favorite_<%= post.id %>"><%= show_favorite(post) %></div>
         <div class="com"><%= link_to "Comments (#{post.comments.size})", "#" %></div>

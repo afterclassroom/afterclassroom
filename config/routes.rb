@@ -100,7 +100,7 @@ ActionController::Routing::Routes.draw do |map|
     :tag => :get
   }
   map.resources :post_qas, :collection => {
-    :search => :get, :tag => :get
+    :search => :get, :tag => :get, :asked => :get
   }
   map.resources :post_foods, :collection => {
     :search => :get, :tag => :get
@@ -124,7 +124,7 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :tag => :get
   }
   map.resources :post_tutors, :collection => {
-    :search => :get
+    :search => :get, :tag => :get, :effective => :get, :dont_hire => :get, :rate => :get
   }
   map.resources :post_housings, :collection => {
     :search => :get, :tag => :get

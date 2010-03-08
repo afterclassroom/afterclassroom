@@ -2,20 +2,20 @@
 class PostQasController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :search, :tag, :asked]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :asked]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :tag]
+  after_filter :store_location, :only => [:index, :show, :search, :tag, :asked]
+  after_filter :store_go_back_url, :only => [:index, :search, :tag, :asked]
   # GET /post_qas
   # GET /post_qas.xml
   def index  
     if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
+      @posts = PostQa.paginated_post_more_like_this(params, post)
     else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
+      @posts = PostQa.paginated_post_conditions_with_answered(params, @school)
     end
 
     respond_to do |format|
@@ -30,6 +30,15 @@ class PostQasController < ApplicationController
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
     
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
+    end
+  end
+
+  def asked
+    @posts = PostQa.paginated_post_conditions_with_asked(params, @school)
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

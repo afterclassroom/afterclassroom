@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Tutors", post_tutors_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Tutors", post_tutors_path, :class => "abLink-detail" %><%= link_to "Don't hire", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -15,15 +15,13 @@
   <div class="col451 Tutor">
     <div class="col451in">
       <div class="col451Cont">
-        <div class="AsDTop">
-          <h1 class="titleH1">Tutors</h1>
-          <div class="AsDsearch">
-            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_tutors_path} %>
-          </div>
-        </div>
+        <!--Options-->
+        <%= show_options(@school, params, {"tutor_type_id" => @tutor_type_id}) %>
+        <!--Options-->
+
         <!--List Items-->
         <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
         <% end %>
         <!--List Items-->
 

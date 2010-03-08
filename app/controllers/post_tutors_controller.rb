@@ -2,11 +2,11 @@
 class PostTutorsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :search, :tag, :effective, :dont_hire]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :effective, :dont_hire]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :tag]
+  after_filter :store_location, :only => [:index, :show, :search, :tag, :effective, :dont_hire]
+  after_filter :store_go_back_url, :only => [:index, :search, :tag, :effective, :dont_hire]
   # GET /post_tutors
   # GET /post_tutors.xml
   def index
@@ -41,22 +41,45 @@ class PostTutorsController < ApplicationController
   def tag
     tag_id = params[:tag_id]
     @tag = Tag.find(tag_id)
-
-    arr_p = []
-    post_as = PostTutor.with_school(@school).find_tagged_with(@tag.name)
-    post_as.select {|p| arr_p << p.post}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    @posts = PostTutor.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
 
+  def effective
+    @posts = PostTutor.paginated_post_conditions_with_effective_tutors(params, @school)
+  end
+
+  def dont_hire
+    @posts = PostTutor.paginated_post_conditions_with_dont_hire(params, @school)
+  end
+
+  def rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_tt = post.post_tutor
+    post_tt.rate rating.to_i, current_user
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post.post_tutor.total_good}</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post.post_tutor.total_bad}</a>
+      </div>'
+  end
+  
   # GET /post_tutors/1
   # GET /post_tutors/1.xml
   def show
     @post = Post.find(params[:id])
-    @post_qa = @post.post_qa
+    @post_tt = @post.post_tutor
     update_view_count(@post)
+    posts_as = PostTutor.with_school(@school)
+    as_next = posts_as.next(@post_tt.id).first
+    as_prev = posts_as.previous(@post_tt.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_qa }
+      format.xml  { render :xml => @post_tt }
     end
   end
 

@@ -57,10 +57,7 @@ class PostProjectsController < ApplicationController
   def tag
     tag_id = params[:tag_id]
     @tag = Tag.find(tag_id)
-    arr_p = []
-    post_pr = PostProject.with_school(@school).find_tagged_with(@tag.name)
-    post_pr.select {|p| arr_p << p.post}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    @posts = PostProject.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
 
   # GET /post_projects/1

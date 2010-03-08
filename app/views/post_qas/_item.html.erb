@@ -13,7 +13,7 @@
     </div>
     <div class="morelink"><%= link_to "More like this", :controller => "post_qas", :action => "index", :more_like_this_id => post %></div>
     <div class="numAns">
-      <div class="numAnsA">23</div>
+      <div class="numAnsA"><%= post.comments.size %></div>
       <div class="numAnsB">answers</div>
     </div>
   </div>
@@ -31,8 +31,22 @@
         <div><%= post.created_at.strftime("%I:%M %p %Z") %></div>
         <div class="vie"><%= "View (#{post.count_view})" %></div>
         <div class="fav" id="post_favorite_<%= post.id %>"><%= show_favorite(post) %></div>
-        <div class="qashdU"><a href="#">20</a></div>
-        <div class="qashdD"><a href="#">5</a></div>
+        <div id="rate_<%= post.id %>">
+          <div class="qashdU">
+            <% if logged_in? && !PostQa.find_rated_by(current_user).include?(post.post_qa) %>
+              <%= link_to_remote post.post_qa.total_good, { :update => "rate_#{post.id}", :url => {:controller => "post_qas", :action => "rate", :post_id => post.id, :rating => "1" } } %>
+            <% else %>
+              <%= link_to post.post_qa.total_good, "javascript:;" %>
+            <% end %>
+          </div>
+          <div class="qashdD">
+            <% if logged_in? && !PostQa.find_rated_by(current_user).include?(post.post_qa) %>
+              <%= link_to_remote post.post_qa.total_bad, { :update => "rate_#{post.id}", :url => {:controller => "post_qas", :action => "rate", :post_id => post.id, :rating => "0" } } %>
+            <% else %>
+              <%= link_to post.post_qa.total_bad, "javascript:;" %>
+            <% end %>
+          </div>
+         </div>
       </div>
     </div>
   </div>

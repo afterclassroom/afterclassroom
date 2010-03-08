@@ -17,6 +17,7 @@ class PostTutor < ActiveRecord::Base
 
   # Named Scope
   named_scope :with_limit, :limit => 5
+  named_scope :with_type, lambda { |tp| {:conditions => ["tutor_type_id = ?", tp]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
@@ -43,6 +44,27 @@ class PostTutor < ActiveRecord::Base
     post_tutors.select {|p| posts << p.post}
     posts.paginate :page => params[:page], :per_page => 10
   end
+
+  def self.paginated_post_conditions_with_tag(params, school, tag_name)
+    arr_p = []
+    post_as = self.with_school(@school).find_tagged_with(tag_name)
+    post_as.select {|p| arr_p << p.post}
+    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+  end
+
+  def self.paginated_post_conditions_with_effective_tutors(params, school)
+    posts = []
+    post_as = self.effective_tutors(school)
+    post_as.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+
+  def self.paginated_post_conditions_with_dont_hire(params, school)
+    posts = []
+    post_as = self.dont_hire(school)
+    post_as.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
   
   def self.related_posts(school)
     posts = []
@@ -51,17 +73,19 @@ class PostTutor < ActiveRecord::Base
     posts
   end
 
-  def self.goods
+  def self.effective_tutors(school)
     posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score >= 50}
+    tutor_type = TutorType.find_by_name("Tutor providers")
+    post_tutors = self.with_type(tutor_type.id).with_school(school)
+    post_tutors.select {|p| posts << p if p.score >= 50}
     posts
   end
 
-  def self.bads
+  def self.dont_hire(school)
     posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score < 50}
+    tutor_type = TutorType.find_by_name("Tutor providers")
+    post_tutors = self.with_type(tutor_type.id).with_school(school)
+    post_tutors.select {|p| posts << p if 0 < p.score && p.score < 50}
     posts
   end
 
@@ -76,5 +100,9 @@ class PostTutor < ActiveRecord::Base
   def score
     total = self.total_good + self.total_bad
     (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
+  end
+
+  def show_score
+    "My score (#{self.total_good}/#{self.total_good + self.total_bad})"
   end
 end

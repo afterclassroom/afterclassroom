@@ -294,13 +294,12 @@ def create_demo_post_tutors
     end
       
 	  per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
-    tutoring_rate = ['Good','Bad','Average']
     currency = ['USD', 'CAD']
       
     post_tutor = PostTutor.create do |t|
       t.post = post
       t.tutor_type = TutorType.find(rand(TutorType.count) + 1)
-      t.tutoring_rate=tutoring_rate[rand(tutoring_rate.size)]
+      t.address=Faker::Address.street_address
       t.per=per[rand(per.size)]
       t.currency=currency[rand(currency.size)]
       t.from=DateTime.now

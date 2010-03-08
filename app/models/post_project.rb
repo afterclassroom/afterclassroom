@@ -11,7 +11,7 @@ class PostProject < ActiveRecord::Base
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :due_date, :conditions => ["due_date > ?", Time.now], :order => "due_date DESC"
-  named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where post_id = id) > ?", 10]
+  named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.post_id = posts.id) > ?", 10]
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   named_scope :previous, lambda { |att| {:conditions => ["id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["id > ?", att]} }
@@ -33,6 +33,13 @@ class PostProject < ActiveRecord::Base
     posts.paginate :page => params[:page], :per_page => 10
   end
 
+  def self.paginated_post_conditions_with_tag(params, school, tag_name)
+    arr_p = []
+    post_as = self.with_school(@school).find_tagged_with(tag_name)
+    post_as.select {|p| arr_p << p.post}
+    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+  end
+  
   def self.related_posts(school)
     posts = []
     post_as = self.with_school(school).random(5)
