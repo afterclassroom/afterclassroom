@@ -36,6 +36,12 @@ class PostBooksController < ApplicationController
     end
   end
 
+  def tag
+    tag_id = params[:tag_id]
+    @tag = Tag.find(tag_id)
+    @posts = PostBook.paginated_post_conditions_with_tag(params, @school, @tag.name)
+  end
+
   # GET /post_books/1
   # GET /post_books/1.xml
   def show

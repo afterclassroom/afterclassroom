@@ -19,15 +19,6 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.datetime "created_at"
   end
 
-  create_table "answers", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "post_qa_id"
-    t.integer  "thumb_up"
-    t.integer  "thumb_down"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "awareness_issues", :force => true do |t|
     t.string "name", :default => "", :null => false
   end
@@ -379,7 +370,7 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   create_table "post_tutors", :force => true do |t|
     t.integer  "post_id"
     t.integer  "tutor_type_id"
-    t.string   "tutoring_rate"
+    t.string   "address"
     t.string   "per"
     t.string   "currency"
     t.datetime "from"
