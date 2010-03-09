@@ -1,11 +1,17 @@
-<div class="AsDcomItem">
-  <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+<div class="AsDcomItem" id="item_comment_<%= comnt.id %>">
+  <div class="AsDcomImg"><%= link_to "<div>#{image_tag(comnt.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %></div>
   <div class="AsDcomItemR">
-    <div class="AsDcomName">Comment by<a href="#">Huy Quach</a>- 35 minutes ago</div>
-    <div class="AsDcomDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis. Proin ultricies dignissim ante vitae euismod. Aliquam vitae sem vel nisi posuere molestie eu venenatis urna.</div>
+    <div class="AsDcomName">Answer by<%= link_to comnt.user.full_name, {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %></div>
+    <div class="AsDcomDes"><%= comnt.comment %></div>
     <div class="AsDcomRe">
-      <div class="AsDcomRe1"><a href="#">1</a></div>
-      <div class="AsDcomRe2"><a href="#">200</a></div>
+      <div id="rate_comment_<%= comnt.id %>">
+        <div class="AsDcomRe1">
+          <%= link_to_remote comnt.total_good, { :update => "rate_comment_#{comnt.id}", :url => {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "1" } } %>
+        </div>
+        <div class="AsDcomRe2">
+          <%= link_to_remote comnt.total_bad, { :update => "rate_comment_#{comnt.id}", :url => {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "0" } } %>
+        </div>
+      </div>
       <div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
     </div>
   </div>

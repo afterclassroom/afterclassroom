@@ -1,2 +1,2 @@
-<div class="menuRItem <%= "menuRselect" if @controller.action_name == "index" %>"><a href="<%= post_qas_path %>"><span class="span1"><span class="span2">Answered Questions</span></span></a></div>
-<div class="menuRItem <%= "menuRselect" if @controller.action_name == "asked" %>"><a href="<%= asked_post_qas_path %>"><span class="span1"><span class="span2">Asked Questions</span></span></a></div>
+<div class="menuRItem <%= "menuRselect" if @type == "answered" %>"><a href="<%= "#{post_qas_path}?type=answered" %>"><span class="span1"><span class="span2">Answered Questions</span></span></a></div>
+<div class="menuRItem <%= "menuRselect" if @type == "asked" %>"><a href="<%= "#{post_qas_path}?type=asked" %>"><span class="span1"><span class="span2">Asked Questions</span></span></a></div>

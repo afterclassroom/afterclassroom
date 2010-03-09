@@ -25,8 +25,8 @@ class PostParty < ActiveRecord::Base
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["id > ?", att]} }
+  named_scope :previous, lambda { |att| {:conditions => ["post_parties.id < ?", att]} }
+  named_scope :next, lambda { |att| {:conditions => ["post_partiess.id > ?", att]} }
 
   def self.related_posts(school)
     posts = []

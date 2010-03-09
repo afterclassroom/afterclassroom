@@ -63,6 +63,7 @@ class Post < ActiveRecord::Base
     year = params[:year]
     department = params[:department]
     from_school = params[:from_school]
+    type = params[:type]
     with_school = school
     with_school = from_school if from_school
     cond = Caboose::EZ::Condition.new :posts do

@@ -176,6 +176,28 @@ function send_comment(post_id){
     }
 }
 
+function send_answer(post_id){
+    comment = $('#comment').val();
+    if (comment != ""){
+        $.ajax({
+            url: '/post_qas/create_comment',
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                post_id : post_id,
+                comment : comment,
+                show : $('#show').val()
+            }),
+            success: function(data){
+                $('#list_comments').html(data);
+                $('#comment').val('');
+                $('#form_comment').toggle('slow');
+            }
+        });
+    }
+}
+
 function sendEmail(user_id){
     subject = $('#message_subject').val();
     body = $('#message_body').val();

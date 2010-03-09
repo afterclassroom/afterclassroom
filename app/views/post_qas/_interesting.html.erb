@@ -1,20 +1,16 @@
 <div class="col195 QAsIntQue">
-    <div class="col195in">
-      <h1 class="col195Title">Interesting questions</h1>
-      <div class="col195Cont">
+  <div class="col195in">
+    <h1 class="col195Title">Interesting questions</h1>
+    <div class="col195Cont">
+      <%
+      interestings = PostQa.with_school(@school).interesting.with_limit
+    %>
+      <% interestings.each do |qa| %>
         <div class="dueDItem">
-          <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis...</a></div>
+          <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa) %></div>
         </div>
-        <div class="dueDItem">
-          <div class="dueDTitle"><a href="#">Proin ultricies dignissim ante vitae euismod...</a></div>
-        </div>
-        <div class="dueDItem">
-          <div class="dueDTitle"><a href="#">Aliquam vitae sem vel nisi posuere molestie eu venenatis urna...</a></div>
-        </div>
-        <div class="dueDItem">
-          <div class="dueDTitle"><a href="#">Fusce sed sem ipsum, ac dictum dolor...</a></div>
-        </div>
-        <div class="dueDbutton"><a href="#">View more Interesting questions</a></div>
-      </div>
+      <% end %>
+      <div class="dueDbutton"><%= link_to "View more Interesting questions", interesting_post_qas_path %></div>
     </div>
   </div>
+</div>

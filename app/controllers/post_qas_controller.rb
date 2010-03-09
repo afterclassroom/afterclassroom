@@ -2,20 +2,26 @@
 class PostQasController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag, :asked]
-  before_filter :login_required, :except => [:index, :show, :search, :tag, :asked]
+  before_filter :get_variables, :only => [:index, :show, :search, :tag, :asked, :interesting, :top_answer]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :tag, :asked]
-  after_filter :store_go_back_url, :only => [:index, :search, :tag, :asked]
+  after_filter :store_location, :only => [:index, :show, :search, :tag, :asked, :interesting, :top_answer]
+  after_filter :store_go_back_url, :only => [:index, :search, :tag, :asked, :interesting, :top_answer]
   # GET /post_qas
   # GET /post_qas.xml
-  def index  
+  def index
+    @type = params[:type]
+    @type ||= "answered"
     if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
       @posts = PostQa.paginated_post_more_like_this(params, post)
     else
-      @posts = PostQa.paginated_post_conditions_with_answered(params, @school)
+      if @type == "answered"
+        @posts = PostQa.paginated_post_conditions_with_answered(params, @school)
+      else
+        @posts = PostQa.paginated_post_conditions_with_asked(params, @school)
+      end
     end
 
     respond_to do |format|
@@ -31,18 +37,41 @@ class PostQasController < ApplicationController
     end
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # search.html.erb
       format.xml  { render :xml => @posts }
     end
   end
 
-  def asked
-    @posts = PostQa.paginated_post_conditions_with_asked(params, @school)
+  def interesting
+    @posts = PostQa.paginated_post_conditions_with_interesting(params, @school)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # interesting.html.erb
       format.xml  { render :xml => @posts }
     end
+  end
+
+  def top_answer
+    @posts = PostQa.paginated_post_conditions_with_top_answer(params, @school)
+
+    respond_to do |format|
+      format.html # top_answer.html.erb
+      format.xml  { render :xml => @posts }
+    end
+  end
+
+  def rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_tt = post.post_qa
+    post_tt.rate rating.to_i, current_user
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post.post_qa.total_good}</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post.post_qa.total_bad}</a>
+      </div>'
   end
 
   # GET /post_qas/1
@@ -51,6 +80,11 @@ class PostQasController < ApplicationController
     @post = Post.find(params[:id])
     @post_qa = @post.post_qa
     update_view_count(@post)
+    posts_as = PostQa.with_school(@school)
+    as_next = posts_as.next(@post_qa.id).first
+    as_prev = posts_as.previous(@post_qa.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_qa }
@@ -120,6 +154,30 @@ class PostQasController < ApplicationController
     redirect_to my_post_user_url(current_user)
   end
 
+  def create_comment
+    post_id = params[:post_id]
+    comment = params[:comment]
+    show = params[:show]
+    show ||= "0"
+    post = Post.find(post_id)
+    if comment && post
+      obj_comment = Comment.new()
+      obj_comment.comment = comment
+      obj_comment.user = current_user
+      post.comments << obj_comment
+    end
+    get_comments(post, show)
+    render :layout => false
+  end
+
+  def show_comment
+    show = params[:show]
+    show ||= "0"
+    post_id = params[:post_id]
+    post = Post.find(post_id)
+    get_comments(post, show)
+  end
+  
   private
 
   def get_variables
@@ -128,6 +186,26 @@ class PostQasController < ApplicationController
     @type = PostCategory.find_by_name("QAs").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
+  end
+
+  def get_comments(post, show)
+    @comments = []
+    case show
+    when "0"
+      @comments = post.comments
+    when "1"
+      @comments = post.comments
+    when "2"
+      @comments = post.comments.find(:all, :order => "created_at DESC")
+    when "3"
+      arr_comnt = []
+      post.comments.each do |c|
+        arr_comnt << {:obj => c, :total_good => c.total_good}
+      end
+      arr_comnt.sort_by { |c| -c[:total_good] }.each do |d|
+        @comments << d[:obj]
+      end
+    end
   end
 
   def require_current_user

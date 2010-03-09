@@ -3,21 +3,14 @@
     <h1 class="col195Title">Top answered topics</h1>
     <div class="col195Cont">
       <%
-      top_answers = PostQa.interesting
+      top_answers = PostQa.with_school(@school).top_answer.with_limit
     %>
+      <% top_answers.each do |qa| %>
       <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis...</a></div>
+        <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa) %></div>
       </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Proin ultricies dignissim ante vitae euismod...</a></div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Aliquam vitae sem vel nisi posuere molestie eu venenatis urna...</a></div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Fusce sed sem ipsum, ac dictum dolor...</a></div>
-      </div>
-      <div class="dueDbutton"><a href="#">View more Top answered topics</a></div>
+      <% end %>
+      <div class="dueDbutton"><%= link_to "View more Top answered topics", top_answer_post_qas_path %></div>
     </div>
   </div>
 </div>

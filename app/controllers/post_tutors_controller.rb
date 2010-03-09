@@ -4,7 +4,7 @@ class PostTutorsController < ApplicationController
 
   before_filter :get_variables, :only => [:index, :show, :search, :tag, :effective, :dont_hire]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :effective, :dont_hire]
-  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy, :rate]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :effective, :dont_hire]
   after_filter :store_go_back_url, :only => [:index, :search, :tag, :effective, :dont_hire]
   # GET /post_tutors

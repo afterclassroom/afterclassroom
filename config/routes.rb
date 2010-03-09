@@ -67,14 +67,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :functional_experiences
 
   # Posts
-  map.resources :posts, :member => {
-    :rate => :post},
+  map.resources :posts,
     :collection => {
-    :list_comments => :get,
+    :rate_comment => :get,
     :create_comment => :get,
     :delete_comment => :get,
-    :post_dispatch => :get,
-    :list_favorites => :get,
     :add_to_favorite => :get,
     :add_to_favorite_in_detail => :get,
     :download => :get
@@ -100,7 +97,7 @@ ActionController::Routing::Routes.draw do |map|
     :tag => :get
   }
   map.resources :post_qas, :collection => {
-    :search => :get, :tag => :get, :asked => :get
+    :search => :get, :tag => :get, :interesting => :get, :top_answer => :get, :create_comment => :get, :show_comment => :get
   }
   map.resources :post_foods, :collection => {
     :search => :get, :tag => :get

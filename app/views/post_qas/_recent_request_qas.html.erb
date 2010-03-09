@@ -1,24 +1,22 @@
 <div class="col300 Recent">
   <div class="col300in">
     <h1 class="col300Title">Recent asked questions</h1>
-    <div class="col300Cont">
-      <div class="recentItem">
-        <div class="recentImg"><div><a href="#"><img src="pictures/pic1.png" /></a></div></div>
-        <div class="recentInf">
-          <div class="recentName"><a href="#">Vu Nguyen</a></div>
-          <div class="recentUni"><span>at</span><a href="#">University of California</a></div>
-          <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+    <%
+    qas_recent = PostQa.with_school(@school).recent.with_limit
+  %>
+    <% if qas_recent.size > 0 %>
+      <%
+      qas_recent.each do |qa|
+      %>
+        <div class="recentItem">
+          <div class="recentImg"><div><%= link_to image_tag(qa.post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => qa.post.user.id} %></div></div>
+          <div class="recentInf">
+            <div class="recentName"><%= link_to qa.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => qa.post.user.id} %></div>
+            <div class="recentUni"><span>at</span><%= link_to qa.post.school.name, :controller => "post_qas", :action => "index", :from_school => qa.post.school, :type => @type %></div>
+            <div class="recentDes"><%= link_to qa.post.title, post_project_path(qa.post) %></div>
+          </div>
         </div>
-      </div>
-      <div class="recentItem">
-        <div class="recentImg"><div><a href="#"><img src="pictures/noimg.png" /></a></div></div>
-        <div class="recentInf">
-          <div class="recentName"><a href="#">Dang Nguyen</a></div>
-          <div class="recentUni"><span>at</span><a href="#">University of San Francisco</a></div>
-          <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
-        </div>
-      </div>
-      <div class="recentBottom">&nbsp;</div>
-    </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

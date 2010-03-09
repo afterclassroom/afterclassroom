@@ -1,0 +1,4 @@
+<h1 class="titleH1"><a href="javascript:;">Answers (<%= @comments.size %>)</a></h1>
+<% @comments.each do |c| %>
+  <%= render :partial => "item_answer", :locals => {:comnt => c} %>
+<% end %>

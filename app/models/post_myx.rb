@@ -21,8 +21,8 @@ class PostMyx < ActiveRecord::Base
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :prof_filter, lambda {|c| return {} if c.nil?; {:conditions => ["prof_status = ?", c], :order => "prof_status DESC", :limit => 5}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["id > ?", att]} }
+  named_scope :previous, lambda { |att| {:conditions => ["post_myxs.id < ?", att]} }
+  named_scope :next, lambda { |att| {:conditions => ["post_myxs.id > ?", att]} }
 
   # Tags
   acts_as_taggable

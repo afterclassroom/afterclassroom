@@ -23,8 +23,8 @@ class PostTeamup < ActiveRecord::Base
   named_scope :team_filter, lambda {|c| return {} if c.nil?; {:conditions => ["teamupType = ?", c]}}
   #true: teamup for Sport, false: teamup for club
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["id > ?", att]} }
+  named_scope :previous, lambda { |att| {:conditions => ["post_teampups.id < ?", att]} }
+  named_scope :next, lambda { |att| {:conditions => ["post_teamups.id > ?", att]} }
 
   def self.related_posts(school)
     posts = []

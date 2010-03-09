@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Assignments", post_assignments_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Q.As", post_qas_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -22,7 +22,7 @@
     <div class="AsDCont">
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_assignments_path %></span></div>
+        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_qas_path %></span></div>
         <div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLdes"><span>Description:</span>><%= @post.description %></div>
       </div>
@@ -30,54 +30,44 @@
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
     </div>
 
-    <div class="AsDcom">
+    <div class="AsDcom" id="form_comment" style="display: none">
       <h1 class="titleH1">Leave your answer</h1>
-      <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-      <div class="AsDcomIn">
-        <div class="AsDcomTxt"><textarea name="TextArea1"></textarea></div>
-        <div class="submit"><a href="#">Submit</a></div>
-      </div>
+      <% if logged_in? %>
+        <div class="AsDcomImg"><%= link_to "<div>#{image_tag(current_user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+        <div class="AsDcomIn">
+          <form name="form_comment" id="form_comment" action="" method="get">
+            <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
+            <div class="submit"><a href="javascript:;" onclick="send_answer('<%= @post.id %>');" >Submit</a></div>
+          </form>
+        </div>
+      <% else %>
+        You must be <%= link_to "logged in", login_url %> to post an answer.
+      <% end %>
     </div>
     <div class="AsDcomL">
-      <h1 class="titleH1"><a href="#">Answer (4)</a></h1>
-      <div class="AsDcomLW">
-        <span>View</span>
-        <span><select name="Select2"><option>All answers</option></select></span>
-      </div>
-      <div class="AsDcomItem">
-        <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-        <div class="AsDcomItemR">
-          <div class="AsDcomName">Comment by<a href="#">Huy Quach</a>- 35 minutes ago</div>
-          <div class="AsDcomDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis. Proin ultricies dignissim ante vitae euismod. Aliquam vitae sem vel nisi posuere molestie eu venenatis urna.</div>
-          <div class="AsDcomRe">
-            <div class="AsDcomRe1"><a href="#">10</a></div>
-            <div class="AsDcomRe2"><a href="#">2</a></div>
-            <div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
-          </div>
+      <% if @post.comments.size > 0 %>
+        <div class="AsDcomLW">
+          <span>View</span>
+          <span><%= select_tag "show", options_for_select([["All Answers", "0"], ["Oldest to Newest", "1"], ["Newest to Oldest", "2"], ["Rated Highest to Lowest", "3"]]) %></span>
         </div>
-      </div>
-      <div class="AsDcomItem">
-        <div class="AsDcomImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-        <div class="AsDcomItemR">
-          <div class="AsDcomName">Comment by<a href="#">Huy Quach</a>- 35 minutes ago</div>
-          <div class="AsDcomDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis. Proin ultricies dignissim ante vitae euismod. Aliquam vitae sem vel nisi posuere molestie eu venenatis urna.</div>
-          <div class="AsDcomRe">
-            <div class="AsDcomRe1"><a href="#">10</a></div>
-            <div class="AsDcomRe2"><a href="#">2</a></div>
-            <div class="AsDcomRe3"><a href="#">Report Abuse</a></div>
-          </div>
+        <div id="list_comments">
+          <h1 class="titleH1"><a href="javascript:;">Answers (<%= @post.comments.size %>)</a></h1>
+          <% @post.comments.each do |c| %>
+            <%= render :partial => "item_answer", :locals => {:comnt => c} %>
+          <% end %>
         </div>
-      </div>
+      <% end %>
     </div>
-    <div class="goback"><a href="#"><span>Go back</span></a></div>
+    <div class="goback" id="go_back"><%= show_go_back %></div>
     <div class="comPage">
-      <span class="compre"><a href="#"> </a></span>
-      <span class="comnext"><a href="#"> </a></span>
+      <span class="compre"><%= link_to "", post_qa_path(@prev) if @prev %> </span>
+      <span class="comnext"><%= link_to "", post_qa_path(@next) if @next %></span>
     </div>
     <div class="AsDOr">
       <h1 class="titleH1">Related Requests Q.As in Q.As Category</h1>
-      <div class="AsDOrItem"><a href="#">Chemistry (Lorem Ipsum Dolor sitamet)</a></div>
-      <div class="AsDOrItem"><a href="#">Sociology (Nulla ac massa id risus ornare condimentum)</a></div>
+      <% PostQa.related_posts(@school).each do |p| %>
+        <div class="AsDOrItem"><%= link_to p.title, post_qa_path(p) %></div>
+      <% end %>
     </div>
     <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
   </div>
@@ -97,3 +87,10 @@
   <!--Recent Request QAs-->
 </div>
 <!--Content-->
+<%= observe_field(:show,
+  :url => { :action => :show_comment },
+  :frequency => 0.5,
+  :update => :list_comments,
+  :with => "'show=' + value + '&post_id=#{@post.id}'")
+%>
+

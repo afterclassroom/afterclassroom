@@ -1,10 +1,7 @@
 <div class="AsDContBtm">
-  <span class="btmComment"><a href="javascript:void();" onclick="$('form_comment').show();">Comment</a></span>
-  <span class="btmMail"><a href="#"><span>Email</span></a></span>
+  <span class="btmAns"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Answer this question</a></span>
+  <span class="btmPre"><a href="#"><span>Prefer to experts</span></a></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
-  <span class="btmFav"><a href="#"><span>Favorite</span></a></span>
-  <span class="btmMore"><%= link_to "<span>More like this</span>", :controller => "post_assignments", :action => "index", :more_like_this_id => post %></span>
-  <% if post.allow_download && post.attach_file_name %>
-    <span class="btmDown"><a href="javascript:downloadFile('<%= post.attach.url %>')" class="downarrow"><span>Download</span></a></span>
-  <% end %>
+  <span class="btmFav" id="post_favorite_<%=  post.id %>"><%= show_favorite_in_detail(post) %></span>
+  <span class="btmAbuse"><a href="#"><span>Report Abuse</span></a></span>
 </div>

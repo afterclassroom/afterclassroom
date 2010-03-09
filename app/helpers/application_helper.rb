@@ -162,7 +162,7 @@ module ApplicationHelper
   def show_favorite_in_detail(post)
     id = "#favorite_action"
     str_login = "You must be #{link_to "logged in", login_url} to favorite this post."
-    str_favorited = "It's already in your favourite list."
+    str_favorited = "It`s already in your favourite list."
     
     if !logged_in?
       link_to("<span id='favorite_action'>Favorite (#{post.favorites.size})</span>", "javascript:;") + "<script>#{tool_tip(id, str_login)}</script>"

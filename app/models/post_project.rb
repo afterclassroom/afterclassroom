@@ -11,10 +11,10 @@ class PostProject < ActiveRecord::Base
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :due_date, :conditions => ["due_date > ?", Time.now], :order => "due_date DESC"
-  named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.post_id = posts.id) > ?", 10]
+  named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.post_id = post_projects.post_id) > ?", 10]
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["id > ?", att]} }
+  named_scope :previous, lambda { |att| {:conditions => ["post_projects.id < ?", att]} }
+  named_scope :next, lambda { |att| {:conditions => ["post_projects.id > ?", att]} }
 
   # Tags
   acts_as_taggable
