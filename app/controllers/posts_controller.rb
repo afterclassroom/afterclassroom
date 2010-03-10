@@ -2,7 +2,7 @@
 class PostsController < ApplicationController
   include Viewable
   
-  before_filter :login_required, :except => [:download]
+  before_filter :login_required, :except => [:rate_comment, :report_abuse, :create_report_abuse, :download]
   
   def create_comment
     post_id = params[:post_id]
@@ -36,6 +36,37 @@ class PostsController < ApplicationController
       <div class="AsDcomRe2">
         <a href="javascript:;">#{comnt.total_bad}</a>
       </div>'
+  end
+
+  def report_abuse
+    @reported_id = params[:reported_id]
+    @reported_type = params[:reported_type]
+    render :layout => false
+  end
+
+  def create_report_abuse
+    reported_id = params[:reported_id]
+    reported_type = params[:reported_type]
+    abuse_type_id = params[:abuse_type_id]
+    abuse_content = params[:abuse_content]
+    
+    report_abuse = ReportAbuse.new
+    report_abuse.reported_id = reported_id
+    report_abuse.reported_type = reported_type
+    report_abuse.report_abuse_category_id = abuse_type_id
+    report_abuse.content = abuse_content
+    report_abuse.reporter_id = current_user.id if current_user
+
+    if report_abuse.save
+      str = %Q'
+        Thank you for your report, we will have someone from our security and ethnic department to look into your report and take action accordingly.<br/>
+        You will get notify once we take action.
+      '
+    else
+      str = 'Error.'
+    end
+
+    render :text => str
   end
 
   def add_to_favorite

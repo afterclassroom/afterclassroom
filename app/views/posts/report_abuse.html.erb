@@ -1,0 +1,13 @@
+<div class="postCont" id="div_send_report">
+  <form name="form_send_report">
+    <%= hidden_field_tag "reported_id", @reported_id %>
+    <%= hidden_field_tag "reported_type", @reported_type %>
+    <div class="postItem">
+      <div class="postInp"><%= select  "abuse_type", "id", ReportAbuseCategory.all.collect{|ct| [ct.name, ct.id] }, {:include_blank => "Type of Abuse"}, {:style => "width:230px"} %></div>
+    </div>
+    <div class="postItem">
+      <div class="postInp"><textarea style="width:230px; height:130px" id="abuse_content" name="content" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" >Content...</textarea></div>
+    </div>
+    <div class="submit"><a href="javascript:;" onclick="sendReportAbuse()">Send</a></div>
+  </form>
+</div>

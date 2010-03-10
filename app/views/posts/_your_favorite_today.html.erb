@@ -1,9 +1,0 @@
-<div id="yourfav">
-  <h3>Your favorite today</h3>
-  <ul id="list_favorites">
-    <% if favorites && favorites.size > 0 %>
-      <%= render :partial => "posts/list_favorite", :locals => {:favorites => favorites} %>
-    <% end %>
-  </ul>
-  <%= link_to "More...", "/posts/list_favorites" if favorites && favorites.size > 0 %>
-</div>

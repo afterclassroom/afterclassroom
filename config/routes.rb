@@ -71,6 +71,8 @@ ActionController::Routing::Routes.draw do |map|
     :collection => {
     :rate_comment => :get,
     :create_comment => :get,
+    :report_abuse => :get,
+    :create_report_abuse => :get,
     :delete_comment => :get,
     :add_to_favorite => :get,
     :add_to_favorite_in_detail => :get,

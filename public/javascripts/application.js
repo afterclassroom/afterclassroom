@@ -170,7 +170,7 @@ function send_comment(post_id){
             success: function(data){
                 $('#list_comments').append(data);
                 $('#comment').val('');
-                goToByScroll('go_back');
+                $('#form_comment').toggle('slow');
             }
         });
     }
@@ -201,6 +201,7 @@ function send_answer(post_id){
 function sendEmail(user_id){
     subject = $('#message_subject').val();
     body = $('#message_body').val();
+
     if (subject != "" && body != ""){
         $.ajax({
             url: '/users/' + user_id + '/messages/send_message',
@@ -214,6 +215,31 @@ function sendEmail(user_id){
             }),
             success: function(data){
                 $('#div_send_message').html(data);
+            }
+        });
+    }
+}
+
+function sendReportAbuse(){
+    reported_id = $('#reported_id').val();
+    reported_type = $('#reported_type').val();
+    abuse_type_id = $('#abuse_type_id').val();
+    abuse_content = $('#abuse_content').val();
+
+    if (reported_id != "" && reported_type != "" && content != ""){
+        $.ajax({
+            url: '/posts/create_report_abuse',
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                reported_id : reported_id,
+                reported_type : reported_type,
+                abuse_type_id : abuse_type_id,
+                abuse_content : abuse_content
+            }),
+            success: function(data){
+                $('#div_send_report').html(data);
             }
         });
     }

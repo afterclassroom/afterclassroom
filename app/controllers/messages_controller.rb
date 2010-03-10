@@ -88,8 +88,12 @@ class MessagesController < ApplicationController
     @message.body = params[:body]
 
     if @message.save
-      render :text => "You sent an email to #{recipient.full_name}."
+      str = "You sent an email to #{recipient.full_name}."
+    else
+      str = "Error."
     end
+
+    render :text => str
   end
   
   private
