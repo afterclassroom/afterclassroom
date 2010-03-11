@@ -39,7 +39,7 @@ class PostJobsController < ApplicationController
   def tag
     tag_id = params[:tag_id]
     @tag = Tag.find(tag_id)
-    @posts = PostBook.paginated_post_conditions_with_tag(params, @school, @tag.name)
+    @posts = PostJob.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
 
   # GET /post_jobs/1
