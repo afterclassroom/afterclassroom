@@ -25,11 +25,25 @@
         <div class="assInfR"><%= link_to "more", post_housing_path(post) %></div>
       </div>
       <div class="assInfB">
-        <div class="qashdU"><a href="#">20</a></div>
-        <div class="qashdD"><a href="#">4</a></div>
-        <div class="fav"><a href="#">Favorite list (10)</a></div>
-        <div class="com"><a href="#">Comments (10)</a></div>
-        <div class="share"><a href="#">Share</a></div>
+        <div id="rate_<%= post.id %>">
+          <div class="qashdU">
+            <% if logged_in? && !PostHousing.find_rated_by(current_user).include?(post.post_housing) %>
+              <%= link_to_remote post.post_housing.total_good, { :update => "rate_#{post.id}", :url => {:controller => "post_housings", :action => "rate", :post_id => post.id, :rating => "1" } } %>
+            <% else %>
+              <%= link_to post.post_housing.total_good, "javascript:;" %>
+            <% end %>
+          </div>
+          <div class="qashdD">
+            <% if logged_in? && !PostHousing.find_rated_by(current_user).include?(post.post_housing) %>
+              <%= link_to_remote post.post_housing.total_bad, { :update => "rate_#{post.id}", :url => {:controller => "post_housings", :action => "rate", :post_id => post.id, :rating => "0" } } %>
+            <% else %>
+              <%= link_to post.post_housing.total_bad, "javascript:;" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="vie"><%= "View (#{post.count_view})" %></div>
+        <div class="fav" id="post_favorite_<%= post.id %>"><%= show_favorite(post) %></div>
+        <div class="com"><%= link_to "Comments (#{post.comments.size})", "#" %></div>
       </div>
     </div>
   </div>
