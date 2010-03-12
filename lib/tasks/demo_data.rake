@@ -8,24 +8,24 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      departments_for_schools
-      create_demo_people
+#      departments_for_schools
+#      create_demo_people
 
       # Begin creating Posts data
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_post_books
-      create_demo_post_tutors
+#      create_demo_posts_assignments
+#      create_demo_posts_tests
+#      create_demo_posts_projects
+#      create_demo_posts_exams
+#      create_demo_posts_myx
+#      create_demo_post_books
+#      create_demo_post_tutors
       create_demo_post_jobs
-      create_demo_post_housings
-      create_demo_post_parties
-      create_demo_posts_teamups
-      create_demo_posts_awarenesses
-      create_demo_posts_foods
-      create_demo_posts_qas
+#      create_demo_post_housings
+#      create_demo_post_parties
+#      create_demo_posts_teamups
+#      create_demo_posts_awarenesses
+#      create_demo_posts_foods
+#      create_demo_posts_qas
 
     end
     
@@ -339,6 +339,8 @@ def create_demo_post_jobs
       
     post_job = PostJob.create do |j|
       j.post = post
+      j.job_type = JobType.find(rand(JobType.count) + 1)
+      j.address=Faker::Address.street_address
       j.responsibilities = responsibilities[rand(responsibilities.size)]
       j.required_skills = required_skills[rand(required_skills.size)]
       j.desirable_skills = desirable_skills[rand(desirable_skills.size)]

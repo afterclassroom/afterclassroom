@@ -1,3 +1,3 @@
-<div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Full time</span></span></a></div>
-<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Part time</span></span></a></div>
-<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Co-op/Intern</span></span></a></div>
+<% JobType.find(:all).each do |jt| %>
+<div class="menuRItem <%= "menuRselect" if @job_type_id && @job_type_id.to_i == jt.id %>"><a href="<%= "#{post_jobs_path}?job_type_id=#{jt.id}" %>"><span class="span1"><span class="span2"><%= jt.name %></span></span></a></div>
+<% end %>

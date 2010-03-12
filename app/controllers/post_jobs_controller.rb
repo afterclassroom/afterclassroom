@@ -15,7 +15,9 @@ class PostJobsController < ApplicationController
       post = Post.find_by_id(id)
       @posts = Post.paginated_post_more_like_this(params, post)
     else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
+      @job_type_id = params[:job_type_id]
+      @job_type_id ||= JobType.find(:first).id
+      @posts = PostJob.paginated_post_conditions_with_option(params, @school, @job_type_id)
     end
 
     respond_to do |format|

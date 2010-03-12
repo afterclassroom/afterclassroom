@@ -4,13 +4,9 @@ class CreateJobTypes < ActiveRecord::Migration
       t.string :name, :null => false
     end
     
-    ["Full-time Permanent",
-      "Full-time Temporary",
-      "Part-time Permanent",
-      "Part-time Temporary",
-      "Contractor/Consultant",
-      "Internship",
-      "Other"
+    ["Full time",
+      "Part time",
+      "Co-op/Intern"
     ].each do |s|
       JobType.new(:name => s).save
     end

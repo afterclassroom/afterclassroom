@@ -9,7 +9,7 @@ class PostJob < ActiveRecord::Base
 
   # Relations
   belongs_to :post
-  has_and_belongs_to_many :job_types
+  belongs_to :job_type
 
   # Tags
   acts_as_taggable
@@ -19,12 +19,34 @@ class PostJob < ActiveRecord::Base
 
   # Named Scope
   named_scope :with_limit, :limit => 5
+  named_scope :with_type, lambda { |tp| {:conditions => ["job_type_id = ?", tp]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   named_scope :previous, lambda { |att| {:conditions => ["post_jobs.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_jobs.id > ?", att]} }
 
+  def self.paginated_post_conditions_with_option(params, school, type_id)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
+
+    post_jobs = PostJob.ez_find(:all, :include => [:post, :job_type]) do |post_job, post, job_type|
+      job_type.id == type_id
+      post.school_id == with_school if with_school
+      post.school_year == year if year
+      post.department_id == department if department
+      post.created_at > Time.now - over.day
+    end
+
+    posts = []
+    post_jobs.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+  
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
     post_as = self.with_school(@school).find_tagged_with(tag_name)

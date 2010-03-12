@@ -2,11 +2,13 @@ class CreatePostJobs < ActiveRecord::Migration
   def self.up
     create_table :post_jobs do |t|
       t.belongs_to :post, :null => false
+      t.belongs_to :job_type
+      t.string :address
       t.boolean :prepare_post
-      t.text :responsibilities, :null => false
-      t.text :required_skills, :null => false
-      t.text :desirable_skills, :null => false
-      t.text :edu_experience_require, :null => false
+      t.text :responsibilities
+      t.text :required_skills
+      t.text :desirable_skills
+      t.text :edu_experience_require
       t.string :compensation
     end
   end
