@@ -4,7 +4,7 @@ class PostFoodsController < ApplicationController
 
   before_filter :get_variables, :only => [:index, :show, :search, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :tag]
-  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy, :rate]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
   after_filter :store_go_back_url, :only => [:index, :search, :tag]
   # GET /post_foods
@@ -22,6 +22,20 @@ class PostFoodsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
+  end
+
+  def rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_tt = post.post_food
+    post_tt.rate rating.to_i, current_user
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post.post_food.total_good}</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post.post_food.total_bad}</a>
+      </div>'
   end
 
   def search

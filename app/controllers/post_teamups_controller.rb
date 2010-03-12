@@ -55,9 +55,21 @@ class PostTeamupsController < ApplicationController
   end
 
 
-  def teamrating
-    @post_teamup = "Refer to Post Myx to complete this object"
+  def rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_tt = post.post_teamup
+    post_tt.rate rating.to_i, current_user
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post.post_teamup.total_good}</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post.post_teamup.total_bad}</a>
+      </div>'
   end
+
+
   
   # GET /post_teamups/1
   # GET /post_teamups/1.xml
