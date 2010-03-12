@@ -264,6 +264,9 @@ def create_demo_post_books
     post_book = PostBook.create do |b|
       b.post = post
       b.book_type = BookType.find(rand(BookType.count) + 1)
+      b.address = Faker::Address.street_address
+      b.email = Faker::Internet.email
+      b.phone = Faker::PhoneNumber.phone_number
       b.price = "500"
       b.currency = currency[rand(currency.size)]
       b.accept_payment = accept_payment[rand(accept_payment.size)]

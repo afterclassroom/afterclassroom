@@ -2,19 +2,21 @@
   <div class="col195in">
     <h1 class="col195Title">Free books</h1>
     <div class="col195Cont">
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet, Integer ac ipsum turpis...</a></div>
-        <div class="dueDTime">Cindy MA</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Proin ultricies dignissim ante vitae euismod...</a></div>
-        <div class="dueDTime">Cindy MA</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Fusce sed sem ipsum, ac dictum dolor...</a></div>
-        <div class="dueDTime">Cindy MA</div>
-      </div>
-      <div class="dueDbutton"><a href="#">View more Free books</a></div>
+      <%
+      book_type = BookType.find_by_name("Free books")
+      free_books = PostBook.with_limit.with_type(book_type.id).with_school(@school)
+    %>
+      <% if free_books.size > 0 %>
+        <%
+        free_books.each do |b|
+        %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(b.post.title, 4), post_book_path(b) %></div>
+            <div class="dueDTime"><%= b.post.user.full_name %></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more Free books", "#{post_books_path}?book_type_id=#{book_type.id}" %></div>
+      <% end %>
     </div>
   </div>
 </div>

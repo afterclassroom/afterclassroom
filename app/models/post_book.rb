@@ -18,12 +18,34 @@ class PostBook < ActiveRecord::Base
 
   # Named Scope
   named_scope :with_limit, :limit => 5
+  named_scope :with_type, lambda { |tp| {:conditions => ["book_type_id = ?", tp]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   named_scope :previous, lambda { |att| {:conditions => ["post_books.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_books.id > ?", att]} }
 
+  def self.paginated_post_conditions_with_option(params, school, type_id)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
+
+    post_books = PostBook.ez_find(:all, :include => [:post, :book_type]) do |post_book, post, book_type|
+      book_type.id == type_id
+      post.school_id == with_school if with_school
+      post.school_year == year if year
+      post.department_id == department if department
+      post.created_at > Time.now - over.day
+    end
+
+    posts = []
+    post_books.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+  
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
     post_as = self.with_school(@school).find_tagged_with(tag_name)
@@ -31,10 +53,38 @@ class PostBook < ActiveRecord::Base
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
+  def self.paginated_post_conditions_with_good_books(params, school)
+    posts = []
+    post_as = self.good_books(school)
+    post_as.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+
+  def self.paginated_post_conditions_with_dont_buy(params, school)
+    posts = []
+    post_as = self.dont_buy(school)
+    post_as.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+  
   def self.related_posts(school)
     posts = []
     post_as = self.with_school(school).random(5)
     post_as.select {|p| posts << p.post}
+    posts
+  end
+
+  def self.good_books(school)
+    posts = []
+    post_tutors = self.with_school(school)
+    post_tutors.select {|p| posts << p if p.score >= 50}
+    posts
+  end
+
+  def self.dont_buy(school)
+    posts = []
+    post_tutors = self.with_school(school)
+    post_tutors.select {|p| posts << p if 0 < p.score && p.score < 50}
     posts
   end
 

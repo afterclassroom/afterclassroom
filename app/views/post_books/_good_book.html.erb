@@ -1,20 +1,21 @@
 <div class="col195 Bookgood">
   <div class="col195in">
-    <h1 class="col195Title">Good books</h1>
+    <h1 class="col195Title">Good Books</h1>
     <div class="col195Cont">
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet, Integer ac ipsum turpis...</a></div>
-        <div class="dueDTime">Cindy MA</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Proin ultricies dignissim ante vitae euismod...</a></div>
-        <div class="dueDTime">Cindy MA</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Fusce sed sem ipsum, ac dictum dolor...</a></div>
-        <div class="dueDTime">Cindy MA</div>
-      </div>
-      <div class="dueDbutton"><a href="#">View more Good books</a></div>
+      <%
+      good_books = PostBook.with_limit.good_books(@school)
+    %>
+      <% if good_books.size > 0 %>
+        <%
+        good_books.each do |b|
+        %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(b.post.title, 4), post_book_path(b) %></div>
+            <div class="dueDTime"><%= b.post.user.full_name %></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more Good books", good_books_post_books_path %></div>
+      <% end %>
     </div>
   </div>
 </div>

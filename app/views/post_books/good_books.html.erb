@@ -1,0 +1,67 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Books", post_books_path, :class => "abLink-detail" %><%= link_to "Good Books", "#", :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contMainL">
+  <div class="col451 Book">
+    <div class="col451in">
+      <div class="col451Cont">
+        <!--Options-->
+        <%= show_options(@school, params, {"book_type_id" => @book_type_id}) %>
+        <!--Options-->
+
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+        <% end %>
+        <!--List Items-->
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="contMainC">
+  <!--Browser Don't Buy-->
+  <%= render :partial => "dont_buy" %>
+  <!--Browser Don't Buy-->
+
+  <!--Browser Good Books-->
+  <%= render :partial => "good_book" %>
+  <!--Browser Good Books-->
+
+  <!--Browser Free Books-->
+  <%= render :partial => "free_book" %>
+  <!--Browser Free Books-->
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Request Book-->
+  <%= render :partial => "form_request_book" %>
+  <!--Request Book-->
+</div>
+<!--Content-->

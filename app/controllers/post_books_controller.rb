@@ -15,7 +15,9 @@ class PostBooksController < ApplicationController
       post = Post.find_by_id(id)
       @posts = Post.paginated_post_more_like_this(params, post)
     else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
+      @book_type_id = params[:book_type_id]
+      @book_type_id ||= BookType.find(:first).id
+      @posts = PostBook.paginated_post_conditions_with_option(params, @school, @book_type_id)
     end
 
     respond_to do |format|
@@ -42,12 +44,25 @@ class PostBooksController < ApplicationController
     @posts = PostBook.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
 
+  def good_books
+    @posts = PostBook.paginated_post_conditions_with_good_books(params, @school)
+  end
+    
+  def dont_buy
+    @posts = PostBook.paginated_post_conditions_with_dont_buy(params, @school)
+  end
+  
   # GET /post_books/1
   # GET /post_books/1.xml
   def show
     @post = Post.find(params[:id])
     @post_book = @post.post_book
     update_view_count(@post)
+    posts_as = PostBook.with_school(@school)
+    as_next = posts_as.next(@post_book.id).first
+    as_prev = posts_as.previous(@post_book.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_book }
@@ -132,7 +147,7 @@ class PostBooksController < ApplicationController
   end
 
   def require_current_user
-    @user ||= PostTutor.find(params[:id]).post.user
+    @user ||= Postbook.find(params[:id]).post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

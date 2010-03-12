@@ -3,10 +3,13 @@ class CreatePostBooks < ActiveRecord::Migration
     create_table :post_books do |t|
       t.belongs_to :post, :null => false
       t.belongs_to :book_type
-      t.string :price, :null => false
+      t.string :address
+      t.string :email
+      t.string :phone
+      t.string :price
       t.string :currency
       t.string :accept_payment
-      t.belongs_to :shipping_method, :null => false
+      t.belongs_to :shipping_method
       t.string :in_stock
     end
   end
