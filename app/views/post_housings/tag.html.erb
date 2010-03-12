@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Books", post_books_path, :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Housing", post_housings_path, :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -12,13 +12,12 @@
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 Book">
+  <div class="col451 student">
     <div class="col451in">
       <div class="col451Cont">
-        <!--Options-->
-        <%= show_options(@school, params) %>
-        <!--Options-->
-
+        <div class="AsDTop">
+          <h1 class="titleH1">Housing</h1>
+        </div>
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
@@ -38,30 +37,30 @@
 
 </div>
 <div class="contMainC">
-  <!--Browser Don't Buy-->
-  <%= render :partial => "dont_buy" %>
-  <!--Browser Don't Buy-->
+  <!--Browser Good House-->
+  <%= render :partial => "goodhouse" %>
+  <!--Browser Good House-->
 
-  <!--Browser Good Books-->
-  <%= render :partial => "good_book" %>
-  <!--Browser Good Books-->
+  <!--Browser Bad House-->
+  <%= render :partial => "badhouse" %>
+  <!--Browser Bad House-->
 
-  <!--Browser Free Books-->
-  <%= render :partial => "free_book" %>
-  <!--Browser Free Books-->
+  <!--Browser Current Market Price-->
+  <%= render :partial => "current_market_price" %>
+  <!--Browser Current Market Price-->
 </div>
 
 <div class="contMainR">
   <!--Browser by Subject-->
-  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
+  <%#= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
   <!--Browser by Subject-->
 
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Request Book-->
-  <%= render :partial => "form_request_book" %>
-  <!--Request Book-->
+  <!--Browser Recent requested to rate-->
+  <%= render :partial => "need_place" %>
+  <!--Browser Recent requested to rate-->
 </div>
 <!--Content-->

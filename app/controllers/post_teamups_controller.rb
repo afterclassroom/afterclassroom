@@ -48,6 +48,13 @@ class PostTeamupsController < ApplicationController
     end
   end
 
+  def tag
+    tag_id = params[:tag_id]
+    @tag = Tag.find(tag_id)
+    @posts = PostTeamup.paginated_post_conditions_with_tag(params, @school, @tag.name)
+  end
+
+
   def teamrating
     @post_teamup = "Refer to Post Myx to complete this object"
   end

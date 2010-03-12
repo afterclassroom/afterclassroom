@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Books", post_books_path, :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Jobs", post_jobs_path, :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -12,7 +12,7 @@
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 Book">
+  <div class="col451 Tutor">
     <div class="col451in">
       <div class="col451Cont">
         <!--Options-->
@@ -38,17 +38,17 @@
 
 </div>
 <div class="contMainC">
-  <!--Browser Don't Buy-->
-  <%= render :partial => "dont_buy" %>
-  <!--Browser Don't Buy-->
+  <!--Browser Bad Bosses-->
+  <%= render :partial => "bad_bosses" %>
+  <!--Browser Bad Bosses-->
 
-  <!--Browser Good Books-->
-  <%= render :partial => "good_book" %>
-  <!--Browser Good Books-->
+  <!--Browser Good Companies-->
+  <%= render :partial => "good_companies" %>
+  <!--Browser Good Companies-->
 
-  <!--Browser Free Books-->
-  <%= render :partial => "free_book" %>
-  <!--Browser Free Books-->
+  <!--Browser Employement Info-->
+  <%= render :partial => "employment_info" %>
+  <!--Browser Employement Info-->
 </div>
 
 <div class="contMainR">
@@ -60,8 +60,12 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Request Book-->
-  <%= render :partial => "form_request_book" %>
-  <!--Request Book-->
+  <!--Request Assignment-->
+  <%= render :partial => "form_request_job" %>
+  <!--Request Assignment-->
+
+  <!--Recent Request Assignments-->
+  <%= render :partial => "recent_request_jobs" %>
+  <!--Recent Request Assignments-->
 </div>
 <!--Content-->
