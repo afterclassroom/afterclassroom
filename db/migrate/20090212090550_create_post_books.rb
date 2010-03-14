@@ -13,6 +13,7 @@ class CreatePostBooks < ActiveRecord::Migration
       t.string :accept_payment
       t.belongs_to :shipping_method
       t.string :in_stock
+      t.string :rating_status
     end
   end
 

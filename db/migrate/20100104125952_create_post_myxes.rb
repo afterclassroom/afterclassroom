@@ -3,6 +3,7 @@ class CreatePostMyxes < ActiveRecord::Migration
     create_table :post_myxes do |t|
       t.belongs_to :post
       t.string :professor
+      t.string :rating_status
     end
 
   end

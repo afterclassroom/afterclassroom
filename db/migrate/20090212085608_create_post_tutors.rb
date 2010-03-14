@@ -10,6 +10,7 @@ class CreatePostTutors < ActiveRecord::Migration
       t.string :currency
       t.datetime :from
       t.datetime :to
+      t.string :rating_status
     end
   end
 

@@ -22,6 +22,24 @@ class PostFood < ActiveRecord::Base
   named_scope :previous, lambda { |att| {:conditions => ["post_foods.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_foods.id > ?", att]} }
 
+  def self.paginated_post_conditions_with_option(params, school)
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
+
+    post_tutors = PostTutor.ez_find(:all, :include => [:post, :tutor_type]) do |post_tutor, post, tutor_type|
+      tutor_type.id == type_id
+      post_tutor.department_id == department if department
+      post_tutor.school_year == year if year
+      post.school_id == with_school if with_school
+      post.created_at > Time.now - over.day
+    end
+
+    posts = []
+    post_tutors.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+  
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
     post_as = self.with_school(@school).find_tagged_with(tag_name)
@@ -51,6 +69,10 @@ class PostFood < ActiveRecord::Base
   end
 
   def total_good
+    self.ratings.count(:conditions => ["rating = ?", 2])
+  end
+
+  def total_cheap_but_good
     self.ratings.count(:conditions => ["rating = ?", 1])
   end
 
@@ -58,8 +80,8 @@ class PostFood < ActiveRecord::Base
     self.ratings.count(:conditions => ["rating = ?", 0])
   end
 
-  def score
-    total = self.total_good + self.total_bad
+  def score_good
+    total = self.total_good + self.total_cheap_but_good + self.total_bad
     (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
   end
 end
