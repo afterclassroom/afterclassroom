@@ -6,7 +6,13 @@ class Department < ActiveRecord::Base
 
   # Relations
   belongs_to :department_category
-  has_many :posts, :dependent => :destroy
+  has_many :post_assignments, :dependent => :destroy
+  has_many :post_projects, :dependent => :destroy
+  has_many :post_tests, :dependent => :destroy
+  has_many :post_exams, :dependent => :destroy
+  has_many :post_books, :dependent => :destroy
+  has_many :post_jobs, :dependent => :destroy
+  has_many :post_tutors, :dependent => :destroy
   has_and_belongs_to_many :schools
 
   # Named Scope

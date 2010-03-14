@@ -19,13 +19,8 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.datetime "created_at"
   end
 
-  create_table "awareness_issues", :force => true do |t|
+  create_table "awareness_types", :force => true do |t|
     t.string "name", :default => "", :null => false
-  end
-
-  create_table "awareness_issues_post_awarenesses", :id => false, :force => true do |t|
-    t.integer "post_awareness_id",  :null => false
-    t.integer "awareness_issue_id", :null => false
   end
 
   create_table "book_types", :force => true do |t|
@@ -120,12 +115,6 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.datetime "updated_at"
   end
 
-  create_table "functional_experiences", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "housing_categories", :force => true do |t|
     t.string "name", :default => "", :null => false
   end
@@ -145,11 +134,6 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "job_types", :force => true do |t|
     t.string "name", :default => "", :null => false
-  end
-
-  create_table "job_types_post_jobs", :id => false, :force => true do |t|
-    t.integer "post_job_id", :null => false
-    t.integer "job_type_id", :null => false
   end
 
   create_table "messages", :force => true do |t|
@@ -245,23 +229,31 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "post_assignments", :force => true do |t|
     t.integer  "post_id"
+    t.integer  "department_id"
+    t.string   "school_year"
     t.string   "professor"
     t.datetime "due_date"
   end
 
   create_table "post_awarenesses", :force => true do |t|
-    t.integer  "post_id",        :null => false
+    t.integer  "post_id",           :null => false
+    t.integer  "awareness_type_id"
     t.datetime "campaign_start"
     t.datetime "campaign_end"
   end
 
   create_table "post_books", :force => true do |t|
-    t.integer "post_id",                            :null => false
+    t.integer "post_id",            :null => false
     t.integer "book_type_id"
-    t.string  "price",              :default => "", :null => false
+    t.integer "department_id"
+    t.string  "school_year"
+    t.string  "address"
+    t.string  "email"
+    t.string  "phone"
+    t.string  "price"
     t.string  "currency"
     t.string  "accept_payment"
-    t.integer "shipping_method_id",                 :null => false
+    t.integer "shipping_method_id"
     t.string  "in_stock"
   end
 
@@ -271,54 +263,48 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "post_exams", :force => true do |t|
     t.integer  "post_id"
+    t.integer  "department_id"
+    t.string   "school_year"
     t.datetime "due_date"
   end
 
   create_table "post_foods", :force => true do |t|
     t.integer "post_id"
-    t.string  "street"
-    t.string  "city"
-    t.string  "state"
+    t.string  "address"
     t.string  "phone"
   end
 
   create_table "post_housings", :force => true do |t|
-    t.integer "post_id",                      :null => false
-    t.string  "rent",         :default => "", :null => false
+    t.integer "post_id",  :null => false
+    t.string  "rent"
     t.string  "currency"
-    t.string  "street"
-    t.string  "intersection"
-    t.string  "city"
-    t.string  "state"
+    t.string  "address"
   end
 
   create_table "post_jobs", :force => true do |t|
     t.integer "post_id",                :null => false
+    t.integer "job_type_id"
+    t.integer "department_id"
+    t.string  "school_year"
+    t.string  "address"
     t.boolean "prepare_post"
-    t.text    "responsibilities",       :null => false
-    t.text    "required_skills",        :null => false
-    t.text    "desirable_skills",       :null => false
-    t.text    "edu_experience_require", :null => false
+    t.text    "responsibilities"
+    t.text    "required_skills"
+    t.text    "desirable_skills"
+    t.text    "edu_experience_require"
     t.string  "compensation"
   end
 
   create_table "post_myxes", :force => true do |t|
     t.integer "post_id"
     t.string  "professor"
-    t.string  "prof_status"
-    t.integer "good"
-    t.integer "bored"
-    t.integer "bad"
   end
 
   create_table "post_parties", :force => true do |t|
-    t.integer  "post_id",                      :null => false
+    t.integer  "post_id",    :null => false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.string   "location",     :default => "", :null => false
-    t.string   "street",       :default => "", :null => false
-    t.string   "intersection", :default => "", :null => false
-    t.string   "city",         :default => "", :null => false
+    t.string   "address"
   end
 
   create_table "post_party_rsvps", :force => true do |t|
@@ -336,6 +322,8 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "post_projects", :force => true do |t|
     t.integer  "post_id"
+    t.integer  "department_id"
+    t.string   "school_year"
     t.datetime "due_date"
   end
 
@@ -349,14 +337,8 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   end
 
   create_table "post_teamups", :force => true do |t|
-    t.integer "post_id",                  :null => false
-    t.integer "teamup_category_id",       :null => false
-    t.string  "opportunity_type"
-    t.string  "position_title"
-    t.string  "expected_time_commit"
-    t.integer "functional_experience_id"
-    t.string  "compensation_offered"
-    t.boolean "teamupType"
+    t.integer "post_id",            :null => false
+    t.integer "teamup_category_id", :null => false
     t.string  "ourStatus"
     t.string  "founded_in"
     t.string  "noOfMember"
@@ -364,12 +346,16 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "post_tests", :force => true do |t|
     t.integer  "post_id"
+    t.integer  "department_id"
+    t.string   "school_year"
     t.datetime "due_date"
   end
 
   create_table "post_tutors", :force => true do |t|
     t.integer  "post_id"
     t.integer  "tutor_type_id"
+    t.integer  "department_id"
+    t.string   "school_year"
     t.string   "address"
     t.string   "per"
     t.string   "currency"
@@ -383,16 +369,13 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.string   "title",               :default => "",   :null => false
     t.text     "description",                           :null => false
     t.integer  "school_id",                             :null => false
-    t.integer  "department_id",                         :null => false
-    t.string   "email",               :default => "",   :null => false
+    t.string   "email"
     t.boolean  "use_this_email"
-    t.string   "telephone"
     t.boolean  "allow_comment",       :default => true
     t.boolean  "allow_response",      :default => true
     t.boolean  "allow_rate",          :default => true
     t.boolean  "allow_download",      :default => true
     t.string   "type_name"
-    t.string   "school_year"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "attach_file_name"

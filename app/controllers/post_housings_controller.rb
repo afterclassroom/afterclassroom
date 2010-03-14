@@ -16,7 +16,9 @@ class PostHousingsController < ApplicationController
       post = Post.find_by_id(id)
       @posts = Post.paginated_post_more_like_this(params, post)
     else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
+      @housing_category_id = params[:housing_category_id]
+      @housing_category_id ||= HousingCategory.find(:first).id
+      @posts = PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
     end
 
     respond_to do |format|

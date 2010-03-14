@@ -23,31 +23,36 @@ class PostQa < ActiveRecord::Base
   named_scope :previous, lambda { |att| {:conditions => ["post_qas.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_qas.id > ?", att]} }
 
-  def self.paginated_post_more_like_this(params, post)
+  def self.paginated_post_conditions_with_option(params, school, type)
+    if type == "answered"
+      posts = self.paginated_post_conditions_with_answered(params, school)
+    else
+      posts = self.paginated_post_conditions_with_asked(params, school)
+    end
+  end
+  
+  def self.paginated_post_more_like_this(params, post_like)
     type = params[:type]
     type ||= "answered"
-    cond = Caboose::EZ::Condition.new :posts do
-      type_name == post.type_name
-      condition :post_qas do
-        fiz =~ '%faz%'
-      end
+    posts_like = PostQa.ez_find(:all, :include => [:post]) do |post_qa, post|
+      post_qa.post_qa_category_id == post_like.post_qa.post_qa_category_id
+      post.school_id == post_like.school_id
     end
-    posts_like = Post.find(:all, :conditions => cond.to_sql(), :order => "created_at DESC")
     arr_p = []
     if type == "answered"
-      posts_like.select {|p| arr_p << p if p.comments.size > 0}
+      posts_like.select {|p| arr_p << p.post if p.post.comments.size > 0}
     else
-      posts_like.select {|p| arr_p << p if p.comments.size == 0}
+      posts_like.select {|p| arr_p << p.post if p.post.comments.size == 0}
     end
     
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
     post_as = self.with_school(school).find_tagged_with(tag_name)
     post_as.select {|p| arr_p << p.post}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
   def self.paginated_post_conditions_with_answered(params, school)

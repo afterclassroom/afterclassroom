@@ -9,6 +9,9 @@ class PostBook < ActiveRecord::Base
   belongs_to :post
   belongs_to :shipping_method
   belongs_to :book_type
+  belongs_to :department
+  has_one :rating_statistic
+  has_many :ratings
 
   # Tags
   acts_as_taggable
@@ -35,14 +38,27 @@ class PostBook < ActiveRecord::Base
 
     post_books = PostBook.ez_find(:all, :include => [:post, :book_type]) do |post_book, post, book_type|
       book_type.id == type_id
+      post_book.department_id == department if department
+      post_book.school_year == year if year
       post.school_id == with_school if with_school
-      post.school_year == year if year
-      post.department_id == department if department
       post.created_at > Time.now - over.day
     end
 
     posts = []
     post_books.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+
+  def self.paginated_post_more_like_this(params, post_like)
+    post_ts = PostBook.ez_find(:all, :include => [:post, :book_type]) do |post_book, post, book_type|
+      book_type.id == post_like.post_book.book_type_id
+      post_book.department_id == post_like.post_book.department_id
+      post_book.school_year == post_like.post_book.school_year
+      post.school_id == post_like.school_id
+    end
+
+    posts = []
+    post_ts.select {|p| posts << p.post}
     posts.paginate :page => params[:page], :per_page => 10
   end
   
@@ -76,15 +92,15 @@ class PostBook < ActiveRecord::Base
 
   def self.good_books(school)
     posts = []
-    post_tutors = self.with_school(school)
-    post_tutors.select {|p| posts << p if p.score >= 50}
+    post_books = self.with_school(school)
+    post_books.select {|p| posts << p if p.score >= 50}
     posts
   end
 
   def self.dont_buy(school)
     posts = []
-    post_tutors = self.with_school(school)
-    post_tutors.select {|p| posts << p if 0 < p.score && p.score < 50}
+    post_books = self.with_school(school)
+    post_books.select {|p| posts << p if 0 < p.score && p.score < 50}
     posts
   end
 

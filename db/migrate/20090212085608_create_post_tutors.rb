@@ -3,6 +3,8 @@ class CreatePostTutors < ActiveRecord::Migration
     create_table :post_tutors do |t|
       t.belongs_to :post
       t.belongs_to :tutor_type
+      t.belongs_to :department
+      t.string :school_year
       t.string :address
       t.string :per
       t.string :currency

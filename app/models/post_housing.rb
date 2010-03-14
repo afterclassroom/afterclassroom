@@ -22,6 +22,28 @@ class PostHousing < ActiveRecord::Base
   named_scope :previous, lambda { |att| {:conditions => ["post_housings.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_housings.id > ?", att]} }
 
+  def self.paginated_post_conditions_with_option(params, school, category_id)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
+    housing_category = HousingCategory.find(category_id)
+    arr_id = housing_category.post_housings.select {|ph| ph.id}
+    post_housings = PostHousing.ez_find(:all, :include => [:post]) do |post_housing, post|
+      id === arr_id
+      post.school_id == with_school if with_school
+      post.school_year == year if year
+      post.department_id == department if department
+      post.created_at > Time.now - over.day
+    end
+
+    posts = []
+    post_housings.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+  
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
     post_as = self.with_school(@school).find_tagged_with(tag_name)

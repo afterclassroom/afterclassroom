@@ -1,3 +1,3 @@
-<div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">House for Rent</span></span></a></div>
-<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Apartment for rent</span></span></a></div>
-<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Room for Share</span></span></a></div>
+<% HousingCategory.find(:all).each do |hc| %>
+<div class="menuRItem <%= "menuRselect" if @housing_category_id && @housing_category_id.to_i == hc.id %>"><a href="<%= "#{post_housings_path}?housing_category_id=#{hc.id}" %>"><span class="span1"><span class="span2"><%= hc.name %></span></span></a></div>
+<% end %>

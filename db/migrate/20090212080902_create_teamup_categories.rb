@@ -4,12 +4,8 @@ class CreateTeamupCategories < ActiveRecord::Migration
       t.string :name, :null => false
     end
     
-    ["Start-up company",
-      "Research team",
-      "Soccer team",
-      "Football team",
-      "Baseball team",
-      "Chess team"
+    ["Teamup for Sports",
+      "Teamup for Student Clubs"
     ].each do |s|
       TeamupCategory.new(:name => s).save
     end

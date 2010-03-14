@@ -7,7 +7,6 @@ class PostTeamup < ActiveRecord::Base
   # Relations
   belongs_to :post
   belongs_to :teamup_category
-  belongs_to :functional_experience
 
   # Tags
   acts_as_taggable
@@ -26,6 +25,32 @@ class PostTeamup < ActiveRecord::Base
   named_scope :previous, lambda { |att| {:conditions => ["post_teampups.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_teamups.id > ?", att]} }
 
+  def self.paginated_post_conditions_with_option(params, school, category_id)
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
+
+    post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category]) do |post_teamup, post, teamup_category|
+      teamup_category.id == category_id
+      post.school_id == with_school if with_school
+    end
+
+    posts = []
+    post_teamups.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+
+  def self.paginated_post_more_like_this(params, post_like)
+    post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category]) do |post_teamup, post, teamup_category|
+      teamup_category.id == post_like.post_teamup.teamup_category_id
+      post.school_id == post_like.id
+    end
+
+    posts = []
+    post_teamups.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+  
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
     post_as = self.with_school(@school).find_tagged_with(tag_name)

@@ -10,6 +10,9 @@ class PostJob < ActiveRecord::Base
   # Relations
   belongs_to :post
   belongs_to :job_type
+  belongs_to :department
+  has_one :rating_statistic
+  has_many :ratings
 
   # Tags
   acts_as_taggable
@@ -36,14 +39,27 @@ class PostJob < ActiveRecord::Base
 
     post_jobs = PostJob.ez_find(:all, :include => [:post, :job_type]) do |post_job, post, job_type|
       job_type.id == type_id
+      post_job.department_id == department if department
+      post_job.school_year == year if year
       post.school_id == with_school if with_school
-      post.school_year == year if year
-      post.department_id == department if department
       post.created_at > Time.now - over.day
     end
 
     posts = []
     post_jobs.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+
+  def self.paginated_post_more_like_this(params, post_like)
+    post_ts = PostJob.ez_find(:all, :include => [:post, :job_type]) do |post_job, post, job_type|
+      job_type.id == post_like.post_job.job_type_id
+      post_job.department_id == post_like.post_job.department_id
+      post_job.school_year == post_like.post_job.school_year
+      post.school_id == post_like.school_id
+    end
+
+    posts = []
+    post_ts.select {|p| posts << p.post}
     posts.paginate :page => params[:page], :per_page => 10
   end
   

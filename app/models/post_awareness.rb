@@ -5,7 +5,7 @@ class PostAwareness < ActiveRecord::Base
   
   # Relations
   belongs_to :post
-  has_and_belongs_to_many :awareness_issues
+  belongs_to :awareness_type
 
   # Tags
   acts_as_taggable

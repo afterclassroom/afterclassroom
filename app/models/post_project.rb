@@ -5,6 +5,7 @@ class PostProject < ActiveRecord::Base
 
   # Relations
   belongs_to :post
+  belongs_to :department
 
   # Named Scope
   named_scope :with_limit, :limit => 5
@@ -18,6 +19,38 @@ class PostProject < ActiveRecord::Base
 
   # Tags
   acts_as_taggable
+
+  def self.paginated_post_conditions_with_option(params, school)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
+
+    post_ts = PostProject.ez_find(:all, :include => [:post]) do |post_project, post|
+      post_project.department_id == department if department
+      post_project.school_year == year if year
+      post.school_id == with_school if with_school
+      post.created_at > Time.now - over.day
+    end
+
+    posts = []
+    post_ts.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+
+  def self.paginated_post_more_like_this(params, post_like)
+    post_ts = PostProject.ez_find(:all, :include => [:post]) do |post_project, post|
+      post_project.department_id == post_like.post_project.department_id
+      post_project.school_year == post_like.post_project.school_year
+      post.school_id == post_like.school_id
+    end
+
+    posts = []
+    post_ts.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
 
   def self.paginated_post_conditions_with_due_date(params, school)
     posts = []

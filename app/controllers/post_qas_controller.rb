@@ -17,11 +17,7 @@ class PostQasController < ApplicationController
       post = Post.find_by_id(id)
       @posts = PostQa.paginated_post_more_like_this(params, post)
     else
-      if @type == "answered"
-        @posts = PostQa.paginated_post_conditions_with_answered(params, @school)
-      else
-        @posts = PostQa.paginated_post_conditions_with_asked(params, @school)
-      end
+      @posts = PostQa.paginated_post_conditions_with_option(params, @school, @type)
     end
 
     respond_to do |format|

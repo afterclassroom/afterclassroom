@@ -2,12 +2,9 @@ class CreatePostHousings < ActiveRecord::Migration
   def self.up
     create_table :post_housings do |t|
       t.belongs_to :post, :null => false
-      t.string :rent, :null => false
+      t.string :rent
       t.string :currency
-      t.string :street
-      t.string :intersection
-      t.string :city
-      t.string :state
+      t.string :address
     end
   end
 
