@@ -9,33 +9,23 @@ class PostTeamupsController < ApplicationController
   after_filter :store_go_back_url, :only => [:index, :search, :tag]
   # GET /post_teamups
   # GET /post_teamups.xml
-  def index
-
-    if params[:teamType].to_s == "club"#teamup for club
-      @posts = PostTeamup.paginated_post_conditions_with_club(params,@school)
-    elsif params[:teamType].to_s == "startup"#team just startup
-      @posts = PostTeamup.paginated_post_conditions_with_juststartup(params,@school)
-    else #team for sport
-      @posts = PostTeamup.paginated_post_conditions_with_sport(params,@school)
+   def index
+    if params[:more_like_this_id]
+      id = params[:more_like_this_id]
+      post = Post.find_by_id(id)
+      @posts = PostTeamup.paginated_post_more_like_this(params, post)
+    else
+      @teamup_category_id = params[:teamup_category_id]
+      @teamup_category_id ||= TeamupCategory.find(:first).id
+      @posts = PostTeamup.paginated_post_conditions_with_option(params, @school, @teamup_category_id)
     end
-    
-    #    if params[:more_like_this_id]
-    #      id = params[:more_like_this_id]
-    #      post = Post.find_by_id(id)
-    #      @posts = Post.paginated_post_more_like_this(params, post)
-    #      @clubs = nil
-    #    else
-    #      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
-    #    end
-
-
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]
