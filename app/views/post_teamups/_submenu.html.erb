@@ -1,6 +1,3 @@
-<%#*<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Team Just Startup</span></span></a></div>%>
-<div class="menuRItem"><span class="span1"><span class="span2"><%=   link_to "Team Just Startup", :controller => "post_teamups", :action => "index", :teamType => "startup" %></span></span></div>
-<div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Teamup for Sports</span></span></a></div>
-<div class="menuRItem"><span class="span1"><span class="span2"><%=   link_to "Teamup for Student Clubs", :controller => "post_teamups", :action => "index", :teamType => "club" %></span></span></div>
-
-<%#*<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Teamup for Student Clubs</span></span></a></div>%>
+<% TeamupCategory.find(:all).each do |tt| %>
+<div class="menuRItem <%= "menuRselect" if @teamup_category_id && @teamup_category_id.to_i == tt.id %>"><a href="<%= "#{post_teamups_path}?teamup_category_id=#{tt.id}" %>"><span class="span1"><span class="span2"><%= tt.name %></span></span></a></div>
+<% end %>
