@@ -57,6 +57,22 @@ class PostTutorsController < ApplicationController
     post = Post.find(params[:post_id])
     post_tt = post.post_tutor
     post_tt.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_tt.score_good
+    score_bad = post_tt.score_bad
+
+    if score_good > score_bad
+      status = "Good"
+    elsif score_good == score_bad
+      status = "Require Rating"
+    else
+      status = "Bad"
+    end
+
+    post_tt.rating_status = status
+
+    post_tt.save
+
     render :text => %Q'
       <div class="qashdU">
         <a href="javascript:;">#{post.post_tutor.total_good}</a>

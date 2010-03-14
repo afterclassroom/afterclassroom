@@ -80,8 +80,13 @@ class PostHousing < ActiveRecord::Base
     self.ratings.count(:conditions => ["rating = ?", 0])
   end
 
-  def score
+  def score_good
     total = self.total_good + self.total_bad
     (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
+  end
+
+  def score_bad
+    total = self.total_good + self.total_bad
+    (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
   end
 end

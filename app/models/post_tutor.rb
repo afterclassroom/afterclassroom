@@ -19,6 +19,7 @@ class PostTutor < ActiveRecord::Base
   # Named Scope
   named_scope :with_limit, :limit => 5
   named_scope :with_type, lambda { |tp| {:conditions => ["tutor_type_id = ?", tp]} }
+  named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
@@ -87,20 +88,14 @@ class PostTutor < ActiveRecord::Base
     posts
   end
 
-  def self.effective_tutors(school)
-    posts = []
+  def self.effective_tutors(school)   
     tutor_type = TutorType.find_by_name("Tutor providers")
-    post_tutors = self.with_type(tutor_type.id).with_school(school)
-    post_tutors.select {|p| posts << p if p.score >= 50}
-    posts
+    post_tutors = self.with_type(tutor_type.id).with_school(school).with_status("Good")
   end
 
   def self.dont_hire(school)
-    posts = []
     tutor_type = TutorType.find_by_name("Tutor providers")
-    post_tutors = self.with_type(tutor_type.id).with_school(school)
-    post_tutors.select {|p| posts << p if 0 < p.score && p.score < 50}
-    posts
+    post_tutors = self.with_type(tutor_type.id).with_school(school).with_status("Bad")
   end
 
   def total_good
@@ -111,9 +106,14 @@ class PostTutor < ActiveRecord::Base
     self.ratings.count(:conditions => ["rating = ?", 0])
   end
 
-  def score
+  def score_good
     total = self.total_good + self.total_bad
     (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
+  end
+
+  def score_bad
+    total = self.total_good + self.total_bad
+    (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
   end
 
   def show_score
