@@ -10,7 +10,7 @@
         tests_due_date.each do |tst|
         %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(tst.post.title, 4), post_test_path(tst) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(tst.post.title, 4), post_test_path(tst.post) %></div>
             <div class="dueDTime"><%= tst.due_date.strftime("%B %d, %Y")%></div>
           </div>
         <%

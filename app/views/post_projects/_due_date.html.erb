@@ -10,7 +10,7 @@
         projects_due_date.each do |pr|
         %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(pr.post.title, 4), post_project_path(pr) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(pr.post.title, 4), post_project_path(pr.post) %></div>
             <div class="dueDTime"><%= pr.due_date.strftime("%B %d, %Y")%></div>
           </div>
         <%

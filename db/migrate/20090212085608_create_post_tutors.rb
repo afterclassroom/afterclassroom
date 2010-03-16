@@ -6,6 +6,7 @@ class CreatePostTutors < ActiveRecord::Migration
       t.belongs_to :department
       t.string :school_year
       t.string :address
+      t.string :phone
       t.string :per
       t.string :currency
       t.datetime :from

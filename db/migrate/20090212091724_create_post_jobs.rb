@@ -6,6 +6,7 @@ class CreatePostJobs < ActiveRecord::Migration
       t.belongs_to :department
       t.string :school_year
       t.string :address
+      t.string :phone
       t.boolean :prepare_post
       t.text :responsibilities
       t.text :required_skills

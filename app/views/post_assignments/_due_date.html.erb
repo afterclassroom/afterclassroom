@@ -10,7 +10,7 @@
         assignments_due_date.each do |asg|
         %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(asg.post.title, 4), post_assignment_path(asg) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(asg.post.title, 4), post_assignment_path(asg.post) %></div>
             <div class="dueDTime"><%= asg.due_date.strftime("%B %d, %Y")%></div>
           </div>
         <%

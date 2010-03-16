@@ -123,7 +123,7 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :tag => :get, :good_book => :get, :dont_buy => :get, :rate => :get
   }
   map.resources :post_tutors, :collection => {
-    :search => :get, :tag => :get, :effective => :get, :dont_hire => :get, :rate => :get
+    :search => :get, :tag => :get, :effective => :get, :dont_hire => :get, :rate => :get, :require_rate => :get
   }
   map.resources :post_housings, :collection => {
     :search => :get, :tag => :get

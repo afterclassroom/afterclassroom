@@ -245,8 +245,36 @@ function sendReportAbuse(){
     }
 }
 
+function requireRating(post_id, path){
+    rating = $('input[name=rating]:checked').val();
+
+    if (rating != ""){
+        $.ajax({
+            url: path,
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                rating : rating,
+                post_id : post_id
+            }),
+            success: function(data){
+                $('#require_rating_action').html(data);
+            }
+        });
+    }
+}
+
+function showResult(){
+    $('[rel=rate]').each(function(index){
+        $(this).show();
+    });
+    
+    $('#view_results').hide();
+}
+
 function goToByScroll(id){
     $('html,body').animate({
         scrollTop: $("#"+id).offset().top
-        },'slow');
+    },'slow');
 }

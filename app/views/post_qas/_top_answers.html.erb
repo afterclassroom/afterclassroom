@@ -7,7 +7,7 @@
     %>
       <% top_answers.each do |qa| %>
       <div class="dueDItem">
-        <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa) %></div>
+        <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa.post) %></div>
       </div>
       <% end %>
       <div class="dueDbutton"><%= link_to "View more Top answered topics", top_answer_post_qas_path %></div>

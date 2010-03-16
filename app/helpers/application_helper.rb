@@ -187,6 +187,16 @@ module ApplicationHelper
     link_to "<span>Go back</span>", session[:go_back_url]
   end
 
+  def show_submit_rating(post_id, path)
+    id = "#submit_rating"
+    str_login = "You must be #{link_to "logged in", login_url} to poll."
+    if !logged_in?
+      link_to("<span id='submit_rating'>Submit</span>", "javascript:;") + "<script>#{tool_tip(id, str_login)}</script>"
+    else
+      link_to("<span>Submit</span>", "javascript:;", :onclick => "requireRating('#{post_id}', '#{path}');")
+    end
+  end
+
   private
 
   def tool_tip(id, content)

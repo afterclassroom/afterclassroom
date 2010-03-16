@@ -10,7 +10,7 @@
         effective_tutors.each do |tt|
         %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_tutor_path(tt) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_tutor_path(tt.post) %></div>
           </div>
         <% end %>
         <div class="dueDbutton"><%= link_to "View more Effective Tutors", effective_post_tutors_path %></div>

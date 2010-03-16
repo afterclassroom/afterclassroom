@@ -3,6 +3,7 @@ class CreatePostFoods < ActiveRecord::Migration
     create_table :post_foods do |t|
       t.belongs_to :post
       t.string :address
+      t.string :phone
       t.string :rating_status
     end
   end

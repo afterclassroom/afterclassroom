@@ -8,7 +8,7 @@
       <% if interesting_projects.size > 0 %>
         <% interesting_projects.each do |p| %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(p.post.title, 4), post_project_path(p) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(p.post.title, 4), post_project_path(p.post) %></div>
             <div class="dueDTime"><%= p.post.created_at.strftime("%B %d, %Y")%></div>
           </div>
         <% end %>

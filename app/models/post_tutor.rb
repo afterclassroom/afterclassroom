@@ -98,6 +98,11 @@ class PostTutor < ActiveRecord::Base
     post_tutors = self.with_type(tutor_type.id).with_school(school).with_status("Bad")
   end
 
+  def self.require_rating(school)
+    tutor_type = TutorType.find_by_name("Tutor providers")
+    post_tutors = self.with_type(tutor_type.id).with_school(school).with_status("Require Rating").random(1)
+  end
+
   def total_good
     self.ratings.count(:conditions => ["rating = ?", 1])
   end

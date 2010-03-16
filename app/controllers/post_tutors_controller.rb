@@ -4,7 +4,7 @@ class PostTutorsController < ApplicationController
 
   before_filter :get_variables, :only => [:index, :show, :search, :tag, :effective, :dont_hire]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :effective, :dont_hire]
-  before_filter :require_current_user, :only => [:edit, :update, :destroy, :rate]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :effective, :dont_hire]
   after_filter :store_go_back_url, :only => [:index, :search, :tag, :effective, :dont_hire]
   # GET /post_tutors
@@ -80,6 +80,34 @@ class PostTutorsController < ApplicationController
       <div class="qashdD">
         <a href="javascript:;">#{post.post_tutor.total_bad}</a>
       </div>'
+  end
+
+  def require_rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_tt = post.post_tutor
+    if !PostTutor.find_rated_by(current_user).include?(post_tt)
+      post_tt.rate rating.to_i, current_user
+      # Update rating status
+      score_good = post_tt.score_good
+      score_bad = post_tt.score_bad
+
+      if score_good > score_bad
+        status = "Good"
+      elsif score_good == score_bad
+        status = "Require Rating"
+      else
+        status = "Bad"
+      end
+
+      post_tt.rating_status = status
+
+      post_tt.save
+    end
+
+    render :text => %Q'
+      <div class="QAsDet">Good <strong>(#{post_tt.total_good})</strong></div>
+      <div class="QAsDet">Bad <strong>(#{post_tt.total_bad})</strong></div>'
   end
   
   # GET /post_tutors/1

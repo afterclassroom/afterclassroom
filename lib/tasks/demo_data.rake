@@ -8,24 +8,24 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      departments_for_schools
-      create_demo_people
+#      departments_for_schools
+#      create_demo_people
 
       # Begin creating Posts data
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_post_books
+#      create_demo_posts_assignments
+#      create_demo_posts_tests
+#      create_demo_posts_projects
+#      create_demo_posts_exams
+#      create_demo_posts_myx
+#      create_demo_post_books
       create_demo_post_tutors
-      create_demo_post_jobs
-      create_demo_post_housings
-      create_demo_post_parties
-      create_demo_posts_teamups
-      create_demo_posts_awarenesses
-      create_demo_posts_foods
-      create_demo_posts_qas
+#      create_demo_post_jobs
+#      create_demo_post_housings
+#      create_demo_post_parties
+#      create_demo_posts_teamups
+#      create_demo_posts_awarenesses
+#      create_demo_posts_foods
+#      create_demo_posts_qas
 
     end
     
@@ -239,6 +239,7 @@ def create_demo_post_tutors
       t.department = school.departments.find(:first)
       t.school_year = schoolyear[rand(schoolyear.size)]
       t.address = Faker::Address.street_address
+      t.phone = Faker::PhoneNumber.phone_number
       t.per = per[rand(per.size)]
       t.currency = currency[rand(currency.size)]
       t.from = DateTime.now
@@ -269,6 +270,7 @@ def create_demo_post_jobs
       j.department = school.departments.find(:first)
       j.school_year = schoolyear[rand(schoolyear.size)]
       j.address=Faker::Address.street_address
+      j.phone = Faker::PhoneNumber.phone_number
       j.responsibilities = responsibilities[rand(responsibilities.size)]
       j.required_skills = required_skills[rand(required_skills.size)]
       j.desirable_skills = desirable_skills[rand(desirable_skills.size)]
