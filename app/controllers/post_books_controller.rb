@@ -51,6 +51,64 @@ class PostBooksController < ApplicationController
   def dont_buy
     @posts = PostBook.paginated_post_conditions_with_dont_buy(params, @school)
   end
+
+  def rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_b = post.post_book
+    post_b.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_b.score_good
+    score_bad = post_b.score_bad
+
+    if score_good > score_bad
+      status = "Good"
+    elsif score_good == score_bad
+      status = "Require Rating"
+    else
+      status = "Bad"
+    end
+
+    post_b.rating_status = status
+
+    post_b.save
+
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post.post_book.total_good}</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post.post_book.total_bad}</a>
+      </div>'
+  end
+
+  def require_rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_b = post.post_book
+    if !PostBook.find_rated_by(current_user).include?(post_b)
+      post_b.rate rating.to_i, current_user
+      # Update rating status
+      score_good = post_b.score_good
+      score_bad = post_b.score_bad
+
+      if score_good > score_bad
+        status = "Good"
+      elsif score_good == score_bad
+        status = "Require Rating"
+      else
+        status = "Bad"
+      end
+
+      post_b.rating_status = status
+
+      post_b.save
+    end
+
+    render :text => %Q'
+      <div class="QAsDet">Good <strong>(#{post_b.total_good})</strong></div>
+      <div class="QAsDet">Bad <strong>(#{post_b.total_bad})</strong></div>'
+  end
   
   # GET /post_books/1
   # GET /post_books/1.xml

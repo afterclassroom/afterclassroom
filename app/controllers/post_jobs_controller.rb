@@ -2,11 +2,11 @@
 class PostJobsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :tag]
+  after_filter :store_location, :only => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
+  after_filter :store_go_back_url, :only => [:index, :search, :tag, :good_companies, :bad_bosses]
   # GET /post_jobs
   # GET /post_jobs.xml
   def index
@@ -44,6 +44,72 @@ class PostJobsController < ApplicationController
     @posts = PostJob.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
 
+  def good_companies
+    @posts = PostJob.paginated_post_conditions_with_good_companies(params, @school)
+  end
+
+  def bad_bosses
+    @posts = PostJob.paginated_post_conditions_with_bad_bosses(params, @school)
+  end
+
+  def rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_j = post.post_job
+    post_j.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_j.score_good
+    score_bad = post_j.score_bad
+
+    if score_good > score_bad
+      status = "Good"
+    elsif score_good == score_bad
+      status = "Require Rating"
+    else
+      status = "Bad"
+    end
+
+    post_j.rating_status = status
+
+    post_j.save
+
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post.post_job.total_good}</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post.post_job.total_bad}</a>
+      </div>'
+  end
+
+  def require_rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_j = post.post_job
+    if !PostJob.find_rated_by(current_user).include?(post_j)
+      post_j.rate rating.to_i, current_user
+      # Update rating status
+      score_good = post_j.score_good
+      score_bad = post_j.score_bad
+
+      if score_good > score_bad
+        status = "Good"
+      elsif score_good == score_bad
+        status = "Require Rating"
+      else
+        status = "Bad"
+      end
+
+      post_j.rating_status = status
+
+      post_j.save
+    end
+
+    render :text => %Q'
+      <div class="QAsDet">Good <strong>(#{post_j.total_good})</strong></div>
+      <div class="QAsDet">Bad <strong>(#{post_j.total_bad})</strong></div>'
+  end
+  
   # GET /post_jobs/1
   # GET /post_jobs/1.xml
   def show

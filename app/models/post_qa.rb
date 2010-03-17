@@ -16,6 +16,7 @@ class PostQa < ActiveRecord::Base
   named_scope :with_limit, :limit => 5
   named_scope :with_category, lambda { |c| {:conditions => ["post_qa_category_id = ?", c]} }
   named_scope :recent, {:joins => :post, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0], :order => "created_at DESC"}
+  named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.post_id = post_qas.post_id) > ?", 10]
   named_scope :top_answer, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 10]
@@ -94,6 +95,10 @@ class PostQa < ActiveRecord::Base
     post_as = self.with_school(school).random(5)
     post_as.select {|p| posts << p.post}
     posts
+  end
+
+  def self.require_rating(school)
+    post_qas = self.with_school(school).with_status("Require Rating").random(1)
   end
 
   def total_good

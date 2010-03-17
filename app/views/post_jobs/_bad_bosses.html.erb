@@ -2,19 +2,19 @@
   <div class="col195in">
     <h1 class="col195Title">Bad bosses</h1>
     <div class="col195Cont">
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
-        <div class="dueDTime">Company Limited Name</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Proin ultricies dignissim </a></div>
-        <div class="dueDTime">Company Limited Name</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Proin ultricies dignissim </a></div>
-        <div class="dueDTime">Company Limited Name</div>
-      </div>
-      <div class="dueDbutton"><a href="#">View more Bad bosses</a></div>
+      <%
+      bad_bosses = PostJob.with_limit.bad_bosses(@school)
+    %>
+      <% if bad_bosses.size > 0 %>
+        <%
+        bad_bosses.each do |tt|
+        %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_job_path(tt.post) %></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more Bad bosses", bad_bosses_post_jobs_path %></div>
+      <% end %>
     </div>
   </div>
 </div>

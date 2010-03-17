@@ -23,6 +23,7 @@ class PostJob < ActiveRecord::Base
   # Named Scope
   named_scope :with_limit, :limit => 5
   named_scope :with_type, lambda { |tp| {:conditions => ["job_type_id = ?", tp]} }
+  named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
@@ -70,6 +71,20 @@ class PostJob < ActiveRecord::Base
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
+  def self.paginated_post_conditions_with_good_companies(params, school)
+    posts = []
+    post_as = self.good_companies(school)
+    post_as.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+
+  def self.paginated_post_conditions_with_bad_bosses(params, school)
+    posts = []
+    post_as = self.bad_bosses(school)
+    post_as.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+
   def self.related_posts(school)
     posts = []
     post_as = self.with_school(school).random(5)
@@ -77,20 +92,18 @@ class PostJob < ActiveRecord::Base
     posts
   end
 
-  def self.goods
-    posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score >= 50}
-    posts
+  def self.good_companies(school)
+    post_jobs = self.with_school(school).with_status("Good")
   end
 
-  def self.bads
-    posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score < 50}
-    posts
+  def self.bad_bosses(school)
+    post_jobs = self.with_school(school).with_status("Bad")
   end
 
+  def self.require_rating(school)
+    post_jobs = self.with_school(school).with_status("Require Rating").random(1)
+  end
+  
   def total_good
     self.ratings.count(:conditions => ["rating = ?", 1])
   end

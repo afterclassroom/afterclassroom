@@ -22,6 +22,7 @@ class PostBook < ActiveRecord::Base
   # Named Scope
   named_scope :with_limit, :limit => 5
   named_scope :with_type, lambda { |tp| {:conditions => ["book_type_id = ?", tp]} }
+  named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
@@ -91,31 +92,15 @@ class PostBook < ActiveRecord::Base
   end
 
   def self.good_books(school)
-    posts = []
-    post_books = self.with_school(school)
-    post_books.select {|p| posts << p if p.score >= 50}
-    posts
+    post_books = self.with_school(school).with_status("Good")
   end
 
   def self.dont_buy(school)
-    posts = []
-    post_books = self.with_school(school)
-    post_books.select {|p| posts << p if 0 < p.score && p.score < 50}
-    posts
+   post_books = self.with_school(school).with_status("Bad")
   end
 
-  def self.goods
-    posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score >= 50}
-    posts
-  end
-
-  def self.bads
-    posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score < 50}
-    posts
+  def self.require_rating(school)
+    post_books = self.with_school(school).with_status("Require Rating").random(1)
   end
 
   def total_good

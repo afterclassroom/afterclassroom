@@ -2,19 +2,19 @@
   <div class="col195in">
     <h1 class="col195Title">Good companies</h1>
     <div class="col195Cont">
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
-        <div class="dueDTime">Company Limited Name</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
-        <div class="dueDTime">Company Limited Name</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
-        <div class="dueDTime">Company Limited Name</div>
-      </div>
-      <div class="dueDbutton"><a href="#">View more Good companies</a></div>
+      <%
+      good_companies = PostJob.with_limit.good_companies(@school)
+    %>
+      <% if good_companies.size > 0 %>
+        <%
+        good_companies.each do |tt|
+        %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_job_path(tt.post) %></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more Good companies", good_companies_post_jobs_path %></div>
+      <% end %>
     </div>
   </div>
 </div>

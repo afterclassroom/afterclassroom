@@ -59,8 +59,24 @@ class PostQasController < ApplicationController
   def rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
-    post_tt = post.post_qa
-    post_tt.rate rating.to_i, current_user
+    post_q = post.post_qa
+    post_q.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_q.score_good
+    score_bad = post_q.score_bad
+
+    if score_good > score_bad
+      status = "Good"
+    elsif score_good == score_bad
+      status = "Require Rating"
+    else
+      status = "Bad"
+    end
+
+    post_q.rating_status = status
+
+    post_q.save
+
     render :text => %Q'
       <div class="qashdU">
         <a href="javascript:;">#{post.post_qa.total_good}</a>
@@ -68,6 +84,34 @@ class PostQasController < ApplicationController
       <div class="qashdD">
         <a href="javascript:;">#{post.post_qa.total_bad}</a>
       </div>'
+  end
+
+  def require_rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_q = post.post_qa
+    if !PostQa.find_rated_by(current_user).include?(post_q)
+      post_q.rate rating.to_i, current_user
+      # Update rating status
+      score_good = post_q.score_good
+      score_bad = post_q.score_bad
+
+      if score_good > score_bad
+        status = "Good"
+      elsif score_good == score_bad
+        status = "Require Rating"
+      else
+        status = "Bad"
+      end
+
+      post_q.rating_status = status
+
+      post_q.save
+    end
+
+    render :text => %Q'
+      <div class="QAsDet">Good <strong>(#{post_q.total_good})</strong></div>
+      <div class="QAsDet">Bad <strong>(#{post_q.total_bad})</strong></div>'
   end
 
   # GET /post_qas/1
