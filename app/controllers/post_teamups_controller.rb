@@ -146,7 +146,7 @@ class PostTeamupsController < ApplicationController
   def get_variables
     @tags = PostTeamup.tag_counts
     @new_post_path = new_post_teamup_path
-    @type = PostCategory.find_by_name("Team Up").id
+    @type = PostCategory.find_by_class_name("PostTeamup").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end

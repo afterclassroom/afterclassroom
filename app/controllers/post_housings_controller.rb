@@ -143,7 +143,7 @@ class PostHousingsController < ApplicationController
   def get_variables
     @tags = PostHousing.tag_counts
     @new_post_path = new_post_housing_path
-    @type = PostCategory.find_by_name("Housing").id
+    @type = PostCategory.find_by_class_name("PostHousing").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end

@@ -145,7 +145,7 @@ class PostProjectsController < ApplicationController
   def get_variables
     @tags = PostProject.tag_counts
     @new_post_path = new_post_project_path
-    @type = PostCategory.find_by_name("Projects").id
+    @type = PostCategory.find_by_class_name("PostProject").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end

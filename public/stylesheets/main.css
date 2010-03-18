@@ -2285,20 +2285,22 @@ span.btmCom a:hover{
 div.posterC{
     margin:0px 10px;
 }
-.posterL, .posterC, .posterR{
+.posterL {
     float:left;
+    padding-bottom:7px;
+    padding-left:4px;
+    padding-right:3px;
     width:51px;
 }
-.posterL div, .posterC div, .posterR div{
+.posterL div{
     padding:3px;
     background:url('/images/bgi-col300.png') no-repeat;
 }
-.posterL a:hover div, .posterC a:hover div, .posterR a:hover div{
+.posterL a:hover div{
     padding:3px;
     background:url('/images/bgi-col300H.png') no-repeat;
 }
-
-.posterL img, .posterC img, .posterR img{
+.posterL img{
     border:0px;
     width:45px;
     height:45px;

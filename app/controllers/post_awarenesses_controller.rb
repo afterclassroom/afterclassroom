@@ -133,7 +133,7 @@ class PostAwarenessesController < ApplicationController
   def get_variables
     @tags = PostAwareness.tag_counts
     @new_post_path = new_post_awareness_path
-    @type = PostCategory.find_by_name("Student Awareness").id
+    @type = PostCategory.find_by_class_name("PostAwareness").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end

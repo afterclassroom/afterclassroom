@@ -255,10 +255,12 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.string  "accept_payment"
     t.integer "shipping_method_id"
     t.string  "in_stock"
+    t.string  "rating_status"
   end
 
   create_table "post_categories", :force => true do |t|
-    t.string "name", :default => "", :null => false
+    t.string "name",       :default => "", :null => false
+    t.string "class_name", :default => "", :null => false
   end
 
   create_table "post_exams", :force => true do |t|
@@ -272,6 +274,7 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.integer "post_id"
     t.string  "address"
     t.string  "phone"
+    t.string  "rating_status"
   end
 
   create_table "post_housings", :force => true do |t|
@@ -287,24 +290,28 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.integer "department_id"
     t.string  "school_year"
     t.string  "address"
+    t.string  "phone"
     t.boolean "prepare_post"
     t.text    "responsibilities"
     t.text    "required_skills"
     t.text    "desirable_skills"
     t.text    "edu_experience_require"
     t.string  "compensation"
+    t.string  "rating_status"
   end
 
   create_table "post_myxes", :force => true do |t|
     t.integer "post_id"
     t.string  "professor"
+    t.string  "rating_status"
   end
 
   create_table "post_parties", :force => true do |t|
-    t.integer  "post_id",    :null => false
+    t.integer  "post_id",       :null => false
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "address"
+    t.string   "rating_status"
   end
 
   create_table "post_party_rsvps", :force => true do |t|
@@ -357,10 +364,12 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.integer  "department_id"
     t.string   "school_year"
     t.string   "address"
+    t.string   "phone"
     t.string   "per"
     t.string   "currency"
     t.datetime "from"
     t.datetime "to"
+    t.string   "rating_status"
   end
 
   create_table "posts", :force => true do |t|

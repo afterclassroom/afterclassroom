@@ -4,19 +4,15 @@ class PostFoodsController < ApplicationController
 
   before_filter :get_variables, :only => [:index, :show, :search, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :tag]
-  before_filter :require_current_user, :only => [:edit, :update, :destroy, :rate]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
   after_filter :store_go_back_url, :only => [:index, :search, :tag]
   # GET /post_foods
   # GET /post_foods.xml
   def index  
-    if params[:more_like_this_id]
-      id = params[:more_like_this_id]
-      post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
-    else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
-    end
+    @rating_status = params[:rating_status]
+    @rating_status ||= ""
+    @posts = PostFood.paginated_post_conditions_with_option(params, @school, @rating_status)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,14 +23,70 @@ class PostFoodsController < ApplicationController
   def rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
-    post_tt = post.post_food
-    post_tt.rate rating.to_i, current_user
+    post_f = post.post_food
+    post_f.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_f.score_good
+    score_cheap_but_good = post_f.score_cheap_but_good
+    score_bad = post_f.score_bad
+
+    if score_good == score_cheap_but_good && score_cheap_but_good == score_bad
+      status = "Require Rating"
+    else
+      sort_rating_status = {"Good" => score_good, "Cheap but Good" => score_cheap_but_good, "Bad" => score_bad}
+      arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+      status = arr_rating_status.last.first
+    end
+
+    post_f.rating_status = status
+
+    post_f.save
+
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post.post_food.total_good}</a>
+        <a href="javascript:;">#{post_f.total_good}</a>
+      </div>
+      <div class="cheap">
+        <a href="javascript:;">Cheap but Good(#{post_f.total_cheap_but_good})</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post.post_food.total_bad}</a>
+        <a href="javascript:;">#{post_f.total_bad}</a>
+      </div>'
+  end
+
+  def require_rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_f = post.post_food
+    if !PostFood.find_rated_by(current_user).include?(post_f)
+      post_f.rate rating.to_i, current_user
+      # Update rating status
+      score_good = post_f.score_good
+      score_cheap_but_good = post_f.score_cheap_but_good
+      score_bad = post_f.score_bad
+
+      if score_good == score_cheap_but_good && score_cheap_but_good == score_bad
+        status = "Require Rating"
+      else
+        sort_rating_status = {"Good" => score_good, "Cheap but Good" => score_cheap_but_good, "Bad" => score_bad}
+        arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+        status = arr_rating_status.last.first
+      end
+
+      post_f.rating_status = status
+
+      post_f.save
+    end
+
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post_f.total_good}</a>
+      </div>
+      <div class="cheap">
+        <a href="javascript:;">Cheap but Good(#{post_f.total_cheap_but_good})</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post_f.total_bad}</a>
       </div>'
   end
 
@@ -61,20 +113,20 @@ class PostFoodsController < ApplicationController
   # GET /post_foods/1.xml
   def show
     @post = Post.find(params[:id])
-    @post_qa = @post.post_qa
+    @post_food = @post.post_food
     update_view_count(@post)
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_qa }
+      format.xml  { render :xml => @post_food }
     end
   end
 
   # GET /post_foods/new
   # GET /post_foods/new.xml
   def new
-    @post_qa = PostBook.new
+    @post_food = PostBook.new
     post = Post.new
-    @post_qa.post = post
+    @post_food.post = post
     @post_categories = PostCategory.find(:all)
     @post_category_name = "Books"
     @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
@@ -83,32 +135,32 @@ class PostFoodsController < ApplicationController
     @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @post_qa }
+      format.xml  { render :xml => @post_food }
     end
   end
 
   # GET /post_foods/1/edit
   def edit
-    @post_qa = PostBook.find(params[:id])
-    @post = @post_qa.post
+    @post_food = PostBook.find(params[:id])
+    @post = @post_food.post
     @post_categories = PostCategory.find(:all)
     @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
     @currency = ['USD', 'CAD']
     @shipping_methods = ShippingMethod.find(:all)
     @countries = Country.has_cities
-    @school = @post_qa.post.school
-    @department = @post_qa.post.department
+    @school = @post_food.post.school
+    @department = @post_food.post.department
   end
 
   # POST /post_foods
   # POST /post_foods.xml
   def create
-    @post_qa = PostBook.new(params[:post_qa])
+    @post_food = PostBook.new(params[:post_food])
     post = Post.new(params[:post])
     post.user = current_user
     post.save
-    @post_qa.post = post
-    if @post_qa.save
+    @post_food.post = post
+    if @post_food.save
       redirect_to my_post_user_url(current_user)
     end
   end
@@ -116,9 +168,9 @@ class PostFoodsController < ApplicationController
   # PUT /post_foods/1
   # PUT /post_foods/1.xml
   def update
-    @post_qa = PostBook.find(params[:id])
+    @post_food = PostBook.find(params[:id])
 
-    if (@post_qa.update_attributes(params[:post_qa]) && @post_qa.post.update_attributes(params[:post]))
+    if (@post_food.update_attributes(params[:post_food]) && @post_food.post.update_attributes(params[:post]))
       redirect_to my_post_user_url(current_user)
     end
   end
@@ -126,8 +178,8 @@ class PostFoodsController < ApplicationController
   # DELETE /post_foods/1
   # DELETE /post_foods/1.xml
   def destroy
-    @post_qa = PostBook.find(params[:id])
-    @post_qa.destroy
+    @post_food = PostBook.find(params[:id])
+    @post_food.destroy
 
     redirect_to my_post_user_url(current_user)
   end
@@ -136,8 +188,8 @@ class PostFoodsController < ApplicationController
 
   def get_variables
     @tags = PostFood.tag_counts
-    @new_post_path = new_post_qa_path
-    @type = PostCategory.find_by_name("Foods").id
+    @new_post_path = new_post_food_path
+    @type = PostCategory.find_by_class_name("PostFood").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end

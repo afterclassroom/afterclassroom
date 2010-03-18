@@ -8,24 +8,24 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-#      departments_for_schools
-#      create_demo_people
+      departments_for_schools
+      create_demo_people
 
       # Begin creating Posts data
-#      create_demo_posts_assignments
-#      create_demo_posts_tests
-#      create_demo_posts_projects
-#      create_demo_posts_exams
-#      create_demo_posts_myx
-#      create_demo_post_books
+      create_demo_posts_assignments
+      create_demo_posts_tests
+      create_demo_posts_projects
+      create_demo_posts_exams
+      create_demo_posts_myx
+      create_demo_post_books
       create_demo_post_tutors
-#      create_demo_post_jobs
-#      create_demo_post_housings
-#      create_demo_post_parties
-#      create_demo_posts_teamups
-#      create_demo_posts_awarenesses
-#      create_demo_posts_foods
-#      create_demo_posts_qas
+      create_demo_post_jobs
+      create_demo_post_housings
+      create_demo_post_parties
+      create_demo_posts_teamups
+      create_demo_posts_awarenesses
+      create_demo_posts_foods
+      create_demo_posts_qas
 
     end
     
@@ -89,7 +89,8 @@ def create_demo_people
 end
 
 def create_demo_posts_assignments
-  post_category = PostCategory.find_by_name("Assignments")
+  type_name = "PostAssignment"
+  post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   
   200.times do
@@ -111,7 +112,8 @@ def create_demo_posts_assignments
 end
 
 def create_demo_posts_tests
-  post_category = PostCategory.find_by_name("Tests")
+  type_name = "PostTest"
+  post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   
   200.times do
@@ -132,7 +134,8 @@ def create_demo_posts_tests
 end
 
 def create_demo_posts_projects
-  post_category = PostCategory.find_by_name("Projects")
+  type_name = "PostProject"
+  post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   
   200.times do
@@ -153,7 +156,8 @@ def create_demo_posts_projects
 end
 
 def create_demo_posts_exams
-  post_category = PostCategory.find_by_name("Exams")
+  type_name = "PostExam"
+  post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
 
   200.times do
@@ -174,7 +178,8 @@ def create_demo_posts_exams
 end
 
 def create_demo_posts_myx
-  post_category = PostCategory.find_by_name("MyX")
+  type_name = "PostMyx"
+  post_category = PostCategory.find_by_class_name(type_name)
   prof_status = ["Best of the best", "Good", "Bored", "Worse"]
 
   200.times do
@@ -192,7 +197,8 @@ def create_demo_posts_myx
 end
 
 def create_demo_post_books
-  post_category = PostCategory.find_by_name("Books")
+  type_name = "PostBook"
+  post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
   currency = ['USD', 'CAD']
@@ -222,7 +228,8 @@ def create_demo_post_books
 end
 
 def create_demo_post_tutors
-  post_category = PostCategory.find_by_name("Tutors")
+  type_name = "PostTutor"
+  post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
   currency = ['USD', 'CAD']
@@ -250,7 +257,8 @@ def create_demo_post_tutors
 end
 
 def create_demo_post_jobs
-  post_category = PostCategory.find_by_name("Jobs")
+  type_name = "PostJob"
+  post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   responsibilities=['role1','role2','role3']
   required_skills=['skill1','skill2','skill3']
@@ -283,7 +291,8 @@ def create_demo_post_jobs
 end
 
 def create_demo_post_housings
-  post_category = PostCategory.find_by_name("Housing")
+  type_name = "PostHousing"
+  post_category = PostCategory.find_by_class_name(type_name)
   rent = ['rentA','rentB', 'rentC']
   currency = ['USD', 'CAD']
 
@@ -317,7 +326,8 @@ def create_demo_post_housings
 end
 
 def create_demo_post_parties
-  post_category = PostCategory.find_by_name("Party")
+  type_name = "PostParty"
+  post_category = PostCategory.find_by_class_name(type_name)
   
   200.times do
     user = User.find(rand(User.count) + 1)
@@ -350,7 +360,8 @@ def create_demo_post_parties
 end #END METHOD
 
 def create_demo_posts_teamups
-  post_category = PostCategory.find_by_name("Team Up")
+  type_name = "PostTeamup"
+  post_category = PostCategory.find_by_class_name(type_name)
   
   200.times do
     user = User.find(rand(User.count) + 1)
@@ -371,7 +382,8 @@ def create_demo_posts_teamups
 end
 
 def create_demo_posts_awarenesses
-  post_category = PostCategory.find_by_name("Student Awareness")
+  type_name = "PostAwareness"
+  post_category = PostCategory.find_by_class_name(type_name)
   
   200.times do
     user = User.find(rand(User.count) + 1)
@@ -435,7 +447,7 @@ def create_post(user, school, post_category)
     p.title = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraphs
     p.school = school
-    p.type_name = post_category.name
+    p.type_name = post_category.class_name
   end
 end
 

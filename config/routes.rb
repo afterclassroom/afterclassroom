@@ -102,7 +102,7 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :tag => :get, :interesting => :get, :top_answer => :get, :create_comment => :get, :show_comment => :get, :rate => :get, :require_rate => :get
   }
   map.resources :post_foods, :collection => {
-    :search => :get, :tag => :get
+    :search => :get, :tag => :get, :rate => :get, :require_rate => :get
   }
   map.resources :post_teamups, :collection => {
     :search => :get, :more_startup => :get,

@@ -162,7 +162,7 @@ class PostMyxesController < ApplicationController
   def get_variables
     @tags = PostMyx.tag_counts
     @new_post_path = new_post_myx_path
-    @type = PostCategory.find_by_name("MyX").id
+    @type = PostCategory.find_by_class_name("PostMyx").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end

@@ -3,22 +3,11 @@
     <h1 class="col195Title">Top food posters</h1>
     <div class="col195Cont">
       <div class="posterItem">
-        <div class="posterL"><a href="#"><div><img src="pictures/pic5.png"/></div></a></div>
-        <div class="posterC"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
-        <div class="posterR"><a href="#"><div><img src="pictures/pic3.png"/></div></a></div>
+        <% users = PostFood.top_food_posters %>
+        <% users.each do |user| %>
+          <div class="posterL"><%= link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => user.id} %></div>
+        <% end %>
       </div>
-      <div class="posterItem">
-        <div class="posterL"><a href="#"><div><img src="pictures/pic4.png"/></div></a></div>
-        <div class="posterC"><a href="#"><div><img src="pictures/noimg.png"/></div></a></div>
-        <div class="posterR"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-      </div>
-      <div class="posterItem">
-        <div class="posterL"><a href="#"><div><img src="pictures/noimg.png"/></div></a></div>
-        <div class="posterC"><a href="#"><div><img src="pictures/pic5.png"/></div></a></div>
-        <div class="posterR"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
-      </div>
-
-      <div class="dueDbutton"><a href="#">View more food posters</a></div>
     </div>
   </div>
 </div>

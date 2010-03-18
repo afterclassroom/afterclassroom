@@ -199,7 +199,7 @@ class PostBooksController < ApplicationController
   def get_variables
     @tags = PostBook.tag_counts
     @new_post_path = new_post_book_path
-    @type = PostCategory.find_by_name("Books").id
+    @type = PostCategory.find_by_class_name("PostBook").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end

@@ -75,10 +75,10 @@ class PostJobsController < ApplicationController
 
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post.post_job.total_good}</a>
+        <a href="javascript:;">#{post_j.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post.post_job.total_bad}</a>
+        <a href="javascript:;">#{post_j.total_bad}</a>
       </div>'
   end
 
@@ -194,7 +194,7 @@ class PostJobsController < ApplicationController
   def get_variables
     @tags = PostJob.tag_counts
     @new_post_path = new_post_qa_path
-    @type = PostCategory.find_by_name("Jobs").id
+    @type = PostCategory.find_by_class_name("PostJob").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
