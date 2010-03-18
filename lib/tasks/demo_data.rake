@@ -8,24 +8,24 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      departments_for_schools
-      create_demo_people
+#      departments_for_schools
+#      create_demo_people
 
       # Begin creating Posts data
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_post_books
-      create_demo_post_tutors
-      create_demo_post_jobs
-      create_demo_post_housings
+#      create_demo_posts_assignments
+#      create_demo_posts_tests
+#      create_demo_posts_projects
+#      create_demo_posts_exams
+#      create_demo_posts_myx
+#      create_demo_post_books
+#      create_demo_post_tutors
+#      create_demo_post_jobs
+#      create_demo_post_housings
       create_demo_post_parties
-      create_demo_posts_teamups
-      create_demo_posts_awarenesses
-      create_demo_posts_foods
-      create_demo_posts_qas
+#      create_demo_posts_teamups
+#      create_demo_posts_awarenesses
+#      create_demo_posts_foods
+#      create_demo_posts_qas
 
     end
     
@@ -316,7 +316,7 @@ def create_demo_post_housings
   	  
     noOfMapping.times do
       index = rand(HousingCategory.count) + 1
-      while (pivotArray[index]==true)
+      while (pivotArray[index] == true)
         index = rand(HousingCategory.count) + 1
       end
       pivotArray[index] = true;
@@ -349,7 +349,7 @@ def create_demo_post_parties
   	  
     noOfMapping.times do
       index = rand(PartyType.count) + 1
-      while (pivotArray[index]==true)
+      while (pivotArray[index] == true)
         index = rand(PartyType.count) + 1
       end
       pivotArray[index] = true;

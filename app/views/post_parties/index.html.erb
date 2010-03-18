@@ -1,3 +1,16 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Foods", post_foods_path, :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
 <div class="contMain">
   <div class="contMainL">
     <div class="col451 Party">
@@ -6,26 +19,18 @@
           <div class="AsDTop">
             <h1 class="titleH1">Party</h1>
           </div>
-
+          <!--List Items-->
           <% @posts.each do |post| %>
-            <%= render :partial => "item", :locals => {:post => post}%>
+            <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
           <% end %>
+          <!--List Items-->
 
-
+          <!--Pagination-->
           <div class="assPage">
-            <span class="numPage">Page 1 of 22</span>
-            <span class="firstPage"><a href="#">First Page</a></span>
-            <span class="prevPage"><a href="#">Prev</a></span>
-            <span class="currentPage">
-              <a href="#" class="selected"><span>6</span></a>
-              <a href="#"><span>7</span></a>
-              <a href="#"><span>8</span></a>
-              <a href="#"><span>9</span></a>
-              <a href="#"><span>10</span></a>
-            </span>
-            <span class="nextPage"><a href="#">Next</a></span>
-            <span class="lastPage"><a href="#">Last Page</a></span>
+            <span class="numPage"><%= page_entries_info @posts %></span>
+            <%= will_paginate @posts %>
           </div>
+          <!--Pagination-->
           <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
         </div>
       </div>
@@ -34,42 +39,17 @@
   </div>
 
   <div class="contMainC">
-    <div class="col195 clubBar">
-      <div class="col195in">
-        <h1 class="col195Title">Top club/bar</h1>
-        <div class="col195Cont">
+    <!--Browser Top Club-->
+    <%= render :partial => "top_club" %>
+    <!--Browser Top Club-->
 
-          <%= render :partial => "topclub" %>
-          <div class="dueDbutton"><a href="#">View more club/bar</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="col195 Poster">
-      <div class="col195in">
-        <h1 class="col195Title">Top posters</h1>
-        <div class="col195Cont">
-          <%= render :partial => "topclub" %>
-
-          <div class="dueDbutton"><a href="#">View more posters</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="col195 QAsPoll">
-      <div class="col195in">
-        <h1 class="col195Title">Poll this Party</h1>
-        <div class="col195Cont">
-          <div class="QAsPCont">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum bibendum neque non nisl commodo quis luctus nulla auctor.</div>
-          <div class="QAsDet"><input name="Radio1" type="radio" />Best of the best</div>
-          <div class="QAsDet"><input name="Radio1" type="radio" />Good</div>
-          <div class="QAsDet"><input name="Radio1" type="radio" />Not bad</div>
-          <div class="QAsDet"><input name="Radio1" type="radio" />Bad</div>
-          <div class="submit"><a href="#">Submit</a></div>
-          <div class="PollView">[<a href="">View results</a>]</div>
-        </div>
-      </div>
-    </div>
-
-
+    <!--Browser Top party posters-->
+    <%= render :partial => "top_party_posters" %>
+    <!--Browser Top party posters-->
+    
+    <!--Browser Poll this Tutors-->
+    <%= render :partial => "poll" %>
+    <!--Browser Poll this Tutors-->
   </div>
 
   <div class="contMainR">
@@ -80,18 +60,10 @@
     <!--Ads-->
     <%= render :partial => "ads/show_vertical_ads" %>
     <!--Ads-->
-    <div class="col300 QAsRecent">
-      <div class="col300in">
-        <h1 class="col300Title">Recent Party Requested</h1>
-        <div class="col300Cont">
-          <%= render :partial => "recentRequested" %>
 
-          <div class="recentBottom">&nbsp;</div>
-        </div>
-      </div>
-    </div>
-
-
+    <!--Recent Request parties-->
+    <%= render :partial => "recent_request_parties" %>
+    <!--Recent Request parties-->
   </div>
 </div>
-
+<!--Content-->

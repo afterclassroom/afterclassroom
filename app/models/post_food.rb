@@ -4,6 +4,8 @@ class PostFood < ActiveRecord::Base
   
   # Relations
   belongs_to :post
+  has_one :rating_statistic
+  has_many :ratings
 
   # Tags
   acts_as_taggable
@@ -55,7 +57,7 @@ class PostFood < ActiveRecord::Base
   def self.top_food_posters
     type_name = "PostFood"
     limit = 15
-    objs = Post.find_by_sql("SELECT id, (SELECT COUNT(posts.id) FROM posts WHERE posts.user_id = users.id AND type_name = '#{type_name}') AS post_total from users ORDER BY post_total DESC LIMIT #{limit}")
+    objs = Post.find_by_sql("SELECT id, (SELECT COUNT(posts.id) FROM posts WHERE posts.user_id = users.id AND type_name = '#{type_name}') AS post_total FROM users ORDER BY post_total DESC LIMIT #{limit}")
     arr_id = objs.collect(&:id)
     users = []
     arr_id.each do |id|

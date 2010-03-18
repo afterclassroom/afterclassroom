@@ -1,0 +1,20 @@
+<div class="col195 clubBar">
+  <div class="col195in">
+    <h1 class="col195Title">Top club/bar</h1>
+    <div class="col195Cont">
+      <%
+      top_parties = PostParty.with_limit.with_school(@school).with_status("Good")
+    %>
+      <% if top_parties.size > 0 %>
+        <%
+        top_parties.each do |tt|
+        %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_party_path(tt.post) %></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more club/bar", "#{post_parties_path}?rating_status=Good" %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

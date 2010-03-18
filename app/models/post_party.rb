@@ -2,26 +2,26 @@
 class PostParty < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
-  validates_presence_of :location
-  validates_presence_of :street
-  validates_presence_of :city
 
   # Relations
   belongs_to :post
   has_many :post_party_rsvps
   has_and_belongs_to_many :party_types
+  has_one :rating_statistic
+  has_many :ratings
 
   # Tags
   acts_as_taggable
 
   # Rating for Bad, Ok, Good
   # Bad: 0
-  # Ok: 1
+  # It's Ok: 1
   # Good: 2
   acts_as_rated :rating_range => 0..2, :with_stats_table => true
 
   # Named Scope
   named_scope :with_limit, :limit => 5
+  named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
@@ -43,18 +43,35 @@ class PostParty < ActiveRecord::Base
     posts
   end
 
-  def self.goods
+  def self.paginated_post_conditions_with_option(params, school, rating_status)
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
+
+    post_parties = PostParty.ez_find(:all, :include => [:post]) do |post_party, post|
+      post_party.rating_status == rating_status
+      post.school_id == with_school if with_school
+    end
+
     posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score >= 50}
-    posts
+    post_parties.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
   end
 
-  def self.bads
-    posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score < 50}
-    posts
+  def self.top_party_posters
+    type_name = "PostParty"
+    limit = 15
+    objs = Post.find_by_sql("SELECT id, (SELECT COUNT(posts.id) FROM posts WHERE posts.user_id = users.id AND type_name = '#{type_name}') AS post_total FROM users ORDER BY post_total DESC LIMIT #{limit}")
+    arr_id = objs.collect(&:id)
+    users = []
+    arr_id.each do |id|
+      users << User.find(id)
+    end
+    users
+  end
+
+  def self.require_rating(school)
+    post_parties = self.with_school(school).with_status("Require Rating").random(1)
   end
 
   def total_good

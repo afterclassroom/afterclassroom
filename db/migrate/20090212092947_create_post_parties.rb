@@ -5,6 +5,7 @@ class CreatePostParties < ActiveRecord::Migration
       t.datetime :start_time
       t.datetime :end_time
       t.string :address
+      t.string :phone
       t.string :rating_status
     end
   end

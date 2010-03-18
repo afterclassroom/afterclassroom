@@ -10,13 +10,9 @@ class PostPartiesController < ApplicationController
   # GET /post_parties
   # GET /post_parties.xml
   def index
-    if params[:more_like_this_id]
-      id = params[:more_like_this_id]
-      post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
-    else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
-    end
+    @rating_status = params[:rating_status]
+    @rating_status ||= ""
+    @posts = PostParty.paginated_post_conditions_with_option(params, @school, @rating_status)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,12 +20,81 @@ class PostPartiesController < ApplicationController
     end
   end
 
+  def rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_p = post.post_party
+    post_p.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_p.score_good
+    score_ok = post_p.score_ok
+    score_bad = post_p.score_bad
+
+    if score_good == score_ok && score_ok == score_bad
+      status = "Require Rating"
+    else
+      sort_rating_status = {"Good" => score_good, "It's Ok" => score_ok, "Bad" => score_bad}
+      arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+      status = arr_rating_status.last.first
+    end
+
+    post_p.rating_status = status
+
+    post_p.save
+
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post_p.total_good}</a>
+      </div>
+      <div class="cheap">
+        <a href="javascript:;">It\'s Ok(#{post_p.total_ok})</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post_p.total_bad}</a>
+      </div>'
+  end
+
+  def require_rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_p = post.post_party
+    if !Postparty.find_rated_by(current_user).include?(post_p)
+      post_p.rate rating.to_i, current_user
+      # Update rating status
+      score_good = post_p.score_good
+      score_ok = post_p.score_ok
+      score_bad = post_p.score_bad
+
+      if score_good == score_ok && score_ok == score_bad
+        status = "Require Rating"
+      else
+        sort_rating_status = {"Good" => score_good, "It's Ok" => score_ok, "Bad" => score_bad}
+        arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+        status = arr_rating_status.last.first
+      end
+
+      post_p.rating_status = status
+
+      post_p.save
+    end
+
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post_p.total_good}</a>
+      </div>
+      <div class="cheap">
+        <a href="javascript:;">It\'s Ok(#{post_p.total_ok})</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post_p.total_bad}</a>
+      </div>'
+  end
+  
   def tag
     tag_id = params[:tag_id]
     @tag = Tag.find(tag_id)
     @posts = PostParty.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
-
 
   # GET /post_parties/1
   # GET /post_parties/1.xml
@@ -44,12 +109,6 @@ class PostPartiesController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @post_party }
     end
-  end
-
-  def show_dialog
-    @post = Post.find(params[:id])
-    update_views(@post)
-    render :layout => false
   end
 
   def show_rsvp
@@ -137,10 +196,6 @@ class PostPartiesController < ApplicationController
     @post_party.destroy
 
     redirect_to my_post_user_url(current_user)
-  end
-
-  def update_views(obj)
-    updated = update_view_count(obj)
   end
   
   private
