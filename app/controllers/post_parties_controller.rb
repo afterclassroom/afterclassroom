@@ -96,6 +96,18 @@ class PostPartiesController < ApplicationController
     @posts = PostParty.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
 
+  def search
+    @query = params[:search][:query] if params[:search]
+    if params[:search]
+      @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
+    end
+  end
+
   # GET /post_parties/1
   # GET /post_parties/1.xml
   def show

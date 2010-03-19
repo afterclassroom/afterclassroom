@@ -1,3 +1,6 @@
-<div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Best Classroom</span></span></a></div>
-<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Bored Classroom</span></span></a></div>
-<div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Worse Classroom</span></span></a></div>
+<%
+  arr_rating_status = [["", "Just Posted"], ["Good", "Best Classroom"], ["Bored", "Bored Classroom"], ["Bad", "Bad Classroom"]]
+  arr_rating_status.each do |elm|
+%>
+<div class="menuRItem <%= "menuRselect" if @rating_status == elm.first %>"><a href="<%= "#{post_myxes_path}?rating_status=#{elm.first}" %>"><span class="span1"><span class="span2"><%= elm.last %></span></span></a></div>
+<% end %>

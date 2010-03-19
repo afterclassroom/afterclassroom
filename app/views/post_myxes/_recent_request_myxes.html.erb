@@ -2,22 +2,23 @@
   <div class="col300in">
     <h1 class="col300Title">Recent requested to rate</h1>
     <div class="col300Cont">
-      <div class="recentItem">
-        <div class="recentImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-        <div class="recentInf">
-          <div class="recentName"><a href="#">Vu Nguyen</a></div>
-          <div class="recentUni"><span>at </span><a href="#">University of California</a></div>
-          <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-        </div>
-      </div>
-      <div class="recentItem">
-        <div class="recentImg"><a href="#"><div><img src="pictures/noimg.png"/></div></a></div>
-        <div class="recentInf">
-          <div class="recentName"><a href="#">Dang Nguyen</a></div>
-          <div class="recentUni"><span>at </span><a href="#">University of San Francisco</a></div>
-          <div class="recentDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin turpis velit, bibendum at varius non...</div>
-        </div>
-      </div>
+      <%
+      myxes_recent = PostMyx.with_school(@school).recent.with_limit
+    %>
+      <% if myxes_recent.size > 0 %>
+        <%
+        myxes_recent.each do |myx|
+        %>
+          <div class="recentItem">
+            <div class="recentImg"><div><%= link_to image_tag(myx.post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => myx.post.user.id} %></div></div>
+            <div class="recentInf">
+              <div class="recentName"><%= link_to myx.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => myx.post.user.id} %></div>
+              <div class="recentUni"><span>at</span><%= link_to myx.post.school.name, :controller => "post_assignments", :action => "index", :from_school => myx.post.school %></div>
+              <div class="recentDes"><%= link_to myx.post.title, post_myx_path(myx.post) %></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
       <div class="recentBottom"> </div>
     </div>
   </div>

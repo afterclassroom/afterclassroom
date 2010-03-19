@@ -3,29 +3,27 @@
     <h1 class="col195Title">Worse Teacher/Prof</h1>
     <div class="col195Cont">
       <%
-      worseProf = PostMyx.prof_filter("Worse")
+      goodProf = PostMyx.with_limit.with_school(@school).with_status("Bad")
     %>
-      <% if worseProf.size > 0 %>
+      <% if goodProf.size > 0 %>
         <%
-        worseProf.each do |wp|
+        goodProf.each do |gp|
         %>
           <div class="teacherItem">
             <div class="recentImg"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
             <div class="teacherInf">
-              <div class="recentName"><a href="#"><%= wp.professor   %></a></div>
-              <div class="recentDes"><%= wp.post.school.name %></div>
+              <div class="recentName"><a href="#"><%= gp.professor   %></a></div>
+              <div class="recentDes"><%= gp.post.school.name %></div>
             </div>
           </div>
         <%
         end
       %>
-        <div class="dueDbutton"><%= link_to "View more Worse Teacher/Prof", more_worse_post_myxes_path %></div>
+        <div class="dueDbutton"><%= link_to "View more Worse Teacher/Prof", "#{post_myxes_path}?rating_status=Bad" %></div>
       <%
       end
     %>
-
     </div>
-
   </div>
 </div>
 

@@ -28,21 +28,6 @@ class PostParty < ActiveRecord::Base
   named_scope :previous, lambda { |att| {:conditions => ["post_parties.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_partiess.id > ?", att]} }
 
-  def self.paginated_post_conditions_with_tag(params, school, tag_name)
-    arr_p = []
-    post_as = self.with_school(@school).find_tagged_with(tag_name)
-    post_as.select {|p| arr_p << p.post}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
-  end
-
-
-  def self.related_posts(school)
-    posts = []
-    post_as = self.with_school(school).random(5)
-    post_as.select {|p| posts << p.post}
-    posts
-  end
-
   def self.paginated_post_conditions_with_option(params, school, rating_status)
     from_school = params[:from_school]
     with_school = school
@@ -56,6 +41,21 @@ class PostParty < ActiveRecord::Base
     posts = []
     post_parties.select {|p| posts << p.post}
     posts.paginate :page => params[:page], :per_page => 10
+  end
+  
+  def self.paginated_post_conditions_with_tag(params, school, tag_name)
+    arr_p = []
+    post_as = self.with_school(@school).find_tagged_with(tag_name)
+    post_as.select {|p| arr_p << p.post}
+    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+  end
+
+
+  def self.related_posts(school)
+    posts = []
+    post_as = self.with_school(school).random(5)
+    post_as.select {|p| posts << p.post}
+    posts
   end
 
   def self.top_party_posters

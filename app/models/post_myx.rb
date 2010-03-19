@@ -5,6 +5,8 @@ class PostMyx < ActiveRecord::Base
 
   # Relations
   belongs_to :post
+  has_one :rating_statistic
+  has_many :ratings
 
   # Tags
   acts_as_taggable
@@ -17,15 +19,37 @@ class PostMyx < ActiveRecord::Base
   
   # Named Scope
   named_scope :with_limit, :limit => 5
+  named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
-  named_scope :prof_filter, lambda {|c| return {} if c.nil?; {:conditions => ["prof_status = ?", c], :order => "prof_status DESC", :limit => 5}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   named_scope :previous, lambda { |att| {:conditions => ["post_myxs.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_myxs.id > ?", att]} }
 
   # Tags
   acts_as_taggable
+
+  def self.paginated_post_conditions_with_option(params, school, rating_status)
+    from_school = params[:from_school]
+    with_school = school
+    with_school = from_school if from_school
+
+    post_myxs = PostMyx.ez_find(:all, :include => [:post]) do |post_myx, post|
+      post_myx.rating_status == rating_status
+      post.school_id == with_school if with_school
+    end
+
+    posts = []
+    post_myxs.select {|p| posts << p.post}
+    posts.paginate :page => params[:page], :per_page => 10
+  end
+
+  def self.paginated_post_conditions_with_tag(params, school, tag_name)
+    arr_p = []
+    post_as = self.with_school(@school).find_tagged_with(tag_name)
+    post_as.select {|p| arr_p << p.post}
+    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+  end
 
   def self.related_posts(school)
     posts = []
@@ -34,20 +58,10 @@ class PostMyx < ActiveRecord::Base
     posts
   end
 
-  def self.goods
-    posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score >= 50}
-    posts
+  def self.require_rating(school)
+    post_myxs = self.with_school(school).with_status("Require Rating").random(1)
   end
-
-  def self.bads
-    posts = []
-    post_as = self.with_school(school)
-    post_as.select {|p| posts << p.post if p.score < 50}
-    posts
-  end
-
+  
   def total_good
     self.ratings.count(:conditions => ["rating = ?", 2])
   end

@@ -3,7 +3,7 @@
     <h1 class="col195Title">Good Teacher/Prof</h1>
     <div class="col195Cont">
       <%
-      goodProf = PostMyx.prof_filter("Good")
+      goodProf = PostMyx.with_limit.with_school(@school).with_status("Good")
     %>
       <% if goodProf.size > 0 %>
         <%
@@ -19,7 +19,7 @@
         <%
         end
       %>
-        <div class="dueDbutton"><%= link_to "View more Good Teacher/Prof", more_good_post_myxes_path %></div>
+        <div class="dueDbutton"><%= link_to "View more Good Teacher/Prof", "#{post_myxes_path}?rating_status=Good" %></div>
       <%
       end
     %>

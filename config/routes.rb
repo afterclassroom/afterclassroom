@@ -81,11 +81,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :post_assignments, :collection => {
     :search => :get, :due_date => :get, :tag => :get
   }
-  map.resources :post_myxes, :collection => {
-    :search => :get, :due_date => :get,
-    :profrating => :get, :more_worse => :get,
-    :more_good => :get, :tag => :get
-  }
   map.resources :post_projects, :collection => {
     :search => :get, :due_date => :get, 
     :interesting => :get, :tag => :get
@@ -99,31 +94,46 @@ ActionController::Routing::Routes.draw do |map|
     :tag => :get
   }
   map.resources :post_qas, :collection => {
-    :search => :get, :tag => :get, :interesting => :get, :top_answer => :get, :create_comment => :get, :show_comment => :get, :rate => :get, :require_rate => :get
+    :search => :get, :tag => :get,
+    :interesting => :get, :top_answer => :get,
+    :create_comment => :get, :show_comment => :get,
+    :rate => :get, :require_rate => :get
   }
   map.resources :post_foods, :collection => {
-    :search => :get, :tag => :get, :rate => :get, :require_rate => :get
+    :search => :get, :tag => :get,
+    :rate => :get, :require_rate => :get
+  }
+  map.resources :post_parties, :collection => {
+    :search => :get, :show_rsvp => :get,
+    :create_rsvp => :get, :tag => :get,
+    :rate => :get, :require_rate => :get
+  }
+  map.resources :post_myxes, :collection => {
+    :search => :get, :tag => :get,
+    :rate => :get, :require_rate => :get
   }
   map.resources :post_teamups, :collection => {
     :search => :get, :more_startup => :get,
     :index => :get, :teamrating => :get,
     :tag => :get
   }
-  map.resources :post_parties, :collection => {
-    :search => :get, :show_rsvp => :get,
-    :create_rsvp => :get, :tag => :get, :rate => :get, :require_rate => :get
-  }
   map.resources :post_awarenesses, :collection => {
     :search => :get, :tag => :get
   }
   map.resources :post_jobs, :collection => {
-    :search => :get, :tag => :get, :good_companies => :get, :bad_bosses => :get, :rate => :get, :require_rate => :get
+    :search => :get, :tag => :get, 
+    :good_companies => :get, :bad_bosses => :get,
+    :rate => :get, :require_rate => :get
   }
   map.resources :post_books, :collection => {
-    :search => :get, :tag => :get, :good_books => :get, :dont_buy => :get, :rate => :get, :require_rate => :get
+    :search => :get, :tag => :get, 
+    :good_books => :get, :dont_buy => :get,
+    :rate => :get, :require_rate => :get
   }
   map.resources :post_tutors, :collection => {
-    :search => :get, :tag => :get, :effective => :get, :dont_hire => :get, :rate => :get, :require_rate => :get
+    :search => :get, :tag => :get, 
+    :effective => :get, :dont_hire => :get,
+    :rate => :get, :require_rate => :get
   }
   map.resources :post_housings, :collection => {
     :search => :get, :tag => :get

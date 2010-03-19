@@ -28,24 +28,23 @@
       </div>
 
       <div class="assInfB">
-
         <div id="rate_<%= post.id %>">
           <div class="qashdU">
-            <% if logged_in? && !PostFood.find_rated_by(current_user).include?(post.post_party) %>
+            <% if logged_in? && !PostParty.find_rated_by(current_user).include?(post.post_party) %>
               <%= link_to_remote post.post_party.total_good, { :update => "rate_#{post.id}", :url => {:controller => "post_parties", :action => "rate", :post_id => post.id, :rating => "2" } } %>
             <% else %>
               <%= link_to post.post_party.total_good, "javascript:;" %>
             <% end %>
           </div>
           <div class="cheap">
-            <% if logged_in? && !PostFood.find_rated_by(current_user).include?(post.post_party) %>
+            <% if logged_in? && !PostParty.find_rated_by(current_user).include?(post.post_party) %>
               <%= link_to_remote "It's Ok(#{post.post_party.total_ok})", { :update => "rate_#{post.id}", :url => {:controller => "post_parties", :action => "rate", :post_id => post.id, :rating => "1" } } %>
             <% else %>
               <%= link_to "It's Ok(#{post.post_party.total_ok})", "javascript:;" %>
             <% end %>
           </div>
           <div class="qashdD">
-            <% if logged_in? && !PostFood.find_rated_by(current_user).include?(post.post_party) %>
+            <% if logged_in? && !PostParty.find_rated_by(current_user).include?(post.post_party) %>
               <%= link_to_remote post.post_party.total_bad, { :update => "rate_#{post.id}", :url => {:controller => "post_parties", :action => "rate", :post_id => post.id, :rating => "0" } } %>
             <% else %>
               <%= link_to post.post_party.total_bad, "javascript:;" %>

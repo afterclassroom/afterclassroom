@@ -3,7 +3,7 @@ class PostMyxesController < ApplicationController
   include Viewable
 
   before_filter :get_variables, :only => [:index, :show, :search, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :profrating, :more_worse, :more_good, :tag]
+  before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
   after_filter :update_status, :only => [:create, :update]
@@ -12,18 +12,90 @@ class PostMyxesController < ApplicationController
   # GET /post_myxes
   # GET /post_myxes.xml
   def index
-    if params[:more_like_this_id]
-      id = params[:more_like_this_id]
-      post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
-    else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
-    end
+    @rating_status = params[:rating_status]
+    @rating_status ||= ""
+    @posts = PostMyx.paginated_post_conditions_with_option(params, @school, @rating_status)
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
+  end
+
+  def rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_p = post.post_myx
+    post_p.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_p.score_good
+    score_bored = post_p.score_bored
+    score_bad = post_p.score_bad
+
+    if score_good == score_bored && score_bored == score_bad
+      status = "Require Rating"
+    else
+      sort_rating_status = {"Good" => score_good, "Bored" => score_bored, "Bad" => score_bad}
+      arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+      status = arr_rating_status.last.first
+    end
+
+    post_p.rating_status = status
+
+    post_p.save
+
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post_p.total_good}</a>
+      </div>
+      <div class="cheap">
+        <a href="javascript:;">Bored(#{post_p.total_bored})</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post_p.total_bad}</a>
+      </div>'
+  end
+
+  def require_rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_p = post.post_myx
+    if !Postmyx.find_rated_by(current_user).include?(post_p)
+      post_p.rate rating.to_i, current_user
+      # Update rating status
+      score_good = post_p.score_good
+      score_bored = post_p.score_bored
+      score_bad = post_p.score_bad
+
+      if score_good == score_bored && score_bored == score_bad
+        status = "Require Rating"
+      else
+        sort_rating_status = {"Good" => score_good, "Bored" => score_bored, "Bad" => score_bad}
+        arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+        status = arr_rating_status.last.first
+      end
+
+      post_p.rating_status = status
+
+      post_p.save
+    end
+
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post_p.total_good}</a>
+      </div>
+      <div class="cheap">
+        <a href="javascript:;">Bored(#{post_p.total_bored})</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post_p.total_bad}</a>
+      </div>'
+  end
+
+  def tag
+    tag_id = params[:tag_id]
+    @tag = Tag.find(tag_id)
+    @posts = PostParty.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
 
   def search
@@ -36,50 +108,6 @@ class PostMyxesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
-  end
-
-  def more_worse
-    @post = PostMyx.paginated_post_conditions_with_more_worse(params)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @posts }
-    end
-  end
-
-  def more_good
-    @post = PostMyx.paginated_post_conditions_with_more_good(params)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @posts }
-    end
-  end
-
-  def profrating
-    @post_myx = PostMyx.find(params[:id])
-    if params[:rateType] == "Good"
-      @post_myx.good = @post_myx.good+1
-      @post_myx.update_attribute("good", @post_myx.good)
-    elsif params[:rateType] == "Worse"
-      @post_myx.bad = @post_myx.bad + 1
-      @post_myx.update_attribute("bad", @post_myx.bad)
-    else
-      @post_myx.bored = @post_myx.bored + 1
-      @post_myx.update_attribute("bored", @post_myx.bored)
-    end
-
-    score = (@post_myx.good.to_f / (@post_myx.good.to_f + @post_myx.bored.to_f + @post_myx.bad.to_f)) * 100
-    if score > 50
-      @post_myx.prof_status = "Good"
-      @post_myx.update_attribute("prof_status", @post_myx.prof_status)
-    else
-      @post_myx.prof_status = "Worse"
-      @post_myx.update_attribute("prof_status", @post_myx.prof_status)
-    end
-
-
-    @post_myx
   end
 
   # GET /post_myxes/1
