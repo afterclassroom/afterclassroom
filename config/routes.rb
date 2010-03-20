@@ -99,6 +99,21 @@ ActionController::Routing::Routes.draw do |map|
     :create_comment => :get, :show_comment => :get,
     :rate => :get, :require_rate => :get
   }
+  map.resources :post_tutors, :collection => {
+    :search => :get, :tag => :get,
+    :effective => :get, :dont_hire => :get,
+    :rate => :get, :require_rate => :get
+  }
+  map.resources :post_books, :collection => {
+    :search => :get, :tag => :get,
+    :good_books => :get, :dont_buy => :get,
+    :rate => :get, :require_rate => :get
+  }
+  map.resources :post_jobs, :collection => {
+    :search => :get, :tag => :get,
+    :good_companies => :get, :bad_bosses => :get,
+    :rate => :get, :require_rate => :get
+  }
   map.resources :post_foods, :collection => {
     :search => :get, :tag => :get,
     :rate => :get, :require_rate => :get
@@ -112,31 +127,16 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :tag => :get,
     :rate => :get, :require_rate => :get
   }
-  map.resources :post_teamups, :collection => {
-    :search => :get, :more_startup => :get,
-    :index => :get, :teamrating => :get,
-    :tag => :get
-  }
   map.resources :post_awarenesses, :collection => {
     :search => :get, :tag => :get
   }
-  map.resources :post_jobs, :collection => {
-    :search => :get, :tag => :get, 
-    :good_companies => :get, :bad_bosses => :get,
-    :rate => :get, :require_rate => :get
-  }
-  map.resources :post_books, :collection => {
-    :search => :get, :tag => :get, 
-    :good_books => :get, :dont_buy => :get,
-    :rate => :get, :require_rate => :get
-  }
-  map.resources :post_tutors, :collection => {
-    :search => :get, :tag => :get, 
-    :effective => :get, :dont_hire => :get,
-    :rate => :get, :require_rate => :get
-  }
   map.resources :post_housings, :collection => {
     :search => :get, :tag => :get
+  }
+  map.resources :post_teamups, :collection => {
+    :search => :get, :tag => :get,
+    :good_org => :get, :worse_org => :get,
+    :more_startup => :get, :rate => :get
   }
   # Stories
   map.resources :stories, :collection => {:create_comment => :get, :delete_comment => :get}

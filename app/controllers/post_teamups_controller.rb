@@ -44,12 +44,34 @@ class PostTeamupsController < ApplicationController
     @posts = PostTeamup.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
 
+  def good_org
+    @posts = PostTeamup.paginated_post_conditions_with_good_org(params, @school)
+  end
+
+  def bad_org
+    @posts = PostTeamup.paginated_post_conditions_with_bad_org(params, @school)
+  end
 
   def rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
     post_tt = post.post_teamup
     post_tt.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_tt.score_good
+    score_bad = post_tt.score_bad
+
+    if score_good > score_bad
+      status = "Good"
+    elsif score_good == score_bad
+      status = "Require Rating"
+    else
+      status = "Bad"
+    end
+
+    post_tt.rating_status = status
+
+    post_tt.save
     render :text => %Q'
       <div class="qashdU">
         <a href="javascript:;">#{post.post_teamup.total_good}</a>
@@ -58,8 +80,6 @@ class PostTeamupsController < ApplicationController
         <a href="javascript:;">#{post.post_teamup.total_bad}</a>
       </div>'
   end
-
-
   
   # GET /post_teamups/1
   # GET /post_teamups/1.xml

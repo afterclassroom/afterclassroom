@@ -1,0 +1,20 @@
+<div class="col300 QAsRecent">
+  <div class="col300in">
+    <h1 class="col300Title">Recent Comments</h1>
+    <div class="col300Cont">
+      <% comments = PostTeamup.recent_comments %>
+      <% comments.each do |c| %>
+      <div class="recentItem">
+        <div class="recentImg"><%= link_to "<div>#{image_tag(c.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => c.user.id} %></div>
+        <div class="recentInf">
+          <div class="recentName"><%= link_to c.user.full_name, {:controller => "profile", :action => "show_profile", :id => c.user.id} %></div>
+          <div class="recentUni"><span>at </span><%= link_to truncate_words(c.post.title, 4), post_teamup_path(c.post) %></div>
+          <div class="recentDes"><%= c.comment %></div>
+        </div>
+      </div>
+      <% end %>
+      <div class="recentBottom">&nbsp;</div>
+    </div>
+  </div>
+</div>
+

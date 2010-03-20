@@ -1,0 +1,21 @@
+<div class="col195 student195">
+  <div class="col195in">
+    <h1 class="col195Title">Bad organizations</h1>
+    <div class="col195Cont">
+      <%
+      worse_org = PostTeamup.with_limit.worse_org(@school)
+    %>
+      <% if worse_org.size > 0 %>
+        <%
+        worse_org.each do |tt|
+        %>
+          <div class="studentItem">
+            <div class="studentImg"><%= link_to "<div>#{image_tag(tt.post.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => tt.post.user.id} %></div>
+            <div class="studentInf"><%= link_to truncate_words(tt.post.title, 4), post_teamup_path(tt.post) %></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more Bad organizations", worse_org_post_teamups_path %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

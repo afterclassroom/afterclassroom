@@ -3,6 +3,7 @@ class CreatePostQas < ActiveRecord::Migration
     create_table :post_qas do |t|
       t.belongs_to :post
       t.belongs_to :post_qa_category
+      t.string :rating_status
     end
   end
 

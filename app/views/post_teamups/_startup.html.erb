@@ -2,29 +2,21 @@
   <div class="col195in">
     <h1 class="col195Title">TeamUp for Start-up</h1>
     <div class="col195Cont">
-
       <%
-      teamStartup = PostTeamup.team_startup.with_limit
+      teamStartup = PostTeamup.with_school(@school).recent.with_limit
     %>
       <% if teamStartup.size > 0 %>
         <%
         teamStartup.each do |ts|
         %>
           <div class="studentItem">
-            <div class="studentImg"><a href="#"><div><img src="pictures/pic7.png" /></div></a></div>
-            <div class="studentInf"><a href="#"><%= ts.post.title   %></a></div>
+            <div class="studentImg"><%= link_to "<div>#{image_tag(ts.post.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => ts.post.user.id} %></div>
+            <div class="studentInf"><%= link_to truncate_words(ts.post.title, 4), post_teamup_path(ts.post) %></div>
           </div>
-
         <%
         end
-      %>
-        <div class="dueDbutton">
-          <%=   link_to "View more TeamUp for Start-up", :controller => "post_teamups", :action => "index", :teamType => "startup" %>
-        <%
-        end
-      %>
-
-      </div>
+      end
+    %>
     </div>
   </div>
 </div>

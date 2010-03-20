@@ -10,7 +10,7 @@
   <!--info-link-box-->
   <div class="asslinkdown">
     <div class="moreTutor"><b>"Our Status"</b><%= post.post_teamup.ourStatus %> <b>Founded in:</b> <%= post.post_teamup.founded_in %> <b>Members:</b> <%= post.post_teamup.noOfMember %></div>
-    <div class="mySco"><a href="#">Our score (8/10)</a></div>
+    <div class="mySco"><a href="#">Our score (<%= post.post_teamup.total_good %>/<%= post.post_teamup.total_good + post.post_teamup.total_bad %>)</a></div>
   </div>
   <!--info-link-box-->
   <div class="assItemB">

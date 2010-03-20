@@ -6,6 +6,7 @@ class CreatePostTeamups < ActiveRecord::Migration
       t.string :ourStatus
       t.string :founded_in
       t.string :noOfMember
+      t.string :rating_status
     end
   end
 
