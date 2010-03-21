@@ -62,7 +62,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :teamup_categories
   map.resources :party_types
   map.resources :job_types
-  map.resources :awareness_issues
+  map.resources :awareness_types
   map.resources :shipping_methods
   map.resources :functional_experiences
 
@@ -111,7 +111,7 @@ ActionController::Routing::Routes.draw do |map|
   }
   map.resources :post_jobs, :collection => {
     :search => :get, :tag => :get,
-    :good_companies => :get, :bad_bosses => :get,
+    :good_companies => :get, :worse_bosses => :get,
     :rate => :get, :require_rate => :get
   }
   map.resources :post_foods, :collection => {
@@ -128,10 +128,13 @@ ActionController::Routing::Routes.draw do |map|
     :rate => :get, :require_rate => :get
   }
   map.resources :post_awarenesses, :collection => {
-    :search => :get, :tag => :get
+    :search => :get, :tag => :get,
+    :rate => :get
   }
   map.resources :post_housings, :collection => {
-    :search => :get, :tag => :get
+    :search => :get, :tag => :get,
+    :good_house => :get, :worse_house => :get,
+    :rate => :get
   }
   map.resources :post_teamups, :collection => {
     :search => :get, :tag => :get,

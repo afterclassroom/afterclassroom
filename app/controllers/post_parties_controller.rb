@@ -111,12 +111,14 @@ class PostPartiesController < ApplicationController
   # GET /post_parties/1
   # GET /post_parties/1.xml
   def show
-    @post_party = PostParty.find(params[:id])
-    @post = @post_party.post
-    @post_category_id = @post.post_category_id
-    @type_name = @post.post_category.name
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_party.post)
+    @post = Post.find(params[:id])
+    @post_party = @post.post_party
+    update_view_count(@post)
+    posts_as = PostParty.with_school(@school)
+    as_next = posts_as.next(@post_party.id).first
+    as_prev = posts_as.previous(@post_party.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_party }

@@ -30,35 +30,38 @@
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
     </div>
 
-    <div class="jobCom" id="form_comment" style="display: none">
+    <div class="AsDcom" id="form_comment" style="display: none">
       <h1 class="titleH1">Leave your comments</h1>
-      <div class="jobComMenu">
-        <div class="cover"><a href="#">Cover letter</a></div>
-        <div class="trans"><a href="#">Transcript</a></div>
-        <div class="resume"><a href="#">Resume*</a></div>
-      </div>
-    </div>
-    <% if @post.comments.size > 0 %>
-      <div class="AsDcomL">
-        <h1 class="titleH1"><a href="#">Comments (4)</a></h1>
-        <div class="AsDcomLW">
-          <span>View</span>
-          <span><select name="Select2"><option>All answers</option></select></span>
+      <% if logged_in? %>
+        <div class="AsDcomImg"><%= link_to "<div>#{image_tag(current_user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+        <div class="AsDcomIn">
+          <form name="form_comment" id="form_comment" action="" method="get">
+            <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
+            <div class="submit"><a href="javascript:;" onclick="send_comment('<%= @post.id %>');" >Submit</a></div>
+          </form>
         </div>
-        <% @post.comments.each do |comnt| %>
-          <%= render :partial => "item_comment", :objects => comnt %>
+      <% else %>
+        You must be <%= link_to "logged in", login_url %> to post a comment.
+      <% end %>
+    </div>
+    <div class="AsDcomL" id="list_comments">
+      <% if @post.comments.size > 0 %>
+        <h1 class="titleH1"><a href="javascript:;">Comments (<%= @post.comments.size %>)</a></h1>
+        <% @post.comments.each do |c| %>
+          <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
         <% end %>
-      </div>
-    <% end %>
-    <div class="goback"><a onclick="history.go(-1);" href="javascript:void();"><span>Go back</span></a></div>
+      <% end %>
+    </div>
+    <div class="goback" id="go_back"><%= show_go_back %></div>
     <div class="comPage">
-      <span class="compre"><a href="#"> </a></span>
-      <span class="comnext"><a href="#"> </a></span>
+      <span class="compre"><%= link_to "", post_myx_path(@prev) if @prev %> </span>
+      <span class="comnext"><%= link_to "", post_myx_path(@next) if @next %></span>
     </div>
     <div class="AsDOr">
       <h1 class="titleH1">Related Requests MyX in MyX Category</h1>
-      <div class="AsDOrItem"><a href="#">Chemistry (Lorem Ipsum Dolor sitamet)</a></div>
-      <div class="AsDOrItem"><a href="#">Sociology (Nulla ac massa id risus ornare condimentum)</a></div>
+      <% PostMyx.related_posts(@school).each do |p| %>
+        <div class="AsDOrItem"><%= link_to p.title, post_myx_path(p) %></div>
+      <% end %>
     </div>
     <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
   </div>

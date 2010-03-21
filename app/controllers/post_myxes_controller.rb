@@ -95,7 +95,7 @@ class PostMyxesController < ApplicationController
   def tag
     tag_id = params[:tag_id]
     @tag = Tag.find(tag_id)
-    @posts = PostParty.paginated_post_conditions_with_tag(params, @school, @tag.name)
+    @posts = PostMyx.paginated_post_conditions_with_tag(params, @school, @tag.name)
   end
 
   def search
@@ -116,6 +116,11 @@ class PostMyxesController < ApplicationController
     @post = Post.find(params[:id])
     @post_myx = @post.post_myx
     update_view_count(@post)
+    posts_as = PostMyx.with_school(@school)
+    as_next = posts_as.next(@post_myx.id).first
+    as_prev = posts_as.previous(@post_myx.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_myx }

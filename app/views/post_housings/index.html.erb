@@ -20,7 +20,7 @@
         </div>
         <!--List Items-->
         <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>bad
         <% end %>
         <!--List Items-->
 
@@ -38,12 +38,12 @@
 
 <div class="contMainC">
   <!--Browser Good House-->
-  <%= render :partial => "goodhouse" %>
+  <%= render :partial => "good_house" %>
   <!--Browser Good House-->
 
-  <!--Browser Bad House-->
-  <%= render :partial => "badhouse" %>
-  <!--Browser Bad House-->
+  <!--Browser Worse House-->
+  <%= render :partial => "worse_house" %>
+  <!--Browser Worse House-->
 
   <!--Browser Current Market Price-->
   <%= render :partial => "current_market_price" %>
@@ -59,9 +59,9 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Browser Recent requested to rate-->
+  <!--Browser Recent need plase-->
   <%= render :partial => "need_place" %>
-  <!--Browser Recent requested to rate-->
+  <!--Browser Recent need plase-->
 </div>
 <!--Content-->
 

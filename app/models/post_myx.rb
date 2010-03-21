@@ -23,8 +23,8 @@ class PostMyx < ActiveRecord::Base
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["post_myxs.id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["post_myxs.id > ?", att]} }
+  named_scope :previous, lambda { |att| {:conditions => ["post_myxes.id < ?", att]} }
+  named_scope :next, lambda { |att| {:conditions => ["post_myxes.id > ?", att]} }
 
   # Tags
   acts_as_taggable

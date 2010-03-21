@@ -93,49 +93,49 @@ module ApplicationHelper
   def show_search_form(ctrl_name, query)
     case ctrl_name
       when "post_assignments"
-        type = PostCategory.find_by_name("Assignments").id
+        type = PostCategory.find_by_class_name("PostAssignment").id
         search_post_path = search_post_assignments_path
       when "post_projects"
-        type = PostCategory.find_by_name("Projects").id
+        type = PostCategory.find_by_class_name("PostProject").id
         search_post_path = search_post_projects_path
       when "post_tests"
-        type = PostCategory.find_by_name("Tests").id
+        type = PostCategory.find_by_class_name("PostTest").id
         search_post_path = search_post_tests_path
       when "post_exams"
-        type = PostCategory.find_by_name("Exams").id
+        type = PostCategory.find_by_class_name("PostExam").id
         search_post_path = search_post_assignments_path
       when "post_qas"
-        type = PostCategory.find_by_name("QAs").id
+        type = PostCategory.find_by_class_name("PostQa").id
         search_post_path = search_post_qas_path
       when "post_tutors"
-        type = PostCategory.find_by_name("Tutors").id
+        type = PostCategory.find_by_class_name("PostTutor").id
         search_post_path = search_post_tutors_path
       when "post_books"
-        type = PostCategory.find_by_name("Books").id
+        type = PostCategory.find_by_class_name("PostBook").id
         search_post_path = search_post_books_path
       when "post_jobs"
-        type = PostCategory.find_by_name("Jobs").id
+        type = PostCategory.find_by_class_name("PostJob").id
         search_post_path = search_post_jobs_path
       when "post_foods"
-        type = PostCategory.find_by_name("Foods").id
+        type = PostCategory.find_by_class_name("PostFood").id
         search_post_path = search_post_foods_path
       when "post_parties"
-        type = PostCategory.find_by_name("Party").id
+        type = PostCategory.find_by_class_name("PostParty").id
         search_post_path = search_post_parties_path
       when "post_myxes"
-        type = PostCategory.find_by_name("MyX").id
+        type = PostCategory.find_by_class_name("PostMyx").id
         search_post_path = search_post_myxes_path
       when "post_awarenesses"
-        type = PostCategory.find_by_name("Student Awareness").id
+        type = PostCategory.find_by_class_name("PostAwareness").id
         search_post_path = search_post_awarenesses_path
       when "post_housings"
-        type = PostCategory.find_by_name("Housing").id
+        type = PostCategory.find_by_class_name("PostHousing").id
         search_post_path = search_post_housings_path
       when "post_teamups"
-        type = PostCategory.find_by_name("Team Up").id
+        type = PostCategory.find_by_class_name("PostTeamup").id
         search_post_path = search_post_teamups_path
       else
-        type = PostCategory.find_by_name("Assignments").id
+        type = PostCategory.find_by_class_name("PostAssignment").id
         search_post_path = search_post_assignments_path
     end
     render :partial => "shared/search_posts", :locals => {:type => type, :search_post_path => search_post_path, :query => query}

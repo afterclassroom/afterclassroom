@@ -2,24 +2,17 @@
 class PostHousingsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
-  before_filter :get_variables, :only => [:index]
-  before_filter :login_required, :except => [:index, :show, :search, :tag]
-  before_filter :require_current_user, :only => [:edit, :update, :destroy, :rate]
-  after_filter :store_location, :only => [:index, :show, :search, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :search, :tag, :good_house, :worse_house]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_house, :worse_house]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  after_filter :store_location, :only => [:index, :show, :search, :tag, :good_house, :worse_house]
+  after_filter :store_go_back_url, :only => [:index, :search, :tag, :good_house, :worse_house]
   # GET /post_housings
   # GET /post_housings.xml
   def index
-    if params[:more_like_this_id]
-      id = params[:more_like_this_id]
-      post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
-    else
-      @housing_category_id = params[:housing_category_id]
-      @housing_category_id ||= HousingCategory.find(:first).id
-      @posts = PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
-    end
+    @housing_category_id = params[:housing_category_id]
+    @housing_category_id ||= HousingCategory.find(:first).id
+    @posts = PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,17 +20,41 @@ class PostHousingsController < ApplicationController
     end
   end
 
+  def good_house
+    @posts = PostHousing.paginated_post_conditions_with_good_housing(params, @school)
+  end
+
+  def worse_house
+    @posts = PostHousing.paginated_post_conditions_with_worse_housing(params, @school)
+  end
+
   def rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
-    post_tt = post.post_tutor
-    post_tt.rate rating.to_i, current_user
+    post_h = post.post_housing
+    post_h.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_h.score_good
+    score_bad = post_h.score_bad
+
+    if score_good > score_bad
+      status = "Good"
+    elsif score_good == score_bad
+      status = "Require Rating"
+    else
+      status = "Bad"
+    end
+
+    post_h.rating_status = status
+
+    post_h.save
+
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post.post_tutor.total_good}</a>
+        <a href="javascript:;">#{post_h.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post.post_tutor.total_bad}</a>
+        <a href="javascript:;">#{post_h.total_bad}</a>
       </div>'
   end
 
@@ -65,6 +82,11 @@ class PostHousingsController < ApplicationController
     @post = Post.find(params[:id])
     @post_housing = @post.post_housing
     update_view_count(@post)
+    posts_as = PostHousing.with_school(@school)
+    as_next = posts_as.next(@post_housing.id).first
+    as_prev = posts_as.previous(@post_housing.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_housing }

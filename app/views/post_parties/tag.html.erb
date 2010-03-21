@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Books", post_books_path, :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Foods", post_foods_path, :class => "abLink-detail" %><%= link_to "Subject: '#{@tag.name}'", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -11,57 +11,59 @@
 <% end -%>
 
 <!--Content-->
-<div class="contMainL">
-  <div class="col451 Book">
-    <div class="col451in">
-      <div class="col451Cont">
-        <!--Options-->
-        <%= show_options(@school, params) %>
-        <!--Options-->
+<div class="contMain">
+  <div class="contMainL">
+    <div class="col451 Party">
+      <div class="col451in">
+        <div class="col451Cont">
+          <div class="AsDTop">
+            <h1 class="titleH1">Party</h1>
+          </div>
+          <!--List Items-->
+          <% @posts.each do |post| %>
+            <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+          <% end %>
+          <!--List Items-->
 
-        <!--List Items-->
-        <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
-        <% end %>
-        <!--List Items-->
-
-        <!--Pagination-->
-        <div class="assPage">
-          <span class="numPage"><%= page_entries_info @posts %></span>
-          <%= will_paginate @posts %>
+          <!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @posts %></span>
+            <%= will_paginate @posts %>
+          </div>
+          <!--Pagination-->
+          <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
         </div>
-        <!--Pagination-->
-        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
     </div>
+
   </div>
 
-</div>
-<div class="contMainC">
-  <!--Browser Don't Buy-->
-  <%= render :partial => "dont_buy" %>
-  <!--Browser Don't Buy-->
+  <div class="contMainC">
+    <!--Browser Top Club-->
+    <%= render :partial => "top_club" %>
+    <!--Browser Top Club-->
 
-  <!--Browser Good Books-->
-  <%= render :partial => "good_book" %>
-  <!--Browser Good Books-->
+    <!--Browser Top party posters-->
+    <%= render :partial => "top_party_posters" %>
+    <!--Browser Top party posters-->
+    
+    <!--Browser Poll this Tutors-->
+    <%= render :partial => "poll" %>
+    <!--Browser Poll this Tutors-->
+  </div>
 
-  <!--Browser Free Books-->
-  <%= render :partial => "free_book" %>
-  <!--Browser Free Books-->
-</div>
+  <div class="contMainR">
+    <!--Browser by Subject-->
+    <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
+    <!--Browser by Subject-->
 
-<div class="contMainR">
-  <!--Browser by Subject-->
-  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
-  <!--Browser by Subject-->
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
 
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
-
-  <!--Request Book-->
-  <%= render :partial => "form_request_book" %>
-  <!--Request Book-->
+    <!--Recent Request parties-->
+    <%= render :partial => "recent_request_parties" %>
+    <!--Recent Request parties-->
+  </div>
 </div>
 <!--Content-->

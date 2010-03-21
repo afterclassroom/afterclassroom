@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Housing", post_housings_path, :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Housing", post_housings_path, :class => "abLink-detail" %><%= link_to "Subject: '#{@tag.name}'", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -20,7 +20,7 @@
         </div>
         <!--List Items-->
         <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>bad
         <% end %>
         <!--List Items-->
 
@@ -34,16 +34,16 @@
       </div>
     </div>
   </div>
-
 </div>
+
 <div class="contMainC">
   <!--Browser Good House-->
-  <%= render :partial => "goodhouse" %>
+  <%= render :partial => "good_house" %>
   <!--Browser Good House-->
 
-  <!--Browser Bad House-->
-  <%= render :partial => "badhouse" %>
-  <!--Browser Bad House-->
+  <!--Browser Worse House-->
+  <%= render :partial => "worse_house" %>
+  <!--Browser Worse House-->
 
   <!--Browser Current Market Price-->
   <%= render :partial => "current_market_price" %>
@@ -52,15 +52,16 @@
 
 <div class="contMainR">
   <!--Browser by Subject-->
-  <%#= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
+  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
   <!--Browser by Subject-->
 
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Browser Recent requested to rate-->
+  <!--Browser Recent need plase-->
   <%= render :partial => "need_place" %>
-  <!--Browser Recent requested to rate-->
+  <!--Browser Recent need plase-->
 </div>
 <!--Content-->
+

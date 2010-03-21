@@ -26,7 +26,7 @@ class PostParty < ActiveRecord::Base
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   named_scope :previous, lambda { |att| {:conditions => ["post_parties.id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["post_partiess.id > ?", att]} }
+  named_scope :next, lambda { |att| {:conditions => ["post_parties.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, rating_status)
     from_school = params[:from_school]

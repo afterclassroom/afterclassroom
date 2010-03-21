@@ -1,0 +1,72 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Foods", post_foods_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contMain">
+  <div class="contMainL">
+    <div class="col451 Party">
+      <div class="col451in">
+        <div class="col451Cont">
+          <div class="AsDTop">
+            <h1 class="titleH1">Party</h1>
+            <div class="AsDsearch">
+            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_parties_path} %>
+          </div>
+          </div>
+          <!--List Items-->
+          <% @posts.each do |post| %>
+            <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+          <% end %>
+          <!--List Items-->
+
+          <!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @posts %></span>
+            <%= will_paginate @posts %>
+          </div>
+          <!--Pagination-->
+          <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="contMainC">
+    <!--Browser Top Club-->
+    <%= render :partial => "top_club" %>
+    <!--Browser Top Club-->
+
+    <!--Browser Top party posters-->
+    <%= render :partial => "top_party_posters" %>
+    <!--Browser Top party posters-->
+    
+    <!--Browser Poll this Tutors-->
+    <%= render :partial => "poll" %>
+    <!--Browser Poll this Tutors-->
+  </div>
+
+  <div class="contMainR">
+    <!--Browser by Subject-->
+    <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
+    <!--Browser by Subject-->
+
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+
+    <!--Recent Request parties-->
+    <%= render :partial => "recent_request_parties" %>
+    <!--Recent Request parties-->
+  </div>
+</div>
+<!--Content-->

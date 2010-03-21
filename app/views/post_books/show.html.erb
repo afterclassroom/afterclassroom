@@ -57,13 +57,13 @@
     </div>
     <div class="goback" id="go_back"><%= show_go_back %></div>
     <div class="comPage">
-      <span class="compre"><%= link_to "", post_tutor_path(@prev) if @prev %> </span>
-      <span class="comnext"><%= link_to "", post_tutor_path(@next) if @next %></span>
+      <span class="compre"><%= link_to "", post_book_path(@prev) if @prev %> </span>
+      <span class="comnext"><%= link_to "", post_book_path(@next) if @next %></span>
     </div>
     <div class="AsDOr">
       <h1 class="titleH1">Related Requests Books in Books Category</h1>
       <% PostBook.related_posts(@school).each do |p| %>
-        <div class="AsDOrItem"><%= link_to p.title, post_tutor_path(p) %></div>
+        <div class="AsDOrItem"><%= link_to p.title, post_book_path(p) %></div>
       <% end %>
     </div>
     <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>

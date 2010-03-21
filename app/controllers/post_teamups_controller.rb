@@ -2,11 +2,11 @@
 class PostTeamupsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :teamrating, :tag]
+  before_filter :get_variables, :only => [:index, :show, :search, :tag, :good_org, :worse_org]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_org, :worse_org]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :tag]
+  after_filter :store_location, :only => [:index, :show, :search, :tag, :good_org, :worse_org]
+  after_filter :store_go_back_url, :only => [:index, :search, :tag, :good_org, :worse_org]
   # GET /post_teamups
   # GET /post_teamups.xml
    def index
@@ -48,18 +48,18 @@ class PostTeamupsController < ApplicationController
     @posts = PostTeamup.paginated_post_conditions_with_good_org(params, @school)
   end
 
-  def bad_org
-    @posts = PostTeamup.paginated_post_conditions_with_bad_org(params, @school)
+  def worse_org
+    @posts = PostTeamup.paginated_post_conditions_with_worse_org(params, @school)
   end
 
   def rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
-    post_tt = post.post_teamup
-    post_tt.rate rating.to_i, current_user
+    post_tm = post.post_teamup
+    post_tm.rate rating.to_i, current_user
     # Update rating status
-    score_good = post_tt.score_good
-    score_bad = post_tt.score_bad
+    score_good = post_tm.score_good
+    score_bad = post_tm.score_bad
 
     if score_good > score_bad
       status = "Good"
@@ -69,15 +69,15 @@ class PostTeamupsController < ApplicationController
       status = "Bad"
     end
 
-    post_tt.rating_status = status
+    post_tm.rating_status = status
 
-    post_tt.save
+    post_tm.save
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post.post_teamup.total_good}</a>
+        <a href="javascript:;">#{post_tm.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post.post_teamup.total_bad}</a>
+        <a href="javascript:;">#{post_tm.total_bad}</a>
       </div>'
   end
   
@@ -87,6 +87,11 @@ class PostTeamupsController < ApplicationController
     @post = Post.find(params[:id])
     @post_teamup = @post.post_teamup
     update_view_count(@post)
+    posts_as = PostTeamup.with_school(@school)
+    as_next = posts_as.next(@post_teamup.id).first
+    as_prev = posts_as.previous(@post_teamup.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_teamup }

@@ -5,6 +5,8 @@ class CreatePostHousings < ActiveRecord::Migration
       t.string :rent
       t.string :currency
       t.string :address
+      t.string :phone
+      t.string :rating_status
     end
   end
 

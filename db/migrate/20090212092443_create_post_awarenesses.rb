@@ -5,6 +5,7 @@ class CreatePostAwarenesses < ActiveRecord::Migration
       t.belongs_to :awareness_type
       t.datetime :campaign_start
       t.datetime :campaign_end
+      t.string :rating_status
     end
   end
 

@@ -2,20 +2,22 @@
 class PostAwarenessesController < ApplicationController
   include Viewable
   
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :tag]
-  before_filter :require_current_user, :only => [:edit, :update, :destroy,:rate]
-  after_filter :store_location, :only => [:index, :show, :search, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :search, :tag, :rate]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :rate]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  after_filter :store_location, :only => [:index, :show, :search, :tag, :rate]
+  after_filter :store_go_back_url, :only => [:index, :show, :search, :tag, :rate]
   # GET /post_awarenesses
   # GET /post_awarenesses.xml
   def index
     if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
+      @posts = PostAwareness.paginated_post_more_like_this(params, post)
     else
-      @posts = Post.paginated_post_conditions_with_option(params, @school, @type)
+      @awareness_type_id = params[:awareness_type_id]
+      @awareness_type_id ||= AwarenessType.find(:first).id
+      @posts = PostAwareness.paginated_post_conditions_with_option(params, @school, @awareness_type_id)
     end
 
     respond_to do |format|
@@ -23,21 +25,6 @@ class PostAwarenessesController < ApplicationController
       format.xml  { render :xml => @posts }
     end
   end
-
-  def rate
-    rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_tt = post.post_awareness
-    post_tt.rate rating.to_i, current_user
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;">#{post.post_awareness.total_good}</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;">#{post.post_awareness.total_bad}</a>
-      </div>'
-  end
-
 
   def search
     @query = params[:search][:query] if params[:search]
@@ -51,15 +38,55 @@ class PostAwarenessesController < ApplicationController
     end
   end
 
+  def tag
+    tag_id = params[:tag_id]
+    @tag = Tag.find(tag_id)
+    @posts = PostAwareness.paginated_post_conditions_with_tag(params, @school, @tag.name)
+  end
+
+  def rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    post_a = post.post_awareness
+    post_a.rate rating.to_i, current_user
+    # Update rating status
+    score_good = post_a.score_good
+    score_bad = post_a.score_bad
+
+    if score_good > score_bad
+      status = "Good"
+    elsif score_good == score_bad
+      status = "Require Rating"
+    else
+      status = "Bad"
+    end
+
+    post_a.rating_status = status
+
+    post_a.save
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;">#{post_a.total_good}</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;">#{post_a.total_bad}</a>
+      </div>'
+  end
+
   # GET /post_awarenesses/1
   # GET /post_awarenesses/1.xml
   def show
     @post = Post.find(params[:id])
-    @post_book = @post.post_book
+    @post_awareness = @post.post_awareness
     update_view_count(@post)
+    posts_as = PostAwareness.with_school(@school)
+    as_next = posts_as.next(@post_awareness.id).first
+    as_prev = posts_as.previous(@post_awareness.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_book }
+      format.xml  { render :xml => @post_awareness }
     end
   end
 

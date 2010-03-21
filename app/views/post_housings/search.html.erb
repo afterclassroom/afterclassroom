@@ -12,19 +12,18 @@
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 student Book">
+  <div class="col451 student">
     <div class="col451in">
       <div class="col451Cont">
         <div class="AsDTop">
-          <h1 class="titleH1">Jobs</h1>
+          <h1 class="titleH1">Housing</h1>
           <div class="AsDsearch">
-            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_jobs_path} %>
+            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_housings_path} %>
           </div>
         </div>
-
         <!--List Items-->
         <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>bad
         <% end %>
         <!--List Items-->
 
@@ -42,12 +41,12 @@
 
 <div class="contMainC">
   <!--Browser Good House-->
-  <%= render :partial => "goodhouse" %>
+  <%= render :partial => "good_house" %>
   <!--Browser Good House-->
 
-  <!--Browser Bad House-->
-  <%= render :partial => "badhouse" %>
-  <!--Browser Bad House-->
+  <!--Browser Worse House-->
+  <%= render :partial => "worse_house" %>
+  <!--Browser Worse House-->
 
   <!--Browser Current Market Price-->
   <%= render :partial => "current_market_price" %>
@@ -63,9 +62,9 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Browser I need a place-->
+  <!--Browser Recent need plase-->
   <%= render :partial => "need_place" %>
-  <!--Browser I need a place-->
+  <!--Browser Recent need plase-->
 </div>
 <!--Content-->
 

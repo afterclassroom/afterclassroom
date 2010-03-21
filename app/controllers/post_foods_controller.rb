@@ -115,6 +115,11 @@ class PostFoodsController < ApplicationController
     @post = Post.find(params[:id])
     @post_food = @post.post_food
     update_view_count(@post)
+    posts_as = PostFood.with_school(@school)
+    as_next = posts_as.next(@post_food.id).first
+    as_prev = posts_as.previous(@post_food.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_food }

@@ -1,0 +1,21 @@
+<div class="col195 student195">
+  <div class="col195in">
+    <h1 class="col195Title">Worse House/Apt</h1>
+    <div class="col195Cont">
+      <%
+      bad_housings = PostHousing.with_limit.worse_housing(@school)
+    %>
+      <% if bad_housings.size > 0 %>
+        <%
+        bad_housings.each do |tt|
+        %>
+          <div class="dueDItem">
+            <div class="studentImg"><%= link_to "<div>#{image_tag(tt.post.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => tt.post.user.id} %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_housing_path(tt.post) %></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more Bad House/Apt", worse_house_post_housings_path %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

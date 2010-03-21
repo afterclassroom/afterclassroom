@@ -9,9 +9,10 @@
 <% content_for :menu_sub do -%>
   <%= render :partial => "submenu" %>
 <% end -%>
+
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 QAs">
+  <div class="col451 student">
     <div class="col451in">
       <div class="col451Cont">
         <div class="AsDTop">
@@ -22,7 +23,7 @@
         </div>
         <!--List Items-->
         <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
         <% end %>
         <!--List Items-->
 
@@ -44,11 +45,11 @@
   <!--Browser Startup-->
 
   <!--Browser Good organizations-->
-  <%= render :partial => "goodorg"%>
+  <%= render :partial => "good_org"%>
   <!--Browser Good organizations-->
 
   <!--Browser Bad organizations-->
-  <%= render :partial => "badorg"%>
+  <%= render :partial => "worse_org"%>
   <!--Browser Bad organizations-->
 </div>
 
@@ -62,8 +63,8 @@
   <!--Ads-->
 
   <!--Recent Request Comments-->
-  <%= render :partial => "shared/recent_comment" %>
+  <%= render :partial => "recent_comments" %>
   <!--Recent Request Comments-->
-  
+
 </div>
 <!--Content-->

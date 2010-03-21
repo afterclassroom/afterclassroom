@@ -1,0 +1,67 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Housing", post_housings_path, :class => "abLink-detail" %><%= link_to "Worse House/Apt", "#", :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contMainL">
+  <div class="col451 student">
+    <div class="col451in">
+      <div class="col451Cont">
+        <div class="AsDTop">
+          <h1 class="titleH1">Housing</h1>
+        </div>
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>bad
+        <% end %>
+        <!--List Items-->
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contMainC">
+  <!--Browser Good House-->
+  <%= render :partial => "good_house" %>
+  <!--Browser Good House-->
+
+  <!--Browser Worse House-->
+  <%= render :partial => "worse_house" %>
+  <!--Browser Worse House-->
+
+  <!--Browser Current Market Price-->
+  <%= render :partial => "current_market_price" %>
+  <!--Browser Current Market Price-->
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Browser Recent need plase-->
+  <%= render :partial => "need_place" %>
+  <!--Browser Recent need plase-->
+</div>
+<!--Content-->
+

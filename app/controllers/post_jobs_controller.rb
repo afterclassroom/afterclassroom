@@ -114,11 +114,16 @@ class PostJobsController < ApplicationController
   # GET /post_jobs/1.xml
   def show
     @post = Post.find(params[:id])
-    @post_qa = @post.post_qa
+    @post_j = @post.post_job
     update_view_count(@post)
+    posts_as = PostFood.with_school(@school)
+    as_next = posts_as.next(@post_j.id).first
+    as_prev = posts_as.previous(@post_j.id).first
+    @next = as_next.post if as_next
+    @prev = as_prev.post if as_prev
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_qa }
+      format.xml  { render :xml => @post_j }
     end
   end
 
@@ -193,7 +198,7 @@ class PostJobsController < ApplicationController
 
   def get_variables
     @tags = PostJob.tag_counts
-    @new_post_path = new_post_qa_path
+    @new_post_path = new_post_job_path
     @type = PostCategory.find_by_class_name("PostJob").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]

@@ -75,10 +75,10 @@ class PostBooksController < ApplicationController
 
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post.post_book.total_good}</a>
+        <a href="javascript:;">#{post_b.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post.post_book.total_bad}</a>
+        <a href="javascript:;">#{post_b.total_bad}</a>
       </div>'
   end
 

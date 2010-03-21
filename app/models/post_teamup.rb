@@ -22,7 +22,7 @@ class PostTeamup < ActiveRecord::Base
   named_scope :with_category, lambda { |c| {:conditions => ["teamup_category_id = ?", c]} }
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["post_teampups.id < ?", att]} }
+  named_scope :previous, lambda { |att| {:conditions => ["post_teamups.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_teamups.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, category_id)
@@ -43,7 +43,7 @@ class PostTeamup < ActiveRecord::Base
   def self.paginated_post_more_like_this(params, post_like)
     post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category]) do |post_teamup, post, teamup_category|
       teamup_category.id == post_like.post_teamup.teamup_category_id
-      post.school_id == post_like.id
+      post.school_id == post_like.school_id
     end
 
     posts = []
@@ -65,9 +65,9 @@ class PostTeamup < ActiveRecord::Base
     posts.paginate :page => params[:page], :per_page => 10
   end
 
-  def self.paginated_post_conditions_with_bad_org(params, school)
+  def self.paginated_post_conditions_with_worse_org(params, school)
     posts = []
-    post_as = self.bad_org(school)
+    post_as = self.worse_org(school)
     post_as.select {|p| posts << p.post}
     posts.paginate :page => params[:page], :per_page => 10
   end
