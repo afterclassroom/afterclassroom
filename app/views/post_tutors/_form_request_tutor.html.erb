@@ -9,6 +9,14 @@
         <div class="postErrClo"><a href="#">&nbsp;</a></div>
       </div>
       <div class="postReq">*(asterisk) is required.</div>
+      <% form_for(@new_tutor, :html => {:id => "form", :name => "form", :multipart => true, :class => "postTit" }) do |f| %>
+        <div class="postItem">
+          <%= f.label :address %>
+          <div class="postInp">
+            <%= f.text_field :address %>
+          </div>
+        </div>
+      <% end %>
       <div class="postItem">
         <div class="postTit">Post Category*</div>
         <div class="postInp"><select name="Select1"><option>Select a post category</option></select></div>

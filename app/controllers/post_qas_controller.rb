@@ -20,6 +20,8 @@ class PostQasController < ApplicationController
       @posts = PostQa.paginated_post_conditions_with_option(params, @school, @type)
     end
 
+    @new_qa = PostQa.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

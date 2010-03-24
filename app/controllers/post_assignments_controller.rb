@@ -19,6 +19,8 @@ class PostAssignmentsController < ApplicationController
       @posts = PostAssignment.paginated_post_conditions_with_option(params, @school)
     end
 
+    @new_assignment = PostAssignment.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
