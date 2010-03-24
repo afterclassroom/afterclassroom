@@ -7,6 +7,9 @@
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.1.1' unless defined? RAILS_GEM_VERSION
 
+ENV['RECAPTCHA_PUBLIC_KEY']  = '6LcOAAwAAAAAAMFrzH8v6Fumgd001p8gxzc-XDfe'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LcOAAwAAAAAABX8iKvdQ3rkvxoOUp3nhDf4_Ufm'
+  
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -15,10 +18,10 @@ Rails::Initializer.run do |config|
   config.gem "capistrano-ext", :lib => "capistrano"
   config.gem "configatron"
   config.gem(
-  'thinking-sphinx',
-  :lib     => 'thinking_sphinx',
-  :version => '1.3.14'
-)
+    'thinking-sphinx',
+    :lib     => 'thinking_sphinx',
+    :version => '1.3.14'
+  )
 
   # Make Time.zone default to the specified zone, and make Active Record store time values
   # in the database in UTC, and return them converted to the specified local zone.

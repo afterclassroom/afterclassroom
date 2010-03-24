@@ -1,1 +1,19 @@
-<%= render :partial => "shared/item_comment", :locals => {:comnt => @obj_comment} %>
+<%#= render :partial => "shared/item_comment", :locals => {:comnt => @obj_comment} %>
+<div class="AsDcomItem" id="item_comment_<%= @obj_comment.id %>">
+  <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@obj_comment.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => @obj_comment.user.id} %></div>
+  <div class="AsDcomItemR">
+    <div class="AsDcomName">Comment by<%= link_to @obj_comment.user.full_name, {:controller => "profile", :action => "show_profile", :id => @obj_comment.user.id} %>- <%= time_ago_in_words(@obj_comment.created_at, true) + " ago." %></div>
+    <div class="AsDcomDes"><%= @obj_comment.comment %></div>
+    <div class="AsDcomRe">
+      <div id="rate_comment_<%= @obj_comment.id %>">
+        <div class="AsDcomRe1">
+          <%= link_to_remote @obj_comment.total_good, { :update => "rate_comment_#{@obj_comment.id}", :url => {:controller => "posts", :action => "rate_comment", :comment_id => @obj_comment.id, :rating => "1" } } %>
+        </div>
+        <div class="AsDcomRe2">
+          <%= link_to_remote @obj_comment.total_bad, { :update => "rate_comment_#{@obj_comment.id}", :url => {:controller => "posts", :action => "rate_comment", :comment_id => @obj_comment.id, :rating => "0" } } %>
+        </div>
+      </div>
+      <div class="AsDcomRe3"><%=  link_to_function("Report Abuse", "tb_show('Report Abuse', '#{report_abuse_posts_path}?reported_id=#{@obj_comment.id}&reported_type=Comment&height=200&width=280', false)") %></div>
+    </div>
+  </div>
+</div>

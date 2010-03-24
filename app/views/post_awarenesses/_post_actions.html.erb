@@ -1,5 +1,5 @@
 <div class="AsDContBtm">
-  <span class="btmComment"><a href="javascript:void();" onclick="$('form_comment').show();">Reply</a></span>
+  <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Reply</a></span>
   <span class="btmMail"><%= show_email(post) %></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
   <span class="btmMore"><%= link_to "<span>More like this</span>", :controller => "post_awarenesses", :action => "index", :more_like_this_id => post %></span>
