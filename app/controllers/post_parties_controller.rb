@@ -14,6 +14,8 @@ class PostPartiesController < ApplicationController
     @rating_status ||= ""
     @posts = PostParty.paginated_post_conditions_with_option(params, @school, @rating_status)
 
+    @new_party = PostParty.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

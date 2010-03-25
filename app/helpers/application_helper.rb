@@ -151,9 +151,11 @@ module ApplicationHelper
 
   def show_favorite(post)
     if !logged_in?
-      "Favorite (#{post.favorites.size})"
+      link_to "Favorite (#{post.favorites.size})", "/login_ajax?height=200&width=540", :class => "thickbox", :title => "Sign In"
     elsif current_user.has_favorite?(post)
-      "Favorite (#{post.favorites.size})"
+      id = "#favorite_action_#{post.id}"
+      str_favorited = "It`s already in your favourite list."
+      "<span id='favorite_action_#{post.id}'>Favorite (#{post.favorites.size})</span><script>#{tool_tip(id, str_favorited)}</script>"
     else
       link_to_remote "Favorite (#{post.favorites.size})", { :update => "post_favorite_#{post.id}", :url => {:controller => "posts", :action => "add_to_favorite", :post_id => post.id } }
     end
@@ -202,4 +204,5 @@ module ApplicationHelper
   def tool_tip(id, content)
     "$('#{id}').bt('#{content}', {trigger: 'click', positions: 'top'});"
   end
+
 end

@@ -20,6 +20,8 @@ class PostJobsController < ApplicationController
       @posts = PostJob.paginated_post_conditions_with_option(params, @school, @job_type_id)
     end
 
+    @new_job = PostJob.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

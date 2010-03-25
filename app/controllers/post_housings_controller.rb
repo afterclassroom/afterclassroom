@@ -14,6 +14,8 @@ class PostHousingsController < ApplicationController
     @housing_category_id ||= HousingCategory.find(:first).id
     @posts = PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
 
+    @new_house = PostHousing.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

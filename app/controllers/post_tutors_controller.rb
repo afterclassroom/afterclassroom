@@ -20,6 +20,8 @@ class PostTutorsController < ApplicationController
       @posts = PostTutor.paginated_post_conditions_with_option(params, @school, @tutor_type_id)
     end
 
+    @new_tutor = PostTutor.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

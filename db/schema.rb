@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.integer  "awareness_type_id"
     t.datetime "campaign_start"
     t.datetime "campaign_end"
+    t.string   "rating_status"
   end
 
   create_table "post_books", :force => true do |t|
@@ -278,10 +279,12 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   end
 
   create_table "post_housings", :force => true do |t|
-    t.integer "post_id",  :null => false
+    t.integer "post_id",       :null => false
     t.string  "rent"
     t.string  "currency"
     t.string  "address"
+    t.string  "phone"
+    t.string  "rating_status"
   end
 
   create_table "post_jobs", :force => true do |t|
@@ -311,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "address"
+    t.string   "phone"
     t.string   "rating_status"
   end
 
@@ -341,6 +345,7 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   create_table "post_qas", :force => true do |t|
     t.integer "post_id"
     t.integer "post_qa_category_id"
+    t.string  "rating_status"
   end
 
   create_table "post_teamups", :force => true do |t|
@@ -349,6 +354,7 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
     t.string  "ourStatus"
     t.string  "founded_in"
     t.string  "noOfMember"
+    t.string  "rating_status"
   end
 
   create_table "post_tests", :force => true do |t|

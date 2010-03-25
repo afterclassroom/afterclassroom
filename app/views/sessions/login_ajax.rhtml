@@ -1,0 +1,27 @@
+<div class="signinCont">
+  <div class="postReq">*(asterisk) is required.</div>
+  <% form_tag session_path, :name => "form_login_ajax", :id => "form_login_ajax" do -%>
+    <div class="signinItem">
+      <div class="signinTit">Email*</div>
+      <div class="signinInp"><%= text_field_tag 'email', '', :class => 'required email' %></div>
+    </div>
+    <div class="signinItem">
+      <div class="signinTit">Password*</div>
+      <div class="signinInp"><%= password_field_tag 'password', '', :class => 'required' %></div>
+    </div>
+    <div class="signincCheck">
+      <div><%= check_box_tag('remember_me') %> </div>
+      <div class="signincCheckTxt">Remember me for next login</div>
+    </div>
+    <div class="btmLogme"><a href="javascript:;" onclick="submit()">Log me in</a></div>
+    <div class="forgotPass"><span class="forgot"><%= link_to "Forgot Password", user_forgot_password_url %></span><span><%= link_to "Simple sign up", signup_url %></span></div>
+  <% end -%>
+  <script type="text/javascript">
+    function submit(){
+      var result = $("#form_login_ajax").validate();
+      if (result) {
+        $("#form_login_ajax").submit();
+      }
+    }
+  </script>
+</div>

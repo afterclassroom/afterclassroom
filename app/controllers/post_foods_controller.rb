@@ -14,6 +14,8 @@ class PostFoodsController < ApplicationController
     @rating_status ||= ""
     @posts = PostFood.paginated_post_conditions_with_option(params, @school, @rating_status)
 
+    @new_food = PostFood.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

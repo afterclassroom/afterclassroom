@@ -20,6 +20,8 @@ class PostTeamupsController < ApplicationController
       @posts = PostTeamup.paginated_post_conditions_with_option(params, @school, @teamup_category_id)
     end
 
+    @new_team = PostTeamup.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

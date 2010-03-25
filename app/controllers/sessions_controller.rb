@@ -6,6 +6,10 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def login_ajax
+    render :layout => false
+  end
+
   def create
     logout_keeping_session!
     password_authentication

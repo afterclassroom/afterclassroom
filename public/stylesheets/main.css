@@ -1656,35 +1656,6 @@ span.btmAbuse a:hover{
     padding:5px 10px 5px 10px;
     color:#6f6f63;
 }
-.postErr{
-    background:url('/images/postbgerr.png') no-repeat 8px 7px;
-    width:632px;
-    background-color:#fffdee;
-    border:1px #fee203 solid;
-    overflow:hidden;
-    _height:100%;
-}
-.postErrNote{
-    float:left;
-    width:560px;
-    padding:8px 0px 8px 30px;
-    font-style:italic;
-}
-.postErrClo{
-    float:right;
-    margin:1px;
-}
-.postErrClo a{
-    background:url('/images/postClose.jpg') no-repeat;
-    height:16px;
-    width:16px;
-    display:block;
-    text-decoration:none;
-}
-.postErrClo a:hover{
-    text-decoration:none;
-    background:url('/images/postCloseH.png') no-repeat;
-}
 .postItem{
     padding:3px 0px 3px 10px;
     overflow:hidden;

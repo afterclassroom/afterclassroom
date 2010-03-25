@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup   '/signup',   :controller => 'users',    :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate'
   map.login    '/login',    :controller => 'sessions', :action => 'new'
+  map.login_ajax    '/login_ajax',    :controller => 'sessions', :action => 'login_ajax'
   map.logout   '/logout',   :controller => 'sessions', :action => 'destroy', :conditions => {:method => :delete}
   
   map.user_troubleshooting '/users/troubleshooting', :controller => 'users', :action => 'troubleshooting'

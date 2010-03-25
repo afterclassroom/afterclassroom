@@ -34,6 +34,7 @@ stylesheets:
   - sexy_flash
   - pagination
   - jquery-bt
+  - validation
 - student_louge:
   - reset
   - layout

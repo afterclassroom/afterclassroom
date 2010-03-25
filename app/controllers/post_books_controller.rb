@@ -20,6 +20,8 @@ class PostBooksController < ApplicationController
       @posts = PostBook.paginated_post_conditions_with_option(params, @school, @book_type_id)
     end
 
+    @new_book = PostBook.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

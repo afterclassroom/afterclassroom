@@ -20,6 +20,8 @@ class PostAwarenessesController < ApplicationController
       @posts = PostAwareness.paginated_post_conditions_with_option(params, @school, @awareness_type_id)
     end
 
+    @new_aware = PostAwareness.new
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
