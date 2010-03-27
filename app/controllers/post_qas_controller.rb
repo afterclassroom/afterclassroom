@@ -21,6 +21,10 @@ class PostQasController < ApplicationController
     end
 
     @new_qa = PostQa.new
+    post = Post.new
+    @new_qa.post = post
+    @post_categories = PostCategory.find(:all)
+    @post_category_name = "QAs"
 
     respond_to do |format|
       format.html # index.html.erb

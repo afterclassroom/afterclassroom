@@ -21,6 +21,10 @@ class PostBooksController < ApplicationController
     end
 
     @new_book = PostBook.new
+    post = Post.new
+    @new_book.post = post
+    @post_categories = PostCategory.find(:all)
+    @post_category_name = "Books"
 
     respond_to do |format|
       format.html # index.html.erb

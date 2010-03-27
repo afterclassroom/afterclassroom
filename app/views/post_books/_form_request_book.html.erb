@@ -11,6 +11,13 @@
       </div>
       <div class="postReq">*(asterisk) is required.</div>
       <% form_for(@new_book, :html => {:id => "form", :name => "form", :multipart => true, :class => "postTit" }) do |f| %>
+        Post title <br/>
+        <% fields_for @new_book.post do |post| %>
+          <%= text_field_tag 'title', "#{@post_title}" %>
+        <% end %>
+        <%= f.label @post_category_name %>
+
+
         <div class="postItem">
           <%= f.label :address %>
           <div class="postInp">

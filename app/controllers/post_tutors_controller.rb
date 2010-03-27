@@ -21,6 +21,10 @@ class PostTutorsController < ApplicationController
     end
 
     @new_tutor = PostTutor.new
+    post = Post.new
+    @new_tutor.post = post
+    @post_categories = PostCategory.find(:all)
+    @post_category_name = "Tutors"
 
     respond_to do |format|
       format.html # index.html.erb

@@ -21,6 +21,10 @@ class PostTeamupsController < ApplicationController
     end
 
     @new_team = PostTeamup.new
+    post = Post.new
+    @new_team.post = post
+    @post_categories = PostCategory.find(:all)
+    @post_category_name = "Teamups"
 
     respond_to do |format|
       format.html # index.html.erb

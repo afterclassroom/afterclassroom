@@ -21,6 +21,10 @@ class PostAwarenessesController < ApplicationController
     end
 
     @new_aware = PostAwareness.new
+    post = Post.new
+    @new_aware.post = post
+    @post_categories = PostCategory.find(:all)
+    @post_category_name = "Awarenesses"
 
     respond_to do |format|
       format.html # index.html.erb

@@ -15,6 +15,10 @@ class PostFoodsController < ApplicationController
     @posts = PostFood.paginated_post_conditions_with_option(params, @school, @rating_status)
 
     @new_food = PostFood.new
+    post = Post.new
+    @new_food.post = post
+    @post_categories = PostCategory.find(:all)
+    @post_category_name = "Foods"
 
     respond_to do |format|
       format.html # index.html.erb
