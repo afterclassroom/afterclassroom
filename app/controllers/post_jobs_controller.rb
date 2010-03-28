@@ -21,6 +21,11 @@ class PostJobsController < ApplicationController
     end
 
     @new_job = PostJob.new
+    post = Post.new
+    @new_job.post = post
+    @post_categories = PostCategory.find(:all)
+    @post_category_name = "Jobs"
+
 
     respond_to do |format|
       format.html # index.html.erb
