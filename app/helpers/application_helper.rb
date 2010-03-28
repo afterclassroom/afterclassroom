@@ -151,7 +151,7 @@ module ApplicationHelper
 
   def show_favorite(post)
     if !logged_in?
-      link_to "Favorite (#{post.favorites.size})", "/login_ajax?height=200&width=540", :class => "thickbox", :title => "Sign In"
+      link_to "Favorite (#{post.favorites.size})", "/login_ajax?height=240&width=540", :class => "thickbox", :title => "Sign In"
     elsif current_user.has_favorite?(post)
       id = "#favorite_action_#{post.id}"
       str_favorited = "It`s already in your favourite list."

@@ -31,10 +31,10 @@ stylesheets:
   - main
   - jquery-mcdropdown
   - thickbox
-  - sexy_flash
   - pagination
   - jquery-bt
   - validation
+  - flash
 - student_louge:
   - reset
   - layout

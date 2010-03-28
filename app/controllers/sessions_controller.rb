@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def login_ajax
+    notice "This function is available only to registered users."
     render :layout => false
   end
 

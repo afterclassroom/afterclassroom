@@ -1,0 +1,37 @@
+#flash_notice, #flash_error, #flash_warning, #flash_info{
+    border:1px solid #FEE203;
+    overflow:hidden;
+}
+
+#flash_error {
+    background:#FFFDEE url('/images/icons/flash/error.png') no-repeat scroll 8px 7px;
+}
+
+#flash_warning{
+    background:#FFFDEE url('/images/icons/flash/warning.png') no-repeat scroll 8px 7px;
+}
+
+#flash_notice, #flash_info{
+    background:#FFFDEE url('/images/icons/flash/info.png') no-repeat scroll 8px 7px;
+}
+
+.postErrNote{
+    float:left;
+    padding:8px 0px 8px 30px;
+    font-style:italic;
+}
+.postErrClo{
+    float:right;
+    margin:1px;
+}
+.postErrClo a{
+    background:url('/images/postClose.jpg') no-repeat;
+    height:16px;
+    width:16px;
+    display:block;
+    text-decoration:none;
+}
+.postErrClo a:hover{
+    text-decoration:none;
+    background:url('/images/postCloseH.png') no-repeat;
+}
