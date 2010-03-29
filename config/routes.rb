@@ -14,7 +14,9 @@ ActionController::Routing::Routes.draw do |map|
   map.user_forgot_login    '/users/forgot_login',    :controller => 'users', :action => 'forgot_login'
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
 
-  map.resources :setting
+  map.resources :settings, :collection => {
+    :networks => :get
+  }
 
   # Users
   map.resources :users, :member => {
