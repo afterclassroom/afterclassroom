@@ -13,7 +13,11 @@ ActionController::Routing::Routes.draw do |map|
   map.user_reset_password  '/users/reset_password/:password_reset_code', :controller => 'users', :action => 'reset_password'
   map.user_forgot_login    '/users/forgot_login',    :controller => 'users', :action => 'forgot_login'
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
-  
+
+  map.resources :settings, :collection => {
+    :networks => :get
+  }
+
   # Users
   map.resources :users, :member => {
     :dashboard => :get,
