@@ -1,13 +1,10 @@
 <div class="settMenu">
   <ul>
-    <li class="settselect"><a href="#"><span>Setting</span></a></li>
-    <li><a href="#"><span>Networks</span></a></li>
-    <li><a href="#"><span>Notifications</span></a></li>
-    <li><a href="#"><span>Language</span></a></li>
-    <li><a href="#"><span>Payments</span></a></li>
-    <li><a href="#"><span>AfterClassroom Ads</span></a></li>
-    You are here: 
-    <%= link_to "Networks" , :controller => "settings", :action => "networks"%>
+    <li><%= link_to "Networks" , :controller => "settings", :action => "networks"%></li>
+    <li><%= link_to "Notifications" , :controller => "settings", :action => "notifications"%></li>
+    <li><%= link_to "Language" , :controller => "settings", :action => "language"%></li>
+    <li><%= link_to "Payments" , :controller => "settings", :action => "payments"%></li>
+    <li><%= link_to "AfterClassroom Ads" , :controller => "settings", :action => "ads"%></li>
   </ul>
 </div>
 

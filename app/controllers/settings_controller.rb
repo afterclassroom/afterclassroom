@@ -12,6 +12,18 @@ class SettingsController < ApplicationController
 
 
   def networks
-    
   end
+
+  def notifications
+  end
+
+  def language
+  end
+
+  def payments
+  end
+  
+  def ads
+  end
+
 end
