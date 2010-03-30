@@ -11,10 +11,10 @@
 </script>
 <div class="settMenu">
   <ul>
-    <li><%= link_to "Setting" , :controller => "settings", :action => "setting"%></li>
+    <li class="settselect"><a href="#"><span>Setting</span></a></li>
     <li><%= link_to "Networks" , :controller => "settings", :action => "networks"%></li>
     <li><%= link_to "Notifications" , :controller => "settings", :action => "notifications"%></li>
-    <li class="settselect"><a href="#"><span>Language</span></a></li>
+    <li><%= link_to "Language" , :controller => "settings", :action => "language"%></li>
     <li><%= link_to "Payments" , :controller => "settings", :action => "payments"%></li>
     <li><%= link_to "AfterClassroom Ads" , :controller => "settings", :action => "ads"%></li>
   </ul>

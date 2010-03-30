@@ -1,15 +1,11 @@
 class SettingsController < ApplicationController
   def index
 
-    if params[:tabname]
-      puts params[:tabname]
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    redirect_to :action => "setting"
   end
 
+  def setting
+  end
 
   def networks
   end
