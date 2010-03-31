@@ -9,13 +9,42 @@
     }
   });
 </script>
-<div class="settMenu">
-  <ul>
-    <li><%= link_to "Setting" , :controller => "settings", :action => "setting"%></li>
-    <li><%= link_to "Networks" , :controller => "settings", :action => "networks"%></li>
-    <li><%= link_to "Notifications" , :controller => "settings", :action => "notifications"%></li>
-    <li><%= link_to "Language" , :controller => "settings", :action => "language"%></li>
-    <li class="settselect"><a href="#"><span>Payments</span></a></li>
-    <li><%= link_to "AfterClassroom Ads" , :controller => "settings", :action => "ads"%></li>
-  </ul>
+<div class="settCont">
+  <div class="settCont1">
+
+    <div class="settMenu">
+      <ul>
+        <li><%= link_to "Setting" , :controller => "settings", :action => "setting"%></li>
+        <li><%= link_to "Networks" , :controller => "settings", :action => "networks"%></li>
+        <li><%= link_to "Notifications" , :controller => "settings", :action => "notifications"%></li>
+        <li><%= link_to "Language" , :controller => "settings", :action => "language"%></li>
+        <li class="settselect"><a href="#"><span>Payments</span></a></li>
+        <li><%= link_to "AfterClassroom Ads" , :controller => "settings", :action => "ads"%></li>
+      </ul>
+    </div>
+
+    <div class="settC">
+      <div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Credit Cards</div>
+          <div class="settItemTR"><a href="#">manage</a></div>
+        </div>
+        <div class="settItemB">
+          <div class="settItemBL">For Gifts, Ads, etc.</div>
+          <div class="settItemBR"></div>
+        </div>
+      </div>
+      <div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Currency</div>
+          <div class="settItemTR"><a href="#">change</a></div>
+        </div>
+        <div class="settItemB">
+          <div class="settItemBL">Show prices and make purchases.</div>
+          <div class="settItemBR">US Dollars</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

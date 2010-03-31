@@ -3000,3 +3000,554 @@ Rendered _box_includes (0.00000)
 Rendered _box_header (0.00000)
 Rendered _box_disabled (0.00000)
 Rendered _box (0.00000)
+Starting the New Relic Agent.
+NewRelic Agent Developer Mode enabled.
+To view performance information, go to http://localhost:3000/newrelic
+New Relic RPM Agent 2.10.6 Initialized: pid = 1852
+Agent Log found in E:/usr/src/ruby-space/rails_apps/afterclassroom/log/newrelic_agent.log
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.031000)[0m   [0mSELECT version FROM schema_migrations[0m
+Starting the New Relic Agent.
+NewRelic Agent Developer Mode enabled.
+To view performance information, go to http://localhost:3000/newrelic
+New Relic RPM Agent 2.10.6 Initialized: pid = 1752
+Agent Log found in E:/usr/src/ruby-space/rails_apps/afterclassroom/log/newrelic_agent.log
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.016000)[0m   [0mSELECT version FROM schema_migrations[0m
+
+
+Processing SettingsController#index (for 127.0.0.1 at 2010-03-31 16:01:22) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"index", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Create (0.047000)[0m   [0mINSERT INTO `sessions` (`updated_at`, `session_id`, `last_url_visited`, `user_id`, `data`, `created_at`) VALUES('2010-03-31 09:01:24', 'a39f5c1b791760c7daa768c65b1cd044', NULL, NULL, 'BAh7BzoRZ2VvX2xvY2F0aW9uMCIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxl\ncjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA==\n', '2010-03-31 09:01:24')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings', `updated_at` = '2010-03-31 09:01:24' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.015000)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/settings/setting
+Completed in 1.88800 (0 reqs/sec) | DB: 0.14000 (7%) | 302 Found [http://localhost/settings]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.04600)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-03-31 16:01:26) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.015000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-03-31 09:01:27' WHERE `id` = 15[0m
+  [4;36;1mSQL (0.078000)[0m   [0;1mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.03200)
+  [4;35;1mPostCategory Columns (0.031000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 1.21700 (0 reqs/sec) | Rendering: 0.26600 (21%) | DB: 0.12400 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-03-31 16:02:12) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.01600)
+  [4;36;1mPostCategory Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.93600 (1 reqs/sec) | Rendering: 0.04700 (5%) | DB: 0.00000 (0%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-03-31 16:05:58) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00000)
+  [4;35;1mPostCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.90500 (1 reqs/sec) | Rendering: 0.06300 (6%) | DB: 0.00000 (0%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-03-31 16:11:26) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.002000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 1.01900 (0 reqs/sec) | Rendering: 0.04900 (4%) | DB: 0.00500 (0%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#networks (for 127.0.0.1 at 2010-03-31 16:12:09) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"networks", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/networks', `updated_at` = '2010-03-31 09:12:10' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/networks
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.01500)
+  [4;36;1mPostCategory Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.01600)
+Rendered shared/_footer (0.00000)
+Completed in 1.01400 (0 reqs/sec) | Rendering: 0.06300 (6%) | DB: 0.03200 (3%) | 200 OK [http://localhost/settings/networks]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#notifications (for 127.0.0.1 at 2010-03-31 16:12:24) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"notifications", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/notifications', `updated_at` = '2010-03-31 09:12:25' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/notifications
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00000)
+  [4;36;1mPostCategory Columns (0.016000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 1.07700 (0 reqs/sec) | Rendering: 0.04700 (4%) | DB: 0.04700 (4%) | 200 OK [http://localhost/settings/notifications]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#language (for 127.0.0.1 at 2010-03-31 16:12:38) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"language", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/language', `updated_at` = '2010-03-31 09:12:39' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/language
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.01600)
+  [4;36;1mPostCategory Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 1.06100 (0 reqs/sec) | Rendering: 0.07800 (7%) | DB: 0.03100 (2%) | 200 OK [http://localhost/settings/language]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.01600)
+
+
+Processing SettingsController#payments (for 127.0.0.1 at 2010-03-31 16:12:48) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"payments", "controller"=>"settings"}
+  [4;35;1mSQL (0.015000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/payments', `updated_at` = '2010-03-31 09:12:49' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.094000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/payments
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00000)
+  [4;36;1mPostCategory Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 1.17000 (0 reqs/sec) | Rendering: 0.07800 (6%) | DB: 0.10900 (9%) | 200 OK [http://localhost/settings/payments]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#ads (for 127.0.0.1 at 2010-03-31 16:12:56) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"ads", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/ads', `updated_at` = '2010-03-31 09:12:58' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.023000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/ads
+Rendered shared/_login (0.00200)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 2.11800 (0 reqs/sec) | Rendering: 0.17000 (8%) | DB: 0.02900 (1%) | 200 OK [http://localhost/settings/ads]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#notifications (for 127.0.0.1 at 2010-03-31 16:33:27) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"notifications", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/notifications', `updated_at` = '2010-03-31 09:33:28' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.035000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/notifications
+Rendered shared/_login (0.00200)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 1.90900 (0 reqs/sec) | Rendering: 0.09400 (4%) | DB: 0.05700 (2%) | 200 OK [http://localhost/settings/notifications]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#images (for 127.0.0.1 at 2010-03-31 16:33:33) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"format"=>"png", "action"=>"images", "id"=>"email", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/images/email.png', `updated_at` = '2010-03-31 09:33:34' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.046000)[0m   [0mCOMMIT[0m
+
+
+ActionController::UnknownAction (No action responded to images):
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:579:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    E:/usr/src/ruby-space/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#images (for 127.0.0.1 at 2010-03-31 16:33:34) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"format"=>"png", "action"=>"images", "id"=>"mobile", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/images/mobile.png', `updated_at` = '2010-03-31 09:33:35' WHERE `id` = 15[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+
+
+ActionController::UnknownAction (No action responded to images):
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:579:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    E:/usr/src/ruby-space/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.06200)
+
+
+Processing SettingsController#payments (for 127.0.0.1 at 2010-03-31 16:39:02) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"payments", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/payments', `updated_at` = '2010-03-31 09:39:03' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.082000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/payments
+Rendered shared/_login (0.00300)
+Rendered shared/_menu_main (0.00700)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 1.57300 (0 reqs/sec) | Rendering: 0.07500 (4%) | DB: 0.17900 (11%) | 200 OK [http://localhost/settings/payments]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#ads (for 127.0.0.1 at 2010-03-31 16:49:55) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"action"=>"ads", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/ads', `updated_at` = '2010-03-31 09:49:57' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.015000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering settings/ads
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00000)
+  [4;36;1mPostCategory Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 1.91900 (0 reqs/sec) | Rendering: 0.07800 (4%) | DB: 0.01500 (0%) | 200 OK [http://localhost/settings/ads]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#pictures (for 127.0.0.1 at 2010-03-31 16:50:00) [GET]
+  Session ID: a39f5c1b791760c7daa768c65b1cd044
+  Parameters: {"format"=>"png", "action"=>"pictures", "id"=>"imgAd", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/pictures/imgAd.png', `updated_at` = '2010-03-31 09:50:01' WHERE `id` = 15[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+
+
+ActionController::UnknownAction (No action responded to pictures):
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:579:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    E:/usr/src/ruby-space/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.01500)
