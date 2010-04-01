@@ -1,0 +1,428 @@
+<script language="javascript">
+  $(document).ready(function(){
+    var liarr = $("div[class='settMenu']").find('a');
+    for (var i=0;i<liarr.length;i++){
+      var content = $(liarr[i]).text() ;
+
+      $(liarr[i]).wrapInner('<span>'+content+'</span>');
+
+    }
+  });
+</script>
+<div class="settCont">
+  <div class="settCont1">
+
+    <div class="settMenu">
+      <ul>
+        <li><%= link_to "Setting" , :controller => "settings", :action => "setting"%></li>
+        <li><%= link_to "Networks" , :controller => "settings", :action => "networks"%></li>
+        <li class="settselect"><a href="#"><span>Notifications</span></a></li>
+        <li><%= link_to "Language" , :controller => "settings", :action => "language"%></li>
+        <li><%= link_to "Payments" , :controller => "settings", :action => "payments"%></li>
+        <li><%= link_to "AfterClassroom Ads" , :controller => "settings", :action => "ads"%></li>
+      </ul>
+    </div>
+
+    <div class="settC">				
+      <div class="settNotL">
+        <div class="setNotLtitle">Notifications</div>
+        <div class="setNotCont">AfterClassroom notifies you whenever actions are taken on AfterClassroom that involve you.
+          <br>
+						Each AfterClassroom application has its own notification settings. Click the checkbox to change the settings for that application.
+						Send email notifications to: <span>quachhuy@yahoo.com</span></div>
+        <div class="setNotSend"><a href="#">Send notifications my phone via SMS</a></div>
+        <div class="setItemT">
+          <div class="setItemTL">&nbsp;</div>
+          <div class="setItemTC">Email</div>
+          <div class="setItemTR">SMS</div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL1">AfterClassroom</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Sends me a message</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Adds me as a friend</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Confirms a friendship request</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Posts on My Lounge</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Pokes me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Has a birthday coming up (weekly email)</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Asks me to confirm friend detail</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Requests to list me as family</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Suggests a friend to me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Adds a friend I suggested</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>I invited joins AfterClassroom</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Tags me in a post</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on a post I was tagged in</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Suggests a profile picture for me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL2">Photos</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Tags me in a photo</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Tags one of my photos</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on my photos</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on a photo of me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments after me in a photo</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>When I upload a photo via email</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on my photo albums</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments after me in a photo album</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL3">Groups</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Invites me to join a group</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Promotes me to be an officer</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Makes me a group admin</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Requests to join a group of which I am an admin</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Replies to my discussion board post</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Changes the name of a group to which I belong</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL4">Pages</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Makes me a page admin</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Suggests a page to me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL5">Events</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Invites me to an event</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Changes the date or time of an event</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Cancels an event</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Makes me an event admin</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Requests to join an event of which I am an admin</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Posts on the wall of an event I admin</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Changes the name of an event to which I was invited</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL6">Share a Story</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Tags me in share a story</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on my share a story</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments after me in share a story</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL7">Links</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on my links</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments after me in a link</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL8">Music</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Tags me in a music</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Tags one of my musics</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on my musics</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on a music of me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments after me in a music</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL9">Video</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Tags me in a video</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Tags one of my videos</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on my videos</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on a video of me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments after me in a video</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL10">Gifts</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Sends me a gift</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL11">Help Center</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Replies to my Help Center questions</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Marks my answer as Best Answer</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL12">My Lounge Comments</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on a story in my lounge</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments after me on a my lounge story</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL13">Other updates from AfterClassroom</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Updates about my Friends on AfterClassroom</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Updates about AfterClassroom product news</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Invitations to participate in research about AfterClassroom</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="Showmore"><a href="#">Show more (19)</a></div>
+        <div class="Savechanges"><a href="#">Save Changes</a></div>
+      </div>
+      <div class="settNotR">
+        <div class="settNotRTitle">View settings for:</div>
+        <div class="setNotRItem setNotRItem1"><a href="#">AfterClassroom</a></div>
+        <div class="setNotRItem setNotRItem2"><a href="#">Photos</a></div>
+        <div class="setNotRItem setNotRItem3"><a href="#">Groups</a></div>
+        <div class="setNotRItem setNotRItem4"><a href="#">Pages</a></div>
+        <div class="setNotRItem setNotRItem5"><a href="#">Events</a></div>
+        <div class="setNotRItem setNotRItem6"><a href="#">Share a Story</a></div>
+        <div class="setNotRItem setNotRItem7"><a href="#">Links</a></div>
+        <div class="setNotRItem setNotRItem8"><a href="#">Music</a></div>
+        <div class="setNotRItem setNotRItem9"><a href="#">Video</a></div>
+        <div class="setNotRItem setNotRItem10"><a href="#">Gifts</a></div>
+        <div class="setNotRItem setNotRItem11"><a href="#">Help Center</a></div>
+        <div class="setNotRItem setNotRItem12"><a href="#">My Lounge Comments</a></div>
+        <div class="setNotRItem setNotRItem13"><a href="#">Other updates from AfterClassroom</a></div>
+        <div class="setNotRItem setNotRItem14"><a href="#">Other Applications</a></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

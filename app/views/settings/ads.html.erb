@@ -1,0 +1,63 @@
+<script language="javascript">
+  $(document).ready(function(){
+    var liarr = $("div[class='settMenu']").find('a');
+    for (var i=0;i<liarr.length;i++){
+      var content = $(liarr[i]).text() ;
+
+      $(liarr[i]).wrapInner('<span>'+content+'</span>');
+
+    }
+  });
+</script>
+<div class="settCont">
+  <div class="settCont1">
+
+    <div class="settMenu">
+      <ul>
+        <li><%= link_to "Setting" , :controller => "settings", :action => "setting"%></li>
+        <li><%= link_to "Networks" , :controller => "settings", :action => "networks"%></li>
+        <li><%= link_to "Notifications" , :controller => "settings", :action => "notifications"%></li>
+        <li><%= link_to "Language" , :controller => "settings", :action => "language"%></li>
+        <li><%= link_to "Payments" , :controller => "settings", :action => "payments"%></li>
+        <li class="settselect"><a href="#"><span>AfterClassroom Ads</span></a></li>
+      </ul>
+    </div>
+
+    <div class="settC">
+      <div class="setAftTitle">Ads shown by third party applications</div>
+      <div class="setLanText">AfterClassroom does not give third party applications or ad networks the right to use your name or picture in ads. 
+					If this is allowed in the future, this setting will govern the usage of your information.</div>
+      <div class="setLanPri">
+        <span>Allow ads on platform pages to show my information to:</span>
+        <span><select name="Select2">
+            <option>Only my friends</option>
+          </select>
+        </span>
+      </div>
+      <div class="setAftbtm">
+        <div class="btmsetAftSave"><a href="#">Save Changes</a></div>
+        <div class="btmsetAftCan"><a href="#">Cancel</a></div>
+      </div>
+      <div class="setAftTitle">Ads shown by AfterClassroom</div>
+      <div class="setLanText">AfterClassroom strives to create relevant and interesting advertisements to you and your friends. Here are the facts about AfterClassroom Ads:</div>
+      <div class="setAftItem"><a href="#">AfterClassroom Ads are sometimes paired with social actions (e.g., becoming a fan of a Page) that your friends have taken.</a></div>
+      <div class="setAftItem"><a href="#">You only appear in AfterClassroom Ads to your confirmed friends. If a photo is used, it is your profile photo and not from your photo albums.</a></div>
+      <div class="setAftItem"><a href="#">AfterClassroom doesn't sell your information to advertisers.</a></div>
+      <div class="setAftItem"><a href="#">AfterClassroom actively enforces policies that help protect your experience with third party applications and ad networks</a></div>
+      <div class="imgAd"><img height="224" width="340" src="pictures/imgAd.png"></div>
+      <div class="setAftNote">Please note that this setting controls social ads shown by AfterClassroom. To control social ads shown by third party applications on AfterClassroom, please refer to the privacy setting at the top of this page. You can also learn more about AfterClassroom and Advertising in the <a href="#">Help Center</a>.</div>
+      <div class="setLanPri">
+        <span>Show my social actions in AfterClassroom Ads to:</span>
+        <span><select name="Select2">
+            <option>Only my friends</option>
+          </select>
+        </span>
+      </div>
+      <div class="setAftbtm">
+        <div class="btmsetAftSave"><a href="#">Save Changes</a></div>
+        <div class="btmsetAftCan"><a href="#">Cancel</a></div>
+      </div>
+    </div>
+  </div>
+
+</div>

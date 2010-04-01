@@ -1,0 +1,47 @@
+<script language="javascript">
+  $(document).ready(function(){
+    var liarr = $("div[class='settMenu']").find('a');
+    for (var i=0;i<liarr.length;i++){
+      var content = $(liarr[i]).text() ;
+
+      $(liarr[i]).wrapInner('<span>'+content+'</span>');
+
+    }
+  });
+</script>
+<div class="settCont">
+  <div class="settCont1">
+
+    <div class="settMenu">
+      <ul>
+        <li><%= link_to "Setting" , :controller => "settings", :action => "setting"%></li>
+        <li><%= link_to "Networks" , :controller => "settings", :action => "networks"%></li>
+        <li><%= link_to "Notifications" , :controller => "settings", :action => "notifications"%></li>
+        <li class="settselect"><a href="#"><span>Language</span></a></li>
+        <li><%= link_to "Payments" , :controller => "settings", :action => "payments"%></li>
+        <li><%= link_to "AfterClassroom Ads" , :controller => "settings", :action => "ads"%></li>
+      </ul>
+    </div>
+    <div class="settC">
+      <div class="setLanTitle">Language</div>
+      <div class="setLanText">Set your primary language in order to browse Facebook in the language of your choice.</div>
+      <div class="setLanPri">
+        <span>Primary Language:</span>
+        <span><select name="Select2">
+            <option>English (US)</option>
+          </select>
+        </span>
+      </div>
+      <div class="setLanText">Let your friends know AfterClassroom is available in other languages.</div>
+      <div class="setLanLink"><a href="#">Invite friends to join AfterClassroom.</a></div>
+      <div class="setLanTitle">Translate AfterClassroom</div>
+      <div class="setLanText">Are you interested in translating AfterClassroom? AfterClassroom is currently open for translating into many languages. 
+        <br>
+					Visit the <a href="#">Translations Application</a> for more information.<br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+
+</div>
