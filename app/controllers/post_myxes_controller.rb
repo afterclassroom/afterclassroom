@@ -52,14 +52,17 @@ class PostMyxesController < ApplicationController
 
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post_p.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_p.total_good}</a>
       </div>
       <div class="cheap">
-        <a href="javascript:;">Bored(#{post_p.total_bored})</a>
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">Bored(#{post_p.total_bored})</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post_p.total_bad}</a>
-      </div>'
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_p.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
   end
 
   def require_rate

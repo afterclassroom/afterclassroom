@@ -11,6 +11,9 @@ development: &local
     support_name: Support
     support_email: support@afterclassroom.com
 
+    # Alert
+    str_rated: You have rated this.
+
 production:
   <<: *local
   

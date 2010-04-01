@@ -278,3 +278,8 @@ function goToByScroll(id){
         scrollTop: $("#"+id).offset().top
     },'slow');
 }
+
+// Pretty flash
+function hideFlashes() {
+  $('#flash_notice, #flash_warning, #flash_error').fadeOut(1500);
+}

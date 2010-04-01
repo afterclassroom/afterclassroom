@@ -4,7 +4,10 @@ coverage/*
 .tmp*
 nbproject/
 Capfile
+log/*.log
 tmp/**/*
+doc/api
+doc/app
 public/avatars/**/*
 public/uploaded_files/**/*
 public/uploads/*

@@ -80,11 +80,14 @@ class PostTeamupsController < ApplicationController
     post_tm.save
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post_tm.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tm.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post_tm.total_bad}</a>
-      </div>'
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tm.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
   end
   
   # GET /post_teamups/1

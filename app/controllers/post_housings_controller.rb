@@ -57,11 +57,14 @@ class PostHousingsController < ApplicationController
 
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post_h.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_h.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post_h.total_bad}</a>
-      </div>'
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_h.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
   end
 
   def search

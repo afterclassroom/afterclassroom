@@ -151,35 +151,29 @@ module ApplicationHelper
 
   def show_favorite(post)
     if !logged_in?
-      link_to "Favorite (#{post.favorites.size})", "/login_ajax?height=240&width=540", :class => "thickbox", :title => "Sign In"
+      link_to_require_login("Favorite (#{post.favorites.size})")
     elsif current_user.has_favorite?(post)
-      id = "#favorite_action_#{post.id}"
       str_favorited = "It`s already in your favourite list."
-      "<span id='favorite_action_#{post.id}'>Favorite (#{post.favorites.size})</span><script>#{tool_tip(id, str_favorited)}</script>"
+      link_to("Favorite (#{post.favorites.size})", "javascript:;", :class => "vtip", :title => str_favorited)
     else
       link_to_remote "Favorite (#{post.favorites.size})", { :update => "post_favorite_#{post.id}", :url => {:controller => "posts", :action => "add_to_favorite", :post_id => post.id } }
     end
   end
 
   def show_favorite_in_detail(post)
-    id = "#favorite_action"
-    str_login = "You must be #{link_to "logged in", login_url} to favorite this post."
-    str_favorited = "It`s already in your favourite list."
-    
     if !logged_in?
-      link_to("<span id='favorite_action'>Favorite (#{post.favorites.size})</span>", "javascript:;") + "<script>#{tool_tip(id, str_login)}</script>"
+      link_to_require_login("<span id='favorite_action'>Favorite (#{post.favorites.size})</span>")
     elsif current_user.has_favorite?(post)
-      link_to("<span id='favorite_action'>Favorite (#{post.favorites.size})</span>", "javascript:;") + "<script>#{tool_tip(id, str_favorited)}</script>"
+      str_favorited = "It`s already in your favourite list."
+      link_to("<span id='favorite_action'>Favorite (#{post.favorites.size})</span>", "javascript:;", :class => "vtip", :title => str_favorited)
     else
       link_to_remote "<span>Favorite (#{post.favorites.size})</span>", { :update => "post_favorite_#{post.id}", :url => {:controller => "posts", :action => "add_to_favorite_in_detail", :post_id => post.id } }
     end
   end
 
   def show_email(post)
-    id = "#email_action"
-    str_login = "You must be #{link_to "logged in", login_url} to send an email."
     if !logged_in?
-      link_to("<span id='email_action'>Email</span>", "javascript:;") + "<script>#{tool_tip(id, str_login)}</script>"
+      link_to_require_login("<span>Email</span>")
     else
       link_to("<span>Email</span>", "#{show_email_user_messages_path(post.user)}?user_id=#{post.user.id}&height=200&width=280", :class => "thickbox", :title => "Send to #{post.user.full_name}")
     end
@@ -188,21 +182,33 @@ module ApplicationHelper
   def show_go_back
     link_to "<span>Go back</span>", session[:go_back_url]
   end
-
-  def show_submit_rating(post_id, path)
-    id = "#submit_rating"
-    str_login = "You must be #{link_to "logged in", login_url} to poll."
+  
+  # id : id of post
+  # numb : number of rating
+  # ctrl_name : name of controller
+  # check_rated : check this post have rated(true or false)
+  # val_rate : value of rating
+  def show_rating(id, numb, ctrl_name, check_rated, val_rate)
     if !logged_in?
-      link_to("<span id='submit_rating'>Submit</span>", "javascript:;") + "<script>#{tool_tip(id, str_login)}</script>"
+      link_to_require_login(numb)
+    elsif check_rated
+      link_to(numb, "javascript:;", :class => "vtip", :title => "#{configatron.str_rated}")
+    else
+      link_to_remote numb, { :update => "rate_#{id}", :url => {:controller => ctrl_name, :action => "rate", :post_id => id, :rating => val_rate } }
+    end
+  end
+  
+  def show_submit_rating(post_id, path)
+    if !logged_in?
+      link_to_require_login("<span>Submit</span>")
     else
       link_to("<span>Submit</span>", "javascript:;", :onclick => "requireRating('#{post_id}', '#{path}');")
     end
   end
 
   private
-
-  def tool_tip(id, content)
-    "$('#{id}').bt('#{content}', {trigger: 'click', positions: 'top'});"
+  def link_to_require_login(str)
+    link_to(str, "/login_ajax?height=240&width=540", :class => "thickbox", :title => "Sign In")
   end
 
 end
