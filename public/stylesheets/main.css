@@ -1240,55 +1240,47 @@ span.btmDown a:hover{
     font-family:Arial;
 }
 .reqTi{
-    background:url('/images/bgInput280.png') no-repeat 0px 0px;
     margin:5px 0px;
     height:22px;
 }
 .reqTi input{
-    border:0px;
+    border:1px solid #CECECE;
     color:#969696;
-    width:277px;
+    width:100%;
     background-color:transparent;
     height:18px;
     text-indent:2px;
     padding-top:4px;
 }
 .reqEn{
-    background:url('/images/bgText280.png') no-repeat 0px 0px;
     height:100px;
 }
 .reqEn textarea{
-    width:276px;
+    width:100%;
     background-color:transparent;
-    border:0px;
+    border:1px solid #CECECE;
     height:96px;
     line-height:14px;
     text-indent:2px;
-    *width:275px;
 }
 .reqKey{
-    height:110px;
+    min-height:110px;
     margin:8px 0px 4px 0px;
-    background:url('/images/bg-Key.png') no-repeat;
 }
-.reqKeyImg{
-    padding:10px 0px 0px 40px;
+.reqLa{
+    padding-top:5px;
 }
-.reqKeyImg img{
-    width:200px;
-    height:40px;
+.req50{
+    float:left;
+    width:140px;
 }
-.reqKeyText{
-    padding-top:30px;
-    padding-left:24px;
+.req60{
+    float:left;
+    width:168px;
 }
-.reqKeyText input{
-    width:128px;
-    background-color:transparent;
-    border:0px;
-    text-align:center;
-    padding-top:3px;
-    *padding-top:2px;
+.req40{
+    float:left;
+    width:112px;
 }
 .submit a{
     background:url('/images/btm48.png') no-repeat;

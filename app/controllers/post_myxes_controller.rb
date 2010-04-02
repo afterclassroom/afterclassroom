@@ -16,12 +16,6 @@ class PostMyxesController < ApplicationController
     @rating_status ||= ""
     @posts = PostMyx.paginated_post_conditions_with_option(params, @school, @rating_status)
 
-    @new_myx = PostMyx.new
-    post = Post.new
-    @new_myx.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Myxes"
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
