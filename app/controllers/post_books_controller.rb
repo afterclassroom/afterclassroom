@@ -20,12 +20,6 @@ class PostBooksController < ApplicationController
       @posts = PostBook.paginated_post_conditions_with_option(params, @school, @book_type_id)
     end
 
-    @new_book = PostBook.new
-    post = Post.new
-    @new_book.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Books"
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -81,11 +75,14 @@ class PostBooksController < ApplicationController
 
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post_b.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_b.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post_b.total_bad}</a>
-      </div>'
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_b.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
   end
 
   def require_rate

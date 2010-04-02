@@ -20,12 +20,6 @@ class PostTutorsController < ApplicationController
       @posts = PostTutor.paginated_post_conditions_with_option(params, @school, @tutor_type_id)
     end
 
-    @new_tutor = PostTutor.new
-    post = Post.new
-    @new_tutor.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Tutors"
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -81,11 +75,14 @@ class PostTutorsController < ApplicationController
 
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post_tt.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tt.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post_tt.total_bad}</a>
-      </div>'
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tt.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
   end
 
   def require_rate

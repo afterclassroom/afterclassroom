@@ -4,5 +4,5 @@
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
   <span class="btmFav"><a href="#"><span>Favorite</span></a></span>
   <span class="btmMore"><%= link_to "<span>More like this</span>", :controller => "post_housings", :action => "index", :more_like_this_id => post %></span>
-  <span class="btmAbuse"><a href="#"><span>Report Abuse</span></a></span>
+  <span class="btmAbuse"><%=  link_to("<span>Report Abuse</span>", "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=PostHousing&height=200&width=280", :class => "thickbox", :title => "Report Abuse") %></span>
 </div>

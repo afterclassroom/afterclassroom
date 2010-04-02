@@ -20,12 +20,6 @@ class PostTeamupsController < ApplicationController
       @posts = PostTeamup.paginated_post_conditions_with_option(params, @school, @teamup_category_id)
     end
 
-    @new_team = PostTeamup.new
-    post = Post.new
-    @new_team.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Teamups"
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -80,11 +74,14 @@ class PostTeamupsController < ApplicationController
     post_tm.save
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post_tm.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tm.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post_tm.total_bad}</a>
-      </div>'
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tm.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
   end
   
   # GET /post_teamups/1

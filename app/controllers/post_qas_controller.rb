@@ -20,12 +20,6 @@ class PostQasController < ApplicationController
       @posts = PostQa.paginated_post_conditions_with_option(params, @school, @type)
     end
 
-    @new_qa = PostQa.new
-    post = Post.new
-    @new_qa.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "QAs"
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -85,11 +79,14 @@ class PostQasController < ApplicationController
 
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post_q.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_q.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post_q.total_bad}</a>
-      </div>'
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_q.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
   end
 
   def require_rate

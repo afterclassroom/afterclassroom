@@ -9,7 +9,7 @@
       <h1 class="titleH1">Sign In</h1>
     </div>
     <div class="signinCont">
-      <%= render :partial => "shared/alert" %>
+      <%= display_flash_messages %>
       <div class="postReq">*(asterisk) is required.</div>
       <% form_tag session_path, :name => "form", :id => "form" do -%>
         <div class="signinItem">

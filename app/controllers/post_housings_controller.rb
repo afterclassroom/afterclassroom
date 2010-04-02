@@ -14,12 +14,6 @@ class PostHousingsController < ApplicationController
     @housing_category_id ||= HousingCategory.find(:first).id
     @posts = PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
 
-    @new_house = PostHousing.new
-    post = Post.new
-    @new_house.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Housings"
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -57,11 +51,14 @@ class PostHousingsController < ApplicationController
 
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post_h.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_h.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post_h.total_bad}</a>
-      </div>'
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_h.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
   end
 
   def search

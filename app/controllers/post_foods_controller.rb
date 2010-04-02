@@ -14,12 +14,6 @@ class PostFoodsController < ApplicationController
     @rating_status ||= ""
     @posts = PostFood.paginated_post_conditions_with_option(params, @school, @rating_status)
 
-    @new_food = PostFood.new
-    post = Post.new
-    @new_food.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Foods"
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -50,14 +44,17 @@ class PostFoodsController < ApplicationController
 
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;">#{post_f.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">#{post_f.total_good}</a>
       </div>
       <div class="cheap">
-        <a href="javascript:;">Cheap but Good(#{post_f.total_cheap_but_good})</a>
+        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">Cheap but Good(#{post_f.total_cheap_but_good})</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;">#{post_f.total_bad}</a>
-      </div>'
+        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">#{post_f.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
   end
 
   def require_rate

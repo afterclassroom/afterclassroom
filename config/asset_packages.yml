@@ -8,7 +8,7 @@ javascripts:
   - jquery-mcdropdown
   - thickbox
   - jquery-validate
-  - jquery-bt
+  - vtip-min
 - student_louge:
   - prototype
   - effects
@@ -32,9 +32,9 @@ stylesheets:
   - jquery-mcdropdown
   - thickbox
   - pagination
-  - jquery-bt
   - validation
   - flash
+  - vtip
 - student_louge:
   - reset
   - layout

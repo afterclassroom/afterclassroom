@@ -3,5 +3,5 @@
   <span class="btmPre"><a href="#"><span>Prefer to experts</span></a></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
   <span class="btmFav" id="post_favorite_<%=  post.id %>"><%= show_favorite_in_detail(post) %></span>
-  <span class="btmAbuse"><a href="#"><span>Report Abuse</span></a></span>
+  <span class="btmAbuse"><%=  link_to("<span>Report Abuse</span>", "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=PostQa&height=200&width=280", :class => "thickbox", :title => "Report Abuse") %></span>
 </div>
