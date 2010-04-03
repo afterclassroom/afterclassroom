@@ -21,6 +21,7 @@
         <li><%= link_to "Language" , :controller => "settings", :action => "language"%></li>
         <li><%= link_to "Payments" , :controller => "settings", :action => "payments"%></li>
         <li><%= link_to "AfterClassroom Ads" , :controller => "settings", :action => "ads"%></li>
+        <%=  link_to("<span>Report Abuse</span>", "#{networks_settings_path}?height=200&width=280", :class => "thickbox", :title => "Report Abuse") %>
       </ul>
     </div>
 

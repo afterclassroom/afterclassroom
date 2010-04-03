@@ -9,6 +9,7 @@ class SettingsController < ApplicationController
   end
 
   def networks
+    render :layout => false
   end
 
   def notifications
