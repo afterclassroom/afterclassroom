@@ -20,7 +20,9 @@ ActionController::Routing::Routes.draw do |map|
     :language => :get,
     :payments => :get,
     :ads => :get,
-    :setting => :get
+    :setting => :get,
+    :change => :get,
+    :savechange => :get
   }
 
   # Users

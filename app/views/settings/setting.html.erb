@@ -12,7 +12,6 @@
 
 <div class="settCont">
   <div class="settCont1">
-
     <div class="settMenu">
       <ul>
         <li class="settselect"><a href="#"><span>Setting</span></a></li>
@@ -24,78 +23,70 @@
       </ul>
     </div>
 
-    <div class="settC">
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Name</div>
-          <div class="settItemTR"><a href="#">change</a></div>
+    <% if logged_in? %>
+
+      <% if @inf_msg.to_s != "" %>
+        <div class="settC">
+          <div class="settItem">
+            <div class="settItemT">
+              <div class="settItemTL">
+                <%= @inf_msg %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="settItem">
+          <div class="settItemT">
+            <div class="settItemTL">Name</div>
+
+            <div class="settItemTR">
+              <%=  link_to("<span>change</span>", "#{change_settings_path}?height=100&width=280&typeOfChange=name", :class => "thickbox", :title => "Report Abuse") %>
+            </div>
+          </div>
+          <div class="settItemB">
+            <div class="settItemBL">Your real name. </div>
+            <div class="settItemBR"><%= current_user.full_name %></div>
+          </div>
         </div>
-        <div class="settItemB">
-          <div class="settItemBL">Your real name. </div>
-          <div class="settItemBR">Huy Quang Quach</div>
+        <div class="settItem">
+          <div class="settItemT">
+            <div class="settItemTL">Email</div>
+            <div class="settItemTR">
+              <%=  link_to("<span>change</span>", "#{change_settings_path}?height=100&width=280&typeOfChange=email", :class => "thickbox", :title => "Report Abuse") %>
+            </div>
+          </div>
+          <div class="settItemB">
+            <div class="settItemBL">Set your email contact information.</div>
+            <div class="settItemBR"><%= current_user.email %></div>
+          </div>
         </div>
-      </div>
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Username</div>
-          <div class="settItemTR"><a href="#">change</a></div>
+        <div class="settItem">
+          <div class="settItemT">
+            <div class="settItemTL">Password</div>
+            <div class="settItemTR">
+              <%=  link_to("<span>change</span>", "#{change_settings_path}?height=300&width=400&typeOfChange=psw", :class => "thickbox", :title => "Report Abuse") %>
+            </div>
+          </div>
+          <div class="settItemB">
+            <div class="settItemBL">What you use to log in.</div>
+            <div class="settItemBR">******</div>
+          </div>
         </div>
-        <div class="settItemB">
-          <div class="settItemBL">Your username.</div>
-          <div class="settItemBR">Huy Quach</div>
-        </div>
-      </div>
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Email</div>
-          <div class="settItemTR"><a href="#">change</a></div>
-        </div>
-        <div class="settItemB">
-          <div class="settItemBL">Set your email contact information.</div>
-          <div class="settItemBR">quachhuy@yahoo.com</div>
-        </div>
-      </div>
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Password</div>
-          <div class="settItemTR"><a href="#">change</a></div>
-        </div>
-        <div class="settItemB">
-          <div class="settItemBL">What you use to log in.</div>
-          <div class="settItemBR">**************</div>
-        </div>
-      </div>
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Linked Accounts</div>
-          <div class="settItemTR"><a href="#">change</a></div>
-        </div>
-        <div class="settItemB">
-          <div class="settItemBL">Use other accounts to log in</div>
-          <div class="settItemBR"></div>
-        </div>
-      </div>
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Privacy</div>
-          <div class="settItemTR"><a href="#">manage</a></div>
-        </div>
-        <div class="settItemB">
-          <div class="settItemBL">Use other accounts to log in</div>
-          <div class="settItemBR"></div>
-        </div>
-      </div>
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Linked Accounts</div>
-          <div class="settItemTR"><a href="#">deactivate</a></div>
-        </div>
-        <div class="settItemB">
-          <div class="settItemBL">Use other accounts to log in</div>
-          <div class="settItemBR"></div>
+        <div class="settItem">
+          <div class="settItemT">
+            <div class="settItemTL">Linked Accounts</div>
+            <div class="settItemTR"><a href="#">change</a></div>
+          </div>
+          <div class="settItemB">
+            <div class="settItemBL">Use other accounts to log in</div>
+            <div class="settItemBR"></div>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
+
+
+
   </div>
 
 </div>
