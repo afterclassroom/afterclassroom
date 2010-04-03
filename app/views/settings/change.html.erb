@@ -1,0 +1,33 @@
+<script language="javascript">
+  $('#target').submit(function() {
+    var editType = $('#label_msg').html();
+    if ( editType.indexOf("email", 0) > 0 )
+      editType = "email";
+    else if ( editType.indexOf("name", 0) > 0 )
+      editType = "name";
+    else if ( editType.indexOf("password", 0) > 0 )
+      editType = "psw";
+
+    $('#target').find('input:eq(0)').append("<input type='text' value='"+editType+"' name='editType' />") ;
+
+    //replaceWith("<input type='text' value='Hello there' name='"+editType+"' />")) ;
+   
+    return true;
+  });
+
+</script>
+<form id="target" action="<%=  savechange_settings_path %>">
+  <div id="label_msg">
+    <%= @label %>
+  </div><br/>
+
+  <input type="text" value="Hello there" name="changedValue" /><br/>
+  <% if @label.to_s == "Please enter new password" %>
+    <p>
+      Please re-enter the password
+      <br/>
+      <input type="text" value="Hello there" name="retypedPassword" /><br/>
+    </p>
+  <% end %>
+  <input type="submit" value="Save" />
+</form>
