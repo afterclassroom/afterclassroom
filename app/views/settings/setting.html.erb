@@ -20,7 +20,6 @@
         <li><%= link_to "Language" , :controller => "settings", :action => "language"%></li>
         <li><%= link_to "Payments" , :controller => "settings", :action => "payments"%></li>
         <li><%= link_to "AfterClassroom Ads" , :controller => "settings", :action => "ads"%></li>
-        <%=  link_to("<span>Report Abuse</span>", "#{networks_settings_path}?height=200&width=280", :class => "thickbox", :title => "Report Abuse") %>
       </ul>
     </div>
 
@@ -41,7 +40,7 @@
             <div class="settItemTL">Name</div>
 
             <div class="settItemTR">
-              <%=  link_to("<span>change</span>", "#{change_settings_path}?height=200&width=280&typeOfChange=name", :class => "thickbox", :title => "Report Abuse") %>
+              <%=  link_to("<span>change</span>", "#{change_settings_path}?height=100&width=280&typeOfChange=name", :class => "thickbox", :title => "Report Abuse") %>
             </div>
           </div>
           <div class="settItemB">
@@ -53,7 +52,7 @@
           <div class="settItemT">
             <div class="settItemTL">Email</div>
             <div class="settItemTR">
-              <%=  link_to("<span>change</span>", "#{change_settings_path}?height=200&width=280&typeOfChange=email", :class => "thickbox", :title => "Report Abuse") %>
+              <%=  link_to("<span>change</span>", "#{change_settings_path}?height=100&width=280&typeOfChange=email", :class => "thickbox", :title => "Report Abuse") %>
             </div>
           </div>
           <div class="settItemB">
@@ -65,7 +64,7 @@
           <div class="settItemT">
             <div class="settItemTL">Password</div>
             <div class="settItemTR">
-              <%=  link_to("<span>change</span>", "#{change_settings_path}?height=200&width=280&typeOfChange=psw", :class => "thickbox", :title => "Report Abuse") %>
+              <%=  link_to("<span>change</span>", "#{change_settings_path}?height=120&width=280&typeOfChange=psw", :class => "thickbox", :title => "Report Abuse") %>
             </div>
           </div>
           <div class="settItemB">

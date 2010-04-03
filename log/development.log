@@ -1,0 +1,1346 @@
+Starting the New Relic Agent.
+NewRelic Agent Developer Mode enabled.
+To view performance information, go to http://localhost:3000/newrelic
+New Relic RPM Agent 2.10.6 Initialized: pid = 1160
+Agent Log found in E:/usr/src/ruby-space/rails_apps/afterclassroom/log/newrelic_agent.log
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.016000)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_migrations[0m
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 12:49:43) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"setting", "controller"=>"settings", "inf_msg"=>"Updated Successfully"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Create (0.000000)[0m   [0mINSERT INTO `sessions` (`updated_at`, `session_id`, `last_url_visited`, `user_id`, `data`, `created_at`) VALUES('2010-04-03 05:49:44', '5ce714910f45d8cf38de797203a31d99', NULL, NULL, 'BAh7BzoRZ2VvX2xvY2F0aW9uMCIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxl\ncjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA==\n', '2010-04-03 05:49:44')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting?inf_msg=Updated+Successfully', `updated_at` = '2010-04-03 05:49:44' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.71800 (1 reqs/sec) | DB: 0.07800 (10%) | 302 Found [http://localhost/settings/setting?inf_msg=Updated+Successfully]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.03100)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-04-03 12:49:45) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/session/new', `updated_at` = '2010-04-03 05:49:46' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered sessions/_welcome (0.00000)
+Rendered sessions/_benefit (0.00000)
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.15600)
+  [4;35;1mPostCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.87400 (1 reqs/sec) | Rendering: 0.25000 (28%) | DB: 0.06200 (7%) | 200 OK [http://localhost/session/new]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 12:49:54) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"typeOfChange"=>"name", "action"=>"change", "controller"=>"settings", "height"=>"200", "width"=>"280"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.016000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=200&width=280&typeOfChange=name', `updated_at` = '2010-04-03 05:49:54' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.015000)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 0.63900 (1 reqs/sec) | DB: 0.03100 (4%) | 302 Found [http://localhost/settings/change?height=200&width=280&typeOfChange=name]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-04-03 12:49:56) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/session/new', `updated_at` = '2010-04-03 05:49:56' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.016000)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered sessions/_welcome (0.00000)
+Rendered sessions/_benefit (0.00000)
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00000)
+  [4;36;1mPostCategory Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.71800 (1 reqs/sec) | Rendering: 0.07800 (10%) | DB: 0.03200 (4%) | 200 OK [http://localhost/session/new]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing PostBooksController#index (for 127.0.0.1 at 2010-04-03 12:50:04) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"index", "controller"=>"post_books"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/post_books', `updated_at` = '2010-04-03 05:50:04' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mTag Load (0.031000)[0m   [0;1mSELECT SQL_NO_CACHE tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN post_books ON post_books.id = taggings.taggable_id WHERE (taggings.taggable_type = 'PostBook') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+  [4;35;1mPostCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostBook') LIMIT 1[0m
+  [4;35;1mBookType Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `book_types` LIMIT 1[0m
+  [4;36;1mBookType Columns (0.016000)[0m   [0;1mSHOW FIELDS FROM `book_types`[0m
+  [4;35;1mPostBook Columns (0.016000)[0m   [0mSHOW FIELDS FROM `post_books`[0m
+  [4;36;1mPost Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mPostBook Load Including Associations (0.000000)[0m   [0mSELECT SQL_NO_CACHE `post_books`.`id` AS t0_r0, `post_books`.`post_id` AS t0_r1, `post_books`.`book_type_id` AS t0_r2, `post_books`.`department_id` AS t0_r3, `post_books`.`school_year` AS t0_r4, `post_books`.`address` AS t0_r5, `post_books`.`email` AS t0_r6, `post_books`.`phone` AS t0_r7, `post_books`.`price` AS t0_r8, `post_books`.`currency` AS t0_r9, `post_books`.`accept_payment` AS t0_r10, `post_books`.`shipping_method_id` AS t0_r11, `post_books`.`in_stock` AS t0_r12, `post_books`.`rating_status` AS t0_r13, `posts`.`id` AS t1_r0, `posts`.`user_id` AS t1_r1, `posts`.`post_category_id` AS t1_r2, `posts`.`title` AS t1_r3, `posts`.`description` AS t1_r4, `posts`.`school_id` AS t1_r5, `posts`.`email` AS t1_r6, `posts`.`use_this_email` AS t1_r7, `posts`.`allow_comment` AS t1_r8, `posts`.`allow_response` AS t1_r9, `posts`.`allow_rate` AS t1_r10, `posts`.`allow_download` AS t1_r11, `posts`.`type_name` AS t1_r12, `posts`.`created_at` AS t1_r13, `posts`.`updated_at` AS t1_r14, `posts`.`attach_file_name` AS t1_r15, `posts`.`attach_content_type` AS t1_r16, `posts`.`attach_file_size` AS t1_r17, `posts`.`attach_updated_at` AS t1_r18, `posts`.`count_view` AS t1_r19, `book_types`.`id` AS t2_r0, `book_types`.`name` AS t2_r1 FROM `post_books` LEFT OUTER JOIN `posts` ON `posts`.id = `post_books`.post_id LEFT OUTER JOIN `book_types` ON `book_types`.id = `post_books`.book_type_id WHERE ((posts.created_at > '2010-03-04 12:50:06') AND (book_types.id = 1)) [0m
+Rendering template within layouts/application
+Rendering post_books/index
+Rendered shared/_select_school (0.00000)
+Rendered shared/_post_button (0.00000)
+  [4;36;1mBookType Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `book_types` [0m
+Rendered post_books/_submenu (0.12500)
+  [4;35;1mDepartment Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `departments` [0m
+  [4;36;1mDepartment Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `departments`[0m
+  [4;35;1mDepartmentCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM `department_categories`[0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 1) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 1) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 1) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 1) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 1) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 1) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 1) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 1) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 2) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 2) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 3) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 3) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 3) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 3) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 3) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 3) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 3) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 4) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 4) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 4) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 4) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.016000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 6) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 6) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 6) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 7) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 7) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 7) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 7) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 7) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 7) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 8) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 8) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 9) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 10) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 10) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 11) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 11) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 12) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 12) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 13) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 14) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 14) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 14) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 14) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 15) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 15) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 15) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 16) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 16) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 16) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 16) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 16) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 17) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 17) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 17) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 17) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 18) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 18) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 18) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 19) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 20) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 20) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 20) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 20) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 20) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 20) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;36;1mDepartmentCategory Load (0.015000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 21) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 22) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 22) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 22) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 22) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 22) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 22) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 22) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 22) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 22) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 23) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 24) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 25) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 25) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 25) [0m
+  [4;36;1mDepartmentCategory Load (0.016000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 25) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 26) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 26) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 27) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 27) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 27) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 27) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 28) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 28) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 29) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 29) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 30) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 30) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 30) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 30) [0m
+Rendered shared/_options (0.48300)
+  [4;35;1mSchool Columns (0.000000)[0m   [0mSHOW FIELDS FROM `schools`[0m
+  [4;36;1mSchool Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 844) [0m
+  [4;35;1mPostBook Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1003) LIMIT 1[0m
+  [4;36;1mBookType Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;35;1mUser Columns (0.000000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 20) [0m
+  [4;35;1mComment Columns (0.016000)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 20 AND `comments`.commentable_type = 'User') [0m
+  [4;35;1mRating Columns (0.000000)[0m   [0mSHOW FIELDS FROM `ratings`[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 3 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 3 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;36;1mFavorite Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `favorites`[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1003) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1003 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.07800)
+  [4;35;1mSchool Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 320) [0m
+  [4;36;1mPostBook Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1007) LIMIT 1[0m
+  [4;35;1mBookType Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 19) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 19 AND `comments`.commentable_type = 'User') [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 7 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 7 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1007) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1007 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.03200)
+  [4;36;1mSchool Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 1) [0m
+  [4;35;1mPostBook Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1009) LIMIT 1[0m
+  [4;36;1mBookType Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 9) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 9 AND `comments`.commentable_type = 'User') [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 9 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 9 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1009) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1009 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.01500)
+  [4;35;1mSchool Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 767) [0m
+  [4;36;1mPostBook Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1014) LIMIT 1[0m
+  [4;35;1mBookType Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 3) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 3 AND `comments`.commentable_type = 'User') [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 14 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 14 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1014) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1014 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.03100)
+  [4;36;1mSchool Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 621) [0m
+  [4;35;1mPostBook Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1020) LIMIT 1[0m
+  [4;36;1mBookType Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 4) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 4 AND `comments`.commentable_type = 'User') [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 20 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 20 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1020) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1020 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.01600)
+  [4;35;1mSchool Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 419) [0m
+  [4;36;1mPostBook Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1028) LIMIT 1[0m
+  [4;35;1mBookType Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 13) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 13 AND `comments`.commentable_type = 'User') [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 28 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 28 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1028) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1028 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.03100)
+  [4;36;1mSchool Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 1) [0m
+  [4;35;1mPostBook Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1030) LIMIT 1[0m
+  [4;36;1mBookType Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 1) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1 AND `comments`.commentable_type = 'User') [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 30 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 30 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1030) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1030 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.01600)
+  [4;35;1mSchool Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 884) [0m
+  [4;36;1mPostBook Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1035) LIMIT 1[0m
+  [4;35;1mBookType Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 17) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 17 AND `comments`.commentable_type = 'User') [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 35 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 35 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1035) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1035 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.03100)
+  [4;36;1mSchool Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 419) [0m
+  [4;35;1mPostBook Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1036) LIMIT 1[0m
+  [4;36;1mBookType Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 13) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 13 AND `comments`.commentable_type = 'User') [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 36 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 36 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1036) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1036 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.01600)
+  [4;35;1mSchool Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 393) [0m
+  [4;36;1mPostBook Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1041) LIMIT 1[0m
+  [4;35;1mBookType Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 14) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 14 AND `comments`.commentable_type = 'User') [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 41 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 41 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1041) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1041 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.03100)
+  [4;36;1mPostBook Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (rating_status = 'Bad') [0m
+Rendered post_books/_dont_buy (0.00000)
+  [4;35;1mPostBook Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (rating_status = 'Good') [0m
+Rendered post_books/_good_book (0.00000)
+  [4;36;1mBookType Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`name` = 'Free books') LIMIT 1[0m
+  [4;35;1mPostBook Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (book_type_id = 4) LIMIT 5[0m
+  [4;36;1mPost Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `posts` WHERE (`posts`.`id` = 1010) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 8) [0m
+  [4;36;1mPost Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `posts` WHERE (`posts`.`id` = 1017) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 18) [0m
+  [4;36;1mPost Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `posts` WHERE (`posts`.`id` = 1018) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 13) [0m
+  [4;36;1mPost Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `posts` WHERE (`posts`.`id` = 1021) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 15) [0m
+  [4;36;1mPost Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `posts` WHERE (`posts`.`id` = 1026) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 19) [0m
+Rendered post_books/_free_book (0.03200)
+  [4;36;1mTag Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `tags`[0m
+Rendered shared/_browser_by_subject (0.14000)
+Rendered ads/_show_vertical_ads (0.00000)
+Rendered post_books/_form_request_book (0.00000)
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00000)
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostBook') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.015000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.01500)
+Rendered shared/_footer (0.00000)
+  [4;35;1mRating Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `ratings` WHERE (`ratings`.rated_id = 3 AND `ratings`.rated_type = 'PostBook') [0m
+Completed in 3.33800 (0 reqs/sec) | Rendering: 1.09200 (32%) | DB: 0.17200 (5%) | 200 OK [http://localhost/post_books]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:12) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/avatars/20/thumb/113820_300.jpg" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:12) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/avatars/9/thumb/jhedrick.jpg" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:12) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/avatars/19/thumb/163564_300.jpg" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:13) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/avatars/3/thumb/profile.jpg" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:13) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/avatars/4/thumb/male_main.jpg" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:14) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/avatars/13/thumb/146440_300.jpg" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:14) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/images/icons/thumb/members.png" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:15) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/avatars/14/thumb/76264_300.jpg" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:15) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/avatars/17/thumb/84442_300.jpg" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:15) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/pictures/key.png" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-04-03 12:50:24) [POST]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"create", "authenticity_token"=>"1947da782e45941423392a41896795e1c72782df", "controller"=>"sessions", "password"=>"[FILTERED]", "email"=>"michael@example.com"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CToOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMCIK\nZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsA\nBjoKQHVzZWR7ADoQZ29fYmFja191cmxABg==\n', `updated_at` = '2010-04-03 05:50:25' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/session', `updated_at` = '2010-04-03 05:50:25' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.015000)[0m   [0mCOMMIT[0m
+Cookie set: auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`email` = 'michael@example.com') AND (users.state = 'active') LIMIT 1[0m
+  [4;35;1mUser Columns (0.015000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+Cookie set: auth_token=; path=/
+Redirected to http://localhost:3000/post_books
+  [4;36;1mSchool Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `schools`[0m
+  [4;35;1mSchool Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 478) [0m
+Completed in 0.68700 (1 reqs/sec) | DB: 0.51200 (74%) | 302 Found [http://localhost/session]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.01500)
+
+
+Processing PostBooksController#index (for 127.0.0.1 at 2010-04-03 12:50:26) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"index", "controller"=>"post_books"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xpAt4BOhFnZW9fbG9jYXRp\nb24wOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3MiCmZsYXNoSUM6J0FjdGlv\nbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7BjoLbm90aWNlIhtMb2dn\nZWQgaW4gc3VjY2Vzc2Z1bGx5BjoKQHVzZWR7BjsKVDoMdXNlcl9pZGkK\n', `user_id` = 5, `updated_at` = '2010-04-03 05:50:27' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.015000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/post_books', `updated_at` = '2010-04-03 05:50:27' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mTag Load (0.016000)[0m   [0;1mSELECT SQL_NO_CACHE tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN post_books ON post_books.id = taggings.taggable_id WHERE (taggings.taggable_type = 'PostBook') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+  [4;35;1mPostCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostBook') LIMIT 1[0m
+  [4;35;1mBookType Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `book_types` LIMIT 1[0m
+  [4;36;1mBookType Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `book_types`[0m
+  [4;35;1mPostBook Columns (0.000000)[0m   [0mSHOW FIELDS FROM `post_books`[0m
+  [4;36;1mPost Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mPostBook Load Including Associations (0.000000)[0m   [0mSELECT SQL_NO_CACHE `post_books`.`id` AS t0_r0, `post_books`.`post_id` AS t0_r1, `post_books`.`book_type_id` AS t0_r2, `post_books`.`department_id` AS t0_r3, `post_books`.`school_year` AS t0_r4, `post_books`.`address` AS t0_r5, `post_books`.`email` AS t0_r6, `post_books`.`phone` AS t0_r7, `post_books`.`price` AS t0_r8, `post_books`.`currency` AS t0_r9, `post_books`.`accept_payment` AS t0_r10, `post_books`.`shipping_method_id` AS t0_r11, `post_books`.`in_stock` AS t0_r12, `post_books`.`rating_status` AS t0_r13, `posts`.`id` AS t1_r0, `posts`.`user_id` AS t1_r1, `posts`.`post_category_id` AS t1_r2, `posts`.`title` AS t1_r3, `posts`.`description` AS t1_r4, `posts`.`school_id` AS t1_r5, `posts`.`email` AS t1_r6, `posts`.`use_this_email` AS t1_r7, `posts`.`allow_comment` AS t1_r8, `posts`.`allow_response` AS t1_r9, `posts`.`allow_rate` AS t1_r10, `posts`.`allow_download` AS t1_r11, `posts`.`type_name` AS t1_r12, `posts`.`created_at` AS t1_r13, `posts`.`updated_at` AS t1_r14, `posts`.`attach_file_name` AS t1_r15, `posts`.`attach_content_type` AS t1_r16, `posts`.`attach_file_size` AS t1_r17, `posts`.`attach_updated_at` AS t1_r18, `posts`.`count_view` AS t1_r19, `book_types`.`id` AS t2_r0, `book_types`.`name` AS t2_r1 FROM `post_books` LEFT OUTER JOIN `posts` ON `posts`.id = `post_books`.post_id LEFT OUTER JOIN `book_types` ON `book_types`.id = `post_books`.book_type_id WHERE ((posts.school_id = 478 AND posts.created_at > '2010-03-04 12:50:29') AND (book_types.id = 1)) [0m
+Rendering template within layouts/application
+Rendering post_books/index
+  [4;36;1mSchool Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `schools`[0m
+  [4;35;1mSchool Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 478) [0m
+Rendered shared/_select_school (0.01600)
+Rendered shared/_post_button (0.01600)
+  [4;36;1mBookType Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `book_types` [0m
+Rendered post_books/_submenu (0.00000)
+  [4;35;1mDepartment Load (0.016000)[0m   [0mSELECT SQL_NO_CACHE `departments`.* FROM `departments` INNER JOIN `departments_schools` ON `departments_schools`.department_id = `departments`.id INNER JOIN `schools` ON `schools`.id = `departments_schools`.school_id WHERE (departments_schools.school_id = 478) ORDER BY department_category_id ASC[0m
+  [4;36;1mDepartment Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `departments`[0m
+  [4;35;1mDepartmentCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM `department_categories`[0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 5) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 15) [0m
+  [4;35;1mDepartmentCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 16) [0m
+  [4;36;1mDepartmentCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `department_categories` WHERE (`department_categories`.`id` = 30) [0m
+Rendered shared/_options (0.04700)
+  [4;35;1mSchool Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 478) [0m
+  [4;36;1mPostBook Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_books` WHERE (`post_books`.post_id = 1159) LIMIT 1[0m
+  [4;35;1mBookType Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`id` = 1) [0m
+  [4;36;1mUser Columns (0.016000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) [0m
+  [4;36;1mComment Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `comments`[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 5 AND `comments`.commentable_type = 'User') [0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+  [4;35;1mRating Columns (0.015000)[0m   [0mSHOW FIELDS FROM `ratings`[0m
+  [4;36;1mRating Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `ratings` WHERE (rated_type = 'PostAwareness' AND rater_id = 5) [0m
+  [4;35;1mPostAwareness Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_awarenesses` WHERE (`post_awarenesses`.post_id = 1159) LIMIT 1[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 159 AND `ratings`.rated_type = 'PostBook' AND (rating = 1)) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `ratings` WHERE (`ratings`.rated_id = 159 AND `ratings`.rated_type = 'PostBook' AND (rating = 0)) [0m
+  [4;36;1mFavorite Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `favorites` WHERE (`favorites`.user_id = 5) [0m
+  [4;35;1mFavorite Columns (0.000000)[0m   [0mSHOW FIELDS FROM `favorites`[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `favorites` WHERE (`favorites`.post_id = 1159) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `comments` WHERE (`comments`.commentable_id = 1159 AND `comments`.commentable_type = 'Post') [0m
+Rendered post_books/_item (0.23400)
+  [4;36;1mPostBook Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE `post_books`.* FROM `post_books` INNER JOIN `posts` ON `posts`.id = `post_books`.post_id WHERE ((rating_status = 'Bad') AND (school_id = 478)) [0m
+Rendered post_books/_dont_buy (0.00000)
+  [4;35;1mPostBook Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE `post_books`.* FROM `post_books` INNER JOIN `posts` ON `posts`.id = `post_books`.post_id WHERE ((rating_status = 'Good') AND (school_id = 478)) [0m
+Rendered post_books/_good_book (0.00000)
+  [4;36;1mBookType Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `book_types` WHERE (`book_types`.`name` = 'Free books') LIMIT 1[0m
+  [4;35;1mPostBook Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE `post_books`.* FROM `post_books` INNER JOIN `posts` ON `posts`.id = `post_books`.post_id WHERE ((school_id = 478) AND (book_type_id = 4)) LIMIT 5[0m
+  [4;36;1mPost Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `posts` WHERE (`posts`.`id` = 1031) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) [0m
+  [4;36;1mPost Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `posts` WHERE (`posts`.`id` = 1173) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) [0m
+Rendered post_books/_free_book (0.03100)
+Rendered shared/_browser_by_subject (0.00000)
+Rendered ads/_show_vertical_ads (0.00000)
+Rendered post_books/_form_request_book (0.00000)
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00000)
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostBook') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.01500)
+Rendered shared/_footer (0.00000)
+  [4;36;1mRating Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `ratings` WHERE (`ratings`.rated_id = 159 AND `ratings`.rated_type = 'PostBook') [0m
+Completed in 2.83900 (0 reqs/sec) | Rendering: 0.35800 (12%) | DB: 0.14000 (4%) | 200 OK [http://localhost/post_books]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:34) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/avatars/5/thumb/HughMcCutcheon.jpg" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-04-03 12:50:35) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/pictures/key.png" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing SettingsController#index (for 127.0.0.1 at 2010-04-03 12:50:37) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"index", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 05:50:38' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings', `updated_at` = '2010-04-03 05:50:38' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.000000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Redirected to http://localhost:3000/settings/setting
+Completed in 0.73400 (1 reqs/sec) | DB: 0.14100 (19%) | 302 Found [http://localhost/settings]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 12:50:40) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 05:50:41' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 05:50:41' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.015000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.000000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.01600)
+  [4;35;1mPostCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 1.54400 (0 reqs/sec) | Rendering: 0.09400 (6%) | DB: 0.04600 (2%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 12:50:55) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"typeOfChange"=>"name", "action"=>"change", "controller"=>"settings", "height"=>"100", "random"=>"1270273854570", "width"=>"280"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 05:50:56' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=100&width=280&typeOfChange=name&random=1270273854570', `updated_at` = '2010-04-03 05:50:56' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.016000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.015000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.68700 (1 reqs/sec) | Rendering: 0.00000 (0%) | DB: 0.06200 (9%) | 200 OK [http://localhost/settings/change?height=100&width=280&typeOfChange=name&random=1270273854570]
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 12:51:19) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"200", "random"=>"1270273877848", "width"=>"280"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 05:51:19' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.109000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=200&width=280&typeOfChange=psw&random=1270273877848', `updated_at` = '2010-04-03 05:51:19' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.74800 (1 reqs/sec) | Rendering: 0.00000 (0%) | DB: 0.15500 (20%) | 200 OK [http://localhost/settings/change?height=200&width=280&typeOfChange=psw&random=1270273877848]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 12:51:27) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 05:51:28' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 05:51:28' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.016000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.01500)
+  [4;36;1mPostCategory Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.78000 (1 reqs/sec) | Rendering: 0.09400 (12%) | DB: 0.07800 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 12:52:36) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"100", "random"=>"1270273955093", "width"=>"280"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 05:52:37' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=100&width=280&typeOfChange=psw&random=1270273955093', `updated_at` = '2010-04-03 05:52:37' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.016000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.68600 (1 reqs/sec) | Rendering: 0.01500 (2%) | DB: 0.07800 (11%) | 200 OK [http://localhost/settings/change?height=100&width=280&typeOfChange=psw&random=1270273955093]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 12:52:48) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 05:52:49' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 05:52:49' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.000000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00000)
+  [4;35;1mPostCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.73400 (1 reqs/sec) | Rendering: 0.06300 (8%) | DB: 0.06300 (8%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 12:52:56) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"120", "random"=>"1270273975287", "width"=>"280"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 05:52:57' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=120&width=280&typeOfChange=psw&random=1270273975287', `updated_at` = '2010-04-03 05:52:57' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.65500 (1 reqs/sec) | Rendering: 0.00000 (0%) | DB: 0.06300 (9%) | 200 OK [http://localhost/settings/change?height=120&width=280&typeOfChange=psw&random=1270273975287]
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 12:53:03) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"typeOfChange"=>"email", "action"=>"change", "controller"=>"settings", "height"=>"100", "random"=>"1270273982514", "width"=>"280"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 05:53:04' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.015000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=100&width=280&typeOfChange=email&random=1270273982514', `updated_at` = '2010-04-03 05:53:04' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.70200 (1 reqs/sec) | Rendering: 0.00000 (0%) | DB: 0.04600 (6%) | 200 OK [http://localhost/settings/change?height=100&width=280&typeOfChange=email&random=1270273982514]
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 12:53:11) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"typeOfChange"=>"name", "action"=>"change", "controller"=>"settings", "height"=>"100", "random"=>"1270273990145", "width"=>"280"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 05:53:12' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.078000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=100&width=280&typeOfChange=name&random=1270273990145', `updated_at` = '2010-04-03 05:53:12' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.015000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.89000 (1 reqs/sec) | Rendering: 0.00000 (0%) | DB: 0.09300 (10%) | 200 OK [http://localhost/settings/change?height=100&width=280&typeOfChange=name&random=1270273990145]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 12:53:54) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 05:53:55' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 05:53:55' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.01500)
+  [4;36;1mPostCategory Columns (0.000000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.78000 (1 reqs/sec) | Rendering: 0.06300 (8%) | DB: 0.06200 (7%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00000)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 12:54:14) [GET]
+  Session ID: 5ce714910f45d8cf38de797203a31d99
+  Parameters: {"typeOfChange"=>"name", "action"=>"change", "controller"=>"settings", "height"=>"100", "random"=>"1270274050898", "width"=>"280"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoQeW91cl9zY2hvb2xpAt4B\nOhFnZW9fbG9jYXRpb24wOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 05:54:15' WHERE `id` = 22[0m
+  [4;35;1mSQL (0.041000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=100&width=280&typeOfChange=name&random=1270274050898', `updated_at` = '2010-04-03 05:54:15' WHERE `id` = 22[0m
+  [4;36;1mSQL (0.028000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.004000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.89400 (1 reqs/sec) | Rendering: 0.00500 (0%) | DB: 0.07400 (8%) | 200 OK [http://localhost/settings/change?height=100&width=280&typeOfChange=name&random=1270274050898]

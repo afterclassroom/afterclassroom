@@ -41,47 +41,12 @@ class SettingsController < ApplicationController
   end
 
   def savechange
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    puts "HHHHHHHHHHHHHHHHHHHHHHHH"
-    if params[:editType]
-      puts "=================="
-      puts "=================="
-      puts "=================="
-      puts "=================="
-      puts "=================="
-      puts "=================="
-      puts "=================="
-      puts "=================="
-      puts "=================="
-      puts "=================="
-      puts "=================="
-      puts "=================="+params[:editType]
+    if params[:editType] == "name"
+      puts "save name to the database "+params[:editType]
+    elsif params[:editType] == "email"
+      puts "save email to the database "+params[:editType]
+    elsif params[:editType] == "psw"
+      puts "save new password to the databsae"+params[:editType]
     end
     redirect_to :action => "setting", :inf_msg => "Updated Successfully"
   end

@@ -10,8 +10,6 @@
 
     $('#target').find('input:eq(0)').append("<input type='text' value='"+editType+"' name='editType' />") ;
 
-    //replaceWith("<input type='text' value='Hello there' name='"+editType+"' />")) ;
-   
     return true;
   });
 
@@ -19,14 +17,15 @@
 <form id="target" action="<%=  savechange_settings_path %>">
   <div id="label_msg">
     <%= @label %>
-  </div><br/>
-
-  <input type="text" value="Hello there" name="changedValue" /><br/>
+  </div>
+  <p>
+    <input type="text" value="" name="changedValue" />
+  </p>
   <% if @label.to_s == "Please enter new password" %>
     <p>
       Please re-enter the password
       <br/>
-      <input type="text" value="Hello there" name="retypedPassword" /><br/>
+      <input type="text" value="" name="retypedPassword" /><br/>
     </p>
   <% end %>
   <input type="submit" value="Save" />
