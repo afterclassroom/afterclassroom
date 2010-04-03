@@ -1285,8 +1285,13 @@ span.btmDown a:hover{
     float:left;
     width:112px;
 }
-.regReload a{
-    background:url('/images/learnFeed.png') no-repeat;
+.regReload{
+    height:15px;
+    text-align:right;
+}
+.regRlBt{
+    background:url('/images/learnFeed.png') no-repeat left top;
+    padding-left:18px;
 }
 .submit a{
     background:url('/images/btm48.png') no-repeat;

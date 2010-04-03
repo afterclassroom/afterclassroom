@@ -4,6 +4,7 @@ javascripts:
   - application
   - jquery
   - jquery-ui
+  - jquery-ui-datepicker
   - jrails
   - jquery-mcdropdown
   - thickbox
@@ -29,6 +30,8 @@ javascripts:
 stylesheets: 
 - application:
   - main
+  - jquery-ui
+  - jquery-ui-datepicker
   - jquery-mcdropdown
   - thickbox
   - pagination
