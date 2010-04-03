@@ -1,50 +1,38 @@
-<style type="text/css">
-  .normal {
-    width: 60px;
-    height: 30px;
-    background-color:White;
-  }
-  .smbutton {
-    position:relative;
-    top: 5px;
-    right: -10px;
-  }
-</style>
-
 <script language="javascript">
   $(document).ready(function(){
     var editType = $('#label_msg').html();
-    //replace normal input with password-input tag
-    if ( editType.indexOf("password", 0) > 0 ){
-      $('#target').find('input:eq(0)').replaceWith("<input id='passwd' value='' type='password' name='passwd' size='15'/>");
-    }
     //disable submit button, only enable if 2 passwords are the same
     var $submitButton = $('#target').find("input[type='submit']");
     $submitButton.attr("disabled", "true");
     
-    //$submitButton = $('#target').find("input[type='submit']").bind("mouseover",validatePSW);
+    //replace normal input with password-input tag
+    if ( editType.indexOf("password", 0) > 0 ){
+      //$('#target').find('input:eq(0)').replaceWith("<input id='passwd' value='' type='password' name='passwd' size='15'/>");
+      $storage = $('#target').find('input:eq(0)').parent();
+      $storage.replaceWith("<p><input id='passwd' value='' type='password' name='passwd' size='15'/></p><p>Please re-enter the password<br/><input type='password' id='reTypedPasswd' name='reTypedPasswd' size='15'/><br/></p>");
+    }
+    $('#target').find('input:eq(0)').keyup(function(){
+      $submitButton.attr("disabled", "true");
+      if ($('#passwd').val() == $('#reTypedPasswd').val()){
+        $submitButton.attr("disabled", "");
+        $('#errorMessage').html('_');
+      }
+      else
+        $('#errorMessage').html('The 2 passwords must be the same');
 
-    $divButton = $('#SMDIV').bind("mouseover",validatePSW);
+    });
+    $('#target').find('input:eq(1)').keyup(function(){
+      $submitButton.attr("disabled", "true");
+      if ($('#passwd').val() == $('#reTypedPasswd').val()){
+        $submitButton.attr("disabled", "");
+        $('#errorMessage').html('_');
+      }else
+        $('#errorMessage').html('The 2 passwords must be the same');
+    });
 
+    
       
   });
-  function validatePSW(evt){
-    var strPSW1 = $('#passwd').val();
-    var strPSW2 = $('#reTypedPasswd').val();
-    if (strPSW1 != "" && strPSW2!= "" && strPSW1 == strPSW2){
-      var $submitButton = $('#target').find("input[type='submit']");
-      $submitButton.attr("disabled", "");
-      $('#errorMessage').html('_');
-    }
-    else{
-      $('#errorMessage').html('2 passwords are not right');
-      var $submitButton = $('#target').find("input[type='submit']");
-      $submitButton.attr("disabled", "true");
-    }
-    //$("#abc").toggleClass("highlighted");
-  }
-
-
 
   $('#target').submit(function() {
     var editType = $('#label_msg').html();
@@ -69,14 +57,7 @@
   <p>
     <input type="text" value="" name="changedValue" />
   </p>
-  <% if @label.to_s == "Please enter new password" %>
-    <p>
-      Please re-enter the password
-      <br/>
-      <input type='password' id='reTypedPasswd' name='reTypedPasswd' size='15'/><br/>
-    </p>
-  <% end %>
-  <div id="SMDIV" class="normal">
-    <input class="smbutton" type="submit" value="Save"  />
-  </div>
+  
+    <input type="submit" value="Save"  />
+  
 </form>

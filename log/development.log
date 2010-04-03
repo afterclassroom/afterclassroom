@@ -4381,3 +4381,1576 @@ Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 15:09:24) [GET
   [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
 Rendering settings/change
 Completed in 0.77600 (1 reqs/sec) | Rendering: 0.01100 (1%) | DB: 0.13900 (17%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270282162581]
+Starting the New Relic Agent.
+NewRelic Agent Developer Mode enabled.
+To view performance information, go to http://localhost:3000/newrelic
+New Relic RPM Agent 2.10.6 Initialized: pid = 1940
+Agent Log found in E:/usr/src/ruby-space/rails_apps/afterclassroom/log/newrelic_agent.log
+  [4;36;1mSQL (0.001000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.057000)[0m   [0mSELECT version FROM schema_migrations[0m
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:14:36) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:14:36' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.025000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:14:36' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.035000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.026000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.03700)
+  [4;36;1mPostCategory Columns (0.028000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 1.02700 (0 reqs/sec) | Rendering: 0.27800 (27%) | DB: 0.19600 (19%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.02100)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:14:47) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286085981", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:14:47' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.030000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286085981', `updated_at` = '2010-04-03 09:14:48' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.70600 (1 reqs/sec) | Rendering: 0.00900 (1%) | DB: 0.07500 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286085981]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:15:31) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:15:31' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.037000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:15:31' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.035000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00600)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.77800 (1 reqs/sec) | Rendering: 0.05600 (7%) | DB: 0.08400 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:15:53) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286144081", "width"=>"400"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:15:54' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286144081', `updated_at` = '2010-04-03 09:15:54' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.70900 (1 reqs/sec) | Rendering: 0.02300 (3%) | DB: 0.07600 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286144081]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:16:37) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:16:37' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.035000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:16:37' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.010000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.90200 (1 reqs/sec) | Rendering: 0.18100 (20%) | DB: 0.08700 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:16:48) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286205394", "width"=>"400"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:16:49' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.038000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286205394', `updated_at` = '2010-04-03 09:16:49' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.033000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.004000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.71700 (1 reqs/sec) | Rendering: 0.00900 (1%) | DB: 0.08000 (11%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286205394]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:19:39) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:19:40' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.030000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:19:40' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.004000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.78300 (1 reqs/sec) | Rendering: 0.07500 (9%) | DB: 0.07900 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:19:54) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286393274", "width"=>"400"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:19:55' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286393274', `updated_at` = '2010-04-03 09:19:55' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.033000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.71400 (1 reqs/sec) | Rendering: 0.01900 (2%) | DB: 0.07800 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286393274]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:21:21) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:21:21' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.028000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:21:21' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.026000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.75500 (1 reqs/sec) | Rendering: 0.05300 (7%) | DB: 0.06500 (8%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:21:31) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286490262", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:21:32' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.030000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286490262', `updated_at` = '2010-04-03 09:21:32' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.71400 (1 reqs/sec) | Rendering: 0.01200 (1%) | DB: 0.07500 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286490262]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:21:50) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:21:50' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.040000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:21:51' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.033000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.009000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.86300 (1 reqs/sec) | Rendering: 0.18100 (20%) | DB: 0.08700 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:22:11) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286524912", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:22:11' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286524912', `updated_at` = '2010-04-03 09:22:11' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.007000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.71000 (1 reqs/sec) | Rendering: 0.01400 (1%) | DB: 0.08900 (12%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286524912]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:22:57) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:22:58' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.025000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.021000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:22:58' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.042000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.007000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.002000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.74800 (1 reqs/sec) | Rendering: 0.06200 (8%) | DB: 0.10300 (13%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:23:10) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286589171", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:23:11' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286589171', `updated_at` = '2010-04-03 09:23:11' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.69100 (1 reqs/sec) | Rendering: 0.01100 (1%) | DB: 0.07400 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286589171]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:25:53) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:25:54' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.046000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:25:54' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.026000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.004000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.004000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.86100 (1 reqs/sec) | Rendering: 0.18500 (21%) | DB: 0.08100 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:26:12) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286767992", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:26:13' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.030000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286767992', `updated_at` = '2010-04-03 09:26:13' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.035000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.71800 (1 reqs/sec) | Rendering: 0.01900 (2%) | DB: 0.07500 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286767992]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:26:21) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:26:22' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.030000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:26:22' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.046000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00600)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.79300 (1 reqs/sec) | Rendering: 0.06000 (7%) | DB: 0.09000 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:26:28) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "width"=>"400"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:26:28' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.041000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw', `updated_at` = '2010-04-03 09:26:28' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.033000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.68500 (1 reqs/sec) | Rendering: 0.00300 (0%) | DB: 0.08400 (12%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:26:33) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:26:33' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:26:33' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00600)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.76100 (1 reqs/sec) | Rendering: 0.06400 (8%) | DB: 0.08000 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:26:38) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:26:38' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.009000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00600)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.84000 (1 reqs/sec) | Rendering: 0.05600 (6%) | DB: 0.04900 (5%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:26:47) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286806555", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:26:48' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.029000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286806555', `updated_at` = '2010-04-03 09:26:48' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.033000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.68000 (1 reqs/sec) | Rendering: 0.00400 (0%) | DB: 0.07400 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286806555]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:27:26) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:27:27' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.036000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:27:27' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.76600 (1 reqs/sec) | Rendering: 0.06500 (8%) | DB: 0.09000 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00400)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:27:49) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286868037", "width"=>"400"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:27:50' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286868037', `updated_at` = '2010-04-03 09:27:50' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.71300 (1 reqs/sec) | Rendering: 0.01800 (2%) | DB: 0.07800 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286868037]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:28:22) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:28:23' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.043000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:28:23' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.94100 (1 reqs/sec) | Rendering: 0.20700 (21%) | DB: 0.09200 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00400)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:28:45) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286924520", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:28:46' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.045000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286924520', `updated_at` = '2010-04-03 09:28:46' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.033000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.71300 (1 reqs/sec) | Rendering: 0.01600 (2%) | DB: 0.09100 (12%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286924520]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:29:03) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 09:29:03' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:29:03' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.028000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.004000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00400)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00500)
+Rendered shared/_footer (0.00000)
+Completed in 0.71100 (1 reqs/sec) | Rendering: 0.05500 (7%) | DB: 0.07200 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:29:07) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286947197", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 09:29:08' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.041000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286947197', `updated_at` = '2010-04-03 09:29:08' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.033000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.70600 (1 reqs/sec) | Rendering: 0.00400 (0%) | DB: 0.08300 (11%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286947197]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:29:19) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 09:29:20' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.025000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.003000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:29:20' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.030000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.86800 (1 reqs/sec) | Rendering: 0.17800 (20%) | DB: 0.07100 (8%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:29:25) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286964701", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 09:29:25' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.062000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286964701', `updated_at` = '2010-04-03 09:29:25' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.76500 (1 reqs/sec) | Rendering: 0.00300 (0%) | DB: 0.12000 (15%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286964701]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:29:29) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 09:29:29' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:29:29' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.053000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.79700 (1 reqs/sec) | Rendering: 0.07300 (9%) | DB: 0.10300 (12%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:29:32) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270286972321", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 09:29:33' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270286972321', `updated_at` = '2010-04-03 09:29:33' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.046000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.014000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.006000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.73500 (1 reqs/sec) | Rendering: 0.00200 (0%) | DB: 0.10000 (13%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270286972321]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:30:12) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 09:30:12' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:30:12' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.92300 (1 reqs/sec) | Rendering: 0.20200 (21%) | DB: 0.08800 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:30:15) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287015378", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 09:30:16' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287015378', `updated_at` = '2010-04-03 09:30:16' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.029000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.004000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.69200 (1 reqs/sec) | Rendering: 0.00800 (1%) | DB: 0.07000 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287015378]
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:30:33) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287032683", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 09:30:33' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.025000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287032683', `updated_at` = '2010-04-03 09:30:33' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.70100 (1 reqs/sec) | Rendering: 0.00300 (0%) | DB: 0.07100 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287032683]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:32:33) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 09:32:34' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:32:34' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00600)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.002000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.73500 (1 reqs/sec) | Rendering: 0.06000 (8%) | DB: 0.08400 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:32:38) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287157636", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 09:32:38' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287157636', `updated_at` = '2010-04-03 09:32:38' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.68800 (1 reqs/sec) | Rendering: 0.01400 (2%) | DB: 0.07600 (11%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287157636]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:32:48) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:32:48' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.042000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:32:48' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00600)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.91700 (1 reqs/sec) | Rendering: 0.18800 (20%) | DB: 0.09000 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:33:00) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287176771", "width"=>"400"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:33:01' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.045000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287176771', `updated_at` = '2010-04-03 09:33:01' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.029000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.005000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.72800 (1 reqs/sec) | Rendering: 0.00100 (0%) | DB: 0.08500 (11%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287176771]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:33:50) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:33:51' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.033000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:33:51' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00100)
+Completed in 0.74700 (1 reqs/sec) | Rendering: 0.06600 (8%) | DB: 0.08000 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:33:58) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:33:58' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.029000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw', `updated_at` = '2010-04-03 09:33:58' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.037000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.75200 (1 reqs/sec) | Rendering: 0.01800 (2%) | DB: 0.07700 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:34:02) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:34:02' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:34:02' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.035000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.009000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00600)
+  [4;35;1mPostCategory Columns (0.002000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.90900 (1 reqs/sec) | Rendering: 0.20700 (22%) | DB: 0.08200 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:34:08) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287246932", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:34:08' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.037000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287246932', `updated_at` = '2010-04-03 09:34:08' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.67500 (1 reqs/sec) | Rendering: 0.00400 (0%) | DB: 0.08000 (11%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287246932]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:36:42) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:36:43' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:36:43' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.009000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.80700 (1 reqs/sec) | Rendering: 0.06000 (7%) | DB: 0.07900 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:36:55) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287412323", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:36:56' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.028000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287412323', `updated_at` = '2010-04-03 09:36:56' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.75900 (1 reqs/sec) | Rendering: 0.01000 (1%) | DB: 0.07200 (9%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287412323]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:37:52) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:37:53' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.042000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:37:53' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.75600 (1 reqs/sec) | Rendering: 0.05900 (7%) | DB: 0.09200 (12%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00400)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:38:11) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287480874", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:38:11' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.043000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287480874', `updated_at` = '2010-04-03 09:38:11' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.009000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.71900 (1 reqs/sec) | Rendering: 0.01300 (1%) | DB: 0.08900 (12%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287480874]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:40:04) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:40:04' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.027000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:40:04' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.039000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.002000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.75200 (1 reqs/sec) | Rendering: 0.06600 (8%) | DB: 0.07900 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:40:19) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287613105", "width"=>"400"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:40:20' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.026000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287613105', `updated_at` = '2010-04-03 09:40:20' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.029000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.010000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.70600 (1 reqs/sec) | Rendering: 0.00900 (1%) | DB: 0.06900 (9%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287613105]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:40:43) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:40:44' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.028000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:40:44' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.033000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.77800 (1 reqs/sec) | Rendering: 0.07000 (8%) | DB: 0.07400 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:40:53) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287651260", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:40:54' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.029000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287651260', `updated_at` = '2010-04-03 09:40:54' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.030000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.005000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.72100 (1 reqs/sec) | Rendering: 0.01000 (1%) | DB: 0.06500 (9%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287651260]
+
+
+Processing SettingsController#savechange (for 127.0.0.1 at 2010-04-03 16:41:10) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"passwd"=>"123", "reTypedPasswd"=>"12", "action"=>"savechange", "editType"=>"psw", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:41:10' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/savechange?passwd=123&editType=psw&reTypedPasswd=12', `updated_at` = '2010-04-03 09:41:10' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.024000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Redirected to http://localhost:3000/settings/setting?inf_msg=Updated+Successfully
+Completed in 0.68100 (1 reqs/sec) | DB: 0.06600 (9%) | 302 Found [http://localhost/settings/savechange?passwd=123&editType=psw&reTypedPasswd=12]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:41:14) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:41:14' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.026000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:41:14' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.027000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.005000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.004000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.75600 (1 reqs/sec) | Rendering: 0.06000 (7%) | DB: 0.06500 (8%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00400)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:42:07) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:42:07' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.001000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00600)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.71900 (1 reqs/sec) | Rendering: 0.05900 (8%) | DB: 0.04900 (6%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:42:39) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287757697", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:42:39' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287757697', `updated_at` = '2010-04-03 09:42:39' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.012000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.73900 (1 reqs/sec) | Rendering: 0.01700 (2%) | DB: 0.09500 (12%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287757697]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:44:25) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:44:25' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.040000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:44:25' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.028000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.011000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.80300 (1 reqs/sec) | Rendering: 0.06900 (8%) | DB: 0.08800 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:44:39) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287874294", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:44:40' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287874294', `updated_at` = '2010-04-03 09:44:40' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.033000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.010000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.72000 (1 reqs/sec) | Rendering: 0.01100 (1%) | DB: 0.07700 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287874294]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:45:46) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.002000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:45:47' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.036000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:45:47' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.009000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00800)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.78400 (1 reqs/sec) | Rendering: 0.08600 (10%) | DB: 0.08900 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00400)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:46:02) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270287955215", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:46:03' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.067000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270287955215', `updated_at` = '2010-04-03 09:46:03' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.054000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.006000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.003000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.77800 (1 reqs/sec) | Rendering: 0.01000 (1%) | DB: 0.13300 (17%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270287955215]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:46:38) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:46:38' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.035000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:46:38' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.046000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.77200 (1 reqs/sec) | Rendering: 0.07200 (9%) | DB: 0.09600 (12%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:46:53) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270288008723", "width"=>"400"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:46:54' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.024000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.002000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270288008723', `updated_at` = '2010-04-03 09:46:54' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.025000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.66100 (1 reqs/sec) | Rendering: 0.00900 (1%) | DB: 0.05700 (8%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270288008723]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:47:26) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:47:27' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.037000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:47:27' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.029000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00600)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.78100 (1 reqs/sec) | Rendering: 0.06500 (8%) | DB: 0.08200 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:47:45) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270288056553", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:47:45' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.028000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270288056553', `updated_at` = '2010-04-03 09:47:46' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.010000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.70600 (1 reqs/sec) | Rendering: 0.00900 (1%) | DB: 0.07800 (11%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270288056553]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:48:32) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:48:32' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.036000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:48:32' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.009000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.77400 (1 reqs/sec) | Rendering: 0.06000 (7%) | DB: 0.08600 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00400)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:48:47) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270288123223", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:48:48' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270288123223', `updated_at` = '2010-04-03 09:48:48' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.73200 (1 reqs/sec) | Rendering: 0.01400 (1%) | DB: 0.07800 (10%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270288123223]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:51:13) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:51:13' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.028000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:51:13' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.035000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00400)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.76900 (1 reqs/sec) | Rendering: 0.06500 (8%) | DB: 0.08000 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:51:31) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270288287338", "width"=>"400"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:51:32' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.024000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270288287338', `updated_at` = '2010-04-03 09:51:32' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.72700 (1 reqs/sec) | Rendering: 0.01900 (2%) | DB: 0.06800 (9%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270288287338]
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:53:36) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 09:53:36' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.094000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:53:36' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.027000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00600)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.85000 (1 reqs/sec) | Rendering: 0.06500 (7%) | DB: 0.13700 (16%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00100)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:53:48) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270288428041", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 09:53:49' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270288428041', `updated_at` = '2010-04-03 09:53:49' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.046000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.71200 (1 reqs/sec) | Rendering: 0.01200 (1%) | DB: 0.09100 (12%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270288428041]
+
+
+Processing SettingsController#savechange (for 127.0.0.1 at 2010-04-03 16:54:02) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"passwd"=>"12", "reTypedPasswd"=>"12", "action"=>"savechange", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOhBnb19iYWNrX3VybEAGIgpmbGFzaElDOidBY3Rp\nb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsAOgx1\nc2VyX2lkaQo=\n', `updated_at` = '2010-04-03 09:54:02' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.052000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/savechange?passwd=12&reTypedPasswd=12', `updated_at` = '2010-04-03 09:54:03' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Redirected to http://localhost:3000/settings/setting?inf_msg=Updated+Successfully
+Completed in 0.70900 (1 reqs/sec) | DB: 0.10100 (14%) | 302 Found [http://localhost/settings/savechange?passwd=12&reTypedPasswd=12]
+Rendered _box_includes (0.00200)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00700)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:54:03) [GET]
+  Session ID: e290d34ea4476fbe3aa836fdc3df68c4
+  Parameters: {"action"=>"setting", "controller"=>"settings", "inf_msg"=>"Updated Successfully"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvIhAvcG9zdF9ib29rczoRZ2VvX2xvY2F0aW9uMDoQ\neW91cl9zY2hvb2xpAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNv\nbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA6EGdvX2Jh\nY2tfdXJsQAY=\n', `updated_at` = '2010-04-03 09:54:04' WHERE `id` = 24[0m
+  [4;36;1mSQL (0.029000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting?inf_msg=Updated+Successfully', `updated_at` = '2010-04-03 09:54:04' WHERE `id` = 24[0m
+  [4;35;1mSQL (0.033000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.010000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00000)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.73300 (1 reqs/sec) | Rendering: 0.05900 (8%) | DB: 0.07900 (10%) | 200 OK [http://localhost/settings/setting?inf_msg=Updated+Successfully]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:54:23) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:54:24' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.033000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-03 09:54:24' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;35;1mPostCategory Columns (0.003000)[0m   [0mSHOW FIELDS FROM `post_categories`[0m
+  [4;36;1mPostCategory Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00300)
+Rendered shared/_footer (0.00000)
+Completed in 0.77800 (1 reqs/sec) | Rendering: 0.06700 (8%) | DB: 0.08200 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#change (for 127.0.0.1 at 2010-04-03 16:54:33) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"typeOfChange"=>"psw", "action"=>"change", "controller"=>"settings", "height"=>"300", "random"=>"1270288471805", "width"=>"400"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.091000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:54:33' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.092000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.003000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/change?height=300&width=400&typeOfChange=psw&random=1270288471805', `updated_at` = '2010-04-03 09:54:34' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.035000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering settings/change
+Completed in 0.87100 (1 reqs/sec) | Rendering: 0.00100 (0%) | DB: 0.22600 (25%) | 200 OK [http://localhost/settings/change?height=300&width=400&typeOfChange=psw&random=1270288471805]
+
+
+Processing SettingsController#savechange (for 127.0.0.1 at 2010-04-03 16:54:40) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"passwd"=>"123", "reTypedPasswd"=>"123", "action"=>"savechange", "editType"=>"psw", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQo6EGdvX2JhY2tfdXJsIhAvcG9zdF9ib29rcyIKZmxh\nc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoK\nQHVzZWR7AA==\n', `updated_at` = '2010-04-03 09:54:41' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.029000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/savechange?passwd=123&editType=psw&reTypedPasswd=123', `updated_at` = '2010-04-03 09:54:41' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.026000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.009000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Redirected to http://localhost:3000/settings/setting?inf_msg=Updated+Successfully
+Completed in 0.67400 (1 reqs/sec) | DB: 0.06700 (9%) | 302 Found [http://localhost/settings/savechange?passwd=123&editType=psw&reTypedPasswd=123]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-03 16:54:42) [GET]
+  Session ID: 09b232e4ad0ae59c68ca11a4d92af0e0
+  Parameters: {"action"=>"setting", "controller"=>"settings", "inf_msg"=>"Updated Successfully"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CzoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOhBnb19iYWNrX3VybCIQL3Bvc3RfYm9va3M6DHVz\nZXJfaWRpCg==\n', `updated_at` = '2010-04-03 09:54:43' WHERE `id` = 23[0m
+  [4;36;1mSQL (0.026000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting?inf_msg=Updated+Successfully', `updated_at` = '2010-04-03 09:54:43' WHERE `id` = 23[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.010000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering settings/setting
+Rendered shared/_login (0.00100)
+Rendered shared/_menu_main (0.00500)
+  [4;36;1mPostCategory Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
+  [4;35;1mPostCategory Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
+  [4;36;1mPostCategory Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
+Rendered shared/_search_posts (0.00400)
+Rendered shared/_footer (0.00000)
+Completed in 0.74200 (1 reqs/sec) | Rendering: 0.05900 (7%) | DB: 0.08000 (10%) | 200 OK [http://localhost/settings/setting?inf_msg=Updated+Successfully]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
