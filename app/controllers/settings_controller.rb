@@ -8,9 +8,11 @@ class SettingsController < ApplicationController
   def setting
     if params[:inf_msg]
       @inf_msg =params[:inf_msg]
+      notice @inf_msg
     else
       @inf_msg = ""
     end
+
   end
 
   def networks
