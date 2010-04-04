@@ -1,0 +1,21 @@
+<script language="javascript">
+  $("#editpsw").validate({
+    rules: {
+      password: "required",
+      password_again: {
+        equalTo: "#password"
+      }
+    }
+  });
+
+</script>
+<form id="editpsw" action="<%=  savepsw_settings_path %>">
+  <p>Please enter the password<br/>
+    <input id='password' value='' type='password' name='password' size='15'/>
+  </p>
+  <p>Please re-enter the password<br/>
+    <input type='password' id='password_again' name='password_again' size='15'/><br/>
+  </p>
+  <input type="submit" value="Save"  />
+
+</form>
