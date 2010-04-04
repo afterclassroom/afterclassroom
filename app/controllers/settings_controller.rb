@@ -1,18 +1,11 @@
 class SettingsController < ApplicationController
   before_filter :login_required
   def index
-
     redirect_to :action => "setting"
   end
 
   def setting
-    if params[:inf_msg]
-      @inf_msg =params[:inf_msg]
-      notice @inf_msg
-    else
-      @inf_msg = ""
-    end
-
+    notice @inf_msg
   end
 
   def networks
@@ -50,6 +43,14 @@ class SettingsController < ApplicationController
     elsif params[:editType] == "psw"
       puts "save new password to the databsae"+params[:editType]
     end
+    redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+  end
+
+  def changepsw
+    render :layout => false
+  end
+
+  def savepsw
     redirect_to :action => "setting", :inf_msg => "Updated Successfully"
   end
 

@@ -22,7 +22,9 @@ ActionController::Routing::Routes.draw do |map|
     :ads => :get,
     :setting => :get,
     :change => :get,
-    :savechange => :get
+    :savechange => :get,
+    :changepsw => :get,
+    :savepsw => :get
   }
 
   # Users
