@@ -28,7 +28,13 @@ class SettingsController < ApplicationController
   end
 
   def savepsw
-    redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+    @user = current_user
+    @user.password = params[:password]
+    if @user.save
+      redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+    else
+      redirect_to :action => "setting", :inf_msg => "Updated Failed"
+    end
   end
 
   def changename
@@ -36,7 +42,13 @@ class SettingsController < ApplicationController
   end
 
   def savename
-    redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+    @user = current_user
+    @user.name = params[:changedValue]
+    if @user.save
+      redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+    else
+      redirect_to :action => "setting", :inf_msg => "Updated Failed"
+    end
   end
 
   def changeEmail
@@ -44,7 +56,13 @@ class SettingsController < ApplicationController
   end
 
   def saveEmail
-    redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+    @user = current_user
+    @user.email = params[:changedValue]
+    if @user.save
+      redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+    else
+      redirect_to :action => "setting", :inf_msg => "Updated Failed"
+    end
   end
 
 end
