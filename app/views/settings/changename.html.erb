@@ -1,0 +1,16 @@
+<script language="javascript">
+  $("#editName").validate({
+    rules: {
+      changedValue: "required"
+    }
+  });
+
+</script>
+<form id="editName" action="<%=  savename_settings_path %>">
+  <p>Please enter a new name<br/>
+    <input type="text" value="" id="changedValue" name="changedValue" />
+  </p>
+
+  <input type="submit" value="Save"  />
+
+</form>
