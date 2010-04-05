@@ -65,4 +65,12 @@ class SettingsController < ApplicationController
     end
   end
 
+  def notiAfterclassroom
+
+  end
+
+  def saveNotiAfterclassroom
+    
+  end
+
 end

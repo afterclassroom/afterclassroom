@@ -1,0 +1,132 @@
+<script language="javascript">
+</script>
+<div class="settCont">
+  <div class="settCont1">
+
+    <div class="settMenu">
+      <ul>
+        <li><%= link_to "<span>Setting</span>","setting" , :controller => "settings", :action => "setting"%></li>
+        <li><%= link_to "<span>Networks</span>","Networks" , :controller => "settings", :action => "networks"%></li>
+        <li class="settselect"><a href="#"><span>Notifications</span></a></li>
+        <li><%= link_to "<span>Language</span>","Language" , :controller => "settings", :action => "language"%></li>
+        <li><%= link_to "<span>Payments</span>","Payments" , :controller => "settings", :action => "payments"%></li>
+        <li><%= link_to "<span>AfterClassroom Ads</span>","AfterClassroom Ads" , :controller => "settings", :action => "ads"%></li>
+      </ul>
+    </div>
+
+    <div class="settC">
+      <div class="settNotL">
+        <div class="setNotLtitle">Notifications</div>
+        <div class="setNotCont">AfterClassroom notifies you whenever actions are taken on AfterClassroom that involve you.
+          <br/>
+						Each AfterClassroom application has its own notification settings. Click the checkbox to change the settings for that application.
+						Send email notifications to: <span>quachhuy@yahoo.com</span></div>
+        <div class="setNotSend"><a href="#">Send notifications my phone via SMS</a></div>
+        <div class="setItemT">
+          <div class="setItemTL">&nbsp;</div>
+          <div class="setItemTC">Email</div>
+          <div class="setItemTR">SMS</div>
+        </div>
+        <div class="setItemT1">
+          <div class="setItemTL"><div class="setItemTL1">AfterClassroom</div></div>
+          <div class="setItemTC"><img src="images/email.png"></div>
+          <div class="setItemTR"><img src="images/mobile.png"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Sends me a message</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Adds me as a friend</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Confirms a friendship request</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Posts on My Lounge</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Pokes me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Has a birthday coming up (weekly email)</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Asks me to confirm friend detail</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Requests to list me as family</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Suggests a friend to me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Adds a friend I suggested</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>I invited joins AfterClassroom</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Tags me in a post</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Comments on a post I was tagged in</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="setItemT2">
+          <div class="setItemTL"><div>Suggests a profile picture for me</div></div>
+          <div class="setItemTC"><input type="checkbox" name="Checkbox1"></div>
+          <div class="setItemTR"><input type="checkbox" name="Checkbox1"></div>
+        </div>
+        <div class="Showmore"><a href="#">Show more (19)</a></div>
+        <div class="Savechanges"><a href="#">Save Changes</a></div>
+      </div>
+      <div class="settNotR">
+        <div class="settNotRTitle">View settings for:</div>
+        <div class="setNotRItem setNotRItem1">
+          <li><%= link_to "AfterClassroom", :controller => "settings", :action => "notiAfterclassroom"%></li>
+        </div>
+
+        <div class="setNotRItem setNotRItem2"><a href="#">Photos</a></div>
+        <div class="setNotRItem setNotRItem3"><a href="#">Groups</a></div>
+        <div class="setNotRItem setNotRItem4"><a href="#">Pages</a></div>
+        <div class="setNotRItem setNotRItem5"><a href="#">Events</a></div>
+        <div class="setNotRItem setNotRItem6"><a href="#">Share a Story</a></div>
+        <div class="setNotRItem setNotRItem7"><a href="#">Links</a></div>
+        <div class="setNotRItem setNotRItem8"><a href="#">Music</a></div>
+        <div class="setNotRItem setNotRItem9"><a href="#">Video</a></div>
+        <div class="setNotRItem setNotRItem10"><a href="#">Gifts</a></div>
+        <div class="setNotRItem setNotRItem11"><a href="#">Help Center</a></div>
+        <div class="setNotRItem setNotRItem12"><a href="#">My Lounge Comments</a></div>
+        <div class="setNotRItem setNotRItem13"><a href="#">Other updates from AfterClassroom</a></div>
+        <div class="setNotRItem setNotRItem14"><a href="#">Other Applications</a></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

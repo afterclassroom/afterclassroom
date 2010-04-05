@@ -26,7 +26,8 @@ ActionController::Routing::Routes.draw do |map|
     :changename => :get,
     :savename => :get,
     :changeEmail => :get,
-    :saveEmail => :get
+    :saveEmail => :get,
+    :notiAfterclassroom => :get
   }
 
   # Users
