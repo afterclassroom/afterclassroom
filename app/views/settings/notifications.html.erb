@@ -401,19 +401,45 @@
           <li><%= link_to "AfterClassroom", :controller => "settings", :action => "notiAfterclassroom"%></li>
         </div>
 
-        <div class="setNotRItem setNotRItem2"><a href="#">Photos</a></div>
-        <div class="setNotRItem setNotRItem3"><a href="#">Groups</a></div>
-        <div class="setNotRItem setNotRItem4"><a href="#">Pages</a></div>
-        <div class="setNotRItem setNotRItem5"><a href="#">Events</a></div>
-        <div class="setNotRItem setNotRItem6"><a href="#">Share a Story</a></div>
-        <div class="setNotRItem setNotRItem7"><a href="#">Links</a></div>
-        <div class="setNotRItem setNotRItem8"><a href="#">Music</a></div>
-        <div class="setNotRItem setNotRItem9"><a href="#">Video</a></div>
-        <div class="setNotRItem setNotRItem10"><a href="#">Gifts</a></div>
-        <div class="setNotRItem setNotRItem11"><a href="#">Help Center</a></div>
-        <div class="setNotRItem setNotRItem12"><a href="#">My Lounge Comments</a></div>
-        <div class="setNotRItem setNotRItem13"><a href="#">Other updates from AfterClassroom</a></div>
-        <div class="setNotRItem setNotRItem14"><a href="#">Other Applications</a></div>
+        <div class="setNotRItem setNotRItem2">
+          <li><%= link_to "Photos", :controller => "settings", :action => "photos"%></li>
+        </div>
+        <div class="setNotRItem setNotRItem3">
+          <li><%= link_to "Groups", :controller => "settings", :action => "groups"%></li>
+        </div>
+        <div class="setNotRItem setNotRItem4">
+          <li><%= link_to "Pages", :controller => "settings", :action => "pages"%></li>
+        </div>
+        <div class="setNotRItem setNotRItem5">
+          <%= link_to "Events", :controller => "settings", :action => "events"%>
+        </div>
+        <div class="setNotRItem setNotRItem6">
+          <%= link_to "Share a Story", :controller => "settings", :action => "shareStory"%>
+        </div>
+        <div class="setNotRItem setNotRItem7">
+          <%= link_to "Links", :controller => "settings", :action => "links"%>
+        </div>
+        <div class="setNotRItem setNotRItem8">
+          <%= link_to "Music", :controller => "settings", :action => "music"%>
+        </div>
+        <div class="setNotRItem setNotRItem9">
+          <%= link_to "Video", :controller => "settings", :action => "video"%>
+        </div>
+        <div class="setNotRItem setNotRItem10">
+          <%= link_to "Gifts", :controller => "settings", :action => "gifts"%>
+        </div>
+        <div class="setNotRItem setNotRItem11">
+          <%= link_to "Help Center", :controller => "settings", :action => "helpCenter"%>
+        </div>
+        <div class="setNotRItem setNotRItem12">
+          <%= link_to "My Lounge Comments", :controller => "settings", :action => "loungeComment"%>
+        </div>
+        <div class="setNotRItem setNotRItem13">
+          <%= link_to "Other updates from AfterClassroom", :controller => "settings", :action => "otherUpdates"%>
+        </div>
+        <div class="setNotRItem setNotRItem14">
+          <%= link_to "Other Applications", :controller => "settings", :action => "otherApplications"%>
+        </div>
       </div>
     </div>
 
