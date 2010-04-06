@@ -1,0 +1,19 @@
+<script language="javascript">
+$("#editeMail").validate({
+  rules: {
+    changedValue: {
+      required: true,
+      email: true
+    }
+  }
+});
+
+</script>
+<form id="editeMail" action="<%=  saveEmail_settings_path %>">
+  <p>Please enter a new email address<br/>
+    <input type="text" value="" id="changedValue" name="changedValue" />
+  </p>
+
+  <input type="submit" value="Save"  />
+
+</form>

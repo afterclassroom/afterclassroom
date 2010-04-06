@@ -1,16 +1,11 @@
 class SettingsController < ApplicationController
   before_filter :login_required
   def index
-
     redirect_to :action => "setting"
   end
 
   def setting
-    if params[:inf_msg]
-      @inf_msg =params[:inf_msg]
-    else
-      @inf_msg = ""
-    end
+    notice @inf_msg
   end
 
   def networks
@@ -28,27 +23,54 @@ class SettingsController < ApplicationController
   def ads
   end
 
-  def change
-
-    if params[:typeOfChange] == "name"
-      @label = "Please enter new name"
-    elsif params[:typeOfChange] == "email"
-      @label = "Please enter new email address"
-    elsif params[:typeOfChange] == "psw"
-      @label = "Please enter new password"
-    end
+  def changepsw
     render :layout => false
   end
 
-  def savechange
-    if params[:editType] == "name"
-      puts "save name to the database "+params[:editType]
-    elsif params[:editType] == "email"
-      puts "save email to the database "+params[:editType]
-    elsif params[:editType] == "psw"
-      puts "save new password to the databsae"+params[:editType]
+  def savepsw
+    @user = current_user
+    @user.password = params[:password]
+    if @user.save
+      redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+    else
+      redirect_to :action => "setting", :inf_msg => "Updated Failed"
     end
-    redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+  end
+
+  def changename
+    render :layout => false
+  end
+
+  def savename
+    @user = current_user
+    @user.name = params[:changedValue]
+    if @user.save
+      redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+    else
+      redirect_to :action => "setting", :inf_msg => "Updated Failed"
+    end
+  end
+
+  def changeEmail
+    render :layout => false
+  end
+
+  def saveEmail
+    @user = current_user
+    @user.email = params[:changedValue]
+    if @user.save
+      redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+    else
+      redirect_to :action => "setting", :inf_msg => "Updated Failed"
+    end
+  end
+
+  def notiAfterclassroom
+
+  end
+
+  def saveNotiAfterclassroom
+    
   end
 
 end
