@@ -2,14 +2,35 @@
   <div class="col300in">
     <h1 class="col300Title">Got questions? Ask experts now</h1>
     <div class="col300Cont">
-      <div class="reqSe"><select name="Select1"><option>Select a category</option></select></div>
-      <div class="reqTi"><input type="text" value="Title..." name="Text1"/></div>
-      <div class="reqEn"><textarea name="TextArea1">Enter your request...</textarea></div>
-      <div class="reqKey">
-        <div class="reqKeyImg"><img src="pictures/key.png"/></div>
-        <div class="reqKeyText"><input type="text" name="Text2"/></div>
+      <div class="reqSe"><input type="text" value="" name="post_qa[post_qa_category_id]" id="post_qa_post_qa_category_id"/></div>
+      <div class="reqTi"><input type="text" value="Your question..." name="Text1"/></div>
+      <div class="reqEn"><textarea name="TextArea1">Enter your content...</textarea></div>
+      <div id="recaptcha_container">
+        <div class="reqLa"><label>Enter the two words below</label></div>
+        <div class="reqTi"><input type="text" value="" name="recaptcha_response_field" id="recaptcha_response_field"/></div>
+        <div id="recaptcha_image"></div>
       </div>
+      <%= recaptcha_tags(:display => {:theme => "custom"}) %>
+      <div class="regReload"><a class="regRlBt" href="javascript:Recaptcha.reload();">Get new words</a></div>
       <div class="submit"><a href="#">Submit</a></div>
     </div>
   </div>
 </div>
+
+<ul id="qa_cat_menu" class="mcdropdown_menu">
+  <li rel_qa_cat="">
+    Select category
+  </li>
+  <% PostQaCategory.find(:all).each do |p| %>
+    <li rel_qa_cat="<%= p.id %>">
+      <%= p.name %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  $("#post_qa_post_qa_category_id").mcDropdown("#qa_cat_menu", {
+    width: 250,
+    valueAttr: "rel_qa_cat"
+  });
+</script>

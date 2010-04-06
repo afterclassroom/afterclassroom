@@ -2,13 +2,25 @@
   <div class="col300in">
     <h1 class="col300Title">Want to hire Tutor?</h1>
     <div class="col300Cont">
-      <div class="reqSe"><select name="Select1"><option>Select a category</option></select></div>
       <div class="reqTi"><input type="text" value="Title..." name="Text1"/></div>
       <div class="reqEn"><textarea name="TextArea1">Enter your request...</textarea></div>
-      <div class="reqKey">
-        <div class="reqKeyImg"><img src="pictures/key.png"/></div>
-        <div class="reqKeyText"><input type="text" name="Text2"/></div>
+      <div class="reqSl">
+        <div class="req40">
+          <div class="reqLa"><label>Phone</label></div>
+          <div class="reqTi"><input type="text" value="" name="post_assignment[due_date]" id="post_assignment_due_date"/></div>
+        </div>
+        <div class="req60">
+          <div class="reqLa"><label>Address</label></div>
+          <div class="reqTi"><input type="text" value="" name="Text1"/></div>
+        </div>
       </div>
+      <div id="recaptcha_container">
+        <div class="reqLa"><label>Enter the two words below</label></div>
+        <div class="reqTi"><input type="text" value="" name="recaptcha_response_field" id="recaptcha_response_field"/></div>
+        <div id="recaptcha_image"></div>
+      </div>
+      <%= recaptcha_tags(:display => {:theme => "custom"}) %>
+      <div class="regReload"><a class="regRlBt" href="javascript:Recaptcha.reload();">Get new words</a></div>
       <div class="submit"><a href="#">Submit</a></div>
     </div>
   </div>

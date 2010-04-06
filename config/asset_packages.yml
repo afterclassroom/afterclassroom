@@ -31,6 +31,7 @@ stylesheets:
 - application:
   - main
   - jquery-ui
+  - jquery-ui-theme
   - jquery-ui-datepicker
   - jquery-mcdropdown
   - thickbox
