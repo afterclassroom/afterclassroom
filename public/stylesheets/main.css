@@ -1294,6 +1294,29 @@ span.btmDown a:hover{
     background:url('/images/learnFeed.png') no-repeat left top;
     padding-left:18px;
 }
+#divinputfile{
+background:url(/images/upload_file.png) no-repeat 100% 1px;
+height:28px;
+width:282px;
+margin-top:4px;
+}
+#divinputfile #filepc{
+opacity: 0.0;
+-moz-opacity: 0.0;
+filter: alpha(opacity=0);
+}
+#fakeinputfile{
+margin-top:-20px;
+}
+#fakeinputfile #fakefilepc{
+width:208px;
+height:22px;
+border:1px solid #CECECE;
+color:#969696;
+height:18px;
+padding-top:4px;
+text-indent:2px;
+}
 .submit a{
     background:url('/images/btm48.png') no-repeat;
     width:48px;
