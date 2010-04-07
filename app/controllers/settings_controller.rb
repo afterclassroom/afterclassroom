@@ -73,4 +73,111 @@ class SettingsController < ApplicationController
     
   end
 
+  def photos
+
+  end
+
+  def savePhotos
+
+  end
+
+  def groups
+
+  end
+
+  def saveGroups
+
+  end
+
+  def pages
+
+  end
+
+  def savePages
+    
+  end
+
+  def events
+
+  end
+
+  def saveEvents
+
+  end
+
+
+  def shareStory
+
+  end
+
+  def saveShareStory
+
+  end
+
+  def links
+
+  end
+
+  def saveLinks
+
+  end
+
+  def music
+
+  end
+
+  def saveMusic
+
+  end
+
+  def video
+
+  end
+
+  def saveVideo
+
+  end
+
+  def gifts
+
+  end
+
+  def saveGift
+
+  end
+
+  def helpCenter
+
+  end
+
+  def saveHelpCenter
+
+  end
+
+  def loungeComment
+
+  end
+
+  def saveLoungeComment
+
+  end
+
+  def otherApplications
+
+  end
+
+  def saveOtherApplications
+
+  end
+
+  def otherUpdates
+
+  end
+
+  def saveOtherUpdates
+
+  end
+
+
+
 end
