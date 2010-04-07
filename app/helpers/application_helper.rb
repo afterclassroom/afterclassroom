@@ -206,6 +206,14 @@ module ApplicationHelper
     end
   end
 
+  def show_submit_form()
+    if !logged_in?
+      link_to_require_login("Submit")
+    else
+      link_to("Submit", "javascript:;", :onclick => "$('#form_post').submit();")
+    end
+  end
+
   private
   def link_to_require_login(str)
     link_to(str, "/login_ajax?height=240&width=540", :class => "thickbox", :title => "Sign In")
