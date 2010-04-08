@@ -2,7 +2,7 @@
   <div class="col300in">
     <h1 class="col300Title">Requests Projects</h1>
     <div class="col300Cont">
-      <% form_for :post_assignment, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+      <% form_for :post_project, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <% fields_for :post do |p| %>
           <div class="reqTi"><%= p.text_field :title, :value => "Title..." %></div>
           <div class="reqEn"><%= text_area_tag "post[description]", "Enter your request..." %></div>
