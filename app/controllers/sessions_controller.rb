@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_killing_session!
-    flash[:notice] = "You have been logged out."
+    notice "You have been logged out."
     redirect_back_or_default(root_path)
   end
 
@@ -40,8 +40,6 @@ class SessionsController < ApplicationController
       successful_login
     else
       note_failed_signin
-      @login = params[:login]
-      @remember_me = params[:remember_me]
       render :action => :new
     end
   end
@@ -65,11 +63,11 @@ class SessionsController < ApplicationController
     redirect_back_or_default(dashboard_user_path(current_user))
     #Set session your school
     session[:your_school] = self.current_user.school.id if self.current_user.school
-    flash[:notice] = "Logged in successfully"
+    notice "Logged in successfully"
   end
 
   def note_failed_signin
-    flash[:error] = "Couldn't log you in as '#{params[:login]}'"
-    logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
+    error "Couldn't log you in as '#{params[:email]}'"
+    logger.warn "Failed login for '#{params[:email]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end

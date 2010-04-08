@@ -216,7 +216,7 @@ module ApplicationHelper
 
   private
   def link_to_require_login(str)
-    link_to(str, "/login_ajax?height=240&width=540", :class => "thickbox", :title => "Sign In")
+    link_to(str, "/login_ajax?height=250&width=540", :class => "thickbox", :title => "Sign In")
   end
 
 end
