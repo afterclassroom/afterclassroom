@@ -1,0 +1,15 @@
+<div class="login">
+  <div class="signin">
+    <ul>
+      <li class="signinSelect"><%= link_to "<span>Welcome #{current_user.full_name}</span>", dashboard_user_path(current_user), :class => "signinFrist" %></li>
+      <li><%= link_to "<span>Sign out</span>", logout_url, :method => :delete %></li>
+      <li><a href="#"><span>Help</span></a></li>
+      <li><a href="#"><span>Suggest improvement</span></a></li>
+    </ul>
+  </div>
+  <div class="search">
+    <div class="textS"><input type="text" name="Text1"/></div>
+    <div class="selectS"><select name="Select1"><option>Student Lounges</option></select></div>
+    <div class="btmS"><a href=""><img src="/images/icon-search.png"/></a></div>
+  </div>
+</div>

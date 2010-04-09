@@ -10,26 +10,30 @@ javascripts:
   - thickbox
   - jquery-validate
   - vtip-min
-- student_louge:
-  - prototype
-  - effects
-  - dragdrop
-  - controls
+- student_lounge:
   - application
-  - mydows
+  - jquery
+  - jquery-ui
+  - jquery-ui-datepicker
+  - jrails
+  - jquery-mcdropdown
+  - thickbox
+  - jquery-validate
+  - vtip-min
 - admin:
-  - prototype
-  - effects
-  - dragdrop
-  - controls
   - application
-  - validation
-  - lowpro
-  - frontend
-  - prototip
+  - jquery
+  - jquery-ui
+  - jquery-ui-datepicker
+  - jrails
+  - jquery-mcdropdown
+  - thickbox
+  - jquery-validate
+  - vtip-min
 stylesheets: 
 - application:
   - main
+  - post
   - jquery-ui
   - jquery-ui-theme
   - jquery-ui-datepicker
@@ -39,27 +43,17 @@ stylesheets:
   - validation
   - flash
   - vtip
-- student_louge:
-  - reset
-  - layout
-  - style
-  - buttons
-  - search
+- student_lounge:
+  - main
+  - student_lounge
+  - jquery-ui
+  - jquery-ui-theme
+  - jquery-ui-datepicker
+  - jquery-mcdropdown
+  - thickbox
   - pagination
-  - windows
-  - account
-  - listing
-  - posting
-  - default
+  - validation
+  - flash
+  - vtip
 - admin:
-  - admin_reset
-  - admin_layout
-  - admin_style
-  - admin_icons
-  - pagination
-  - prototip
-  - windows
-  - listing
-  - posting
-  - buttons
-  - search
+  - main

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>:: <%= configatron.site_name %> ::</title>
+    <%= stylesheet_link_merged :student_lounge %>
+    <%= javascript_include_merged :student_lounge %>
+
+  </head>
+  <body>
+    <div class="top" id="top_page">
+      <div class="banner">
+        <div class="logo"><a href="/"><img alt="classroom" src="/images/logo.png" /></a></div>
+        <%= render :partial => 'shared/login_sl' %>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="menuFriend">
+        <%= render :partial => 'shared/menu_main_sl' %>
+      </div>
+    </div>
+    <%= yield_or_default(yield(:menu_top_student_lounge)) %>
+    <div class="contMain">
+      <%= yield %>
+    </div>
+    <%= render :partial => 'shared/footer' %>
+  </body>
+  <!--Debugs-->
+  <% if RAILS_ENV == 'development' %>
+    <center><button onclick="show_debug_popup(); return false;">Show debug popup</button></center>
+    <%= debug_popup %>
+  <% end %>
+  <!--Debugs-->
+</html>

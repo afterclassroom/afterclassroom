@@ -1,0 +1,2040 @@
+/* 300 Browser by subject */
+.Br-by-sub .col300Cont{
+    line-height:170%;
+    color:#6e7062;
+}
+.tabClouse a, .tabClouse a:link, .tabClouse a:visited{
+    color:#6e7062;
+    text-decoration:none;
+}
+.tabClouse a:hover{
+    color:#d00;
+}
+.sub1{
+    font-size:12px;
+    font-weight:bold;
+}
+.sub2{
+    font-size:14px;
+    font-weight:bold;
+}
+.sub3{
+    font-size:16px;
+    font-weight:bold;
+}
+.sub4{
+    font-size:18px;
+    font-weight:bold;
+}
+.sub5{
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* 300 Recent requested Assignments */
+.Recent .col300Cont{
+    /*	padding-left:10px;*/
+}
+.recentItem{
+    padding:6px 0px 5px 0px;
+    border-bottom:1px #e4e4e4 solid;
+    overflow:hidden;
+    _height:100%;
+}
+.recentBottom{
+    background-color:white;
+    margin-top:-2px;
+    position:relative;
+    z-index:3;
+    height:2px;
+    line-height:2px;
+    overflow:hidden;
+}
+.recentImg img{
+    border:0px;
+    width:45px;
+    height:45px;
+}
+.recentImg{
+    float:left;
+    width:60px;
+}
+.recentImg div{
+    padding:3px;
+    background:url('/images/bgi-col300.png') no-repeat;
+}
+.recentImg a:hover div{
+    padding:3px;
+    background:url('/images/bgi-col300H.png') no-repeat;
+}
+.recentInf{
+    float:right;
+    width:220px;
+}
+.recentName{
+    color:#0a81c4;
+    font-weight:bold;
+    font-size:11px;
+}
+.recentInf a, .recentInf a:link, .recentInf a:visited{
+    color:#0a81c4;
+    text-decoration:none;
+}
+.recentInf a:hover{
+    color:#d00;
+}
+.recentUni{
+    color:#0a81c4;
+    font-size:11px;
+}
+.recentUni span{
+    padding-right:3px;
+}
+.recentUni span, .recentDes{
+    color:#6f6f63;
+    font-size:11px;
+}
+/*** 195 Due date ***/
+.dueDItem{
+    padding:4px 0px;
+    border-bottom:1px #e4e4e4 solid;
+}
+.dueDTitle{
+    padding-left:20px;
+    line-height:16px;
+}
+.dueDate .dueDTitle{
+    background:url('/images/icon-duedate.png') no-repeat;
+}
+.intPro .dueDTitle{
+    background:url('/images/icon-intpro.png') no-repeat;
+}
+.dueDTitle a, .dueDTitle a:link, .dueDTitle a:visited{
+    color:#000;
+    text-decoration:none;
+}
+.dueDTitle a:hover{
+    color:#d00;
+}
+
+.dueDTime{
+    color:#0a81c4;
+    font-size:11px;
+    font-style:italic;
+    padding-left:20px;
+}
+.dueDbutton{
+    background-color:white;
+    margin-top:-2px;
+    position:relative;
+    z-index:3;
+    text-align:center;
+    padding-top:5px;
+}
+.dueDbutton a{
+    background:url('/images/btm173.png') no-repeat;
+    width:173px;
+    height:25px;
+    font-size:11px;
+    display:block;
+    line-height:25px;
+}
+.dueDbutton a, .dueDbutton a:link, .dueDbutton a:visited{
+    color:#fff;
+    text-decoration:none;
+}
+.dueDbutton a:hover{
+    color:#FFF;
+    background:url('/images/btm173Red.png') no-repeat;
+    text-decoration:none;
+
+}
+/**** 451 Assignment ****/
+.assignment .asslinkdown{
+    width:80px;
+}
+.assDrop{
+    border-bottom:1px #dbdbdb solid;
+    padding-bottom:5px;
+}
+.assDrop select{
+    width:135px;
+    font-size:11px;
+    color:#646464;
+}
+.assDrop span{
+    padding:0px 3px;
+}
+.assItem{
+    padding:9px 0px;
+    clear:both;
+    overflow:hidden;
+    _height:100%;
+    border-bottom:1px #e4e4e4 solid;
+}
+.assItemL{
+    width:326px;
+    float:left;
+}
+.assImg{
+    float:left;
+    width:81px;
+    overflow:hidden;
+}
+.assImg div{
+    background:url('/images/bgimg71.png') no-repeat;
+    padding:5px;
+}
+.assImg img{
+    border:0px;
+    width:61px;
+    height:51px;
+}
+.assContT{
+    float:right;
+    width:245px;
+}
+.assDes{
+    clear:both;
+    color:#6f6f63;
+    padding:2px 0px 7px 0px;
+}
+.assCate, .assInfL{
+    font-size:11px;
+    color:#0a81c4;
+}
+.assCate a, .assInfL a, .assCate a:link, .assInfL a:link, .assCate a:visited, .assInfL a:visited{
+    color:#0a81c4;
+    text-decoration:none;
+}
+.assCate a:hover, .assInfL a:hover{
+    color:#d00;
+}
+.assCate span, .assInfL span{
+    color:#6f6f63;
+    padding-right:3px;
+}
+.assItemB{
+    clear:both;
+}
+.assPic{
+    float:left;
+    width:60px;
+}
+.assPic div{
+    background:url('/images/bgi-col300.png') no-repeat;
+    padding:3px;
+}
+.assPic a:hover div{
+    background:url('/images/bgi-col300H.png') no-repeat;
+}
+.assPic img{
+    border:0px;
+    width:45px;
+    height:45px;
+}
+.assInfT{
+    overflow:hidden;
+    _height:100%;
+}
+.assInfL{
+    float:left;
+}
+.assInfR{
+    float:right;
+    padding-right:3px;
+}
+.assInfR a{
+    background:url('/images/btm-more.png') no-repeat;
+    width:38px;
+    height:19px;
+    text-align:center;
+    display:block;
+    line-height:18px;
+}
+.assInfR a, .assInfR a:link, .assInfR a:visited{
+    text-decoration:none;
+    color:#fff;
+}
+.assInfR a:hover{
+    text-decoration:none;
+    color:#FFF;
+    background:url('/images/btm-moreH.png') no-repeat;
+}
+.assInfB{
+    color:#969696;
+    font-size:10px;
+    padding-top:3px;
+    line-height:15px;
+}
+.assInfB a:link, .assInfB a:visited{
+    color:#969696;
+    text-decoration:none;
+}
+.assInfB a:hover{
+    color:#d00;
+}
+.assInfB div{
+    float:left;
+}
+.asslinkdown{
+    color:#969696;
+    font-size:11px;
+    padding-top:2px;
+    float:right;
+    width:100px;
+}
+.assInfB .vie{
+    background:url('/images/icon-view.gif') no-repeat;
+    padding:0px 5px 0px 14px;
+    margin-left:5px;
+}
+.assInfB .fav{
+    background:url('/images/icon-fav.gif') no-repeat;
+    padding:0px 5px 0px 17px;
+}
+.assInfB .favOn{
+    background:url('/images/icon-favR.png') no-repeat;
+}
+.assInfB .com{
+    background:url('/images/icon-comnent.gif') no-repeat left 2px;
+    padding:0px 0px 0px 17px;
+}
+.asslinkdown .morelink{
+    background:url('/images/icon-morelink.gif') no-repeat left 2px;
+    padding:0px 0px 4px 15px;
+}
+.asslinkdown .comment{
+    background:url('/images/comment.png') no-repeat left 3px;
+    padding:0px 0px 0px 15px;
+}
+.asslinkdown .down{
+    background:url('/images/icon-down.gif') no-repeat left 1px;
+    padding:0px 0px 0px 15px;
+}
+.morelink a, .morelink a:link, .morelink a:visited,
+.comment a, .comment a:link, .comment a:visited,
+.down a, .down a:link, .down a:visited{
+    color:#969696;
+    text-decoration:none;
+}
+.morelink a:hover, .comment a:hover, .down a:hover{
+    color:#d00;
+}
+.assPage{
+    float:left;
+    padding:10px 0px 10px 0px;
+    color:#6f6f63;
+    font-size:11px;
+}
+.currentPage{
+    padding:0px 6px;
+}
+.currentPage a{
+    margin:0px 1px;
+}
+.currentPage a span{
+    padding:0px 4px;
+}
+.currentPage a, .currentPage a:link, .currentPage a:visited{
+    color:#6f6f63;
+    text-decoration:none;
+}
+.currentPage a.selected, .currentPage a:hover{
+    height:14px;
+    background:url('/images/bgdivpageL.png') no-repeat left top;
+    color:#fff!important;
+    cursor:pointer;
+}
+.currentPage a.selected span, .currentPage a:hover span{
+    height:14px;
+    background:url('/images/bgdivpageR.png') no-repeat right top;
+    color:#fff!important;
+    cursor:pointer;
+}
+
+.numPage{
+    padding-right:15px;
+}
+.nextPage, .firstPage{
+    padding-right:6px;
+}
+.nextPage a, .nextPage a:link, .nextPage a:visited, .lastPage a, .lastPage a:link, .lastPage a:visited,
+.prevPage a, .prevPage a:link, .prevPage a:visited, .firstPage a, .firstPage a:link, .firstPage a:visited{
+    color:#6f6f63;
+    text-decoration:none;
+}
+.nextPage a:hover, .lastPage a:hover, .prevPage a:hover, .firstPage a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.goTop{
+    float:right;
+    padding-top:10px;
+}
+.goTop a, .goTop a:link, .goTop a:visited{
+    color:#6f6f63;
+    font-size:11px;
+    text-decoration:none;
+}
+.goTop a:hover{
+    text-decoration:none;
+    color:#d00;
+}
+/***** Assignment Detail ***/
+.AsDTop{
+    margin:4px 10px;
+    overflow:hidden;
+    height:100%;
+    padding-bottom:3px;
+    border-bottom:1px #e4e4e4 solid;
+}
+.AsDTop h1.titleH1{
+    float:left;
+    border:0px;
+    padding-top:4px;
+}
+.AsDsearch{
+    float:right;
+    width:250px;
+    height:24px;
+    background:url('/images/AsD-bgS.png') no-repeat left top;
+}
+.AsDsearch div{
+    float:left;
+}
+.AsDST{
+    width:224px;
+    height:24px;
+}
+.AsDsearch input{
+    border:0px;
+    color:#8f8f8f;
+    width:220px;
+    margin:1px 0px 0px 2px;
+    background-color:transparent;
+    padding:0px;
+    height:20px;
+    text-indent:3px;
+    padding-top:3px;
+}
+.AsDsearch img{
+    border:0px;
+}
+.AsDCont{
+    padding:5px 5px 5px 20px;
+}
+.AsDContL{
+    float:left;
+    width:450px;
+    padding-right:10px;
+}
+.AsDContLin span, .AsDContLask span{
+    color:#0b8ccb;
+    padding:0px 4px;
+}
+.AsDContLask a, .AsDContLask a:link, .AsDContLask a:visited{
+    color:#0b8ccb;
+    padding:0px 4px;
+    text-decoration:none;
+}
+.AsDContLask a:hover{
+    color:#d00;text-decoration:none;
+}
+.AsDContLdes{
+    padding:5px 0px;
+}
+.AsDContLinf{
+    padding-bottom:3px;
+}
+.AsDContLdes span, .AsDContLinf span{
+    font-weight:bold;
+    padding-right:5px;
+}
+
+.AsDContImg{
+    float:left;
+    width:60px;
+}
+.AsDContImg div{
+    padding:3px;
+    background:url('/images/bgi-col300.png') no-repeat;
+}
+.AsDContImg a:hover div{
+    background:url('/images/bgi-col300H.png') no-repeat;
+}
+.AsDContImg img{
+    width:45px;
+    height:45px;
+    border:0px;
+}
+.AsDContR{
+    float:right;
+    padding-right:10px;
+}
+.AsDContR a, .AsDContR a:link{
+    color:#6f6f63;
+}
+.AsDContR a:visited{
+    color:#9a9a82;
+}
+.fan{
+    background:url('/images/icon-fan.png') no-repeat left 3px;
+    line-height:20px;
+    padding:0px 0px 5px 25px;
+}
+.friend{
+    background:url('/images/icon-friend.png') no-repeat left 3px;
+    line-height:20px;
+    padding:0px 0px 5px 25px;
+}
+.chat{
+    background:url('/images/icon-chat.png') no-repeat left 3px;
+    line-height:20px;
+    padding:0px 0px 5px 25px;
+}
+.mail{
+    background:url('/images/icon-mail.png') no-repeat left 3px;
+    line-height:20px;
+    padding:0px 0px 5px 25px;
+}
+.AsDContR a:hover{
+    color:#d00;
+}
+.AsDContBtm{
+    clear:both;
+    margin-right:15px;
+    padding-bottom:5px;
+    padding-top:3px;
+    overflow:hidden;
+    _height:100%;
+    border-bottom:1px #e3e3e3 solid;
+}
+.AsDContBtm span{
+    float:left;
+    margin-right:5px;
+}
+.AsDContBtm a{
+    display:block;
+    line-height:25px;
+    height:25px;
+    text-decoration:none;
+}
+.AsDContBtm a span{
+    padding-left:32px;
+}
+.AsDContBtm span.btmComment a{
+    background:url('/images/btm71.png') no-repeat;
+    text-align:center;
+    width:71px;
+    color:#fff;
+    padding-left:0px;
+}
+span.btmComment a:link, span.btmComment a:visited{
+    color:#fff;
+}
+span.btmMail a{
+    background:url('/images/btmMail.png') no-repeat;
+    width:68px;
+}
+span.btmMail a:hover{
+    background:url('/images/btmMailH.png') no-repeat;
+}
+span.btmShare a{
+    background:url('/images/btmShare.png') no-repeat;
+    width:70px;
+}
+span.btmShare a:hover{
+    background:url('/images/btmShareH.png') no-repeat;
+}
+span.btmFav a{
+    background:url('/images/btmFav.png') no-repeat;
+    width:100px;
+}
+span.btmFav a:hover{
+    background:url('/images/btmFavH.png') no-repeat;
+}
+
+span.btmMore a{
+    background:url('/images/btmMoreLink.png') no-repeat;
+    width:106px;
+}
+span.btmMore a:hover{
+    background:url('/images/btmMoreLinkH.png') no-repeat;
+}
+
+span.btmDown a{
+    background:url('/images/btmDown.png') no-repeat;
+    width:90px;
+}
+span.btmDown a:hover{
+    background:url('/images/btmDownH.png') no-repeat;
+}
+
+.AsDContBtm a:link, .AsDContBtm a:visited{
+    color:#797979;
+    text-decoration:none;
+    cursor:pointer;
+}
+.AsDContBtm a:hover span{
+    color:#fff;
+}
+/* Profile */
+.yourPro{
+    padding:5px 0px 8px 7px;
+    overflow:hidden;
+    _height:100%;
+}
+.yourProImg{
+    float:left;
+    width:60px;
+}
+.yourProImg div{
+    padding:3px;
+    background:url('/images/bgi-col300.png') no-repeat;
+}
+.yourProImg a:hover div{
+    padding:3px;
+    background:url('/images/bgi-col300H.png') no-repeat;
+}
+.yourProImg img{
+    border:0px;
+    width:45px;
+    height:45px;
+}
+.yourProName{
+    color:#1e1e1e;
+    font-weight:bold;
+    font-size:12px;
+}
+.yourProUni{
+    color:#6f6f63;
+}
+.yourProItem{
+    padding:5px 7px;
+    border-top:1px #e4e4e4 solid;
+    overflow:hidden;
+    _height:100%;
+}
+.yourProItem a, .yourProItem a:link, .yourProItem a:visited{
+    color:#1988c7;
+    text-decoration:none;
+}
+.yourProItem a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.yourProItemL{
+    width:48%;
+    float:left;
+}
+.yourProItemR{
+    width:48%;
+    float:right;
+}
+/* Request */
+.Request h1.col300Title{
+    padding-left:30px;
+    line-height:22px;
+    background:url('/images/icon-request.png') no-repeat 0px 0px;
+}
+.Request .col300Cont{
+    padding-top:5px;
+}
+.reqSe select{
+    width:280px;
+    color:#969696;
+    font-family:Arial;
+}
+.reqTi{
+    margin:5px 0px;
+    height:22px;
+}
+.reqTi input{
+    border:1px solid #CECECE;
+    color:#969696;
+    width:100%;
+    background-color:transparent;
+    height:18px;
+    text-indent:2px;
+    padding-top:4px;
+}
+.reqEn{
+    height:100px;
+}
+.reqEn textarea{
+    width:100%;
+    background-color:transparent;
+    border:1px solid #CECECE;
+    height:96px;
+    line-height:14px;
+    text-indent:2px;
+}
+.reqKey{
+    min-height:110px;
+    margin:8px 0px 4px 0px;
+}
+.reqLa{
+    padding-top:5px;
+}
+.reqSl{
+    min-height:50px;
+}
+.req50{
+    float:left;
+    width:140px;
+}
+.req60{
+    float:left;
+    width:166px;
+}
+.req40{
+    float:left;
+    width:104px;
+    padding-right:10px;
+}
+.regReload{
+    height:15px;
+    text-align:right;
+}
+.regRlBt{
+    background:url('/images/learnFeed.png') no-repeat left top;
+    padding-left:18px;
+}
+#divinputfile{
+background:url(/images/upload_file.png) no-repeat 100% 1px;
+height:28px;
+width:282px;
+margin-top:4px;
+}
+.filepc{
+opacity: 0;
+}
+#fakeinputfile{
+margin-top:-20px;
+}
+#fakeinputfile #fakefilepc{
+width:208px;
+height:22px;
+border:1px solid #CECECE;
+color:#969696;
+height:18px;
+padding-top:4px;
+text-indent:2px;
+}
+.submit a{
+    background:url('/images/btm48.png') no-repeat;
+    width:48px;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    display:block;
+}
+.submit a:hover{
+    background:url('/images/btm48Red.png') no-repeat;
+}
+.submit a, .submit a:link, .submit a:visited, .submit a:hover{
+    color:#fff;
+    text-decoration:none;
+}
+/* Leave your comment */
+.AsDcom{
+    padding:5px 10px 10px 20px;
+    overflow:hidden;
+    _height:100%;
+}
+.AsDcom h1.titleH1, .AsDcomL h1.titleH1{
+    border:0px;
+}
+.AsDcomImg{
+    float:left;
+    width:60px;
+}
+.AsDcomImg div{
+    padding:3px;
+    background:url('/images/bgi-col300.png') no-repeat;
+}
+.AsDcomImg a:hover div{
+    background:url('/images/bgi-col300H.png') no-repeat;
+}
+.AsDcomImg img{
+    width:45px;
+    height:45px;
+    border:0px;
+}
+.AsDcomIn{
+    float:left;
+}
+.AsDcomTxt{
+    background:url('/images/bgTextarea.png') no-repeat;
+    height:96px;
+    width:554px;
+    padding-bottom:5px;
+}
+.AsDcomTxt textarea{
+    border:0px;
+    width:539px;
+    font-family:Arial;
+    height:91px;
+    margin:1px 0px 0px 11px;
+    background-color:transparent;
+}
+.AsDcomIn .submit{
+    padding-left:8px;
+}
+.AsDcomL{
+    margin:0px 20px;
+    clear:both;
+    overflow:hidden;
+    padding-top:5px;
+}
+.AsDcomL .titleH1{
+    float:left;
+}
+.AsDcomLW{
+    float:right;
+    color:#797979;
+}
+.AsDcomLW select{
+    width:165px;
+    color:#323232;
+}
+
+.AsDcomItem{
+    clear:both;
+    padding-bottom:10px;
+    border-bottom:1px #e3e3e3 solid;
+    overflow:hidden;
+    _height:100%;
+    margin-bottom:7px;
+}
+.AsDcomItemR{
+    float:left;
+    width:545px;
+    padding-left:5px;
+}
+.AsDcomName{
+    font-weight:bold;
+}
+.AsDcomName a, .AsDcomName a:link, .AsDcomName a:visited{
+    color:#0b8ccb;
+    padding:0px 4px;
+    text-decoration:none;
+}
+.AsDcomName a:hover{
+    color:#d00;
+}
+.AsDcomDes{
+    padding:4px 0px 6px 0px;
+}
+.AsDcomRe{
+    height:22px;
+    line-height:22px;
+}
+.AsDcomRe div{
+    float:left;
+}
+.AsDcomRe1{
+    background:url('/images/report1.png') no-repeat;
+    padding-left:10px;
+    padding-right:7px;
+    border-right:1px #d4d5d0 solid;
+}
+.AsDcomRe1 a{
+    background:url('/images/icon-hdup.gif') right 1px no-repeat;
+    padding-right:17px;
+}
+.AsDcomRe1 a:hover{
+    background:url('/images/icon-hdupH.gif') right 1px no-repeat;
+}
+
+.AsDcomRe2{
+    background:url('/images/report2.png') no-repeat;
+    padding:0 7px;
+}
+.AsDcomRe2 a{
+    background:url('/images/icon-hdd.gif') right 1px no-repeat;
+    padding-right:17px;
+}
+.AsDcomRe2 a:hover{
+    background:url('/images/icon-hddH.gif') right 1px no-repeat;
+}
+.AsDcomRe1 a:link, .AsDcomRe1 a:visited, .AsDcomRe2 a:link, .AsDcomRe2 a:visited,
+.AsDcomRe3 a:link, .AsDcomRe3 a:visited, .AsDcomRe3 a:hover{
+    color:#6f6f63;
+    text-decoration:none;
+}
+.AsDcomRe1 a:hover, .AsDcomRe2 a:hover, .AsDcomRe3 a:hover{
+    color:#d00;
+}
+.AsDcomRe3{
+    background:url('/images/report3.png') no-repeat;
+    width:95px;
+}
+.AsDcomRe3 a{
+    padding-left:5px;
+    background:url('/images/reportG.gif') no-repeat right center;
+    padding-right:17px;
+}
+.AsDcomRe3 a:hover{
+    background:url('/images/reportR.png') no-repeat right center;
+}
+.goback{
+    padding-left:20px;
+    float:left;
+    padding-bottom:7px;
+    _padding-bottom:0px;
+}
+.goback a{
+    background:url('/images/btmGoBack.png') no-repeat;
+    width:70px;
+    height:22px;
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    line-height:22px;
+}
+.goback a:hover{
+    background:url('/images/btmGoBackH.png') no-repeat;
+}
+.goback a span{
+    padding-left:22px;
+    background:url('/images/icon-goback.gif') no-repeat 6px 4px;
+    padding-left:20px;
+}
+.goback a:hover span{
+    background:url('/images/icon-gobackH.gif') no-repeat 6px 4px;
+}
+
+.comPage{
+    float:right;
+    padding-right:20px;
+    padding-top:7px;
+}
+.comPage .compre a{
+    background:url('/images/icon-pre.gif') no-repeat center top;
+    margin-right:10px;
+}
+.comPage .comnext a{
+    background:url('/images/icon-next.gif') no-repeat center top;
+}
+.comPage .compre a:hover{
+    background:url('/images/icon-preH.gif') no-repeat center top;
+    margin-right:10px;
+}
+.comPage .comnext a:hover{
+    background:url('/images/icon-nextH.gif') no-repeat center top;
+}
+.comPage a, .comPage a:link, .comPage a:visited, .comPage a:hover{
+    text-decoration:none;
+}
+
+.AsDOr{
+    clear:both;
+    margin:0px 20px;
+    border-top:1px #e3e3e3 solid;
+    border-bottom:1px #e3e3e3 solid;
+    padding:5px 0px;
+}
+.AsDOr .titleH1{
+    border-bottom:0px;
+}
+.AsDOrItem{
+    background:url('/images/dotBlack.png') no-repeat left 6px;
+    padding-left:10px;
+    padding-bottom:5px;
+}
+.AsDOrItem a, .AsDOrItem a:link{
+    color:#323232;
+    text-decoration:underline;
+}
+.AsDOrItem a:visited{
+    color:#757575;
+}
+.AsDOrItem a:hover{
+    color:#d00;
+}
+.contDetLin .goTop{
+    padding-right:20px;
+    padding-bottom:10px;
+}
+/**************************************/
+/****** QAs ***********/
+.QAs .asslinkdown{
+    width:80px;
+}
+.QAsTopic .dueDTitle{
+    background:url('/images/icon-QAsTopic.png') no-repeat;
+    padding-left:24px;
+}
+.QAsIntQue .dueDTitle{
+    background:url('/images/icon-QAsQue.png') no-repeat;
+    padding-left:24px;
+}
+.QAsPCont{
+    color:#6f6f63;
+    padding-bottom:5px;
+}
+.QAsDet{
+    color:#6f6f63;
+}
+.QAsDet input{
+    margin-right:5px;
+}
+.QAsPoll .submit{
+    padding-top:5px;
+    float:left;
+}
+.PollView{
+    padding-top:10px;
+    float:left;
+    padding-left:10px;
+    color:#1c99df;
+}
+.PollView a{
+    margin:0px 3px;
+}
+.PollView a, .PollView a:link, .PollView a:visited{
+    color:#1c99df;
+}
+.PollView a:hover{
+    color:#d00;
+}
+.QAs .col451in{
+    padding-top:5px;
+}
+.QAs .AsDTop{
+    margin:0px;
+}
+.QAs h1.titleH1{
+    padding-left:0px;
+}
+.Star{
+    text-align:right;
+    padding-bottom:3px;
+}
+.Star img{
+    padding-left:1px;
+}
+.qashdU, .qashdD{
+    background:url('/images/bor-ad.png') no-repeat left top;
+    padding:0px 6px;
+}
+.qashdU a{
+    background:url('/images/icon-hdup.gif') no-repeat right center;
+    display:block;
+    padding-right:17px;
+}
+.qashdU a:hover{
+    background:url('/images/icon-hdupH.gif') no-repeat right center;
+    padding-right:17px;
+}
+.qashdD a{
+    background:url('/images/icon-hdd.gif') no-repeat left center;
+    display:block;
+    padding-left:17px;
+}
+.qashdD a:hover{
+    background:url('/images/icon-hddH.gif') no-repeat left center;
+    padding-left:17px;
+}
+.numAns{
+    background:url('/images/bgNumAns.png') no-repeat left top;
+    width:51px;
+    height:51px;
+    margin-left:17px;
+    text-align:center;
+}
+.numAnsA{
+    line-height:30px;
+    font-size:26px;
+    padding-top:5px;
+}
+.numAnsB{
+    font-size:10px;
+}
+/*** Qas detail **/
+.QasDetail .AsDContBtm span.btmAns a{
+    background:url('/images/btm119.png') no-repeat;
+    text-align:center;
+    width:119px;
+    color:#fff;
+    padding-left:0px;
+}
+span.btmPre a{
+    background:url('/images/btmPre.png') no-repeat;
+    width:122px;
+}
+span.btmPre a:hover{
+    background:url('/images/btmPreH.png') no-repeat;
+}
+span.btmAbuse a{
+    background:url('/images/btmAbuse.png') no-repeat;
+    width:108px;
+}
+span.btmAbuse a:hover{
+    background:url('/images/btmAbuseH.png') no-repeat;
+}
+/********************************/
+/******* Post ***********/
+.postLink{
+    padding-bottom:10px;
+}
+.postR .col300Title{
+    border:0px;
+    margin-bottom:0px;
+}
+.postCont{
+    padding:5px 10px 5px 10px;
+    color:#6f6f63;
+}
+.postErr{
+    background:url('/images/postbgerr.png') no-repeat 8px 7px;
+    width:632px;
+    background-color:#fffdee;
+    border:1px #fee203 solid;
+    overflow:hidden;
+    _height:100%;
+}
+.postErrNote{
+    float:left;
+    width:560px;
+    padding:8px 0px 8px 30px;
+    font-style:italic;
+}
+.postErrClo{
+    float:right;
+    margin:1px;
+}
+.postErrClo a{
+    background:url('/images/postClose.jpg') no-repeat;
+    height:16px;
+    width:16px;
+    display:block;
+    text-decoration:none;
+}
+.postErrClo a:hover{
+    text-decoration:none;
+    background:url('/images/postCloseH.png') no-repeat;
+}
+.postItem{
+    padding:3px 0px 3px 10px;
+    overflow:hidden;
+    _height:100%;
+}
+.postItem div{
+    float:left;
+}
+.postItem .postRad div{
+    clear:both;
+    width:500px;
+}
+.postItem .postInp input{
+    border:1px #cecece solid;
+    width:250px;
+    height:15px;
+    padding-top:3px;
+}
+.postItem select{
+    width:253px;
+}
+.postItem textarea{
+    border:1px #cecece solid;
+    width:360px;
+    height:160px
+}
+.postInput div{
+    clear:both;
+}
+.postTit{
+    width:110px;
+    font-weight:bold;
+    line-height:20px;
+}
+div.postInf{
+    color:#be2626;
+    line-height:20px;
+    padding-left:5px;
+    font-style:italic;
+}
+.postReq{
+    font-style:italic;
+    padding:7px 0;
+}
+.postShare{
+    padding-top:5px;
+    padding-left:10px;
+}
+.postShare span{
+    font-weight:bold;
+    padding-right:5px;
+}
+.postShare a, .postShare a:link, .postShare a:visited{
+    color:#6f6f63;
+    text-decoration:none;
+}
+.postShare a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.post .submit{
+    padding:10px 20px;
+}
+.postDesInf{
+    padding-bottom:3px;
+}
+/** Post detail **/
+.AsDContBtm span.btmReply a{
+    background:url('/images/btm48.png') no-repeat;
+    text-align:center;
+    width:48px;
+    color:#fff!important;
+    padding-left:0px;
+}
+/* PopUp */
+.popup{
+    background:url('/images/popupBot.png') no-repeat left bottom;
+    overflow:hidden;
+    width:610px;
+
+    _height:100%;
+}
+.popup1{
+    background:url('/images/popupTop.png') no-repeat;
+
+    padding-bottom:5px;
+}
+.popup2{
+    overflow:hidden;
+    width:610px;
+    padding-bottom:5px;
+    _height:100%;
+}
+.poppClose{
+    height:20px;
+}
+.poppClose a{
+    margin:2px;
+    float:right;
+    background:url('/images/popupClose.png') no-repeat;
+    width:25px;
+    height:20px;
+}
+.poppClose a:hover{
+    background:url('/images/popupCloseH.png') no-repeat;
+}
+.popupItem{
+    padding-left:10px;
+    clear:both;
+    overflow:hidden;
+    height:42px;
+    *height:38px;
+}
+.popupL, .popupL div,.popupR, .popupR div{
+    float:left;
+}
+.popupR{
+    padding-left:20px;
+}
+.popupNumb{
+    width:23px;
+    height:23px;
+    text-align:center;
+    line-height:23px;
+    background:url('/images/popupNum.png') no-repeat;
+    color:#fff;
+    font-size:15px;
+    font-weight:bold;
+}
+.popupCoun{
+    line-height:23px;
+    padding:0px 8px;
+    color:#646464;
+    font-size:11px;
+    font-weight:bold;
+    width:50px;
+}
+.popupSelect{
+    padding-top:2px;
+}
+.popupSelect select{
+    width:190px;
+}
+.filter{
+    color:#646464;
+    font-size:11px;
+    font-style:italic;
+    padding-left:10px;
+    background:url('/images/popupAl.png') no-repeat 170px 9px;
+}
+.popupAl{
+    padding-left:5px;
+    padding-top:10px;
+}
+.popupAl a{
+    margin:0px 4px;
+    font-size:11px;
+    float:left;
+    width:16px;
+    height:16px;
+    line-height:16px;
+    text-align:center;
+    display:block;
+    _margin:0px 4px 0px 3px;
+}
+.popupAl a, .popupAl a:link, .popupAl a:visited{
+    color:#1d96db;
+    text-decoration:none;
+}
+.popupAl a.selected, .popupAl a:hover{
+    background:url('/images/popupCha.gif') no-repeat;
+    display:block;
+    color:#fff!important;
+}
+.popupBtm{
+    padding-left:10px;
+    padding-top:7px;
+    clear:both;
+}
+.popupBtm a{
+    background:url('/images/btmPop.png') no-repeat;
+    width:48px;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    text-decoration:none;
+    display:block;
+}
+.popupBtm a, .popupBtm a:link, .popupBtm a:visited{
+    color:#fff;
+}
+.popupBtm a:hover{
+    background:url('/images/btmPopH.png') no-repeat;
+}
+/*****************************************/
+/********** Tutor **************/
+.assInfB .share a{
+    background:url('/images/icon-share.png') no-repeat;
+    padding-left:17px;
+}
+.Tutor .qashdU,.Tutor .qashdD{
+    background-position:right;
+}
+.assInfB .share a:link, .assInfB .share a:visited{
+    color:#969696;
+    text-decoration:none;
+}
+.assInfB .share a:hover{
+    color:#d00;
+}
+.moreTutor{
+    text-align:right;
+    color:#1e1e1e;
+}
+.mySco{
+    font-style:italic;
+    text-align:right;
+    padding-top:10px;
+    padding-right:2px;
+}
+.mySco a, .mySco a:link, .mySco a:visited{
+    color:#0a81c4;
+    text-decoration:none;
+}
+.mySco a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.tutorEff .dueDTitle{
+    background:url('/images/icon-tutor.png') no-repeat;
+}
+.tutorHire .dueDTitle{
+    background:url('/images/icon-hire.png') no-repeat;
+}
+.rsvp{
+    background:url('/images/icon-rsvp.png') no-repeat left 3px;
+    line-height:20px;
+    padding:0px 0px 5px 25px;
+}
+/*****************************************/
+/************  Book *************/
+.bookPrice{
+    font-weight:bold;
+    font-size:12px;
+    padding-bottom:3px;
+}
+.Book .Email a{
+    background:url('/images/icon-Email.png') no-repeat 7px top;
+    padding-left:25px;
+}
+.Book .Email a:link, .Book .Email a:visited{
+    color:#969696;
+    text-decoration:none;
+}
+.Book .Email a:hover{
+    color:#d00;
+}
+.Book .Bookdont{
+    background:url('/images/icon-dontbuy.png') no-repeat;
+}
+/****************************************************/
+/********** Sign in - Sign up ************************/
+.welBack h1.col300Title{
+    padding-left:30px;
+    line-height:22px;
+    background:url('/images/welBack.png') no-repeat 0px 0px;
+}
+.welBackCont{
+    padding:10px 5px 20px 5px;
+    color:#6f6f63;
+}
+.welBackLink{
+    padding:0 5px 3px 5px;
+}
+.welBackLink a, .welBackLink a:link, .welBackLink a:visited{
+    color:#1fa6f3;
+    text-decoration:underline;
+}
+.welBackLink a:hover{
+    color:#d00;
+    text-decoration:underline;
+}
+.befTitle{
+    background:url('/images/benefit.png') no-repeat 0px 0px;
+    color:#ba0404;
+    padding-left:45px;
+    height:47px;
+    padding-top:12px;
+    font-size:12px;
+}
+.befItem{
+    background:url('/images/dotGray.png') no-repeat 0px 5px;
+    padding-bottom:7px;
+    padding-right:4px;
+    padding-left:9px;
+}
+.befItem a, .befItem a:link, .befItem a:visited{
+    color:#6f6f63;
+    text-decoration:none;
+}
+.befItem a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+/**/
+.signinCont, .signUpCont{
+    padding:10px 0px 20px 10px;
+}
+.signinItem{
+    padding:3px 0px 3px 10px;
+    overflow:hidden;
+    _height:100%;
+}
+.signinItem div{
+    float:left;
+}
+.signinItem .signinInp input{
+    border:1px #cecece solid;
+    width:250px;
+    height:18px;
+    padding:0px;
+    padding-top:3px;
+}
+.signUpCont .signinInp select{
+    width:252px;
+    font-size:11px;
+    color:#646464;
+}
+.signinTit{
+    width:70px;
+    font-weight:bold;
+    line-height:24px;
+    color:#6f6f63;
+}
+.signUpCont .signinTit{
+    width:100px;
+}
+div.signinInf{
+    color:#be2626;
+    line-height:24px;
+    padding-left:8px;
+    font-style:italic;
+}
+.signincCheck{
+    padding-left:76px;
+    padding-top:5px;
+    overflow:hidden;
+}
+.signincCheck div{
+    float:left;
+}
+.signincCheckTxt{
+    line-height:20px;
+    padding-left:4px;
+}
+.signincCheckTxt a, .signincCheckTxt a:link, .signincCheckTxt a:visited{
+    color:#0a81c4;
+    text-decoration:underline;
+}
+.signincCheckTxt a:hover{
+    color:#d00;
+}
+.btmLogme, .btmCreAc{
+    padding-left:76px;
+    padding-top:10px;
+}
+.signUpCont .signincCheck, .signUpCont .btmLogme, .signUpCont .btmCreAc{
+    padding-left:116px;
+}
+.btmLogme a, .btmCreAc a{
+    background:url('/images/btm62.png') no-repeat;
+    width:62px;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    display:block;
+}
+.btmCreAc a{
+    width:106px;
+    background:url('/images/btm106.png') no-repeat;
+}
+.btmLogme a:hover{
+    background:url('/images/btm62Red.png') no-repeat;
+}
+.btmCreAc a:hover{
+    background:url('/images/btm106Red.png') no-repeat;
+}
+.btmLogme a, .btmLogme a:link, .btmLogme a:visited, .btmLogme a:hover,
+.btmCreAc a, .btmCreAc a:link, .btmCreAc a:visited, .btmCreAc a:hover{
+    color:#fff;
+    text-decoration:none;
+}
+.forgotPass{
+    padding-left:76px;
+    padding-top:15px;
+}
+.forgotPass a, .forgotPass a:link, .forgotPass a:visited{
+    color:#1c97dd;
+    text-decoration:underline;
+    font-style:italic;
+}
+.forgotPass a:hover{
+    color:#d00;
+}
+.forgotPass span.forgot{
+    padding-right:8px;
+    margin-right:8px;
+    border-right:1px #1c97dd solid;
+}
+.signNode{
+    color:#be2626;
+    font-style:italic;
+    padding-left:10px;
+    padding-bottom:5px;
+}
+/************************************/
+/******** Book ********************/
+.Bookdont .dueDTitle{
+    background:url('/images/icon-dontbuy.png') no-repeat;
+}
+.Bookgood .dueDTitle{
+    background:url('/images/icon-goodB.png') no-repeat;
+}
+.Bookfree .dueDTitle{
+    background:url('/images/icon-free.png') no-repeat;
+}
+.Book .qashdU,.Book .qashdD{
+    background-position:right;
+}
+.Book .qashdU{
+    padding-left:0px;
+}
+span.btmBuy a{
+    background:url('/images/btm62Red.png') no-repeat;
+    text-align:center;
+    width:62px;
+    color:#fff;
+    padding-left:0px;
+}
+span.btmBuy a:link, span.btmBuy a:visited{
+    color:#fff;
+}
+span.btmBuy a:hover{
+    background:url('/images/btm62.png') no-repeat;
+}
+.Parti h1.col300Title{
+    padding-left:30px;
+    line-height:22px;
+    background:url('/images/book-ask.png') no-repeat 0px 0px;
+}
+.AsDContBtm span.btmhand{
+    float:left;
+    margin-right:0px;
+}
+.AsDContBtm .btmhand span{
+    float:left;
+    padding:0px 7px;
+    margin-right:0px;
+}
+.AsDContBtm .btmhand span.handU{
+    background:url('/images/handU.png') no-repeat 0px 0px;
+    border-right:1px #cac8c9 solid;
+}
+.AsDContBtm .btmhand span.handD{
+    background:url('/images/handD.png') no-repeat right 0px;
+}
+.AsDContBtm .btmhand span.handU a{
+    background:url('/images/icon-hdup.gif') no-repeat right 7px;
+    padding-right:17px;
+}
+.AsDContBtm .btmhand span.handD a{
+    background:url('/images/icon-hdd.gif') no-repeat right 7px;
+    padding-right:17px;
+}
+.AsDContBtm .btmhand span.handU a:hover{
+    background:url('/images/icon-hdupH.gif') no-repeat right 7px;
+    padding-right:17px;
+}
+.AsDContBtm .btmhand span.handD a:hover{
+    background:url('/images/icon-hddH.gif') no-repeat right 7px;
+    padding-right:17px;
+}
+.AsDContBtm .btmhand a:hover{
+    color:#d00;
+}
+/****************************************/
+/*************** Job *********************/
+.jobBad .dueDTitle{
+    background:url('/images/icon-jobBad.png') no-repeat;
+    padding-left:20px;
+}
+.jobGood .dueDTitle{
+    background:url('/images/icon-jobGood.png') no-repeat;
+    padding-left:20px;
+}
+.jobInfo .dueDTitle{
+    background:url('/images/icon-jobInfo.png') no-repeat;
+    padding-left:20px;
+}
+span.btmJobList a{
+    background:url('/images/btmJobList.png') no-repeat;
+    width:91px;
+}
+span.btmJobList a:hover{
+    background:url('/images/btmJobListH.png') no-repeat;
+}
+span.btmCom a{
+    background:url('/images/btmCom.png') no-repeat;
+    width:95px;
+}
+span.btmCom a:hover{
+    background:url('/images/btmComH.png') no-repeat;
+}
+.AsDContBtm span.btmApp a{
+    background:url('/images/btm71.png') no-repeat;
+    text-align:center;
+    width:71px;
+    color:#fff;
+    padding-left:0px;
+}
+.JobDetail .AsDContBtm{
+    border-bottom:0px;
+}
+.JobDetail .AsDcom{
+    padding-top:0px;
+}
+.jobCom{
+    overflow:hidden;
+    padding-bottom:3px;
+    margin-right:10px;
+    border-top:1px #e3e3e3 solid;
+}
+.jobCom .titleH1{
+    float:left;
+    padding-top:6px;
+}
+.jobComMenu{
+    float:right;
+    border:1px #e3e3e3 solid;
+    border-top:0px;
+    background-color:#f5f5f5;
+}
+.trans{
+    border-left:1px #e3e3e3 solid;
+    border-right:1px #e3e3e3 solid;
+}
+.jobComMenu div{
+    float:left;
+    padding:7px 12px;
+}
+.jobComMenu a, .jobComMenu a:link, .jobComMenu a:visited{
+    color:#0a81c4;
+    font-weight:bold;
+    text-decoration:none;
+}
+.jobComMenu a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.wantJob h1.col300Title{
+    padding-left:28px;
+    line-height:22px;
+    background:url('/images/searchJob.png') no-repeat 0px 0px;
+}
+/**************************************************/
+/********************* Foods **********************/
+.topFood .dueDTitle{
+    background:url('/images/icon-topFood.png') no-repeat;
+}
+.Foods .AsDTop{
+    margin:0px;
+}
+.Foods .assPic{
+    width:58px;
+}
+.cheap{
+    padding:0px 3px;
+    border-left:1px #cfd0ca solid;border-right:1px #cfd0ca solid;
+}
+.coupon a{
+    background:url('/images/icon-coupon.png') no-repeat;
+    padding-left:14px;
+}
+.Foods .qashdU{
+    background-image:none;
+    padding-left:0px;
+    padding-right:4px;
+}
+.Foods .qashdU a{
+    padding-right:15px;
+}
+.Foods .qashdD{
+    background-position:right top;
+    padding:0 4px;
+    margin-right:2px;
+}
+.Foods .qashdD a{
+    padding-left:15px;
+}
+.Foods .share{
+    padding-right:4px;
+}
+.Foods .share a{
+    padding-left:15px;
+}
+.Foods .fav{
+    padding-right:4px;
+    padding-left:15px;
+}
+.Foods h1.titleH1{
+    padding-bottom:0px;
+}
+/** poster **/
+.posterItem{
+    overflow:hidden;
+    padding:5px 0px;
+    _height:100%;
+}
+div.posterC{
+    margin:0px 10px;
+}
+.posterL, .posterC, .posterR{
+    float:left;
+    width:51px;
+}
+.posterL div, .posterC div, .posterR div{
+    padding:3px;
+    background:url('/images/bgi-col300.png') no-repeat;
+}
+.posterL a:hover div, .posterC a:hover div, .posterR a:hover div{
+    padding:3px;
+    background:url('/images/bgi-col300H.png') no-repeat;
+}
+
+.posterL img, .posterC img, .posterR img{
+    border:0px;
+    width:45px;
+    height:45px;
+}
+.Poster .dueDbutton{
+    padding-top:10px;
+}
+span.btmFoodList a{
+    background:url('/images/btmFoodList.png') no-repeat;
+    width:90px;
+}
+span.btmFoodList a:hover{
+    background:url('/images/btmFoodListH.png') no-repeat;
+}
+.requestFood h1.col300Title{
+    padding-left:30px;
+    line-height:22px;
+    background:url('/images/requestFood.png') no-repeat 0px 0px;
+}
+/********************************/
+/************** Party ***********/
+.clubBar .dueDTitle{
+    background:url('/images/icon-bar.png') no-repeat left 3px;
+}
+.requestParty h1.col300Title{
+    padding-left:30px;
+    line-height:22px;
+    background:url('/images/icon-reParty.png') no-repeat 0px 0px;
+}
+.Party .AsDTop{
+    margin:0px;
+}
+.Party h1.titleH1{
+    padding-bottom:0px;
+}
+.Party .share{
+    padding-right:5px;
+}
+.Party .qashdU{
+    background-image:none;
+    padding-left:0px;
+}
+.Party .qashdD{
+    background-position:right top;
+    padding:0 5px;
+    margin-right:3px;
+}
+/************** MyX ***********/
+.MyX .share{
+    padding-right:5px;
+}
+.MyX h1.titleH1{
+    padding-bottom:0px;
+}
+.MyX .qashdU{
+    background-image:none;
+    padding-left:0px;
+}
+.MyX .qashdD{
+    background-position:right top;
+    padding:0 5px;
+    margin-right:3px;
+}
+.teacherItem{
+    padding:6px 0px 5px 0px;
+    border-bottom:1px #e4e4e4 solid;
+    overflow:hidden;
+    _height:100%;
+}
+.teacherInf{
+    float:left;
+}
+.teacherInf a, .teacherInf a:link, .teacherInf a:visited{
+    color:#0a81c4;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:bold;
+}
+.teacherInf a:hover{
+    color:#d00;
+}
+.teacherInf .recentDes{
+    font-weight:bold;
+    padding-top:2px;
+}
+/************************** MyX *************************/
+.MyX .AsDTop{
+    margin:0px;
+}
+.myXcheck{
+    padding-bottom:10px;
+    padding-left:5px;
+}
+.myXcheck input{
+    margin-right:3px;
+}
+.requestMyX h1.col300Title{
+    padding-left:30px;
+    line-height:22px;
+    background:url('/images/icon-reMyX.png') no-repeat 0px 0px;
+}
+/************** Student *************************/
+.student .AsDTop{
+    margin:0px;
+}
+.student .com{
+    padding-right:5px;
+}
+.student .qashdU{
+    background-position:right top;
+    padding-left:0px;
+}
+.student .qashdD{
+    background-position:right top;
+}
+.studentItem{
+    padding:6px 0px 5px 0px;
+    border-bottom:1px #e4e4e4 solid;
+    overflow:hidden;
+    _height:100%;
+}
+.studentImg img{
+    border:0px;
+    width:26px;
+    height:26px;
+}
+.studentImg{
+    float:left;
+    width:35px;
+}
+.studentImg div{
+    padding:2px;
+    background:url('/images/bgStudent.png') no-repeat;
+
+}
+.studentImg a:hover div{
+    background:url('/images/bgStudentH.png') no-repeat;
+}
+
+.studentInf{
+    float:right;
+    width:140px;
+}
+.studentInf a, .studentInf a:link, .studentInf a:visited{
+    color:#1e1e1e;
+    text-decoration:none;
+}
+.studentInf a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.support{
+    float:right;
+    padding-right:3px;
+    padding-bottom:5px;
+}
+.support a{
+    background:url('/images/support.png') no-repeat;
+    width:66px;
+    height:19px;
+    text-align:center;
+    display:block;
+    line-height:19px;
+}
+.support a, .support a:link, .support a:visited{
+    text-decoration:none;
+    color:#8c8c8c;
+}
+.support a:hover{
+    text-decoration:none;
+    color:#fff;
+    background:url('/images/supportH.png') no-repeat;
+}
+.student .mySco{
+    clear:both;
+    padding-top:0px;
+}
+div.stuDetail span.btmhand{
+    margin-right:5px;
+}
+.reStuEmail{
+    background:url('/images/restu.png') no-repeat left 2px;
+    padding-left:19px;
+}
+.reStuCom{
+    background:url('/images/icon-comnent.gif') no-repeat left 2px;
+    padding-left:19px;
+}
+
+.reStuItem{
+    padding:5px 0px;
+}
+.reStuItem a, .reStuItem a:link, .reStuItem a:visited{
+    padding-left:4px;
+    color:#0a81c4;
+    text-decoration:none;
+}
+.reStuItem a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.reStuDate{
+    padding-left:19px;
+    padding-top:1px;
+    font-style:italic;
+}
+.reStuIn{
+    color:#646464;
+    padding-left:19px;
+}
+/*********************** Housing ****************************/
+.Housing .AsDTop{
+    margin:0px;
+}
+.Housing .com{
+    padding-right:5px;
+}
+.Housing .qashdU{
+    background-position:right top;
+    padding-left:0px;
+}
+.Housing .qashdD{
+    background-position:right top;
+}
+.Housing .fav{
+    margin-left:3px;
+    padding-right:7px;
+}
+.requestHous h1.col300Title{
+    padding-left:30px;
+    line-height:22px;
+    background:url('/images/reHouse.png') no-repeat 0px 0px;
+}
+span.btmFavList a{
+    background:url('/images/btmFavL.png') no-repeat;
+    width:99px;
+}
+span.btmFavList a:hover{
+    background:url('/images/btmFavLH.png') no-repeat;
+}
+.AsDcomSite{
+    padding:4px 0px;
+}
+.AsDcomSite a, .AsDcomSite a:link, .AsDcomSite a:visited{
+    color:#0a81c4;
+    text-decoration:none;
+}
+.AsDcomSite a:hover{
+    color:#d00;
+}
+.HouseDetail .AsDcomRe{
+    padding-top:5px;
+}
+.location div{
+    float:left;
+}
+.locationT{
+    color:#0a81c4;
+    font-weight:bold;
+    line-height:20px;
+    padding-right:4px;
+    font-size:12px;
+}
+.locationS select{
+    width:180px;
+    color:#777;
+}
+.reqHousCheck{
+    overflow:hidden;
+    padding-top:3px;
+}
+.reqHousCheck div{
+    float:left;
+}
+.reqHousCheckT{
+    line-height:20px;
+    padding-left:4px;
+}
+/************* TeamUp ****************************/
+span.btmFan a{
+    background:url('/images/btmFan.png') no-repeat;
+    width:105px;
+}
+span.btmFan a:hover{
+    background:url('/images/btmFanH.png') no-repeat;
+}
