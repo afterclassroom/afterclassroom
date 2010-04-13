@@ -2,7 +2,7 @@
 class PostAssignmentsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :due_date, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :search, :due_date, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :due_date, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date, :tag]
@@ -75,12 +75,6 @@ class PostAssignmentsController < ApplicationController
     @post_assignment = PostAssignment.new
     post = Post.new
     @post_assignment.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Books"
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_assignment }
@@ -90,14 +84,6 @@ class PostAssignmentsController < ApplicationController
   # GET /post_assignments/1/edit
   def edit
     @post_assignment = PostAssignment.find(params[:id])
-    @post = @post_assignment.post
-    @post_categories = PostCategory.find(:all)
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
-    @school = @post_assignment.post.school
-    @department = @post_assignment.post.department
   end
 
   # POST /post_assignments
@@ -109,7 +95,11 @@ class PostAssignmentsController < ApplicationController
     post.save
     @post_assignment.post = post
     if @post_assignment.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_assignments_path
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 

@@ -148,7 +148,7 @@ module ApplicationHelper
     
     render :partial => "shared/options", :locals => {:school => school, :department => department, :year => year, :over => over, :options => options}
   end
-
+  
   def show_favorite(post)
     if !logged_in?
       link_to_require_login("Favorite (#{post.favorites.size})")
@@ -216,7 +216,7 @@ module ApplicationHelper
 
   private
   def link_to_require_login(str)
-    link_to(str, "/login_ajax?height=250&width=540", :class => "thickbox", :title => "Sign In")
+    link_to(str, "/login_ajax?height=300&width=540", :class => "thickbox", :title => "Sign In")
   end
 
 end
