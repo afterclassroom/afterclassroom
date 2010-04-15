@@ -43,13 +43,13 @@
           <div class="postItem">
             <div class="postTit">Email</div>
             <div class="postRad">
-              <div><%= radio_button "post", "use_this_email", true, :checked => @post_assignment %> Use my login email instead</div>
-              <div><%= radio_button "post", "use_this_email", false %> Reply to [post category] - xxxxxx@afterclassroom.com (AC anonymizes your ..)</div>
+              <div><%= radio_button "post", "use_this_email", true, :checked => @post_assignment.post.use_this_email %> Use my login email instead</div>
+              <div><%= radio_button "post", "use_this_email", false, :checked => !@post_assignment.post.use_this_email %> Reply to [post category] - xxxxxx@afterclassroom.com (AC anonymizes your ..)</div>
             </div>
           </div>
           <div class="postItem">
             <div class="postTit">Due date*</div>
-            <div class="postInp"><%= f.text_field :due_date, :class => 'required date', :style => "width:100px" %></div>
+            <div class="postInp"><%= text_field_tag "post_assignment[due_date]", @post_assignment.due_date != nil ? @post_assignment.due_date.strftime("%m/%d/%Y") : nil, :id => "post_assignment_due_date", :class => 'required date', :style => "width:100px" %></div>
           </div>
           <div class="postItem">
             <div class="postTit">Professor*</div>
@@ -58,17 +58,13 @@
           <div class="postItem">
             <div class="postTit">Add/Edit File</div>
             <div id="divinputfile">
-              <%= post.file_field :attach, :onchange => "$('#fakefilepc').value = this.value;", :size => "39", :class => "filepc" %>
+              <%= post.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc" %>
               <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
             </div>
           </div>
           <div class="postItem">
             <div class="postTit">Tag</div>
             <div class="postInp"><%= text_field_tag "tag", "", :style => "width:280px" %></div>
-          </div>
-          <div class="postItem">
-            <div class="postTit">Sharing Options</div>
-            <div class="postInp"><select name="Select1"><option>Select a post category</option></select></div>
           </div>
         </div>
         <div class="submit"><a href="javascript:;" onclick="submit();">Submit</a></div>

@@ -2,7 +2,7 @@
 class PostAssignmentsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :search, :due_date, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :due_date, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date, :tag]
@@ -92,6 +92,9 @@ class PostAssignmentsController < ApplicationController
     @post_assignment = PostAssignment.new(params[:post_assignment])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_assignment.post = post
     if @post_assignment.save
@@ -127,7 +130,8 @@ class PostAssignmentsController < ApplicationController
   def get_variables
     @tags = PostAssignment.tag_counts
     @new_post_path = new_post_assignment_path
-    @type = PostCategory.find_by_class_name("PostAssignment").id
+    @class_name = "PostAssignment"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end

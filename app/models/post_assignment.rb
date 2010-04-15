@@ -29,7 +29,7 @@ class PostAssignment < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_as = PostAssignment.ez_find(:all, :include => [:post]) do |post_assignment, post|
+    post_as = PostAssignment.ez_find(:all, :include => [:post], :order => "created_at DESC") do |post_assignment, post|
       post_assignment.department_id == department if department
       post_assignment.school_year == year if year
       post.school_id == with_school if with_school
