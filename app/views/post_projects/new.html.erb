@@ -1,169 +1,41 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Jobs", :new_post_path => "/post_jobs/new", :search_post_path => "/post_jobs"} %>
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Projects", post_projects_path, :class => "abLink-detail" %><%= link_to "New", "#", :class => "abLink-detail" %>
 <% end -%>
 
-<% content_for :select_your_school do -%>
-  <div id="target_select_school">
-    <span>&nbsp;</span>
-  </div>
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
 
-<% content_for :sidebar do -%>
-  <div id="post_guide_r">
-    <h3>About Posting</h3>
-    <p>
-      Upload would take any where from 1 to 5 minutes.
-      It depends on your internet connections.
-    </p>
-  </div>
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
 <% end -%>
+
 <!--Content-->
-<div id="posting-section"><!-- posting-section-->
-  <h3 class="post_header">Posting to the world</h3>
-  <% form_for(@post_job, :html => {:id => "form", :name => "form", :multipart => true }) do |f| %>
-    <% fields_for @post_job.post do |post| %>
-      <ul>
-        <li>
-          <%= render :partial => "posts/post_category", :locals => {:post_categories => @post_categories, :post_category_name => @post_category_name} %>
-        </li>
-        <li>
-          <label>Job Status/Type*</label>
-          <div class="user_ri">
-            <%= text_field_tag 'job_type_name', '', :class => "required tb_arrow" %>
-            <div id="select_job_type_div" class="menu_select" style="display:none;">
-              <ul>
-                <% for job_type in @job_types %>
-                  <li>
-                    <%= check_box_tag("post_job[job_type_ids][]",
-                      job_type.id,
-                      @post_job.job_types.include?(job_type), :id => "post_job_job_types_id_#{job_type.id}", :title => "#{job_type.name}", :onclick => "getJobType()") %>
-                    <label onClick="getJobType()" for="post_job_job_types_id_<%= job_type.id %>"><%= job_type.name %></label>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li><label>Job title*</label>
-          <div class="user_ri"><%= post.text_field :title, :class => "required", :style=>"width:450px" %>
-        </div></li>
-        <li><label>Prepare Post</label>
-          <div class="user_ri"><%= select_tag 'post_job[prepare_post]', options_for_select(@prepare_post, true), {:id => 'post_job_prepare_post', :onchange => "showPreparePost(this)"} %>
-        </div></li>
-        <li prepare_post="yes"><label>Add/Edit File:</label>
-        <div class="user_ri"><%= post.file_field :attach %></div></li>
-        <li prepare_post="no" style="display:none"><label>Description*</label>
-          <div class="user_ri">
-            <font color=#666666>(500 characters max.) <strong><span id="count_post_description" >500</span></strong> remaining</font>
-        <%= post.text_area :description, :rows => 10, :cols => 70, :class => "required", :onkeypress => "return LimitThis('post_description')", :onkeyup => "return CountThis('post_description', 'count_post_description')", :onmouseover => "return CountThis('post_description', 'count_post_description')", :wrap => "physical", :maxLength => "500"%></div></li>
-        <li prepare_post="no" style="display:none"><label>Responsibilities*</label>
-          <div class="user_ri">
-            <font color=#666666>(500 characters max.) <strong><span id="count_post_responsibilities" >500</span></strong> remaining</font>
-        <%= f.text_area :responsibilities, :rows => 10, :cols => 70, :class => "required", :onkeypress => "return LimitThis('post_job_responsibilities')", :onkeyup => "return CountThis('post_job_responsibilities', 'count_post_responsibilities')", :onmouseover => "return CountThis('post_job_responsibilities', 'count_post_responsibilities')", :wrap => "physical", :maxLength => "500"%></div></li>
-        <li prepare_post="no" style="display:none"><label>Required Skills*</label>
-          <div class="user_ri">
-            <font color=#666666>(500 characters max.) <strong><span id="count_post_required_skills" >500</span></strong> remaining</font>
-        <%= f.text_area :required_skills, :rows => 10, :cols => 70, :class => "required", :onkeypress => "return LimitThis('post_job_required_skills')", :onkeyup => "return CountThis('post_job_required_skills', 'count_post_required_skills')", :onmouseover => "return CountThis('post_job_required_skills', 'count_post_required_skills')", :wrap => "physical", :maxLength => "500"%></div></li>
-        <li prepare_post="no" style="display:none"><label>Desirable Skills*</label>
-          <div class="user_ri">
-            <font color=#666666>(500 characters max.) <strong><span id="count_post_desirable_skills" >500</span></strong> remaining</font>
-        <%= f.text_area :desirable_skills, :rows => 10, :cols => 70, :class => "required", :onkeypress => "return LimitThis('post_job_desirable_skills')", :onkeyup => "return CountThis('post_job_desirable_skills', 'count_post_desirable_skills')", :onmouseover => "return CountThis('post_job_desirable_skills', 'count_post_desirable_skills')", :wrap => "physical", :maxLength => "500"%></div></li>
-        <li prepare_post="no" style="display:none"><label>Education & Experience Requires*</label>
-          <div class="user_ri">
-            <font color=#666666>(500 characters max.) <strong><span id="count_post_edu_experience_require" >500</span></strong> remaining</font>
-        <%= f.text_area :edu_experience_require, :rows => 10, :cols => 70, :class => "required", :onkeypress => "return LimitThis('post_job_edu_experience_require')", :onkeyup => "return CountThis('post_job_edu_experience_require', 'count_post_edu_experience_require')", :onmouseover => "return CountThis('post_job_edu_experience_require', 'count_post_edu_experience_require')", :wrap => "physical", :maxLength => "500"%></div></li>
-        <li prepare_post="no" style="display:none"><label>Compensation</label>
-          <div class="user_ri">
-        <%= f.text_field :compensation %></div></li>
-        <%= select_your_school("post", "posts/select_school", {"target" => "bottomLeft", "tip" => "topLeft"}) %>
-        <li><label>Email</label>
-        <div class="user_ri"><%= post.text_field :email, :class => "validate-email" %></div></li>
-        <li><label></label><%= radio_button "post", "use_this_email", true %> Use this email address.</li>
-        <li><label></label><%= radio_button "post", "use_this_email", false, :checked => true %> Reply to (post category) - xxx@afterclassroom.com.</li>
-        <li><label>Telephone</label>
-        <div class="user_ri"><%= post.text_field :telephone %></div></li>
-        <%= render :partial => "posts/choose_options", :locals => {:f => post } %>
-        <li>
-          <div class="post_cbt">
-            <!-- post  button -->
-            <a href="javascript:submit()" title="Post" class="link_bt">
-              <span class="ltred_l"></span>
-              <span class="ltred_c btf">Post Jobs</span>
-              <span class="ltred_r"></span>
-            </a>
-            <!-- end post button -->
-          </div>
-        </li>
-        <li>
-          <label><div class="user_ri">(* indicates required field)</div></label>
-        </li>
-      </ul>
-      <div id="elements_store"></div>
-    </div><!-- end posting-section-->
-  <% end %>
-<% end %>
+<div class="contDetL">
+  <div class="contDetLin post">
+    <div class="AsDTop">
+      <h1 class="titleH1">Posting to the world!</h1>
+    </div>
+    <div class="postCont">
+      <% form_for(@post_project, :html => {:multipart => true, :id => "form_post" }) do |f| %>
+        <%= render :partial => "form", :locals => {:f => f} %>
+        <div class="submit"><a href="javascript:;" onclick="submit();">Submit</a></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Recent Request Projects-->
+  <%= render :partial => "recent_request_projects" %>
+  <!--Recent Request Projects-->
+</div>
 <!--Content-->
-<script type="text/javascript">
-  var valid = new Validation('form', {immediate : true, onSubmit:false});
-  function submit(){
-    var result = valid.validate();
-    if (result) {
-      Tips.hideAll();
-      $$('.prototip').each(function(element){
-        $('elements_store').insert(element, { position: content });
-      });
-      $('form').submit();
-    }
-  }
-  function getJobType(){
-    $('job_type_name').value = get_check_value();
-    if ($('advice-required-job_type_name'))
-      $('advice-required-job_type_name').hide();
-  }
-  new Tip('job_type_name', $('select_job_type_div'), {
-    width: 'auto',
-    title: 'Select Job Type',
-    showOn: 'click',
-    hideOthers: true,
-    hideOn: { element: 'closeButton', event: 'click'},
-    hook: { target: 'bottomLeft', tip: 'topLeft' },
-    offset: {x:0, y:0} });
-  function get_check_value()
-  {
-    var f = $$('input[name="post_job[job_type_ids][]"]');
-    var s = '';
-    for(var i=0; i<f.length; i++){
-      if (f[i].checked)
-        s += f[i].readAttribute("title") + ', ';
-    }
-    return s;
-  }
-  function showPreparePost(object){
-    if (object.value == "true"){
-      $$('li[prepare_post="no"]').each(function(item_no){
-        item_no.hide();
-      });
-      $$('li[prepare_post="yes"]').each(function(item_yes){
-        item_yes.show();
-      });
-    }else{
-      $$('li[prepare_post="no"]').each(function(item_no){
-        item_no.show();
-      });
-      $$('li[prepare_post="yes"]').each(function(item_yes){
-        item_yes.hide();
-      });
-    }
-  }
-</script>
-
-<script language = "Javascript">
-  function LimitThis(object_id) {
-    if ($(object_id).value.length == $(object_id).readAttribute("maxLength")*1) return false;
-  }
-
-  function CountThis(object_id, visCnt) {
-    if ($(object_id).value.length>$(object_id).readAttribute("maxLength")*1) $(object_id).value = $(object_id).value.substring(0,$(object_id).readAttribute("maxLength")*1);
-    if ($(visCnt)) $(visCnt).update($(object_id).readAttribute("maxLength")-$(object_id).value.length);
-  }
-</script>

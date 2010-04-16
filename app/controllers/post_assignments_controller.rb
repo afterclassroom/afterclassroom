@@ -83,7 +83,6 @@ class PostAssignmentsController < ApplicationController
 
   # GET /post_assignments/1/edit
   def edit
-    @post_assignment = PostAssignment.find(params[:id])
   end
 
   # POST /post_assignments
@@ -137,7 +136,9 @@ class PostAssignmentsController < ApplicationController
   end
 
   def require_current_user
-    @user ||= PostAssignment.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_assignment = post.post_assignment
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

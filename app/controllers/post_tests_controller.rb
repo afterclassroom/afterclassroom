@@ -2,7 +2,7 @@
 class PostTestsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :due_date, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :due_date, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date, :tag]
@@ -74,11 +74,6 @@ class PostTestsController < ApplicationController
     @post_test = PostTest.new
     post = Post.new
     @post_test.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "tests"
-    @prepare_post = {'Yes' => true, 'No' => false}
-    @test_types = testType.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_test }
@@ -87,18 +82,6 @@ class PostTestsController < ApplicationController
 
   # GET /post_tests/1/edit
   def edit
-    @post_test = PostTest.find(params[:id])
-    @post = @post_test.post
-    @post_categories = PostCategory.find(:all)
-    @prepare_post = {'No' => false, 'Yes' => true}
-    @test_types = testType.find(:all)
-    @countries = Country.has_cities
-    @school = @post_test.post.school
-    @department = @post_test.post.department
-    @post_test_type = ""
-    for test_type in @post_test.test_types
-      @post_test_type += test_type.name + ", "
-    end
   end
 
   # POST /post_tests
@@ -107,11 +90,17 @@ class PostTestsController < ApplicationController
     @post_test = PostTest.new(params[:post_test])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_test.post = post
-
     if @post_test.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_tests_path
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
@@ -140,13 +129,16 @@ class PostTestsController < ApplicationController
   def get_variables
     @tags = PostTest.tag_counts
     @new_post_path = new_post_test_path
-    @type = PostCategory.find_by_class_name("PostTest").id
+    @class_name = "PostTest"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= PostTest.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_exam = post.post_test
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

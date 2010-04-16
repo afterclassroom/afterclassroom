@@ -2,6 +2,7 @@
 class PostProject < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
+  validates_presence_of :due_date
 
   # Relations
   belongs_to :post
