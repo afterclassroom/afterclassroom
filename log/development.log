@@ -1,0 +1,10 @@
+New Relic Agent not running.
+New Relic Agent not running.
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.140000)[0m   [0;1mCREATE TABLE `notifications` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `sms_allow` tinyint(1), `email_allow` tinyint(1), `name` varchar(255), `label` varchar(255), `notify_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+New Relic Agent not running.
+New Relic Agent not running.
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.063000)[0m   [0;1mCREATE TABLE `notify_settings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `notification_id` int(11), `sms_check` tinyint(1), `email_check` tinyint(1), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m

@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+
+one:
+
+  sms_allow: false
+
+  email_allow: false
+
+  name: MyString
+
+  label: MyString
+
+  notify_type: MyString
+
+
+two:
+
+  sms_allow: false
+
+  email_allow: false
+
+  name: MyString
+
+  label: MyString
+
+  notify_type: MyString
+
+
