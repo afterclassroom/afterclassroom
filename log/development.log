@@ -1224,3 +1224,917 @@ Rendered _box_includes (0.00100)
 Rendered _box_header (0.00000)
 Rendered _box_disabled (0.00000)
 Rendered _box (0.00300)
+Starting the New Relic Agent.
+NewRelic Agent Developer Mode enabled.
+To view performance information, go to http://localhost:3000/newrelic
+New Relic RPM Agent 2.10.6 Initialized: pid = 3036
+Agent Log found in E:/usr/src/ruby-space/rails_apps/afterclassroom/log/newrelic_agent.log
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_migrations[0m
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 09:59:17) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 02:59:17' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.030000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-17 02:59:17' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.039000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.002000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00000)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00100)
+Completed in 0.88200 (1 reqs/sec) | Rendering: 0.09500 (10%) | DB: 0.08500 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.02100)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:02:10) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:02:10' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.048000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00400)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 1.00500 (0 reqs/sec) | Rendering: 0.03800 (3%) | DB: 0.09900 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:02:40) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:02:40' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.010000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.77700 (1 reqs/sec) | Rendering: 0.17200 (22%) | DB: 0.07600 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00400)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:03:44) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:03:44' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.010000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00400)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.68000 (1 reqs/sec) | Rendering: 0.03700 (5%) | DB: 0.13200 (19%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:04:22) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:04:23' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.030000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.001000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.004000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.64900 (1 reqs/sec) | Rendering: 0.03400 (5%) | DB: 0.07300 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:07:23) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:07:24' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.67700 (1 reqs/sec) | Rendering: 0.03400 (5%) | DB: 0.07600 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:10:56) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:10:57' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.036000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.001000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.009000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.70900 (1 reqs/sec) | Rendering: 0.03300 (4%) | DB: 0.08600 (12%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:12:21) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:12:22' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.030000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 1.03700 (0 reqs/sec) | Rendering: 0.03300 (3%) | DB: 0.07200 (6%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:12:50) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:12:51' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.033000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.009000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.74100 (1 reqs/sec) | Rendering: 0.03600 (4%) | DB: 0.07700 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:13:27) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:13:28' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.030000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.83300 (1 reqs/sec) | Rendering: 0.03500 (4%) | DB: 0.09000 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00100)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00400)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:14:43) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:14:44' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.045000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.007000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.80700 (1 reqs/sec) | Rendering: 0.03400 (4%) | DB: 0.13600 (16%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:15:39) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:15:39' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.042000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.006000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00100)
+Completed in 0.67400 (1 reqs/sec) | Rendering: 0.03500 (5%) | DB: 0.10600 (15%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00500)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00700)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:20:25) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:20:27' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.036000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.001000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.007000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00100)
+Completed in 2.11000 (0 reqs/sec) | Rendering: 0.04000 (1%) | DB: 0.07800 (3%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:24:29) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:24:30' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.037000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00100)
+Completed in 0.92300 (1 reqs/sec) | Rendering: 0.03900 (4%) | DB: 0.08300 (8%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:32:34) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:32:34' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.030000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.007000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.84100 (1 reqs/sec) | Rendering: 0.03500 (4%) | DB: 0.07000 (8%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:33:31) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:33:32' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.039000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.72400 (1 reqs/sec) | Rendering: 0.04400 (6%) | DB: 0.07800 (10%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:33:54) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:33:55' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.049000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.001000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.007000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.71000 (1 reqs/sec) | Rendering: 0.03600 (5%) | DB: 0.09100 (12%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:35:23) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:35:24' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.039000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.68200 (1 reqs/sec) | Rendering: 0.03400 (4%) | DB: 0.07900 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:38:17) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:38:18' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.039000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.007000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.93000 (1 reqs/sec) | Rendering: 0.16100 (17%) | DB: 0.08300 (8%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:38:38) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:38:39' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.038000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.82100 (1 reqs/sec) | Rendering: 0.04000 (4%) | DB: 0.10800 (13%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:41:10) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:41:11' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.001000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.007000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.77400 (1 reqs/sec) | Rendering: 0.03500 (4%) | DB: 0.07400 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:41:41) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:41:41' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.057000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.008000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00100)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00100)
+Completed in 0.88900 (1 reqs/sec) | Rendering: 0.03700 (4%) | DB: 0.10200 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00400)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:42:09) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:42:10' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.007000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.79900 (1 reqs/sec) | Rendering: 0.03400 (4%) | DB: 0.07600 (9%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#networks (for 127.0.0.1 at 2010-04-17 10:42:23) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"networks", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:42:24' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.039000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/networks', `updated_at` = '2010-04-17 03:42:24' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.033000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.003000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/networks
+Rendered shared/_login_sl (0.00900)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.83500 (1 reqs/sec) | Rendering: 0.03200 (3%) | DB: 0.11000 (13%) | 200 OK [http://localhost/settings/networks]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00100)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:43:26) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:43:27' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.048000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/setting', `updated_at` = '2010-04-17 03:43:27' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.034000)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.008000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.84200 (1 reqs/sec) | Rendering: 0.03500 (4%) | DB: 0.09500 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#setting (for 127.0.0.1 at 2010-04-17 10:43:52) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"setting", "controller"=>"settings"}
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:43:52' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.042000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.003000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/setting
+Rendered shared/_sl_submenu_setting (0.00000)
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00000)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.74000 (1 reqs/sec) | Rendering: 0.03800 (5%) | DB: 0.08500 (11%) | 200 OK [http://localhost/settings/setting]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#networks (for 127.0.0.1 at 2010-04-17 10:44:19) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"networks", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:44:20' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/networks', `updated_at` = '2010-04-17 03:44:20' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.029000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.003000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/networks
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00800)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.93100 (1 reqs/sec) | Rendering: 0.03000 (3%) | DB: 0.09700 (10%) | 200 OK [http://localhost/settings/networks]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#notifications (for 127.0.0.1 at 2010-04-17 10:45:11) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"notifications", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:45:12' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.037000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/notifications', `updated_at` = '2010-04-17 03:45:12' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.006000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/notifications
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00900)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.94400 (1 reqs/sec) | Rendering: 0.12000 (12%) | DB: 0.07700 (8%) | 200 OK [http://localhost/settings/notifications]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#images (for 127.0.0.1 at 2010-04-17 10:45:15) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"format"=>"png", "action"=>"images", "id"=>"email", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:45:16' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.038000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/images/email.png', `updated_at` = '2010-04-17 03:45:16' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.029000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.005000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+
+
+ActionController::UnknownAction (No action responded to images):
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:579:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    E:/usr/src/ruby-space/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#images (for 127.0.0.1 at 2010-04-17 10:45:17) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"format"=>"png", "action"=>"images", "id"=>"mobile", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:45:17' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.035000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/images/mobile.png', `updated_at` = '2010-04-17 03:45:17' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.102000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.007000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+
+
+ActionController::UnknownAction (No action responded to images):
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:579:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    E:/usr/src/ruby-space/ruby/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
+    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process_without_query_review'
+    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:76:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/../lib/mongrel/rails.rb:74:in `process'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:159:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:158:in `process_client'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:285:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `initialize'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `new'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel.rb:268:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:282:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `each'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/configurator.rb:281:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:128:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/lib/mongrel/command.rb:212:in `run'
+    E:/usr/src/ruby-space/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.5-x86-mswin32-60/bin/mongrel_rails:281
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:503:in `load'
+    /vendor/rails/railties/lib/commands/servers/mongrel.rb:64
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    E:/usr/src/ruby-space/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:355:in `new_constants_in'
+    /vendor/rails/activesupport/lib/active_support/dependencies.rb:510:in `require'
+    /vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+Rendering E:/usr/src/ruby-space/rails_apps/afterclassroom/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)
+
+
+Processing SettingsController#language (for 127.0.0.1 at 2010-04-17 10:45:20) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"language", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:45:20' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.037000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/language', `updated_at` = '2010-04-17 03:45:20' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.040000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.003000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/language
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00800)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.84900 (1 reqs/sec) | Rendering: 0.03200 (3%) | DB: 0.30900 (36%) | 200 OK [http://localhost/settings/language]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#payments (for 127.0.0.1 at 2010-04-17 10:45:26) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"payments", "controller"=>"settings"}
+  [4;35;1mSQL (0.001000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoRZ2VvX2xvY2F0aW9uMDoOcmV0dXJuX3RvMDoQeW91cl9zY2hvb2xp\nAt4BOgx1c2VyX2lkaQoiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZs\nYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=\n', `updated_at` = '2010-04-17 03:45:27' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.036000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/payments', `updated_at` = '2010-04-17 03:45:27' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.034000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.003000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/payments
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00900)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 0.87700 (1 reqs/sec) | Rendering: 0.03400 (3%) | DB: 0.07800 (8%) | 200 OK [http://localhost/settings/payments]
+Rendered _box_includes (0.00100)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00200)
+
+
+Processing SettingsController#ads (for 127.0.0.1 at 2010-04-17 10:45:34) [GET]
+  Session ID: cecd646636f992bc3071af33d94d919b
+  Parameters: {"action"=>"ads", "controller"=>"settings"}
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001000)[0m   [0;1mUPDATE `sessions` SET `data` = 'BAh7CjoOcmV0dXJuX3RvMDoRZ2VvX2xvY2F0aW9uMDoQeW91cl9zY2hvb2xp\nAt4BIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hI\nYXNoewAGOgpAdXNlZHsAOgx1c2VyX2lkaQo=\n', `updated_at` = '2010-04-17 03:45:35' WHERE `id` = 38[0m
+  [4;35;1mSQL (0.035000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000000)[0m   [0mUPDATE `sessions` SET `last_url_visited` = 'http://localhost:3000/settings/ads', `updated_at` = '2010-04-17 03:45:35' WHERE `id` = 38[0m
+  [4;36;1mSQL (0.192000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.012000)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+Rendering template within layouts/student_lounge
+Rendering settings/ads
+Rendered settings/_setting_menu (0.00100)
+Rendered shared/_login_sl (0.00900)
+Rendered shared/_menu_main_sl (0.00000)
+Rendered shared/_footer (0.00000)
+Completed in 1.22500 (0 reqs/sec) | Rendering: 0.04000 (3%) | DB: 0.24200 (19%) | 200 OK [http://localhost/settings/ads]
+Rendered _box_includes (0.00000)
+Rendered _box_header (0.00000)
+Rendered _box_disabled (0.00000)
+Rendered _box (0.00300)

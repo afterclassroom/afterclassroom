@@ -1,0 +1,19 @@
+<input  type="hidden" id="straction" value="<%= controller.action_name %>" name="<%= controller.action_name %>" />
+
+<li><%= link_to "<span>Setting</span>", :controller => "settings", :action => "setting"%></li>
+<li><%= link_to "<span>Networks</span>", :controller => "settings", :action => "networks"%></li>
+<li><%= link_to "<span>Notifications</span>", :controller => "settings", :action => "notifications"%></li>
+<li><%= link_to "<span>Language</span>", :controller => "settings", :action => "language"%></li>
+<li><%= link_to "<span>Payments</span>", :controller => "settings", :action => "payments"%></li>
+<li><%= link_to "<span>AfterClassroom Ads</span>", :controller => "settings", :action => "ads"%></li>
+<script language="javascript">
+
+  $('document').ready(function(){
+    var straction = $('#straction').attr('name');
+    var char1=''+straction[0];
+    char1=char1.toUpperCase();
+    straction=char1+straction.substring(1, straction.length);
+
+    $('li:contains('+straction+')').addClass("settselect");
+  });
+</script>

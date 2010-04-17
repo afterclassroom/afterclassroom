@@ -1,75 +1,70 @@
 <% content_for :menu_top_student_lounge do -%>
   <%= render :partial => 'shared/sl_submenu_setting' %>
 <% end -%>
-  
+
 <div class="settCont">
   <div class="settCont1">
     <div class="settMenu">
       <ul>
-        <li class="settselect"><a href="#"><span>Setting</span></a></li>
-        <li><%= link_to "<span>Networks</span>", :controller => "settings", :action => "networks"%></li>
-        <li><%= link_to "<span>Notifications</span>", :controller => "settings", :action => "notifications"%></li>
-        <li><%= link_to "<span>Language</span>", :controller => "settings", :action => "language"%></li>
-        <li><%= link_to "<span>Payments</span>", :controller => "settings", :action => "payments"%></li>
-        <li><%= link_to "<span>AfterClassroom Ads</span>", :controller => "settings", :action => "ads"%></li>
+        <%= render :partial => "setting_menu" %>
       </ul>
     </div>
 
     <%= display_flash_messages %>
     <% if logged_in? %>
 
-        <div class="settItem">
-          <div class="settItemT">
-            <div class="settItemTL">Name</div>
+      <div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Name</div>
 
-            <div class="settItemTR">
-              <%=  link_to("<span>change</span>", "#{changename_settings_path}?height=100&width=280&typeOfChange=name", :class => "thickbox", :title => "Change Name") %>
-            </div>
-          </div>
-          <div class="settItemB">
-            <div class="settItemBL">Your real name. </div>
-            <div class="settItemBR"><%= current_user.full_name %></div>
+          <div class="settItemTR">
+            <%=  link_to("<span>change</span>", "#{changename_settings_path}?height=100&width=280&typeOfChange=name", :class => "thickbox", :title => "Change Name") %>
           </div>
         </div>
-        <div class="settItem">
-          <div class="settItemT">
-            <div class="settItemTL">Email</div>
-            <div class="settItemTR">
-              <%=  link_to("<span>change</span>", "#{changeEmail_settings_path}?height=100&width=280&typeOfChange=email", :class => "thickbox", :title => "Change email address") %>
-            </div>
-          </div>
-          <div class="settItemB">
-            <div class="settItemBL">Set your email contact information.</div>
-            <div class="settItemBR"><%= current_user.email %></div>
-          </div>
-        </div>
-        <div class="settItem">
-          <div class="settItemT">
-            <div class="settItemTL">Password</div>
-            <div class="settItemTR">
-              <%=  link_to("<span>change</span>", "#{changepsw_settings_path}?height=300&width=400&typeOfChange=psw", :class => "thickbox", :title => "Report Abuse") %>
-            </div>
-          </div>
-          <div class="settItemB">
-            <div class="settItemBL">What you use to log in.</div>
-            <div class="settItemBR">******</div>
-          </div>
-        </div>
-        <div class="settItem">
-          <div class="settItemT">
-            <div class="settItemTL">Linked Accounts</div>
-            <div class="settItemTR"><a href="#">change</a></div>
-          </div>
-          <div class="settItemB">
-            <div class="settItemBL">Use other accounts to log in</div>
-            <div class="settItemBR"></div>
-          </div>
+        <div class="settItemB">
+          <div class="settItemBL">Your real name. </div>
+          <div class="settItemBR"><%= current_user.full_name %></div>
         </div>
       </div>
-    <% end %>
+      <div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Email</div>
+          <div class="settItemTR">
+            <%=  link_to("<span>change</span>", "#{changeEmail_settings_path}?height=100&width=280&typeOfChange=email", :class => "thickbox", :title => "Change email address") %>
+          </div>
+        </div>
+        <div class="settItemB">
+          <div class="settItemBL">Set your email contact information.</div>
+          <div class="settItemBR"><%= current_user.email %></div>
+        </div>
+      </div>
+      <div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Password</div>
+          <div class="settItemTR">
+            <%=  link_to("<span>change</span>", "#{changepsw_settings_path}?height=300&width=400&typeOfChange=psw", :class => "thickbox", :title => "Report Abuse") %>
+          </div>
+        </div>
+        <div class="settItemB">
+          <div class="settItemBL">What you use to log in.</div>
+          <div class="settItemBR">******</div>
+        </div>
+      </div>
+      <div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Linked Accounts</div>
+          <div class="settItemTR"><a href="#">change</a></div>
+        </div>
+        <div class="settItemB">
+          <div class="settItemBL">Use other accounts to log in</div>
+          <div class="settItemBR"></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
 
 
-  </div>
+</div>
 
 </div>

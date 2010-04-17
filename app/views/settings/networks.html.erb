@@ -3,12 +3,7 @@
 
     <div class="settMenu">
       <ul>
-        <li><%= link_to "<span>Setting</span>" , :controller => "settings", :action => "setting"%></li>
-        <li class="settselect"><a href="#"><span>Networks</span></a></li>
-        <li><%= link_to "<span>Notifications</span>", :controller => "settings", :action => "notifications"%></li>
-        <li><%= link_to "<span>Language</span>", :controller => "settings", :action => "language"%></li>
-        <li><%= link_to "<span>Payments</span>", :controller => "settings", :action => "payments"%></li>
-        <li><%= link_to "<span>AfterClassroom Ads</span>", :controller => "settings", :action => "ads"%></li>
+        <%= render :partial => "setting_menu" %>
       </ul>
     </div>
     <div class="settC">
