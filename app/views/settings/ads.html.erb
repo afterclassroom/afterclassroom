@@ -1,24 +1,13 @@
-<script language="javascript">
-  $(document).ready(function(){
-    var liarr = $("div[class='settMenu']").find('a');
-    for (var i=0;i<liarr.length;i++){
-      var content = $(liarr[i]).text() ;
-
-      $(liarr[i]).wrapInner('<span>'+content+'</span>');
-
-    }
-  });
-</script>
 <div class="settCont">
   <div class="settCont1">
 
     <div class="settMenu">
       <ul>
-        <li><%= link_to "Setting" , :controller => "settings", :action => "setting"%></li>
-        <li><%= link_to "Networks" , :controller => "settings", :action => "networks"%></li>
-        <li><%= link_to "Notifications" , :controller => "settings", :action => "notifications"%></li>
-        <li><%= link_to "Language" , :controller => "settings", :action => "language"%></li>
-        <li><%= link_to "Payments" , :controller => "settings", :action => "payments"%></li>
+        <li><%= link_to "<span>Setting</span>", :controller => "settings", :action => "setting"%></li>
+        <li><%= link_to "<span>Networks</span>", :controller => "settings", :action => "networks"%></li>
+        <li><%= link_to "<span>Notifications</span>" , :controller => "settings", :action => "notifications"%></li>
+        <li><%= link_to "<span>Language</span>" , :controller => "settings", :action => "language"%></li>
+        <li><%= link_to "<span>Payments</span>" , :controller => "settings", :action => "payments"%></li>
         <li class="settselect"><a href="#"><span>AfterClassroom Ads</span></a></li>
       </ul>
     </div>
