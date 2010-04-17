@@ -1,0 +1,187 @@
+New Relic Agent not running.
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.093000)[0m   [0;1mCREATE TABLE `notifications` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `sms_allow` tinyint(1), `email_allow` tinyint(1), `name` varchar(255), `label` varchar(255), `notify_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mNotification Columns (0.000000)[0m   [0mSHOW FIELDS FROM `notifications`[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.031000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Sends me a message', '2010-04-17 02:01:31', 1, 1, 'sends_me_a_message', 'AfterClassroom', '2010-04-17 02:01:31')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+New Relic Agent not running.
+  [4;36;1mSQL (0.000000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.078000)[0m   [0;1mCREATE TABLE `notifications` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `sms_allow` tinyint(1), `email_allow` tinyint(1), `name` varchar(255), `label` varchar(255), `notify_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mNotification Columns (0.016000)[0m   [0mSHOW FIELDS FROM `notifications`[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Sends me a message', '2010-04-17 02:36:30', 1, 1, 'sends_me_a_message', 'AfterClassroom', '2010-04-17 02:36:30')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Adds me as a friend', '2010-04-17 02:36:30', 1, 1, 'adds_me_as_a_friend', 'AfterClassroom', '2010-04-17 02:36:30')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Confirms a friendship request', '2010-04-17 02:36:30', 1, 0, 'confirms_a_friendship_request', 'AfterClassroom', '2010-04-17 02:36:30')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Posts on My Lounge', '2010-04-17 02:36:30', 1, 1, 'posts_on_my_lounge', 'AfterClassroom', '2010-04-17 02:36:30')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Pokes me', '2010-04-17 02:36:30', 1, 1, 'pokes_me', 'AfterClassroom', '2010-04-17 02:36:30')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Has a birthday coming up (weekly email)', '2010-04-17 02:36:30', 1, 0, 'has_a_birthday_coming_up_(weekly_email)', 'AfterClassroom', '2010-04-17 02:36:30')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Asks me to confirm friend detail', '2010-04-17 02:36:30', 1, 0, 'asks_me_to_confirm_friend_detail', 'AfterClassroom', '2010-04-17 02:36:30')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Requests to list me as family', '2010-04-17 02:36:31', 1, 0, 'requests_to_list_me_as_family', 'AfterClassroom', '2010-04-17 02:36:31')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Suggests a friend to me', '2010-04-17 02:36:31', 1, 0, 'suggests_a_friend_to_me', 'AfterClassroom', '2010-04-17 02:36:31')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Adds a friend I suggested', '2010-04-17 02:36:31', 1, 0, 'adds_a_friend_I_suggested', 'AfterClassroom', '2010-04-17 02:36:31')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('I invited joins AfterClassroom', '2010-04-17 02:36:31', 1, 0, 'I_invited_joins_AfterClassroom', 'AfterClassroom', '2010-04-17 02:36:31')[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Tags me in a post', '2010-04-17 02:36:31', 1, 1, 'tags_me_in_a_post', 'AfterClassroom', '2010-04-17 02:36:31')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on a post I was tagged in', '2010-04-17 02:36:31', 1, 1, 'comments_on_a_post_I_was_tagged_in', 'AfterClassroom', '2010-04-17 02:36:31')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Suggests a profile picture for me', '2010-04-17 02:36:31', 1, 1, 'suggests_a_profile_picture_for_me', 'AfterClassroom', '2010-04-17 02:36:31')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Tags me in a photo', '2010-04-17 02:36:31', 1, 1, 'tags_me_in_a_photo', 'Photos', '2010-04-17 02:36:31')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Tags one of my photos', '2010-04-17 02:36:31', 1, 0, 'tags_one_of_my_photos', 'Photos', '2010-04-17 02:36:31')[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on my photos', '2010-04-17 02:36:31', 1, 1, 'comments_on_my_photos', 'Photos', '2010-04-17 02:36:31')[0m
+  [4;36;1mSQL (0.062000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on a photo of me', '2010-04-17 02:36:31', 1, 0, 'comments_on_a_photo_of_me', 'Photos', '2010-04-17 02:36:31')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments after me in a photo', '2010-04-17 02:36:31', 1, 0, 'comments_after_me_in_a_photo', 'Photos', '2010-04-17 02:36:31')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('When I upload a photo via email', '2010-04-17 02:36:31', 1, 0, 'when_I_upload_a_photo_via_email', 'Photos', '2010-04-17 02:36:31')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.015000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on my photo albums', '2010-04-17 02:36:31', 1, 0, 'comments_on_my_photo_albums', 'Photos', '2010-04-17 02:36:31')[0m
+  [4;36;1mSQL (0.063000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.015000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments after me in a photo album', '2010-04-17 02:36:31', 1, 0, 'comments_after_me_in_a_photo_album', 'Photos', '2010-04-17 02:36:31')[0m
+  [4;35;1mSQL (0.078000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Invites me to join a group', '2010-04-17 02:36:31', 1, 0, 'invites_me_to_join_a_group', 'Groups', '2010-04-17 02:36:31')[0m
+  [4;36;1mSQL (0.156000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Promotes me to be an officer', '2010-04-17 02:36:31', 1, 0, 'promotes_me_to_be_an_officer', 'Groups', '2010-04-17 02:36:31')[0m
+  [4;35;1mSQL (0.062000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Makes me a group admin', '2010-04-17 02:36:32', 1, 0, 'makes_me_a_group_admin', 'Groups', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Requests to join a group of which I am an admin', '2010-04-17 02:36:32', 1, 0, 'requests_to_join_a_group_of_which_I_am_an_admin', 'Groups', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.032000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Replies to my discussion board post', '2010-04-17 02:36:32', 1, 0, 'replies_to_my_discussion_board_post', 'Groups', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.062000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Changes the name of a group to which I belong', '2010-04-17 02:36:32', 1, 0, 'changes_the_name_of_a_group_to_which_I_belong', 'Groups', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES(' Makes me a page admin', '2010-04-17 02:36:32', 1, 0, 'makes_me_a_page_admin', 'Pages', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.016000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Suggests a page to me', '2010-04-17 02:36:32', 1, 0, 'suggests_a_page_to_me', 'Pages', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Invites me to an event', '2010-04-17 02:36:32', 1, 0, 'invites_me_to_an_event', 'Events', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Changes the date or time of an event', '2010-04-17 02:36:32', 1, 0, 'changes_the_date_or_time_of_an_event', 'Events', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.046000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Cancels an event', '2010-04-17 02:36:32', 1, 0, 'cancels_an_event', 'Events', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Makes me an event admin', '2010-04-17 02:36:32', 1, 0, 'makes_me_an_event_admin', 'Events', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Requests to join an event of which I am an admin', '2010-04-17 02:36:32', 1, 0, 'requests_to_join_an_event_of_which_I_am_an_admin', 'Events', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Posts on the wall of an event I admin', '2010-04-17 02:36:32', 1, 0, 'posts_on_the_wall_of_an_event_I_admin', 'Events', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Changes the name of an event to which I was invited', '2010-04-17 02:36:32', 1, 0, 'changes_the_name_of_an_event_to which_I_was_invited', 'Events', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.046000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Tags me in share a story', '2010-04-17 02:36:32', 1, 0, 'tags_me_in_share_a_story', 'Share a Story', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on my share a story', '2010-04-17 02:36:32', 1, 1, 'comments_on_my_share_a_story', 'Share a Story', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments after me in share a story', '2010-04-17 02:36:32', 1, 0, 'comments_after_me_in_share_a_story', 'Share a Story', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on my links', '2010-04-17 02:36:32', 1, 0, 'comments_on_my_links', 'Links', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments after me in a link', '2010-04-17 02:36:32', 1, 1, 'comments_after_me_in_a_link', 'Links', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.046000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Tags me in a music', '2010-04-17 02:36:32', 1, 0, 'tags_me_in_a_music', 'Music', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Tags one of my musics', '2010-04-17 02:36:32', 1, 0, 'tags_one_of_my_musics', 'Music', '2010-04-17 02:36:32')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on my musics', '2010-04-17 02:36:32', 1, 0, 'comments_on_my_musics', 'Music', '2010-04-17 02:36:32')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on a music of me', '2010-04-17 02:36:33', 1, 0, 'comments_on_a_music_of_me', 'Music', '2010-04-17 02:36:33')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments after me in a music', '2010-04-17 02:36:33', 1, 0, 'comments_after_me_in_a_music', 'Music', '2010-04-17 02:36:33')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Tags me in a video', '2010-04-17 02:36:33', 1, 0, 'tags_me_in_a_video', 'Video', '2010-04-17 02:36:33')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Tags one of my videos', '2010-04-17 02:36:33', 1, 0, 'tags_one_of_my_videos', 'Video', '2010-04-17 02:36:33')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on my videos', '2010-04-17 02:36:33', 1, 0, 'comments_on_my_videos', 'Video', '2010-04-17 02:36:33')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments on a video of me', '2010-04-17 02:36:33', 1, 0, 'comments_on_a_video_of_me', 'Video', '2010-04-17 02:36:33')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Comments after me in a video', '2010-04-17 02:36:33', 1, 0, 'comments_after_me_in_a_video', 'Video', '2010-04-17 02:36:33')[0m
+  [4;35;1mSQL (0.031000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Sends me a gift', '2010-04-17 02:36:33', 1, 0, 'sends_me_a_gift', 'Gifts', '2010-04-17 02:36:33')[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Replies to my Help Center questions', '2010-04-17 02:36:33', 1, 0, 'replies_to my_help_center_questions', 'Help Center', '2010-04-17 02:36:33')[0m
+  [4;35;1mSQL (0.047000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Marks my answer as Best Answer', '2010-04-17 02:36:33', 1, 0, 'marks_my_answer_as_best_answer', 'Help Center', '2010-04-17 02:36:33')[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Updates about my Friends on AfterClassroom', '2010-04-17 02:36:33', 1, 0, 'updates_about_my_friends_on_AfterClassroom', 'Other updates from AfterClassroom', '2010-04-17 02:36:33')[0m
+  [4;35;1mSQL (0.046000)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mNotification Create (0.000000)[0m   [0mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Updates about AfterClassroom product news', '2010-04-17 02:36:33', 1, 0, 'updates_about_AfterClassroom_product_news', 'Other updates from AfterClassroom', '2010-04-17 02:36:33')[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000000)[0m   [0mBEGIN[0m
+  [4;36;1mNotification Create (0.000000)[0m   [0;1mINSERT INTO `notifications` (`name`, `updated_at`, `sms_allow`, `email_allow`, `label`, `notify_type`, `created_at`) VALUES('Invitations to participate in research about AfterClassroom', '2010-04-17 02:36:33', 1, 0, 'invitations_to_participate_in_research_about_AfterClassroom', 'Other updates from AfterClassroom', '2010-04-17 02:36:33')[0m
+  [4;35;1mSQL (0.046000)[0m   [0mCOMMIT[0m
