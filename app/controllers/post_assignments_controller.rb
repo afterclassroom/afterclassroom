@@ -108,9 +108,9 @@ class PostAssignmentsController < ApplicationController
   # PUT /post_assignments/1
   # PUT /post_assignments/1.xml
   def update
-    @post_assignment = PostAssignment.find(params[:id])
-
-    if (@post_assignment.update_attributes(params[:post_assignment]) && @post_assignment.post.update_attributes(params[:post]))
+    @post = Post.find(params[:id])
+    @post_assignment = @post.post_assignment
+    if (@post_assignment.update_attributes(params[:post_assignment]) && @post.update_attributes(params[:post]))
       redirect_to my_post_user_url(current_user)
     end
   end

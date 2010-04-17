@@ -1,8 +1,7 @@
 #flash_notice, #flash_error, #flash_warning, #flash_info{
     border:1px solid #FEE203;
     overflow:hidden;
-    margin-right:10px;
-    margin-bottom:10px;
+    margin:10px;
 }
 
 #flash_error {

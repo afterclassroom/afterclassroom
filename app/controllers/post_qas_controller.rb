@@ -2,7 +2,7 @@
 class PostQasController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag, :asked, :interesting, :top_answer]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :asked, :interesting, :top_answer]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :asked, :interesting, :top_answer]
@@ -137,15 +137,9 @@ class PostQasController < ApplicationController
   # GET /post_qas/new
   # GET /post_qas/new.xml
   def new
-    @post_qa = PostBook.new
+    @post_qa = PostQa.new
     post = Post.new
     @post_qa.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Books"
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_qa }
@@ -154,36 +148,34 @@ class PostQasController < ApplicationController
 
   # GET /post_qas/1/edit
   def edit
-    @post_qa = PostBook.find(params[:id])
-    @post = @post_qa.post
-    @post_categories = PostCategory.find(:all)
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
-    @school = @post_qa.post.school
-    @department = @post_qa.post.department
   end
 
   # POST /post_qas
   # POST /post_qas.xml
   def create
-    @post_qa = PostBook.new(params[:post_qa])
+    @post_qa = PostQa.new(params[:post_qa])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_qa.post = post
     if @post_qa.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_qas_path + "?type=asked"
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
   # PUT /post_qas/1
   # PUT /post_qas/1.xml
   def update
-    @post_qa = PostBook.find(params[:id])
-
-    if (@post_qa.update_attributes(params[:post_qa]) && @post_qa.post.update_attributes(params[:post]))
+    @post = Post.find(params[:id])
+    @post_qa = @post.post_qa
+    if (@post_qa.update_attributes(params[:post_qa]) && @post.update_attributes(params[:post]))
       redirect_to my_post_user_url(current_user)
     end
   end
@@ -226,7 +218,8 @@ class PostQasController < ApplicationController
   def get_variables
     @tags = PostQa.tag_counts
     @new_post_path = new_post_qa_path
-    @type = PostCategory.find_by_class_name("PostQa").id
+    @class_name = "PostQa"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
@@ -252,7 +245,9 @@ class PostQasController < ApplicationController
   end
 
   def require_current_user
-    @user ||= PostQa.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_qa = post.post_qa
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

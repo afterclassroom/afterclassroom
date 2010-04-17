@@ -1,0 +1,58 @@
+<% fields_for @post_qa.post do |post| %>
+  <%= display_flash_messages %>
+  <div class="postReq">*(asterisk) is required.</div>
+  <div class="postItemDep">
+    <div class="postTit">Category</div>
+    <div class="postDep"><%= f.text_field :post_qa_category_id %></div>
+  </div>
+  <div class="postItem">
+    <div class="postTit">Your question*</div>
+    <div class="postInp"><%= post.text_field :title, :class => 'required', :style => "width:360px;" %></div>
+  </div>
+  <div class="postItem">
+    <div class="postTit">Content*</div>
+    <div class="postInput">
+      <div class="postDesInf" id="post_description_counter"><span>0</span> characters (900 max)</div>
+      <div class="postInp"><%= post.text_area :description, :class => 'required' %></div>
+    </div>
+  </div>
+  <div class="postItem">
+    <div class="postTit">Email</div>
+    <div class="postRad">
+      <div><%= radio_button "post", "use_this_email", true, :checked => @post_qa.post.use_this_email %> Use my login email instead</div>
+      <div><%= radio_button "post", "use_this_email", false, :checked => !@post_qa.post.use_this_email %> Reply to [post category] - xxxxxx@afterclassroom.com (AC anonymizes your ..)</div>
+    </div>
+  </div>
+  <div class="postItem">
+    <div class="postTit">Tag</div>
+    <div class="postInp"><%= text_field_tag "tag", "", :style => "width:280px" %></div>
+  </div>
+<% end %>
+
+<ul id="qa_cat_menu" class="mcdropdown_menu">
+  <li rel_qa_cat="">
+    Select category
+  </li>
+  <% PostQaCategory.find(:all).each do |p| %>
+    <li rel_qa_cat="<%= p.id %>">
+      <%= p.name %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  $("#post_qa_post_qa_category_id").mcDropdown("#qa_cat_menu", {
+    width: 350,
+    valueAttr: "rel_qa_cat"
+  });
+  $("#post_description").counter({
+    count: 'up',
+    goal: 900
+  });
+  function submit(){
+    var result = $("#form_post").validate();
+    if (result) {
+      $("#form_post").submit();
+    }
+  }
+</script>
