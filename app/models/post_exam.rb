@@ -2,6 +2,7 @@
 class PostExam < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
+  validates_presence_of :due_date
 
   # Relations
   belongs_to :post
@@ -27,7 +28,7 @@ class PostExam < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_ts = PostExam.ez_find(:all, :include => [:post]) do |post_exam, post|
+    post_ts = PostExam.ez_find(:all, :include => [:post], :order => "created_at DESC") do |post_exam, post|
       post_exam.department_id == department if department
       post_exam.school_year == year if year
       post.school_id == with_school if with_school

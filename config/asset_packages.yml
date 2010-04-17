@@ -9,6 +9,7 @@ javascripts:
   - jquery-mcdropdown
   - thickbox
   - jquery-validate
+  - jquery-counter
   - vtip-min
 - student_lounge:
   - application

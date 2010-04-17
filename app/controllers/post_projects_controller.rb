@@ -2,7 +2,7 @@
 class PostProjectsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :due_date, :interesting, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :interesting, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting, :tag]
@@ -83,12 +83,6 @@ class PostProjectsController < ApplicationController
     @post_project = PostProject.new
     post = Post.new
     @post_project.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Books"
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_project }
@@ -97,15 +91,6 @@ class PostProjectsController < ApplicationController
 
   # GET /post_projects/1/edit
   def edit
-    @post_project = PostProject.find(params[:id])
-    @post = @post_project.post
-    @post_categories = PostCategory.find(:all)
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
-    @school = @post_project.post.school
-    @department = @post_project.post.department
   end
 
   # POST /post_projects
@@ -114,10 +99,17 @@ class PostProjectsController < ApplicationController
     @post_project = PostProject.new(params[:post_project])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_project.post = post
     if @post_project.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_projects_path
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
@@ -145,13 +137,16 @@ class PostProjectsController < ApplicationController
   def get_variables
     @tags = PostProject.tag_counts
     @new_post_path = new_post_project_path
-    @type = PostCategory.find_by_class_name("PostProject").id
+    @class_name = "PostProject"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= PostProject.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_exam = post.post_project
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

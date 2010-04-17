@@ -154,7 +154,6 @@
     width:80px;
 }
 .assDrop{
-    border-bottom:1px #dbdbdb solid;
     padding-bottom:5px;
 }
 .assDrop select{
@@ -702,25 +701,29 @@ span.btmDown a:hover{
     padding-left:18px;
 }
 #divinputfile{
-background:url(/images/upload_file.png) no-repeat 100% 1px;
-height:28px;
-width:282px;
-margin-top:4px;
+    background:url(/images/upload_file.png) no-repeat 100% 1px;
+    height:28px;
+    width:282px;
+    padding-top:2px;
 }
-.filepc{
-opacity: 0;
+#divinputfile .filepc{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -khtml-opacity: 0.0;
+    -moz-opacity: 0.0;
+    opacity: 0.0;
 }
 #fakeinputfile{
-margin-top:-20px;
+    margin-top:-20px;
 }
 #fakeinputfile #fakefilepc{
-width:208px;
-height:22px;
-border:1px solid #CECECE;
-color:#969696;
-height:18px;
-padding-top:4px;
-text-indent:2px;
+    width:208px;
+    height:22px;
+    border:1px solid #CECECE;
+    color:#969696;
+    height:15px;
+    padding-top:4px;
+    text-indent:2px;
 }
 .submit a{
     background:url('/images/btm48.png') no-repeat;
@@ -1088,35 +1091,6 @@ span.btmAbuse a:hover{
     padding:5px 10px 5px 10px;
     color:#6f6f63;
 }
-.postErr{
-    background:url('/images/postbgerr.png') no-repeat 8px 7px;
-    width:632px;
-    background-color:#fffdee;
-    border:1px #fee203 solid;
-    overflow:hidden;
-    _height:100%;
-}
-.postErrNote{
-    float:left;
-    width:560px;
-    padding:8px 0px 8px 30px;
-    font-style:italic;
-}
-.postErrClo{
-    float:right;
-    margin:1px;
-}
-.postErrClo a{
-    background:url('/images/postClose.jpg') no-repeat;
-    height:16px;
-    width:16px;
-    display:block;
-    text-decoration:none;
-}
-.postErrClo a:hover{
-    text-decoration:none;
-    background:url('/images/postCloseH.png') no-repeat;
-}
 .postItem{
     padding:3px 0px 3px 10px;
     overflow:hidden;
@@ -1135,6 +1109,9 @@ span.btmAbuse a:hover{
     height:15px;
     padding-top:3px;
 }
+.postItem .postInp span{
+    margin-left:5px;
+}
 .postItem select{
     width:253px;
 }
@@ -1150,6 +1127,18 @@ span.btmAbuse a:hover{
     width:110px;
     font-weight:bold;
     line-height:20px;
+}
+.postItemDep{
+    padding:3px 0px 3px 10px;
+    overflow:hidden;
+    _height:100%;
+}
+.postItemDep .postTit{
+    float:left;
+}
+.postDep{
+    float:left;
+    width:365px;
 }
 div.postInf{
     color:#be2626;
@@ -1192,46 +1181,21 @@ div.postInf{
     padding-left:0px;
 }
 /* PopUp */
-.popup{
-    background:url('/images/popupBot.png') no-repeat left bottom;
-    overflow:hidden;
-    width:610px;
-
-    _height:100%;
-}
-.popup1{
-    background:url('/images/popupTop.png') no-repeat;
-
-    padding-bottom:5px;
-}
 .popup2{
     overflow:hidden;
     width:610px;
     padding-bottom:5px;
     _height:100%;
 }
-.poppClose{
-    height:20px;
-}
-.poppClose a{
-    margin:2px;
-    float:right;
-    background:url('/images/popupClose.png') no-repeat;
-    width:25px;
-    height:20px;
-}
-.poppClose a:hover{
-    background:url('/images/popupCloseH.png') no-repeat;
-}
 .popupItem{
     padding-left:10px;
     clear:both;
     overflow:hidden;
-    height:42px;
-    *height:38px;
+    min-height:42px;
 }
-.popupL, .popupL div,.popupR, .popupR div{
+.popupL, .popupR{
     float:left;
+    margin-bottom:10px;
 }
 .popupR{
     padding-left:20px;
@@ -1245,6 +1209,7 @@ div.postInf{
     color:#fff;
     font-size:15px;
     font-weight:bold;
+    float: left;
 }
 .popupCoun{
     line-height:23px;
@@ -1253,12 +1218,12 @@ div.postInf{
     font-size:11px;
     font-weight:bold;
     width:50px;
+    float: left;
 }
 .popupSelect{
     padding-top:2px;
-}
-.popupSelect select{
-    width:190px;
+    width: 187px;
+    float: left;
 }
 .filter{
     color:#646464;
@@ -1272,7 +1237,7 @@ div.postInf{
     padding-top:10px;
 }
 .popupAl a{
-    margin:0px 4px;
+    margin:0px 3px;
     font-size:11px;
     float:left;
     width:16px;

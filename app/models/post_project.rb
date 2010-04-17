@@ -2,6 +2,7 @@
 class PostProject < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
+  validates_presence_of :due_date
 
   # Relations
   belongs_to :post
@@ -28,7 +29,7 @@ class PostProject < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_ts = PostProject.ez_find(:all, :include => [:post]) do |post_project, post|
+    post_ts = PostProject.ez_find(:all, :include => [:post], :order => "created_at DESC") do |post_project, post|
       post_project.department_id == department if department
       post_project.school_year == year if year
       post.school_id == with_school if with_school

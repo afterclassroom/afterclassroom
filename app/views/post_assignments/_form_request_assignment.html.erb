@@ -17,7 +17,7 @@
             </div>
           </div>
           <div id="divinputfile">
-            <%= p.file_field :attach, :onchange => "$('#fakefilepc').value = this.value;", :size => "39", :class => "filepc" %>
+            <%= p.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc" %>
             <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
           </div>
           <div class="reqLa"><label>Tags</label></div>

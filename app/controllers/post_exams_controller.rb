@@ -2,7 +2,7 @@
 class PostExamsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :due_date, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :due_date, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date, :tag]
@@ -74,11 +74,6 @@ class PostExamsController < ApplicationController
     @post_exam = PostExam.new
     post = Post.new
     @post_exam.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "exams"
-    @prepare_post = {'Yes' => true, 'No' => false}
-    @exam_types = examType.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_exam }
@@ -87,18 +82,6 @@ class PostExamsController < ApplicationController
 
   # GET /post_exams/1/edit
   def edit
-    @post_exam = PostExam.find(params[:id])
-    @post = @post_exam.post
-    @post_categories = PostCategory.find(:all)
-    @prepare_post = {'No' => false, 'Yes' => true}
-    @exam_types = examType.find(:all)
-    @countries = Country.has_cities
-    @school = @post_exam.post.school
-    @department = @post_exam.post.department
-    @post_exam_type = ""
-    for exam_type in @post_exam.exam_types
-      @post_exam_type += exam_type.name + ", "
-    end
   end
 
   # POST /post_exams
@@ -107,11 +90,17 @@ class PostExamsController < ApplicationController
     @post_exam = PostExam.new(params[:post_exam])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_exam.post = post
-
     if @post_exam.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_exams_path
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
@@ -144,13 +133,16 @@ class PostExamsController < ApplicationController
   def get_variables
     @tags = PostExam.tag_counts
     @new_post_path = new_post_exam_path
-    @type = PostCategory.find_by_class_name("PostExam").id
+    @class_name = "PostExam"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= PostExam.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_exam = post.post_exam
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end
