@@ -231,8 +231,6 @@ def create_demo_post_tutors
   type_name = "PostTutor"
   post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-  per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
-  currency = ['USD', 'CAD']
 
   200.times do
     user = User.find(rand(User.count) + 1)
@@ -247,10 +245,6 @@ def create_demo_post_tutors
       t.school_year = schoolyear[rand(schoolyear.size)]
       t.address = Faker::Address.street_address
       t.phone = Faker::PhoneNumber.phone_number
-      t.per = per[rand(per.size)]
-      t.currency = currency[rand(currency.size)]
-      t.from = DateTime.now
-      t.to = DateTime.now+3
       t.tag_list = get_random_list_tags
     end
   end

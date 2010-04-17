@@ -2,7 +2,7 @@
 class PostTutorsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag, :effective, :dont_hire]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :effective, :dont_hire]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :effective, :dont_hire]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :effective, :dont_hire]
@@ -201,7 +201,7 @@ class PostTutorsController < ApplicationController
 
   def get_variables
     @tags = PostTutor.tag_counts
-    @new_post_path = new_post_qa_path
+    @new_post_path = new_post_tutor_path
     @type = PostCategory.find_by_class_name("PostTutor").id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]

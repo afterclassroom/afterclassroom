@@ -1,141 +1,37 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_posts', :locals => {:search_name => @search_name, :type_name => "Tutors", :new_post_path => "/post_tutors/new", :search_post_path => "/post_tutors"} %>
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Tutor", post_tutors_path, :class => "abLink-detail" %><%= link_to "New", "#", :class => "abLink-detail" %>
 <% end -%>
 
-<% content_for :select_your_school do -%>
-  <div id="target_select_school">
-    <span>&nbsp;</span>
-  </div>
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
 
-<% content_for :sidebar do -%>
-  <div id="post_guide_r">
-    <h3>About Posting</h3>
-    <p>
-      Upload would take any where from 1 to 5 minutes.
-      It depends on your internet connections.
-    </p>
-  </div>
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
 <% end -%>
+
 <!--Content-->
-<div id="posting-section"><!-- posting-section-->
-  <h3 class="post_header">Posting to the world</h3>
-  <% form_for(@post_tutor, :html => {:id => "form", :name => "form", :multipart => true }) do |f| %>
-    <% fields_for @post_tutor.post do |post| %>
-      <ul>
-        <li>
-          <%= render :partial => "posts/post_category", :locals => {:post_categories => @post_categories, :post_category_name => @post_category_name} %>
-        </li>
-        <li><label>Title*</label>
-          <div class="user_ri"><%= post.text_field :title, :class => "required", :style=>"width:450px" %>
-        </div></li>
-        <li><label>Description*</label>
-          <div class="user_ri">
-            <font color=#666666>(900 characters max.) <strong><span id="count_post_description" >900</span></strong> remaining</font>
-        <%= post.text_area :description, :rows => 10, :cols => 70, :class => "required", :onkeypress => "return LimitThis('post_description')", :onkeyup => "return CountThis('post_description', 'count_post_description')", :onmouseover => "return CountThis('post_description', 'count_post_description')", :wrap => "physical", :maxLength => "900"%></div></li>
-        
-        <li>
-          <ul>
-            <li>
-              <label>Tutoring rate</label>
-              <div class="user_ri"><%= f.text_field :tutoring_rate %></div>
-            </li>
-            <li>
-              <label>Per</label>
-              <div class="user_ri"><%= select_tag 'post_tutor[per]', options_for_select(@per, @post_tutor.per), {:id => 'post_tutor_per'} %></div>
-            </li>
-            <li>
-              <div class="user_ri"><%= select_tag 'post_tutor[currency]', options_for_select(@currency, @post_tutor.currency), {:id => 'post_tutor_currency'} %></div>
-            </li>
-          </ul>
-        </li>
-        <li><label>Availability</label>
-          <div>
-            <ul>
-              <li>
-                <label>From</label>
-                <div class="cal-input"><%= calendar_field 'post_tutor', 'from',
-                    { :class => 'date',
-                    :field_title => 'From',
-                    :button_image => 'calendar.gif',
-                    :button_title => 'Show calendar' },
-                    { :firstDay => 1,
-                    :step => 1,
-                    :timeFormat => "12",
-                    :showsTime => true}
-                %>
-                </div>
-              </li>
-              <li>
-                <label>To</label>
-                <div class="cal-input"><%= calendar_field 'post_tutor', 'to',
-                    { :class => 'date',
-                    :field_title => 'To',
-                    :button_image => 'calendar.gif',
-                    :button_title => 'Show calendar' },
-                    { :firstDay => 1,
-                    :step => 1,
-                    :timeFormat => "12",
-                    :showsTime => true}
-                %>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <%= select_your_school("post", "posts/select_school", {"target" => "bottomLeft", "tip" => "topLeft"}) %>
-        <li><label>Email*</label>
-        <div class="user_ri"><%= post.text_field :email, :class => "validate-email" %></div></li>
-        <li><label></label><%= radio_button "post", "use_this_email", true %> Use this email address.</li>
-        <li><label></label><%= radio_button "post", "use_this_email", false, :checked => true %> Reply to (post category) - xxx@afterclassroom.com.</li>
-        <li><label>Telephone</label>
-        <div class="user_ri"><%= post.text_field :telephone %></div></li>
+<div class="contDetL">
+  <div class="contDetLin post">
+    <div class="AsDTop">
+      <h1 class="titleH1">Posting to the world!</h1>
+    </div>
+    <div class="postCont">
+      <% form_for(@post_tutor, :html => {:multipart => true, :id => "form_post" }) do |f| %>
+        <%= render :partial => "form", :locals => {:f => f} %>
+        <div class="submit"><a href="javascript:;" onclick="submit();">Submit</a></div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-        <li><label>Add/Edit File:</label>
-        <div class="user_ri"><%= post.file_field :attach %></div></li>
-        <%= render :partial => "posts/choose_options", :locals => {:f => post } %>
-        <li>
-          <div class="post_cbt">
-            <!-- post  button -->
-            <a href="javascript:submit()" title="Post" class="link_bt">
-              <span class="ltred_l"></span>
-              <span class="ltred_c btf">Post Tutors</span>
-              <span class="ltred_r"></span>
-            </a>
-            <!-- end post button -->
-          </div>
-        </li>
-        <li>
-        <label><div class="user_ri">(* indicates required field)</div></label>
-        </li>
-      </ul>
-      <div id="elements_store"></div>
-    </div><!-- end posting-section-->
-  <% end %>
-<% end %>
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
 <!--Content-->
-<script type="text/javascript">
-  var valid = new Validation('form', {immediate : true, onSubmit:false});
-  function submit(){
-    var result = valid.validate();
-    if (result) {
-      Tips.hideAll();
-      $$('.prototip').each(function(element){
-        $('elements_store').insert(element, { position: content });
-      });
-      $('form').submit();
-    }
-  }
-</script>
-
-<script language = "Javascript">
-  function LimitThis(object_id) {
-    if ($(object_id).value.length == $(object_id).readAttribute("maxLength")*1) return false;
-  }
-
-  function CountThis(object_id, visCnt) {
-    if ($(object_id).value.length>$(object_id).readAttribute("maxLength")*1) $(object_id).value = $(object_id).value.substring(0,$(object_id).readAttribute("maxLength")*1);
-    if ($(visCnt)) $(visCnt).update($(object_id).readAttribute("maxLength")-$(object_id).value.length);
-  }
-</script>
-
