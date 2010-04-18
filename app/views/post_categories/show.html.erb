@@ -95,7 +95,7 @@
   </div><!-- end detail-info-->
   <div class="info-link-box"><!--info-link-box-->
     <div class="download-link">
-      <% if @post.allow_download && @post.attach_file_name %>
+      <% if @@post.attach_file_name %>
         <%= link_to "Download", @post.attach.url %>
       <% else %>
         <span>Download</span>

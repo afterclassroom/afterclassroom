@@ -20,11 +20,13 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   end
 
   create_table "awareness_types", :force => true do |t|
-    t.string "name", :default => "", :null => false
+    t.string "name"
+    t.string "label"
   end
 
   create_table "book_types", :force => true do |t|
     t.string "name"
+    t.string "label"
   end
 
   create_table "cities", :force => true do |t|
@@ -116,7 +118,8 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   end
 
   create_table "housing_categories", :force => true do |t|
-    t.string "name", :default => "", :null => false
+    t.string "name"
+    t.string "label"
   end
 
   create_table "housing_categories_post_housings", :id => false, :force => true do |t|
@@ -133,7 +136,8 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   end
 
   create_table "job_types", :force => true do |t|
-    t.string "name", :default => "", :null => false
+    t.string "name"
+    t.string "label"
   end
 
   create_table "messages", :force => true do |t|
@@ -198,7 +202,8 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   add_index "no_rater_ratings", ["rated_type", "rated_id"], :name => "index_no_rater_ratings_on_rated_type_and_rated_id"
 
   create_table "party_types", :force => true do |t|
-    t.string "name", :default => "", :null => false
+    t.string "name"
+    t.string "label"
   end
 
   create_table "party_types_post_parties", :id => false, :force => true do |t|
@@ -365,31 +370,22 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   end
 
   create_table "post_tutors", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "tutor_type_id"
-    t.integer  "department_id"
-    t.string   "school_year"
-    t.string   "address"
-    t.string   "phone"
-    t.string   "per"
-    t.string   "currency"
-    t.datetime "from"
-    t.datetime "to"
-    t.string   "rating_status"
+    t.integer "post_id"
+    t.integer "tutor_type_id"
+    t.integer "department_id"
+    t.string  "school_year"
+    t.string  "address"
+    t.string  "phone"
+    t.string  "rating_status"
   end
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id",                               :null => false
-    t.integer  "post_category_id",                      :null => false
-    t.string   "title",               :default => "",   :null => false
-    t.text     "description",                           :null => false
-    t.integer  "school_id",                             :null => false
-    t.string   "email"
-    t.boolean  "use_this_email"
-    t.boolean  "allow_comment",       :default => true
-    t.boolean  "allow_response",      :default => true
-    t.boolean  "allow_rate",          :default => true
-    t.boolean  "allow_download",      :default => true
+    t.integer  "user_id",                                :null => false
+    t.integer  "post_category_id",                       :null => false
+    t.string   "title",               :default => "",    :null => false
+    t.text     "description",                            :null => false
+    t.integer  "school_id",                              :null => false
+    t.boolean  "use_this_email",      :default => false
     t.string   "type_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -531,6 +527,7 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   create_table "tutor_types", :force => true do |t|
     t.string "name"
+    t.string "label"
   end
 
   create_table "user_educations", :force => true do |t|

@@ -12,19 +12,13 @@
               <div class="reqTi"><%= f.text_field :price %></div>
             </div>
             <div class="req60">
-              <div class="reqLa"><label>Email</label></div>
-              <div class="reqTi"><%= f.text_field :email %></div>
-            </div>
-          </div>
-          <div class="reqSl">
-            <div class="req40">
               <div class="reqLa"><label>Phone</label></div>
               <div class="reqTi"><%= f.text_field :phone %></div>
             </div>
-            <div class="req60">
-              <div class="reqLa"><label>Address</label></div>
+          </div>
+          <div class="reqSl">
+            <div class="reqLa"><label>Address</label></div>
               <div class="reqTi"><%= f.text_field :address %></div>
-            </div>
           </div>
           <div id="divinputfile">
             <%= p.file_field :attach, :onchange => "$('#fakefilepc').value = this.value;", :size => "39", :class => "filepc" %>

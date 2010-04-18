@@ -3,11 +3,9 @@ class PostBook < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
   validates_presence_of :price
-  validates_presence_of :shipping_method
   
   # Relations
   belongs_to :post
-  belongs_to :shipping_method
   belongs_to :book_type
   belongs_to :department
   has_one :rating_statistic
@@ -24,7 +22,7 @@ class PostBook < ActiveRecord::Base
   named_scope :with_type, lambda { |tp| {:conditions => ["book_type_id = ?", tp]} }
   named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
-  named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc]}}
+  named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   named_scope :previous, lambda { |att| {:conditions => ["post_books.id < ?", att]} }
   named_scope :next, lambda { |att| {:conditions => ["post_books.id > ?", att]} }

@@ -1,14 +1,16 @@
 class CreateJobTypes < ActiveRecord::Migration
   def self.up
     create_table :job_types do |t|
-      t.string :name, :null => false
+      t.string :name
+      t.string :label
     end
     
-    ["Full time",
-      "Part time",
-      "Co-op/Intern"
+    [
+      ["Full time", "full_time"],
+      ["Part time", "part_time"],
+      ["Co-op/Intern", "cop_intern"]
     ].each do |s|
-      JobType.new(:name => s).save
+      JobType.new(:name => s.first, :label => s.last).save
     end
     
   end

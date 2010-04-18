@@ -136,11 +136,7 @@ class PostTutorsController < ApplicationController
     @post_tutor = PostTutor.new
     post = Post.new
     @post_tutor.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Tutors"
-    @per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
-    @currency = ['USD', 'CAD']
-    @countries = Country.has_cities
+    @post_tutor.tutor_type_id = TutorType.find_by_label("requested_for_tutor").id
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_tutor }
@@ -149,14 +145,6 @@ class PostTutorsController < ApplicationController
 
   # GET /post_tutors/1/edit
   def edit
-    @post_tutor = PostTutor.find(params[:id])
-    @post = @post_tutor.post
-    @post_categories = PostCategory.find(:all)
-    @per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
-    @currency = ['USD', 'CAD']
-    @countries = Country.has_cities
-    @school = @post_tutor.post.school
-    @department = @post_tutor.post.department
   end
 
   # POST /post_tutors
@@ -165,11 +153,18 @@ class PostTutorsController < ApplicationController
     @post_tutor = PostTutor.new(params[:post_tutor])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_tutor.post = post
-    
+    @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
     if @post_tutor.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_tutors_path + "?tutor_type_id=#{@post_tutor.tutor_type_id}"
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
@@ -193,10 +188,6 @@ class PostTutorsController < ApplicationController
     redirect_to my_post_user_url(current_user)
   end
 
-  def update_views(obj)
-    updated = update_view_count(obj)
-  end
-
   private
 
   def get_variables
@@ -208,7 +199,9 @@ class PostTutorsController < ApplicationController
   end
 
   def require_current_user
-    @user ||= PostTutor.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_tutor = post.post_tutor
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end
