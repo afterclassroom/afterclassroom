@@ -30,7 +30,7 @@ class PostFood < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_foods = PostFood.ez_find(:all, :include => [:post]) do |post_food, post|
+    post_foods = PostFood.ez_find(:all, :include => [:post], :order => "created_at DESC") do |post_food, post|
       post_food.rating_status == rating_status
       post.school_id == with_school if with_school
     end

@@ -2,7 +2,7 @@
 class PostFoodsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
@@ -132,15 +132,9 @@ class PostFoodsController < ApplicationController
   # GET /post_foods/new
   # GET /post_foods/new.xml
   def new
-    @post_food = PostBook.new
+    @post_food = PostFood.new
     post = Post.new
     @post_food.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Books"
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_food }
@@ -149,34 +143,32 @@ class PostFoodsController < ApplicationController
 
   # GET /post_foods/1/edit
   def edit
-    @post_food = PostBook.find(params[:id])
-    @post = @post_food.post
-    @post_categories = PostCategory.find(:all)
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
-    @school = @post_food.post.school
-    @department = @post_food.post.department
   end
 
   # POST /post_foods
   # POST /post_foods.xml
   def create
-    @post_food = PostBook.new(params[:post_food])
+    @post_food = PostFood.new(params[:post_food])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_food.post = post
     if @post_food.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_foods_path
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
   # PUT /post_foods/1
   # PUT /post_foods/1.xml
   def update
-    @post_food = PostBook.find(params[:id])
+    @post_food = PostFood.find(params[:id])
 
     if (@post_food.update_attributes(params[:post_food]) && @post_food.post.update_attributes(params[:post]))
       redirect_to my_post_user_url(current_user)
@@ -186,7 +178,7 @@ class PostFoodsController < ApplicationController
   # DELETE /post_foods/1
   # DELETE /post_foods/1.xml
   def destroy
-    @post_food = PostBook.find(params[:id])
+    @post_food = PostFood.find(params[:id])
     @post_food.destroy
 
     redirect_to my_post_user_url(current_user)
@@ -197,13 +189,16 @@ class PostFoodsController < ApplicationController
   def get_variables
     @tags = PostFood.tag_counts
     @new_post_path = new_post_food_path
-    @type = PostCategory.find_by_class_name("PostFood").id
+    @class_name = "PostFood"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= PostFood.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_food = post.post_food
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

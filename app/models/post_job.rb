@@ -2,10 +2,6 @@
 class PostJob < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
-  validates_presence_of :responsibilities
-  validates_presence_of :required_skills
-  validates_presence_of :desirable_skills
-  validates_presence_of :edu_experience_require
 
   # Relations
   belongs_to :post
@@ -38,7 +34,7 @@ class PostJob < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_jobs = PostJob.ez_find(:all, :include => [:post, :job_type]) do |post_job, post, job_type|
+    post_jobs = PostJob.ez_find(:all, :include => [:post, :job_type], :order => "created_at DESC") do |post_job, post, job_type|
       job_type.id == type_id
       post_job.department_id == department if department
       post_job.school_year == year if year

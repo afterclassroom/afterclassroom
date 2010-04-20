@@ -187,10 +187,6 @@ class PostBooksController < ApplicationController
     redirect_to my_post_user_url(current_user)
   end
 
-  def update_views(obj)
-    updated = update_view_count(obj)
-  end
-
   private
 
   def get_variables

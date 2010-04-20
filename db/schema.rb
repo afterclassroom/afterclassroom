@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100228032015) do
+ActiveRecord::Schema.define(:version => 20100417014047) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -201,6 +201,25 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
 
   add_index "no_rater_ratings", ["rated_type", "rated_id"], :name => "index_no_rater_ratings_on_rated_type_and_rated_id"
 
+  create_table "notifications", :force => true do |t|
+    t.boolean  "sms_allow"
+    t.boolean  "email_allow"
+    t.string   "name"
+    t.string   "label"
+    t.string   "notify_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notify_settings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "notification_id"
+    t.boolean  "sms_check"
+    t.boolean  "email_check"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "party_types", :force => true do |t|
     t.string "name"
     t.string "label"
@@ -249,18 +268,13 @@ ActiveRecord::Schema.define(:version => 20100228032015) do
   end
 
   create_table "post_books", :force => true do |t|
-    t.integer "post_id",            :null => false
+    t.integer "post_id",       :null => false
     t.integer "book_type_id"
     t.integer "department_id"
     t.string  "school_year"
     t.string  "address"
-    t.string  "email"
     t.string  "phone"
     t.string  "price"
-    t.string  "currency"
-    t.string  "accept_payment"
-    t.integer "shipping_method_id"
-    t.string  "in_stock"
     t.string  "rating_status"
   end
 

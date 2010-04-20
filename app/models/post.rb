@@ -35,9 +35,6 @@ class Post < ActiveRecord::Base
   
   # Rating
   ajaxful_rateable :stars => 5
-
-  # Tracker
-  acts_as_activity :user
   
   # ThinkSphinx
   define_index do
