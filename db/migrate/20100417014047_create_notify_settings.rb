@@ -6,10 +6,6 @@ class CreateNotifySettings < ActiveRecord::Migration
 
       t.belongs_to :notification
 
-      t.boolean :sms_check
-
-      t.boolean :email_check
-
       t.timestamps
 
     end

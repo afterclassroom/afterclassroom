@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   belongs_to :school
   has_and_belongs_to_many :roles
   has_many :notify_settings
+  has_many :notify_emails
   has_many :posts, :dependent => :destroy
   has_one :user_information, :dependent => :destroy
   has_one :user_education, :dependent => :destroy
