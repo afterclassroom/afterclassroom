@@ -200,28 +200,21 @@ def create_demo_post_books
   type_name = "PostBook"
   post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-  accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-  currency = ['USD', 'CAD']
   
   200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
-      
+    
     post_book = PostBook.create do |b|
       b.post = post
       b.book_type = BookType.find(rand(BookType.count) + 1)
       b.department = school.departments.find(:first)
       b.school_year = schoolyear[rand(schoolyear.size)]
       b.address = Faker::Address.street_address
-      b.email = Faker::Internet.email
       b.phone = Faker::PhoneNumber.phone_number
       b.price = "500"
-      b.currency = currency[rand(currency.size)]
-      b.accept_payment = accept_payment[rand(accept_payment.size)]
-      b.shipping_method_id = ShippingMethod.find(rand(ShippingMethod.count) + 1)
-      b.in_stock = "Stock"
       b.tag_list = get_random_list_tags
     end
   end

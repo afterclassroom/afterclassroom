@@ -10,7 +10,7 @@
   <!--info-link-box-->
   <div class="asslinkdown">
     <div class="morelink"><%= link_to "More like this", :controller => "post_tests", :action => "index", :more_like_this_id => post %></div>
-    <div class="down"><% if post.allow_download && post.attach_file_name %>
+    <div class="down"><% if post.attach_file_name %>
         <a href="javascript:downloadFile('<%= post.attach.url %>')" >Download</a>
       <% end %></div>
   </div>

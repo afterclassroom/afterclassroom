@@ -34,7 +34,7 @@
             <span rel="<%= show_post_dialog(favorite.post) %>" style="cursor:pointer">View Detail</span> | <%= link_to "Delete", "#{delete_favorite_user_path(current_user)}?favorite_id=#{favorite.id}" %>
           </div>
           <div class="download-rel-link">
-            <% if favorite.post.allow_download && favorite.post.attach_file_name %>
+            <% if favorite.favorite.post.attach_file_name %>
               <a href="javascript:downloadFile('<%= favorite.post.attach.url %>')" class="downarrow">Download</a>
             <% else %>
               <span>Download</span>

@@ -1,6 +1,10 @@
 <% fields_for @post_tutor.post do |post| %>
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
+  <div class="postItemDep">
+    <div class="postTit">Type</div>
+    <div class="postDep"><%= f.text_field :tutor_type_id %></div>
+  </div>
   <div class="postItem">
     <div class="postTit">Title*</div>
     <div class="postInp"><%= post.text_field :title, :class => 'required', :style => "width:360px;" %></div>
@@ -52,6 +56,14 @@
   </div>
 <% end %>
 
+<ul id="tutor_type_menu" class="mcdropdown_menu">
+  <% TutorType.find(:all).each do |t| %>
+    <li rel_tutor_type="<%= t.id %>">
+      <%= t.name %>
+    </li>
+  <% end %>
+</ul>
+
 <ul id="department_menu" class="mcdropdown_menu">
   <%
   departments = Department.of_school(@school)
@@ -96,6 +108,10 @@ list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], 
 </ul>
 
 <script type="text/javascript">
+  $("#post_tutor_tutor_type_id").mcDropdown("#tutor_type_menu", {
+    width: 350,
+    valueAttr: "rel_tutor_type"
+  });
   $("#post_tutor_department_id").mcDropdown("#department_menu", {
     width: 350,
     valueAttr: "rel_department"

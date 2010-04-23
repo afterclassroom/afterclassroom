@@ -2,7 +2,7 @@
 class PostJobsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
@@ -136,11 +136,7 @@ class PostJobsController < ApplicationController
     @post_job = PostJob.new
     post = Post.new
     @post_job.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Jobs"
-    @per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
-    @currency = ['USD', 'CAD']
-    @countries = Country.has_cities
+    @post_job.job_type_id = JobType.first.id
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_job }
@@ -149,14 +145,6 @@ class PostJobsController < ApplicationController
 
   # GET /post_jobs/1/edit
   def edit
-    @post_job = PostJob.find(params[:id])
-    @post = @post_job.post
-    @post_categories = PostCategory.find(:all)
-    @per = ['Hour', 'Session', 'Week', 'Month', 'Semester']
-    @currency = ['USD', 'CAD']
-    @countries = Country.has_cities
-    @school = @post_job.post.school
-    @department = @post_job.post.department
   end
 
   # POST /post_jobs
@@ -165,11 +153,18 @@ class PostJobsController < ApplicationController
     @post_job = PostJob.new(params[:post_job])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_job.post = post
-
+    @post_job.job_type_id ||= JobType.first.id
     if @post_job.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
@@ -192,23 +187,22 @@ class PostJobsController < ApplicationController
 
     redirect_to my_post_user_url(current_user)
   end
-
-  def update_views(obj)
-    updated = update_view_count(obj)
-  end
-
+  
   private
 
   def get_variables
     @tags = PostJob.tag_counts
     @new_post_path = new_post_job_path
-    @type = PostCategory.find_by_class_name("PostJob").id
+    @class_name = "PostJob"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= PostJob.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_job = post.post_job
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

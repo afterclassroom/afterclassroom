@@ -2,7 +2,7 @@
 class PostBooksController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
@@ -136,12 +136,7 @@ class PostBooksController < ApplicationController
     @post_book = PostBook.new
     post = Post.new
     @post_book.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Books"
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
+    @post_book.book_type_id = BookType.first.id
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_book }
@@ -150,15 +145,6 @@ class PostBooksController < ApplicationController
 
   # GET /post_books/1/edit
   def edit
-    @post_book = PostBook.find(params[:id])
-    @post = @post_book.post
-    @post_categories = PostCategory.find(:all)
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
-    @school = @post_book.post.school
-    @department = @post_book.post.department
   end
 
   # POST /post_books
@@ -167,10 +153,18 @@ class PostBooksController < ApplicationController
     @post_book = PostBook.new(params[:post_book])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_book.post = post
+    @post_book.book_type_id ||= BookType.first.id
     if @post_book.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_books_path + "?book_type_id=#{@post_book.book_type_id}"
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
@@ -193,22 +187,21 @@ class PostBooksController < ApplicationController
     redirect_to my_post_user_url(current_user)
   end
 
-  def update_views(obj)
-    updated = update_view_count(obj)
-  end
-
   private
 
   def get_variables
     @tags = PostBook.tag_counts
     @new_post_path = new_post_book_path
-    @type = PostCategory.find_by_class_name("PostBook").id
+    @class_name = "PostBook"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= Postbook.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_book = post.post_book
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end
