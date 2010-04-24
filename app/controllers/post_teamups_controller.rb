@@ -2,7 +2,7 @@
 class PostTeamupsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag, :good_org, :worse_org]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_org, :worse_org]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :good_org, :worse_org]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :good_org, :worse_org]
@@ -107,13 +107,6 @@ class PostTeamupsController < ApplicationController
     @post_teamup = PostTeamup.new
     post = Post.new
     @post_teamup.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Team Up"
-    @teamup_categories = TeamupCategory.find(:all)
-    @functional_experiences = FunctionalExperience.find(:all)
-    @time_commitments = {'1' => '1-10 hrs', '2' => '11-20 hrs', '3' => '21-39 hrs', '4' => '40 hrs', '5' => 'Negotiable'}
-    @compansates = ['Cash', 'Equity', 'Negotiable', 'Other', 'None']
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_teamup }
@@ -122,17 +115,6 @@ class PostTeamupsController < ApplicationController
 
   # GET /post_teamups/1/edit
   def edit
-    @post_teamup = PostTeamup.find(params[:id])
-    @post = @post_teamup.post
-    @post_categories = PostCategory.find(:all)
-    @teamup_categories = TeamupCategory.find(:all)
-    @functional_experiences = FunctionalExperience.find(:all)
-    @time_commitments = {'1' => '1-10 hrs', '2' => '11-20 hrs', '3' => '21-39 hrs', '4' => '40 hrs', '5' => 'Negotiable'}
-    @compansates = ['Cash', 'Equity', 'Negotiable', 'Other', 'None']
-    @countries = Country.has_cities
-    @school = @post_teamup.post.school
-    @department = @post_teamup.post.department
-    @expected_time_commit = @time_commitments[@post_teamup.expected_time_commit]
   end
 
   # POST /post_teamups
@@ -141,13 +123,19 @@ class PostTeamupsController < ApplicationController
     @post_teamup = PostTeamup.new(params[:post_teamup])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_teamup.post = post
-
+    @post_teamup.teamup_category_id ||= TeamupCategory.first.id
     if @post_teamup.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_teamups_path + "?teamup_category_id=#{@post_teamup.teamup_category_id}"
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
-
   end
 
   # PUT /post_teamups/1
@@ -174,13 +162,16 @@ class PostTeamupsController < ApplicationController
   def get_variables
     @tags = PostTeamup.tag_counts
     @new_post_path = new_post_teamup_path
-    @type = PostCategory.find_by_class_name("PostTeamup").id
+    @class_name = "PostTeamup"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= PostTeamup.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_teamup = post.post_teamup
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

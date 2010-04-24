@@ -2,7 +2,7 @@
 class PostHousingsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag, :good_house, :worse_house]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_house, :worse_house]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :good_house, :worse_house]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :good_house, :worse_house]
@@ -102,11 +102,6 @@ class PostHousingsController < ApplicationController
     @post_housing = PostHousing.new
     post = Post.new
     @post_housing.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Housing"
-    @currency = ['USD', 'CAD']
-    @housing_categories = HousingCategory.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_housing }
@@ -115,31 +110,25 @@ class PostHousingsController < ApplicationController
 
   # GET /post_housings/1/edit
   def edit
-    @post_housing = PostHousing.find(params[:id])
-    @post = @post_housing.post
-    @post_categories = PostCategory.find(:all)
-    @housing_categories = HousingCategory.find(:all)
-    @currency = ['USD', 'CAD']
-    @countries = Country.has_cities
-    @school = @post_housing.post.school
-    @department = @post_housing.post.department
-    @post_housing_category = ""
-    for housing_category in @post_housing.housing_categories
-      @post_housing_category += housing_category.name + ", "
-    end
   end
 
   # POST /post_housings
   # POST /post_housings.xml
   def create
-    @post_housing = PostHousing.new(params[:post_housing])
+    @post_housing = PostJob.new(params[:post_housing])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_housing.post = post
-
     if @post_housing.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_housings_path + "?housing_category_id=#{@post_housing.housing_category_id}"
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
@@ -168,13 +157,16 @@ class PostHousingsController < ApplicationController
   def get_variables
     @tags = PostHousing.tag_counts
     @new_post_path = new_post_housing_path
-    @type = PostCategory.find_by_class_name("PostHousing").id
+    @class_name = "PostHousing"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= PostHousing.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_housing = post.post_housing
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

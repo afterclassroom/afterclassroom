@@ -2,11 +2,10 @@
 class PostMyxesController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
-  after_filter :update_status, :only => [:create, :update]
   after_filter :store_go_back_url, :only => [:index, :search, :tag]
   
   # GET /post_myxes
@@ -136,12 +135,6 @@ class PostMyxesController < ApplicationController
     @post_myx = PostMyx.new
     post = Post.new
     @post_myx.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Myxs"
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_myx }
@@ -150,15 +143,6 @@ class PostMyxesController < ApplicationController
 
   # GET /post_myxes/1/edit
   def edit
-    @post_myx = PostMyx.find(params[:id])
-    @post = @post_myx.post
-    @post_categories = PostCategory.find(:all)
-    @accept_payment = ['Cash', 'Visa', 'Master Card', 'Paypal']
-    @currency = ['USD', 'CAD']
-    @shipping_methods = ShippingMethod.find(:all)
-    @countries = Country.has_cities
-    @school = @post_myx.post.school
-    @department = @post_myx.post.department
   end
 
   # POST /post_myxes
@@ -167,10 +151,17 @@ class PostMyxesController < ApplicationController
     @post_myx = PostMyx.new(params[:post_myx])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_myx.post = post
     if @post_myx.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_myxes_path
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
@@ -198,24 +189,19 @@ class PostMyxesController < ApplicationController
   def get_variables
     @tags = PostMyx.tag_counts
     @new_post_path = new_post_myx_path
-    @type = PostCategory.find_by_class_name("PostMyx").id
+    @class_name = "PostMyx"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= PostMyx.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_myx = post.post_myx
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end
     return @user
-  end
-
-  def update_status
-    if @post_myx.score > 50
-      @post_myx.prof_status = "Good"
-    else
-      @post_myx.prof_status = "Worse"
-    end
   end
 end

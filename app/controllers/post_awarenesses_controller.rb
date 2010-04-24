@@ -2,7 +2,7 @@
 class PostAwarenessesController < ApplicationController
   include Viewable
   
-  before_filter :get_variables, :only => [:index, :show, :search, :tag, :rate]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :rate]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :rate]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :rate]
@@ -99,10 +99,6 @@ class PostAwarenessesController < ApplicationController
     @post_awareness = PostAwareness.new
     post = Post.new
     @post_awareness.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Student Awareness"
-    @awareness_issues = AwarenessIssue.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_awareness }
@@ -111,30 +107,26 @@ class PostAwarenessesController < ApplicationController
 
   # GET /post_awarenesses/1/edit
   def edit
-    @post_awareness = PostAwareness.find(params[:id])
-    @post = @post_awareness.post
-    @post_categories = PostCategory.find(:all)
-    @awareness_issues = AwarenessIssue.find(:all)
-    @countries = Country.has_cities
-    @school = @post_awareness.post.school
-    @department = @post_awareness.post.department
-    @post_awareness_issue = ""
-    for awareness_issue in @post_awareness.awareness_issues
-      @post_awareness_issue += awareness_issue.name + ", "
-    end
   end
 
   # POST /post_awarenesses
   # POST /post_awarenesses.xml
   def create
-    @post_awareness = PostAwareness.new(params[:post_awareness])
+    @post_awareness = PostJob.new(params[:post_awareness])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_awareness.post = post
-
+    @post_awareness.awareness_type_id ||= AwarenessType.first.id
     if @post_awareness.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_awarenesss_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
   end
 
@@ -163,13 +155,16 @@ class PostAwarenessesController < ApplicationController
   def get_variables
     @tags = PostAwareness.tag_counts
     @new_post_path = new_post_awareness_path
-    @type = PostCategory.find_by_class_name("PostAwareness").id
+    @class_name = "PostAwareness"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    @user ||= PostAwareness.find(params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_awareness = post.post_awareness
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

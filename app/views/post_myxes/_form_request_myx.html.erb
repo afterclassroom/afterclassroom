@@ -6,6 +6,8 @@
         <% fields_for :post do |p| %>
           <div class="reqTi"><%= p.text_field :title, :value => "Title..." %></div>
           <div class="reqEn"><%= text_area_tag "post[description]", "Enter your request..." %></div>
+          <div class="reqLa"><label>Professor</label></div>
+          <div class="reqTi"><%= f.text_field :professor %></div>
           <div id="divinputfile">
             <%= p.file_field :attach, :onchange => "$('#fakefilepc').value = this.value;", :size => "39", :class => "filepc" %>
             <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>

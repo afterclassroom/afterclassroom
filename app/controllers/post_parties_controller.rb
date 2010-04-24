@@ -2,7 +2,7 @@
 class PostPartiesController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
@@ -154,10 +154,6 @@ class PostPartiesController < ApplicationController
     @post_party = PostParty.new
     post = Post.new
     @post_party.post = post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Party"
-    @party_types = PartyType.find(:all)
-    @countries = Country.has_cities
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_party }
@@ -166,18 +162,6 @@ class PostPartiesController < ApplicationController
 
   # GET /post_parties/1/edit
   def edit
-    @post_party = PostParty.find(params[:id])
-    @post = @post_party.post
-    @post_categories = PostCategory.find(:all)
-    @post_category_name = "Party"
-    @party_types = PartyType.find(:all)
-    @countries = Country.has_cities
-    @school = @post_party.post.school
-    @department = @post_party.post.department
-    @post_party_type = ""
-    for party_type in @post_party.party_types
-      @post_party_type += party_type.name + ", "
-    end
   end
 
   # POST /post_parties
@@ -186,13 +170,18 @@ class PostPartiesController < ApplicationController
     @post_party = PostParty.new(params[:post_party])
     post = Post.new(params[:post])
     post.user = current_user
+    post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
     post.save
     @post_party.post = post
-
     if @post_party.save
-      redirect_to my_post_user_url(current_user)
+      notice "Your post was successfully created."
+      redirect_to post_parties_path
+    else
+      error "Failed to create a new post."
+      render :action => "new"
     end
-
   end
 
   # PUT /post_parties/1
@@ -219,15 +208,18 @@ class PostPartiesController < ApplicationController
 
   def get_variables
     @tags = PostParty.tag_counts
-    @new_post_path = new_post_assignment_path
-    @type = PostCategory.find_by_class_name("PostParty").id
+    @new_post_path = new_post_party_path
+    @class_name = "PostParty"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
 
   def require_current_user
-    @user ||= PostParty.find(params[:post_party_id] || params[:id]).post.user
+    post = Post.find(params[:id])
+    @post_party = post.post_party
+    @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

@@ -2,6 +2,7 @@
 class PostMyx < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
+  validates_presence_of :professor
 
   # Relations
   belongs_to :post
@@ -34,7 +35,7 @@ class PostMyx < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_myxs = PostMyx.ez_find(:all, :include => [:post]) do |post_myx, post|
+    post_myxs = PostMyx.ez_find(:all, :include => [:post], :order => "created_at DESC") do |post_myx, post|
       post_myx.rating_status == rating_status
       post.school_id == with_school if with_school
     end
