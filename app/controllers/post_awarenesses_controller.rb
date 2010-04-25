@@ -99,6 +99,7 @@ class PostAwarenessesController < ApplicationController
     @post_awareness = PostAwareness.new
     post = Post.new
     @post_awareness.post = post
+    @post_awareness.awareness_type_id = AwarenessType.first.id
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_awareness }
@@ -112,7 +113,7 @@ class PostAwarenessesController < ApplicationController
   # POST /post_awarenesses
   # POST /post_awarenesses.xml
   def create
-    @post_awareness = PostJob.new(params[:post_awareness])
+    @post_awareness = PostAwareness.new(params[:post_awareness])
     post = Post.new(params[:post])
     post.user = current_user
     post.school_id = @school
@@ -123,7 +124,7 @@ class PostAwarenessesController < ApplicationController
     @post_awareness.awareness_type_id ||= AwarenessType.first.id
     if @post_awareness.save
       notice "Your post was successfully created."
-      redirect_to post_awarenesss_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"
+      redirect_to post_awarenesses_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"
     else
       error "Failed to create a new post."
       render :action => "new"

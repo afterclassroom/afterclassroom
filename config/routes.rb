@@ -55,7 +55,8 @@ ActionController::Routing::Routes.draw do |map|
     :otherUpdates => :get,
     :saveOtherUpdates => :get,
     :otherApplications => :get,
-    :saveOtherApplications => :get
+    :saveOtherApplications => :get,
+    :savesetting => :post
   }
 
   # Users

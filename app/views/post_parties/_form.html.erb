@@ -2,6 +2,12 @@
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
   <div class="postItem">
+    <div class="postTit">Type</div>
+    <div class="postInp">
+      <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }, @post_party.party_types), { :include_blank => "Select Type", :multiple => true, :id => "party_type" }) %>
+    </div>
+  </div>
+  <div class="postItem">
     <div class="postTit">Title*</div>
     <div class="postInp"><%= post.text_field :title, :class => 'required', :style => "width:360px;" %></div>
   </div>
@@ -45,6 +51,8 @@
 <% end %>
 
 <script type="text/javascript">
+  // 'Select All' text changed
+  $("#party_type").multiSelect({ selectAllText: 'Select All' });
   $("#post_description").counter({
     count: 'up',
     goal: 900

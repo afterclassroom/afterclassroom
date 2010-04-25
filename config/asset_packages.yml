@@ -10,6 +10,7 @@ javascripts:
   - thickbox
   - jquery-validate
   - jquery-counter
+  - jquery-multiSelect
   - vtip-min
 - student_lounge:
   - application
@@ -39,6 +40,7 @@ stylesheets:
   - jquery-ui-theme
   - jquery-ui-datepicker
   - jquery-mcdropdown
+  - jquery-multiSelect
   - thickbox
   - pagination
   - validation

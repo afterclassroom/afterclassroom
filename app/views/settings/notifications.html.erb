@@ -1,5 +1,57 @@
-<script language="javascript">
-</script>
+<style type="text/css">
+
+  .navigation {
+    height:75%;
+    width:125px;
+
+  }
+</style>
+
+<%# form_tag('/settings/savesetting/', :method => :post) do %>
+
+
+<% form_tag (:controller  => 'settings', :action => 'savesetting', :method => :post) do %>
+  <%= submit_tag 'Save Setting' %>
+  <% if @types != nil %>
+    <% @types.each do |tp| %>
+      Type: <%=h tp.notify_type %><br/>
+
+      <% @notifications.each do |ntfobj| %>
+        <% if ntfobj.notify_type == tp.notify_type %>
+          Name of the setting type: <%=  ntfobj.name %>
+          <% if ntfobj.sms_allow == true %>
+            <div class="navigation">SMS_ALLOW</div>
+            <% check = false; %>
+            <% current_user.notify_settings.each do |userntfs| %>
+              <% if userntfs.notification.id == ntfobj.id %>
+                <% check = true; %>
+              <% end %>
+            <%  end #END LOOP CURRENT_USER %>
+            <%= check_box_tag("smsarr[]", ntfobj.id, checked = check )%><br/>
+
+          <% end #END IF SMS_ALLOW %>
+          <% if ntfobj.email_allow == true %>
+            <div class="navigation">EMAIL_ALLOW</div>
+            <% check = false; %>
+            <% current_user.notify_emails.each do |userntfe| %>
+              <% if userntfe.notification.id == ntfobj.id %>
+                <% check = true; %>
+              <% end %>
+            <%  end #END LOOP CURRENT_USER %>
+            <%= check_box_tag("emailarr[]", ntfobj.id, checked = check )%><br/>
+
+          <% end #END IF EMAIL ALLOW %>
+          <br/>
+        <% end #END IF NOTIFY_TYPE %>
+      <% end #END LOOP NOTIFICATIONS %>
+
+      <p>====</p>
+
+    <% end #END LOOP TYPE %>
+  <% end #END IF TYPE!=NIL %>
+
+<% end #END FORM %>
+
 <div class="settCont">
   <div class="settCont1">
 
@@ -9,13 +61,13 @@
       </ul>
     </div>
 
-    <div class="settC">				
+    <div class="settC">
       <div class="settNotL">
         <div class="setNotLtitle">Notifications</div>
         <div class="setNotCont">AfterClassroom notifies you whenever actions are taken on AfterClassroom that involve you.
           <br/>
-						Each AfterClassroom application has its own notification settings. Click the checkbox to change the settings for that application.
-						Send email notifications to: <span>quachhuy@yahoo.com</span></div>
+          Each AfterClassroom application has its own notification settings. Click the checkbox to change the settings for that application.
+          Send email notifications to: <span>quachhuy@yahoo.com</span></div>
         <div class="setNotSend"><a href="#">Send notifications my phone via SMS</a></div>
         <div class="setItemT">
           <div class="setItemTL">&nbsp;</div>

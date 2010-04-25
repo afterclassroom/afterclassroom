@@ -20,28 +20,12 @@
     <div class="postTit">School</div>
     <div class="postInp">Your are at <strong><%= School.find(@school).name %></strong> - <%= link_to("Click here", "/users_select_school/show?height=170", :class => "thickbox", :title => "Select Schoools") %> to choose another school.</div>
   </div>
-  <div class="postItemDep">
-    <div class="postTit">Department</div>
-    <div class="postDep"><%= f.text_field :department_id %></div>
-  </div>
-  <div class="postItemDep">
-    <div class="postTit">School year</div>
-    <div class="postDep"><%= f.text_field :school_year %></div>
-  </div>
   <div class="postItem">
     <div class="postTit">Email</div>
     <div class="postRad">
       <div><%= radio_button "post", "use_this_email", true, :checked => @post_awareness.post.use_this_email %> Use my login email instead</div>
       <div><%= radio_button "post", "use_this_email", false, :checked => !@post_awareness.post.use_this_email %> Reply to [post category] - xxxxxx@afterclassroom.com (AC anonymizes your ..)</div>
     </div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Phone</div>
-    <div class="postInp"><%= f.text_field :phone, :style => "width:208px" %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Address</div>
-    <div class="postInp"><%= f.text_field :address, :style => "width:208px" %></div>
   </div>
   <div class="postItem">
     <div class="postTit">Add/Edit File</div>
@@ -57,52 +41,9 @@
 <% end %>
 
 <ul id="awareness_type_menu" class="mcdropdown_menu">
-  <% JobType.find(:all).each do |t| %>
+  <% AwarenessType.find(:all).each do |t| %>
     <li rel_awareness_type="<%= t.id %>">
       <%= t.name %>
-    </li>
-  <% end %>
-</ul>
-
-<ul id="department_menu" class="mcdropdown_menu">
-  <%
-  departments = Department.of_school(@school)
-%>
-  <li rel_department="">
-    Chose department
-  </li>
-  <%
-  category_id = ""
-%>
-  <% departments.each do |dp| %>
-    <% if category_id == "" %>
-      <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
-        <ul>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% elsif category_id == dp.department_category.id %>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% else %>
-        </ul>
-      </li>
-      <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
-        <ul>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% end %>
-        <% category_id = dp.department_category.id %>
-      <% end %>
-    </ul>
-  </li>
-</ul>
-
-<%
-list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
-%>
-<ul id="year_menu" class="mcdropdown_menu">
-  <% list_years.each do |year| %>
-    <li rel_year="<%= year[1] %>">
-      <%= year[0] %>
     </li>
   <% end %>
 </ul>
@@ -112,20 +53,9 @@ list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], 
     width: 350,
     valueAttr: "rel_awareness_type"
   });
-  $("#post_awareness_department_id").mcDropdown("#department_menu", {
-    width: 350,
-    valueAttr: "rel_department"
-  });
-  $("#post_awareness_school_year").mcDropdown("#year_menu", {
-    width: 350,
-    valueAttr: "rel_year"
-  });
   $("#post_description").counter({
     count: 'up',
     goal: 900
-  });
-  $(function() {
-    $("#post_awareness_due_date").datepicker();
   });
   function submit(){
     var result = $("#form_post").validate();

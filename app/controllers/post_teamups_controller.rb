@@ -107,6 +107,7 @@ class PostTeamupsController < ApplicationController
     @post_teamup = PostTeamup.new
     post = Post.new
     @post_teamup.post = post
+    @post_teamup.teamup_category_id = TeamupCategory.first.id
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_teamup }
