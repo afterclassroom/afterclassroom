@@ -30,7 +30,7 @@ class PostTeamup < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category], :order => "created_at DESC") do |post_teamup, post, teamup_category|
+    post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category], :order => "posts.created_at DESC") do |post_teamup, post, teamup_category|
       teamup_category.id == category_id
       post.school_id == with_school if with_school
     end
@@ -41,7 +41,7 @@ class PostTeamup < ActiveRecord::Base
   end
 
   def self.paginated_post_more_like_this(params, post_like)
-    post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category]) do |post_teamup, post, teamup_category|
+    post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category], :order => "posts.created_at DESC") do |post_teamup, post, teamup_category|
       teamup_category.id == post_like.post_teamup.teamup_category_id
       post.school_id == post_like.school_id
     end

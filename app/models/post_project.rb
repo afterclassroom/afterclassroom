@@ -29,7 +29,7 @@ class PostProject < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_ts = PostProject.ez_find(:all, :include => [:post], :order => "created_at DESC") do |post_project, post|
+    post_ts = PostProject.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_project, post|
       post_project.department_id == department if department
       post_project.school_year == year if year
       post.school_id == with_school if with_school
@@ -42,7 +42,7 @@ class PostProject < ActiveRecord::Base
   end
 
   def self.paginated_post_more_like_this(params, post_like)
-    post_ts = PostProject.ez_find(:all, :include => [:post]) do |post_project, post|
+    post_ts = PostProject.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_project, post|
       post_project.department_id == post_like.post_project.department_id
       post_project.school_year == post_like.post_project.school_year
       post.school_id == post_like.school_id

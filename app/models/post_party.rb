@@ -33,7 +33,7 @@ class PostParty < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_parties = PostParty.ez_find(:all, :include => [:post]) do |post_party, post|
+    post_parties = PostParty.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_party, post|
       post_party.rating_status == rating_status
       post.school_id == with_school if with_school
     end

@@ -35,7 +35,7 @@ class PostBook < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_books = PostBook.ez_find(:all, :include => [:post, :book_type]) do |post_book, post, book_type|
+    post_books = PostBook.ez_find(:all, :include => [:post, :book_type], :order => "posts.created_at DESC") do |post_book, post, book_type|
       book_type.id == type_id
       post_book.department_id == department if department
       post_book.school_year == year if year
@@ -49,7 +49,7 @@ class PostBook < ActiveRecord::Base
   end
 
   def self.paginated_post_more_like_this(params, post_like)
-    post_ts = PostBook.ez_find(:all, :include => [:post, :book_type]) do |post_book, post, book_type|
+    post_ts = PostBook.ez_find(:all, :include => [:post, :book_type], :order => "posts.created_at DESC") do |post_book, post, book_type|
       book_type.id == post_like.post_book.book_type_id
       post_book.department_id == post_like.post_book.department_id
       post_book.school_year == post_like.post_book.school_year

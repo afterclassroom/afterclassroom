@@ -34,7 +34,7 @@ class PostJob < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_jobs = PostJob.ez_find(:all, :include => [:post, :job_type], :order => "created_at DESC") do |post_job, post, job_type|
+    post_jobs = PostJob.ez_find(:all, :include => [:post, :job_type], :order => "posts.created_at DESC") do |post_job, post, job_type|
       job_type.id == type_id
       post_job.department_id == department if department
       post_job.school_year == year if year
@@ -48,7 +48,7 @@ class PostJob < ActiveRecord::Base
   end
 
   def self.paginated_post_more_like_this(params, post_like)
-    post_ts = PostJob.ez_find(:all, :include => [:post, :job_type]) do |post_job, post, job_type|
+    post_ts = PostJob.ez_find(:all, :include => [:post, :job_type], :order => "posts.created_at DESC") do |post_job, post, job_type|
       job_type.id == post_like.post_job.job_type_id
       post_job.department_id == post_like.post_job.department_id
       post_job.school_year == post_like.post_job.school_year
