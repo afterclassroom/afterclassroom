@@ -143,6 +143,13 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
 </div>
 
 <script type="text/javascript">
+  $(document).ready(function(){
+    var jsidfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab","storytab","linkstab","musictab","videotab","giftstab","helptab","loungetab","othertab"];
+    for (var i = 1; i < jsidfortoggle.length; i++){
+      TabHandler(jsidfortoggle[i]);
+    }
+    
+  });
   function TabHandler(tabid){
     $('#'+tabid).toggle('slow');
     return false;
