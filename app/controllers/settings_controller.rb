@@ -35,11 +35,11 @@ class SettingsController < ApplicationController
       puts "mysmsarr == "+smsarrs.length.to_s
       if smsarrs != nil
       
-        current_user.notify_settings.destroy_all
+        current_user.notify_sms_settings.destroy_all
 
         smsarrs.each do |eachsms|
           puts "each == " + eachsms.to_s
-          @nfst = NotifySetting.new
+          @nfst = NotifySmsSetting.new
           @nfst.notification = Notification.find(eachsms)
           @nfst.user = current_user
 

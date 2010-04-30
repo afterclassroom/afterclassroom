@@ -28,7 +28,7 @@ class PostTest < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_ts = PostTest.ez_find(:all, :include => [:post], :order => "created_at DESC") do |post_test, post|
+    post_ts = PostTest.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_test, post|
       post_test.department_id == department if department
       post_test.school_year == year if year
       post.school_id == with_school if with_school
@@ -41,7 +41,7 @@ class PostTest < ActiveRecord::Base
   end
 
   def self.paginated_post_more_like_this(params, post_like)
-    post_ts = PostTest.ez_find(:all, :include => [:post]) do |post_test, post|
+    post_ts = PostTest.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_test, post|
       post_test.department_id == post_like.post_test.department_id
       post_test.school_year == post_like.post_test.school_year
       post.school_id == post_like.school_id

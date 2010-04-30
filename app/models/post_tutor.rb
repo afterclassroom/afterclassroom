@@ -34,7 +34,7 @@ class PostTutor < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_tutors = PostTutor.ez_find(:all, :include => [:post, :tutor_type]) do |post_tutor, post, tutor_type|
+    post_tutors = PostTutor.ez_find(:all, :include => [:post, :tutor_type], :order => "posts.created_at DESC") do |post_tutor, post, tutor_type|
       tutor_type.id == type_id
       post_tutor.department_id == department if department
       post_tutor.school_year == year if year
@@ -48,7 +48,7 @@ class PostTutor < ActiveRecord::Base
   end
 
   def self.paginated_post_more_like_this(params, post_like)
-    post_ts = PostTutor.ez_find(:all, :include => [:post, :tutor_type]) do |post_tutor, post, tutor_type|
+    post_ts = PostTutor.ez_find(:all, :include => [:post, :tutor_type], :order => "posts.created_at DESC") do |post_tutor, post, tutor_type|
       tutor_type.id == post_like.post_tutor.tutor_type_id
       post_tutor.department_id == post_like.post_tutor.department_id
       post_tutor.school_year == post_like.post_tutor.school_year

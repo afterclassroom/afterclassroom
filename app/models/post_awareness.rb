@@ -28,7 +28,7 @@ class PostAwareness < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_awarenesss = PostAwareness.ez_find(:all, :include => [:post, :awareness_type], :order => "created_at DESC") do |post_awareness, post, awareness_type|
+    post_awarenesss = PostAwareness.ez_find(:all, :include => [:post, :awareness_type], :order => "posts.created_at DESC") do |post_awareness, post, awareness_type|
       awareness_type.id == awareness_type_id
       post.school_id == with_school if with_school
     end
@@ -39,7 +39,7 @@ class PostAwareness < ActiveRecord::Base
   end
 
   def self.paginated_post_more_like_this(params, post_like)
-    post_as = PostAwareness.ez_find(:all, :include => [:post, :awareness_type], :order => "created_at DESC") do |post_awareness, post, awareness_type|
+    post_as = PostAwareness.ez_find(:all, :include => [:post, :awareness_type], :order => "posts.created_at DESC") do |post_awareness, post, awareness_type|
       awareness_type.id == post_like.post_awareness.awareness_type_id
       post.school_id == post_like.school_id
     end

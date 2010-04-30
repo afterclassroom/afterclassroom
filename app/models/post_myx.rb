@@ -35,7 +35,7 @@ class PostMyx < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_myxs = PostMyx.ez_find(:all, :include => [:post], :order => "created_at DESC") do |post_myx, post|
+    post_myxs = PostMyx.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_myx, post|
       post_myx.rating_status == rating_status
       post.school_id == with_school if with_school
     end

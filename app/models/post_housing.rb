@@ -29,7 +29,7 @@ class PostHousing < ActiveRecord::Base
     with_school = from_school if from_school
     housing_category = HousingCategory.find(category_id)
     arr_id = housing_category.post_housings.select {|ph| ph.id}
-    post_housings = PostHousing.ez_find(:all, :include => [:post]) do |post_housing, post|
+    post_housings = PostHousing.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_housing, post|
       id === arr_id
       post.school_id == with_school if with_school
     end

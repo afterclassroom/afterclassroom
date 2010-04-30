@@ -37,7 +37,7 @@ class PostQa < ActiveRecord::Base
   def self.paginated_post_more_like_this(params, post_like)
     type = params[:type]
     type ||= "answered"
-    posts_like = PostQa.ez_find(:all, :include => [:post]) do |post_qa, post|
+    posts_like = PostQa.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_qa, post|
       post_qa.post_qa_category_id == post_like.post_qa.post_qa_category_id
       post.school_id == post_like.school_id
     end

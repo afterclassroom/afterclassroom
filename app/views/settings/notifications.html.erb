@@ -22,7 +22,7 @@
           <% if ntfobj.sms_allow == true %>
             <div class="navigation">SMS_ALLOW</div>
             <% check = false; %>
-            <% current_user.notify_settings.each do |userntfs| %>
+            <% current_user.notify_sms_settings.each do |userntfs| %>
               <% if userntfs.notification.id == ntfobj.id %>
                 <% check = true; %>
               <% end %>
