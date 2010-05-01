@@ -4,13 +4,22 @@
       changedValue: "required"
     }
   });
-
 </script>
-<form id="editName" action="<%=  savename_settings_path %>">
-  <p>Please enter a new name<br/>
-    <input type="text" value="" id="changedValue" name="changedValue" />
-  </p>
 
-  <input type="submit" value="Save"  />
+<div class="postCont" id="div_send_report">
+  <form action="<%=  savename_settings_path %>">
+    <div class="postItem">
+      <p>Please enter a new name<br/>
+      <div class="postInp"><input type="text" style="width:230px;" value="" id="changedValue" name="changedValue" /></div>
+      </p>
+    </div>
 
-</form>
+    <div class="submit"><a href="javascript:;" onclick="sendChange()">Send</a></div>
+  </form>
+</div>
+
+<script language="javascript">
+  function sendChange(){
+    $("form:first").submit();
+  }
+</script>

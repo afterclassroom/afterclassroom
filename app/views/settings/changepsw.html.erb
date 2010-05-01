@@ -9,13 +9,25 @@
   });
 
 </script>
-<form id="editpsw" action="<%=  savepsw_settings_path %>">
-  <p>Please enter the password<br/>
-    <input id='password' value='' type='password' name='password' size='15'/>
-  </p>
-  <p>Please re-enter the password<br/>
-    <input type='password' id='password_again' name='password_again' size='15'/><br/>
-  </p>
-  <input type="submit" value="Save"  />
+<div class="postCont" id="div_send_report">
+  <form id="editpsw" action="<%=  savepsw_settings_path %>">
+    <div class="postItem">
+      <p>Please enter the password<br/>
+        <input id='password' style="width:230px;" value='' type='password' name='password' size='15'/>
+      </p>
+    </div>
+    <div class="postItem">
+      <p>Please re-enter the password<br/>
+        <input type='password' id='password_again' style="width:230px;" name='password_again' size='15'/><br/>
+      </p>
+    </div>
 
-</form>
+    <div class="submit"><a href="javascript:;" onclick="sendChange()">Send</a></div>
+
+  </form>
+</div>
+<script language="javascript">
+  function sendChange(){
+    $("form:first").submit();
+  }
+</script>
