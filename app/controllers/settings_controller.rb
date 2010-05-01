@@ -82,7 +82,7 @@ class SettingsController < ApplicationController
     puts "============================"
     puts "============================"
     puts "============================"
-    redirect_to :action => "networks"
+    redirect_to :action => "notifications"
   end
 
   def setting
