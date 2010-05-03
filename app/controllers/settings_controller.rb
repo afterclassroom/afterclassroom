@@ -8,26 +8,6 @@ class SettingsController < ApplicationController
   end
 
   def savesetting
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
 
     #UPDATE SMS SETTING
     smsarrs = params[:smsarr]
@@ -35,11 +15,11 @@ class SettingsController < ApplicationController
       puts "mysmsarr == "+smsarrs.length.to_s
       if smsarrs != nil
       
-        current_user.notify_settings.destroy_all
+        current_user.notify_sms_settings.destroy_all
 
         smsarrs.each do |eachsms|
           puts "each == " + eachsms.to_s
-          @nfst = NotifySetting.new
+          @nfst = NotifySmsSetting.new
           @nfst.notification = Notification.find(eachsms)
           @nfst.user = current_user
 
@@ -79,10 +59,7 @@ class SettingsController < ApplicationController
       end
     end
 
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    redirect_to :action => "networks"
+    redirect_to :action => "notifications"
   end
 
   def setting
@@ -146,119 +123,6 @@ class SettingsController < ApplicationController
     else
       redirect_to :action => "setting", :inf_msg => "Updated Failed"
     end
-  end
-
-  def notiAfterclassroom
-
-  end
-
-  def saveNotiAfterclassroom
-    
-  end
-
-  def photos
-
-  end
-
-  def savePhotos
-
-  end
-
-  def groups
-
-  end
-
-  def saveGroups
-
-  end
-
-  def pages
-
-  end
-
-  def savePages
-    
-  end
-
-  def events
-
-  end
-
-  def saveEvents
-
-  end
-
-
-  def shareStory
-
-  end
-
-  def saveShareStory
-
-  end
-
-  def links
-
-  end
-
-  def saveLinks
-
-  end
-
-  def music
-
-  end
-
-  def saveMusic
-
-  end
-
-  def video
-
-  end
-
-  def saveVideo
-
-  end
-
-  def gifts
-
-  end
-
-  def saveGift
-
-  end
-
-  def helpCenter
-
-  end
-
-  def saveHelpCenter
-
-  end
-
-  def loungeComment
-
-  end
-
-  def saveLoungeComment
-
-  end
-
-  def otherApplications
-
-  end
-
-  def saveOtherApplications
-
-  end
-
-  def otherUpdates
-
-  end
-
-  def saveOtherUpdates
-
   end
 
 

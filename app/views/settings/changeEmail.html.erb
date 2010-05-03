@@ -1,19 +1,27 @@
 <script language="javascript">
-$("#editeMail").validate({
-  rules: {
-    changedValue: {
-      required: true,
-      email: true
+  $("#editeMail").validate({
+    rules: {
+      changedValue: {
+        required: true,
+        email: true
+      }
     }
-  }
-});
+  });
 
 </script>
-<form id="editeMail" action="<%=  saveEmail_settings_path %>">
-  <p>Please enter a new email address<br/>
-    <input type="text" value="" id="changedValue" name="changedValue" />
-  </p>
+<div class="postCont" id="div_send_report">
+  <form id="editeMail" action="<%=  saveEmail_settings_path %>">
+    <div class="postItem">
+      <p>Please enter a new email address<br/>
+        <input type="text" style="width:230px;" value="" id="changedValue" name="changedValue" />
+      </p>
+    </div>
 
-  <input type="submit" value="Save"  />
-
-</form>
+    <div class="submit"><a href="javascript:;" onclick="sendChange()">Send</a></div>
+  </form>
+</div>
+<script language="javascript">
+  function sendChange(){
+    $("form:first").submit();
+  }
+</script>

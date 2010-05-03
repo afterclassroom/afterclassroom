@@ -73,6 +73,8 @@ class CreateNotifications < ActiveRecord::Migration
       ["Gifts","Sends me a gift","sends_me_a_gift",true,false],
       ["Help Center","Replies to my Help Center questions","replies_to my_help_center_questions",true,false],
       ["Help Center","Marks my answer as Best Answer","marks_my_answer_as_best_answer",true,false],
+      ["My Lounge Comments","Comments on a story in my lounge","comments_on_a_story_in_my_lounge",true,false],
+      ["My Lounge Comments","Comments after me on a my lounge story","comments_after_me_on_a_my_lounge_story",true,false],
       ["Other updates from AfterClassroom","Updates about my Friends on AfterClassroom","updates_about_my_friends_on_AfterClassroom",true,false],
       ["Other updates from AfterClassroom","Updates about AfterClassroom product news","updates_about_AfterClassroom_product_news",true,false],
       ["Other updates from AfterClassroom","Invitations to participate in research about AfterClassroom","invitations_to_participate_in_research_about_AfterClassroom",true,false]
