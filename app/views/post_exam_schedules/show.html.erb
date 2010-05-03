@@ -1,0 +1,28 @@
+<p>
+  <b>Subject:</b>
+  <%=h @post_exam_schedule.subject %>
+</p>
+
+<p>
+  <b>Teacher name:</b>
+  <%=h @post_exam_schedule.teacher_name %>
+</p>
+
+<p>
+  <b>School:</b>
+  <%=h @post_exam_schedule.school %>
+</p>
+
+<p>
+  <b>Starts at:</b>
+  <%=h @post_exam_schedule.starts_at %>
+</p>
+
+<p>
+  <b>Place:</b>
+  <%=h @post_exam_schedule.place %>
+</p>
+
+
+<%= link_to 'Edit', edit_post_exam_schedule_path(@post_exam_schedule) %> |
+<%= link_to 'Back', post_exam_schedules_path %>

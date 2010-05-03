@@ -26,6 +26,7 @@ namespace :db do
       create_demo_posts_awarenesses
       create_demo_posts_foods
       create_demo_posts_qas
+      create_demo_post_exam_schedules
 
     end
     
@@ -379,10 +380,11 @@ def create_demo_posts_awarenesses
     post = create_post(user, school, post_category)
     
     post_a = PostAwareness.create do |pa|
+      type = AwarenessType.find(rand(AwarenessType.count) + 1)
     	pa.post = post
-      pa.awareness_type = AwarenessType.find(rand(AwarenessType.count) + 1)
-    	pa.campaign_start = DateTime.now + rand(20)
-    	pa.campaign_end = DateTime.now + rand(20)+3
+      pa.awareness_type = type
+    	pa.due_date = DateTime.now + rand(20) if type.label == "take_action_now"
+    	pa.phone = Faker::PhoneNumber.phone_number if type.label == "emergency_alerts"
       pa.tag_list = get_random_list_tags
     end
   end
@@ -424,6 +426,24 @@ def create_demo_posts_qas
       p.tag_list = get_random_list_tags
     end
     
+  end
+end
+
+def create_demo_post_exam_schedules
+  200.times do
+    user = User.find(rand(User.count) + 1)
+    school = user.school
+
+    es = PostExamSchedule.create do |p|
+    	p.user = user
+      p.school = school
+      p.subject = Faker::Lorem.sentence
+    	p.teacher_name = Faker::Name.name
+    	p.place = Faker::Address.street_address
+      p.starts_at = DateTime.now + rand(20)
+      p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size)].first
+    end
+
   end
 end
 

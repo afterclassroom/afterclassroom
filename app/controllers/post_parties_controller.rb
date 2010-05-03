@@ -167,6 +167,7 @@ class PostPartiesController < ApplicationController
   # POST /post_parties
   # POST /post_parties.xml
   def create
+    params[:post_party][:party_type_ids] = params[:party_type]
     @post_party = PostParty.new(params[:post_party])
     post = Post.new(params[:post])
     post.user = current_user
@@ -187,6 +188,7 @@ class PostPartiesController < ApplicationController
   # PUT /post_parties/1
   # PUT /post_parties/1.xml
   def update
+    params[:post_party][:party_type_ids] = params[:party_type]
     params[:post_party][:party_type_ids] ||= []
     @post_party = PostParty.find(params[:id])
 

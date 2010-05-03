@@ -3,8 +3,8 @@ class CreatePostAwarenesses < ActiveRecord::Migration
     create_table :post_awarenesses do |t|
       t.belongs_to :post, :null => false
       t.belongs_to :awareness_type
-      t.datetime :campaign_start
-      t.datetime :campaign_end
+      t.datetime :due_date
+      t.string :phone
       t.string :rating_status
     end
   end

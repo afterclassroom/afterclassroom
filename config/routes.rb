@@ -1,6 +1,6 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
-  
+    
   # RESTful rewrites
   map.signup   '/signup',   :controller => 'users',    :action => 'new'
   map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate'
@@ -187,6 +187,10 @@ ActionController::Routing::Routes.draw do |map|
     :good_org => :get, :worse_org => :get,
     :more_startup => :get, :rate => :get
   }
+
+  # Exam/Test Schedules, Deadline bulletin, General bulletin
+  map.resources :post_exam_schedules
+  
   # Stories
   map.resources :stories, :collection => {:create_comment => :get, :delete_comment => :get}
 

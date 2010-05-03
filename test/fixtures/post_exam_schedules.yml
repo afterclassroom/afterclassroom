@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  subject: MyString
+  teacher_name: MyString
+  school: 
+  starts_at: 2010-04-28 22:46:25
+  place: MyString
+
+two:
+  subject: MyString
+  teacher_name: MyString
+  school: 
+  starts_at: 2010-04-28 22:46:25
+  place: MyString

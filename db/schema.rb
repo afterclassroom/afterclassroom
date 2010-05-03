@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100423222512) do
+ActiveRecord::Schema.define(:version => 20100428154625) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -221,8 +221,6 @@ ActiveRecord::Schema.define(:version => 20100423222512) do
   create_table "notify_settings", :force => true do |t|
     t.integer  "user_id"
     t.integer  "notification_id"
-    t.boolean  "sms_check"
-    t.boolean  "email_check"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -269,8 +267,8 @@ ActiveRecord::Schema.define(:version => 20100423222512) do
   create_table "post_awarenesses", :force => true do |t|
     t.integer  "post_id",           :null => false
     t.integer  "awareness_type_id"
-    t.datetime "campaign_start"
-    t.datetime "campaign_end"
+    t.datetime "due_date"
+    t.string   "phone"
     t.string   "rating_status"
   end
 
@@ -288,6 +286,18 @@ ActiveRecord::Schema.define(:version => 20100423222512) do
   create_table "post_categories", :force => true do |t|
     t.string "name",       :default => "", :null => false
     t.string "class_name", :default => "", :null => false
+  end
+
+  create_table "post_exam_schedules", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "school_id"
+    t.string   "subject"
+    t.string   "teacher_name"
+    t.datetime "starts_at"
+    t.string   "place"
+    t.string   "type_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "post_exams", :force => true do |t|

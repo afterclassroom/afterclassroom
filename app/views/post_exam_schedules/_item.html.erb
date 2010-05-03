@@ -1,0 +1,22 @@
+<div class="assItem">
+  <div class="assItemL">
+    <div class="assImg"><div><%= link_to image_tag("noimg.png"), post %></div></div>
+    <div class="assContT">
+      <h2 class="titleH2"><%= link_to post.subject, post_exam_schedule_path(post) %></h2>
+    </div>
+    <div class="assDes"></div>
+  </div>
+  <div class="assItemB">
+    <div class="assPic"><%= link_to "<div>#{image_tag(post.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
+    <div class="assInfT">
+      <div class="assInfT">
+        <div class="assInfL">
+          <div><span>Posted by:</span><%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
+        </div>
+        <div class="assInfR"><%= link_to "more", post_exam_schedule_path(post) %></div>
+      </div>
+      <div class="assInfB">
+      </div>
+    </div>
+  </div>
+</div>
