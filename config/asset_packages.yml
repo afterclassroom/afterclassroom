@@ -48,6 +48,7 @@ stylesheets:
   - vtip
 - student_lounge:
   - main
+  - post
   - student_lounge
   - jquery-ui
   - jquery-ui-theme
