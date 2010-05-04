@@ -2,7 +2,6 @@
 class PostHousing < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
-  validates_presence_of :rent
 
   # Relations
   belongs_to :post
@@ -27,10 +26,14 @@ class PostHousing < ActiveRecord::Base
     from_school = params[:from_school]
     with_school = school
     with_school = from_school if from_school
-    housing_category = HousingCategory.find(category_id)
-    arr_id = housing_category.post_housings.select {|ph| ph.id}
+    arr_id = []
+    if category_id != nil
+      housing_category = HousingCategory.find(category_id)
+      housing_category.post_housings.select {|ph| arr_id << ph.id}
+    end
+    
     post_housings = PostHousing.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_housing, post|
-      id === arr_id
+      post_housing.id === arr_id if arr_id.size > 0
       post.school_id == with_school if with_school
     end
 

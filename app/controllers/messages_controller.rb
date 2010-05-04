@@ -1,6 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class MessagesController < ApplicationController
-  layout 'inbox'
+  layout 'student_lounge'
   
   before_filter :login_required
   before_filter :set_user, :except => :show_email

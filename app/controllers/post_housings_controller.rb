@@ -11,7 +11,6 @@ class PostHousingsController < ApplicationController
   # GET /post_housings.xml
   def index
     @housing_category_id = params[:housing_category_id]
-    @housing_category_id ||= HousingCategory.find(:first).id
     @posts = PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
 
     respond_to do |format|
@@ -115,7 +114,8 @@ class PostHousingsController < ApplicationController
   # POST /post_housings
   # POST /post_housings.xml
   def create
-    @post_housing = PostJob.new(params[:post_housing])
+    params[:post_housing][:housing_category_ids] = params[:housing_category]
+    @post_housing = PostHousing.new(params[:post_housing])
     post = Post.new(params[:post])
     post.user = current_user
     post.school_id = @school
@@ -125,7 +125,7 @@ class PostHousingsController < ApplicationController
     @post_housing.post = post
     if @post_housing.save
       notice "Your post was successfully created."
-      redirect_to post_housings_path + "?housing_category_id=#{@post_housing.housing_category_id}"
+      redirect_to post_housings_path
     else
       error "Failed to create a new post."
       render :action => "new"
@@ -135,6 +135,7 @@ class PostHousingsController < ApplicationController
   # PUT /post_housings/1
   # PUT /post_housings/1.xml
   def update
+    params[:post_housing][:housing_category_ids] = params[:housing_category]
     params[:post_housing][:housing_category_ids] ||= []
     @post_housing = PostHousing.find(params[:id])
 

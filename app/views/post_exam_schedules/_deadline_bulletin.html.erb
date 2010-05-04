@@ -1,0 +1,20 @@
+<div class="col195 student195">
+  <div class="col195in">
+    <h1 class="col195Title">Deadline bulletin</h1>
+    <div class="col195Cont">
+      <%
+      type = "general_bulletin"
+      items = PostExamSchedule.with_school(@school).with_type(type).with_limit
+    %>
+      <% if items.size > 0 %>
+        <% items.each do |it| %>
+          <div class="studentItem">
+            <div class="studentImg"><%= link_to "<div>#{image_tag(it.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => it.user.id} %></div>
+            <div class="studentInf"><%= link_to truncate_words(it.subject, 4), post_exam_schedule_path(it) %></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more Deadline bulletin", "#{post_exam_schedules_path}?type=#{type}" %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
