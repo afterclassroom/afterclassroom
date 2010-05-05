@@ -1,31 +1,25 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Home", :action_path => "#{dashboard_user_path(current_user)}"} %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'shared/sl_submenu_setting' %>
 <% end -%>
 
-<% content_for :function_button do %>
-  <ul>
-    <li><!-- compose button -->
-      <a href="<%= new_user_message_path(@user) %>" title="Compose" class="link_bt_g">
-        <span class="ltblue_l"></span>
-        <span class="ltblue_c btf">Compose</span>
-        <span class="ltblue_r"></span>
-      </a>
-    <!-- end compose button --></li>
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="inboxLeft">
+      <% if params[:mailbox] == "sent" %>
+        <%= render :partial => "sent" %>
+      <% else %>
+        <%= render :partial => "inbox" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-    <li> <!-- Delete button -->
-      <a href="javascript:document.form.submit()" title="Delete" class="link_bt_g">
-        <span class="ltgray_l"></span>
-        <span class="ltgray_c btf" style="color:#A50E0E">Delete</span>
-        <span class="ltgray_r"></span>
-      </a>
-    <!-- end Delete button --></li>
-  </ul>
-<% end %>
+<div class="contMainR">
+  <!--Menu-->
+  <%= render :partial => "menu_right" %>
+  <!--Menu-->
 
-<% form_tag delete_selected_user_messages_path(@user), :name => "form" do %>
-  <% if params[:mailbox] == "sent" %>
-    <%= render :partial => "sent" %>
-  <% else %>
-    <%= render :partial => "inbox" %>
-  <% end %>
-<% end %>
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>

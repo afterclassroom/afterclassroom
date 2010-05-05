@@ -1,28 +1,35 @@
-<table width="746" border="0" cellspacing="2" cellpadding="2">
-  <tr>
-    <th width="20" scope="col"></th>
-    <th width="156" scope="col">From</th>
-    <th width="360" scope="col">Subject</th>
-    <th width="115" scope="col">Date</th>
-  </tr>
-  <% if @messages.size == 0 %>
-    <tr>
-      <td colspan="4">
-        The mail box is empty
-      </td>
-    </tr>
-  <% else %>
-    <% for message in @messages %>
-      <tr>
-        <td><%= check_box_tag "delete[]", message.id %></td>
-        <td><%= link_to h(message.sender.login), {:controller => "profile", :action => "show_profile", :id => message.sender.id} %></td>
-        <td><% if message.read? %>
+<div class="inboxTitle">Inbox</div>
+<% form_tag delete_selected_user_messages_path(@user), :name => "form" do %>
+  <div class="inboxTop">
+    <div class="mark"><a href="#">Mark as read</a></div>
+    <div class="mark"><a href="#">Mark all</a></div>
+    <div class="inboxDelete"><a href="#">Delete</a></div>
+  </div>
+  <div class="inboxTop2">
+    <div class="fromT">
+      <div class="fromTinput"><input type="checkbox" name="Checkbox1"/></div>
+      <div class="fromTtxt">From</div>
+    </div>
+    <div class="subjectT">Subject</div>
+    <div class="dateT">Date</div>
+  </div>
+  <% for message in @messages %>
+    <div class="inboxItem">
+      <div class="fromT">
+        <div class="fromTinput"><%= check_box_tag "delete[]", message.id %></div>
+        <div class="fromTtxt"><%= link_to h(message.sender.full_name), {:controller => "profile", :action => "show_profile", :id => message.sender.id} %></div>
+      </div>
+      <div class="subjectT"><% if message.read? %>
             <%= link_to h(message.subject), user_message_path(@user, message) %>
           <% else %>
             <%= link_to "#{h(message.subject)} (unread)", user_message_path(@user, message) %>
-          <% end %></td>
-        <td><%=h message.created_at.to_s(:long) %></td>
-      </tr>
-    <% end %>
+          <% end %></div>
+      <div class="dateT"><%=h message.created_at.to_s(:long) %></div>
+    </div>
   <% end %>
-</table>
+
+  <div class="assPage">
+    <span class="numPage"><%= page_entries_info @messages %></span>
+    <%= will_paginate @messages %>
+  </div>
+<% end %>

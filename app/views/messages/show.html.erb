@@ -1,39 +1,40 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Home", :action_path => "#{dashboard_user_path(current_user)}"} %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'shared/sl_submenu_setting' %>
 <% end -%>
 
-<% content_for :function_button do %>
-  <ul>
-    <li><!-- compose button -->
-      <a href="<%= new_user_message_path(@user) %>" title="Compose" class="link_bt_g">
-        <span class="ltblue_l"></span>
-        <span class="ltblue_c btf">Compose</span>
-        <span class="ltblue_r"></span>
-      </a>
-    <!-- end compose button --></li>
-    <% if @message.recipient == @user %>
-      <li> <!-- Reply button -->
-        <a href="<%= new_user_message_path(@user, :reply_to => @message) %>" title="Reply" class="link_bt_g ">
-          <span class="ltgray_l"></span>
-          <span class="ltgray_c btf">Reply</span>
-          <span class="ltgray_r"></span>
-        </a>
-      <!-- end Reply button --></li>
-      <li> <!-- Forward button -->
-        <a href="<%= new_user_message_path(@user, :forward_to => @message) %>" title="Forward" class="link_bt_g">
-          <span class="ltgray_l"></span>
-          <span class="ltgray_c btf">Forward</span>
-          <span class="ltgray_r"></span>
-        </a>
-      <!-- end Forward button --></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="inboxLeft inboxDetails">
+      <div class="inboxTitle"><%= link_to "Inbox", user_messages_path(@user) %><span>Message Details</span></div>
+      <div class="inboxTop">
+        <div class="inbDelete"><a href="#">Delete</a></div>
+        <div class="inbReply"><%= link_to "Reply", new_user_message_path(@user, :reply_to => @message) %></div>
+        <div class="inbForward"><%= link_to "Forward", new_user_message_path(@user, :forward_to => @message) %></div>
+      </div>
+      <div class="inboxDeT">
+        <div class="mTitle"><a href="#"> </a><%= @message.subject %></div>
+        <div class="inboxInfo">
+          <div class="inboxInItem">
+            <div class="inboxIn1">From:</div>
+            <div class="inboxIn2"><%= @message.sender == @user ? link_to("You", user_path(@user)) : link_to(h(@message.sender.full_name), {:controller => "profile", :action => "show_profile", :id => @message.sender.id}) %></div>
+          </div>
+          <div class="inboxInItem">
+            <div class="inboxIn1">To:</div>
+            <div class="inboxIn2"><%= @message.recipient == @user ? link_to("You", user_path(@user)) : link_to(h(@message.recipient.full_name), {:controller => "profile", :action => "show_profile", :id => @message.recipient.id}) %></div>
+          </div>
+        </div>
+      </div>
+      <div class="inboxCont"><%=h @message.body %></div>
+    </div>
+  </div>
+</div>
 
-<p><strong>From:</strong> <%= @message.sender == @user ? link_to("You", user_path(@user)) : link_to(h(@message.sender.login), {:controller => "profile", :action => "show_profile", :id => @message.sender.id}) %></p>
-<p><strong>Received:</strong> <%= @message.created_at.to_s(:long) %></p>
-<p><strong>To:</strong> <%= @message.recipient == @user ? link_to("You", user_path(@user)) : link_to(h(@message.recipient.login), {:controller => "profile", :action => "show_profile", :id => @message.recipient.id}) %></p>
-<p>
-  <strong>Message</strong><br />
-  <%=h @message.body %>
-</p>
+<div class="contMainR">
+  <!--Menu-->
+  <%= render :partial => "menu_right" %>
+  <!--Menu-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>

@@ -1,0 +1,12 @@
+<div class="col300 inboxMess">
+  <div class="col300in">
+    <h1 class="col300Title"> Messages</h1>
+    <div class="col300Cont">
+      <div class="inboxL"><%= link_to "Inbox", user_messages_path(@user) %></div>
+      <div class="composeL"><%= link_to "Compose", new_user_message_path(@user) %></div>
+      <div class="sentL"><%= link_to "Sent", "#{user_messages_path(@user)}?mailbox=sent" %></div>
+      <div class="trashL"><a href="">Trash</a></div>
+      <div class="emptyL"><a href="">Empty Trash</a></div>
+    </div>
+  </div>
+</div>

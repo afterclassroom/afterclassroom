@@ -8,25 +8,31 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
-      departments_for_schools
-      create_demo_people
+      # Users
+#      departments_for_schools
+#      create_demo_people
 
       # Begin creating Posts data
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_post_books
-      create_demo_post_tutors
-      create_demo_post_jobs
-      create_demo_post_housings
-      create_demo_post_parties
-      create_demo_posts_teamups
-      create_demo_posts_awarenesses
-      create_demo_posts_foods
-      create_demo_posts_qas
-      create_demo_post_exam_schedules
+#      create_demo_posts_assignments
+#      create_demo_posts_tests
+#      create_demo_posts_projects
+#      create_demo_posts_exams
+#      create_demo_posts_myx
+#      create_demo_posts_books
+#      create_demo_posts_tutors
+#      create_demo_posts_jobs
+#      create_demo_posts_housings
+#      create_demo_posts_parties
+#      create_demo_posts_teamups
+#      create_demo_posts_awarenesses
+#      create_demo_posts_foods
+#      create_demo_posts_qas
+
+      # Exam schedule
+#      create_demo_posts_exam_schedules
+
+      # Messages data
+      create_demo_messages
 
     end
     
@@ -197,7 +203,7 @@ def create_demo_posts_myx
   end
 end
 
-def create_demo_post_books
+def create_demo_posts_books
   type_name = "PostBook"
   post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
@@ -221,7 +227,7 @@ def create_demo_post_books
   end
 end
 
-def create_demo_post_tutors
+def create_demo_posts_tutors
   type_name = "PostTutor"
   post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
@@ -244,7 +250,7 @@ def create_demo_post_tutors
   end
 end
 
-def create_demo_post_jobs
+def create_demo_posts_jobs
   type_name = "PostJob"
   post_category = PostCategory.find_by_class_name(type_name)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
@@ -278,7 +284,7 @@ def create_demo_post_jobs
   end
 end
 
-def create_demo_post_housings
+def create_demo_posts_housings
   type_name = "PostHousing"
   post_category = PostCategory.find_by_class_name(type_name)
   rent = ['rentA','rentB', 'rentC']
@@ -313,7 +319,7 @@ def create_demo_post_housings
   end
 end
 
-def create_demo_post_parties
+def create_demo_posts_parties
   type_name = "PostParty"
   post_category = PostCategory.find_by_class_name(type_name)
   
@@ -429,7 +435,7 @@ def create_demo_posts_qas
   end
 end
 
-def create_demo_post_exam_schedules
+def create_demo_posts_exam_schedules
   200.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
@@ -444,6 +450,23 @@ def create_demo_post_exam_schedules
       p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size)].first
     end
 
+  end
+end
+
+def create_demo_messages
+  200.times do
+    user = User.find(rand(User.count) + 1)
+
+    User.find(:all).each do |u|
+     unless user == u
+       ms = Message.create do |m|
+          m.sender_id = user.id
+          m.recipient_id = u.id
+          m.subject = Faker::Lorem.sentence
+          m.body = Faker::Lorem.paragraphs
+        end
+     end
+    end
   end
 end
 
