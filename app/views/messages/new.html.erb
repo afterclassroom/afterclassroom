@@ -1,56 +1,63 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Home", :action_path => "#{dashboard_user_path(current_user)}"} %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'shared/sl_submenu_setting' %>
 <% end -%>
 
-<% content_for :function_button do %>
-  <ul>
-    <li><!-- compose button -->
-      <a href="<%= new_user_message_path(@user) %>" title="Compose" class="link_bt_g">
-        <span class="ltblue_l"></span>
-        <span class="ltblue_c btf">Compose</span>
-        <span class="ltblue_r"></span>
-      </a>
-    <!-- end compose button --></li>
-  </ul>
-<% end %>
-
-<% form_for @message, :url => user_messages_path(@user) do |f| %>
-  <p>
-    To:<br />
-    <div id="list_friend_div">
-      <%= text_field_tag "username", "#{@message.to}", :readonly => true %>
-      <%= error_message_on @message, :to %>
-      <% if @message.to %>
-        <%= hidden_field_tag "message[to]", @message.to %>
-      <% else %>
-        <% for friend in @friends %>
-          <%= radio_button "message", "to", friend.login, :onClick => "getUsername('#{friend.full_name}')" %>
-          <label onClick="getUsername(this.innerHTML)" for="message_to_<%= friend.id %>"><%= friend.full_name %></label>
-        <% end %>
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="inboxLeft">
+      <% form_for @message, :url => user_messages_path(@user), :id => "message_form" do |f| %>
+        <div class="inboxTitle">Compose message</div>
+        <div class="inboxTop">
+          <div class="compSent"><%= link_to "Send", "javascript:;", :onclick => "$('#message_form').submit();" %></div>
+          <div class="compCancel"><%= link_to "Cancel", user_messages_path(@user) %></div>
+        </div>
+        <div class="compTop2">
+          <div class="compTo">
+            <div class="compLabel">To:</div>
+            <div class="compInput"><input type="text" name="Text1"/></div>
+          </div>
+          <div class="compSub">
+            <div class="compLabel">Subject:</div>
+            <div class="compInput"><%= f.text_field :subject %></div>
+          </div>
+        </div>
+        <div class="compCont">
+          <%= f.text_area :body %>
+        </div>
       <% end %>
     </div>
-  </p>
-  <p>
-    Subject:<br />
-    <%= f.text_field :subject %>
-    <%= error_message_on @message, :subject %>
-  </p>
-  <p>
-    Message<br />
-    <%= f.text_area :body %>
-    <%= error_message_on @message, :body %>
-  </p>
-  <p>
-    <%= submit_tag "Send" %>
-  </p>
-<% end %>
+  </div>
+</div>
 
-<script language="javascript">
-  function getUsername(username){
-    $("username").value = username;
-  }
-  Event.addBehavior.reassignAfterAjax = true;
-  Event.addBehavior({
-    'div.digg_pagination a' : Remote.Link
-  })
+<div class="contMainR">
+  <!--Menu-->
+  <%= render :partial => "menu_right" %>
+  <!--Menu-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
+
+<script type="text/javascript">
+  (function($)
+  {
+    $('#message_body').wysiwyg({
+      controls: {
+        createLink : { visible : false },
+
+        insertImage : { visible : false },
+
+        separator05 : { visible : false },
+        
+        separator06 : { visible : false },
+
+        h1 : { visible : false },
+        h2 : { visible : false },
+        h3 : { visible : false },
+
+        removeFormat : { visible : true }
+      }
+    });
+  })(jQuery);
 </script>

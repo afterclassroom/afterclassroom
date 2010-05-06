@@ -2,7 +2,7 @@
 <% form_tag delete_selected_user_messages_path(@user), :name => "form" do %>
   <div class="inboxTop">
     <div class="mark"><a href="#">Mark as read</a></div>
-    <div class="mark"><a href="#">Mark all</a></div>
+    <div class="mark"><a href="#">Mark as unread</a></div>
     <div class="inboxDelete"><a href="#">Delete</a></div>
   </div>
   <div class="inboxTop2">
@@ -17,7 +17,7 @@
     <div class="inboxItem">
       <div class="fromT">
         <div class="fromTinput"><%= check_box_tag "delete[]", message.id %></div>
-        <div class="fromTtxt"><%= link_to h(message.sender.full_name), {:controller => "profile", :action => "show_profile", :id => message.sender.id} %></div>
+        <div class="fromTtxt"><%= message.recipient.full_name %></div>
       </div>
       <div class="subjectT"><% if message.read? %>
             <%= link_to h(message.subject), user_message_path(@user, message) %>
