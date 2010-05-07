@@ -1,11 +1,11 @@
 <div class="inboxTitle">Sent</div>
-<% form_tag delete_selected_user_messages_path(@user), :name => "form" do %>
+<% form_tag delete_selected_user_messages_path(@user), :name => "msg_form" do %>
   <div class="inboxTop">
-    <div class="inboxDelete"><a href="#">Delete</a></div>
+    <div class="inboxDelete"><%= link_to_function "Delete", "MsgAction('delete')" %></div>
   </div>
   <div class="inboxTop2">
     <div class="fromT">
-      <div class="fromTinput"><input type="checkbox" name="Checkbox1"/></div>
+      <div class="fromTinput"><input type="checkbox" name="msg_all" id="msg_all"/></div>
       <div class="fromTtxt">To</div>
     </div>
     <div class="subjectT">Subject</div>
@@ -14,7 +14,7 @@
   <% for message in @messages %>
     <div class="inboxItem">
       <div class="fromT">
-        <div class="fromTinput"><%= check_box_tag "delete[]", message.id %></div>
+        <div class="fromTinput"><%= check_box_tag "msg[]", message.id, false, {:class => "check"} %></div>
         <div class="fromTtxt"><%= message.recipient.full_name %></div>
       </div>
       <div class="subjectT"><% if message.read? %>

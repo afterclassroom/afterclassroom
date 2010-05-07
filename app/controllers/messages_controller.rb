@@ -60,20 +60,23 @@ class MessagesController < ApplicationController
       render :action => :new
     end
   end
-  
-  def delete_selected
-    if request.post?
-      if params[:delete]
-        params[:delete].each { |id|
-          @message = Message.find(:first, :conditions => ["messages.id = ? AND (sender_id = ? OR recipient_id = ?)", id, @user, @user])
-          @message.mark_deleted(@user) unless @message.nil?
-        }
-        flash[:notice] = "Messages deleted"
-      end
-      redirect_to user_message_path(@user, @messages)
+
+  def message_action
+    action = params[:action]
+    case action
+    when "delete"
+      delete_selected
+    when "mark_as_read"
+      mark_read_selected
+    when "mark_as_unread"
+      mark_unread_selected
     end
   end
+  
+  def trash
 
+  end
+  
   def show_email
     @user_id = params[:user_id]
     render :layout => false
@@ -103,5 +106,46 @@ class MessagesController < ApplicationController
       redirect_back_or_default(root_path)and return false
     end
     return @user
+  end
+
+  def delete_selected
+    if request.post?
+      if params[:msg]
+        params[:msg].each { |id|
+          @message = Message.find(:first, :conditions => ["messages.id = ? AND (sender_id = ? OR recipient_id = ?)", id, @user, @user])
+          @message.mark_deleted(@user) unless @message.nil?
+        }
+        flash[:notice] = "Messages deleted"
+      end
+      redirect_to user_message_path(@user, @messages)
+    end
+  end
+
+  def mark_read_selected
+    if request.post?
+      if params[:msg]
+        params[:msg].each { |id|
+          @message = Message.read(id, @user)
+        }
+        flash[:notice] = "Messages readed"
+      end
+      redirect_to user_message_path(@user, @messages)
+    end
+  end
+
+  def mark_unread_selected
+    if request.post?
+      if params[:msg]
+        params[:msg].each { |id|
+          @message = Message.find(:first, :conditions => ["messages.id = ? AND recipient_id = ?", id, @user])
+          unless @message.nil?
+            @message.read_at = nil
+            @message.save
+          end
+        }
+        flash[:notice] = "Messages unread"
+      end
+      redirect_to user_message_path(@user, @messages)
+    end
   end
 end
