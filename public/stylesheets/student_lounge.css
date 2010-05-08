@@ -2025,10 +2025,9 @@ div.helpAdv2{
     background:url('/images/bor10.png') no-repeat right center;
 }
 .compCont{
-    padding:15px;
-    border:1px #cecece solid;
     margin-top:10px;
     overflow:hidden;
+    padding-right:12px;
 }
 .compCL{
     float:left;
@@ -2050,6 +2049,14 @@ div.helpAdv2{
 }
 .compC .inboxInf{
     clear:both;
+}
+.compCont textarea{
+    width:100%;
+    background-color:transparent;
+    border:1px solid #CECECE;
+    height:96px;
+    line-height:14px;
+    text-indent:2px;
 }
 /******************* Learning Tools ****************/
 .topLearning{

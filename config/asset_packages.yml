@@ -12,6 +12,7 @@ javascripts:
   - jquery-counter
   - jquery-multiselect
   - vtip-min
+  - jquery-wysiwyg
 - student_lounge:
   - application
   - jquery
@@ -22,6 +23,7 @@ javascripts:
   - thickbox
   - jquery-validate
   - vtip-min
+  - jquery-wysiwyg
 - admin:
   - application
   - jquery
@@ -41,11 +43,12 @@ stylesheets:
   - jquery-ui-datepicker
   - jquery-mcdropdown
   - jquery-multiselect
-  - thickbox
   - pagination
   - validation
   - flash
   - vtip
+  - thickbox
+  - jquery-wysiwyg
 - student_lounge:
   - main
   - post
@@ -54,10 +57,11 @@ stylesheets:
   - jquery-ui-theme
   - jquery-ui-datepicker
   - jquery-mcdropdown
-  - thickbox
   - pagination
   - validation
   - flash
   - vtip
+  - thickbox
+  - jquery-wysiwyg
 - admin:
   - main
