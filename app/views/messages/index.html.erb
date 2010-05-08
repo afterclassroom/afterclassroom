@@ -24,10 +24,48 @@
   <!--Ads-->
 </div>
 
+<!--Alert-->
+<div id="dialog-message" title="Alert">
+  <p>
+    There is no email selected.
+  </p>
+</div>
+
+<!--Alert-->
+
 <script type="text/javascript">
+  $( function() {
+    $( '.checkAll' ).live( 'change', function() {
+      $( '.cb-element' ).attr( 'checked', $( this ).is( ':checked' ) ? 'checked' : '' );
+      $( this ).next().text( $( this ).is( ':checked' ) ? 'Uncheck All' : 'Check All' );
+    });
+    $( '.invertSelection' ).live( 'click', function() {
+      $( '.cb-element' ).each( function() {
+        $( this ).attr( 'checked', $( this ).is( ':checked' ) ? '' : 'checked' );
+      }).trigger( 'change' );
+
+    });
+    $( '.cb-element' ).live( 'change', function() {
+      $( '.cb-element' ).length == $( '.cb-element:checked' ).length ? $( '.checkAll' ).attr( 'checked', 'checked' ).next().text( 'Uncheck All' ) : $( '.checkAll' ).attr( 'checked', '' ).next().text( 'Check All' );
+
+    });
+  });
+
   function MsgAction(act){
-    $('#action').val(act);
-    $('#msg_form').submit();
+    if ($('.cb-element:checked').length == 0){
+      $("#dialog-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function() {
+            $(this).dialog('close');
+          }
+        }
+      });
+
+    }else{
+      $('#act').val(act);
+      $('#msg_form').submit();
+    }
   }
 
 </script>

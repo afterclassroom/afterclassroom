@@ -1,5 +1,6 @@
 <div class="inboxTitle">Sent</div>
-<% form_tag delete_selected_user_messages_path(@user), :name => "msg_form" do %>
+<% form_tag message_action_user_messages_path(@user), :name => "msg_form" do %>
+  <%= hidden_field_tag "act" %>
   <div class="inboxTop">
     <div class="inboxDelete"><%= link_to_function "Delete", "MsgAction('delete')" %></div>
   </div>

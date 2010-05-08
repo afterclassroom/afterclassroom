@@ -4,7 +4,14 @@ javascripts:
   - application
   - jquery
   - jquery-ui
+  - jquery-ui-widget
+  - jquery-ui-mouse
+  - jquery-ui-draggable
+  - jquery-ui-position
+  - jquery-ui-resizable
+  - jquery-ui-button
   - jquery-ui-datepicker
+  - jquery-ui-dialog
   - jrails
   - jquery-mcdropdown
   - thickbox
@@ -17,7 +24,14 @@ javascripts:
   - application
   - jquery
   - jquery-ui
+  - jquery-ui-widget
+  - jquery-ui-mouse
+  - jquery-ui-draggable
+  - jquery-ui-position
+  - jquery-ui-resizable
+  - jquery-ui-button
   - jquery-ui-datepicker
+  - jquery-ui-dialog
   - jrails
   - jquery-mcdropdown
   - thickbox
@@ -40,7 +54,10 @@ stylesheets:
   - post
   - jquery-ui
   - jquery-ui-theme
+  - jquery-ui-button
+  - jquery-ui-resizable
   - jquery-ui-datepicker
+  - jquery-ui-dialog
   - jquery-mcdropdown
   - jquery-multiselect
   - pagination
@@ -54,7 +71,10 @@ stylesheets:
   - student_lounge
   - jquery-ui
   - jquery-ui-theme
+  - jquery-ui-button
+  - jquery-ui-resizable
   - jquery-ui-datepicker
+  - jquery-ui-dialog
   - jquery-mcdropdown
   - pagination
   - validation

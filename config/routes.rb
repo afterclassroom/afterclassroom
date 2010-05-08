@@ -55,7 +55,7 @@ ActionController::Routing::Routes.draw do |map|
     :update_email => :put,
     :update_avatar => :put,} do |users|
     users.resources :messages,
-      :collection => { :show_email => :get, :send_message => :get, :trash => :get, :message_action => :get }
+      :collection => { :show_email => :get, :send_message => :get, :trash => :get, :message_action => :post }
   end
   
   # Sessions

@@ -1,6 +1,6 @@
 <div class="inboxTitle">Inbox</div>
-<% form_tag delete_selected_user_messages_path(@user), :name => "msg_form" do %>
-  <%= hidden_field_tag "action" %>
+<% form_tag message_action_user_messages_path(@user), {:name => "msg_form", :id => "msg_form"} do %>
+  <%= hidden_field_tag "act" %>
   <div class="inboxTop">
     <div class="mark"><%= link_to_function "Mark as read", "MsgAction('mark_as_read')" %></div>
     <div class="mark"><%= link_to_function "Mark as unread", "MsgAction('mark_as_unread')" %></div>
@@ -8,7 +8,7 @@
   </div>
   <div class="inboxTop2">
     <div class="fromT">
-      <div class="fromTinput"><input type="checkbox" name="msg_all" id="msg_all"/></div>
+      <div class="fromTinput"><%= check_box_tag "msg_all", "", false, {:class => "checkAll"} %></div>
       <div class="fromTtxt">From</div>
     </div>
     <div class="subjectT">Subject</div>
@@ -17,7 +17,7 @@
   <% for message in @messages %>
     <div class="inboxItem">
       <div class="fromT">
-        <div class="fromTinput"><%= check_box_tag "msg[]", message.id, false, {:class => "check"} %></div>
+        <div class="fromTinput"><%= check_box_tag "msg[]", message.id, false, {:class => "cb-element"} %></div>
         <div class="fromTtxt"><%= message.sender.full_name %></div>
       </div>
       <div class="subjectT"><% if message.read? %>
