@@ -1,4 +1,4 @@
-class CreateNotifySMSSettings < ActiveRecord::Migration
+class CreateNotifySmsSettings < ActiveRecord::Migration
   def self.up
     create_table :notify_sms_settings do |t|
 

@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20100428154625) do
     t.datetime "updated_at"
   end
 
-  create_table "notify_settings", :force => true do |t|
+  create_table "notify_sms_settings", :force => true do |t|
     t.integer  "user_id"
     t.integer  "notification_id"
     t.datetime "created_at"
