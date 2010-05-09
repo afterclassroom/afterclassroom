@@ -6,9 +6,10 @@
   <div class="contDetLin">
     <div class="inboxLeft">
       <% form_for @message, :url => user_messages_path(@user), :html => {:id => "msg_form"} do |f| %>
+        <%= hidden_field_tag "recipient" %>
         <div class="inboxTitle">Compose message</div>
         <div class="inboxTop">
-          <div class="compSent"><%= link_to "Send", "javascript:;", :onclick => "$('#msg_form').submit();" %></div>
+          <div class="compSent"><%= link_to_function "Send", "CreateNew()" %></div>
           <div class="compCancel"><%= link_to "Cancel", user_messages_path(@user) %></div>
         </div>
         <div class="compTop2">
@@ -40,6 +41,7 @@
 </div>
 
 <script type="text/javascript">
+  var path = "<%= list_friend_user_messages_path %>";
   (function($)
   {
     $('#message_body').wysiwyg({
@@ -60,13 +62,10 @@
       }
     });
   })(jQuery);
-  var data = {items: [
-      {value: "21", name: "Mick Jagger"},
-      {value: "43", name: "Johnny Storm"},
-      {value: "46", name: "Richard Hatch"},
-      {value: "54", name: "Kelly Slater"},
-      {value: "55", name: "Rudy Hamilton"},
-      {value: "79", name: "Michael Jordan"}
-    ]};
-  $("#message_to").autoSuggest(data.items, {selectedItemProp: "name", searchObjProps: "name", selectionLimit:1, resultClick: function(data){alert(data.value); }});
+  
+  $("#message_to").autoSuggest(path, {asHtmlID: "message_to", selectedItemProp: "name", searchObjProps: "name", selectionLimit:1});
+  function CreateNew(){
+    $('#recipient').val($('#as-values-message_to').val());
+    $('#msg_form').submit();
+  }
 </script>

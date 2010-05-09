@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     when "sent"
       @messages = @user.sent_messages.paginate :page => params[:page], :per_page => 10
     when "trash"
-      @messages = @user.sent_messages.paginate :page => params[:page], :per_page => 10
+      @messages = Message.find(:all, :conditions => ["(sender_id = ? AND sender_deleted = ?) OR (recipient_id = ? AND recipient_deleted = ?)", @user, true, @user, true]).paginate :page => params[:page], :per_page => 10
     else
       @messages = @user.received_messages.paginate :page => params[:page], :per_page => 10
     end
@@ -55,11 +55,11 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     @message.sender = @user
-    @message.recipient = User.find_by_email(params[:message][:email])
+    @message.recipient = User.find(params[:recipient])
 
     if @message.save
       flash[:notice] = "Message sent"
-      redirect_to user_messages_path(@user)
+      redirect_to user_messages_path(@user, :mailbox => "sent")
     else
       render :action => :new
     end
@@ -99,6 +99,18 @@ class MessagesController < ApplicationController
     end
 
     render :text => str
+  end
+
+  def list_friend
+    q = params[:q]
+    friends = @user.user_friends.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
+    arr = []
+    friends.each do |f|
+      arr << {:value => f.id, :name => f.full_name, :image => f.avatar.url(:thumb)}
+    end
+    respond_to do |format|
+      format.js { render :json => arr.to_json()}
+    end
   end
   
   private

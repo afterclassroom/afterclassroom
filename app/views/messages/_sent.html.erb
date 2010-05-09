@@ -1,5 +1,5 @@
 <div class="inboxTitle">Sent</div>
-<% form_tag message_action_user_messages_path(@user), :name => "msg_form" do %>
+<% form_tag message_action_user_messages_path(@user), {:name => "msg_form", :id => "msg_form"} do %>
   <%= hidden_field_tag "act" %>
   <div class="inboxTop">
     <div class="inboxDelete"><%= link_to_function "Delete", "MsgAction('delete')" %></div>
@@ -12,7 +12,20 @@
     <div class="subjectT">Subject</div>
     <div class="dateT">Date</div>
   </div>
-  <%= render :partial => "list_item" %>
+  <% for message in @messages %>
+  <div class="inboxItem">
+    <div class="fromT">
+      <div class="fromTinput"><%= check_box_tag "msg[]", message.id, false, {:class => "cb-element"} %></div>
+      <div class="fromTtxt"><%= message.recipient.full_name %></div>
+    </div>
+    <div class="subjectT"><% if message.read? %>
+        <%= link_to h(message.subject), user_message_path(@user, message) %>
+      <% else %>
+        <%= link_to "#{h(message.subject)} (unread)", user_message_path(@user, message) %>
+      <% end %></div>
+    <div class="dateT"><%=h message.created_at.to_s(:long) %></div>
+  </div>
+<% end %>
   <div class="assPage">
     <span class="numPage"><%= page_entries_info @messages %></span>
     <%= will_paginate @messages %>

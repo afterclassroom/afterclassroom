@@ -22,12 +22,10 @@ class User < ActiveRecord::Base
   # Relations
   belongs_to :school
   has_and_belongs_to_many :roles
-  has_many :notify_sms_settings
-  has_many :notify_emails
-  has_many :posts, :dependent => :destroy
   has_one :user_information, :dependent => :destroy
   has_one :user_education, :dependent => :destroy
   has_one :user_employment, :dependent => :destroy
+  has_many :posts, :dependent => :destroy
   has_many :stories, :dependent => :destroy
   has_many :photo_albums, :dependent => :destroy
   has_many :music_albums, :dependent => :destroy
@@ -42,6 +40,8 @@ class User < ActiveRecord::Base
 	has_many :flirting_messages, :dependent => :destroy
 	has_many :flirting_sharrings, :dependent => :destroy
 	has_many :flirting_user_inchats, :dependent => :destroy
+  has_many :notify_sms_settings
+  has_many :notify_emails
 
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]

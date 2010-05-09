@@ -7,6 +7,8 @@
     <div class="inboxLeft">
       <% if params[:mailbox] == "sent" %>
         <%= render :partial => "sent" %>
+      <% elsif params[:mailbox] == "trash" %>
+        <%= render :partial => "trash" %>
       <% else %>
         <%= render :partial => "inbox" %>
       <% end %>

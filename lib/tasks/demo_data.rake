@@ -9,30 +9,31 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       # Users
-#      departments_for_schools
-#      create_demo_people
+      #      departments_for_schools
+      #      create_demo_people
+      create_demo_friendship
 
       # Begin creating Posts data
-#      create_demo_posts_assignments
-#      create_demo_posts_tests
-#      create_demo_posts_projects
-#      create_demo_posts_exams
-#      create_demo_posts_myx
-#      create_demo_posts_books
-#      create_demo_posts_tutors
-#      create_demo_posts_jobs
-#      create_demo_posts_housings
-#      create_demo_posts_parties
-#      create_demo_posts_teamups
-#      create_demo_posts_awarenesses
-#      create_demo_posts_foods
-#      create_demo_posts_qas
+      #      create_demo_posts_assignments
+      #      create_demo_posts_tests
+      #      create_demo_posts_projects
+      #      create_demo_posts_exams
+      #      create_demo_posts_myx
+      #      create_demo_posts_books
+      #      create_demo_posts_tutors
+      #      create_demo_posts_jobs
+      #      create_demo_posts_housings
+      #      create_demo_posts_parties
+      #      create_demo_posts_teamups
+      #      create_demo_posts_awarenesses
+      #      create_demo_posts_foods
+      #      create_demo_posts_qas
 
       # Exam schedule
-#      create_demo_posts_exam_schedules
+      #      create_demo_posts_exam_schedules
 
       # Messages data
-      create_demo_messages
+      #      create_demo_messages
 
     end
     
@@ -91,6 +92,20 @@ def create_demo_people
       
       user.register!
       user.activate!
+    end
+  end
+end
+
+def create_demo_friendship
+  users = User.find(:all)
+  friends = User.find(:all)
+  users.each do |u|
+    friends.each do |f|
+      unless u == f
+        invite = UserInvite.create(:user => u, :user_target => f, :message => "let's be friends!")
+        invite.is_accepted = true
+        invite.save and u.reload and f.reload
+      end
     end
   end
 end
@@ -458,14 +473,14 @@ def create_demo_messages
     user = User.find(rand(User.count) + 1)
 
     User.find(:all).each do |u|
-     unless user == u
-       ms = Message.create do |m|
+      unless user == u
+        ms = Message.create do |m|
           m.sender_id = user.id
           m.recipient_id = u.id
           m.subject = Faker::Lorem.sentence
           m.body = Faker::Lorem.paragraphs
         end
-     end
+      end
     end
   end
 end

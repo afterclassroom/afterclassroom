@@ -71,12 +71,8 @@ stylesheets:
   - jquery-wysiwyg
 - student_lounge:
   - main
-<<<<<<< HEAD:config/asset_packages.yml
-  - student-lounge
-=======
   - post
-  - student_lounge
->>>>>>> cf0d096bc17847ed28632312a87811aeed5a5d41:config/asset_packages.yml
+  - student-lounge
   - jquery-ui
   - jquery-ui-theme
   - jquery-ui-button
