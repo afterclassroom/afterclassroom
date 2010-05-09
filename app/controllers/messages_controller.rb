@@ -6,7 +6,11 @@ class MessagesController < ApplicationController
   before_filter :set_user, :except => :show_email
   
   def index
-    if params[:mailbox] == "sent"
+    act = params[:mailbox]
+    case act
+    when "sent"
+      @messages = @user.sent_messages.paginate :page => params[:page], :per_page => 10
+    when "trash"
       @messages = @user.sent_messages.paginate :page => params[:page], :per_page => 10
     else
       @messages = @user.received_messages.paginate :page => params[:page], :per_page => 10
@@ -75,10 +79,6 @@ class MessagesController < ApplicationController
     end
   end
   
-  def trash
-
-  end
-  
   def show_email
     @user_id = params[:user_id]
     render :layout => false
@@ -111,37 +111,37 @@ class MessagesController < ApplicationController
   end
 
   def delete_selected
-      if params[:msg]
-        params[:msg].each { |id|
-          @message = Message.find(:first, :conditions => ["messages.id = ? AND (sender_id = ? OR recipient_id = ?)", id, @user, @user])
-          @message.mark_deleted(@user) unless @message.nil?
-        }
-        flash[:notice] = "Messages deleted"
-      end
-      redirect_to user_message_path(@user, @messages)
+    if params[:msg]
+      params[:msg].each { |id|
+        @message = Message.find(:first, :conditions => ["messages.id = ? AND (sender_id = ? OR recipient_id = ?)", id, @user, @user])
+        @message.mark_deleted(@user) unless @message.nil?
+      }
+      flash[:notice] = "Messages deleted"
+    end
+    redirect_to user_message_path(@user, @messages)
   end
 
   def mark_read_selected
-      if params[:msg]
-        params[:msg].each { |id|
-          @message = Message.read(id, @user)
-        }
-        flash[:notice] = "Messages readed"
-      end
-      redirect_to user_message_path(@user, @messages)
+    if params[:msg]
+      params[:msg].each { |id|
+        @message = Message.read(id, @user)
+      }
+      flash[:notice] = "Messages readed"
+    end
+    redirect_to user_message_path(@user, @messages)
   end
 
   def mark_unread_selected
-      if params[:msg]
-        params[:msg].each { |id|
-          @message = Message.find(:first, :conditions => ["messages.id = ? AND recipient_id = ?", id, @user])
-          unless @message.nil?
-            @message.read_at = nil
-            @message.save
-          end
-        }
-        flash[:notice] = "Messages unread"
-      end
-      redirect_to user_message_path(@user, @messages)
+    if params[:msg]
+      params[:msg].each { |id|
+        @message = Message.find(:first, :conditions => ["messages.id = ? AND recipient_id = ?", id, @user])
+        unless @message.nil?
+          @message.read_at = nil
+          @message.save
+        end
+      }
+      flash[:notice] = "Messages unread"
+    end
+    redirect_to user_message_path(@user, @messages)
   end
 end

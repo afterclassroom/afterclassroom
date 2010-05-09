@@ -5,16 +5,16 @@
 <div class="contDetL">
   <div class="contDetLin">
     <div class="inboxLeft">
-      <% form_for @message, :url => user_messages_path(@user), :id => "message_form" do |f| %>
+      <% form_for @message, :url => user_messages_path(@user), :html => {:id => "msg_form"} do |f| %>
         <div class="inboxTitle">Compose message</div>
         <div class="inboxTop">
-          <div class="compSent"><%= link_to "Send", "javascript:;", :onclick => "$('#message_form').submit();" %></div>
+          <div class="compSent"><%= link_to "Send", "javascript:;", :onclick => "$('#msg_form').submit();" %></div>
           <div class="compCancel"><%= link_to "Cancel", user_messages_path(@user) %></div>
         </div>
         <div class="compTop2">
           <div class="compTo">
             <div class="compLabel">To:</div>
-            <div class="compInput"><input type="text" name="Text1"/></div>
+            <div class="compInput"><%= f.text_field :to %></div>
           </div>
           <div class="compSub">
             <div class="compLabel">Subject:</div>
@@ -60,4 +60,13 @@
       }
     });
   })(jQuery);
+  var data = {items: [
+      {value: "21", name: "Mick Jagger"},
+      {value: "43", name: "Johnny Storm"},
+      {value: "46", name: "Richard Hatch"},
+      {value: "54", name: "Kelly Slater"},
+      {value: "55", name: "Rudy Hamilton"},
+      {value: "79", name: "Michael Jordan"}
+    ]};
+  $("#message_to").autoSuggest(data.items, {selectedItemProp: "name", searchObjProps: "name", selectionLimit:1, resultClick: function(data){alert(data.value); }});
 </script>

@@ -1,0 +1,19 @@
+<div class="inboxTitle">Trash</div>
+<% form_tag message_action_user_messages_path(@user), {:name => "msg_form", :id => "msg_form"} do %>
+  <%= hidden_field_tag "act" %>
+  <div class="inboxTop">
+  </div>
+  <div class="inboxTop2">
+    <div class="fromT">
+      <div class="fromTinput"><%= check_box_tag "msg_all", "", false, {:class => "checkAll"} %></div>
+      <div class="fromTtxt">From</div>
+    </div>
+    <div class="subjectT">Subject</div>
+    <div class="dateT">Date</div>
+  </div>
+  <%= render :partial => "list_item" %>
+  <div class="assPage">
+    <span class="numPage"><%= page_entries_info @messages %></span>
+    <%= will_paginate @messages %>
+  </div>
+<% end %>
