@@ -15,7 +15,10 @@ ActionController::Routing::Routes.draw do |map|
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
 
   map.resources :phoneapps, :collection => {
-    :recommendapp => :get
+    :recommendapp => :get,
+    :phonelounge => :get,
+    :info => :get,
+    :favorite => :get
   }
   map.resources :settings, :collection => {
     :networks => :get,
