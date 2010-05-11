@@ -2,7 +2,7 @@ class CreatePhoneapplications < ActiveRecord::Migration
   def self.up
     create_table :phoneapplications do |t|
 
-      t.string :category
+      t.belongs_to :phoneappcategory, :null => false
 
       t.string :name
 
