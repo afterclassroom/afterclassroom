@@ -10,4 +10,12 @@ class PhoneappsController < ApplicationController
   def phonelounge
     
   end
+
+  def info
+  end
+
+  def favorite
+    
+  end
+
 end

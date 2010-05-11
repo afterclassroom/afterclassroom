@@ -65,6 +65,7 @@ class SettingsController < ApplicationController
   def setting
     if @inf_msg != nil
       notice @inf_msg
+    end
   end
 
   def networks
