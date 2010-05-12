@@ -8,6 +8,15 @@ class CreatePhoneappcategories < ActiveRecord::Migration
       t.timestamps
 
     end
+
+    [
+    ["iPhone"],
+    ["BlackBerry"],
+    ["GoogleApp"]
+    ].each do |s|
+      Phoneappcategory.new(:name => s.first).save
+    end
+
   end
 
   def self.down

@@ -11,7 +11,7 @@ namespace :db do
       # Users
       #      departments_for_schools
       #      create_demo_people
-      create_demo_friendship
+#      create_demo_friendship
 
       # Begin creating Posts data
       #      create_demo_posts_assignments
