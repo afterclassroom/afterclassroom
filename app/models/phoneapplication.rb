@@ -1,3 +1,3 @@
 class Phoneapplication < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :phoneappcategory
 end

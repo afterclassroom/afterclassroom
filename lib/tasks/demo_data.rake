@@ -11,7 +11,7 @@ namespace :db do
       # Users
       #      departments_for_schools
       #      create_demo_people
-#      create_demo_friendship
+      #      create_demo_friendship
 
       # Begin creating Posts data
       #      create_demo_posts_assignments
@@ -28,6 +28,7 @@ namespace :db do
       #      create_demo_posts_awarenesses
       #      create_demo_posts_foods
       #      create_demo_posts_qas
+      create_demo_phoneapps
 
       # Exam schedule
       #      create_demo_posts_exam_schedules
@@ -511,4 +512,18 @@ def get_random_list_tags
     "tag 51, tag 52, tag 53, tag 54"
   ]
   arr_list_tag[rand(arr_list_tag.size)]
+end
+
+def create_demo_phoneapps
+
+  apcate = Phoneappcategory.find(1)#ID 1 is iPhone
+
+  30.times do
+    papp = Phoneapplication.create do |ap|
+      ap.name = Faker::Lorem.sentence
+      ap.phoneappcategory = apcate
+      ap.description = Faker::Lorem.paragraphs
+    end
+  end
+
 end
