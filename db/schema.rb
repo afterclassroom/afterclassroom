@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100428154625) do
+ActiveRecord::Schema.define(:version => 20100508015828) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20100428154625) do
     t.datetime "updated_at"
   end
 
-  create_table "notify_sms_settings", :force => true do |t|
+  create_table "notify_settings", :force => true do |t|
     t.integer  "user_id"
     t.integer  "notification_id"
     t.datetime "created_at"
@@ -233,6 +233,16 @@ ActiveRecord::Schema.define(:version => 20100428154625) do
   create_table "party_types_post_parties", :id => false, :force => true do |t|
     t.integer "post_party_id", :null => false
     t.integer "party_type_id", :null => false
+  end
+
+  create_table "phoneapplications", :force => true do |t|
+    t.string   "category"
+    t.string   "name"
+    t.string   "url"
+    t.string   "description"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photo_albums", :force => true do |t|

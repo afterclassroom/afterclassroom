@@ -12,24 +12,14 @@ class SettingsController < ApplicationController
     #UPDATE SMS SETTING
     smsarrs = params[:smsarr]
     if smsarrs != nil
-      puts "mysmsarr == "+smsarrs.length.to_s
       if smsarrs != nil
       
         current_user.notify_sms_settings.destroy_all
 
         smsarrs.each do |eachsms|
-          puts "each == " + eachsms.to_s
           @nfst = NotifySmsSetting.new
           @nfst.notification = Notification.find(eachsms)
           @nfst.user = current_user
-
-          if @nfst.save
-            puts "save setting successfully"
-          else
-            puts "failed to save setting"
-          end
-
-          puts "selected notification == "+@nfst.notification.name
         end
       end
     end
@@ -40,21 +30,13 @@ class SettingsController < ApplicationController
       puts "mysmsarr == "+emailarrs.length.to_s
       if emailarrs != nil
 
-        current_user.notify_emails.destroy_all
+        current_user.notify_email_settings.destroy_all
 
         emailarrs.each do |eachemail|
           puts "each == " + eachemail.to_s
-          @nfse = NotifyEmail.new
+          @nfse = NotifyEmailSetting.new
           @nfse.notification = Notification.find(eachemail)
           @nfse.user = current_user
-
-          if @nfse.save
-            puts "save setting successfully"
-          else
-            puts "failed to save setting"
-          end
-
-          puts "selected notification == "+@nfse.notification.name
         end
       end
     end
@@ -63,7 +45,6 @@ class SettingsController < ApplicationController
   end
 
   def setting
-    notice @inf_msg
   end
 
   def networks

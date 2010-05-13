@@ -1,5 +1,6 @@
-# © Copyright 2009 AfterClassroom.com — All Rights Reserved
+# ï¿½ Copyright 2009 AfterClassroom.com ï¿½ All Rights Reserved
 class StudentLoungesController < ApplicationController
+  layout 'student_lounge'
   before_filter :login_required
 
   def index

@@ -1995,7 +1995,7 @@ div.helpAdv2{
     float:left;
     color:#6f6f63;
     font-weight:bold;
-    line-height:20px;
+    line-height:25px;
     font-family:Arial!important;
 }
 .compInput{
@@ -2007,6 +2007,9 @@ div.helpAdv2{
 }
 .compSub .compInput input{
     width:542px;
+    height:18px;
+    padding-top:3px;
+    padding-bottom:3px;
 }
 .showCC, .showBCC{
     float:left;

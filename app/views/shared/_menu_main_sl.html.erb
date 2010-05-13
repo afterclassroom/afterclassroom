@@ -1,10 +1,10 @@
 <div class="menuMain">
   <ul>
-    <li><a href="#" class="menuFirst"><span>Student Lounge</span></a></li>
+    <%= tab_to "Student Lounge", [{:controller => user_student_lounges_path(current_user)}] %>
     <%= tab_to "Inbox", [{:controller => user_messages_path(current_user)}] %>
-    <li><a href="#"><span>Friends</span></a></li>
-    <li><a href="#"><span>Profile</span></a></li>
-    <li><a href="#"><span>Setting</span></a></li>
+    <%= tab_to "Friends", [{:controller => user_friends_path(current_user)}] %>
+    <%= tab_to "Profile", [{:controller => user_profiles_path(current_user)}] %>
+    <%= tab_to "Setting", [{:controller => user_settings_path(current_user)}] %>
     <li class="menuSpace1">&nbsp;</li>
     <li><a href="#"><span>Phone Apps</span></a></li>
     <li><a href="#"><span>Play Games</span></a></li>

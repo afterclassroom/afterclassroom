@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 	has_many :flirting_sharrings, :dependent => :destroy
 	has_many :flirting_user_inchats, :dependent => :destroy
   has_many :notify_sms_settings
-  has_many :notify_emails
+  has_many :notify_email_settings
 
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]

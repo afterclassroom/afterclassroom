@@ -17,22 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :phoneapps, :collection => {
     :recommendapp => :get
   }
-  map.resources :settings, :collection => {
-    :networks => :get,
-    :notifications => :get,
-    :language => :get,
-    :payments => :get,
-    :ads => :get,
-    :setting => :get,
-    :changepsw => :get,
-    :savepsw => :get,
-    :changename => :get,
-    :savename => :get,
-    :changeEmail => :get,
-    :saveEmail => :get,
-    :savesetting => :post
-  }
-
+  
   # Users
   map.resources :users, :member => {
     :dashboard => :get,
@@ -59,6 +44,24 @@ ActionController::Routing::Routes.draw do |map|
     :update_avatar => :put,} do |users|
     users.resources :messages,
       :collection => { :show_email => :get, :send_message => :get, :message_action => :post, :list_friend => :get }
+    users.resources :settings,
+      :collection => {
+      :networks => :get,
+      :notifications => :get,
+      :language => :get,
+      :payments => :get,
+      :ads => :get,
+      :setting => :get,
+      :changepsw => :get,
+      :savepsw => :get,
+      :changename => :get,
+      :savename => :get,
+      :changeEmail => :get,
+      :saveEmail => :get,
+      :savesetting => :post}
+    users.resources :profiles, :collection => {:infor => :get}
+    users.resources :student_lounges
+    users.resources :friends
   end
   
   # Sessions
@@ -103,7 +106,7 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :due_date => :get, :tag => :get
   }
   map.resources :post_projects, :collection => {
-    :search => :get, :due_date => :get, 
+    :search => :get, :due_date => :get,
     :interesting => :get, :tag => :get
   }
   map.resources :post_tests, :collection => {

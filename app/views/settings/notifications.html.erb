@@ -1,12 +1,11 @@
 <%
 idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab","storytab","linkstab","musictab","videotab","giftstab","helptab","loungetab","othertab"]
 %>
-<div class="topLearning">
-  <div class="settngTL">My Account</div>
-  <div class="postdiv">
-    <span class="RmenuRbtm2"><a href="#">Post</a></span>
-  </div>
-</div>
+
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'shared/sl_submenu_setting' %>
+<% end -%>
+
 <div class="contMain">
   <div class="settCont">
 
@@ -27,16 +26,15 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
           <div class="setNotLtitle">Notifications</div>
           <div class="setNotCont">AfterClassroom notifies you whenever actions are taken on AfterClassroom that involve you.
             <br/>
-						Each AfterClassroom application has its own notification settings. Click the checkbox to change the settings for that application.
-						Send email notifications to: <span>quachhuy@yahoo.com</span></div>
+            Each AfterClassroom application has its own notification settings. Click the checkbox to change the settings for that application.
+            Send email notifications to: <span><%= current_user.email %></span></div>
           <div class="setNotSend"><a href="#">Send notifications my phone via SMS</a></div>
           <div class="setItemT">
             <div class="setItemTL">&nbsp;</div>
             <div class="setItemTC">Email</div>
             <div class="setItemTR">SMS</div>
           </div>
-          <% form_tag (:controller  => 'settings', :action => 'savesetting', :method => :post) do %>
-            <%= submit_tag 'Save Setting' %>
+          <% form_tag ({:controller => 'settings', :action => 'savesetting'}, :method => :post, :id => "setting_form") do %>
             <% if @types != nil %>
               <% count = 1 %>
               <% @types.each do |tp| %>
@@ -46,8 +44,8 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
                   <div class="setItemT1">
                     <div class="setItemTL"><div class="setItemTL<%= count %>"><%=h tp.notify_type %></div></div>
                     <% count = count + 1 %>
-                    <div class="setItemTC"><img src="images/email.png"></div>
-                    <div class="setItemTR"><img src="images/mobile.png"></div>
+                    <div class="setItemTC"><img src="/images/email.png"/></div>
+                    <div class="setItemTR"><img src="/images/mobile.png"/></div>
                   </div>
 
                   <% @notifications.each do |ntfobj| %>
@@ -67,7 +65,7 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
                         <% end #END IF SMS_ALLOW %>
                         <% if ntfobj.email_allow == true %>
                           <% check = false; %>
-                          <% current_user.notify_emails.each do |userntfe| %>
+                          <% current_user.notify_email_settings.each do |userntfe| %>
                             <% if userntfe.notification.id == ntfobj.id %>
                               <% check = true; %>
                             <% end %>
@@ -83,9 +81,10 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
 
               <% end #END LOOP TYPE %>
             <% end #END IF TYPE!=NIL %>
-            <div class="Showmore"><a href="#">Show more (19)</a></div>
-            <div class="Savechanges"><a href="javascript:;" onclick="sendChange()">Save Changes</a></div>
-
+            <div class="Showmore"></div>
+            <div class="Savechanges">
+              <%= link_to_function "Save Changes", "sendChange()" %>
+            </div>
           <% end #END FORM %>
         </div>
 
@@ -131,9 +130,6 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
           <div class="setNotRItem setNotRItem13">
             <a href="javascript:;" onclick="TabHandler('othertab')">Others</a>
           </div>
-          <div class="setNotRItem setNotRItem14">
-            <a href="javascript:;" onclick="TabHandler('othertab')">Other Applications</a>
-          </div>
         </div>
 
       </div>
@@ -156,6 +152,6 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
     return false;
   }
   function sendChange(){
-    $("form:first").submit();
+    $("#setting_form").submit();
   }
 </script>

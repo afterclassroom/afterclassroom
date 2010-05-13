@@ -1,8 +1,0 @@
-<ul id="friends_want_you_chat">Friends want chat chit with you
-<% for friend_want in @friends_want %>
-	<li>
-		<%= image_tag friend_want.user_invite.avatar.url(:thumb), :onclick => "mydow_open('#{friend_want.flirting_chanel.chanel_name}')" %>
-	</li>
-	<% end %>
-	<li></li>
-</ul>
