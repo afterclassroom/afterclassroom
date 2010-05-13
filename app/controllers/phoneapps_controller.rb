@@ -7,4 +7,15 @@ class PhoneappsController < ApplicationController
 
   end
 
+  def phonelounge
+    
+  end
+
+  def info
+  end
+
+  def favorite
+    
+  end
+
 end
