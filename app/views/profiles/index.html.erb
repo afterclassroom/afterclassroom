@@ -3,91 +3,10 @@
 <% end -%>
 
 <div class="contMainC">
-  <div class="col195 proPic">
-    <div class="col195in">
-      <div class="demo">
-        <div class="proImg"><a href="#"><div><img src="pictures/pro1.jpg"/></div></a></div>
-        <div class="proItem"><a href="#">Change photo</a></div>
-        <div class="proItem"><a href="#">View Stories of Me (20)</a></div>
-        <div class="proItem"><a href="#">View Photos of Me (45)</a></div>
-        <div class="proItem"><a href="#">View Musics of Me (51)</a></div>
-        <div class="proItem"><a href="#">View Videos of Me (12)</a></div>
-        <div class="proItem"><a href="#">Edit My Profile</a></div>
-        <div class="proBtm"><a href="#">Write something about yourself</a></div>
-      </div>
-    </div>
-  </div>
-  <div class="col195 proInf">
-    <div class="col195in">
-      <div class="proTop">
-        <h1 class="col195Title">Information</h1>
-        <div class="proEdit"><a href="#"> </a></div>
-      </div>
-      <div class="learnUser">Relationship Status:</div>
-      <div class="learnFri">Married to: <a href="#">Chau Nguyen</a></div>
-      <div class="learnCa">Current City:</div>
-      <div class="learnFri">San Jose, CA</div>
-    </div>
-  </div>
-  <div class="col195 Fans">
-    <div class="col195in">
-      <div class="proTop">
-        <h1 class="col195Title">Friends</h1>
-        <div class="proEdit"><a href="#"> </a></div>
-      </div>
-      <div class="infoFans">
-        <div class="infoFan">226 friends</div>
-        <div class="seeAll"><a href="#">see all</a></div>
-      </div>
-      <div class="fanImg">
-        <div class="fanImg1">
-          <a href="#"><div><img src="pictures/pic10.png"/></div></a>
-          <div class="fanName"><a href="#">Rita Uyên</a></div>
-        </div>
-        <div class="fanImg2">
-          <a href="#"><div><img src="pictures/pic11.png"/></div></a>
-          <div class="fanName"><a href="#">Tawny Joey Penuela</a></div>
-        </div>
-        <div class="fanImg3">
-          <a href="#"><div><img src="pictures/pic12.png"/></div></a>
-          <div class="fanName"><a href="#">Emily Huynh</a></div>
-        </div>
-      </div>
-      <div class="fanImg">
-        <div class="fanImg1">
-          <a href="#"><div><img src="pictures/noimg.png"/></div></a>
-          <div class="fanName"><a href="#">Rita Uyên</a></div>
-        </div>
-        <div class="fanImg2">
-          <a href="#"><div><img src="pictures/pic12.png"/></div></a>
-          <div class="fanName"><a href="#">DinhThanh</a></div>
-        </div>
-        <div class="fanImg3">
-          <a href="#"><div><img src="pictures/pic10.png"/></div></a>
-          <div class="fanName"><a href="#">Emily Huynh</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col195 Fans">
-    <div class="col195in">
-      <div class="proTop">
-        <h1 class="col195Title">Links</h1>
-        <div class="proEdit"><a href="#"> </a></div>
-      </div>
-      <div class="infoFans">
-        <div class="infoFan">3 of <span>65 links</span></div>
-        <div class="seeAll"><a href="#">see all</a></div>
-      </div>
-      <div class="proLink1"><a href="#">Stamatis Gonidis - Rokades Ft Master Tempo (New Song 2009) [HQ Sound]</a></div>
-      <div class="proLinkInf">2 hours 10 minutes ago</div>
-      <div class="proLink2"><a href="#">The Little Princess</a></div>
-      <div class="proLinkInf">3 hours 12 minutes ago</div>
-      <div class="proLink2"><a href="#">Night of the Living Dead with Vietnamese Subtitles</a></div>
-      <div class="proLinkInf">3 hours 12 minutes ago</div>
-    </div>
-  </div>
-
+  <%= render :partial => "proc" %>
+  <%= render :partial => "infor" %>
+  <%= render :partial => "friends" %>
+  <%= render :partial => "links" %>
 </div>
 
 <div class="contMainL">

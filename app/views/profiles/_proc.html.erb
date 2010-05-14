@@ -1,0 +1,75 @@
+<div class="col195 proPic">
+  <div class="col195in">
+    <div class="demo">
+      <div class="proImg"><%= link_to "<div>#{image_tag(current_user.avatar.url(:styles), {:id => "avatar"})}</div>", user_path(current_user) %></div>
+      <div class="proItem"><a href="javascript:;" id="upload_avatar">Change photo</a></div>
+      <div class="proItem"><%= link_to "View Stories of Me (#{current_user.stories.size})", "#" %></div>
+      <div class="proItem"><%= link_to "View Photos of Me (#{current_user.photos.size})", "#" %></div>
+      <div class="proItem"><%= link_to "View Musics of Me (#{current_user.musics.size})", "#" %></div>
+      <div class="proItem"><%= link_to "View Videos of Me (#{current_user.videos.size})", "#" %></div>
+      <div class="proItem"><a href="#">Edit My Profile</a></div>
+      <div class="proBtm"><a href="#">Write something about yourself</a></div>
+    </div>
+  </div>
+</div>
+
+<!--Alert-->
+<div id="error_type" title="Error" style="display:none;">
+  <p>Only images are allowed</p>
+</div>
+<!--Alert-->
+<script type="text/javascript">
+  var avatar_update = "<%= update_avatar_user_path(current_user) %>";
+  $(document).ready(function(){
+    var button = $('#upload_avatar'), interval;
+
+    new AjaxUpload(button, {
+      action: avatar_update,
+      name: 'user[avatar]',
+      onSubmit : function(file, ext){
+        // Allow only images. You should add security check on the server-side.
+        if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){
+          // change button text, when user selects file
+          button.text('Uploading');
+
+          // If you want to allow uploading only 1 file at time,
+          // you can disable upload button
+          this.disable();
+
+          // Uploding -> Uploading. -> Uploading...
+          interval = window.setInterval(function(){
+            var text = button.text();
+            if (text.length < 13){
+              button.text(text + '.');
+            } else {
+              button.text('Uploading');
+            }
+          }, 200);
+        } else {
+          // extension is not allowed
+          $("#error_type").dialog({
+            modal: true,
+            buttons: {
+              Ok: function() {
+                $(this).dialog('close');
+              }
+            }
+          });
+          // cancel upload
+          return false;
+        }
+      },
+      onComplete: function(file, response){
+        button.text('Change photo');
+
+        window.clearInterval(interval);
+
+        // enable upload button
+        this.enable();
+
+        // update avatar
+        $("#avatar").attr("src", response);
+      }
+    });
+  });
+</script>

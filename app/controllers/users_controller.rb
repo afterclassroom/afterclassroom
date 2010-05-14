@@ -199,7 +199,7 @@ class UsersController < ApplicationController
       @user.avatar = params[:user][:avatar]
       @user.save
       @user.track_activity(:updated_avatar)
-      render :text => @user.avatar.url(:thumb)
+      render :text => @user.avatar.url(:styles)
     end
   end
 
@@ -247,14 +247,6 @@ class UsersController < ApplicationController
       @user.comments.find(comment_id).destroy
     end
     redirect_to :action => "list_comments"
-  end
-  
-  def dashboard
-    @counts_invite_message = @user.user_invites_in.find(:all, :conditions => "is_accepted IS NULL").size
-    id_in = @user.user_friends.map(&:id)
-    if id_in.size > 0
-      @activities_friends = Activity.find(:all, :conditions => "user_id IN (#{id_in.join(", ")})", :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
-    end
   end
 
   def show

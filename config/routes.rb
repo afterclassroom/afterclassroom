@@ -23,7 +23,6 @@ ActionController::Routing::Routes.draw do |map|
   
   # Users
   map.resources :users, :member => {
-    :dashboard => :get,
     :my_post => :get,
     :list_friends => :get,
     :my_favorite => :get,

@@ -60,7 +60,7 @@ class SessionsController < ApplicationController
     # )
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
-    redirect_back_or_default(dashboard_user_path(current_user))
+    redirect_back_or_default(user_student_lounges_path(current_user))
     #Set session your school
     session[:your_school] = self.current_user.school.id if self.current_user.school
     notice "Logged in successfully"

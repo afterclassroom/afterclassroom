@@ -2,7 +2,7 @@
   <div class="signin">
     <% if logged_in? %>
       <ul>
-        <li class="signinSelect"><%= link_to "<span>Welcome #{current_user.full_name}</span>", dashboard_user_path(current_user), :class => "signinFrist" %></li>
+        <li class="signinSelect"><%= link_to "<span>Welcome #{current_user.full_name}</span>", user_student_lounges_path(current_user), :class => "signinFrist" %></li>
         <li><%= link_to "<span>Sign out</span>", logout_url, :method => :delete %></li>
         <li><a href="#"><span>Help</span></a></li>
         <li><a href="#"><span>Suggest improvement</span></a></li>
