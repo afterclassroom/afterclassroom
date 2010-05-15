@@ -5,10 +5,21 @@ class PhoneappsController < ApplicationController
 
   def recommendapp
 
+    @appcategory = Phoneappcategory.find(:all)
+
   end
 
   def phonelounge
-    
+    id = params[:id]
+    puts "================================"
+    puts "================================"
+    puts "================================"
+    puts "================================"
+    puts "================================"
+    puts "================================"
+    puts "================================"
+    puts "================================"
+    puts "id ==== "+id
   end
 
   def info

@@ -9,32 +9,32 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       # Users
-      departments_for_schools
-      create_demo_people
-      create_demo_friendship
+      #      departments_for_schools
+      #      create_demo_people
+      #      create_demo_friendship
 
       # Begin creating Posts data
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_posts_books
-      create_demo_posts_tutors
-      create_demo_posts_jobs
-      create_demo_posts_housings
-      create_demo_posts_parties
-      create_demo_posts_teamups
-      create_demo_posts_awarenesses
-      create_demo_posts_foods
-      create_demo_posts_qas
+      #      create_demo_posts_assignments
+      #      create_demo_posts_tests
+      #      create_demo_posts_projects
+      #      create_demo_posts_exams
+      #      create_demo_posts_myx
+      #      create_demo_posts_books
+      #      create_demo_posts_tutors
+      #      create_demo_posts_jobs
+      #      create_demo_posts_housings
+      #      create_demo_posts_parties
+      #      create_demo_posts_teamups
+      #      create_demo_posts_awarenesses
+      #      create_demo_posts_foods
+      #      create_demo_posts_qas
       create_demo_phoneapps
 
       # Exam schedule
-      create_demo_posts_exam_schedules
+      #      create_demo_posts_exam_schedules
 
       # Messages data
-      create_demo_messages
+      #      create_demo_messages
 
     end
     
@@ -516,14 +516,33 @@ end
 
 def create_demo_phoneapps
 
-  apcate = Phoneappcategory.find(1)#ID 1 is iPhone
+#  apcate = Phoneappcategory.find(1)#ID 1 is iPhone
+#
+#  30.times do
+#    papp = Phoneapplication.create do |ap|
+#      ap.name = Faker::Lorem.sentence
+#      ap.phoneappcategory = apcate
+#      ap.description = Faker::Lorem.paragraphs
+#      ap.price = "500"
+#      ap.image = "/images/noimg.png"
+#    end
+#  end
 
-  30.times do
-    papp = Phoneapplication.create do |ap|
-      ap.name = Faker::Lorem.sentence
-      ap.phoneappcategory = apcate
-      ap.description = Faker::Lorem.paragraphs
+  count = 1;
+  Phoneappcategory.count.times do
+    apcate = Phoneappcategory.find(count)#ID 1 is iPhone
+    count = count + 1
+
+    30.times do
+      papp = Phoneapplication.create do |ap|
+        ap.name = Faker::Lorem.sentence
+        ap.phoneappcategory = apcate
+        ap.description = Faker::Lorem.paragraphs
+        ap.price = "500"
+        ap.image = "/images/noimg.png"
+      end
     end
+
   end
 
 end

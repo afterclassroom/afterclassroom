@@ -6,11 +6,11 @@ class CreatePhoneapplications < ActiveRecord::Migration
 
       t.string :name
 
-      t.string :url
-
       t.string :description
 
       t.string :image
+
+      t.string :price
 
 
       t.timestamps
