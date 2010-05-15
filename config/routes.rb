@@ -43,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
     :update_password => :put,
     :edit_email => :get,
     :update_email => :put,
-    :update_avatar => :put,} do |users|
+    :update_avatar => :post} do |users|
     users.resources :messages,
       :collection => { :show_email => :get, :send_message => :get, :message_action => :post, :list_friend => :get }
     users.resources :settings,

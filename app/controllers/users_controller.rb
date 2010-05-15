@@ -195,12 +195,10 @@ class UsersController < ApplicationController
   end
 
   def update_avatar
-    if current_user == @user
-      @user.avatar = params[:user][:avatar]
-      @user.save
-      @user.track_activity(:updated_avatar)
-      render :text => @user.avatar.url(:styles)
-    end
+    @user.avatar = params[:user][:avatar]
+    @user.save
+    @user.track_activity(:updated_avatar)
+    render :text => @user.avatar.url(:medium)
   end
 
   def list_friends

@@ -2730,10 +2730,11 @@ div.helpAdv2{
     margin:0px;
 }
 /************ Profile *************************/
+.proImg{
+    text-align:center;
+}
 .proImg img{
     border:0px;
-    width:169px;
-    height:227px;
     padding:2px;
     background-color:#ebebeb;
     border:1px #cdcccc solid;
