@@ -7,7 +7,7 @@ class SettingsController < ApplicationController
     redirect_to :action => "setting"
   end
 
-  def savesetting
+  def save_setting
 
     #UPDATE SMS SETTING
     smsarrs = params[:smsarr]
@@ -54,8 +54,19 @@ class SettingsController < ApplicationController
   end
 
   def notifications
-    @notifications = Notification.find(:all)
-    @types = Notification.find( :all, :select => 'DISTINCT notify_type' )
+    @types = [["afterclassroomtab", "AfterClassroom"],
+      ["photostab", "Photos"],
+      ["groupstab", "Groups"],
+      ["pagestab", "Pages"],
+      ["eventstab", "Events"],
+      ["storytab", "Story"],
+      ["linkstab", "Links"],
+      ["musictab", "Music"],
+      ["videotab", "Video"],
+      ["giftstab", "Gifts"],
+      ["helptab", "Help"],
+      ["loungetab", "Lounge"],
+      ["othertab", "Others"]]
   end
 
   def language
@@ -67,11 +78,11 @@ class SettingsController < ApplicationController
   def ads
   end
 
-  def changepsw
+  def change_psw
     render :layout => false
   end
 
-  def savepsw
+  def save_psw
     @user = current_user
     @user.password = params[:password]
     if @user.save
@@ -81,13 +92,13 @@ class SettingsController < ApplicationController
     end
   end
 
-  def changename
+  def chang_ename
     render :layout => false
   end
 
-  def savename
+  def save_name
     @user = current_user
-    @user.name = params[:changedValue]
+    @user.name = params[:changed_value]
     if @user.save
       redirect_to :action => "setting", :inf_msg => "Updated Successfully"
     else
@@ -95,13 +106,13 @@ class SettingsController < ApplicationController
     end
   end
 
-  def changeEmail
+  def change_email
     render :layout => false
   end
 
-  def saveEmail
+  def save_email
     @user = current_user
-    @user.email = params[:changedValue]
+    @user.email = params[:changed_value]
     if @user.save
       redirect_to :action => "setting", :inf_msg => "Updated Successfully"
     else

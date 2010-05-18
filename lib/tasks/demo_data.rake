@@ -71,6 +71,8 @@ end
 
 def create_demo_people
   description = "This is a description for "
+  sex = {"male" => true, "femail" => false}
+  relationship_status = ["Single", "Married"]
   %w[male female].each do |gender|
     filename = File.join(DATA_DIRECTORY, "#{gender}_names.txt")
     names = File.open(filename).readlines[0...10]
@@ -79,6 +81,26 @@ def create_demo_people
     names.each_with_index do |name, i|
       name.strip!
       school = School.find(rand(School.count) + 1)
+      user_infor = UserInformation.create do |f|
+          f.sex = sex(gender.to_s)
+          f.relationship_status = relationship_status[rand(relationship_status.size)]
+          f.looking_for = Faker::Lorem.paragraphs
+          f.polictical_view = Faker::Lorem.paragraphs
+          f.mobile_number = Faker::PhoneNumber.phone_number
+          f.current_city = Faker::Address.street_address
+          f.website = Faker::Internet.domain_name
+      end
+      user_edu = UserEducation.create do |f|
+          f.grad_school = Faker::Lorem.paragraphs
+          f.college = Faker::Lorem.paragraphs
+          f.high_school = Faker::Lorem.paragraphs
+      end
+      user_employ = UserEmployment.create do |f|
+          f.current_employer = Faker::Lorem.sentence
+          f.position_current = Faker::Lorem.sentence
+          f.time_period = Faker::Lorem.sentence
+          f.location = Faker::Address.street_address
+      end
       user = User.create do |u|
         u.login = name.downcase
         u.password = password
@@ -86,9 +108,9 @@ def create_demo_people
         u.name = name
         u.school = school
         u.avatar = uploaded_file(avatars[i], 'image/jpg')
-        u.user_information = UserInformation.new()
-        u.user_education = UserEducation.new()
-        u.user_employment = UserEmployment.new()
+        u.user_information = user_infor
+        u.user_education = user_edu
+        u.user_employment = user_employ
       end
       
       user.register!

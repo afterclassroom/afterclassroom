@@ -79,7 +79,7 @@ class CreateNotifications < ActiveRecord::Migration
       ["Other updates from AfterClassroom","Updates about AfterClassroom product news","updates_about_AfterClassroom_product_news",true,false],
       ["Other updates from AfterClassroom","Invitations to participate in research about AfterClassroom","invitations_to_participate_in_research_about_AfterClassroom",true,false]
     ].each do |s|
-      Notification.new(:notify_type => s[0], :name => s[1], :label => s[2], :sms_allow => s[3], :email_allow => s[4]).save
+      Notification.new(:notify_type => s[0], :name => s[1], :label => s[2], :email_allow => s[3], :sms_allow => s[4]).save
     end
 
   end

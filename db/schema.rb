@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100508015828) do
+ActiveRecord::Schema.define(:version => 20100511102440) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -211,18 +211,14 @@ ActiveRecord::Schema.define(:version => 20100508015828) do
     t.datetime "updated_at"
   end
 
-  create_table "notify_emails", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "notification_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "notify_email_settings", :force => true do |t|
+    t.integer "user_id"
+    t.integer "notification_id"
   end
 
-  create_table "notify_settings", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "notification_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "notify_sms_settings", :force => true do |t|
+    t.integer "user_id"
+    t.integer "notification_id"
   end
 
   create_table "party_types", :force => true do |t|
@@ -235,8 +231,14 @@ ActiveRecord::Schema.define(:version => 20100508015828) do
     t.integer "party_type_id", :null => false
   end
 
+  create_table "phoneappcategories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "phoneapplications", :force => true do |t|
-    t.string   "category"
+    t.integer  "phoneappcategory_id", :null => false
     t.string   "name"
     t.string   "url"
     t.string   "description"
@@ -572,41 +574,35 @@ ActiveRecord::Schema.define(:version => 20100508015828) do
   end
 
   create_table "user_educations", :force => true do |t|
-    t.integer  "user_id",          :null => false
+    t.integer  "user_id",     :null => false
     t.string   "grad_school"
     t.string   "college"
     t.string   "high_school"
-    t.string   "elementary"
-    t.string   "favourite_school"
-    t.string   "major"
-    t.string   "level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "user_employments", :force => true do |t|
-    t.integer  "user_id",           :null => false
-    t.text     "resume"
+    t.integer  "user_id",          :null => false
     t.string   "current_employer"
     t.string   "position_current"
-    t.string   "past_employer"
-    t.string   "position_past"
-    t.string   "favourite_company"
+    t.string   "time_period"
+    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "user_informations", :force => true do |t|
-    t.integer  "user_id",                            :null => false
-    t.string   "home_town"
-    t.string   "current_town"
+    t.integer  "user_id",             :null => false
+    t.string   "current_city"
+    t.text     "looking_for"
     t.boolean  "sex"
-    t.integer  "age",                 :default => 0
+    t.date     "birthday"
+    t.string   "mobile_number"
+    t.string   "website"
     t.string   "relationship_status"
     t.text     "polictical_view"
-    t.text     "interest"
-    t.text     "award"
-    t.string   "i_am_doing"
+    t.string   "about_yourself"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
