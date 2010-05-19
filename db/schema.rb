@@ -240,9 +240,9 @@ ActiveRecord::Schema.define(:version => 20100511102440) do
   create_table "phoneapplications", :force => true do |t|
     t.integer  "phoneappcategory_id", :null => false
     t.string   "name"
-    t.string   "url"
     t.string   "description"
     t.string   "image"
+    t.string   "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

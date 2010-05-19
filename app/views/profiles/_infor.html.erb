@@ -5,8 +5,8 @@
       <div class="proEdit"><a href="#"> </a></div>
     </div>
     <div class="learnUser">Relationship Status:</div>
-    <div class="learnFri">Married to: <a href="#">Chau Nguyen</a></div>
+    <div class="learnFri"><%= current_user.user_information.relationship_status %></div>
     <div class="learnCa">Current City:</div>
-    <div class="learnFri">San Jose, CA</div>
+    <div class="learnFri"><%= current_user.user_information.current_city %></div>
   </div>
 </div>
