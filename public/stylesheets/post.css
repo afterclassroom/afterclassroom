@@ -2003,3 +2003,13 @@ span.btmFan a{
 span.btmFan a:hover{
     background:url('/images/btmFanH.png') no-repeat;
 }
+.assName {
+  /* padding: 2px 0 7px;*/
+  }
+.assAt {
+  /* padding: 2px 0 7px;*/
+  }
+.assPlace {
+   padding: 2px 0 7px;
+  }
+  

@@ -54,14 +54,14 @@ ActionController::Routing::Routes.draw do |map|
       :payments => :get,
       :ads => :get,
       :setting => :get,
-      :changepsw => :get,
-      :savepsw => :get,
-      :changename => :get,
-      :savename => :get,
-      :changeEmail => :get,
-      :saveEmail => :get,
-      :savesetting => :post}
-    users.resources :profiles, :collection => {:infor => :get}
+      :change_psw => :get,
+      :save_psw => :get,
+      :change_name => :get,
+      :save_name => :get,
+      :change_email => :get,
+      :save_email => :get,
+      :save_setting => :post}
+    users.resources :profiles, :collection => {:show_profile => :get}
     users.resources :student_lounges
     users.resources :friends
   end
