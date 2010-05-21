@@ -1,0 +1,623 @@
+
+  
+  
+
+  
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <title>cardmagic's contacts at master - GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub" />
+    <link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub" />
+
+    <link href="http://assets2.github.com/stylesheets/bundle_common.css?f75d32238eb91554988de35b0f878b097d89187d" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://assets1.github.com/stylesheets/bundle_github.css?f75d32238eb91554988de35b0f878b097d89187d" media="screen" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" charset="utf-8">
+      var GitHub = {}
+      var github_user = null
+      
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://assets0.github.com/javascripts/bundle_common.js?f75d32238eb91554988de35b0f878b097d89187d" type="text/javascript"></script>
+<script src="http://assets1.github.com/javascripts/bundle_github.js?f75d32238eb91554988de35b0f878b097d89187d" type="text/javascript"></script>
+
+        <script type="text/javascript" charset="utf-8">
+      GitHub.spy({
+        repo: "cardmagic/contacts"
+      })
+    </script>
+
+    
+  
+    
+  
+
+  <link href="http://github.com/cardmagic/contacts/commits/master.atom" rel="alternate" title="Recent Commits to contacts:master" type="application/atom+xml" />
+
+        <meta name="description" content="A universal interface to import email contacts from various providers including Yahoo, Gmail, Hotmail, AOL and Plaxo." />
+    <script type="text/javascript">
+      GitHub.nameWithOwner = GitHub.nameWithOwner || "cardmagic/contacts";
+      GitHub.currentRef = "master";
+    </script>
+  
+
+            <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-3769691-2']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+
+  </head>
+
+  
+
+  <body>
+    
+    
+
+    
+
+    <div class="subnavd" id="main">
+      <div id="header" class="pageheaded">
+        <div class="site">
+          <div class="logo">
+            <a href="http://github.com"><img src="/images/modules/header/logov3.png" alt="github" /></a>
+          </div>
+          
+          <div class="topsearch">
+  
+    <form action="/search" id="top_search_form" method="get">
+      <a href="/search" class="advanced-search tooltipped downwards" title="Advanced Search">Advanced Search</a>
+      <input type="search" class="search my_repos_autocompleter" name="q" results="5" placeholder="Search&hellip;" /> <input type="submit" value="Search" class="button" />
+      <input type="hidden" name="type" value="Everything" />
+      <input type="hidden" name="repo" value="" />
+      <input type="hidden" name="langOverride" value="" />
+      <input type="hidden" name="start_value" value="1" />
+    </form>
+  
+  
+    <ul class="nav logged_out">
+      
+        <li><a href="http://github.com">Home</a></li>
+        <li class="pricing"><a href="/plans">Pricing and Signup</a></li>
+        <li><a href="http://github.com/explore">Explore GitHub</a></li>
+        
+        <li><a href="/blog">Blog</a></li>
+      
+      <li><a href="https://github.com/login">Login</a></li>
+    </ul>
+  
+</div>
+
+        </div>
+      </div>
+
+      
+      
+        
+    <div class="site">
+      <div class="pagehead repohead vis-public   ">
+        <h1>
+          <a href="/cardmagic">cardmagic</a> / <strong><a href="http://github.com/cardmagic/contacts">contacts</a></strong>
+          
+          
+        </h1>
+
+        
+    <ul class="actions">
+      
+
+      
+        <li class="for-owner" style="display:none"><a href="https://github.com/cardmagic/contacts/edit" class="minibutton btn-admin "><span><span class="icon"></span>Admin</span></a></li>
+        <li>
+          <a href="/cardmagic/contacts/toggle_watch" class="minibutton btn-watch " id="watch_button" style="display:none"><span><span class="icon"></span>Watch</span></a>
+          <a href="/cardmagic/contacts/toggle_watch" class="minibutton btn-watch " id="unwatch_button" style="display:none"><span><span class="icon"></span>Unwatch</span></a>
+        </li>
+        
+          
+            <li class="for-notforked" style="display:none"><a href="/cardmagic/contacts/fork" class="minibutton btn-fork " id="fork_button" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', 'e71b66918a63948d197574484a27bf3c3afbb8fe'); f.appendChild(s);f.submit();return false;"><span><span class="icon"></span>Fork</span></a></li>
+            <li class="for-hasfork" style="display:none"><a href="#" class="minibutton btn-fork " id="your_fork_button"><span><span class="icon"></span>Your Fork</span></a></li>
+          
+          <li id="pull_request_item" style="display:none"><a href="/cardmagic/contacts/pull_request/" class="minibutton btn-pull-request "><span><span class="icon"></span>Pull Request</span></a></li>
+          <li><a href="#" class="minibutton btn-download " id="download_button"><span><span class="icon"></span>Download Source</span></a></li>
+        
+      
+      
+      <li class="repostats">
+        <ul class="repo-stats">
+          <li class="watchers"><a href="/cardmagic/contacts/watchers" title="Watchers" class="tooltipped downwards">315</a></li>
+          <li class="forks"><a href="/cardmagic/contacts/network" title="Forks" class="tooltipped downwards">41</a></li>
+        </ul>
+      </li>
+    </ul>
+
+
+        
+  <ul class="tabs">
+    <li><a href="http://github.com/cardmagic/contacts/tree/master" class="selected" highlight="repo_source">Source</a></li>
+    <li><a href="http://github.com/cardmagic/contacts/commits/master" highlight="repo_commits">Commits</a></li>
+
+    
+    <li><a href="/cardmagic/contacts/network" highlight="repo_network">Network (41)</a></li>
+
+    
+
+    
+      
+      <li><a href="/cardmagic/contacts/issues" highlight="issues">Issues (6)</a></li>
+    
+
+    
+      
+      <li><a href="/cardmagic/contacts/downloads">Downloads (0)</a></li>
+    
+
+    
+      
+      <li><a href="http://wiki.github.com/cardmagic/contacts/">Wiki (1)</a></li>
+    
+
+    <li><a href="/cardmagic/contacts/graphs" highlight="repo_graphs">Graphs</a></li>
+
+    <li class="contextswitch nochoices">
+      <span class="toggle leftwards" >
+        <em>Branch:</em>
+        <code>master</code>
+      </span>
+    </li>
+  </ul>
+
+  <div style="display:none" id="pl-description"><p><em class="placeholder">click here to add a description</em></p></div>
+  <div style="display:none" id="pl-homepage"><p><em class="placeholder">click here to add a homepage</em></p></div>
+
+  <div class="subnav-bar">
+  
+  <ul>
+    <li>
+      <a href="#" class="dropdown">Switch Branches (1)</a>
+      <ul>
+        
+          
+            <li><strong>master &#x2713;</strong></li>
+            
+      </ul>
+    </li>
+    <li>
+      <a href="#" class="dropdown defunct">Switch Tags (0)</a>
+      
+    </li>
+    <li>
+    
+    <a href="/cardmagic/contacts/branches" class="manage">Branch List</a>
+    
+    </li>
+  </ul>
+</div>
+
+  
+  
+  
+  
+  
+
+
+        
+    <div id="repo_details" class="metabox clearfix">
+      <div id="repo_details_loader" class="metabox-loader" style="display:none">Sending Request&hellip;</div>
+
+      
+        <div class="pledgie">
+          <a href='http://pledgie.com/campaigns/744'><img alt='Click here to lend your support to: contacts and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/744.png?skin_name=chrome' border='0' /></a>
+        </div>
+      
+
+      <div id="repository_description" rel="repository_description_edit">
+        
+          <p>A universal interface to import email contacts from various providers including Yahoo, Gmail, Hotmail, AOL and Plaxo.
+            <span id="read_more" style="display:none">&mdash; <a href="#readme">Read more</a></span>
+          </p>
+        
+      </div>
+      <div id="repository_description_edit" style="display:none;" class="inline-edit">
+        <form action="/cardmagic/contacts/edit/update" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="e71b66918a63948d197574484a27bf3c3afbb8fe" /></div>
+          <input type="hidden" name="field" value="repository_description">
+          <input type="text" class="textfield" name="value" value="A universal interface to import email contacts from various providers including Yahoo, Gmail, Hotmail, AOL and Plaxo.">
+          <div class="form-actions">
+            <button class="minibutton"><span>Save</span></button> &nbsp; <a href="#" class="cancel">Cancel</a>
+          </div>
+        </form>
+      </div>
+
+      
+      <div class="repository-homepage" id="repository_homepage" rel="repository_homepage_edit">
+        <p><a href="http://rubyforge.org/projects/contacts" rel="nofollow">http://rubyforge.org/projects/contacts</a></p>
+      </div>
+      <div id="repository_homepage_edit" style="display:none;" class="inline-edit">
+        <form action="/cardmagic/contacts/edit/update" method="post"><div style="margin:0;padding:0"><input name="authenticity_token" type="hidden" value="e71b66918a63948d197574484a27bf3c3afbb8fe" /></div>
+          <input type="hidden" name="field" value="repository_homepage">
+          <input type="text" class="textfield" name="value" value="http://rubyforge.org/projects/contacts">
+          <div class="form-actions">
+            <button class="minibutton"><span>Save</span></button> &nbsp; <a href="#" class="cancel">Cancel</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="rule "></div>
+
+      <div id="url_box" class="url-box">
+        <ul class="clone-urls">
+          
+            
+            <li id="http_clone_url"><a href="http://github.com/cardmagic/contacts.git" data-permissions="Read-Only">HTTP</a></li>
+            <li id="public_clone_url"><a href="git://github.com/cardmagic/contacts.git" data-permissions="Read-Only">Git Read-Only</a></li>
+          
+        </ul>
+        <input type="text" spellcheck="false" id="url_field" class="url-field" />
+              <span style="display:none" id="url_box_clippy"></span>
+      <span id="clippy_tooltip_url_box_clippy" class="clippy-tooltip tooltipped" title="copy to clipboard">
+      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+              width="14"
+              height="14"
+              class="clippy"
+              id="clippy" >
+      <param name="movie" value="/flash/clippy.swf?v5"/>
+      <param name="allowScriptAccess" value="always" />
+      <param name="quality" value="high" />
+      <param name="scale" value="noscale" />
+      <param NAME="FlashVars" value="id=url_box_clippy&amp;copied=&amp;copyto=">
+      <param name="bgcolor" value="#FFFFFF">
+      <param name="wmode" value="opaque">
+      <embed src="/flash/clippy.swf?v5"
+             width="14"
+             height="14"
+             name="clippy"
+             quality="high"
+             allowScriptAccess="always"
+             type="application/x-shockwave-flash"
+             pluginspage="http://www.macromedia.com/go/getflashplayer"
+             FlashVars="id=url_box_clippy&amp;copied=&amp;copyto="
+             bgcolor="#FFFFFF"
+             wmode="opaque"
+      />
+      </object>
+      </span>
+
+        <p id="url_description">This URL has <strong>Read+Write</strong> access</p>
+      </div>
+    </div>
+
+
+        
+
+      </div><!-- /.pagehead -->
+
+      
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  GitHub.currentCommitRef = "master"
+  GitHub.currentRepoOwner = "cardmagic"
+  GitHub.currentRepo = "contacts"
+  GitHub.downloadRepo = '/cardmagic/contacts/archives/master'
+
+  
+
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+  <div id="commit">
+    <div class="group">
+        
+  <div class="envelope commit">
+    <div class="human">
+      
+        <div class="message"><pre><a href="/cardmagic/contacts/commit/19c2b6a6fd233cff0bcf86bd8e24da821941edfe">fix guess and login methods to use options</a> </pre></div>
+      
+
+      <div class="actor">
+        <div class="gravatar">
+          
+          <img src="http://www.gravatar.com/avatar/c18da5373ec272da2d9f31df7cb5a441?s=30&d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-30.png" alt="" width="30" height="30"  />
+        </div>
+        <div class="name"><a href="/cardmagic">cardmagic</a> <span>(author)</span></div>
+        <div class="date">
+          <abbr class="relatize" title="2010-01-26 10:58:19">Tue Jan 26 10:58:19 -0800 2010</abbr>
+        </div>
+      </div>
+
+      
+
+    </div>
+    <div class="machine">
+      <span>c</span>ommit&nbsp;&nbsp;<a href="/cardmagic/contacts/commit/19c2b6a6fd233cff0bcf86bd8e24da821941edfe" hotkey="c">19c2b6a6fd233cff0bcf</a><br />
+      <span>t</span>ree&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cardmagic/contacts/tree/19c2b6a6fd233cff0bcf86bd8e24da821941edfe" hotkey="t">91232a9122a86643ac3e</a><br />
+      
+        <span>p</span>arent&nbsp;
+        
+        <a href="/cardmagic/contacts/tree/9fc025215766b6c02859d9006d563b5d9ff88b8f" hotkey="p">9fc025215766b6c02859</a>
+      
+
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+
+
+  
+    <div id="path">
+      <b><a href="/cardmagic/contacts/tree/master">contacts</a></b> / 
+    </div>
+
+    
+      
+
+  <script type="text/javascript">
+    GitHub.currentTreeSHA = "19c2b6a6fd233cff0bcf86bd8e24da821941edfe"
+    GitHub.commitSHA = "19c2b6a6fd233cff0bcf86bd8e24da821941edfe"
+    GitHub.currentPath = ""
+  </script>
+
+
+<div id="browser">
+  <table cellpadding="0" cellspacing="0">
+    <tr>
+      <th></th>
+      <th>name</th>
+      <th>age</th>
+      <th>
+        <div class="history">
+          <a href="/cardmagic/contacts/commits/master/">history</a>
+        </div>
+        message
+      </th>
+    </tr>
+
+    
+
+    
+      <tr class="alt">
+        <td class="icon"> <img alt="file" src="http://assets1.github.com/images/icons/txt.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/blob/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/.gitignore" id="2265fabde6b6f6295f25174d7f5ae9aa7564cd04">.gitignore</a></td>
+        
+        <td class="age"> <span class="relatize">Mon Oct 12 07:00:14 -0700 2009</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/0de1d3a5950785c9f4b7ca0ae62eb22e5923acbd" class="message" title="added gem dependencies to rake file">added gem dependencies to rake file</a> [<a href="/adamhunter">adamhunter</a>] </td>
+      </tr>
+    
+      <tr class="">
+        <td class="icon"> <img alt="file" src="http://assets1.github.com/images/icons/txt.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/blob/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/LICENSE" id="0791910cd8934eda7cc8d9aea269b6084159f7a4">LICENSE</a></td>
+        
+        <td class="age"> <span class="relatize">Fri Mar 21 16:42:20 -0700 2008</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/a4a648922012f32f1d18a47dc5eef6ce6d9eef6c" class="message" title="first commit">first commit</a> [<a href="/cardmagic">cardmagic</a>] </td>
+      </tr>
+    
+      <tr class="alt">
+        <td class="icon"> <img alt="file" src="http://assets1.github.com/images/icons/txt.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/blob/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/README" id="9b429f0d8356c80b670cf478e9011a720300dd30">README</a></td>
+        
+        <td class="age"> <span class="relatize">Tue Jan 26 10:52:56 -0800 2010</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/9fc025215766b6c02859d9006d563b5d9ff88b8f" class="message" title="Update to handle google captcha better, thanks justintv. Bump to v1.2.3">Update to handle google captcha better, thanks ...</a> [<a href="/cardmagic">cardmagic</a>] </td>
+      </tr>
+    
+      <tr class="">
+        <td class="icon"> <img alt="file" src="http://assets1.github.com/images/icons/txt.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/blob/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/Rakefile" id="2b74dc840ad1a539ba21499f8a46aa8e6a886172">Rakefile</a></td>
+        
+        <td class="age"> <span class="relatize">Wed Nov 11 14:23:47 -0800 2009</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/c5dc4ab9442b28acf1549407d09b5d82f360794f" class="message" title="updated to use new gdata gem and set exact version">updated to use new gdata gem and set exact version</a> [<a href="/adamhunter">adamhunter</a>] </td>
+      </tr>
+    
+      <tr class="alt">
+        <td class="icon"> <img alt="file" src="http://assets1.github.com/images/icons/txt.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/blob/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/contacts.gemspec" id="4a7e87534074e8f0cc136c0f9496182e23b5de23">contacts.gemspec</a></td>
+        
+        <td class="age"> <span class="relatize">Tue Jan 26 10:52:56 -0800 2010</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/9fc025215766b6c02859d9006d563b5d9ff88b8f" class="message" title="Update to handle google captcha better, thanks justintv. Bump to v1.2.3">Update to handle google captcha better, thanks ...</a> [<a href="/cardmagic">cardmagic</a>] </td>
+      </tr>
+    
+      <tr class="">
+        <td class="icon"> <img alt="file" src="http://assets1.github.com/images/icons/txt.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/blob/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/cruise_config.rb" id="6ccfad216642ff4fa4a17fbf937960eee6eee7e8">cruise_config.rb</a></td>
+        
+        <td class="age"> <span class="relatize">Tue Mar 03 15:25:01 -0800 2009</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/c8ac6ee27291d0b1c02f0a2fcc367e4a7bab27b9" class="message" title="Added test suites, fixed Gmail failing tests,">Added test suites, fixed Gmail failing tests,
+l...</a> [Nathan Wilmes and Chad Woolley] </td>
+      </tr>
+    
+      <tr class="alt">
+        <td class="icon"> <img alt="directory" src="http://assets0.github.com/images/icons/dir.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/tree/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/examples" id="390e01cbdbbd278082801ae262dceb3392b20905">examples/</a></td>
+        
+        <td class="age"> <span class="relatize">Fri Mar 21 16:42:20 -0700 2008</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/a4a648922012f32f1d18a47dc5eef6ce6d9eef6c" class="message" title="first commit">first commit</a> [<a href="/cardmagic">cardmagic</a>] </td>
+      </tr>
+    
+      <tr class="">
+        <td class="icon"> <img alt="file" src="http://assets1.github.com/images/icons/txt.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/blob/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/geminstaller.yml" id="26448aa8725a0bf1b99646caa107c81ad698f961">geminstaller.yml</a></td>
+        
+        <td class="age"> <span class="relatize">Thu Dec 17 00:46:18 -0800 2009</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/37cf8f91ce0ef7c718ffa326211a6c2a51ad4998" class="message" title="Cleaning up major change for gmail contact grabbing and json interactions. Released as 1.2.0">Cleaning up major change for gmail contact grab...</a> [<a href="/cardmagic">cardmagic</a>] </td>
+      </tr>
+    
+      <tr class="alt">
+        <td class="icon"> <img alt="directory" src="http://assets0.github.com/images/icons/dir.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/tree/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/lib" id="75616e606ce86c50879e98b50c348e8e6d17b2d0">lib/</a></td>
+        
+        <td class="age"> <span class="relatize">Tue Jan 26 10:58:19 -0800 2010</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/19c2b6a6fd233cff0bcf86bd8e24da821941edfe" class="message" title="fix guess and login methods to use options">fix guess and login methods to use options</a> [<a href="/cardmagic">cardmagic</a>] </td>
+      </tr>
+    
+      <tr class="">
+        <td class="icon"> <img alt="directory" src="http://assets0.github.com/images/icons/dir.png?f75d32238eb91554988de35b0f878b097d89187d" /> </td>
+        <td class="content"> <a href="/cardmagic/contacts/tree/19c2b6a6fd233cff0bcf86bd8e24da821941edfe/test" id="831b293bc93f6aba03130ee3e2ac5da915b9c173">test/</a></td>
+        
+        <td class="age"> <span class="relatize">Fri Dec 11 13:02:55 -0800 2009</span> </td>
+        <td class="message"> <a href="/cardmagic/contacts/commit/2995b06d903a31865f93b77c721d0c13bce18d5e" class="message" title="Fix yahoo contact importer">Fix yahoo contact importer</a> [<a href="/cardmagic">cardmagic</a>] </td>
+      </tr>
+    
+  </table>
+</div>
+    
+
+  
+
+
+
+  
+
+
+
+  <div id="readme" class="announce "><span class="name">README</span><div class="plain"><pre>== Welcome to Contacts
+
+Contacts is a universal interface to grab contact list information from various providers including Hotmail, AOL, Gmail, 
+Plaxo and Yahoo.
+
+== Download
+
+* gem install contacts
+* <a href="http://github.com/cardmagic/contacts">http://github.com/cardmagic/contacts</a>
+* git clone git://github.com/cardmagic/contacts.git
+
+== Background
+
+For a long time, the only way to get a list of contacts from your free online email accounts was with proprietary PHP 
+scripts that would cost you $50. The act of grabbing that list is a simple matter of screen scrapping and this library 
+gives you all the functionality you need. Thanks to the generosity of the highly popular Rails website MOG 
+(<a href="http://mog.com">http://mog.com</a>) for allowing this library to be released open-source to the world. It is easy to extend this library to 
+add new free email providers, so please contact the author if you would like to help.
+
+== Usage
+
+  Contacts::Hotmail.new(login, password).contacts # =&gt; [[&quot;name&quot;, &quot;<a href="mailto:foo@bar.com">foo@bar.com</a>&quot;], [&quot;another name&quot;, &quot;<a href="mailto:bow@wow.com">bow@wow.com</a>&quot;]]
+  Contacts::Yahoo.new(login, password).contacts
+  Contacts::Gmail.new(login, password).contacts
+
+  Contacts.new(:gmail, login, password).contacts
+  Contacts.new(:hotmail, login, password).contacts
+  Contacts.new(:yahoo, login, password).contacts
+
+  Contacts.guess(login, password).contacts
+
+Notice there are three ways to use this library so that you can limit the use as much as you would like in your 
+particular application. The Contacts.guess method will automatically concatenate all the address book contacts from each 
+of the successful logins in the case that a username password works across multiple services.
+
+== Captcha error
+
+If there are too many failed attempts with the gmail login info, Google will raise a captcha response. To integrate the 
+captcha handling, pass in the token and response via:
+
+  Contacts::Gmail.new(login, password, :captcha_token =&gt; params[:captcha_token], :captcha_response =&gt; 
+  params[:captcha_response]).contacts
+
+== Examples
+
+See the examples/ directory.
+
+== Authors
+
+* Lucas Carlson from MOG (mailto:<a href="mailto:lucas@rufy.com">lucas@rufy.com</a>) - <a href="http://mog.com">http://mog.com</a>
+
+== Contributors
+
+* Britt Selvitelle from Twitter (mailto:<a href="mailto:anotherbritt@gmail.com">anotherbritt@gmail.com</a>) - <a href="http://twitter.com">http://twitter.com</a>
+* Tony Targonski from GigPark (mailto:<a href="mailto:tony@gigpark.com">tony@gigpark.com</a>) - <a href="http://gigpark.com">http://gigpark.com</a>
+* Waheed Barghouthi from Watwet (mailto:<a href="mailto:waheed.barghouthi@gmail.com">waheed.barghouthi@gmail.com</a>) - <a href="http://watwet.com">http://watwet.com</a>
+* Glenn Sidney from Glenn Fu (mailto:<a href="mailto:glenn@glennfu.com">glenn@glennfu.com</a>) - <a href="http://glennfu.com">http://glennfu.com</a>
+* Brian McQuay from Onomojo (mailto:<a href="mailto:brian@onomojo.com">brian@onomojo.com</a>) - <a href="http://onomojo.com">http://onomojo.com</a>
+* Adam Hunter (mailto:<a href="mailto:adamhunter@me.com">adamhunter@me.com</a>) - <a href="http://adamhunter.me/">http://adamhunter.me/</a>
+* Glenn Ford (mailto:<a href="mailto:glenn@glennfu.com">glenn@glennfu.com</a>) - <a href="http://www.glennfu.com/">http://www.glennfu.com/</a>
+* Leonardo Wong (mailto:<a href="mailto:mac@boy.name">mac@boy.name</a>)
+* Rusty Burchfield
+* justintv
+
+This library is released under the terms of the BSD.
+
+</pre></div></div>
+
+
+
+
+    </div>
+  
+      
+
+      <div class="push"></div>
+    </div>
+
+    <div id="footer">
+      <div class="site">
+        <div class="info">
+          <div class="links">
+            <a href="http://github.com/blog"><b>Blog</b></a> |
+            <a href="http://support.github.com">Support</a> |
+            <a href="http://github.com/training">Training</a> |
+            <a href="http://github.com/contact">Contact</a> |
+            <a href="http://develop.github.com">API</a> |
+            <a href="http://status.github.com">Status</a> |
+            <a href="http://twitter.com/github">Twitter</a> |
+            <a href="http://help.github.com">Help</a> |
+            <a href="http://github.com/security">Security</a>
+          </div>
+          <div class="company">
+            &copy;
+            2010
+            <span id="_rrt" title="0.07119s from fe4.rs.github.com">GitHub</span> Inc.
+            All rights reserved. |
+            <a href="/site/terms">Terms of Service</a> |
+            <a href="/site/privacy">Privacy Policy</a>
+          </div>
+        </div>
+        <div class="sponsor">
+          <div>
+            Powered by the <a href="http://www.rackspace.com ">Dedicated
+            Servers</a> and<br/> <a href="http://www.rackspacecloud.com">Cloud
+            Computing</a> of Rackspace Hosting<span>&reg;</span>
+          </div>
+          <a href="http://www.rackspace.com">
+            <img alt="Dedicated Server" src="http://assets0.github.com/images/modules/footer/rackspace_logo.png?f75d32238eb91554988de35b0f878b097d89187d" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>window._auth_token = "e71b66918a63948d197574484a27bf3c3afbb8fe"</script>
+    
+    
+  </body>
+</html>
+

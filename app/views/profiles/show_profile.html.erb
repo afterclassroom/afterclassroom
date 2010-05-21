@@ -13,7 +13,7 @@
   <div class="col451 proCen">
     <div class="col451in">
       <div class="proCenCont">
-        <div class="proInfTop"><a href="#">Edit Information</a></div>
+        <div class="proInfTop"><a href="javascript:;" onclick="show_edit_infor();">Edit Information</a></div>
         <%= render :partial => "basic_infor" %>
         <%= render :partial => "contact_infor" %>
         <%= render :partial => "edu_infor" %>
@@ -29,3 +29,51 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
+
+<!--Popup-->
+<div id="edit_infor" title="Edit Information"></div>
+<div id="edit_edu_infor" title="Edit My Education"></div>
+<div id="edit_work_infor" title="Edit My Work"></div>
+<!--Popup-->
+
+<script type="text/javascript">
+  var edit_infor_path = "<%= edit_infor_user_profiles_path(current_user) %>";
+  var edit_edu_infor_path = "<%= edit_edu_infor_user_profiles_path(current_user) %>";
+  var edit_work_infor_path = "<%= edit_work_infor_user_profiles_path(current_user) %>";
+
+  function show_edit_infor(){
+    $("#edit_infor").dialog({ 
+      autoOpen: false,
+      modal: true,
+        buttons: {
+          Update: function() {
+            alert("Update");
+          }
+        }
+    }).load(edit_infor_path, function() { $(this).dialog("open"); });
+  }
+
+  function show_edit_edu_infor(){
+    $("#edit_edu_infor").dialog({ 
+      autoOpen: false,
+      modal: true,
+        buttons: {
+          Update: function() {
+            alert("Update");
+          }
+        }
+    }).load(edit_edu_infor_path, function() { $(this).dialog("open"); });
+  }
+
+  function show_edit_work_infor(){
+    $("#edit_work_infor").dialog({ 
+      autoOpen: false,
+      modal: true,
+        buttons: {
+          Update: function() {
+            alert("Update");
+          }
+        }
+    }).load(edit_work_infor_path, function() { $(this).dialog("open"); });
+  }
+</script>
