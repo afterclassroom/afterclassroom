@@ -1,20 +1,18 @@
 <div class="proInfG">
   <div class="proInfGL">Education</div>
-  <div class="proInfGR"><a href="#">Edit My Education</a></div>
+  <div class="proInfGR"><a href="javascript:;" onclick="show_edit_edu_infor();">Edit My Education</a></div>
 </div>
 <div class="proInfGItem">
   <div class="proInfLR">
     <div class="proInfLabel">Grad School:</div>
-    <div class="proInfCont">University of Saskatchewan</div>
+    <div class="proInfCont"><%= current_user.user_education.grad_school %></div>
   </div>
   <div class="proInfLR">
     <div class="proInfLabel">College:</div>
-    <div class="proInfCont"><a href="#">McMaster University</a>
-      <br/><a href="#">Electrical & Computer Engineering</a></div>
+    <div class="proInfCont"><%= current_user.user_education.college %></div>
   </div>
   <div class="proInfLR">
     <div class="proInfLabel">High Schools:</div>
-    <div class="proInfCont"><a href="#">Barton Secondary School</a>
-      <br/><a href="#">Westmount Secondary School</a></div>
+    <div class="proInfCont"><%= current_user.user_education.high_school %></div>
   </div>
 </div>

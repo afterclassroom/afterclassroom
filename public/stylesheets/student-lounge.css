@@ -3023,6 +3023,7 @@ div.helpAdv2{
 .proInfCont{
     float:left;
     color:#1e1e1e;
+    width:300px;
 }
 .proInfCont a, .proInfCont a:link, .proInfCont a:visited{
     color:#0b8ccb;

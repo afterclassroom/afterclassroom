@@ -10,6 +10,18 @@ class ProfilesController < ApplicationController
   def show_profile
   end
 
+  def edit_infor
+    render :layout => false
+  end
+
+  def edit_edu_infor
+    render :layout => false
+  end
+
+  def edit_work_infor
+    render :layout => false
+  end
+
   def show_invite
     @user_id = params[:id]
     user = User.find_by_id(@user_id)

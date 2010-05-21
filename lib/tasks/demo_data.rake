@@ -9,32 +9,33 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       # Users
-      #      departments_for_schools
-      #      create_demo_people
-      #      create_demo_friendship
+#      departments_for_schools
+#      create_demo_people
+#      create_demo_friendship
+      create_demo_fan
 
       # Begin creating Posts data
-      #      create_demo_posts_assignments
-      #      create_demo_posts_tests
-      #      create_demo_posts_projects
-      #      create_demo_posts_exams
-      #      create_demo_posts_myx
-      #      create_demo_posts_books
-      #      create_demo_posts_tutors
-      #      create_demo_posts_jobs
-      #      create_demo_posts_housings
-      #      create_demo_posts_parties
-      #      create_demo_posts_teamups
-      #      create_demo_posts_awarenesses
-      #      create_demo_posts_foods
-      #      create_demo_posts_qas
-      create_demo_phoneapps
+#      create_demo_posts_assignments
+#      create_demo_posts_tests
+#      create_demo_posts_projects
+#      create_demo_posts_exams
+#      create_demo_posts_myx
+#      create_demo_posts_books
+#      create_demo_posts_tutors
+#      create_demo_posts_jobs
+#      create_demo_posts_housings
+#      create_demo_posts_parties
+#      create_demo_posts_teamups
+#      create_demo_posts_awarenesses
+#      create_demo_posts_foods
+#      create_demo_posts_qas
+#      create_demo_phoneapps
 
       # Exam schedule
-      #      create_demo_posts_exam_schedules
+#      create_demo_posts_exam_schedules
 
       # Messages data
-      #      create_demo_messages
+#      create_demo_messages
 
     end
     
@@ -71,7 +72,7 @@ end
 
 def create_demo_people
   description = "This is a description for "
-  sex = {"male" => true, "femail" => false}
+  sex = {"male" => true, "female" => false}
   relationship_status = ["Single", "Married"]
   %w[male female].each do |gender|
     filename = File.join(DATA_DIRECTORY, "#{gender}_names.txt")
@@ -81,26 +82,30 @@ def create_demo_people
     names.each_with_index do |name, i|
       name.strip!
       school = School.find(rand(School.count) + 1)
-      user_infor = UserInformation.create do |f|
-          f.sex = sex(gender.to_s)
-          f.relationship_status = relationship_status[rand(relationship_status.size)]
-          f.looking_for = Faker::Lorem.paragraphs
-          f.polictical_view = Faker::Lorem.paragraphs
-          f.mobile_number = Faker::PhoneNumber.phone_number
-          f.current_city = Faker::Address.street_address
-          f.website = Faker::Internet.domain_name
+
+      user_infor = UserInformation.new do |f|
+        f.sex = sex[gender.to_s]
+        f.relationship_status = relationship_status[rand(relationship_status.size)]
+        f.looking_for = Faker::Lorem.paragraphs
+        f.polictical_view = Faker::Lorem.paragraphs
+        f.mobile_number = Faker::PhoneNumber.phone_number
+        f.current_city = Faker::Address.street_address
+        f.website = Faker::Internet.domain_name
       end
-      user_edu = UserEducation.create do |f|
-          f.grad_school = Faker::Lorem.paragraphs
-          f.college = Faker::Lorem.paragraphs
-          f.high_school = Faker::Lorem.paragraphs
+
+      user_edu = UserEducation.new do |f|
+        f.grad_school = Faker::Lorem.paragraphs
+        f.college = Faker::Lorem.paragraphs
+        f.high_school = Faker::Lorem.paragraphs
       end
-      user_employ = UserEmployment.create do |f|
-          f.current_employer = Faker::Lorem.sentence
-          f.position_current = Faker::Lorem.sentence
-          f.time_period = Faker::Lorem.sentence
-          f.location = Faker::Address.street_address
+
+      user_employ = UserEmployment.new do |f|
+        f.current_employer = Faker::Lorem.sentence
+        f.position_current = Faker::Lorem.sentence
+        f.time_period = Faker::Lorem.sentence
+        f.location = Faker::Address.street_address
       end
+      
       user = User.create do |u|
         u.login = name.downcase
         u.password = password
@@ -128,6 +133,20 @@ def create_demo_friendship
         invite = UserInvite.create(:user => u, :user_target => f, :message => "let's be friends!")
         invite.is_accepted = true
         invite.save and u.reload and f.reload
+      end
+    end
+  end
+end
+
+def create_demo_fan
+  users = User.find(:all)
+  fans = User.find(:all)
+  users.each do |u|
+    fans.each do |f|
+      unless u == f
+        fan = Fan.new
+        fan.user_id = f.id
+        u.fans << fan
       end
     end
   end
@@ -538,17 +557,17 @@ end
 
 def create_demo_phoneapps
 
-#  apcate = Phoneappcategory.find(1)#ID 1 is iPhone
-#
-#  30.times do
-#    papp = Phoneapplication.create do |ap|
-#      ap.name = Faker::Lorem.sentence
-#      ap.phoneappcategory = apcate
-#      ap.description = Faker::Lorem.paragraphs
-#      ap.price = "500"
-#      ap.image = "/images/noimg.png"
-#    end
-#  end
+  #  apcate = Phoneappcategory.find(1)#ID 1 is iPhone
+  #
+  #  30.times do
+  #    papp = Phoneapplication.create do |ap|
+  #      ap.name = Faker::Lorem.sentence
+  #      ap.phoneappcategory = apcate
+  #      ap.description = Faker::Lorem.paragraphs
+  #      ap.price = "500"
+  #      ap.image = "/images/noimg.png"
+  #    end
+  #  end
 
   count = 1;
   Phoneappcategory.count.times do

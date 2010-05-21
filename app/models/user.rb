@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]
 
+  # Acts_as_fannable
+  acts_as_fannable
+  
   # Active tracker
   tracks_unlinked_activities [:updated_profile, :updated_avatar]
 
@@ -62,7 +65,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,
     :default_url => "/images/icons/:style/members.png",
     :styles => { :medium => "169x169>",
-    :thumb => "45x45>" }
+    :thumb => "45x45#" }
   validates_attachment_content_type :avatar, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
   
   # HACK HACK HACK -- how to do attr_accessible from here?
@@ -212,6 +215,16 @@ class User < ActiveRecord::Base
   def has_favorite?(post)
     list ||= self.favorites.collect(&:post_id)
     list.include?(post.id)
+  end
+
+  def fans_recent_update
+    over = 30
+    self.fans.find(:all, :conditions => ["updated_at > ?", Time.now - over.day], :order => "updated_at DESC")
+  end
+
+  def fans_not_visit
+    over = 30
+    self.fans.find(:all, :conditions => ["updated_at < ?", Time.now - over.day], :order => "updated_at DESC")
   end
     
   protected
