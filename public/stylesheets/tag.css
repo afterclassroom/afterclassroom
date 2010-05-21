@@ -1,0 +1,41 @@
+/* 
+    Document   : tag
+    Created on : May 18, 2010, 9:09:12 PM
+    Author     : VIET
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+   INPUT.wide {
+	WIDTH: 300px;
+}
+.tagMatches {
+	display: block;
+        
+        width:300px;
+        
+}
+.tagMatches SPAN {
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-BOTTOM: 2px;
+    CURSOR: pointer;
+    COLOR: #fff;
+    MARGIN-RIGHT: 4px;
+    PADDING-TOP: 2px;
+    BACKGROUND-COLOR: #0000ab;
+    
+}
+PRE {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; BACKGROUND: #ddd; PADDING-BOTTOM: 5px; OVERFLOW: auto; PADDING-TOP: 5px; FONT-FAMILY: Courier;
+}
+
+
