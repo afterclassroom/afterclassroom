@@ -45,8 +45,6 @@
     $.fn.tagSuggest = function (options) {
         var defaults = { 
             'matchClass' : 'tagMatches', 
-            'minChars': '6',
-            'tagCon' : 'br',
             'tagContainer' : 'span', 
             'tagWrap' : 'span', 
             'sort' : true,

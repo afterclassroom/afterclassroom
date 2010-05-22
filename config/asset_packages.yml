@@ -43,6 +43,7 @@ javascripts:
   - jquery-wysiwyg
   - ajaxupload
   - tag
+  - jquery-jeditable
 - admin:
   - application
   - jquery

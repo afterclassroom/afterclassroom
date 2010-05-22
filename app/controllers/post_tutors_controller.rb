@@ -157,6 +157,7 @@ class PostTutorsController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_tutor.tag_list = params[:tag]
     @post_tutor.post = post
     @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
     if @post_tutor.save

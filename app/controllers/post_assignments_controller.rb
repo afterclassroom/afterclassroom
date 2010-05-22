@@ -95,6 +95,7 @@ class PostAssignmentsController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_assignment.tag_list = params[:tag]
     @post_assignment.post = post
     if @post_assignment.save
       notice "Your post was successfully created."

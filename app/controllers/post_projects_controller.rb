@@ -103,6 +103,7 @@ class PostProjectsController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_project.tag_list = params[:tag]
     @post_project.post = post
     if @post_project.save
       notice "Your post was successfully created."
