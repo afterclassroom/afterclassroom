@@ -55,4 +55,11 @@
       $("#form_post").submit();
     }
   }
+   var tags = <%= array_or_string_for_javascript(@tags) %>;
+  $(function () {
+    $('#tag').tagSuggest ( {
+      tags: tags,
+      separator: ', '
+    });
+  }) ;
 </script>

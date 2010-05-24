@@ -14,28 +14,39 @@
 root { 
     display: block;
 }
-   INPUT.wide {
-	WIDTH: 300px;
+   LABEL { display: block; margin-top: 10px; }
+      IMG { margin: 5px; }
+      INPUT.wide { width: 300px; }
+
+      .tagMatches
+{
+left:280px;
+position:absolute;
+top:705px;
 }
-.tagMatches {
-	display: block;
-        
-        width:300px;
-        
+.tagMatches ul
+{
+margin: 0;
+padding: 0;
+list-style-type: none;
+text-align: left;
+width: 300px;
+
 }
-.tagMatches SPAN {
-    PADDING-RIGHT: 2px;
-    PADDING-LEFT: 2px;
-    PADDING-BOTTOM: 2px;
-    CURSOR: pointer;
-    COLOR: #fff;
-    MARGIN-RIGHT: 4px;
-    PADDING-TOP: 2px;
-    BACKGROUND-COLOR: #0000ab;
-    
-}
-PRE {
-	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; BACKGROUND: #ddd; PADDING-BOTTOM: 5px; OVERFLOW: auto; PADDING-TOP: 5px; FONT-FAMILY: Courier;
-}
+
+.tagMatches ul div {
+ display: inline;
+ color:#6F6F63;
+ cursor:default;
+ margin:0 0 5px;
+ padding: 2px;
+  }
+
+      PRE {
+          background: #ddd;
+          font-family: Courier;
+          padding: 5px;
+          overflow: auto;
+      }
 
 

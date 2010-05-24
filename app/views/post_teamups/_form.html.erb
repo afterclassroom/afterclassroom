@@ -77,38 +77,14 @@
       $("#form_post").submit();
     }
   }
- 
-  <!--
-   <!--
-   $(function () {
-       
-        $('#tag').tagSuggest ( {
-            tags: ["agile","ajax","apache","api","apml","applescript","architecture","auth","autocomplete",
-                "beautify","bug","bugs",
-                "C","canvas","cheatsheet","closure","Cocoa","code-","codedump","comet","compiler","compression","compressor","Computer","crossdomain","csrf","css3",
-                "D","dashcode","debug","debugger","debugging","development","dom",
-                "ext",
-                "firebug","firefox","flash","flex","framework","functions",
-                "greasemonkey",
-                "hack","hacks","howto","html","html5",
-                "ie","iframe","iframes","innerhtml","input",
-                "Java","javascript","jquery","js","js2",
-                "keycodes","keypress",
-                "LAMP","language","languages","leak","leaks","livesearch",
-                "memory","memoryleak","minify","moo","mootools","namespace","nu",
-                "oauth","obfuscate","obfuscator","objective-c","onload","oop","opml","optimisation","optimised","optimization",
-                "pack","packer","performance","perl","php","plugin","plugins","programming","prototype","prototyping",
-                "rail","rails","regexp","replacehtml","reserved","rest","ruby",
-                "scripting","scroll","scrolling","sdk","snippet"]
-	
-        });
-        
-    
-    }) ;
-    //-->
+ var tags = <%= array_or_string_for_javascript(@tags) %>;
+  $(function () {
+    $('#tag').tagSuggest ( {
+      tags: tags,
+      separator: ', '
+    });
+  }) ;
 
-
-    //-->
 </script>
 
 
