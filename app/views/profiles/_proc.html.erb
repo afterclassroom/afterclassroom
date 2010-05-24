@@ -8,7 +8,9 @@
       <div class="proItem"><%= link_to "View Musics of Me (#{current_user.musics.size})", "#" %></div>
       <div class="proItem"><%= link_to "View Videos of Me (#{current_user.videos.size})", "#" %></div>
       <div class="proItem"><%= link_to "Edit My Profile", show_profile_user_profiles_path %></div>
-      <div class="proBtm"><a href="#">Write something about yourself</a></div>
+      <div class="proBtm" id="about_yourself">
+        <%= current_user.user_information.about_yourself %>
+      </div>
     </div>
   </div>
 </div>
@@ -20,6 +22,7 @@
 <!--Alert-->
 <script type="text/javascript">
   var avatar_update = "<%= update_avatar_user_path(current_user) %>";
+  var about_yourself_update = "<%= update_about_yourself_user_profiles_path(current_user) %>";
   $(document).ready(function(){
     var button = $('#upload_avatar'), interval;
 
@@ -70,6 +73,16 @@
         // update avatar
         $("#avatar").attr("src", response);
       }
+    });
+  });
+  
+  // Write about yourself
+  $(document).ready(function() {
+    $('#about_yourself').editable(about_yourself_update, {
+      name: 'about_yourself',
+      height: 96,
+      indicator : 'Saving...',
+      tooltip   : 'Click to edit...'
     });
   });
 </script>

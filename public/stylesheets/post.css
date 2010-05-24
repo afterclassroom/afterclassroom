@@ -2012,4 +2012,23 @@ span.btmFan a:hover{
 .assPlace {
    padding: 2px 0 7px;
   }
-  
+/************* Form in popup **********************/
+.popLearnT{
+	clear:both;
+	padding-bottom:4px;
+}
+.popLearnItem{
+	padding:3px 0px;
+}
+.popLearnLabel{
+	width:57px;
+	float:left;
+	line-height:22px;
+}
+.popLearnInput input{
+	width:350px;
+}
+.popLearnInput textarea{
+	width:350px;
+	height:100px;
+}

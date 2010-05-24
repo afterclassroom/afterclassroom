@@ -1,6 +1,8 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class ProfilesController < ApplicationController
   layout 'student_lounge'
+
+  skip_before_filter :verify_authenticity_token, :only => [:update_about_yourself]
   before_filter :login_required
   before_filter :require_current_user
   
@@ -20,6 +22,13 @@ class ProfilesController < ApplicationController
 
   def edit_work_infor
     render :layout => false
+  end
+
+  def update_about_yourself
+    about_yourself = params["about_yourself"]
+    current_user.user_information.about_yourself = about_yourself
+    current_user.save
+    render :text => about_yourself.to_s
   end
 
   def show_invite
