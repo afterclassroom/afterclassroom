@@ -155,6 +155,7 @@ class PostMyxesController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_myx.tag_list = params[:tag]
     @post_myx.post = post
     if @post_myx.save
       notice "Your post was successfully created."

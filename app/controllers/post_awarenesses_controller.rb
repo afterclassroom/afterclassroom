@@ -120,6 +120,7 @@ class PostAwarenessesController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_awareness.tag_list = params[:tag]
     @post_awareness.post = post
     @post_awareness.awareness_type_id ||= AwarenessType.first.id
     if @post_awareness.save

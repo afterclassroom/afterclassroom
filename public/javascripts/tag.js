@@ -43,12 +43,19 @@
     }
 
     $.fn.tagSuggest = function (options) {
+<<<<<<< HEAD
         var defaults = {
             'matchClass' : 'tagMatches',
             'tagContainer' : 'span',
             'tagConta' : 'span',
             'tagCon' : 'ul',
             'tagWrap' : 'div',
+=======
+        var defaults = { 
+            'matchClass' : 'tagMatches', 
+            'tagContainer' : 'span', 
+            'tagWrap' : 'span', 
+>>>>>>> 84b749994a00774bbae09e4bf145009276141a43
             'sort' : true,
             'tags' : 5,
             'url' : null,

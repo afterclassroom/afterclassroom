@@ -155,6 +155,7 @@ class PostFoodsController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_food.tag_list = params[:tag]
     @post_food.post = post
     if @post_food.save
       notice "Your post was successfully created."

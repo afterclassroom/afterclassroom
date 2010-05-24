@@ -157,6 +157,7 @@ class PostJobsController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_job.tag_list = params[:tag]
     @post_job.post = post
     @post_job.job_type_id ||= JobType.first.id
     if @post_job.save

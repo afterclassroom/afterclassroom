@@ -160,6 +160,7 @@ class PostQasController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_qa.tag_list = params[:tag]
     @post_qa.post = post
     if @post_qa.save
       notice "Your post was successfully created."
