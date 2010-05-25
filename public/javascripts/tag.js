@@ -43,19 +43,12 @@
     }
 
     $.fn.tagSuggest = function (options) {
-<<<<<<< HEAD
         var defaults = {
             'matchClass' : 'tagMatches',
             'tagContainer' : 'span',
             'tagConta' : 'span',
             'tagCon' : 'ul',
             'tagWrap' : 'div',
-=======
-        var defaults = { 
-            'matchClass' : 'tagMatches', 
-            'tagContainer' : 'span', 
-            'tagWrap' : 'span', 
->>>>>>> 84b749994a00774bbae09e4bf145009276141a43
             'sort' : true,
             'tags' : 5,
             'url' : null,
@@ -77,7 +70,10 @@
             var matches, fromTab = false;
             var suggestionsShow = false;
             var workingTags = [];
-            var currentTag = {"position": 0, tag: ""};
+            var currentTag = {
+                "position": 0,
+                tag: ""
+            };
             var tagMatches = document.createElement(settings.tagContainer);
 
             function showSuggestionsDelayed(el, key) {
@@ -97,12 +93,18 @@
                 var i, html = '', chosenTags = {}, tagSelected = false;
 
                 // we're looking to complete the tag on currentTag.position (to start with)
-                currentTag = { position: currentTags.length-1, tag: '' };
+                currentTag = {
+                    position: currentTags.length-1,
+                    tag: ''
+                };
 
                 for (i = 0; i < currentTags.length && i < workingTags.length; i++) {
                     if (!tagSelected &&
                         currentTags[i].toLowerCase() != workingTags[i].toLowerCase()) {
-                        currentTag = { position: i, tag: workingTags[i].toLowerCase() };
+                        currentTag = {
+                            position: i,
+                            tag: workingTags[i].toLowerCase()
+                        };
                         tagSelected = true;
                     }
                     // lookup for filtering out chosen tags
@@ -115,7 +117,9 @@
                         $.ajax({
                             'url' : settings.url,
                             'dataType' : 'json',
-                            'data' : { 'tag' : currentTag.tag },
+                            'data' : {
+                                'tag' : currentTag.tag
+                            },
                             'async' : false, // wait until this is ajax hit is complete before continue
                             'success' : function (m) {
                                 matches = m;

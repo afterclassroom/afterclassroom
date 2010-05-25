@@ -13,6 +13,8 @@ class ProfilesController < ApplicationController
   end
 
   def edit_infor
+    @select_sex = {'Female' => false, 'Male' => true}
+    @select_relation = ['Single', 'In a relationship', 'Engaged', 'Married', 'It is Complicated', 'In an Open Relationship']
     render :layout => false
   end
 
@@ -22,6 +24,25 @@ class ProfilesController < ApplicationController
 
   def edit_work_infor
     render :layout => false
+  end
+
+  def update_infor
+    @user.update_attributes(params[:user])
+    @user.user_information.update_attributes(params[:user_information])
+    @user.track_activity(:updated_profile)
+    redirect_to show_profile_user_profiles_path(@user)
+  end
+
+  def update_edu_infor
+    @user.user_education.update_attributes(params[:user_education])
+    @user.track_activity(:updated_profile)
+    redirect_to show_profile_user_profiles_path(@user)
+  end
+
+  def update_work_infor
+    @user.user_employment.update_attributes(params[:user_employment])
+    @user.track_activity(:updated_profile)
+    redirect_to show_profile_user_profiles_path(@user)
   end
 
   def update_about_yourself

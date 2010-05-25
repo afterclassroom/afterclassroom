@@ -14,39 +14,38 @@
 root { 
     display: block;
 }
-   LABEL { display: block; margin-top: 10px; }
-      IMG { margin: 5px; }
-      INPUT.wide { width: 300px; }
+LABEL { display: block; margin-top: 10px; }
+INPUT.wide { width: 300px; }
 
-      .tagMatches
+.tagMatches
 {
-left:280px;
-position:absolute;
-top:705px;
+    left:280px;
+    position:absolute;
+    top:705px;
 }
 .tagMatches ul
 {
-margin: 0;
-padding: 0;
-list-style-type: none;
-text-align: left;
-width: 300px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+    width: 300px;
 
 }
 
 .tagMatches ul div {
- display: inline;
- color:#6F6F63;
- cursor:default;
- margin:0 0 5px;
- padding: 2px;
-  }
+    display: inline;
+    color:#6F6F63;
+    cursor:default;
+    margin:0 0 5px;
+    padding: 2px;
+}
 
-      PRE {
-          background: #ddd;
-          font-family: Courier;
-          padding: 5px;
-          overflow: auto;
-      }
+PRE {
+    background: #ddd;
+    font-family: Courier;
+    padding: 5px;
+    overflow: auto;
+}
 
 

@@ -1,1 +1,26 @@
-Edit work infor
+<% form_for :user, @user, :url => update_work_infor_user_profiles_url(@user), :html => {:id => "form_work", :method => :post} do |f| %>
+  <% fields_for @user.user_employment do |info| %>
+    <div class="popLearn2">
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width:70px">Employer</div>
+        <div class="popLearnInput"><%= info.text_field :current_employer %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width:70px">Position</div>
+        <div class="popLearnInput"><%= info.text_field :position_current %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width:70px">Time Period</div>
+        <div class="popLearnInput"><%= info.text_field :time_period %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width:70px">Location</div>
+        <div class="popLearnInput"><%= info.text_field :location %></div>
+      </div>
+      <div class="popLearnBtm" style="padding-left:70px">
+        <div class="popSend"><a href="javascript:;" onclick="$('#form_work').submit();">Send</a></div>
+        <div class="popCancel"><a href="#">Cancel</a></div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

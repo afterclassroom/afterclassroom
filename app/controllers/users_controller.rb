@@ -83,58 +83,6 @@ class UsersController < ApplicationController
       redirect_back_or_default(root_path)
     end
   end
-
-  def edit_information
-    @school = @user.school
-    @countries = Country.has_cities
-    if @school
-      @city = @school.city
-    else
-      @city = City.first_city_has_schools.first
-    end
-    @select_sex = {'Female' => false, 'Male' => true}
-    @select_relation = ['Single', 'In a relationship', 'Engaged', 'Married', 'It is Complicated', 'In an Open Relationship']
-  end
-
-  def update_information
-    if current_user == @user
-      @user.update_attributes(params[:user])
-      @user.user_information.update_attributes(params[:user_information])
-      @user.track_activity(:updated_profile)
-      redirect_to user_path(@user)
-    else
-      flash[:error] = "You cannot update information!"
-      redirect_to edit_information_user_url(@user)
-    end
-  end
-
-  def edit_education
-  end
-
-  def update_education
-    if current_user == @user
-      @user.user_education.update_attributes(params[:user_education])
-      @user.track_activity(:updated_profile)
-      redirect_to user_path(@user)
-    else
-      flash[:error] = "You cannot update education!"
-      redirect_to edit_education_user_url(@user)
-    end
-  end
-
-  def edit_employment
-  end
-
-  def update_employment
-    if current_user == @user
-      @user.user_employment.update_attributes(params[:user_employment])
-      @user.track_activity(:updated_profile)
-      redirect_to user_path(@user)
-    else
-      flash[:error] = "You cannot update employment!"
-      redirect_to edit_employment_user_url(@user)
-    end
-  end
   
   def edit_password
   end

@@ -182,7 +182,7 @@ module ApplicationHelper
   def show_go_back
     link_to "<span>Go back</span>", session[:go_back_url]
   end
-  
+
   # id : id of post
   # numb : number of rating
   # ctrl_name : name of controller
@@ -206,12 +206,24 @@ module ApplicationHelper
     end
   end
 
-  def show_submit_form()
+  def show_submit_form
     if !logged_in?
       link_to_require_login("Submit")
     else
       link_to("Submit", "javascript:;", :onclick => "$('#form_post').submit();")
     end
+  end
+
+  def show_infor
+    link_to("Edit Information", "#{edit_infor_user_profiles_path(current_user)}?height=350&width=470", :class => "thickbox", :title => "Edit Information")
+  end
+
+  def show_edu_infor
+    link_to("Edit My Education", "#{edit_edu_infor_user_profiles_path(current_user)}?height=270&width=470", :class => "thickbox", :title => "Edit My Education")
+  end
+
+  def show_work_infor
+    link_to("Edit My Work", "#{edit_work_infor_user_profiles_path(current_user)}?height=200&width=470", :class => "thickbox", :title => "Edit My Work")
   end
 
   private

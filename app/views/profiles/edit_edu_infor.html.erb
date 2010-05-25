@@ -1,1 +1,22 @@
-Edit edu infor
+<% form_for :user, @user, :url => update_edu_infor_user_profiles_url(@user), :html => {:id => "form_edu", :method => :post} do |f| %>
+  <% fields_for @user.user_education do |info| %>
+    <div class="popLearn2">
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width:75px">Grad School</div>
+        <div class="popLearnInput"><%= info.text_area :grad_school, :style => "height: 55px" %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width:75px">College</div>
+        <div class="popLearnInput"><%= info.text_area :college, :style => "height: 55px" %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width:75px">High Schools</div>
+        <div class="popLearnInput"><%= info.text_area :high_school, :style => "height: 55px" %></div>
+      </div>
+      <div class="popLearnBtm" style="padding-left:75px">
+        <div class="popSend"><a href="javascript:;" onclick="$('#form_edu').submit();">Update</a></div>
+        <div class="popCancel"><a href="#">Cancel</a></div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
