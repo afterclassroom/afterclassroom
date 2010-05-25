@@ -23,6 +23,7 @@ class PhoneappsController < ApplicationController
   end
 
   def info
+    @appcategory = Phoneappcategory.find(:all)
   end
 
   def favorite
