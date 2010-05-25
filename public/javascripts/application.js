@@ -281,5 +281,5 @@ function goToByScroll(id){
 
 // Pretty flash
 function hideFlashes() {
-  $('#flash_notice, #flash_warning, #flash_error').fadeOut(1500);
+    $('#flash_notice, #flash_warning, #flash_error').fadeOut(1500);
 }

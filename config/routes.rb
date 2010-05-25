@@ -61,7 +61,12 @@ ActionController::Routing::Routes.draw do |map|
       :change_email => :get,
       :save_email => :get,
       :save_setting => :post}
-    users.resources :profiles, :collection => {:show_profile => :get, :edit_infor => :get, :edit_edu_infor => :get, :edit_work_infor => :get}
+    users.resources :profiles,
+      :collection => {:show_profile => :get, :edit_infor => :get,
+      :edit_edu_infor => :get, :edit_work_infor => :get,
+      :update_about_yourself => :post, :update_infor => :post,
+      :update_edu_infor => :post, :update_work_infor => :post,
+      }
     users.resources :student_lounges
     users.resources :friends
   end

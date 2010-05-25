@@ -94,6 +94,7 @@ class PostExamsController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_exam.tag_list = params[:tag]
     @post_exam.post = post
     if @post_exam.save
       notice "Your post was successfully created."

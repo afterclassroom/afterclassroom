@@ -1,1 +1,38 @@
-Edit infor
+<% form_for :user, @user, :url => update_infor_user_profiles_url(@user), :html => {:id => "form_infor", :method => :post} do |f| %>
+  <% fields_for @user.user_information do |info| %>
+    <div class="popLearn2">
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width: 100px">Sex</div>
+        <div class="popLearnInput"><%= select_tag 'user_information[sex]', options_for_select(@select_sex, @user.user_information.sex), {:id => 'user_information_sex'} %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width: 100px">Relationship Status</div>
+        <div class="popLearnInput"><%= select_tag 'user_information[relationship_status]', options_for_select(@select_relation, @user.user_information.relationship_status), {:id => 'user_information_relationship_status'} %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width: 100px">Looking For</div>
+        <div class="popLearnInput"><%= info.text_area :looking_for, :style => "width: 300px;height: 50px" %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width: 100px">Political Views</div>
+        <div class="popLearnInput"><%= info.text_area :polictical_view, :style => "width: 300px;height: 50px" %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width: 100px">Mobile Number</div>
+        <div class="popLearnInput"><%= info.text_field :mobile_number, :style => "width: 300px" %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width: 100px">Current City</div>
+        <div class="popLearnInput"><%= info.text_field :current_city, :style => "width: 300px" %></div>
+      </div>
+      <div class="popLearnItem">
+        <div class="popLearnLabel" style="width: 100px">Website</div>
+        <div class="popLearnInput"><%= info.text_field :website, :style => "width: 300px" %></div>
+      </div>
+      <div class="popLearnBtm" style="padding-left:100px">
+        <div class="popSend"><a href="javascript:;" onclick="$('#form_infor').submit();">Update</a></div>
+        <div class="popCancel"><a href="#">Cancel</a></div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

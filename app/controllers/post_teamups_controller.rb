@@ -128,6 +128,7 @@ class PostTeamupsController < ApplicationController
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
+    @post_teamup.tag_list = params[:tag]
     @post_teamup.post = post
     @post_teamup.teamup_category_id ||= TeamupCategory.first.id
     if @post_teamup.save

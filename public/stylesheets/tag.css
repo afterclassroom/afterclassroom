@@ -1,0 +1,51 @@
+/* 
+    Document   : tag
+    Created on : May 18, 2010, 9:09:12 PM
+    Author     : VIET
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+LABEL { display: block; margin-top: 10px; }
+INPUT.wide { width: 300px; }
+
+.tagMatches
+{
+    left:280px;
+    position:absolute;
+    top:705px;
+}
+.tagMatches ul
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+    width: 300px;
+
+}
+
+.tagMatches ul div {
+    display: inline;
+    color:#6F6F63;
+    cursor:default;
+    margin:0 0 5px;
+    padding: 2px;
+}
+
+PRE {
+    background: #ddd;
+    font-family: Courier;
+    padding: 5px;
+    overflow: auto;
+}
+
+

@@ -2004,12 +2004,77 @@ span.btmFan a:hover{
     background:url('/images/btmFanH.png') no-repeat;
 }
 .assName {
-  /* padding: 2px 0 7px;*/
-  }
+    /* padding: 2px 0 7px;*/
+}
 .assAt {
-  /* padding: 2px 0 7px;*/
-  }
+    /* padding: 2px 0 7px;*/
+}
 .assPlace {
-   padding: 2px 0 7px;
-  }
-  
+    padding: 2px 0 7px;
+}
+/************* Form in popup **********************/
+.popLearn2{
+    overflow:hidden;
+    _height:100%;
+    padding:2px 2px 15px 10px;
+    color:#6f6f63;
+    font-family:Arial;
+    font-size:11px;
+}
+.popLearnT{
+    clear:both;
+    padding-bottom:4px;
+}
+.popLearnItem{
+    padding:3px 0px;
+}
+.popLearnLabel{
+    width:57px;
+    float:left;
+    line-height:22px;
+}
+.popLearnInput input{
+    border:1px solid #CECECE;
+    width:350px;
+    height:15px;
+}
+.popLearnInput textarea{
+    border:1px solid #CECECE;
+    width:350px;
+    height:100px;
+}
+.popLearnBtm{
+    padding-left:57px;
+    padding-top:3px;
+}
+.popLearnBtm div{
+    float:left;
+    padding-right:5px;
+}
+.popSend a{
+    background:url('/images/btm48.png') no-repeat left top;
+    width:48px;
+    height:25px;
+    line-height:25px;
+    text-decoration:none;
+    display:block;
+    color:#fff;
+    text-align:center;
+}
+.popSend a:hover{
+    background:url('/images/btm48Red.png') no-repeat left top;
+}
+.popCancel a{
+    background:url('/images/popCancel.png') no-repeat left top;
+    width:53px;
+    height:25px;
+    line-height:25px;
+    text-decoration:none;
+    display:block;
+    color:#969696;
+    text-align:center;
+}
+.popCancel a:hover{
+    background:url('/images/btm53Red.png') no-repeat left top;
+    color:#fff;
+}

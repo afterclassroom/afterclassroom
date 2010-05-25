@@ -47,8 +47,10 @@
     </div>
   </div>
   <div class="postItem">
-    <div class="postTit">Tag</div>
+    <div class="postTit">Tag </div>
     <div class="postInp"><%= text_field_tag "tag", "", :style => "width:280px" %></div>
+
+
   </div>
 <% end %>
 
@@ -75,4 +77,23 @@
       $("#form_post").submit();
     }
   }
+<<<<<<< HEAD
+ var tags = <%= array_or_string_for_javascript(@tags) %>;
+  $(function () {
+=======
+  var tags = <%= array_or_string_for_javascript(@tags) %>;
+  $(function () {
+       
+>>>>>>> 84b749994a00774bbae09e4bf145009276141a43
+    $('#tag').tagSuggest ( {
+      tags: tags,
+      separator: ', '
+    });
+  }) ;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 84b749994a00774bbae09e4bf145009276141a43
 </script>
+
+

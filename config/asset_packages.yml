@@ -21,6 +21,7 @@ javascripts:
   - jquery-multiselect
   - vtip-min
   - jquery-wysiwyg
+  - tag
 - student_lounge:
   - application
   - jquery
@@ -41,6 +42,8 @@ javascripts:
   - vtip-min
   - jquery-wysiwyg
   - ajaxupload
+  - tag
+  - jquery-jeditable
 - admin:
   - application
   - jquery
@@ -70,6 +73,7 @@ stylesheets:
   - vtip
   - thickbox
   - jquery-wysiwyg
+  - tag
 - student_lounge:
   - main
   - post
@@ -88,5 +92,6 @@ stylesheets:
   - vtip
   - thickbox
   - jquery-wysiwyg
+  - tag
 - admin:
   - main
