@@ -1,11 +1,13 @@
 <div class="postCont" id="div_send_message">
   <form name="form_send_message">
     <div class="postItem">
-      <div class="postInp"><input style="width:230px" id="message_subject" name="subject" size="30" type="text" value="Subject..." onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" /></div>
+      <div class="postItem1" style="width: 80px">Subject</div>
+      <div class="postInp"><input style="width:330px" id="message_subject" name="subject" size="30" type="text" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" /></div>
     </div>
     <div class="postItem">
-      <div class="postInp"><textarea style="width:230px; height:130px" id="message_body" name="body" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" >Message...</textarea></div>
+       <div class="postItem1" style="width: 80px">Message</div>
+      <div class="postInp"><textarea style="width:330px; height:200px" id="message_body" name="body" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
     </div>
-    <div class="submit"><a href="javascript:;" onclick="sendEmail(<%= @user_id %>)">Send</a></div>
+    <div class="submit" style="padding-left:90px"><a href="javascript:;" onclick="sendEmail(<%= @user_id %>)">Send</a></div>
   </form>
 </div>
