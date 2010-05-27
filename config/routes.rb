@@ -32,13 +32,6 @@ ActionController::Routing::Routes.draw do |map|
     :show_comment => :get,
     :create_comment => :get,
     :delete_comment => :get,
-    :update_i_am_doing => :put,
-    :edit_information => :get,
-    :update_information => :put,
-    :edit_education => :get,
-    :update_education => :put,
-    :edit_employment => :get,
-    :update_employment => :put,
     :edit_password => :get,
     :update_password => :put,
     :edit_email => :get,
@@ -66,6 +59,7 @@ ActionController::Routing::Routes.draw do |map|
       :edit_edu_infor => :get, :edit_work_infor => :get,
       :update_about_yourself => :post, :update_infor => :post,
       :update_edu_infor => :post, :update_work_infor => :post,
+      :my_favorite => :get
       }
     users.resources :student_lounges
     users.resources :friends

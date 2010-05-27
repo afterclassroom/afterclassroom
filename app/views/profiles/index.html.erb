@@ -11,116 +11,19 @@
 
 <div class="contMainL">
   <div class="col451 proCen">
-    <div class="proMind">
-      <div class="proMindT">
-        <div class="proques">What’s on your mind?</div>
-        <div class="proPlus"><a href="#"> </a></div>
-      </div>
-      <div class="proAtt">
-        <div class="proAttL">
-          <span>Attach:</span>
-          <span class="att1"><a href="#"> </a></span>
-          <span class="att2"><a href="#"> </a></span>
-          <span class="att3"><a href="#"> </a></span>
-          <span class="att4"><a href="#"> </a></span>
-          <span class="att5"><a href="#"> </a></span>
-        </div>
-        <div class="proAttR"><a href="#">Share</a></div>
-      </div>
-    </div>
+    <%= render :partial => "wall_form" %>
     <div class="col451in">
       <div class="proCenCont">
-        <div class="AfterItem">
-          <div class="assPic"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-          <div class="AfterInfo">
-            <div class="AfterCl"><a href="#">Huy Quach</a> - 35 minutes ago</div>
-            <div class="AfterTitle"><a href="#">Mauris neque lacus, elementum id pellentesque ultrices</a></div>
-            <div class="AfterDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum...</div>
-            <div class="assInfB">
-              <div class="qashdU"><a href="#">20</a></div>
-              <div class="qashdD"><a href="#">4</a></div>
-              <div class="vie"><a href="#">View (20)</a></div>
-              <div class="share"><a href="#">Share</a></div>
-              <div class="com"><a href="#">Comments (10)</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="AfterItem">
-          <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
-          <div class="AfterInfo">
-            <div class="AfterCl"><a href="#">Huy Quach</a> - 35 minutes ago</div>
-            <div class="AfterImg"><div><img src="pictures/proB1.jpg"/></div></div>
-            <div class="AfterTitle"><a href="#">Suspendisse potenti. Etiam scelerisque, odio quis sodales pharetra, elit erat pharetra libero</a></div>
-            <div class="AfterDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum...</div>
-            <div class="assInfB">
-              <div class="qashdU"><a href="#">20</a></div>
-              <div class="qashdD"><a href="#">4</a></div>
-              <div class="vie"><a href="#">View (20)</a></div>
-              <div class="share"><a href="#">Share</a></div>
-              <div class="com"><a href="#">Comments (10)</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="AfterItem">
-          <div class="assPic"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-          <div class="AfterInfo">
-            <div class="AfterCl"><a href="#">Huy Quach</a> - 35 minutes ago</div>
-            <div class="AfterTitle"><a href="#">Mauris neque lacus, elementum id pellentesque ultrices</a></div>
-            <div class="AfterDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum...</div>
-            <div class="assInfB">
-              <div class="qashdU"><a href="#">20</a></div>
-              <div class="qashdD"><a href="#">4</a></div>
-              <div class="vie"><a href="#">View (20)</a></div>
-              <div class="share"><a href="#">Share</a></div>
-              <div class="com"><a href="#">Comments (10)</a></div>
-            </div>
-            <div class="proList">
-              <div class="proListPic"><a href="#"><div><img src="pictures/pic7.png"/></div></a></div>
-              <div class="proListR">
-                <div class="AfterCl"><a href="#">Huy Quach</a> - 35 minutes ago</div>
-                <div class="proListCont">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
-                  <a href="#">Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="proList">
-              <div class="proListPic"><a href="#"><div><img src="pictures/pic7.png"/></div></a></div>
-              <div class="proListR">
-                <div class="AfterCl"><a href="#">Huy Quach</a> - 35 minutes ago</div>
-                <div class="proListCont">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos
-                  <a href="#">Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="proList">
-              <div class="proListPic"><a href="#"><div><img src="pictures/pic7.png"/></div></a></div>
-              <div class="proListR">
-                <div class="AfterCl"><a href="#">Huy Quach</a> - 35 minutes ago</div>
-                <div class="proListCont">Quisque ut nulla erat, vitae eleifend eros. Nunc quis lorem ligula. Proin dignissim elit sit amet enim facilisis mattis tempor urna tempor.
-                  <a href="#">Delete</a>
-                </div>
-              </div>
-            </div>
-            <div class="proList">
-              <div class="writeCom"><input type="text" value="Write a comment.." name="Text2"/></div>
-            </div>
-          </div>
-        </div>
+        <% @walls.each do |w| %>
+          <%= render :partial => "wall_item", :locals => {:wall => w}  %>
+        <% end %>
+        <!--Pagination-->
         <div class="assPage">
-          <span class="numPage">Page 1 of 22</span>
-          <span class="firstPage"><a href="#">First Page</a></span>
-          <span class="prevPage"><a href="#">Prev</a></span>
-          <span class="currentPage">
-            <a class="selected" href="#"><span>6</span></a>
-            <a href="#"><span>7</span></a>
-            <a href="#"><span>8</span></a>
-            <a href="#"><span>9</span></a>
-            <a href="#"><span>10</span></a>
-          </span>
-          <span class="nextPage"><a href="#">Next</a></span>
-          <span class="lastPage"><a href="#">Last Page</a></span>
+          <span class="numPage"><%= page_entries_info @walls %></span>
+          <%= will_paginate @walls %>
         </div>
-        <div class="goTop"><a href="#">Top</a></div>
+        <!--Pagination-->
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
     </div>
   </div>

@@ -283,6 +283,9 @@
     float:right;
     width:100px;
 }
+.assInfB .time{
+    margin-right:5px;
+}
 .assInfB .vie{
     background:url('/images/icon-view.gif') no-repeat;
     padding:0px 5px 0px 14px;

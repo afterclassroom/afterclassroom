@@ -33,9 +33,6 @@ class Post < ActiveRecord::Base
   # Comments
   acts_as_commentable
   
-  # Rating
-  ajaxful_rateable :stars => 5
-  
   # ThinkSphinx
   define_index do
     indexes title, :sortable => true

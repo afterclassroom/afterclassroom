@@ -571,7 +571,6 @@
     background-image:none;
     padding-top:0px;
     padding-left:2px;
-    *padding-left:0px;
 }
 .friLeft .textS input{
     width:165px;
@@ -2846,6 +2845,7 @@ div.helpAdv2{
 .proCen .AfterCl a, .proCen .AfterCl a:link, .proCen .AfterCl a:visited{
     color:#0a81c4;
     text-decoration:none;
+    font-weight: bold;
 }
 .proCen .AfterCl a:hover{
     color:#d00;

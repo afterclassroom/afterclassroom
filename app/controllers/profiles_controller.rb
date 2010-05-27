@@ -7,8 +7,12 @@ class ProfilesController < ApplicationController
   before_filter :require_current_user
   
   def index
+    @walls = current_user.user_walls.paginate :page => params[:page], :per_page => 10
   end
 
+  def my_favorite
+  end
+  
   def show_profile
   end
 
