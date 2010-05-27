@@ -6,9 +6,11 @@ INPUT.wide { width: 300px; }
 
 .tagMatches
 {
-    left:280px;
+    left:276px;
     position:absolute;
     top:705px;
+    background:#e4e4e4;
+
 }
 .tagMatches ul
 {
@@ -16,7 +18,7 @@ INPUT.wide { width: 300px; }
     padding: 0;
     list-style-type: none;
     text-align: left;
-    width: 300px;
+    width: 282px;
 
 }
 
@@ -24,8 +26,7 @@ INPUT.wide { width: 300px; }
     display: inline;
     color:#6F6F63;
     cursor:default;
-    margin:0 0 5px;
-    padding: 2px;
+    padding: 4px;
 }
 
 PRE {

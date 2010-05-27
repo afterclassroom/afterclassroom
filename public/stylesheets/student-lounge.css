@@ -2754,14 +2754,11 @@ div.helpAdv2{
     margin-top:-1px;
     padding:5px;
     background-color:white;
-    
-    line-height:26px;
+    line-height:20px;
     text-decoration:none;
-    /*text-align:center;*/
     color:#0a81c4;
     display:block;
-    border: 1px #e4e4e4 solid;
-    
+    border: 1px #e4e4e4 solid;  
 }
 .proBtm input{
     border: 0 none;
@@ -2772,7 +2769,7 @@ div.helpAdv2{
     width:175px;
     line-height:26px;
     text-decoration:none;
-    /*text-align:center;*/
+    text-align:center;
     color:#0a81c4;
     display:block;
     border-bottom: 1px #e4e4e4 solid;
