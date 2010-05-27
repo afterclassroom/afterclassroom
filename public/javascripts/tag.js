@@ -3,7 +3,7 @@
   @url: http://remysharp.com/2007/12/28/jquery-tag-suggestion/
   @usage: setGlobalTags(['javascript', 'jquery', 'java', 'json']); // applied tags to be used for all implementations
           $('input.tags').tagSuggest(options);
-
+          
           The selector is the element that the user enters their tag list
   @params:
     matchClass - class applied to the suggestions, defaults to 'tagMatches'
@@ -28,32 +28,30 @@
     window.setGlobalTags = function(tags /* array */) {
         globalTags = getTags(tags);
     };
-
+    
     function getTags(tags) {
         var tag, i, goodTags = [];
         for (i = 0; i < tags.length; i++) {
             tag = tags[i];
             if (typeof tags[i] == 'object') {
                 tag = tags[i].tag;
-            }
+            } 
             goodTags.push(tag.toLowerCase());
         }
-
+        
         return goodTags;
     }
-
+    
     $.fn.tagSuggest = function (options) {
-        var defaults = {
-            'matchClass' : 'tagMatches',
-            'tagContainer' : 'span',
-            'tagConta' : 'span',
-            'tagCon' : 'ul',
-            'tagWrap' : 'div',
+        var defaults = { 
+            'matchClass' : 'tagMatches', 
+            'tagContainer' : 'span', 
+            'tagWrap' : 'span', 
             'sort' : true,
-            'tags' : 5,
+            'tags' : null,
             'url' : null,
             'delay' : 0,
-            'separator' : ', '
+            'separator' : ' '
         };
 
         var i, tag, userTags = [], settings = $.extend({}, defaults, options);
@@ -70,12 +68,9 @@
             var matches, fromTab = false;
             var suggestionsShow = false;
             var workingTags = [];
-            var currentTag = {
-                "position": 0,
-                tag: ""
-            };
+            var currentTag = {"position": 0, tag: ""};
             var tagMatches = document.createElement(settings.tagContainer);
-
+            
             function showSuggestionsDelayed(el, key) {
                 if (settings.delay) {
                     if (elm.timer) clearTimeout(elm.timer);
@@ -93,18 +88,12 @@
                 var i, html = '', chosenTags = {}, tagSelected = false;
 
                 // we're looking to complete the tag on currentTag.position (to start with)
-                currentTag = {
-                    position: currentTags.length-1,
-                    tag: ''
-                };
-
+                currentTag = { position: currentTags.length-1, tag: '' };
+                
                 for (i = 0; i < currentTags.length && i < workingTags.length; i++) {
-                    if (!tagSelected &&
+                    if (!tagSelected && 
                         currentTags[i].toLowerCase() != workingTags[i].toLowerCase()) {
-                        currentTag = {
-                            position: i,
-                            tag: workingTags[i].toLowerCase()
-                        };
+                        currentTag = { position: i, tag: workingTags[i].toLowerCase() };
                         tagSelected = true;
                     }
                     // lookup for filtering out chosen tags
@@ -117,9 +106,7 @@
                         $.ajax({
                             'url' : settings.url,
                             'dataType' : 'json',
-                            'data' : {
-                                'tag' : currentTag.tag
-                            },
+                            'data' : { 'tag' : currentTag.tag },
                             'async' : false, // wait until this is ajax hit is complete before continue
                             'success' : function (m) {
                                 matches = m;
@@ -130,19 +117,19 @@
                             if (userTags[i].indexOf(currentTag.tag) === 0) {
                                 matches.push(userTags[i]);
                             }
-                        }
+                        }                        
                     }
-
+                    
                     matches = $.grep(matches, function (v, i) {
                         return !chosenTags[v.toLowerCase()];
                     });
 
                     if (settings.sort) {
                         matches = matches.sort();
-                    }
+                    }                    
 
                     for (i = 0; i < matches.length; i++) {
-                        html += '<' + settings.tagCon + '>' + '<' + settings.tagWrap + ' class="_tag_suggestion">' + matches[i] + '</' + settings.tagWrap + '>';
+                        html += '<' + settings.tagWrap + ' class="_tag_suggestion">' + matches[i] + '</' + settings.tagWrap + '>';
                     }
 
                     tagMatches.html(html);
@@ -191,7 +178,7 @@
                 fromTab = false;
                 var type = ev.type;
                 var resetSelection = false;
-
+                
                 switch (ev.keyCode) {
                     case 37: // ignore cases (arrow keys)
                     case 38:
@@ -226,7 +213,7 @@
                         if (suggestionsShow) {
                             // complete
                             chooseTag(matches[0]);
-
+                            
                             fromTab = true;
                             return false;
                         } else {
@@ -252,10 +239,10 @@
                         }
                     }
 
-                    if (resetSelection) {
+                    if (resetSelection) { 
                         setSelection();
                     }
-                    showSuggestionsDelayed(this, ev.charCode);
+                    showSuggestionsDelayed(this, ev.charCode);            
                 }
             }
 
@@ -270,7 +257,7 @@
             tagMatches = $(tagMatches).click(function (ev) {
                 if (ev.target.nodeName == settings.tagWrap.toUpperCase() && $(ev.target).is('._tag_suggestion')) {
                     chooseTag(ev.target.innerHTML);
-                }
+                }                
             }).addClass(settings.matchClass);
 
             // initialise

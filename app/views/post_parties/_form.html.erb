@@ -69,6 +69,8 @@
   var tags = <%= array_or_string_for_javascript(@tags) %>;
   $(function () {
     $('#tag').tagSuggest ( {
+      tagContainer : 'div',
+      tagWrap : 'div',
       tags: tags,
       separator: ', '
     });

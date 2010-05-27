@@ -1,39 +1,9 @@
-root { 
-    display: block;
-}
-LABEL { display: block; margin-top: 10px; }
-INPUT.wide { width: 300px; }
-
-.tagMatches
-{
-    left:276px;
+.tagMatches{
     position:absolute;
-    top:705px;
     background:#e4e4e4;
-
+    width:272px;
 }
-.tagMatches ul
-{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    text-align: left;
-    width: 282px;
-
+.tagMatches div{
+    margin:5px;
+    cursor:pointer;
 }
-
-.tagMatches ul div {
-    display: inline;
-    color:#6F6F63;
-    cursor:default;
-    padding: 4px;
-}
-
-PRE {
-    background: #ddd;
-    font-family: Courier;
-    padding: 5px;
-    overflow: auto;
-}
-
-
