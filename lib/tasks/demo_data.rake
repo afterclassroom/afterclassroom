@@ -13,7 +13,7 @@ namespace :db do
 #      create_demo_people
 #      create_demo_friendship
 #      create_demo_fan
-      create_demo_wall
+#      create_demo_wall
 
       # Begin creating Posts data
 #      create_demo_posts_assignments
@@ -30,7 +30,7 @@ namespace :db do
 #      create_demo_posts_awarenesses
 #      create_demo_posts_foods
 #      create_demo_posts_qas
-#      create_demo_phoneapps
+      create_demo_phoneapps
 
       # Exam schedule
 #      create_demo_posts_exam_schedules
@@ -595,7 +595,8 @@ def create_demo_phoneapps
         ap.phoneappcategory = apcate
         ap.description = Faker::Lorem.paragraphs
         ap.price = "500"
-        ap.image = "/images/noimg.png"
+        ap.image = "/images/pictures/phone2.png"
+        ap.Largeimage = "/images/pictures/phoneM1.png"
       end
     end
 
