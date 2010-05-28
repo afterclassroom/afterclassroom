@@ -1,11 +1,9 @@
 <div class="AfterItem">
-  <div class="assPic"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+  <div class="assPic"><%= link_to "<div>#{image_tag(wall.user_post.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %></div>
   <div class="AfterInfo">
-    <div class="AfterCl"><a href="#">Huy Quach</a> - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-    <div class="AfterTitle"><a href="#">Mauris neque lacus, elementum id pellentesque ultrices</a></div>
-    <div class="AfterDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum...</div>
+    <div class="AfterCl"><%= link_to wall.user_post.full_name, {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %> - <%= wall.content %></div>
     <div class="assInfB">
-      <div class="time">35 minutes ago</div>
+      <div class="time"><%= distance_of_time_in_words_to_now(wall.created_at, false) + " ago." %></div>
       <div class="share"><a href="#">Share</a></div>
       <div class="qashdU"><a href="#">20</a></div>
       <div class="qashdD"><a href="#">4</a></div>

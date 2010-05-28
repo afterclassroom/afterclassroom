@@ -1,6 +1,6 @@
 <div class="proMind">
   <div class="proMindT">
-    <div class="proques">What’s on your mind?</div>
+    <div class="proques"><%= text_field_tag "your_mind", "What’s on your mind?", :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></div>
     <div class="proPlus"><a href="#"> </a></div>
   </div>
   <div class="proAtt">

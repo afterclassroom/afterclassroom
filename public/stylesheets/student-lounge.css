@@ -2903,9 +2903,14 @@ div.helpAdv2{
 }
 .proques{
     float:left;
+    width:100%;
+}
+.proques input{
+    border: 0 none;
     color:#969696;
     font-weight:bold;
-}
+    width:100%;
+ }
 .proPlus{
     float:right;
 }
