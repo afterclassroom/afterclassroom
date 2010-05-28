@@ -16,23 +16,25 @@ class PhoneappsController < ApplicationController
 
       @pa = Phoneapplication.find(id)
 
-      puts "================================"
-      puts "================================"
-      puts "================================"
-      puts "================================"
-      puts "================================"
-      puts "================================"
-      puts "================================"
-      puts "================================"
-      puts "id ==== "+id
-      puts "name === "+@pa.name
     end
   end
 
   def info
+    if params[:id]
+      id = params[:id]
+
+      @pa = Phoneapplication.find(id)
+
+    end
   end
 
   def favorite
+    if params[:id]
+      id = params[:id]
+
+      @pa = Phoneapplication.find(id)
+
+    end
     
   end
 
