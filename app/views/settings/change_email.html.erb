@@ -1,16 +1,5 @@
-<script language="javascript">
-  $("#editeMail").validate({
-    rules: {
-      changedValue: {
-        required: true,
-        email: true
-      }
-    }
-  });
-
-</script>
 <div class="postCont" id="div_send_report">
-  <form id="editeMail" action="<%=  saveEmail_user_user %>">
+  <form id="editeMail" action="<%= save_email_user_settings_path(current_user) %>">
     <div class="postItem">
       <p>Please enter a new email address<br/>
         <input type="text" style="width:230px;" value="" id="changedValue" name="changedValue" />

@@ -1,16 +1,5 @@
-<script language="javascript">
-  $("#editpsw").validate({
-    rules: {
-      password: "required",
-      password_again: {
-        equalTo: "#password"
-      }
-    }
-  });
-
-</script>
 <div class="postCont" id="div_send_report">
-  <form id="editpsw" action="<%=  savepsw_user %>">
+  <form id="editpsw" action="<%= save_psw_user_settings_path(current_user) %>">
     <div class="postItem">
       <p>Please enter the password<br/>
         <input id='password' style="width:230px;" value='' type='password' name='password' size='15'/>

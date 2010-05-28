@@ -92,7 +92,7 @@ class SettingsController < ApplicationController
     end
   end
 
-  def chang_ename
+  def change_name
     render :layout => false
   end
 
