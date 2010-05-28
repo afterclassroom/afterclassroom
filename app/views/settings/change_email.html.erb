@@ -1,12 +1,12 @@
 <div class="postCont" id="div_send_report">
   <form id="editeMail" action="<%= save_email_user_settings_path(current_user) %>">
     <div class="postItem">
-      <p>Please enter a new email address<br/>
-        <input type="text" style="width:230px;" value="" id="changedValue" name="changedValue" />
+      <div class="postItem1" style="width: 205px">Please enter a new email address *</div>
+        <input type="text" style="width:270px;" value="" id="changedValue" name="changedValue" />
       </p>
     </div>
 
-    <div class="submit"><a href="javascript:;" onclick="sendChange()">Send</a></div>
+    <div class="submit" style="padding-left: 215px"><a href="javascript:;" onclick="sendChange()">Send</a></div>
   </form>
 </div>
 <script language="javascript">
