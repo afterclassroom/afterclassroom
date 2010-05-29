@@ -1,31 +1,21 @@
 <div class="postCont" id="div_send_report">
   <form id="editName" action="<%= save_name_user_settings_path(current_user) %>">
     <div class="postItem">
-      <div class="postItem1" style="width: 155px">Please enter a new name *</div>
+      <div class="postItem1" style="width: 155px">Please enter a new name*</div>
       <div class="postInp"><input type="text" style="width:270px;" value="" id="changedValue" name="changedValue" class="required" minlength="2"/></div>
       </div>
-    <div class="submit" style="padding-left: 165px; margin-top: 25px"><a href="javascript:;" onclick="sendChange()">Send</a></div>
+      <div class="submit" style="padding-left: 165px;"><a href="javascript:;" onclick="sendChange()">Send</a></div>
+  <div class="error" style="padding: 10px;"></div>
   </form>
 </div>
-
 <script language="javascript">
-   
-  function sendChange(){
+function sendChange(){
     $("#editName").submit();
   }
 $().ready(function() {
 	$("#editName").validate({
-       
+		errorLabelContainer: $("#editName div.error")
 	});
 });
-  
 </script>
-<style type="text/css">
-#editName label {width: 200px;}
-#editName label.error {
-	margin-left: -273px;
-        padding-top: 25px;
-	position:absolute;
-}
 
-</style>

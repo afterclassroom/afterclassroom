@@ -2,79 +2,48 @@
   <form id="editpsw" action="<%= save_psw_user_settings_path(current_user) %>">
     <div class="postItem">
       <div class="postItem1" style="width: 170px">Please enter the password *</div>
-        <input id='password' style="width:270px;" value='' type='password' name='password' class="required" minlength="5" size='15'/>
-      </div>
+      <input id='password' style="width:270px;" value='' type='password' name='password' size='15'/>
+    </div>
     <div class="postItem">
-      <div class="postItem1" style="width: 170px">Please re-enter the password *</div>
-        <input type='password' id='password_again' style="width:270px;" name='password_again' class="required" minlength="5" size='15'/><br/>
-      </div>
+      <div class="postItem1" style="width: 170px">Please re-enter the password*</div>
+      <input type='password' id='password_again' style="width:270px;" name='password_again' size='15'/><br/>
+    </div>
     <div class="submit" style="padding-left: 180px; margin-top: 25px"><a href="javascript:;" onclick="sendChange()">Send</a></div>
+    <div class="error" style="padding: 10px;"></div>
   </form>
 </div>
 <script language="javascript">
- function sendChange(){
-    $("#editpsw").submit();
-  }
-$().ready(function() {
-	$("#editpsw").validate({
-rules: {
-			firstname: "required",
-			lastname: "required",
-			username: {
-				required: true,
-				minlength: 2
-			},
-			password: {
-				required: true,
-				minlength: 5
-			},
-			password_again: {
-				required: true,
-				minlength: 5,
-				equalTo: "#password"
-			},
-			email: {
-				required: true,
-				email: true
-			},
-			topic: {
-				required: "#newsletter:checked",
-				minlength: 2
-			},
-			agree: "required"
-		},
-		messages: {
-			firstname: "Please enter your firstname",
-			lastname: "Please enter your lastname",
-			username: {
-				required: "Please enter a username",
-				minlength: "Your username must consist of at least 2 characters"
-			},
-			password: {
-				required: "Please provide a password",
-				minlength: "Your password must be at least 5 characters long"
-			},
-			password_again: {
-				required: "Please provide a password",
-				minlength: "Your password must be at least 5 characters long",
-				equalTo: "Please enter the same password as above"
-			},
-			email: "Please enter a valid email address",
-			agree: "Please accept our policy"
-		}
-	});
+    function sendChange(){
+        $("#editpsw").submit();
+    }
+    $().ready(function() {
+        $("#editpsw").validate({
+             errorLabelContainer: $("#editpsw div.error"),
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                password_again: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                },
+                messages: {
+                    password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long"
+                    },
+                    password_again: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long",
+                        equalTo: "Please enter the same password as above"
+                    }
+                }
+            }
+         
+        });
+    });
 
-	
-});
 
 </script>
-<style type="text/css">
-#editpsw input {margin-bottom: 20px;}
-#editpsw label {width: 300px;}
-#editpsw label.error {
-	margin-left: -273px;
-        padding-top: 25px;
-	position:absolute;
-}
-
-</style>

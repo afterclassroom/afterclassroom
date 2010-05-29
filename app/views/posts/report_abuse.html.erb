@@ -1,82 +1,26 @@
 <div class="postCont" id="div_send_report">
-  <form id="form_send_report" action="">
+  <form id="form_send_report">
     <%= hidden_field_tag "reported_id", @reported_id %>
     <%= hidden_field_tag "reported_type", @reported_type %>
     <div class="postItem">
-      <div class="postItem1" style="width: 100px">Type of Abuse *</div>
+      <div class="postItem1" style="width: 100px">Type of Abuse*</div>
       <div class="postInp"><%= select  "abuse_type", "id", ReportAbuseCategory.all.collect{|ct| [ct.name, ct.id] }, {:include_blank => "Type of Abuse"}, {:style => "width:330px"} %></div>
     </div>
     <div class="postItem">
-      <div class="postItem1" style="width: 100px">Content *</div>
+      <div class="postItem1" style="width: 100px">Content*</div>
       <div class="postInp"><textarea style="width:330px; height:200px" id="abuse_content" name="content" class="required" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
     </div>
     <div class="submit" style="padding-left: 110px"><a href="javascript:;" onclick="sendReportAbuse()">Send</a></div>
+    <div class="error" style="padding: 10px;"></div>
   </form>
 </div>
 <script language="javascript">
- function sendReportAbuse(){
-    $("#form_send_report").submit();
-  }
-$().ready(function() {
-	$("#form_send_report").validate({
-rules: {
-			abuse_type_id: "required",
-			abuse_content: "required",
-			username: {
-				required: true,
-				minlength: 2
-			},
-			password: {
-				required: true,
-				minlength: 5
-			},
-			password_again: {
-				required: true,
-				minlength: 5,
-				equalTo: "#password"
-			},
-			email: {
-				required: true,
-				email: true
-			},
-			topic: {
-				required: "#newsletter:checked",
-				minlength: 2
-			},
-			agree: "required"
-		},
-		messages: {
-			abuse_type_id: "Please enter your firstname",
-			abuse_content: "Please enter your lastname",
-			username: {
-				required: "Please enter a username",
-				minlength: "Your username must consist of at least 2 characters"
-			},
-			password: {
-				required: "Please provide a password",
-				minlength: "Your password must be at least 5 characters long"
-			},
-			password_again: {
-				required: "Please provide a password",
-				minlength: "Your password must be at least 5 characters long",
-				equalTo: "Please enter the same password as above"
-			},
-			email: "Please enter a valid email address",
-			agree: "Please accept our policy"
-		}
-	});
-
-
-});
-
+    function sendReportAbuse(){
+        $("#form_send_report").submit();
+    }
+    $().ready(function() {
+        $("#form_send_report").validate({
+            errorLabelContainer: $("#form_send_report div.error")
+        });
+    });
 </script>
-<style type="text/css">
-#form_send_report input {margin-bottom: 20px;}
-#form_send_report label {width: 300px;}
-#form_send_report label.error {
-	margin-left: -273px;
-        padding-top: 25px;
-	position:absolute;
-}
-
-</style>
