@@ -1,13 +1,82 @@
 <div class="postCont" id="div_send_message">
-  <form name="form_send_message">
+  <form id="form_send_message" action="">
     <div class="postItem">
       <div class="postItem1" style="width: 80px">Subject *</div>
-      <div class="postInp"><input style="width:330px" id="message_subject" name="subject" size="30" type="text" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" /></div>
-    </div>
-    <div class="postItem">
+     <input style="width:330px" id="message_subject" name="subject" class="required" size="30" type="text" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" /></div>
+     <div class="postItem">
        <div class="postItem1" style="width: 80px">Message *</div>
-      <div class="postInp"><textarea style="width:330px; height:200px" id="message_body" name="body" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
+      <div class="postInp"><textarea style="width:330px; height:200px" id="message_body" name="body" class="required" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
     </div>
-    <div class="submit" style="padding-left:90px"><a href="javascript:;" onclick="sendEmail(<%= @user_id %>)">Send</a></div>
+      <div class="submit" style="padding-left:90px"><a href="javascript:;" onclick="sendEmail(<%= @user_id %>)">Send</a></div>
   </form>
 </div>
+<script language="javascript">
+ function sendEmail(){
+    $("#form_send_message").submit();
+  }
+$().ready(function() {
+	$("#form_send_message").validate({
+rules: {
+			message_subject: "required",
+			lastname: "required",
+			username: {
+				required: true,
+				minlength: 2
+			},
+			password: {
+				required: true,
+				minlength: 5
+			},
+			password_again: {
+				required: true,
+				minlength: 5,
+				equalTo: "#password"
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			topic: {
+				required: "#newsletter:checked",
+				minlength: 2
+			},
+			agree: "required"
+		},
+		messages: {
+			message_subject: "Please enter your firstname",
+			lastname: "Please enter your lastname",
+			username: {
+				required: "Please enter a username",
+				minlength: "Your username must consist of at least 2 characters"
+			},
+			password: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long"
+			},
+			password_again: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long",
+				equalTo: "Please enter the same password as above"
+			},
+			email: "Please enter a valid email address",
+			agree: "Please accept our policy"
+		}
+	});
+
+
+});
+
+</script>
+<style type="text/css">
+#form_send_message input {margin-bottom: 20px;}
+#form_send_message label {width: 300px;}
+#form_send_message label.error {
+	margin-left: -273px;
+        padding-top: 25px;
+	position:absolute;
+}
+
+</style>
+
+
+
