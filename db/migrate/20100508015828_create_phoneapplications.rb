@@ -8,10 +8,6 @@ class CreatePhoneapplications < ActiveRecord::Migration
 
       t.string :description
 
-      t.string :image
-
-      t.string :Largeimage
-
       t.string :price
 
 
