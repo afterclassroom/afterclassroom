@@ -31,11 +31,11 @@ namespace :db do
 #      create_demo_posts_foods
 #      create_demo_posts_qas
       create_demo_phoneapps
-
-      # Exam schedule
+#
+#      # Exam schedule
 #      create_demo_posts_exam_schedules
-
-      # Messages data
+#
+#      # Messages data
 #      create_demo_messages
 
     end
@@ -572,18 +572,6 @@ end
 
 def create_demo_phoneapps
 
-  #  apcate = Phoneappcategory.find(1)#ID 1 is iPhone
-  #
-  #  30.times do
-  #    papp = Phoneapplication.create do |ap|
-  #      ap.name = Faker::Lorem.sentence
-  #      ap.phoneappcategory = apcate
-  #      ap.description = Faker::Lorem.paragraphs
-  #      ap.price = "500"
-  #      ap.image = "/images/noimg.png"
-  #    end
-  #  end
-
   count = 1;
   Phoneappcategory.count.times do
     apcate = Phoneappcategory.find(count)#ID 1 is iPhone
@@ -595,8 +583,14 @@ def create_demo_phoneapps
         ap.phoneappcategory = apcate
         ap.description = Faker::Lorem.paragraphs
         ap.price = "500"
-        ap.image = "/images/pictures/phone2.png"
-        ap.Largeimage = "/images/pictures/phoneM1.png"
+        
+        
+        photo = "/public/images/pictures/phone2.png"
+        
+        ap.photo = uploaded_file(photo, 'image/png')
+        
+#        ap.image = "/images/pictures/phone2.png"
+#        ap.Largeimage = "/images/pictures/phoneM1.png"
       end
     end
 

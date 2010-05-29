@@ -120,7 +120,7 @@
       <b>Category:</b> <%=h pa.phoneappcategory.name %><br/>
       <b>Name:</b> <%=h pa.name %><br/>
       <b>Description:</b> <%=h pa.description %><br/>
-      <b>Image: </b><img src="<%= pa.image %>" alt="Noimg"/><br/>
+      <b>Image: </b><img src="<%=h pa.photo.url() %>" alt="Noimg"/><br/>
 
       <b>Price:</b> <%=h pa.price %>$<br/>
     </p>
