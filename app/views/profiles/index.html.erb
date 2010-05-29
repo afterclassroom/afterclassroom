@@ -10,12 +10,12 @@
 </div>
 
 <div class="contMainL">
-  <div class="col451 proCen">
-    <%= render :partial => "wall_form" %>
+  <div class="col451 proCen" id="user_wall">
+    <%= render :partial => "user_walls/wall_form" %>
     <div class="col451in">
       <div class="proCenCont">
         <% @walls.each do |w| %>
-          <%= render :partial => "wall_item", :locals => {:wall => w}  %>
+          <%= render :partial => "user_walls/wall_item", :locals => {:wall => w}  %>
         <% end %>
         <!--Pagination-->
         <div class="assPage">
