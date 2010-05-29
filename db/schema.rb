@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100526044225) do
+ActiveRecord::Schema.define(:version => 20100528134804) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -626,6 +626,24 @@ ActiveRecord::Schema.define(:version => 20100526044225) do
     t.datetime "accepted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "user_wall_links", :force => true do |t|
+    t.integer "user_wall_id"
+    t.string  "link"
+    t.string  "image_link"
+    t.string  "title"
+    t.text    "sub_content"
+  end
+
+  create_table "user_wall_photos", :force => true do |t|
+    t.integer "user_wall_id"
+    t.string  "link"
+  end
+
+  create_table "user_wall_videos", :force => true do |t|
+    t.integer "user_wall_id"
+    t.string  "link"
   end
 
   create_table "user_walls", :force => true do |t|

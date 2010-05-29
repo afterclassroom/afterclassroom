@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 	has_many :flirting_user_inchats, :dependent => :destroy
   has_many :notify_sms_settings
   has_many :notify_email_settings
-  has_many :user_walls, :dependent => :destroy, :order => "created_at DESC"
+  has_many :user_walls, :dependent => :destroy
 
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]
