@@ -1,0 +1,9 @@
+<% if @myxdata != nil %>
+  <% @myxdata.each do |pa| %>
+    <b>App Name: </b> <%=h pa.name %><br/>
+  <% end %>
+<% else %>
+  Error
+<% end %>
+
+

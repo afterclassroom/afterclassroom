@@ -6,4 +6,14 @@ class Phoneapplication < ActiveRecord::Base
     :styles => { :medium => "161x119>",
     :thumb => "90x66#" }
 
+  def self.search(category,curpage)
+    paginate :per_page => 5, :page => curpage,
+      :conditions => ['phoneappcategory_id like ?', "%#{category}%"]
+  end
+
+  def self.totalpage(category)
+
+  end
+
+
 end

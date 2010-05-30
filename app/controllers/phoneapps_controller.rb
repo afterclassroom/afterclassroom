@@ -6,9 +6,20 @@ class PhoneappsController < ApplicationController
   def recommendapp
 
     @appcategory = Phoneappcategory.find(:all)
-
   end
 
+  def iphonepage
+
+    curpage = params[:page]
+    if curpage == nil
+      curpage = 1
+    end
+
+    iphone = '1'
+    @myxdata = Phoneapplication.search(iphone, curpage)
+    render :layout => false
+
+  end
   def phonelounge
     
     if params[:id]

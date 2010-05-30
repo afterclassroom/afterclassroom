@@ -1,119 +1,47 @@
+<div id="myContent">Load content of ajax to this place</div>
 
-
-<script src="/javascripts/jquery.ui.slider.js" type="text/javascript"></script>
-
-<link type="text/css" href="/stylesheets/jquery-ui-1.8.1.custom.css" rel="stylesheet" />
-
-
-
-<style type="text/css">
-  .sliderGallery {
-    overflow: hidden;
-    position: relative;
-    padding: 10px;
-    height: 160px;
-    width: 560px;
-    border: 3px solid black;
-  }
-
-  .sliderGallery UL {
-    position: absolute;
-    list-style: none;
-    overflow: none;
-    white-space: nowrap;
-    padding: 0;
-    margin: 0;
-    border: 3px solid red;
-  }
-
-  .sliderGallery UL LI {
-    display: inline;
-  }
-
-  #myslider {
-    /*width: 542px;
-    height: 17px;*/
-    margin-top: 140px;
-    margin-left: 5px;
-    padding: 1px;
-    position: relative;
-    border: 1px solid red;
-  }
-</style>
-
-<h1>Slider Gallery</h1>
-<div class="sliderGallery">
-  <ul>
-    <li>abc<img src="/images/noimg.png" /></li>
-    <li>ccc<img src="/images/noimg.png" /></li>
-    <li>ddd<img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li><img src="/images/noimg.png" /></li>
-    <li>zzzz<img src="/images/noimg.png" /></li>
-  </ul>
-  <div id="myslider"></div>
-</div>
-
-
+<%= link_to "View Next Page With Ajax", {:controller => 'phoneapps', :action => "iphonepage"},  :class=> "viewnext" %>
 
 <script language="javascript">
-  window.onload = function () {
-    var container = $('div.sliderGallery');
-    var ul = $('ul', container);
 
-    var itemsWidth = ul.innerWidth() - container.outerWidth();
+  var url = $(".viewnext").attr("href");
+  var curpage = 1;
 
-    $('#myslider',container).slider({
-      min: 0,
-      max: itemsWidth+20,
-      stop: function (event, ui) {
-        ul.animate({'left' : ui.value * -1}, 500);
+
+  $(".viewnext").bind('click', function() {
+
+    $.ajax({
+      url: url,
+      type: "GET",
+      dataType: "html",
+      data: { page: curpage },
+      failure: function(msg){
+        alert('ajax fail:'+msg);
       },
-      slide: function (event, ui) {
-        ul.css('left', ui.value * -1);
+      success: function(msg){
+        $('#myContent').html(msg);
       }
-
     });
-  };
+    curpage = curpage + 1;
+    return false;
+  });
+
+  /*
+  var bodyContent = $('#myContent');
+  bodyContent = $.ajax({
+    url: "script.php",
+    global: false,
+    type: "POST",
+    data: ({id : this.getAttribute('id')}),
+    dataType: "html",
+    success: function(msg){
+      alert(msg);
+    }
+  }
+).responseText;*/
 </script>
 
-
+<div id="allthethings">
 <% @appcategory.each do |ca| %>
   <%  ca.phoneapplications.each do |pa| %>
     <p>
@@ -126,7 +54,7 @@
     </p>
   <% end %>
 <% end %>
-
+</div>
 
 
 <div class="topLearning">
