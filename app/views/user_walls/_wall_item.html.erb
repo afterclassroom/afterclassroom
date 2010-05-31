@@ -1,0 +1,26 @@
+<div class="AfterItem" id="wall_<%= wall.id %>">
+  <div class="assPic"><%= link_to "<div>#{image_tag(wall.user_post.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %></div>
+  <div class="AfterInfo">
+    <div class="AfterCl"><%= link_to wall.user_post.full_name, {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %> - <%= wall.content %></div>
+    <div class="assInfB">
+      <div class="time"><%= distance_of_time_in_words_to_now(wall.created_at, false) + " ago." %></div>
+      <div class="share"><a href="#">Share</a></div>
+      <div class="qashdU"><a href="#"><%= wall.total_good %></a></div>
+      <div class="qashdD"><a href="#"><%= wall.total_bad %></a></div>
+      <div class="com"><a href="javascript:;" onclick="$('#wall_comment_form_<%= wall.id %>').show();">Comments (<%= wall.comments.size %>)</a></div>
+    </div>
+    <!--Attach-->
+    
+    <!--Attach-->
+
+    <!--Comments-->
+    <% if wall.comments.size > 0 %>
+      <% wall.comments.each do |cm| %>
+        <%= render :partial => "user_walls/wall_comment_item", :locals => {:comment => cm} %>
+      <% end %>
+        <%= render :partial => "user_walls/wall_comment" %>
+    <% end %>
+    <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall} %>
+    <!--Comments-->
+  </div>
+</div>
