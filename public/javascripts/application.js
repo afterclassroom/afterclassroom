@@ -273,6 +273,16 @@ function showResult(){
     $('#view_results').hide();
 }
 
+function showCommentForm(id_comment_form, id_comment){
+    $(id_comment_form).show();
+    $(id_comment).hide();
+}
+
+function hideCommentForm(id_comment_form, id_comment){
+    $(id_comment).show();
+    $(id_comment_form).hide();
+}
+
 function goToByScroll(id){
     $('html,body').animate({
         scrollTop: $("#"+id).offset().top
