@@ -6,6 +6,9 @@ class PhoneappsController < ApplicationController
   def recommendapp
 
     @appcategory = Phoneappcategory.find(:all)
+    @iphonedata = Phoneapplication.search('1', '1')
+    @pageIapp = Phoneapplication.alliphoneapp().size / 5
+    
   end
 
   def iphonepage
@@ -16,7 +19,7 @@ class PhoneappsController < ApplicationController
     end
 
     iphone = '1'
-    @myxdata = Phoneapplication.search(iphone, curpage)
+    @iphonedata = Phoneapplication.search(iphone, curpage)
     render :layout => false
 
   end

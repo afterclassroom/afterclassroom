@@ -1,62 +1,3 @@
-<div id="myContent">Load content of ajax to this place</div>
-
-<%= link_to "View Next Page With Ajax", {:controller => 'phoneapps', :action => "iphonepage"},  :class=> "viewnext" %>
-
-<script language="javascript">
-
-  var url = $(".viewnext").attr("href");
-  var curpage = 1;
-
-
-  $(".viewnext").bind('click', function() {
-
-    $.ajax({
-      url: url,
-      type: "GET",
-      dataType: "html",
-      data: { page: curpage },
-      failure: function(msg){
-        alert('ajax fail:'+msg);
-      },
-      success: function(msg){
-        $('#myContent').html(msg);
-      }
-    });
-    curpage = curpage + 1;
-    return false;
-  });
-
-  /*
-  var bodyContent = $('#myContent');
-  bodyContent = $.ajax({
-    url: "script.php",
-    global: false,
-    type: "POST",
-    data: ({id : this.getAttribute('id')}),
-    dataType: "html",
-    success: function(msg){
-      alert(msg);
-    }
-  }
-).responseText;*/
-</script>
-
-<div id="allthethings">
-<% @appcategory.each do |ca| %>
-  <%  ca.phoneapplications.each do |pa| %>
-    <p>
-      <b>Category:</b> <%=h pa.phoneappcategory.name %><br/>
-      <b>Name:</b> <%=h pa.name %><br/>
-      <b>Description:</b> <%=h pa.description %><br/>
-      <b>Image: </b><img src="<%=h pa.photo.url() %>" alt="Noimg"/><br/>
-
-      <b>Price:</b> <%=h pa.price %>$<br/>
-    </p>
-  <% end %>
-<% end %>
-</div>
-
-
 <div class="topLearning">
   <div class="menuRL">
     <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Recommend App</span></span></a></div>
@@ -68,59 +9,25 @@
 </div>
 <div class="contMain">
   <div class="contDetL">
+
     <div class="contDetLin">
       <div class="learnLeft">
         <div class="phoneTop">
           <div class="iphoneTitle">applications list</div>
           <div class="learnPage">
-            <div class="learnPageL">Page 1 of 12</div>
-            <div class="learnPageP"><a href="#">&nbsp;</a></div>
-            <div class="learnPageN"><a href="#">&nbsp;</a></div>
+            <div class="learnPageL">Page 1 of <%=h @pageIapp %></div>
+            <div class="learnPageP"><%= link_to "&nbsp;", {:controller => 'phoneapps', :action => "iphonepage"},  :class=> "iphoneback" %></div>
+            <div class="learnPageN"><%= link_to "&nbsp;", {:controller => 'phoneapps', :action => "iphonepage"},  :class=> "iphonenext" %></div>
           </div>
         </div>
         <div class="learnTools">
-          <div class="learnTrow">
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="">Lorem dolor sit amet</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone1.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="#">Curabitur vitae risus lorem</a> <span>$2.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone2.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="#">Pellentesque ac aliquet diam</a> <span>$3.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone3.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="#">Duis interdum tellus nisi</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone4.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem learnLast">
-              <div class="learnTtitle"><a href="#">Vivamus eget felis vitae</a> <span>$5.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone5.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-          </div>
+          <%= render :partial => "appitems" %>
         </div>
         <div class="blackBTop">
           <div class="blackBTitle">applications list</div>
           <div class="learnPage">
             <div class="learnPageL">Page 1 of 12</div>
+
             <div class="learnPageP"><a href="#">&nbsp;</a></div>
             <div class="learnPageN"><a href="#">&nbsp;</a></div>
           </div>
@@ -303,49 +210,111 @@
         <div class="goTop"><a href="#">Top</a></div>
       </div>
     </div>
-  </div>
 
-  <div class="contMainR">
-    <div class="creAdv"><a href="#">Create an Ad</a></div>
-    <div class="advert">
-      <div class="advertTitle">Advertisement</div>
-      <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="pictures/pic6.png"></div>
-      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-      <div class="advertInf">
-        <div class="advertInfL">
-          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-        </div>
-        <div class="advertInfR">
-          <span class="pre"><a href="#">&nbsp;</a></span>
-          <span class="next"><a href="#">&nbsp;</a></span></div>
+  </div>
+</div>
+
+<div class="contMainR">
+  <div class="creAdv"><a href="#">Create an Ad</a></div>
+  <div class="advert">
+    <div class="advertTitle">Advertisement</div>
+    <div class="Dani">DaniWeb - IT Discussion Community</div>
+    <div class="advertImg"><img src="pictures/pic6.png"></div>
+    <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+    <div class="advertInf">
+      <div class="advertInfL">
+        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
       </div>
+      <div class="advertInfR">
+        <span class="pre"><a href="#">&nbsp;</a></span>
+        <span class="next"><a href="#">&nbsp;</a></span></div>
     </div>
-    <div class="advert">
-      <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="pictures/adv.png"></div>
-      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-      <div class="advertInf">
-        <div class="advertInfL">
-          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-        </div>
-        <div class="advertInfR">
-          <span class="pre"><a href="#">&nbsp;</a></span>
-          <span class="next"><a href="#">&nbsp;</a></span></div>
+  </div>
+  <div class="advert">
+    <div class="Dani">DaniWeb - IT Discussion Community</div>
+    <div class="advertImg"><img src="pictures/adv.png"></div>
+    <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+    <div class="advertInf">
+      <div class="advertInfL">
+        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
       </div>
+      <div class="advertInfR">
+        <span class="pre"><a href="#">&nbsp;</a></span>
+        <span class="next"><a href="#">&nbsp;</a></span></div>
     </div>
-    <div class="advert">
-      <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
-      <div class="advertImg"><img src="pictures/adv1.png"></div>
-      <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
-      <div class="advertInf">
-        <div class="advertInfL">
-          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-        </div>
-        <div class="advertInfR">
-          <span class="pre"><a href="#">&nbsp;</a></span>
-          <span class="next"><a href="#">&nbsp;</a></span></div>
+  </div>
+  <div class="advert">
+    <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
+    <div class="advertImg"><img src="pictures/adv1.png"></div>
+    <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+    <div class="advertInf">
+      <div class="advertInfL">
+        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
       </div>
+      <div class="advertInfR">
+        <span class="pre"><a href="#">&nbsp;</a></span>
+        <span class="next"><a href="#">&nbsp;</a></span></div>
     </div>
   </div>
 </div>
+
+<script language="javascript">
+
+  var url = $(".iphonenext").attr("href");
+
+  var icurpage = 1;
+  var inextpage = 2;
+  var ibackpage = 0;
+  var itotal = <%= @pageIapp %>
+
+  $(".iphonenext").bind('click', function() {
+    $.ajax({
+      url: url,
+      type: "GET",
+      dataType: "html",
+      data: { page: inextpage },
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('#iphonedata').html(msg);
+      }
+    });
+    if (inextpage < itotal){
+      icurpage = inextpage;
+      inextpage = inextpage + 1;
+      ibackpage = ibackpage + 1;
+    }else if (inextpage == itotal){
+      icurpage = inextpage;
+      ibackpage = icurpage - 1;
+    }
+    alert(''+$('.phoneTop').filter('.learnPageL').html());
+    return false;
+  });
+  
+  $(".iphoneback").bind('click', function() {
+    $.ajax({
+      url: url,
+      type: "GET",
+      dataType: "html",
+      data: { page: ibackpage },
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('#iphonedata').html(msg);
+      }
+    });
+    if (ibackpage > 1){
+      icurpage = ibackpage;
+      inextpage = inextpage - 1;
+      ibackpage = ibackpage - 1;
+    }else if (ibackpage == 1){
+      icurpage = ibackpage;
+      inextpage = icurpage + 1;
+    }
+    return false;
+  });
+
+
+</script>

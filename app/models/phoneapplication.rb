@@ -11,6 +11,10 @@ class Phoneapplication < ActiveRecord::Base
       :conditions => ['phoneappcategory_id like ?', "%#{category}%"]
   end
 
+  def self.alliphoneapp()
+    Phoneapplication.find(:all, :conditions => ['phoneappcategory_id like ?', "1"])
+  end
+
   def self.totalpage(category)
 
   end
