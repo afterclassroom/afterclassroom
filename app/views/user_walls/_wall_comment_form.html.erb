@@ -3,7 +3,7 @@
   <%= hidden_field_tag "wall_id", wall.id %>
   <div class="proListPic"><%= link_to "<div>#{image_tag(current_user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
   <div class="proListR">
-    <div class="writeCom"><%= text_area_tag "comment", nil %></div>
+    <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{wall.id}", :onblur => "hideCommentForm('#{wall.id}')"} %></div>
   </div>
   <div class="proAttR"><%= submit_tag 'Comment' %></div>
   <% end %>
