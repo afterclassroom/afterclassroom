@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(:version => 20100529100652) do
     t.integer  "phoneappcategory_id", :null => false
     t.string   "name"
     t.string   "description"
+    t.string   "image"
     t.string   "price"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -628,6 +629,24 @@ ActiveRecord::Schema.define(:version => 20100529100652) do
     t.datetime "accepted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "user_wall_links", :force => true do |t|
+    t.integer "user_wall_id"
+    t.string  "link"
+    t.string  "image_link"
+    t.string  "title"
+    t.text    "sub_content"
+  end
+
+  create_table "user_wall_photos", :force => true do |t|
+    t.integer "user_wall_id"
+    t.string  "link"
+  end
+
+  create_table "user_wall_videos", :force => true do |t|
+    t.integer "user_wall_id"
+    t.string  "link"
   end
 
   create_table "user_walls", :force => true do |t|

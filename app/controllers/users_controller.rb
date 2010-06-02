@@ -134,36 +134,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_i_am_doing
-    if current_user == @user
-      @user.user_information.update_attribute(:i_am_doing, params[:i_am_doing])
-      @user.track_activity(:updated_profile)
-      render :text => params[:i_am_doing]
-    end
-  end
-
   def update_avatar
     @user.avatar = params[:user][:avatar]
     @user.save
     @user.track_activity(:updated_avatar)
     render :text => @user.avatar.url(:medium)
-  end
-
-  def list_friends
-    @search_name = ""
-    if params[:search]
-      @search_name = params[:search][:name]
-      @friends = @user.user_friends.find(:all, :conditions => "login LIKE '%#{@search_name}%' OR name LIKE '%#{@search_name}%'").paginate :page => params[:page], :per_page => 10
-    else
-      @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
-    end
-  end
-
-  def delete_friend
-    user_id_friend = params[:user_id_friend]
-    @user.user_invites.find_by_user_id_target(user_id_friend).destroy
-    @user.reload
-    redirect_to :action => "list_friends"
   end
 
   def list_comments

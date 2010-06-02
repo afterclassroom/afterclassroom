@@ -273,14 +273,17 @@ function showResult(){
     $('#view_results').hide();
 }
 
-function showCommentForm(id_comment_form, id_comment){
-    $(id_comment_form).show();
-    $(id_comment).hide();
+function showCommentForm(wall_id){
+    $('#wall_comment_form_' + wall_id).show();
+    $('#wall_comment_' + wall_id).hide();
+    $('#comment_' + wall_id).focus();
 }
 
-function hideCommentForm(id_comment_form, id_comment){
-    $(id_comment).show();
-    $(id_comment_form).hide();
+function hideCommentForm(wall_id){
+    if($('#comment_' + wall_id).val() == ""){
+        $('#wall_comment_' + wall_id).show();
+        $('#wall_comment_form_' + wall_id).hide();
+    }
 }
 
 function goToByScroll(id){
