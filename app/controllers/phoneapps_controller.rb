@@ -7,22 +7,45 @@ class PhoneappsController < ApplicationController
 
     @appcategory = Phoneappcategory.find(:all)
     @iphonedata = Phoneapplication.search('1', '1')
+    @bberrydata = Phoneapplication.search('2', '1')
+    @googleappdata = Phoneapplication.search('3', '1')
     @pageIapp = Phoneapplication.alliphoneapp().size / 5
+    @pagebberry = Phoneapplication.allbberryapp().size / 5
+    @pagegoogleapp = Phoneapplication.allgoogleapp().size / 5
+
     
   end
 
   def iphonepage
-
     curpage = params[:page]
     if curpage == nil
       curpage = 1
     end
 
-    iphone = '1'
-    @iphonedata = Phoneapplication.search(iphone, curpage)
+    @iphonedata = Phoneapplication.search('1', curpage)
     render :layout => false
-
   end
+
+  def bberrypage
+    curpage = params[:page]
+    if curpage == nil
+      curpage = 1
+    end
+
+    @bberrydata = Phoneapplication.search('2', curpage)
+    render :layout => false
+  end
+
+  def googleapppage
+    curpage = params[:page]
+    if curpage == nil
+      curpage = 1
+    end
+
+    @g_appdata = Phoneapplication.search('3', curpage)
+    render :layout => false
+  end
+
   def phonelounge
     
     if params[:id]

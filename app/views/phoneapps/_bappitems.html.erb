@@ -1,0 +1,26 @@
+<div id="bappdata" class="learnTrow">
+  <% count = 1 %>
+  <% appdata.each do |iap| %>
+
+    <%  if (count < 5) %>
+      <div class="learnTitem">
+        <div class="learnTtitle"><a href=""><%=h iap.name %></a> <span>$0.99</span></div>
+        <div class="learnTimg"><a href="#"><div><img src="pictures/phone1.png"></div></a></div>
+        <div class="learnTst">
+          <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
+        </div>
+      </div>
+    <%else%>
+      <div class="learnTitem learnLast">
+        <div class="learnTtitle"><a href="#"><%=h iap.name %></a> <span>$0.99</span></div>
+        <div class="learnTimg"><a href="#"><div><img src="pictures/phone6.png"></div></a></div>
+        <div class="learnTst">
+          <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
+        </div>
+      </div>
+    <% end %>
+    <% count = count + 1 %>
+
+  <% end %>
+
+</div>
