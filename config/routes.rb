@@ -19,7 +19,9 @@ ActionController::Routing::Routes.draw do |map|
     :phonelounge => :get,
     :info => :get,
     :favorite => :get,
-    :iphonepage => :get
+    :iphonepage => :get,
+    :bberrypage => :get,
+    :googleapppage => :get
   }
   
   # Users
@@ -63,7 +65,15 @@ ActionController::Routing::Routes.draw do |map|
       :my_favorite => :get
       }
     users.resources :student_lounges
-    users.resources :friends
+    users.resources :friends,
+      :collection => {
+      :search => :get,
+      :find => :get,
+      :recently_added => :get,
+      :recently_updated => :get,
+      :list => :get,
+      :invite => :get,
+      :delete => :post}
   end
   
   # Sessions

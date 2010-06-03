@@ -1,8 +1,9 @@
 <div class="proList" id="wall_comment_form_<%= wall.id %>" style="display:none;">
   <% form_remote_tag :url => {:controller => "user_walls", :action => "create_comment"}, :update => "wall_#{wall.id}", :html => {:id => "wall_form_#{wall.id}"} do %>
+  <%= hidden_field_tag "wall_id", wall.id %>
   <div class="proListPic"><%= link_to "<div>#{image_tag(current_user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
   <div class="proListR">
-    <div class="writeCom"><input type="text" value="" name="Text2"/></div>
+    <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{wall.id}", :onblur => "hideCommentForm('#{wall.id}')"} %></div>
   </div>
   <div class="proAttR"><%= submit_tag 'Comment' %></div>
   <% end %>

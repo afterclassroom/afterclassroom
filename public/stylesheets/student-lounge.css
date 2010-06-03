@@ -352,6 +352,11 @@
 }
 .AfterCl{
     color:#808075;
+    min-height:36px;
+}
+.AfterClCom{
+    color:#808075;
+    min-height:18px;
 }
 .AfterCl span{
     color:#0a81c4;
@@ -973,7 +978,7 @@ div.findIMitem a:hover{
     padding:10px 0px;
     margin:0px 10px;
     overflow:hidden;
-    border-top:1px #e4e4e4 solid;
+    border-bottom:1px #e4e4e4 solid;
     _height:100%;
 }
 .flistInf{
@@ -1114,6 +1119,12 @@ div.findIMitem a:hover{
 .FriendRec .flist{
     background:url('/images/flistC.png') no-repeat;
 }
+.FriendAll .col451in{
+    padding:1px;
+}
+.FriendAll .flist{
+    background:url('/images/flistC.png') no-repeat;
+}
 .findF{
     padding-bottom:4px;
     font-weight:bold;
@@ -1132,6 +1143,11 @@ div.findIMitem a:hover{
 .FriendInvite .titleH1{
     background:url('/images/iconF11.png') no-repeat;
     padding-left:22px;
+}
+.FriendAll .titleH1{
+    background:url('/images/iconF1.png') no-repeat;
+    padding-left:22px;
+    margin:10px;
 }
 .fInvFrom, .fInvTo, .fInvMess{
     overflow:hidden;
@@ -2839,12 +2855,21 @@ div.helpAdv2{
     float:left;
     width:370px;
 }
-.proCen .AfterCl a, .proCen .AfterCl a:link, .proCen .AfterCl a:visited{
+.proCen .AfterC a, .proCen .AfterCl a:link, .proCen .AfterCl a:visited{
     color:#0a81c4;
     text-decoration:none;
     font-weight: bold;
 }
 .proCen .AfterCl a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.proCen .AfterClCom a, .proCen .AfterClCom a:link, .proCen .AfterClCom a:visited{
+    color:#0a81c4;
+    text-decoration:none;
+    font-weight: bold;
+}
+.proCen .AfterClCom a:hover{
     color:#d00;
     text-decoration:none;
 }
@@ -2888,7 +2913,7 @@ div.helpAdv2{
     color:#d00;
     text-decoration:none;
 }
-.writeCom input{
+.writeCom textarea{
     width:100%;
     height:50px;
     border:1px #e7e7e7 solid;
@@ -3003,7 +3028,6 @@ div.helpAdv2{
 .proInfTop{
     float:right;
     padding-bottom:8px;
-    *padding-bottom:0px;
 }
 .proInfTop a{
     background:url('/images/flistREdit.png') no-repeat left top;
@@ -4165,7 +4189,6 @@ span.shopTset{
     background:url('/images/safeB.png') no-repeat left bottom;
     overflow:hidden;
     padding-bottom:8px;
-    _height:100%:
 }
 .staySafeTitle{
     background:url('/images/safeT.png') no-repeat left top;

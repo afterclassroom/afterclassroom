@@ -273,6 +273,19 @@ function showResult(){
     $('#view_results').hide();
 }
 
+function showCommentForm(wall_id){
+    $('#wall_comment_form_' + wall_id).show();
+    $('#wall_comment_' + wall_id).hide();
+    $('#comment_' + wall_id).focus();
+}
+
+function hideCommentForm(wall_id){
+    if($('#comment_' + wall_id).val() == ""){
+        $('#wall_comment_' + wall_id).show();
+        $('#wall_comment_form_' + wall_id).hide();
+    }
+}
+
 function goToByScroll(id){
     $('html,body').animate({
         scrollTop: $("#"+id).offset().top

@@ -5,20 +5,18 @@
       <div class="btmS"><a href=""><img src="/images/iconSF.png"/></a></div>
     </div>
     <div class="friConnect">
-      <div class="friConnect1"><a href="#">All connection</a></div>
-      <div class="friConnect2 friSelect"><a href="#">Find friends</a></div>
-      <div class="friConnect3"><a href="#">Browse</a></div>
-      <div class="friConnect4"><a href="#">Recently Added</a></div>
-      <div class="friConnect5"><a href="#">Recently Updated</a></div>
+      <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection", user_friends_path(current_user) %></div>
+      <div class="friConnect2 <%= "friSelect" if action_name == "find" %>"><%= link_to "Find friends", find_user_friends_path(current_user) %></div>
+      <div class="friConnect4 <%= "friSelect" if action_name == "recently_added" %>"><%= link_to "Recently Added", recently_added_user_friends_path(current_user) %></div>
+      <div class="friConnect5 <%= "friSelect" if action_name == "recently_updated" %>"><%= link_to "Recently Updated", recently_updated_user_friends_path(current_user) %></div>
     </div>
     <div class="friendL">List</div>
     <div class="friConnect">
-      <div class="friConnect6"><a href="#">Family members</a></div>
-      <div class="friConnect7"><a href="#">Friends from school</a></div>
-      <div class="friConnect8"><a href="#">Friends from work</a></div>
-      <div class="friConnect9"><a href="#">General Friends</a></div>
-      <div class="friConnect10"><a href="#">Limited Profile</a></div>
-      <div class="friConnect11"><a href="#">Invite Friends to join AfterClassroom</a></div>
+      <div class="friConnect6 <%= "friSelect" if action_name == "list" && @group == "family_members" %>"><%= link_to "Family members", list_user_friends_path(current_user, :group => "family_members") %></div>
+      <div class="friConnect7 <%= "friSelect" if action_name == "list" && @group == "friends_from_school" %>"><%= link_to "Friends from school", list_user_friends_path(current_user, :group => "friends_from_school") %></div>
+      <div class="friConnect8 <%= "friSelect" if action_name == "list" && @group == "friends_from_work" %>"><%= link_to "Friends from work", list_user_friends_path(current_user, :group => "friends_from_work") %></div>
+      <div class="friConnect9 <%= "friSelect" if action_name == "list" && @group == "general_friends" %>"><%= link_to "General Friends", list_user_friends_path(current_user, :group => "general_friends") %></div>
+      <div class="friConnect11 <%= "friSelect" if action_name == "invite" %>"><%= link_to "Invite Friends to join AfterClassroom", invite_user_friends_path(current_user) %></div>
     </div>
   </div>
 </div>
