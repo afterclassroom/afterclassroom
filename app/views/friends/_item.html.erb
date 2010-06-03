@@ -1,0 +1,11 @@
+<div class="flistItem">
+  <div class="assPic"><%= link_to "<div>#{image_tag(friend.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => friend.id} %></div>
+  <div class="flistInf">
+    <div class="flistN"><%= link_to friend.full_name, {:controller => "profile", :action => "show_profile", :id => friend.id} %></div>
+    <div class="flistS"><span>at</span><%= friend.school.name %></div>
+  </div>
+  <div class="flistR">
+    <div class="flistRAdd"><a href="#"><span>Add to List</span></a></div>
+    <div class="flistRdelete"><a href="javascript:;" onclick="DeleteFriend('<%= friend.id %>');"> </a></div>
+  </div>
+</div>

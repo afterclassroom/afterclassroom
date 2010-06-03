@@ -978,7 +978,7 @@ div.findIMitem a:hover{
     padding:10px 0px;
     margin:0px 10px;
     overflow:hidden;
-    border-top:1px #e4e4e4 solid;
+    border-bottom:1px #e4e4e4 solid;
     _height:100%;
 }
 .flistInf{
@@ -1119,6 +1119,12 @@ div.findIMitem a:hover{
 .FriendRec .flist{
     background:url('/images/flistC.png') no-repeat;
 }
+.FriendAll .col451in{
+    padding:1px;
+}
+.FriendAll .flist{
+    background:url('/images/flistC.png') no-repeat;
+}
 .findF{
     padding-bottom:4px;
     font-weight:bold;
@@ -1137,6 +1143,11 @@ div.findIMitem a:hover{
 .FriendInvite .titleH1{
     background:url('/images/iconF11.png') no-repeat;
     padding-left:22px;
+}
+.FriendAll .titleH1{
+    background:url('/images/iconF1.png') no-repeat;
+    padding-left:22px;
+    margin:10px;
 }
 .fInvFrom, .fInvTo, .fInvMess{
     overflow:hidden;
@@ -3017,7 +3028,6 @@ div.helpAdv2{
 .proInfTop{
     float:right;
     padding-bottom:8px;
-    *padding-bottom:0px;
 }
 .proInfTop a{
     background:url('/images/flistREdit.png') no-repeat left top;
@@ -4179,7 +4189,6 @@ span.shopTset{
     background:url('/images/safeB.png') no-repeat left bottom;
     overflow:hidden;
     padding-bottom:8px;
-    _height:100%:
 }
 .staySafeTitle{
     background:url('/images/safeT.png') no-repeat left top;
