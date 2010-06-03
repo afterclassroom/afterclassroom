@@ -19,7 +19,9 @@ ActionController::Routing::Routes.draw do |map|
     :phonelounge => :get,
     :info => :get,
     :favorite => :get,
-    :iphonepage => :get
+    :iphonepage => :get,
+    :bberrypage => :get,
+    :googleapppage => :get
   }
   
   # Users

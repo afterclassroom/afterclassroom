@@ -15,108 +15,39 @@
         <div class="phoneTop">
           <div class="iphoneTitle">applications list</div>
           <div class="learnPage">
-            <div class="learnPageL">Page 1 of <%=h @pageIapp %></div>
+            <div class="learnPageL" id="iphoneTop">Page 1 of <%=h @pageIapp %></div>
             <div class="learnPageP"><%= link_to "&nbsp;", {:controller => 'phoneapps', :action => "iphonepage"},  :class=> "iphoneback" %></div>
             <div class="learnPageN"><%= link_to "&nbsp;", {:controller => 'phoneapps', :action => "iphonepage"},  :class=> "iphonenext" %></div>
           </div>
         </div>
         <div class="learnTools">
-          <%= render :partial => "appitems" %>
+          <%= render :partial => "iappitems", :locals => {:appdata => @iphonedata} %>
         </div>
+
         <div class="blackBTop">
           <div class="blackBTitle">applications list</div>
           <div class="learnPage">
-            <div class="learnPageL">Page 1 of 12</div>
-
-            <div class="learnPageP"><a href="#">&nbsp;</a></div>
-            <div class="learnPageN"><a href="#">&nbsp;</a></div>
+            <div id="bphoneTop" class="learnPageL">Page 1 of  <%=h @pagebberry %></div>
+            <div class="learnPageP"><%= link_to "&nbsp;", {:controller => 'phoneapps', :action => "bberrypage"},  :class=> "berryback" %></div>
+            <div class="learnPageN"><%= link_to "&nbsp;", {:controller => 'phoneapps', :action => "bberrypage"},  :class=> "berrynext" %></div>
           </div>
         </div>
+
         <div class="learnTools">
-          <div class="learnTrow">
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="">Lorem ipsum dolor amet</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone10.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="#">Curabitur vitae risus lorem</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone9.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="#">Pellentesque ac aliquet diam</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone8.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="#">Duis interdum tellus nisi</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone7.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem learnLast">
-              <div class="learnTtitle"><a href="#">Vivamus eget felis vitae</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone6.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-          </div>
+          <%= render :partial => "bappitems", :locals => {:appdata => @bberrydata} %>
         </div>
         <div class="googleTop">
           <div class="googleTitle">applications list</div>
           <div class="learnPage">
-            <div class="learnPageL">Page 1 of 12</div>
-            <div class="learnPageP"><a href="#">&nbsp;</a></div>
-            <div class="learnPageN"><a href="#">&nbsp;</a></div>
+
+            <div class="learnPageL" id="gphoneTop">Page 1 of <%=h @pagegoogleapp %></div>
+            <div class="learnPageP"><%= link_to "&nbsp;", {:controller => 'phoneapps', :action => "googleapppage"},  :class=> "g_apback" %></div>
+            <div class="learnPageN"><%= link_to "&nbsp;", {:controller => 'phoneapps', :action => "googleapppage"},  :class=> "g_apnext" %></div>
+
           </div>
         </div>
         <div class="learnTools">
-          <div class="learnTrow">
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="">Lorem dolor sit amet</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone4.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="#">Curabitur vitae risus lorem</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone2.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="#">Pellentesque ac aliquet diam</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone7.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem">
-              <div class="learnTtitle"><a href="#">Duis interdum tellus nisi</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone10.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-            <div class="learnTitem learnLast">
-              <div class="learnTtitle"><a href="#">Vivamus eget felis vitae</a> <span>$0.99</span></div>
-              <div class="learnTimg"><a href="#"><div><img src="pictures/phone5.png"></div></a></div>
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-          </div>
+          <%= render :partial => "gappitems", :locals => {:appdata => @googleappdata} %>
         </div>
 
         <div class="learnN">
@@ -260,7 +191,8 @@
 
 <script language="javascript">
 
-  var url = $(".iphonenext").attr("href");
+  /*Pagination for iphone app*/
+  var url = $(".iphonenext").attr("href");/*url is the same for next, back. only parameter is different*/
 
   var icurpage = 1;
   var inextpage = 2;
@@ -278,6 +210,7 @@
       },
       success: function(msg){
         $('#iphonedata').html(msg);
+        $('#iphoneTop').html('Page '+icurpage+' of '+itotal);
       }
     });
     if (inextpage < itotal){
@@ -288,7 +221,6 @@
       icurpage = inextpage;
       ibackpage = icurpage - 1;
     }
-    alert(''+$('.phoneTop').filter('.learnPageL').html());
     return false;
   });
   
@@ -303,6 +235,7 @@
       },
       success: function(msg){
         $('#iphonedata').html(msg);
+        $('#iphoneTop').html('Page '+icurpage+' of '+itotal);
       }
     });
     if (ibackpage > 1){
@@ -315,6 +248,118 @@
     }
     return false;
   });
+  /*Pagination for blackberry app*/
+  var berryurl = $(".berrynext").attr("href");/*url is the same for next, back. only parameter is different*/
 
+  var bcurpage = 1;
+  var bnextpage = 2;
+  var bbackpage = 0;
+  var btotal = <%= @pagebberry %>
 
+  $(".berrynext").bind('click', function() {
+    $.ajax({
+      url: berryurl,
+      type: "GET",
+      dataType: "html",
+      data: { page: bnextpage },
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('#bappdata').html(msg);
+        $('#bphoneTop').html('Page '+bcurpage+' of '+btotal);
+      }
+    });
+    if (bnextpage < btotal){
+      bcurpage = bnextpage;
+      bnextpage = bnextpage + 1;
+      bbackpage = bbackpage + 1;
+    }else if (bnextpage == btotal){
+      bcurpage = bnextpage;
+      bbackpage = bcurpage - 1;
+    }
+    return false;
+  });
+
+  $(".berryback").bind('click', function() {
+    $.ajax({
+      url: berryurl,
+      type: "GET",
+      dataType: "html",
+      data: { page: bbackpage },
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('#bappdata').html(msg);
+        $('#bphoneTop').html('Page '+bcurpage+' of '+btotal);
+      }
+    });
+    if (bbackpage > 1){
+      bcurpage = bbackpage;
+      bnextpage = bnextpage - 1;
+      bbackpage = bbackpage - 1;
+    }else if (bbackpage == 1){
+      bcurpage = bbackpage;
+      bnextpage = bcurpage + 1;
+    }
+    return false;
+  });
+  /*Pagination for google app*/
+  var gurl = $(".g_apnext").attr("href");/*url is the same for next, back. only parameter is different*/
+
+  var gcurpage = 1;
+  var gnextpage = 2;
+  var gbackpage = 0;
+  var gtotal = <%= @pagegoogleapp %>
+
+  $(".g_apnext").bind('click', function() {
+    $.ajax({
+      url: gurl,
+      type: "GET",
+      dataType: "html",
+      data: { page: gnextpage },
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('#gappdata').html(msg);
+        $('#gphoneTop').html('Page '+gcurpage+' of '+gtotal);
+      }
+    });
+    if (gnextpage < gtotal){
+      gcurpage = gnextpage;
+      gnextpage = gnextpage + 1;
+      gbackpage = gbackpage + 1;
+    }else if (gnextpage == gtotal){
+      gcurpage = gnextpage;
+      gbackpage = gcurpage - 1;
+    }
+    return false;
+  });
+
+  $(".g_apback").bind('click', function() {
+    $.ajax({
+      url: gurl,
+      type: "GET",
+      dataType: "html",
+      data: { page: gbackpage },
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('#gappdata').html(msg);
+        $('#gphoneTop').html('Page '+gcurpage+' of '+gtotal);
+      }
+    });
+    if (gbackpage > 1){
+      gcurpage = gbackpage;
+      gnextpage = gnextpage - 1;
+      gbackpage = gbackpage - 1;
+    }else if (gbackpage == 1){
+      gcurpage = gbackpage;
+      gnextpage = gcurpage + 1;
+    }
+    return false;
+  });
 </script>
