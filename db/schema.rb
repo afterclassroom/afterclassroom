@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100529100652) do
+ActiveRecord::Schema.define(:version => 20100604044225) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -122,9 +122,10 @@ ActiveRecord::Schema.define(:version => 20100529100652) do
     t.string "label"
   end
 
-  create_table "friend_groups_user_invites", :id => false, :force => true do |t|
+  create_table "friend_in_groups", :force => true do |t|
     t.integer "friend_group_id", :null => false
-    t.integer "user_invite_id",  :null => false
+    t.integer "user_id",         :null => false
+    t.integer "user_id_friend",  :null => false
   end
 
   create_table "housing_categories", :force => true do |t|

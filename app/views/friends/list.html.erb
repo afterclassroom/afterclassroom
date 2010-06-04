@@ -6,104 +6,76 @@
   <%= render :partial => "leftmenu" %>
 </div>
 <div class="contMainL">
-  <div class="col451 Friend">
+  <div class="col451 FriendBro">
     <div class="col451in">
       <div class="col451Cont">
-        <h2 class="titleH2">We’d like to help you find your friends</h2>
-        <div class="friCont">Your friends on AfterClassroom are the same friends, acquaintances and family members that you communicate with in the real world. You can use any of the tools on this page to find more friends.</div>
-        <div class="findPeo">
-          <div class="findTop">
-            <div class="findLeft">Find People You Email</div>
-            <div class="findRight"><a href="#">Upload Contact File</a></div>
-          </div>
-          <div class="findDes">Searching your email account is the fastest way to find your friends on AterClassroom</div>
-          <div class="findItem">
-            <div class="findText">Your Email</div>
-            <div class="findIn"><input type="text" name="Text2"/></div>
-          </div>
-          <div class="findItem">
-            <div class="findText">Email Password</div>
-            <div class="findIn"><input type="text" name="Text2"/></div>
-          </div>
-          <div class="btmFind"><a href="#">Find Friends</a></div>
-          <div class="findPass">AfterClassroom will not store your password.<a href="#">Learn more</a></div>
-        </div>
-        <div class="sugges">Suggestions</div>
-        <div class="suggesDes">Add people you know as friends and become a fan of public profiles you like</div>
-        <div class="suggesList">
-          <div class="suggesRow">
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">ThienanHo</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">Kathy Tran</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic3.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">ThienanHo</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-          </div>
-          <div class="suggesRow">
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic4.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">ThienanHo</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/noimg.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">Kathy Tran</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic3.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">ThienanHo</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
+        <div class="flist">
+          <div class="flistCr"><a href="#"><%= @group.name %></a></div>
+          <div class="Browse">
+            <div>Browse by</div>
+            <div><select name="Select1"><option/></select></div>
           </div>
         </div>
-        <div class="viewM"><a href="#">View more</a></div>
-        <div class="searchfind">
-          <div class="searchP">
-            <div class="searchPtitle">Search for People</div>
-            <div class="searchPInput">
-              <div class="search">
-                <div class="textS"><input type="text" name="Text1"/></div>
-                <div class="btmS"><a href=""><img src="/images/iconSF.png"/></a></div>
-              </div>
-            </div>
-            <div class="searchPList">
-              <div class="searchPItem"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Aliquam euismod ligula at mauris molestie nec vulputate lacus commodo. Aliquam vitae adipiscing est<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Integer faucibus tempor turpis<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Mauris lobortis mi eu quam vulputate imperdiet<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Donec lobortis ipsum vel ante accumsan sagittis<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Sed tincidunt tempor tincidunt. Vivamus tincidunt lobortis odio ornare<span> </span></a></div>
-            </div>
+        <div class="flistBt">Use the dropdown menu above to browse your friends by network.</div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
           </div>
-          <div class="findIM">
-            <div class="findIMtitle">Find People You IM</div>
-            <div class="findIMdes">Find out which of your AOL Instant Messenger or Windows Live Messenger bubdies are on AfterClassroom.</div>
-            <div class="findIMitem"><a href="#">Import AIM Bubdy List<span> </span></a></div>
-            <div class="findIMitem"><a href="#">Import Windows Live Contacts<span> </span></a></div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
+          </div>
+        </div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/pic3.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
+          </div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
+          </div>
+        </div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/noimg.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
+          </div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
+          </div>
+        </div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
+          </div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
+          </div>
+        </div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
+          </div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
-
 
 <div class="contMainR">
   <!--Ads-->
