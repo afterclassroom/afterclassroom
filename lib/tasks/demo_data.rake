@@ -30,7 +30,7 @@ namespace :db do
 #      create_demo_posts_awarenesses
 #      create_demo_posts_foods
 #      create_demo_posts_qas
-      create_demo_phoneapps
+#      create_demo_phoneapps
 #
 #      # Exam schedule
 #      create_demo_posts_exam_schedules
