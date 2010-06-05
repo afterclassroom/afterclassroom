@@ -7,7 +7,7 @@
       <div class="share"><a href="#">Share</a></div>
       <div class="qashdU"><a href="#"><%= wall.total_good %></a></div>
       <div class="qashdD"><a href="#"><%= wall.total_bad %></a></div>
-      <div class="com"><a href="javascript:;" onclick="$('#wall_comment_form_<%= wall.id %>').show();">Comments (<%= wall.comments.size %>)</a></div>
+      <div class="com"><a href="javascript:;" onclick="showCommentForm('<%= wall.id %>');">Comments (<%= wall.comments.size %>)</a></div>
     </div>
     <!--Attach-->
     
@@ -18,7 +18,7 @@
       <% wall.comments.each do |cm| %>
         <%= render :partial => "user_walls/wall_comment_item", :locals => {:comment => cm} %>
       <% end %>
-        <%= render :partial => "user_walls/wall_comment" %>
+        <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall} %>
     <% end %>
     <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall} %>
     <!--Comments-->

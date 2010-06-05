@@ -1,0 +1,84 @@
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'submenu' %>
+<% end -%>
+
+<div class="contMainC">
+  <%= render :partial => "leftmenu" %>
+</div>
+<div class="contMainL">
+  <div class="col451 FriendBro">
+    <div class="col451in">
+      <div class="col451Cont">
+        <div class="flist">
+          <div class="flistCr"><a href="#"><%= @group.name %></a></div>
+          <div class="Browse">
+            <div>Browse by</div>
+            <div><select name="Select1"><option/></select></div>
+          </div>
+        </div>
+        <div class="flistBt">Use the dropdown menu above to browse your friends by network.</div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
+          </div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
+          </div>
+        </div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/pic3.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
+          </div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
+          </div>
+        </div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/noimg.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
+          </div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
+          </div>
+        </div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
+          </div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
+          </div>
+        </div>
+        <div class="flistItem">
+          <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
+          <div class="flistInf">
+            <div class="flistN"><a href="#">Thienan Ho</a></div>
+            <div class="flistS"><span>at</span>University of Toronto</div>
+          </div>
+          <div class="flistR">
+            <div class="flistREdit"><a href="#"> </a></div>
+            <div class="flistRdelete"><a href="#"> </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>

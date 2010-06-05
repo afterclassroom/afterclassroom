@@ -17,6 +17,17 @@ class UserWallsController < ApplicationController
   end
 
   def create_comment
-    
+    wall_id = params[:wall_id]
+    comment = params[:comment]
+
+    @wall = UserWall.find_by_id(params[:wall_id])
+
+    if @wall
+      obj_comment = Comment.new()
+      obj_comment.comment = comment
+      obj_comment.user = current_user
+      @wall.comments << obj_comment
+    end
+    render :layout => false
   end
 end
