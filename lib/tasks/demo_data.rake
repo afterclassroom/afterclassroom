@@ -583,7 +583,8 @@ def create_demo_phoneapps
         ap.phoneappcategory = apcate
         ap.description = Faker::Lorem.paragraphs
         ap.price = "500"
-        
+
+        ap.playurl = "http://www.google.com"
         
         photo = "/public/images/pictures/phone2.png"
         

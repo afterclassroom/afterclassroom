@@ -21,7 +21,8 @@ ActionController::Routing::Routes.draw do |map|
     :favorite => :get,
     :iphonepage => :get,
     :bberrypage => :get,
-    :googleapppage => :get
+    :googleapppage => :get,
+    :pagingphoneapps => :get
   }
   
   # Users

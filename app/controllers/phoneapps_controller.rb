@@ -12,8 +12,16 @@ class PhoneappsController < ApplicationController
     @pageIapp = Phoneapplication.alliphoneapp().size / 5
     @pagebberry = Phoneapplication.allbberryapp().size / 5
     @pagegoogleapp = Phoneapplication.allgoogleapp().size / 5
+    @allapps = Phoneapplication.allapp('1')
+    @pageallapps = Phoneapplication.allapp('').size / 5
 
     
+  end
+
+  def pagingphoneapps
+    @allapps = Phoneapplication.allapp(params[:page])
+    @pageallapps = Phoneapplication.allapp('').size / 5
+    render :layout => false
   end
 
   def iphonepage
