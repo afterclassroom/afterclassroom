@@ -59,134 +59,171 @@
             <div class="learnNMR"><a href="#">See All</a></div>
           </div>
         </div>
-        <div class="learnNItem">
-          <div class="learnNImg"><a href="#"><div><img src="pictures/phone2.png"></div></a></div>
-          <div class="phoneLR">
-            <div class="learnNtitle"><a href="#">Nullam condimentum mauris sit amet lacus</a> by Vestibulum <span>$2.99</span></div>
-            <div class="phoneS">
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
+        <div id="allappitems">
+          <%= render :partial => "allappitems", :locals => {:appdata => @allapps} %>
+
+          <div class="assPage">
+            <span class="numPage">Page 1 of <%= @pageallapps %></span>
+            <span class="firstPage">
+              <%= link_to "First Page", {:controller => 'phoneapps', :action => "pagingphoneapps", :page => '1'}%>
+            </span>
+
+            <%= will_paginate(@allapps, :params => { :controller => "phoneapps", :action => "pagingphoneapps" }) %>
+
+            <span class="lastPage">
+              <%= link_to "Last Page", {:controller => 'phoneapps', :action => "pagingphoneapps", :page => @pageallapps}%>
+            </span>
           </div>
-          <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
-          <div class="learnNinf">67,541, 274 monthly active users - 54 friends</div>
-        </div>
-        <div class="learnNItem">
-          <div class="learnNImg"><a href="#"><div><img src="pictures/phone7.png"></div></a></div>
-          <div class="phoneLR">
-            <div class="learnNtitle"><a href="#">Nullam condimentum mauris sit amet lacus</a> by Vestibulum <span>$2.99</span></div>
-            <div class="phoneS">
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-          </div>
-          <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
-          <div class="learnNinf">67,541, 274 monthly active users - 54 friends</div>
-        </div>
-        <div class="learnNItem">
-          <div class="learnNImg"><a href="#"><div><img src="pictures/phone10.png"></div></a></div>
-          <div class="phoneLR">
-            <div class="learnNtitle"><a href="#">Nullam condimentum mauris sit amet lacus</a> by Vestibulum <span>$2.99</span></div>
-            <div class="phoneS">
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-          </div>
-          <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
-          <div class="learnNinf">67,541, 274 monthly active users - 54 friends</div>
-        </div>
-        <div class="learnNItem">
-          <div class="learnNImg"><a href="#"><div><img src="pictures/phone1.png"></div></a></div>
-          <div class="phoneLR">
-            <div class="learnNtitle"><a href="#">Nullam condimentum mauris sit amet lacus</a> by Vestibulum <span>$2.99</span></div>
-            <div class="phoneS">
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-          </div>
-          <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
-          <div class="learnNinf">67,541, 274 monthly active users - 54 friends</div>
-        </div>
-        <div class="learnNItem">
-          <div class="learnNImg"><a href="#"><div><img src="pictures/phone9.png"></div></a></div>
-          <div class="phoneLR">
-            <div class="learnNtitle"><a href="#">Nullam condimentum mauris sit amet lacus</a> by Vestibulum <span>$2.99</span></div>
-            <div class="phoneS">
-              <div class="learnTst">
-                <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
-              </div>
-            </div>
-          </div>
-          <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
-          <div class="learnNinf">67,541, 274 monthly active users - 54 friends</div>
-        </div>
-        <div class="assPage">
-          <span class="numPage">Page 1 of 22</span>
-          <span class="firstPage"><a href="#">First Page</a></span>
-          <span class="prevPage"><a href="#">Prev</a></span>
-          <span class="currentPage">
-            <a class="selected" href="#"><span>6</span></a>
-            <a href="#"><span>7</span></a>
-            <a href="#"><span>8</span></a>
-            <a href="#"><span>9</span></a>
-            <a href="#"><span>10</span></a>
-          </span>
-          <span class="nextPage"><a href="#">Next</a></span>
-          <span class="lastPage"><a href="#">Last Page</a></span>
-        </div>
+          <script language="javascript">
+            /*code to handle ajax pagination for all application TABS*/
+            var nextpageurl = $(".disabled.next_page").attr("href");
+            var prevpageurl = $(".disabled.prev_page").attr("href");
+            $(".current").each(function(){
+              var onepageurl = $(this).attr('href');
+              $(this).bind('click',function(){
+                if (onepageurl != undefined){
+                  LoadSpinner('allappitems');
+                  $.ajax({
+                    url: onepageurl,
+                    type: "GET",
+                    dataType: "html",
+                    failure: function(msg){
+                      alert('ajax fail:'+msg);
+                    },
+                    success: function(msg){
+                      $('#allappitems').html(msg);
+                    }
+                  });
+                }
+                return false;
+              });
+            });
+
+            $('.disabled.next_page').bind('click',function(){
+              if (nextpageurl!=undefined){
+                LoadSpinner('allappitems');
+                $.ajax({
+                  url: nextpageurl,
+                  type: "GET",
+                  dataType: "html",
+                  failure: function(msg){
+                    alert('ajax fail:'+msg);
+                  },
+                  success: function(msg){
+                    $('#allappitems').html(msg);
+                  }
+                });
+
+              }
+              return false;
+            });
+            $('.disabled.prev_page').bind('click',function(){
+              if(prevpageurl != undefined){
+                LoadSpinner('allappitems');
+                $.ajax({
+                  url: prevpageurl,
+                  type: "GET",
+                  dataType: "html",
+                  failure: function(msg){
+                    alert('ajax fail:'+msg);
+                  },
+                  success: function(msg){
+                    $('#allappitems').html(msg);
+                  }
+                });
+              }
+              return false;
+            });
+            var firstpageurl = $('.firstPage a').attr('href');
+            $('.firstPage').bind('click',function(){
+              LoadSpinner('allappitems');
+              $.ajax({
+                url: firstpageurl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allappitems').html(msg);
+                }
+              });
+              return false;
+            });
+            var lastpageurl =  $('.lastPage a').attr('href');;
+            $('.lastPage').bind('click',function(){
+              LoadSpinner('allappitems');
+              $.ajax({
+                url: lastpageurl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allappitems').html(msg);
+                }
+              });
+              return false;
+            });
+          </script>
+        </div><!--Close DIV of pagination-->
+
+
+
+
         <div class="goTop"><a href="#">Top</a></div>
       </div>
     </div>
 
   </div>
-</div>
 
-<div class="contMainR">
-  <div class="creAdv"><a href="#">Create an Ad</a></div>
-  <div class="advert">
-    <div class="advertTitle">Advertisement</div>
-    <div class="Dani">DaniWeb - IT Discussion Community</div>
-    <div class="advertImg"><img src="pictures/pic6.png"></div>
-    <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-    <div class="advertInf">
-      <div class="advertInfL">
-        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+
+  <div class="contMainR">
+    <div class="creAdv"><a href="#">Create an Ad</a></div>
+    <div class="advert">
+      <div class="advertTitle">Advertisement</div>
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="pictures/pic6.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
       </div>
-      <div class="advertInfR">
-        <span class="pre"><a href="#">&nbsp;</a></span>
-        <span class="next"><a href="#">&nbsp;</a></span></div>
+    </div>
+    <div class="advert">
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="pictures/adv.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
+      <div class="advertImg"><img src="pictures/adv1.png"></div>
+      <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
     </div>
   </div>
-  <div class="advert">
-    <div class="Dani">DaniWeb - IT Discussion Community</div>
-    <div class="advertImg"><img src="pictures/adv.png"></div>
-    <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-    <div class="advertInf">
-      <div class="advertInfL">
-        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-      </div>
-      <div class="advertInfR">
-        <span class="pre"><a href="#">&nbsp;</a></span>
-        <span class="next"><a href="#">&nbsp;</a></span></div>
-    </div>
-  </div>
-  <div class="advert">
-    <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
-    <div class="advertImg"><img src="pictures/adv1.png"></div>
-    <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
-    <div class="advertInf">
-      <div class="advertInfL">
-        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-      </div>
-      <div class="advertInfR">
-        <span class="pre"><a href="#">&nbsp;</a></span>
-        <span class="next"><a href="#">&nbsp;</a></span></div>
-    </div>
-  </div>
+
+
 </div>
 
 <script language="javascript">
@@ -200,6 +237,7 @@
   var itotal = <%= @pageIapp %>
 
   $(".iphonenext").bind('click', function() {
+    LoadSpinner('iphonedata');
     $.ajax({
       url: url,
       type: "GET",
@@ -225,19 +263,23 @@
   });
   
   $(".iphoneback").bind('click', function() {
-    $.ajax({
-      url: url,
-      type: "GET",
-      dataType: "html",
-      data: { page: ibackpage },
-      failure: function(msg){
-        alert('ajax fail:'+msg);
-      },
-      success: function(msg){
-        $('#iphonedata').html(msg);
-        $('#iphoneTop').html('Page '+icurpage+' of '+itotal);
-      }
-    });
+    if (ibackpage > 0){
+      LoadSpinner('iphonedata');
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "html",
+        data: { page: ibackpage },
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('#iphonedata').html(msg);
+          $('#iphoneTop').html('Page '+icurpage+' of '+itotal);
+        }
+      });
+    }//END IF
+
     if (ibackpage > 1){
       icurpage = ibackpage;
       inextpage = inextpage - 1;
@@ -257,6 +299,7 @@
   var btotal = <%= @pagebberry %>
 
   $(".berrynext").bind('click', function() {
+    LoadSpinner('bappdata');
     $.ajax({
       url: berryurl,
       type: "GET",
@@ -282,19 +325,23 @@
   });
 
   $(".berryback").bind('click', function() {
-    $.ajax({
-      url: berryurl,
-      type: "GET",
-      dataType: "html",
-      data: { page: bbackpage },
-      failure: function(msg){
-        alert('ajax fail:'+msg);
-      },
-      success: function(msg){
-        $('#bappdata').html(msg);
-        $('#bphoneTop').html('Page '+bcurpage+' of '+btotal);
-      }
-    });
+    if (bbackpage > 0){
+      LoadSpinner('bapppdata');
+      $.ajax({
+        url: berryurl,
+        type: "GET",
+        dataType: "html",
+        data: { page: bbackpage },
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('#bappdata').html(msg);
+          $('#bphoneTop').html('Page '+bcurpage+' of '+btotal);
+        }
+      });
+    }//END IF
+
     if (bbackpage > 1){
       bcurpage = bbackpage;
       bnextpage = bnextpage - 1;
@@ -314,6 +361,7 @@
   var gtotal = <%= @pagegoogleapp %>
 
   $(".g_apnext").bind('click', function() {
+    LoadSpinner('gappdata');
     $.ajax({
       url: gurl,
       type: "GET",
@@ -339,19 +387,23 @@
   });
 
   $(".g_apback").bind('click', function() {
-    $.ajax({
-      url: gurl,
-      type: "GET",
-      dataType: "html",
-      data: { page: gbackpage },
-      failure: function(msg){
-        alert('ajax fail:'+msg);
-      },
-      success: function(msg){
-        $('#gappdata').html(msg);
-        $('#gphoneTop').html('Page '+gcurpage+' of '+gtotal);
-      }
-    });
+    if (gbackpage > 0){
+      LoadSpinner('gappdata');
+      $.ajax({
+        url: gurl,
+        type: "GET",
+        dataType: "html",
+        data: { page: gbackpage },
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('#gappdata').html(msg);
+          $('#gphoneTop').html('Page '+gcurpage+' of '+gtotal);
+        }
+      });
+    }
+ 
     if (gbackpage > 1){
       gcurpage = gbackpage;
       gnextpage = gnextpage - 1;
@@ -362,4 +414,8 @@
     }
     return false;
   });
+  function LoadSpinner(divname){
+
+    $('#'+divname).html('<img src="/images/ajax-loader.gif" alt="Please wait..." />');
+  }
 </script>

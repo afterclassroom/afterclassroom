@@ -10,6 +10,8 @@ class CreatePhoneapplications < ActiveRecord::Migration
 
       t.string :price
 
+      t.string :playurl
+
 
       t.timestamps
 

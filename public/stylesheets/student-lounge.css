@@ -2941,7 +2941,7 @@ div.helpAdv2{
     padding:2px 0px;
 }
 .proMind{
-    height:62px;
+    height:82px;
     background:url('/images/sLyourmind.png') no-repeat 1px 1px;
 }
 .proMindT{
@@ -2972,8 +2972,13 @@ div.helpAdv2{
     background:url('/images/proPlusH.gif') no-repeat left top;
 }
 .proAtt{
+<<<<<<< HEAD
+    padding:7px 3px 0px 1px;
+    color:#fff;
+=======
     padding:10px 5px 0px 10px;
     color:#000;
+>>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
     clear:both;
     _padding-top:5px;
 }
@@ -2984,6 +2989,12 @@ div.helpAdv2{
 .proAttL{
     padding-top:5px;
     /*float:left;*/
+<<<<<<< HEAD
+    background:#1994DA;
+    height: 32px;
+    width: 449px;
+=======
+>>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
 }
 .proAtt span a{
     display:block;

@@ -23,8 +23,12 @@ class Phoneapplication < ActiveRecord::Base
     Phoneapplication.find(:all, :conditions => ['phoneappcategory_id like ?', "3"])
   end
 
-  def self.totalpage(category)
-
+  def self.allapp(curpage)
+    if (curpage == nil || curpage == '')
+      Phoneapplication.find(:all)
+    else
+      paginate :per_page => 5, :page => curpage
+    end
   end
 
 
