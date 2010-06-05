@@ -913,10 +913,9 @@ div.findIMitem a:hover{
     float:left;
 }
 .flistCr{
-    width:108px;
+    width:100%;
 }
 .flistCr a{
-    background:url('/images/flistCr.png') no-repeat 4px center;
     padding-left:15px;
     font-weight:bold;
 }
@@ -1116,6 +1115,12 @@ div.findIMitem a:hover{
 .FriendRec .col451in{
     padding:1px;
 }
+.FriendUp .col451in{
+    padding:1px;
+}
+.FriendSearch .col451in{
+    padding:1px;
+}
 .FriendRec .flist{
     background:url('/images/flistC.png') no-repeat;
 }
@@ -1146,6 +1151,21 @@ div.findIMitem a:hover{
 }
 .FriendAll .titleH1{
     background:url('/images/iconF1.png') no-repeat;
+    padding-left:22px;
+    margin:10px;
+}
+.FriendRec .titleH1{
+    background:url('/images/iconF4.png') no-repeat;
+    padding-left:22px;
+    margin:10px;
+}
+.FriendUp .titleH1{
+    background:url('/images/iconF5.png') no-repeat;
+    padding-left:22px;
+    margin:10px;
+}
+.FriendSearch .titleH1{
+    background:url('/images/iconF3.png') no-repeat;
     padding-left:22px;
     margin:10px;
 }

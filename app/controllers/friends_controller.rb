@@ -13,14 +13,19 @@ class FriendsController < ApplicationController
     @search_name = ""
     if params[:search]
       @search_name = params[:search][:name]
-      @friends = @user.user_friends.find(:all, :conditions => "login LIKE '%#{@search_name}%' OR name LIKE '%#{@search_name}%'").paginate :page => params[:page], :per_page => 10
+      @friends = @user.user_friends.find(:all, :conditions => "name LIKE '%#{@search_name}%'").paginate :page => params[:page], :per_page => 10
     else
       @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
     end
   end
 
   def find
-    
+    user_id_suggestions = session[:user_id_suggestions]
+    if user_id_suggestions.nil?
+      user_id_suggestions = get_user_id_suggestions(@user)
+      session[:user_id_suggestions] = user_id_suggestions
+    end
+    @user_suggestions = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})", :limit => 6) if user_id_suggestions.size > 0
   end
 
   def recently_added
@@ -60,5 +65,17 @@ class FriendsController < ApplicationController
       redirect_back_or_default(root_path)and return false
     end
     return @user
+  end
+
+  def get_user_id_suggestions(user)
+    user_id_friends = user.user_friends.collect(&:id)
+    friend_of_friend = []
+    user.user_friends.each do |f|
+      f.user_friends.each do |ff|
+        friend_of_friend << ff.id unless user == ff
+      end
+    end
+    friend_of_friend = friend_of_friend.uniq
+    user_id_suggestions = friend_of_friend - user_id_friends
   end
 end

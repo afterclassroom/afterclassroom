@@ -1,8 +1,10 @@
 <div class="col195 friLeft">
   <div class="col195in">
     <div class="search">
-      <div class="textS"><input type="text" name="Text1"/></div>
-      <div class="btmS"><a href=""><img src="/images/iconSF.png"/></a></div>
+      <% form_tag search_user_friends_path(current_user), {:id => "friend_search", :method => "GET"} do %>
+        <div class="textS"><%= text_field_tag "search[name]", "#{@search_name}" %></div>
+      <div class="btmS"><a href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
+      <% end %>
     </div>
     <div class="friConnect">
       <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection", user_friends_path(current_user) %></div>
