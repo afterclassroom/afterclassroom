@@ -2896,8 +2896,8 @@ div.helpAdv2{
     padding:2px 0px;
 }
 .proMind{
-    height:62px;
-    background:url('/images/proBG.png') no-repeat 1px 1px;
+    height:82px;
+    background:url('/images/sLyourmind.png') no-repeat 1px 1px;
 }
 .proMindT{
     padding:10px 12px 0px 35px;
@@ -2927,7 +2927,7 @@ div.helpAdv2{
     background:url('/images/proPlusH.gif') no-repeat left top;
 }
 .proAtt{
-    padding:10px 5px 0px 10px;
+    padding:7px 3px 0px 1px;
     color:#fff;
     clear:both;
     _padding-top:5px;
@@ -2938,7 +2938,10 @@ div.helpAdv2{
 }
 .proAttL{
     padding-top:5px;
-    float:left;
+    /*float:left;*/
+    background:#1994DA;
+    height: 32px;
+    width: 449px;
 }
 .proAtt span a{
     display:block;

@@ -7,14 +7,147 @@
     </div>
     <div class="proAtt">
       <div class="proAttL">
+
         <span>Attach:</span>
-        <span class="att1"><a href="#"> </a></span>
-        <span class="att2"><a href="#"> </a></span>
-        <span class="att3"><a href="#"> </a></span>
-        <span class="att4"><a href="#"> </a></span>
-        <span class="att5"><a href="#"> </a></span>
+
+ 
+          <span class="att1"><a href="#" id="click"></a></span>
+<li id="example1" class="example">
+		<p>You can style button as you want</p>
+		<div class="wrapper">
+			<div id="button1" class="button">Upload</div>
+		</div>
+		<p>Uploaded files:</p>
+
+		<ol class="files"></ol>
+	</li>
+
+  <p><a href="#">Close</a></p>
+</div>
+
+
+  <div id="content3">
+    <span class="att2"> <a href="#"></a></span>
+       <span class="att3"><a href="#"></a></span>
+        <span class="att4"><a href="#"></a></span>
+      <span class="att5"><a href="#"></a></span>
+      </div>   
+
       </div>
       <div class="proAttR"><%= submit_tag 'Share' %></div>
     </div>
   </div>
 <% end %>
+ <script type="text/javascript">
+      $(document).ready(function(){
+	   
+
+   			$('a').click(function(){
+
+			$('#example1').show('slow');
+                       
+                            {
+                            $('#content3').hide();
+                            }
+                        
+ 
+   });
+
+   $('#close').click(function(){
+
+   		$('#example1').hide();
+                {
+                    
+                    $('#content3').show('slow');
+                    }
+                
+		})
+
+ 	  });
+
+$(document).ready(function(){
+
+	/* example 1 */
+	var button = $('#button1'), interval;
+	new AjaxUpload(button,{
+		//action: 'upload-test.php', // I disabled uploads in this example for security reasons
+		action: 'upload.htm',
+		name: 'myfile',
+		onSubmit : function(file, ext){
+			// change button text, when user selects file
+			button.text('Uploading');
+
+			// If you want to allow uploading only 1 file at time,
+			// you can disable upload button
+			this.disable();
+
+			// Uploding -> Uploading. -> Uploading...
+			interval = window.setInterval(function(){
+				var text = button.text();
+				if (text.length < 13){
+					button.text(text + '.');
+				} else {
+					button.text('Uploading');
+				}
+			}, 200);
+		},
+		onComplete: function(file, response){
+			button.text('Upload');
+
+			window.clearInterval(interval);
+
+			// enable upload button
+			this.enable();
+
+			// add file to the list
+			$('<li></li>').appendTo('#example1 .files').text(file);
+		}
+	});
+
+ 
+</script>
+
+<style type="text/css">
+
+h1 {color: #C7D92C;	font-size: 18px; font-weight: 400;}
+a {	color: white;}
+a:hover, a.hover {color: #C7D92C;}
+#text {	margin: 25px; }
+ul { list-style: none; }
+
+.example {
+	padding: 0 20px;
+	float: left;
+	width: 230px;
+}
+
+.wrapper {
+	width: 133px;
+	margin: 0 auto;
+}
+
+div.button {
+	height: 29px;
+	width: 133px;
+	background: url(button.png) 0 0;
+
+	font-size: 14px;
+	color: #C7D92C;
+	text-align: center;
+	padding-top: 15px;
+}
+/*
+We can't use ":hover" preudo-class because we have
+invisible file input above, so we have to simulate
+hover effect with javascript.
+ */
+div.button.hover {
+	background: url(button.png) 0 56px;
+	color: #95A226;
+}
+#button2.hover, #button4.hover {
+	text-decoration:underline;
+}
+</style>
+
+
