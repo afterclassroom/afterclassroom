@@ -913,10 +913,9 @@ div.findIMitem a:hover{
     float:left;
 }
 .flistCr{
-    width:108px;
+    width:100%;
 }
 .flistCr a{
-    background:url('/images/flistCr.png') no-repeat 4px center;
     padding-left:15px;
     font-weight:bold;
 }
@@ -978,7 +977,7 @@ div.findIMitem a:hover{
     padding:10px 0px;
     margin:0px 10px;
     overflow:hidden;
-    border-top:1px #e4e4e4 solid;
+    border-bottom:1px #e4e4e4 solid;
     _height:100%;
 }
 .flistInf{
@@ -1116,7 +1115,19 @@ div.findIMitem a:hover{
 .FriendRec .col451in{
     padding:1px;
 }
+.FriendUp .col451in{
+    padding:1px;
+}
+.FriendSearch .col451in{
+    padding:1px;
+}
 .FriendRec .flist{
+    background:url('/images/flistC.png') no-repeat;
+}
+.FriendAll .col451in{
+    padding:1px;
+}
+.FriendAll .flist{
     background:url('/images/flistC.png') no-repeat;
 }
 .findF{
@@ -1137,6 +1148,26 @@ div.findIMitem a:hover{
 .FriendInvite .titleH1{
     background:url('/images/iconF11.png') no-repeat;
     padding-left:22px;
+}
+.FriendAll .titleH1{
+    background:url('/images/iconF1.png') no-repeat;
+    padding-left:22px;
+    margin:10px;
+}
+.FriendRec .titleH1{
+    background:url('/images/iconF4.png') no-repeat;
+    padding-left:22px;
+    margin:10px;
+}
+.FriendUp .titleH1{
+    background:url('/images/iconF5.png') no-repeat;
+    padding-left:22px;
+    margin:10px;
+}
+.FriendSearch .titleH1{
+    background:url('/images/iconF3.png') no-repeat;
+    padding-left:22px;
+    margin:10px;
 }
 .fInvFrom, .fInvTo, .fInvMess{
     overflow:hidden;
@@ -2910,8 +2941,8 @@ div.helpAdv2{
     padding:2px 0px;
 }
 .proMind{
-    height:62px;
-    background:url('/images/proBG.png') no-repeat 1px 1px;
+    height:82px;
+    background:url('/images/sLyourmind.png') no-repeat 1px 1px;
 }
 .proMindT{
     padding:10px 12px 0px 35px;
@@ -2941,8 +2972,13 @@ div.helpAdv2{
     background:url('/images/proPlusH.gif') no-repeat left top;
 }
 .proAtt{
-    padding:10px 5px 0px 10px;
+<<<<<<< HEAD
+    padding:7px 3px 0px 1px;
     color:#fff;
+=======
+    padding:10px 5px 0px 10px;
+    color:#000;
+>>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
     clear:both;
     _padding-top:5px;
 }
@@ -2952,7 +2988,13 @@ div.helpAdv2{
 }
 .proAttL{
     padding-top:5px;
-    float:left;
+    /*float:left;*/
+<<<<<<< HEAD
+    background:#1994DA;
+    height: 32px;
+    width: 449px;
+=======
+>>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
 }
 .proAtt span a{
     display:block;
@@ -3017,7 +3059,6 @@ div.helpAdv2{
 .proInfTop{
     float:right;
     padding-bottom:8px;
-    *padding-bottom:0px;
 }
 .proInfTop a{
     background:url('/images/flistREdit.png') no-repeat left top;
@@ -4179,7 +4220,6 @@ span.shopTset{
     background:url('/images/safeB.png') no-repeat left bottom;
     overflow:hidden;
     padding-bottom:8px;
-    _height:100%:
 }
 .staySafeTitle{
     background:url('/images/safeT.png') no-repeat left top;

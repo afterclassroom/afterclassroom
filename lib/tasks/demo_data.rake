@@ -8,6 +8,37 @@ namespace :db do
   namespace :demo_data do
     desc 'Load demo data'
     task :load => :environment do |t|
+<<<<<<< HEAD
+      #      Users
+      #      departments_for_schools
+            create_demo_people
+            create_demo_friendship
+            create_demo_fan
+            create_demo_wall
+
+      #      Begin creating Posts data
+            create_demo_posts_assignments
+            create_demo_posts_tests
+            create_demo_posts_projects
+            create_demo_posts_exams
+            create_demo_posts_myx
+            create_demo_posts_books
+            create_demo_posts_tutors
+            create_demo_posts_jobs
+            create_demo_posts_housings
+            create_demo_posts_parties
+            create_demo_posts_teamups
+            create_demo_posts_awarenesses
+            create_demo_posts_foods
+            create_demo_posts_qas
+            create_demo_phoneapps
+      #
+      #      # Exam schedule
+            create_demo_posts_exam_schedules
+      #
+      #      # Messages data
+            create_demo_messages
+=======
       # Users
 #      departments_for_schools
 #      create_demo_people
@@ -30,13 +61,14 @@ namespace :db do
 #      create_demo_posts_awarenesses
 #      create_demo_posts_foods
 #      create_demo_posts_qas
-      create_demo_phoneapps
+#      create_demo_phoneapps
 #
 #      # Exam schedule
 #      create_demo_posts_exam_schedules
 #
 #      # Messages data
 #      create_demo_messages
+>>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
 
     end
     
@@ -159,9 +191,9 @@ def create_demo_wall
     friends = u.user_friends
     friends.each do |f|
       user_wall = UserWall.create do |w|
-         w.user_id = u.id
-         w.user_id_post = f.id
-         w.content = Faker::Lorem.paragraphs
+        w.user_id = u.id
+        w.user_id_post = f.id
+        w.content = Faker::Lorem.paragraphs
       end
     end
   end
@@ -224,10 +256,10 @@ def create_demo_posts_projects
     post = create_post(user, school, post_category)
     
     post_proj = PostProject.create do |prj|
-    	prj.post = post
+      prj.post = post
       prj.department = school.departments.find(:first)
       prj.school_year = schoolyear[rand(schoolyear.size)]
-    	prj.due_date = DateTime.now + rand(20)
+      prj.due_date = DateTime.now + rand(20)
       prj.tag_list = get_random_list_tags
     end
     
@@ -436,8 +468,8 @@ def create_demo_posts_teamups
     post = create_post(user, school, post_category)
     
     pteam = PostTeamup.create do |pt|
-    	pt.post = post
-    	pt.teamup_category_id = TeamupCategory.find(rand(TeamupCategory.count)+1)
+      pt.post = post
+      pt.teamup_category_id = TeamupCategory.find(rand(TeamupCategory.count)+1)
       pt.ourStatus = Faker::Lorem.sentence
       pt.founded_in = DateTime.now - rand(30)
       pt.noOfMember = rand(200)
@@ -459,10 +491,10 @@ def create_demo_posts_awarenesses
     
     post_a = PostAwareness.create do |pa|
       type = AwarenessType.find(rand(AwarenessType.count) + 1)
-    	pa.post = post
+      pa.post = post
       pa.awareness_type = type
-    	pa.due_date = DateTime.now + rand(20) if type.label == "take_action_now"
-    	pa.phone = Faker::PhoneNumber.phone_number if type.label == "emergency_alerts"
+      pa.due_date = DateTime.now + rand(20) if type.label == "take_action_now"
+      pa.phone = Faker::PhoneNumber.phone_number if type.label == "emergency_alerts"
       pa.tag_list = get_random_list_tags
     end
   end
@@ -478,9 +510,9 @@ def create_demo_posts_foods
     post = create_post(user, school, post_category)
     
     pf = PostFood.create do |p|
-    	p.post = post
-    	p.address = Faker::Address.street_address
-    	p.phone = Faker::PhoneNumber.phone_number
+      p.post = post
+      p.address = Faker::Address.street_address
+      p.phone = Faker::PhoneNumber.phone_number
       p.tag_list = get_random_list_tags
     end
     
@@ -513,11 +545,11 @@ def create_demo_posts_exam_schedules
     school = user.school
 
     es = PostExamSchedule.create do |p|
-    	p.user = user
+      p.user = user
       p.school = school
       p.subject = Faker::Lorem.sentence
-    	p.teacher_name = Faker::Name.name
-    	p.place = Faker::Address.street_address
+      p.teacher_name = Faker::Name.name
+      p.place = Faker::Address.street_address
       p.starts_at = DateTime.now + rand(20)
       p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size)].first
     end
@@ -590,8 +622,8 @@ def create_demo_phoneapps
         
         ap.photo = uploaded_file(photo, 'image/png')
         
-#        ap.image = "/images/pictures/phone2.png"
-#        ap.Largeimage = "/images/pictures/phoneM1.png"
+        #        ap.image = "/images/pictures/phone2.png"
+        #        ap.Largeimage = "/images/pictures/phoneM1.png"
       end
     end
 

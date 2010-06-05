@@ -6,107 +6,57 @@
   <%= render :partial => "leftmenu" %>
 </div>
 <div class="contMainL">
-  <div class="col451 Friend">
+  <div class="col451 FriendSearch">
     <div class="col451in">
       <div class="col451Cont">
-        <h2 class="titleH2">We’d like to help you find your friends</h2>
-        <div class="friCont">Your friends on AfterClassroom are the same friends, acquaintances and family members that you communicate with in the real world. You can use any of the tools on this page to find more friends.</div>
-        <div class="findPeo">
-          <div class="findTop">
-            <div class="findLeft">Find People You Email</div>
-            <div class="findRight"><a href="#">Upload Contact File</a></div>
+        <h1 class="titleH1">Search for Friends</h1>
+        <div id="friend_list">
+          <%= display_flash_messages %>
+          <% @friends.each do |f| %>
+            <%= render :partial => "item", :locals => {:friend => f} %>
+          <% end %>
+
+          <!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @friends %></span>
+            <%= will_paginate @friends %>
           </div>
-          <div class="findDes">Searching your email account is the fastest way to find your friends on AterClassroom</div>
-          <div class="findItem">
-            <div class="findText">Your Email</div>
-            <div class="findIn"><input type="text" name="Text2"/></div>
-          </div>
-          <div class="findItem">
-            <div class="findText">Email Password</div>
-            <div class="findIn"><input type="text" name="Text2"/></div>
-          </div>
-          <div class="btmFind"><a href="#">Find Friends</a></div>
-          <div class="findPass">AfterClassroom will not store your password.<a href="#">Learn more</a></div>
-        </div>
-        <div class="sugges">Suggestions</div>
-        <div class="suggesDes">Add people you know as friends and become a fan of public profiles you like</div>
-        <div class="suggesList">
-          <div class="suggesRow">
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">ThienanHo</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">Kathy Tran</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic3.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">ThienanHo</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-          </div>
-          <div class="suggesRow">
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic4.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">ThienanHo</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/noimg.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">Kathy Tran</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-            <div class="suggesItem">
-              <div class="AsDContImg"><a href="#"><div><img src="pictures/pic3.png"/></div></a></div>
-              <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-              <div class="suggesName">ThienanHo</div>
-              <div class="suggesAdd"><a href="#">Add as friends</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="viewM"><a href="#">View more</a></div>
-        <div class="searchfind">
-          <div class="searchP">
-            <div class="searchPtitle">Search for People</div>
-            <div class="searchPInput">
-              <div class="search">
-                <div class="textS"><input type="text" name="Text1"/></div>
-                <div class="btmS"><a href=""><img src="/images/iconSF.png"/></a></div>
-              </div>
-            </div>
-            <div class="searchPList">
-              <div class="searchPItem"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Aliquam euismod ligula at mauris molestie nec vulputate lacus commodo. Aliquam vitae adipiscing est<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Integer faucibus tempor turpis<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Mauris lobortis mi eu quam vulputate imperdiet<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Donec lobortis ipsum vel ante accumsan sagittis<span> </span></a></div>
-              <div class="searchPItem"><a href="#">Sed tincidunt tempor tincidunt. Vivamus tincidunt lobortis odio ornare<span> </span></a></div>
-            </div>
-          </div>
-          <div class="findIM">
-            <div class="findIMtitle">Find People You IM</div>
-            <div class="findIMdes">Find out which of your AOL Instant Messenger or Windows Live Messenger bubdies are on AfterClassroom.</div>
-            <div class="findIMitem"><a href="#">Import AIM Bubdy List<span> </span></a></div>
-            <div class="findIMitem"><a href="#">Import Windows Live Contacts<span> </span></a></div>
-          </div>
+          <!--Pagination-->
         </div>
       </div>
     </div>
   </div>
-
 </div>
-
 
 <div class="contMainR">
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
+
+<!--Alert-->
+<div id="delete_alert" title="Alert" style="display:none;">
+  <% form_tag delete_user_friends_path(current_user), {:id => "delete_form"} do %>
+    <%= hidden_field_tag "user_id_friend", "" %>
+    Are you sure?
+  <% end %>
+</div>
+<!--Alert-->
+
+<script type="text/javascript">
+  function DeleteFriend(friend_id){
+    $("#user_id_friend").val(friend_id);
+    $("#delete_alert").dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $("#delete_form").submit();
+        },
+        Cancel: function() {
+          $(this).dialog('close');
+        }
+      }
+    });
+  }
+
+</script>

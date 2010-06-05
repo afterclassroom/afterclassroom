@@ -1,0 +1,26 @@
+<div class="flistItem">
+  <div class="assPic"><%= link_to "<div>#{image_tag(friend.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => friend.id} %></div>
+  <div class="flistInf">
+    <div class="flistN"><%= link_to friend.full_name, {:controller => "profile", :action => "show_profile", :id => friend.id} %></div>
+    <div class="flistS"><span>at</span><%= friend.school.name %></div>
+  </div>
+  <div class="flistR">
+    <div class="flistRAdd">
+      <a href="#"><span>Add to List</span></a>
+      <ul style="display: block;">
+        <li><a href="http://google.com/">Google</a></li>
+        <li><a href="http://yahoo.com/">Yahoo</a></li>
+        <li><a href="http://live.com/">Live Search</a></li>
+      </ul>
+    </div>
+    <div class="flistRdelete"><a href="javascript:;" onclick="DeleteFriend('<%= friend.id %>');"> </a></div>
+  </div>
+</div>
+
+<style type="text/css">
+  /* Child lists and links */
+  .flistRAdd ul { display: none; border-top: 1px black solid; text-align: left; }
+  .flistRAdd:hover ul { display: block; }
+  .flistRAdd ul li a { padding: 5px; height: 17px; }
+  .flistRAdd ul li a:hover { background-color: #333; }
+</style>
