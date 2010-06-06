@@ -2941,8 +2941,8 @@ div.helpAdv2{
     padding:2px 0px;
 }
 .proMind{
-    height:82px;
-    background:url('/images/sLyourmind.png') no-repeat 1px 1px;
+    /*height:82px;*/
+    background:url('/images/proBG1.gif') no-repeat 1px 1px;
 }
 .proMindT{
     padding:10px 12px 0px 35px;
@@ -2972,29 +2972,19 @@ div.helpAdv2{
     background:url('/images/proPlusH.gif') no-repeat left top;
 }
 .proAtt{
-<<<<<<< HEAD
-    padding:7px 3px 0px 1px;
-    color:#fff;
-=======
-    padding:10px 5px 0px 10px;
-    color:#000;
->>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
-    clear:both;
-    _padding-top:5px;
+     color:#000;
 }
 .proAtt span{
     float:left;
     padding-right:10px;
 }
 .proAttL{
-    padding-top:5px;
-    /*float:left;*/
-<<<<<<< HEAD
-    background:#1994DA;
-    height: 32px;
-    width: 449px;
-=======
->>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
+    background:none repeat scroll 0 0 #119AE7;
+    height:22px;
+    margin-left:1px;
+    margin-top:6px;
+    padding-top:10px;
+    width:449px;
 }
 .proAtt span a{
     display:block;
@@ -3039,7 +3029,7 @@ div.helpAdv2{
     background:url('/images/att5H.gif') no-repeat left top;
 }
 .proAttR{
-    float:right;
+   
 }
 .proAttR a{
     background:url('/images/proShare.gif') no-repeat left top;

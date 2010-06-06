@@ -7,271 +7,185 @@
     </div>
     <div class="proAtt">
       <div class="proAttL">
+        <div class="left">
+          <span>Attach:</span>
+          <div class="leftbottom">
+            <span class="att1"><a href="#" id="1" class="link" name="1"></a> </span>
+            <span class="att2"><a href="#" id="2" class="link" name="2"></a> </span>
+            <span class="att3"><a href="#" id="3" class="link" name="3"></a> </span>
+            <span class="att4"><a href="#"> </a></span>
+            <span class="att5"><a href="#"> </a></span>
+          </div>
+          <div id="box1" class="box" style="display:none">
+            <span class="att1"><a href="#"> </a></span>
+            <br>
+              <div id="example1" class="example">
+                <div id="close">
+                  <p><a href="#" id="1" class="close1" > X </a></p>
+                </div>
+                <div class="wrapper">
+                  <input type="text" size="30" />
+                  <button id="button1" class="button">Attach</button>
+                </div>
+                <p>Attach files:</p>
+                <ol class="files"></ol>
+              </div>
+            </br>
+          </div>
 
-        <span>Attach:</span>
+          <div id="box2" class="box" style="display:none">
+            <span class="att2"><a href="#"> </a></span>
+            <br>
+              <div id="example1" class="example">
+                <div id="close">
+                  <p><a href="#" id="2" class="close1" > X </a></p>
+                </div>
+                <div class="wrapper">
+                  <input type="text" size="30" />
+                  <button id="button1" class="button">Attach</button>
+                </div>
+                <p>Attach files:</p>
+                <ol class="files"></ol>
+              </div>
+            </br>
 
-<<<<<<< HEAD
- 
-          <span class="att1"><a href="#" id="click"></a></span>
-<li id="example1" class="example">
-		<p>You can style button as you want</p>
-		<div class="wrapper">
-			<div id="button1" class="button">Upload</div>
-		</div>
-		<p>Uploaded files:</p>
+          </div>
+          <div id="box3" class="box" style="display:none">
+            <span class="att3"><a href="#"> </a></span>
+            <br>
+              <div id="example1" class="example">
+                <div id="close">
+                  <p><a href="#" id="3" class="close1" > X </a></p>
+                </div>
+                <div class="wrapper">
+                  <input type="text" size="30" />
+                  <button id="button1" class="button">Attach</button>
+                </div>
+                <p>Attach files:</p>
+                <ol class="files"></ol>
+              </div>
+            </br>
 
-		<ol class="files"></ol>
-	</li>
+          </div>
 
-  <p><a href="#">Close</a></p>
-</div>
-
-
-  <div id="content3">
-    <span class="att2"> <a href="#"></a></span>
-       <span class="att3"><a href="#"></a></span>
-        <span class="att4"><a href="#"></a></span>
-      <span class="att5"><a href="#"></a></span>
-      </div>   
+        </div>
 
       </div>
-=======
-  <span class="att1"><a href="#" onClick="showSlidingDiv(); return false;"> </a></span>
-       
-<div id="attach">
-        <span class="att2"><a href="#"> </a></span>
-        
-        <span class="att3"><a href="#"> </a></span>
-        <span class="att4"><a href="#"> </a></span>
-      <span class="att5"><a href="#"> </a></span>
-    </div>
-<div class="example" id="example1">
-		
-		<div class="wrapper">
-			<div class="button" id="button1">Upload</div>
-		</div>
-		<p>Uploaded files:</p>
-                <ol class="files"></ol>
-                 <p><a href="#" onClick="showSlidingDiv(); return false;"> X </a></p>
 
+      <div class="left1">
+        <div class="leftbottom1">a</div>
+      </div>
 
-
-		
-				<div class="preview">
-					<img id="thumb" width="100px" height="100px" src="/images/bg71-61.png"/>
-				</div>
-
-				<span class="wrap hotness">
-					<form id="newHotnessForm" action="http://localhost:3000/users/3/profiles#">
-
-						<label>Upload a Picture of Yourself</label>
-						<input type="file" id="imageUpload" size="20" />
-						<button type="submit" class="button">Save</button>
-					</form>
-				</span>
-			
-    </div>    				
-  </div>
-      
->>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
       <div class="proAttR"><%= submit_tag 'Share' %></div>
     </div>
+
   </div>
 <% end %>
-<<<<<<< HEAD
- <script type="text/javascript">
-      $(document).ready(function(){
-	   
 
-   			$('a').click(function(){
+<script type= "text/javascript">
+    $(document).ready(function() {
+        $('#box').hide();
+        $('a.link').click(function() {
+            $('.leftbottom').hide();
+            var id = $(this).attr('id');
+            $('#box' + id).toggle(1);
+            // alert(id);
+            return false;
+        });
+        $('a.close1').click(function(){
+            var id = $(this).attr('id');
+            $('#box' + id).hide();
+            $('.leftbottom').show();
 
-			$('#example1').show('slow');
-                       
-                            {
-                            $('#content3').hide();
-                            }
-                        
- 
-   });
+        })
+    });
 
-   $('#close').click(function(){
-
-   		$('#example1').hide();
-                {
-                    
-                    $('#content3').show('slow');
-                    }
-=======
-
-<script type= "text/javascript">/*<![CDATA[*/
-    function showSlidingDiv(){
-$("#example1").animate({"height": "toggle"}, { duration: 1 });
-}
 
     $(document).ready(function(){
 
-	  $('#example1').hide();
+        /* example 1 */
+        var button = $('#button1'), interval;
+        new AjaxUpload(button,{
+            //action: 'upload-test.php', // I disabled uploads in this example for security reasons
+            action: 'upload.htm',
+            name: 'myfile',
+            onSubmit : function(file, ext){
+                // change button text, when user selects file
+                button.text('Attach');
 
-   			$('a').click(function(){
-{$('#attach').hide('slow');
+                // If you want to allow uploading only 1 file at time,
+                // you can disable upload button
+                this.disable();
 
-}
-			});
+                // Uploding -> Uploading. -> Uploading...
+                interval = window.setInterval(function(){
+                    var text = button.text();
+                    if (text.length < 13){
+                        button.text(text + '.');
+                    } else {
+                        button.text('Attach');
+                    }
+                }, 200);
+            },
+            onComplete: function(file, response){
+                button.text('Attach');
 
-   $('a#close').click(function(){
-   		$('#example1').hide('slow');
-                $('#attach').show('slow');
-                    
->>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
-                
-		})
+                window.clearInterval(interval);
 
- 	  });
+                // enable upload button
+                this.enable();
 
-$(document).ready(function(){
+                // add file to the list
+                $('<li></li>').appendTo('#example1 .files').text(file);
+            }
+        });
 
-	/* example 1 */
-	var button = $('#button1'), interval;
-	new AjaxUpload(button,{
-		//action: 'upload-test.php', // I disabled uploads in this example for security reasons
-		action: 'upload.htm',
-		name: 'myfile',
-		onSubmit : function(file, ext){
-			// change button text, when user selects file
-			button.text('Uploading');
 
-			// If you want to allow uploading only 1 file at time,
-			// you can disable upload button
-			this.disable();
+    });
 
-			// Uploding -> Uploading. -> Uploading...
-			interval = window.setInterval(function(){
-				var text = button.text();
-				if (text.length < 13){
-					button.text(text + '.');
-				} else {
-					button.text('Uploading');
-				}
-			}, 200);
-		},
-		onComplete: function(file, response){
-			button.text('Upload');
 
-			window.clearInterval(interval);
-
-			// enable upload button
-			this.enable();
-
-			// add file to the list
-			$('<li></li>').appendTo('#example1 .files').text(file);
-		}
-	});
-
-<<<<<<< HEAD
- 
 </script>
-
 <style type="text/css">
+  .proAttL span{padding-left:3px;}
+  .leftbottom1{
+    background:#119AE7;
+    margin-left:1px;
+    width:449px;
+    color:#119AE7;
 
-h1 {color: #C7D92C;	font-size: 18px; font-weight: 400;}
-a {	color: white;}
-=======
-});
-$(document).ready(function(){
+  }
+  .proAttR {
+    background:url("/images/shareAttach.gif") no-repeat scroll 0 0 transparent;
+    margin-top:-15px;
+    height: 31px;
+    width: 449px;
+    margin-left:1px;
+  }
+  .proAttR input{
+    margin-left:380px;
 
-	var thumb = $('img#thumb');
+  }
 
-	new AjaxUpload('imageUpload', {
-		action: $('form#newHotnessForm').attr('action'),
+  #close {
+    padding-left:400px;
+  }
+  #example1{
+    background:#119AE7;
 
-		name: 'image',
-		onSubmit: function(file, append) {
-			$('div.preview').addClass('loading');
-		},
+    width:409px;
+  }
+  .example {
+    padding: 0 20px;
+    float: left;
+    width: 230px;
+  }
 
-		onComplete: function(file, response) {
-			thumb.load(function(){
-				$('div.preview').removeClass('loading');
-				thumb.unbind();
-			});
-			thumb.attr('src', response);
-		}
-	});
-});
-
-/*]]>*/</script>
-
-<style type="text/css">
-#example1{
-	border:1px solid #CCCC33;
-	padding:10px;
-	margin-top:10px;
-	width:400px;
-	}
-
-h1 {color: #C7D92C;	font-size: 18px; font-weight: 400;}
-
->>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
-a:hover, a.hover {color: #C7D92C;}
-#text {	margin: 25px; }
-ul { list-style: none; }
-
-.example {
-	padding: 0 20px;
-	float: left;
-	width: 230px;
-}
-
-.wrapper {
-	width: 133px;
-	margin: 0 auto;
-}
-
-div.button {
-	height: 29px;
-	width: 133px;
-	background: url(button.png) 0 0;
-
-	font-size: 14px;
-	color: #C7D92C;
-	text-align: center;
-	padding-top: 15px;
-}
-/*
-We can't use ":hover" preudo-class because we have
-invisible file input above, so we have to simulate
-hover effect with javascript.
- */
-<<<<<<< HEAD
-div.button.hover {
-	background: url(button.png) 0 56px;
-	color: #95A226;
-}
-#button2.hover, #button4.hover {
-	text-decoration:underline;
-}
-</style>
-
-
-=======
-span.wrap { padding: 10px; }
-		span.wrap.hotness { margin-left: 30px; }
-		span.wrap.old-and-busted { width: 358px; }
-
-		span.wrap button { display: block; margin-top: 10px; }
-
-		span.wrap label { margin-bottom: 5px; }
-		div.preview { float: left; width: 100px; height: 100px; border: 2px dotted #CCCCCC; }
-		div.preview.loading { background: url(/images/validation/ajax-loader.gif) no-repeat 39px 40px; }
-		div.preview.loading img {display: none; }
-/*		input#imageUpload { width: 400px; }*/
-		div.highlight { margin-bottom: 20px; }
-
-		span.wrap form { margin: 0; }
-
-
+  .wrapper {
+    padding-left:80px;
+    margin-top:-25px;
+  }
+  
 </style>
 
 
 
->>>>>>> 4b152925a6840ebd21ee9503a103c84fd9af330b
