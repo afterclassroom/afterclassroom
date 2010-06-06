@@ -70,6 +70,8 @@ ActionController::Routing::Routes.draw do |map|
       :collection => {
       :search => :get,
       :find => :get,
+      :find_by_email => :get,
+      :display_mail => :post,
       :recently_added => :get,
       :recently_updated => :get,
       :list => :get,

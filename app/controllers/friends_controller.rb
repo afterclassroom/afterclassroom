@@ -1,4 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
+require 'contacts'
+
 class FriendsController < ApplicationController
   layout 'student_lounge'
   
@@ -20,12 +22,18 @@ class FriendsController < ApplicationController
   end
 
   def find
+    @mail_account = MailAccount.new(nil, nil, "gmail")
     user_id_suggestions = session[:user_id_suggestions]
     if user_id_suggestions.nil?
       user_id_suggestions = get_user_id_suggestions(@user)
       session[:user_id_suggestions] = user_id_suggestions
     end
+    @user_suggestions = []
     @user_suggestions = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})", :limit => 6) if user_id_suggestions.size > 0
+  end
+
+  def find_by_email
+    
   end
 
   def recently_added
@@ -55,6 +63,16 @@ class FriendsController < ApplicationController
     @user.reload
     flash[:notice] = "Delete success."
     redirect_to :action => "index"
+  end
+
+  def display_mail
+    mail_box = params[:mailbox]
+    @mail_account = MailAccount.new(nil, nil, mail_box)
+    respond_to do |format|
+      format.js do
+        render :partial=>"mail_form",:layout=>false
+      end
+    end
   end
 
   protected

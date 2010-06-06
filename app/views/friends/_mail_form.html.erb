@@ -1,0 +1,12 @@
+<% form_for :mail_account, @mail_account, find_by_email_user_friends_path(current_user), {:id => "form_account_email"} do |f| %>
+  <%= f.hidden_field :mail_type %>
+  <div class="findItem">
+    <div class="findText">Your Email*</div>
+    <div class="findIn"><%= f.text_field :login, :style => "width:150px" %><%= display_mailtype(@mail_account.mail_type)%></div>
+  </div>
+  <div class="findItem">
+    <div class="findText">Email Password*</div>
+    <div class="findIn"><%= f.text_field :password, :style => "width:150px" %></div>
+  </div>
+  <div class="btmFind"><a href="javascript:;" onclick="$('#find_by_mail').submit();">Find Friends</a></div>
+<% end %>
