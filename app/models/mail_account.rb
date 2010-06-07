@@ -2,7 +2,7 @@ require 'contacts'
 
 class MailAccount
   GMAIL = 'gmail'
-  YAHOOMAIL = "yahoo"
+  YAHOOMAIL = 'yahoo'
   HOTMAIL = 'hotmail'
   AOL = 'aol'
   

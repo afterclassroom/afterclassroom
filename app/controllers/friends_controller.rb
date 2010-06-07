@@ -32,8 +32,27 @@ class FriendsController < ApplicationController
     @user_suggestions = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})", :limit => 6) if user_id_suggestions.size > 0
   end
 
-  def find_by_email
-    
+  def find_email
+    login = params[:mail_account][:login]
+    password = params[:mail_account][:password]
+    mail_type = params[:mail_account][:mail_type]
+    mail_account = MailAccount.new(login, password, mail_type)
+    begin
+      contacts = mail_account.contacts
+      arr_mails = []
+      contacts.collect {|m| arr_mails << m[1]}
+      users = User.find(:all, :conditions => "email IN('#{arr_mails.split("', '")}')") if arr_mails.size > 0
+      unless users.nil?
+        user_id_friends = @user.user_friends.collect(&:id)
+        user_id_by_mails = users.collect(&:id)
+        user_id_suggestions = user_id_by_mails - user_id_friends
+        session[:user_id_suggestions] = user_id_suggestions if user_id_suggestion.size > 0
+        notice "Find successfuly."
+      end
+    rescue Contacts::AuthenticationError => oops
+      error oops
+    end
+    redirect_to find_user_friends_path(@user)
   end
 
   def recently_added
@@ -65,7 +84,7 @@ class FriendsController < ApplicationController
     redirect_to :action => "index"
   end
 
-  def display_mail
+  def display_email
     mail_box = params[:mailbox]
     @mail_account = MailAccount.new(nil, nil, mail_box)
     respond_to do |format|

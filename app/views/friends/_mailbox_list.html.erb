@@ -1,10 +1,10 @@
 <div class="importLogo">
   <table cellspacing="0" cellpadding="0" style="width: 100%;">
     <tbody><tr>
-        <td><%= link_to_remote(image_tag('/images/logoW.jpg'), :update=>"mail_form", :url => "#{display_mail_user_friends_path(current_user)}?mailbox=#{MailAccount::HOTMAIL}") %></td>
-        <td><%= link_to_remote(image_tag('/images/logoAOL.jpg'), :update=>"mail_form", :url => "#{display_mail_user_friends_path(current_user)}?mailbox=#{MailAccount::AOL}") %></td>
-        <td><%= link_to_remote(image_tag('/images/logoGmail.jpg'), :update=>"mail_form", :url => "#{display_mail_user_friends_path(current_user)}?mailbox=#{MailAccount::GMAIL}") %></td>
-        <td><%= link_to_remote(image_tag('/images/logoYah.jpg'), :update=>"mail_form", :url => "#{display_mail_user_friends_path(current_user)}?mailbox=#{MailAccount::YAHOOMAIL}") %></td>
+        <td><%= link_to_remote(image_tag('/images/logoW.jpg'), :update=>"mail_form", :url => "#{display_email_user_friends_path(current_user)}?mailbox=#{MailAccount::HOTMAIL}") %></td>
+        <td><%= link_to_remote(image_tag('/images/logoAOL.jpg'), :update=>"mail_form", :url => "#{display_email_user_friends_path(current_user)}?mailbox=#{MailAccount::AOL}") %></td>
+        <td><%= link_to_remote(image_tag('/images/logoGmail.jpg'), :update=>"mail_form", :url => "#{display_email_user_friends_path(current_user)}?mailbox=#{MailAccount::GMAIL}") %></td>
+        <td><%= link_to_remote(image_tag('/images/logoYah.jpg'), :update=>"mail_form", :url => "#{display_email_user_friends_path(current_user)}?mailbox=#{MailAccount::YAHOOMAIL}") %></td>
       </tr>
     </tbody></table>
 </div>
