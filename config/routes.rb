@@ -74,9 +74,14 @@ ActionController::Routing::Routes.draw do |map|
       :display_email => :post,
       :recently_added => :get,
       :recently_updated => :get,
+      :friend_request => :get,
       :list => :get,
       :invite => :get,
-      :delete => :post}
+      :invite_by_list_email => :post,
+      :invite_by_import_email => :post,
+      :delete => :post,
+      :accept => :post,
+      :de_accept => :post}
   end
   
   # Sessions

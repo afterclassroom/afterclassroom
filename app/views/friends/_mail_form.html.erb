@@ -1,9 +1,8 @@
 <% form_for :mail_account, @mail_account, :url => find_email_user_friends_path(current_user), :html => {:id => "form_account_email"} do |f| %>
-  <%= f.hidden_field :mail_type %>
   <div class="error" style="padding: 10px; display:none;"></div>
   <div class="findItem">
     <div class="findText">Your Email*</div>
-    <div class="findIn"><%= f.text_field :login, :style => "width:150px", :class => "required" %><%= display_mailtype(@mail_account.mail_type)%></div>
+    <div class="findIn"><%= f.text_field :login, :style => "width:150px", :class => "required" %><span id="mail_type_span"><%= render :partial => "mail_type" %></span></div>
   </div>
   <div class="findItem">
     <div class="findText">Email Password*</div>

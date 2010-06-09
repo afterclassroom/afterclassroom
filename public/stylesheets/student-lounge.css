@@ -646,7 +646,7 @@ div.friSelect a:link{
 .friConnect11{
     background:url('/images/iconF11.png') no-repeat left 4px;
 }
-div.friConnect5, div.friConnect11{
+div.friConnect11{
     border-bottom:0px;
 }
 .friendL{
@@ -2942,11 +2942,12 @@ div.helpAdv2{
 }
 .proMind{
     /*height:82px;*/
-    background:url('/images/proBG1.gif') no-repeat 1px 1px;
 }
 .proMindT{
-    padding:10px 12px 0px 35px;
+    background:transparent url(/images/proBG1.gif) no-repeat scroll 1px 1px;
+    height:27px;
     overflow:hidden;
+    padding:10px 12px 0 35px;
 }
 .proques{
     float:left;
@@ -2957,7 +2958,7 @@ div.helpAdv2{
     color:#969696;
     font-weight:bold;
     width:100%;
- }
+}
 .proPlus{
     float:right;
 }
@@ -2972,19 +2973,20 @@ div.helpAdv2{
     background:url('/images/proPlusH.gif') no-repeat left top;
 }
 .proAtt{
-     color:#000;
+    background:#119AE7 none repeat scroll 0 0;
+    clear:both;
+    color:#FFFFFF;
+    margin:0 1px;
+    min-height:15px;
+    padding:0 5px 0 10px;
 }
 .proAtt span{
     float:left;
     padding-right:10px;
 }
 .proAttL{
-    background:none repeat scroll 0 0 #119AE7;
-    height:22px;
-    margin-left:1px;
-    margin-top:6px;
+    float:left;
     padding-top:10px;
-    width:449px;
 }
 .proAtt span a{
     display:block;
@@ -3029,7 +3031,7 @@ div.helpAdv2{
     background:url('/images/att5H.gif') no-repeat left top;
 }
 .proAttR{
-   
+    float:right;
 }
 .proAttR a{
     background:url('/images/proShare.gif') no-repeat left top;
@@ -3044,6 +3046,46 @@ div.helpAdv2{
 .proAttR a:hover{
     background:url('/images/proShareH.gif') no-repeat left top;
     color:#fff;
+}
+.button {
+    border:none;
+    background:url('/images/proShare.gif') no-repeat top left;
+    padding:2px 8px;
+    height:24px;
+    color:#969696;
+    cursor: pointer;
+}
+.button:hover {
+    border:none;
+    background:url('/images/proShareH.gif') no-repeat top left;
+    padding:2px 8px;
+    color:#fff;
+    cursor: pointer;
+}
+.proAttItem{
+    margin:0 5px 0 0;
+    padding:5px;
+}
+.proAttItem .wrapItem{
+    border:1px #e4e4e4 solid;
+    background:#fff;
+    min-height:50px;
+}
+.footWall{
+    background:transparent url(/images/shareAttach.gif) no-repeat scroll 0 0;
+    height:29px;
+    margin-left:1px;
+}
+.wapCont{
+    margin: 20px 10px 10px 10px;
+}
+.wapCont input{
+    border:1px solid #CECECE;
+    color:#969696;
+    height:15px;
+    padding-top:4px;
+    text-indent:2px;
+    width:300px;
 }
 /********** Profile infomation **************/
 .proInfTop{
