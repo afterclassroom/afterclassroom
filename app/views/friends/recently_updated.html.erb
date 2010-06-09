@@ -6,12 +6,20 @@
   <%= render :partial => "leftmenu" %>
 </div>
 <div class="contMainL">
-  <div class="col451 FriendUp">
+  <div class="col451 FriendRec">
     <div class="col451in">
       <div class="col451Cont">
-        <h1 class="titleH1">Recently Updated</h1>
+        <h1 class="titleH1">Recently Added</h1>
         <div id="friend_list">
-          
+          <% @invites.each do |i| %>
+            <div class="flistItem">
+              <div class="assPic"><%= link_to "<div>#{image_tag(i.user_target.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => i.user_target.id} %></div>
+              <div class="flistInf">
+                <div class="flistN"><%= link_to i.user_target.full_name, {:controller => "profile", :action => "show_profile", :id => i.user_target.id} %></div>
+                <div class="flistS"><span>at</span><%= i.user_target.school.name %></div>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

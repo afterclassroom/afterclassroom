@@ -29,7 +29,21 @@ class UserMailer < ActionMailer::Base
     @subject    += 'Your account has been activated!'
     @body[:url]  = "http://#{Setting.get(:site_url)}/"
   end
-  
+
+  def invitation(user, email, domain, invitation_code, content)
+      logger.info("invitation_email:" + invitation_code.to_s)
+      @subject = user.login + ' has invited you to join Plastic Surgery'
+      @body = {:user => user,
+              :invitation_url => signup_url(:protocol => 'http', :host=> domain)+ '?invitation_code=' + invitation_code.to_s,
+              :content => content
+              }
+      @recipients = email
+      @from = "#{user.full_name} <#{user.email}>"
+      @sent_on = Time.now
+      @headers = {}
+      @content_type = 'text/html'
+    end
+    
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"

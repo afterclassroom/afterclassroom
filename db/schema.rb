@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100604044225) do
+ActiveRecord::Schema.define(:version => 20100608104208) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -126,6 +126,16 @@ ActiveRecord::Schema.define(:version => 20100604044225) do
     t.integer "friend_group_id", :null => false
     t.integer "user_id",         :null => false
     t.integer "user_id_friend",  :null => false
+  end
+
+  create_table "friend_invitations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "email"
+    t.string   "invitation_code"
+    t.integer  "became_user_id"
+    t.datetime "accepted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "housing_categories", :force => true do |t|

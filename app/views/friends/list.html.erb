@@ -13,65 +13,34 @@
           <div class="flistCr"><a href="#"><%= @group.name %></a></div>
           <div class="Browse">
             <div>Browse by</div>
-            <div><select name="Select1"><option/></select></div>
+            <div>
+              <form name="select_list" id="select_list" action="">
+                <%= select_tag "group", options_for_select(FriendGroup.find(:all).collect {|f| [ f.name, f.label ]}, @group.label), :onchange => "$('#select_list').submit();" %>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="flistBt">Use the dropdown menu above to browse your friends by network.</div>
-        <div class="flistItem">
-          <div class="assPic"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-          <div class="flistInf">
-            <div class="flistN"><a href="#">Thienan Ho</a></div>
-            <div class="flistS"><span>at</span>University of Toronto</div>
-          </div>
-          <div class="flistR">
-            <div class="flistREdit"><a href="#"> </a></div>
-            <div class="flistRdelete"><a href="#"> </a></div>
-          </div>
+        <div class="flistBt">Use the dropdown menu above to browse your friends by list.</div>
+        <% @friend_in_groups.each do |f| %>
+          <div class="flistItem">
+            <div class="assPic"><%= link_to "<div>#{image_tag(f.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => f.id} %></div>
+            <div class="flistInf">
+              <div class="flistN"><%= link_to f.full_name, {:controller => "profile", :action => "show_profile", :id => f.id} %></div>
+              <div class="flistS"><span>at</span><%= f.school.name %></div>
+            </div>
+            <div class="flistR">
+              <div class="flistREdit"><a href="#"> </a></div>
+              <div class="flistRdelete"><a href="#"> </a></div>
+            </div>
         </div>
-        <div class="flistItem">
-          <div class="assPic"><a href="#"><div><img src="pictures/pic3.png"/></div></a></div>
-          <div class="flistInf">
-            <div class="flistN"><a href="#">Thienan Ho</a></div>
-            <div class="flistS"><span>at</span>University of Toronto</div>
+        <% end %>
+        
+        <!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @friend_in_groups %></span>
+            <%= will_paginate @friend_in_groups %>
           </div>
-          <div class="flistR">
-            <div class="flistREdit"><a href="#"> </a></div>
-            <div class="flistRdelete"><a href="#"> </a></div>
-          </div>
-        </div>
-        <div class="flistItem">
-          <div class="assPic"><a href="#"><div><img src="pictures/noimg.png"/></div></a></div>
-          <div class="flistInf">
-            <div class="flistN"><a href="#">Thienan Ho</a></div>
-            <div class="flistS"><span>at</span>University of Toronto</div>
-          </div>
-          <div class="flistR">
-            <div class="flistREdit"><a href="#"> </a></div>
-            <div class="flistRdelete"><a href="#"> </a></div>
-          </div>
-        </div>
-        <div class="flistItem">
-          <div class="assPic"><a href="#"><div><img src="pictures/pic1.png"/></div></a></div>
-          <div class="flistInf">
-            <div class="flistN"><a href="#">Thienan Ho</a></div>
-            <div class="flistS"><span>at</span>University of Toronto</div>
-          </div>
-          <div class="flistR">
-            <div class="flistREdit"><a href="#"> </a></div>
-            <div class="flistRdelete"><a href="#"> </a></div>
-          </div>
-        </div>
-        <div class="flistItem">
-          <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
-          <div class="flistInf">
-            <div class="flistN"><a href="#">Thienan Ho</a></div>
-            <div class="flistS"><span>at</span>University of Toronto</div>
-          </div>
-          <div class="flistR">
-            <div class="flistREdit"><a href="#"> </a></div>
-            <div class="flistRdelete"><a href="#"> </a></div>
-          </div>
-        </div>
+          <!--Pagination-->
       </div>
     </div>
   </div>
