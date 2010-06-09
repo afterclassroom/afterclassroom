@@ -6,11 +6,15 @@
   </div>
   <div class="flistR">
     <div class="flistRAdd">
-      <a href="#"><span>Add to List</span></a>
-      <ul style="display: block;">
-        <li><a href="http://google.com/">Google</a></li>
-        <li><a href="http://yahoo.com/">Yahoo</a></li>
-        <li><a href="http://live.com/">Live Search</a></li>
+      <a href="#"><span>Add to </span></a>
+      <ul id="add">
+      <li><input id="Articles" type="checkbox" />Articles</li>
+                    <li><input id="Tutorials" type="checkbox" />Tutorials</li>
+
+                    <li><input id="Reviews" type="checkbox" />Reviews</li>
+                    <li><input id="Resources" type="checkbox" />Resources</li>
+
+
       </ul>
     </div>
     <div class="flistRdelete"><a href="javascript:;" onclick="DeleteFriend('<%= friend.id %>');"> </a></div>
@@ -19,8 +23,25 @@
 
 <style type="text/css">
   /* Child lists and links */
-  .flistRAdd ul { display: none; border-top: 1px black solid; text-align: left; }
+  .flistRAdd ul {display:none; border-top: 1px black solid; text-align: left; }
   .flistRAdd:hover ul { display: block; }
   .flistRAdd ul li a { padding: 5px; height: 17px; }
   .flistRAdd ul li a:hover { background-color: #333; }
+
+  .flistRAdd ul {
+background-color:#172322;
+color:#0395CC;
+left:650px;
+line-height:16px;
+margin-top:230px;
+position:absolute;
+top:0;
+width:150px;
+}
+.flistRAdd li ul li {
+border-top:1px dotted #606060;
+display:block;
+list-style-type:none;
+margin:5px 20px;
+padding:5px 0;
 </style>
