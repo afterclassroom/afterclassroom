@@ -14,6 +14,13 @@ ActionController::Routing::Routes.draw do |map|
   map.user_forgot_login    '/users/forgot_login',    :controller => 'users', :action => 'forgot_login'
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
 
+  map.resources :playgame, :collection => {
+    :recommendgame => :get,
+    :info => :get,
+    :gameslounge => :get,
+    :favorite => :get
+  }
+
   map.resources :phoneapps, :collection => {
     :recommendapp => :get,
     :phonelounge => :get,
@@ -64,7 +71,7 @@ ActionController::Routing::Routes.draw do |map|
       :update_about_yourself => :post, :update_infor => :post,
       :update_edu_infor => :post, :update_work_infor => :post,
       :my_favorite => :get
-      }
+    }
     users.resources :student_lounges
     users.resources :friends,
       :collection => {
