@@ -17,7 +17,7 @@
 
     <div class="flistRdelete"><a href="javascript:;" onclick="DeleteFriend('<%= friend.id %>');"> </a></div>
   </div>
-<<<<<<< HEAD
+
 </div>
 <div class="container">
 
@@ -43,6 +43,16 @@
         </ul>
     </div>
 </div>
+<div id="middlebar">
+<ul class="menu">
+<li><a href="#" onclick="javascript:showlayer('sm_1')"> Profile</a></li>
+<ul class="submenu" id="sm_1">
+<li><a href="p1.html">Profile</a></li>
+<li><a href="p2.hmtl">Inbox </a></li>
+<li><a href="p3.hmtl">Log-out</a></li>
+</ul>
+</ul>
+</div>
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -66,10 +76,83 @@ $(document).ready(function(){
 	});
 
 });
+function showlayer(layer){
+var myLayer = document.getElementById(layer);
+if(myLayer.style.display=="none" || myLayer.style.display==""){
+myLayer.style.display="block";
+} else {
+myLayer.style.display="none";
+}
+}
 </script>
 
 
 <style type="text/css">
+  ul, li{margin:0; border:0; padding:0; list-style:none;}
+#middlebar{
+font-size:11px;
+color:#3b5d14;
+background:#90b557;
+font-weight:bold;
+padding:4px;
+height:30px;
+}
+#middlebar .menu li {
+background:url(lm.png) left top no-repeat;
+height:30px;
+float:left;
+margin-right:10px;
+}
+#middlebar .menu li a{
+color:#3b5d14;
+text-decoration:none;
+padding:0 10px;
+height:30px;
+line-height:30px;
+display:block;
+float:left;
+padding:0 26px 0 10px;
+background:url(rm.png) right top no-repeat;
+}
+#middlebar .menu li a:hover{
+color:#666666;
+}
+#middlebar ul .submenu {
+border:solid 1px #c9dea1;
+border-top:none;
+background:#FFFFFF;
+position:relative;
+top:4px;
+width:150px;
+padding:6px 0;
+clear:both;
+z-index:2;
+display:none;
+}
+#middlebar ul .submenu li{
+background:none;
+display:block;
+float:none;
+margin:0 6px;
+border:0;
+height:auto;
+line-height:normal;
+border-top:solid 1px #DEDEDE;
+}
+#middlebar .submenu li a{
+background:none;
+display:block;
+float:none;
+padding:6px 6px;
+margin:0;
+border:0;
+height:auto;
+color:#105cbe;
+line-height:normal;
+}
+#middlebar .submenu li a:hover{
+background:#e3edef;
+}
   /* Child lists and links */
   .flistRAdd ul { display: none; border-top: 1px black solid; text-align: left; }
   .flistRAdd:hover ul { display: block; }
@@ -163,6 +246,6 @@ html ul.topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
 }
 
 </style>
-=======
+
 </div>
->>>>>>> 0e9f9b1fdfabd8a316d1eb188d4e2ac9e8d2de49
+
