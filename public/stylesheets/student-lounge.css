@@ -1010,29 +1010,39 @@ div.findIMitem a:hover{
     line-height:30px;
 }
 .flistRAdd{
-    /*float:left;*/
-    /*width:86px;*/
+    float:left;
+    width:86px;
     position:absolute;
+    border-right:1px #e3e3e3 solid;
 }
 .flistRAdd a{
     width:85px;
     height:30px;
-    display:block;
+    /*display:block;*/
     text-align:center;
     color:#818181;
     text-decoration:none;
-    border-right:1px #e3e3e3 solid;
+    margin:5px;
 }
 .flistRAdd a:hover{
-   /* background-color:#6f6f63;
+   /*background-color:#6f6f63;
     color:#fff;*/
 }
+.flistRAdd span.subhover {
+    background:url('/images/flistAH.gif')no-repeat center center;
+    cursor: pointer;
+  }
 .flistRAdd span{
-    background:url('/images/flistA.gif')no-repeat center right;
-    padding-right:15px;
+    background: url('/images/flistA.gif') no-repeat center center;
+    margin:7px;
+    padding:5px;
+    width: 17px;
+    height: 35px;
+    /*float: left;*/
+    
 }
 .flistRAdd a:hover span{
-   /* background:url('/images/flistAH.gif')no-repeat center top;*/
+    /*background:url('/images/flistAH.gif')no-repeat center top;*/
 }
 .flistRdelete{
     width:28px;
@@ -3052,7 +3062,7 @@ div.helpAdv2{
 .button {
     border:none;
     background:url('/images/proShare.gif') no-repeat top left;
-    padding:2px 8px;
+    padding:2px 11px;
     height:24px;
     color:#969696;
     cursor: pointer;
@@ -3060,13 +3070,14 @@ div.helpAdv2{
 .button:hover {
     border:none;
     background:url('/images/proShareH.gif') no-repeat top left;
-    padding:2px 8px;
+    padding:2px 11px;
     color:#fff;
     cursor: pointer;
 }
 .proAttItem{
     margin:0 5px 0 0;
     padding:5px;
+    display:none;
 }
 .proAttItem .wrapItem{
     border:1px #e4e4e4 solid;
@@ -3078,17 +3089,24 @@ div.helpAdv2{
     height:29px;
     margin-left:1px;
 }
-.wapCont{
+.wrapCont{
     margin: 20px 10px 10px 10px;
+    min-height:45px;
 }
-.wapCont input{
+.wrapCont input{
     border:1px solid #CECECE;
     color:#969696;
-    height:15px;
+    height:18px;
     padding-top:4px;
     text-indent:2px;
     width:300px;
 }
+.wrapTitle{
+    color:#969696;
+	font-weight:bold;
+	margin-bottom:3px
+}
+
 /********** Profile infomation **************/
 .proInfTop{
     float:right;

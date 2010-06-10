@@ -6,17 +6,17 @@
   </div>
   <div class="flistR">
     <div class="flistRAdd">
-      <a href="#"><span>Add to List</span></a>
-      <ul style="display: block;">
-        <li><a href="http://google.com/">Google</a></li>
-        <li><a href="http://yahoo.com/">Yahoo</a></li>
-        <li><a href="http://live.com/">Live Search</a></li>z
+      <a href="#">Add to List</a>
+      <ul class="flistRAdd1">
+        <li><input id="Family members" type="checkbox" />Family members</li>
+        <li><input id="Friends from school" type="checkbox" />Friends from school</li>
+        <li><input id="Friends from work" type="checkbox" />Friends from work</li>
+        <li><input id="General Friends" type="checkbox" />General Friends</li>
       </ul>
     </div>
-    
-
     <div class="flistRdelete"><a href="javascript:;" onclick="DeleteFriend('<%= friend.id %>');"> </a></div>
   </div>
+<<<<<<< HEAD
 
 </div>
 <div class="container">
@@ -42,6 +42,8 @@
            
         </ul>
     </div>
+=======
+>>>>>>> 045eedf8d61ffc0bd9e41b601cc70b8c4756763e
 </div>
 <div id="middlebar">
 <ul class="menu">
@@ -54,6 +56,7 @@
 </ul>
 </div>
 <script type="text/javascript">
+<<<<<<< HEAD
 $(document).ready(function(){
 
 	$("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled - Adds empty span tag after ul.subnav
@@ -84,10 +87,26 @@ myLayer.style.display="block";
 myLayer.style.display="none";
 }
 }
+=======
+    $(document).ready(function(){
+        $("ul.flistRAdd1").parent().append("<span></span>");
+        $(".flistRAdd span").click(function() {
+            $(this).parent().find("ul.flistRAdd1").slideDown('fast').show();
+            $(this).parent().hover(function() {
+            }, function(){
+                $(this).parent().find("ul.flistRAdd1").slideUp('slow');
+            });
+        }).hover(function() {
+            $(this).addClass("subhover");
+        }, function(){
+            $(this).removeClass("subhover");
+        });
+        $("li.flistRAdd1").hoverIntent()
+    });
+>>>>>>> 045eedf8d61ffc0bd9e41b601cc70b8c4756763e
 </script>
-
-
 <style type="text/css">
+<<<<<<< HEAD
   ul, li{margin:0; border:0; padding:0; list-style:none;}
 #middlebar{
 font-size:11px;
@@ -153,99 +172,40 @@ line-height:normal;
 #middlebar .submenu li a:hover{
 background:#e3edef;
 }
+=======
+
+>>>>>>> 045eedf8d61ffc0bd9e41b601cc70b8c4756763e
   /* Child lists and links */
   .flistRAdd ul { display: none; border-top: 1px black solid; text-align: left; }
-  .flistRAdd:hover ul { display: block; }
+  .flistRAdd:hover ul {  }
   .flistRAdd ul li a { padding: 5px; height: 17px; }
   .flistRAdd ul li a:hover { background-color: #333; }
-
-  .container {
-	width: 960px;
-	margin: 0 auto;
-	position: relative;
-}
-#header {
-	background: url(header_bg.gif) no-repeat center top;
-	padding-top: 120px;
-}
-#header .disclaimer {
-	color: #999;
-	padding: 100px 0 7px 0;
-	text-align: right;
-	display: block;
-	position: absolute;
-	top: 0; right: 0;
-}
-#header .disclaimer a {	color: #ccc;}
-ul.topnav {
-	list-style: none;
-	padding: 0 20px;
-	margin: 0;
-	float: left;
-	width: 920px;
-	background: #222;
-	font-size: 1.2em;
-	background: url(/images/topnav_bg.gif) repeat-x;
-}
-ul.topnav li {
-	float: left;
-	margin: 0;
-	padding: 0 15px 0 0;
-	position: relative; /*--Declare X and Y axis base--*/
-}
-ul.topnav li a{
-	padding: 10px 5px;
-	color: #fff;
-	display: block;
-	text-decoration: none;
-	float: left;
-}
-ul.topnav li a:hover{
-	background: url(topnav_hover.gif) no-repeat center top;
-}
-ul.topnav li span { /*--Drop down trigger styles--*/
-	width: 17px;
-	height: 35px;
-	float: left;
-	background: url(/images/subnav_btn.gif) no-repeat center top;
-}
-ul.topnav li span.subhover {background-position: center bottom; cursor: pointer;} /*--Hover effect for trigger--*/
-ul.topnav li ul.subnav {
-	list-style: none;
-	position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
-	left: 0; top: 35px;
-	background: #333;
-	margin: 0; padding: 0;
-	display: none;
-	float: left;
-	width: 170px;
-	-moz-border-radius-bottomleft: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-webkit-border-bottom-left-radius: 5px;
-	-webkit-border-bottom-right-radius: 5px;
-	border: 1px solid #111;
-}
-ul.topnav li ul.subnav li{
-	margin: 0; padding: 0;
-	border-top: 1px solid #252525; /*--Create bevel effect--*/
-	border-bottom: 1px solid #444; /*--Create bevel effect--*/
-	clear: both;
-	width: 170px;
-}
-html ul.topnav li ul.subnav li a {
-	float: left;
-	width: 145px;
-	background: #333 url(dropdown_linkbg.gif) no-repeat 10px center;
-	padding-left: 20px;
-}
-html ul.topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
-	background: #222 url(dropdown_linkbg.gif) no-repeat 10px center;
-}
-#header img {
-	margin: 20px 0 10px;
-}
-
+  .flistRAdd ul.flistRAdd1 {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    background:#F6F6F6;
+    border:1px solid #E3E3E3;
+    display:none;
+    float:left;
+    left:0;
+    list-style:none outside none;
+    margin-top:-5px;
+    padding:0;
+    position:absolute;
+    top:35px;
+    width:170px;
+  }
+  .flistRAdd ul.flistRAdd1 li {
+    border-bottom:1px solid #E3E3E3;
+    border-top:1px solid #E3E3E3;
+    clear:both;
+    margin:0;
+    padding:0;
+    width:170px;
 </style>
 
+<<<<<<< HEAD
 </div>
 
+=======
+>>>>>>> 045eedf8d61ffc0bd9e41b601cc70b8c4756763e
