@@ -6,25 +6,34 @@
       <div class="proPlus"><a href="#"> </a></div>
     </div>
     <div class="proAtt">
-      <div class="proAttItem">
-        <div class="wrapItem" id="">
-          <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-          <div class="wapCont" id="">
-            
-            <input type="text" value="" width="300px" /><button type="button">Attach</button>
+      <div class="proAttItem" id="wrap_content_attach">
+        <div class="wrapItem">
+          <div class="suggesC"><a href="javascript:;" onclick="closeAttach();"><img src="/images/suggesC.png"/></a></div>
+          <div class="wrapCont" id="attach">
           </div>
         </div>
       </div>
-      <div class="proAttL">
+      <div class="proAttL" id="attach_icon">
         <span>Attach:</span>
-        <span class="att1"><a href="#" id="1" class="link" name="1"></a> </span>
-        <span class="att2"><a href="#" id="2" class="link" name="2"></a> </span>
-        <span class="att3"><a href="#" id="3" class="link" name="3"></a> </span>
-        <span class="att4"><a href="#"> </a></span>
-        <span class="att5"><a href="#"> </a></span>
+        <span class="att1"><%= link_to_remote "", :url => {:controller => "user_walls", :action => "link_image"}, :update => "attach", :complete => "openAttach()"%></span>
+        <span class="att2"><%= link_to_remote "", :url => {:controller => "user_walls", :action => "link_video"}, :update => "attach", :complete => "openAttach()"%></span>
+        <span class="att3"><%= link_to_remote "", :url => {:controller => "user_walls", :action => "link_music"}, :update => "attach", :complete => "openAttach()"%></span>
+        <span class="att4"><%= link_to_remote "", :url => {:controller => "user_walls", :action => "link_link"}, :update => "attach", :complete => "openAttach()"%></span>
+        <span class="att5"><a href="#"></a></span>
       </div>
       <div class="proAttR"><%= submit_tag 'Share', :class => "button" %></div>
     </div>
   </div>
   <div class="footWall"></div>
 <% end %>
+
+<script type="text/javascript">
+  function closeAttach(){
+    $('#wrap_content_attach').hide();
+    $('#attach_icon').show();
+  }
+  function openAttach(){
+    $('#wrap_content_attach').show();
+    $('#attach_icon').hide();
+  }
+</script>

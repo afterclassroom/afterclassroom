@@ -3,6 +3,7 @@ class CreateUserWallVideos < ActiveRecord::Migration
     create_table :user_wall_videos do |t|
       t.belongs_to :user_wall
       t.string :link
+      t.string :thumb
     end
   end
 

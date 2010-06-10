@@ -1,0 +1,8 @@
+<div style="min-height:80px">
+  <div class="AfterImg"><div><img src="/images/pictures/phoneM1.png" width="92px" height="68px"/></div></div>
+  <div class="AfterTitle"><a href="#">Suspendisse potenti. Etiam scelerisque, odio quis sodales pharetra, elit erat pharetra libero</a></div>
+  <div class="AfterDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum...</div>
+</div>
+<% fields_for @user_wall_photo do |p| %>
+  <%= p.hidden_field :link %>
+<% end %>
