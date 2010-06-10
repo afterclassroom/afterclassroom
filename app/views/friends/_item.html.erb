@@ -8,10 +8,10 @@
     <div class="flistRAdd">
       <a href="#">Add to List</a>
       <ul class="flistRAdd1">
-        <li><input id="Family members" type="checkbox" />Family members</li>
-        <li><input id="Friends from school" type="checkbox" />Friends from school</li>
-        <li><input id="Friends from work" type="checkbox" />Friends from work</li>
-        <li><input id="General Friends" type="checkbox" />General Friends</li>
+        <li><input id="Family members" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "family_members" %>"><%= link_to "Family members", list_user_friends_path(current_user, :group => "family_members") %></li>
+        <li><input id="Friends from school" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "friends_from_school" %>"><%= link_to "Friends from school", list_user_friends_path(current_user, :group => "friends_from_school") %></li>
+        <li><input id="Friends from work" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "friends_from_work" %>"><%= link_to "Friends from work", list_user_friends_path(current_user, :group => "friends_from_work") %></li>
+        <li><input id="General Friends" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "general_friends" %>"><%= link_to "General Friends", list_user_friends_path(current_user, :group => "general_friends") %></li>
       </ul>
     </div>
     <div class="flistRdelete"><a href="javascript:;" onclick="DeleteFriend('<%= friend.id %>');"> </a></div>
@@ -19,21 +19,21 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("ul.flistRAdd1").parent().append("<span></span>");
+        $(".flistRAdd1").parent().append("<span></span>");
         $(".flistRAdd span").click(function() {
-            $(this).parent().find("ul.flistRAdd1").slideDown('fast').show();
+            $(this).parent().find(".flistRAdd1").slideDown('fast').show();
             $(this).parent().hover(function() {
             }, function(){
-                $(this).parent().find("ul.flistRAdd1").slideUp('slow');
+                $(this).parent().find(".flistRAdd1").slideUp('slow');
             });
         }).hover(function() {
             $(this).addClass("subhover");
         }, function(){
-            $(this).removeClass("subhover");
-        });
-        $("li.flistRAdd1").hoverIntent()
+            $(this).removeClass("subhover")
+        })
+      $("li.mega").hoverIntent(megaConfig)
     });
-</script>
+    </script>
 <style type="text/css">
 
   /* Child lists and links */
@@ -48,12 +48,12 @@
     border:1px solid #E3E3E3;
     display:none;
     float:left;
-    left:0;
+    /*left:0;*/
     list-style:none outside none;
     margin-top:-5px;
     padding:0;
     position:absolute;
-    top:35px;
+    /*top:35px;*/
     width:170px;
   }
   .flistRAdd ul.flistRAdd1 li {
