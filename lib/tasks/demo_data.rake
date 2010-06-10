@@ -30,7 +30,7 @@ namespace :db do
 #      create_demo_posts_awarenesses
 #      create_demo_posts_foods
 #      create_demo_posts_qas
-#      create_demo_phoneapps
+      create_demo_phoneapps
 #
 #      # Exam schedule
 #      create_demo_posts_exam_schedules
@@ -577,6 +577,8 @@ def create_demo_phoneapps
     apcate = Phoneappcategory.find(count)#ID 1 is iPhone
     count = count + 1
 
+    mytestphoto = Dir.glob("public/images/pictures/99347_920.jpg").shuffle
+
     30.times do
       papp = Phoneapplication.create do |ap|
         ap.name = Faker::Lorem.sentence
@@ -586,9 +588,9 @@ def create_demo_phoneapps
 
         ap.playurl = "http://www.google.com"
         
-        photo = "/public/images/pictures/phone2.png"
+#        photo = "public/images/pictures/phone2.png"
         
-        ap.photo = uploaded_file(photo, 'image/png')
+        ap.photo = uploaded_file(mytestphoto, 'image/jpg')
         
         #        ap.image = "/images/pictures/phone2.png"
         #        ap.Largeimage = "/images/pictures/phoneM1.png"

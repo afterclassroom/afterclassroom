@@ -30,4 +30,31 @@ class UserWallsController < ApplicationController
     end
     render :layout => false
   end
+
+  def link_image
+  end
+
+  def link_video
+  end
+
+  def link_music
+  end
+
+  def link_link
+  end
+
+  def attach_image
+    link = params[:link]
+    @user_wall_photo = UserWallPhoto.new
+    @user_wall_photo.link = link
+  end
+
+  def attach_video
+  end
+
+  def attach_music
+  end
+
+  def attach_link
+  end
 end
