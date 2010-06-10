@@ -1012,32 +1012,44 @@ div.findIMitem a:hover{
 .flistRAdd{
     float:left;
     width:86px;
+    position:absolute;
+    border-right:1px #e3e3e3 solid;
 }
 .flistRAdd a{
     width:85px;
     height:30px;
-    display:block;
+    /*display:block;*/
     text-align:center;
     color:#818181;
     text-decoration:none;
-    border-right:1px #e3e3e3 solid;
+    margin:5px;
 }
 .flistRAdd a:hover{
-    background-color:#6f6f63;
-    color:#fff;
+   /*background-color:#6f6f63;
+    color:#fff;*/
 }
+.flistRAdd span.subhover {
+    background:url('/images/flistAH.gif')no-repeat center center;
+    cursor: pointer;
+  }
 .flistRAdd span{
-    background:url('/images/flistA.gif') no-repeat right center;
-    padding-right:15px;
+    background: url('/images/flistA.gif') no-repeat center center;
+    margin:7px;
+    padding:5px;
+    width: 17px;
+    height: 35px;
+    /*float: left;*/
+    
 }
 .flistRAdd a:hover span{
-    background:url('/images/flistAH.gif') no-repeat right center;
+    /*background:url('/images/flistAH.gif')no-repeat center top;*/
 }
 .flistRdelete{
     width:28px;
     float:left;
 }
 .flistRdelete a{
+    padding-left:175px;
     width:28px;
     height:30px;
     display:block;

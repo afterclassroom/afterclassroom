@@ -6,13 +6,62 @@
   </div>
   <div class="flistR">
     <div class="flistRAdd">
-      <a href="#"><span>Add to List</span></a>
-      <ul style="display: block;">
-        <li><a href="http://google.com/">Google</a></li>
-        <li><a href="http://yahoo.com/">Yahoo</a></li>
-        <li><a href="http://live.com/">Live Search</a></li>
+      <a href="#">Add to List</a>
+      <ul class="flistRAdd1">
+        <li><input id="Family members" type="checkbox" />Family members</li>
+        <li><input id="Friends from school" type="checkbox" />Friends from school</li>
+        <li><input id="Friends from work" type="checkbox" />Friends from work</li>
+        <li><input id="General Friends" type="checkbox" />General Friends</li>
       </ul>
     </div>
     <div class="flistRdelete"><a href="javascript:;" onclick="DeleteFriend('<%= friend.id %>');"> </a></div>
   </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("ul.flistRAdd1").parent().append("<span></span>");
+        $(".flistRAdd span").click(function() {
+            $(this).parent().find("ul.flistRAdd1").slideDown('fast').show();
+            $(this).parent().hover(function() {
+            }, function(){
+                $(this).parent().find("ul.flistRAdd1").slideUp('slow');
+            });
+        }).hover(function() {
+            $(this).addClass("subhover");
+        }, function(){
+            $(this).removeClass("subhover");
+        });
+        $("li.flistRAdd1").hoverIntent()
+    });
+</script>
+<style type="text/css">
+
+  /* Child lists and links */
+  .flistRAdd ul { display: none; border-top: 1px black solid; text-align: left; }
+  .flistRAdd:hover ul {  }
+  .flistRAdd ul li a { padding: 5px; height: 17px; }
+  .flistRAdd ul li a:hover { background-color: #333; }
+  .flistRAdd ul.flistRAdd1 {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    background:#F6F6F6;
+    border:1px solid #E3E3E3;
+    display:none;
+    float:left;
+    left:0;
+    list-style:none outside none;
+    margin-top:-5px;
+    padding:0;
+    position:absolute;
+    top:35px;
+    width:170px;
+  }
+  .flistRAdd ul.flistRAdd1 li {
+    border-bottom:1px solid #E3E3E3;
+    border-top:1px solid #E3E3E3;
+    clear:both;
+    margin:0;
+    padding:0;
+    width:170px;
+</style>
+
