@@ -6,87 +6,11 @@
       <div class="proPlus"><a href="#"> </a></div>
     </div>
     <div class="proAtt">
-<<<<<<< HEAD:app/views/user_walls/_wall_form.html.erb
       <div class="proAttItem" id="wrap_content_attach">
         <div class="wrapItem">
           <div class="suggesC"><a href="javascript:;" onclick="closeAttach();"><img src="/images/suggesC.png"/></a></div>
           <div class="wrapCont" id="attach">
-=======
-<<<<<<< HEAD
-      <div class="proAttL">
-        <div class="left">
-          <span>Attach:</span>
-          <div class="leftbottom">
-            <span class="att1"><a href="#" id="1" class="link" name="1"></a> </span>
-            <span class="att2"><a href="#" id="2" class="link" name="2"></a> </span>
-            <span class="att3"><a href="#" id="3" class="link" name="3"></a> </span>
-            <span class="att4"><a href="#"> </a></span>
-            <span class="att5"><a href="#"> </a></span>
           </div>
-          <div id="box1" class="box" style="display:none">
-            <span class="att1"><a href="#"> </a></span>
-            <br>
-              <div id="example1" class="example">
-                <div id="close">
-                  <p><a href="#" id="1" class="close1" > X </a></p>
-                </div>
-                <div class="wrapper">
-                  <input type="text" size="30" />
-                  <button id="button1" class="button">Attach</button>
-                </div>
-                <p>Attach files:</p>
-                <ol class="files"></ol>
-              </div>
-            </br>
-          </div>
-
-          <div id="box2" class="box" style="display:none">
-            <span class="att2"><a href="#"> </a></span>
-            <br>
-              <div id="example1" class="example">
-                <div id="close">
-                  <p><a href="#" id="2" class="close1" > X </a></p>
-                </div>
-                <div class="wrapper">
-                  <input type="text" size="30" />
-                  <button id="button2" class="button">Attach</button>
-                </div>
-                <p>Attach files:</p>
-                <ol class="files"></ol>
-              </div>
-
-
-            </br>
-
-          </div>
-          <div id="box3" class="box" style="display:none">
-            <span class="att3"><a href="#"> </a></span>
-            <br>
-              <div id="example1" class="example">
-                <div id="close">
-                  <p><a href="#" id="3" class="close1" > X </a></p>
-                </div>
-                <div class="wrapper">
-                  <input type="text" size="30" />
-                  <button id="button3" class="button3">Attach</button>
-                </div>
-                <p>Attach files:</p>
-                <ol class="files"></ol>
-              </div>
-            </br>
-
-          </div>
-
-=======
-      <div class="proAttItem">
-        <div class="wrapItem" id="">
-          <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-          <div class="wapCont" id="">
-            
-            <input type="text" value="" width="300px" /><button type="button">Attach</button>
->>>>>>> a6e86a4b02c9c74b5a497eac9edafa25a5457b06:app/views/user_walls/_wall_form.html.erb
-          </div>
->>>>>>> 0e9f9b1fdfabd8a316d1eb188d4e2ac9e8d2de49
         </div>
       </div>
       <div class="proAttL" id="attach_icon">
@@ -100,117 +24,8 @@
       <div class="proAttR"><%= submit_tag 'Share', :class => "button" %></div>
     </div>
   </div>
-<<<<<<< HEAD
-<% end %>
-
-<script type= "text/javascript">
-    $(document).ready(function() {
-        $('#box').hide();
-        $('a.link').click(function() {
-            $('.leftbottom').hide();
-            var id = $(this).attr('id');
-            $('#box' + id).toggle(1);
-            // alert(id);
-            return false;
-        });
-        $('a.close1').click(function(){
-            var id = $(this).attr('id');
-            $('#box' + id).hide();
-            $('.leftbottom').show();
-
-        })
-    });
-
-
-    $(document).ready(function(){
-
-        /* example 1 */
-        var button = $('#button1'), interval;
-        new AjaxUpload(button,{
-            //action: 'upload-test.php', // I disabled uploads in this example for security reasons
-            action: 'upload.htm',
-            name: 'myfile',
-            onSubmit : function(file, ext){
-                // change button text, when user selects file
-                button.text('Attach');
-
-                // If you want to allow uploading only 1 file at time,
-                // you can disable upload button
-                this.disable();
-
-                // Uploding -> Uploading. -> Uploading...
-                interval = window.setInterval(function(){
-                    var text = button.text();
-                    if (text.length < 13){
-                        button.text(text + '.');
-                    } else {
-                        button.text('Attach');
-                    }
-                }, 200);
-            },
-            onComplete: function(file, response){
-                button.text('Attach');
-
-                window.clearInterval(interval);
-
-                // enable upload button
-                this.enable();
-
-                // add file to the list
-                $('<li></li>').appendTo('#example1 .files').text(file);
-            }
-        });
-    });
-
-</script>
-<style type="text/css">
-  .proAttL span{padding-left:3px;}
-  .leftbottom1{
-    background:#119AE7;
-    margin-left:1px;
-    width:449px;
-    color:#119AE7;
-
-  }
-  .proAttR {
-    background:url("/images/shareAttach.gif") no-repeat scroll 0 0 transparent;
-    margin-top:-15px;
-    height: 31px;
-    width: 449px;
-    margin-left:1px;
-  }
-  .proAttR input{
-    margin-left:380px;
-
-  }
-
-  #close {
-    padding-left:400px;
-  }
-  #example1{
-    background:#119AE7;
-    width:409px;
-  }
-
-  .example {
-    padding: 0 20px;
-    float: left;
-    width: 230px;
-  }
-
-  .wrapper {
-    padding-left:80px;
-    margin-top:-25px;
-  }
-
-</style>
-
-
-
-=======
   <div class="footWall"></div>
 <% end %>
-<<<<<<< HEAD:app/views/user_walls/_wall_form.html.erb
 
 <script type="text/javascript">
   function closeAttach(){
@@ -222,6 +37,3 @@
     $('#attach_icon').hide();
   }
 </script>
-=======
->>>>>>> 0e9f9b1fdfabd8a316d1eb188d4e2ac9e8d2de49
->>>>>>> a6e86a4b02c9c74b5a497eac9edafa25a5457b06:app/views/user_walls/_wall_form.html.erb
