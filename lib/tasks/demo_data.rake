@@ -592,6 +592,8 @@ def create_demo_phoneapps
         
         ap.photo = uploaded_file(mytestphoto, 'image/jpg')
         
+        ap.popular_rank = rand(500)
+
         #        ap.image = "/images/pictures/phone2.png"
         #        ap.Largeimage = "/images/pictures/phoneM1.png"
       end
