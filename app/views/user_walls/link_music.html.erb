@@ -1,3 +1,3 @@
 <div class="wrapTitle">Music link:</div>
 <div style="float:left; margin-right:3px"><input type="text" value="" width="300px" name="link_music" id="link_music" /></div>
-<div class="submit" style="float:left"><%= link_to_remote "Attach", :url => {:controller => "user_walls", :action => "attach_music"}, :update => "attach", :with => "'link=' + $('link_image').val()"%></div>
+<div class="submit" style="float:left"><%= link_to_remote "Attach", :url => {:controller => "user_walls", :action => "attach_music"}, :update => "attach", :with => "'link=' + $('#link_music').val()"%></div>

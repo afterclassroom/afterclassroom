@@ -4,6 +4,8 @@ class CreateUserWallVideos < ActiveRecord::Migration
       t.belongs_to :user_wall
       t.string :link
       t.string :thumb
+      t.string :title
+      t.text :sub_content
     end
   end
 

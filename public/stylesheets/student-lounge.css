@@ -352,7 +352,6 @@
 }
 .AfterCl{
     color:#808075;
-    min-height:36px;
 }
 .AfterClCom{
     color:#808075;
@@ -386,6 +385,7 @@
 }
 .AfterInfo .assInfB{
     clear:both;
+    AfterClmargin-top:20px
 }
 .AfterInfo .qashdU{
     padding-left:0px;
@@ -3086,7 +3086,7 @@ div.helpAdv2{
 }
 .footWall{
     background:transparent url(/images/shareAttach.gif) no-repeat scroll 0 0;
-    height:29px;
+    height:35px;
     margin-left:1px;
 }
 .wrapCont{

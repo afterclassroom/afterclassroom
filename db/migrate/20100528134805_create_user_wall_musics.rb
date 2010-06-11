@@ -1,6 +1,6 @@
-class CreateUserWallPhotos < ActiveRecord::Migration
+class CreateUserWallMusics < ActiveRecord::Migration
   def self.up
-    create_table :user_wall_photos do |t|
+    create_table :user_wall_musics do |t|
       t.belongs_to :user_wall
       t.string :link
       t.string :title
@@ -9,6 +9,6 @@ class CreateUserWallPhotos < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :user_wall_photos
+    drop_table :user_wall_musics
   end
 end

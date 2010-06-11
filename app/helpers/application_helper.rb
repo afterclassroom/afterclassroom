@@ -226,6 +226,16 @@ module ApplicationHelper
     link_to("Edit My Work", "#{edit_work_infor_user_profiles_path(current_user)}?height=200&width=470", :class => "thickbox", :title => "Edit My Work")
   end
 
+  def show_attach(wall)
+    if wall.user_wall_photo
+      image = image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")
+      link = wall.user_wall_photo.link
+      title = wall.user_wall_photo.title
+      sub_content = wall.user_wall_photo.sub_content
+    end
+    render :partial => "user_walls/wall_attach", :locals => {:image => image, :title => title, :link => link, :sub_content => sub_content}
+  end
+  
   private
   def link_to_require_login(str)
     link_to(str, "/login_ajax?height=300&width=540", :class => "thickbox", :title => "Sign In")

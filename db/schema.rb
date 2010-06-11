@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
-    t.string   "comment",                        :default => ""
+    t.text     "comment"
     t.datetime "created_at",                                     :null => false
     t.integer  "commentable_id",                 :default => 0,  :null => false
     t.string   "commentable_type", :limit => 15, :default => "", :null => false
@@ -650,6 +650,11 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
     t.text    "sub_content"
   end
 
+  create_table "user_wall_musics", :force => true do |t|
+    t.integer "user_wall_id"
+    t.string  "link"
+  end
+
   create_table "user_wall_photos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
@@ -658,6 +663,7 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
   create_table "user_wall_videos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
+    t.string  "thumb"
   end
 
   create_table "user_walls", :force => true do |t|
