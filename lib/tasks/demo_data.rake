@@ -572,6 +572,8 @@ end
 
 def create_demo_phoneapps
 
+  state_arr = ["recentlyadded", "verified"]
+
   count = 1;
   Phoneappcategory.count.times do
     apcate = Phoneappcategory.find(count)#ID 1 is iPhone
@@ -588,15 +590,15 @@ def create_demo_phoneapps
 
         ap.playurl = "http://www.google.com"
         
-#        photo = "public/images/pictures/phone2.png"
-        
         ap.photo = uploaded_file(mytestphoto, 'image/jpg')
         
         ap.popular_rank = rand(500)
 
-        #        ap.image = "/images/pictures/phone2.png"
-        #        ap.Largeimage = "/images/pictures/phoneM1.png"
+        
+
       end
+      papp.state = state_arr[rand(state_arr.size)]
+      papp.save
     end
 
   end

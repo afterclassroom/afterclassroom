@@ -1,0 +1,9 @@
+Total pages <%= @noOfPages %> <br/>
+
+<% @popularap.each do |ap| %>
+  <%= ap.name %><br/>
+  ID :: <%= ap.id %><br/>
+<% end %>
+
+
+<%= will_paginate(@popularap, :params => { :controller => "phoneapps", :action => "populartab" }) %>

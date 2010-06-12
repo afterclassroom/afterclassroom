@@ -52,13 +52,123 @@
 
         <div class="learnN">
           <div class="learnNM">
-            <div class="learnNMtitle">Phone Apps</div>
-            <div class="learnNMP">Popular</div>
-            <div class="learnNML"><a href="#">Verified</a></div>
-            <div class="learnNML"><a href="#">Recently Added</a></div>
-            <div class="learnNMR"><a href="#">See All</a></div>
+            <div class="learnNMtitle" id="phoneappstab">
+              <%= link_to "Phone Apps", {:controller => 'phoneapps', :action => "phoneappstab"} %>
+            </div>
+            <div class="learnNMP" id="populartab">
+              <%= link_to "Popular", {:controller => 'phoneapps', :action => "populartab"} %>
+            </div>
+            <div class="learnNML" id="verifiedtab">
+              <%= link_to "Verified", {:controller => 'phoneapps', :action => "verifiedtab"} %>
+            </div>
+            <div class="learnNML" id="recentlyaddedtab">
+              <%= link_to "Recently Added", {:controller => 'phoneapps', :action => "recentlyaddedtab"} %>
+            </div>
+            <div class="learnNMR" id="seealltab">
+              <%= link_to "See All", {:controller => 'phoneapps', :action => "seealltab"} %>
+            </div>
+
           </div>
         </div>
+        <script language="javascript">
+          var seealltaburl = $("#seealltab a").attr("href");
+
+          $("#seealltab a").bind('click',function(){
+            if (seealltaburl != undefined){
+              LoadSpinner('allappitems');
+              $.ajax({
+                url: seealltaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allappitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+
+          var recentlyaddedtaburl = $("#recentlyaddedtab a").attr("href");
+
+          $("#recentlyaddedtab a").bind('click',function(){
+            if (recentlyaddedtaburl != undefined){
+              LoadSpinner('allappitems');
+              $.ajax({
+                url: recentlyaddedtaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allappitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+          var verifiedtaburl = $("#verifiedtab a").attr("href");
+
+          $("#verifiedtab a").bind('click',function(){
+            if (verifiedtaburl != undefined){
+              LoadSpinner('allappitems');
+              $.ajax({
+                url: verifiedtaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allappitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+          var populartaburl = $("#populartab a").attr("href");
+
+          $("#populartab a").bind('click',function(){
+            if (populartaburl != undefined){
+              LoadSpinner('allappitems');
+              $.ajax({
+                url: populartaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allappitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+
+          var phoneappstaburl = $("#phoneappstab a").attr("href");
+          
+          $("#phoneappstab a").bind('click',function(){
+            if (phoneappstaburl != undefined){
+              LoadSpinner('allappitems');
+              $.ajax({
+                url: phoneappstaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allappitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+        </script>
         <div id="allappitems">
           <%= render :partial => "allappitems", :locals => {:appdata => @allapps} %>
 
@@ -167,7 +277,7 @@
               return false;
             });
           </script>
-        </div><!--Close DIV of pagination-->
+        </div><!--Close DIV of id=allappitems pagination-->
 
 
 

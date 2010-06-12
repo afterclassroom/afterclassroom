@@ -14,6 +14,8 @@ class CreatePhoneapplications < ActiveRecord::Migration
 
       t.integer :popular_rank
 
+      t.string :state
+
       t.timestamps
 
     end

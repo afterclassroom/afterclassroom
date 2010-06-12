@@ -1,0 +1,8 @@
+Total pages <%= @noOfPages %> <br/>
+
+<% @recentap.each do |ap| %>
+  <%= ap.name %><br/>
+<% end %>
+
+
+<%= will_paginate(@recentap, :params => { :controller => "phoneapps", :action => "recentlyaddedtab" }) %>

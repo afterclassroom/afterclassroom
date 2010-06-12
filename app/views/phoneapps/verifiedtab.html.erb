@@ -1,0 +1,8 @@
+Total pages <%= @noOfPages %> <br/>
+
+<% @verifiedap.each do |ap| %>
+  <%= ap.name %><br/>
+<% end %>
+
+
+<%= will_paginate(@verifiedap, :params => { :controller => "phoneapps", :action => "verifiedtab" }) %>
