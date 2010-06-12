@@ -44,6 +44,7 @@ javascripts:
   - ajaxupload
   - tag
   - jquery-jeditable
+  - jquery-carrousel
 - admin:
   - application
   - jquery

@@ -1,5 +1,54 @@
 <div style="min-height:80px">
-  <div class="AfterImg"><div><img src="/images/pictures/phoneM1.png" width="92px" height="68px"/></div></div>
-  <div class="AfterTitle"><a href="#">Suspendisse potenti. Etiam scelerisque, odio quis sodales pharetra, elit erat pharetra libero</a></div>
-  <div class="AfterDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum...</div>
+  <div class="AfterImg"><div><%= image_tag @user_wall_link.image_link, :width => "92px", :height => "68px" %></div></div>
+  <div class="AfterTitle"><%= link_to @user_wall_link.title, @user_wall_link.link, :target => "_blank" %></div>
+  <div class="AfterDes"><%= @user_wall_link.sub_content %></div>
 </div>
+<% fields_for @user_wall_link do |p| %>
+  <%= p.hidden_field :link %>
+  <%= p.hidden_field :image_link %>
+  <%= p.hidden_field :title %>
+  <%= p.hidden_field :sub_content %>
+<% end %>
+
+<div id="carrousel_1276231589310_div" class="carrousel" style="overflow: hidden; width: 425px;">
+  <div style="position: relative; width: 425px; height: 99.75px;" id="carrousel" class="carrousel_carrousel">
+    <ul style="position: relative; left: 0px; width: 1020px;" id="myCarousel" class="myCarousel">
+      <li><div class="carrousel_item" rel="0"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/1.png" title="Test 1"></div></li>
+      <li><div class="carrousel_item" rel="1"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/2.png" title="Test 2"></div></li>
+      <li><div class="carrousel_item" rel="2"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/3.png" title="Test 3"></div></li>
+      <li><div class="carrousel_item" rel="3"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/4.png" title="Test 4"></div></li>
+      <li><div class="carrousel_item" rel="4"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/5.png" title="Test 5"></div></li>
+      <li><div class="carrousel_item" rel="5"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/6.png" title="Test 6"></div></li>
+    </ul>
+  </div><a href="#" id="prev" class="carrousel_button carrousel_prev">prev</a>
+  <a href="#" id="next" class="carrousel_button carrousel_next">next</a>
+</div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function () {
+    
+    var carrousel = jQuery("#myCarousel").carrousel({
+      direction	: 'left',
+      easing : 'easeOutBounce',
+      speed : 500,
+      dispTimeout : 1000,
+      dispNumber : 1,
+      auto : false,
+      callbacks	: [giveCurrent],
+      api : true
+    });
+
+    function giveCurrent() {
+      alert(carrousel.getCurrent());
+    }
+
+    jQuery('#next').click(function () {
+      carrousel.next();
+      return false;
+    });
+    jQuery('#prev').click(function () {
+      carrousel.prev();
+      return false;
+    });
+  });
+</script>

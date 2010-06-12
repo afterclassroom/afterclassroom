@@ -233,6 +233,20 @@ module ApplicationHelper
       title = wall.user_wall_photo.title
       sub_content = wall.user_wall_photo.sub_content
     end
+
+    if wall.user_wall_video
+      image = image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px")
+      link = wall.user_wall_video.link
+      title = wall.user_wall_video.title
+      sub_content = wall.user_wall_video.sub_content
+    end
+
+    if wall.user_wall_music
+      image = image_tag("/images/music.png", :style => "width:92px;height:68px")
+      link = wall.user_wall_music.link
+      title = wall.user_wall_music.title
+      sub_content = wall.user_wall_music.sub_content
+    end
     render :partial => "user_walls/wall_attach", :locals => {:image => image, :title => title, :link => link, :sub_content => sub_content}
   end
   
