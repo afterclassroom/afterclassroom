@@ -1,5 +1,12 @@
 <div style="min-height:80px">
-  <div class="AfterImg"><div><%= image_tag @user_wall_link.image_link, :width => "92px", :height => "68px" %></div></div>
+  <div class="AfterImg"><div>
+      <ul style="position: relative; left: 0px; width: 1020px;" id="myCarousel" class="myCarousel">
+        <% @arr_img.each do |img| %>
+          <li><%= image_tag img, :width => "92px", :height => "68px" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
   <div class="AfterTitle"><%= link_to @user_wall_link.title, @user_wall_link.link, :target => "_blank" %></div>
   <div class="AfterDes"><%= @user_wall_link.sub_content %></div>
 </div>
@@ -9,20 +16,6 @@
   <%= p.hidden_field :title %>
   <%= p.hidden_field :sub_content %>
 <% end %>
-
-<div id="carrousel_1276231589310_div" class="carrousel" style="overflow: hidden; width: 425px;">
-  <div style="position: relative; width: 425px; height: 99.75px;" id="carrousel" class="carrousel_carrousel">
-    <ul style="position: relative; left: 0px; width: 1020px;" id="myCarousel" class="myCarousel">
-      <li><div class="carrousel_item" rel="0"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/1.png" title="Test 1"></div></li>
-      <li><div class="carrousel_item" rel="1"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/2.png" title="Test 2"></div></li>
-      <li><div class="carrousel_item" rel="2"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/3.png" title="Test 3"></div></li>
-      <li><div class="carrousel_item" rel="3"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/4.png" title="Test 4"></div></li>
-      <li><div class="carrousel_item" rel="4"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/5.png" title="Test 5"></div></li>
-      <li><div class="carrousel_item" rel="5"><img src="http://www.gougouzian.fr/projects/jquery/carrousel/img/6.png" title="Test 6"></div></li>
-    </ul>
-  </div><a href="#" id="prev" class="carrousel_button carrousel_prev">prev</a>
-  <a href="#" id="next" class="carrousel_button carrousel_next">next</a>
-</div>
 
 <script type="text/javascript">
   jQuery(document).ready(function () {

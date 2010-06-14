@@ -27,7 +27,7 @@ class UserWallsController < ApplicationController
       end
 
       if params[:user_wall_link]
-        user_wall_link= UserWallLink.new(params[:user_wall_link])
+        user_wall_link = UserWallLink.new(params[:user_wall_link])
         user_wall.user_wall_link = user_wall_link
       end
 
@@ -74,7 +74,7 @@ class UserWallsController < ApplicationController
       url.domain
       url.subdomain
       url.path
-      domain = url.subdomain + url.domain + url.public_suffix
+      domain = url.subdomain + "." + url.domain + "." + url.public_suffix
       @user_wall_photo = UserWallPhoto.new
       @user_wall_photo.link = link
       @user_wall_photo.title = domain
@@ -92,7 +92,7 @@ class UserWallsController < ApplicationController
       url.domain
       url.subdomain
       url.path
-      domain = url.subdomain + url.domain + url.public_suffix
+      domain = url.subdomain + "." + url.domain + "." + url.public_suffix
       #Get thumbnail
       arr = link.match("[\\?&]v=([^&#]*)")
       vid = arr == nil ? link : arr[1]
@@ -116,7 +116,7 @@ class UserWallsController < ApplicationController
       url.domain
       url.subdomain
       url.path
-      domain = url.subdomain + url.domain + url.public_suffix
+      domain = url.subdomain + "." + url.domain + "." + url.public_suffix
       @user_wall_music = UserWallMusic.new
       @user_wall_music.link = link
       @user_wall_music.title = domain
@@ -134,23 +134,26 @@ class UserWallsController < ApplicationController
       url.domain
       url.subdomain
       url.path
-      domain = url.subdomain + url.domain + url.public_suffix
+      domain = url.subdomain + "." + url.domain + "." + url.public_suffix
       # Build an Hpricot object from a web page:
       hdrs = {"User-Agent"=>"Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1", "Accept-Charset"=>"utf-8", "Accept"=>"text/html"}
       my_html = ""
       open(link, hdrs).each {|s| my_html << s}
       @web_doc= Hpricot(my_html)
+      @arr_img = []
+      @web_doc.search("img").each{ |e| @arr_img << e.attributes['src'] }
+      image_link = ""
+      image_link = @arr_img[0] if @arr_img.size > 0
+      arr_p = []
+      @web_doc.search("p").each{ |e| arr_p << e.inner_html.gsub(/<\/?[^>]*>/, "") }
+      p = ""
+      p = arr_p.max{|a, b| a.length <=> b.length} if arr_p.size > 0
 
-      p("Here are the images inside of this web page:")
-      @web_doc.search("img").each{ |e| p(e.to_html) }
-
-      p("Here are the paragraph inside of this web page:")
-      @web_doc.search("p").each{ |e| p(e.to_html) }
       @user_wall_link = UserWallLink.new
       @user_wall_link.link = link
-      @user_wall_link.image_link = ""
+      @user_wall_link.image_link = image_link
       @user_wall_link.title = domain
-      @user_wall_link.sub_content = link
+      @user_wall_link.sub_content = p
     rescue
       render :action => "error_link"
     end
