@@ -143,6 +143,18 @@ class UserWallsController < ApplicationController
     end
   end
 
+  def jplayer_music
+    wall_id = params[:wall_id]
+    wall = UserWall.find(wall_id)
+    @user_wall_music = wall.user_wall_music
+  end
+
+  def jplayer_video
+    wall_id = params[:wall_id]
+    wall = UserWall.find(wall_id)
+    @user_wall_video = wall.user_wall_video
+  end
+
   def error_link
   end
 

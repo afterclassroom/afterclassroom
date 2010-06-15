@@ -30,7 +30,6 @@ javascripts:
   - jquery-jeditable
   - jquery-carrousel
   - jquery-swfobject
-  - jquery-jwplayer
 - admin:
   - application
   - jquery

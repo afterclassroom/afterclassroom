@@ -1,4 +1,4 @@
 class UserWallVideo < ActiveRecord::Base
   # Relations
-  belongs_to :user_all
+  belongs_to :user_wall
 end
