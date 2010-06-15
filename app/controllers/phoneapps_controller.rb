@@ -88,6 +88,7 @@ class PhoneappsController < ApplicationController
   end
 
   def populartab
+    curpage = 0
     if (params[:page] == nil || params[:page]== '')
       curpage = '1'
     else
@@ -95,13 +96,14 @@ class PhoneappsController < ApplicationController
     end
 
     @popularap = Phoneapplication.popularapp(curpage)#this variable is used to store the specific data for a specifict page
-
     @noOfPages = Phoneapplication.popularapp('all').size/5#this variable is used to calculate the total no of page
+    @currentPage = curpage
 
     render :layout => false
   end
 
   def verifiedtab
+    curpage = 0
     if (params[:page] == nil || params[:page]== '')
       curpage = '1'
     else
@@ -112,11 +114,14 @@ class PhoneappsController < ApplicationController
 
     @noOfPages = Phoneapplication.verifiedapp('all').size/5#this variable is used to calculate the total no of page
 
+    @currentPage = curpage
+
     render :layout => false
   end
 
   def recentlyaddedtab
 
+    curpage=0
     if (params[:page] == nil || params[:page]== '')
       curpage = '1'
     else
@@ -126,6 +131,8 @@ class PhoneappsController < ApplicationController
     @recentap = Phoneapplication.recentlyaddedapp(curpage)#this variable is used to store the specific data for a specifict page
     
     @noOfPages = Phoneapplication.recentlyaddedapp('all').size/5#this variable is used to calculate the total no of page
+
+    @currentPage = curpage
     
     render :layout => false
   end
