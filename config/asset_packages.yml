@@ -4,14 +4,6 @@ javascripts:
   - application
   - jquery
   - jquery-ui
-  - jquery-ui-widget
-  - jquery-ui-mouse
-  - jquery-ui-draggable
-  - jquery-ui-position
-  - jquery-ui-resizable
-  - jquery-ui-button
-  - jquery-ui-datepicker
-  - jquery-ui-dialog
   - jrails
   - jquery-mcdropdown
   - jquery-auto-suggest
@@ -26,14 +18,6 @@ javascripts:
   - application
   - jquery
   - jquery-ui
-  - jquery-ui-widget
-  - jquery-ui-mouse
-  - jquery-ui-draggable
-  - jquery-ui-position
-  - jquery-ui-resizable
-  - jquery-ui-button
-  - jquery-ui-datepicker
-  - jquery-ui-dialog
   - jquery-auto-suggest
   - jrails
   - jquery-mcdropdown
@@ -45,6 +29,8 @@ javascripts:
   - tag
   - jquery-jeditable
   - jquery-carrousel
+  - jquery-swfobject
+  - jquery-jwplayer
 - admin:
   - application
   - jquery
@@ -94,5 +80,6 @@ stylesheets:
   - thickbox
   - jquery-wysiwyg
   - tag
+  - jquery-carrousel
 - admin:
   - main

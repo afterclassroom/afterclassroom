@@ -254,7 +254,7 @@ module ApplicationHelper
       title = wall.user_wall_link.title
       sub_content = wall.user_wall_link.sub_content
     end
-    render :partial => "user_walls/wall_attach", :locals => {:image => image, :title => title, :link => link, :sub_content => sub_content}
+    render :partial => "user_walls/wall_attach", :locals => {:wall_id => wall.id, :image => image, :title => title, :link => link, :sub_content => sub_content}
   end
   
   private

@@ -70,11 +70,7 @@ class UserWallsController < ApplicationController
     link = params[:link]
     begin
       url = Domainatrix.parse(link)
-      url.public_suffix
-      url.domain
-      url.subdomain
-      url.path
-      domain = url.subdomain + "." + url.domain + "." + url.public_suffix
+      domain = get_domain(url)
       @user_wall_photo = UserWallPhoto.new
       @user_wall_photo.link = link
       @user_wall_photo.title = domain
@@ -88,11 +84,7 @@ class UserWallsController < ApplicationController
     link = params[:link]
     begin
       url = Domainatrix.parse(link)
-      url.public_suffix
-      url.domain
-      url.subdomain
-      url.path
-      domain = url.subdomain + "." + url.domain + "." + url.public_suffix
+      domain = get_domain(url)
       #Get thumbnail
       arr = link.match("[\\?&]v=([^&#]*)")
       vid = arr == nil ? link : arr[1]
@@ -112,11 +104,7 @@ class UserWallsController < ApplicationController
     link = params[:link]
     begin
       url = Domainatrix.parse(link)
-      url.public_suffix
-      url.domain
-      url.subdomain
-      url.path
-      domain = url.subdomain + "." + url.domain + "." + url.public_suffix
+      domain = get_domain(url)
       @user_wall_music = UserWallMusic.new
       @user_wall_music.link = link
       @user_wall_music.title = domain
@@ -130,18 +118,14 @@ class UserWallsController < ApplicationController
     link = params[:link]
     begin
       url = Domainatrix.parse(link)
-      url.public_suffix
-      url.domain
-      url.subdomain
-      url.path
-      domain = url.subdomain + "." + url.domain + "." + url.public_suffix
+      domain = get_domain(url)
       # Build an Hpricot object from a web page:
       hdrs = {"User-Agent"=>"Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1", "Accept-Charset"=>"utf-8", "Accept"=>"text/html"}
       my_html = ""
       open(link, hdrs).each {|s| my_html << s}
       @web_doc= Hpricot(my_html)
       @arr_img = []
-      @web_doc.search("img").each{ |e| @arr_img << e.attributes['src'] }
+      @web_doc.search("img").each{ |e| @arr_img << "http://" + domain + e.attributes['src'] }
       image_link = ""
       image_link = @arr_img[0] if @arr_img.size > 0
       arr_p = []
@@ -160,5 +144,15 @@ class UserWallsController < ApplicationController
   end
 
   def error_link
+  end
+
+  private
+  def get_domain(url)
+    url.public_suffix
+    url.domain
+    url.subdomain
+    domain = ""
+    domain << url.subdomain + "." if url.subdomain != ""
+    domain << url.domain + "." + url.public_suffix
   end
 end

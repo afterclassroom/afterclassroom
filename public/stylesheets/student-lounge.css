@@ -399,7 +399,7 @@
   float:left;
   padding-top:5px;
 }
-.AfterImg div{
+.AfterImg .imgDiv{
   background:url('/images/bgafter.png') no-repeat;
   padding:3px;
 }

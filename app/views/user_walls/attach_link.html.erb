@@ -1,10 +1,14 @@
-<div style="min-height:80px">
-  <div class="AfterImg"><div>
-      <ul style="position: relative; left: 0px; width: 1020px;" id="myCarousel" class="myCarousel">
+<div style="min-height:100px">
+  <div class="AfterImg"><div class="imgDiv">
+      <ul id="carrousel" class="myCarousel">
         <% @arr_img.each do |img| %>
           <li><%= image_tag img, :width => "92px", :height => "68px" %></li>
         <% end %>
       </ul>
+    </div>
+    <div id="api">
+      <div class="learnPageP"><a id="prev" href="#"> </a></div>
+      <div class="learnPageN"><a id="next" href="#"> </a></div>
     </div>
   </div>
   <div class="AfterTitle"><%= link_to @user_wall_link.title, @user_wall_link.link, :target => "_blank" %></div>
@@ -19,20 +23,20 @@
 
 <script type="text/javascript">
   jQuery(document).ready(function () {
-    
-    var carrousel = jQuery("#myCarousel").carrousel({
+
+    var carrousel = jQuery("#carrousel").carrousel({
+      controls	: 'keys',
       direction	: 'left',
-      easing : 'easeOutBounce',
-      speed : 500,
-      dispTimeout : 1000,
-      dispNumber : 1,
-      auto : false,
+      speed 		: 50,
+      dispTimeout 	: 1000,
+      dispNumber	: 1,
+      auto		: false,
       callbacks	: [giveCurrent],
-      api : true
+      api		: true
     });
 
     function giveCurrent() {
-      alert(carrousel.getCurrent());
+      $('#user_wall_link_image_link').val($("div[rel='" + carrousel.getCurrent() + "'] img").attr("src"));
     }
 
     jQuery('#next').click(function () {
