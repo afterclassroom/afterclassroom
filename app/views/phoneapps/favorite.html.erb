@@ -1,5 +1,9 @@
 <div class="topLearning">
-  <div class="learnImgT"><div><img src="pictures/phone2.png"/></div></div>
+  <div class="learnImgT">
+    <div>
+      <%= image_tag(@pa.photo.url(:medium), :alt => '') %>
+    </div>
+  </div>
   <div class="learnFav">
     <div class="AftBe">
       <div class="txtsignup1"><%=h @pa.name %></div>

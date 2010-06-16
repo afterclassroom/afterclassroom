@@ -23,8 +23,13 @@
     <div class="col195 QAsTopic">
       <div class="col195in">
         <div class="demo">
-          <div class="demoImg"><a href="#"><div><img src="<img src='/images/pictures/phone2.png'/>" alt="Noimg"/></div></a></div>
-          <div class="demoBtm"><a href="#">Play a Demo</a></div>
+          <div class="demoImg">
+            <%= link_to content_tag(:div, ''+image_tag(@pa.photo.url(:medium), :alt => '')), :controller => 'phoneapps', :action => 'phonelounge', :id => @pa.id %>
+          </div>
+          <div class="demoBtm">
+            <a href="<%= @pa.playurl %>">Play a Demo</a>
+
+          </div>
         </div>
       </div>
     </div>
@@ -93,7 +98,9 @@
   <div class="contMainL">
     <div class="col451 learnDet">
       <div class="col451in">
-        <div class="learnDetimg"><a href="#"><div><img src="" alt="Noimg"/></div></a></div>
+        <div class="learnDetimg">
+          <%= link_to content_tag(:div, ''+image_tag(@pa.photo.url(:thumb), :alt => '')), :controller => 'phoneapps', :action => 'phonelounge', :id => @pa.id %>
+        </div>
         <div class="learnDetContR">
           <div class="learnDetT"><a href="#"><%= @pa.name %></a></div>
           <div class="learnDetDes">

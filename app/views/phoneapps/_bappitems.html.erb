@@ -6,10 +6,10 @@
       <div class="learnTitem">
         <div class="learnTtitle">
           <%= link_to iap.name, :controller => 'phoneapps', :action => 'phonelounge', :id => iap.id %>
-           <span>$0.99</span>
+           <span>$<%= iap.price %></span>
         </div>
         <div class="learnTimg">
-          <%= link_to content_tag(:div, ''+image_tag("pictures/phone1.png", :alt => '')), :controller => 'phoneapps', :action => 'phonelounge', :id => iap.id %>
+          <%= link_to content_tag(:div, ''+image_tag(iap.photo.url(:thumb), :alt => '')), :controller => 'phoneapps', :action => 'phonelounge', :id => iap.id %>
 
         </div>
         <div class="learnTst">
@@ -18,9 +18,9 @@
       </div>
     <%else%>
       <div class="learnTitem learnLast">
-        <div class="learnTtitle"><%= link_to iap.name, :controller => 'phoneapps', :action => 'phonelounge', :id => iap.id %> <span>$0.99</span></div>
+        <div class="learnTtitle"><%= link_to iap.name, :controller => 'phoneapps', :action => 'phonelounge', :id => iap.id %> <span>$<%= iap.price %></span></div>
         <div class="learnTimg">
-          <%= link_to content_tag(:div, ''+image_tag("pictures/phone1.png", :alt => '')), :controller => 'phoneapps', :action => 'phonelounge', :id => iap.id %>
+          <%= link_to content_tag(:div, ''+image_tag(iap.photo.url(:thumb), :alt => '')), :controller => 'phoneapps', :action => 'phonelounge', :id => iap.id %>
         </div>
         <div class="learnTst">
           <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">

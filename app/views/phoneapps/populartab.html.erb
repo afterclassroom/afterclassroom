@@ -1,17 +1,19 @@
 <% @popularap.each do |ap| %>
   <div class="learnNItem">
     <div class="learnNImg">
-      <%= link_to content_tag(:div, ''+image_tag("pictures/phone2.png", :alt => '')), :controller => 'phoneapps', :action => 'phonelounge', :id => ap.id %>
+      <%= link_to content_tag(:div, ''+image_tag(ap.photo.url(:thumb), :alt => '')), :controller => 'phoneapps', :action => 'phonelounge', :id => ap.id %>
     </div>
     <div class="phoneLR">
-      <div class="learnNtitle"><%= link_to ap.name, :controller => 'phoneapps', :action => 'phonelounge', :id => ap.id %> by Vestibulum <span>$2.99</span></div>
+      <div class="learnNtitle"><%= link_to ap.name, :controller => 'phoneapps', :action => 'phonelounge', :id => ap.id %> by Vestibulum <span>$<%= ap.price %></span></div>
       <div class="phoneS">
         <div class="learnTst">
           <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
         </div>
       </div>
     </div>
-    <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
+    <div class="learnNdes">
+      <%=  ap.description %>
+    </div>
     <div class="learnNinf">67,541, 274 monthly active users - 54 friends</div>
   </div>
 <% end %>

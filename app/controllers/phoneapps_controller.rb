@@ -21,6 +21,7 @@ class PhoneappsController < ApplicationController
   def pagingphoneapps
     @allapps = Phoneapplication.allapp(params[:page]) #this variable store the data for willpaginate
     @pageallapps = Phoneapplication.allapp('').size / 5 #this variable store the number of total page
+    @curpage = (params[:page])
     render :layout => false
   end
 
