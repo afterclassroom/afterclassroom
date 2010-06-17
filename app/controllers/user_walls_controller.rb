@@ -39,6 +39,15 @@ class UserWallsController < ApplicationController
     @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
   end
 
+  def view_all_comments
+    wall_id = params[:wall_id]
+    @wall = UserWall.find_by_id(params[:wall_id])
+    if @wall
+      @comments = @wall.comments
+    end
+    render :layout => false
+  end
+
   def create_comment
     wall_id = params[:wall_id]
     comment = params[:comment]
@@ -54,6 +63,34 @@ class UserWallsController < ApplicationController
     render :layout => false
   end
 
+  def delete_comment
+    comment_id = params[:comment_id]
+    comment = Comment.find(comment_id)
+    @wall = UserWall.find(comment.commentable_id)
+    if comment && @wall
+      comment.destroy if comment.user == current_user || @wall.user == current_user
+    end
+    render :layout => false
+  end
+
+  def rate
+    rating = params[:rating]
+    wall = UserWall.find(params[:post_id])
+    wall.rate rating.to_i, current_user
+    wall.save
+
+    render :text => %Q'
+      <div class="qashdU">
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{wall.total_good}</a>
+      </div>
+      <div class="qashdD">
+        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{wall.total_bad}</a>
+      </div>
+      <script>
+        vtip();
+      </script>'
+  end
+  
   def link_image
   end
 

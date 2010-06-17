@@ -3,7 +3,7 @@
   <div class="proListR">
     <div class="AfterClCom"><%= link_to comment.user.full_name, {:controller => "profile", :action => "show_profile", :id => comment.user.id} %> - <%= comment.comment %></div>
     <div class="proListCont">
-      <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %> <a href="#">Delete</a>
+      <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %> <a href="javascript:;" onclick="DeleteWallComment('<%= wall.id %>', '<%= comment.id %>');">Delete</a>
     </div>
   </div>
 </div>
