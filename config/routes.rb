@@ -29,7 +29,12 @@ ActionController::Routing::Routes.draw do |map|
     :iphonepage => :get,
     :bberrypage => :get,
     :googleapppage => :get,
-    :pagingphoneapps => :get
+    :pagingphoneapps => :get,
+    :phoneappstab => :get,
+    :populartab => :get,
+    :verifiedtab => :get,
+    :recentlyaddedtab => :get,
+    :seealltab => :get
   }
   
   # Users

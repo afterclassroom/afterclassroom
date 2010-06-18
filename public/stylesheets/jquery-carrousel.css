@@ -1,0 +1,45 @@
+  #api {
+    padding-left:28px;
+    text-align:center;
+  }
+  .myCarousel {
+    height:75px;
+    margin:0;
+    padding:0;
+  }
+  .myCarousel li {
+    float:left;
+    height:75px;
+    list-style:none outside none;
+    margin:0 5px;
+    width:75px;
+  }
+  .myCarousel li img {
+    display:block;
+  }
+  .carrousel {
+    display:block;
+    width: 75px;
+  }
+  .carrousel_itemList {
+    float:right;
+    margin:0;
+    padding:0;
+    position:relative;
+  }
+  .carrousel_itemList_li {
+    border:1px solid #F0EB9E;
+    float:left;
+    height:17px;
+    list-style:none outside none;
+    margin:1px;
+    position:relative;
+    text-align:center;
+    width:17px;
+  }
+  .carrousel_carrousel {
+    width:425px;
+  }
+  .carrousel_1276333863588_div {
+    width: 75px;
+  }

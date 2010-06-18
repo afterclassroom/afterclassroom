@@ -24,6 +24,7 @@
       <%= yield %>
     </div>
     <%= render :partial => 'shared/footer' %>
+    <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
   </body>
   <!--Debugs-->
   <% if RAILS_ENV == 'development' %>

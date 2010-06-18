@@ -1,0 +1,11 @@
+<div id="player_<%= @user_wall_music.user_wall.id %>"></div>
+<script type='text/javascript'>
+  var so_<%= @user_wall_music.user_wall.id %> = new SWFObject('/javascripts/player.swf','ply_<%= @user_wall_music.user_wall.id %>','320','24','9','#000000');
+  so_<%= @user_wall_music.user_wall.id %>.addParam('allowfullscreen','true');
+  so_<%= @user_wall_music.user_wall.id %>.addParam('allowscriptaccess','always');
+  so_<%= @user_wall_music.user_wall.id %>.addParam('wmode','opaque');
+  so_<%= @user_wall_music.user_wall.id %>.addVariable('autostart','true');
+  so_<%= @user_wall_music.user_wall.id %>.addVariable('file','<%= @user_wall_music.link %>');
+  so_<%= @user_wall_music.user_wall.id %>.addVariable('duration','33');
+  so_<%= @user_wall_music.user_wall.id %>.write('player_<%= @user_wall_music.user_wall.id %>');
+</script>

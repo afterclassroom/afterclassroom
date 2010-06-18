@@ -12,6 +12,9 @@ class CreatePhoneapplications < ActiveRecord::Migration
 
       t.string :playurl
 
+      t.integer :popular_rank
+
+      t.string :state
 
       t.timestamps
 

@@ -385,7 +385,7 @@
 }
 .AfterInfo .assInfB{
     clear:both;
-    AfterClmargin-top:20px
+    margin-top:20px
 }
 .AfterInfo .qashdU{
     padding-left:0px;
@@ -399,10 +399,16 @@
     float:left;
     padding-top:5px;
 }
-.AfterImg div{
+.AfterImg .imgDiv{
     background:url('/images/bgafter.png') no-repeat;
     padding:3px;
 }
+.AfterImg .imgDiv a {
+    display:block;
+    text-decoration:none;
+}
+.AfterImg .imgDiv a span.play { display:none; background: url('/images/play-arrow.png') center center no-repeat; margin: -80px 10px 0 0; height: 80px; position: relative; z-index: 100; opacity: 0.8; }
+.AfterImg .imgDiv a:hover span.play { display:block; }
 /*** Press **/
 .press{
     float:left;
@@ -1011,37 +1017,74 @@ div.findIMitem a:hover{
 }
 .flistRAdd{
     float:left;
+<<<<<<< HEAD
     border-right:1px #e3e3e3 solid;
+=======
+    width:86px;
+>>>>>>> a874a1c9bfb0e98982cb668923e15a315548153f
 }
 .flistRAdd a{
     width:85px;
     height:30px;
-    /*display:block;*/
+    display:block;
     text-align:center;
     color:#818181;
     text-decoration:none;
-    margin:5px;
+    border-right:1px #e3e3e3 solid;
 }
 .flistRAdd a:hover{
-   /*background-color:#6f6f63;
-    color:#fff;*/
+    background-color:#6f6f63;
+    color:#fff;
 }
+<<<<<<< HEAD
 .flistRAdd span.subhover {
     background:url('/images/flistAH.gif')no-repeat center center;
     cursor: pointer;
     
   }
+=======
+>>>>>>> a874a1c9bfb0e98982cb668923e15a315548153f
 .flistRAdd span{
-    background: url('/images/flistA.gif') no-repeat center center;
-    margin:7px;
-    padding:5px;
-    width: 17px;
-    height: 35px;
-  /*float: left;*/
-    
+    background: url('/images/flistA.gif') no-repeat center right;
+    float: left;
+    width:80px;
 }
 .flistRAdd a:hover span{
+<<<<<<< HEAD
    /* background:url('/images/flistAH.gif')no-repeat center top;*/
+=======
+    background:url('/images/flistAH.gif')no-repeat center right;
+}
+.flistRAdd ul {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    background:#F6F6F6;
+    border:1px solid #E3E3E3;
+    display: none;
+    float: left;
+    list-style:none outside none;
+    margin:0;
+    padding:0;
+    position:absolute;
+    width:150px;
+    border-top: 1px black solid;
+}
+.flistRAdd ul li {
+    border-bottom:1px solid #E3E3E3;
+    border-top:1px solid #E3E3E3;
+    clear:both;
+    width:150px;
+}
+.flistRAdd:hover ul {
+    display: block;
+}
+.flistRAdd ul li a {
+    width:150px;
+    margin-top:-32px;
+}
+.flistRAdd ul li a:hover {
+    background-color: #818181;
+>>>>>>> a874a1c9bfb0e98982cb668923e15a315548153f
 }
 .flistRdelete{
     width:28px;
@@ -2804,7 +2847,7 @@ div.helpAdv2{
     text-decoration:none;
     color:#0a81c4;
     display:block;
-    border: 1px #e4e4e4 solid;  
+    border: 1px #e4e4e4 solid;
 }
 .proBtm input{
     border: 0 none;
@@ -3101,8 +3144,8 @@ div.helpAdv2{
 }
 .wrapTitle{
     color:#969696;
-	font-weight:bold;
-	margin-bottom:3px
+    font-weight:bold;
+    margin-bottom:3px
 }
 
 /********** Profile infomation **************/
@@ -5436,8 +5479,8 @@ a.itemFS:hover{
 }
 /*
 .mostPho .col300Title{
-	background:url('/images/icon-MPho.png') no-repeat left 2px;
-	padding-left:16px;
+background:url('/images/icon-MPho.png') no-repeat left 2px;
+padding-left:16px;
 }*/
 .phoD .stoDetRBN{
     padding:0px 7px;

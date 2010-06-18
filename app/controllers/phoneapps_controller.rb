@@ -19,8 +19,9 @@ class PhoneappsController < ApplicationController
   end
 
   def pagingphoneapps
-    @allapps = Phoneapplication.allapp(params[:page])
-    @pageallapps = Phoneapplication.allapp('').size / 5
+    @allapps = Phoneapplication.allapp(params[:page]) #this variable store the data for willpaginate
+    @pageallapps = Phoneapplication.allapp('').size / 5 #this variable store the number of total page
+    @curpage = (params[:page])
     render :layout => false
   end
 
@@ -83,4 +84,61 @@ class PhoneappsController < ApplicationController
     
   end
 
+  def phoneappstab
+    render :layout => false
+  end
+
+  def populartab
+    curpage = 0
+    if (params[:page] == nil || params[:page]== '')
+      curpage = '1'
+    else
+      curpage = params[:page] #this variable is used to store the current page that willpaginate return
+    end
+
+    @popularap = Phoneapplication.popularapp(curpage)#this variable is used to store the specific data for a specifict page
+    @noOfPages = Phoneapplication.popularapp('all').size/5#this variable is used to calculate the total no of page
+    @currentPage = curpage
+
+    render :layout => false
+  end
+
+  def verifiedtab
+    curpage = 0
+    if (params[:page] == nil || params[:page]== '')
+      curpage = '1'
+    else
+      curpage = params[:page] #this variable is used to store the current page that willpaginate return
+    end
+
+    @verifiedap = Phoneapplication.verifiedapp(curpage)#this variable is used to store the specific data for a specifict page
+
+    @noOfPages = Phoneapplication.verifiedapp('all').size/5#this variable is used to calculate the total no of page
+
+    @currentPage = curpage
+
+    render :layout => false
+  end
+
+  def recentlyaddedtab
+
+    curpage=0
+    if (params[:page] == nil || params[:page]== '')
+      curpage = '1'
+    else
+      curpage = params[:page] #this variable is used to store the current page that willpaginate return
+    end
+    
+    @recentap = Phoneapplication.recentlyaddedapp(curpage)#this variable is used to store the specific data for a specifict page
+    
+    @noOfPages = Phoneapplication.recentlyaddedapp('all').size/5#this variable is used to calculate the total no of page
+
+    @currentPage = curpage
+    
+    render :layout => false
+  end
+
+  def seealltab
+    render :layout => false
+  end
 end
