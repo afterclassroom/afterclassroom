@@ -60,6 +60,7 @@ stylesheets:
   - thickbox
   - jquery-wysiwyg
   - tag
+  - footer-menu
 - student_lounge:
   - main
   - post
@@ -80,5 +81,6 @@ stylesheets:
   - jquery-wysiwyg
   - tag
   - jquery-carrousel
+  - footer-menu
 - admin:
   - main
