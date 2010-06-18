@@ -22,7 +22,9 @@ Rails::Initializer.run do |config|
     :lib     => 'thinking_sphinx',
     :version => '1.3.14'
   )
-
+  config.gem "domainatrix"
+  config.gem "hpricot"
+  
   # Make Time.zone default to the specified zone, and make Active Record store time values
   # in the database in UTC, and return them converted to the specified local zone.
   config.time_zone = 'UTC'

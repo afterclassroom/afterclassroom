@@ -2,9 +2,10 @@ class UserWall < ActiveRecord::Base
   # Relations
   belongs_to :user
   belongs_to :user_post, :class_name => 'User', :foreign_key => 'user_id_post'
-  has_many :user_wall_photos
-  has_many :user_wall_videos
-  has_many :user_wall_links
+  has_one :user_wall_photo
+  has_one :user_wall_video
+  has_one :user_wall_music
+  has_one :user_wall_link
 
   # Comments
   acts_as_commentable
@@ -20,4 +21,7 @@ class UserWall < ActiveRecord::Base
     self.ratings.count(:conditions => ["rating = ?", 0])
   end
 
+  def has_attach
+    !self.user_wall_photo.nil? || !self.user_wall_video.nil? || !self.user_wall_music.nil? || !self.user_wall_link.nil?
+  end
 end

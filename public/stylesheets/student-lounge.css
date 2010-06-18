@@ -352,7 +352,6 @@
 }
 .AfterCl{
     color:#808075;
-    min-height:36px;
 }
 .AfterClCom{
     color:#808075;
@@ -386,6 +385,7 @@
 }
 .AfterInfo .assInfB{
     clear:both;
+    AfterClmargin-top:20px
 }
 .AfterInfo .qashdU{
     padding-left:0px;
@@ -1011,8 +1011,6 @@ div.findIMitem a:hover{
 }
 .flistRAdd{
     float:left;
-    /*width:86px;*/
-    position:absolute;
     border-right:1px #e3e3e3 solid;
 }
 .flistRAdd a{
@@ -1031,6 +1029,7 @@ div.findIMitem a:hover{
 .flistRAdd span.subhover {
     background:url('/images/flistAH.gif')no-repeat center center;
     cursor: pointer;
+    
   }
 .flistRAdd span{
     background: url('/images/flistA.gif') no-repeat center center;
@@ -1038,18 +1037,17 @@ div.findIMitem a:hover{
     padding:5px;
     width: 17px;
     height: 35px;
-    /*float: left;*/
+  /*float: left;*/
     
 }
-/*.flistRAdd a:hover span{
-    background:url('/images/flistAH.gif')no-repeat center top;
-}*/
+.flistRAdd a:hover span{
+   /* background:url('/images/flistAH.gif')no-repeat center top;*/
+}
 .flistRdelete{
     width:28px;
-    float:left;
+    margin-left:90px;
 }
 .flistRdelete a{
-    padding-left:175px;
     width:28px;
     height:30px;
     display:block;
@@ -3086,7 +3084,7 @@ div.helpAdv2{
 }
 .footWall{
     background:transparent url(/images/shareAttach.gif) no-repeat scroll 0 0;
-    height:29px;
+    height:35px;
     margin-left:1px;
 }
 .wrapCont{

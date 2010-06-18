@@ -5,6 +5,7 @@ class Phoneapplication < ActiveRecord::Base
     :default_url => "/images/pictures/phone2.png",
     :styles => { :medium => "161x119>",
     :thumb => "90x66#" }
+  validates_attachment_content_type :photo, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 
   def self.search(category,curpage)
     paginate :per_page => 5, :page => curpage,

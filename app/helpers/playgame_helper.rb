@@ -1,0 +1,2 @@
+module PlaygameHelper
+end

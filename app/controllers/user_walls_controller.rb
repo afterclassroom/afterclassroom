@@ -10,6 +10,14 @@ class UserWallsController < ApplicationController
       user_wall = UserWall.new
       user_wall.user_id_post = current_user.id
       user_wall.content = your_mind
+      
+      if params[:user_wall_photo]
+        user_wall_photo = UserWallPhoto.new(params[:user_wall_photo])
+        user_wall.user_wall_photo = user_wall_photo
+      end
+
+      user_wall.save
+      
       @user.user_walls << user_wall
       @user.save
     end
@@ -45,8 +53,20 @@ class UserWallsController < ApplicationController
 
   def attach_image
     link = params[:link]
-    @user_wall_photo = UserWallPhoto.new
-    @user_wall_photo.link = link
+    begin
+      url = Domainatrix.parse(link)
+      url.public_suffix
+      url.domain
+      url.subdomain
+      url.path
+      domain = url.subdomain + url.domain + url.public_suffix
+      @user_wall_photo = UserWallPhoto.new
+      @user_wall_photo.link = link
+      @user_wall_photo.title = domain
+      @user_wall_photo.sub_content = link
+    rescue
+      render :action => "error_link"
+    end
   end
 
   def attach_video
@@ -56,5 +76,8 @@ class UserWallsController < ApplicationController
   end
 
   def attach_link
+  end
+
+  def error_link
   end
 end
