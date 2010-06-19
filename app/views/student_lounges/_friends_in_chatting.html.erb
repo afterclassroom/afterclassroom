@@ -1,7 +1,25 @@
-<ul>Friends  on your network are chit chatting
-	<% for friend_in_chat in friends_in_chat %>
-	<li>
-		<%= image_tag friend_in_chat.avatar.url(:thumb) %>
-	</li>
-	<% end %>
-</ul>
+<div class="col300 stuL300">
+  <div class="col300in">
+    <h1 class="col300Title">Friends are chatting</h1>
+    <div class="col300Cont">
+      <% for friend_in_chat in @friends_in_chat %>
+        <div class="stuLFri">
+          <div class="stuLFriT">
+            <div class="studentImg"><a href="#"><div><img src="pictures/pic8.png"/></div></a></div>
+            <div class="stuLFname"><a href="#">JeanCharles</a></div>
+            <div class="stuLFtime">2 hours 5 minutes ago</div>
+          </div>
+          <div class="stuLFdes">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis..."</div>
+          <div class="assInfB">
+            <div class="com"><a href="#">Comments</a></div>
+            <div class="addmein"><a href="#">Add me in</a></div>
+          </div>
+        </div>
+      <% end %>
+      <div class="stuLFriB">
+        <div class="stuLfriBL"><a href="#">View more</a></div>
+        <div class="stuLfriBR"><a href="#"> </a></div>
+      </div>
+    </div>
+  </div>
+</div>

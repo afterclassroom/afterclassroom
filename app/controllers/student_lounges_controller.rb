@@ -2,9 +2,15 @@
 class StudentLoungesController < ApplicationController
   layout 'student_lounge'
   before_filter :login_required
+  before_filter :require_current_user
 
   def index
 		user_login = params[:user]
+    @walls = []
+    arr_friends_id = current_user.user_friends.collect(&:id)
+    if arr_friends_id.size > 0
+      @walls = UserWall.find(:all, :conditions => ["(user_id = user_id_post) AND user_id IN(#{arr_friends_id.join(", ")})"], :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    end
     @user_invite_chat = User.find_by_login(user_login) if user_login != current_user.login
 		@friends_in_chat = current_user.friends_in_chat
   end
@@ -164,4 +170,14 @@ class StudentLoungesController < ApplicationController
 	def friends_want_you_chat
 		@friends_want = current_user.friends_want_chat
 	end
+
+  protected
+
+  def require_current_user
+    @user ||= User.find(params[:user_id] || params[:id])
+    unless (@user && (@user.eql?(current_user)))
+      redirect_back_or_default(root_path)and return false
+    end
+    return @user
+  end
 end

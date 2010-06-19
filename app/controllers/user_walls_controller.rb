@@ -37,6 +37,10 @@ class UserWallsController < ApplicationController
       @user.save
     end
     @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    respond_to do |format|
+      format.html { redirect_to user_profiles_path(current_user) }
+      format.js { render :layout => false }
+    end
   end
 
   def view_all_comments
