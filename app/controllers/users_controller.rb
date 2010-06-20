@@ -7,8 +7,6 @@ class UsersController < ApplicationController
     :except => [:new, :create, :activate, :forgot_login, :forgot_password, :show_comment]
   before_filter :require_current_user,
     :except => [:new, :create, :activate, :forgot_login, :forgot_password, :show_comment]
-  before_filter :find_user, 
-    :except => [:new, :create, :activate, :forgot_login, :forgot_password, :show_comment]
   
   # render new.rhtml
   def new
@@ -204,10 +202,6 @@ class UsersController < ApplicationController
       redirect_back_or_default(root_path)and return false
     end
     return @user
-  end
-
-  def find_user
-    @user = User.find(params[:id])
   end
 
   def create_new_user(attributes)

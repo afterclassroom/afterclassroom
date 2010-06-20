@@ -1,35 +1,35 @@
 <form name="form_<%= @chanel.chanel_name %>">
-<div id="chat_content_wraper_<%= @chanel.chanel_name %>">
-	<div id="chat_image_<%= @chanel.chanel_name %>">
-		<div>
-			<%= image_tag @user_with_chat.avatar.url(:thumb)%>
-		</div>
-		<div>
-			<%= image_tag current_user.avatar.url(:thumb)%>
-			<ul>
-			<% for user_friend in current_user.friends_with_chanel(@chanel.id) %>
-				<li>
-					<%= check_box_tag "#{@chanel.chanel_name}_users_id", user_friend.id %> <%= user_friend.full_name %> 
-				</li>
-				<% end %>
-			</ul>
-			<input type="button" value="Inivte" name="invite" onClick="add_users_to_chat('<%= @chanel.chanel_name %>')"/>
-		</div>
-	<%= radio_button_tag "stop_#{@user_with_chat.id}", "Flirting", true %> Flirting 
-	<%= radio_button_tag "stop_#{@user_with_chat.id}", "Stop Flirting", false, :onclick => "stop_chat('#{@chanel.chanel_name}')"%> Stop Flirting 
-	</div>
-	<div id="chat_content_<%= @chanel.chanel_name %>" style="height:100px; overflow-y:auto;">
-		<ul id="<%= @chanel.chanel_name %>">
-			<% for message in @messages %>
-				<li>
-					<%= message.user.full_name + ":" if !message.notify_msg %> <%= message.message %>
-				</li>
-			<% end %>
-		<ul>
-	</div>
-	<div id="chat_form">
-		<input type="text" value="" size="20" name="chat_input_<%= @user_with_chat.id %>" id="chat_input_<%= @user_with_chat.id %>"/>
-		<input type="button" value="Send" name="<%= @chanel.chanel_name %>_send" onClick="send_data('<%= @user_with_chat.id %>', '<%= @chanel.chanel_name %>')"/>
-	</div>
-</div>
-</form>
+  <div id="chat_content_wraper_<%= @chanel.chanel_name %>">
+    <div id="chat_image_<%= @chanel.chanel_name %>">
+      <div>
+        <%= image_tag @user_with_chat.avatar.url(:thumb)%>
+      </div>
+      <div>
+        <%= image_tag current_user.avatar.url(:thumb)%>
+        <ul>
+          <% for user_friend in current_user.friends_with_chanel(@chanel.id) %>
+            <li>
+              <%= check_box_tag "#{@chanel.chanel_name}_users_id", user_friend.id %> <%= user_friend.full_name %>
+            </li>
+          <% end %>
+        </ul>
+        <input type="button" value="Inivte" name="invite" onClick="add_users_to_chat('<%= @chanel.chanel_name %>')"/>
+      </div>
+      <%= radio_button_tag "stop_#{@user_with_chat.id}", "Flirting", true %> Flirting
+      <%= radio_button_tag "stop_#{@user_with_chat.id}", "Stop Flirting", false, :onclick => "stop_chat('#{@chanel.chanel_name}')"%> Stop Flirting
+    </div>
+    <div id="chat_content_<%= @chanel.chanel_name %>" style="height:100px; overflow-y:auto;">
+      <ul id="<%= @chanel.chanel_name %>">
+        <% for message in @messages %>
+          <li>
+            <%= message.user.full_name + ":" if !message.notify_msg %> <%= message.message %>
+          </li>
+        <% end %>
+        <ul>
+          </div>
+          <div id="chat_form">
+            <input type="text" value="" size="20" name="chat_input_<%= @user_with_chat.id %>" id="chat_input_<%= @user_with_chat.id %>"/>
+            <input type="button" value="Send" name="<%= @chanel.chanel_name %>_send" onClick="send_data('<%= @user_with_chat.id %>', '<%= @chanel.chanel_name %>')"/>
+          </div>
+          </div>
+          </form>

@@ -1,0 +1,23 @@
+<div class="col195 stuLLeft">
+  <div class="col195in">
+    <h1 class="col300Title">Friends wanted to chat with you</h1>
+    <% for friend_want in @friends_want %>
+      <div class="stuLFriChat">
+        <div class="stuLFriT">
+          <div class="studentImg"><%= link_to "<div>#{image_tag(friend_want.user_invite.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => friend_want.user_invite.id} %></div>
+          <div class="stuLFname"><%= link_to wall.user_post.full_name, {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %></div>
+          <div class="stuLFtime">2 hours 5 minutes ago</div>
+        </div>
+        <div class="stuLFdes">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac ipsum turpis..."</div>
+        <div class="assInfB">
+          <div class="acc"><%= link_to "Accept", "javascript:;", :onclick => "mydow_open('#{friend_want.flirting_chanel.chanel_name}')" %></div>
+          <div class="ing"><a href="#">Ingore</a></div>
+        </div>
+      </div>
+    <% end %>
+    <div class="stuLFriB">
+      <div class="stuLfriBL"><a href="#">View more</a></div>
+      <div class="stuLfriBR"><a href="#"> </a></div>
+    </div>
+  </div>
+</div>

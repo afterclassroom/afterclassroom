@@ -7,29 +7,31 @@ javascripts:
   - jrails
   - jquery-mcdropdown
   - jquery-auto-suggest
-  - thickbox
   - jquery-validate
   - jquery-counter
   - jquery-multiselect
-  - vtip-min
   - jquery-wysiwyg
+  - thickbox
+  - vtip-min
   - tag
+  - json
 - student_lounge:
   - application
   - jquery
   - jquery-ui
-  - jquery-auto-suggest
   - jrails
   - jquery-mcdropdown
-  - thickbox
+  - jquery-auto-suggest
   - jquery-validate
-  - vtip-min
   - jquery-wysiwyg
-  - ajaxupload
-  - tag
   - jquery-jeditable
   - jquery-carrousel
   - jquery-swfobject
+  - thickbox
+  - vtip-min
+  - ajaxupload
+  - tag
+  - json
 - admin:
   - application
   - jquery

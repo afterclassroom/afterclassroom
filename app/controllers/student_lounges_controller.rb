@@ -13,15 +13,16 @@ class StudentLoungesController < ApplicationController
     end
     @user_invite_chat = User.find_by_login(user_login) if user_login != current_user.login
 		@friends_in_chat = current_user.friends_in_chat
+    @friends_want = current_user.friends_want_chat
   end
 	
 	def invite_chat
-		user_login = params[:user]
-		user_invite_chat = User.find_by_login(user_login)
+		user_id = params[:user_id]
+		user_invite_chat = User.find_by_login(user_id)
 
 		#Check and create chanel
 		if user_invite_chat
-      chanel_name = "chanel_" + current_user.login + "_" + user_invite_chat.login
+      chanel_name = "chanel_#{current_user.id}_#{user_invite_chat.id}"
 			message = "#{current_user.full_name} invite #{user_invite_chat.full_name} to chat."
 			flirting_chanel = FlirtingChanel.create({:chanel_name => chanel_name})
       flirting_massage = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
@@ -35,8 +36,7 @@ class StudentLoungesController < ApplicationController
 			end
       render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
 				#Refressh
-				page.call 'friends_you_invited_
-				chat', ''
+				page.call 'friends_you_invited_chat', ''
 				page.call 'friends_want_you_chat', ''
 				#Push message
 				page.call 'insert_text_to_chatcontent', flirting_chanel.chanel_name, "<li>" + message + "</li>"
