@@ -407,6 +407,9 @@
     display:block;
     text-decoration:none;
 }
+.AfterImg .imgDiv a img{
+    border: 0 none;
+}
 .AfterImg .imgDiv a span.play { display:none; background: url('/images/play-arrow.png') center center no-repeat; margin: -80px 10px 0 0; height: 80px; position: relative; z-index: 100; opacity: 0.8; }
 .AfterImg .imgDiv a:hover span.play { display:block; }
 /*** Press **/
