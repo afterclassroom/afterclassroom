@@ -671,9 +671,15 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
   create_table "user_wall_videos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
+<<<<<<< HEAD
+=======
     t.string  "thumb"
     t.string  "title"
     t.text    "sub_content"
+<<<<<<< HEAD
+=======
+>>>>>>> a9f9b2c2e800e76c3c51e74e3e9171a058a928e9
+>>>>>>> 321a21e89e6a26d5588990c4d9c4b5314be73e23
   end
 
   create_table "user_walls", :force => true do |t|
