@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+
+one:
+
+  name: MyString
+
+  url: MyString
+
+  description: MyString
+
+  playurl: MyString
+
+  popular_rank: 1
+
+  state: MyString
+
+
+two:
+
+  name: MyString
+
+  url: MyString
+
+  description: MyString
+
+  playurl: MyString
+
+  popular_rank: 1
+
+  state: MyString
+
+
