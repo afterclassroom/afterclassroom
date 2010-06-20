@@ -61,6 +61,11 @@ class PhoneappsController < ApplicationController
       id = params[:id]
 
       @pa = Phoneapplication.find(id)
+      @pa.popular_rank = @pa.popular_rank + 1
+      if @pa.save
+        #do something
+        puts "update successfully" + @pa.popular_rank.to_s
+      end
 
     end
   end

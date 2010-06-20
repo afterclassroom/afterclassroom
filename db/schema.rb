@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
-    t.text     "comment"
+    t.string   "comment",                        :default => ""
     t.datetime "created_at",                                     :null => false
     t.integer  "commentable_id",                 :default => 0,  :null => false
     t.string   "commentable_type", :limit => 15, :default => "", :null => false
@@ -120,6 +120,11 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
   create_table "friend_groups", :force => true do |t|
     t.string "name"
     t.string "label"
+  end
+
+  create_table "friend_groups_user_invites", :id => false, :force => true do |t|
+    t.integer "friend_group_id", :null => false
+    t.integer "user_invite_id",  :null => false
   end
 
   create_table "friend_in_groups", :force => true do |t|
@@ -262,7 +267,6 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
     t.integer  "phoneappcategory_id", :null => false
     t.string   "name"
     t.string   "description"
-    t.string   "image"
     t.string   "price"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -653,17 +657,26 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
   create_table "user_wall_musics", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
+    t.string  "title"
+    t.text    "sub_content"
   end
 
   create_table "user_wall_photos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
+    t.string  "title"
+    t.text    "sub_content"
   end
 
   create_table "user_wall_videos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
+<<<<<<< HEAD
+=======
     t.string  "thumb"
+    t.string  "title"
+    t.text    "sub_content"
+>>>>>>> a9f9b2c2e800e76c3c51e74e3e9171a058a928e9
   end
 
   create_table "user_walls", :force => true do |t|
