@@ -28,6 +28,25 @@
     });
 
     //show quick menu on click
+    
+    $("span.menu_title a").click(function() {
+      if($(".quickmenu").is(':hidden')){ //if quick menu isn't visible
+        $(".quickmenu").fadeIn("fast"); //show menu on click
+      }
+      else if ($(".quickmenu").is(':visible')) { //if quick menu is visible
+        $(".quickmenu").fadeOut("fast"); //hide menu on click
+      }
+    });
+
+    //hide menu on casual click on the page
+    $(document).click(function() {
+      $(".quickmenu").fadeOut("fast");
+      $(".quickmenu").css({'vivibility': 'hidden'});
+    });
+    $('.quickmenu').click(function(event) {
+      event.stopPropagation(); //use .stopPropagation() method to avoid the closing of quick menu panel clicking on its elements
+    });
+
     $.fn.adjustPanel = function(){
 		$(this).find("ul, .subpanel").css({ 'height' : 'auto'}); //Reset subpanel and ul height
 
@@ -93,17 +112,23 @@
 </div>
 
 <div id="toolbar"> <!-- toolbar container -->
+<div class="left"> <!-- all things in floating left side -->
 
+    <span class="menu_title">
+      <a class="menutit" href="#">Student Lounge</a> <!-- quick menu title -->
+    </span>
+    <div class="quickmenu">
+      <ul> <!-- quick menu list -->
+        <li><%= link_to "Student Lounge", user_student_lounges_path(current_user) %></li>
+        <li><%= link_to "Inbox", user_messages_path(current_user) %></li>
+        <li><%= link_to "Friends", user_friends_path(current_user) %></li>
+        <li><%= link_to "Profile", user_profiles_path(current_user) %></li>
+        <li><%= link_to "Setting", user_settings_path(current_user) %></li>
+      </ul>
+    </div>
+  </div>
   <div class="leftside"> <!-- all things in floating left side -->
     <ul id="social">
-      <li><a class="rss" href="#"></a><!-- icon -->
-        <div id="tiprss" class="tip"><!-- tooltip -->
-          <ul>
-            <li><a href="#">580 Readers</a></li>
-            <li><a href="#"><small>[Subscribe]</small></a></li>
-          </ul>
-        </div>
-      </li>
       <li><a class="facebook" href="#"></a>
         <div id="tipfacebook" class="tip">
           <ul>
@@ -151,8 +176,10 @@
     <span class="downarr"> <!-- hide button -->
       <a href="#"></a>
     </span>
+
     <span class="menu_title">
-      <a class="menutit" href="#">Home</a> <!-- quick menu title -->
+      <a class="signinSelect" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" class="signinFrist" href="/users/3/student_lounges">
+        <span>Welcome John</span></a><!-- quick menu title -->
     </span>
 
 
@@ -192,6 +219,9 @@
   </div>
 
 <style type="text/css">
+  #chatpanel {
+    margin:15px;
+  }
 .search1 {
 float:left;
 padding:10px;
@@ -224,7 +254,7 @@ background:#fff none repeat scroll 0 0;
 border:1px solid #555555;
 bottom:35px;
 display:none;
-right:50px;
+right:40px;
 overflow:hidden;
 padding-bottom:2px;
 position:absolute;

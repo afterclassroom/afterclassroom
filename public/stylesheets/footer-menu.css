@@ -80,7 +80,7 @@ div#toolbar {
     min-width: 700px; /* to limit the width when an excessive window resize */
     margin: 0px auto; /* centered toolbar */
     left: 0px;
-    margin-bottom:40px;
+   
 }
 
 div#toolbarbut { /* div for the 'hide status' */
@@ -98,12 +98,13 @@ span.showbar a { /* show button */
 
 .leftside {
     float: left;
-    margin-left:-25px;
+    margin-left:-40px;
     margin-top:-11px;
 }
 
 .rightside {
     float: right;
+    margin-top:8px;
 }
 
 /*-- Left Side --*/
@@ -163,31 +164,29 @@ a.stumble {
 
 /* custom distances for the icons */
 #tipfacebook {
-    left: 95px;
+    left: 85px;
 }
 
 #tiptwitter {
-    left: 135px;
+    left: 125px;
 }
 
 #tipdelicious {
-<<<<<<< HEAD
-    left: 180px;
+
+    left: 170px;
 }
 
 #tipdigg {
-    left: 225px;
-=======
-    left: 175px;
+    left: 155px;
 }
 
 #tipdigg {
-    left: 220px;
->>>>>>> 73a96a544170b9cc00e6d0bb3f054f5af5041da6
+    left: 210px;
+
 }
 
 #tipstumble {
-    left: 265px;
+    left: 255px;
 }
 
 .tip ul {
@@ -222,15 +221,16 @@ span.downarr { /* hide button */
 span.downarr a {
     display: block;
     width: 36px;
-    height: 26px;
-    padding: 25px 0 0 10px;
-    background: url(/images/footer_menu/downarrow.png) no-repeat 5px 7px;
+    height: 22px;
+    padding: 10px 0 0 15px;
+    background: url(/images/footer_menu/downarrow.png) no-repeat 8px 4px;
+    margin:-5px;
 }
 
 .menu_title {
     background: #e4e4e4;
     border-right: 1px solid #a4a4a4;
-    padding: 10px;
+    padding: 9px;
 }
 
 .leftside .menu_title a {
@@ -244,11 +244,7 @@ span.downarr a {
 .quickmenu {
     position: absolute; /* important */
     top: -251px;
-<<<<<<< HEAD
-   /* right: 46px;*/
-=======
-    /*right: 46px;*/
->>>>>>> 73a96a544170b9cc00e6d0bb3f054f5af5041da6
+
     width: 260px;
     height: 250px;
     background: #e4e4e4;
@@ -284,4 +280,5 @@ span.downarr a {
 }
 .left {
   float:left;
+  margin:10px;
 }
