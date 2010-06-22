@@ -1,56 +1,67 @@
 <script type="text/javascript">
+$(document).ready(function(){
 
-  $(document).ready(function(){
+	//Adjust panel height
+	$.fn.adjustPanel = function(){
+		$(this).find("ul, .subpanel").css({ 'height' : 'auto'}); //Reset subpanel and ul height
 
-    //hide toolbar and make visible the 'show' button
-    $("span.downarr a").click(function() {
-      $("#toolbar").slideToggle("fast");
-      $("#toolbarbut").fadeIn("slow");
-    });
+		var windowHeight = $(window).height(); //Get the height of the browser viewport
+		var panelsub = $(this).find(".subpanel").height(); //Get the height of subpanel
+		var panelAdjust = windowHeight - 100; //Viewport height - 100px (Sets max height of subpanel)
+		var ulAdjust =  panelAdjust - 25; //Calculate ul size after adjusting sub-panel (27px is the height of the base panel)
 
-    //show toolbar and hide the 'show' button
-    $("span.showbar a").click(function() {
-      $("#toolbar").slideToggle("fast");
-      $("#toolbarbut").fadeOut();
-    });
+		if ( panelsub >= panelAdjust ) {	 //If subpanel is taller than max height...
+			$(this).find(".subpanel").css({ 'height' : panelAdjust }); //Adjust subpanel to max height
+			$(this).find("ul").css({ 'height' : ulAdjust}); //Adjust subpanel ul to new size
+		}
+		else if ( panelsub < panelAdjust ) { //If subpanel is smaller than max height...
+			$(this).find("ul").css({ 'height' : 'auto'}); //Set subpanel ul to auto (default size)
+		}
+	};
 
-    //show tooltip when the mouse is moved over a list element
-    $("ul#social li").hover(function() {
-      $(this).find("div").fadeIn("fast").show(); //add 'show()'' for IE
-      $(this).mouseleave(function () { //hide tooltip when the mouse moves off of the element
-        $(this).find("div").hide();
-      });
-    });
+	//Execute function on load
+	
+	$("#chatpanel").adjustPanel(); //Run the adjustPanel function on #chatpanel
+	$("#alertpanel").adjustPanel(); //Run the adjustPanel function on #alertpanel
 
-    //don't jump to #id link anchor
-    $(".facebook, .twitter, .delicious, .digg, .rss, .stumble, .menutit, span.downarr a, span.showbar a").click(function() {
-      return false;
-    });
+	//Each time the viewport is adjusted/resized, execute the function
+	$(window).resize(function () {
+		
+		$("#chatpanel").adjustPanel();
+		$("#alertpanel").adjustPanel();
+	});
 
-    //show quick menu on click
-    $("span.menu_title a").click(function() {
-      if($(".quickmenu").is(':hidden')){ //if quick menu isn't visible
-        $(".quickmenu").fadeIn("fast"); //show menu on click
-      }
-      else if ($(".quickmenu").is(':visible')) { //if quick menu is visible
-        $(".quickmenu").fadeOut("fast"); //hide menu on click
-      }
-    });
+	//Click event on Chat Panel + Alert Panel
+	$("#chatpanel a:first, #alertpanel a:first").click(function() { //If clicked on the first link of #chatpanel and #alertpanel...
+		if($(this).next(".subpanel").is(':visible')){ //If subpanel is already active...
+			$(this).next(".subpanel").hide(); //Hide active subpanel
+			$("#toolbar li a").removeClass('active'); //Remove active class on the subpanel trigger
+		}
+		else { //if subpanel is not active...
+			$(".subpanel").hide(); //Hide all subpanels
+			$(this).next(".subpanel").toggle(); //Toggle the subpanel to make active
+			$("#toolbar li a").removeClass('active'); //Remove active class on all subpanel trigger
+			$(this).toggleClass('active'); //Toggle the active class on the subpanel trigger
+		}
+		return false; //Prevent browser jump to link anchor
+	});
 
-    //hide menu on casual click on the page
-    $(document).click(function() {
-      $(".quickmenu").fadeOut("fast");
-      $(".quickmenu").css({'vivibility': 'hidden'});
-    });
-    $('.quickmenu').click(function(event) {
-      event.stopPropagation(); //use .stopPropagation() method to avoid the closing of quick menu panel clicking on its elements
-    });
+	//Click event outside of subpanel
+	$(document).click(function() { //Click anywhere and...
+		$(".subpanel").hide(); //hide subpanel
+		$("#rightside li a").removeClass('active'); //remove active class on subpanel trigger
+	});
+	$('.subpanel ul').click(function(e) {
+		e.stopPropagation(); //Prevents the subpanel ul from closing on click
+	});
 
 
-  });
 
+
+
+
+});
 </script>
-
 <div id="toolbarbut"> <!-- hide button -->
   <span class="showbar"><a href="#">show bar</a></span>
 </div>
@@ -120,21 +131,292 @@
     <span class="menu_title">
       <a class="menutit" href="#">Home</a> <!-- quick menu title -->
     </span>
-    <div class="quickmenu">
-      <ul> <!-- quick menu list -->
-        <li><%= link_to "Homeworks", post_assignments_path %></li>
-        <li><%= link_to "Q.As", post_qas_path %></li>
-        <li><%= link_to "Tutors", post_tutors_path %></li>
-        <li><%= link_to "Books", post_books_path %></li>
-        <li><%= link_to "Jobs", post_jobs_path %></li>
-        <li><%= link_to "Foods", post_foods_path %></li>
-        <li><%= link_to "Party", post_parties_path %></li>
-        <li><%= link_to "MyX", post_myxes_path %></li>
-        <li><%= link_to "Student Awareness", post_awarenesses_path %></li>
-        <li><%= link_to "Housing", post_housings_path %></li>
-        <li><%= link_to "TeamUp", post_teamups_path %></li>
-      </ul>
+  
+      <div class="subpanel">
+            <h3><span> &ndash; </span>Friends Online</h3>
+
+            <ul>
+            	<li><span>Family Members</span></li>
+            	<li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><span>Other Friends</span></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+
+				<li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+            </ul>
+            </div>
     </div>
   </div>
 
 </div>
+<style type="text/css">
+
+h1 {
+	font-size: 1.2em;
+	padding: 5px 10px;
+	color: #ccc;
+	width: 940px;
+	margin: 0 auto;
+}
+h1 a {	color: #fff; }
+h1 span {font-weight: normal;}
+
+
+
+
+
+
+
+
+#footpanel {
+	position: fixed;
+	bottom: 0; left: 0;
+	z-index: 9999; /*--Keeps the panel on top of all other elements--*/
+	background: #e3e2e2;
+	border: 1px solid #c3c3c3;
+	border-bottom: none;
+	width: 94%;
+	margin: 0 3%;
+}
+
+*html #footpanel { /*--IE6 Hack - Fixed Positioning to the Bottom--*/
+	margin-top: -1px; /*--prevents IE6 from having an infinity scroll bar - due to 1px border on #footpanel--*/
+	position: absolute;
+	top:expression(eval(document.compatMode &&document.compatMode=='CSS1Compat') ?documentElement.scrollTop+(documentElement.clientHeight-this.clientHeight) : document.body.scrollTop +(document.body.clientHeight-this.clientHeight));
+}
+
+#footpanel ul {
+	padding: 0; margin: 0;
+	float: left;
+	width: 100%;
+	list-style: none;
+	border-top: 1px solid #fff; /*--Gives the bevel feel on the panel--*/
+	font-size: 1.1em;
+}
+#footpanel ul li{
+	padding: 0; margin: 0;
+	float: left;
+	position: relative;
+}
+#footpanel ul li a{
+	padding: 5px;
+	float: left;
+	text-indent: -9999px;
+	height: 16px; width: 16px;
+	text-decoration: none;
+	color: #333;
+	position: relative;
+}
+html #footpanel ul li a:hover{	background-color: #fff; }
+html #footpanel ul li a.active { /*--Active state when subpanel is open--*/
+	background-color: #fff;
+	height: 17px;
+	margin-top: -2px; /*--Push it up 2px to attach the active button to subpanel--*/
+	border: 1px solid #555;
+	border-top: none;
+	z-index: 200; /*--Keeps the active area on top of the subpanel--*/
+	position: relative;
+}
+
+
+#footpanel a.home{
+	background: url(../icon/home.png) no-repeat 15px center;
+	width: 180px;
+	padding-left: 40px;
+	border-right: 1px solid #bbb;
+	text-indent: 0; /*--Reset text indent--*/
+}
+a.profile{ background: url(../icon/user.png) no-repeat center center;  }
+a.editprofile{ background: url(../icon/wrench-screwdriver.png) no-repeat center center; }
+a.contacts{ background: url(../icon/address-book.png) no-repeat center center; }
+a.messages{ background: url(../icon/mail.png) no-repeat center center; }
+a.playlist{ background: url(../icon/document-music-playlist.png) no-repeat center center; }
+a.videos{ background: url(../icon/film.png) no-repeat center center; }
+a.alerts{ background: url(../icon/newspaper.png) no-repeat center center; }
+#toolbar a.chat{
+	background: url(../icon/balloon.png) no-repeat 15px center;
+	width: 126px;
+	border-left: 1px solid #bbb;
+	border-right: 1px solid #bbb;
+	padding-left: 40px;
+	text-indent: 0; /*--Reset text indent--*/
+}
+a.alerts{	background: url(../icon/newspaper.png) no-repeat center center;	 }
+
+#toolbar li#chatpanel  {	float: right; }  /*--Right align the chat and alert panels--*/
+#toolbar li#alertpanel { float:right; }
+#footpanel a small {  /*--panel tool tip styles--*/
+	text-align: center;
+	width: 70px;
+	background: url(../icon/pop_arrow-1.jpg) no-repeat center bottom;
+	padding: 5px 5px 11px;
+	display: none; /*--Hide by default--*/
+	color: #fff;
+	font-size: 1em;
+	text-indent: 0;
+}
+#toolbar a:hover small{
+	display: block; /*--Show on hover--*/
+	position: absolute;
+	top: -35px; /*--Position tooltip 35px above the list item--*/
+	left: 50%;
+	margin-left: -40px; /*--Center the tooltip--*/
+	z-index: 9999;
+}
+
+
+
+
+
+#toolbar ul li div a { /*--Reset link style for subpanel links--*/
+	text-indent: 0;
+	width: auto;
+	height: auto;
+	padding: 0;
+	float: none;
+	color: #00629a;
+	position: static;
+}
+#toolbar ul li div a:hover {	text-decoration: underline; } /*--Reset link style for subpanel links--*/
+
+#toolbar .subpanel {
+	position: absolute;
+	left: 0; bottom: 27px;
+	display: none;	/*--Hide by default--*/
+	width: 198px;
+	border: 1px solid #555;
+	background: #fff;
+	overflow: hidden;
+	padding-bottom: 2px;
+}
+
+#footpanel h3 {
+	background: #526ea6;
+	padding: 5px 10px;
+	color: #fff;
+	font-size: 1.1em;
+	cursor: pointer;
+}
+#footpanel h3 span {
+	font-size: 1.5em;
+	float: right;
+	line-height: 0.6em;
+	font-weight: normal;
+}
+#footpanel .subpanel ul{
+	padding: 0; margin: 0;
+	background: #fff;
+	width: 100%;
+	overflow: auto;
+}
+#footpanel .subpanel li{
+	float: none; /*--Reset float--*/
+	display: block;
+	padding: 0; margin: 0;
+	overflow: hidden;
+	clear: both;
+	background: #fff;
+	position: static;  /*--Reset relative positioning--*/
+	font-size: 0.9em;
+}
+
+#chatpanel .subpanel li { background: url(../icon/dash.jpg) repeat-x left center; }
+#chatpanel .subpanel li span {
+	padding: 5px;
+	background: #fff;
+	color: #777;
+	float: left;
+}
+#chatpanel .subpanel li a img {
+	float: left;
+	margin: 0 5px;
+}
+#chatpanel .subpanel li a{
+	padding: 3px 0;	margin: 0;
+	line-height: 22px;
+	height: 22px;
+	background: #fff;
+	display: block;
+}
+#chatpanel .subpanel li a:hover {
+	background: #3b5998;
+	color: #fff;
+	text-decoration: none;
+}
+/*-------*/
+
+#chatpanel-1 .subpanel li { background: url(../icon/dash.jpg) repeat-x left center; }
+#chatpanel-1 .subpanel li span {
+	padding: 5px;
+	background: #fff;
+	color: #777;
+	float: left;
+}
+#chatpanel-1 .subpanel li a img {
+	float: left;
+	margin: 0 5px;
+}
+#chatpanel-1 .subpanel li a{
+	padding: 3px 0;	margin: 0;
+	line-height: 22px;
+	height: 22px;
+	background: #fff;
+	display: block;
+}
+#chatpanel-1 .subpanel li a:hover {
+	background: #3b5998;
+	color: #fff;
+	text-decoration: none;
+}
+
+
+#alertpanel .subpanel { right: 0; left: auto; /*--Reset left positioning and make it right positioned--*/ }
+#alertpanel .subpanel li {
+	border-top: 1px solid #f0f0f0;
+	display: block;
+}
+#alertpanel .subpanel li p {padding: 5px 10px;}
+#alertpanel .subpanel li a.delete{
+	background: url(../icon/delete_x.gif) no-repeat;
+	float: right;
+	width: 13px; height: 14px;
+	margin: 5px;
+	text-indent: -9999px;
+	visibility: hidden; /*--Hides by default but still takes up space (not completely gone like display:none;)--*/
+}
+#alertpanel .subpanel li a.delete:hover { background-position: left bottom; }
+#footpanel #alertpanel li.view {
+	text-align: right;
+	padding: 5px 10px 5px 0;
+}
+</style>

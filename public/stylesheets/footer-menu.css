@@ -162,23 +162,23 @@ a.stumble {
 
 /* custom distances for the icons */
 #tipfacebook {
-    left: 75px;
+    left: 95px;
 }
 
 #tiptwitter {
-    left: 120px;
+    left: 135px;
 }
 
 #tipdelicious {
-    left: 165px;
+    left: 175px;
 }
 
 #tipdigg {
-    left: 210px;
+    left: 220px;
 }
 
 #tipstumble {
-    left: 255px;
+    left: 265px;
 }
 
 .tip ul {
@@ -230,11 +230,48 @@ span.menu_title a {
     color: #9a9a9a;
     font-weight:bold;
 }
+.quickmenu-1 {
+    position: absolute; /* important */
+    top: -251px;
+    /*right: 46px;*/
+    width: 260px;
+    height: 250px;
+    background: #e4e4e4;
+    border-top: 1px solid #a4a4a4;
+    border-left: 1px solid #a4a4a4;
+    border-right: 1px solid #a4a4a4;
+    /* CSS3 */
+    -moz-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
+    -khtml-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
+    -webkit-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
+    /* CSS3 end */
+    display: none; /* important */
+}
+
+.quickmenu-1 ul {
+    padding-top: 20px;
+}
+
+.quickmenu-1 ul li {
+    border-bottom: 1px solid #989898;
+    padding: 5px 10px;
+    margin: 0 15px 0 15px;
+}
+
+.quickmenu-1 ul li a {
+    font-size: 18px;
+    color: #989898;
+    display: block;
+}
+
+.quickmenu-1 ul li a:hover {
+    color: #666;
+}
 
 .quickmenu {
     position: absolute; /* important */
     top: -251px;
-    right: 46px;
+    /*right: 46px;*/
     width: 260px;
     height: 250px;
     background: #e4e4e4;
@@ -267,4 +304,7 @@ span.menu_title a {
 
 .quickmenu ul li a:hover {
     color: #666;
+}
+.left {
+  float:left;
 }
