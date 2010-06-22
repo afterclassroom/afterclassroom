@@ -28,23 +28,60 @@
     });
 
     //show quick menu on click
-    $("span.menu_title a").click(function() {
-      if($(".quickmenu").is(':hidden')){ //if quick menu isn't visible
-        $(".quickmenu").fadeIn("fast"); //show menu on click
-      }
-      else if ($(".quickmenu").is(':visible')) { //if quick menu is visible
-        $(".quickmenu").fadeOut("fast"); //hide menu on click
-      }
-    });
+    $.fn.adjustPanel = function(){
+		$(this).find("ul, .subpanel").css({ 'height' : 'auto'}); //Reset subpanel and ul height
 
-    //hide menu on casual click on the page
-    $(document).click(function() {
-      $(".quickmenu").fadeOut("fast");
-      $(".quickmenu").css({'vivibility': 'hidden'});
-    });
-    $('.quickmenu').click(function(event) {
-      event.stopPropagation(); //use .stopPropagation() method to avoid the closing of quick menu panel clicking on its elements
-    });
+		var windowHeight = $(window).height(); //Get the height of the browser viewport
+		var panelsub = $(this).find(".subpanel").height(); //Get the height of subpanel
+		var panelAdjust = windowHeight - 100; //Viewport height - 100px (Sets max height of subpanel)
+		var ulAdjust =  panelAdjust - 25; //Calculate ul size after adjusting sub-panel (27px is the height of the base panel)
+
+		if ( panelsub >= panelAdjust ) {	 //If subpanel is taller than max height...
+			$(this).find(".subpanel").css({ 'height' : panelAdjust }); //Adjust subpanel to max height
+			$(this).find("ul").css({ 'height' : ulAdjust}); //Adjust subpanel ul to new size
+		}
+		else if ( panelsub < panelAdjust ) { //If subpanel is smaller than max height...
+			$(this).find("ul").css({ 'height' : 'auto'}); //Set subpanel ul to auto (default size)
+		}
+	};
+
+	//Execute function on load
+	
+	$("#chatpanel").adjustPanel(); //Run the adjustPanel function on #chatpanel
+	$("#alertpanel").adjustPanel(); //Run the adjustPanel function on #alertpanel
+
+	//Each time the viewport is adjusted/resized, execute the function
+	$(window).resize(function () {
+		
+		$("#chatpanel").adjustPanel();
+		$("#alertpanel").adjustPanel();
+	});
+
+	//Click event on Chat Panel + Alert Panel
+	$("#chatpanel a:first,").click(function() { //If clicked on the first link of #chatpanel and #alertpanel...
+		if($(this).next(".subpanel").is(':visible')){ //If subpanel is already active...
+			$(this).next(".subpanel").hide(); //Hide active subpanel
+			$("#footpanel li a").removeClass('active'); //Remove active class on the subpanel trigger
+		}
+		else { //if subpanel is not active...
+			$(".subpanel").hide(); //Hide all subpanels
+			$(this).next(".subpanel").toggle(); //Toggle the subpanel to make active
+			$(".rightside li a").removeClass('active'); //Remove active class on all subpanel trigger
+			$(this).toggleClass('active'); //Toggle the active class on the subpanel trigger
+		}
+		return false; //Prevent browser jump to link anchor
+	});
+
+	//Click event outside of subpanel
+	$(document).click(function() { //Click anywhere and...
+		$(".subpanel").hide(); //hide subpanel
+		$(".rightside li a").removeClass('active'); //remove active class on subpanel trigger
+	});
+	$('.subpanel ul').click(function(e) {
+		e.stopPropagation(); //Prevents the subpanel ul from closing on click
+	});
+
+	
 
 
   });
@@ -117,24 +154,108 @@
     <span class="menu_title">
       <a class="menutit" href="#">Home</a> <!-- quick menu title -->
     </span>
-    <span class="menu_title">
-      <a class="menutit" href="#">Home</a> <!-- quick menu title -->
-    </span>
-    <div class="quickmenu">
+
+
+    <span id="chatpanel">
+      <a class="chat" href="#">Chat width riends (<strong>18</strong>)</a> <!-- quick menu title -->
+    
+
+  <div class="subpanel">
+    <div class="search1">
+      <div class="btmSa"><a href=""><img src="/images/icon-search.png"></a></div>
+       
+  </div>
+    
       <ul> <!-- quick menu list -->
-        <li><%= link_to "Homeworks", post_assignments_path %></li>
-        <li><%= link_to "Q.As", post_qas_path %></li>
-        <li><%= link_to "Tutors", post_tutors_path %></li>
-        <li><%= link_to "Books", post_books_path %></li>
-        <li><%= link_to "Jobs", post_jobs_path %></li>
-        <li><%= link_to "Foods", post_foods_path %></li>
-        <li><%= link_to "Party", post_parties_path %></li>
-        <li><%= link_to "MyX", post_myxes_path %></li>
-        <li><%= link_to "Student Awareness", post_awarenesses_path %></li>
-        <li><%= link_to "Housing", post_housings_path %></li>
-        <li><%= link_to "TeamUp", post_teamups_path %></li>
+        <li><span>Friends online</span></li>
+            	<li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><span>Friends ofline</span></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+                <li><a href="#"><img src="../icon/images.jpg" alt="" /> Your Friend</a></li>
+
+                
       </ul>
+    </div>
+  </span>
     </div>
   </div>
 
-</div>
+<style type="text/css">
+.search1 {
+float:left;
+padding:10px;
+}
+.btmSa a img {
+  border:0 none;
+}
+  
+.rightside h3 {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#526EA6 none repeat scroll 0 0;
+color:#FFFFFF;
+cursor:pointer;
+font-size:1.1em;
+padding:5px 10px;
+}
+.rightside h3 span {
+float:right;
+font-size:1.5em;
+font-weight:normal;
+line-height:0.6em;
+}
+.subpanel {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#fff none repeat scroll 0 0;
+border:1px solid #555555;
+bottom:35px;
+display:none;
+right:50px;
+overflow:hidden;
+padding-bottom:2px;
+position:absolute;
+width:198px;
+}
+
+.subpanel ul {
+padding-top: 20px;
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#cecece none repeat scroll 0 0;
+margin:0;
+overflow:auto;
+padding:0;
+width:100%;
+}
+
+.subpanel ul li {
+    border-bottom: 1px solid #989898;
+    padding: 5px 10px;
+    margin: 0 15px 0 15px;
+}
+
+.subpanel ul li a {
+    font-size: 13px;
+    color: #989898;
+    display: block;
+}
+
+.subpanel ul li a:hover {
+    color: #666;
+}
+</style>
