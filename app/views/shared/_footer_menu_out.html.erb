@@ -59,6 +59,18 @@
 
   <div class="leftside"> <!-- all things in floating left side -->
     <ul id="social">
+       <span class="menu_title">
+      <a href="#">Student Lounge</a> <!-- quick menu title -->
+    </span>
+    <div class="quickmenu">
+      <ul> <!-- quick menu list -->
+        <li><%= link_to "Student Lounge", user_student_lounges_path(current_user) %></li>
+        <li><%= link_to "Inbox", user_messages_path(current_user) %></li>
+        <li><%= link_to "Friends", user_friends_path(current_user) %></li>
+        <li><%= link_to "Profile", user_profiles_path(current_user) %></li>
+        <li><%= link_to "Setting", user_settings_path(current_user) %></li>
+      </ul>
+    </div>
       <li><a class="rss" href="#"></a><!-- icon -->
         <div id="tiprss" class="tip"><!-- tooltip -->
           <ul>
@@ -114,7 +126,7 @@
     <span class="downarr"> <!-- hide button -->
       <a href="#"></a>
     </span>
-    <span class="menu_title">
+     <span class="menu_title">
       <a class="menutit" href="#">Student Lounge</a> <!-- quick menu title -->
     </span>
     <div class="quickmenu">
