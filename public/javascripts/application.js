@@ -296,3 +296,123 @@ function goToByScroll(id){
 function hideFlashes() {
     $('#flash_notice, #flash_warning, #flash_error').fadeOut(1500);
 }
+
+//Chat
+
+function invite_chat(id) {
+    $.ajax({
+        url: '/student_lounges/invite_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            user_id : id
+        })
+    });
+}
+
+function add_users_to_chat(chanel_name){
+    obj_form = document.forms['form_' + chanel_name];
+    len = obj_form.elements.length;
+    val = "";
+    var i=0;
+    for(i=0; i<len ; i++)
+    {
+        if(obj_form.elements[i].type == "checkbox" && obj_form.elements[i].checked)
+        {
+            val += obj_form.elements[i].value + ";";
+        }
+    }
+
+    $.ajax({
+        url: '/student_lounges/add_users_to_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            user_id : val,
+            chanel_name: chanel_name
+        })
+    });
+}
+
+function send_data(id, chanel_name) {
+    $.ajax({
+        url: '/student_lounges/send_data',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            chanel_name: chanel_name,
+            chat_input: $('chat_input_'+id).value
+        }),
+        success: function(data) {
+            $("#chat_input_" + id).val("");
+        }
+    });
+}
+
+function stop_chat(chanel_name){
+    $.ajax({
+        url: '/student_lounges/stop_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            chanel_name: chanel_name
+        }),
+        success: function(data) {
+            //Close window chat
+        }
+    });
+}
+
+function friends_changed_message(){
+    $.ajax({
+        url: '/student_lounges/friends_changed_message',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data) {
+            $('#div_friends_changed_their_message').html(data);
+        }
+    });
+}
+
+function friends_you_invited_chat(){
+    $.ajax({
+        url: '/student_lounges/friends_you_invited_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data) {
+            $("#div_friends_you_invited_to_chat").html(data);
+        }
+    });
+}
+
+function friends_want_you_chat(){
+    $.ajax({
+        url: '/student_lounges/friends_want_you_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data) {
+            $("#div_friends_want_you_chat").html(data);
+        }
+    });
+}
+
+function insert_text_to_chatcontent(chanel_name, text_chat){
+    if($(chanel_name)){
+        Element.insert(chanel_name, {
+            bottom:text_chat
+        });
+        scroll_div('chat_content_' + chanel_name);
+    }
+}
+
+function scroll_div(id){
+    $(id).scrollTop = $(id).scrollHeight
+}
+//Chat

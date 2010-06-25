@@ -77,7 +77,12 @@ ActionController::Routing::Routes.draw do |map|
       :update_edu_infor => :post, :update_work_infor => :post,
       :my_favorite => :get
     }
-    users.resources :student_lounges
+    users.resources :student_lounges,
+      :collection => {:invite_chat => :get, :add_users_to_chat => :get,
+      :send_data => :get, :stop_chat => :get,
+      :chanel_chat_content => :get, :friends_changed_message => :get,
+      :friends_you_invited_chat => :get, :friends_want_you_chat => :get
+    }
     users.resources :friends,
       :collection => {
       :search => :get,

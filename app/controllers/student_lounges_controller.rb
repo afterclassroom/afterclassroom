@@ -2,9 +2,9 @@
 class StudentLoungesController < ApplicationController
   layout 'student_lounge'
   before_filter :login_required
-  before_filter :require_current_user
 
   def index
+    @user = current_user
 		user_login = params[:user]
     @walls = []
     arr_friends_id = current_user.user_friends.collect(&:id)
@@ -161,23 +161,16 @@ class StudentLoungesController < ApplicationController
 	
 	def friends_changed_message
 		@friends_change = current_user.friends_change_message
+    render :layout => false
 	end
 	
 	def friends_you_invited_chat
 		@friends_invite = current_user.friends_invite_chat
+    render :layout => false
 	end
 	
 	def friends_want_you_chat
 		@friends_want = current_user.friends_want_chat
+    render :layout => false
 	end
-
-  protected
-
-  def require_current_user
-    @user ||= User.find(params[:user_id] || params[:id])
-    unless (@user && (@user.eql?(current_user)))
-      redirect_back_or_default(root_path)and return false
-    end
-    return @user
-  end
 end

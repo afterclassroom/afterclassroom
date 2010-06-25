@@ -4,6 +4,7 @@
 
 <div class="contMainC">
   <%= render :partial => "friends_want_you_chat" %>
+  <div id="div_friends_changed_their_message"></div>
 </div>
 <div class="contMainL">
   <div class="col451 proCen" id="user_wall">
@@ -27,7 +28,17 @@
 </div>
 <div class="contMainR">
   <%= render :partial => "friends_in_chatting" %>
+  <div id="div_friends_you_invited_to_chat"></div>
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
+
+<script>
+<% if @user_invite_chat %>
+    window.onload(invite_chat('<%= @user_invite_chat.id %>'));
+<% end %>
+  friends_changed_message();
+  friends_you_invited_chat();
+  friends_want_you_chat();
+</script>
