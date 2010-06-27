@@ -1,0 +1,36 @@
+<% @popularap.each do |ag| %>
+  <%= ag.name %><br/>
+
+  <div class="learnNItem">
+    <div class="learnNImg">
+      <%= link_to content_tag(:div, ''+image_tag(ag.gamephoto.url(:thumb), :alt => '')), :controller => 'playgame', :action => 'gameslounge', :id => ag.id %>
+    </div>
+
+    <div class="learnNtitle">
+      <%= link_to ag.name, :controller => 'playgame', :action => 'gameslounge', :id => ag.id %>
+      by Vestibulum
+    </div>
+
+    <div class="learnNdes">
+      <%=  ag.description %>
+    </div>
+    <div class="learnNinf">Authorized (<span>deauthorize</span>) - 67,541, 274 monthly active users - 54 friends</div>
+  </div>
+
+<% end %>
+
+<div class="assPage">
+  <span class="numPage">Page 1 of 22</span>
+  <span class="firstPage"><a href="#">First Page</a></span>
+  <span class="prevPage"><a href="#">Prev</a></span>
+  <span class="currentPage">
+    <a class="selected" href="#"><span>6</span></a>
+    <a href="#"><span>7</span></a>
+    <a href="#"><span>8</span></a>
+    <a href="#"><span>9</span></a>
+    <a href="#"><span>10</span></a>
+  </span>
+  <span class="nextPage"><a href="#">Next</a></span>
+  <span class="lastPage"><a href="#">Last Page</a></span>
+</div>
+<div class="goTop"><a href="#">Top</a></div>

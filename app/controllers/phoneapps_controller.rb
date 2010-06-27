@@ -90,6 +90,7 @@ class PhoneappsController < ApplicationController
   end
 
   def phoneappstab
+    @allapps = Phoneapplication.allapp('1')
     render :layout => false
   end
 
@@ -144,6 +145,7 @@ class PhoneappsController < ApplicationController
   end
 
   def seealltab
+    @allapps = Phoneapplication.allapp('1')
     render :layout => false
   end
 end

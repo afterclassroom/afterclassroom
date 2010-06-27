@@ -1,0 +1,21 @@
+<% allgame.each do |ag| %>
+  <%= ag.name %><br/>
+
+  <div class="learnNItem">
+    <div class="learnNImg">
+      <%= link_to content_tag(:div, ''+image_tag(ag.gamephoto.url(:thumb), :alt => '')), :controller => 'playgame', :action => 'gameslounge', :id => ag.id %>
+    </div>
+
+    <div class="learnNtitle">
+      <%= link_to ag.name, :controller => 'playgame', :action => 'gameslounge', :id => ag.id %>
+      by Vestibulum
+    </div>
+
+    <div class="learnNdes">
+      <%=  ag.description %>
+    </div>
+    <div class="learnNinf">Authorized (<span>deauthorize</span>) - 67,541, 274 monthly active users - 54 friends</div>
+  </div>
+
+<% end %>
+

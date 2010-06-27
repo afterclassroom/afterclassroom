@@ -1,1 +1,323 @@
-recomend page
+<div class="topLearning">
+  <div class="menuRL">
+    <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Recommend Game</span></span></a></div>
+    <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Submit Game</span></span></a></div>
+  </div>
+  <div class="postdiv">
+    <span class="RmenuRbtm2"><a href="#">Post</a></span>
+  </div>
+</div>
+<div class="contMain">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="learnLeft">
+        <div class="learnTop">
+          <div class="inboxTitle">Games your friends played recently</div>
+          <div class="learnPage">
+            <div class="learnPageL">Page 1 of 12</div>
+            <div class="learnPageP"><a href="#">&nbsp;</a></div>
+            <div class="learnPageN"><a href="#">&nbsp;</a></div>
+          </div>
+        </div>
+        <div class="learnNewT">
+          <%= render :partial => "friendplayrecent"%>
+        </div>
+        <div class="learnTop learnTool">
+          <div class="inboxTitle">Games You May Like</div>
+          <div class="learnPage">
+            <div class="learnPageL">Page 1 of 12</div>
+            <div class="learnPageP"><a href="#">&nbsp;</a></div>
+            <div class="learnPageN"><a href="#">&nbsp;</a></div>
+          </div>
+        </div>
+        <div class="learnTools">
+          <%= render :partial => "youmaylike"%>
+        </div>
+        <div class="learnN">
+          <div class="learnNM">
+            <div class="learnNMtitle" id="gametab">
+              <%= link_to "Game", {:controller => 'playgame', :action => "gametab"} %>
+            </div>
+
+            <div class="learnNMP" id="populartab">
+              <%= link_to "Popular", {:controller => 'playgame', :action => "populartab"} %>
+            </div>
+            <div class="learnNML" id="verifiedtab">
+              <%= link_to "Verified", {:controller => 'playgame', :action => "verifiedtab"} %>
+            </div>
+
+            <div class="learnNML" id="recentlyaddedtab">
+              <%= link_to "Recently Added", {:controller => 'playgame', :action => "recentlyaddedtab"} %>
+            </div>
+
+            <div class="learnNMR" id="seealltab">
+              <%= link_to "See All", {:controller => 'playgame', :action => "seealltab"} %>
+            </div>
+          </div>
+        </div>
+        <script language="javascript">
+          var seealltaburl = $("#seealltab a").attr("href");
+
+          $("#seealltab a").bind('click',function(){
+            if (seealltaburl != undefined){
+              LoadSpinner('allgameitems');
+              $.ajax({
+                url: seealltaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allgameitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+
+          var recentlyaddedtaburl = $("#recentlyaddedtab a").attr("href");
+
+          $("#recentlyaddedtab a").bind('click',function(){
+            if (recentlyaddedtaburl != undefined){
+              LoadSpinner('allgameitems');
+              $.ajax({
+                url: recentlyaddedtaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allgameitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+
+          var verifiedtaburl = $("#verifiedtab a").attr("href");
+
+          $("#verifiedtab a").bind('click',function(){
+            if (verifiedtaburl != undefined){
+              LoadSpinner('allgameitems');
+              $.ajax({
+                url: verifiedtaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allgameitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+
+          var populartaburl = $("#populartab a").attr("href");
+
+          $("#populartab a").bind('click',function(){
+            if (populartaburl != undefined){
+              LoadSpinner('allgameitems');
+              $.ajax({
+                url: populartaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allgameitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+          var gametaburl = $("#gametab a").attr("href");
+
+          $("#gametab a").bind('click',function(){
+            if (gametaburl != undefined){
+              LoadSpinner('allgameitems');
+              $.ajax({
+                url: gametaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allgameitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+        </script>
+        <div id="allgameitems">
+          <%= render :partial => "allgame", :locals => {:appdata => @allgame} %>
+          <div class="assPage">
+            <span class="numPage">Page 1 of 22</span>
+            <span class="firstPage">
+              <%= link_to "First Page", {:controller => 'playgame', :action => "pagingallgame", :page => '1'}%>
+            </span>
+
+            <%= will_paginate(@allgame, :params => { :controller => "playgame", :action => "pagingallgame" }) %>
+
+            <span class="lastPage">
+              <%= link_to "Last Page", {:controller => 'playgame', :action => "pagingallgame", :page => @pageallgame}%>
+            </span>
+          </div>
+          <div class="goTop"><a href="#">Top</a></div>
+          <script language="javascript">
+            /*code to handle ajax pagination for all application TABS*/
+            var nextpageurl = $(".disabled.next_page").attr("href");
+            var prevpageurl = $(".disabled.prev_page").attr("href");
+            $(".current").each(function(){
+
+              var onepageurl = $(this).attr('href');
+              $(this).bind('click',function(){
+                if (onepageurl != undefined){
+                  LoadSpinner('allgameitems');
+                  $.ajax({
+                    url: onepageurl,
+                    type: "GET",
+                    dataType: "html",
+                    failure: function(msg){
+                      alert('ajax fail:'+msg);
+                    },
+                    success: function(msg){
+                      $('#allgameitems').html(msg);
+                    }
+                  });
+                }
+                return false;
+              });
+            });
+
+            $('.disabled.next_page').bind('click',function(){
+              if (nextpageurl!=undefined){
+                LoadSpinner('allgameitems');
+                $.ajax({
+                  url: nextpageurl,
+                  type: "GET",
+                  dataType: "html",
+                  failure: function(msg){
+                    alert('ajax fail:'+msg);
+                  },
+                  success: function(msg){
+                    $('#allgameitems').html(msg);
+                  }
+                });
+
+              }
+              return false;
+            });
+            $('.disabled.prev_page').bind('click',function(){
+              if(prevpageurl != undefined){
+                LoadSpinner('allgameitems');
+                $.ajax({
+                  url: prevpageurl,
+                  type: "GET",
+                  dataType: "html",
+                  failure: function(msg){
+                    alert('ajax fail:'+msg);
+                  },
+                  success: function(msg){
+                    $('#allgameitems').html(msg);
+                  }
+                });
+              }
+              return false;
+            });
+            var firstpageurl = $('.firstPage a').attr('href');
+            $('.firstPage').bind('click',function(){
+              LoadSpinner('allgameitems');
+              $.ajax({
+                url: firstpageurl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allgameitems').html(msg);
+                }
+              });
+              return false;
+            });
+            var lastpageurl =  $('.lastPage a').attr('href');;
+            $('.lastPage').bind('click',function(){
+              LoadSpinner('allgameitems');
+              $.ajax({
+                url: lastpageurl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#allgameitems').html(msg);
+                }
+              });
+              return false;
+            });
+          </script>
+
+        </div> <!--close tab of DIV allgameitems-->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="contMainR">
+    <div class="creAdv"><a href="#">Create an Ad</a></div>
+    <div class="advert">
+      <div class="advertTitle">Advertisement</div>
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="pictures/pic6.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="pictures/adv.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
+      <div class="advertImg"><img src="pictures/adv1.png"></div>
+      <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+  function LoadSpinner(divname){
+
+    $('#'+divname).html('<img src="/images/ajax-loader.gif" alt="Please wait..." />');
+  }
+</script>

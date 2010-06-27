@@ -60,7 +60,7 @@ class Phoneapplication < ActiveRecord::Base
 
   def self.verifiedapp(curpage)
     if (curpage == 'all')
-      #this part of code is to find all the item that recently added support for calculating the number of page
+      #this part of code is to find all the item that had been verified, support for calculating the number of page
       Phoneapplication.find(:all, :conditions => ['state like ?', "verified"])
     else
       paginate :per_page => 5, :page => curpage,
@@ -70,7 +70,7 @@ class Phoneapplication < ActiveRecord::Base
 
   def self.popularapp(curpage)
     if (curpage == 'all')
-      #this part of code is to find all the item that recently added support for calculating the number of page
+      #this part of code is to find all the item that most popular support for calculating the number of page
       Phoneapplication.find(:all)
     else
       paginate :per_page => 5, :page => curpage, :order => 'popular_rank DESC'

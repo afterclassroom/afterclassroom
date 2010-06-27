@@ -18,7 +18,14 @@ ActionController::Routing::Routes.draw do |map|
     :recommendgame => :get,
     :info => :get,
     :gameslounge => :get,
-    :favorite => :get
+    :favorite => :get,
+    :gametab => :get,
+    :populartab => :get,
+    :verifiedtab => :get,
+    :recentlyaddedtab => :get,
+    :seealltab => :get,
+    :pagingallgame => :get
+
   }
 
   map.resources :phoneapps, :collection => {
