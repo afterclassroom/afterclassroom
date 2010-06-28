@@ -37,7 +37,21 @@ class PlaygameController < ApplicationController
   end
 
   def gametab
-    @allgame = Gameapp.allapp('1')
+    curpage = 0
+    if (params[:page] == nil || params[:page]== '')
+      curpage = '1'
+    else
+      curpage = params[:page] #this variable is used to store the current page that willpaginate return
+    end
+    
+    @allgame = Gameapp.allapp(curpage)
+    datasize = Gameapp.allapp('').size
+    @pageallgame = datasize / 5 #this variable store the number of total page
+    if (datasize % 5 > 0)
+      @pageallgame = @pageallgame + 1
+    end
+    @curpage = (params[:page])
+
     render :layout => false
   end
 
