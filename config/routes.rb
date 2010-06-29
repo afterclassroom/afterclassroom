@@ -1,5 +1,7 @@
 # See how all your routes lay out with "rake routes"
 ActionController::Routing::Routes.draw do |map|
+  map.feedback 'feedbacks', :controller => 'feedbacks', :action => 'create'
+  map.new_feedback 'feedbacks/new', :controller => 'feedbacks', :action => 'new'
     
   # RESTful rewrites
   map.signup   '/signup',   :controller => 'users',    :action => 'new'

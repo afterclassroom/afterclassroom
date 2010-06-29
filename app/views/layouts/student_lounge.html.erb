@@ -7,6 +7,8 @@
     <%= javascript_include_merged :student_lounge %>
     <%= javascript_include_tag 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'juggernaut/swfobject' %>
     <%= juggernaut :debug => true, :client_id => current_user.login if logged_in? %>
+    <%= feedback_includes %>
+    <%= feedback_tab(:position => 'right') %>
   </head>
   <body>
     <div class="top" id="top_page">
