@@ -1,0 +1,99 @@
+@charset "utf-8";
+/* CSS Document */
+
+.customWindowContainer {
+    border: 1px solid #7fa2e6;
+    background-color: #FCFCFC;
+}
+
+.unselectWindow {
+    background-color: #FCFCFC;
+    border: 1px solid #0056e8;
+}
+
+.customWindowStatus {
+    height: 16px;
+}
+
+.customWindowResize {
+    display: block;
+    float: right;
+    width: 16px;
+    height: 16px;
+    background: url(/images/resize.gif) no-repeat center center;
+}
+
+.unselectWindow .customWindowResize {
+    display: none;
+}
+
+.customWindowHead {
+    height: 26px;
+}
+
+.customWindowMaximize {
+    display: block;
+    float: right;
+    background: url(/images/chatR.png) no-repeat center center;
+    border: 0;
+    padding: 0px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.customWindowRestore {
+    display: block;
+    float: right;
+    background: url(/images/chatR.png) no-repeat center center;
+    border: 0;
+    padding: 0px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.customWindowMinimize {
+    display: block;
+    float: right;
+    background: url(/images/chatM.png) no-repeat center center;
+    border: 0;
+    padding: 0px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.customWindowClose {
+    display: block;
+    float: right;
+    background: url(/images/chatC.png) no-repeat center center;
+    border: 0;
+    padding: 0px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.customWindowTitle {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0px 0px 0px 10px;
+    border: 0px;
+    padding: 10px 0px 0px 26px;
+    background: url(/images/icon-chat.png) no-repeat left bottom;
+
+    font-style: normal;
+    line-height: normal;
+    font-weight: bold;
+    font-variant: normal;
+    text-transform: none;
+    text-decoration: none;
+    line-height: 18px;
+}
+
+.customWindowcontent {
+    padding: 8px;
+    background-color: #FCFCFC;
+}

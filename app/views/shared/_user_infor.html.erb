@@ -2,7 +2,7 @@
 <div class="AsDContR">
   <div class="fan"><a href="#">Become a Fan</a></div>
   <div class="friend"><a href="#">Invite Friend</a></div>
-  <div class="chat"><%= link_to_function "Invite Chat", "invite_chat(#{user.id})" %></div>
+  <div class="chat"><%= link_to_function "Invite Chat", "invite_chat('#{user.id}')" %></div>
   <div class="mail"><a href="#">Send Mail</a></div>
   <% if @controller.controller_name == "post_parties" %>
   <div class="rsvp"><a href="#">RSVP</a></div>

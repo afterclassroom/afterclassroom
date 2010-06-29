@@ -27,6 +27,8 @@ javascripts:
   - jquery-jeditable
   - jquery-carrousel
   - jquery-swfobject
+  - jquery-customWindow
+  - jquery-DOMWindow
   - thickbox
   - vtip-min
   - ajaxupload
@@ -75,6 +77,7 @@ stylesheets:
   - jquery-ui-dialog
   - jquery-mcdropdown
   - jquery-auto-suggest
+  - jquery-customWindow
   - pagination
   - validation
   - flash

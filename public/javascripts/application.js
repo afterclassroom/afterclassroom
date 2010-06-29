@@ -344,7 +344,7 @@ function send_data(id, chanel_name) {
         dataType: 'html',
         data: ({
             chanel_name: chanel_name,
-            chat_input: $('chat_input_'+id).value
+            chat_input: $('#chat_input_'+id).val()
         }),
         success: function(data) {
             $("#chat_input_" + id).val("");
@@ -362,7 +362,7 @@ function stop_chat(chanel_name){
             chanel_name: chanel_name
         }),
         success: function(data) {
-            //Close window chat
+        //Close window chat
         }
     });
 }
@@ -404,15 +404,43 @@ function friends_want_you_chat(){
 }
 
 function insert_text_to_chatcontent(chanel_name, text_chat){
-    if($(chanel_name)){
-        Element.insert(chanel_name, {
-            bottom:text_chat
-        });
-        scroll_div('chat_content_' + chanel_name);
+    if($('#' + chanel_name)){
+        $('#' + chanel_name).before(text_chat);
+        scroll_div('#chat_content_' + chanel_name);
     }
 }
 
+function openChat(title, chanel_name){
+    if ($('#' + chanel_name).length == 0){
+        var win = $.customWindow({
+            title: title,
+            onopen: function (cont, obj) {
+                $.ajax({
+                    url: '/student_lounges/chanel_chat_content',
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'html',
+                    data: ({
+                        chanel_name: chanel_name
+                    }),
+                    success: function(data) {
+                        cont.html(data);
+                    }
+                });
+            },
+            onclose: function () {
+            //
+            },
+            onresize: function (obj) {
+            //Nothing
+            }
+        });
+    }    
+}
+
 function scroll_div(id){
-    $(id).scrollTop = $(id).scrollHeight
+    $(id).animate({
+        scrollTop: $(id).attr("scrollHeight")
+    }, 3000);
 }
 //Chat

@@ -18,7 +18,7 @@ class StudentLoungesController < ApplicationController
 	
 	def invite_chat
 		user_id = params[:user_id]
-		user_invite_chat = User.find_by_login(user_id)
+		user_invite_chat = User.find(user_id)
 
 		#Check and create chanel
 		if user_invite_chat
@@ -157,6 +157,7 @@ class StudentLoungesController < ApplicationController
 		if @chanel
 			@messages = @chanel.flirting_messages
 		end
+    render :layout => false
 	end
 	
 	def friends_changed_message
