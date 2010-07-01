@@ -115,3 +115,16 @@ form#feedback_form .error {
   color: red;
   font-weight: bold;
 }
+#feedback_subject {
+  margin-left:21px;
+}
+#feedback_email {
+  margin-left:33px;
+}
+#feedback_comment {
+  margin-left:60px;
+  margin-top:-13px;
+}
+#feedback_submit {
+  margin-left:208px;
+}

@@ -177,18 +177,18 @@
 }
 .assImg{
     float:left;
-    width:81px;
+    width:73px;
     overflow:hidden;
 }
 .assImg div{
     background:url('/images/bgimg71.png') no-repeat;
     padding:5px;
+    text-align:center;
 }
 .assImg img{
     border:0px;
-    margin-left:5px;
-    /*width:61px;
-    height:51px;*/
+    width:51px;
+    height:51px;
 }
 .assContT{
     float:right;
