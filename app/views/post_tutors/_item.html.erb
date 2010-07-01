@@ -1,6 +1,10 @@
 <div class="assItem">
   <div class="assItemL">
+<<<<<<< HEAD
     <div class="assImg"><div><%= link_to image_tag("/images/icons/icon_defaut/06_tutors_65x65.png"), post %></div></div>
+=======
+    <div class="assImg"><div><%= link_to image_tag("/images/icons/icon_defaut/06_tutors_50x50.png"), post %></div></div>
+>>>>>>> 0f841b3d22d9fc9d7944b9f93ff004175633137e
     <div class="assContT">
       <h2 class="titleH2"><%= link_to title, post_tutor_path(post) %></h2>
       <div class="assCate"><span>From:</span><%= link_to post.school.name, :controller => "post_tutors", :action => "index", :from_school => post.school, :tutor_type_id => post.post_tutor.tutor_type.id %></div>

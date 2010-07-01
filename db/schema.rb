@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100608104208) do
+ActiveRecord::Schema.define(:version => 20100629120747) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -85,6 +85,14 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
     t.datetime "updated_at"
   end
 
+  create_table "feedbacks", :force => true do |t|
+    t.string   "subject"
+    t.string   "email"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "flirting_chanels", :force => true do |t|
     t.string   "chanel_name"
     t.datetime "created_at"
@@ -141,6 +149,19 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
     t.datetime "accepted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "gameapps", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "playurl"
+    t.integer  "popular_rank"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "gamephoto_file_name"
+    t.string   "gamephoto_content_type"
+    t.integer  "gamephoto_file_size"
   end
 
   create_table "housing_categories", :force => true do |t|
@@ -664,22 +685,11 @@ ActiveRecord::Schema.define(:version => 20100608104208) do
   create_table "user_wall_photos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
-    t.string  "title"
-    t.text    "sub_content"
   end
 
   create_table "user_wall_videos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
-<<<<<<< HEAD
-=======
-    t.string  "thumb"
-    t.string  "title"
-    t.text    "sub_content"
-<<<<<<< HEAD
-=======
->>>>>>> a9f9b2c2e800e76c3c51e74e3e9171a058a928e9
->>>>>>> 321a21e89e6a26d5588990c4d9c4b5314be73e23
   end
 
   create_table "user_walls", :force => true do |t|
