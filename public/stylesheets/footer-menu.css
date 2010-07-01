@@ -122,7 +122,8 @@ a.rss {
 }
 
 a.chatt, a.share_story, a.musics, a.photos, a.videos, a.inbox, a.friends, a.profile, a.setting, a.phone_app,
-a.play_games, a.shopping, a.assignments, a.projects, a.past_tests, a.past_exams {
+a.play_games, a.shopping, a.assignments, a.projects, a.past_tests, a.past_exams, a.qas, a.tutors, a.books,
+a.jobs, a.foods, a.party, a.myx, a.student_awareness, a.housing, a.teamUp {
   display: inline-block;
   width: 40px;
   height: 30px;
@@ -133,7 +134,9 @@ a.play_games, a.shopping, a.assignments, a.projects, a.past_tests, a.past_exams 
 
 a.rss:hover, a.chatt:hover, a.share_story:hover, a.musics:hover, a.photos:hover, a.videos:hover, a.inbox:hover,
 a.friends:hover, a.profile:hover, a.setting:hover, a.phone_app:hover, a.play_games:hover, a.shopping:hover,
-a.assignments:hover, a.projects:hover, a.past_tests:hover {
+a.assignments:hover, a.projects:hover, a.past_tests:hover, a.past_exams:hover, a.qas:hover, a.tutors:hover
+a.books:hover, a.jobs:hover, a.foods:hover, a.party:hover, a.myx:hover, a.student_awareness:hover,
+a.housing:hover, a.teamUp:hover {
   background-position: 1px 1px; /* simple css hover effect */
 }
 
@@ -186,6 +189,39 @@ a.projects {
 a.past_tests {
   background: url(/images/footer_menu/past_tests.png) no-repeat;
 }
+a.past_exams {
+  background: url(/images/footer_menu/past_exams.png) no-repeat;
+}
+a.qas {
+  background: url(/images/footer_menu/qas.png) no-repeat;
+}
+a.tutors {
+  background: url(/images/footer_menu/tutors.png) no-repeat;
+}
+a.books {
+  background: url(/images/footer_menu/books.png) no-repeat;
+}
+a.jobs {
+  background: url(/images/footer_menu/jobs.png) no-repeat;
+}
+a.foods {
+  background: url(/images/footer_menu/foods.png) no-repeat;
+}
+a.party {
+  background: url(/images/footer_menu/party.png) no-repeat;
+}
+a.myx {
+  background: url(/images/footer_menu/myx.png) no-repeat;
+}
+a.student_awareness {
+  background: url(/images/footer_menu/student_awareness.png) no-repeat;
+}
+a.housing {
+  background: url(/images/footer_menu/housing.png) no-repeat;
+}
+a.teamUp {
+  background: url(/images/footer_menu/teamUp.png) no-repeat;
+}
 .tip {
   position: absolute; /* important */
   top: -65px;
@@ -219,29 +255,62 @@ a.past_tests {
 #tipmusics {
   left: 130px;
 }
+#tippast_exams {
+  left: 130px;
+}
 #tipvideos {
+  left: 176px;
+}
+#tipqas {
   left: 176px;
 }
 #tipinbox {
   left: 226px;
 }
+#tiptutors {
+  left: 226px;
+}
 #tipfriends {
+  left: 276px;
+}
+#tipbooks {
   left: 276px;
 }
 #tipprofile {
   left: 324px;
 }
+#tipjobs {
+  left: 324px;
+}
 #tipsetting {
+  left: 372px;
+}
+#tipfoods {
   left: 372px;
 }
 #tipphone_app {
   left: 422px;
 }
+#tipparty {
+  left: 422px;
+}
 #tipplay_games {
+  left: 472px;
+}
+#tipmyx {
   left: 472px;
 }
 #tipshopping {
   left: 519px;
+}
+#tipstudent_awareness {
+  left: 518px;
+}
+#tiphousing {
+  left: 569px;
+}
+#tipteamUp {
+  left: 609px;
 }
 
 .tip ul {
