@@ -90,7 +90,18 @@ class PhoneappsController < ApplicationController
   end
 
   def phoneappstab
-    @allapps = Phoneapplication.allapp('1')
+    curpage = 0
+    if (params[:page] == nil || params[:page]== '')
+      curpage = '1'
+    else
+      curpage = params[:page] #this variable is used to store the current page that willpaginate return
+    end
+
+    @allapps = Phoneapplication.allapp(curpage) #this variable store the data for willpaginate
+    @pageallapps = Phoneapplication.allapp('').size / 5 #this variable store the number of total page
+    @curpage = (params[:page])
+
+
     render :layout => false
   end
 
@@ -145,7 +156,17 @@ class PhoneappsController < ApplicationController
   end
 
   def seealltab
-    @allapps = Phoneapplication.allapp('1')
+    curpage = 0
+    if (params[:page] == nil || params[:page]== '')
+      curpage = '1'
+    else
+      curpage = params[:page] #this variable is used to store the current page that willpaginate return
+    end
+
+    @allapps = Phoneapplication.allapp(curpage) #this variable store the data for willpaginate
+    @pageallapps = Phoneapplication.allapp('').size / 5 #this variable store the number of total page
+    @curpage = (params[:page])
+
     render :layout => false
   end
 end

@@ -98,7 +98,7 @@ span.showbar a { /* show button */
 
 .leftside {
   float: left;
-  margin-left:-40px;
+  margin-left:-30px;
   margin-top:-11px;
 }
 
@@ -116,40 +116,65 @@ ul#social li {
 a.rss {
   display: inline-block;
   width: 104px;
-  height: 35px;
+  height: 30px;
   margin-left: 5px;
   background: url(/images/footer_menu/rss.png) no-repeat;
 }
 
-a.facebook, a.twitter, a.digg, a.delicious, a.stumble {
+a.chatt, a.share_story, a.musics, a.photos, a.videos, a.inbox, a.friends, a.profile, a.setting, a.phone_app,
+a.play_games, a.shopping {
   display: inline-block;
   width: 40px;
-  height: 35px;
-  margin-top: 1px;
+  height: 30px;
+  margin-top: 3px;
+  border-right:1px solid #EBEBEB;
+  margin-left:5px;
 }
 
-a.rss:hover, a.facebook:hover, a.twitter:hover, a.digg:hover, a.delicious:hover, a.stumble:hover {
+a.rss:hover, a.chatt:hover, a.share_story:hover, a.musics:hover, a.photos:hover, a.videos:hover, a.inbox:hover,
+a.friends:hover, a.profile:hover, a.setting:hover, a.phone_app:hover, a.play_games:hover, a.shopping:hover {
   background-position: 1px 1px; /* simple css hover effect */
 }
 
-a.facebook {
-  background: url(/images/footer_menu/facebook.png) no-repeat;
+a.chatt {
+  background: url(/images/footer_menu/chatt.png) no-repeat;
 }
 
-a.twitter {
-  background: url(/images/footer_menu/twitter.png) no-repeat;
+a.share_story {
+  background: url(/images/footer_menu/share_story.png) no-repeat;
 }
 
-a.delicious {
-  background: url(/images/footer_menu/delicious.png) no-repeat;
+a.photos {
+  background: url(/images/footer_menu/photos.png) no-repeat;
 }
 
-a.digg {
-  background: url(/images/footer_menu/digg.png) no-repeat;
+a.musics {
+  background: url(/images/footer_menu/musics.png) no-repeat;
 }
 
-a.stumble {
-  background: url(/images/footer_menu/stumble.png) no-repeat;
+a.videos {
+  background: url(/images/footer_menu/videos.png) no-repeat;
+}
+a.inbox {
+  background: url(/images/footer_menu/inbox.png) no-repeat;
+}
+a.friends {
+  background: url(/images/footer_menu/friends.png) no-repeat;
+}
+a.profile {
+  background: url(/images/footer_menu/profile.png) no-repeat;
+}
+a.setting {
+  background: url(/images/footer_menu/setting.png) no-repeat;
+}
+a.phone_app {
+  background: url(/images/footer_menu/phone_app.png) no-repeat;
+}
+a.play_games {
+  background: url(/images/footer_menu/play_games.png) no-repeat;
+}
+a.shopping {
+  background: url(/images/footer_menu/shopping.png) no-repeat;
 }
 
 .tip {
@@ -163,30 +188,43 @@ a.stumble {
 }
 
 /* custom distances for the icons */
-#tipfacebook {
-  left: 85px;
+#tipchatt {
+  left: -20px;
 }
 
-#tiptwitter {
-  left: 128px;
+#tipshare_story {
+  left: 30px;
 }
 
-#tipdelicious {
-
-  left: 173px;
+#tipphotos {
+  left: 80px;
 }
-
-#tipdigg {
-  left: 155px;
+#tipmusics {
+  left: 130px;
 }
-
-#tipdigg {
-  left: 215px;
-
+#tipvideos {
+  left: 176px;
 }
-
-#tipstumble {
-  left: 259px;
+#tipinbox {
+  left: 226px;
+}
+#tipfriends {
+  left: 276px;
+}
+#tipprofile {
+  left: 324px;
+}
+#tipsetting {
+  left: 372px;
+}
+#tipphone_app {
+  left: 422px;
+}
+#tipplay_games {
+  left: 472px;
+}
+#tipshopping {
+  left: 519px;
 }
 
 .tip ul {
