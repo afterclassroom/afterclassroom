@@ -108,6 +108,16 @@ ActionController::Routing::Routes.draw do |map|
       :delete => :post,
       :accept => :post,
       :de_accept => :post}
+    users.resources :stories, :collection => {:create_comment => :get, :delete_comment => :get}
+    # Video Album
+    users.resources :video_albums
+    users.resources :videos, :collection => {:create_album => :get}
+    # Music Album
+    users.resources :music_albums
+    users.resources :musics, :collection => {:create_album => :get}
+    # Photo Album
+    users.resources :photo_albums
+    users.resources :photos, :collection => {:create_album => :get}
   end
   
   # Sessions
@@ -214,21 +224,6 @@ ActionController::Routing::Routes.draw do |map|
 
   # Exam/Test Schedules, Deadline bulletin, General bulletin
   map.resources :post_exam_schedules
-  
-  # Stories
-  map.resources :stories, :collection => {:create_comment => :get, :delete_comment => :get}
-
-  # Video Album
-  map.resources :video_albums
-  map.resources :videos, :collection => {:create_album => :get}
-
-  # Music Album
-  map.resources :music_albums
-  map.resources :musics, :collection => {:create_album => :get}
-
-  # Photo Album
-  map.resources :photo_albums
-  map.resources :photos, :collection => {:create_album => :get}
   
   # Administration
   map.namespace(:admin) do |admin|

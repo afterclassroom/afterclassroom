@@ -1,35 +1,98 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Stories", :action_path => "#{stories_path}"} %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'submenu' %>
 <% end -%>
 
-<% content_for :tabs_inbox do -%>
-  <%= render :partial => 'shared/tabs_inbox' %>
-<% end -%>
+<div class="slStoryL">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <%= render :partial => "menu" %>
+        <div class="slsTop">
+          <div class="slsTopL">
+            <div class="slsTopLT">Friends shared stories <span>- <%= @friend_stories.size.to_s %> stories</span></div>
+            <div class="slsTopLB"><a href="#">Search here</a></div>
+          </div>
+          <div class="slsTopR">
+            <div class="assPage">
+              <span class="firstPage"><a href="#">First Page</a></span>
+              <span class="prevPage"><a href="#">Prev</a></span>
+              <span class="currentPage">
+                <a class="selected" href="#"><span>6</span></a>
+                <a href="#"><span>7</span></a>
+                <a href="#"><span>8</span></a>
+                <a href="#"><span>9</span></a>
+                <a href="#"><span>10</span></a>
+              </span>
+              <span class="nextPage"><a href="#">Next</a></span>
+              <span class="lastPage"><a href="#">Last Page</a></span>
+            </div>
+          </div>
+        </div>
+        <div class="slsItem">
+          <div class="slsItemL">
+            <div class="slsItemLN">79</div>
+            <div class="slsItemLV">viewed</div>
+          </div>
+          <div class="assImg"><a href="#"><div><img src="pictures/sls1.png"/></div></a></div>
+          <div class="slsItemR">
+            <div class="slsItemTitle"><a href="#">Nam nec quam eu odio dignissim semper id vitae sem. Sed ac justo purus</a></div>
+            <div class="slsItemTime">Viewed in 3 hours 10 minutes ago</div>
+            <div class="slsItemDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices velit leo. Pellentesque aliquet tristique arcu a mollis. Vestibulum rhoncus elit ut enim facilisis ut venenatis turpis pretium. Cras nec arcu nunc. Aliquam porttitor aliquet metus, vitae bibendum ipsum malesuada at.
+						Suspendisse consequat, justo quis placerat malesuada, velit dolor vulputate neque, et porta lectus dolor sed urna...</div>
+          </div>
+        </div>
 
-<div class="user_status_listing"><!--user_status_listing-->
-<!-- user-post-story -->
-  <div id="user-post-story">
-    <input type="button" id="" class="post-story-bt" value="Write your story" onclick="document.location.href='<%= new_story_path %>'">
-  </div><!-- #user-post-story	 -->
-  <% for story in @stories %>
-    <!-- user-story -->
-    <div class="user-story">
-      <div class="small_thumb_ava"><%= image_tag story.user.avatar.url(:thumb) %> </div>
-      <div class="user-story-content">
-        <p><%= story.content %>
-        </p>
-        <span class="last_update_status">
-        <span class="status-time"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></span> | <%= link_to "Comment", story %></span>
-      </div><!-- .user-story-content -->
-      <% if current_user == story.user %>
-      <div class="editable-box">
-        <span class="delete"><%= link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete %></span><br /><span class="edit"><%= link_to 'Edit', edit_story_path(story) %></span>
-      </div><!-- .editable-box -->
-      <% end %>
+      </div>
     </div>
-    <!-- end .user-story -->
-  <% end %>
-  <%= will_paginate @stories, :class => "digg_pagination" %>
-</div> <!--user_status_listing-->
-<div class="app_add_on">
+  </div>
+  <div class="contDetL slStoryL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsTop">
+          <div class="slsTopL">
+            <div class="slsTopLT">Your stories <span>- <%= @my_stories.size.to_s %> stories</span></div>
+            <div class="slsTopLB"><a href="">Search here</a>  |  <a href="">Set Privacy</a></div>
+          </div>
+          <div class="slsTopR">
+            <div class="assPage">
+              <span class="firstPage"><a href="#">First Page</a></span>
+              <span class="prevPage"><a href="#">Prev</a></span>
+              <span class="currentPage">
+                <a class="selected" href="#"><span>6</span></a>
+                <a href="#"><span>7</span></a>
+                <a href="#"><span>8</span></a>
+                <a href="#"><span>9</span></a>
+                <a href="#"><span>10</span></a>
+              </span>
+              <span class="nextPage"><a href="#">Next</a></span>
+              <span class="lastPage"><a href="#">Last Page</a></span>
+            </div>
+          </div>
+        </div>
+        <div class="slsItem">
+          <div class="slsItemL">
+            <div class="slsItemLN">31</div>
+            <div class="slsItemLV">viewed</div>
+          </div>
+          <div class="assImg"><a href="#"><div><img src="pictures/sls4.png"/></div></a></div>
+          <div class="slsItemR">
+            <div class="slsItemTitle"><a href="#">Nam nec quam eu odio dignissim semper id vitae sem. Sed ac justo purus</a></div>
+            <div class="slsItemTime">Viewed in 3 hours 10 minutes ago</div>
+            <div class="slsItemDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices velit leo. Pellentesque aliquet tristique arcu a mollis. Vestibulum rhoncus elit ut enim facilisis ut venenatis turpis pretium. Cras nec arcu nunc. Aliquam porttitor aliquet metus, vitae bibendum ipsum malesuada at.
+						Suspendisse consequat, justo quis placerat malesuada, velit dolor vulputate neque, et porta lectus dolor sed urna...</div>
+          </div>
+        </div>
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contMainR">
+  <!--Most Viewed-->
+  <%= render :partial => "most_viewed" %>
+  <!--Most Viewed-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>

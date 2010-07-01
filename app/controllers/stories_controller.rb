@@ -1,11 +1,25 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class StoriesController < ApplicationController
+  layout 'student_lounge'
+  
+  include Viewable
+  
   before_filter :login_required
   before_filter :require_current_user,
-                :only => [:edit, :update, :destroy, :delete_comment]
+    :only => [:edit, :update, :destroy, :delete_comment]
   # GET /stories
   # GET /stories.xml
   def index
+    arr_user_id = []
+    current_user.user_friends.collect {|f| arr_user_id << f.id}
+    cond = Caboose::EZ::Condition.new :stories do
+      user_id === arr_user_id
+    end
+    @my_stories = current_user.stories.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    @friend_stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+  end
+
+  def my_stories
     arr_user_id = []
     arr_user_id << current_user.id
     if current_user.user_friends
@@ -21,27 +35,28 @@ class StoriesController < ApplicationController
     end
 
     content_search = @search_name
-    
+
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
       if content_search != ""
         content =~ "%#{content_search}%"
       end
     end
-    
+
     @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @stories }
-    end
+    render :layout => false
+  end
+
+  def friend_stories
+    render :layout => false
   end
 
   # GET /stories/1
   # GET /stories/1.xml
   def show
     @story = Story.find(params[:id])
-    
+    update_view_count(@story)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @story }
