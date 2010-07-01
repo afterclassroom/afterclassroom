@@ -122,7 +122,7 @@ a.rss {
 }
 
 a.chatt, a.share_story, a.musics, a.photos, a.videos, a.inbox, a.friends, a.profile, a.setting, a.phone_app,
-a.play_games, a.shopping {
+a.play_games, a.shopping, a.assignments, a.projects, a.past_tests, a.past_exams {
   display: inline-block;
   width: 40px;
   height: 30px;
@@ -132,7 +132,8 @@ a.play_games, a.shopping {
 }
 
 a.rss:hover, a.chatt:hover, a.share_story:hover, a.musics:hover, a.photos:hover, a.videos:hover, a.inbox:hover,
-a.friends:hover, a.profile:hover, a.setting:hover, a.phone_app:hover, a.play_games:hover, a.shopping:hover {
+a.friends:hover, a.profile:hover, a.setting:hover, a.phone_app:hover, a.play_games:hover, a.shopping:hover,
+a.assignments:hover, a.projects:hover, a.past_tests:hover {
   background-position: 1px 1px; /* simple css hover effect */
 }
 
@@ -176,7 +177,15 @@ a.play_games {
 a.shopping {
   background: url(/images/footer_menu/shopping.png) no-repeat;
 }
-
+a.assignments {
+  background: url(/images/footer_menu/assignments.png) no-repeat;
+}
+a.projects {
+  background: url(/images/footer_menu/projects.png) no-repeat;
+}
+a.past_tests {
+  background: url(/images/footer_menu/past_tests.png) no-repeat;
+}
 .tip {
   position: absolute; /* important */
   top: -65px;
@@ -191,12 +200,20 @@ a.shopping {
 #tipchatt {
   left: -20px;
 }
+#tipassignments {
+  left: -20px;
+}
 
 #tipshare_story {
   left: 30px;
 }
-
+#tipprojects {
+  left: 30px;
+}
 #tipphotos {
+  left: 80px;
+}
+#tippast_tests {
   left: 80px;
 }
 #tipmusics {

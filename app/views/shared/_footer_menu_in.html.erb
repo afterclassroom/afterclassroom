@@ -23,7 +23,7 @@
     });
 
     //don't jump to #id link anchor
-    $(".homeworks, .qas, .tutors, .books, .rss, .jobs, .menutit, span.downarr a, span.showbar a").click(function() {
+    $(".assignments, .projects, .past_tests, .books, .rss, .jobs, .menutit, span.downarr a, span.showbar a").click(function() {
       return false;
     });
 
@@ -112,43 +112,29 @@
 </div>
 
 <div id="toolbar"> <!-- toolbar container -->
-<div class="left"> <!-- all things in floating left side -->
 
-    <span class="menu_title">
-      <a class="menutit" href="#">Student Lounge</a> <!-- quick menu title -->
-    </span>
-    <div class="quickmenu">
-      <ul> <!-- quick menu list -->
-        <li><%= link_to "Student Lounge", user_student_lounges_path(current_user) %></li>
-        <li><%= link_to "Inbox", user_messages_path(current_user) %></li>
-        <li><%= link_to "Friends", user_friends_path(current_user) %></li>
-        <li><%= link_to "Profile", user_profiles_path(current_user) %></li>
-        <li><%= link_to "Setting", user_settings_path(current_user) %></li>
-      </ul>
-    </div>
-  </div>
   <div class="leftside"> <!-- all things in floating left side -->
     <ul id="social">
-      <li><a class="homeworks" href="#"></a>
-        <div id="tiphomeworks" class="tip">
+      <li><a class="assignments" href="#"></a>
+        <div id="tipassignments" class="tip">
           <ul>
-            <li><a href="#">Homeworks</a></li>
+            <li><a href="#">Assignments</a></li>
             <li><a href="#">| Post</a></li>
           </ul>
         </div>
       </li>
-      <li><a class="qas" href="#"></a>
-        <div id="tipqas" class="tip">
+      <li><a class="projects" href="#"></a>
+        <div id="tipprojects" class="tip">
           <ul>
-            <li><a href="#">Q.As</a></li>
+            <li><a href="#">Projects</a></li>
             <li><a href="#">| Post</a></li>
           </ul>
         </div>
       </li>
-      <li><a class="tutors" href="#"></a>
-        <div id="tiptutors" class="tip">
+      <li><a class="past_tests" href="#"></a>
+        <div id="tippast_tests" class="tip">
           <ul>
-            <li><a href="#">Tutors</a></li>
+            <li><a href="#">Past Tests</a></li>
             <li><a href="#">| Post</a></li>
           </ul>
         </div>
