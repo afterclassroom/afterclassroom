@@ -98,7 +98,7 @@ span.showbar a { /* show button */
 
 .leftside {
   float: left;
-  margin-left:-40px;
+  margin-left:-25px;
   margin-top:-11px;
 }
 
@@ -121,35 +121,57 @@ a.rss {
   background: url(/images/footer_menu/rss.png) no-repeat;
 }
 
-a.facebook, a.twitter, a.digg, a.delicious, a.stumble {
+a.assignments, a.projects, a.past_exams, a.past_tests, a.qas, a.tutors, a.books, a.jobs, a.foods,
+a.party, a.myx {
   display: inline-block;
   width: 40px;
   height: 35px;
-  margin-top: 1px;
+  margin-top: 3px;
+  border-right:1px solid #ebebeb;
+  margin-right:5px;
 }
 
-a.rss:hover, a.facebook:hover, a.twitter:hover, a.digg:hover, a.delicious:hover, a.stumble:hover {
+a.rss:hover, a.assignments:hover, a.projects:hover, a.past_exams:hover, a.past_tests:hover,
+a.qas:hover, a.tutors:hover, a.books:hover, a.jobs:hover, a.foods:hover, a.party:hover, a.myx:hover {
   background-position: 1px 1px; /* simple css hover effect */
 }
 
-a.facebook {
-  background: url(/images/footer_menu/facebook.png) no-repeat;
+a.assignments {
+  background: url(/images/footer_menu/assignments.png) no-repeat;
 }
 
-a.twitter {
-  background: url(/images/footer_menu/twitter.png) no-repeat;
+a.projects {
+  background: url(/images/footer_menu/projects.png) no-repeat;
 }
 
-a.delicious {
-  background: url(/images/footer_menu/delicious.png) no-repeat;
+a.past_tests {
+  background: url(/images/footer_menu/past_tests.png) no-repeat;
 }
 
-a.digg {
-  background: url(/images/footer_menu/digg.png) no-repeat;
+a.past_exams {
+  background: url(/images/footer_menu/past_exams.png) no-repeat;
 }
 
-a.stumble {
-  background: url(/images/footer_menu/stumble.png) no-repeat;
+a.qas {
+  background: url(/images/footer_menu/qas.png) no-repeat;
+}
+a.tutors {
+  background: url(/images/footer_menu/tutors.png) no-repeat;
+}
+a.books {
+  background: url(/images/footer_menu/books.png) no-repeat;
+}
+a.jobs {
+  background: url(/images/footer_menu/jobs.png) no-repeat;
+}
+a.foods {
+  background: url(/images/footer_menu/foods.png) no-repeat;
+}
+a.party {
+  background: url(/images/footer_menu/party.png) no-repeat;
+}
+a.myx {
+  background: url(/images/footer_menu/myx.png) no-repeat;
 }
 
 .tip {
@@ -163,30 +185,44 @@ a.stumble {
 }
 
 /* custom distances for the icons */
-#tipfacebook {
-  left: 85px;
+#tipassignments {
+  left: -20px;
 }
 
-#tiptwitter {
-  left: 128px;
+#tipprojects {
+  left: 26px;
 }
 
-#tipdelicious {
+#tippast_tests {
 
-  left: 173px;
+  left: 72px;
 }
 
-#tipdigg {
-  left: 155px;
-}
-
-#tipdigg {
-  left: 215px;
+#tippast_exams {
+  left: 115px;
 
 }
 
-#tipstumble {
-  left: 259px;
+#tipqas {
+  left: 159px;
+}
+#tiptutors {
+  left: 202px;
+}
+#tipbooks {
+  left: 245px;
+}
+#tipjobs {
+  left: 290px;
+}
+#tipfoods {
+  left: 334px;
+}
+#tipparty {
+  left: 378px;
+}
+#tipmyx {
+  left: 410px;
 }
 
 .tip ul {
