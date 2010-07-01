@@ -186,8 +186,9 @@
 }
 .assImg img{
     border:0px;
-    width:61px;
-    height:51px;
+    margin-left:5px;
+    /*width:61px;
+    height:51px;*/
 }
 .assContT{
     float:right;
