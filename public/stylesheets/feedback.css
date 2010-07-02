@@ -7,7 +7,7 @@ div#feedback {
   height: 100%;
   z-index: 100001;
 }
-			
+
 a#feedback_link {				
   position: fixed;
   z-index: 99999;
@@ -19,11 +19,11 @@ a#feedback_link {
   _position: absolute;
   /*_background-image: url(/images/feedback/feedback_tab.png);*/
 }	
-  
+
 a#feedback_link:hover {
   background-color: #999;
 }
-			
+
 a#feedback_link.left {
   left: 0;
   top: 25%;
@@ -59,7 +59,7 @@ a#feedback_link.bottom {
   background-image: url(/images/feedback/feedback_tab_h.png);
   _background-image: url(/images/feedback/feedback_tab_h.png);
 }
-			
+
 a#feedback_close_link {
   right: 5pt;
   top: 3pt;
@@ -76,15 +76,15 @@ div#feedback_modal_window {
   position: relative;
   background-color: #FFFFFF;
 }
-			
+
 div#feedback_modal_content {				
   padding: 12px;				
 }
-			
+
 div#feedback_loading {				
   padding: 12px;				
 }
-			
+
 #feedback_overlay {
   position: fixed;
   top: 0px;
@@ -96,7 +96,7 @@ div#feedback_loading {
   -moz-opacity: 0.5;
   filter:alpha(opacity=50);
 }
-			
+
 .feedback_hide {
   z-index:-100;
 }
@@ -105,26 +105,47 @@ div#feedback_loading {
   background-color: #000;
   z-index: 100000;
 }
-			
+
 * html #feedback_overlay { /* ie6 hack */
   position: absolute;
   height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
 }
-			
+
 form#feedback_form .error {
   color: red;
   font-weight: bold;
 }
 #feedback_subject {
   margin-left:21px;
+  width: 196px;
 }
 #feedback_email {
   margin-left:33px;
+  width: 192px;
 }
 #feedback_comment {
   margin-left:60px;
   margin-top:-13px;
 }
 #feedback_submit {
+  margin-left:208px;
+  background:transparent url(/images/btm48.png) no-repeat scroll 1px 3px;
+  display:block;
+  height:29px;
+  line-height:25px;
+  text-align:center;
+  width:51px;
+  border:0 none;
+  color:#FFFFFF;
+}
+#feedback_submit:hover{
+  background:url('/images/btm48Red.png') no-repeat;
+  display:block;
+  height:29px;
+  line-height:25px;
+  text-align:center;
+  width:51px;
+  border:0 none;
+  color:#FFFFFF;
   margin-left:208px;
 }
