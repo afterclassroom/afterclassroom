@@ -139,13 +139,5 @@ form#feedback_form .error {
   color:#FFFFFF;
 }
 #feedback_submit:hover{
-  background:url('/images/btm48Red.png') no-repeat;
-  display:block;
-  height:29px;
-  line-height:25px;
-  text-align:center;
-  width:51px;
-  border:0 none;
-  color:#FFFFFF;
-  margin-left:208px;
-}
+  background:url('/images/btm48Red.png') no-repeat scroll 1px 3px;
+  }
