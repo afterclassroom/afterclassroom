@@ -12,6 +12,7 @@ public/avatars/**/*
 public/uploaded_files/**/*
 public/uploads/*
 public/photos/*
+public/gamephotos/*
 public/images/captcha
 public/javascripts/cache/
 public/stylesheets/cache/
