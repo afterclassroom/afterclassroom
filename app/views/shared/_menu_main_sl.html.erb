@@ -6,10 +6,14 @@
     <%= tab_to "Profile", [{:controller => user_profiles_path(current_user)}] %>
     <%= tab_to "Setting", [{:controller => user_settings_path(current_user)}] %>
     <li class="menuSpace1">&nbsp;</li>
-    <li><a href="#"><span>Phone Apps</span></a></li>
-    <li><a href="#"><span>Play Games</span></a></li>
-    <li><a href="#"><span>Shopping</span></a></li>
+
+    <%= tab_to "Phone Apps", [{:controller => phoneapps_path, :action => "recommendapp"}] %>
+
+    <%= tab_to "Play Games", [{:controller => playgames_path, :action => "recommendgame"}] %>
+    
+    <%= tab_to "Shopping", [{:controller => shoppings_path, :action => "mainpage"}] %>
+
     <li class="menuSpace2">&nbsp;</li>
-    <li><a href="#"><span>Learning Tools</span></a></li>
+    <%= tab_to "Learning Tools", [{:controller => learningtools_path, :action => "recommend_tool"}] %>
   </ul>
 </div>
