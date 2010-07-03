@@ -16,6 +16,13 @@ ActionController::Routing::Routes.draw do |map|
   map.user_forgot_login    '/users/forgot_login',    :controller => 'users', :action => 'forgot_login'
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
 
+  map.resources :learningtools, :collection => {
+    :recommend_tool => :get
+  }
+  map.resources :shoppings, :collection => {
+    :mainpage => :get
+  }
+
   map.resources :playgames, :collection => {
     :recommendgame => :get,
     :info => :get,

@@ -11,9 +11,9 @@
 
     <%= tab_to "Play Games", [{:controller => playgames_path, :action => "recommendgame"}] %>
     
-    <li><a href="#"><span>Shopping</span></a></li>
+    <%= tab_to "Shopping", [{:controller => shoppings_path, :action => "mainpage"}] %>
 
     <li class="menuSpace2">&nbsp;</li>
-    <li><a href="#"><span>Learning Tools</span></a></li>
+    <%= tab_to "Learning Tools", [{:controller => learningtools_path, :action => "recommend_tool"}] %>
   </ul>
 </div>
