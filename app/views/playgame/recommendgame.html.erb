@@ -158,7 +158,7 @@
         <div id="allgameitems">
           <%= render :partial => "allgame", :locals => {:appdata => @allgame} %>
           <div class="assPage">
-            <span class="numPage">Page 1 of 22</span>
+            <span class="numPage">Page 1 of <%= @pageallgame %></span>
             <span class="firstPage">
               <%= link_to "First Page", {:controller => 'playgame', :action => "pagingallgame", :page => '1'}%>
             </span>

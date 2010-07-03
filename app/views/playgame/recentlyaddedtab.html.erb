@@ -20,7 +20,7 @@
 <% end %>
 
 <div class="assPage">
-  <span class="numPage">Page 1 of 22</span>
+  <span class="numPage">Page <%= @curpage %> of <%= @totalpage %></span>
   <span class="firstPage">
     <%= link_to "First Page", {:controller => 'playgame', :action => "recentlyaddedtab", :page => '1'}%>
   </span>

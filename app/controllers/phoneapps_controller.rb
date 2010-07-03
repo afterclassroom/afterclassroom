@@ -13,7 +13,13 @@ class PhoneappsController < ApplicationController
     @pagebberry = Phoneapplication.allbberryapp().size / 5
     @pagegoogleapp = Phoneapplication.allgoogleapp().size / 5
     @allapps = Phoneapplication.allapp('1')
-    @pageallapps = Phoneapplication.allapp('').size / 5
+
+    datasize = Phoneapplication.allapp('').size
+    @pageallapps = datasize / 5
+
+    if (datasize % 5 > 0)
+      @pageallapps = @pageallapps + 1
+    end
 
     
   end
@@ -90,16 +96,22 @@ class PhoneappsController < ApplicationController
   end
 
   def phoneappstab
-    curpage = 0
+    @curpage = 0
     if (params[:page] == nil || params[:page]== '')
-      curpage = '1'
+      @curpage = '1'
     else
-      curpage = params[:page] #this variable is used to store the current page that willpaginate return
+      @curpage = params[:page] #this variable is used to store the current page that willpaginate return
     end
 
-    @allapps = Phoneapplication.allapp(curpage) #this variable store the data for willpaginate
-    @pageallapps = Phoneapplication.allapp('').size / 5 #this variable store the number of total page
-    @curpage = (params[:page])
+    @allapps = Phoneapplication.allapp(@curpage) #this variable store the data for willpaginate
+
+    datasize = Phoneapplication.allapp('').size
+    @pageallapps = datasize / 5#this variable store the number of total page
+
+    if (datasize % 5 > 0)
+      @pageallapps = @pageallapps + 1
+    end
+
 
 
     render :layout => false
@@ -114,7 +126,15 @@ class PhoneappsController < ApplicationController
     end
 
     @popularap = Phoneapplication.popularapp(curpage)#this variable is used to store the specific data for a specifict page
-    @noOfPages = Phoneapplication.popularapp('all').size/5#this variable is used to calculate the total no of page
+
+    datasize = Phoneapplication.popularapp('all').size
+    @noOfPages = datasize / 5#this variable is used to calculate the total no of page
+
+    if (datasize % 5 > 0)
+      @noOfPages = @noOfPages + 1
+    end
+
+
     @currentPage = curpage
 
     render :layout => false
@@ -130,7 +150,13 @@ class PhoneappsController < ApplicationController
 
     @verifiedap = Phoneapplication.verifiedapp(curpage)#this variable is used to store the specific data for a specifict page
 
-    @noOfPages = Phoneapplication.verifiedapp('all').size/5#this variable is used to calculate the total no of page
+    datasize = Phoneapplication.verifiedapp('all').size
+    @noOfPages = datasize / 5#this variable is used to calculate the total no of page
+
+    if (datasize % 5 > 0)
+      @noOfPages = @noOfPages + 1
+    end
+
 
     @currentPage = curpage
 
@@ -148,7 +174,12 @@ class PhoneappsController < ApplicationController
     
     @recentap = Phoneapplication.recentlyaddedapp(curpage)#this variable is used to store the specific data for a specifict page
     
-    @noOfPages = Phoneapplication.recentlyaddedapp('all').size/5#this variable is used to calculate the total no of page
+    datasize = Phoneapplication.recentlyaddedapp('all').size
+    @noOfPages = datasize / 5#this variable is used to calculate the total no of page
+
+    if (datasize % 5 > 0)
+      @noOfPages = @noOfPages + 1
+    end
 
     @currentPage = curpage
     
@@ -156,16 +187,21 @@ class PhoneappsController < ApplicationController
   end
 
   def seealltab
-    curpage = 0
+    @curpage = 0
     if (params[:page] == nil || params[:page]== '')
-      curpage = '1'
+      @curpage = '1'
     else
-      curpage = params[:page] #this variable is used to store the current page that willpaginate return
+      @curpage = params[:page] #this variable is used to store the current page that willpaginate return
     end
 
-    @allapps = Phoneapplication.allapp(curpage) #this variable store the data for willpaginate
-    @pageallapps = Phoneapplication.allapp('').size / 5 #this variable store the number of total page
-    @curpage = (params[:page])
+    @allapps = Phoneapplication.allapp(@curpage) #this variable store the data for willpaginate
+    datasize = Phoneapplication.allapp('').size
+    @pageallapps = datasize / 5#this variable is used to calculate the total no of page
+
+    if (datasize % 5 > 0)
+      @pageallapps = @pageallapps + 1
+    end
+
 
     render :layout => false
   end

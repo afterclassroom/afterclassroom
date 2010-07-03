@@ -18,7 +18,7 @@
   </div>
 <% end %>
 <div class="assPage">
-  <span class="numPage">Page 1 of <%= @pageallapps %></span>
+  <span class="numPage">Page <%= @curpage %> of <%= @pageallapps %></span>
   <span class="firstPage">
     <%= link_to "First Page", {:controller => 'phoneapps', :action => "phoneappstab", :page => '1'}%>
   </span>
