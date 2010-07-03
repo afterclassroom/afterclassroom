@@ -5,14 +5,30 @@ class PlaygameController < ApplicationController
   before_filter :login_required
 
   def gameslounge
+    if params[:id]
+      id = params[:id]
+
+      @gapp = Gameapp.find(id)
+
+    end
   end
 
   def info
+    if params[:id]
+      id = params[:id]
 
+      @gapp = Gameapp.find(id)
+
+    end
   end
 
   def favorite
-    
+    if params[:id]
+      id = params[:id]
+
+      @gapp = Gameapp.find(id)
+
+    end
   end
 
   def recommendgame

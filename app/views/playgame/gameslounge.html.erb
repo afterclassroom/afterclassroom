@@ -1,6 +1,6 @@
 <div class="topLearning">
   <div class="AftBe">
-    <div class="txtsignup1">Morbi ultrices congue aliquet</div>
+    <div class="txtsignup1"><%=h @gapp.name %></div>
     <div class="btmBe"><a href="#">Become a Fan</a></div>
   </div>
   <div class="postdiv">
@@ -15,10 +15,10 @@
       </a>
     </div>
     <div class="menuRItem">
-      <%= link_to content_tag(:span, ''+content_tag(:span, 'Info', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'info' %>
+      <%= link_to content_tag(:span, ''+content_tag(:span, 'Info', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'info', :id => @gapp.id  %>
     </div>
     <div class="menuRItem">
-      <%= link_to content_tag(:span, ''+content_tag(:span, 'My Favorite', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'favorite' %>
+      <%= link_to content_tag(:span, ''+content_tag(:span, 'My Favorite', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'favorite', :id => @gapp.id  %>
     </div>
     <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Download this Game</span></span></a></div>
     <div class="menuRItemP"><a href="#">&nbsp;</a></div>
@@ -29,8 +29,10 @@
     <div class="col195 QAsTopic">
       <div class="col195in">
         <div class="demo">
-          <div class="demoImg"><a href="#"><div><img src="pictures/gameL8.jpg"></div></a></div>
-          <div class="demoBtm"><a href="#">Play a Demo</a></div>
+          <div class="demoImg">
+            <%= link_to content_tag(:div, ''+image_tag(@gapp.gamephoto.url(:medium), :alt => '')), :controller => 'playgame', :action => 'gameslounge', :id => @gapp.id %>
+          </div>
+          <div class="demoBtm"><a href="<%= @gapp.playurl %>">Play a Demo</a></div>
         </div>
       </div>
     </div>
@@ -99,14 +101,12 @@
   <div class="contMainL">
     <div class="col451 learnDet">
       <div class="col451in">
-        <div class="learnDetimg"><a href="#"><div><img src="pictures/game8.png"></div></a></div>
+        <div class="learnDetimg">
+          <%= link_to content_tag(:div, ''+image_tag(@gapp.gamephoto.url(:thumb), :alt => '')), :controller => 'playgame', :action => 'gameslounge', :id => @gapp.id %>
+        </div>
         <div class="learnDetContR">
-          <div class="learnDetT"><a href="#">Morbi ultrices congue aliquet</a></div>
-          <div class="learnDetDes">Duis fringilla feugiat bibendum. Duis sed erat in libero mollis facilisis. Pellentesque sit amet tempor mauris. Vestibulum nec lorem massa, ac ullamcorper magna. Sed blandit odio eu felis bibendum accumsan.
-					Ut ac justo at nulla malesuada dapibus. Ut suscipit nunc quis urna auctor id porta sapien facilisis. Nam vestibulum justo euismod nisl euismod eget consequat justo interdum.
-					Mauris ut dignissim odio
-					Fusce vehicula ante sit amet turpis dictum venenatis. Cras mattis nisi in libero rhoncus vitae fermentum ligula hendrerit.
-          </div>
+          <div class="learnDetT"><a href="#"><%= @gapp.name %></a></div>
+          <div class="learnDetDes"><%=h @gapp.description %></div>
           <div class="learnDetDate">January 03, 2010 at 4:02 PM <a href="#">Report Spam</a></div>
         </div>
       </div>
