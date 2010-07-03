@@ -133,95 +133,95 @@ a.jobs, a.foods, a.party, a.myx, a.student_awareness, a.housing, a.teamUp {
 
 a.rss:hover, a.chatt:hover, a.share_story:hover, a.musics:hover, a.photos:hover, a.videos:hover, a.inbox:hover,
 a.friends:hover, a.profile:hover, a.setting:hover, a.phone_app:hover, a.play_games:hover, a.shopping:hover,
-a.assignments:hover, a.projects:hover, a.past_tests:hover, a.past_exams:hover, a.qas:hover, a.tutors:hover
+a.assignments:hover, a.projects:hover, a.past_tests:hover, a.past_exams:hover, a.qas:hover, a.tutors:hover,
 a.books:hover, a.jobs:hover, a.foods:hover, a.party:hover, a.myx:hover, a.student_awareness:hover,
 a.housing:hover, a.teamUp:hover {
   background-position: 1px 1px; /* simple css hover effect */
 }
 
 a.chatt {
-  background: url(/images/footer_menu/chatt.png) no-repeat;
+  background: url(/images/footer_menu/chatt-1.png) no-repeat;
 }
 
 a.share_story {
-  background: url(/images/footer_menu/share_story.png) no-repeat;
+  background: url(/images/footer_menu/share_story-1.png) no-repeat;
 }
 
 a.photos {
-  background: url(/images/footer_menu/photos.png) no-repeat;
+  background: url(/images/footer_menu/photos-1.png) no-repeat;
 }
 
 a.musics {
-  background: url(/images/footer_menu/musics.png) no-repeat;
+  background: url(/images/footer_menu/musics-1.png) no-repeat;
 }
 
 a.videos {
-  background: url(/images/footer_menu/videos.png) no-repeat;
+  background: url(/images/footer_menu/videos-1.png) no-repeat;
 }
 a.inbox {
-  background: url(/images/footer_menu/inbox.png) no-repeat;
+  background: url(/images/footer_menu/inbox-1.png) no-repeat;
 }
 a.friends {
-  background: url(/images/footer_menu/friends.png) no-repeat;
+  background: url(/images/footer_menu/friends-1.png) no-repeat;
 }
 a.profile {
-  background: url(/images/footer_menu/profile.png) no-repeat;
+  background: url(/images/footer_menu/profile-1.png) no-repeat;
 }
 a.setting {
-  background: url(/images/footer_menu/setting.png) no-repeat;
+  background: url(/images/footer_menu/setting-1.png) no-repeat;
 }
 a.phone_app {
-  background: url(/images/footer_menu/phone_app.png) no-repeat;
+  background: url(/images/footer_menu/phone_app-1.png) no-repeat;
 }
 a.play_games {
-  background: url(/images/footer_menu/play_games.png) no-repeat;
+  background: url(/images/footer_menu/play_games-1.png) no-repeat;
 }
 a.shopping {
-  background: url(/images/footer_menu/shopping.png) no-repeat;
+  background: url(/images/footer_menu/shopping-1.png) no-repeat;
 }
 a.assignments {
-  background: url(/images/footer_menu/assignments.png) no-repeat;
+  background: url(/images/footer_menu/assignments-1.png) no-repeat;
 }
 a.projects {
-  background: url(/images/footer_menu/projects.png) no-repeat;
+  background: url(/images/footer_menu/projects-1.png) no-repeat;
 }
 a.past_tests {
-  background: url(/images/footer_menu/past_tests.png) no-repeat;
+  background: url(/images/footer_menu/past_tests-1.png) no-repeat;
 }
 a.past_exams {
-  background: url(/images/footer_menu/past_exams.png) no-repeat;
+  background: url(/images/footer_menu/past_exams-1.png) no-repeat;
 }
 
 a.qas {
-  background: url(/images/footer_menu/qas.png) no-repeat;
+  background: url(/images/footer_menu/qas-1.png) no-repeat;
 }
 a.tutors {
-  background: url(/images/footer_menu/tutors.png) no-repeat;
+  background: url(/images/footer_menu/tutors-1.png) no-repeat;
 }
 a.books {
-  background: url(/images/footer_menu/books.png) no-repeat;
+  background: url(/images/footer_menu/books-1.png) no-repeat;
 }
 a.jobs {
-  background: url(/images/footer_menu/jobs.png) no-repeat;
+  background: url(/images/footer_menu/jobs-1.png) no-repeat;
 }
 a.foods {
-  background: url(/images/footer_menu/foods.png) no-repeat;
+  background: url(/images/footer_menu/foods-1.png) no-repeat;
 }
 a.party {
-  background: url(/images/footer_menu/party.png) no-repeat;
+  background: url(/images/footer_menu/party-1.png) no-repeat;
 }
 a.myx {
-  background: url(/images/footer_menu/myx.png) no-repeat;
+  background: url(/images/footer_menu/myx-1.png) no-repeat;
 
 }
 a.student_awareness {
-  background: url(/images/footer_menu/student_awareness.png) no-repeat;
+  background: url(/images/footer_menu/student_awareness-1.png) no-repeat;
 }
 a.housing {
-  background: url(/images/footer_menu/housing.png) no-repeat;
+  background: url(/images/footer_menu/housing-1.png) no-repeat;
 }
 a.teamUp {
-  background: url(/images/footer_menu/teamUp.png) no-repeat;
+  background: url(/images/footer_menu/teamUp-1.png) no-repeat;
 
 }
 .tip {
@@ -250,37 +250,37 @@ a.teamUp {
   left: 30px;
 }
 #tipphotos {
-  left: 80px;
+  left: 77px;
 }
 #tippast_tests {
   left: 80px;
 }
 #tipmusics {
-  left: 130px;
+  left: 129px;
 }
 #tippast_exams {
-  left: 130px;
+  left: 126px;
 }
 #tipvideos {
-  left: 176px;
+  left: 175px;
 }
 #tipqas {
   left: 176px;
 }
 #tipinbox {
-  left: 226px;
+  left: 225px;
 }
 #tiptutors {
-  left: 226px;
+  left: 224px;
 }
 #tipfriends {
-  left: 276px;
+  left: 274px;
 }
 #tipbooks {
-  left: 276px;
+  left: 273px;
 }
 #tipprofile {
-  left: 324px;
+  left: 322px;
 }
 #tipjobs {
   left: 324px;
@@ -292,19 +292,19 @@ a.teamUp {
   left: 372px;
 }
 #tipphone_app {
-  left: 422px;
+  left: 421px;
 }
 #tipparty {
   left: 422px;
 }
 #tipplay_games {
-  left: 472px;
+  left: 470px;
 }
 #tipmyx {
-  left: 472px;
+  left: 470px;
 }
 #tipshopping {
-  left: 519px;
+  left: 517px;
 }
 #tipstudent_awareness {
   left: 518px;
@@ -313,7 +313,7 @@ a.teamUp {
   left: 569px;
 }
 #tipteamUp {
-  left: 609px;
+  left: 617px;
 
 }
 
