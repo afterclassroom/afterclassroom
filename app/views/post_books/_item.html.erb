@@ -1,6 +1,6 @@
 <div class="assItem">
   <div class="assItemL">
-    <div class="assImg"><div><%= link_to image_tag("/images/icons/icon_defaut/08_new-books_50x50.png"), post %></div></div>
+    <div class="assImg"><div><%= link_to image_tag("/images/icons/icon_defaut/08_new-books_51x51.png"), post %></div></div>
     <div class="assContT">
       <h2 class="titleH2"><%= link_to title, post_book_path(post) %></h2>
       <div class="assCate"><span>From:</span><%= link_to post.school.name, :controller => "post_books", :action => "index", :from_school => post.school, :book_type_id => post.post_book.book_type.id %></div>

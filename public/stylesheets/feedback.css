@@ -71,7 +71,7 @@ a#feedback_close_link {
 }
 
 div#feedback_modal_window {
-  width: 300px;
+  width: 400px;
   margin: 0 auto;				
   position: relative;
   background-color: #FFFFFF;
@@ -117,18 +117,37 @@ form#feedback_form .error {
 }
 #feedback_subject {
   margin-left:21px;
-  width: 196px;
+  width: 296px;
+  
+}
+#feedback_subject option {
+  
+  -x-system-font:none;
+  background-color:#E1E0E0;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:11px;
+  font-size-adjust:none;
+  font-stretch:normal;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:normal;
+  height:auto;
+  line-height:normal;
+  color:#666666;
+  cursor:pointer;
+  margin:1px;
+  padding:1px;
 }
 #feedback_email {
   margin-left:33px;
-  width: 192px;
+  width: 292px;
 }
 #feedback_comment {
   margin-left:60px;
   margin-top:-13px;
 }
 #feedback_submit {
-  margin-left:208px;
+  margin-left:308px;
   background:transparent url(/images/btm48.png) no-repeat scroll 1px 3px;
   display:block;
   height:29px;
@@ -137,7 +156,11 @@ form#feedback_form .error {
   width:51px;
   border:0 none;
   color:#FFFFFF;
+  cursor:pointer;
 }
-#feedback_submit:hover{
+#feedback_submit:hover {
   background:url('/images/btm48Red.png') no-repeat scroll 1px 3px;
-  }
+}
+#feedback_submit:visited{
+  color: #000;
+}
