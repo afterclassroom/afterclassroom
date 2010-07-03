@@ -1,8 +1,13 @@
 <div class="topLearning">
-  <div class="learnImgT"><div><img src="pictures/game8.png"></div></div>
+  <div class="learnImgT">
+    <div>
+      <%= image_tag(@gapp.gamephoto.url(:thumb), :alt => '') %>
+    </div>
+  </div>
+
   <div class="learnFav">
     <div class="AftBe">
-      <div class="txtsignup1">Morbi ultrices congue aliquet</div>
+      <div class="txtsignup1"><%=h @gapp.name %></div>
       <div class="btmBe"><a href="#">Become a Fan</a></div>
     </div>
     <div class="postdiv">
@@ -10,10 +15,10 @@
     </div>
     <div class="menuRL">
       <div class="menuRItem">
-          <%= link_to content_tag(:span, ''+content_tag(:span, 'My Games Lounge', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'gameslounge' %>
+          <%= link_to content_tag(:span, ''+content_tag(:span, 'My Games Lounge', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'gameslounge', :id => @gapp.id  %>
       </div>
       <div class="menuRItem">
-        <%= link_to content_tag(:span, ''+content_tag(:span, 'Info', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'info' %>
+        <%= link_to content_tag(:span, ''+content_tag(:span, 'Info', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'info', :id => @gapp.id  %>
       </div>
       <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">My Favorite</span></span></a></div>
       <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Download this Learning Tool</span></span></a></div>
