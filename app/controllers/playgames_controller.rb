@@ -1,6 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 
-class PlaygameController < ApplicationController
+class PlaygamesController < ApplicationController
   layout 'student_lounge'
   before_filter :login_required
 
