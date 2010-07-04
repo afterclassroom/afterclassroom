@@ -1,6 +1,6 @@
 <div class="assItem">
   <div class="assItemL">
-    <div class="assImg"><div><%= link_to image_tag("/images/icons/icon_defaut/icon_MyX_051.png"), post %></div></div>
+    <div class="assImg"><div><%= image_post_thumb @controller.controller_name, post %></div></div>
     <div class="assContT">
       <h2 class="titleH2"><%= link_to title, post_myx_path(post) %></h2>
       <div class="assCate"><span>Neighborhood:</span><%= link_to post.school.name, :controller => "post_myxes", :action => "index", :from_school => post.school, :rating_status => post.post_myx.rating_status %></div>

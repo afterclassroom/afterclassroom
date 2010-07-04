@@ -76,6 +76,44 @@ module ApplicationHelper
     image_tag user.avatar.url(:thumb)
   end
 
+  def image_post_thumb(ctrl_name, post)
+    file_path = post.attach_file_name
+    file_ext = File.extname(file_path).delete(".") if file_path
+    case ctrl_name
+    when "post_assignments"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_assignment.png"
+    when "post_projects"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_project.png"
+    when "post_tests"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_test.png"
+    when "post_exams"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_exam.png"
+    when "post_qas"
+      path = "/images/icons/icon_defaut/icon_qa.png"
+    when "post_tutors"
+      path = file_path ?  file_path.url(:thumb) : "/images/icons/icon_defaut/icon_tutor.png"
+    when "post_books"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_book.png"
+    when "post_jobs"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_job.png"
+    when "post_foods"
+      path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_food.png"
+    when "post_parties"
+      path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_party.png"
+    when "post_myxes"
+      path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_myx.png"
+    when "post_awarenesses"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_party.png"
+    when "post_housings"
+      path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_party.png"
+    when "post_teamups"
+      path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_party.png"
+    else
+      path = "/images/noimg.png"
+    end
+    image_tag path
+  end
+
   def getGender(sex)
     if sex
       sex == true ? "Male" : "Female"
@@ -92,51 +130,51 @@ module ApplicationHelper
 
   def show_search_form(ctrl_name, query)
     case ctrl_name
-      when "post_assignments"
-        type = PostCategory.find_by_class_name("PostAssignment").id
-        search_post_path = search_post_assignments_path
-      when "post_projects"
-        type = PostCategory.find_by_class_name("PostProject").id
-        search_post_path = search_post_projects_path
-      when "post_tests"
-        type = PostCategory.find_by_class_name("PostTest").id
-        search_post_path = search_post_tests_path
-      when "post_exams"
-        type = PostCategory.find_by_class_name("PostExam").id
-        search_post_path = search_post_assignments_path
-      when "post_qas"
-        type = PostCategory.find_by_class_name("PostQa").id
-        search_post_path = search_post_qas_path
-      when "post_tutors"
-        type = PostCategory.find_by_class_name("PostTutor").id
-        search_post_path = search_post_tutors_path
-      when "post_books"
-        type = PostCategory.find_by_class_name("PostBook").id
-        search_post_path = search_post_books_path
-      when "post_jobs"
-        type = PostCategory.find_by_class_name("PostJob").id
-        search_post_path = search_post_jobs_path
-      when "post_foods"
-        type = PostCategory.find_by_class_name("PostFood").id
-        search_post_path = search_post_foods_path
-      when "post_parties"
-        type = PostCategory.find_by_class_name("PostParty").id
-        search_post_path = search_post_parties_path
-      when "post_myxes"
-        type = PostCategory.find_by_class_name("PostMyx").id
-        search_post_path = search_post_myxes_path
-      when "post_awarenesses"
-        type = PostCategory.find_by_class_name("PostAwareness").id
-        search_post_path = search_post_awarenesses_path
-      when "post_housings"
-        type = PostCategory.find_by_class_name("PostHousing").id
-        search_post_path = search_post_housings_path
-      when "post_teamups"
-        type = PostCategory.find_by_class_name("PostTeamup").id
-        search_post_path = search_post_teamups_path
-      else
-        type = PostCategory.find_by_class_name("PostAssignment").id
-        search_post_path = search_post_assignments_path
+    when "post_assignments"
+      type = PostCategory.find_by_class_name("PostAssignment").id
+      search_post_path = search_post_assignments_path
+    when "post_projects"
+      type = PostCategory.find_by_class_name("PostProject").id
+      search_post_path = search_post_projects_path
+    when "post_tests"
+      type = PostCategory.find_by_class_name("PostTest").id
+      search_post_path = search_post_tests_path
+    when "post_exams"
+      type = PostCategory.find_by_class_name("PostExam").id
+      search_post_path = search_post_assignments_path
+    when "post_qas"
+      type = PostCategory.find_by_class_name("PostQa").id
+      search_post_path = search_post_qas_path
+    when "post_tutors"
+      type = PostCategory.find_by_class_name("PostTutor").id
+      search_post_path = search_post_tutors_path
+    when "post_books"
+      type = PostCategory.find_by_class_name("PostBook").id
+      search_post_path = search_post_books_path
+    when "post_jobs"
+      type = PostCategory.find_by_class_name("PostJob").id
+      search_post_path = search_post_jobs_path
+    when "post_foods"
+      type = PostCategory.find_by_class_name("PostFood").id
+      search_post_path = search_post_foods_path
+    when "post_parties"
+      type = PostCategory.find_by_class_name("PostParty").id
+      search_post_path = search_post_parties_path
+    when "post_myxes"
+      type = PostCategory.find_by_class_name("PostMyx").id
+      search_post_path = search_post_myxes_path
+    when "post_awarenesses"
+      type = PostCategory.find_by_class_name("PostAwareness").id
+      search_post_path = search_post_awarenesses_path
+    when "post_housings"
+      type = PostCategory.find_by_class_name("PostHousing").id
+      search_post_path = search_post_housings_path
+    when "post_teamups"
+      type = PostCategory.find_by_class_name("PostTeamup").id
+      search_post_path = search_post_teamups_path
+    else
+      type = PostCategory.find_by_class_name("PostAssignment").id
+      search_post_path = search_post_assignments_path
     end
     render :partial => "shared/search_posts", :locals => {:type => type, :search_post_path => search_post_path, :query => query}
   end

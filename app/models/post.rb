@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
   has_many :favorites, :dependent => :destroy
 
   # Attach file
-  has_attached_file :attach
+  has_attached_file :attach, :styles => { :medium => "200x200>", :thumb => "61x51#" }
 
   # Comments
   acts_as_commentable
