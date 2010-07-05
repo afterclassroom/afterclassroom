@@ -103,11 +103,11 @@ module ApplicationHelper
     when "post_myxes"
       path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_myx.png"
     when "post_awarenesses"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_party.png"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_awarenesse.png"
     when "post_housings"
-      path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_party.png"
+      path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_housing.png"
     when "post_teamups"
-      path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_party.png"
+      path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_teamup.png"
     else
       path = "/images/noimg.png"
     end
