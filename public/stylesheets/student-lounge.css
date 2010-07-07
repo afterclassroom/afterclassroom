@@ -1024,13 +1024,11 @@ div.findIMitem a:hover{
     width:86px;
 }
 .flistRAdd a{
-    width:85px;
+    width:86px;
     height:30px;
     display:block;
-    text-align:center;
     color:#818181;
     text-decoration:none;
-    border-right:1px #e3e3e3 solid;
 }
 .flistRAdd a:hover{
     background-color:#6f6f63;
@@ -1043,7 +1041,8 @@ div.findIMitem a:hover{
 .flistRAdd span{
     background: url('/images/flistA.gif') no-repeat center right;
     float: left;
-    width:80px;
+    width:68px;
+    margin-left:10px;
 }
 .flistRAdd a:hover span{
      background:url('/images/flistAH.gif')no-repeat center right;
@@ -1072,16 +1071,16 @@ div.findIMitem a:hover{
     display: block;
 }
 .flistRAdd ul li a {
-    width:150px;
+    width:120px;
     margin-top:-32px;
+    padding-left:30px;
 }
 .flistRAdd ul li a:hover {
     background-color: #818181;
-
 }
 .flistRdelete{
     width:28px;
-    margin-left:90px;
+    margin-left:88px;
 }
 .flistRdelete a{
     width:28px;

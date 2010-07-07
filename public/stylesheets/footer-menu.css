@@ -1,15 +1,12 @@
 ol,ul {
   list-style:none;
 }
-
 a {
   text-decoration: none;
 }
-
 a:focus {
   outline: 0;
 }
-
 #header {
   background: url(/images/footer_menu/backhead.png) no-repeat left top;
   min-width: 800px;
@@ -17,35 +14,29 @@ a:focus {
   padding-top: 25px;
   text-align: center;
 }
-
 #header h1 a {
   font-size: 44px;
   color: #eee;
   text-shadow: 2px 2px 2px #000;
 }
-
 #header h1 a:hover{
   color: #ccc;
 }
-
 #downhead {
   min-width: 800px;
   margin-top: 30px;
   text-align: center;
 }
-
 #downhead h2 {
   font-size: 30px;
   color: #555;
   text-shadow: 2px 2px 2px #999;
 }
-
 #downhead p {
   font-size: 20px;
   color: #777;
   padding: 0 50px 30px 50px;
 }
-
 #downhead img {
   border: 5px solid #ccc;
 }
@@ -74,7 +65,6 @@ div#toolbar, div#toolbarbut {
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
 }
-
 div#toolbar {
   width: 85%;
   min-width: 700px; /* to limit the width when an excessive window resize */
@@ -82,26 +72,22 @@ div#toolbar {
   left: 0px;
 
 }
-
 div#toolbarbut { /* div for the 'hide status' */
   width: 60px;
   height: 15px;
   margin-right: 3%;
   display: none;
 }
-
 span.showbar a { /* show button */
   padding: 5px;
   font-size: 10px;
   color: #989898;
 }
-
 .leftside {
   float: left;
   margin-left:-30px;
   margin-top:-11px;
 }
-
 .rightside {
   float: right;
   margin-top:8px;
@@ -112,7 +98,6 @@ span.showbar a { /* show button */
 ul#social li {
   display: inline;
 }
-
 a.rss {
   display: inline-block;
   width: 104px;
@@ -138,23 +123,18 @@ a.books:hover, a.jobs:hover, a.foods:hover, a.party:hover, a.myx:hover, a.studen
 a.housing:hover, a.teamUp:hover {
   background-position: 1px 1px; /* simple css hover effect */
 }
-
 a.chatt {
   background: url(/images/footer_menu/chatt-1.png) no-repeat;
 }
-
 a.share_story {
   background: url(/images/footer_menu/share_story-1.png) no-repeat;
 }
-
 a.photos {
   background: url(/images/footer_menu/photos-1.png) no-repeat;
 }
-
 a.musics {
   background: url(/images/footer_menu/musics-1.png) no-repeat;
 }
-
 a.videos {
   background: url(/images/footer_menu/videos-1.png) no-repeat;
 }
@@ -191,7 +171,6 @@ a.past_tests {
 a.past_exams {
   background: url(/images/footer_menu/past_exams-1.png) no-repeat;
 }
-
 a.qas {
   background: url(/images/footer_menu/qas-1.png) no-repeat;
 }
@@ -212,7 +191,6 @@ a.party {
 }
 a.myx {
   background: url(/images/footer_menu/myx-1.png) no-repeat;
-
 }
 a.student_awareness {
   background: url(/images/footer_menu/student_awareness-1.png) no-repeat;
@@ -222,7 +200,6 @@ a.housing {
 }
 a.teamUp {
   background: url(/images/footer_menu/teamUp-1.png) no-repeat;
-
 }
 .tip {
   position: absolute; /* important */
@@ -242,7 +219,6 @@ a.teamUp {
 #tipchatt {
   left: -20px;
 }
-
 #tipshare_story {
   left: 30px;
 }
@@ -314,27 +290,21 @@ a.teamUp {
 }
 #tipteamUp {
   left: 617px;
-
 }
-
 .tip ul {
   padding: 22px 0 0 25px;
 }
-
 .tip ul li {
   display: inline;
   padding-left: 3px;
 }
-
 .tip ul li a {
   font-size: 15px;
   color: #989898;
 }
-
 .tip ul li a:hover {
   color: #666;
 }
-
 .tip ul li small {
   font-size: 10px;
 }
@@ -345,7 +315,6 @@ span.downarr { /* hide button */
   float: right;
   /* border-left: 1px solid #a4a4a4;*/
 }
-
 span.downarr a {
   display: block;
   width: 36px;
@@ -353,27 +322,21 @@ span.downarr a {
   padding: 10px 0 0 15px;
   background: url(/images/footer_menu/downarrow.png) no-repeat 6px 4px;
   margin:-5px;
+  border-left:1px solid #EBEBEB;
 }
-
 .menu_title {
   background: #e4e4e4;
   border-right: 1px solid #a4a4a4;
   padding:10px;
 }
-
 .leftside .menu_title a {
   font-size: 12px;
-  /* line-height: 34px;*/
   color: #9a9a9a;
   font-weight:bold;
 }
-
-
 .quickmenu {
   position: absolute; /* important */
   top: -181px;
-
-  /* width: 260px;*/
   height: 180px;
   background: #e4e4e4;
   border-top: 1px solid #a4a4a4;
@@ -386,19 +349,15 @@ span.downarr a {
   -webkit-box-shadow: 2px -3px 5px #c5c5c5, -3px 0px 5px #cdcdcd;
   /* CSS3 end */
   display: none; /* important */
- 
 }
-
 .quickmenu ul {
   padding-top: 0;
 }
-
 .quickmenu ul li {
- /* border-bottom: 1px solid #989898;*/
+  /* border-bottom: 1px solid #989898;*/
   padding: 5px 10px;
   margin: 0 10px 0 10px;
 }
-
 .quickmenu ul li a {
   border-bottom:1px solid #989898;
   color:#989898;
@@ -406,7 +365,6 @@ span.downarr a {
   font-size:15px;
   margin-left:-35px;
 }
-
 .quickmenu ul li a:hover {
   color: #666;
 }

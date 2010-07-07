@@ -1,64 +1,39 @@
 <script type="text/javascript">
+    $(document).ready(function(){
+        //hide toolbar and make visible the 'show' button
+        $("span.downarr a").click(function() {
+            $("#toolbar").slideToggle("fast");
+            $("#toolbarbut").fadeIn("slow");
+        });
 
-  $(document).ready(function(){
+        //show toolbar and hide the 'show' button
+        $("span.showbar a").click(function() {
+            $("#toolbar").slideToggle("fast");
+            $("#toolbarbut").fadeOut();
+        });
 
-    //hide toolbar and make visible the 'show' button
-    $("span.downarr a").click(function() {
-      $("#toolbar").slideToggle("fast");
-      $("#toolbarbut").fadeIn("slow");
+        //show tooltip when the mouse is moved over a list element
+        $("ul#social li").hover(function() {
+            $(this).find("div").fadeIn("fast").show(); //add 'show()'' for IE
+            $(this).mouseleave(function () { //hide tooltip when the mouse moves off of the element
+                $(this).find("div").hide();
+            });
+        });
+
+        //don't jump to #id link anchor
+
+        $(".chatt, .share_story, .photos, .musics, .rss, .videos, .inbox, .friends, .profile, .setting, .phone_app, .play_games, .menutit, span.downarr a, span.showbar a").click(function() {
+
+            return false;
+        }); 
     });
-
-    //show toolbar and hide the 'show' button
-    $("span.showbar a").click(function() {
-      $("#toolbar").slideToggle("fast");
-      $("#toolbarbut").fadeOut();
-    });
-
-    //show tooltip when the mouse is moved over a list element
-    $("ul#social li").hover(function() {
-      $(this).find("div").fadeIn("fast").show(); //add 'show()'' for IE
-      $(this).mouseleave(function () { //hide tooltip when the mouse moves off of the element
-        $(this).find("div").hide();
-      });
-    });
-
-    //don't jump to #id link anchor
-
-    $(".chatt, .share_story, .photos, .musics, .rss, .videos, .inbox, .friends, .profile, .setting, .phone_app, .play_games, .menutit, span.downarr a, span.showbar a").click(function() {
-
-      return false;
-    });
-
-    //show quick menu on click
-    $("span.menu_title a").click(function() {
-      if($(".quickmenu").is(':hidden')){ //if quick menu isn't visible
-        $(".quickmenu").fadeIn("fast"); //show menu on click
-      }
-      else if ($(".quickmenu").is(':visible')) { //if quick menu is visible
-        $(".quickmenu").fadeOut("fast"); //hide menu on click
-      }
-    });
-
-    //hide menu on casual click on the page
-    $(document).click(function() {
-      $(".quickmenu").fadeOut("fast");
-      $(".quickmenu").css({'vivibility': 'hidden'});
-    });
-    $('.quickmenu').click(function(event) {
-      event.stopPropagation(); //use .stopPropagation() method to avoid the closing of quick menu panel clicking on its elements
-    });
-
-
-  });
 
 </script>
 
 <div id="toolbarbut"> <!-- hide button -->
   <span class="showbar"><a href="#">show bar</a></span>
 </div>
-
 <div id="toolbar"> <!-- toolbar container -->
-
   <div class="leftside"> <!-- all things in floating left side -->
     <ul id="social">
 
@@ -102,7 +77,7 @@
           </ul>
         </div>
       </li>
-       <li><a class="inbox" href="#"></a>
+      <li><a class="inbox" href="#"></a>
         <div id="tipinbox" class="tip">
           <ul>
             <li><a href="#">Inbox</a></li>
@@ -110,7 +85,7 @@
           </ul>
         </div>
       </li>
-        <li><a class="friends" href="#"></a>
+      <li><a class="friends" href="#"></a>
         <div id="tipfriends" class="tip">
           <ul>
             <li><a href="#">Friends</a></li>
@@ -118,7 +93,7 @@
           </ul>
         </div>
       </li>
-       <li><a class="profile" href="#"></a>
+      <li><a class="profile" href="#"></a>
         <div id="tipprofile" class="tip">
           <ul>
             <li><a href="#">Profile</a></li>
@@ -134,7 +109,7 @@
           </ul>
         </div>
       </li>
-       <li><a class="phone_app" href="#"></a>
+      <li><a class="phone_app" href="#"></a>
         <div id="tipphone_app" class="tip">
           <ul>
             <li><a href="#">Phone Apps</a></li>
@@ -142,7 +117,7 @@
           </ul>
         </div>
       </li>
-        <li><a class="play_games" href="#"></a>
+      <li><a class="play_games" href="#"></a>
         <div id="tipplay_games" class="tip">
           <ul>
             <li><a href="#">Play Games</a></li>
@@ -150,7 +125,7 @@
           </ul>
         </div>
       </li>
-       <li><a class="shopping" href="#"></a>
+      <li><a class="shopping" href="#"></a>
         <div id="tipshopping" class="tip">
           <ul>
             <li><a href="#">Shopping</a></li>
@@ -158,17 +133,12 @@
           </ul>
         </div>
       </li>
-       
+
     </ul>
   </div>
-
   <div class="rightside"> <!-- all things in floating left side -->
     <span class="downarr"> <!-- hide button -->
       <a href="#"></a>
     </span>
-
-     
-
   </div>
-
 </div>
