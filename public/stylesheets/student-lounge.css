@@ -1026,7 +1026,6 @@ div.findIMitem a:hover{
 .flistRAdd a{
     height:30px;
     display:block;
-    text-align:center;
     color:#818181;
     text-decoration:none;
 }
@@ -1041,7 +1040,8 @@ div.findIMitem a:hover{
 .flistRAdd span{
     background: url('/images/flistA.gif') no-repeat center right;
     float: left;
-    width:80px;
+    width:68px;
+    margin-left:10px;
 }
 .flistRAdd a:hover span{
      background:url('/images/flistAH.gif')no-repeat center right;
@@ -1078,7 +1078,7 @@ div.findIMitem a:hover{
 }
 .flistRdelete{
     width:28px;
-    margin-left:90px;
+    margin-left:88px;
 }
 .flistRdelete a{
     width:28px;

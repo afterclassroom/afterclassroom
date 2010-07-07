@@ -36,18 +36,18 @@
         <div class="learnN">
           <div class="learnNM">
             <div class="learnNMtitle" id="gametab">
-              <%= link_to "Game", {:controller => 'playgame', :action => "gametab"} %>
+              <%= link_to "Game", {:controller => 'playgames', :action => "gametab"} %>
             </div>
 
             <div class="learnNMP" id="populartab">
-              <%= link_to "Popular", {:controller => 'playgame', :action => "populartab"} %>
+              <%= link_to "Popular", {:controller => 'playgames', :action => "populartab"} %>
             </div>
             <div class="learnNML" id="verifiedtab">
-              <%= link_to "Verified", {:controller => 'playgame', :action => "verifiedtab"} %>
+              <%= link_to "Verified", {:controller => 'playgames', :action => "verifiedtab"} %>
             </div>
 
             <div class="learnNML" id="recentlyaddedtab">
-              <%= link_to "Recently Added", {:controller => 'playgame', :action => "recentlyaddedtab"} %>
+              <%= link_to "Recently Added", {:controller => 'playgames', :action => "recentlyaddedtab"} %>
             </div>
 
             <div class="learnNMR" id="seealltab">
@@ -160,13 +160,13 @@
           <div class="assPage">
             <span class="numPage">Page 1 of <%= @pageallgame %></span>
             <span class="firstPage">
-              <%= link_to "First Page", {:controller => 'playgame', :action => "pagingallgame", :page => '1'}%>
+              <%= link_to "First Page", {:controller => 'playgames', :action => "pagingallgame", :page => '1'}%>
             </span>
 
-            <%= will_paginate(@allgame, :params => { :controller => "playgame", :action => "pagingallgame" }) %>
+            <%= will_paginate(@allgame, :params => { :controller => "playgames", :action => "pagingallgame" }) %>
 
             <span class="lastPage">
-              <%= link_to "Last Page", {:controller => 'playgame', :action => "pagingallgame", :page => @pageallgame}%>
+              <%= link_to "Last Page", {:controller => 'playgames', :action => "pagingallgame", :page => @pageallgame}%>
             </span>
           </div>
           <div class="goTop"><a href="#">Top</a></div>
@@ -276,7 +276,7 @@
     <div class="advert">
       <div class="advertTitle">Advertisement</div>
       <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="pictures/pic6.png"></div>
+      <div class="advertImg"><img src="/images/pictures/pic6.png"/></div>
       <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
       <div class="advertInf">
         <div class="advertInfL">
@@ -289,7 +289,7 @@
     </div>
     <div class="advert">
       <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="pictures/adv.png"></div>
+      <div class="advertImg"><img src="/images/pictures/adv.png"/></div>
       <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
       <div class="advertInf">
         <div class="advertInfL">
@@ -302,7 +302,7 @@
     </div>
     <div class="advert">
       <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
-      <div class="advertImg"><img src="pictures/adv1.png"></div>
+      <div class="advertImg"><img src="/images/pictures/adv1.png"/></div>
       <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
       <div class="advertInf">
         <div class="advertInfL">

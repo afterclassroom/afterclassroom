@@ -3,11 +3,11 @@
 
   <div class="learnNItem">
     <div class="learnNImg">
-      <%= link_to content_tag(:div, ''+image_tag(ag.gamephoto.url(:thumb), :alt => '')), :controller => 'playgame', :action => 'gameslounge', :id => ag.id %>
+      <%= link_to content_tag(:div, ''+image_tag(ag.gamephoto.url(:thumb), :alt => '')), :controller => 'playgames', :action => 'gameslounge', :id => ag.id %>
     </div>
 
     <div class="learnNtitle">
-      <%= link_to ag.name, :controller => 'playgame', :action => 'gameslounge', :id => ag.id %>
+      <%= link_to ag.name, :controller => 'playgames', :action => 'gameslounge', :id => ag.id %>
       by Vestibulum
     </div>
 
@@ -22,13 +22,13 @@
 <div class="assPage">
   <span class="numPage">Page <%= @curpage %> of <%= @totalpage %></span>
   <span class="firstPage">
-    <%= link_to "First Page", {:controller => 'playgame', :action => "recentlyaddedtab", :page => '1'}%>
+    <%= link_to "First Page", {:controller => 'playgames', :action => "recentlyaddedtab", :page => '1'}%>
   </span>
 
-  <%= will_paginate(@recentap, :params => { :controller => "playgame", :action => "recentlyaddedtab" }) %>
+  <%= will_paginate(@recentap, :params => { :controller => "playgames", :action => "recentlyaddedtab" }) %>
 
   <span class="lastPage">
-    <%= link_to "Last Page", {:controller => 'playgame', :action => "recentlyaddedtab", :page => @totalpage}%>
+    <%= link_to "Last Page", {:controller => 'playgames', :action => "recentlyaddedtab", :page => @totalpage}%>
   </span>
 </div>
 

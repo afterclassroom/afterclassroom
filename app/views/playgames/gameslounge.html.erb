@@ -15,10 +15,10 @@
       </a>
     </div>
     <div class="menuRItem">
-      <%= link_to content_tag(:span, ''+content_tag(:span, 'Info', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'info', :id => @gapp.id  %>
+      <%= link_to content_tag(:span, ''+content_tag(:span, 'Info', :class => 'span2'), :class => 'span1'), :controller => 'playgames', :action => 'info', :id => @gapp.id  %>
     </div>
     <div class="menuRItem">
-      <%= link_to content_tag(:span, ''+content_tag(:span, 'My Favorite', :class => 'span2'), :class => 'span1'), :controller => 'playgame', :action => 'favorite', :id => @gapp.id  %>
+      <%= link_to content_tag(:span, ''+content_tag(:span, 'My Favorite', :class => 'span2'), :class => 'span1'), :controller => 'playgames', :action => 'favorite', :id => @gapp.id  %>
     </div>
     <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Download this Game</span></span></a></div>
     <div class="menuRItemP"><a href="#">&nbsp;</a></div>
@@ -30,7 +30,7 @@
       <div class="col195in">
         <div class="demo">
           <div class="demoImg">
-            <%= link_to content_tag(:div, ''+image_tag(@gapp.gamephoto.url(:medium), :alt => '')), :controller => 'playgame', :action => 'gameslounge', :id => @gapp.id %>
+            <%= link_to content_tag(:div, ''+image_tag(@gapp.gamephoto.url(:medium), :alt => '')), :controller => 'playgames', :action => 'gameslounge', :id => @gapp.id %>
           </div>
           <div class="demoBtm"><a href="<%= @gapp.playurl %>">Play a Demo</a></div>
         </div>
@@ -40,7 +40,11 @@
       <div class="col195in">
         <h1 class="col195Title">Information</h1>
         <div class="StarInf">
-          <img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRed.png"><img src="images/starRW.png"><img src="images/starWhite.png">
+          <img src="/images/starRed.png"/>
+          <img src="/images/starRed.png"/>
+          <img src="/images/starRed.png"/>
+          <img src="/images/starRW.png"/>
+          <img src="/images/starWhite.png"/>
           <span>(4 out of 5)</span>
         </div>
         <div class="basedOn">Based on <a href="#">2552 review</a></div>
@@ -62,29 +66,29 @@
         </div>
         <div class="fanImg">
           <div class="fanImg1">
-            <a href="#"><div><img src="pictures/pic10.png"></div></a>
+            <a href="#"><div><img src="/images/pictures/pic1.png"></div></a>
             <div class="fanName"><a href="#">Rita Uyên</a></div>
           </div>
           <div class="fanImg2">
-            <a href="#"><div><img src="pictures/pic11.png"></div></a>
+            <a href="#"><div><img src="/images/pictures/pic2.png"></div></a>
             <div class="fanName"><a href="#">Tawny Joey Penuela</a></div>
           </div>
           <div class="fanImg3">
-            <a href="#"><div><img src="pictures/pic12.png"></div></a>
+            <a href="#"><div><img src="/images/pictures/pic3.png"></div></a>
             <div class="fanName"><a href="#">Emily Huynh</a></div>
           </div>
         </div>
         <div class="fanImg">
           <div class="fanImg1">
-            <a href="#"><div><img src="pictures/noimg.png"></div></a>
+            <a href="#"><div><img src="/images/pictures/pic2.png"></div></a>
             <div class="fanName"><a href="#">Rita Uyên</a></div>
           </div>
           <div class="fanImg2">
-            <a href="#"><div><img src="pictures/pic12.png"></div></a>
+            <a href="#"><div><img src="/images/pictures/pic3.png"></div></a>
             <div class="fanName"><a href="#">DinhThanh</a></div>
           </div>
           <div class="fanImg3">
-            <a href="#"><div><img src="pictures/pic10.png"></div></a>
+            <a href="#"><div><img src="/images/pictures/pic1.png"></div></a>
             <div class="fanName"><a href="#">Emily Huynh</a></div>
           </div>
         </div>
@@ -102,7 +106,7 @@
     <div class="col451 learnDet">
       <div class="col451in">
         <div class="learnDetimg">
-          <%= link_to content_tag(:div, ''+image_tag(@gapp.gamephoto.url(:thumb), :alt => '')), :controller => 'playgame', :action => 'gameslounge', :id => @gapp.id %>
+          <%= link_to content_tag(:div, ''+image_tag(@gapp.gamephoto.url(:thumb), :alt => '')), :controller => 'playgames', :action => 'gameslounge', :id => @gapp.id %>
         </div>
         <div class="learnDetContR">
           <div class="learnDetT"><a href="#"><%= @gapp.name %></a></div>
@@ -117,7 +121,7 @@
     <div class="advert">
       <div class="advertTitle">Advertisement</div>
       <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="pictures/pic6.png"></div>
+      <div class="advertImg"><img src="/images/pictures/pic6.png"></div>
       <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
       <div class="advertInf">
         <div class="advertInfL">
@@ -130,7 +134,7 @@
     </div>
     <div class="advert">
       <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="pictures/adv.png"></div>
+      <div class="advertImg"><img src="/images/pictures/adv.png"></div>
       <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
       <div class="advertInf">
         <div class="advertInfL">
@@ -143,7 +147,7 @@
     </div>
     <div class="advert">
       <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
-      <div class="advertImg"><img src="pictures/adv1.png"></div>
+      <div class="advertImg"><img src="/images/pictures/adv1.png"></div>
       <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
       <div class="advertInf">
         <div class="advertInfL">
