@@ -10,7 +10,7 @@
         <div id="tipassignments" class="tip">
           <ul>
             <li><%= link_to "Assignments", post_assignments_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_assignment_path %></li>
           </ul>
         </div>
       </li>
@@ -18,23 +18,23 @@
         <div id="tipprojects" class="tip">
           <ul>
             <li><%= link_to "Projects", post_assignments_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_assignment_path %></li>
           </ul>
         </div>
       </li>
       <li><a class="past_tests" href="#"></a>
         <div id="tippast_tests" class="tip">
           <ul>
-            <li><%= link_to "Past Tests", post_assignments_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "Past Tests", post_tests_path %></li>
+            <li><%= link_to "| Post", new_post_test_path %></li>
           </ul>
         </div>
       </li>
       <li><a class="past_exams" href="#"></a>
         <div id="tippast_exams" class="tip">
           <ul>
-            <li><%= link_to "Past Exams", post_assignments_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "Past Exams", post_exams_path %></li>
+            <li><%= link_to "| Post", new_post_exam_path %></li>
           </ul>
         </div>
       </li>
@@ -42,7 +42,7 @@
         <div id="tipqas" class="tip">
           <ul>
             <li><%= link_to "Q.As", post_qas_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_qa_path %></li>
           </ul>
         </div>
       </li>
@@ -51,7 +51,7 @@
         <div id="tiptutors" class="tip">
           <ul>
             <li><%= link_to "Tutors", post_tutors_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_tutor_path %></li>
           </ul>
         </div>
       </li>
@@ -59,7 +59,7 @@
         <div id="tipbooks" class="tip">
           <ul>
             <li><%= link_to "Books", post_books_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_book_path %></li>
           </ul>
         </div>
       </li>
@@ -67,7 +67,7 @@
         <div id="tipjobs" class="tip">
           <ul>
             <li><%= link_to "Jobs", post_jobs_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_job_path %></li>
           </ul>
         </div>
       </li>
@@ -75,7 +75,7 @@
         <div id="tipfoods" class="tip">
           <ul>
             <li><%= link_to "Foods", post_foods_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_food_path %></li>
           </ul>
         </div>
       </li>
@@ -83,7 +83,7 @@
         <div id="tipparty" class="tip">
           <ul>
             <li><%= link_to "Party", post_parties_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_party_path %></li>
           </ul>
         </div>
       </li>
@@ -91,7 +91,7 @@
         <div id="tipmyx" class="tip">
           <ul>
             <li><%= link_to "MyX", post_myxes_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_myx_path %></li>
           </ul>
         </div>
       </li>
@@ -99,7 +99,7 @@
         <div id="tipstudent_awareness" class="tip">
           <ul>
             <li><%= link_to "Student Awareness", post_awarenesses_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_awareness_path %></li>
           </ul>
         </div>
       </li>
@@ -107,7 +107,7 @@
         <div id="tiphousing" class="tip">
           <ul>
             <li><%= link_to "Housing", post_housings_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_housing_path %></li>
           </ul>
         </div>
       </li>
@@ -115,7 +115,7 @@
         <div id="tipteamUp" class="tip">
           <ul>
             <li><%= link_to "TeamUp", post_teamups_path %></li>
-            <li><a href="#">| Post</a></li>
+            <li><%= link_to "| Post", new_post_teamup_path %></li>
           </ul>
         </div>
       </li>
@@ -126,7 +126,6 @@
     <span class="downarr"> <!-- hide button -->
       <a href="#"></a>
     </span>
-
   </div>
 </div>
 
@@ -155,8 +154,6 @@
     });
 
     //don't jump to #id link anchor
-
-
 
     $(".assignments, .projects, .past_tests, .past_exams, .rss, .qas, .tutors, .books, .jobs, .foods, .party, .myx, .student_awareness, .housing, .teamUp, span.downarr a, span.showbar a").click(function() {
 

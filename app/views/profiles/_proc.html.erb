@@ -7,7 +7,7 @@
       <div class="proItem"><%= link_to "View Photos of Me (#{current_user.photos.size})", "#" %></div>
       <div class="proItem"><%= link_to "View Musics of Me (#{current_user.musics.size})", "#" %></div>
       <div class="proItem"><%= link_to "View Videos of Me (#{current_user.videos.size})", "#" %></div>
-      <div class="proItem"><%= link_to "Edit My Profile", show_profile_user_profiles_path %></div>
+      <div class="proItem"><%= link_to "Edit My Profile", show_profile_user_profiles_path(current_user) %></div>
       <div class="proBtm" id="about_yourself">
         <%= current_user.user_information.about_yourself %>
       </div>
