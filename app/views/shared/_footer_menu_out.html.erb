@@ -1,3 +1,120 @@
+<div id="toolbarbut"> <!-- hide button -->
+  <span class="showbar"><a href="#">show bar</a></span>
+</div>
+
+<div id="toolbar"> <!-- toolbar container -->
+
+  <div class="leftside"> <!-- all things in floating left side -->
+    <ul id="social">
+
+      <li><a class="chatt" href="#"></a>
+        <div id="tipchatt" class="tip">
+          <ul>
+            <li><%= link_to "Chat", user_student_lounges_path(current_user) %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="share_story" href="#"></a>
+        <div id="tipshare_story" class="tip">
+          <ul>
+            <li><%= link_to "Share a Story", user_stories_path(current_user) %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="photos" href="#"></a>
+        <div id="tipphotos" class="tip">
+          <ul>
+            <li><%= link_to "Photos", user_photos_path(current_user) %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="musics" href="#"></a>
+        <div id="tipmusics" class="tip">
+          <ul>
+            <li><%= link_to "Musics", user_musics_path(current_user) %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="videos" href="#"></a>
+        <div id="tipvideos" class="tip">
+          <ul>
+            <li><%= link_to "Videos", user_videos_path(current_user) %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="inbox" href="#"></a>
+        <div id="tipinbox" class="tip">
+          <ul>
+            <li><%= link_to "Inbox", user_messages_path(current_user) %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="friends" href="#"></a>
+        <div id="tipfriends" class="tip">
+          <ul>
+            <li><%= link_to "Friends", user_friends_path(current_user) %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="profile" href="#"></a>
+        <div id="tipprofile" class="tip">
+          <ul>
+            <li><%= link_to "Profile", user_profiles_path(current_user) %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="setting" href="#"></a>
+        <div id="tipsetting" class="tip">
+          <ul>
+            <li><%= link_to "Setting", user_settings_path(current_user) %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="phone_app" href="#"></a>
+        <div id="tipphone_app" class="tip">
+          <ul>
+            <li><%= link_to "Phone Apps", phoneapps_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="play_games" href="#"></a>
+        <div id="tipplay_games" class="tip">
+          <ul>
+            <li><%= link_to "Play Games", playgames_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="shopping" href="#"></a>
+        <div id="tipshopping" class="tip">
+          <ul>
+            <li><%= link_to "Shopping", shoppings_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="rightside"> <!-- all things in floating left side -->
+    <span class="downarr"> <!-- hide button -->
+      
+    </span>
+  </div>
+
+</div>
+
 <script type="text/javascript">
 
   $(document).ready(function(){
@@ -52,123 +169,3 @@
   });
 
 </script>
-
-<div id="toolbarbut"> <!-- hide button -->
-  <span class="showbar"><a href="#">show bar</a></span>
-</div>
-
-<div id="toolbar"> <!-- toolbar container -->
-
-  <div class="leftside"> <!-- all things in floating left side -->
-    <ul id="social">
-
-      <li><a class="chatt" href="#"></a>
-        <div id="tipchatt" class="tip">
-          <ul>
-            <li><a href="#">Chat</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="share_story" href="#"></a>
-        <div id="tipshare_story" class="tip">
-          <ul>
-            <li><a href="#">Share a Story</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="photos" href="#"></a>
-        <div id="tipphotos" class="tip">
-          <ul>
-            <li><a href="#">Photos</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="musics" href="#"></a>
-        <div id="tipmusics" class="tip">
-          <ul>
-            <li><a href="#">Musics</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="videos" href="#"></a>
-        <div id="tipvideos" class="tip">
-          <ul>
-            <li><a href="#">Videos</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-       <li><a class="inbox" href="#"></a>
-        <div id="tipinbox" class="tip">
-          <ul>
-            <li><a href="#">Inbox</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-        <li><a class="friends" href="#"></a>
-        <div id="tipfriends" class="tip">
-          <ul>
-            <li><a href="#">Friends</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-       <li><a class="profile" href="#"></a>
-        <div id="tipprofile" class="tip">
-          <ul>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="setting" href="#"></a>
-        <div id="tipsetting" class="tip">
-          <ul>
-            <li><a href="#">Setting</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-       <li><a class="phone_app" href="#"></a>
-        <div id="tipphone_app" class="tip">
-          <ul>
-            <li><a href="#">Phone Apps</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-        <li><a class="play_games" href="#"></a>
-        <div id="tipplay_games" class="tip">
-          <ul>
-            <li><a href="#">Play Games</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-       <li><a class="shopping" href="#"></a>
-        <div id="tipshopping" class="tip">
-          <ul>
-            <li><a href="#">Shopping</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-       
-    </ul>
-  </div>
-
-  <div class="rightside"> <!-- all things in floating left side -->
-    <span class="downarr"> <!-- hide button -->
-      <a href="#"></a>
-    </span>
-
-     
-
-  </div>
-
-</div>

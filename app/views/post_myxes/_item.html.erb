@@ -1,10 +1,6 @@
 <div class="assItem">
   <div class="assItemL">
-<<<<<<< HEAD:app/views/post_myxes/_item.html.erb
     <div class="assImg"><div><%= image_post_thumb @controller.controller_name, post %></div></div>
-=======
-    <div class="assImg"><div><%= link_to image_tag("/images/icons/icon_defaut/images_house.png"), post %></div></div>
->>>>>>> 06f8030ce21a5d45a8d97cd632c85623484b60df:app/views/post_myxes/_item.html.erb
     <div class="assContT">
       <h2 class="titleH2"><%= link_to title, post_myx_path(post) %></h2>
       <div class="assCate"><span>Neighborhood:</span><%= link_to post.school.name, :controller => "post_myxes", :action => "index", :from_school => post.school, :rating_status => post.post_myx.rating_status %></div>

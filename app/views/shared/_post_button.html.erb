@@ -1,5 +1,5 @@
 <span class="RmenuRtext">
   <%= render :partial => "shared/select_school" %>
 </span>
-<span class="RmenuRbtm1"><%= link_to "Student lounges", "/student_lounges" %></span>
+<span class="RmenuRbtm1"><%= link_to "Student lounges", user_student_lounges_path(current_user) %></span>
 <span class="RmenuRbtm2"><%= link_to "Post", new_post_path %></span>

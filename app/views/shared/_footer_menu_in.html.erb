@@ -1,3 +1,135 @@
+<div id="toolbarbut"> <!-- hide button -->
+  <span class="showbar"><a href="#">show bar</a></span>
+</div>
+
+<div id="toolbar"> <!-- toolbar container -->
+
+  <div class="leftside"> <!-- all things in floating left side -->
+    <ul id="social">
+      <li><a class="assignments" href="#"></a>
+        <div id="tipassignments" class="tip">
+          <ul>
+            <li><%= link_to "Assignments", post_assignments_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="projects" href="#"></a>
+        <div id="tipprojects" class="tip">
+          <ul>
+            <li><%= link_to "Projects", post_assignments_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="past_tests" href="#"></a>
+        <div id="tippast_tests" class="tip">
+          <ul>
+            <li><%= link_to "Past Tests", post_assignments_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="past_exams" href="#"></a>
+        <div id="tippast_exams" class="tip">
+          <ul>
+            <li><%= link_to "Past Exams", post_assignments_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="qas" href="#"></a>
+        <div id="tipqas" class="tip">
+          <ul>
+            <li><%= link_to "Q.As", post_qas_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li><a class="tutors" href="#"></a>
+        <div id="tiptutors" class="tip">
+          <ul>
+            <li><%= link_to "Tutors", post_tutors_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="books" href="#"></a>
+        <div id="tipbooks" class="tip">
+          <ul>
+            <li><%= link_to "Books", post_books_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="jobs" href="#"></a>
+        <div id="tipjobs" class="tip">
+          <ul>
+            <li><%= link_to "Jobs", post_jobs_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="foods" href="#"></a>
+        <div id="tipfoods" class="tip">
+          <ul>
+            <li><%= link_to "Foods", post_foods_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="party" href="#"></a>
+        <div id="tipparty" class="tip">
+          <ul>
+            <li><%= link_to "Party", post_parties_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="myx" href="#"></a>
+        <div id="tipmyx" class="tip">
+          <ul>
+            <li><%= link_to "MyX", post_myxes_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="student_awareness" href="#"></a>
+        <div id="tipstudent_awareness" class="tip">
+          <ul>
+            <li><%= link_to "Student Awareness", post_awarenesses_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="housing" href="#"></a>
+        <div id="tiphousing" class="tip">
+          <ul>
+            <li><%= link_to "Housing", post_housings_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a class="teamUp" href="#"></a>
+        <div id="tipteamUp" class="tip">
+          <ul>
+            <li><%= link_to "TeamUp", post_teamups_path %></li>
+            <li><a href="#">| Post</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="rightside"> <!-- all things in floating left side -->
+    <span class="downarr"> <!-- hide button -->
+      <a href="#"></a>
+    </span>
+
+  </div>
+</div>
+
 <script type="text/javascript">
 
   $(document).ready(function(){
@@ -24,7 +156,7 @@
 
     //don't jump to #id link anchor
 
-  
+
 
     $(".assignments, .projects, .past_tests, .past_exams, .rss, .qas, .tutors, .books, .jobs, .foods, .party, .myx, .student_awareness, .housing, .teamUp, span.downarr a, span.showbar a").click(function() {
 
@@ -32,7 +164,7 @@
     });
 
     //show quick menu on click
-    
+
     $("span.menu_title a").click(function() {
       if($(".quickmenu").is(':hidden')){ //if quick menu isn't visible
         $(".quickmenu").fadeIn("fast"); //show menu on click
@@ -52,191 +184,58 @@
     });
 
     $.fn.adjustPanel = function(){
-		$(this).find("ul, .subpanel").css({ 'height' : 'auto'}); //Reset subpanel and ul height
+      $(this).find("ul, .subpanel").css({ 'height' : 'auto'}); //Reset subpanel and ul height
 
-		var windowHeight = $(window).height(); //Get the height of the browser viewport
-		var panelsub = $(this).find(".subpanel").height(); //Get the height of subpanel
-		var panelAdjust = windowHeight - 100; //Viewport height - 100px (Sets max height of subpanel)
-		var ulAdjust =  panelAdjust - 25; //Calculate ul size after adjusting sub-panel (27px is the height of the base panel)
+      var windowHeight = $(window).height(); //Get the height of the browser viewport
+      var panelsub = $(this).find(".subpanel").height(); //Get the height of subpanel
+      var panelAdjust = windowHeight - 100; //Viewport height - 100px (Sets max height of subpanel)
+      var ulAdjust =  panelAdjust - 25; //Calculate ul size after adjusting sub-panel (27px is the height of the base panel)
 
-		if ( panelsub >= panelAdjust ) {	 //If subpanel is taller than max height...
-			$(this).find(".subpanel").css({ 'height' : panelAdjust }); //Adjust subpanel to max height
-			$(this).find("ul").css({ 'height' : ulAdjust}); //Adjust subpanel ul to new size
-		}
-		else if ( panelsub < panelAdjust ) { //If subpanel is smaller than max height...
-			$(this).find("ul").css({ 'height' : 'auto'}); //Set subpanel ul to auto (default size)
-		}
-	};
+      if ( panelsub >= panelAdjust ) {	 //If subpanel is taller than max height...
+        $(this).find(".subpanel").css({ 'height' : panelAdjust }); //Adjust subpanel to max height
+        $(this).find("ul").css({ 'height' : ulAdjust}); //Adjust subpanel ul to new size
+      }
+      else if ( panelsub < panelAdjust ) { //If subpanel is smaller than max height...
+        $(this).find("ul").css({ 'height' : 'auto'}); //Set subpanel ul to auto (default size)
+      }
+    };
 
-	//Execute function on load
-	
-	$("#chatpanel").adjustPanel(); //Run the adjustPanel function on #chatpanel
-	$("#alertpanel").adjustPanel(); //Run the adjustPanel function on #alertpanel
+    //Execute function on load
 
-	//Each time the viewport is adjusted/resized, execute the function
-	$(window).resize(function () {
-		
-		$("#chatpanel").adjustPanel();
-		$("#alertpanel").adjustPanel();
-	});
+    $("#chatpanel").adjustPanel(); //Run the adjustPanel function on #chatpanel
+    $("#alertpanel").adjustPanel(); //Run the adjustPanel function on #alertpanel
 
-	//Click event on Chat Panel + Alert Panel
-	$("#chatpanel a:first,").click(function() { //If clicked on the first link of #chatpanel and #alertpanel...
-		if($(this).next(".subpanel").is(':visible')){ //If subpanel is already active...
-			$(this).next(".subpanel").hide(); //Hide active subpanel
-			$("#footpanel li a").removeClass('active'); //Remove active class on the subpanel trigger
-		}
-		else { //if subpanel is not active...
-			$(".subpanel").hide(); //Hide all subpanels
-			$(this).next(".subpanel").toggle(); //Toggle the subpanel to make active
-			$(".rightside li a").removeClass('active'); //Remove active class on all subpanel trigger
-			$(this).toggleClass('active'); //Toggle the active class on the subpanel trigger
-		}
-		return false; //Prevent browser jump to link anchor
-	});
+    //Each time the viewport is adjusted/resized, execute the function
+    $(window).resize(function () {
 
-	//Click event outside of subpanel
-	$(document).click(function() { //Click anywhere and...
-		$(".subpanel").hide(); //hide subpanel
-		$(".rightside li a").removeClass('active'); //remove active class on subpanel trigger
-	});
-	$('.subpanel ul').click(function(e) {
-		e.stopPropagation(); //Prevents the subpanel ul from closing on click
-	});
+      $("#chatpanel").adjustPanel();
+      $("#alertpanel").adjustPanel();
+    });
+
+    //Click event on Chat Panel + Alert Panel
+    $("#chatpanel a:first,").click(function() { //If clicked on the first link of #chatpanel and #alertpanel...
+      if($(this).next(".subpanel").is(':visible')){ //If subpanel is already active...
+        $(this).next(".subpanel").hide(); //Hide active subpanel
+        $("#footpanel li a").removeClass('active'); //Remove active class on the subpanel trigger
+      }
+      else { //if subpanel is not active...
+        $(".subpanel").hide(); //Hide all subpanels
+        $(this).next(".subpanel").toggle(); //Toggle the subpanel to make active
+        $(".rightside li a").removeClass('active'); //Remove active class on all subpanel trigger
+        $(this).toggleClass('active'); //Toggle the active class on the subpanel trigger
+      }
+      return false; //Prevent browser jump to link anchor
+    });
+
+    //Click event outside of subpanel
+    $(document).click(function() { //Click anywhere and...
+      $(".subpanel").hide(); //hide subpanel
+      $(".rightside li a").removeClass('active'); //remove active class on subpanel trigger
+    });
+    $('.subpanel ul').click(function(e) {
+      e.stopPropagation(); //Prevents the subpanel ul from closing on click
+    });
 
   });
 
 </script>
-
-<div id="toolbarbut"> <!-- hide button -->
-  <span class="showbar"><a href="#">show bar</a></span>
-</div>
-
-<div id="toolbar"> <!-- toolbar container -->
-
-  <div class="leftside"> <!-- all things in floating left side -->
-    <ul id="social">
-      <li><a class="assignments" href="#"></a>
-        <div id="tipassignments" class="tip">
-          <ul>
-            <li><a href="#">Assignments</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="projects" href="#"></a>
-        <div id="tipprojects" class="tip">
-          <ul>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="past_tests" href="#"></a>
-        <div id="tippast_tests" class="tip">
-          <ul>
-            <li><a href="#">Past Tests</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="past_exams" href="#"></a>
-        <div id="tippast_exams" class="tip">
-          <ul>
-            <li><a href="#">Past Exams</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="qas" href="#"></a>
-        <div id="tipqas" class="tip">
-          <ul>
-            <li><a href="#">Q.As</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-
-        <li><a class="tutors" href="#"></a>
-        <div id="tiptutors" class="tip">
-          <ul>
-            <li><a href="#">Tutors</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="books" href="#"></a>
-        <div id="tipbooks" class="tip">
-          <ul>
-            <li><a href="#">Books</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-       <li><a class="jobs" href="#"></a>
-        <div id="tipjobs" class="tip">
-          <ul>
-            <li><a href="#">Jobs</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="foods" href="#"></a>
-        <div id="tipfoods" class="tip">
-          <ul>
-            <li><a href="#">Foods</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="party" href="#"></a>
-        <div id="tipparty" class="tip">
-          <ul>
-            <li><a href="#">Party</a></li>
-
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="myx" href="#"></a>
-        <div id="tipmyx" class="tip">
-          <ul>
-            <li><a href="#">MyX</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-       <li><a class="student_awareness" href="#"></a>
-        <div id="tipstudent_awareness" class="tip">
-          <ul>
-            <li><a href="#">Student Awareness</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-        <li><a class="housing" href="#"></a>
-        <div id="tiphousing" class="tip">
-          <ul>
-            <li><a href="#">Housing</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-         <li><a class="teamUp" href="#"></a>
-        <div id="tipteamUp" class="tip">
-          <ul>
-            <li><a href="#">TeamUp</a></li>
-            <li><a href="#">| Post</a></li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-  <div class="rightside"> <!-- all things in floating left side -->
-    <span class="downarr"> <!-- hide button -->
-      <a href="#"></a>
-    </span>
-
-    </div>
-  </div>
