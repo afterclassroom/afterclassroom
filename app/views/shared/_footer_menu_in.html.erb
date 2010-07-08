@@ -1,32 +1,3 @@
-<<<<<<< HEAD:app/views/shared/_footer_menu_in.html.erb
-=======
-<script type="text/javascript">
-    $(document).ready(function(){
-        //hide toolbar and make visible the 'show' button
-        $("span.downarr a").click(function() {
-            $("#toolbar").slideToggle("fast");
-            $("#toolbarbut").fadeIn("slow");
-        });
-        //show toolbar and hide the 'show' button
-        $("span.showbar a").click(function() {
-            $("#toolbar").slideToggle("fast");
-            $("#toolbarbut").fadeOut();
-        });
-        //show tooltip when the mouse is moved over a list element
-        $("ul#social li").hover(function() {
-            $(this).find("div").fadeIn("fast").show(); //add 'show()'' for IE
-            $(this).mouseleave(function () { //hide tooltip when the mouse moves off of the element
-                $(this).find("div").hide();
-            });
-        });
-        //don't jump to #id link anchor
-        $(".assignments, .projects, .past_tests, .past_exams, .rss, .qas, .tutors, .books, .jobs, .foods, .party, .myx, .student_awareness, .housing, .teamUp, span.downarr a, span.showbar a").click(function() {
-            return false;
-        });
-    });
-</script>
-
->>>>>>> 72e3f4936fbe7ebe755716aad9376060b949b375:app/views/shared/_footer_menu_in.html.erb
 <div id="toolbarbut"> <!-- hide button -->
   <span class="showbar"><a href="#">show bar</a></span>
 </div>
@@ -154,7 +125,6 @@
     </span>
   </div>
 </div>
-<<<<<<< HEAD:app/views/shared/_footer_menu_in.html.erb
 
 <script type="text/javascript">
 
@@ -263,5 +233,3 @@
   });
 
 </script>
-=======
->>>>>>> 72e3f4936fbe7ebe755716aad9376060b949b375:app/views/shared/_footer_menu_in.html.erb
