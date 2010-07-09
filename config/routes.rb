@@ -115,7 +115,11 @@ ActionController::Routing::Routes.draw do |map|
       :delete => :post,
       :accept => :post,
       :de_accept => :post}
-    users.resources :stories, :collection => {:create_comment => :get, :delete_comment => :get}
+    users.resources :stories, 
+      :collection => {
+      :friend_s => :get, :my_s => :get,
+      :create_comment => :get, :delete_comment => :get
+      }
     # Video Album
     users.resources :video_albums
     users.resources :videos, :collection => {:create_album => :get}

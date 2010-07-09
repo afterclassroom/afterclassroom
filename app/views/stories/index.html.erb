@@ -9,25 +9,26 @@
         <%= render :partial => "menu" %>
         <div class="slsTop">
           <div class="slsTopL">
-            <div class="slsTopLT">Friends shared stories <span>- <%= @friend_stories.size.to_s %> stories</span></div>
-            <div class="slsTopLB"><a href="#">Search here</a></div>
-          </div>
-          <div class="slsTopR">
-            <div class="assPage">
-              <span class="firstPage"><a href="#">First Page</a></span>
-              <span class="prevPage"><a href="#">Prev</a></span>
-              <span class="currentPage">
-                <a class="selected" href="#"><span>6</span></a>
-                <a href="#"><span>7</span></a>
-                <a href="#"><span>8</span></a>
-                <a href="#"><span>9</span></a>
-                <a href="#"><span>10</span></a>
-              </span>
-              <span class="nextPage"><a href="#">Next</a></span>
-              <span class="lastPage"><a href="#">Last Page</a></span>
+            <div class="slsTopLT">Friends shared stories</div>
+            <div class="slsTopLB friLeft">
+              <div class="search">
+                <% form_tag "", {:id => "friend_stories_search", :method => "GET"} do %>
+                  <div class="textS"><%= text_field_tag "search[name]", "#{@search_name}" %></div>
+                  <div class="btmS"><a href="javascript:;" onclick="$('#friend_stories_search').submit();"><img src="/images/iconSF.png"/></a></div>
+                <% end %>
+              </div>
             </div>
           </div>
+          <div class="slsTopR">
+            <!--Pagination-->
+            <div class="assPage">
+              <span class="numPage"><%= page_entries_info @friend_stories %></span>
+              <%= will_paginate @friend_stories %>
+            </div>
+            <!--Pagination-->
+          </div>
         </div>
+        <% @friend_stories.each do |f_s| %>
         <div class="slsItem">
           <div class="slsItemL">
             <div class="slsItemLN">79</div>
@@ -41,7 +42,7 @@
 						Suspendisse consequat, justo quis placerat malesuada, velit dolor vulputate neque, et porta lectus dolor sed urna...</div>
           </div>
         </div>
-
+        <% end %>
       </div>
     </div>
   </div>
@@ -54,19 +55,12 @@
             <div class="slsTopLB"><a href="">Search here</a>  |  <a href="">Set Privacy</a></div>
           </div>
           <div class="slsTopR">
+            <!--Pagination-->
             <div class="assPage">
-              <span class="firstPage"><a href="#">First Page</a></span>
-              <span class="prevPage"><a href="#">Prev</a></span>
-              <span class="currentPage">
-                <a class="selected" href="#"><span>6</span></a>
-                <a href="#"><span>7</span></a>
-                <a href="#"><span>8</span></a>
-                <a href="#"><span>9</span></a>
-                <a href="#"><span>10</span></a>
-              </span>
-              <span class="nextPage"><a href="#">Next</a></span>
-              <span class="lastPage"><a href="#">Last Page</a></span>
+              <span class="numPage"><%= page_entries_info @my_stories %></span>
+              <%= will_paginate @my_stories %>
             </div>
+            <!--Pagination-->
           </div>
         </div>
         <div class="slsItem">

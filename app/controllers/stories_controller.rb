@@ -5,8 +5,7 @@ class StoriesController < ApplicationController
   include Viewable
   
   before_filter :login_required
-  before_filter :require_current_user,
-    :only => [:edit, :update, :destroy, :delete_comment]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy, :delete_comment]
   # GET /stories
   # GET /stories.xml
   def index
@@ -19,7 +18,7 @@ class StoriesController < ApplicationController
     @friend_stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
   end
 
-  def my_stories
+  def my_s
     arr_user_id = []
     arr_user_id << current_user.id
     if current_user.user_friends
@@ -48,7 +47,7 @@ class StoriesController < ApplicationController
     render :layout => false
   end
 
-  def friend_stories
+  def friend_s
     render :layout => false
   end
 
