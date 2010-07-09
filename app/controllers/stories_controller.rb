@@ -14,19 +14,19 @@ class StoriesController < ApplicationController
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
     end
-    @my_stories = current_user.stories.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
-    @friend_stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    @my_stories = current_user.stories.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @friend_stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
   end
-
-  def my_s
+  
+  def friend_s
     arr_user_id = []
-    arr_user_id << current_user.id
+    
     if current_user.user_friends
       current_user.user_friends.each do |friend|
         arr_user_id << friend.id
       end
     end
-
+    
     @search_name = ""
 
     if params[:search]
@@ -42,12 +42,29 @@ class StoriesController < ApplicationController
       end
     end
 
-    @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     
     render :layout => false
   end
 
-  def friend_s
+  def my_s
+    @search_name = ""
+
+    if params[:search]
+      @search_name = params[:search][:name]
+    end
+
+    content_search = @search_name
+    id = current_user.id
+    cond = Caboose::EZ::Condition.new :stories do
+      user_id == id
+      if content_search != ""
+        content =~ "%#{content_search}%"
+      end
+    end
+
+    @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    
     render :layout => false
   end
 
