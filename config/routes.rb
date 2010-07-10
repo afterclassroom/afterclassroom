@@ -17,7 +17,15 @@ ActionController::Routing::Routes.draw do |map|
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
 
   map.resources :learningtools, :collection => {
-    :recommend_tool => :get
+    :recommendtool => :get,
+    :tooltab => :get,
+    :populartab => :get,
+    :verifiedtab => :get,
+    :recentlyaddedtab => :get,
+    :seealltab => :get,
+    :pagingalltool => :get
+
+
   }
   map.resources :shoppings, :collection => {
     :mainpage => :get
@@ -115,7 +123,11 @@ ActionController::Routing::Routes.draw do |map|
       :delete => :post,
       :accept => :post,
       :de_accept => :post}
-    users.resources :stories, :collection => {:create_comment => :get, :delete_comment => :get}
+    users.resources :stories, 
+      :collection => {
+      :friend_s => :get, :my_s => :get,
+      :create_comment => :get, :delete_comment => :get
+    }
     # Video Album
     users.resources :video_albums
     users.resources :videos, :collection => {:create_album => :get}
@@ -208,7 +220,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :post_parties, :collection => {
     :search => :get, :show_rsvp => :get,
     :create_rsvp => :get, :tag => :get,
-    :rate => :get, :require_rate => :get
+    :rate => :get, :require_rate => :get,
+    :prefer => :get
   }
   map.resources :post_myxes, :collection => {
     :search => :get, :tag => :get,

@@ -444,3 +444,59 @@ function scroll_div(id){
     }, 3000);
 }
 //Chat
+
+//My Stories
+function searchFriendStories(){
+    var form = $("#friend_stories_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html) {
+        $("#friend_stories_list").html(html);
+    });
+}
+
+function searchMyStories(){
+    var form = $("#my_stories_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html) {
+        $("#my_stories_list").html(html);
+    });
+}
+
+function formatLinkForPaginationURLFriend() {
+    var form = $("#friend_stories_search");
+    var url = form.attr("action");
+    $("div.friend_stories").find("a").each(function() {
+        var linkElement = $( this );
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+
+        linkElement.click(function() {
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchFriendStories();
+        });
+    });
+}
+
+function formatLinkForPaginationURLMy() {
+    var form = $("#my_stories_search");
+    var url = form.attr("action");
+    $("div.my_stories").find("a").each(function() {
+        var linkElement = $( this );
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+
+        linkElement.click(function() {
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchMyStories();
+        });
+    });
+}
+//My Stories

@@ -1,13 +1,14 @@
 <div class="slsItem">
   <div class="slsItemL">
-    <div class="slsItemLN">79</div>
+    <div class="slsItemLN"><%= story.count_view %></div>
     <div class="slsItemLV">viewed</div>
   </div>
-  <div class="assImg"><a href="#"><div><img src="pictures/sls1.png"/></div></a></div>
+  <div class="assImg"><a href="#"><div><img src="/images/pictures/slsNoimg.png"/></div></a></div>
   <div class="slsItemR">
-    <div class="slsItemTitle"><a href="#">Nam nec quam eu odio dignissim semper id vitae sem. Sed ac justo purus</a></div>
-    <div class="slsItemTime">Viewed in 3 hours 10 minutes ago</div>
-    <div class="slsItemDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultrices velit leo. Pellentesque aliquet tristique arcu a mollis. Vestibulum rhoncus elit ut enim facilisis ut venenatis turpis pretium. Cras nec arcu nunc. Aliquam porttitor aliquet metus, vitae bibendum ipsum malesuada at.
-						Suspendisse consequat, justo quis placerat malesuada, velit dolor vulputate neque, et porta lectus dolor sed urna...</div>
+    <div class="slsItemTitle"><%= link_to story.title, user_story_path(current_user, story) %></div>
+    <div class="slsItemTime"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></div>
+    <div class="slsItemDes">
+      <%= truncate_words(story.content) %>
+    </div>
   </div>
 </div>

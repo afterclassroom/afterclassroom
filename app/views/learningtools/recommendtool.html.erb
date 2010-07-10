@@ -1,0 +1,326 @@
+<div class="topLearning">
+  <div class="menuRL">
+    <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Recommend Learning Tools</span></span></a></div>
+    <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Submit Learning Tools</span></span></a></div>
+  </div>
+  <div class="postdiv">
+    <span class="RmenuRbtm2"><a href="#">Post</a></span>
+  </div>
+</div>
+<div class="contMain">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="learnLeft">
+        <div class="learnTop">
+          <div class="inboxTitle">Featured by AfterClassroom</div>
+          <div class="learnPage">
+            <div class="learnPageL">Page 1 of 12</div>
+            <div class="learnPageP"><a href="#">&nbsp;</a></div>
+            <div class="learnPageN"><a href="#">&nbsp;</a></div>
+          </div>
+        </div>
+        <div class="learnNewT">
+          <%= render :partial => "featuredtool"%>
+        </div>
+        <div class="learnTop learnTool">
+          <div class="inboxTitle">Learning Tools You May Like</div>
+          <div class="learnPage">
+            <div class="learnPageL">Page 1 of 12</div>
+            <div class="learnPageP"><a href="#">&nbsp;</a></div>
+            <div class="learnPageN"><a href="#">&nbsp;</a></div>
+          </div>
+        </div>
+        <div class="learnTools">
+          <%= render :partial => "youmaylike"%>
+        </div>
+        <div class="learnN">
+          <div class="learnN">
+            <div class="learnNM">
+              <div class="learnNMtitle" id="tooltab">
+                <%= link_to "Learning Tools", {:controller => 'learningtools', :action => "tooltab"} %>
+              </div>
+
+              <div class="learnNMP" id="populartab">
+                <%= link_to "Popular", {:controller => 'learningtools', :action => "populartab"} %>
+              </div>
+              <div class="learnNML" id="verifiedtab">
+                <%= link_to "Verified", {:controller => 'learningtools', :action => "verifiedtab"} %>
+              </div>
+
+              <div class="learnNML" id="recentlyaddedtab">
+                <%= link_to "Recently Added", {:controller => 'learningtools', :action => "recentlyaddedtab"} %>
+              </div>
+
+              <div class="learnNMR" id="seealltab">
+                <%= link_to "See All", {:controller => 'learningtools', :action => "seealltab"} %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script language="javascript">
+          var seealltaburl = $("#seealltab a").attr("href");
+
+          $("#seealltab a").bind('click',function(){
+            if (seealltaburl != undefined){
+              LoadSpinner('alltoolitems');
+              $.ajax({
+                url: seealltaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#alltoolitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+
+          var recentlyaddedtaburl = $("#recentlyaddedtab a").attr("href");
+
+          $("#recentlyaddedtab a").bind('click',function(){
+            if (recentlyaddedtaburl != undefined){
+              LoadSpinner('alltoolitems');
+              $.ajax({
+                url: recentlyaddedtaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#alltoolitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+
+          var verifiedtaburl = $("#verifiedtab a").attr("href");
+
+          $("#verifiedtab a").bind('click',function(){
+            if (verifiedtaburl != undefined){
+              LoadSpinner('alltoolitems');
+              $.ajax({
+                url: verifiedtaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#alltoolitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+
+          var populartaburl = $("#populartab a").attr("href");
+
+          $("#populartab a").bind('click',function(){
+            if (populartaburl != undefined){
+              LoadSpinner('alltoolitems');
+              $.ajax({
+                url: populartaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#alltoolitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+          var tooltaburl = $("#tooltab a").attr("href");
+
+          $("#tooltab a").bind('click',function(){
+            if (tooltaburl != undefined){
+              LoadSpinner('alltoolitems');
+              $.ajax({
+                url: tooltaburl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#alltoolitems').html(msg);
+                }
+              });
+            }
+            return false;
+          });
+        </script>
+        <div id="alltoolitems">
+          <%= render :partial => "alltool", :locals => {:appdata => @alltool} %>
+
+          <div class="assPage">
+            <span class="numPage">Page 1 of <%= @pagealltool %></span>
+            <span class="firstPage">
+              <%= link_to "First Page", {:controller => 'learningtools', :action => "pagingalltool", :page => '1'}%>
+            </span>
+
+            <%= will_paginate(@alltool, :params => { :controller => "learningtools", :action => "pagingalltool" }) %>
+
+            <span class="lastPage">
+              <%= link_to "Last Page", {:controller => 'learningtools', :action => "pagingalltool", :page => @pagealltool}%>
+            </span>
+          </div>
+          <div class="goTop"><a href="#">Top</a></div>
+          <script language="javascript">
+            /*code to handle ajax pagination for all application TABS*/
+            var nextpageurl = $(".disabled.next_page").attr("href");
+            var prevpageurl = $(".disabled.prev_page").attr("href");
+            $(".current").each(function(){
+
+              var onepageurl = $(this).attr('href');
+              $(this).bind('click',function(){
+                if (onepageurl != undefined){
+                  LoadSpinner('alltoolitems');
+                  $.ajax({
+                    url: onepageurl,
+                    type: "GET",
+                    dataType: "html",
+                    failure: function(msg){
+                      alert('ajax fail:'+msg);
+                    },
+                    success: function(msg){
+                      $('#alltoolitems').html(msg);
+                    }
+                  });
+                }
+                return false;
+              });
+            });
+
+            $('.disabled.next_page').bind('click',function(){
+              if (nextpageurl!=undefined){
+                LoadSpinner('alltoolitems');
+                $.ajax({
+                  url: nextpageurl,
+                  type: "GET",
+                  dataType: "html",
+                  failure: function(msg){
+                    alert('ajax fail:'+msg);
+                  },
+                  success: function(msg){
+                    $('#alltoolitems').html(msg);
+                  }
+                });
+
+              }
+              return false;
+            });
+            $('.disabled.prev_page').bind('click',function(){
+              if(prevpageurl != undefined){
+                LoadSpinner('alltoolitems');
+                $.ajax({
+                  url: prevpageurl,
+                  type: "GET",
+                  dataType: "html",
+                  failure: function(msg){
+                    alert('ajax fail:'+msg);
+                  },
+                  success: function(msg){
+                    $('#alltoolitems').html(msg);
+                  }
+                });
+              }
+              return false;
+            });
+            var firstpageurl = $('.firstPage a').attr('href');
+            $('.firstPage').bind('click',function(){
+              LoadSpinner('alltoolitems');
+              $.ajax({
+                url: firstpageurl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#alltoolitems').html(msg);
+                }
+              });
+              return false;
+            });
+            var lastpageurl =  $('.lastPage a').attr('href');;
+            $('.lastPage').bind('click',function(){
+              LoadSpinner('alltoolitems');
+              $.ajax({
+                url: lastpageurl,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                  alert('ajax fail:'+msg);
+                },
+                success: function(msg){
+                  $('#alltoolitems').html(msg);
+                }
+              });
+              return false;
+            });
+          </script>
+
+        </div> <!--close tab of DIV alltoolitems-->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="contMainR">
+    <div class="creAdv"><a href="#">Create an Ad</a></div>
+    <div class="advert">
+      <div class="advertTitle">Advertisement</div>
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/pic6.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/adv.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
+      <div class="advertImg"><img src="/images/pictures/adv1.png"></div>
+      <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+  function LoadSpinner(divname){
+
+    $('#'+divname).html('<img src="/images/ajax-loader.gif" alt="Please wait..." />');
+  }
+</script>

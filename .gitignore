@@ -13,6 +13,7 @@ public/uploaded_files/**/*
 public/uploads/*
 public/photos/*
 public/gamephotos/*
+public/toolphotos/*
 public/images/captcha
 public/javascripts/cache/
 public/stylesheets/cache/

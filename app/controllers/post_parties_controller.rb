@@ -2,13 +2,16 @@
 class PostPartiesController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :prefer]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :prefer]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
   after_filter :store_go_back_url, :only => [:index, :show, :search, :tag]
   # GET /post_parties
   # GET /post_parties.xml
+  def prefer
+    render :layout => false
+  end
   def index
     @rating_status = params[:rating_status]
     @rating_status ||= ""
@@ -218,7 +221,6 @@ class PostPartiesController < ApplicationController
     @query = params[:search][:query] if params[:search]
   end
 
-
   def require_current_user
     post = Post.find(params[:id])
     @post_party = post.post_party
@@ -228,4 +230,5 @@ class PostPartiesController < ApplicationController
     end
     return @user
   end
-end
+   
+ end
