@@ -17,7 +17,13 @@ ActionController::Routing::Routes.draw do |map|
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
 
   map.resources :learningtools, :collection => {
-    :recommend_tool => :get
+    :recommendtool => :get,
+    :tooltab => :get,
+    :populartab => :get,
+    :verifiedtab => :get,
+    :recentlyaddedtab => :get,
+    :seealltab => :get
+
   }
   map.resources :shoppings, :collection => {
     :mainpage => :get
@@ -119,7 +125,7 @@ ActionController::Routing::Routes.draw do |map|
       :collection => {
       :friend_s => :get, :my_s => :get,
       :create_comment => :get, :delete_comment => :get
-      }
+    }
     # Video Album
     users.resources :video_albums
     users.resources :videos, :collection => {:create_album => :get}
