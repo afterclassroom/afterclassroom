@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
 
   map.resources :learningtools, :collection => {
-    :recommend_tool => :get
+    :recommendtool => :get
   }
   map.resources :shoppings, :collection => {
     :mainpage => :get
