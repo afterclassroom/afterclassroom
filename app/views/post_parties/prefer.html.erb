@@ -8,12 +8,12 @@
       <div class="postItem1" style="width: 100px">Content*</div>
       <div class="postInp"><textarea style="width:330px; height:200px" id="abuse_content" name="content" class="required" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
     </div>
-    <div class="submit" style="padding-left: 110px"><a href="javascript:;" onclick="sendReportAbuse()">Send</a></div>
+    <div class="submit" style="padding-left: 110px"><a href="javascript:;" onclick="sendPrefer()">Send</a></div>
     <div class="error" style="padding: 10px;"></div>
   </form>
 </div>
 <script language="javascript">
-    function sendReportAbuse(){
+    function sendPrefer(){
         $("#form_send_report").submit();
     }
     $().ready(function() {
