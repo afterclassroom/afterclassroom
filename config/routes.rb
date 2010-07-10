@@ -184,7 +184,7 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :tag => :get,
     :interesting => :get, :top_answer => :get,
     :create_comment => :get, :show_comment => :get,
-    :rate => :get, :require_rate => :get
+    :rate => :get, :require_rate => :get, :prefer => :get
   }
   map.resources :post_tutors, :collection => {
     :search => :get, :tag => :get,
