@@ -22,17 +22,17 @@
 <div class="assPage">
   <span class="numPage">Page <%= @curpage %> of <%= @pagealltool %></span>
   <span class="firstPage">
-    <%= link_to "First Page", {:controller => 'learningtools', :action => "seealltab", :page => '1'}%>
+    <%= link_to "First Page", {:controller => 'learningtools', :action => "pagingalltool", :page => '1'}%>
   </span>
 
-  <%= will_paginate(@alltool, :params => { :controller => "learningtools", :action => "seealltab" }) %>
+  <%= will_paginate(@alltool, :params => { :controller => "learningtools", :action => "pagingalltool" }) %>
 
   <span class="lastPage">
-    <%= link_to "Last Page", {:controller => 'learningtools', :action => "seealltab", :page => @pagealltool}%>
+    <%= link_to "Last Page", {:controller => 'learningtools', :action => "pagingalltool", :page => @pagealltool}%>
   </span>
 </div>
-
 <div class="goTop"><a href="#">Top</a></div>
+
 
 <script language="javascript">
   /*code to handle ajax pagination for all application TABS*/

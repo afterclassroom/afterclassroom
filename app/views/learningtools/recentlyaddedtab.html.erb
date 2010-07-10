@@ -1,1 +1,130 @@
-recently
+<% @recentap.each do |ag| %>
+  <%= ag.name %><br/>
+
+  <div class="learnNItem">
+    <div class="learnNImg">
+      <%= link_to content_tag(:div, ''+image_tag(ag.toolphoto.url(:thumb), :alt => '')), :controller => 'learningtools', :action => 'learninglounge', :id => ag.id %>
+    </div>
+
+    <div class="learnNtitle">
+      <%= link_to ag.name, :controller => 'learningtools', :action => 'learninglounge', :id => ag.id %>
+      by Vestibulum
+    </div>
+
+    <div class="learnNdes">
+      <%=  ag.description %>
+    </div>
+    <div class="learnNinf">Authorized (<span>deauthorize</span>) - 67,541, 274 monthly active users - 54 friends</div>
+  </div>
+
+<% end %>
+
+<div class="assPage">
+  <span class="numPage">Page <%= @curpage %> of <%= @totalpage %></span>
+  <span class="firstPage">
+    <%= link_to "First Page", {:controller => 'learningtools', :action => "recentlyaddedtab", :page => '1'}%>
+  </span>
+
+  <%= will_paginate(@recentap, :params => { :controller => "learningtools", :action => "recentlyaddedtab" }) %>
+
+  <span class="lastPage">
+    <%= link_to "Last Page", {:controller => 'learningtools', :action => "recentlyaddedtab", :page => @totalpage}%>
+  </span>
+</div>
+
+<div class="goTop"><a href="#">Top</a></div>
+
+<script language="javascript">
+  /*code to handle ajax pagination for all application TABS*/
+  var nextpageurl = $(".disabled.next_page").attr("href");
+  var prevpageurl = $(".disabled.prev_page").attr("href");
+  $(".current").each(function(){
+
+    var onepageurl = $(this).attr('href');
+    $(this).bind('click',function(){
+      if (onepageurl != undefined){
+        LoadSpinner('alltoolitems');
+        $.ajax({
+          url: onepageurl,
+          type: "GET",
+          dataType: "html",
+          failure: function(msg){
+            alert('ajax fail:'+msg);
+          },
+          success: function(msg){
+            $('#alltoolitems').html(msg);
+          }
+        });
+      }
+      return false;
+    });
+  });
+
+  $('.disabled.next_page').bind('click',function(){
+    if (nextpageurl!=undefined){
+      LoadSpinner('alltoolitems');
+      $.ajax({
+        url: nextpageurl,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('#alltoolitems').html(msg);
+        }
+      });
+
+    }
+    return false;
+  });
+  $('.disabled.prev_page').bind('click',function(){
+    if(prevpageurl != undefined){
+      LoadSpinner('alltoolitems');
+      $.ajax({
+        url: prevpageurl,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('#alltoolitems').html(msg);
+        }
+      });
+    }
+    return false;
+  });
+  var firstpageurl = $('.firstPage a').attr('href');
+  $('.firstPage').bind('click',function(){
+    LoadSpinner('alltoolitems');
+    $.ajax({
+      url: firstpageurl,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('#alltoolitems').html(msg);
+      }
+    });
+    return false;
+  });
+  var lastpageurl =  $('.lastPage a').attr('href');;
+  $('.lastPage').bind('click',function(){
+    LoadSpinner('alltoolitems');
+    $.ajax({
+      url: lastpageurl,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('#alltoolitems').html(msg);
+      }
+    });
+    return false;
+  });
+</script>
