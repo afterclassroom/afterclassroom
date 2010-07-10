@@ -1,0 +1,24 @@
+<div class="postCont" id="div_send_report">
+  <form id="form_send_report">
+    <div class="postItem">
+      <div class="postItem1" style="width: 100px">Email*</div>
+      <div class="postInp"><input type="text" style="width:330px;" value="" id="changedValue" name="changedValue" class="required email"/></div>
+    </div>
+    <div class="postItem">
+      <div class="postItem1" style="width: 100px">Content*</div>
+      <div class="postInp"><textarea style="width:330px; height:200px" id="abuse_content" name="content" class="required" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
+    </div>
+    <div class="submit" style="padding-left: 110px"><a href="javascript:;" onclick="sendReportAbuse()">Send</a></div>
+    <div class="error" style="padding: 10px;"></div>
+  </form>
+</div>
+<script language="javascript">
+    function sendReportAbuse(){
+        $("#form_send_report").submit();
+    }
+    $().ready(function() {
+        $("#form_send_report").validate({
+            errorLabelContainer: $("#form_send_report div.error")
+        });
+    });
+</script>
