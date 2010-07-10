@@ -6,5 +6,21 @@ class LearningtoolsController < ApplicationController
   def recommendtool
     
   end
+  def tooltab
+    render :layout => false
+  end
+  def populartab
+    render :layout => false
+  end
+  def verifiedtab
+    render :layout => false
+  end
+  def recentlyaddedtab
+    render :layout => false
+  end
+  def seealltab
+    render :layout => false
+  end
+
 
 end
