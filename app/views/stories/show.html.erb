@@ -1,57 +1,67 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Stories", :action_path => "#{stories_path}"} %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'submenu' %>
 <% end -%>
 
-<% content_for :tabs_inbox do -%>
-  <%= render :partial => 'shared/tabs_inbox' %>
-<% end -%>
-
-<div class="user_status_listing"><!--user_status_listing-->
-
-  <div class="user-story">
-    <div class="small_thumb_ava"><%= image_tag @story.user.avatar.url(:thumb) %></div>
-    <div class="user-story-content">
-      <p><%=h @story.content %>
-      </p>
-      <span class="last_update_status">
-      <span class="status-time"><%= distance_of_time_in_words_to_now(@story.created_at) + " ago." %></span>
-    </div><!-- .user-story-content -->
-
+<div class="slStoryL">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">
+            <span>You are here:</span>
+            <a href="#" class="slsShareLink">Share a Story</a>
+            <a href="#" class="slsShareLinkL">Friends share stories (8)</a>
+          </div>
+          <div class="slsShareR">
+            <a href="#" class="slsShareW">Write it</a>
+            <a href="#" class="slsShareS">Say it</a>
+            <a href="#" class="slsShareF">Film it</a>
+          </div>
+        </div>
+        <div class="stoDet">
+          <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@story.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+          <div class="stoDetR">
+            <div class="stoDetRT"><%= @story.user.full_name %>: <%= @story.title %></div>
+            <div class="stoDetRB"><a href="#" class="stoDetRBN">Huy Quach’s Story</a><a href="#">HuyQuach’s Profile</a></div>
+          </div>
+        </div>
+        <div class="stoDcont">
+          <%= @story.content %>
+        </div>
+        <%= render :partial => "story_action" %>
+        <div class="AsDcom" id="form_comment" style="display: none">
+          <h1 class="titleH1">Leave your comments</h1>
+          <% if logged_in? %>
+            <div class="AsDcomImg"><%= link_to "<div>#{image_tag(current_user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+            <div class="AsDcomIn">
+              <form name="form_comment" id="form_comment" action="" method="get">
+                <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
+                <div class="submit"><a href="javascript:;" onclick="send_comment('<%= @story.id %>');" >Submit</a></div>
+              </form>
+            </div>
+          <% else %>
+            You must be <%= link_to "logged in", login_url %> to post a comment.
+          <% end %>
+        </div>
+        <div class="AsDcomL" id="list_comments">
+          <% if @story.comments.size > 0 %>
+            <h1 class="titleH1"><a href="javascript:;">Comments (<%= @story.comments.size %>)</a></h1>
+            <% @story.comments.each do |c| %>
+              <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+      </div>
+    </div>
   </div>
-  <!-- end .user-story -->
+</div>
+<div class="contMainR">
+  <!--On this story-->
+  <%= render :partial => "on_this_story" %>
+  <!--On this story-->
 
-  <div id="add-comments">
-    <h3>Add your comment to <!-- anh Dung add username vao day --> <%= @story.user.full_name %>'s story</h3>
-    <form name="form" action="create_comment" method="get">
-      <textarea name="comment" id="comment" rows="8" cols="20"></textarea>
-      <input type="hidden" value="<%= @story.id %>" name="story_id" />
-      <div id="comment-bt-box">
-        <input id="value" name="value" value="Submit" type="submit"/>
-      </div><!-- #comment-bt-box -->
-    </form>
-  </div>
-
-  <div id="list-other-comment">
-    <h3>What are people saying on this story</h3>
-    <% for comnt in @story.comments.find(:all, :order => "created_at DESC") %>
-    <div class="user-story">
-
-      <span class="last_update_status">
-        <span class="comment-info">
-          <span class="comment-author"><%= link_to comnt.user.full_name, {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %>
-          <span class="status-time-comment"><%= distance_of_time_in_words_to_now(comnt.created_at) + " ago." %></span>
-        </span>
-      </span>
-
-      <div class="small_thumb_ava"><%= image_tag comnt.user.avatar.url(:thumb) %></div>
-
-      <div class="user-story-content">
-        <p><%= comnt.comment %>
-        </p>
-      </div><!-- .user-story-content -->
-    </div>	<!-- .user-story -->
-    <% end %>
-  </div>
-</div> <!--user_status_listing-->
-<div class="app_add_on">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>

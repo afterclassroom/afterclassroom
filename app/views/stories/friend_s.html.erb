@@ -1,0 +1,28 @@
+<div class="slsTop">
+  <div class="slsTopL">
+    <div class="slsTopLT">Friends shared stories</div>
+    <div class="slsTopLB friLeft">
+      <div class="search">
+        <% form_tag friend_s_user_stories_path(current_user), {:id => "friend_stories_search", :method => "GET"} do %>
+          <div class="textS"><%= text_field_tag "search[name]", "#{@search_name}" %></div>
+          <div class="btmS"><a href="javascript:;" onclick="searchFriendStories();"><img src="/images/iconSF.png"/></a></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="slsTopR">
+    <!--Pagination-->
+    <div class="assPage friend_stories">
+      <span class="numPage"><%= page_entries_info @stories %></span>
+      <%= will_paginate @stories %>
+    </div>
+    <!--Pagination-->
+  </div>
+</div>
+<% @stories.each do |s| %>
+  <%= render :partial => "item", :locals => {:story => s} %>
+<% end %>
+
+<script type="text/javascript" >
+  formatLinkForPaginationURLFriend();
+</script>

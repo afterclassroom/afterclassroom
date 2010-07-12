@@ -1,7 +1,4 @@
 module FeedbacksHelper 
-  
-  
-  
   def feedback_init(options = {})
     options = {
       "position" => "null"
@@ -22,8 +19,7 @@ module FeedbacksHelper
   def feedback_tab(options = {})
     feedback_init({'position' => 'top'}.merge(options.stringify_keys))
   end
-  
-  
+   
   def feedback_link(text, options = {})
     link_to text, '#', :class => "feedback_link"
   end
