@@ -5,6 +5,6 @@
   <div class="chat"><%= link_to_function "Invite Chat", "invite_chat('#{user.id}')" %></div>
   <div class="mail"><a href="#">Send Mail</a></div>
   <% if @controller.controller_name == "post_parties" %>
-  <div class="rsvp"><a href="#">RSVP</a></div>
+  <div class="rsvp"><%= link_to("<span>RSVP</span>", "#{show_rsvp_post_parties_path}?height=320&width=490", :class => "thickbox", :title => "RSVP") %></span></div>
   <% end %>
 </div>
