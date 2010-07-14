@@ -1175,6 +1175,9 @@ div.postInf{
 .postDesInf{
     padding-bottom:3px;
 }
+.user_ri input{
+  width:300px;
+}
 /** Post detail **/
 .AsDContBtm span.btmReply a{
     background:url('/images/btm48.png') no-repeat;
@@ -1733,6 +1736,13 @@ span.btmFoodList a{
 }
 span.btmFoodList a:hover{
     background:url('/images/btmFoodListH.png') no-repeat;
+}
+span.btmRSVP a{
+    background:url('/images/btmRSVP.png') no-repeat;
+    width:90px;
+}
+span.btmRSVP a:hover{
+    background:url('/images/btmRSVP_H.png') no-repeat;
 }
 .requestFood h1.col300Title{
     padding-left:30px;

@@ -9,10 +9,7 @@ class PostQasController < ApplicationController
   after_filter :store_go_back_url, :only => [:index, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   # GET /post_qas
   # GET /post_qas.xml
-  def prefer
-    render :layout => false
-  end
-  
+    
   def index
     @type = params[:type]
     @type ||= "answered"
@@ -216,6 +213,10 @@ class PostQasController < ApplicationController
     post_id = params[:post_id]
     post = Post.find(post_id)
     get_comments(post, show)
+  end
+  
+  def prefer
+    render :layout => false
   end
   
   private

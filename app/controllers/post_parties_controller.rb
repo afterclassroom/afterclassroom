@@ -9,9 +9,7 @@ class PostPartiesController < ApplicationController
   after_filter :store_go_back_url, :only => [:index, :show, :search, :tag]
   # GET /post_parties
   # GET /post_parties.xml
-  def prefer
-    render :layout => false
-  end
+  
   def index
     @rating_status = params[:rating_status]
     @rating_status ||= ""
@@ -208,6 +206,10 @@ class PostPartiesController < ApplicationController
     @post_party.destroy
 
     redirect_to my_post_user_url(current_user)
+  end
+  
+  def prefer
+    render :layout => false
   end
   
   private
