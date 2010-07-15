@@ -19,44 +19,36 @@
         <form id="form_rsvp_<%= @post.id %>" name="form_rsvp_<%= @post.id %>">
           <ul>
             <li>
-              <label>Where:</label>
-              <div class="user_ri"><%= text_field_tag "where_#{@post.id}", "" %></div>
+              <div class="user_ri1"><label>Where:</label> <%= text_field_tag "where_#{@post.id}", "" %></div>
             </li>
             <li>
-              <label>When:</label>
-              <div class="user_ri"><%= text_field_tag "when_#{@post.id}", "" %></div>
+              <div class="user_ri2"><label>When:</label> <%= text_field_tag "when_#{@post.id}", "" %></div>
             </li>
             <li>
-              <label>First Name*:</label>
-              <div class="user_ri"><%= text_field_tag "first_name_#{@post.id}", "", :class => "required", :width => "330" %></div>
+              <div class="user_ri3"><label>First Name*:</label> <%= text_field_tag "first_name_#{@post.id}", "", :class => "required", :width => "330" %></div>
             </li>
             <li>
-              <label>Last Name*:</label>
-              <div class="user_ri"><%= text_field_tag "last_name_#{@post.id}", "", :class => "required" %></div>
+              <div class="user_ri4"><label>Last Name*:</label> <%= text_field_tag "last_name_#{@post.id}", "", :class => "required" %></div>
             </li>
             <li>
-              <label>Email*:</label>
-              <div class="user_ri"><%= text_field_tag "email_#{@post.id}", "", :class => "required validate-email" %></div>
+              <div class="user_ri5"><label>Email*:</label> <%= text_field_tag "email_#{@post.id}", "", :class => "required validate-email" %></div>
             </li>
             <li>
-              <label>Tel*:</label>
-              <div class="user_ri"><%= text_field_tag "tel_#{@post.id}", "", :class => "required" %></div>
+              <div class="user_ri6"><label>Tel*:</label> <%= text_field_tag "tel_#{@post.id}", "", :class => "required" %></div>
             </li>
             <li>
               <label>Message:</label>
-              <div class="user_ri"><%= text_area_tag "message_#{@post.id}", nil, :rows => 10, :cols => 60 %></div>
+              <div class="user_ri7"> <%= text_area_tag "message_#{@post.id}", nil, :rows => 10, :cols => 60 %></div>
             </li>
             <li>
-              <div class="post_cbt">
+             
                 <!-- post  button -->
-                <a href="javascript:submit_rsvp(<%= @post.id %>)" title="Post" class="link_bt">
-                  <span class="ltred_l"></span>
-                  <span class="submit" style="padding-left: 110px"><a href="javascript:;" onclick="sendPSVP()">Send</a></span>
-                  <span class="error" style="padding: 10px;"></span>
-                  <span class="ltred_r"></span>
-                </a>
+                <div>
+                  <span class="submitRSVP"><a href="javascript:submit_rsvp(<%= @post.id %>);" onclick="sendPSVP()">Send</a></span>
+                  <span class="error" style="padding: 0px;"></span>
+               </div>
                 <!-- end post button -->
-              </div>
+            
             </li>
           </ul>
         </form>
@@ -70,7 +62,7 @@
     }
     $().ready(function() {
         $("#form_rsvp_<%= @post.id %>").validate({
-            errorLabelContainer: $("#form_rsvp_<%= @post.id %> div.error")
-        });
+        errorLabelContainer: $("#form_rsvp_<%= @post.id %> .error")
     });
+});
 </script>
