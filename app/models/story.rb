@@ -8,4 +8,9 @@ class Story < ActiveRecord::Base
 
   # Tracker
   acts_as_activity :user
+
+  # State
+  acts_as_state_machine :initial => :draft
+  state :draft
+  state :share
 end

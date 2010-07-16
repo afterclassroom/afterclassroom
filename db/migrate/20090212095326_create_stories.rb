@@ -5,6 +5,7 @@ class CreateStories < ActiveRecord::Migration
       t.string :title, :null => false
       t.text :content
       t.integer :count_view, :default => 0
+      t.string :state
 
       t.timestamps
     end

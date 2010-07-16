@@ -292,6 +292,12 @@ function goToByScroll(id){
     },'slow');
 }
 
+function resetForm(id) {
+    $('#'+id).each(function(){
+        this.reset();
+    });
+}
+
 // Pretty flash
 function hideFlashes() {
     $('#flash_notice, #flash_warning, #flash_error').fadeOut(1500);

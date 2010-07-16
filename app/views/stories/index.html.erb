@@ -12,6 +12,25 @@
             <%= render :partial => "menu" %>
           </div>
         </div>
+        <div class="stoEx" id="story_form_new"  style="display:none">
+          <% form_for :story, :url => user_stories_path(current_user), :html => {:id => "form_new"} do |f| %>
+            <%= hidden_field_tag "state", "", :id => "story_state" %>
+            <div class="stoExItem">
+              <div class="stoExItemL">Title*</div>
+              <div class="stoExItemR"><%= f.text_field :title %></div>
+            </div>
+            <div class="stoExItem">
+              <div class="stoExItemL">Your story</div>
+              <div class="stoExItemR"><%= f.text_area :content, :rows => 2, :cols => 20 %></div>
+            </div>
+            <div class="stoExBtm">
+              <div class="stoExSave"><a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();" >Save as a Draft</a></div>
+              <div class="stoExShare"><a href="javascript:;" onclick="$('#story_state').val('share');$('#form_new').submit();" >Share now</a></div>
+              <div class="stoExCan"><a href="javascript:;" onclick="resetForm('form_new');$('#story_form_new').toggle('slow');">Cancel</a></div>
+            </div>
+          <% end %>
+        </div>
+        <%= display_flash_messages %>
         <div id="friend_stories_list">
           <div class="slsTop">
             <div class="slsTopL">
@@ -89,4 +108,24 @@
 <script type="text/javascript" >
   formatLinkForPaginationURLFriend();
   formatLinkForPaginationURLMy();
+  (function($)
+  {
+    $('#story_content').wysiwyg({
+      controls: {
+        createLink : { visible : false },
+
+        insertImage : { visible : false },
+
+        separator05 : { visible : false },
+
+        separator06 : { visible : false },
+
+        h1 : { visible : false },
+        h2 : { visible : false },
+        h3 : { visible : false },
+
+        removeFormat : { visible : true }
+      }
+    });
+  })(jQuery);
 </script>

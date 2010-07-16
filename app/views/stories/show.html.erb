@@ -9,13 +9,8 @@
         <div class="slsShare">
           <div class="slsShareL">
             <span>You are here:</span>
-            <a href="#" class="slsShareLink">Share a Story</a>
-            <a href="#" class="slsShareLinkL">Friends share stories (8)</a>
-          </div>
-          <div class="slsShareR">
-            <a href="#" class="slsShareW">Write it</a>
-            <a href="#" class="slsShareS">Say it</a>
-            <a href="#" class="slsShareF">Film it</a>
+            <%= link_to "Share a Story", user_stories_path(current_user), :class => "slsShareLink" %>
+            <a href="#" class="slsShareLinkL">Detail</a>
           </div>
         </div>
         <div class="stoDet">

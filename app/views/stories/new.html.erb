@@ -1,28 +1,66 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Stories", :action_path => "#{stories_path}"} %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'submenu' %>
 <% end -%>
 
-<% content_for :tabs_inbox do -%>
-  <%= render :partial => 'shared/tabs_inbox' %>
-<% end -%>
-
-<div class="user_status_listing"><!--user_status_listing-->
-<!-- user-post-story -->
-  <div id="user-post-story">
-    <div id="share-story-text">
-      <h3>Write your story here...</h3>
-      <% form_for(@story) do |f| %>
-        <%= f.text_area :content, :rows => 8, :cols => 20 %>
-        <div id="pss-bt">
-          <input type="button" value="Cancel" class="grayround-bt cancel" onclick="document.location.href='<%= stories_path %>'">
-          <input type="submit" value="Create" class="grayround-bt update">
+<div class="slStoryL">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">Share a Story</div>
         </div>
-      <% end %>
+        <%= display_flash_messages %>
+        <div class="stoEx" id="story_form_new">
+          <% form_for @story, :url => user_stories_path(current_user), :html => {:id => "form_new"} do |f| %>
+            <%= hidden_field_tag "state", "", :id => "story_state" %>
+            <div class="stoExItem">
+              <div class="stoExItemL">Title*</div>
+              <div class="stoExItemR"><%= f.text_field :title %></div>
+            </div>
+            <div class="stoExItem">
+              <div class="stoExItemL">Your story</div>
+              <div class="stoExItemR"><%= f.text_area :content, :rows => 2, :cols => 20 %></div>
+            </div>
+            <div class="stoExBtm">
+              <div class="stoExSave"><a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();" >Save as a Draft</a></div>
+              <div class="stoExShare"><a href="javascript:;" onclick="$('#story_state').val('share');$('#form_new').submit();" >Share now</a></div>
+              <div class="stoExCan"><%= link_to "Cancel", user_stories_path(current_user) %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- #user-post-story	 -->
-
-</div> <!--user_status_listing-->
-
-<div class="app_add_on">
 </div>
+<div class="contMainR">
+  <!--Most Viewed-->
+  <%= render :partial => "most_viewed" %>
+  <!--Most Viewed-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
+
+<script type="text/javascript">
+  (function($)
+  {
+    $('#story_content').wysiwyg({
+      controls: {
+        createLink : { visible : false },
+
+        insertImage : { visible : false },
+
+        separator05 : { visible : false },
+
+        separator06 : { visible : false },
+
+        h1 : { visible : false },
+        h2 : { visible : false },
+        h3 : { visible : false },
+
+        removeFormat : { visible : true }
+      }
+    });
+  })(jQuery);
+</script>

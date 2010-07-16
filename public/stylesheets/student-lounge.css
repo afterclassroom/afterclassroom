@@ -5362,6 +5362,7 @@ a.itemFS:hover{
     padding:10px 20px;
     overflow:hidden;
     height:100%;
+    border-bottom:1px solid #E4E4E4;
 }
 .stoExItem{
     padding:3px 0px;

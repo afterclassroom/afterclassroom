@@ -98,13 +98,16 @@ class StoriesController < ApplicationController
   # story /stories
   # story /stories.xml
   def create
+    state = params[:state]
     @story = Story.new(params[:story])
     @story.user = current_user
-
+    
     respond_to do |format|
       if @story.save
+        @story.state = state
+        @story.save
         flash[:notice] = 'Story was successfully created.'
-        format.html { redirect_to(stories_url) }
+        format.html { redirect_to(user_stories_path(current_user)) }
         format.xml  { render :xml => @story, :status => :created, :location => @story }
       else
         format.html { render :action => "new" }
