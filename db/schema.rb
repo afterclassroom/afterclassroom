@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100629120747) do
+ActiveRecord::Schema.define(:version => 20100710015427) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -615,6 +615,19 @@ ActiveRecord::Schema.define(:version => 20100629120747) do
 
   create_table "teamup_categories", :force => true do |t|
     t.string "name", :default => "", :null => false
+  end
+
+  create_table "toolapps", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "playurl"
+    t.integer  "popular_rank"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "toolphoto_file_name"
+    t.string   "toolphoto_content_type"
+    t.integer  "toolphoto_file_size"
   end
 
   create_table "tutor_types", :force => true do |t|
