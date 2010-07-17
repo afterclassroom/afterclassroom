@@ -1,6 +1,5 @@
-# © Copyright 2009 AfterClassroom.com — All Rights Reserved
+# Defines named favorites for users that may be applied to objects in a polymorphic fashion.
 class Favorite < ActiveRecord::Base
-  # Relations
   belongs_to :user
-  belongs_to :post
+  belongs_to :favorable, :polymorphic => true
 end

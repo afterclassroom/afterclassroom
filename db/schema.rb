@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100629120747) do
+ActiveRecord::Schema.define(:version => 20100716162709) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20100629120747) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
-    t.string   "comment",                        :default => ""
+    t.text     "comment"
     t.datetime "created_at",                                     :null => false
     t.integer  "commentable_id",                 :default => 0,  :null => false
     t.string   "commentable_type", :limit => 15, :default => "", :null => false
@@ -80,7 +80,8 @@ ActiveRecord::Schema.define(:version => 20100629120747) do
 
   create_table "favorites", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "post_id"
+    t.string   "favorable_type", :limit => 30
+    t.integer  "favorable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -128,11 +129,6 @@ ActiveRecord::Schema.define(:version => 20100629120747) do
   create_table "friend_groups", :force => true do |t|
     t.string "name"
     t.string "label"
-  end
-
-  create_table "friend_groups_user_invites", :id => false, :force => true do |t|
-    t.integer "friend_group_id", :null => false
-    t.integer "user_invite_id",  :null => false
   end
 
   create_table "friend_in_groups", :force => true do |t|
@@ -288,6 +284,7 @@ ActiveRecord::Schema.define(:version => 20100629120747) do
     t.integer  "phoneappcategory_id", :null => false
     t.string   "name"
     t.string   "description"
+    t.string   "image"
     t.string   "price"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -593,10 +590,13 @@ ActiveRecord::Schema.define(:version => 20100629120747) do
   add_index "stats_ratings", ["rated_type", "rated_id"], :name => "index_stats_ratings_on_rated_type_and_rated_id"
 
   create_table "stories", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.text     "content",    :null => false
+    t.integer  "user_id",                                 :null => false
+    t.text     "content",                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.integer  "count_view",               :default => 0
+    t.string   "state",      :limit => 50
   end
 
   create_table "taggings", :force => true do |t|
@@ -615,6 +615,19 @@ ActiveRecord::Schema.define(:version => 20100629120747) do
 
   create_table "teamup_categories", :force => true do |t|
     t.string "name", :default => "", :null => false
+  end
+
+  create_table "toolapps", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "playurl"
+    t.integer  "popular_rank"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "toolphoto_file_name"
+    t.string   "toolphoto_content_type"
+    t.integer  "toolphoto_file_size"
   end
 
   create_table "tutor_types", :force => true do |t|
@@ -678,18 +691,23 @@ ActiveRecord::Schema.define(:version => 20100629120747) do
   create_table "user_wall_musics", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
-    t.string  "title"
+    t.string  "title",        :limit => 50
     t.text    "sub_content"
   end
 
   create_table "user_wall_photos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
+    t.string  "title"
+    t.text    "sub_content"
   end
 
   create_table "user_wall_videos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
+    t.string  "thumb"
+    t.string  "title"
+    t.text    "sub_content"
   end
 
   create_table "user_walls", :force => true do |t|
