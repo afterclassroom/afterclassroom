@@ -109,5 +109,33 @@ class LearningtoolsController < ApplicationController
     render :layout => false
   end
 
+  def learninglounge
+    if params[:id]
+      id = params[:id]
+
+      @pa = Toolapp.find(id)
+      @pa.popular_rank = @pa.popular_rank + 1
+      if @pa.save
+        #do something
+        puts "update successfully" + @pa.popular_rank.to_s
+      end
+    end
+  end
+
+  def info
+    if params[:id]
+      id = params[:id]
+      @pa = Toolapp.find(id)
+    end
+  end
+
+  def favorite
+    if params[:id]
+      id = params[:id]
+      @pa = Toolapp.find(id)
+    end
+  end
+
+
 
 end

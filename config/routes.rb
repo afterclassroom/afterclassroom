@@ -23,8 +23,10 @@ ActionController::Routing::Routes.draw do |map|
     :verifiedtab => :get,
     :recentlyaddedtab => :get,
     :seealltab => :get,
-    :pagingalltool => :get
-
+    :pagingalltool => :get,
+    :learninglounge => :get,
+    :info => :get,
+    :favorite => :get
 
   }
   map.resources :shoppings, :collection => {
