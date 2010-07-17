@@ -17,17 +17,18 @@
             <%= hidden_field_tag "state", "", :id => "story_state" %>
             <div class="stoExItem">
               <div class="stoExItemL">Title*</div>
-              <div class="stoExItemR"><%= f.text_field :title %></div>
+              <div class="stoExItemR"><%= f.text_field :title, :class => 'required' %></div>
             </div>
             <div class="stoExItem">
               <div class="stoExItemL">Your story</div>
-              <div class="stoExItemR"><%= f.text_area :content, :rows => 2, :cols => 20 %></div>
+              <div class="stoExItemR"><%= f.text_area :content, :rows => 2, :cols => 62 %></div>
             </div>
             <div class="stoExBtm">
               <div class="stoExSave"><a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();" >Save as a Draft</a></div>
               <div class="stoExShare"><a href="javascript:;" onclick="$('#story_state').val('share');$('#form_new').submit();" >Share now</a></div>
               <div class="stoExCan"><a href="javascript:;" onclick="resetForm('form_new');$('#story_form_new').toggle('slow');">Cancel</a></div>
             </div>
+            <div class="stoError" style="padding: 10px;"></div>
           <% end %>
         </div>
         <%= display_flash_messages %>
@@ -97,35 +98,50 @@
 </div>
 <div class="contMainR">
   <!--Most Viewed-->
-  <%= render :partial => "most_viewed" %>
+<%= render :partial => "most_viewed" %>
   <!--Most Viewed-->
 
   <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
+<%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
 
 <script type="text/javascript" >
-  formatLinkForPaginationURLFriend();
-  formatLinkForPaginationURLMy();
-  (function($)
-  {
-    $('#story_content').wysiwyg({
-      controls: {
-        createLink : { visible : false },
-
-        insertImage : { visible : false },
-
-        separator05 : { visible : false },
-
-        separator06 : { visible : false },
-
-        h1 : { visible : false },
-        h2 : { visible : false },
-        h3 : { visible : false },
-
-        removeFormat : { visible : true }
-      }
+    function submit(){
+        $("#form_new").submit();
+    }
+    $().ready(function() {
+        $("#form_new").validate({
+            errorLabelContainer: $("#form_new div.stoError")
+        });
     });
-  })(jQuery);
+    
+    formatLinkForPaginationURLFriend();
+    formatLinkForPaginationURLMy();
+    (function($)
+    {
+        $('#story_content').wysiwyg({
+            controls: {
+                createLink : { visible : false },
+
+                insertImage : { visible : false },
+
+                separator05 : { visible : false },
+
+                separator06 : { visible : false },
+
+                h1 : { visible : false },
+                h2 : { visible : false },
+                h3 : { visible : false },
+
+                removeFormat : { visible : true }
+            }
+        });
+    })(jQuery)
+
 </script>
+<style>
+  .stoError{
+    padding-top:40px;
+  }
+</style>

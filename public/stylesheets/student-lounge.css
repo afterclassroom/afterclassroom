@@ -5385,7 +5385,7 @@ a.itemFS:hover{
     border:1px #cecece solid;
 }
 .stoExItemR input{
-    width:525px;
+    width:527px;
     border:1px #cecece solid;
 }
 .stoExItemPri{
@@ -5452,6 +5452,10 @@ a.itemFS:hover{
 }
 .stoExBtm .stoExCan a:hover{
     background:url('/images/btm48Red.png') no-repeat left top;
+}
+.stoError  {
+    margin-left:65px;
+    margin-top:30px;
 }
 /******* Student Lounges Photo ************/
 .slStoryL .photoRow{

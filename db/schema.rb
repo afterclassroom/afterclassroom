@@ -9,7 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD:db/schema.rb
 ActiveRecord::Schema.define(:version => 20100716162709) do
+=======
+ActiveRecord::Schema.define(:version => 20100710015427) do
+>>>>>>> 81836f743752d696200a497e0a43f3937380de5b:db/schema.rb
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
