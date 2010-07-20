@@ -9,11 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD:db/schema.rb
 ActiveRecord::Schema.define(:version => 20100716162709) do
-=======
-ActiveRecord::Schema.define(:version => 20100710015427) do
->>>>>>> 81836f743752d696200a497e0a43f3937380de5b:db/schema.rb
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -288,8 +284,10 @@ ActiveRecord::Schema.define(:version => 20100710015427) do
     t.integer  "phoneappcategory_id", :null => false
     t.string   "name"
     t.string   "description"
-    t.string   "image"
     t.string   "price"
+    t.string   "playurl"
+    t.integer  "popular_rank"
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -594,13 +592,13 @@ ActiveRecord::Schema.define(:version => 20100710015427) do
   add_index "stats_ratings", ["rated_type", "rated_id"], :name => "index_stats_ratings_on_rated_type_and_rated_id"
 
   create_table "stories", :force => true do |t|
-    t.integer  "user_id",                                 :null => false
-    t.text     "content",                                 :null => false
+    t.integer  "user_id",                    :null => false
+    t.string   "title",      :default => "", :null => false
+    t.text     "content"
+    t.integer  "count_view", :default => 0
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title"
-    t.integer  "count_view",               :default => 0
-    t.string   "state",      :limit => 50
   end
 
   create_table "taggings", :force => true do |t|
@@ -695,7 +693,7 @@ ActiveRecord::Schema.define(:version => 20100710015427) do
   create_table "user_wall_musics", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
-    t.string  "title",        :limit => 50
+    t.string  "title"
     t.text    "sub_content"
   end
 

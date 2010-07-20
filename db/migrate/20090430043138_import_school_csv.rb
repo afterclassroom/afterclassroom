@@ -18,7 +18,7 @@ class ImportSchoolCsv < ActiveRecord::Migration
           type = "College"
           school_name = college
         end
-        
+
         country = Country.find_by_iso3(country_iso)
         state = State.find_by_name(state_name)
         city = City.find_or_create_by_country_id_and_state_id_and_name(country.id, state.id, city_name)
@@ -32,7 +32,7 @@ class ImportSchoolCsv < ActiveRecord::Migration
       end
     end
   end
-  
+
   def self.down
   end
 end
