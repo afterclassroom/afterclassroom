@@ -187,25 +187,27 @@ module ApplicationHelper
     render :partial => "shared/options", :locals => {:school => school, :department => department, :year => year, :over => over, :options => options}
   end
   
-  def show_favorite(post)
+  def show_favorite(type, item)
+    f_size = item.favoriting_users.size
     if !logged_in?
-      link_to_require_login("Favorite (#{post.favorites.size})")
-    elsif current_user.has_favorite?(post)
+      link_to_require_login("Favorite (#{f_size})")
+    elsif current_user.has_favorite?(item)
       str_favorited = "It`s already in your favourite list."
-      link_to("Favorite (#{post.favorites.size})", "javascript:;", :class => "vtip", :title => str_favorited)
+      link_to("Favorite (#{f_size})", "javascript:;", :class => "vtip", :title => str_favorited)
     else
-      link_to_remote "Favorite (#{post.favorites.size})", { :update => "post_favorite_#{post.id}", :url => {:controller => "posts", :action => "add_to_favorite", :post_id => post.id } }
+      link_to_remote "Favorite (#{f_size})", { :update => "item_favorite_#{item.id}", :url => {:controller => "favorites", :action => "add_to_favorite", :item_id => item.id, :type => type }, :method => "get" }
     end
   end
 
-  def show_favorite_in_detail(post)
+  def show_favorite_in_detail(type, item)
+    f_size = item.favoriting_users.size
     if !logged_in?
-      link_to_require_login("<span id='favorite_action'>Favorite (#{post.favorites.size})</span>")
-    elsif current_user.has_favorite?(post)
+      link_to_require_login("<span id='favorite_action'>Favorite (#{f_size})</span>")
+    elsif current_user.has_favorite?(item)
       str_favorited = "It`s already in your favourite list."
-      link_to("<span id='favorite_action'>Favorite (#{post.favorites.size})</span>", "javascript:;", :class => "vtip", :title => str_favorited)
+      link_to("<span id='favorite_action'>Favorite (#{f_size})</span>", "javascript:;", :class => "vtip", :title => str_favorited)
     else
-      link_to_remote "<span>Favorite (#{post.favorites.size})</span>", { :update => "post_favorite_#{post.id}", :url => {:controller => "posts", :action => "add_to_favorite_in_detail", :post_id => post.id } }
+      link_to_remote "<span>Favorite (#{f_size})</span>", { :update => "item_favorite_#{item.id}", :url => {:controller => "favorites", :action => "add_to_favorite_in_detail", :item_id => item.id, :type => type }, :method => "get" }
     end
   end
 

@@ -24,8 +24,6 @@ ActionController::Routing::Routes.draw do |map|
     :recentlyaddedtab => :get,
     :seealltab => :get,
     :pagingalltool => :get
-
-
   }
   map.resources :shoppings, :collection => {
     :mainpage => :get
@@ -173,8 +171,6 @@ ActionController::Routing::Routes.draw do |map|
     :report_abuse => :get,
     :create_report_abuse => :get,
     :delete_comment => :get,
-    :add_to_favorite => :get,
-    :add_to_favorite_in_detail => :get,
     :download => :get
   }
   map.resources :post_assignments, :collection => {

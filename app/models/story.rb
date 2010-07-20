@@ -6,6 +6,9 @@ class Story < ActiveRecord::Base
   # Comments
   acts_as_commentable
 
+  # Favorite
+  acts_as_favorite
+
   # Tracker
   acts_as_activity :user
 
