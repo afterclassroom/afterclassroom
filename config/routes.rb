@@ -23,10 +23,19 @@ ActionController::Routing::Routes.draw do |map|
     :verifiedtab => :get,
     :recentlyaddedtab => :get,
     :seealltab => :get,
+<<<<<<< HEAD:config/routes.rb
     :pagingalltool => :get
+=======
+    :pagingalltool => :get,
+    :learninglounge => :get,
+    :info => :get,
+    :favorite => :get
+
+>>>>>>> 0e5e76895598c6c7b2a54adf6f7616ceac471b9d:config/routes.rb
   }
   map.resources :shoppings, :collection => {
-    :mainpage => :get
+    :mainpage => :get,
+    :shoppingdetail => :get
   }
 
   map.resources :playgames, :collection => {

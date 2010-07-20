@@ -1,26 +1,20 @@
 <div class="topLearning">
   <div class="AftBe">
-    <div class="txtsignup1">Morbi ultrices congue aliquet</div>
+    <div class="txtsignup1"><%=h @pa.name %></div>
     <div class="btmBe"><a href="#">Become a Fan</a></div>
   </div>
   <div class="postdiv">
     <span class="RmenuRbtm2"><a href="#">Post</a></span>
   </div>
   <div class="menuRL">
+    <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">My Learning Tools Lounge</span></span></a></div>
     <div class="menuRItem">
-      <%= link_to content_tag(:span, ''+content_tag(:span, 'My Phone Lounge', :class => 'span2'), :class => 'span1'), :controller => 'phoneapps', :action => 'phonelounge', :id => @pa.id %>
-    </div>
-    <div class="menuRItem menuRselect">
-      <a href="#">
-        <span class="span1">
-          <span class="span2">Info</span>
-        </span>
-      </a>
+      <%= link_to content_tag(:span, ''+content_tag(:span, 'Info', :class => 'span2'), :class => 'span1'), :controller => 'learningtools', :action => 'info', :id => @pa.id %>
     </div>
     <div class="menuRItem">
-      <%= link_to content_tag(:span, ''+content_tag(:span, 'My Favorite', :class => 'span2'), :class => 'span1'), :controller => 'phoneapps', :action => 'favorite', :id => @pa.id %>
+      <%= link_to content_tag(:span, ''+content_tag(:span, 'My Favorite', :class => 'span2'), :class => 'span1'), :controller => 'learningtools', :action => 'favorite', :id => @pa.id %>
     </div>
-    <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Download this Apps</span></span></a></div>
+    <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Download this Learning Tool</span></span></a></div>
     <div class="menuRItemP"><a href="#">&nbsp;</a></div>
   </div>
 </div>
@@ -30,7 +24,7 @@
       <div class="col195in">
         <div class="demo">
           <div class="demoImg">
-            <%= link_to content_tag(:div, ''+image_tag(@pa.photo.url(:medium), :alt => '')), :controller => 'phoneapps', :action => 'phonelounge', :id => @pa.id %>
+            <%= link_to content_tag(:div, ''+image_tag(@pa.toolphoto.url(:medium), :alt => '')), :controller => 'learningtools', :action => 'learninglounge', :id => @pa.id %>
           </div>
           <div class="demoBtm"><a href="<%= @pa.playurl %>">Play a Demo</a></div>
         </div>
@@ -52,7 +46,7 @@
         <div class="learnUser">67,541, 274 monthly active users</div>
         <div class="learnFri"><a href="#">54 friends</a></div>
         <div class="learnCa">Category</div>
-        <div class="learnFri"><%=h @pa.phoneappcategory.name%></div>
+        <div class="learnFri"><a href="#">Learning Tools</a></div>
         <div class="thisLearn">*This learning tools was <strong>not</strong> developed by AfterClassroom.</div>
         <div class="userFeed"><a href="">User Feedback</a></div>
       </div>
@@ -105,50 +99,14 @@
   <div class="contMainL">
     <div class="col451 learnDet">
       <div class="col451in">
-        <div class="learnDetCont">
-          <h1 class="titleH1">About <%=h @pa.name %></h1>
+        <div class="learnDetimg">
+          <%= link_to content_tag(:div, ''+image_tag(@pa.toolphoto.url(:thumb), :alt => '')), :controller => 'learningtools', :action => 'learninglounge', :id => @pa.id %>
+        </div>
+        <div class="learnDetContR">
+          <div class="learnDetT"><a href="#"><%= @pa.name %></a></div>
           <div class="learnDetDes"><%=h @pa.description %>
           </div>
-          <div class="learnDis">
-            <div class="learnDis1">
-              <div class="learnDis2">
-                <div class="learnDisBtm"><a href="#">&nbsp;</a></div>
-                <div class="learnDisTitle"><a href="#">Visit the discussion forum for questions, updates, and bugs/help.</a></div>
-                <div class="learnDisInf"><a href="#">Do not post it bellow,</a> we cannot keep up with the my lounge so we will miss it and not respond</div>
-              </div>
-            </div>
-          </div>
-          <div class="friUse">
-            <div class="friUsetit">Friends using this Learning Tools</div>
-            <div class="friUseAll"><a href="#">See all</a></div>
-          </div>
-          <div class="friImg">
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic1.png"/></div></a>
-              <div class="friName"><a href="#">Rita Uyên</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic2.png"/></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic3.png"/></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic2.png"/></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic3.png"/></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImgLast">
-              <a href="#"><div><img src="/images/pictures/pic1.png"/></div></a>
-              <div class="friName"><a href="#">Emily Huynh</a></div>
-            </div>
-          </div>
-
+          <div class="learnDetDate">January 03, 2010 at 4:02 PM <a href="#">Report Spam</a></div>
         </div>
       </div>
     </div>

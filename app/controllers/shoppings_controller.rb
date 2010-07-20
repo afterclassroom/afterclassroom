@@ -7,4 +7,8 @@ class ShoppingsController < ApplicationController
     
   end
 
+  def shoppingdetail
+    
+  end
+
 end
