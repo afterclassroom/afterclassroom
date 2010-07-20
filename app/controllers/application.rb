@@ -32,6 +32,17 @@ class ApplicationController < ActionController::Base
     include Singleton
     include ActionView::Helpers::UrlHelper
   end
+
+  def object_with_type(type, id)
+    item = nil
+    case type
+    when "Post"
+      item = Post.find(id)
+    when "Story"
+      item = Story.find(id)
+    end
+    return item
+  end
   
   private
 

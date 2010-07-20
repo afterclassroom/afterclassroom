@@ -57,6 +57,9 @@ class User < ActiveRecord::Base
   # Comments
   acts_as_commentable
 
+  # Favorite
+  acts_as_favorite_user
+
   # Message
   has_private_messages
   
@@ -209,11 +212,6 @@ class User < ActiveRecord::Base
   def has_role?(role)
     list ||= self.roles.collect(&:name)
     list.include?(role.to_s) || list.include?('admin')
-  end
-
-  def has_favorite?(post)
-    list ||= self.favorites.collect(&:post_id)
-    list.include?(post.id)
   end
 
   def fans_recent_update
