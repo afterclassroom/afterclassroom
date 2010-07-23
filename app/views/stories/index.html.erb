@@ -107,14 +107,14 @@
 </div>
 
 <script type="text/javascript" >
-function submit(){
-    $("#form_new").submit();
-  }
-$().ready(function() {
-	$("#form_new").validate({
-		errorLabelContainer: $("#form_new div.stoError")
-	});
-});
+    function submit(){
+        $("#form_new").submit();
+    }
+    $().ready(function() {
+        $("#form_new").validate({
+            errorLabelContainer: $("#form_new div.stoError")
+        });
+    });
     formatLinkForPaginationURLFriend();
     formatLinkForPaginationURLMy();
     (function($)

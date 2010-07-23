@@ -15,7 +15,7 @@
             <%= hidden_field_tag "state", "", :id => "story_state" %>
             <div class="stoExItem">
               <div class="stoExItemL">Title*</div>
-              <div class="stoExItemR"><%= f.text_field :title %></div>
+              <div class="stoExItemR"><%= f.text_field :title, :class => 'required' %></div>
             </div>
             <div class="stoExItem">
               <div class="stoExItemL">Your story</div>
@@ -44,14 +44,16 @@
 </div>
 
 <script type="text/javascript">
-    function submitt(){
+    function submit(){
         $("#form_new").submit();
     }
     $().ready(function() {
-        $("#form_new").validate({
+        $("#form_new").validate(
+        {
             errorLabelContainer: $("#form_new div.stoError")
         });
     });
+
     (function($)
     {
         $('#story_content').wysiwyg({
