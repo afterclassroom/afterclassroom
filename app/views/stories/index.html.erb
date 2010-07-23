@@ -12,7 +12,8 @@
             <%= render :partial => "menu" %>
           </div>
         </div>
-        <div class="stoEx" id="story_form_new"  style="display:none">
+        <%= display_flash_messages %>
+        <div class="stoEx" id="story_form_new" style="display:none">
           <% form_for :story, :url => user_stories_path(current_user), :html => {:id => "form_new"} do |f| %>
             <%= hidden_field_tag "state", "", :id => "story_state" %>
             <div class="stoExItem">
@@ -31,7 +32,6 @@
             <div class="stoError" style="padding: 10px;"></div>
           <% end %>
         </div>
-        <%= display_flash_messages %>
         <div id="friend_stories_list">
           <div class="slsTop">
             <div class="slsTopL">

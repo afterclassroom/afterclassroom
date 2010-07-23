@@ -1,28 +1,70 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PhotosController < ApplicationController
+  layout "student_lounge"
+  
   before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
   # GET /photos
   # GET /photos.xml
   def index
+    arr_user_id = []
+    current_user.user_friends.collect {|f| arr_user_id << f.id}
+    cond = Caboose::EZ::Condition.new :photos do
+      user_id === arr_user_id
+    end
+    @my_photos = current_user.photos.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @friend_photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+  end
+
+  def friend_p
+    arr_user_id = []
+
+    if current_user.user_friends
+      current_user.user_friends.each do |friend|
+        arr_user_id << friend.id
+      end
+    end
+
     @search_name = ""
 
     if params[:search]
       @search_name = params[:search][:name]
-      content_search = @search_name
-      cond = Caboose::EZ::Condition.new :photos do
-        any{title =~ "%#{content_search}%"; description =~ "%#{content_search}%"} if content_search != ""
-      end
-      @photos = current_user.photos.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
-    else
-      @photos = current_user.photos.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @photos }
+    content_search = @search_name
+
+    cond = Caboose::EZ::Condition.new :photos do
+      user_id === arr_user_id
+      if content_search != ""
+        content =~ "%#{content_search}%"
+      end
     end
+
+    @photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+
+    render :layout => false
+  end
+
+  def my_p
+    @search_name = ""
+
+    if params[:search]
+      @search_name = params[:search][:name]
+    end
+
+    content_search = @search_name
+    id = current_user.id
+    cond = Caboose::EZ::Condition.new :photos do
+      user_id == id
+      if content_search != ""
+        content =~ "%#{content_search}%"
+      end
+    end
+
+    @photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+
+    render :layout => false
   end
 
   # GET /photos/1
