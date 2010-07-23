@@ -506,3 +506,59 @@ function formatLinkForPaginationURLMy() {
     });
 }
 //My Stories
+
+//My Photos
+function searchFriendPhotos(){
+    var form = $("#friend_photos_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html) {
+        $("#friend_photos_list").html(html);
+    });
+}
+
+function searchMyPhotos(){
+    var form = $("#my_photos_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html) {
+        $("#my_photos_list").html(html);
+    });
+}
+
+function formatLinkForPaginationURLFriendPhoto() {
+    var form = $("#friend_photos_search");
+    var url = form.attr("action");
+    $("div.friend_photos").find("a").each(function() {
+        var linkElement = $( this );
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+
+        linkElement.click(function() {
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchFriendStories();
+        });
+    });
+}
+
+function formatLinkForPaginationURLMyPhoto() {
+    var form = $("#my_photos_search");
+    var url = form.attr("action");
+    $("div.my_photos").find("a").each(function() {
+        var linkElement = $( this );
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+
+        linkElement.click(function() {
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchMyStories();
+        });
+    });
+}
+//My Photos
