@@ -22,7 +22,7 @@
             </div>
             <div class="stoExItem">
               <div class="stoExItemL">Your story</div>
-              <div class="stoExItemR"><%= f.text_area :content, :rows => 2, :cols => 62 %></div>
+              <div class="stoExItemR"><%= f.text_area :content, :rows => 2, :cols => 63 %></div>
             </div>
             <div class="stoExBtm">
               <div class="stoExSave"><a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();" >Save as a Draft</a></div>
@@ -107,15 +107,14 @@
 </div>
 
 <script type="text/javascript" >
-    function submit(){
-        $("#form_new").submit();
-    }
-    $().ready(function() {
-        $("#form_new").validate({
-            errorLabelContainer: $("#form_new div.stoError")
-        });
-    });
-    
+function submit(){
+    $("#form_new").submit();
+  }
+$().ready(function() {
+	$("#form_new").validate({
+		errorLabelContainer: $("#form_new div.stoError")
+	});
+});
     formatLinkForPaginationURLFriend();
     formatLinkForPaginationURLMy();
     (function($)
