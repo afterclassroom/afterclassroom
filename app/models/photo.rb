@@ -6,8 +6,8 @@ class Photo < ActiveRecord::Base
 
   # Attach
   has_attached_file :photo_attach,
-    :styles => { :medium => "300x300>",
-    :thumb => "100x100>" }
+    :styles => { :medium => "555x417>",
+    :thumb => "92x68>" }
   validates_attachment_content_type :photo_attach, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 
   # Comments

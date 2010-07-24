@@ -13,26 +13,51 @@
           </div>
         </div>
         <%= display_flash_messages %>
-        <div class="photoEx">
-          <div class="stoExItem">
-            <div class="stoExItemL">Photo album name</div>
-            <div class="stoExItemR"><input type="text" name="Text2"/></div>
-          </div>
-          <div class="stoExItem">
-            <div class="stoExItemL">Location</div>
-            <div class="stoExItemR">
-              <div class="phoExIn"><input type="text" name="Text2"/></div>
-              <div class="phoExBtm"><a href="#">Browse</a></div>
-              <div class="phoExMul">Multi-attachs (<a href="#">click here</a>)</div>
+        <div id="take_a_picture" style="display:none">
+          <div class="photoEx">
+            <div class="stoExItem">
+              <div class="stoExItemL">Photo album</div>
+              <div class="stoExItemR"><%= f.select :photo_album_id, @photo_albums.collect {|p| [p.id, p.value]} %></div>
+            </div>
+            <div class="stoExItem">
+              <div class="stoExItemL">Location</div>
+              <div class="stoExItemR">
+                <div class="phoExIn"><input type="text" name="Text2"/></div>
+                <div class="phoExBtm"><a href="#">Browse</a></div>
+              </div>
+            </div>
+            <div class="stoExItem">
+              <div class="stoExItemL">Description</div>
+              <div class="stoExItemR"><%= f.textarea :description %></div>
+            </div>
+            <div class="stoExBtm">
+              <div class="stoExCre"><a href="#">Create photo album</a></div>
+              <div class="stoExCan"><a href="javascript:;" onclick="$('#take_a_picture').toggle('slow');">Cancel</a></div>
             </div>
           </div>
-          <div class="stoExItem">
-            <div class="stoExItemL">Description</div>
-            <div class="stoExItemR"><textarea rows="2" cols="20" name="TextArea1"></textarea></div>
-          </div>
-          <div class="stoExBtm">
-            <div class="stoExCre"><a href="#">Create photo album</a></div>
-            <div class="stoExCan"><a href="#">Cancel</a></div>
+        </div>
+        <div id="create_a_photo" style="display:none">
+          <div class="photoEx">
+            <div class="stoExItem">
+              <div class="stoExItemL">Photo album name</div>
+              <div class="stoExItemR"><input type="text" name="Text2"/></div>
+            </div>
+            <div class="stoExItem">
+              <div class="stoExItemL">Location</div>
+              <div class="stoExItemR">
+                <div class="phoExIn"><input type="text" name="Text2"/></div>
+                <div class="phoExBtm"><a href="#">Browse</a></div>
+                <div class="phoExMul">Multi-attachs (<a href="#">click here</a>)</div>
+              </div>
+            </div>
+            <div class="stoExItem">
+              <div class="stoExItemL">Description</div>
+              <div class="stoExItemR"><textarea rows="2" cols="20" name="TextArea1"></textarea></div>
+            </div>
+            <div class="stoExBtm">
+              <div class="stoExCre"><a href="#">Create photo album</a></div>
+              <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_photo').toggle('slow');">Cancel</a></div>
+            </div>
           </div>
         </div>
         <div id="friend_photos_list">
@@ -69,7 +94,7 @@
             <div class="slsTopR">
               <!--Pagination-->
               <div class="assPage friend_photos">
-                <span class="numPage"><%= page_entries_info @ny_photos %></span>
+                <span class="numPage"><%= page_entries_info @my_photos %></span>
                 <%= will_paginate @my_photos %>
               </div>
               <!--Pagination-->
