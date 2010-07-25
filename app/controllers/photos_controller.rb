@@ -8,6 +8,7 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.xml
   def index
+    @photo_albums = current_user.photo_albums
     arr_user_id = []
     current_user.user_friends.collect {|f| arr_user_id << f.id}
     cond = Caboose::EZ::Condition.new :photos do
@@ -81,13 +82,8 @@ class PhotosController < ApplicationController
   # GET /photos/new
   # GET /photos/new.xml
   def new
-    @photo_albums = current_user.photo_albums.find(:all)
-    @photo_album_name = ""
-    if params[:photo_album_id]
-      photo_album_id = params[:photo_album_id]
-      photo_album = PhotoAlbum.find(photo_album_id)
-      @photo_album_name = photo_album.name
-    end
+    @photo_albums = current_user.photo_albums
+    photo_album_id = params[:photo_album_id]
     
     @photo = Photo.new
     @photo.photo_album_id = photo_album_id
