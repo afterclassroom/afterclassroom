@@ -14,10 +14,16 @@
         </div>
         <%= display_flash_messages %>
         <div id="take_a_picture" style="display:none">
+          <% form_for :photo, :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
           <div class="photoEx">
             <div class="stoExItem">
               <div class="stoExItemL">Photo album</div>
-              <div class="stoExItemR"><%= f.select :photo_album_id, @photo_albums.collect {|p| [p.id, p.value]} %></div>
+              <div class="stoExItemR" id="select_photo_album">
+                <% if @photo_albums.size > 0 %>
+                  <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.id, p.value]}, {}, {:style => "width:250px"} %>
+                <% end %>
+                <div class="phoExMul">Create a photo album (<a href="#">click here</a>)</div>
+              </div>
             </div>
             <div class="stoExItem">
               <div class="stoExItemL">Location</div>
@@ -28,13 +34,14 @@
             </div>
             <div class="stoExItem">
               <div class="stoExItemL">Description</div>
-              <div class="stoExItemR"><%= f.textarea :description %></div>
+              <div class="stoExItemR"><%= f.text_area :description %></div>
             </div>
             <div class="stoExBtm">
-              <div class="stoExCre"><a href="#">Create photo album</a></div>
+              <div class="stoExCre"><a href="#">Take picture</a></div>
               <div class="stoExCan"><a href="javascript:;" onclick="$('#take_a_picture').toggle('slow');">Cancel</a></div>
             </div>
           </div>
+          <% end %>
         </div>
         <div id="create_a_photo" style="display:none">
           <div class="photoEx">
