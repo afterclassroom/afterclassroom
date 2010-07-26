@@ -98,15 +98,6 @@ class PhotosController < ApplicationController
     @photo_albums = PhotoAlbum.find(:all)
     @photo = Photo.find(params[:id])
     @tag_list = @photo.tag_list.join(", ")
-    case @photo.who_can_see
-    when 0
-      @who_can_see_name = "Everyone"
-    when 1
-      @who_can_see_name = "Friends"
-    when 2
-      @who_can_see_name = "Private"
-    end
-    @photo_album_name = @photo.photo_album.name
   end
 
   # POST /photos
@@ -118,7 +109,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo.save
         flash[:notice] = 'Photo was successfully created.'
-        format.html { redirect_to(@photo) }
+        format.html { redirect_to :action => "index" }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
       else
         format.html { render :action => "new" }
@@ -159,9 +150,10 @@ class PhotosController < ApplicationController
   end
 
   def create_album
-    album_name = params["album_name"]
-    PhotoAlbum.create({:name => album_name, :user_id => current_user.id})
-    @photo_albums = current_user.photo_albums
+    photo_album = PhotoAlbum.new(params[:photo_album])
+    photo_album.user = current_user
+    photo_album.save
+    redirect_to :action => "index"
   end
   
   protected
