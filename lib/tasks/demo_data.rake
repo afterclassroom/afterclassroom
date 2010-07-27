@@ -33,6 +33,7 @@ namespace :db do
       create_demo_phoneapps
       create_demo_gameapps
       create_demo_toolapps
+      create_demo_shopping_subcategory
       
       # Exam schedule
       create_demo_posts_exam_schedules
@@ -663,4 +664,7 @@ def create_demo_toolapps
     papp.state = state_arr[rand(state_arr.size)]
     papp.save
   end
+end
+def create_demo_shopping_subcategory
+  
 end
