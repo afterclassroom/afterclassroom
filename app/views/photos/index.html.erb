@@ -14,63 +14,80 @@
         </div>
         <%= display_flash_messages %>
         <div id="take_a_picture" style="display:none">
-          <% form_for :photo, :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
-          <div class="photoEx">
-            <div class="stoExItem">
-              <div class="stoExItemL">Photo album</div>
-              <div class="stoExItemR" id="select_photo_album">
-                <% if @photo_albums.size > 0 %>
-                  <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.id, p.value]}, {}, {:style => "width:250px"} %>
-                <% end %>
-                <div class="phoExMul">Create a photo album (<a href="#">click here</a>)</div>
+          <% form_for :photo, :html => {:id => "form_photo", :name => "form_photo", :multipart => true } do |f| %>
+            <div class="photoEx">
+              <div class="stoExItem">
+                <div class="stoExItemL">Photo album</div>
+                <div class="stoExItemR" id="select_photo_album">
+                  <% if @photo_albums.size > 0 %>
+                    <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px"} %>
+                  <% end %>
+                  <div class="phoExMul">Create a photo album (<a href="#">click here</a>)</div>
+                </div>
+              </div>
+              <div class="stoExItem">
+                <div class="stoExItemL">Location</div>
+                <div class="stoExItemR">
+                  <div class="phoExIn"><%= f.file_field :photo_attach, :class => "required" %></div>
+                </div>
+              </div>
+              <div class="stoExItem">
+                <div class="stoExItemL">Title</div>
+                <div class="stoExItemR"><%= f.text_field :title %></div>
+              </div>
+              <div class="stoExItem">
+                <div class="stoExItemL">Description</div>
+                <div class="stoExItemR"><%= f.text_area :description %></div>
+              </div>
+              <div class="stoExItem">
+                <div class="stoExItemL">Tag line</div>
+                <div class="stoExItemR"><%= text_field_tag 'tag_list', "" %></div>
+              </div>
+              <div class="stoExBtm">
+                <div class="stoExCre"><a href="javascript:;" onclick="$('#form_photo').submit();">Take picture</a></div>
+                <div class="stoExCan"><a href="javascript:;" onclick="$('#take_a_picture').toggle('slow');">Cancel</a></div>
               </div>
             </div>
-            <div class="stoExItem">
-              <div class="stoExItemL">Location</div>
-              <div class="stoExItemR">
-                <div class="phoExIn"><input type="text" name="Text2"/></div>
-                <div class="phoExBtm"><a href="#">Browse</a></div>
-              </div>
-            </div>
-            <div class="stoExItem">
-              <div class="stoExItemL">Description</div>
-              <div class="stoExItemR"><%= f.text_area :description %></div>
-            </div>
-            <div class="stoExBtm">
-              <div class="stoExCre"><a href="#">Take picture</a></div>
-              <div class="stoExCan"><a href="javascript:;" onclick="$('#take_a_picture').toggle('slow');">Cancel</a></div>
-            </div>
-          </div>
           <% end %>
         </div>
         <div id="create_a_photo" style="display:none">
-          <div class="photoEx">
-            <div class="stoExItem">
-              <div class="stoExItemL">Photo album name</div>
-              <div class="stoExItemR"><input type="text" name="Text2"/></div>
-            </div>
-            <div class="stoExItem">
-              <div class="stoExItemL">Location</div>
-              <div class="stoExItemR">
-                <div class="phoExIn"><input type="text" name="Text2"/></div>
-                <div class="phoExBtm"><a href="#">Browse</a></div>
-                <div class="phoExMul">Multi-attachs (<a href="#">click here</a>)</div>
+          <% form_for :photo_album, :url => create_album_user_photos_path(current_user), :html => {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
+            <div class="photoEx">
+              <div class="stoExItem">
+                <div class="stoExItemL">Photo album name</div>
+                <div class="stoExItemR"><%= f.text_field :name %></div>
+              </div>
+              <div class="stoExItem">
+                <div class="stoExItemL">Location</div>
+                <div class="stoExItemR">
+                  <div class="phoExIn"><input type="text" name="Text2"/></div>
+                  <div class="phoExBtm"><a href="#">Browse</a></div>
+                  <div class="phoExMul">Multi-attachs (<a href="#">click here</a>)</div>
+                </div>
+              </div>
+              <div class="stoExItem">
+                <div class="stoExItemL">Description</div>
+                <div class="stoExItemR"><textarea rows="2" cols="20" name="TextArea1"></textarea></div>
+              </div>
+              <div class="stoExBtm">
+                <div class="stoExCre"><a href="javascript:;" onclick="$('#form_album').submit();">Create photo album</a></div>
+                <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_photo').toggle('slow');">Cancel</a></div>
               </div>
             </div>
-            <div class="stoExItem">
-              <div class="stoExItemL">Description</div>
-              <div class="stoExItemR"><textarea rows="2" cols="20" name="TextArea1"></textarea></div>
-            </div>
-            <div class="stoExBtm">
-              <div class="stoExCre"><a href="#">Create photo album</a></div>
-              <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_photo').toggle('slow');">Cancel</a></div>
-            </div>
-          </div>
+          <% end %>
         </div>
         <div id="friend_photos_list">
           <div class="slsTop">
             <div class="slsTopL">
               <div class="slsTopLT">Friends shared photos</div>
+              <div class="slsTopLB friLeft">
+                <div class="search">
+                  <% form_tag friend_p_user_photos_path(current_user), {:id => "friend_photos_search", :method => "GET"} do %>
+                    <div class="textS"><%= text_field_tag "search[name]", "" %></div>
+                    <div class="btmS"><a href="javascript:;" onclick="searchFriendPhotos();"><img src="/images/iconSF.png"/></a></div>
+                  <% end %>
+                </div>
+              </div>
             </div>
             <div class="slsTopR">
               <!--Pagination-->
@@ -97,6 +114,14 @@
           <div class="slsTop">
             <div class="slsTopL">
               <div class="slsTopLT">Your photos</div>
+              <div class="slsTopLB friLeft">
+                <div class="search">
+                  <% form_tag my_p_user_photos_path(current_user), {:id => "my_photos_search", :method => "GET"} do %>
+                    <div class="textS"><%= text_field_tag "search[name]", "" %></div>
+                    <div class="btmS"><a href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a></div>
+                  <% end %>
+                </div>
+              </div>
             </div>
             <div class="slsTopR">
               <!--Pagination-->

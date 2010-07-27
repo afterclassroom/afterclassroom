@@ -1,5 +1,4 @@
 <div class="photoItem">
-  <div class="photoImg"><a href="#"><div><img src="pictures/photo1.jpg"/></div></a></div>
-  <div class="photoName">Elephant Calves</div>
-  <div class="photoInf">25 photos</div>
+  <div class="photoImg"><%= link_to "<div>#{image_tag photo.photo_attach.url(:thumb)}</div>", user_photo_path(current_user, photo) %></div>
+  <div class="photoName"><%= photo.title %></div>
 </div>
