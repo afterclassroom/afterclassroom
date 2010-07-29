@@ -38,6 +38,7 @@ class StoriesController < ApplicationController
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
       if content_search != ""
+        title =~ "%#{content_search}%"
         content =~ "%#{content_search}%"
       end
     end
@@ -59,6 +60,7 @@ class StoriesController < ApplicationController
     cond = Caboose::EZ::Condition.new :stories do
       user_id == id
       if content_search != ""
+        title =~ "%#{content_search}%"
         content =~ "%#{content_search}%"
       end
     end

@@ -1,0 +1,17 @@
+<div class="col300 slStory">
+  <div class="col300in">
+    <h1 class="col300Title">On this photo</h1>
+    <div class="onThis">
+      <% @photo.favoriting_users.each do |u| %>
+        <div class="onThisL">
+          <div class="AsDcomImg"><%= link_to "<div>#{image_tag(u.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => u.id} %></div>
+          <div class="onThisN"><%= link_to u.full_name, {:controller => "profile", :action => "show_profile", :id => u.id} %></div>
+        </div>
+      <% end %>
+    </div>
+    <div class="onThisBtm">
+      <div class="stoPre"><a href="#"> </a></div>
+      <div class="stoNext"><a href="#"> </a></div>
+    </div>
+  </div>
+</div>
