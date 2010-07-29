@@ -666,7 +666,10 @@ def create_demo_toolapps
   end
 end
 def create_demo_shopping_subcategory
-  hash = {"Items For Sale" => ['item 1, item 2'], "Electronics" => ['elect 1', 'elect 2'], "Verhicles"=>['vehi 1','vehi 2'], "Health & Beauty"=>['hel 1', 'hel 2']}
+  hash = {"Items For Sale" => ['Musical Instruments', 'Tickets','Furniture','Clothers & Accessories'], 
+    "Electronics" => ['iPod & MP3 Players', 'DVD & Home Theater','Satellite Radio','Satellite & Cable TV'],
+    "Verhicles"=>['Cars','Motocycles','Parts & Accessories','Power Sports'], 
+    "Health & Beauty"=>['General Health', "Children's Health",'Drugs and Medication','Natural Medicine']}
 
 #  hash['my fire'].each do |school|
 #    puts school
@@ -675,9 +678,11 @@ def create_demo_shopping_subcategory
   Shoppingcategory.count.times do
     apcate = Shoppingcategory.find(count)
     count = count + 1
-    puts "hello world : "+apcate.name
     hash[apcate.name].each do |myval|
-      puts myval
+      papp = ShoppingSubcategory.create do |ap|
+        ap.shoppingcategory = apcate
+        ap.name = myval
+      end
     end
   end
   
