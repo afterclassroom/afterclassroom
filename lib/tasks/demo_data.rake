@@ -9,39 +9,39 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       # Users
-      departments_for_schools
-      create_demo_people
-      create_demo_friendship
-      create_demo_fan
-      create_demo_wall
+      #      departments_for_schools
+      #      create_demo_people
+      #      create_demo_friendship
+      #      create_demo_fan
+      #      create_demo_wall
 
       # Begin creating Posts data
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_posts_books
-      create_demo_posts_tutors
-      create_demo_posts_jobs
-      create_demo_posts_housings
-      create_demo_posts_parties
-      create_demo_posts_teamups
-      create_demo_posts_awarenesses
-      create_demo_posts_foods
-      create_demo_posts_qas
-      create_demo_phoneapps
-      create_demo_gameapps
-      create_demo_toolapps
+      #      create_demo_posts_assignments
+      #      create_demo_posts_tests
+      #      create_demo_posts_projects
+      #      create_demo_posts_exams
+      #      create_demo_posts_myx
+      #      create_demo_posts_books
+      #      create_demo_posts_tutors
+      #      create_demo_posts_jobs
+      #      create_demo_posts_housings
+      #      create_demo_posts_parties
+      #      create_demo_posts_teamups
+      #      create_demo_posts_awarenesses
+      #      create_demo_posts_foods
+      #      create_demo_posts_qas
+      #      create_demo_phoneapps
+      #      create_demo_gameapps
+      #      create_demo_toolapps
       create_demo_shopping_subcategory
       
-      # Exam schedule
-      create_demo_posts_exam_schedules
-      
-      # Messages data
-      create_demo_messages
-      # Story
-      create_demo_stories
+      #      # Exam schedule
+      #      create_demo_posts_exam_schedules
+      #
+      #      # Messages data
+      #      create_demo_messages
+      #      # Story
+      #      create_demo_stories
 
     end
     
@@ -666,5 +666,19 @@ def create_demo_toolapps
   end
 end
 def create_demo_shopping_subcategory
+  hash = {"Items For Sale" => ['item 1, item 2'], "Electronics" => ['elect 1', 'elect 2'], "Verhicles"=>['vehi 1','vehi 2'], "Health & Beauty"=>['hel 1', 'hel 2']}
+
+#  hash['my fire'].each do |school|
+#    puts school
+#  end
+  count = 1;
+  Shoppingcategory.count.times do
+    apcate = Shoppingcategory.find(count)
+    count = count + 1
+    puts "hello world : "+apcate.name
+    hash[apcate.name].each do |myval|
+      puts myval
+    end
+  end
   
 end

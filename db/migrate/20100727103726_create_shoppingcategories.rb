@@ -10,7 +10,7 @@ class CreateShoppingcategories < ActiveRecord::Migration
     end
     [
       ["Items For Sale"],
-      ["Electonics"],
+      ["Electronics"],
       ["Verhicles"],
       ["Health & Beauty"]
     ].each do |s|
