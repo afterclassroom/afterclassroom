@@ -303,11 +303,10 @@ ActiveRecord::Schema.define(:version => 20100716162709) do
   end
 
   create_table "photos", :force => true do |t|
-    t.integer  "user_id",                                  :null => false
-    t.integer  "photo_album_id",                           :null => false
+    t.integer  "user_id",                   :null => false
+    t.integer  "photo_album_id",            :null => false
     t.string   "title"
     t.text     "description"
-    t.integer  "who_can_see",               :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_attach_file_name"
