@@ -18,4 +18,12 @@ class Photo < ActiveRecord::Base
 
   #Tags
   acts_as_taggable
+
+  # Favorite
+  acts_as_favorite
+
+  # Named Scope
+  named_scope :with_limit, :limit => 5
+  named_scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
+  named_scope :most_view, :order => "count_view DESC"
 end

@@ -1,36 +1,84 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Photos", :action_path => "#{photos_path}"} %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'submenu' %>
 <% end -%>
 
-<% content_for :tabs_inbox do -%>
-  <%= render :partial => 'shared/tabs_inbox' %>
-<% end -%>
+<div class="slStoryL">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">
+            <span>You are here:</span>
+            <a href="#" class="slsShareLink">Photos</a>
+            <a href="#" class="slsShareLinkL">Friends shared photos (180)</a>
+          </div>
+          <div class="slsShareR">
+            <a href="#" class="slsShareW">Take a picture</a>
+            <a href="#" class="slsShareS">Create a Photo Album</a>
+          </div>
+        </div>
+        <div class="stoDet phoD">
+          <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@photo.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => @photo.user.id} %></div>
+          <div class="stoDetR">
+            <div class="stoDetRT"><%= @photo.user.full_name %>: <%= @photo.title %></div>
+            <div class="stoDetRB">Photo 1 of 50<a href="#" class="stoDetRBN">Huy Quach’s Photos</a><a href="#">HuyQuach’s Profile</a></div>
+            <div class="onThisBtm">
+              <div class="stoPre"><a href="#"> </a></div>
+              <div class="stoNext"><a href="#"> </a></div>
+            </div>
+          </div>
+        </div>
+        <div class="phoDetImg"><%= image_tag @photo.photo_attach.url(:medium) %></div>
+        <div class="AsDOr RePho"><div class="comPage">
+            <span class="compre"><a href="#"> </a></span>
+            <span class="comnext"><a href="#"> </a></span>
+          </div>
+          <h1 class="titleH1">Related Photos</h1>
 
-<p>
-  <b>User:</b>
-  <%=h @photo.user.full_name %>
-</p>
+          <div class="photoRow">
+            <% @photo.photo_album.photos.each do |p| %>
+              <% unless @photo == p %>
+                <div class="photoItem">
+                  <div class="photoImg"><%= link_to "<div>#{image_tag p.photo_attach.url(:thumb)}</div>", user_photo_path(p.user, p) %></div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <%= render :partial => "photo_action" %>
+        <div class="AsDcom" id="form_comment" style="display: none">
+          <h1 class="titleH1">Leave your comments</h1>
+          <% if logged_in? %>
+            <div class="AsDcomImg"><%= link_to "<div>#{image_tag(current_user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+            <div class="AsDcomIn">
+              <form name="form_comment" id="form_comment" action="" method="get">
+                <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
+                <div class="submit"><a href="javascript:;" onclick="send_comment('<%= @photo.id %>');" >Submit</a></div>
+              </form>
+            </div>
+          <% else %>
+            You must be <%= link_to "logged in", login_url %> to post a comment.
+          <% end %>
+        </div>
+        <div class="AsDcomL" id="list_comments">
+          <% if @photo.comments.size > 0 %>
+            <h1 class="titleH1"><a href="javascript:;">Comments (<%= @photo.comments.size %>)</a></h1>
+            <% @photo.comments.each do |c| %>
+              <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contMainR">
+  <!--Most Viewed-->
+  <%= render :partial => "on_this_photo" %>
+  <!--Most Viewed-->
 
-<p>
-  <b>Photo album:</b>
-  <%=h @photo.photo_album.name %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%=h @photo.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @photo.description %>
-</p>
-
-<p>
-  <b>Who can see:</b>
-  <%=h @photo.who_can_see %>
-</p>
-
-<%= image_tag @photo.photo_attach.url(:medium) %>
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>

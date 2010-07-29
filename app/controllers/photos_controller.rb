@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
     cond = Caboose::EZ::Condition.new :photos do
       user_id === arr_user_id
     end
-    @my_photos = current_user.photos.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @my_photos = current_user.photos.find(:all, :group => "photo_album_id", :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     @friend_photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
   end
 
@@ -38,7 +38,8 @@ class PhotosController < ApplicationController
     cond = Caboose::EZ::Condition.new :photos do
       user_id === arr_user_id
       if content_search != ""
-        content =~ "%#{content_search}%"
+        title =~ "%#{content_search}%"
+        description =~ "%#{content_search}%"
       end
     end
 
@@ -59,7 +60,8 @@ class PhotosController < ApplicationController
     cond = Caboose::EZ::Condition.new :photos do
       user_id == id
       if content_search != ""
-        content =~ "%#{content_search}%"
+        title =~ "%#{content_search}%"
+        description =~ "%#{content_search}%"
       end
     end
 

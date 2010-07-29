@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="stoDet">
-          <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@story.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+          <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@story.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => @story.user.id} %></div>
           <div class="stoDetR">
             <div class="stoDetRT"><%= @story.user.full_name %>: <%= @story.title %></div>
             <div class="stoDetRB"><a href="#" class="stoDetRBN">Huy Quach’s Story</a><a href="#">HuyQuach’s Profile</a></div>

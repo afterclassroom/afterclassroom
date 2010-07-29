@@ -5,6 +5,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.belongs_to :photo_album, :null => false
       t.string :title
       t.text :description
+      t.integer :count_view, :default => 0
 
       t.timestamps
     end
