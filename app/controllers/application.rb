@@ -40,6 +40,8 @@ class ApplicationController < ActionController::Base
       item = Post.find(id)
     when "Story"
       item = Story.find(id)
+    when "Photo"
+      item = Photo.find(id)
     end
     return item
   end

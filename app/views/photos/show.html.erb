@@ -10,13 +10,15 @@
           <div class="slsShareL">
             <span>You are here:</span>
             <a href="#" class="slsShareLink">Photos</a>
-            <a href="#" class="slsShareLinkL">Friends shared photos (180)</a>
+            <a href="#" class="slsShareLinkL">Friends shared photos</a>
           </div>
           <div class="slsShareR">
-            <a href="#" class="slsShareW">Take a picture</a>
-            <a href="#" class="slsShareS">Create a Photo Album</a>
+            <%= render :partial => "menu" %>
           </div>
         </div>
+        <%= display_flash_messages %>
+        <%= render :partial => "expand_add_photo" %>
+        <%= render :partial => "expand_create_photo_album" %>
         <div class="stoDet phoD">
           <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@photo.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => @photo.user.id} %></div>
           <div class="stoDetR">

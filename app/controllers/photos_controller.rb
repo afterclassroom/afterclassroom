@@ -73,6 +73,7 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.xml
   def show
+    @photo_albums = current_user.photo_albums
     @photo = Photo.find(params[:id])
 
     respond_to do |format|

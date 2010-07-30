@@ -19,7 +19,6 @@
                   <% if @photo_albums.size > 0 %>
                     <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px"} %>
                   <% end %>
-                  <div class="phoExMul">Create a photo album (<a href="#">click here</a>)</div>
                 </div>
               </div>
               <div class="stoExItem">
