@@ -4,7 +4,7 @@ class ShoppingsController < ApplicationController
   before_filter :login_required
 
   def mainpage
-    
+    @categories = Shoppingcategory.find(:all)
   end
 
   def shoppingdetail
