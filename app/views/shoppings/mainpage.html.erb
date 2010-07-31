@@ -1,9 +1,3 @@
-<% @categories.each do |ct| %>
-<h1><%= ct.name %></h1><br/><br/><br/><br/>
-  <% ct.shopping_subcategories.each do |subct| %>
-    <%= subct.name %><br/>
-  <% end %>
-<% end %>
 <div class="shopTop">
   <div class="shopTopL">
     <div class="shopTopLT">
@@ -22,58 +16,7 @@
 </div>
 <div class="contMain">
   <div class="contMainC">
-    <div class="col195 friLeft">
-      <div class="col195in">
-        <div class="search">
-          <div class="textS"><input type="text" name="Text1"></div>
-          <div class="btmS"><a href=""><img src="/images/iconSF.png"></a></div>
-        </div>
-        <div class="shopRitem">
-          <div class="shopRitemT">
-            <div class="shopRitemTLSale">Items For Sale</div>
-            <div class="shopRitemTR"><a href="#">Post</a></div>
-          </div>
-          <div class="shopRlist"><a href="#">Musical Instruments</a></div>
-          <div class="shopRlist"><a href="#">Tickets</a></div>
-          <div class="shopRlist"><a href="#">Furniture</a></div>
-          <div class="shopRlist"><a href="#">Clothers &amp; Accessories</a></div>
-          <div class="shopRmore"><a href="#">More</a></div>
-        </div>
-        <div class="shopRitem">
-          <div class="shopRitemT">
-            <div class="shopRitemTLElec">Electonics</div>
-            <div class="shopRitemTR"><a href="#">Post</a></div>
-          </div>
-          <div class="shopRlist"><a href="#">iPod &amp; MP3 Players</a></div>
-          <div class="shopRlist"><a href="#">DVD &amp; Home Theater</a></div>
-          <div class="shopRlist"><a href="#">Satellite Radio</a></div>
-          <div class="shopRlist"><a href="#">Satellite &amp; Cable TV</a></div>
-          <div class="shopRmore"><a href="#">More</a></div>
-        </div>
-        <div class="shopRitem">
-          <div class="shopRitemT">
-            <div class="shopRitemTLVerhi">Verhicles</div>
-            <div class="shopRitemTR"><a href="#">Post</a></div>
-          </div>
-          <div class="shopRlist"><a href="#">Cars</a></div>
-          <div class="shopRlist"><a href="#">Motocycles</a></div>
-          <div class="shopRlist"><a href="#">Parts &amp; Accessories</a></div>
-          <div class="shopRlist"><a href="#">Power Sports</a></div>
-          <div class="shopRmore"><a href="#">More</a></div>
-        </div>
-        <div class="shopRitem">
-          <div class="shopRitemT">
-            <div class="shopRitemTLHeath">Health &amp; Beauty</div>
-            <div class="shopRitemTR"><a href="#">Post</a></div>
-          </div>
-          <div class="shopRlist"><a href="#">General Health</a></div>
-          <div class="shopRlist"><a href="#">Children's Health</a></div>
-          <div class="shopRlist"><a href="#">Drugs and Medication</a></div>
-          <div class="shopRlist"><a href="#">Natural Medicine</a></div>
-          <div class="shopRmore"><a href="#">More</a></div>
-        </div>
-      </div>
-    </div>
+    <%= render :partial => "category_tab", :locals => {:categories => @categories} %>
   </div>
   <div class="contMainL">
     <div class="col451 Shopping">

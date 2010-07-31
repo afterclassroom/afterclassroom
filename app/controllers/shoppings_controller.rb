@@ -5,10 +5,26 @@ class ShoppingsController < ApplicationController
 
   def mainpage
     @categories = Shoppingcategory.find(:all)
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
+    puts params[:sub_category_name]
   end
 
   def shoppingdetail
     
   end
+
 
 end

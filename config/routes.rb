@@ -30,7 +30,7 @@ ActionController::Routing::Routes.draw do |map|
   }
   map.resources :shoppings, :collection => {
     :mainpage => :get,
-    :shoppingdetail => :get
+    :shoppingdetail => :get,
   }
 
   map.resources :playgames, :collection => {

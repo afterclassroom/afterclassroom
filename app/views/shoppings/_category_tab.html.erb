@@ -1,0 +1,31 @@
+<!--
+  the icon_array stores the class for the DIV tag of each sub_category on the left
+the length of this array is dependent on the size of table SHOPPING_CATEGORY
+for the PRODUCTION application, I suggest to change the css classname of these tab to be the same with
+the name of items stored in table SHOPPING_CATEGORY, so that we can load these classname dynamically
+-->
+<% icon_array = ["shopRitemTLSale", "shopRitemTLElec", "shopRitemTLVerhi", "shopRitemTLHeath"] %>
+
+<div class="col195 friLeft">
+  <div class="col195in">
+    <div class="search">
+      <div class="textS"><input type="text" name="Text1"></div>
+      <div class="btmS"><a href=""><img src="/images/iconSF.png"></a></div>
+    </div>
+    <% count = 0 %>
+    <% categories.each do |ct| %>
+      <div class="shopRitem">
+        <div class="shopRitemT">
+          <div class="<%= icon_array[count] %>">Items For Sale</div>
+          <% count = count + 1 %>
+          <div class="shopRitemTR"><a href="#">Post</a></div>
+        </div>
+        <% ct.shopping_subcategories.each do |subct| %>
+          <div class="shopRlist"><%= link_to subct.name, :controller => "shoppings", :action => "mainpage", :sub_category_name => subct.name%></div>
+        <% end %>
+        <div class="shopRmore"><a href="#">More</a></div>
+      </div><!--close div class=shopRitem-->
+    <% end %>
+
+  </div>
+</div>
