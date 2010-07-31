@@ -3093,17 +3093,19 @@ div.helpAdv2{
 .button {
   border:none;
   background:url('/images/proShare.gif') no-repeat top left;
-  padding:2px 11px;
+  padding:2px 8px;
   height:24px;
   color:#969696;
   cursor: pointer;
+  margin-right:6px;
 }
 .button:hover {
   border:none;
   background:url('/images/proShareH.gif') no-repeat top left;
-  padding:2px 11px;
+  padding:2px 8px;
   color:#fff;
   cursor: pointer;
+  margin-right:6px;
 }
 .buttonCom {
   border:none;
