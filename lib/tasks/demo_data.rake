@@ -33,7 +33,8 @@ namespace :db do
       #      create_demo_phoneapps
       #      create_demo_gameapps
       #      create_demo_toolapps
-      create_demo_shopping_subcategory
+#      create_demo_shopping_subcategory
+      create_demo_selling_item
       
       #      # Exam schedule
       #      create_demo_posts_exam_schedules
@@ -671,9 +672,6 @@ def create_demo_shopping_subcategory
     "Verhicles"=>['Cars','Motocycles','Parts & Accessories','Power Sports'], 
     "Health & Beauty"=>['General Health', "Children's Health",'Drugs and Medication','Natural Medicine']}
 
-#  hash['my fire'].each do |school|
-#    puts school
-#  end
   count = 1;
   Shoppingcategory.count.times do
     apcate = Shoppingcategory.find(count)
@@ -686,4 +684,21 @@ def create_demo_shopping_subcategory
     end
   end
   
+end
+def create_selling_item(user, shopping_subcategory)
+	item = SellingItem.create do |it|
+		it.user=user
+		it.shopping_subcategory = shopping_subcategory
+		it.name = Faker::Lorem.sentence
+	end
+end
+def create_demo_selling_item
+  allsub = ShoppingSubcategory.find(:all)
+  allsub.each do |sc|
+    50.times do
+      user = User.find(rand(User.count)+1)
+        create_selling_item(user,sc)
+#          puts "user == " + user.id.to_s+ " /// sub_cate == " + sc.name
+    end
+  end
 end

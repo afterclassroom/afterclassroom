@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_one :user_education, :dependent => :destroy
   has_one :user_employment, :dependent => :destroy
   has_many :posts, :dependent => :destroy
+  has_many :selling_items, :dependent => :destroy
   has_many :stories, :dependent => :destroy
   has_many :photo_albums, :dependent => :destroy
   has_many :music_albums, :dependent => :destroy
