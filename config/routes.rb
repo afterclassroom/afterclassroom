@@ -141,7 +141,7 @@ ActionController::Routing::Routes.draw do |map|
     
     # Photo Album
     users.resources :photo_albums
-    users.resources :photos, :collection => {:create_album => :post, :friend_p => :get, :my_p => :get,}
+    users.resources :photos, :collection => {:create_album => :post, :friend_p => :get, :my_p => :get, :upload_photo_block => :post}
   end
   
   # Sessions
