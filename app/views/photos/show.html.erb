@@ -31,20 +31,22 @@
           </div>
         </div>
         <div class="phoDetImg"><%= image_tag @photo.photo_attach.url(:medium) %></div>
-        <div class="AsDOr RePho"><div class="comPage">
-            <span class="compre"><a href="#"> </a></span>
-            <span class="comnext"><a href="#"> </a></span>
+        <div class="AsDOr RePho">
+          <div class="comPage">
+            <span class="compre"><a id="prev" href="#"></a></span>
+            <span class="comnext"><a id="next" href="#"></a></span>
           </div>
           <h1 class="titleH1">Related Photos</h1>
-
           <div class="photoRow">
-            <% @photo.photo_album.photos.each do |p| %>
-              <% unless @photo == p %>
-                <div class="photoItem">
-                  <div class="photoImg"><%= link_to "<div>#{image_tag p.photo_attach.url(:thumb)}</div>", user_photo_path(p.user, p) %></div>
-                </div>
-              <% end %>
-            <% end %>
+            <div class="photoItem">
+              <div id="myCarousel" class="myCarousel">
+                <% @photo.photo_album.photos.each do |p| %>
+                  <% unless @photo == p %>
+                    <%= link_to "<li>#{image_tag p.photo_attach.url(:thumb)}</li>", user_photo_path(p.user, p) %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
         <%= render :partial => "photo_action" %>
@@ -77,10 +79,39 @@
 </div>
 <div class="contMainR">
   <!--Most Viewed-->
-  <%= render :partial => "on_this_photo" %>
+<%= render :partial => "on_this_photo" %>
   <!--Most Viewed-->
 
   <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
+<%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        var carrousel = jQuery("#myCarousel").carrousel({
+            controls	: '',
+            effects	: 'reflection',
+            direction	: 'left',
+            easing	: 'easeOutBounce',
+            speed 	: 100,
+            dispTimeout : 2000,
+            scroll      : 1,
+            dispNumber	: 7,
+            auto	: false,
+            callbacks	: [giveCurrent],
+            api		: true
+        });
+        function giveCurrent() {
+            jQuery('#current').val(carrousel.getCurrent())
+        }
+        jQuery('#next').click(function () {
+            carrousel.next();
+            return false;
+        });
+        jQuery('#prev').click(function () {
+            carrousel.prev();
+            return false;
+        });
+        jQuery('.photoItem, #api').corner('10px');
+    });
+</script>
