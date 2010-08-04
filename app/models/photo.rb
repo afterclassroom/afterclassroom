@@ -1,4 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
+require 'mime/types'
 class Photo < ActiveRecord::Base
   # Relations
   belongs_to :user
@@ -26,4 +27,10 @@ class Photo < ActiveRecord::Base
   named_scope :with_limit, :limit => 5
   named_scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   named_scope :most_view, :order => "count_view DESC"
+
+  # Fix the mime types. Make sure to require the mime-types gem
+  def swfupload_file=(data)
+    data.content_type = MIME::Types.type_for(data.original_filename).to_s
+    self.photo_attach = data
+  end
 end

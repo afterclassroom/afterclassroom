@@ -30,21 +30,21 @@
         <div class="stoExCan"><a href="javascript:;" onclick="$('#take_a_picture').toggle('slow');">Cancel</a></div>
       </div>
     </div>
+  <!--////////////////////////////////////////////////////-->
+    <div id="swfupload-control">
+      <p>Upload upto 5 image files(jpg, png, gif), each having maximum size of 1MB</p>
+      <input type="button" id="button" />
+      <p id="queuestatus" ></p>
+      <ol id="log"></ol>
+    </div>
   <% end %>
-</div>
-
-<div id="swfupload-control">
-  <p>Upload upto 5 image files(jpg, png, gif), each having maximum size of 1MB</p>
-  <input type="button" id="button" />
-  <p id="queuestatus" ></p>
-  <ol id="log"></ol>
 </div>
 
 <script type="text/javascript">
 
   $(function(){
     $('#swfupload-control').swfupload({
-      upload_url: "<%= user_photos_path(current_user) %>",
+      upload_url: "<%= upload_photo_block_user_photos_path(current_user) %>",
       file_size_limit : "<%= 3.megabytes %>",
       file_types : "*.jpg;*.png;*.gif",
       file_types_description : "Image files",

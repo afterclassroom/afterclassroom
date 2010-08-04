@@ -30,7 +30,6 @@ javascripts:
   - jquery-carrousel
   - jquery-swfobject
   - jquery-customWindow
-  - jquery-DOMWindow
   - thickbox
   - vtip-min
   - ajaxupload

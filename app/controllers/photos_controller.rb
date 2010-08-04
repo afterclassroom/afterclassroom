@@ -2,7 +2,7 @@
 class PhotosController < ApplicationController
   layout "student_lounge"
 
-  session :cookie_only => false, :only => :upload_photo_block
+  protect_from_forgery :except => :upload_photo_block
   
   before_filter :login_required
   before_filter :require_current_user,
@@ -163,7 +163,10 @@ class PhotosController < ApplicationController
   end
 
   def upload_photo_block
-    
+    photo = Photo.new(:swfupload_file => params[:Filedata])
+    photo.photo_album_id = 3
+    photo.save
+    render :text => "Success"
   end
   
   protected
