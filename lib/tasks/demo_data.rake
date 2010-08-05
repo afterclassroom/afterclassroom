@@ -33,11 +33,8 @@ namespace :db do
       create_demo_phoneapps
       create_demo_gameapps
       create_demo_toolapps
-<<<<<<< HEAD
+
       # create_demo_shopping_subcategory
-=======
-      create_demo_shopping_subcategory
->>>>>>> 1c8f2137fd7ca27137d0b561cbffbf277057fa66
       create_demo_selling_item
       
       # Exam schedule

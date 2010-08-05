@@ -39,12 +39,14 @@
           <h1 class="titleH1">Related Photos</h1>
           <div class="photoRow">
             <div class="photoItem">
-              <div id="myCarousel" class="myCarousel">
-                <% @photo.photo_album.photos.each do |p| %>
-                  <% unless @photo == p %>
-                    <%= link_to "<li>#{image_tag p.photo_attach.url(:thumb)}</li>", user_photo_path(p.user, p) %>
+              <div class="photoImg1">
+                <div id="myCarousel" class="myCarousel">
+                  <% @photo.photo_album.photos.each do |p| %>
+                    <% unless @photo == p %>
+                      <%= link_to "<li>#{image_tag p.photo_attach.url(:thumb)}</li>", user_photo_path(p.user, p) %>
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
           </div>
@@ -96,7 +98,7 @@
             speed 	: 100,
             dispTimeout : 2000,
             scroll      : 1,
-            dispNumber	: 7,
+            dispNumber	: 6,
             auto	: false,
             callbacks	: [giveCurrent],
             api		: true
@@ -112,6 +114,19 @@
             carrousel.prev();
             return false;
         });
-        jQuery('.photoItem, #api').corner('10px');
     });
 </script>
+<style>
+  .photoImg1 div div div li{
+    background:url("/images/bgphoto.png") no-repeat scroll left top transparent;
+padding:3px;
+text-align:center;
+width:80px;
+  }
+  .photoImg1 img{
+  border:0 none;
+height:68px;
+width:92px;
+}
+ 
+  </style>
