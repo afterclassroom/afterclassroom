@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100716162709) do
+ActiveRecord::Schema.define(:version => 20100730102423) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -303,10 +303,11 @@ ActiveRecord::Schema.define(:version => 20100716162709) do
   end
 
   create_table "photos", :force => true do |t|
-    t.integer  "user_id",                   :null => false
-    t.integer  "photo_album_id",            :null => false
+    t.integer  "user_id",                                  :null => false
+    t.integer  "photo_album_id",                           :null => false
     t.string   "title"
     t.text     "description"
+    t.integer  "count_view",                :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_attach_file_name"
@@ -548,6 +549,14 @@ ActiveRecord::Schema.define(:version => 20100716162709) do
     t.string  "website"
   end
 
+  create_table "selling_items", :force => true do |t|
+    t.integer  "user_id",                 :null => false
+    t.integer  "shopping_subcategory_id", :null => false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id",       :default => "", :null => false
     t.text     "data"
@@ -572,6 +581,19 @@ ActiveRecord::Schema.define(:version => 20100716162709) do
 
   create_table "shipping_methods", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "shopping_subcategories", :force => true do |t|
+    t.integer  "shoppingcategory_id", :null => false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shoppingcategories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "states", :force => true do |t|
