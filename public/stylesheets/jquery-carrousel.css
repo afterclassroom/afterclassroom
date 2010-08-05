@@ -17,6 +17,11 @@
   .myCarousel li img {
     display:block;
   }
+  #myCarousel li img {
+    display:block;
+    border: 0 none;
+    width:80px;
+  }
   .carrousel {
     display:block;
     width: 75px;

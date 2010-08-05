@@ -1,10 +1,13 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PhotosController < ApplicationController
   layout "student_lounge"
+
+  protect_from_forgery :except => :upload_photo_block
   
   before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
+
   # GET /photos
   # GET /photos.xml
   def index
@@ -157,6 +160,13 @@ class PhotosController < ApplicationController
     photo_album.user = current_user
     photo_album.save
     redirect_to :action => "index"
+  end
+
+  def upload_photo_block
+    photo = Photo.new(:swfupload_file => params[:Filedata])
+    photo.photo_album_id = 3
+    photo.save
+    render :text => "Success"
   end
   
   protected

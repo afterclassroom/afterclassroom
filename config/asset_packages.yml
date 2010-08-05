@@ -17,7 +17,6 @@ javascripts:
   - json
   - jquery-galleriffic
   - jquery-opacityrollover
-  - jquery-1.3.2
 - student_lounge:
   - application
   - jquery
@@ -31,7 +30,6 @@ javascripts:
   - jquery-carrousel
   - jquery-swfobject
   - jquery-customWindow
-  - jquery-DOMWindow
   - thickbox
   - vtip-min
   - ajaxupload
@@ -39,7 +37,8 @@ javascripts:
   - json
   - jquery-galleriffic
   - jquery-opacityrollover
-  - jquery-1.3.2
+  - swfupload
+  - jquery-swfupload
 - admin:
   - application
   - jquery

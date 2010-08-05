@@ -5,6 +5,7 @@
     <title>:: <%= configatron.site_name %> ::</title>
     <%= stylesheet_link_merged :student_lounge %>
     <%= javascript_include_merged :student_lounge %>
+    <%= javascript_include_tag :swf_upload %>
     <%= javascript_include_tag 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'juggernaut/swfobject' %>
     <%= juggernaut :debug => false, :client_id => current_user.login if logged_in? %>
     <%= feedback_includes %>
