@@ -18,9 +18,10 @@
     display:block;
   }
   #myCarousel li img {
+    border:0 none;
     display:block;
-    border: 0 none;
-    width:80px;
+    margin-left:auto;
+    margin-right:auto;
   }
   .carrousel {
     display:block;
@@ -48,3 +49,13 @@
   .carrousel_1276333863588_div {
     width: 75px;
   }
+  .photoImg1 div div div li{
+    background:url("/images/bgphoto.png") no-repeat scroll left top transparent;
+    height:74px;
+    text-align:center;
+    width:98px;
+  }
+  .photoImg1 img{
+    border:0 none;
+  }
+
