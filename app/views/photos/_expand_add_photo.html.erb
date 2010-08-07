@@ -30,77 +30,58 @@
         <div class="stoExCan"><a href="javascript:;" onclick="$('#take_a_picture').toggle('slow');">Cancel</a></div>
       </div>
     </div>
-  <!--////////////////////////////////////////////////////-->
-    <div id="swfupload-control">
-      <p>Upload upto 5 image files(jpg, png, gif), each having maximum size of 1MB</p>
-      <input type="button" id="button" />
-      <p id="queuestatus" ></p>
-      <ol id="log"></ol>
+
+    <div id="divStatus">0 Files Uploaded</div>
+    <div>
+      <span id="spanButtonPlaceHolder"></span>
     </div>
+    <div id="divFileProgressContainer" style="height: 75px;"></div>
+    <div id="thumbnails"></div>
   <% end %>
 </div>
+<script type='text/javascript'>
+  var swfu;
 
-<script type="text/javascript">
+  window.onload = function () {
+    swfu = new SWFUpload({
+      upload_url : '<%= upload_photo_block_user_photos_path(current_user) -%>?_swfupload_demo_session=<%= u session.session_id %>',
+      flash_url : '/flash/swfupload.swf',
 
-  $(function(){
-    $('#swfupload-control').swfupload({
-      upload_url: "<%= upload_photo_block_user_photos_path(current_user) %>",
-      file_size_limit : "<%= 3.megabytes %>",
+      // Button settings
+      button_image_url: "/images/TestImageNoText_65x29.png",	// Relative to the Flash file
+      button_width: "65",
+      button_height: "29",
+      button_placeholder_id: "spanButtonPlaceHolder",
+      button_text: '<span class="theFont">Hello</span>',
+      button_text_style: ".theFont { font-size: 16; }",
+      button_text_left_padding: 12,
+      button_text_top_padding: 3,
+
+      file_size_limit : '3 MB',
       file_types : "*.jpg;*.png;*.gif",
       file_types_description : "Image files",
       file_upload_limit : 5,
-      flash_url : "/flash/swfupload.swf",
-      button_image_url : '/images/btmBro.jpg',
-      button_width : 114,
-      button_height : 29,
-      button_placeholder : $('#button')[0],
-      debug: false
-    })
-    .bind('fileQueued', function(event, file){
-      var listitem='<li id="'+file.id+'" >'+
-        'File: <em>'+file.name+'</em> ('+Math.round(file.size/1024)+' KB) <span class="progressvalue" ></span>'+
-        '<div class="progressbar" ><div class="progress" ></div></div>'+
-        '<p class="status" >Pending</p>'+
-        '<span class="cancel" >&nbsp;</span>'+
-        '</li>';
-      $('#log').append(listitem);
-      $('li#'+file.id+' .cancel').bind('click', function(){
-        var swfu = $.swfupload.getInstance('#swfupload-control');
-        swfu.cancelUpload(file.id);
-        $('li#'+file.id).slideUp('fast');
-      });
-      // start the upload since it's queued
-      $(this).swfupload('startUpload');
-    })
-    .bind('fileQueueError', function(event, file, errorCode, message){
-      alert('Size of the file '+file.name+' is greater than limit');
-    })
-    .bind('fileDialogComplete', function(event, numFilesSelected, numFilesQueued){
-      $('#queuestatus').text('Files Selected: '+numFilesSelected+' / Queued Files: '+numFilesQueued);
-    })
-    .bind('uploadStart', function(event, file){
-      $('#log li#'+file.id).find('p.status').text('Uploading...');
-      $('#log li#'+file.id).find('span.progressvalue').text('0%');
-      $('#log li#'+file.id).find('span.cancel').hide();
-    })
-    .bind('uploadProgress', function(event, file, bytesLoaded){
-      //Show Progress
-      var percentage=Math.round((bytesLoaded/file.size)*100);
-      $('#log li#'+file.id).find('div.progress').css('width', percentage+'%');
-      $('#log li#'+file.id).find('span.progressvalue').text(percentage+'%');
-    })
-    .bind('uploadSuccess', function(event, file, serverData){
-      var item=$('#log li#'+file.id);
-      item.find('div.progress').css('width', '100%');
-      item.find('span.progressvalue').text('100%');
-      var pathtofile='<a href="uploads/'+file.name+'" target="_blank" >view &raquo;</a>';
-      item.addClass('success').find('p.status').html('Done!!! | '+pathtofile);
-    })
-    .bind('uploadComplete', function(event, file){
-      // upload has completed, try the next one in the queue
-      $(this).swfupload('startUpload');
-    })
+      custom_settings : {
+        progressTarget : "fsUploadProgress"
+      },
 
-  });
+      file_queue_error_handler : fileQueueError,
+      file_dialog_complete_handler : fileDialogComplete,
+      upload_progress_handler : uploadProgress,
+      upload_error_handler : uploadError,
+      upload_success_handler : uploadSuccess,
+      upload_complete_handler : uploadComplete,
 
+      post_params : {
+        authenticity_token : '<%= u form_authenticity_token -%>',
+      },
+
+      custom_settings : {
+        upload_target : 'divFileProgressContainer',
+      },
+
+      debug: true
+
+    });
+  };
 </script>

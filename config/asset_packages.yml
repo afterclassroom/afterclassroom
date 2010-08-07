@@ -38,7 +38,7 @@ javascripts:
   - jquery-galleriffic
   - jquery-opacityrollover
   - swfupload
-  - jquery-swfupload
+  - swfupload-handlers
 - admin:
   - application
   - jquery
