@@ -2,7 +2,8 @@
 class PhotosController < ApplicationController
   layout "student_lounge"
 
-  protect_from_forgery :except => :upload_photo_block
+  session :cookie_only => false, :only => :upload_photo_block
+  skip_before_filter :verify_authenticity_token, :only => [:upload_photo_block]
   
   before_filter :login_required
   before_filter :require_current_user,
@@ -115,10 +116,11 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo.save
         flash[:notice] = 'Photo was successfully created.'
-        format.html { redirect_to :action => "index" }
+        format.html { render :text => "Success" }
+        #format.html { redirect_to :action => "index" }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
       else
-        format.html { render :action => "new" }
+        #format.html { render :action => "new" }
         format.xml  { render :xml => @photo.errors, :status => :unprocessable_entity }
       end
     end
@@ -164,6 +166,7 @@ class PhotosController < ApplicationController
 
   def upload_photo_block
     photo = Photo.new(:swfupload_file => params[:Filedata])
+    photo.user = current_user
     photo.photo_album_id = 3
     photo.save
     render :text => "Success"
