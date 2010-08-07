@@ -5,6 +5,8 @@ class CreateSellingItems < ActiveRecord::Migration
       t.belongs_to :user, :null => false
       t.belongs_to :shopping_subcategory, :null => false
       t.string :name
+      t.string :description
+      t.string :price
 
 
       t.timestamps
