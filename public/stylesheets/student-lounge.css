@@ -490,14 +490,15 @@
 }
 .photoImg div{
   background:url('/images/bgphoto.png') no-repeat left top;
-  padding:3px;
+  padding-top:3px;
+  width:98px;
+  height:74px;
+  text-align:center;
 }
 .photoImg a:hover div{
   background:url('/images/bgphotoH.png') no-repeat left top;
 }
 .photoImg img{
-  width:92px;
-  height:68px;
   border:0px;
 }
 .photoName{
@@ -5522,18 +5523,18 @@ div.navigation a.next:hover {
 }
 .mostPho .photoImg div{
   background:url('/images/bgphotoR.png') no-repeat left top;
-  padding:3px;
+  height:59px;
+  width:83px;
 }
 .mostPho .photoImg a:hover div{
   background:url('/images/bgphotoRH.jpg') no-repeat left top;
 }
 .mostPho .photoImg img{
-  width:77px;
-  height:53px;
   border:0px;
 }
 .mostPho .photoItem{
-  width:83px;
+  height:75px;
+  width:93px;
   float:left;
 }
 .mostPho .photoCen{
