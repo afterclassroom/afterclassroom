@@ -9,41 +9,41 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       # Users
-      departments_for_schools
-      create_demo_people
-      create_demo_friendship
-      create_demo_fan
-      create_demo_wall
+      #      departments_for_schools
+      #      create_demo_people
+      #      create_demo_friendship
+      #      create_demo_fan
+      #      create_demo_wall
 
       # Begin creating Posts data
-      create_demo_posts_assignments
-      create_demo_posts_tests
-      create_demo_posts_projects
-      create_demo_posts_exams
-      create_demo_posts_myx
-      create_demo_posts_books
-      create_demo_posts_tutors
-      create_demo_posts_jobs
-      create_demo_posts_housings
-      create_demo_posts_parties
-      create_demo_posts_teamups
-      create_demo_posts_awarenesses
-      create_demo_posts_foods
-      create_demo_posts_qas
-      create_demo_phoneapps
-      create_demo_gameapps
-      create_demo_toolapps
+      #      create_demo_posts_assignments
+      #      create_demo_posts_tests
+      #      create_demo_posts_projects
+      #      create_demo_posts_exams
+      #      create_demo_posts_myx
+      #      create_demo_posts_books
+      #      create_demo_posts_tutors
+      #      create_demo_posts_jobs
+      #      create_demo_posts_housings
+      #      create_demo_posts_parties
+      #      create_demo_posts_teamups
+      #      create_demo_posts_awarenesses
+      #      create_demo_posts_foods
+      #      create_demo_posts_qas
+      #      create_demo_phoneapps
+      #      create_demo_gameapps
+      #      create_demo_toolapps
 
       # create_demo_shopping_subcategory
       create_demo_selling_item
       
       # Exam schedule
-      create_demo_posts_exam_schedules
+      #      create_demo_posts_exam_schedules
       
       # Messages data
-      create_demo_messages
+      #      create_demo_messages
       # Story
-      create_demo_stories
+      #      create_demo_stories
 
     end
     
@@ -687,19 +687,40 @@ def create_demo_shopping_subcategory
   
 end
 def create_selling_item(user, shopping_subcategory)
+
+  #  mytestphoto = Dir.glob("public/images/pictures/carBig1.jpg").shuffle
+
+  mytestphoto = Dir.glob("public/images/pictures/99347_920.jpg").shuffle
+
   item = SellingItem.create do |it|
     it.user=user
     it.shopping_subcategory = shopping_subcategory
     it.name = Faker::Lorem.sentence
+    it.description = Faker::Lorem.paragraphs
+    it.price = "4,250"
+
+    #perform the random from 1 to 10 to upload the number of images for each selling item
+    countvar = rand(4) + 1
+
+    countvar.times {
+      it.selling_item_images.build(:selling_item_photo => uploaded_file(mytestphoto, 'image/jpg'))
+
+    }
+
+    #    countvar.times do
+    #      it.selling_item_image = SellingItemImage.create do |it_img|
+    #        it_img.selling_item_photo = uploaded_file(mytestphoto, 'image/png')
+    #      end
+    #    end
   end
 end
+
 def create_demo_selling_item
   allsub = ShoppingSubcategory.find(:all)
   allsub.each do |sc|
     50.times do
       user = User.find(rand(User.count)+1)
       create_selling_item(user,sc)
-      #          puts "user == " + user.id.to_s+ " /// sub_cate == " + sc.name
     end
   end
 end
