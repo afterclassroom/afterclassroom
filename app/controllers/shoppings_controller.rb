@@ -11,7 +11,10 @@ class ShoppingsController < ApplicationController
 			@friends_id << friend.id
 		end
     
-    @listallitems = SellingItem.friend_item(@friends_id)
+
+    params[:page] = 1
+    @listallitems = SellingItem.paginated_item_conditions_with_friend(params,@friends_id)
+
     #PHAN CONG VIEC TIEP THEO CAN LAM DOI VOI MUC NAY LA`:
     #1> DA LO.C DUOC CAC SELLING_ITEM THUOC VE FRIEND CUA CURRENT_USER
     #2> CAN LO.C LAI 1 LAN NUA DE NHAN DUOC CAC SELLING_ITEM THUOC VE SELECTED_SUB_CATEGORY
