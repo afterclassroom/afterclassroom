@@ -688,9 +688,9 @@ def create_demo_shopping_subcategory
 end
 def create_selling_item(user, shopping_subcategory)
 
-  #  mytestphoto = Dir.glob("public/images/pictures/carBig1.jpg").shuffle
+  mytestphoto = Dir.glob("public/images/pictures/carBig1.png").shuffle
 
-  mytestphoto = Dir.glob("public/images/pictures/99347_920.jpg").shuffle
+  #  mytestphoto = Dir.glob("public/images/pictures/99347_920.jpg").shuffle
 
   item = SellingItem.create do |it|
     it.user=user
@@ -703,7 +703,7 @@ def create_selling_item(user, shopping_subcategory)
     countvar = rand(4) + 1
 
     countvar.times {
-      it.selling_item_images.build(:selling_item_photo => uploaded_file(mytestphoto, 'image/jpg'))
+      it.selling_item_images.build(:selling_item_photo => uploaded_file(mytestphoto, 'image/png'))
 
     }
 
