@@ -4,11 +4,11 @@ class PhotosController < ApplicationController
 
   session :cookie_only => false, :only => :upload_photo_block
   skip_before_filter :verify_authenticity_token, :only => [:upload_photo_block]
-  
+  skip_before_filter :login_required
   before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
-
+  
   # GET /photos
   # GET /photos.xml
   def index
@@ -165,10 +165,10 @@ class PhotosController < ApplicationController
   end
 
   def upload_photo_block
-    photo = Photo.new(:swfupload_file => params[:Filedata])
+    photo = Photo.new(params[:photo])
     photo.user = current_user
-    photo.photo_album_id = 3
-    photo.save
+    photo.swfupload_file = params[:Filedata]
+    photo.save!
     render :text => "Success"
   end
   
