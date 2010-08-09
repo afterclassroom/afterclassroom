@@ -14,10 +14,28 @@ most_viewed_photos = Photo.with_users(u).with_limit.most_view
     <h1 class="col300Title">Most viewed photos</h1>
     <div class="photoRow">
       <% most_viewed_photos.each do |p| %>
-        <div class="photoItem">
-          <div class="photoImg"><%= link_to "<div>#{image_tag p.photo_attach.url(:thumb)}</div>", user_photo_path(p.user, p) %></div>
+        <div class="photoItemm">
+          <div class="photoImge"><%= link_to "<div>#{image_tag p.photo_attach.url(:thumb)}</div>", user_photo_path(p.user, p) %></div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+<style>
+  .photoImge div {
+    background:url("/images/bgphoto.png") no-repeat left top;
+    height:74px;
+    padding-top:3px;
+    text-align:center;
+    width:98px;
+  }
+  .photoImge img {
+    border:0 none;
+  }
+  .photoItemm{
+    float:left;
+    height:90px;
+    width:120px;
+    padding-left:20px;
+  }
+</style>
