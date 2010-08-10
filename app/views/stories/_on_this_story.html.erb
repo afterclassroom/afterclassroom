@@ -27,7 +27,6 @@
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $('div.navigation').css({'width' : '300px', 'float' : 'left'});
-        $('div.content').css('display', 'block');
         var onMouseOutOpacity = 3.67;
         $('#thumbs ul.thumbs li, div.navigation a.pageLink').opacityrollover({
             mouseOutOpacity:   onMouseOutOpacity,
@@ -43,13 +42,13 @@
             enableBottomPager:         false,
             imageContainerSel:         '#slideshow',
             captionContainerSel:       '#caption',
-            defaultTransitionDuration: 900,         
+            defaultTransitionDuration: 900,
             onPageTransitionOut:       function(callback) {
                 this.fadeTo('fast', 1.0, callback);
             },
             onPageTransitionIn:        function() {
                 var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
-                var nextPageLink = this.find('a.next').css('visibility', 'hidden');              
+                var nextPageLink = this.find('a.next').css('visibility', 'hidden');
                 if (this.displayedPage > 0)
                     prevPageLink.css('visibility', 'visible');
                 var lastPage = this.getNumPages() - 1;
