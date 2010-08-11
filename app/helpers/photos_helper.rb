@@ -30,10 +30,6 @@ module PhotosHelper
     end
 
     return_data=""
-    return_data+=javascript_include_tag "swf/swfupload.js"
-    return_data+=javascript_include_tag "swf/swfupload.queue.js"
-    return_data+=javascript_include_tag "swf/fileprogress.js"
-    return_data+=javascript_include_tag "swf/handlers.js"
     return_data+=<<-EOS
   <script type="text/javascript">
     var swfu;

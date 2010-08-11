@@ -1,3 +1,4 @@
+<% if @photo.favoriting_users.size > 0 %>
 <div class="col300 slStory">
   <div class="col300in">
     <h1 class="col300Title">On this photo</h1>
@@ -19,7 +20,6 @@
             <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -68,3 +68,4 @@
     });
   });
 </script>
+<% end %>
