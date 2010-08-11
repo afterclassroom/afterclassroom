@@ -36,6 +36,9 @@ class ShoppingsController < ApplicationController
     puts params[:sub_category_name]
   end
 
+  def categorynavigation
+  end
+
   def shoppingdetail
     
   end
