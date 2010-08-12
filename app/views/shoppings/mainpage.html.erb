@@ -2,6 +2,10 @@
 
 <%= @listallitems.size %>
 
+Size of List of category: <%= @categories.size %> <br/>
+<% @categories.each do |cg| %>
+  <%= cg.name %>
+<% end %>
 <div class="shopTop">
   <div class="shopTopL">
     <div class="shopTopLT">
