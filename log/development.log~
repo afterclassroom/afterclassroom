@@ -1,1283 +1,213 @@
 Starting the New Relic Agent.
 NewRelic Agent Developer Mode enabled.
 To view performance information, go to http://localhost:3000/newrelic
-New Relic RPM Agent 2.10.6 Initialized: pid = 1143
+New Relic RPM Agent 2.10.6 Initialized: pid = 1405
 Agent Log found in /usr/home/datnt/testac/afterclassroom/log/newrelic_agent.log
-  [4;36;1mSQL (0.141928)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.016542)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mSQL (0.053480)[0m   [0;1mSHOW TABLES[0m
-  [4;35;1mSQL (0.130919)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.001478)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000665)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.032182)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.005413)[0m   [0mSELECT version FROM schema_migrations[0m
 
 
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:01:56) [GET]
+Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 11:25:25) [GET]
   Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;36;1mSQL (0.000291)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Create (0.000781)[0m   [0mINSERT INTO `sessions` (`data`, `created_at`, `updated_at`, `session_id`, `user_id`, `last_url_visited`) VALUES('BAh7BzoRZ2VvX2xvY2F0aW9uMCIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxl\ncjo6Rmxhc2g6OkZsYXNoSGFzaHsABjoKQHVzZWR7AA==\n', '2010-08-13 10:02:03', '2010-08-13 10:02:03', 'e579a9a9448dbed1616b167c5162f2f0', NULL, NULL)[0m
-  [4;36;1mSQL (0.001769)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000265)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000519)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:02:03', `last_url_visited` = 'http://localhost:3000/shoppings/mainpage' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.002016)[0m   [0mCOMMIT[0m
-Redirected to http://localhost:3000/session/new
-Filter chain halted as [:login_required] rendered_or_redirected.
-Completed in 7.52020 (0 reqs/sec) | DB: 0.41811 (5%) | 302 Found [http://localhost/shoppings/mainpage]
-Rendered _box_includes (0.00051)
+  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"1"}
+  [4;36;1mSQL (0.000526)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.002415)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:25:30', `data` = 'BAh7CjoQeW91cl9zY2hvb2xpbzoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
+  [4;36;1mSQL (0.003983)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000429)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000434)[0m   [0;1mCOMMIT[0m
+  [4;35;1mUser Columns (0.019145)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.009928)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+  [4;35;1mShoppingcategory Load (0.000615)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
+  [4;36;1mShoppingSubcategory Columns (0.001468)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
+  [4;35;1mShoppingSubcategory Load (0.000711)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.`id` = 1) [0m
+Rendering template within layouts/student_lounge
+Rendering shoppings/cat_nav
+  [4;36;1mShoppingcategory Columns (0.001263)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
+  [4;35;1mShoppingSubcategory Load (0.000599)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
+  [4;36;1mShoppingSubcategory Load (0.000536)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
+  [4;35;1mShoppingSubcategory Load (0.000527)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
+  [4;36;1mShoppingSubcategory Load (0.000453)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
+Rendered shoppings/_category_tab (0.04404)
+Rendered shared/_login_sl (0.00105)
+Rendered shared/_menu_main_sl (0.09837)
+Rendered shared/_footer (0.00004)
+Rendered shared/_footer_menu_in (0.00086)
+Completed in 5.09645 (0 reqs/sec) | Rendering: 0.35989 (7%) | DB: 0.10117 (1%) | 200 OK [http://localhost/shoppings/cat_nav?subid=1]
+Rendered _box_includes (0.00044)
 Rendered _box_header (0.00007)
 Rendered _box_disabled (0.00003)
-Rendered _box (0.00923)
+Rendered _box (0.00883)
 
 
-Processing SessionsController#new (for 127.0.0.1 at 2010-08-13 10:02:04) [GET]
+Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 11:25:31) [GET]
   Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"new", "controller"=>"sessions"}
-  [4;36;1mSQL (0.000476)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001158)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:02:10', `data` = 'BAh7CDoOcmV0dXJuX3RvIhgvc2hvcHBpbmdzL21haW5wYWdlIgpmbGFzaElD\nOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAGOgpAdXNl\nZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.004553)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000415)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000866)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:02:10', `last_url_visited` = 'http://localhost:3000/session/new' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.002231)[0m   [0mCOMMIT[0m
-Rendering template within layouts/application
-Rendering sessions/new
-Rendered sessions/_welcome (0.00009)
-Rendered sessions/_benefit (0.00090)
-Rendered shared/_login (0.00143)
-Rendered shared/_menu_main (0.12676)
-  [4;36;1mPostCategory Columns (0.029334)[0m   [0;1mSHOW FIELDS FROM `post_categories`[0m
-  [4;35;1mPostCategory Load (0.000532)[0m   [0mSELECT SQL_NO_CACHE * FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostAssignment') LIMIT 1[0m
-  [4;36;1mPostCategory Load (0.000564)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `post_categories` [0m
-Rendered shared/_search_posts (0.00442)
-Rendered shared/_footer (0.00004)
-Completed in 6.69181 (0 reqs/sec) | Rendering: 0.27500 (4%) | DB: 0.04309 (0%) | 200 OK [http://localhost/session/new]
-Rendered _box_includes (0.00041)
-Rendered _box_header (0.00006)
-Rendered _box_disabled (0.00003)
-Rendered _box (0.00237)
-
-
-Processing ApplicationController#index (for 127.0.0.1 at 2010-08-13 10:02:12) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {}
-
-
-ActionController::RoutingError (No route matches "/stylesheets/jquery-multiselect.css" with {:method=>:get}):
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/routing/route_set.rb:384:in `recognize'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:148:in `handle_request'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/servers/mongrel.rb:64
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/server.rb:39
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    script/server:3
-
-Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (not_found)
-
-
-Processing ApplicationController#index (for 127.0.0.1 at 2010-08-13 10:02:13) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {}
-
-
-ActionController::RoutingError (No route matches "/session/pictures/pic6.png" with {:method=>:get}):
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/routing/route_set.rb:384:in `recognize'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:148:in `handle_request'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/servers/mongrel.rb:64
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/server.rb:39
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    script/server:3
-
-Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (not_found)
-
-
-Processing SessionsController#create (for 127.0.0.1 at 2010-08-13 10:05:28) [POST]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"authenticity_token"=>"fb7ea4aa8290c5448cea33d044d9ed14c1359816", "action"=>"create", "controller"=>"sessions", "password"=>"foobar", "email"=>"michael@example.com"}
-  [4;35;1mSQL (0.000361)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001232)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:05:29', `data` = 'BAh7CDoOcmV0dXJuX3RvIhgvc2hvcHBpbmdzL21haW5wYWdlOhFnZW9fbG9j\nYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxh\nc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.003498)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000210)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000677)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:05:29', `last_url_visited` = 'http://localhost:3000/session' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.001739)[0m   [0;1mCOMMIT[0m
-Cookie set: auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT
-  [4;35;1mUser Load (0.029598)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`email` = 'michael@example.com') AND (users.state = 'active') LIMIT 1[0m
-  [4;36;1mUser Columns (0.002967)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mSQL (0.006226)[0m   [0mBEGIN[0m
-  [4;36;1mSQL (0.004736)[0m   [0;1mCOMMIT[0m
-Cookie set: auth_token=; path=/
-Redirected to http://localhost:3000/shoppings/mainpage
-  [4;35;1mSchool Columns (0.019894)[0m   [0mSHOW FIELDS FROM `schools`[0m
-  [4;36;1mSchool Load (0.006479)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `schools` WHERE (`schools`.`id` = 106) [0m
-Completed in 1.54523 (0 reqs/sec) | DB: 0.08441 (5%) | 302 Found [http://localhost/session]
-Rendered _box_includes (0.00040)
-Rendered _box_header (0.00006)
-Rendered _box_disabled (0.00004)
-Rendered _box (0.00455)
-
-
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:05:30) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;35;1mSQL (0.000589)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001162)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:05:36', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewY6\nC25vdGljZSIbTG9nZ2VkIGluIHN1Y2Nlc3NmdWxseQY6CkB1c2VkewY7CVQ6\nEWdlb19sb2NhdGlvbjA=\n', `user_id` = 5 WHERE `id` = 4[0m
-  [4;35;1mSQL (0.003923)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000466)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001384)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:05:36', `last_url_visited` = 'http://localhost:3000/shoppings/mainpage' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.002744)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.002652)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.000599)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;35;1mShoppingcategory Load (0.021900)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;36;1mUser Load (0.056537)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mUser Load (0.001107)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mSellingItem Load (0.080375)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;35;1mSellingItem Columns (0.001839)[0m   [0mSHOW FIELDS FROM `selling_items`[0m
-  [4;36;1mSQL (0.001258)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
+  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"1"}
+  [4;35;1mSQL (0.000603)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001407)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:25:37', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
+  [4;35;1mSQL (0.003541)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.000464)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000572)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.004952)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000526)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+  [4;36;1mShoppingcategory Load (0.000488)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
+  [4;35;1mShoppingSubcategory Columns (0.001397)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
+  [4;36;1mShoppingSubcategory Load (0.000431)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.`id` = 1) [0m
 Rendering template within layouts/student_lounge
-Rendering shoppings/mainpage
-  [4;35;1mShoppingcategory Columns (0.001264)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.020744)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;35;1mShoppingSubcategory Columns (0.001283)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000597)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;35;1mShoppingSubcategory Load (0.000426)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;36;1mShoppingSubcategory Load (0.000422)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.07895)
-Rendered shared/_login_sl (0.00075)
-Rendered shared/_menu_main_sl (0.09519)
-Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00081)
-Completed in 7.43950 (0 reqs/sec) | Rendering: 0.86373 (11%) | DB: 0.20437 (2%) | 200 OK [http://localhost/shoppings/mainpage]
-Rendered _box_includes (0.00044)
-Rendered _box_header (0.00005)
-Rendered _box_disabled (0.00003)
-Rendered _box (0.00241)
-
-
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:06:31) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;35;1mSQL (0.000900)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001358)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:06:33', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.003777)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000413)[0m   [0;1mBEGIN[0m
-  [4;35;1mSQL (0.000494)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.006186)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000989)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;36;1mShoppingcategory Load (0.000469)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;35;1mUser Load (0.001203)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mUser Load (0.001114)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mSellingItem Load (0.002330)[0m   [0mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;36;1mSellingItem Columns (0.001294)[0m   [0;1mSHOW FIELDS FROM `selling_items`[0m
-  [4;35;1mSQL (0.001036)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/mainpage
-  [4;36;1mShoppingcategory Columns (0.001604)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000742)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;36;1mShoppingSubcategory Columns (0.001289)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000480)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;36;1mShoppingSubcategory Load (0.000438)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;35;1mShoppingSubcategory Load (0.000498)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.03343)
-Rendered shared/_login_sl (0.00065)
-Rendered shared/_menu_main_sl (0.00942)
-Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00108)
-Completed in 2.30867 (0 reqs/sec) | Rendering: 0.96231 (41%) | DB: 0.02774 (1%) | 200 OK [http://localhost/shoppings/mainpage]
-Rendered _box_includes (0.00037)
-Rendered _box_header (0.00006)
-Rendered _box_disabled (0.00017)
-Rendered _box (0.00235)
-
-
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:11:45) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;36;1mSQL (0.003273)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001186)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:11:52', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.003909)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000198)[0m   [0mBEGIN[0m
-  [4;36;1mSQL (0.000250)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.002617)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.000544)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;35;1mShoppingcategory Load (0.000533)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;36;1mUser Load (0.001228)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mUser Load (0.001083)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mSellingItem Load (0.002912)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;35;1mSellingItem Columns (0.001411)[0m   [0mSHOW FIELDS FROM `selling_items`[0m
-  [4;36;1mSQL (0.001108)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/mainpage
-  [4;35;1mShoppingcategory Columns (0.002608)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000538)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;35;1mShoppingSubcategory Columns (0.001357)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
-
-
-ActionView::TemplateError (undefined local variable or method `cgsubcg' for #<ActionView::Base:0x2b4c0d94>) on line #9 of shoppings/mainpage.html.erb:
-6: <% @categories.each do |cg| %>
-7:   <%= cg.name %><br/><br/>
-8:   <% cg.shopping_subcategories.each do |subcg| %>
-9:     <%= cgsubcg.name %><br/><br/>
-10:   <% end %>
-11: 
-12: 
-
-    app/views/shoppings/mainpage.html.erb:9:in `_run_erb_47app47views47shoppings47mainpage46html46erb'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_collection.rb:277:in `method_missing_without_paginate'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_proxy.rb:171:in `method_missing'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_proxy.rb:171:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_proxy.rb:171:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_proxy.rb:171:in `method_missing'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_collection.rb:277:in `method_missing_without_paginate'
-    vendor/plugins/will_paginate/lib/will_paginate/finder.rb:167:in `method_missing'
-    app/views/shoppings/mainpage.html.erb:8:in `_run_erb_47app47views47shoppings47mainpage46html46erb'
-    app/views/shoppings/mainpage.html.erb:6:in `each'
-    app/views/shoppings/mainpage.html.erb:6:in `_run_erb_47app47views47shoppings47mainpage46html46erb'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `execute'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template.rb:35:in `render_without_trace_View_path_without_extension_r_2_view_template_format_extension_Rendering'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:319:in `render'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:314:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template.rb:22:in `render_template'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:248:in `render_file'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1112:in `render_for_file'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:845:in `render_with_no_layout'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/layout.rb:251:in `render_without_benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:51:in `render_without_juggernaut'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:51:in `render_without_juggernaut'
-    vendor/plugins/juggernaut/lib/juggernaut.rb:151:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1161:in `default_render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1167:in `perform_action_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:579:in `call_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/query_cache.rb:8:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
-    vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `process_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/session_management.rb:130:in `process_without_query_review'
-    vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:389:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:149:in `handle_request'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/servers/mongrel.rb:64
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/server.rb:39
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    script/server:3
-
-Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
-Rendered _box_includes (0.00042)
-Rendered _box_header (0.00008)
-Rendered _box_disabled (0.00003)
-Rendered _box (0.00218)
-
-
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:12:21) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;36;1mSQL (0.002308)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000976)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:12:22', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.003941)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000420)[0m   [0mBEGIN[0m
-  [4;36;1mSQL (0.000257)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.002124)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.000526)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;35;1mShoppingcategory Load (0.000697)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;36;1mUser Load (0.001279)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mUser Load (0.001028)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mSellingItem Load (0.002377)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;35;1mSellingItem Columns (0.001425)[0m   [0mSHOW FIELDS FROM `selling_items`[0m
-  [4;36;1mSQL (0.001395)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/mainpage
-  [4;35;1mShoppingcategory Columns (0.001257)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000541)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;35;1mShoppingSubcategory Columns (0.001177)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000805)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;35;1mShoppingSubcategory Load (0.000746)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;36;1mShoppingSubcategory Load (0.000649)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.00736)
-Rendered shared/_login_sl (0.00058)
-Rendered shared/_menu_main_sl (0.00927)
-Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00079)
-Completed in 2.08449 (0 reqs/sec) | Rendering: 0.77471 (37%) | DB: 0.02970 (1%) | 200 OK [http://localhost/shoppings/mainpage]
-Rendered _box_includes (0.00033)
-Rendered _box_header (0.00005)
-Rendered _box_disabled (0.00002)
-Rendered _box (0.00220)
-
-
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:14:44) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;35;1mSQL (0.001001)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001162)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:14:46', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.004235)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000469)[0m   [0;1mBEGIN[0m
-  [4;35;1mSQL (0.000492)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.004181)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000494)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;36;1mShoppingcategory Load (0.000468)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;35;1mUser Load (0.001366)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mUser Load (0.001327)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mSellingItem Load (0.002289)[0m   [0mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;36;1mSellingItem Columns (0.001640)[0m   [0;1mSHOW FIELDS FROM `selling_items`[0m
-  [4;35;1mSQL (0.001077)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/mainpage
-  [4;36;1mShoppingcategory Columns (0.001399)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000528)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;36;1mShoppingSubcategory Columns (0.001213)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000549)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;36;1mShoppingSubcategory Load (0.000428)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;35;1mShoppingSubcategory Load (0.000393)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.00766)
+Rendering shoppings/cat_nav
+  [4;35;1mShoppingcategory Columns (0.001277)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
+  [4;36;1mShoppingSubcategory Load (0.001587)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
+  [4;35;1mShoppingSubcategory Load (0.000507)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
+  [4;36;1mShoppingSubcategory Load (0.000546)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
+  [4;35;1mShoppingSubcategory Load (0.000437)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
+Rendered shoppings/_category_tab (0.02263)
 Rendered shared/_login_sl (0.00005)
-Rendered shared/_menu_main_sl (0.00683)
+Rendered shared/_menu_main_sl (0.00969)
 Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00077)
-Completed in 2.15392 (0 reqs/sec) | Rendering: 0.84985 (39%) | DB: 0.02590 (1%) | 200 OK [http://localhost/shoppings/mainpage]
+Rendered shared/_footer_menu_in (0.00091)
+Completed in 6.54331 (0 reqs/sec) | Rendering: 0.13446 (2%) | DB: 0.02017 (0%) | 200 OK [http://localhost/shoppings/cat_nav?subid=1]
 Rendered _box_includes (0.00001)
-Rendered _box_header (0.00009)
-Rendered _box_disabled (0.00002)
-Rendered _box (0.00214)
+Rendered _box_header (0.00006)
+Rendered _box_disabled (0.00003)
+Rendered _box (0.00236)
 
 
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:16:45) [GET]
+Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 11:25:50) [GET]
   Session ID: e579a9a9448dbed1616b167c5162f2f0
   Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;36;1mSQL (0.000477)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000960)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:16:51', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.002615)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000419)[0m   [0mBEGIN[0m
-  [4;36;1mSQL (0.000409)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.005405)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.001858)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;35;1mShoppingcategory Load (0.000811)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;36;1mUser Load (0.001148)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mUser Load (0.001271)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mSellingItem Load (0.003012)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;35;1mSellingItem Columns (0.001348)[0m   [0mSHOW FIELDS FROM `selling_items`[0m
-  [4;36;1mSQL (0.001188)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
+  [4;36;1mSQL (0.000439)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001327)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:25:52', `data` = 'BAh7CjoQeW91cl9zY2hvb2xpbzoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
+  [4;36;1mSQL (0.003827)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000393)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000862)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:25:52', `last_url_visited` = 'http://localhost:3000/shoppings/mainpage' WHERE `id` = 4[0m
+  [4;35;1mSQL (0.001710)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.002243)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.000604)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+  [4;36;1mShoppingcategory Load (0.002485)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
+  [4;35;1mUser Load (0.001845)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
+  [4;36;1mUser Load (0.001161)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
+  [4;35;1mSellingItem Load (0.004088)[0m   [0mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
+  [4;36;1mSellingItem Columns (0.001347)[0m   [0;1mSHOW FIELDS FROM `selling_items`[0m
+  [4;35;1mSQL (0.001144)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
 Rendering template within layouts/student_lounge
 Rendering shoppings/mainpage
-  [4;35;1mShoppingcategory Columns (0.001164)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000482)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;35;1mShoppingSubcategory Columns (0.001177)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.002353)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;35;1mShoppingSubcategory Load (0.000404)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;36;1mShoppingSubcategory Load (0.000592)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.00746)
-Rendered shared/_login_sl (0.00066)
-Rendered shared/_menu_main_sl (0.00846)
+  [4;36;1mShoppingcategory Columns (0.001219)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
+  [4;35;1mShoppingSubcategory Load (0.000553)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
+  [4;36;1mShoppingSubcategory Columns (0.001167)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
+  [4;35;1mShoppingSubcategory Load (0.000499)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
+  [4;36;1mShoppingSubcategory Load (0.000474)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
+  [4;35;1mShoppingSubcategory Load (0.000442)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
+Rendered shoppings/_category_tab (0.01820)
+Rendered shared/_login_sl (0.00099)
+Rendered shared/_menu_main_sl (0.00904)
 Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00083)
-Completed in 7.19323 (0 reqs/sec) | Rendering: 0.86467 (12%) | DB: 0.02831 (0%) | 200 OK [http://localhost/shoppings/mainpage]
+Rendered shared/_footer_menu_in (0.00070)
+Completed in 2.78507 (0 reqs/sec) | Rendering: 0.71743 (25%) | DB: 0.02909 (1%) | 200 OK [http://localhost/shoppings/mainpage]
+Rendered _box_includes (0.00038)
+Rendered _box_header (0.00005)
+Rendered _box_disabled (0.00003)
+Rendered _box (0.00219)
+
+
+Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 11:26:20) [GET]
+  Session ID: e579a9a9448dbed1616b167c5162f2f0
+  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"2"}
+  [4;36;1mSQL (0.000552)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001083)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:26:21', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
+  [4;36;1mSQL (0.003436)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.000694)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000893)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:26:21', `last_url_visited` = 'http://localhost:3000/shoppings/cat_nav?subid=2' WHERE `id` = 4[0m
+  [4;35;1mSQL (0.002415)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.005109)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001024)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+  [4;36;1mShoppingcategory Load (0.000448)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
+  [4;35;1mShoppingSubcategory Columns (0.001380)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
+  [4;36;1mShoppingSubcategory Load (0.000386)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.`id` = 2) [0m
+Rendering template within layouts/student_lounge
+Rendering shoppings/cat_nav
+  [4;35;1mShoppingcategory Columns (0.001259)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
+  [4;36;1mShoppingSubcategory Load (0.000980)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
+  [4;35;1mShoppingSubcategory Load (0.000489)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
+  [4;36;1mShoppingSubcategory Load (0.000411)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
+  [4;35;1mShoppingSubcategory Load (0.000414)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
+Rendered shoppings/_category_tab (0.01980)
+Rendered shared/_login_sl (0.00096)
+Rendered shared/_menu_main_sl (0.10948)
+Rendered shared/_footer (0.00003)
+Rendered shared/_footer_menu_in (0.00078)
+Completed in 2.04402 (0 reqs/sec) | Rendering: 0.22491 (11%) | DB: 0.02226 (1%) | 200 OK [http://localhost/shoppings/cat_nav?subid=2]
 Rendered _box_includes (0.00059)
 Rendered _box_header (0.00006)
 Rendered _box_disabled (0.00003)
-Rendered _box (0.00280)
+Rendered _box (0.00262)
 
 
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:17:17) [GET]
+Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 11:27:19) [GET]
   Session ID: e579a9a9448dbed1616b167c5162f2f0
   Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;35;1mSQL (0.000640)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001298)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:17:18', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.005983)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000419)[0m   [0;1mBEGIN[0m
-  [4;35;1mSQL (0.000442)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.005269)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000562)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;36;1mShoppingcategory Load (0.000434)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;35;1mUser Load (0.001173)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mUser Load (0.001333)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mSellingItem Load (0.002253)[0m   [0mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;36;1mSellingItem Columns (0.001325)[0m   [0;1mSHOW FIELDS FROM `selling_items`[0m
-  [4;35;1mSQL (0.001003)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
+  [4;36;1mSQL (0.002106)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.002874)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:27:21', `data` = 'BAh7CjoQeW91cl9zY2hvb2xpbzoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
+  [4;36;1mSQL (0.029507)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.002101)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.002266)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:27:21', `last_url_visited` = 'http://localhost:3000/shoppings/mainpage' WHERE `id` = 4[0m
+  [4;35;1mSQL (0.019853)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.015766)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.002136)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+  [4;36;1mShoppingcategory Load (0.002043)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
+  [4;35;1mUser Load (0.002729)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
+  [4;36;1mUser Load (0.002660)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
+  [4;35;1mSellingItem Load (0.007646)[0m   [0mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
+  [4;36;1mSellingItem Columns (0.004642)[0m   [0;1mSHOW FIELDS FROM `selling_items`[0m
+  [4;35;1mSQL (0.004202)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
 Rendering template within layouts/student_lounge
 Rendering shoppings/mainpage
-  [4;36;1mShoppingcategory Columns (0.001145)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000497)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;36;1mShoppingSubcategory Columns (0.001186)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000836)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;36;1mShoppingSubcategory Load (0.000736)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;35;1mShoppingSubcategory Load (0.000736)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.00661)
-Rendered shared/_login_sl (0.00063)
-Rendered shared/_menu_main_sl (0.00916)
-Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00009)
-Completed in 2.27850 (0 reqs/sec) | Rendering: 0.95346 (41%) | DB: 0.02854 (1%) | 200 OK [http://localhost/shoppings/mainpage]
-Rendered _box_includes (0.00005)
-Rendered _box_header (0.00006)
-Rendered _box_disabled (0.00003)
-Rendered _box (0.00272)
-
-
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:18:50) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;36;1mSQL (0.003447)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001123)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:18:52', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.003795)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000445)[0m   [0mBEGIN[0m
-  [4;36;1mSQL (0.000459)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.005261)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.001105)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;35;1mShoppingcategory Load (0.000446)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;36;1mUser Load (0.001244)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mUser Load (0.001137)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mSellingItem Load (0.002473)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;35;1mSellingItem Columns (0.001448)[0m   [0mSHOW FIELDS FROM `selling_items`[0m
-  [4;36;1mSQL (0.001433)[0m   [0;1mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/mainpage
-  [4;35;1mShoppingcategory Columns (0.001133)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000575)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;35;1mShoppingSubcategory Columns (0.001584)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000585)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;35;1mShoppingSubcategory Load (0.000439)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;36;1mShoppingSubcategory Load (0.000525)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.02318)
-Rendered shared/_login_sl (0.00077)
-Rendered shared/_menu_main_sl (0.01075)
-Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00009)
-Completed in 2.12758 (0 reqs/sec) | Rendering: 0.73327 (34%) | DB: 0.03006 (1%) | 200 OK [http://localhost/shoppings/mainpage]
-Rendered _box_includes (0.00037)
-Rendered _box_header (0.00005)
-Rendered _box_disabled (0.00002)
-Rendered _box (0.00223)
-
-
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:20:42) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;35;1mSQL (0.000586)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001230)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:20:43', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.005143)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000433)[0m   [0;1mBEGIN[0m
-  [4;35;1mSQL (0.000241)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.002517)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000835)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;36;1mShoppingcategory Load (0.000799)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;35;1mUser Load (0.001251)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mUser Load (0.001095)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mSellingItem Load (0.002213)[0m   [0mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;36;1mSellingItem Columns (0.001265)[0m   [0;1mSHOW FIELDS FROM `selling_items`[0m
-  [4;35;1mSQL (0.001033)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/mainpage
-  [4;36;1mShoppingcategory Columns (0.001149)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000868)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;36;1mShoppingSubcategory Columns (0.001176)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000515)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;36;1mShoppingSubcategory Load (0.003574)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;35;1mShoppingSubcategory Load (0.000428)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.00710)
-Rendered shared/_login_sl (0.00002)
-Rendered shared/_menu_main_sl (0.00995)
-Rendered shared/_footer (0.00036)
-Rendered shared/_footer_menu_in (0.00093)
-Completed in 2.16567 (0 reqs/sec) | Rendering: 0.91334 (42%) | DB: 0.02765 (1%) | 200 OK [http://localhost/shoppings/mainpage]
-Rendered _box_includes (0.00041)
-Rendered _box_header (0.00005)
-Rendered _box_disabled (0.00002)
-Rendered _box (0.00220)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:21:07) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"1"}
-  [4;36;1mSQL (0.000550)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001085)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:21:09', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.003985)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000223)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000452)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:21:09', `last_url_visited` = 'http://localhost:3000/shoppings/cat_nav?subid=1' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.001387)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.002224)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000478)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/cat_nav
-Rendered shared/_login_sl (0.00061)
-Rendered shared/_menu_main_sl (0.00932)
-Rendered shared/_footer (0.00042)
-Rendered shared/_footer_menu_in (0.00071)
-Completed in 1.59878 (0 reqs/sec) | Rendering: 0.06592 (4%) | DB: 0.01153 (0%) | 200 OK [http://localhost/shoppings/cat_nav?subid=1]
-Rendered _box_includes (0.00035)
-Rendered _box_header (0.00005)
-Rendered _box_disabled (0.00003)
-Rendered _box (0.00236)
-
-
-Processing ShoppingsController#mainpage (for 127.0.0.1 at 2010-08-13 10:23:37) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"mainpage", "controller"=>"shoppings"}
-  [4;36;1mSQL (0.000261)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000570)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:23:39', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.002157)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000268)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000532)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:23:39', `last_url_visited` = 'http://localhost:3000/shoppings/mainpage' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.001362)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.002813)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000530)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;36;1mShoppingcategory Load (0.000549)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;35;1mUser Load (0.001390)[0m   [0mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id WHERE ((`user_invites`.user_id_target = 5) AND ((is_accepted = 1))) [0m
-  [4;36;1mUser Load (0.001141)[0m   [0;1mSELECT SQL_NO_CACHE `users`.* FROM `users` INNER JOIN user_invites ON users.id = user_invites.user_id_target WHERE ((`user_invites`.user_id = 5) AND ((is_accepted = 1))) [0m
-  [4;35;1mSellingItem Load (0.002640)[0m   [0mSELECT SQL_NO_CACHE * FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) ORDER BY created_at DESC LIMIT 0, 3[0m
-  [4;36;1mSellingItem Columns (0.001476)[0m   [0;1mSHOW FIELDS FROM `selling_items`[0m
-  [4;35;1mSQL (0.001174)[0m   [0mSELECT SQL_NO_CACHE count(*) AS count_all FROM `selling_items` WHERE ((`selling_items`.`shopping_subcategory_id` = '1') AND (`selling_items`.`user_id` IN (1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20))) [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/mainpage
-  [4;36;1mShoppingcategory Columns (0.001342)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000499)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;36;1mShoppingSubcategory Columns (0.001434)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000597)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;36;1mShoppingSubcategory Load (0.000506)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;35;1mShoppingSubcategory Load (0.000467)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.00585)
+  [4;36;1mShoppingcategory Columns (0.001306)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
+  [4;35;1mShoppingSubcategory Load (0.000863)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
+  [4;36;1mShoppingSubcategory Columns (0.001197)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
+  [4;35;1mShoppingSubcategory Load (0.000608)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
+  [4;36;1mShoppingSubcategory Load (0.000456)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
+  [4;35;1mShoppingSubcategory Load (0.000446)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
+Rendered shoppings/_category_tab (0.03675)
 Rendered shared/_login_sl (0.00065)
-Rendered shared/_menu_main_sl (0.01026)
-Rendered shared/_footer (0.00004)
-Rendered shared/_footer_menu_in (0.00086)
-Completed in 2.20868 (0 reqs/sec) | Rendering: 0.82716 (37%) | DB: 0.02295 (1%) | 200 OK [http://localhost/shoppings/mainpage]
-Rendered _box_includes (0.00043)
-Rendered _box_header (0.00009)
-Rendered _box_disabled (0.00003)
-Rendered _box (0.00250)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:23:44) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"2"}
-  [4;36;1mSQL (0.000591)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000979)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:23:45', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.004016)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000430)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000911)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:23:45', `last_url_visited` = 'http://localhost:3000/shoppings/cat_nav?subid=2' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.002673)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.002113)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000508)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/cat_nav
-Rendered shared/_login_sl (0.00063)
-Rendered shared/_menu_main_sl (0.01021)
+Rendered shared/_menu_main_sl (0.00931)
 Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00159)
-Completed in 1.37566 (0 reqs/sec) | Rendering: 0.05358 (3%) | DB: 0.01361 (0%) | 200 OK [http://localhost/shoppings/cat_nav?subid=2]
-Rendered _box_includes (0.00001)
+Rendered shared/_footer_menu_in (0.00006)
+Completed in 4.30585 (0 reqs/sec) | Rendering: 1.61618 (37%) | DB: 0.10670 (2%) | 200 OK [http://localhost/shoppings/mainpage]
+Rendered _box_includes (0.00002)
 Rendered _box_header (0.00007)
 Rendered _box_disabled (0.00003)
-Rendered _box (0.00254)
+Rendered _box (0.16521)
 
 
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:29:24) [GET]
+Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 11:28:10) [GET]
   Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"2"}
-  [4;36;1mSQL (0.000337)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000769)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:29:25', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.123400)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000268)[0m   [0mBEGIN[0m
-  [4;36;1mSQL (0.000249)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.002817)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.000553)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"14"}
+  [4;36;1mSQL (0.000532)[0m   [0;1mBEGIN[0m
+  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001117)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:28:16', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
+  [4;36;1mSQL (0.004646)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.002366)[0m   [0mBEGIN[0m
+  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000918)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:28:16', `last_url_visited` = 'http://localhost:3000/shoppings/cat_nav?subid=14' WHERE `id` = 4[0m
+  [4;35;1mSQL (0.065752)[0m   [0mCOMMIT[0m
+  [4;36;1mUser Columns (0.017284)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.012104)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
+  [4;36;1mShoppingcategory Load (0.004362)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
+  [4;35;1mShoppingSubcategory Columns (0.009977)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
+  [4;36;1mShoppingSubcategory Load (0.001257)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.`id` = 14) [0m
 Rendering template within layouts/student_lounge
 Rendering shoppings/cat_nav
-
-
-ActionView::TemplateError (You have a nil object when you didn't expect it!
-You might have expected an instance of Array.
-The error occurred while evaluating nil.each) on line #16 of shoppings/_category_tab.html.erb:
-13:       <div class="btmS"><a href=""><img src="/images/iconSF.png"></a></div>
-14:     </div>
-15:     <% count = 0 %>
-16:     <% categories.each do |ct| %>
-17:       <div class="shopRitem">
-18:         <div class="shopRitemT">
-19:           <div class="<%= icon_array[count] %>">Items For Sale</div>
-
-    app/views/shoppings/_category_tab.html.erb:16:in `_run_erb_47app47views47shoppings47_category_tab46html46erb'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `execute'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/partial_template.rb:20:in `render_without_trace_View_path_without_extension_r_2_view_template_format_extension_Partial'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:26:in `benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:26:in `benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/partial_template.rb:19:in `render_without_trace_View_path_without_extension_r_2_view_template_format_extension_Partial'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:319:in `render'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:314:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template.rb:22:in `render_template'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/partials.rb:110:in `render_partial'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:277:in `render_without_juggernaut'
-    vendor/plugins/juggernaut/lib/juggernaut.rb:151:in `render'
-    app/views/shoppings/cat_nav.html.erb:19:in `_run_erb_47app47views47shoppings47cat_nav46html46erb'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `execute'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template.rb:35:in `render_without_trace_View_path_without_extension_r_2_view_template_format_extension_Rendering'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:319:in `render'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:314:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template.rb:22:in `render_template'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:248:in `render_file'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1112:in `render_for_file'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:845:in `render_with_no_layout'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/layout.rb:251:in `render_without_benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:51:in `render_without_juggernaut'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:51:in `render_without_juggernaut'
-    vendor/plugins/juggernaut/lib/juggernaut.rb:151:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1161:in `default_render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1167:in `perform_action_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:579:in `call_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/query_cache.rb:8:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
-    vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `process_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/session_management.rb:130:in `process_without_query_review'
-    vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:389:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:149:in `handle_request'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/servers/mongrel.rb:64
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/server.rb:39
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    script/server:3
-
-Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
-Rendered _box_includes (0.00040)
+  [4;35;1mShoppingcategory Columns (0.001650)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
+  [4;36;1mShoppingSubcategory Load (0.001124)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
+  [4;35;1mShoppingSubcategory Load (0.000928)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
+  [4;36;1mShoppingSubcategory Load (0.000894)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
+  [4;35;1mShoppingSubcategory Load (0.001102)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
+Rendered shoppings/_category_tab (0.02409)
+Rendered shared/_login_sl (0.00092)
+Rendered shared/_menu_main_sl (0.00952)
+Rendered shared/_footer (0.00003)
+Rendered shared/_footer_menu_in (0.00079)
+Completed in 6.91091 (0 reqs/sec) | Rendering: 0.22516 (3%) | DB: 0.12724 (1%) | 200 OK [http://localhost/shoppings/cat_nav?subid=14]
+Rendered _box_includes (0.00041)
 Rendered _box_header (0.00006)
 Rendered _box_disabled (0.00003)
-Rendered _box (0.00256)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:34:14) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"2"}
-  [4;35;1mSQL (0.000362)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000749)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:34:16', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.003530)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000236)[0m   [0;1mBEGIN[0m
-  [4;35;1mSQL (0.000243)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.002822)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000626)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;36;1mShoppingcategory Load (0.000611)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/cat_nav
-  [4;35;1mShoppingcategory Columns (0.001811)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000546)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;35;1mShoppingSubcategory Columns (0.001278)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000530)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;35;1mShoppingSubcategory Load (0.000467)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;36;1mShoppingSubcategory Load (0.000886)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.03891)
-Rendered shared/_login_sl (0.00069)
-Rendered shared/_menu_main_sl (0.01003)
-Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00089)
-Completed in 2.17233 (0 reqs/sec) | Rendering: 0.14648 (6%) | DB: 0.01625 (0%) | 200 OK [http://localhost/shoppings/cat_nav?subid=2]
-Rendered _box_includes (0.00051)
-Rendered _box_header (0.00000)
-Rendered _box_disabled (0.00003)
-Rendered _box (0.00280)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:50:36) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"2"}
-  [4;35;1mSQL (0.000611)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.002291)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:50:39', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.004330)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000422)[0m   [0;1mBEGIN[0m
-  [4;35;1mSQL (0.003176)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.007284)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.001643)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;36;1mShoppingcategory Load (0.001292)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/cat_nav
-  [4;35;1mShoppingcategory Columns (0.001664)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.001365)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;35;1mShoppingSubcategory Columns (0.001162)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000485)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;35;1mShoppingSubcategory Load (0.000512)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;36;1mShoppingSubcategory Load (0.000454)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.03853)
-Rendered shared/_login_sl (0.00079)
-Rendered shared/_menu_main_sl (0.00709)
-Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00116)
-Completed in 3.70233 (0 reqs/sec) | Rendering: 0.27689 (7%) | DB: 0.03037 (0%) | 200 OK [http://localhost/shoppings/cat_nav?subid=2]
-Rendered _box_includes (0.00044)
-Rendered _box_header (0.00007)
-Rendered _box_disabled (0.00000)
-Rendered _box (0.01467)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:54:54) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"2"}
-  [4;35;1mSQL (0.000576)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001268)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:55:08', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.003623)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000415)[0m   [0;1mBEGIN[0m
-  [4;35;1mSQL (0.000208)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.002486)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000510)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;36;1mShoppingcategory Load (0.000492)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/cat_nav
-  [4;35;1mShoppingcategory Columns (0.001318)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000994)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;35;1mShoppingSubcategory Columns (0.003763)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
-
-
-ActionView::TemplateError (undefined local variable or method `subcg' for #<ActionView::Base:0x2e788f9c>) on line #28 of shoppings/_category_tab.html.erb:
-25:             <%= link_to subct.name, 
-26:               :controller => "shoppings", 
-27:               :action => "cat_nav", 
-28:               :subid => subcg.id %>
-29:           </div>
-30:         <% end %>
-31:         <div class="shopRmore"><a href="#">More</a></div>
-
-    app/views/shoppings/_category_tab.html.erb:28:in `_run_erb_47app47views47shoppings47_category_tab46html46erb'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_collection.rb:277:in `method_missing_without_paginate'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_proxy.rb:171:in `method_missing'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_proxy.rb:171:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_proxy.rb:171:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_proxy.rb:171:in `method_missing'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/associations/association_collection.rb:277:in `method_missing_without_paginate'
-    vendor/plugins/will_paginate/lib/will_paginate/finder.rb:167:in `method_missing'
-    app/views/shoppings/_category_tab.html.erb:23:in `_run_erb_47app47views47shoppings47_category_tab46html46erb'
-    app/views/shoppings/_category_tab.html.erb:16:in `each'
-    app/views/shoppings/_category_tab.html.erb:16:in `_run_erb_47app47views47shoppings47_category_tab46html46erb'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `execute'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/partial_template.rb:20:in `render_without_trace_View_path_without_extension_r_2_view_template_format_extension_Partial'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:26:in `benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:26:in `benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/partial_template.rb:19:in `render_without_trace_View_path_without_extension_r_2_view_template_format_extension_Partial'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:319:in `render'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:314:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template.rb:22:in `render_template'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/partials.rb:110:in `render_partial'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:277:in `render_without_juggernaut'
-    vendor/plugins/juggernaut/lib/juggernaut.rb:151:in `render'
-    app/views/shoppings/cat_nav.html.erb:19:in `_run_erb_47app47views47shoppings47cat_nav46html46erb'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:342:in `execute'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template_handlers/compilable.rb:29:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template.rb:35:in `render_without_trace_View_path_without_extension_r_2_view_template_format_extension_Rendering'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:319:in `render'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:314:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/template.rb:22:in `render_template'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_view/base.rb:248:in `render_file'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1112:in `render_for_file'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:845:in `render_with_no_layout'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/layout.rb:251:in `render_without_benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:51:in `render_without_juggernaut'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:51:in `render_without_juggernaut'
-    vendor/plugins/juggernaut/lib/juggernaut.rb:151:in `render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1161:in `default_render'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1167:in `perform_action_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:579:in `call_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/query_cache.rb:8:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
-    vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `process_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/session_management.rb:130:in `process_without_query_review'
-    vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:389:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:149:in `handle_request'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/servers/mongrel.rb:64
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/server.rb:39
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    script/server:3
-
-Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
-Rendered _box_includes (0.00044)
-Rendered _box_header (0.00013)
-Rendered _box_disabled (0.00002)
-Rendered _box (0.00253)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:55:32) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"2"}
-  [4;36;1mSQL (0.000485)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000996)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:55:39', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.003546)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000405)[0m   [0mBEGIN[0m
-  [4;36;1mSQL (0.001549)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.002242)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.000488)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;35;1mShoppingcategory Load (0.000798)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/cat_nav
-  [4;36;1mShoppingcategory Columns (0.001193)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000621)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;36;1mShoppingSubcategory Columns (0.001210)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.002447)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;36;1mShoppingSubcategory Load (0.000795)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;35;1mShoppingSubcategory Load (0.000424)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.03693)
-Rendered shared/_login_sl (0.00068)
-Rendered shared/_menu_main_sl (0.00960)
-Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00082)
-Completed in 7.54745 (0 reqs/sec) | Rendering: 0.25878 (3%) | DB: 0.02454 (0%) | 200 OK [http://localhost/shoppings/cat_nav?subid=2]
-Rendered _box_includes (0.00033)
-Rendered _box_header (0.00005)
-Rendered _box_disabled (0.00017)
-Rendered _box (0.00236)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:55:55) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"5"}
-  [4;36;1mSQL (0.000540)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.001095)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:56:01', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.003838)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000477)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.000820)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:56:01', `last_url_visited` = 'http://localhost:3000/shoppings/cat_nav?subid=5' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.002463)[0m   [0mCOMMIT[0m
-  [4;36;1mUser Columns (0.004407)[0m   [0;1mSHOW FIELDS FROM `users`[0m
-  [4;35;1mUser Load (0.000546)[0m   [0mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;36;1mShoppingcategory Load (0.001780)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/cat_nav
-  [4;35;1mShoppingcategory Columns (0.001232)[0m   [0mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.000466)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;35;1mShoppingSubcategory Columns (0.001196)[0m   [0mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;36;1mShoppingSubcategory Load (0.002999)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;35;1mShoppingSubcategory Load (0.000477)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;36;1mShoppingSubcategory Load (0.000453)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.03870)
-Rendered shared/_login_sl (0.00066)
-Rendered shared/_menu_main_sl (0.00950)
-Rendered shared/_footer (0.00004)
-Rendered shared/_footer_menu_in (0.00083)
-Completed in 6.70574 (0 reqs/sec) | Rendering: 0.33106 (4%) | DB: 0.02387 (0%) | 200 OK [http://localhost/shoppings/cat_nav?subid=5]
-Rendered _box_includes (0.00039)
-Rendered _box_header (0.00006)
-Rendered _box_disabled (0.00003)
-Rendered _box (0.00232)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:57:33) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"1"}
-  [4;35;1mSQL (0.000523)[0m   [0mBEGIN[0m
-  [4;36;1mCGI::Session::ActiveRecordStore::Session Update (0.001116)[0m   [0;1mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:57:40', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;35;1mSQL (0.003688)[0m   [0mCOMMIT[0m
-  [4;36;1mSQL (0.000451)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000826)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:57:40', `last_url_visited` = 'http://localhost:3000/shoppings/cat_nav?subid=1' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.002343)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.005458)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.000911)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;35;1mShoppingcategory Load (0.000426)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-
-
-NoMethodError (undefined method `[]' for :params:Symbol):
-    /app/controllers/shoppings_controller.rb:46:in `cat_nav'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1166:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1166:in `perform_action_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:579:in `call_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/query_cache.rb:8:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
-    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
-    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
-    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `process_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/session_management.rb:130:in `process_without_query_review'
-    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:389:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:149:in `handle_request'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/servers/mongrel.rb:64
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/server.rb:39
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    script/server:3
-
-Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
-Rendered _box_includes (0.00033)
-Rendered _box_header (0.00005)
-Rendered _box_disabled (0.00002)
-Rendered _box (0.00220)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:59:04) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"1"}
-  [4;36;1mSQL (0.000270)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.000877)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 10:59:17', `data` = 'BAh7CjoMdXNlcl9pZGkKOg5yZXR1cm5fdG8wOhB5b3VyX3NjaG9vbGlvOhFn\nZW9fbG9jYXRpb24wIgpmbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFz\naDo6Rmxhc2hIYXNoewAGOgpAdXNlZHsA\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.003243)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.001672)[0m   [0mBEGIN[0m
-  [4;36;1mSQL (0.000230)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.002502)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.000508)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;35;1mShoppingcategory Load (0.000492)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;36;1mShoppingSubcategory Columns (0.031604)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000475)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.`id` = 1) [0m
-
-
-TypeError (can't convert ShoppingSubcategory into String):
-    /app/controllers/shoppings_controller.rb:46:in `+'
-    /app/controllers/shoppings_controller.rb:46:in `cat_nav'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1166:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:1166:in `perform_action_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:579:in `call_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:572:in `perform_action_without_benchmark'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:13:in `perform_action_without_newrelic_trace'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/activerecord-2.1.1/lib/active_record/query_cache.rb:8:in `cache'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/caching/sql_cache.rb:12:in `perform_action_without_newrelic_trace'
-    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:255:in `perform_action_without_query_review'
-    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/method_tracer.rb:141:in `trace_execution_scoped'
-    /vendor/plugins/newrelic_rpm/lib/new_relic/agent/instrumentation/controller_instrumentation.rb:248:in `perform_action_without_query_review'
-    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:49:in `perform_action'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `send'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:529:in `process_without_filters'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/filters.rb:568:in `process_without_session_management_support'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/session_management.rb:130:in `process_without_query_review'
-    /vendor/plugins/query_reviewer/lib/query_reviewer/controller_extensions.rb:57:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/base.rb:389:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:149:in `handle_request'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
-    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:503:in `load'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/servers/mongrel.rb:64
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:355:in `new_constants_in'
-    /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.1.1/lib/active_support/dependencies.rb:510:in `require'
-    /usr/local/lib/ruby/gems/1.8/gems/rails-2.1.1/lib/commands/server.rb:39
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    script/server:3
-
-Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-2.1.1/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
-Rendered _box_includes (0.00045)
-Rendered _box_header (0.00006)
-Rendered _box_disabled (0.00003)
-Rendered _box (0.00253)
-
-
-Processing ShoppingsController#cat_nav (for 127.0.0.1 at 2010-08-13 10:59:45) [GET]
-  Session ID: e579a9a9448dbed1616b167c5162f2f0
-  Parameters: {"action"=>"cat_nav", "controller"=>"shoppings", "subid"=>"1"}
-  [4;36;1mSQL (0.000496)[0m   [0;1mBEGIN[0m
-  [4;35;1mCGI::Session::ActiveRecordStore::Session Update (0.004050)[0m   [0mUPDATE `sessions` SET `updated_at` = '2010-08-13 11:00:01', `data` = 'BAh7CjoOcmV0dXJuX3RvMDoMdXNlcl9pZGkKOhB5b3VyX3NjaG9vbGlvIgpm\nbGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG\nOgpAdXNlZHsAOhFnZW9fbG9jYXRpb24w\n' WHERE `id` = 4[0m
-  [4;36;1mSQL (0.003932)[0m   [0;1mCOMMIT[0m
-  [4;35;1mSQL (0.000366)[0m   [0mBEGIN[0m
-  [4;36;1mSQL (0.000480)[0m   [0;1mCOMMIT[0m
-  [4;35;1mUser Columns (0.005997)[0m   [0mSHOW FIELDS FROM `users`[0m
-  [4;36;1mUser Load (0.000546)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `users` WHERE (`users`.`id` = 5) LIMIT 1[0m
-  [4;35;1mShoppingcategory Load (0.001220)[0m   [0mSELECT SQL_NO_CACHE * FROM `shoppingcategories` [0m
-  [4;36;1mShoppingSubcategory Columns (0.001842)[0m   [0;1mSHOW FIELDS FROM `shopping_subcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000830)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.`id` = 1) [0m
-Rendering template within layouts/student_lounge
-Rendering shoppings/cat_nav
-  [4;36;1mShoppingcategory Columns (0.002579)[0m   [0;1mSHOW FIELDS FROM `shoppingcategories`[0m
-  [4;35;1mShoppingSubcategory Load (0.000953)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 1) [0m
-  [4;36;1mShoppingSubcategory Load (0.000897)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 2) [0m
-  [4;35;1mShoppingSubcategory Load (0.000957)[0m   [0mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 3) [0m
-  [4;36;1mShoppingSubcategory Load (0.000840)[0m   [0;1mSELECT SQL_NO_CACHE * FROM `shopping_subcategories` WHERE (`shopping_subcategories`.shoppingcategory_id = 4) [0m
-Rendered shoppings/_category_tab (0.02529)
-Rendered shared/_login_sl (0.00007)
-Rendered shared/_menu_main_sl (0.00665)
-Rendered shared/_footer (0.00003)
-Rendered shared/_footer_menu_in (0.00084)
-Completed in 15.74701 (0 reqs/sec) | Rendering: 0.21835 (1%) | DB: 0.09940 (0%) | 200 OK [http://localhost/shoppings/cat_nav?subid=1]
-Rendered _box_includes (0.00035)
-Rendered _box_header (0.00005)
-Rendered _box_disabled (0.00002)
-Rendered _box (0.00225)
+Rendered _box (0.00222)
