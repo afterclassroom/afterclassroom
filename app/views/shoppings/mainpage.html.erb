@@ -1,10 +1,5 @@
-<%= link_to "category navigation", {:controller => 'shoppings', :action => "cat_nav"} %>
-
-<%= @listallitems.size %>
-
-Size of List of category: <%= @categories.size %> <br/>
-<% @categories.each do |cg| %>
-  <%= cg.name %>
+<% @listallitems.each do |item| %> 
+  <%= item.name %>
 <% end %>
 <div class="shopTop">
   <div class="shopTopL">

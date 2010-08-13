@@ -37,6 +37,18 @@ class ShoppingsController < ApplicationController
   end
 
   def cat_nav
+    @categories = Shoppingcategory.find(:all)
+    puts "====================="
+    puts "====================="
+    puts "====================="
+    puts "====================="
+    puts "value == "+params[:subid]
+    puts "sub cat name == "+ ShoppingSubcategory.find(params[:subid]).name
+    puts "====================="
+    puts "====================="
+    puts "====================="
+    puts "====================="
+    puts "====================="
   end
 
   def shoppingdetail
