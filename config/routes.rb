@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :shoppings, :collection => {
     :mainpage => :get,
     :shoppingdetail => :get,
-    :categorynavigation => :get
+    :cat_nav => :get
   }
 
   map.resources :playgames, :collection => {

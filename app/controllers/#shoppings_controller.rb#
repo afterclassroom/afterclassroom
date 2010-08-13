@@ -1,4 +1,4 @@
-# Â© Copyright 2009 AfterClassroom.com â€” All Rights Reserved
+# © Copyright 2009 AfterClassroom.com œôòô All Rights Reserved
 class ShoppingsController < ApplicationController
   layout 'student_lounge'
   before_filter :login_required
@@ -36,7 +36,7 @@ class ShoppingsController < ApplicationController
     puts params[:sub_category_name]
   end
 
-  def cat_nav
+  def categorynavigation
   end
 
   def shoppingdetail

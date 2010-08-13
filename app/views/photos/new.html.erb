@@ -24,7 +24,10 @@
               <div class="stoExItem">
                 <div class="stoExItemL">Location</div>
                 <div class="stoExItemR">
-                  <div class="phoExIn"><%= f.file_field :photo_attach, :class => "required" %></div>
+                  <div id="divinputfile" style="width:252px">
+                    <%= f.file_field :photo_attach, :class => "filepc required" %>
+                    <div id="fakeinputfile"><input type="text" id="fakefilepc" name="fakefilepc" style="width:181px"/></div>
+                  </div>
                 </div>
               </div>
               <div class="stoExItem">

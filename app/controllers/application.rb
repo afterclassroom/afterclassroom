@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include RoleRequirementSystem
   
   helper :all # include all helpers, all the time
-  filter_parameter_logging :password, :password_confirmation
+  #filter_parameter_logging :password, :password_confirmation
   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store

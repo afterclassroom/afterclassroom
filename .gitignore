@@ -12,7 +12,9 @@ public/avatars/**/*
 public/uploaded_files/**/*
 public/uploads/*
 public/photos/*
+public/photo_attaches/*
 public/selling_item_photos/*
+public/avatars/*
 public/gamephotos/*
 public/toolphotos/*
 public/images/captcha

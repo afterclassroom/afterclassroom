@@ -37,3 +37,14 @@ Rails::Initializer.run do |config|
   config.active_record.observers = :user_observer
 end
 
+class CGI::Session
+  alias original_initialize initialize
+  def initialize(request, option = {})
+    session_key = option['session_key'] || '_session_id'
+    option['session_id'] =
+      request.env_table["REQUEST_URI"][0..-1].
+      scan(/#{session_key}=(.*?)(&.*?)*$/).
+      flatten.first
+    original_initialize(request, option)
+  end
+end

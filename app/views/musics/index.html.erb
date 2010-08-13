@@ -1,34 +1,106 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Musics", :action_path => "#{musics_path}"} %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'submenu' %>
 <% end -%>
 
-<% content_for :tabs_inbox do -%>
-  <%= render :partial => 'shared/tabs_inbox' %>
-<% end -%>
+<div class="slStoryL">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">Photos</div>
+          <div class="slsShareR">
+            <%= render :partial => "menu" %>
+          </div>
+        </div>
+        <%= display_flash_messages %>
+        <%= render :partial => "expand_add_photo" %>
+        <%= render :partial => "expand_create_photo_album" %>
+        <div id="friend_photos_list">
+          <div class="slsTop">
+            <div class="slsTopL">
+              <div class="slsTopLT">Friends shared photos</div>
+              <div class="slsTopLB friLeft">
+                <div class="search">
+                  <% form_tag friend_p_user_photos_path(current_user), {:id => "friend_photos_search", :method => "GET"} do %>
+                    <div class="textS"><%= text_field_tag "search[name]", "" %></div>
+                    <div class="btmS"><a href="javascript:;" onclick="searchFriendPhotos();"><img src="/images/iconSF.png"/></a></div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="slsTopR">
+              <!--Pagination-->
+              <div class="assPage friend_photos">
+                <span class="numPage"><%= page_entries_info @friend_photos %></span>
+                <%= will_paginate @friend_photos %>
+              </div>
+              <!--Pagination-->
+            </div>
+          </div>
+          <div class="photoRow">
+            <% @friend_photos.each do |f_p| %>
+              <%= render :partial => "item_friend_photo", :locals => {:photo => f_p}  %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div id="my_photos_list">
+          <div class="slsTop">
+            <div class="slsTopL">
+              <div class="slsTopLT">Your photos</div>
+              <div class="slsTopLB friLeft">
+                <div class="search">
+                  <% form_tag my_p_user_photos_path(current_user), {:id => "my_photos_search", :method => "GET"} do %>
+                    <div class="textS"><%= text_field_tag "search[name]", "" %></div>
+                    <div class="btmS"><a href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a></div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="slsTopR">
+              <!--Pagination-->
+              <div class="assPage friend_photos">
+                <span class="numPage"><%= page_entries_info @my_photos %></span>
+                <%= will_paginate @my_photos %>
+              </div>
+              <!--Pagination-->
+            </div>
+          </div>
+          <div class="photoRow">
+            <% @my_photos.each do |m_p| %>
+              <%= render :partial => "item_my_photo", :locals => {:photo => m_p}  %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contMainR">
+  <!--Most Viewed-->
+  <%= render :partial => "most_viewed" %>
+  <!--Most Viewed-->
 
-<h1>Listing musics</h1>
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
 
-<table>
-  <tr>
-    <th>Music album</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Who can see</th>
-  </tr>
+<script type="text/javascript" >
+  function submit(){
+    $("#form_new").submit();
+  }
+  $().ready(function() {
+    $("#form_new").validate({
+      errorLabelContainer: $("#form_new div.stoError")
+    });
+  });
 
-<% for music in @musics %>
-  <tr>
-    <td><%=h music.music_album.name %></td>
-    <td><%=h music.title %></td>
-    <td><%=h music.description %></td>
-    <td><%=h music.who_can_see %></td>
-    <td><%= link_to 'Show', music %></td>
-    <td><%= link_to 'Edit', edit_music_path(music) %></td>
-    <td><%= link_to 'Destroy', music, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New music', new_music_path %>
+  formatLinkForPaginationURLFriendPhoto();
+  formatLinkForPaginationURLMyPhoto();
+</script>

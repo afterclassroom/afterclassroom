@@ -92,5 +92,6 @@ stylesheets:
   - tag
   - jquery-carrousel
   - footer-menu
+  - swfupload
 - admin:
   - main
