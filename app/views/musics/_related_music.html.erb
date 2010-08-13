@@ -1,0 +1,44 @@
+<% if @photo.photo_album.photos.size > 0 %>
+<h1 class="titleH1">Related Photos</h1>
+<div class="photoRow">
+  <div class="photoItem">
+    <div class="photoImg1">
+      <div id="myCarousel" class="myCarousel">
+        <% @photo.photo_album.photos.each do |p| %>
+          <% unless @photo == p %>
+            <%= link_to "<li>#{image_tag p.photo_attach.url(:thumb)}</li>", user_photo_path(p.user, p) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        var carrousel = jQuery("#myCarousel").carrousel({
+            controls	: '',
+            effects	: 'reflection',
+            direction	: 'left',
+            easing	: 'easeOutBounce',
+            speed 	: 100,
+            dispTimeout : 2000,
+            scroll      : 1,
+            dispNumber	: 6,
+            auto	: false,
+            callbacks	: [giveCurrent],
+            api		: true
+        });
+        function giveCurrent() {
+            jQuery('#current').val(carrousel.getCurrent())
+        }
+        jQuery('#next').click(function () {
+            carrousel.next();
+            return false;
+        });
+        jQuery('#prev').click(function () {
+            carrousel.prev();
+            return false;
+        });
+    });
+</script>
+<% end %>

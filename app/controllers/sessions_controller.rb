@@ -1,6 +1,8 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
+  include AuthenticatedSystem
+  
   skip_before_filter :verify_authenticity_token, :only => :create
   
   def new

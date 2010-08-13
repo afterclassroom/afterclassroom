@@ -3,7 +3,7 @@ class CreateMusicAlbums < ActiveRecord::Migration
     create_table :music_albums do |t|
       t.belongs_to :user, :null => false
       t.string :name, :null => false
-
+      
       t.timestamps
     end
   end

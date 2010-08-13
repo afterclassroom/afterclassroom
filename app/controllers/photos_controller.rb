@@ -4,7 +4,6 @@ class PhotosController < ApplicationController
 
   session :cookie_only => false, :only => :upload_photo_block
   skip_before_filter :verify_authenticity_token, :only => [:upload_photo_block]
-  skip_before_filter :login_required
   before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
@@ -157,10 +156,17 @@ class PhotosController < ApplicationController
   end
 
   def create_album
-    photo_album = PhotoAlbum.new(params[:photo_album])
+    photo_album = PhotoAlbum.find_or_create_by_name(params[:photo_album][:name])
     photo_album.user = current_user
     photo_album.save
-    redirect_to :action => "index"
+    if params[:Filedata]
+      photo = Photo.new()
+      photo.photo_album = photo_album
+      photo.user = current_user
+      photo.swfupload_file = params[:Filedata]
+      photo.save!
+    end
+    redirect_to :text => "Successfuly"
   end
 
   def upload_photo_block
@@ -168,7 +174,7 @@ class PhotosController < ApplicationController
     photo.user = current_user
     photo.swfupload_file = params[:Filedata]
     photo.save!
-    render :text => "Success"
+    render :text => photo.photo_attach.url(:thumb)
   end
   
   protected
