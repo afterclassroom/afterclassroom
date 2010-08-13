@@ -13,6 +13,7 @@ class ShoppingsController < ApplicationController
     
 
     params[:page] = 1
+    params[:subid] = 1 #first-time open page, sub-category = Musical Instrument
     @listallitems = SellingItem.paginated_item_conditions_with_friend(params,@friends_id)
 
     #PHAN CONG VIEC TIEP THEO CAN LAM DOI VOI MUC NAY LA`:
@@ -49,6 +50,14 @@ class ShoppingsController < ApplicationController
     puts "====================="
     puts "====================="
     puts "====================="
+  end
+
+  def friendads 
+    @friends_id = []
+		for friend in current_user.user_friends
+			@friends_id << friend.id
+		end
+    @listallitems = SellingItem.paginated_item_conditions_with_friend(params,@friends_id)
   end
 
   def shoppingdetail

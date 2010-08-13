@@ -1,11 +1,6 @@
 <% @listallitems.each do |item| %> 
   <%= item.name %><br/><br/><br/>
 <% end %>
-<%= will_paginate(@listallitems, 
-:params => { :controller => "shoppings", 
-:action => "friendads" }) 
-%>	
-
 <div class="shopTop">
   <div class="shopTopL">
     <div class="shopTopLT">
