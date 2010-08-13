@@ -11,20 +11,9 @@
         <div class="stoExItemL">Location</div>
          <div class="stoExItemR">
            <div class="phoExIn">
-          <div id="spanButtonPlaceholder">
-			<div class="fieldset flash" id="fsUploadProgress">
-			<span class="legend">Upload Queue</span>
-
-			</div>
-			<p id="divStatus">0 Files Uploaded</p>
-			<p>
-				<span id="spanButtonPlaceholder"></span>
-				<input id="btnUpload" type="button" value="Select Files" style="width: 61px; height: 22px; font-size: 8pt;" />
-				<input id="btnCancel" type="button" value="Cancel All Uploads" disabled="disabled" style="margin-left: 2px; height: 22px; font-size: 8pt;" />
-			</p>
-			<br style="clear: both;" />
-
-		</div>
+           <div>
+        <span id="spanButtonPlaceHolder"></span>
+      </div>
 
 
                </div>
@@ -48,6 +37,7 @@
         <div class="stoExCre"><a href="javascript:;" onclick="$('#form_photo').submit();">Add picture</a></div>
         <div class="stoExCan"><a href="javascript:;" onclick="$('#take_a_picture').toggle('slow');">Cancel</a></div>
       </div>
+
     </div>
 
     <div>
@@ -61,12 +51,7 @@
 
   <% end %>
 </div>
-<<<<<<< HEAD
-<%= swfupload_load({:upload_url => upload_photo_block_user_photos_path(current_user), :form_id => "form_photo", :debug => true}) %>
-<style>
- 
-</style>
-=======
+
 <script type='text/javascript'>
   var swfu;
 
@@ -101,11 +86,11 @@
       upload_complete_handler : uploadComplete,
 
 			post_params : {
-				authenticity_token : '<%= u form_authenticity_token -%>',
+				authenticity_token : '<%= u form_authenticity_token -%>'
 			},
 
       custom_settings : {
-        upload_target : 'divFileProgressContainer',
+        upload_target : 'divFileProgressContainer'
       },
 
       debug: true
@@ -113,4 +98,4 @@
     });
   };
 </script>
->>>>>>> bf785987fee29eed33103f6306edb8a27267483b
+
