@@ -4,8 +4,17 @@
 
 Size of List of category: <%= @categories.size %> <br/>
 <% @categories.each do |cg| %>
-  <%= cg.name %>
+  <%= cg.name %><br/><br/>
+  <% cg.shopping_subcategories.each do |subcg| %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= subcg.name %><br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "category navigation", {:controller => 'shoppings', :action => "cat_nav", :subid => subcg.id } %>
+  <% end %>
+
+
 <% end %>
+
+
+
 <div class="shopTop">
   <div class="shopTopL">
     <div class="shopTopLT">
