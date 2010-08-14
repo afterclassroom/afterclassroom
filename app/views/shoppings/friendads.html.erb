@@ -1,8 +1,60 @@
-<% @listallitems.each do |item| %> 
-  <%= item.name %><br/><br/><br/>
-<% end %>
-<%= will_paginate(@listallitems, 
-:params => { :controller => "shoppings", 
-:action => "friendads" }) 
-%>	
+<div class="shopFriList" id="friendsItem">
+  <div class="shopFriPre" id="prevId"><a href="#">&nbsp;</a>&nbsp;</div>
+  <% @listallitems.each do |item| %>
+    <div class="shopFriItem">
+      <div class="shopFriImg"><a href="#"><div><img src="/images/pictures/shop1.jpg"></div></a></div>
+      <div class="shopFriDes"><a href="#"><%= item.name %></a></div>
+      <div class="shopFriName"><a href="#">Vu Nguyen</a></div>
+      <div class="shopFriSch">at University of California</div>
+      <div class="shopFriIn">in <a href="#">Items For Sale</a></div>
+    </div>
+  <% end %>
+  <div class="shopFriNext" id="nextId" ><a href="#">&nbsp;</a></div>
+  <%= will_paginate(@listallitems, :params => { :controller => "shoppings", :action => "friendads" }) %>
+</div>
+<script language="javascript">
 
+  var nextpageurl = $(".disabled.next_page").attr("href");
+  var prevpageurl = $(".disabled.prev_page").attr("href");
+  $(".disabled.next_page").html('');
+  $(".disabled.prev_page").html('');
+  $(".current").each(function(){jQuery(this).html('');});
+  $(".gap").html('');
+
+  $('#prevId').bind('click', function(e){
+    if (prevpageurl!=undefined){
+      LoadSpinner('friendsItem');
+      $.ajax({
+        url: prevpageurl,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('#friendsItem').html(msg);
+        }
+      });
+    }
+    return false;
+  });
+  $('#nextId').bind('click', function(e){
+
+    if (nextpageurl!=undefined){
+      LoadSpinner('friendsItem');
+      $.ajax({
+        url: nextpageurl,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('#friendsItem').html(msg);
+        }
+      });
+
+    }
+    return false;
+  });
+</script>
