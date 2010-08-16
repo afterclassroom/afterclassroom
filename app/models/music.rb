@@ -1,4 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
+require 'mime/types'
 class Music < ActiveRecord::Base
   # Relations
   belongs_to :user
@@ -18,4 +19,24 @@ class Music < ActiveRecord::Base
 
   #Tags
   acts_as_taggable
+
+  # Favorite
+  acts_as_favorite
+
+  # Named Scope
+  named_scope :with_limit, :limit => 6
+  named_scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
+  named_scope :most_view, :order => "count_view DESC"
+
+  # Fix the mime types. Make sure to require the mime-types gem
+  def swfupload_file=(data)
+    data.content_type = MIME::Types.type_for(data.original_filename).to_s
+    self.music_attach = data
+  end
+
+  def convert_seconds_to_time
+    total_minutes = length_in_seconds / 1.minutes
+    seconds_in_last_minute = length_in_seconds - total_minutes.minutes.seconds
+    "#{total_minutes}m #{seconds_in_last_minute}s"
+  end
 end

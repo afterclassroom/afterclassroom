@@ -562,3 +562,59 @@ function formatLinkForPaginationURLMyPhoto() {
     });
 }
 //My Photos
+
+//My Musics
+function searchFriendMusics(){
+    var form = $("#friend_musics_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html) {
+        $("#friend_musics_list").html(html);
+    });
+}
+
+function searchMyMusics(){
+    var form = $("#my_musics_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html) {
+        $("#my_musics_list").html(html);
+    });
+}
+
+function formatLinkForPaginationURLFriendMusic() {
+    var form = $("#friend_musics_search");
+    var url = form.attr("action");
+    $("div.friend_musics").find("a").each(function() {
+        var linkElement = $( this );
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+
+        linkElement.click(function() {
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchFriendStories();
+        });
+    });
+}
+
+function formatLinkForPaginationURLMyMusic() {
+    var form = $("#my_musics_search");
+    var url = form.attr("action");
+    $("div.my_musics").find("a").each(function() {
+        var linkElement = $( this );
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+
+        linkElement.click(function() {
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchMyStories();
+        });
+    });
+}
+//My Musics

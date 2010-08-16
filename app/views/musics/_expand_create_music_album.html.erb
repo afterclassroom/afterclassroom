@@ -1,8 +1,8 @@
-<div id="create_a_photo" style="display:none">
-  <% form_for :photo_album, :url => create_album_user_photos_path(current_user), :html => {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
-    <div class="photoEx">
+<div id="create_a_music" style="display:none">
+  <% form_for :music_album, :url => create_album_user_musics_path(current_user), :html => {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
+    <div class="musicEx">
       <div class="stoExItem">
-        <div class="stoExItemL">Photo album name</div>
+        <div class="stoExItemL">Music album name</div>
         <div class="stoExItemR"><%= f.text_field :name %></div>
       </div>
       <div class="stoExItem">
@@ -13,8 +13,8 @@
         </div>
       </div>
       <div class="stoExBtm">
-        <div class="stoExCre"><a href="javascript:;" onclick="$('#form_album').submit();">Create photo album</a></div>
-        <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_photo').toggle('slow');">Cancel</a></div>
+        <div class="stoExCre"><a href="javascript:;" onclick="$('#form_album').submit();">Create music album</a></div>
+        <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_music').toggle('slow');">Cancel</a></div>
       </div>
     </div>
   <% end %>

@@ -1,4 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
+require 'mp3info'
+
 class MusicsController < ApplicationController
   layout "student_lounge"
 
@@ -22,7 +24,7 @@ class MusicsController < ApplicationController
     @friend_musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
   end
 
-  def friend_p
+  def friend_m
     arr_user_id = []
 
     if current_user.user_friends
@@ -52,7 +54,7 @@ class MusicsController < ApplicationController
     render :layout => false
   end
 
-  def my_p
+  def my_m
     @search_name = ""
 
     if params[:search]
@@ -110,9 +112,14 @@ class MusicsController < ApplicationController
   # POST /musics
   # POST /musics.xml
   def create
+    mp3_info = Mp3Info.open(params[:music][:music_attach].path)
+
     @music = Music.new(params[:music])
+    @music.length_in_seconds = mp3_info.length.to_i
+    @music.artist = mp3_info.tag.artist
+    @music.title = mp3_info.tag.title
+    @music.length_in_seconds = mp3_info.length.to_i
     @music.user = current_user
-    @music.tag_list = params[:tag_list]
     respond_to do |format|
       if @music.save
         flash[:notice] = 'Music was successfully created.'
@@ -171,7 +178,13 @@ class MusicsController < ApplicationController
   end
 
   def upload_music_block
+    mp3_info = Mp3Info.open(params[:Filedata].path)
+
     music = Music.new(params[:music])
+    music.length_in_seconds = mp3_info.length.to_i
+    music.artist = mp3_info.tag.artist
+    music.title = mp3_info.tag.title
+    music.length_in_seconds = mp3_info.length.to_i
     music.user = current_user
     music.swfupload_file = params[:Filedata]
     music.save!
@@ -186,5 +199,13 @@ class MusicsController < ApplicationController
       redirect_back_or_default(root_path)and return false
     end
     return @user
+  end
+  
+  private
+  
+  def convert_seconds_to_time(seconds)
+    total_minutes = seconds / 1.minutes
+    seconds_in_last_minute = seconds - total_minutes.minutes.seconds
+    "#{total_minutes}m #{seconds_in_last_minute}s"
   end
 end
