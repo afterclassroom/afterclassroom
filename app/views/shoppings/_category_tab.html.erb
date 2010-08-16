@@ -16,12 +16,17 @@ the name of items stored in table SHOPPING_CATEGORY, so that we can load these c
     <% categories.each do |ct| %>
       <div class="shopRitem">
         <div class="shopRitemT">
-          <div class="<%= icon_array[count] %>">Items For Sale</div>
+          <div class="<%= icon_array[count] %>"><%= ct.name %></div>
           <% count = count + 1 %>
           <div class="shopRitemTR"><a href="#">Post</a></div>
         </div>
         <% ct.shopping_subcategories.each do |subct| %>
-          <div class="shopRlist"><%= link_to subct.name, :controller => "shoppings", :action => "mainpage", :sub_category_name => subct.name%></div>
+          <div class="shopRlist">
+            <%= link_to subct.name, 
+              :controller => "shoppings", 
+              :action => "cat_nav", 
+              :subid => subct.id %>
+          </div>
         <% end %>
         <div class="shopRmore"><a href="#">More</a></div>
       </div><!--close div class=shopRitem-->
