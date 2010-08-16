@@ -12,8 +12,8 @@
 #divFileProgressContainer {
 	margin: 5px;
 	padding: 4px;
-	border: solid 1px #E8E8E8;
-	background-color: #F7F7F7;
+	/*border: solid 1px #E8E8E8;
+	background-color: #F7F7F7;*/
 	overflow: hidden;
 }
 /* Message */
@@ -151,3 +151,8 @@ label {
 }
 
 #btnSubmit { margin: 0 0 0 155px ; }
+.spanButtonPlace{
+margin-left:190px;
+margin-top:-33px;
+cursor:pointer;
+  }
