@@ -15,7 +15,10 @@
       
       <div>
         <input type="text" style="width: 170px;" name="photo[photo_attach]" id="photo_photo_attach" class="required">
-        <span id="spanButtonPlaceHolder" style="margin-top:10px;"></span>
+        <div class="spanButtonPlace">
+          <span id="spanButtonPlaceHolder"></span>
+        </div>
+        
       </div>
       <div id="divStatus">0 Files Uploaded</div>
     </div>
@@ -46,13 +49,3 @@
   <% end %>
 </div>
 <%= swfupload_load(:upload_url => upload_photo_block_user_photos_path(current_user), :form_id => "form_photo", :debug => true) %>
-<style>
-  .phoExIn div {
-    margin-top:-15px;
-  }
-  #spanButtonPlaceHolder{
-   
-height:28px;
-padding-top:20px;
-  }
-</style>

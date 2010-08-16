@@ -151,3 +151,8 @@ label {
 }
 
 #btnSubmit { margin: 0 0 0 155px ; }
+.spanButtonPlace{
+margin-left:190px;
+margin-top:-33px;
+cursor:pointer;
+  }

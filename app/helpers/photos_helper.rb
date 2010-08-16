@@ -40,15 +40,16 @@ module PhotosHelper
       flash_url : "/flash/swfupload.swf",
 
       // Button settings
-      button_image_url: "/images/upload_file.png",
+      button_image_url: '/images/upload_1.png',
       button_width: "75",
-      button_height: "29",
+      button_height: "25",
       button_placeholder_id: "spanButtonPlaceHolder",
+
       button_text: '<span class="theFont"></span>',
       button_text_style: ".theFont { font-size: 15; }",
       button_text_left_padding: 2,
       button_text_top_padding:10,
-button_top_padding:10,
+     
 
       file_post_name : "#{file_post_name}",
       file_size_limit : "#{file_size_limit}",
