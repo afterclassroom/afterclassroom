@@ -1,6 +1,4 @@
-<% @listallitems.each do |item| %> 
-  <%= item.name %>
-<% end %>
+<%= @list_recent.size %>
 <div class="shopTop">
   <div class="shopTopL">
     <div class="shopTopLT">
@@ -20,6 +18,7 @@
 <div class="contMain">
   <div class="contMainC">
     <%= render :partial => "category_tab", :locals => {:categories => @categories} %>
+
   </div>
   <div class="contMainL">
     <div class="col451 Shopping">
@@ -27,31 +26,7 @@
         <div class="col451Cont">
           <h3 class="titleH3">Friends Ad’s</h3>
           <div class="shopFriends">
-            <div class="shopFriPre"><a href="#">&nbsp;</a>&nbsp;</div>
-            <div class="shopFriList">
-              <div class="shopFriItem">
-                <div class="shopFriImg"><a href="#"><div><img src="/images/pictures/shop1.jpg"></div></a></div>
-                <div class="shopFriDes"><a href="#">Suspendisse hendrerit nisi eget enim sodales aliquet</a></div>
-                <div class="shopFriName"><a href="#">Vu Nguyen</a></div>
-                <div class="shopFriSch">at University of California</div>
-                <div class="shopFriIn">in <a href="#">Items For Sale</a></div>
-              </div>
-              <div class="shopFriItem">
-                <div class="shopFriImg"><a href="#"><div><img src="/images/pictures/shop2.jpg"></div></a></div>
-                <div class="shopFriDes"><a href="#">Fusce sed sem ipsum, ac dictum dolor</a></div>
-                <div class="shopFriName"><a href="#">Vu Nguyen</a></div>
-                <div class="shopFriSch">at University of California</div>
-                <div class="shopFriIn">in <a href="#">Verhicles</a></div>
-              </div>
-              <div class="shopFriItem">
-                <div class="shopFriImg"><a href="#"><div><img src="/images/pictures/shop3.jpg"></div></a></div>
-                <div class="shopFriDes"><a href="#">Suspendisse hendrerit nisi eget enim sodales aliquet</a></div>
-                <div class="shopFriName"><a href="#">Vu Nguyen</a></div>
-                <div class="shopFriSch">at University of California</div>
-                <div class="shopFriIn">in <a href="#">in Health &amp; Beauty</a></div>
-              </div>
-            </div>
-            <div class="shopFriNext"><a href="#">&nbsp;</a></div>
+            <%= render :partial => "frienditems", :locals => {:listallitems => @listallitems} %>
           </div>
           <div class="shopMost">
             <div class="shopMostL">

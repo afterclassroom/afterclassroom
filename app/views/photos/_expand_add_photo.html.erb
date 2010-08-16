@@ -9,8 +9,21 @@
       </div>
       <div class="stoExItem">
         <div class="stoExItemL">Location</div>
+
         <div class="stoExItemR">
-          <div class="phoExIn"><%= f.file_field :photo_attach, :class => "required" %></div>
+          <div class="phoExIn">
+ 
+      
+      <div>
+        <input type="text" style="width: 170px;" name="photo[photo_attach]" id="photo_photo_attach" class="required">
+        <div class="spanButtonPlace">
+          <span id="spanButtonPlaceHolder"></span>
+        </div>
+        
+      </div>
+      <div id="divStatus">0 Files Uploaded</div>
+    </div>
+
         </div>
       </div>
       <div class="stoExItem">
@@ -29,17 +42,14 @@
         <div class="stoExCre"><a href="javascript:;" onclick="$('#form_photo').submit();">Add picture</a></div>
         <div class="stoExCan"><a href="javascript:;" onclick="$('#take_a_picture').toggle('slow');">Cancel</a></div>
       </div>
+
     </div>
 
-    <div>
-      <div id="divStatus">0 Files Uploaded</div>
-      <div>
-        <span id="spanButtonPlaceHolder"></span>
-      </div>
-    </div>
+   
     <div id="divFileProgressContainer" style="height: 75px;"></div>
     <div id="thumbnails"></div>
 
   <% end %>
 </div>
 <%= swfupload_load(:upload_url => upload_photo_block_user_photos_path(current_user), :form_id => "form_photo", :debug => true) %>
+

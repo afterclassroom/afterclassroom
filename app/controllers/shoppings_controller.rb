@@ -10,45 +10,33 @@ class ShoppingsController < ApplicationController
 		for friend in current_user.user_friends
 			@friends_id << friend.id
 		end
-    
 
-    params[:page] = 1
+    params[:page] = "1"
+    params[:subid] = "1" #first-time open page, sub-category = Musical Instrument
     @listallitems = SellingItem.paginated_item_conditions_with_friend(params,@friends_id)
 
-    #PHAN CONG VIEC TIEP THEO CAN LAM DOI VOI MUC NAY LA`:
-    #1> DA LO.C DUOC CAC SELLING_ITEM THUOC VE FRIEND CUA CURRENT_USER
-    #2> CAN LO.C LAI 1 LAN NUA DE NHAN DUOC CAC SELLING_ITEM THUOC VE SELECTED_SUB_CATEGORY
+    @list_recent = SellingItem.paginated_item_conditions_with_recent(params)
 
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
-    puts params[:sub_category_name]
   end
 
   def cat_nav
     @categories = Shoppingcategory.find(:all)
-    puts "====================="
-    puts "====================="
-    puts "====================="
-    puts "====================="
-    puts "value == "+params[:subid]
-    puts "sub cat name == "+ ShoppingSubcategory.find(params[:subid]).name
-    puts "====================="
-    puts "====================="
-    puts "====================="
-    puts "====================="
-    puts "====================="
+    @friends_id = []
+		for friend in current_user.user_friends
+			@friends_id << friend.id
+		end
+
+    params[:page] = 1 #:page=1 is applied for will_paginate 
+    @listallitems = SellingItem.paginated_item_conditions_with_friend(params,@friends_id)
+  end
+
+  def friendads 
+    @friends_id = []
+		for friend in current_user.user_friends
+			@friends_id << friend.id
+		end
+    @listallitems = SellingItem.paginated_item_conditions_with_friend(params,@friends_id)
+    render :layout => false
   end
 
   def shoppingdetail
