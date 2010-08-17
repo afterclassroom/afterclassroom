@@ -7,35 +7,21 @@ if current_user.user_friends
   end
 end
 u = arr_user_id.join(", ")
-most_viewed_photos = Photo.with_users(u).with_limit.most_view
+most_viewed_musics = Music.with_users(u).with_limit.most_view
 %>
+
 <div class="col300 slStory">
-  <div class="col300in mostPho">
-    <h1 class="col300Title">Most viewed photos</h1>
-    <div class="photoRow">
-      <% most_viewed_photos.each do |p| %>
-        <div class="photoItemm">
-          <div class="photoImge"><%= link_to "<div>#{image_tag p.photo_attach.url(:thumb)}</div>", user_photo_path(p.user, p) %></div>
-        </div>
-      <% end %>
+  <div class="col300in mostMS">
+    <h1 class="col300Title">Most viewed musics</h1>
+    <% most_viewed_musics.each do |m| %>
+    <div class="msItem">
+      <div class="photoImg"><a href="#"><div><img src="pictures/msmost1.jpg"/></div></a></div>
+      <div class="mostMSR">
+        <div class="mostMStitle"><a href="#">Mariah Carey & Trey Lorenz - I'LL BE THERE</a></div>
+        <div class="mostMStime">4 minutes 54 seconds </div>
+        <div class="mostMSA"><a href="#" class="mostMSPlay"> </a><a href="#" class="mostMSadd"> </a></div>
+      </div>
     </div>
+    <% end %>
   </div>
 </div>
-<style>
-  .photoImge div {
-    background:url("/images/bgphoto.png") no-repeat left top;
-    height:74px;
-    padding-top:3px;
-    text-align:center;
-    width:98px;
-  }
-  .photoImge img {
-    border:0 none;
-  }
-  .photoItemm{
-    float:left;
-    height:90px;
-    width:120px;
-    padding-left:20px;
-  }
-</style>

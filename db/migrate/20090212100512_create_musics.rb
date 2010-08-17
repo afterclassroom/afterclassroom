@@ -9,6 +9,7 @@ class CreateMusics < ActiveRecord::Migration
       t.string :track_file_name
       t.string :track_content_type
       t.integer :track_file_size
+      t.integer :count_view, :default => 0
 
       t.timestamps
     end

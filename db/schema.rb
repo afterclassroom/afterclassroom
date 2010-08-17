@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100730102423) do
+ActiveRecord::Schema.define(:version => 20100807104106) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -196,18 +196,26 @@ ActiveRecord::Schema.define(:version => 20100730102423) do
   end
 
   create_table "music_albums", :force => true do |t|
-    t.integer  "user_id",                    :null => false
-    t.string   "name",       :default => "", :null => false
+    t.integer  "user_id",                                         :null => false
+    t.string   "name",                            :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "music_album_attach_file_name"
+    t.string   "music_album_attach_content_type"
+    t.integer  "music_album_attach_file_size"
+    t.datetime "music_album_attach_updated_at"
   end
 
   create_table "musics", :force => true do |t|
     t.integer  "user_id",                                  :null => false
     t.integer  "music_album_id",                           :null => false
     t.string   "title"
-    t.text     "description"
-    t.integer  "who_can_see",               :default => 0
+    t.string   "artist"
+    t.integer  "length_in_seconds"
+    t.string   "track_file_name"
+    t.string   "track_content_type"
+    t.integer  "track_file_size"
+    t.integer  "count_view",                :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "music_attach_file_name"
@@ -549,10 +557,19 @@ ActiveRecord::Schema.define(:version => 20100730102423) do
     t.string  "website"
   end
 
+  create_table "selling_item_images", :force => true do |t|
+    t.string   "caption"
+    t.integer  "selling_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "selling_items", :force => true do |t|
     t.integer  "user_id",                 :null => false
     t.integer  "shopping_subcategory_id", :null => false
     t.string   "name"
+    t.string   "description"
+    t.string   "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
