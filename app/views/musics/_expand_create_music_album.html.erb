@@ -1,6 +1,6 @@
-<div id="create_a_music" style="display:none">
+<div id="create_album" style="display:none">
   <% form_for :music_album, :url => create_album_user_musics_path(current_user), :html => {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
-    <div class="musicEx">
+    <div class="photoEx">
       <div class="stoExItem">
         <div class="stoExItemL">Music album name</div>
         <div class="stoExItemR"><%= f.text_field :name %></div>
@@ -8,14 +8,26 @@
       <div class="stoExItem">
         <div class="stoExItemL">Location</div>
         <div class="stoExItemR">
-          <div class="phoExIn"><input type="text" name="Text2"/></div>
-          <div class="phoExBtm"><a href="#">Browse</a></div>
+          <div class="phoExIn">
+            <div>
+              <input type="text" style="width: 170px;" name="music[music_attach]" id="music_music_attach" class="required"/>
+              <div class="spanButtonPlace">
+                <span id="spanButtonPlaceHolder"></span>
+              </div>
+            </div>
+            <div id="divStatus">0 Files Uploaded</div>
+          </div>
         </div>
       </div>
       <div class="stoExBtm">
         <div class="stoExCre"><a href="javascript:;" onclick="$('#form_album').submit();">Create music album</a></div>
-        <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_music').toggle('slow');">Cancel</a></div>
+        <div class="stoExCan"><a href="javascript:;" onclick="$('#create_album').toggle('slow');">Cancel</a></div>
       </div>
     </div>
+
+    <div id="divFileProgressContainer" style="height: 75px;"></div>
+    <div id="thumbnails"></div>
+
   <% end %>
 </div>
+<%= swfupload_load(:upload_url => create_album_user_musics_path(current_user), :form_id => "form_album", :debug => true) %>

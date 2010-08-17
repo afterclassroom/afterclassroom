@@ -1,6 +1,6 @@
-<div id="take_a_picture" style="display:none">
+<div id="add_music" style="display:none">
   <% form_for :music, :html => {:id => "form_music", :name => "form_music", :multipart => true } do |f| %>
-    <div class="musicEx">
+    <div class="photoEx">
       <div class="stoExItem">
         <div class="stoExItemL">music album</div>
         <div class="stoExItemR" id="select_music_album">
@@ -19,7 +19,6 @@
       </div>
     </div>
 
-    <span id="spanButtonPlaceHolder"></span>
     <div class="fieldset flash" id="fsUploadProgress"></div>
     <span>Upload Queue</span>
     <div id="divStatus">0 Files Uploaded</div>
