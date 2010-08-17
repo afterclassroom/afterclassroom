@@ -171,12 +171,11 @@ div.signin ul li.select a:hover{
 }
 .btmS{
     padding-top:8px;
-    *padding-top:9px;
+    padding-top:9px;
 
 }
 .btmS img{
     border:0px;
-    padding-left:3px;
 }
 .menuMain ul,.menuMain ul li{
     list-style:none;
