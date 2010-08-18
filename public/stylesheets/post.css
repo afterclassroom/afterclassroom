@@ -325,7 +325,7 @@
 }
 .assPage{
   float:left;
-  padding:10px 0px 10px 0px;
+  /*padding:10px 0px 10px 0px;*/
   color:#6f6f63;
   font-size:11px;
 }
@@ -356,7 +356,8 @@
 }
 
 .numPage{
-  padding-right:15px;
+  margin-left:550px;
+  /*padding-right:15px;*/
 }
 .nextPage, .firstPage{
   padding-right:6px;

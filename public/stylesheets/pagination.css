@@ -1,11 +1,11 @@
 .assPage{
 	float:left;
-	padding:10px 0px 10px 0px;
+	/*padding:10px 0px 10px 0px;
 	color:#6f6f63;
 	font-size:11px;
 }
   .assPage span {
-    padding:0px 4px }
+    /*padding:0px 4px*/ }
   .assPage span.disabled {
 	}
   .assPage span.current {
@@ -34,7 +34,8 @@
 	color:#fff!important;
     text-decoration: none;}
 .numPage{
-	padding-right:20px;
+  margin-top:20px;
+	/*padding-right:20px;*/
 }
 .next_page{
 	padding-right:8px;

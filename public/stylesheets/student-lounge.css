@@ -593,7 +593,7 @@
 }
 .friLeft .search{
   background:url('/images/bgSearchF.png') no-repeat left top;
-  float:left;
+  float:right;
   padding-right:0px;
   width:193px;
 }
@@ -1881,7 +1881,7 @@ div.helpAdv2{
   color:#d00;
 }
 .inboxLeft .assPage{
-  padding-left:10px;
+  /*padding-left:10px;*/
 }
 /** inbox detail **/
 .inbDelete, .inbReply, .inbForward{
@@ -5116,7 +5116,8 @@ a.itemFS:hover{
   padding:13px 10px 3px 10px;
 }
 .slsTopL{
-  float:left;
+  /*float:left;*/
+  padding:5px;
 }
 .slsTopR{
   float:right;
