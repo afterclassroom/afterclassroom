@@ -40,9 +40,19 @@
     </div>
 
     <div id="divFileProgressContainer" style="height: 35px;"></div>
-   
+    <div id="thumbnails1">
       <div id="thumbnails"></div>
-   
+   </div>
   <% end %>
 </div>
 <%= swfupload_load(:upload_url => upload_photo_block_user_photos_path(current_user), :form_id => "form_photo", :debug => true) %>
+
+<style>
+  #thumbnails1 {
+    background:url("/images/bgphoto.png") no-repeat scroll left top transparent;
+height:74px;
+padding-top:3px;
+text-align:center;
+width:98px;
+  }
+</style>
