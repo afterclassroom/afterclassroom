@@ -1,0 +1,20 @@
+<div class="shopMostL">
+  <div class="shopMostTitle">Most Recent Listings</div>
+  <%= will_paginate(listallitems, :params => { :controller => "shoppings", :action => "recentitems" }) %>
+  <% listallitems.each do |item| %>
+
+    <div class="shopMostItem">
+      <div class="assPic"><a href="#"><div><img src="/images/pictures/pic1.png"></div></a></div>
+      <div class="shoMostItemR">
+        <div class="shopMostItemTitle"><a href="#"><%= item.name %> <span>$75.85</span></a></div>
+        <div class="shopMostDes">In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
+        <div class="shopMostName"><a href="#">Vu Nguyen</a></div>
+        <div class="shopMostSch">at University of California</div>
+      </div>
+    </div>
+
+  <% end %>
+
+  <div class="shopRmore"><a href="#">More</a></div>
+
+</div>
