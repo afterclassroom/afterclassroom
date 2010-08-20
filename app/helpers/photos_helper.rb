@@ -58,6 +58,7 @@ module PhotosHelper
       file_upload_limit : #{file_upload_limit},
       file_queue_limit : 0,
 
+      
       custom_settings : {
         progressTarget : "fsUploadProgress"
       },
@@ -76,8 +77,9 @@ module PhotosHelper
 
       custom_settings : {
         upload_target : 'divFileProgressContainer',
+     
       },
-
+      
       debug: #{debug},
 
     });
