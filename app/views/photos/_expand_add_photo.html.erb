@@ -40,29 +40,11 @@
     </div>
 
     <div id="divFileProgressContainer" style="height: 35px;"></div>
-   
+  
       <div id="thumbnails"></div>
+     
+      
   
   <% end %>
 </div>
 <%= swfupload_load(:upload_url => upload_photo_block_user_photos_path(current_user), :form_id => "form_photo", :debug => true) %>
-<script>
-  $(function () {
-    $('#thumbnails').tagSuggest ( {
-      
-    });
-  }) ;
-
-</script>
-<style>
-  #thumbnails div{
-    width: 100px; height: 100px; /* Set the small thumbnail size */
-	-ms-interpolation-mode: bicubic; /* IE Fix for Bicubic Scaling */
-	border: 1px solid #ddd;
-	padding: 5px;
-	background: #f0f0f0;
-	
-	left: 0; top: 0;
-
-  }
-</style>
