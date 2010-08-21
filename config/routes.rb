@@ -32,7 +32,8 @@ ActionController::Routing::Routes.draw do |map|
     :mainpage => :get,
     :shoppingdetail => :get,
     :cat_nav => :get,
-    :friendads => :get
+    :friendads => :get,
+    :recentitems => :get
   }
 
   map.resources :playgames, :collection => {

@@ -1,4 +1,3 @@
-<%= @list_recent.size %>
 <div class="shopTop">
   <div class="shopTopL">
     <div class="shopTopLT">
@@ -29,61 +28,7 @@
             <%= render :partial => "frienditems", :locals => {:listallitems => @listallitems} %>
           </div>
           <div class="shopMost">
-            <div class="shopMostL">
-              <div class="shopMostTitle">Most Recent Listings</div>
-              <div class="shopMostPage">
-                <div class="assPage">
-                  <span class="firstPage"><a href="#">First</a></span>
-                  <span class="prevPage"><a href="#">Prev</a></span>
-                  <span class="currentPage">
-                    <a class="selected" href="#"><span>6</span></a>
-                    <a href="#"><span>7</span></a>
-                    <a href="#"><span>8</span></a>
-                    <a href="#"><span>9</span></a>
-                    <a href="#"><span>10</span></a>
-                  </span>
-                  <span class="nextPage"><a href="#">Next</a></span>
-                  <span class="lastPage"><a href="#">Last</a></span>
-                </div>
-              </div>
-              <div class="shopMostItem">
-                <div class="assPic"><a href="#"><div><img src="/images/pictures/pic1.png"></div></a></div>
-                <div class="shoMostItemR">
-                  <div class="shopMostItemTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span>$75.85</span></a></div>
-                  <div class="shopMostDes">In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-                  <div class="shopMostName"><a href="#">Vu Nguyen</a></div>
-                  <div class="shopMostSch">at University of California</div>
-                </div>
-              </div>
-              <div class="shopMostItem">
-                <div class="assPic"><a href="#"><div><img src="/images/pictures/pic2.png"></div></a></div>
-                <div class="shoMostItemR">
-                  <div class="shopMostItemTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span>$1150.45</span></a></div>
-                  <div class="shopMostDes">In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-                  <div class="shopMostName"><a href="#">Dang Nguyen</a></div>
-                  <div class="shopMostSch">at University of California</div>
-                </div>
-              </div>
-              <div class="shopMostItem">
-                <div class="assPic"><a href="#"><div><img src="/images/pictures/pic3.png"></div></a></div>
-                <div class="shoMostItemR">
-                  <div class="shopMostItemTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span>$75.85</span></a></div>
-                  <div class="shopMostDes">In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-                  <div class="shopMostName"><a href="#">Vu Nguyen</a></div>
-                  <div class="shopMostSch">at University of California</div>
-                </div>
-              </div>
-              <div class="shopMostItem">
-                <div class="assPic"><a href="#"><div><img src="/images/pictures/pic1.png"></div></a></div>
-                <div class="shoMostItemR">
-                  <div class="shopMostItemTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span>$75.85</span></a></div>
-                  <div class="shopMostDes">In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-                  <div class="shopMostName"><a href="#">Vu Nguyen</a></div>
-                  <div class="shopMostSch">at University of California</div>
-                </div>
-              </div>
-              <div class="shopRmore"><a href="#">More</a></div>
-            </div>
+            <%= render :partial => "recentitems",:locals => {:listallitems => @list_recent}  %>
             <div class="shopMostR">
               <div class="shopMostTitle">Most Popular Searches</div>
               <div class="shopMostPage">

@@ -30,6 +30,11 @@ class ShoppingsController < ApplicationController
     @listallitems = SellingItem.paginated_item_conditions_with_friend(params,@friends_id)
   end
 
+  def recentitems
+    @list_recent = SellingItem.paginated_item_conditions_with_recent(params)
+    render :layout => false
+  end
+
   def friendads 
     @friends_id = []
 		for friend in current_user.user_friends

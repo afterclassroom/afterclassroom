@@ -10,16 +10,18 @@
     </div>
   <% end %>
   <div class="shopFriNext" id="nextId" ><a href="#">&nbsp;</a></div>
-  <%= will_paginate(@listallitems, :params => { :controller => "shoppings", :action => "friendads" }) %>
+  <div id="friendpage">
+    <%= will_paginate(@listallitems, :params => { :controller => "shoppings", :action => "friendads" }) %>
+  </div>
 </div>
 <script language="javascript">
 
   var nextpageurl = $(".disabled.next_page").attr("href");
   var prevpageurl = $(".disabled.prev_page").attr("href");
-  $(".disabled.next_page").html('');
-  $(".disabled.prev_page").html('');
-  $(".current").each(function(){jQuery(this).html('');});
-  $(".gap").html('');
+  $("#friendpage .disabled.next_page").html('');
+  $("#friendpage .disabled.prev_page").html('');
+  $("#friendpage .current").each(function(){jQuery(this).html('');});
+  $("#friendpage .gap").html('');
 
   $('#prevId').bind('click', function(e){
     if (prevpageurl!=undefined){

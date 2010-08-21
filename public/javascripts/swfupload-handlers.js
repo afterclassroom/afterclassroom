@@ -128,7 +128,6 @@ function uploadError(fileObj, error_code, message) {
 
 }
 
-
 /* ******************************************
  *	FileProgress Object
  *	Control object for displaying file info
@@ -219,7 +218,8 @@ function AddImage(src) {
 	var new_img = document.createElement("img");
 	new_img.style.margin = "5px";
 
-	document.getElementById("thumbnails").appendChild(new_img);
+	
+        document.getElementById("thumbnails").appendChild(new_img);
 	if (new_img.filters) {
 		try {
 			new_img.filters.item("DXImageTransform.Microsoft.Alpha").opacity = 0;
