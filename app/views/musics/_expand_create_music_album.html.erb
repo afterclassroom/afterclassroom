@@ -10,7 +10,7 @@
         <div class="stoExItemR">
           <div class="phoExIn">
             <div>
-              <input type="text" style="width: 170px;" name="music[music_attach]" id="music_music_attach" class="required"/>
+              <input type="text" style="width: 170px;" name="attach_file" class="required"/>
               <div class="spanButtonPlace">
                 <span id="spanButtonPlaceHolder"></span>
               </div>
@@ -30,4 +30,4 @@
 
   <% end %>
 </div>
-<%= swfupload_load(:upload_url => create_album_user_musics_path(current_user), :form_id => "form_album", :debug => true) %>
+<%= swfupload_load(:upload_url => create_album_user_musics_path(current_user), :form_id => "form_album", :file_type => "*.mp3", :debug => true) %>

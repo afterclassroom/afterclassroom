@@ -1,5 +1,5 @@
 <div id="create_a_photo" style="display:none">
-  <% form_for :photo_album, :url => create_album_user_photos_path(current_user), :html => {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
+  <% form_for :photo_album, :html => {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
     <div class="photoEx">
       <div class="stoExItem">
         <div class="stoExItemL">Photo album name</div>

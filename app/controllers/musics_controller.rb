@@ -4,8 +4,8 @@ require 'mp3info'
 class MusicsController < ApplicationController
   layout "student_lounge"
 
-  session :cookie_only => false, :only => :upload_music_block
-  skip_before_filter :verify_authenticity_token, :only => [:upload_music_block]
+  session :cookie_only => false, :only => [:upload_music_block, :create_album]
+  skip_before_filter :verify_authenticity_token, :only => [:upload_music_block, :create_album]
   skip_before_filter :login_required
   before_filter :login_required
   before_filter :require_current_user,
@@ -112,16 +112,16 @@ class MusicsController < ApplicationController
   # POST /musics
   # POST /musics.xml
   def create
-    mp3_info = Mp3Info.open(params[:music][:music_attach].path)
-
     @music = Music.new(params[:music])
-    @music.length_in_seconds = mp3_info.length.to_i
-    @music.artist = mp3_info.tag.artist
-    @music.title = mp3_info.tag.title
-    @music.length_in_seconds = mp3_info.length.to_i
     @music.user = current_user
     respond_to do |format|
       if @music.save
+        mp3_info = Mp3Info.open(@music.music_attach.path)
+        @music.length_in_seconds = mp3_info.length.to_i
+        @music.artist = mp3_info.tag.artist
+        @music.title = mp3_info.tag.title
+        @music.length_in_seconds = mp3_info.length.to_i
+        @music.save
         flash[:notice] = 'Music was successfully created.'
         format.html { redirect_to user_music_path(current_user, @music) }
         format.xml  { render :xml => @music, :status => :created, :location => @music }
@@ -167,14 +167,21 @@ class MusicsController < ApplicationController
     music_album = MusicAlbum.find_or_create_by_name(params[:music_album][:name])
     music_album.user = current_user
     music_album.save
-    if params[:Filedata]
+    if music_album && params[:Filedata]
       music = Music.new()
       music.music_album = music_album
       music.user = current_user
       music.swfupload_file = params[:Filedata]
-      music.save!
+      if music.save
+        mp3_info = Mp3Info.open(music.music_attach.path)
+        music.length_in_seconds = mp3_info.length.to_i
+        music.artist = mp3_info.tag.artist
+        music.title = mp3_info.tag.title
+        music.length_in_seconds = mp3_info.length.to_i
+        music.save
+      end
     end
-    redirect_to :text => "Successfuly"
+    render :text => "Successfuly"
   end
 
   def upload_music_block

@@ -15,11 +15,6 @@
         <%= display_flash_messages %>
         <%= render :partial => "expand_add_photo" %>
         <%= render :partial => "expand_create_photo_album" %>
-        <div class="photoRow">
-          <% @my_photos.each do |m_p| %>
-            <%= render :partial => "item_my_photo", :locals => {:photo => m_p}  %>
-          <% end %>
-        </div>
         <div id="friend_photos_list">
           <div class="slsTop">
             <div class="slsTopL">
@@ -33,6 +28,11 @@
                 </div>
               </div>
             </div>
+            <div class="photoRow">
+              <% @friend_photos.each do |f_p| %>
+                <%= render :partial => "item_friend_photo", :locals => {:photo => f_p}  %>
+              <% end %>
+            </div>
             <div class="slsTopR">
               <!--Pagination-->
               <div class="assPage friend_photos">
@@ -41,11 +41,6 @@
               </div>
               <!--Pagination-->
             </div>
-          </div>
-          <div class="photoRow">
-            <% @friend_photos.each do |f_p| %>
-              <%= render :partial => "item_friend_photo", :locals => {:photo => f_p}  %>
-            <% end %>
           </div>
         </div>
       </div>
@@ -67,6 +62,11 @@
                 </div>
               </div>
             </div>
+            <div class="photoRow">
+              <% @my_photos.each do |m_p| %>
+                <%= render :partial => "item_my_photo", :locals => {:photo => m_p}  %>
+              <% end %>
+            </div>
             <div class="slsTopR">
               <!--Pagination-->
               <div class="assPage friend_photos">
@@ -84,24 +84,24 @@
 </div>
 <div class="contMainR">
   <!--Most Viewed-->
-<%= render :partial => "most_viewed" %>
+  <%= render :partial => "most_viewed" %>
   <!--Most Viewed-->
 
   <!--Ads-->
-<%= render :partial => "ads/show_vertical_ads" %>
+  <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
 
 <script type="text/javascript" >
-    function submit(){
-        $("#form_new").submit();
-    }
-    $().ready(function() {
-        $("#form_new").validate({
-            errorLabelContainer: $("#form_new div.stoError")
-        });
+  function submit(){
+    $("#form_new").submit();
+  }
+  $().ready(function() {
+    $("#form_new").validate({
+      errorLabelContainer: $("#form_new div.stoError")
     });
+  });
 
-    formatLinkForPaginationURLFriendPhoto();
-    formatLinkForPaginationURLMyPhoto();
+  formatLinkForPaginationURLFriendPhoto();
+  formatLinkForPaginationURLMyPhoto();
 </script>

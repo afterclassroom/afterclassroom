@@ -4,26 +4,27 @@
       <div class="stoExItem">
         <div class="stoExItemL">music album</div>
         <div class="stoExItemR" id="select_music_album">
-          <%= f.select :music_album_id, @music_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px"} %>
+          <%= f.select :music_album_id, @music_albums.collect {|m| [m.name, m.id]}, {}, {:style => "width:250px"} %>
         </div>
       </div>
       <div class="stoExItem">
         <div class="stoExItemL">Location</div>
         <div class="stoExItemR">
-          <div class="phoExIn"><%= f.file_field :music_attach, :class => "required" %></div>
+          <div class="phoExIn">
+            <div>
+              <input type="text" style="width: 170px;" name="attach_file" class="required"/>
+              <div class="spanButtonPlace">
+                <span></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="stoExBtm">
-        <div class="stoExCre"><a href="javascript:;" onclick="$('#form_music').submit();">Add picture</a></div>
+        <div class="stoExCre"><a href="javascript:;" onclick="$('#form_music').submit();">Add music</a></div>
         <div class="stoExCan"><a href="javascript:;" onclick="$('#take_a_picture').toggle('slow');">Cancel</a></div>
       </div>
     </div>
 
-    <div class="fieldset flash" id="fsUploadProgress"></div>
-    <span>Upload Queue</span>
-    <div id="divStatus">0 Files Uploaded</div>
-    <input id="btnCancel" type="button" value="Cancel All Uploads" onclick="swfu.cancelQueue();" disabled="disabled" style="margin-left: 2px; font-size: 8pt; height: 29px;" />
-
   <% end %>
 </div>
-<%= swfupload_load({:upload_url => upload_music_block_user_musics_path(current_user), :form_id => "form_music"}) %>

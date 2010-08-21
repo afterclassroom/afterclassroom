@@ -139,7 +139,7 @@ ActionController::Routing::Routes.draw do |map|
 
     # Music Album
     users.resources :music_albums
-    users.resources :musics, :collection => {:create_album => :get, :friend_m => :get, :my_m => :get, :upload_music_block => :post}
+    users.resources :musics, :collection => {:create_album => :post, :friend_m => :get, :my_m => :get, :upload_music_block => :post}
     
     # Photo Album
     users.resources :photo_albums

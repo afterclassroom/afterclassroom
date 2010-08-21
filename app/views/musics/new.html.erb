@@ -7,17 +7,17 @@
     <div class="contDetLin">
       <div class="inboxLeft">
         <div class="slsShare">
-          <div class="slsShareL">Post your photo</div>
+          <div class="slsShareL">Post your music</div>
         </div>
         <%= display_flash_messages %>
         <div id="take_a_picture" >
-          <% form_for @photo, :url => user_photos_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
-            <div class="photoEx">
+          <% form_for @music, :url => user_musics_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
+            <div class="musicEx">
               <div class="stoExItem">
-                <div class="stoExItemL">Photo album</div>
-                <div class="stoExItemR" id="select_photo_album">
-                  <% if @photo_albums.size > 0 %>
-                    <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px"} %>
+                <div class="stoExItemL">Music album</div>
+                <div class="stoExItemR" id="select_music_album">
+                  <% if @music_albums.size > 0 %>
+                    <%= f.select :music_album_id, @music_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px"} %>
                   <% end %>
                 </div>
               </div>
@@ -25,26 +25,14 @@
                 <div class="stoExItemL">Location</div>
                 <div class="stoExItemR">
                   <div id="divinputfile" style="width:252px">
-                    <%= f.file_field :photo_attach, :class => "filepc required" %>
+                    <%= f.file_field :music_attach, :class => "filepc required" %>
                     <div id="fakeinputfile"><input type="text" id="fakefilepc" name="fakefilepc" style="width:181px"/></div>
                   </div>
                 </div>
               </div>
-              <div class="stoExItem">
-                <div class="stoExItemL">Title</div>
-                <div class="stoExItemR"><%= f.text_field :title %></div>
-              </div>
-              <div class="stoExItem">
-                <div class="stoExItemL">Description</div>
-                <div class="stoExItemR"><%= f.text_area :description %></div>
-              </div>
-              <div class="stoExItem">
-                <div class="stoExItemL">Tag line</div>
-                <div class="stoExItemR"><%= text_field_tag 'tag_list', "" %></div>
-              </div>
               <div class="stoExBtm">
-                <div class="stoExCre"><a href="javascript:;" onclick="$('#form').submit();">Add picture</a></div>
-                <div class="stoExCan"><%= link_to "Cancel", user_photos_path(current_user) %></div>
+                <div class="stoExCre"><a href="javascript:;" onclick="$('#form').submit();">Add music</a></div>
+                <div class="stoExCan"><%= link_to "Cancel", user_musics_path(current_user) %></div>
               </div>
             </div>
           <% end %>
