@@ -185,7 +185,9 @@ class MusicsController < ApplicationController
   end
 
   def create_playlist
-    
+    music_album_id = params[:music_album_id]
+    @music_album = MusicAlbum.find(music_album_id)
+    render :layout => false
   end
   
   protected

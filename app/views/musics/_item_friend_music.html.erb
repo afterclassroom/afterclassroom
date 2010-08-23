@@ -3,6 +3,6 @@
   <div class="mostMSR">
     <div class="mostMStitle"><%= link_to music.title, user_music_path(current_user, music) %></div>
     <div class="mostMStime"><%= music.convert_seconds_to_time %></div>
-    <div class="mostMSA"><a href="#" class="mostMSPlay"> </a><a href="#" class="mostMSadd"> </a></div>
+    <div class="mostMSA"><%= link_to "", user_music_path(current_user, music), :class => "mostMSPlay" %><a href="#" class="mostMSadd"> </a></div>
   </div>
 </div>

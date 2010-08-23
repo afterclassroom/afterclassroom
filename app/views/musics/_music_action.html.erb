@@ -2,7 +2,7 @@
   <div class="AsDContBtm">
     <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
     <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
-    <span class="btmFav" id="item_favorite_<%= @photo.id %>"><%= show_favorite_in_detail("Photo", @photo) %></span>
-    <span class="btmAbuse"><%= link_to("<span>Report Abuse</span>", "#{report_abuse_posts_path}?reported_id=#{@photo.id}&reported_type=Story&height=320&width=490", :class => "thickbox", :title => "Report Abuse") %></span>
+    <span class="btmFav" id="item_favorite_<%= @music.id %>"><%= show_favorite_in_detail("Music", @music) %></span>
+    <span class="btmAbuse"><%= link_to("<span>Report Abuse</span>", "#{report_abuse_posts_path}?reported_id=#{@music.id}&reported_type=Story&height=320&width=490", :class => "thickbox", :title => "Report Abuse") %></span>
   </div>
 </div>

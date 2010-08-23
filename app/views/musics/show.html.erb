@@ -9,30 +9,33 @@
         <div class="slsShare">
           <div class="slsShareL">
             <span>You are here:</span>
-            <a href="#" class="slsShareLink">Photos</a>
-            <a href="#" class="slsShareLinkL">Friends shared photos</a>
+            <a href="#" class="slsShareLink">Musics</a>
+            <a href="#" class="slsShareLinkL">Friends shared musics</a>
           </div>
           <div class="slsShareR">
             <%= render :partial => "menu" %>
           </div>
         </div>
         <%= display_flash_messages %>
-        <%= render :partial => "expand_create_photo_album" %>
+        <%= render :partial => "expand_create_music_album" %>
         <div class="stoDet phoD">
-          <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@photo.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => @photo.user.id} %></div>
+          <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@music.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => @music.user.id} %></div>
           <div class="stoDetR">
-            <div class="stoDetRT"><%= @photo.user.full_name %>: <%= @photo.title %></div>
+            <div class="stoDetRT"><%= @music.user.full_name %>: <%= @music.title %></div>
           </div>
         </div>
-        <div class="phoDetImg"><%= image_tag @photo.photo_attach.url(:medium) %></div>
-        <div class="AsDOr RePho">
-          <div class="comPage">
-            <span class="compre"><a id="prev" href="#"></a></span>
-            <span class="comnext"><a id="next" href="#"></a></span>
-          </div>
-          <%= render :partial => "related_photo" %>
+        <div class="musicVideo" id="player_<%= @music.id %>">
+          <script type='text/javascript'>
+            var so_<%= @music.id %> = new SWFObject('/javascripts/player.swf','ply_<%= @music.id %>','320','24','9','#000000');
+            so_<%= @music.id %>.addParam('allowfullscreen','true');
+            so_<%= @music.id %>.addParam('allowscriptaccess','always');
+            so_<%= @music.id %>.addParam('wmode','opaque');
+            so_<%= @music.id %>.addVariable('autostart','true');
+            so_<%= @music.id %>.addVariable('file','<%= create_playlist_user_musics_path(current_user, :music_album_id => @music.music_album) %>');
+            so_<%= @music.id %>.write('player_<%= @music.id %>');
+          </script>
         </div>
-        <%= render :partial => "photo_action" %>
+        <%= render :partial => "music_action" %>
         <div class="AsDcom" id="form_comment" style="display: none">
           <h1 class="titleH1">Leave your comments</h1>
           <% if logged_in? %>
@@ -40,7 +43,7 @@
             <div class="AsDcomIn">
               <form name="form_comment" id="form_comment" action="" method="get">
                 <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
-                <div class="submit"><a href="javascript:;" onclick="send_comment('<%= @photo.id %>');" >Submit</a></div>
+                <div class="submit"><a href="javascript:;" onclick="send_comment('<%= @music.id %>');" >Submit</a></div>
               </form>
             </div>
           <% else %>
@@ -48,9 +51,9 @@
           <% end %>
         </div>
         <div class="AsDcomL" id="list_comments">
-          <% if @photo.comments.size > 0 %>
-            <h1 class="titleH1"><a href="javascript:;">Comments (<%= @photo.comments.size %>)</a></h1>
-            <% @photo.comments.each do |c| %>
+          <% if @music.comments.size > 0 %>
+            <h1 class="titleH1"><a href="javascript:;">Comments (<%= @music.comments.size %>)</a></h1>
+            <% @music.comments.each do |c| %>
               <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
             <% end %>
           <% end %>
@@ -62,7 +65,7 @@
 </div>
 <div class="contMainR">
   <!--Most Viewed-->
-<%= render :partial => "on_this_photo" %>
+<%= render :partial => "on_this_music" %>
   <!--Most Viewed-->
 
   <!--Ads-->
