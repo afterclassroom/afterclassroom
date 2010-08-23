@@ -13,12 +13,12 @@ most_viewed_musics = Music.with_users(u).with_limit.most_view
 <div class="col300 slStory">
   <div class="col300in mostMS">
     <h1 class="col300Title">Most viewed musics</h1>
-    <% most_viewed_musics.each do |m| %>
+    <% most_viewed_musics.each do |music| %>
     <div class="msItem">
-      <div class="photoImg"><a href="#"><div><img src="pictures/msmost1.jpg"/></div></a></div>
+      <div class="photoImg"><%= link_to "<div>#{image_tag music.music_album.music_album_attach.url(:thumb)}</div>", user_music_path(current_user, music) %></div>
       <div class="mostMSR">
-        <div class="mostMStitle"><a href="#">Mariah Carey & Trey Lorenz - I'LL BE THERE</a></div>
-        <div class="mostMStime">4 minutes 54 seconds </div>
+        <div class="mostMStitle"><%= link_to music.title, user_music_path(current_user, music) %></div>
+        <div class="mostMStime"><%= music.convert_seconds_to_time %></div>
         <div class="mostMSA"><a href="#" class="mostMSPlay"> </a><a href="#" class="mostMSadd"> </a></div>
       </div>
     </div>

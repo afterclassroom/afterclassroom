@@ -35,8 +35,13 @@ class Music < ActiveRecord::Base
   end
 
   def convert_seconds_to_time
-    total_minutes = length_in_seconds / 1.minutes
-    seconds_in_last_minute = length_in_seconds - total_minutes.minutes.seconds
-    "#{total_minutes}m #{seconds_in_last_minute}s"
+    str = ""
+    if length_in_seconds && length_in_seconds > 0
+      total_minutes = length_in_seconds / 1.minutes
+      seconds_in_last_minute = length_in_seconds - total_minutes.minutes.seconds
+      str = "#{total_minutes}m #{seconds_in_last_minute}s"
+    else
+      str = ""
+    end
   end
 end

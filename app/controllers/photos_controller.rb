@@ -2,8 +2,8 @@
 class PhotosController < ApplicationController
   layout "student_lounge"
 
-  session :cookie_only => false, :only => :upload_photo_block
-  skip_before_filter :verify_authenticity_token, :only => [:upload_photo_block]
+  session :cookie_only => false, :only => :create_album
+  skip_before_filter :verify_authenticity_token, :only => [:create_album]
   before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
@@ -159,22 +159,14 @@ class PhotosController < ApplicationController
     photo_album = PhotoAlbum.find_or_create_by_name(params[:photo_album][:name])
     photo_album.user = current_user
     photo_album.save
-    if params[:Filedata]
+    if photo_album && params[:Filedata]
       photo = Photo.new()
       photo.photo_album = photo_album
       photo.user = current_user
       photo.swfupload_file = params[:Filedata]
       photo.save!
+      render :text => photo.photo_attach.url(:thumb)
     end
-    redirect_to :text => "Successfuly"
-  end
-
-  def upload_photo_block
-    photo = Photo.new(params[:photo])
-    photo.user = current_user
-    photo.swfupload_file = params[:Filedata]
-    photo.save!
-    render :text => photo.photo_attach.url(:thumb)
   end
   
   protected

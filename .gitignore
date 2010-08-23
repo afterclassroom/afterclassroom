@@ -13,6 +13,7 @@ public/uploaded_files/**/*
 public/uploads/*
 public/photos/*
 public/photo_attaches/*
+public/music_attaches/*
 public/selling_item_photos/*
 public/avatars/*
 public/gamephotos/*

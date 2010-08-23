@@ -12,21 +12,22 @@
         <%= display_flash_messages %>
         <div id="take_a_picture" >
           <% form_for @photo, :url => user_photos_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
-            <div class="photoEx">
+          <div class="stoError"></div>
+          <div class="photoEx">
               <div class="stoExItem">
-                <div class="stoExItemL">Photo album</div>
+                <div class="stoExItemL">Photo album*</div>
                 <div class="stoExItemR" id="select_photo_album">
                   <% if @photo_albums.size > 0 %>
-                    <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px"} %>
+                    <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px", :class => "required"} %>
                   <% end %>
                 </div>
               </div>
               <div class="stoExItem">
                 <div class="stoExItemL">Location</div>
                 <div class="stoExItemR">
-                  <div id="divinputfile" style="width:252px">
-                    <%= f.file_field :photo_attach, :class => "filepc required" %>
-                    <div id="fakeinputfile"><input type="text" id="fakefilepc" name="fakefilepc" style="width:181px"/></div>
+                  <div id="divinputfile" style="width:254px">
+                    <%= f.file_field :photo_attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc required" %>
+                    <div id="fakeinputfile" style="margin-top:-30px;"><input type="text" id="fakefilepc" name="fakefilepc" style="width:176px"/></div>
                   </div>
                 </div>
               </div>
@@ -43,7 +44,7 @@
                 <div class="stoExItemR"><%= text_field_tag 'tag_list', "" %></div>
               </div>
               <div class="stoExBtm">
-                <div class="stoExCre"><a href="javascript:;" onclick="$('#form').submit();">Add picture</a></div>
+                <div class="stoExCre"><a href="javascript:;" onclick="submit();">Add picture</a></div>
                 <div class="stoExCan"><%= link_to "Cancel", user_photos_path(current_user) %></div>
               </div>
             </div>
@@ -68,8 +69,6 @@
     $("#form").submit();
   }
   $().ready(function() {
-    $("#form").validate({
-      errorLabelContainer: $("#form div.stoError")
-    });
+    $("#form").validate();
   });
 </script>
