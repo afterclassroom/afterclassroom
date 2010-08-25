@@ -46,6 +46,15 @@ class PostAssignmentsController < ApplicationController
     end
   end
 
+  def interesting
+    @posts = PostAssignment.paginated_post_conditions_with_interesting(params, @school)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @posts }
+    end
+  end
+
   def tag
     tag_id = params[:tag_id]
     @tag = Tag.find(tag_id)

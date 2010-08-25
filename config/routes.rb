@@ -192,11 +192,11 @@ ActionController::Routing::Routes.draw do |map|
   }
   map.resources :post_tests, :collection => {
     :search => :get, :due_date => :get,
-    :tag => :get
+    :interesting => :get, :tag => :get
   }
   map.resources :post_exams, :collection => {
     :search => :get, :due_date => :get,
-    :tag => :get
+    :interesting => :get, :tag => :get
   }
   map.resources :post_qas, :collection => {
     :search => :get, :tag => :get,

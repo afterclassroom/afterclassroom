@@ -1,0 +1,19 @@
+<div class="col195 intPro">
+  <div class="col195in">
+    <h1 class="col195Title">Interesting Assignments</h1>
+    <div class="col195Cont">
+      <%
+      interesting_assignments = PostAssignment.with_school(@school).interesting.with_limit
+    %>
+      <% if interesting_assignments.size > 0 %>
+        <% interesting_assignments.each do |p| %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(p.post.title, 4), post_assignment_path(p.post) %></div>
+            <div class="dueDTime"><%= p.post.created_at.strftime("%B %d, %Y")%></div>
+          </div>
+        <% end %>
+        <div class="dueDbutton"><%= link_to "View more Interesting Projects", interesting_post_assignments_path %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
