@@ -147,7 +147,7 @@ ActionController::Routing::Routes.draw do |map|
     users.resources :photos, :collection => {:create_album => :post, :friend_p => :get, :my_p => :get}
 
     # Youtube
-    user.resources :youtubes, :new => {:upload => :post}, :collection => {:authorise => :get }
+    users.resources :youtubes, :new => {:upload => :post}, :collection => {:authorise => :get }
   end
   
   # Sessions
