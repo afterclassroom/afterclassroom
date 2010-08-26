@@ -25,6 +25,7 @@ Rails::Initializer.run do |config|
   config.gem "domainatrix"
   config.gem "hpricot"
   config.gem "rest-open-uri"
+  config.gem 'gdata', :lib => 'gdata'
   
   # Make Time.zone default to the specified zone, and make Active Record store time values
   # in the database in UTC, and return them converted to the specified local zone.

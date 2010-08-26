@@ -1,0 +1,17 @@
+<% form_for 'video', :url => upload_new_video_path do |f| %>
+  <%= f.hidden_field :auth_sub, :value => session[:token] %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :description %>
+    <%= f.text_area :content, :rows => 10 %>
+
+    <%= f.label :category %>
+    <%= f.select :category, @categories %>
+
+    <%= f.label :keywords %>
+    <%= f.text_field :keywords %>
+
+    <%= f.submit 'Continue to Step 2' %>
+  <% end %>

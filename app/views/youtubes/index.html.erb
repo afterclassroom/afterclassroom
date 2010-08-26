@@ -1,0 +1,17 @@
+<% if session[:token] %>
+  <%= image_tag @youtube.logo %>
+
+  <h1><%= @youtube.title %></h1>
+  <%= "Displaying #{@youtube.startIndex} - #{@youtube.itemsPerPage} of #{@youtube.totalResults}" %>
+
+  <% for video in @youtube.videos %>
+    <h3><%= video.title %></h3> in <%= video.group.category %>
+    by <%= link_to video.author.name, "http://youtube.com/#{video.author.name}" %>
+
+    <%= simple_format truncate(video.content, :length => 100) %>
+    <%= link_to image_tag(video.group.thumbnail.first.url, :alt => video.title), video_path(video.id) %>
+    <%= link_to 'Watch on youtube', video.link.first.href %>
+    <%= link_to 'Edit/Update', edit_video_path(video) %>
+	  <%= link_to 'Delete', video_path(video), :method => "delete" %>
+  <% end %>
+  <% end %>
