@@ -33,6 +33,9 @@
             so_<%= @music.id %>.addVariable('autostart','true');
             so_<%= @music.id %>.addVariable('file','<%= create_playlist_user_musics_path(current_user, :music_album_id => @music.music_album) %>');
             so_<%= @music.id %>.write('player_<%= @music.id %>');
+            so_<%= @music.id %>.addParam("showdigits","true");
+
+
           </script>
         </div>
         <%= render :partial => "music_action" %>
