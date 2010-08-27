@@ -28,7 +28,7 @@
         <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
         <div class="AsDContLinf"><span>Due date:</span><%= @post_exam.due_date.strftime("%B %d, %Y") %></div>
       </div>
-      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user} %>
+      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
     </div>
 

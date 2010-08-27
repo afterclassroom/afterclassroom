@@ -29,7 +29,7 @@
         <div class="AsDContLinf"><span>Phone:</span><%= @post.post_book.phone %></div>
         <div class="AsDContLinf"><span>Address:</span><%= @post.post_book.address %></div>
       </div>
-      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user} %>
+      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
     </div>
 
