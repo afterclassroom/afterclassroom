@@ -1,0 +1,16 @@
+<% form_for @youtube, :url => video_url, :html => { :multipart => true }  do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :description %>
+    <%= f.text_area :content, :rows => 10 %>
+
+    <%= f.label :category %>
+    <%= f.select :category, @categories %>
+
+    <%= f.label :keywords %>
+	  <%= f.text_field :keywords %>
+
+    <%= f.submit 'Update video' %>
+  <% end %>
+  <%= link_to 'Back', videos_path %>
