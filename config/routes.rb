@@ -83,7 +83,13 @@ ActionController::Routing::Routes.draw do |map|
     :update_email => :put,
     :update_avatar => :post} do |users|
     users.resources :messages,
-      :collection => { :show_email => :get, :send_message => :get, :message_action => :post, :list_friend => :get }
+      :collection => { 
+      :show_email => :get,
+      :send_message => :get,
+      :message_action => :post,
+      :list_friend => :get,
+      :become_a_fan => :get
+      }
     users.resources :settings,
       :collection => {
       :networks => :get,

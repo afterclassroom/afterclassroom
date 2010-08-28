@@ -1,6 +1,6 @@
 <div class="AsDContImg"><%= link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => user.id} %></div>
 <div class="AsDContR">
-  <div class="fan"><a href="#">Become a Fan</a></div>
+  <div class="fan"><%= become_a_fan(post) %></div>
   <div class="friend"><a href="#">Invite Friend</a></div>
   <div class="chat"><%= link_to_function "Invite Chat", "invite_chat('#{user.id}')" %></div>
   <div class="mail"><%= show_email(post) %></div>

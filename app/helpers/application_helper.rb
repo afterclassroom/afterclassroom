@@ -219,6 +219,14 @@ module ApplicationHelper
     end
   end
 
+  def become_a_fan(post)
+    if !logged_in?
+      link_to_require_login("<span>Become a Fan</span>")
+    else
+      link_to("<span>Become a Fan</span>", "#{ become_a_fan_user_messages_path(post.user)}?user_id=#{post.user.id}&height=300&width=470", :class => "thickbox", :title => "Become a Fan of #{post.user.full_name}")
+    end
+  end
+
   def show_go_back
     link_to "<span>Go back</span>", session[:go_back_url]
   end
