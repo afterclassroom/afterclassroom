@@ -227,6 +227,14 @@ module ApplicationHelper
     end
   end
 
+  def invite_friend(post)
+    if !logged_in?
+      link_to_require_login("<span>Invite Friend</span>")
+    else
+      link_to("<span>Invite Friend</span>", "#{ invite_friend_user_messages_path(post.user)}?user_id=#{post.user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{post.user.full_name} to be a friend")
+    end
+  end
+
   def show_go_back
     link_to "<span>Go back</span>", session[:go_back_url]
   end

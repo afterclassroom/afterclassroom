@@ -88,6 +88,11 @@ class MessagesController < ApplicationController
     @user_id = params[:user_id]
     render :layout => false
   end
+
+  def invite_friend
+    @user_id = params[:user_id]
+    render :layout => false
+  end
   
   def send_message
     @message = Message.new()
