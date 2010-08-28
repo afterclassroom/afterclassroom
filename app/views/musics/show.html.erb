@@ -26,12 +26,14 @@
         </div>
         <div class="musicVideo" id="player_<%= @music.id %>">
           <script type='text/javascript'>
-            var so_<%= @music.id %> = new SWFObject('/javascripts/player.swf','ply_<%= @music.id %>','320','24','9','#000000');
+            var so_<%= @music.id %> = new SWFObject('/javascripts/player.swf','ply_<%= @music.id %>','500','300','9','#000000');
             so_<%= @music.id %>.addParam('allowfullscreen','true');
-            so_<%= @music.id %>.addParam('allowscriptaccess','always');
-            so_<%= @music.id %>.addParam('wmode','opaque');
+            so_<%= @music.id %>.addParam('wmode','transparent');
             so_<%= @music.id %>.addVariable('autostart','true');
-            so_<%= @music.id %>.addVariable('file','<%= create_playlist_user_musics_path(current_user, :music_album_id => @music.music_album) %>');
+            so_<%= @music.id %>.addVariable('repeat','always');
+            so_<%= @music.id %>.addVariable('playlistsize','200');
+            so_<%= @music.id %>.addVariable('playlist','bottom');
+            so_<%= @music.id %>.addVariable('playlistfile','<%= create_playlist_user_musics_path(current_user, :music_album_id => @music.music_album) %>');
             so_<%= @music.id %>.write('player_<%= @music.id %>');
           </script>
         </div>

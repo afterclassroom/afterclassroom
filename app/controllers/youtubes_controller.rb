@@ -1,5 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class YoutubesController < ApplicationController
+  layout "student_lounge"
+  
   before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
@@ -8,59 +10,59 @@ class YoutubesController < ApplicationController
   # GET /youtubes
   # GET /youtubes.xml
   def index
-    @youtube =YouTube.uploaded_by_user(session[:token]) if session[:token]
+    @youtube =Youtube.uploaded_by_user(session[:token]) if session[:token]
   end
 
   # GET /youtubes/1
   # GET /youtubes/1.xml
   def show
-    @video = YouTube.find_by_id(params[:id]) rescue nil
-    flash[:message] = "Sorry the video is not found at Youtube" and redirect_to youtubes_path(current_user) unless @video
+    @video = Youtube.find_by_id(params[:id]) rescue nil
+    flash[:message] = "Sorry the video is not found at Youtube" and redirect_to user_youtubes_path(current_user) unless @video
   end
 
   # GET /youtubes/new
   # GET /youtubes/new.xml
   def new
-    @categories ||= YouTube.video_categories
+    @categories ||= Youtube.video_categories
   end
   
   # GET /youtubes/1/edit
   def edit
-    @youtube_videos =YouTube.uploaded_by_user(session[:token])
+    @youtube_videos =Youtube.uploaded_by_user(session[:token])
     @video = @youtube_videos.videos.select { |video| video.id == params[:id] }
     @youtube = @video.first
     @youtube.keywords = @youtube.group.keywords
     @youtube.category = @youtube.group.category
-    @categories ||= YouTube.video_categories
+    @categories ||= Youtube.video_categories
   end
 
   # POST /youtubes
   # POST /youtubes.xml
   def upload
-    @upload_info = YouTube.get_upload_url(params[:video])
+    @upload_info = Youtube.get_upload_url(params[:video])
   end
 
   # PUT /youtubes/1
   # PUT /youtubes/1.xml
   def update
-    if u = YouTube.update_video(params[:id], session[:token], params[:you_tube_entry]) rescue nil
+    if u = Youtube.update_video(params[:id], session[:token], params[:you_tube_entry]) rescue nil
       flash[:message] = "Video has been Updated Successfully."
     else
       flash[:message] = "Video has not been Updated Successfully."
     end
-    redirect_to youtubes_path(current_user)
+    redirect_to user_youtubes_path(current_user)
   end
 
   # DELETE /youtubes/1
   # DELETE /youtubes/1.xml
   def destroy
-    yt = YouTube.delete_video(params[:id], session[:token]) rescue nil
+    yt = Youtube.delete_video(params[:id], session[:token]) rescue nil
     if yt.msg == "OK"
       flash[:message] = "Video has been sucessfully deleted."
     else
       flash[:message] = "Sorry the video has not been deleted."
     end
-    redirect_to youtubes_path(current_user)
+    redirect_to user_youtubes_path(current_user)
   end
 
   def authorise
@@ -70,7 +72,7 @@ class YoutubesController < ApplicationController
       session[:token] = client.auth_handler.upgrade()
       client.authsub_token = session[:token] if session[:token]
     end
-    redirect_to youtubes_path(current_user)
+    redirect_to user_youtubes_path(current_user)
   end
   
   protected
@@ -84,6 +86,6 @@ class YoutubesController < ApplicationController
   end
 
   def find_video
-    flash[:message] = "Sorry the video is not found at Youtube" and redirect_to youtubes_path(current_user) unless @video = YouTube.find_by_id(params[:id]) rescue nil
+    flash[:message] = "Sorry the video is not found at Youtube" and redirect_to user_youtubes_path(current_user) unless @video = Youtube.find_by_id(params[:id]) rescue nil
   end
 end

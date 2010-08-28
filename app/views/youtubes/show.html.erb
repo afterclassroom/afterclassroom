@@ -2,6 +2,6 @@
 	by <%= link_to @video.author.name, "http://youtube.com/#{@video.author.name}" %>
   <%= youtube_embed @video %>
 
-  <%= link_to 'Back', videos_path %>
-  <%= link_to 'Edit/Update', edit_video_path(@video) %>
-  <%= link_to 'Delete', video_path(@video), :method => "delete" %>
+  <%= link_to 'Back', user_youtubes_path(current_user) %>
+  <%= link_to 'Edit/Update', edit_user_youtube_path(current_user, @video) %>
+  <%= link_to 'Delete', user_youtube_path(current_user, @video), :method => "delete" %>

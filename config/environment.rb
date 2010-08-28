@@ -23,8 +23,8 @@ Rails::Initializer.run do |config|
     :version => '1.3.14'
   )
   config.gem "domainatrix"
-  config.gem "hpricot"
   config.gem "rest-open-uri"
+  config.gem "hpricot"
   config.gem 'gdata', :lib => 'gdata'
   
   # Make Time.zone default to the specified zone, and make Active Record store time values
@@ -47,5 +47,15 @@ class CGI::Session
       scan(/#{session_key}=(.*?)(&.*?)*$/).
       flatten.first
     original_initialize(request, option)
+  end
+end
+
+module ActiveResource
+  # overrides the default ActiveResource Connection Class build_request_headers method because of this error:
+  # http://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/1053-removed-http-header-accept-by-default
+  class Connection
+    def build_request_headers(headers, http_method=nil)
+      authorization_header.update(default_header).update(headers)
+    end
   end
 end
