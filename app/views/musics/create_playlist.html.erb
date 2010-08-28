@@ -1,11 +1,14 @@
 <playlist version='1' xmlns='http://xspf.org/ns/0/'>
   <title><%= @music_album.name %></title>
   <info><%= pluralize(@music_album.musics.size, "song") %></info>
+  <image>-noimage.jpg</image>
   <trackList>
     <% @music_album.musics.each do |music| %>
       <track>
         <title><%= music.title %></title>
         <location><%= music.music_attach.url %></location>
+        <album><%= @music_album.name %></album>
+        <duration><%= music.length_in_seconds %></duration>
       </track>
     <% end %>
   </trackList>
