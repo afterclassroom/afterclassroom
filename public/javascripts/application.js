@@ -315,7 +315,14 @@ function invite_chat(id) {
         dataType: 'html',
         data: ({
             user_id : id
-        })
+        }),
+	success: function(data){
+		$('.AsDContR .chat').text('Waiting...');
+	},
+	error: function(data){
+		alert('Error connecting to server');
+	}
+
     });
 }
 
