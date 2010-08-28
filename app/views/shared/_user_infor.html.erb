@@ -3,5 +3,6 @@
   <div class="fan"><a href="#">Become a Fan</a></div>
   <div class="friend"><a href="#">Invite Friend</a></div>
   <div class="chat"><%= link_to_function "Invite Chat", "invite_chat('#{user.id}')" %></div>
-  <div class="mail"><a href="#">Send Mail</a></div>
+  <div class="mail"><%= show_email(post) %></div>
+  
 </div>
