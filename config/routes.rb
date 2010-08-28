@@ -83,7 +83,15 @@ ActionController::Routing::Routes.draw do |map|
     :update_email => :put,
     :update_avatar => :post} do |users|
     users.resources :messages,
-      :collection => { :show_email => :get, :send_message => :get, :message_action => :post, :list_friend => :get }
+      :collection => { 
+      :show_email => :get,
+      :send_message => :get,
+      :message_action => :post,
+      :list_friend => :get,
+      :become_a_fan => :get,#datnt: need to modify here
+      :invite_friend => :get#datnt: need to modify here
+      }
+
     users.resources :settings,
       :collection => {
       :networks => :get,
@@ -127,7 +135,9 @@ ActionController::Routing::Routes.draw do |map|
       :invite_by_import_email => :post,
       :delete => :post,
       :accept => :post,
-      :de_accept => :post}
+      :de_accept => :post,
+      :send_invite_message => :get
+      }
     users.resources :stories, 
       :collection => {
       :friend_s => :get, :my_s => :get,

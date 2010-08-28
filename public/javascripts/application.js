@@ -199,6 +199,8 @@ function send_answer(post_id){
 }
 
 function sendEmail(user_id){
+    alert('a');
+    /*
     subject = $('#message_subject').val();
     body = $('#message_body').val();
 
@@ -217,7 +219,7 @@ function sendEmail(user_id){
                 $('#div_send_message').html(data);
             }
         });
-    }
+    }*/
 }
 
 function sendReportAbuse(){
@@ -313,7 +315,14 @@ function invite_chat(id) {
         dataType: 'html',
         data: ({
             user_id : id
-        })
+        }),
+	success: function(data){
+		$('.AsDContR .chat').text('Waiting...');
+	},
+	error: function(data){
+		alert('Error connecting to server');
+	}
+
     });
 }
 
