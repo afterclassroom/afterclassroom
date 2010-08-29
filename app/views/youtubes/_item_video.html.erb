@@ -1,8 +1,8 @@
 <div class="musicL">
-  <div class="photoImg"><a href="#"><div><img src="pictures/music3.png"/></div></a></div>
+  <div class="photoImg"><%= link_to "<div>#{image_tag(video.group.thumbnail.first.url, :alt => video.title)}</div>", user_youtube_path(current_user, video.id) %></div>
   <div class="mostMSR">
-    <div class="mostMStitle"><a href="#">Fast Lane Daily   /  2009 L.A. Auto Show Day 1 - 2011 Ford Fiesta</a></div>
-    <div class="mostMStime">2 hours 10 minutes</div>
-    <div class="mostMSA"><a href="#" class="mostMSPlay"> </a><a href="#" class="mostMSadd"> </a></div>
+    <div class="mostMStitle"><%= video.title %></div>
+    <div class="mostMStime"><%= simple_format truncate(video.content) %></div>
+    <div class="mostMSA"><%= link_to "", user_youtube_path(current_user, video.id), :class => "mostMSPlay" %><a href="#" class="mostMSadd"> </a></div>
   </div>
 </div>

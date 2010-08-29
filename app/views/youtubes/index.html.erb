@@ -1,5 +1,5 @@
 <% content_for :menu_top_student_lounge do -%>
-  <%= render :partial => 'submenu' %>
+  <%= render :partial => '/shared/submenu' %>
 <% end -%>
 
 <div class="slStoryL">
@@ -9,21 +9,22 @@
         <div class="slsShare">
           <div class="slsShareL">Videos</div>
           <div class="slsShareR">
-            <a href="#" class="slsShareS">Upload a Video</a>
+            <%= link_to "Upload a Video", new_user_youtube_path(current_user) if session[:token] %>
           </div>
         </div>
         <% if session[:token] %>
-        <div class="slsTop">
-          <div class="slsTopL">
-            <div class="slsTopLT">Friends shared videos <span>- 60 videos</span></div>
-            <div class="slsTopLB"><a href="#">View Comments (15)</a></div>
+          <div class="slsTop">
+            <div class="slsTopL">
+              <div class="slsTopLT"><%= "Displaying #{@youtube.startIndex} - #{@youtube.itemsPerPage} of #{@youtube.totalResults}" %></div>
+            </div>
           </div>
-        </div>
-        <div class="musicRow">
-          <% for video in @youtube.videos %>
-            <%= render :partial => "item_video", :locals => {:video => video}  %>
-          <% end %>
-        </div>
+          <div class="musicRow">
+            <% for video in @youtube.videos %>
+              <%= render :partial => "item_video", :locals => {:video => video}  %>
+            <% end %>
+          </div>
+        <% else %>
+          <%= render :partial => "authorise" %>
         <% end %>
       </div>
     </div>
@@ -31,7 +32,7 @@
 </div>
 <div class="contMainR">
   <!--Most Viewed-->
-<%#= render :partial => "most_viewed" %>
+  <%= render :partial => "most_viewed" %>
   <!--Most Viewed-->
 
   <!--Ads-->

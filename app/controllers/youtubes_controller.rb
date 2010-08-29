@@ -28,7 +28,7 @@ class YoutubesController < ApplicationController
   
   # GET /youtubes/1/edit
   def edit
-    @youtube_videos =Youtube.uploaded_by_user(session[:token])
+    @youtube_videos = Youtube.uploaded_by_user(session[:token])
     @video = @youtube_videos.videos.select { |video| video.id == params[:id] }
     @youtube = @video.first
     @youtube.keywords = @youtube.group.keywords

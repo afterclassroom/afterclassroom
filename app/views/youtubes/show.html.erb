@@ -1,7 +1,32 @@
-<h1><%= @video.title %></h1>
-	by <%= link_to @video.author.name, "http://youtube.com/#{@video.author.name}" %>
-  <%= youtube_embed @video %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => '/shared/submenu' %>
+<% end -%>
 
-  <%= link_to 'Back', user_youtubes_path(current_user) %>
-  <%= link_to 'Edit/Update', edit_user_youtube_path(current_user, @video) %>
-  <%= link_to 'Delete', user_youtube_path(current_user, @video), :method => "delete" %>
+<div class="slStoryL">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">Videos</div>
+          <div class="slsShareR">
+            <%= link_to "Upload a Video", new_user_youtube_path(current_user) if session[:token] %>
+          </div>
+        </div>
+        <% if session[:token] %>
+          <div class="musicVideo"><%= youtube_embed @video %></div>
+        <% else %>
+          <%= render :partial => "authorise" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contMainR">
+  <!--Most Viewed-->
+  <%= render :partial => "most_viewed" %>
+  <!--Most Viewed-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
