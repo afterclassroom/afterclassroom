@@ -88,8 +88,7 @@ ActionController::Routing::Routes.draw do |map|
       :send_message => :get,
       :message_action => :post,
       :list_friend => :get,
-      :become_a_fan => :get,#datnt: need to modify here
-      :invite_friend => :get#datnt: need to modify here
+      :become_a_fan => :get#datnt: need to modify here
       }
 
     users.resources :settings,
@@ -136,7 +135,8 @@ ActionController::Routing::Routes.draw do |map|
       :delete => :post,
       :accept => :post,
       :de_accept => :post,
-      :send_invite_message => :get
+      :send_invite_message => :get,
+      :invite_friend => :get
       }
     users.resources :stories, 
       :collection => {
