@@ -2,8 +2,8 @@
 class PhotosController < ApplicationController
   layout "student_lounge"
 
-  session :cookie_only => false, :only => :create_album
-  skip_before_filter :verify_authenticity_token, :only => [:create_album]
+  session :cookie_only => false, :only => :upload
+  skip_before_filter :verify_authenticity_token, :only => [:upload]
   before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
@@ -17,8 +17,8 @@ class PhotosController < ApplicationController
     cond = Caboose::EZ::Condition.new :photos do
       user_id === arr_user_id
     end
-    @my_photos = current_user.photos.find(:all, :group => "photo_album_id", :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
-    @friend_photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @my_photos = current_user.photos.find(:all, :order => "created_at DESC", :group => "photo_album_id").paginate :page => params[:page], :per_page => 5
+    @friend_photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC", :group => "photo_album_id").paginate :page => params[:page], :per_page => 5
   end
 
   def friend_p
@@ -155,10 +155,9 @@ class PhotosController < ApplicationController
     end
   end
 
-  def create_album
-    photo_album = PhotoAlbum.find_or_create_by_name(params[:photo_album][:name])
-    photo_album.user = current_user
-    photo_album.save
+  def upload
+    photo_album_id = params[:photo_album][:id]
+    photo_album = PhotoAlbum.find(photo_album_id)
     if photo_album && params[:Filedata]
       photo = Photo.new()
       photo.photo_album = photo_album
@@ -167,6 +166,13 @@ class PhotosController < ApplicationController
       photo.save!
       render :text => photo.photo_attach.url(:thumb)
     end
+  end
+
+  def create_album
+    @photo_album = PhotoAlbum.find_or_create_by_name(params[:photo_album][:name])
+    @photo_album.user = current_user
+    @photo_album.save
+    render :layout => false
   end
   
   protected

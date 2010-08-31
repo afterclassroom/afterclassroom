@@ -1,0 +1,17 @@
+<% form_for :photo_album, :html => {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
+  <%= f.hidden_field :id %>
+  <div class="photoEx">
+    <div class="stoExItem">
+      <div class="stoExItemL">Photo album name</div>
+      <div class="stoExItemR"><%= @photo_album.name %></div>
+    </div>
+    <div class="stoExBtm">
+      <div class="stoExCre"><span id="spanButtonPlaceHolder"></span></div>
+      <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').toggle('slow');">Cancel</a></div>
+    </div>
+  </div>
+  <div id="divFileProgressContainer" style="height: 35px;"></div>
+  <div id="thumbnails"></div>
+<% end %>
+  
+<%= swfupload_load(:upload_url => upload_user_photos_path(current_user), :form_id => "form_album", :file_type => "*.jpg;*.gif", :debug => true) %>

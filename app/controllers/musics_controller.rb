@@ -20,8 +20,8 @@ class MusicsController < ApplicationController
     cond = Caboose::EZ::Condition.new :musics do
       user_id === arr_user_id
     end
-    @my_musics = current_user.musics.find(:all, :group => "music_album_id", :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
-    @friend_musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @my_musics = current_user.musics.find(:all, :order => "created_at DESC", :group => "music_album_id").paginate :page => params[:page], :per_page => 5
+    @friend_musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC", :group => "music_album_id").paginate :page => params[:page], :per_page => 5
   end
 
   def friend_m

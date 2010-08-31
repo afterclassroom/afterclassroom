@@ -26,7 +26,7 @@ class Photo < ActiveRecord::Base
   # Named Scope
   named_scope :with_limit, :limit => 6
   named_scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
-  named_scope :most_view, :order => "count_view DESC"
+  named_scope :most_view, :order => "count_view DESC", :group => "photo_album_id"
 
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)
