@@ -1,17 +1,53 @@
-<% form_for 'video', :url => upload_new_video_path do |f| %>
-  <%= f.hidden_field :auth_sub, :value => session[:token] %>
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => '/shared/submenu' %>
+<% end -%>
 
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+<div class="slStoryL">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">Videos</div>
+        </div>
+        <% if session[:token] %>
+          <div class="photoEx">
+            <% form_for 'video', :url => upload_new_user_youtube_path(current_user), :html => {:id => "form"} do |f| %>
+              <%= f.hidden_field :auth_sub, :value => session[:token] %>
+              <div class="stoExItem">
+                <div class="stoExItemL">Title</div>
+                <div class="stoExItemR"><%= f.text_field :title %></div>
+              </div>
+              <div class="stoExItem">
+                <div class="stoExItemL">Description</div>
+                <div class="stoExItemR"><%= f.text_area :content, :rows => 10 %></div>
+              </div>
+              <div class="stoExItem">
+                <div class="stoExItemL">Category</div>
+                <div class="stoExItemR"><%= f.select :category, @categories %></div>
+              </div>
+              <div class="stoExItem">
+                <div class="stoExItemL">Keywords</div>
+                <div class="stoExItemR"><%= f.text_field :keywords %></div>
+              </div>
+              <div class="stoExBtm">
+                <div class="stoExCre"><a href="javascript:;" onclick="$('#form').submit();">Continue to Step 2</a></div>
+                <div class="stoExCan"><%= link_to "Cancel", user_youtubes_path(current_user) %></div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <%= render :partial => "authorise" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contMainR">
+  <!--Most Viewed-->
+  <%= render :partial => "most_viewed" %>
+  <!--Most Viewed-->
 
-    <%= f.label :description %>
-    <%= f.text_area :content, :rows => 10 %>
-
-    <%= f.label :category %>
-    <%= f.select :category, @categories %>
-
-    <%= f.label :keywords %>
-    <%= f.text_field :keywords %>
-
-    <%= f.submit 'Continue to Step 2' %>
-  <% end %>
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>

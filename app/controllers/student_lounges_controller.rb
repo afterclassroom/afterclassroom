@@ -15,33 +15,36 @@ class StudentLoungesController < ApplicationController
 		@friends_in_chat = current_user.friends_in_chat
     @friends_want = current_user.friends_want_chat
   end
-	
-	def invite_chat
-		user_id = params[:user_id]
-		user_invite_chat = User.find(user_id)
 
-		#Check and create chanel
-		if user_invite_chat
-      chanel_name = "chanel_#{current_user.id}_#{user_invite_chat.id}"
-			message = "#{current_user.full_name} invite #{user_invite_chat.full_name} to chat."
-			flirting_chanel = FlirtingChanel.create({:chanel_name => chanel_name})
-      flirting_massage = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
-      flirting_chanel.flirting_messages << flirting_massage
-      flirting_chanel.flirting_user_inchats << FlirtingUserInchat.new({:user_id => current_user.id, :user_id_invite => user_invite_chat.id, :status => "Create"})
-      flirting_chanel.flirting_user_inchats << FlirtingUserInchat.new({:user_id => user_invite_chat.id, :user_id_invite => current_user.id})
-      flirting_chanel.save
-			client_ids = []
-			for user_inchat in flirting_chanel.flirting_user_inchats
-				client_ids << user_inchat.user.login if user_inchat.user.login != current_user.login 
-			end
-      render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
-				#Refressh
-				page.call 'friends_you_invited_chat', ''
-				page.call 'friends_want_you_chat', ''
-				#Push message
-				page.call 'insert_text_to_chatcontent', flirting_chanel.chanel_name, "<li>" + message + "</li>"
+	def invite_chat
+
+      user_id = params[:user_id]
+      user_invite_chat = User.find(user_id)
+
+      #Check and create chanel
+      if user_invite_chat
+        chanel_name = "chanel_#{current_user.id}_#{user_invite_chat.id}"
+        message = "#{current_user.full_name} invite #{user_invite_chat.full_name} to chat."
+        flirting_chanel = FlirtingChanel.create({:chanel_name => chanel_name})
+        flirting_massage = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
+        flirting_chanel.flirting_messages << flirting_massage
+        flirting_chanel.flirting_user_inchats << FlirtingUserInchat.new({:user_id => current_user.id, :user_id_invite => user_invite_chat.id, :status => "Create"})
+        flirting_chanel.flirting_user_inchats << FlirtingUserInchat.new({:user_id => user_invite_chat.id, :user_id_invite => current_user.id})
+        flirting_chanel.save
+        client_ids = []
+        for user_inchat in flirting_chanel.flirting_user_inchats
+          client_ids << user_inchat.user.login if user_inchat.user.login != current_user.login 
+        end
+        render :juggernaut => {:type => :send_to_clients, :client_ids => client_ids} do |page|
+          #Refressh
+          page.call 'friends_you_invited_chat', ''
+          page.call 'friends_want_you_chat', ''
+          #Push message
+          page.call 'insert_text_to_chatcontent', flirting_chanel.chanel_name, "<li>" + message + "</li>"
+        end
       end
-		end
+
+
 		
 		render :nothing => true
 	end

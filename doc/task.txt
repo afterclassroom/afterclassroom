@@ -12,3 +12,8 @@ rake thinking_sphinx:reindex
 rake thinking_sphinx:configure
 rake thinking_sphinx:version
 
+/*===Juggernaut===*/
+juggernaut -g juggernaut.yml
+juggernaut -c juggernaut.yml
+
+

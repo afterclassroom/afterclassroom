@@ -212,9 +212,6 @@ ActiveRecord::Schema.define(:version => 20100807104106) do
     t.string   "title"
     t.string   "artist"
     t.integer  "length_in_seconds"
-    t.string   "track_file_name"
-    t.string   "track_content_type"
-    t.integer  "track_file_size"
     t.integer  "count_view",                :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"

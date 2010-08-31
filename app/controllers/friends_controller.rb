@@ -180,4 +180,11 @@ class FriendsController < ApplicationController
     friend_invitation.reload
     send_user_email(UserMailer.create_invitation(current_user, email, request.host_with_port, friend_invitation.invitation_code, content))
   end
+
+  def invite_friend
+    @user_id = params[:user_id]
+    render :layout => false
+  end
+  
+  
 end

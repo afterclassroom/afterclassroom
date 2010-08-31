@@ -9,5 +9,5 @@ class MusicAlbum < ActiveRecord::Base
   has_many :musics
   
   # Attach
-  has_attached_file :music_album_attach
+  has_attached_file :music_album_attach, :default_url => "/images/music.png"
 end

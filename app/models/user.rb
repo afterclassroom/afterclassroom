@@ -161,6 +161,19 @@ class User < ActiveRecord::Base
 		end
 	end
 	
+	def check_user_is_invited(v_user_id)
+		cond = Caboose::EZ::Condition.new :flirting_user_inchats do
+			status == "Invite"
+			any{ user_id == v_user_id; user_id_invite == v_user_id }
+		end
+		flirting_user_inchats = FlirtingUserInchat.find :all, :conditions => cond.to_sql()
+		if flirting_user_inchats.size > 0 then
+			return true
+		else
+			return false
+		end
+	end	
+	
 	def check_user_in_chanel(v_user_id, v_chanel_id)
 		cond = Caboose::EZ::Condition.new :flirting_user_inchats do
 			flirting_chanel_id == v_chanel_id

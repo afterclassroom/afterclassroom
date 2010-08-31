@@ -1,6 +1,6 @@
 developer_tag: your_developer_tag
 auth_sub:
   secure: 0
-  session: 0
-  developer_key: AI39si6K78cgeMoLqx8x4YvL-M-EX4nsOPjgEsKWVkXTtj99pKGG2-filJPcOQO__sFpjuLdvK9D19MddqUukGjv14rb2EWs6g
-  client_key: after
+  session: 1
+  developer_key: AI39si6D4NA-q7LxRMitayFzL5SgMZX_Aa-DMx-pTMzyRyeyNUsfjG0Y0W3gtTjdzJc8YJtbg2tan6f7Col-iwokZXgEWehAxQ
+  client_key: afterclassroom

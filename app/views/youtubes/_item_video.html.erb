@@ -1,0 +1,8 @@
+<div class="musicL">
+  <div class="photoImg"><%= link_to "<div>#{image_tag(video.group.thumbnail.first.url, :alt => video.title)}</div>", user_youtube_path(current_user, video.id) %></div>
+  <div class="mostMSR">
+    <div class="mostMStitle"><%= video.title %></div>
+    <div class="mostMStime"><%= simple_format truncate(video.content) %></div>
+    <div class="mostMSA"><%= link_to "", user_youtube_path(current_user, video.id), :class => "mostMSPlay" %><a href="#" class="mostMSadd"> </a></div>
+  </div>
+</div>

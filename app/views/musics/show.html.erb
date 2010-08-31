@@ -1,5 +1,5 @@
 <% content_for :menu_top_student_lounge do -%>
-  <%= render :partial => 'submenu' %>
+  <%= render :partial => '/shared/submenu' %>
 <% end -%>
 
 <div class="slStoryL">
@@ -26,45 +26,16 @@
         </div>
         <div class="musicVideo" id="player_<%= @music.id %>">
           <script type='text/javascript'>
-            var so_<%= @music.id %> = new SWFObject('/javascripts/player.swf','ply_<%= @music.id %>','320','240','9','#000000');
-            so_<%= @music.id %>.addParam('allowfullscreen','true');
-            so_<%= @music.id %>.addParam('allowscriptaccess','always');
-            so_<%= @music.id %>.addParam('wmode','opaque');
-            so_<%= @music.id %>.addVariable('autostart','true');
-            so_<%= @music.id %>.addVariable('file','<%= create_playlist_user_musics_path(current_user, :music_album_id => @music.music_album) %>');
-
-      
-
-
-            so_<%= @music.id %>.addParam('playlist', 'true');
-            so_<%= @music.id %>.addVariable("thumbsinplaylist","true");
-
-           so_<%= @music.id %>.addVariable('bufferlength',     '5');
-          so_<%= @music.id %>.addVariable('showdigits',       'true');
-         
-          so_<%= @music.id %>.addVariable('repeat',           'list');
-          so_<%= @music.id %>.addVariable('shuffle',          'true');
-          so_<%= @music.id %>.addVariable('showicons',        'true');
-          
-
-so_<%= @music.id %>.write('player_<%= @music.id %>');
-
-
-
+              var so_<%= @music.id %> = new SWFObject('/javascripts/player.swf','ply_<%= @music.id %>','500','300','9','#000000');
+              so_<%= @music.id %>.addParam('allowfullscreen','true');
+              so_<%= @music.id %>.addParam('wmode','transparent');
+              so_<%= @music.id %>.addVariable('autostart','true');
+              so_<%= @music.id %>.addVariable('repeat','always');
+              so_<%= @music.id %>.addVariable('playlistsize','180');
+              so_<%= @music.id %>.addVariable('playlist','bottom');
+              so_<%= @music.id %>.addVariable('playlistfile','<%= create_playlist_user_musics_path(current_user, :music_album_id => @music.music_album) %>');
+              so_<%= @music.id %>.write('player_<%= @music.id %>');
           </script>
-
-          <script type='text/javascript'>
-var so = new SWFObject('http://htbbc.co.cc/cxmedia/player.swf','mpl','470','320','9');
-so.addParam('allowfullscreen','true');
-so.addParam('allowscriptaccess','always');
-so.addParam('wmode','opaque');
-so.addVariable('author','HTBBC');
-so.addVariable('file','$fileurl');
-so.addVariable('logo','http://htbbc.co.cc/cxmedia/htbbc.png');
-so.addVariable('skin', 'http://htbbc.co.cc/cxmedia/seawave.swf');
-so.addVariable('autostart','true');
-so.write('mediaspace');
-</script>
         </div>
         <%= render :partial => "music_action" %>
         <div class="AsDcom" id="form_comment" style="display: none">
