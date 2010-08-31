@@ -1,3 +1,12 @@
 Engine Jard
 https://cloud.engineyard.com
 https://afterclassroom.lighthouseapp.com
+
+Ðây là account de store Photos và Musics voi Amazon;
+
+1. Bucket Name cho Photos;
+    -afterclassroom_photos
+2. Bucket Name cho Musics;
+    - afterclassroom_musics
+3. Secret Access Key; uDrHsboC2t4Hqpcpz5vMpVQMd32ZX+TlATRZ0nN9
+4. Access Key ID: AKIAJ3B6N3Y22A2R2LZQ

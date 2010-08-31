@@ -88,8 +88,7 @@ ActionController::Routing::Routes.draw do |map|
       :send_message => :get,
       :message_action => :post,
       :list_friend => :get,
-      :become_a_fan => :get,#datnt: need to modify here
-      :invite_friend => :get#datnt: need to modify here
+      :become_a_fan => :get#datnt: need to modify here
       }
 
     users.resources :settings,
@@ -136,7 +135,8 @@ ActionController::Routing::Routes.draw do |map|
       :delete => :post,
       :accept => :post,
       :de_accept => :post,
-      :send_invite_message => :get
+      :send_invite_message => :get,
+      :invite_friend => :get
       }
     users.resources :stories, 
       :collection => {
@@ -150,11 +150,11 @@ ActionController::Routing::Routes.draw do |map|
 
     # Music Album
     users.resources :music_albums
-    users.resources :musics, :collection => {:create_album => :post, :friend_m => :get, :my_m => :get, :create_playlist => :get}
+    users.resources :musics, :collection => {:create_album => :post, :friend_m => :get, :my_m => :get, :upload => :post, :create_playlist => :get}
     
     # Photo Album
     users.resources :photo_albums
-    users.resources :photos, :collection => {:create_album => :post, :friend_p => :get, :my_p => :get}
+    users.resources :photos, :collection => {:create_album => :post, :friend_p => :get, :my_p => :get, :upload => :post}
 
     # Youtube
     users.resources :youtubes, :new => {:upload => :post}, :collection => {:authorise => :get }

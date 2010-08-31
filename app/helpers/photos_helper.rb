@@ -34,7 +34,7 @@ module PhotosHelper
   <script type='text/javascript'>
   var swfu;
 
-  window.onload = function () {
+  function upload() {
     swfu = new SWFUpload({
       upload_url: "#{upload_url}?_geokit_session_id=#{session.session_id}",
       flash_url : "/flash/swfupload.swf",
@@ -84,6 +84,7 @@ module PhotosHelper
 
     });
   };
+  upload();
   #{function_send_form_data}
 </script>
     EOS
