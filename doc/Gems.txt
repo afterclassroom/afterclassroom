@@ -5,3 +5,4 @@ json
 eventmachine
 contacts
 domainatrix
+right_aws

@@ -4,8 +4,8 @@ require 'mp3info'
 class MusicsController < ApplicationController
   layout "student_lounge"
 
-  session :cookie_only => false, :only => :create_album
-  skip_before_filter :verify_authenticity_token, :only => :create_album
+  session :cookie_only => false, :only => :upload
+  skip_before_filter :verify_authenticity_token, :only => :upload
   skip_before_filter :login_required
   before_filter :login_required
   before_filter :require_current_user,
@@ -163,10 +163,9 @@ class MusicsController < ApplicationController
     end
   end
 
-  def create_album
-    music_album = MusicAlbum.find_or_create_by_name(params[:music_album][:name])
-    music_album.user = current_user
-    music_album.save
+  def upload
+    music_album_id = params[:music_album][:id]
+    music_album = MusicAlbum.find(music_album_id)
     if music_album && params[:Filedata]
       music = Music.new()
       music.music_album = music_album
@@ -182,6 +181,15 @@ class MusicsController < ApplicationController
       end
     end
     render :text => "Successfuly"
+  end
+
+  def create_album
+    @music_album = MusicAlbum.new()
+    @music_album.name = params[:album_name]
+    @music_album.user = current_user
+    @music_album.swfupload_file = params[:music_album_attach]
+    @music_album.save
+    render :layout => false
   end
 
   def create_playlist

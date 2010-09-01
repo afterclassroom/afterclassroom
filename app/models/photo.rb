@@ -7,6 +7,9 @@ class Photo < ActiveRecord::Base
 
   # Attach
   has_attached_file :photo_attach,
+    :storage => :s3,
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :bucket => 'afterclassroom_photos',
     :styles => { :medium => "555x417>",
     :thumb => "92x68#" }
   validates_attachment_content_type :photo_attach, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']

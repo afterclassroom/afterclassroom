@@ -1,19 +1,76 @@
 <div id="create_album" style="display:none">
-  <% form_for :music_album, :url => create_album_user_musics_path(current_user), :html => {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
+  <% form_tag "", {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
     <div class="photoEx">
       <div class="stoExItem">
         <div class="stoExItemL">Music album name*</div>
-        <div class="stoExItemR"><%= f.text_field :name %></div>
+        <div class="stoExItemR"><%= text_field_tag "album_name", "" %></div>
+      </div>
+      <div class="stoExItem">
+        <div class="stoExItemL">Music album image</div>
+        <div class="stoExItemR">
+          <div id="divinputfile" style="width:252px">
+            <div id="fakeinputfile"><input type="text" id="fakefilepc" name="fakefilepc" style="width:181px"/></div>
+          </div>
+        </div>
       </div>
       <div class="stoExBtm">
-        <div class="stoExCre"><span id="spanButtonPlaceHolder"></span></div>
+        <div class="stoExCre"><a href="javascript:;" onclick="ajax_upload.submit();">Create</a></div>
         <div class="stoExCan"><a href="javascript:;" onclick="$('#create_album').toggle('slow');">Cancel</a></div>
       </div>
     </div>
 
-    <div id="divFileProgressContainer"></div>
-    <div id="thumbnails"></div>
-
   <% end %>
 </div>
-<%= swfupload_load(:upload_url => create_album_user_musics_path(current_user), :form_id => "form_album", :file_type => "*.mp3", :debug => false) %>
+
+<!--Alert-->
+<div id="error_type" title="Error" style="display:none;">
+  <p>Only images are allowed</p>
+</div>
+<!--Alert-->
+
+<script type="text/javascript">
+  var path = "<%= create_album_user_musics_path(current_user) %>";
+
+  var button = $('#divinputfile');
+
+  var ajax_upload = new AjaxUpload(button, {
+    action: path,
+    name: 'music_album_attach',
+    autoSubmit: false,
+    onChange: function(file, extension){
+      $('#fakefilepc').val(file);
+    },
+    onSubmit : function(file, ext){
+      // Allow only images. You should add security check on the server-side.
+      if (ext && /^(jpg|JPG|png|jpeg|gif)$/.test(ext)){
+        // If you want to allow uploading only 1 file at time,
+        // you can disable upload button
+        this.setData({
+          'authenticity_token': $('[name="authenticity_token"]').val(),
+          'album_name':$('#album_name').val()
+        });
+        this.disable();
+      } else {
+        // extension is not allowed
+        $("#error_type").dialog({
+          modal: true,
+          buttons: {
+            Ok: function() {
+              $(this).dialog('close');
+            }
+          }
+        });
+        // cancel upload
+        return false;
+      }
+    },
+    onComplete: function(file, response){
+      // enable upload button
+      this.enable();
+
+      // update form
+      $('#create_album').html(response);
+    }
+  });
+
+</script>

@@ -6,7 +6,11 @@ class Music < ActiveRecord::Base
   belongs_to :music_album
 
   # Attach
-  has_attached_file :music_attach, :content_type => [
+  has_attached_file :music_attach, 
+#    :storage => :s3,
+#    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+#    :bucket => 'afterclassroom_musics',
+    :content_type => [
     'audio/mp3',
     'audio/wav',
     'audio/mpeg3']
