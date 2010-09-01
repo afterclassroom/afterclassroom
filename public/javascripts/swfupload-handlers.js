@@ -70,7 +70,7 @@ function uploadProgress(fileObj, bytesLoaded) {
         var progress = new FileProgress(fileObj,  this.customSettings.upload_target);
         progress.SetProgress(percent);
         if (percent === 100) {
-            progress.SetStatus("Creating thumbnail...");
+            progress.SetStatus("Creating file...");
             progress.ToggleCancel(false);
             progress.ToggleCancel(true, this, fileObj.id);
         } else {
@@ -88,7 +88,7 @@ function uploadSuccess(fileObj, server_data) {
 
         var progress = new FileProgress(fileObj,  this.customSettings.upload_target);
 
-        progress.SetStatus("Thumbnail Created.");
+        progress.SetStatus("File Created.");
         progress.ToggleCancel(false);
 
     } catch (ex) {
@@ -104,7 +104,7 @@ function uploadComplete(fileObj) {
         } else {
             var progress = new FileProgress(fileObj,  this.customSettings.upload_target);
             progress.SetComplete();
-            progress.SetStatus("All images received.");
+            progress.SetStatus("All files received.");
             progress.ToggleCancel(false);
         }
     } catch (ex) {
