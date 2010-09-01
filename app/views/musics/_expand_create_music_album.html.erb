@@ -3,7 +3,8 @@
     <div class="photoEx">
       <div class="stoExItem">
         <div class="stoExItemL">Music album name*</div>
-        <div class="stoExItemR"><%= f.text_field :name %></div>
+        <div class="stoExItemR"><%= f.text_field :name, :class => "required" %></div>
+        <div class="error" style="padding: 10px"></div>
       </div>
       <div class="stoExBtm">
         <div class="stoExCre"><span id="spanButtonPlaceHolder"></span></div>
@@ -17,3 +18,11 @@
   <% end %>
 </div>
 <%= swfupload_load(:upload_url => create_album_user_musics_path(current_user), :form_id => "form_album", :file_type => "*.mp3", :debug => false) %>
+<script>
+  $().ready(function() {
+        $("#form_album").validate({
+            errorLabelContainer: $("#form_album div.error")
+        });
+    });
+
+  </script>

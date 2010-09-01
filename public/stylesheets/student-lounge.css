@@ -484,7 +484,7 @@
     float:left;
 }
 .photoRow{
-    padding-bottom:10px;
+    /*padding-bottom:10px;*/
     overflow:hidden;
     _height:100%;
 }
@@ -598,6 +598,7 @@
     float:right;
     padding-right:0px;
     width:193px;
+    margin-top:-15px;
 }
 .friLeft .btmS{
     padding-top:4px;
