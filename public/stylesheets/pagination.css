@@ -1,5 +1,6 @@
 .assPage{
 	float:left;
+        margin-right:5px;
 	/*padding:10px 0px 10px 0px;
 	color:#6f6f63;
 	font-size:11px;
@@ -40,3 +41,6 @@
 .next_page{
 	padding-right:8px;
 }
+.click_here{
+    margin-left:10px;
+  }

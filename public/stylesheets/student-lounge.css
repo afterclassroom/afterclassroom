@@ -484,16 +484,19 @@
     float:left;
 }
 .photoRow{
-    padding-bottom:10px;
+    /*padding-bottom:10px;*/
     overflow:hidden;
     _height:100%;
 }
 .photoImg div{
-    background:url('images/bgphoto.png') no-repeat left top;
+    background:url('/images/bgphoto.png') no-repeat left top;
     padding:3px;
+    /*text-align:center;*/
+    width:98px;
+    height:74px;
 }
 .photoImg a:hover div{
-    background:url('images/bgphotoH.png') no-repeat left top;
+    background:url('/images/bgphotoH.png') no-repeat left top;
 }
 .photoImg img{
     width:92px;
@@ -595,6 +598,7 @@
     float:right;
     padding-right:0px;
     width:193px;
+    margin-top:-15px;
 }
 .friLeft .btmS{
     padding-top:4px;
@@ -3112,9 +3116,10 @@ div.helpAdv2{
     background:url('/images/btm66.png') no-repeat top left;
     padding:2px 11px;
     height:25px;
+    width:66px;
     color:white;
     cursor: pointer;
-    margin-top:5px;
+    /*margin-top:5px;*/
 }
 .buttonCom:hover {
     border:none;
@@ -5431,6 +5436,7 @@ div.navigation a.next:hover {
 }
 .stoExItemR{
     float:left;
+    margin-top:4px;
 }
 .stoExItemR textarea{
     width:525px;
@@ -5674,8 +5680,9 @@ span.btmTag a:hover{
 }
 /******** Student Lounges Music ****************/
 .mostMS .photoImg{
-    width:92px;
+    width:83px;
     float:left;
+    margin-right:10px;
 }
 .mostMSR{
     float:left;
@@ -5750,7 +5757,7 @@ span.btmTag a:hover{
     float:right;
 }
 .musicL .photoImg, .musicR .photoImg{
-    width:100px;
+    width:83px;
     float:left;
 }
 .musicL .mostMSR, .musicR .mostMSR{
