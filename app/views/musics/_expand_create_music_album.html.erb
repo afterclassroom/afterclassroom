@@ -3,7 +3,6 @@
     <div class="photoEx">
       <div class="stoExItem">
         <div class="stoExItemL">Music album name*</div>
-<<<<<<< HEAD:app/views/musics/_expand_create_music_album.html.erb
         <div class="stoExItemR"><%= text_field_tag "album_name", "" %></div>
       </div>
       <div class="stoExItem">
@@ -13,20 +12,14 @@
             <div id="fakeinputfile"><input type="text" id="fakefilepc" name="fakefilepc" style="width:181px"/></div>
           </div>
         </div>
-=======
-        <div class="stoExItemR"><%= f.text_field :name, :class => "required" %></div>
-        <div class="error" style="padding: 10px"></div>
->>>>>>> 4ef7b55995ccaead4ed2e8f817ceb44050361503:app/views/musics/_expand_create_music_album.html.erb
       </div>
       <div class="stoExBtm">
         <div class="stoExCre"><a href="javascript:;" onclick="ajax_upload.submit();">Create</a></div>
         <div class="stoExCan"><a href="javascript:;" onclick="$('#create_album').toggle('slow');">Cancel</a></div>
       </div>
     </div>
-
   <% end %>
 </div>
-<<<<<<< HEAD:app/views/musics/_expand_create_music_album.html.erb
 
 <!--Alert-->
 <div id="error_type" title="Error" style="display:none;">
@@ -80,14 +73,3 @@
   });
 
 </script>
-=======
-<%= swfupload_load(:upload_url => create_album_user_musics_path(current_user), :form_id => "form_album", :file_type => "*.mp3", :debug => false) %>
-<script>
-  $().ready(function() {
-        $("#form_album").validate({
-            errorLabelContainer: $("#form_album div.error")
-        });
-    });
-
-  </script>
->>>>>>> 4ef7b55995ccaead4ed2e8f817ceb44050361503:app/views/musics/_expand_create_music_album.html.erb
