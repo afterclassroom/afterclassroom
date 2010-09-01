@@ -5125,6 +5125,7 @@ a.itemFS:hover{
 }
 .slsTopR{
     float:right;
+    margin-right:15px;
 }
 .slsTopLT{
     color:#0a81c4;
