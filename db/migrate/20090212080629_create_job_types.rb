@@ -8,7 +8,8 @@ class CreateJobTypes < ActiveRecord::Migration
     [
       ["Full time", "full_time"],
       ["Part time", "part_time"],
-      ["Co-op/Intern", "cop_intern"]
+      ["Co-op/Intern", "cop_intern"],
+      ["I'm looking for job", "i_m_looking_for_job"]
     ].each do |s|
       JobType.new(:name => s.first, :label => s.last).save
     end

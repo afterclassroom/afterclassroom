@@ -7,7 +7,7 @@ class CreateTutorTypes < ActiveRecord::Migration
     
     [
       ["Tutor providers", "tutor_provider"],
-      ["Requested for tutor services", "request_for_tutor"]
+      ["Requested for tutoring services", "request_for_tutor"]
     ].each do |s|
       TutorType.new(:name => s.first, :label => s.last).save
     end

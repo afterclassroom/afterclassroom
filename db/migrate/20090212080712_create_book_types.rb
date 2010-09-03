@@ -9,7 +9,8 @@ class CreateBookTypes < ActiveRecord::Migration
       ["New books", "new_books"],
       ["Used books", "used_books"],
       ["Discounted books", "discouted_books"],
-      ["Free books", "free_books"]
+      ["Free books", "free_books"],
+      ["Your friends needed books", "your_friends_needed_books"]
     ].each do |s|
       BookType.new(:name => s.first, :label => s.last).save
     end
