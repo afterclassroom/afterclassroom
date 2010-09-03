@@ -8,9 +8,8 @@
       <div class="stoExItem">
         <div class="stoExItemL">Music album image</div>
         <div class="stoExItemR">
-          <div id="divinputfile" style="width:252px">
-            <div id="fakeinputfile"><input type="text" id="fakefilepc" name="fakefilepc" style="width:181px"/></div>
-          </div>
+          <div id="fakeinputfile"><input type="text" id="fakefilepc" name="fakefilepc" style="width:170px"/></div>
+          <div id="divinputfile" style="width:252px"></div>
         </div>
       </div>
       <div class="stoExBtm">
@@ -28,48 +27,48 @@
 <!--Alert-->
 
 <script type="text/javascript">
-  var path = "<%= create_album_user_musics_path(current_user) %>";
+    var path = "<%= create_album_user_musics_path(current_user) %>";
 
-  var button = $('#divinputfile');
+    var button = $('#divinputfile');
 
-  var ajax_upload = new AjaxUpload(button, {
-    action: path,
-    name: 'music_album_attach',
-    autoSubmit: false,
-    onChange: function(file, extension){
-      $('#fakefilepc').val(file);
-    },
-    onSubmit : function(file, ext){
-      // Allow only images. You should add security check on the server-side.
-      if (ext && /^(jpg|JPG|png|jpeg|gif)$/.test(ext)){
-        // If you want to allow uploading only 1 file at time,
-        // you can disable upload button
-        this.setData({
-          'authenticity_token': $('[name="authenticity_token"]').val(),
-          'album_name':$('#album_name').val()
-        });
-        this.disable();
-      } else {
-        // extension is not allowed
-        $("#error_type").dialog({
-          modal: true,
-          buttons: {
-            Ok: function() {
-              $(this).dialog('close');
+    var ajax_upload = new AjaxUpload(button, {
+        action: path,
+        name: 'music_album_attach',
+        autoSubmit: false,
+        onChange: function(file, extension){
+            $('#fakefilepc').val(file);
+        },
+        onSubmit : function(file, ext){
+            // Allow only images. You should add security check on the server-side.
+            if (ext && /^(jpg|JPG|png|jpeg|gif)$/.test(ext)){
+                // If you want to allow uploading only 1 file at time,
+                // you can disable upload button
+                this.setData({
+                    'authenticity_token': $('[name="authenticity_token"]').val(),
+                    'album_name':$('#album_name').val()
+                });
+                this.disable();
+            } else {
+                // extension is not allowed
+                $("#error_type").dialog({
+                    modal: true,
+                    buttons: {
+                        Ok: function() {
+                            $(this).dialog('close');
+                        }
+                    }
+                });
+                // cancel upload
+                return false;
             }
-          }
-        });
-        // cancel upload
-        return false;
-      }
-    },
-    onComplete: function(file, response){
-      // enable upload button
-      this.enable();
+        },
+        onComplete: function(file, response){
+            // enable upload button
+            this.enable();
 
-      // update form
-      $('#create_album').html(response);
-    }
-  });
+            // update form
+            $('#create_album').html(response);
+        }
+    });
 
 </script>

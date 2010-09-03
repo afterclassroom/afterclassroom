@@ -27,19 +27,19 @@
                 </div>
               </div>
             </div>
-            <div class="slsTopR">
-              <!--Pagination-->
-              <div class="assPage friend_musics">
-                <span class="numPage"><%= page_entries_info @friend_musics %></span>
-                <%= will_paginate @friend_musics %>
-              </div>
-              <!--Pagination-->
-            </div>
           </div>
           <div class="musicRow">
             <% @friend_musics.each do |f_m| %>
               <%= render :partial => "item_friend_music", :locals => {:music => f_m}  %>
             <% end %>
+          </div>
+          <div class="slsTopR">
+            <!--Pagination-->
+            <div class="assPage friend_musics">
+              <span class="numPage"><%= page_entries_info @friend_musics %></span>
+              <%= will_paginate @friend_musics %>
+            </div>
+            <!--Pagination-->
           </div>
         </div>
       </div>
@@ -60,20 +60,20 @@
                   <% end %>
                 </div>
               </div>
-            </div>
-            <div class="slsTopR">
-              <!--Pagination-->
-              <div class="assPage friend_musics">
-                <span class="numPage"><%= page_entries_info @my_musics %></span>
-                <%= will_paginate @my_musics %>
-              </div>
-              <!--Pagination-->
-            </div>
+            </div>   
           </div>
           <div class="musicRow">
             <% @my_musics.each do |m_m| %>
               <%= render :partial => "item_my_music", :locals => {:music => m_m}  %>
             <% end %>
+          </div>
+          <div class="slsTopR">
+            <!--Pagination-->
+            <div class="assPage friend_musics">
+              <span class="numPage"><%= page_entries_info @my_musics %></span>
+              <%= will_paginate @my_musics %>
+            </div>
+            <!--Pagination-->
           </div>
         </div>
       </div>
@@ -82,24 +82,24 @@
 </div>
 <div class="contMainR">
   <!--Most Viewed-->
-  <%= render :partial => "most_viewed" %>
+<%= render :partial => "most_viewed" %>
   <!--Most Viewed-->
 
   <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
+<%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
 
 <script type="text/javascript" >
-  function submit(){
-    $("#form_new").submit();
-  }
-  $().ready(function() {
-    $("#form_new").validate({
-      errorLabelContainer: $("#form_new div.stoError")
+    function submit(){
+        $("#form_new").submit();
+    }
+    $().ready(function() {
+        $("#form_new").validate({
+            errorLabelContainer: $("#form_new div.stoError")
+        });
     });
-  });
 
-  formatLinkForPaginationURLFriendMusic();
-  formatLinkForPaginationURLMyMusic();
+    formatLinkForPaginationURLFriendMusic();
+    formatLinkForPaginationURLMyMusic();
 </script>

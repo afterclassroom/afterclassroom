@@ -1,46 +1,46 @@
 .assPage{
-	float:left;
-        margin-right:5px;
-	/*padding:10px 0px 10px 0px;
-	color:#6f6f63;
-	font-size:11px;
-}
+  float:left;
+  /*margin-right:15px;*/
+  /*padding:10px 0px 10px 0px;
+  color:#6f6f63;
+  font-size:11px;
+  }
   .assPage span {
-    /*padding:0px 4px*/ }
-  .assPage span.disabled {
-	}
-  .assPage span.current {
-	-moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    width:14px;
-	height:14px;
-	background: #2E6AB1;
-	color:#fff!important;
-	cursor:default; }
-  .assPage a {
-	color:#6f6f63;
-	padding:0px 4px;
-    text-decoration: none;}
+/*padding:0px 4px*/ }
+.assPage span.disabled {
+}
+.assPage span.current {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  width:14px;
+  height:14px;
+  background: #2E6AB1;
+  color:#fff!important;
+  cursor:default; }
+.assPage a {
+  color:#6f6f63;
+  padding:0px 4px;
+  text-decoration: none;}
 .assPage a:hover {
-	color:#d00;
-    text-decoration: none;}
+  color:#d00;
+  text-decoration: none;}
 .assPage a.current:hover {
-	-moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-	width:14px;
-	height:14px;
-	background: #2E6AB1;
-	color:#fff!important;
-    text-decoration: none;}
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  width:14px;
+  height:14px;
+  background: #2E6AB1;
+  color:#fff!important;
+  text-decoration: none;}
 .numPage{
   margin-top:20px;
-	/*padding-right:20px;*/
+  /*padding-right:20px;*/
 }
 .next_page{
-	padding-right:8px;
+  padding-right:8px;
 }
 .click_here{
-    margin-left:10px;
-  }
+  margin-left:10px;
+}
