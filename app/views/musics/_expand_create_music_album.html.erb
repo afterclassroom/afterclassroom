@@ -16,6 +16,7 @@
         <div class="stoExCre"><a href="javascript:;" onclick="ajax_upload.submit();">Create</a></div>
         <div class="stoExCan"><a href="javascript:;" onclick="$('#create_album').toggle('slow');">Cancel</a></div>
       </div>
+    
     </div>
   <% end %>
 </div>
@@ -27,9 +28,33 @@
 <!--Alert-->
 
 <script type="text/javascript">
+   
+     /* <![CDATA[ */
+            jQuery(function(){
+                jQuery("#album_name").validate({
+                    expression: "if (!isNaN(VAL) && VAL) return true; else return false;",
+                    message: "Should be a number"
+                });
+                jQuery("#Email").validate({
+                    expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
+                    message: "Should be a valid Email id"
+                });
+                jQuery("#ValidNumber").validate({
+                    expression: "if (VAL > 100) return true; else return false;",
+                    message: "Should be greater than 100"
+                });
+                jQuery("#Mobile").validate({
+                    expression: "if (VAL.match(/^[9][0-9]{9}$/)) return true; else return false;",
+                    message: "Should be a valid Mobile Number"
+                });
+            });
+            /* ]]> */
+
+
     var path = "<%= create_album_user_musics_path(current_user) %>";
 
     var button = $('#divinputfile');
+
 
     var ajax_upload = new AjaxUpload(button, {
         action: path,
