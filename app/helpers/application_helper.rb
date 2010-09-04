@@ -223,7 +223,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login("<span>Become a Fan</span>")
     else
-      link_to("<span>Become a Fan</span>", "#{ become_a_fan_user_friends_path(user)}?user_id=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Become a Fan of #{user.full_name}")
+      link_to("<span>Become a Fan</span>", "#{ become_a_fan_user_friends_path(current_user)}?user_id=#{user.id}", :title => "Become a Fan of #{user.full_name}")
     end
   end
 
