@@ -8,24 +8,12 @@
 
       </div>
       <div class="stoExBtm">
-        <div class="stoExCre"><%= submit_tag 'Create', :class => "buttonCom" %></div>
+        <div class="stoExCre"><a href="javascript:;" onclick="onSubmit();">Create</a></div>
         <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').toggle('slow');">Cancel</a></div>
       </div>
       <div class="error_photo" style="padding: 10px;"></div>
     </div>
   <% end %>
 </div>
-<script>
-    function sendChange(){
-    $(".stoExItemR").Create();
-  }
-    $().ready(function() {
-        // validate the comment form when it is submitted
-        $("#form_album").validate({
-            errorLabelContainer: $("#form_album div.error_photo")
-        });
 
-    });
-
-</script>
 
