@@ -1,27 +1,15 @@
 <script language="javascript">
-  /*
-  $.ajax({
-    url: onepageurl,
-    type: "GET",
-    dataType: "html",
-    failure: function(msg){
-      alert('ajax fail:'+msg);
-    },
-    success: function(msg){
-      $('#alltoolitems').html(msg);
-    }
-  });
-   */
-
   var submit_url = $('#form_invite_friend').find('a').attr('href');
   $('#form_invite_friend').find('a').bind('click',function(){
-
     var strMessage = $('#form_invite_friend .user_ri').text();
-    
     $.ajax({
       url: submit_url,
       type: "GET",
-      data:({invite_message:strMessage,full_name:'<%= @full_name %>'}),
+      data:({
+        invite_message:strMessage,
+        full_name:'<%= @full_name %>',
+        user_invite: '<%= @user_invite %>'
+      }),
       dataType: "html",
       failure: function(msg){
         alert('ajax fail:'+msg);

@@ -157,29 +157,7 @@ class FriendsController < ApplicationController
     render :layout => false
   end
 
-  def send_invite_message#Datnt: when user click submit button of INVITE_FRIEND DIALOD, this action is executed
-#    puts "============invite message"+params[:invite_message]
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "========="
-#    puts "============invite message"+params[:invite_message]
-#    puts "=========user_invite=="+params[:user_invite]
-#    render :text => params[:full_name]+" is your friend"
+  def send_invite_message
 
     user_id_friend = params[:user_invite]
     invite_message = params[:invite_message]
@@ -192,7 +170,13 @@ class FriendsController < ApplicationController
 
   def become_a_fan
     @user_id = params[:user_id]
-    render :layout => false
+    user_follow = User.find(params[:user_id])
+
+    fan = Fan.new
+    fan.user_id = current_user.id 
+    user_follow.fans << fan
+
+    render :text => "You are a fan of "+ user_follow.name
   end
   
   protected

@@ -1,15 +1,33 @@
+<script language="javascript">
+  
+  
+  $(document).ready(function(){
+    var be_a_fan_url = $('.AsDContR .fan').find('a').attr('href');
+
+    $('.AsDContR .fan').find('a').bind('click',function(){
+      
+      $.ajax({
+        url: be_a_fan_url,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('.AsDContR .fan').html(msg);
+        }
+      });
+      return false;
+    });
+    
+
+  });
+  
+
+</script>
 <div class="AsDContImg"><%= link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => user.id} %></div>
 <div class="AsDContR">
-  <div class="fan"><%= become_a_fan(user) %></div>
-
-
-
-
-
-
-
-
-
+  <div class="fan"><%= become_a_fan(user) %>  </div>
 
   <div class="friend"><%= show_invite(user) %></div>
 
