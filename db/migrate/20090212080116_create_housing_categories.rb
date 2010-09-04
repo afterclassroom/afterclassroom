@@ -9,7 +9,8 @@ class CreateHousingCategories < ActiveRecord::Migration
       ["Room for share", "room_for_share"],
       ["Apartment for rent", "apartment_for_rent"],
       ["House for rent", "house_for_rent"],
-      ["Summer rental", "summer_rental"]
+      ["Summer rental", "summer_rental"],
+      ["I need a place", "i_need_a_place"]
     ].each do |s|
       HousingCategory.new(:name => s.first, :label => s.last).save
     end

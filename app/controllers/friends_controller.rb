@@ -149,6 +149,51 @@ class FriendsController < ApplicationController
     invite.destroy
     render :text => "Successful."
   end
+
+  def show_invite#Datnt: should use this
+    @user_invite = params[:user_invite]
+    user = User.find_by_id(@user_invite)
+    @full_name = user.full_name
+    render :layout => false
+  end
+
+  def send_invite_message#Datnt: when user click submit button of INVITE_FRIEND DIALOD, this action is executed
+#    puts "============invite message"+params[:invite_message]
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "============invite message"+params[:invite_message]
+#    puts "=========user_invite=="+params[:user_invite]
+#    render :text => params[:full_name]+" is your friend"
+
+    user_id_friend = params[:user_invite]
+    invite_message = params[:invite_message]
+    
+    if (user_id_friend && invite_message)
+      invite = UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
+      render :text => params[:full_name]+" is your friend"
+    end
+  end
+
+  def become_a_fan
+    @user_id = params[:user_id]
+    render :layout => false
+  end
   
   protected
 
@@ -181,15 +226,7 @@ class FriendsController < ApplicationController
     send_user_email(UserMailer.create_invitation(current_user, email, request.host_with_port, friend_invitation.invitation_code, content))
   end
 
-  def invite_friend
-    @user_id = params[:user_id]
-    render :layout => false
-  end
 
-  def become_a_fan
-    @user_id = params[:user_id]
-    render :layout => false
-  end
   
   
 end

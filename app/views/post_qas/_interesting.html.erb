@@ -1,10 +1,11 @@
+<%
+  interestings = PostQa.with_school(@school).interesting.with_limit
+%>
 <div class="col195 QAsIntQue">
   <div class="col195in">
     <h1 class="col195Title">Interesting questions</h1>
+    <% if interestings.size > 0 %>
     <div class="col195Cont">
-      <%
-      interestings = PostQa.with_school(@school).interesting.with_limit
-    %>
       <% interestings.each do |qa| %>
         <div class="dueDItem">
           <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa.post) %></div>
@@ -12,5 +13,6 @@
       <% end %>
       <div class="dueDbutton"><%= link_to "View more Interesting questions", interesting_post_qas_path %></div>
     </div>
+    <% end %>
   </div>
 </div>

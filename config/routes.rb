@@ -135,7 +135,7 @@ ActionController::Routing::Routes.draw do |map|
       :accept => :post,
       :de_accept => :post,
       :send_invite_message => :get,
-      :invite_friend => :get,
+      :show_invite => :get,
       :become_a_fan => :get
       }
     users.resources :stories, 

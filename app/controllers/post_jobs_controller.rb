@@ -159,7 +159,6 @@ class PostJobsController < ApplicationController
     post.save
     @post_job.tag_list = params[:tag]
     @post_job.post = post
-    @post_job.job_type_id ||= JobType.first.id
     if @post_job.save
       notice "Your post was successfully created."
       redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"

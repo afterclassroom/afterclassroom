@@ -1,25 +1,15 @@
-<div class="col300 requestHous">
+<div class="col300 Parti">
   <div class="col300in">
-    <h1 class="col300Title">Requests House/Apt/Room</h1>
+    <h1 class="col300Title">Emergency Alerts</h1>
     <div class="col300Cont">
-      <% form_for :post_housing, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-      <%
-          housing_category = HousingCategory.find_by_label("i_need_a_place")
+      <% form_for :post_awareness, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+        <%
+          awareness_type = AwarenessType.find_by_label("emergency_alerts")
         %>
-        <%= hidden_field_tag("post_housing[housing_category_ids][]", housing_category.id) if housing_category %>
+        <%= hidden_field_tag("post_awareness[awareness_type_id]", awareness_type.id) if awareness_type %>
         <% fields_for :post do |p| %>
           <div class="reqTi"><%= p.text_field :title, :value => "Title..." %></div>
           <div class="reqEn"><%= text_area_tag "post[description]", "Enter your request..." %></div>
-          <div class="reqSl">
-            <div class="req40">
-              <div class="reqLa"><label>Phone</label></div>
-              <div class="reqTi"><%= f.text_field :phone %></div>
-            </div>
-            <div class="req60">
-              <div class="reqLa"><label>Address</label></div>
-              <div class="reqTi"><%= f.text_field :address %></div>
-            </div>
-          </div>
           <div id="divinputfile">
             <%= p.file_field :attach, :onchange => "$('#fakefilepc').value = this.value;", :size => "39", :class => "filepc" %>
             <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>

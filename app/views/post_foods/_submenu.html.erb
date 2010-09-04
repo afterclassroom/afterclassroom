@@ -1,5 +1,5 @@
 <%
-  arr_rating_status = [["", "Just Posted"], ["Good", "Grade 1 Quality"], ["Cheap but Good", "Cheap but Good"], ["Bad", "Don't go There"], ["Searching for foods", "Searching for foods"]]
+  arr_rating_status = [["", "Just Posted"], ["Good", "Grade 1 Quality"], ["Cheap but Good", "Cheap but Good"], ["Bad", "Don't go There"]]
   arr_rating_status.each do |elm|
 %>
 <div class="menuRItem <%= "menuRselect" if @rating_status == elm.first %>"><a href="<%= "#{post_foods_path}?rating_status=#{elm.first}" %>"><span class="span1"><span class="span2"><%= elm.last %></span></span></a></div>

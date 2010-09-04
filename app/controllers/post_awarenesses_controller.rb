@@ -122,7 +122,6 @@ class PostAwarenessesController < ApplicationController
     post.save
     @post_awareness.tag_list = params[:tag]
     @post_awareness.post = post
-    @post_awareness.awareness_type_id ||= AwarenessType.first.id
     if @post_awareness.save
       notice "Your post was successfully created."
       redirect_to post_awarenesses_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"
