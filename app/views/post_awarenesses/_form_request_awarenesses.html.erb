@@ -1,0 +1,31 @@
+<div class="col300 Parti">
+  <div class="col300in">
+    <h1 class="col300Title">Emergency Alerts</h1>
+    <div class="col300Cont">
+      <% form_for :post_awareness, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+        <%
+          awareness_type = AwarenessType.find_by_label("emergency_alerts")
+        %>
+        <%= hidden_field_tag("post_awareness[awareness_type_id]", awareness_type.id) if awareness_type %>
+        <% fields_for :post do |p| %>
+          <div class="reqTi"><%= p.text_field :title, :value => "Title..." %></div>
+          <div class="reqEn"><%= text_area_tag "post[description]", "Enter your request..." %></div>
+          <div id="divinputfile">
+            <%= p.file_field :attach, :onchange => "$('#fakefilepc').value = this.value;", :size => "39", :class => "filepc" %>
+            <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
+          </div>
+          <div class="reqLa"><label>Tags</label></div>
+          <div class="reqTi"><%= text_field_tag "tag" %></div>
+          <div id="recaptcha_container">
+            <div class="reqLa"><label>Enter the two words below</label></div>
+            <div class="reqTi"><%= text_field_tag "recaptcha_response_field" %></div>
+            <div id="recaptcha_image"></div>
+          </div>
+          <%= recaptcha_tags(:display => {:theme => "custom"}) %>
+          <div class="regReload"><a class="regRlBt" href="javascript:Recaptcha.reload();">Get new words</a></div>
+          <div class="submit"><%= show_submit_form() %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
