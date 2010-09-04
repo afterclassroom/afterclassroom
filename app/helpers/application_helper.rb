@@ -219,19 +219,19 @@ module ApplicationHelper
     end
   end
 
-  def become_a_fan(post)
+  def become_a_fan(user)
     if !logged_in?
       link_to_require_login("<span>Become a Fan</span>")
     else
-      link_to("<span>Become a Fan</span>", "#{ become_a_fan_user_friends_path(post.user)}?user_id=#{post.user.id}&height=300&width=470", :class => "thickbox", :title => "Become a Fan of #{post.user.full_name}")
+      link_to("<span>Become a Fan</span>", "#{ become_a_fan_user_friends_path(user)}?user_id=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Become a Fan of #{user.full_name}")
     end
   end
 
-  def invite_friend(post)
+  def invite_friend(user)
     if !logged_in?
       link_to_require_login("<span>Invite Friend</span>")
     else
-      link_to("<span>Invite Friend</span>", "#{ invite_friend_user_friends_path(post.user)}?user_id=#{post.user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{post.user.full_name} to be a friend")
+      link_to("<span>Invite Friend</span>", "#{ invite_friend_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
     end
   end
 

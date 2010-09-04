@@ -1,73 +1,23 @@
-<% content_for :menu_top_student_lounge do -%>
-  <%= render :partial => 'submenu' %>
-<% end -%>
-
-<div class="contMainC">
-  <%= render :partial => "leftmenu" %>
+<div id="send_invite_message_alert" style="display:none">
+  You sended invite message to <%= @full_name %>.
 </div>
-<div class="contMainL">
-  <div class="col451 FriendInvite">
-    <div class="col451in">
-      <div class="col451Cont">
-        <h1 class="titleH1">Invite Friends to join AfterClassroom</h1>
-        <%= display_flash_messages %>
-        <% form_tag invite_by_list_email_user_friends_path(current_user), :html => {:id => "list_email"} do %>
-          <div class="fInvFrom">
-            <div class="fInvTxt">From</div>
-            <div class="fInvIn"><%= current_user.full_name %> <%= "&#60;#{current_user.email}&#62;" %></div>
+<div id="send_invite_message">
+  <form name="form_send_invite">
+      <ul>
+        <li>
+          <label>Message</label>
+          <div class="user_ri">
+            <textarea cols="25" rows="7" id="message_<%= @user_invite %>"></textarea>
           </div>
-          <div class="fInvTo">
-            <div class="fInvTxt">To<br/><span>(use commas to separate emails)</span></div>
-            <div class="fInvIn"><%= text_area_tag "email_list", nil, :rows => 2, :cols => 20 %></div>
-          </div>
-          <div class="fInvMess">
-            <div class="fInvTxt">Message<br/><span>(optional)</span></div>
-            <div class="fInvIn"><%= text_area_tag "content", nil, :rows => 2, :cols => 20 %></div>
-          </div>
-          <div class="fInvites">Invites will be sent in English (US)<a href="#">[change]</a></div>
-          <div class="fInvBtm">
-            <div class="fInvBtmInvite"><a href="javascript:;" onclick="$('#list_email').submit();">Invite</a></div>
-          </div>
-          <div class="fInvites">AfterClassroom will send each person above an invite in your name asking them to join AfterClassroom.<a href="#">See Example</a></div>
-        <% end %>
-        <div class="import"><a href="#">Import Email Addresses</a></div>
-        <div class="importD">from almost any online email service to invite your friends.</div>
-        <%= render :partial => "mailbox_list" %>
-        <% form_for :mail_account, @mail_account, :url => invite_by_import_email_user_friends_path(current_user), :html => {:id => "form_account_email"} do |f| %>
-          <div class="error" style="padding: 10px; display:none;"></div>
-          <div class="findItem">
-            <div class="findText">Your Email*</div>
-            <div class="findIn"><%= f.text_field :login, :style => "width:150px", :class => "required" %>
-              <span id="mail_type_span">
-                <%#= render :partial => "mail_type" %>
-              </span>
-            </div>
-
-          </div>
-          <div class="findItem">
-            <div class="findText">Email Password*</div>
-            <div class="findIn"><%= f.password_field :password, :style => "width:150px", :class => "required password" %></div>
-          </div>
-          <div class="findPass">AfterClassroom will not store your password.<a href="#">Learn more</a></div>
-          <div class="fInvMess">
-            <div class="fInvTxt">Message<br/><span>(optional)</span></div>
-            <div class="fInvIn"><%= text_area_tag "content", nil, :rows => 2, :cols => 20 %></div>
-          </div>
-          <div class="fInvBtm">
-            <div class="fInvBtmInvite"><a href="javascript:;" onclick="$('#form_account_email').submit();">Invite</a></div>
-          </div>
-          <div class="fInvites">AfterClassroom will send each person above an invite in your name asking them to join AfterClassroom.<a href="#">See Example</a></div>
-        <% end %>
-        <div class="import"><a href="#">View All Invites</a></div>
-        <div class="importD">see your entrie history of invitaions, including who has joined because of you.</div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="contMainR">
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
+        </li>
+      </ul>
+      <!-- post  button -->
+      <a href="javascript:sendInviteMessage(<%= @user_invite %>)" title="Send" class="btfr link_bt" style="margin: 4px 20px 0px 0px;">
+        <span class="ltred_l"></span>
+        <span class="ltred_c btf">Send invite message to <%= @full_name %></span>
+        <span class="ltred_r"></span>
+      </a>
+      <!-- end post button -->
+      <input type="hidden" id="user_id_friend_<%= @user_invite %>" value="<%= @user_invite %>" />
+    </form>
 </div>
