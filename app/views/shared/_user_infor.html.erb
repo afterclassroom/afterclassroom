@@ -1,5 +1,3 @@
-
-
 <div class="AsDContImg"><%= link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => user.id} %></div>
 <div class="AsDContR">
   <div class="fan"><%= become_a_fan(user) %></div>
@@ -12,8 +10,8 @@
 
 
 
-  
-  <div class="friend"><%= invite_friend(user) %></div>
+
+  <div class="friend"><%= show_invite(user) %></div>
 
 
 
@@ -34,7 +32,7 @@
   <div class="chat">
     <% checkvalue = current_user.check_user_is_invited(user.id) %>
     <% if checkvalue == true %>
-                  Waiting...
+      Chatting...
     <% else %>
       <%= link_to_function "Invite Chat", "invite_chat('#{user.id}')" %>
     <% end %>

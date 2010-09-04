@@ -227,11 +227,11 @@ module ApplicationHelper
     end
   end
 
-  def invite_friend(user)
+  def show_invite(user)
     if !logged_in?
       link_to_require_login("<span>Invite Friend</span>")
     else
-      link_to("<span>Invite Friend</span>", "#{ invite_friend_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+      link_to("<span>Invite Friend</span>", "#{ show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
     end
   end
 

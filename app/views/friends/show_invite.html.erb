@@ -1,0 +1,56 @@
+<script language="javascript">
+  /*
+  $.ajax({
+    url: onepageurl,
+    type: "GET",
+    dataType: "html",
+    failure: function(msg){
+      alert('ajax fail:'+msg);
+    },
+    success: function(msg){
+      $('#alltoolitems').html(msg);
+    }
+  });
+   */
+
+  var submit_url = $('#form_invite_friend').find('a').attr('href');
+  $('#form_invite_friend').find('a').bind('click',function(){
+
+    var strMessage = $('#form_invite_friend .user_ri').text();
+    
+    $.ajax({
+      url: submit_url,
+      type: "GET",
+      data:({invite_message:strMessage,full_name:'<%= @full_name %>'}),
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('#TB_closeWindowButton').click();
+        $('.friend').html(msg);
+      }
+    });
+  
+    return false;
+  });
+</script>
+<div id="send_invite_message_alert" style="display:none">
+  You sended invite message to <%= @full_name %>.
+</div>
+<div id="send_invite_message">
+  <form name="form_send_invite" id="form_invite_friend">
+    <ul>
+      <li>
+        <label>Message</label>
+        <div class="user_ri">
+          <textarea cols="25" rows="7" id="message_<%= @user_invite %>"></textarea>
+        </div>
+      </li>
+    </ul>
+    <!-- post  button -->
+    <%= link_to "Send invite message to "+@full_name, :controller => "friends", :action => "send_invite_message", :user_invite => @user_invite %>
+    <!-- end post button -->
+    <input type="hidden" id="user_id_friend_<%= @user_invite %>" value="<%= @user_invite %>" />
+  </form>
+</div>

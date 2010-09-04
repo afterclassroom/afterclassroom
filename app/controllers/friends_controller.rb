@@ -150,26 +150,43 @@ class FriendsController < ApplicationController
     render :text => "Successful."
   end
 
-  def invite_friend#Datnt: should delete
+  def show_invite#Datnt: should use this
     @user_invite = params[:user_invite]
     user = User.find_by_id(@user_invite)
     @full_name = user.full_name
     render :layout => false
   end
 
-  def show_invite#Datnt: should use this
-    @user_id = params[:id]
-    user = User.find_by_id(@user_id)
-    @full_name = user.full_name
-  end
-
   def send_invite_message#Datnt: when user click submit button of INVITE_FRIEND DIALOD, this action is executed
-    user_id_friend = params[:user_id_friend]
-    invite_message = params[:invite_message]
+#    puts "============invite message"+params[:invite_message]
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "========="
+#    puts "============invite message"+params[:invite_message]
+#    puts "=========user_invite=="+params[:user_invite]
+#    render :text => params[:full_name]+" is your friend"
 
+    user_id_friend = params[:user_invite]
+    invite_message = params[:invite_message]
+    
     if (user_id_friend && invite_message)
       invite = UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
-      render :text => "Success"
+      render :text => params[:full_name]+" is your friend"
     end
   end
 
