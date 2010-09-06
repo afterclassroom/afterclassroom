@@ -4,8 +4,8 @@
     <div class="col300Cont">
       <% form_for :post_exam, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <% fields_for :post do |p| %>
-          <div class="reqTi"><%= p.text_field :title, :value => "Title..." %></div>
-          <div class="reqEn"><%= text_area_tag "post[description]", "Enter your request..." %></div>
+          <div class="reqTi"><%= p.text_field :title, :value => "Title...", :onblur => "this.value = this.value || this.defaultValue;", :onfocus => "this.value = '';" %></div>
+          <div class="reqEn"><%= text_area_tag "post[description]", "Enter your request...", :onblur => "this.value = this.value || this.defaultValue;", :onfocus => "this.value = '';" %></div>
           <div class="reqSl">
             <div class="req40">
               <div class="reqLa"><label>Due date</label></div>

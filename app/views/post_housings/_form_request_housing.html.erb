@@ -8,8 +8,8 @@
         %>
         <%= hidden_field_tag("post_housing[housing_category_ids][]", housing_category.id) if housing_category %>
         <% fields_for :post do |p| %>
-          <div class="reqTi"><%= p.text_field :title, :value => "Title..." %></div>
-          <div class="reqEn"><%= text_area_tag "post[description]", "Enter your request..." %></div>
+          <div class="reqTi"><%= p.text_field :title, :value => "Title...", :onblur => "this.value = this.value || this.defaultValue;", :onfocus => "this.value = '';" %></div>
+          <div class="reqEn"><%= text_area_tag "post[description]", "Enter your request...", :onblur => "this.value = this.value || this.defaultValue;", :onfocus => "this.value = '';" %></div>
           <div class="reqSl">
             <div class="req40">
               <div class="reqLa"><label>Phone</label></div>
