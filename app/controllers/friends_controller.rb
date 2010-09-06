@@ -150,7 +150,7 @@ class FriendsController < ApplicationController
     render :text => "Successful."
   end
 
-  def show_invite#Datnt: should use this
+  def show_invite
     @user_invite = params[:user_invite]
     user = User.find_by_id(@user_invite)
     @full_name = user.full_name
@@ -176,7 +176,7 @@ class FriendsController < ApplicationController
     fan.user_id = current_user.id 
     user_follow.fans << fan
 
-    render :text => "You are a fan of "+ user_follow.name
+    render :text => "You are a fan"
   end
   
   protected
@@ -210,7 +210,4 @@ class FriendsController < ApplicationController
     send_user_email(UserMailer.create_invitation(current_user, email, request.host_with_port, friend_invitation.invitation_code, content))
   end
 
-
-  
-  
 end

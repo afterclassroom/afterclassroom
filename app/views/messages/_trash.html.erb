@@ -1,5 +1,5 @@
 <div class="inboxTitle">Trash</div>
-<% form_tag message_action_user_messages_path(@user), {:name => "msg_form", :id => "msg_form"} do %>
+<% form_tag message_action_user_messages_path(current_user), {:name => "msg_form", :id => "msg_form"} do %>
   <%= hidden_field_tag "act" %>
   <div class="inboxTop">
   </div>
@@ -18,9 +18,9 @@
       <div class="fromTtxt"><%= message.sender.full_name %></div>
     </div>
     <div class="subjectT"><% if message.read? %>
-        <%= link_to h(message.subject), user_message_path(@user, message) %>
+        <%= link_to h(message.subject), user_message_path(current_user, message) %>
       <% else %>
-        <%= link_to "#{h(message.subject)} (unread)", user_message_path(@user, message) %>
+        <%= link_to "#{h(message.subject)} (unread)", user_message_path(current_user, message) %>
       <% end %></div>
     <div class="dateT"><%=h message.created_at.to_s(:long) %></div>
   </div>

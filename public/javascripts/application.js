@@ -198,28 +198,23 @@ function send_answer(post_id){
     }
 }
 
-function sendEmail(user_id){
-    alert('a');
-    /*
+function sendEmail(current_user_id, user_id){
     subject = $('#message_subject').val();
     body = $('#message_body').val();
-
-    if (subject != "" && body != ""){
-        $.ajax({
-            url: '/users/' + user_id + '/messages/send_message',
-            type: 'GET',
-            cache: false,
-            dataType: 'html',
-            data: ({
-                recipient_id : user_id,
-                subject : subject,
-                body : body
-            }),
-            success: function(data){
-                $('#div_send_message').html(data);
-            }
-        });
-    }*/
+    $.ajax({
+        url: '/users/' + current_user_id + '/messages/send_message',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            recipient_id : user_id,
+            subject : subject,
+            body : body
+        }),
+        success: function(data){
+            $('#div_send_message').html(data);
+        }
+    });
 }
 
 function sendReportAbuse(){
@@ -305,6 +300,20 @@ function hideFlashes() {
     $('#flash_notice, #flash_warning, #flash_error').fadeOut(1500);
 }
 
+// Become a fan
+function become_a_fan(path){
+    $.ajax({
+        url: path,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+            alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+            $('.AsDContR .fan').html(msg);
+        }
+    });
+}
 //Chat
 
 function invite_chat(id) {
@@ -316,12 +325,12 @@ function invite_chat(id) {
         data: ({
             user_id : id
         }),
-	success: function(data){
-		$('.AsDContR .chat').text('Chatting...');
-	},
-	error: function(data){
-		alert('Error connecting to server');
-	}
+        success: function(data){
+            $('.AsDContR .chat').text('Chatting...');
+        },
+        error: function(data){
+            alert('Error connecting to server');
+        }
 
     });
 }
@@ -450,7 +459,7 @@ function openChat(title, chanel_name){
             //Nothing
             }
         });
-    }    
+    }
 }
 
 function scroll_div(id){

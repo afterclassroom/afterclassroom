@@ -1,6 +1,6 @@
 <div class="AsDContBtm">
   <span class="btmReply"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Reply</a></span>
-  <span class="btmPre"><%= link_to("<span>Rerfer to experts</span>", "#{prefer_post_parties_path}?height=320&width=490", :class => "thickbox", :title => "Rerfer to experts") %></span>
+  <span class="btmMail"><%= show_email(post) %></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
   <span class="btmFoodList"><a href="#"><span>Party list</span></a></span>
   <span class="btmRSVP"><%= link_to("<span>RSVP</span>", "#{show_rsvp_post_parties_path}?post_id=#{post.id}&height=320&width=490", :class => "thickbox", :title => "RSVP") %></span>
