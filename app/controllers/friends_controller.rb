@@ -164,7 +164,7 @@ class FriendsController < ApplicationController
     
     if (user_id_friend && invite_message)
       invite = UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
-      render :text => params[:full_name]+" is your friend"
+      render :text => "Wait "+params[:full_name]+" to accept"
     end
   end
 
