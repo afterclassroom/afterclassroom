@@ -10,6 +10,7 @@ class LearningtoolsController < ApplicationController
     if (datasize % 5 > 0)
       @pagealltool = @pagealltool + 1
     end
+    @featured_app = Toolapp.featured_app('1')
   end
 
   def pagingalltool #this action is applied for pagination when user first-time browse recommend-tool

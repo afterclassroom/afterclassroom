@@ -26,7 +26,8 @@ ActionController::Routing::Routes.draw do |map|
     :pagingalltool => :get,
     :learninglounge => :get,
     :info => :get,
-    :favorite => :get
+    :favorite => :get,
+    :featured_app => :get
   }
   map.resources :shoppings, :collection => {
     :mainpage => :get,
