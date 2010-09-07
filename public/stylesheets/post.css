@@ -717,16 +717,17 @@ span.btmDown a:hover{
   opacity: 0.0;
 }
 #fakeinputfile{
-  margin-top:-20px;
+  margin-top:-21px;
 }
 #fakeinputfile #fakefilepc{
-  width:203px;
+  width:208px;
   height:22px;
   border:1px solid #CECECE;
   color:#969696;
   height:15px;
   margin-top:3px;
   text-indent:2px;
+  padding-top:3px;
 }
 .submit a{
   background:url('/images/btm48.png') no-repeat;
