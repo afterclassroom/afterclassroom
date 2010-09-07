@@ -572,7 +572,7 @@
 }
 .login .search{
     background:url('/images/bgsearch.png') no-repeat right top;
-    width:383px;
+    /*width:383px;*/
     margin-top:5px;
 }
 .login .textS{
