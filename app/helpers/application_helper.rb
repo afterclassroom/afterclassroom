@@ -215,26 +215,64 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login("<span>Email</span>")
     else
-      link_to("<span>Email</span>", "#{show_email_user_messages_path(post.user)}?user_id=#{post.user.id}&height=300&width=470", :class => "thickbox", :title => "Send to #{post.user.full_name}")
+      link_to("<span>Email</span>", "#{show_email_user_messages_path(current_user)}?recipient_id=#{post.user.id}&height=300&width=470", :class => "thickbox", :title => "Send to #{post.user.full_name}")
     end
   end
 
-  def become_a_fan(user)
+  def show_become_a_fan(user)
+    str = ""
     if !logged_in?
-      link_to_require_login("<span>Become a Fan</span>")
+      str = link_to_require_login("<span>Become a Fan</span>")
     else
-      link_to("<span>Become a Fan</span>", "#{ become_a_fan_user_friends_path(current_user)}?user_id=#{user.id}", :title => "Become a Fan of #{user.full_name}")
+      if user.fans.include?(current_user)
+        str = "You are a fan"
+      else
+        str = link_to_function "<span>Become a Fan</span>", "become_a_fan('#{become_a_fan_user_friends_path(current_user)}?user_id=#{user.id}')"
+      end
     end
+    return str
   end
 
-  def show_invite(user)
+  def show_invite_friend(user)
+    str = ""
     if !logged_in?
-      link_to_require_login("<span>Invite Friend</span>")
+      str = link_to_require_login("<span>Invite Friend</span>")
     else
-      link_to("<span>Invite Friend</span>", "#{ show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+      if current_user.user_friends.include?(user)
+          str = "My friend"
+        else
+          if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
+            str = "Waiting accept"
+          else
+            str = link_to("<span>Invite Friend</span>", "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+          end
+        end
     end
+    return str
   end
 
+  def show_invite_chat(user)
+    str = ""
+    if !logged_in?
+      str = link_to_require_login("<span>Invite Chat</span>")
+    else
+      if user.check_user_online
+        if user.check_user_in_chatting_session(current_user.id)
+          str = "Chatting..."
+        else
+          str = link_to_function "Invite Chat", "invite_chat('#{user.id}')"
+        end
+      else
+        str = "Offline"
+      end
+    end
+    return str
+  end
+
+  def show_map(address, html)
+    link_to("View map", "/gmaps?address=#{address}&html=#{html}&height=325&width=550", :class => "thickbox", :title => "View map")
+  end
+  
   def show_go_back
     link_to "<span>Go back</span>", session[:go_back_url]
   end

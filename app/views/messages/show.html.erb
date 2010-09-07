@@ -5,22 +5,22 @@
 <div class="contDetL">
   <div class="contDetLin">
     <div class="inboxLeft inboxDetails">
-      <div class="inboxTitle"><%= link_to "Inbox", user_messages_path(@user) %><span>Message Details</span></div>
+      <div class="inboxTitle"><%= link_to "Inbox", user_messages_path(current_user) %><span>Message Details</span></div>
       <div class="inboxTop">
         <div class="inbDelete"><a href="#">Delete</a></div>
-        <div class="inbReply"><%= link_to "Reply", new_user_message_path(@user, :reply_to => @message) %></div>
-        <div class="inbForward"><%= link_to "Forward", new_user_message_path(@user, :forward_to => @message) %></div>
+        <div class="inbReply"><%= link_to "Reply", new_user_message_path(current_user, :reply_to => @message) %></div>
+        <div class="inbForward"><%= link_to "Forward", new_user_message_path(current_user, :forward_to => @message) %></div>
       </div>
       <div class="inboxDeT">
         <div class="mTitle"><a href="#"> </a><%= @message.subject %></div>
         <div class="inboxInfo">
           <div class="inboxInItem">
             <div class="inboxIn1">From:</div>
-            <div class="inboxIn2"><%= @message.sender == @user ? link_to("You", user_path(@user)) : link_to(h(@message.sender.full_name), {:controller => "profile", :action => "show_profile", :id => @message.sender.id}) %></div>
+            <div class="inboxIn2"><%= @message.sender == current_user ? link_to("You", user_path(current_user)) : link_to(h(@message.sender.full_name), {:controller => "profile", :action => "show_profile", :id => @message.sender.id}) %></div>
           </div>
           <div class="inboxInItem">
             <div class="inboxIn1">To:</div>
-            <div class="inboxIn2"><%= @message.recipient == @user ? link_to("You", user_path(@user)) : link_to(h(@message.recipient.full_name), {:controller => "profile", :action => "show_profile", :id => @message.recipient.id}) %></div>
+            <div class="inboxIn2"><%= @message.recipient == current_user ? link_to("You", user_path(current_user)) : link_to(h(@message.recipient.full_name), {:controller => "profile", :action => "show_profile", :id => @message.recipient.id}) %></div>
           </div>
         </div>
       </div>

@@ -8,14 +8,15 @@
       <div class="stoExItem">
         <div class="stoExItemL">Music album image</div>
         <div class="stoExItemR">
-          <div id="fakeinputfile"><input type="text" id="fakefilepc" name="fakefilepc" style="width:170px"/></div>
-          <div id="divinputfile" style="width:252px"></div>
+          <div id="fakeinputfile" style="margin-top:-8px"><input type="text" id="fakefilepc" name="fakefilepc" style="width:170px"/></div>
+          <div id="divinputfile" style="width:252px; margin-top:-34px"></div>
         </div>
       </div>
       <div class="stoExBtm">
         <div class="stoExCre"><a href="javascript:;" onclick="ajax_upload.submit();">Create</a></div>
         <div class="stoExCan"><a href="javascript:;" onclick="$('#create_album').toggle('slow');">Cancel</a></div>
       </div>
+    
     </div>
   <% end %>
 </div>
@@ -27,9 +28,18 @@
 <!--Alert-->
 
 <script type="text/javascript">
+   function onSubmit(){
+    var result = $("#form_album").validate();
+    if (result) {
+      $("#form_album").submit();
+    }
+  }
+
+
     var path = "<%= create_album_user_musics_path(current_user) %>";
 
     var button = $('#divinputfile');
+
 
     var ajax_upload = new AjaxUpload(button, {
         action: path,
@@ -37,12 +47,14 @@
         autoSubmit: false,
         onChange: function(file, extension){
             $('#fakefilepc').val(file);
+		
         },
         onSubmit : function(file, ext){
             // Allow only images. You should add security check on the server-side.
             if (ext && /^(jpg|JPG|png|jpeg|gif)$/.test(ext)){
                 // If you want to allow uploading only 1 file at time,
                 // you can disable upload button
+
                 this.setData({
                     'authenticity_token': $('[name="authenticity_token"]').val(),
                     'album_name':$('#album_name').val()

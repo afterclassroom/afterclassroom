@@ -5,12 +5,12 @@
 <div class="contDetL">
   <div class="contDetLin">
     <div class="inboxLeft">
-      <% form_for @message, :url => user_messages_path(@user), :html => {:id => "msg_form"} do |f| %>
+      <% form_for @message, :url => user_messages_path(current_user), :html => {:id => "msg_form"} do |f| %>
         <%= hidden_field_tag "recipient" %>
         <div class="inboxTitle">Compose message</div>
         <div class="inboxTop">
           <div class="compSent"><%= link_to_function "Send", "CreateNew()" %></div>
-          <div class="compCancel"><%= link_to "Cancel", user_messages_path(@user) %></div>
+          <div class="compCancel"><%= link_to "Cancel", user_messages_path(current_user) %></div>
         </div>
         <div class="compTop2">
           <div class="compTo">
