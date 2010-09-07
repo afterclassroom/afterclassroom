@@ -17,6 +17,7 @@ javascripts:
   - json
   - jquery-galleriffic
   - jquery-opacityrollover
+  - jquery-gmap
 - student_lounge:
   - application
   - jquery

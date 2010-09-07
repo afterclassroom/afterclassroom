@@ -268,6 +268,10 @@ module ApplicationHelper
     end
     return str
   end
+
+  def show_map(address, html)
+    link_to("View map", "/gmaps?address=#{address}&html=#{html}&height=325&width=550", :class => "thickbox", :title => "View map")
+  end
   
   def show_go_back
     link_to "<span>Go back</span>", session[:go_back_url]
