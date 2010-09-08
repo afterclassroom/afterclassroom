@@ -3,6 +3,7 @@ class UserWallsController < ApplicationController
   before_filter :login_required
   
   def create_wall
+    @myworld = "KKKKKKKKKKKKKKKK"
     user_wall_id = params[:user_wall_id]
     your_mind = params[:your_mind]
     @user = User.find(user_wall_id)
