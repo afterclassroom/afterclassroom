@@ -228,6 +228,10 @@ class User < ActiveRecord::Base
     list.include?(role.to_s) || list.include?('admin')
   end
 
+  def my_walls
+    UserWall.find(:all, :conditions => ["user_id_post = ?", self.id], :order => "created_at DESC")
+  end
+  
   def fans_recent_update
     over = 30
     self.fans.find(:all, :conditions => ["updated_at > ?", Time.now - over.day], :order => "updated_at DESC")

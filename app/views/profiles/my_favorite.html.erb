@@ -13,104 +13,29 @@
   <div class="col451 proCen">
     <div class="col451in">
       <div class="proCenCont">
-        <div class="proInfTop"><a href="#">Edit Information</a></div>
         <div class="proFavPage">
-          <div class="proFavPageL">Just under 30 days old</div>
           <div class="proFavPageR">
+            <!--Pagination-->
             <div class="assPage">
-              <span class="firstPage"><a href="#">First Page</a></span>
-              <span class="prevPage"><a href="#">Prev</a></span>
-              <span class="currentPage">
-                <a class="selected" href="#"><span>6</span></a>
-                <a href="#"><span>7</span></a>
-                <a href="#"><span>8</span></a>
-                <a href="#"><span>9</span></a>
-                <a href="#"><span>10</span></a>
-              </span>
-              <span class="nextPage"><a href="#">Next</a></span>
-              <span class="lastPage"><a href="#">Last Page</a></span>
+              <span class="numPage"><%= page_entries_info @favorites %></span>
+              <%= will_paginate @favorites %>
             </div>
+            <!--Pagination-->
           </div>
         </div>
-        <div class="proFavItem">
-          <div class="proFavImg"><a href="#"><div><img src="pictures/proFav1.jpg"/></div></a></div>
-          <div class="proFavContT">
-            <h2 class="titleH2"><a href="#">NEW SONG 2009 Rihanna feat Young Jeezy - So Hard (LYRICS)</a></h2>
-            <div class="assCate"><span>Category:</span><a href="#">Music Category</a></div>
-            <div class="assCate"><span>Posted by:</span><a href="#">Dungqta - University of California</a></div>
-            <div class="proFavTime">4 minutes 54 seconds </div>
-          </div>
-          <div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-        </div>
-        <div class="proFavItem">
-          <div class="proFavImg"><a href="#"><div><img src="pictures/proFav2.jpg"/></div></a></div>
-          <div class="proFavContT">
-            <h2 class="titleH2"><a href="#">Britney Spears / 3</a></h2>
-            <div class="assCate"><span>Category:</span><a href="#">Music Category</a></div>
-            <div class="assCate"><span>Posted by:</span><a href="#">Dungqta - University of California</a></div>
-            <div class="proFavTime">4 minutes 54 seconds</div>
-          </div>
-          <div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-        </div>
-        <div class="proFavItem">
-          <div class="proFavImg1"><a href="#"><div><img src="pictures/proFav01.jpg"/></div></a></div>
-          <div class="proFavContT1">
-            <h2 class="titleH2"><a href="#">Pellentesque vitae malesuada tellus. Fusce dapibus urna ut eros faucibus</a></h2>
-            <div class="assCate"><span>Category:</span><a href="#">Music Category</a></div>
-            <div class="assCate"><span>Posted by:</span><a href="#">Dungqta - University of California</a></div>
-            <div class="proFavTime">Viewed in 3 hours 10 minutes ago</div>
-          </div>
-          <div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-        </div>
-        <div class="proFavPage2">
-          <div class="proFavPageL">Passed 30 days old</div>
-          <div class="proFavPageR">
-            <div class="assPage">
-              <span class="firstPage"><a href="#">First Page</a></span>
-              <span class="prevPage"><a href="#">Prev</a></span>
-              <span class="currentPage">
-                <a class="selected" href="#"><span>6</span></a>
-                <a href="#"><span>7</span></a>
-                <a href="#"><span>8</span></a>
-                <a href="#"><span>9</span></a>
-                <a href="#"><span>10</span></a>
-              </span>
-              <span class="nextPage"><a href="#">Next</a></span>
-              <span class="lastPage"><a href="#">Last Page</a></span>
+        <% @favorites.each do |f| %>
+          <div class="proFavItem">
+            <div class="proFavImg1"><a href="#"><div><img src="pictures/proFav01.jpg"/></div></a></div>
+            <div class="proFavContT1">
+              <h2 class="titleH2"><a href="#">Pellentesque vitae malesuada tellus. Fusce dapibus urna ut eros faucibus</a></h2>
+              <div class="assCate"><span>Category:</span><a href="#">Music Category</a></div>
+              <div class="assCate"><span>Posted by:</span><a href="#">Dungqta - University of California</a></div>
+              <div class="proFavTime">Viewed in 3 hours 10 minutes ago</div>
             </div>
+            <div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
           </div>
-        </div>
-        <div class="proFavItem">
-          <div class="proFavImg"><a href="#"><div><img src="pictures/proFav1.jpg"/></div></a></div>
-          <div class="proFavContT">
-            <h2 class="titleH2"><a href="#">Pellentesque vitae malesuada tellus. Fusce dapibus urna ut eros faucibus</a></h2>
-            <div class="assCate"><span>Category:</span><a href="#">Music Category</a></div>
-            <div class="assCate"><span>Posted by:</span><a href="#">University of California</a></div>
-            <div class="proFavTime">4 minutes 54 seconds </div>
-          </div>
-          <div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-        </div>
-        <div class="proFavItem">
-          <div class="proFavImg"><a href="#"><div><img src="pictures/proFav2.jpg"/></div></a></div>
-          <div class="proFavContT">
-            <h2 class="titleH2"><a href="#">Nam nec quam eu odio dignissim semper id vitae sem. Sed ac justo purus</a></h2>
-            <div class="assCate"><span>Category:</span><a href="#">Music Category</a></div>
-            <div class="assCate"><span>Posted by:</span><a href="#">University of California</a></div>
-            <div class="proFavTime">4 minutes 54 seconds </div>
-          </div>
-          <div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-        </div>
-        <div class="proFavItem">
-          <div class="proFavImg1"><a href="#"><div><img src="pictures/proFav01.jpg"/></div></a></div>
-          <div class="proFavContT1">
-            <h2 class="titleH2"><a href="#">Pellentesque vitae malesuada tellus. Fusce dapibus urna ut eros faucibus</a></h2>
-            <div class="assCate"><span>Category:</span><a href="#">Music Category</a></div>
-            <div class="assCate"><span>Posted by:</span><a href="#">Dungqta - University of California</a></div>
-            <div class="proFavTime">Viewed in 3 hours 10 minutes ago</div>
-          </div>
-          <div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-        </div>
-        <div class="goTop"><a href="#">Top</a></div>
+        <% end %>
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
     </div>
   </div>
