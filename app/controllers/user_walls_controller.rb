@@ -3,7 +3,6 @@ class UserWallsController < ApplicationController
   before_filter :login_required
   
   def create_wall
-    @myworld = "KKKKKKKKKKKKKKKK"
     user_wall_id = params[:user_wall_id]
     your_mind = params[:your_mind]
     @user = User.find(user_wall_id)
@@ -40,7 +39,9 @@ class UserWallsController < ApplicationController
     @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     respond_to do |format|
       format.html { redirect_to user_profiles_path(current_user) }
-      format.js { render :layout => false }
+      format.js { 
+        render :layout => false
+      }
     end
   end
 
