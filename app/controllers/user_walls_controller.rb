@@ -109,6 +109,12 @@ class UserWallsController < ApplicationController
   def link_link
   end
 
+  def passion_box
+    @subject = params[:subject]
+    render :layout => false
+  end
+
+  
   def attach_image
     link = params[:link]
     begin

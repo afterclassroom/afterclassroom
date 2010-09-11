@@ -1,26 +1,27 @@
-
-
-
 <div class="col451Cont">
   <% @walls.each do |w| %>
     <div class="assItem">
       <div class="assItemL">
         <div class="assImg"><div><a href="#"><img src="pictures/pic4.png"></a></div></div>
-        <div class="assContT">
-          <h2 class="titleH2"><a href="#"><%= w.content %></a></h2>
-        </div>
+
+        <div class="assCate"><span><a href="#" style="color: #000000;">&nbsp;&nbsp;<%= w.content %></a></span></div>
+
+
+
+
+
       </div>
       <div class="asslinkdown">
         <div class="morelink"><a href="#">Invite Chat</a></div>
         <div class="down"><a href="#">Match Making</a></div>
         <div class="like">
-          <%=  link_to("I like you", "#{passion_box_user_student_lounges_path}?&height=400&width=500", :class => "thickbox", :title => "I like you") %>
+          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you" id="myaclick">I like you</a>
         </div>
         <div class="love">
-          <%=  link_to("I love you", "#{passion_box_user_student_lounges_path}?&height=400&width=500", :class => "thickbox", :title => "I love you") %>
+          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you" id="myaclick">I love you</a>
         </div>
         <div class="hate">
-          <%=  link_to("I hate you", "#{passion_box_user_student_lounges_path}?&height=400&width=500", :class => "thickbox", :title => "I hate you") %>
+          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you" id="myaclick">I hate you</a>
         </div>
       </div>
       <div class="assItemB">
