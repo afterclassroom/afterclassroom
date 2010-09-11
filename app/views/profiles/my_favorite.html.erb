@@ -6,34 +6,25 @@
   <%= render :partial => "proc" %>
   <%= render :partial => "infor" %>
   <%= render :partial => "friends" %>
-  <%= render :partial => "links" %>
+<%#= render :partial => "links" %>
 </div>
 
 <div class="contMainL">
   <div class="col451 proCen">
     <div class="col451in">
       <div class="proCenCont">
+        <div class="proInfTop"><a href="#">Edit Information</a></div>
         <div class="proFavPage">
           <div class="proFavPageR">
             <!--Pagination-->
             <div class="assPage">
-              <span class="numPage"><%= page_entries_info @favorites %></span>
               <%= will_paginate @favorites %>
             </div>
             <!--Pagination-->
           </div>
         </div>
         <% @favorites.each do |f| %>
-          <div class="proFavItem">
-            <div class="proFavImg1"><a href="#"><div><img src="pictures/proFav01.jpg"/></div></a></div>
-            <div class="proFavContT1">
-              <h2 class="titleH2"><a href="#">Pellentesque vitae malesuada tellus. Fusce dapibus urna ut eros faucibus</a></h2>
-              <div class="assCate"><span>Category:</span><a href="#">Music Category</a></div>
-              <div class="assCate"><span>Posted by:</span><a href="#">Dungqta - University of California</a></div>
-              <div class="proFavTime">Viewed in 3 hours 10 minutes ago</div>
-            </div>
-            <div class="assDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit varius bibendum. Phasellus porta dapibus magna, eu posuere dolor sollicitudin quis...</div>
-          </div>
+          <%= item_favorite(f) %>
         <% end %>
         <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
