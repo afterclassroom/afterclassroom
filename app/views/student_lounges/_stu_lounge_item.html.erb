@@ -1,40 +1,47 @@
 
 
+
 <div class="col451Cont">
-<% @walls.each do |w| %>
-  <div class="assItem">
-    <div class="assItemL">
-      <div class="assImg"><div><a href="#"><img src="pictures/pic4.png"></a></div></div>
-      <div class="assContT">
-        <h2 class="titleH2"><a href="#"><%= w.content %></a></h2>
+  <% @walls.each do |w| %>
+    <div class="assItem">
+      <div class="assItemL">
+        <div class="assImg"><div><a href="#"><img src="pictures/pic4.png"></a></div></div>
+        <div class="assContT">
+          <h2 class="titleH2"><a href="#"><%= w.content %></a></h2>
+        </div>
       </div>
-    </div>
-    <div class="asslinkdown">
-      <div class="morelink"><a href="#">Invite Chat</a></div>
-      <div class="down"><a href="#">Match Making</a></div>
-      <div class="like"><a href="#">I like you</a></div>
-      <div class="love"><a href="#">I love you</a></div>
-      <div class="hate"><a href="#">I hate you</a></div>
-    </div>
-    <div class="assItemB">
-      <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"></div></a></div>
-      <div class="assInfT">
+      <div class="asslinkdown">
+        <div class="morelink"><a href="#">Invite Chat</a></div>
+        <div class="down"><a href="#">Match Making</a></div>
+        <div class="like">
+          <%=  link_to("I like you", "#{passion_box_user_student_lounges_path}?&height=400&width=500", :class => "thickbox", :title => "I like you") %>
+        </div>
+        <div class="love">
+          <%=  link_to("I love you", "#{passion_box_user_student_lounges_path}?&height=400&width=500", :class => "thickbox", :title => "I love you") %>
+        </div>
+        <div class="hate">
+          <%=  link_to("I hate you", "#{passion_box_user_student_lounges_path}?&height=400&width=500", :class => "thickbox", :title => "I hate you") %>
+        </div>
+      </div>
+      <div class="assItemB">
+        <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"></div></a></div>
         <div class="assInfT">
-          <div class="assInfL">
-            <div><span>Posted by:</span><a href="#">Vu Nguyen</a></div>
-            <div><span>Comments:</span><a href="#">23 Comments</a></div>
+          <div class="assInfT">
+            <div class="assInfL">
+              <div><span>Posted by:</span><a href="#">Vu Nguyen</a></div>
+              <div><span>Comments:</span><a href="#">23 Comments</a></div>
+            </div>
+          </div>
+          <div class="assInfB">
+            <div class="qashdU"><a href="#">20</a></div>
+            <div class="qashdD"><a href="#">4</a></div>
+            <div class="vie"><a href="#">View (20)</a></div>
+            <div class="share"><a href="#">Share</a></div>
+            <div class="com"><a href="#">Comments (10)</a></div>
           </div>
         </div>
-        <div class="assInfB">
-          <div class="qashdU"><a href="#">20</a></div>
-          <div class="qashdD"><a href="#">4</a></div>
-          <div class="vie"><a href="#">View (20)</a></div>
-          <div class="share"><a href="#">Share</a></div>
-          <div class="com"><a href="#">Comments (10)</a></div>
-        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 </div>
 

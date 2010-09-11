@@ -174,4 +174,8 @@ class StudentLoungesController < ApplicationController
 		@friends_want = current_user.friends_want_chat
     render :layout => false
 	end
+
+  def passion_box
+    render :layout => false
+  end
 end
