@@ -114,6 +114,11 @@ class UserWallsController < ApplicationController
     render :layout => false
   end
 
+  def submit_passion
+    @returnmess = params[:message_subject]+params[:content]
+    render :text => "Success=="+@returnmess
+  end
+
   
   def attach_image
     link = params[:link]

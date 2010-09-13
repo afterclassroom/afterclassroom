@@ -1,13 +1,37 @@
+<script language="javascript">
+  /*
+   */
+  function submit_passion(){
 
-      <form id="form_send_message">
-        <div class="postItem">
-          <div style="width: 80px;" class="postItem1">Subject*</div>
-          <input type="text" value="<%= @subject %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" size="30" class="required" name="subject" id="message_subject" style="width: 330px;"/></div>
-        <div class="postItem">
-          <div style="width: 80px;" class="postItem1">Message*</div>
-          <div class="postInp"><textarea onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" class="required" name="body" id="message_body" style="width: 330px; height: 200px;"> </textarea></div>
-        </div>
-        <div style="padding-left: 90px;" class="submit"><a onclick="sendEmail(5, 10)" href="javascript:;">Send</a></div>
-        <div style="padding: 10px;" class="error"></div>
-      </form>
+    var messageSubject = $('#message_subject').attr('value');
+    ///console.log('sub == '+messageSubject);
+    var content  = $('#message_body').attr('value');
+    //console.log('content == == '+messageSubject);
+
+    $.ajax({
+      url: '/user_walls/submit_passion?message_subject='+messageSubject+'&content='+content,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        alert(msg);
+        $('#TB_closeWindowButton').click();
+      }
+    });
+    
+  }
+</script>
+<form id="form_send_message">
+  <div class="postItem">
+    <div style="width: 80px;" class="postItem1">Subject*</div>
+    <input type="text" value="<%= @subject %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" size="30" class="required" name="subject" id="message_subject" style="width: 330px;"/></div>
+  <div class="postItem">
+    <div style="width: 80px;" class="postItem1">Message*</div>
+    <div class="postInp"><textarea onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" class="required" name="body" id="message_body" style="width: 330px; height: 200px;"> </textarea></div>
+  </div>
+  <div style="padding-left: 90px;" class="submit"><a onclick="submit_passion()" href="javascript:;">Send</a></div>
+  <div style="padding: 10px;" class="error"></div>
+</form>
 
