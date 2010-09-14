@@ -39,7 +39,9 @@ class UserWallsController < ApplicationController
     @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     respond_to do |format|
       format.html { redirect_to user_profiles_path(current_user) }
-      format.js { render :layout => false }
+      format.js { 
+        render :layout => false
+      }
     end
   end
 
@@ -107,6 +109,17 @@ class UserWallsController < ApplicationController
   def link_link
   end
 
+  def passion_box
+    @subject = params[:subject]
+    render :layout => false
+  end
+
+  def submit_passion
+    @returnmess = params[:message_subject]+params[:content]
+    render :text => "Success=="+@returnmess
+  end
+
+  
   def attach_image
     link = params[:link]
     begin
