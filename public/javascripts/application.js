@@ -199,8 +199,14 @@ function send_answer(post_id){
 }
 
 function sendEmail(current_user_id, user_id){
+   
+    
     subject = $('#message_subject').val();
     body = $('#message_body').val();
+    if (subject =="" || body == ""){
+        $('.error').show();
+    }
+    else{
     $.ajax({
         url: '/users/' + current_user_id + '/messages/send_message',
         type: 'GET',
@@ -215,7 +221,10 @@ function sendEmail(current_user_id, user_id){
             $('#div_send_message').html(data);
         }
     });
+    }
 }
+
+
 
 function sendReportAbuse(){
     reported_id = $('#reported_id').val();
