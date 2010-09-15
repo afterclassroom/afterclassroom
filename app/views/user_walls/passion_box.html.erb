@@ -9,7 +9,7 @@
     //console.log('content == == '+messageSubject);
 
     $.ajax({
-      url: '/user_walls/submit_passion?message_subject='+messageSubject+'&content='+content,
+      url: '/user_walls/submit_passion?message_subject='+messageSubject+'&content='+content+'&user_id=<%=  @user_id %>&user_id_post=<%=  @user_id_post %>',
       type: "GET",
       dataType: "html",
       failure: function(msg){

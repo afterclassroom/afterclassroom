@@ -5,17 +5,12 @@
         <div class="assImg"><div><a href="#"><img src="pictures/pic4.png"></a></div></div>
 
         <div class="assCate"><span><a href="#" style="color: #000000;">&nbsp;&nbsp;<%= w.content %></a></span></div>
-
-
-
-
-
       </div>
       <div class="asslinkdown">
         <div class="morelink"><a href="#">Invite Chat</a></div>
         <div class="down"><a href="#">Match Making</a></div>
         <div class="like">
-          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you" id="myaclick">I like you</a>
+          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I like you</a>
         </div>
         <div class="love">
           <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you" id="myaclick">I love you</a>
@@ -25,7 +20,7 @@
         </div>
       </div>
       <div class="assItemB">
-        <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"></div></a></div>
+        <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
         <div class="assInfT">
           <div class="assInfT">
             <div class="assInfL">
