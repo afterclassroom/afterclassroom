@@ -83,7 +83,7 @@ class UserWallsController < ApplicationController
     rating = params[:rating]
     wall = UserWall.find(params[:post_id])
     wall.rate rating.to_i, current_user
-    wall.save
+#    wall.save
 
     render :text => %Q'
       <div class="qashdU">
