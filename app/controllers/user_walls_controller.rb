@@ -83,7 +83,7 @@ class UserWallsController < ApplicationController
     rating = params[:rating]
     wall = UserWall.find(params[:post_id])
     wall.rate rating.to_i, current_user
-    wall.save
+#    wall.save
 
     render :text => %Q'
       <div class="qashdU">
@@ -111,11 +111,22 @@ class UserWallsController < ApplicationController
 
   def passion_box
     @subject = params[:subject]
+    @user_id = params[:user_id]
+    @user_id_post = params[:user_id_post]
     render :layout => false
   end
 
   def submit_passion
-    @returnmess = params[:message_subject]+params[:content]
+    @returnmess = params[:message_subject]+params[:content]+"//userid == "+params[:user_id]+"//user_id_post=="+params[:user_id_post]
+
+    new_user_wall = UserWall.new
+    new_user_wall.user_id_post = params[:user_id_post]
+    new_user_wall.user_id = params[:user_id]
+
+    new_user_wall.content = params[:content]
+
+    new_user_wall.save
+
     render :text => "Success=="+@returnmess
   end
 

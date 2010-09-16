@@ -5,27 +5,22 @@
         <div class="assImg"><div><a href="#"><img src="pictures/pic4.png"></a></div></div>
 
         <div class="assCate"><span><a href="#" style="color: #000000;">&nbsp;&nbsp;<%= w.content %></a></span></div>
-
-
-
-
-
       </div>
       <div class="asslinkdown">
         <div class="morelink"><a href="#">Invite Chat</a></div>
         <div class="down"><a href="#">Match Making</a></div>
         <div class="like">
-          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you" id="myaclick">I like you</a>
+          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I like you</a>
         </div>
         <div class="love">
-          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you" id="myaclick">I love you</a>
+          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+love+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I love you</a>
         </div>
         <div class="hate">
-          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you" id="myaclick">I hate you</a>
+          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+hate+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I hate you</a>
         </div>
       </div>
       <div class="assItemB">
-        <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"></div></a></div>
+        <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
         <div class="assInfT">
           <div class="assInfT">
             <div class="assInfL">
@@ -34,8 +29,19 @@
             </div>
           </div>
           <div class="assInfB">
-            <div class="qashdU"><a href="#">20</a></div>
-            <div class="qashdD"><a href="#">4</a></div>
+            <%
+            check = UserWall.find_rated_by(current_user).include?(w) if logged_in?
+            check ||= false
+          %>
+
+
+
+            <div class="qashdU">
+              <%= show_rating( w.id.to_s, w.total_good, 'user_walls', check, 1) %>
+            </div>
+            <div class="qashdD">
+              <%= show_rating( w.id.to_s, w.total_bad, 'user_walls', check, 0) %>
+            </div>
             <div class="vie"><a href="#">View (20)</a></div>
             <div class="share"><a href="#">Share</a></div>
             <div class="com"><a href="#">Comments (10)</a></div>
