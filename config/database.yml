@@ -41,8 +41,8 @@ production:
   adapter: mysql
   encoding: utf8
   database: afterclassroom_production
-  username: root
-  password: 
+  username: after
+  password: huyettam2010
   # JRuby doesn't support socket:
-  host: 127.0.0.1
+  host: localhost
   #socket: /tmp/mysql.sock

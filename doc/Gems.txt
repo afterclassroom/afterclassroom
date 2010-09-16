@@ -1,4 +1,4 @@
-andre-geokit
+geokit
 fastercsv
 rmagick
 json
@@ -6,3 +6,7 @@ eventmachine
 contacts
 domainatrix
 right_aws
+faker
+thinking_sphinx
+rest-open-uri
+hpricot

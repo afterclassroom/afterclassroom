@@ -350,6 +350,11 @@ module ApplicationHelper
     end
     render :partial => "user_walls/wall_attach", :locals => {:wall_id => wall.id, :image => image, :title => title, :link => link, :sub_content => sub_content}
   end
+
+  def gmap_key
+    key = GMAP_KEY_SITE if Rails.env.production?
+    key = GMAP_KEY_LOCAL if Rails.env.development?
+  end
   
   private
   def link_to_require_login(str)

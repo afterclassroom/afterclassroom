@@ -1,60 +1,92 @@
-# Please install the Engine Yard Capistrano gem
-# gem install eycap --source http://gems.engineyard.com
-require "eycap/recipes"
+#############################################################
+#	Application
+#############################################################
+require 'mongrel_cluster/recipes'
 
-set :keep_releases, 5
-set :application,   'after'
-set :repository,    'git@github.com:afterclassroom/afterclassroom.git'
-set :deploy_to,     "/data/#{application}"
-set :deploy_via,    :export
-set :monit_group,   "#{application}"
-set :scm,           :git
 
-# This is the same database name for all environments
-set :production_database,'after_production'
+set :application, "Afterclassroom"
+set :domain, "afterclassroom.com"
+set :deploy_to, "/var/www/after"
+set :mongrel_conf, "#{deploy_to}/current/config/mongrel_cluster.yml"
 
-set :environment_host, 'localhost'
-set :deploy_via, :remote_cache
-
-# uncomment the following to have a database backup done before every migration
-# before "deploy:migrate", "db:dump"
-
-# comment out if it gives you trouble. newest net/ssh needs this set.
+#############################################################
+#	Settings
+#############################################################
 ssh_options[:paranoid] = true
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true # required for svn+ssh:// andf git:// sometimes
 
-# This will execute the Git revision parsing on the *remote* server rather than locally
-set :real_revision, 			lambda { source.query_revision(revision) { |cmd| capture(cmd) } }
+set :use_sudo, true
+set :scm_verbose, true
+set :rails_env, "production"
+set :runner, nil
 
-set :ssh_options, :keys => [ File.expand_path("C:/Users/dungtqa/.ssh/afterclassroom_rsa") ]
+#############################################################
+#	Servers
+#############################################################
 
-task :afterclassroom do
-  role :web, '174.129.195.49'
-  role :app, '174.129.195.49'
-  role :db, '174.129.195.49', :primary => true
-  set :environment_database, Proc.new { production_database }
-  set :dbuser,        'afterclassroom'
-  set :dbpass,        '4rasc36Mpj'
-  set :user,          'afterclassroom'
-  set :password,      '4rasc36Mpj'
-  set :runner,        'afterclassroom'
-end
+set :user, "root"
+set :domain, "68.168.106.96:10222"
+server domain, :app, :web
+role :db, domain, :primary => true
 
-# TASKS
-# Don't change unless you know what you are doing!
-after "deploy", "deploy:cleanup"
-after "deploy:migrations", "deploy:cleanup"
-after "deploy:update_code","deploy:symlink_configs"
-after "deploy:update_code","juggernaut:symlink_configs"
-after "deploy:update_code","juggernaut:start"
+#############################################################
+#	Git
+#############################################################
+
+set :scm, :git
+set :scm_user, "afterclassroom"
+set :scm_passphrase, "huyettam"
+set :repository, "git@github.com:afterclassroom/afterclassroom.git"
+set :remote, "origin"
+set :branch, "master"
+set :deploy_via, :remote_cache
+
+#############################################################
+#	Passenger
+#############################################################
 
 namespace :deploy do
- desc "Create asset packages for production" 
- task :after_update_code, :roles => [:web] do
-   run <<-EOF
-     cd #{release_path} && rake asset:packager:build_all
-   EOF
- end
+  desc "Create the database yaml file"
+  task :after_update_code do
+    db_config = <<-EOF
+    production:
+      adapter: mysql
+      encoding: utf8
+      username: after
+      password: huyettam2010
+      database: afterclassroom_production
+      host: localhost
+    
+    development:
+      adapter: mysql
+      encoding: utf8
+      username: after
+      password: huyettam2010
+      database: afterclassroom_production
+      socket: /var/lib/mysql/mysql.sock
+    EOF
+
+    put db_config, "#{release_path}/config/database.yml"
+
+    #########################################################
+    # Uncomment the following to symlink an uploads directory.
+    # Just change the paths to whatever you need.
+    #########################################################
+
+    # desc "Symlink the upload directories"
+    # task :before_symlink do
+    #   run "mkdir -p #{shared_path}/uploads"
+    #   run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
+    # end
+
+  end
+
+  namespace :deploy do
+    task :restart do
+      restart_mongrel_cluster
+    end
+  end
+
 end
