@@ -1,10 +1,19 @@
-<div class="learnNewTL">
-  <div class="learnNewTLtitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
-  <div class="learnNewTLdes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae risus lorem. Pellentesque ac aliquet diam. Vivamus eget felis vitae libero lobortis fringilla...</div>
-  <div class="learnNewTLimg"><a href="#"><div><img src="/images/pictures/phone2.png"/></div></a></div>
-</div>
-<div class="learnNewTR">
-  <div class="learnNewTLtitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
-  <div class="learnNewTLdes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae risus lorem. Pellentesque ac aliquet diam. Vivamus eget felis vitae libero lobortis fringilla...</div>
-  <div class="learnNewTLimg"><a href="#"><div><img src="/images/pictures/phone2.png"/></div></a></div>
-</div>
+<% count = 0 %>
+<% featured_app.each do |fa| %>
+  <% if count % 2 == 0 %>
+    <div class="learnNewTL">
+      <div class="learnNewTLtitle">
+        <%= link_to fa.name, :controller => 'learningtools', :action => 'learninglounge', :id => fa.id %></div>
+      <div class="learnNewTLdes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae risus lorem. Pellentesque ac aliquet diam. Vivamus eget felis vitae libero lobortis fringilla...</div>
+      <div class="learnNewTLimg"><a href="#"><div><img src="/images/pictures/phone2.png"/></div></a></div>
+    </div>
+  <% else %>
+    <div class="learnNewTR">
+      <div class="learnNewTLtitle">
+        <%= link_to fa.name, :controller => 'learningtools', :action => 'learninglounge', :id => fa.id %></div>
+      <div class="learnNewTLdes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae risus lorem. Pellentesque ac aliquet diam. Vivamus eget felis vitae libero lobortis fringilla...</div>
+      <div class="learnNewTLimg"><a href="#"><div><img src="/images/pictures/phone2.png"/></div></a></div>
+    </div>
+  <% end %>
+  <% count = count + 1 %>
+<% end %>

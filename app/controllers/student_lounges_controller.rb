@@ -7,10 +7,7 @@ class StudentLoungesController < ApplicationController
     @user = current_user
 		user_login = params[:user]
     @walls = []
-    arr_friends_id = current_user.user_friends.collect(&:id)
-    if arr_friends_id.size > 0
-      @walls = UserWall.find(:all, :conditions => ["(user_id = user_id_post) AND user_id IN(#{arr_friends_id.join(", ")})"], :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
-    end
+    @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     @user_invite_chat = User.find_by_login(user_login) if user_login != current_user.login
 		@friends_in_chat = current_user.friends_in_chat
     @friends_want = current_user.friends_want_chat
@@ -177,4 +174,5 @@ class StudentLoungesController < ApplicationController
 		@friends_want = current_user.friends_want_chat
     render :layout => false
 	end
+
 end

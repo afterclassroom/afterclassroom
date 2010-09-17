@@ -39,7 +39,9 @@ class UserWallsController < ApplicationController
     @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     respond_to do |format|
       format.html { redirect_to user_profiles_path(current_user) }
-      format.js { render :layout => false }
+      format.js { 
+        render :layout => false
+      }
     end
   end
 
@@ -81,7 +83,7 @@ class UserWallsController < ApplicationController
     rating = params[:rating]
     wall = UserWall.find(params[:post_id])
     wall.rate rating.to_i, current_user
-    wall.save
+#    wall.save
 
     render :text => %Q'
       <div class="qashdU">
@@ -107,6 +109,28 @@ class UserWallsController < ApplicationController
   def link_link
   end
 
+  def passion_box
+    @subject = params[:subject]
+    @user_id = params[:user_id]
+    @user_id_post = params[:user_id_post]
+    render :layout => false
+  end
+
+  def submit_passion
+    @returnmess = params[:message_subject]+params[:content]+"//userid == "+params[:user_id]+"//user_id_post=="+params[:user_id_post]
+
+    new_user_wall = UserWall.new
+    new_user_wall.user_id_post = params[:user_id_post]
+    new_user_wall.user_id = params[:user_id]
+
+    new_user_wall.content = params[:content]
+
+    new_user_wall.save
+
+    render :text => "Success=="+@returnmess
+  end
+
+  
   def attach_image
     link = params[:link]
     begin

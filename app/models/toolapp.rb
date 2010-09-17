@@ -52,4 +52,7 @@ class Toolapp < ActiveRecord::Base
         :conditions => ['state like ?', "recentlyadded"]
     end
   end
+  def self.featured_app(curpage)
+    paginate :per_page => 2, :page => curpage
+  end
 end
