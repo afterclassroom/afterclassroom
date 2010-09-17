@@ -9,14 +9,17 @@
       <div class="asslinkdown">
         <div class="morelink"><a href="#">Invite Chat</a></div>
         <div class="down"><a href="#">Match Making</a></div>
+        AAAAAAAAAAAAAAAAA: user_id = wall.user.id== <%= w.user.id.to_s %><br/>
+        user_id_post = current_user.id == <%= current_user.id.to_s %>
+
         <div class="like">
-          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I like you</a>
+          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you&user_id=<%= w.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
         </div>
         <div class="love">
-          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+love+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I love you</a>
+          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+love+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
         </div>
         <div class="hate">
-          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+hate+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I hate you</a>
+          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+hate+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
         </div>
       </div>
       <div class="assItemB">
