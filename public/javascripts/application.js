@@ -129,7 +129,7 @@ function load_menus (){
     });
     $("#school").mcDropdown("#school_menu", {
         width: 170,
-        valueAttr: "rel_school"   
+        valueAttr: "rel_school"
     });
 }
 
@@ -212,9 +212,10 @@ function sendEmail(current_user_id, user_id){
             body : body
         }),
         success: function(data){
+                        
             $('#div_send_message').html(data);
         }
-    });
+    });  
 }
 
 function sendReportAbuse(){

@@ -651,7 +651,8 @@ ActiveRecord::Schema.define(:version => 20100807104106) do
   end
 
   create_table "teamup_categories", :force => true do |t|
-    t.string "name", :default => "", :null => false
+    t.string "name"
+    t.string "label"
   end
 
   create_table "toolapps", :force => true do |t|

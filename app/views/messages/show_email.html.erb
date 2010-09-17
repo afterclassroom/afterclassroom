@@ -2,16 +2,37 @@
   <form id="form_send_message" >
     <div class="postItem">
       <div class="postItem1" style="width: 80px">Subject*</div>
-      <input style="width:330px" id="message_subject" name="subject" class="required" size="30" type="text" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" /></div>
+    <input style="width:330px" id="message_subject" name="subject" size="30" type="text" class = "required" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" /></div>
     <div class="postItem">
       <div class="postItem1" style="width: 80px">Message*</div>
-      <div class="postInp"><textarea style="width:330px; height:200px" id="message_body" name="body" class="required" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
+      <div class="postInp"><textarea style="width:330px; height:200px" id="message_body" name="body" class = "required" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
     </div>
     <div class="submit" style="padding-left:90px"><a href="javascript:;" onclick="sendEmail(<%= current_user.id %>, <%= @recipient_id %>)">Send</a></div>
-    <div class="error" style="padding: 10px;"></div>
+    <div class="error" style="padding: 10px"></div> 
   </form>
+  <h3 id="warning">Your form contains tons of errors! Please try again.</h3>
+
 </div>
+<script type="text/javascript">
+     function sendEmail(){
+        $("#form_send_message").submit();
+    }
+	
+	$().ready(function() {
+		var validator = $("#form_send_message").bind("invalid-form.validate", function() {
+			$("#summary").html("Your form contains " + validator.numberOfInvalids() + " errors, see details below.");
+		}).validate({
+			debug: true,
+			
+			
+			errorPlacement: function(error, element) {
+				error.appendTo( element.parent("td").next("td") );
+			},
+			success: function(label) {
+				$('#div_send_message').html(label).addClass("success");
+			}
+			
+		});
 
-
-
-
+	});
+</script>
