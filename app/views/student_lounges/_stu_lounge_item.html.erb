@@ -1,6 +1,6 @@
 <div class="col451Cont">
   <% @walls.each do |w| %>
-    <div class="assItem">
+    <div class="assItem" id="wall_<%= w.id %>">
       <div class="assItemL">
         <div class="assImg"><div><a href="#"><img src="pictures/pic4.png"></a></div></div>
 
@@ -9,14 +9,15 @@
       <div class="asslinkdown">
         <div class="morelink"><a href="#">Invite Chat</a></div>
         <div class="down"><a href="#">Match Making</a></div>
+
         <div class="like">
-          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I like you</a>
+          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+like+you&user_id=<%= w.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
         </div>
         <div class="love">
-          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+love+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I love you</a>
+          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+love+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
         </div>
         <div class="hate">
-          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+hate+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">I hate you</a>
+          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=400&width=500&subject=I+hate+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
         </div>
       </div>
       <div class="assItemB">
@@ -25,7 +26,42 @@
           <div class="assInfT">
             <div class="assInfL">
               <div><span>Posted by:</span><a href="#">Vu Nguyen</a></div>
-              <div><span>Comments:</span><a href="#">23 Comments</a></div>
+              <div>
+                <span>Comments:</span>
+                <a href="#">23 Comments</a>
+
+
+
+
+
+
+
+
+
+
+
+                
+                <a href="javascript:;" onclick="showCommentForm('<%= w.id %>');">CommentsTest (<%= w.comments.size %>)</a>
+                <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => w} %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
             </div>
           </div>
           <div class="assInfB">

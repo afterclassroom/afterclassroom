@@ -371,3 +371,9 @@ span.downarr a {
   float:left;
   margin:11px;
 }
+.AsDTopA{
+border-bottom:1px solid #E4E4E4;
+clear:both;
+overflow:hidden;
+padding:9px 0;
+}

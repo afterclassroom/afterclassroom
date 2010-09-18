@@ -2,15 +2,12 @@
   <form id="form_send_message" >
     <div class="postItem">
       <div class="postItem1" style="width: 80px">Subject*</div>
-      <input style="width:330px" id="message_subject" name="subject" class="required" size="30" type="text" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" /></div>
+    <input style="width:330px" id="message_subject" name="subject" class="required" size="30" type="text" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" /></div>
     <div class="postItem">
       <div class="postItem1" style="width: 80px">Message*</div>
-      <div class="postInp"><textarea style="width:330px; height:200px" id="message_body" name="body" class="required" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
+      <div class="postInp"><textarea style="width:330px; height:200px" id="message_body" name="body" class = "required" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" > </textarea></div>
     </div>
     <div class="submit" style="padding-left:90px"><a href="javascript:;" onclick="sendEmail(<%= current_user.id %>, <%= @recipient_id %>)">Send</a></div>
-    <div class="error" style="display: none">aaaaaa</div>
+    <div class="error" style="padding: 10px"></div> 
   </form>
-</div>
-<script>
-
-</script>
+ </div>
