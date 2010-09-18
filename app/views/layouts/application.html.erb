@@ -5,8 +5,8 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>:: <%= configatron.site_name %> ::</title>
     <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= gmap_key %>"></script>
-    <%= stylesheet_link_merged :application %>
-    <%= javascript_include_merged :application %>
+    <%= stylesheet_link_tag "main", "post", "jquery-ui", "jquery-ui-theme", "jquery-ui-button", "jquery-ui-resizable", "jquery-ui-datepicker", "jquery-ui-dialog", "jquery-mcdropdown", "jquery-multiselect", "jquery-auto-suggest", "pagination", "validation", "flash", "vtip", "thickbox", "jquery-wysiwyg", "tag", "footer-menu", :cache => true%>
+    <%= javascript_include_tag "application", "jquery", "jquery", "jquery-ui", "jrails", "jquery-mcdropdown", "jquery-auto-suggest", "jquery-validate", "jquery-counter", "jquery-multiselect", "jquery-wysiwyg", "thickbox", "vtip-min", "tag", "json", "jquery-galleriffic", "jquery-opacityrollover", "jquery-gmap", :cache => true %>
     <%= javascript_include_tag 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'juggernaut/swfobject' %>
     <%= juggernaut :debug => false, :client_id => current_user.login if logged_in? %>
     <%= feedback_includes %>
