@@ -48,12 +48,6 @@ set :deploy_via, :remote_cache
 #############################################################
 
 namespace :deploy do
-  desc "Pack assets with rucksack" 
-  task :pack_assets, :roles => [:web,:app] do
-    run "cd #{release_path} && rake RAILS_ENV=#{fetch(:rails_env, 'production')} rucksack:pack"
-  end
-  after "deploy:update_code", "deploy:pack_assets"
-     
   desc "Create the database yaml file"
   task :after_update_code do
     db_config = <<-EOF
@@ -102,6 +96,12 @@ namespace :deploy do
       run "mkdir -p #{shared_path}/toolphotos"
       run "ln -s #{shared_path}/toolphotos #{release_path}/public/toolphotos"
     end
+    
+    desc "Pack assets with rucksack" 
+    task :pack_assets, :roles => [:web,:app] do
+      run "cd #{release_path} && rake RAILS_ENV=#{fetch(:rails_env, 'production')} rucksack:pack"
+    end
+    after "deploy:update_code", "deploy:pack_assets"
 
     task :start, :roles => :app do
       run "touch #{current_release}/tmp/restart.txt"

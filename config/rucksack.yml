@@ -60,7 +60,7 @@ stylesheets:
   - jquery-ui-datepicker
   - jquery-ui-dialog
   - jquery-mcdropdown
-  - jquery-multiselect
+  - jquery-multiSelect
   - jquery-auto-suggest
   - pagination
   - validation
