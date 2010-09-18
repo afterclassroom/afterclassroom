@@ -29,38 +29,6 @@
               <div>
                 <span>Comments:</span>
                 <a href="#">23 Comments</a>
-
-
-
-
-
-
-
-
-
-
-
-                
-                <a href="javascript:;" onclick="showCommentForm('<%= w.id %>');">CommentsTest (<%= w.comments.size %>)</a>
-                <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => w} %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
               </div>
             </div>
           </div>
@@ -70,8 +38,6 @@
             check ||= false
           %>
 
-
-
             <div class="qashdU">
               <%= show_rating( w.id.to_s, w.total_good, 'user_walls', check, 1) %>
             </div>
@@ -80,8 +46,30 @@
             </div>
             <div class="vie"><a href="#">View (20)</a></div>
             <div class="share"><a href="#">Share</a></div>
-            <div class="com"><a href="#">Comments (10)</a></div>
+
+            <div class="com">
+              <a href="javascript:;" onclick="showCommentForm('<%= w.id %>');">Comments (<%= w.comments.size %>)</a>
+              <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => w} %>
+            </div>
+
           </div>
+          <!--Comments-->
+          <% if w.comments.size > 0 %>
+            <div id="wall_list_comment_<%= w.id %>">
+              <% if w.comments.size > 2 %>
+                <div class="proList">
+                  <div class="writeCom"><%= link_to_remote "View all comments", :url => {:controller => "user_walls", :action => "view_all_comments", :wall_id => w.id}, :update => "wall_list_comment_#{w.id}" %></div>
+                </div>
+              <% end %>
+              <% w.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
+                <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => w, :comment => cm} %>
+              <% end %>
+              <%= render :partial => "user_walls/wall_comment", :locals => {:wall => w} %>
+            </div>
+          <% end %>
+          <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => w} %>
+          <!--Comments-->
+
         </div>
       </div>
     </div>
