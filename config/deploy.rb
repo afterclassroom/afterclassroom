@@ -48,18 +48,16 @@ set :deploy_via, :remote_cache
 #############################################################
 
 namespace :deploy do
+  desc "Pack assets with rucksack" 
+  task :pack_assets, :roles => [:web,:app] do
+    run "cd #{release_path} && rake RAILS_ENV=#{fetch(:rails_env, 'production')} rucksack:pack"
+  end
+  after "deploy:update_code", "deploy:pack_assets"
+     
   desc "Create the database yaml file"
   task :after_update_code do
     db_config = <<-EOF
     production:
-      adapter: mysql
-      encoding: utf8
-      username: after
-      password: huyettam2010
-      database: afterclassroom_production
-      host: localhost
-    
-    development:
       adapter: mysql
       encoding: utf8
       username: after
@@ -75,15 +73,36 @@ namespace :deploy do
     # Just change the paths to whatever you need.
     #########################################################
 
-    # desc "Symlink the upload directories"
-    # task :before_symlink do
-    #   run "mkdir -p #{shared_path}/uploads"
-    #   run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
-    # end
+    desc "Symlink the upload directories"
+    task :before_symlink do
+      run "mkdir -p #{shared_path}/attaches"
+      run "ln -s #{shared_path}/attaches #{release_path}/public/attaches"
+      
+      run "mkdir -p #{shared_path}/avatars"
+      run "ln -s #{shared_path}/avatars #{release_path}/public/avatars"
+      
+      run "mkdir -p #{shared_path}/gamephotos"
+      run "ln -s #{shared_path}/gamephotos #{release_path}/public/gamephotos"
+      
+      run "mkdir -p #{shared_path}/music_album_attaches"
+      run "ln -s #{shared_path}/music_album_attaches #{release_path}/public/music_album_attaches"
+      
+      run "mkdir -p #{shared_path}/music_attaches"
+      run "ln -s #{shared_path}/music_attaches #{release_path}/public/music_attaches"
+      
+      run "mkdir -p #{shared_path}/photo_attaches"
+      run "ln -s #{shared_path}/photo_attaches #{release_path}/public/photo_attaches"
+      
+      run "mkdir -p #{shared_path}/photos"
+      run "ln -s #{shared_path}/photos #{release_path}/public/photos"
+      
+      run "mkdir -p #{shared_path}/selling_item_photos"
+      run "ln -s #{shared_path}/selling_item_photos #{release_path}/public/selling_item_photos"
+      
+      run "mkdir -p #{shared_path}/toolphotos"
+      run "ln -s #{shared_path}/toolphotos #{release_path}/public/toolphotos"
+    end
 
-  end
-
-  namespace :deploy do
     task :start, :roles => :app do
       run "touch #{current_release}/tmp/restart.txt"
     end
