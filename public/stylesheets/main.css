@@ -146,7 +146,7 @@ div.signin ul li.select a:hover{
 }
 .selectS{
     padding-top:7px;
-    *padding-top:6px;
+    /*padding-top:6px;*/
     padding-left:3px;
 }
 .selectS select{

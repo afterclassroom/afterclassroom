@@ -4,9 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>:: <%= configatron.site_name %> ::</title>
-    <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAATMG0VaqoYTOZpXe2ccPW3RT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSWrLnyyCFcK03AKgafjvgIjPignQ"></script>
-    <%= stylesheet_link_merged :application %>
-    <%= javascript_include_merged :application %>
+    <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= gmap_key %>"></script>
+    <%= stylesheet_link_packed :application %>
+    <%= javascript_include_packed :application %>
     <%= javascript_include_tag 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'juggernaut/swfobject' %>
     <%= juggernaut :debug => false, :client_id => current_user.login if logged_in? %>
     <%= feedback_includes %>
@@ -47,7 +47,7 @@
     <%= render :partial => 'shared/footer_menu_out' if logged_in? %>
   </body>
   <!--Debugs-->
-  <% if RAILS_ENV == 'development' %>
+  <% if Rails.env.development? %>
     <center><button onclick="show_debug_popup(); return false;">Show debug popup</button></center>
     <%= debug_popup %>
   <% end %>

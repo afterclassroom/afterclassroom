@@ -155,3 +155,31 @@
     margin-top:1px;
     _margin-bottom:1px;
 }
+/* post_jobs my_jobs_list */
+.home477in{
+    background:url("images/bg477b.png") no-repeat scroll left bottom transparent;
+    padding-bottom:10px;
+    width:477px;
+  }
+  .homeTop{
+    background:url("images/bg477t.png") no-repeat scroll left top transparent;
+    height:31px;
+    line-height:31px;
+    overflow:hidden;
+    padding:0 20px;
+  }
+  .homeItem{
+    border-top:1px solid #E3E3E3;
+    margin:-1px 20px 0;
+    overflow:hidden;
+    padding:11px 0 10px;
+  }
+  .assPageMJL{
+    border-top:1px solid #E3E3E3;
+    margin:-1px 20px 0;
+    overflow:hidden;
+    padding:11px 0 10px;
+  }
+  .numPageMJL{
+    margin-left:0px;
+  }

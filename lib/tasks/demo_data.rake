@@ -9,41 +9,41 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       # Users
-            departments_for_schools
-            create_demo_people
-            create_demo_friendship
-            create_demo_fan
-            create_demo_wall
+      departments_for_schools
+      create_demo_people
+      create_demo_friendship
+      create_demo_fan
+      create_demo_wall
 
       # Begin creating Posts data
-            create_demo_posts_assignments
-            create_demo_posts_tests
-            create_demo_posts_projects
-            create_demo_posts_exams
-            create_demo_posts_myx
-            create_demo_posts_books
-            create_demo_posts_tutors
-            create_demo_posts_jobs
-            create_demo_posts_housings
-            create_demo_posts_parties
-            create_demo_posts_teamups
-            create_demo_posts_awarenesses
-            create_demo_posts_foods
-            create_demo_posts_qas
-            create_demo_phoneapps
-            create_demo_gameapps
-            create_demo_toolapps
+      create_demo_posts_assignments
+      create_demo_posts_tests
+      create_demo_posts_projects
+      create_demo_posts_exams
+      create_demo_posts_myx
+      create_demo_posts_books
+      create_demo_posts_tutors
+      create_demo_posts_jobs
+      create_demo_posts_housings
+      create_demo_posts_parties
+      create_demo_posts_teamups
+      create_demo_posts_awarenesses
+      create_demo_posts_foods
+      create_demo_posts_qas
+      create_demo_phoneapps
+      create_demo_gameapps
+      create_demo_toolapps
 
-       create_demo_shopping_subcategory
+      create_demo_shopping_subcategory
       create_demo_selling_item
       
       # Exam schedule
-            create_demo_posts_exam_schedules
+      create_demo_posts_exam_schedules
       
       # Messages data
-            create_demo_messages
+      create_demo_messages
       # Story
-            create_demo_stories
+      create_demo_stories
 
     end
     
@@ -84,7 +84,7 @@ def create_demo_people
   relationship_status = ["Single", "Married"]
   %w[male female].each do |gender|
     filename = File.join(DATA_DIRECTORY, "#{gender}_names.txt")
-    names = File.open(filename).readlines[0...10]
+    names = File.open(filename).readlines
     password = "foobar"
     avatars = Dir.glob("lib/tasks/sample_data/#{gender}_photos/*.jpg").shuffle
     names.each_with_index do |name, i|
@@ -690,7 +690,7 @@ def create_selling_item(user, shopping_subcategory)
 
   #mytestphoto = Dir.glob("public/images/pictures/carBig1.png").shuffle
 
-    mytestphoto = Dir.glob("public/images/pictures/carBig1.jpg").shuffle
+  mytestphoto = Dir.glob("public/images/pictures/carBig1.jpg").shuffle
 
   item = SellingItem.create do |it|
     it.user=user

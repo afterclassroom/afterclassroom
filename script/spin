@@ -1,1 +1,1 @@
-/home/wwwafte/etc/rails_apps/AfterClassroom/current/script/process/spawner -p 11000 -i 3
+/usr/bin/mongrel_rails cluster::start -C /var/www/after/current/config/mongrel_cluster.yml
