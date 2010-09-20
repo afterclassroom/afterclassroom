@@ -45,7 +45,9 @@
               <%= show_rating( w.id.to_s, w.total_bad, 'user_walls', check, 0) %>
             </div>
             <div class="vie"><a href="#">View (20)</a></div>
-            <div class="share"><a href="#">Share</a></div>
+            <div class="share">
+              <a title="Share" class="thickbox" href="/user_walls/share_box?&height=400&width=500&subject=Share&user_id=<%= w.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>&current_wall=<%= w.content %>" id="myaclick">Share</a>
+            </div>
 
             <div class="com">
               <a href="javascript:;" onclick="showCommentForm('<%= w.id %>');">Comments (<%= w.comments.size %>)</a>
