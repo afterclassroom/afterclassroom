@@ -30,7 +30,7 @@
     <input type="text" value="<%= @subject %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" size="30" class="required" name="subject" id="message_subject" style="width: 330px;"/></div>
   <div class="postItem">
     <div style="width: 80px;" class="postItem1">Message*</div>
-    <div class="postInp"><textarea value ="<%= @current_wall %>" onblur="this.value = this.value || this.defaultValue;" class="required" name="body" id="message_body" style="width: 330px; height: 200px;">HHHH<%= @current_wall %></textarea></div>
+    <div class="postInp"><textarea value ="<%= @current_wall %>" onblur="this.value = this.value || this.defaultValue;" class="required" name="body" id="message_body" style="width: 330px; height: 200px;"><%= @current_wall %></textarea></div>
   </div>
   <div style="padding-left: 90px;" class="submit"><a onclick="submit_passion()" href="javascript:;">Send</a></div>
   <div style="padding: 10px;" class="error"></div>
