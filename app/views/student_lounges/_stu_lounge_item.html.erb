@@ -2,7 +2,7 @@
   <% @walls.each do |w| %>
     <div class="assItem" id="wall_<%= w.id %>">
       <div class="assItemL">
-        <div class="assImg"><div><a href="#"><img src="pictures/pic4.png"></a></div></div>
+        <div class="assImg"><div><a href="#"><img src="pictures/pic4.png"/></a></div></div>
 
         <div class="assCate"><span><a href="#" style="color: #000000;">&nbsp;&nbsp;<%= w.content %></a></span></div>
       </div>
@@ -21,14 +21,14 @@
         </div>
       </div>
       <div class="assItemB">
-        <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
+        <div class="assPic"><%= link_to "<div>#{image_tag(w.user_post.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => w.user_post.id} %></div>
         <div class="assInfT">
           <div class="assInfT">
             <div class="assInfL">
-              <div><span>Posted by:</span><a href="#">Vu Nguyen</a></div>
+              <div><span>Posted by:</span><%= link_to w.user_post.full_name, {:controller => "profile", :action => "show_profile", :id => w.user_post.id} %></div>
               <div>
                 <span>Comments:</span>
-                <a href="#">23 Comments</a>
+                <%=  w.comments.find(:all).size.to_s %>
               </div>
             </div>
           </div>
@@ -44,7 +44,6 @@
             <div class="qashdD">
               <%= show_rating( w.id.to_s, w.total_bad, 'user_walls', check, 0) %>
             </div>
-            <div class="vie"><a href="#">View (20)</a></div>
             <div class="share">
               <a title="Share" class="thickbox" href="/user_walls/share_box?&height=288&width=500&subject=Share&user_id=<%= w.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>&current_wall=<%= w.content %>" id="myaclick">Share</a>
             </div>
