@@ -1,14 +1,15 @@
-production:
-    server: mail.datadancing.com
-    port: 25
-    domain: datadancing.com
-    authentication: login
-    username: dung.tran@datadancing.com
-    password: dt321
 development:
-    server: mail.datadancing.com
-    port: 25
-    domain: datadancing.com
-    authentication: login
-    username: dung.tran@datadancing.com
-    password: dt321
+  server: mail.coderomail.com
+  port: 25
+  domain: coderomail.com
+  authentication: login
+  username: signup
+  password: huyettam2010
+production:
+  server: mail.coderomail.com
+  port: 25
+  domain: coderomail.com
+  authentication: login
+  username: signup
+  password: huyettam2010
+  tls: true
