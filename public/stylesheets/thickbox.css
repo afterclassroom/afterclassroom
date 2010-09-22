@@ -169,13 +169,12 @@
     padding:0 20px;
   }
   .homeItem{
-    border-top:1px solid #E3E3E3;
+    border-bottom:1px solid #E3E3E3;
     margin:-1px 20px 0;
     overflow:hidden;
     padding:11px 0 10px;
   }
   .assPageMJL{
-    border-top:1px solid #E3E3E3;
     margin:-1px 20px 0;
     overflow:hidden;
     padding:11px 0 10px;
