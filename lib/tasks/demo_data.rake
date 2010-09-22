@@ -54,9 +54,14 @@ namespace :db do
       system("rm -rf index/developments")
       system("rm -rf public/attaches")
       system("rm -rf public/avatars")
+      system("rm -rf public/music_album_attaches")
       system("rm -rf public/music_attaches")
+      system("rm -rf public/photos")
       system("rm -rf public/photo_attaches")
       system("rm -rf public/video_attaches")
+      system("rm -rf public/selling_item_photos")
+      system("rm -rf public/gamephotos")
+      system("rm -rf public/toolphotos")
     end
     
     desc 'Reload demo data'
