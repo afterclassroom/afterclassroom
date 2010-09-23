@@ -2,7 +2,9 @@
   <% @walls.each do |w| %>
     <div class="assItem" id="wall_<%= w.id %>">
       <div class="assItemL">
-        <div class="assImg"><div><a href="#"><img src="pictures/pic4.png"/></a></div></div>
+        <div class="assImg">
+          <%= show_attach(w) if w.has_attach %>
+        </div>
 
         <div class="assCate"><span><a href="#" style="color: #000000;">&nbsp;&nbsp;<%= w.content %></a></span></div>
       </div>
