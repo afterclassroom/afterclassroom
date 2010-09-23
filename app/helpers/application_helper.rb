@@ -354,6 +354,7 @@ module ApplicationHelper
   def gmap_key
     key = GMAP_KEY_SITE if Rails.env.production?
     key = GMAP_KEY_LOCAL if Rails.env.development?
+    return key
   end
   
   private

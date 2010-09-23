@@ -6,7 +6,7 @@ production:
   max_matches: 100000
   seamless_rotate: 1
   preopen_indexes: 1
-  query_log_file: /mnt/app/rails/releases/code/log/searchd.query.log
-  searchd_log_file: /mnt/app/rails/releases/code/log/searchd.log
-  pid_file: /mnt/app/crawler/rails/code/log/searchd.production.pid
-  searchd_file_path: /mnt/app/rails/current/db/sphinx/production/
+  query_log_file: /var/www/after/releases/log/searchd.query.log
+  searchd_log_file: /var/www/after/releases/log/searchd.log
+  pid_file: /var/www/after/log/searchd.production.pid
+  searchd_file_path: /var/www/after/current/db/sphinx/production/

@@ -2,7 +2,7 @@
 #	Application
 #############################################################
 require 'mongrel_cluster/recipes'
-
+require 'vendor/plugins/thinking-sphinx/recipes/thinking_sphinx'
 
 set :application, "Afterclassroom"
 set :domain, "afterclassroom.com"
@@ -48,10 +48,25 @@ set :deploy_via, :remote_cache
 #############################################################
 
 namespace :deploy do
+  task :before_update_code, :roles => [:app] do
+    thinking_sphinx.stop
+  end
+
   desc "Create the database yaml file"
   task :after_update_code do
+    symlink_sphinx_indexes
+    thinking_sphinx.configure
+    thinking_sphinx.start
+  
     db_config = <<-EOF
     production:
+      adapter: mysql
+      encoding: utf8
+      username: after
+      password: huyettam2010
+      database: afterclassroom_production
+      socket: /var/lib/mysql/mysql.sock
+    development:
       adapter: mysql
       encoding: utf8
       username: after
@@ -114,6 +129,10 @@ namespace :deploy do
     desc "Restart Application"
     task :restart, :roles => :app do
       run "touch #{current_release}/tmp/restart.txt"
+    end
+    
+    task :symlink_sphinx_indexes, :roles => [:app] do
+      run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
     end
   end
 end

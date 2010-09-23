@@ -3,13 +3,13 @@ development:
   port: 25
   domain: coderomail.com
   authentication: login
-  username: signup
+  username: signup@afterclassroom.com
   password: huyettam2010
 production:
   server: mail.coderomail.com
   port: 25
   domain: coderomail.com
   authentication: login
-  username: signup
+  username: signup@afterclassroom.com
   password: huyettam2010
   tls: true
