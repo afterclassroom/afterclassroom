@@ -1,14 +1,13 @@
 <div id="create_a_album" style="display:none">
   <% form_remote_tag :url => create_album_user_photos_path(current_user), :update => "create_a_album", :html => {:id => "form_album", :name => "form_album"} do %>
-
     <div class="photoEx">
       <div class="stoExItem">
         <div class="stoExItemL">Photo album name*</div>
-        <div class="stoExItemR" ><%= text_field_tag "photo_album[name]", "", :class => "required", :minlength => "1" %></div>
+        <div class="stoExItemR" ><%= text_field_tag "photo_album[name]", "", :id => "album_name", :class => "required" %></div>
 
       </div>
       <div class="stoExBtm">
-        <div class="stoExCre"><a href="javascript:;" onclick="onSubmit();">Create</a></div>
+        <div class="stoExCre"><a href="javascript:;" onclick="check_form_photo_album();">Create</a></div>
         <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').toggle('slow');">Cancel</a></div>
       </div>
       <div class="error_photo" style="padding: 10px;"></div>
@@ -16,4 +15,28 @@
   <% end %>
 </div>
 
+<!--Alert-->
+<div id="dialog-message" title="Alert" style="display:none;">
+  <p>
+    Please input photo album name.
+  </p>
+</div>
+<!--Alert-->
+
+<script type="text/javascript" >
+  function check_form_photo_album(){
+    if ($('#album_name').val() == ""){
+      $("#dialog-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function() {
+            $(this).dialog('close');
+          }
+        }
+      });
+    }else{
+      $("#form_album").trigger("onsubmit");
+    }
+  }
+</script>
 

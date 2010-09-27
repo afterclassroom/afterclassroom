@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   config.gem(
     'thinking-sphinx',
     :lib     => 'thinking_sphinx',
-    :version => '1.3.14'
+    :version => '1.3.20'
   )
   config.gem "domainatrix"
   config.gem "rest-open-uri"
