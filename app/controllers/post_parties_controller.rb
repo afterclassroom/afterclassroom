@@ -153,8 +153,8 @@ class PostPartiesController < ApplicationController
   # GET /post_parties/new.xml
   def new
     @post_party = PostParty.new
-    post = Post.new
-    @post_party.post = post
+    @post = Post.new
+    @post_party.post = @post
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_party }

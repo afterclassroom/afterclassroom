@@ -133,8 +133,8 @@ class PostFoodsController < ApplicationController
   # GET /post_foods/new.xml
   def new
     @post_food = PostFood.new
-    post = Post.new
-    @post_food.post = post
+    @post = Post.new
+    @post_food.post = @post
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_food }

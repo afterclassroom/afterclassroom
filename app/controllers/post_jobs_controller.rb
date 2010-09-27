@@ -137,8 +137,8 @@ class PostJobsController < ApplicationController
   # GET /post_jobs/new.xml
   def new
     @post_job = PostJob.new
-    post = Post.new
-    @post_job.post = post
+    @post = Post.new
+    @post_job.post = @post
     @post_job.job_type_id = JobType.first.id
     respond_to do |format|
       format.html # new.html.erb

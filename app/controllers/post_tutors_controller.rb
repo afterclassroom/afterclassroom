@@ -134,8 +134,8 @@ class PostTutorsController < ApplicationController
   # GET /post_tutors/new.xml
   def new
     @post_tutor = PostTutor.new
-    post = Post.new
-    @post_tutor.post = post
+    @post = Post.new
+    @post_tutor.post = @post
     @post_tutor.tutor_type_id = TutorType.find_by_label("request_for_tutor").id
     respond_to do |format|
       format.html # new.html.erb

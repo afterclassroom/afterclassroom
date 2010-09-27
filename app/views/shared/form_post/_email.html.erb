@@ -1,0 +1,7 @@
+<div class="postItem">
+  <div class="postTit">Email</div>
+  <div class="postRad">
+    <div><%= radio_button "post", "use_this_email", true, :checked => @post.use_this_email %> Use my login email instead</div>
+    <div><%= radio_button "post", "use_this_email", false, :checked => !@post.use_this_email %> Reply to [post category] - xxxxxx@afterclassroom.com (AC anonymizes your ..)</div>
+  </div>
+</div>

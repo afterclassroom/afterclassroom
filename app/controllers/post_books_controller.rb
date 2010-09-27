@@ -134,8 +134,8 @@ class PostBooksController < ApplicationController
   # GET /post_books/new.xml
   def new
     @post_book = PostBook.new
-    post = Post.new
-    @post_book.post = post
+    @post = Post.new
+    @post_book.post = @post
     @post_book.book_type_id = BookType.first.id
     respond_to do |format|
       format.html # new.html.erb

@@ -97,8 +97,8 @@ class PostAwarenessesController < ApplicationController
   # GET /post_awarenesses/new.xml
   def new
     @post_awareness = PostAwareness.new
-    post = Post.new
-    @post_awareness.post = post
+    @post = Post.new
+    @post_awareness.post = @post
     @post_awareness.awareness_type_id = AwarenessType.first.id
     respond_to do |format|
       format.html # new.html.erb

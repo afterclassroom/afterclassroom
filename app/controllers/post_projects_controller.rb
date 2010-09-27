@@ -81,8 +81,8 @@ class PostProjectsController < ApplicationController
   # GET /post_projects/new.xml
   def new
     @post_project = PostProject.new
-    post = Post.new
-    @post_project.post = post
+    @post = Post.new
+    @post_project.post = @post
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_project }

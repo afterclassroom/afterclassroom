@@ -139,8 +139,8 @@ class PostQasController < ApplicationController
   # GET /post_qas/new.xml
   def new
     @post_qa = PostQa.new
-    post = Post.new
-    @post_qa.post = post
+    @post = Post.new
+    @post_qa.post = @post
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_qa }

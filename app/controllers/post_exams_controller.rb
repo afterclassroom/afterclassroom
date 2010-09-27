@@ -81,8 +81,8 @@ class PostExamsController < ApplicationController
   # GET /post_exams/new.xml
   def new
     @post_exam = PostExam.new
-    post = Post.new
-    @post_exam.post = post
+    @post = Post.new
+    @post_exam.post = @post
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_exam }

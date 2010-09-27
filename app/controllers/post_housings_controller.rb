@@ -99,8 +99,8 @@ class PostHousingsController < ApplicationController
   # GET /post_housings/new.xml
   def new
     @post_housing = PostHousing.new
-    post = Post.new
-    @post_housing.post = post
+    @post = Post.new
+    @post_housing.post = @post
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_housing }

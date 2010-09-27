@@ -1,0 +1,20 @@
+<div class="reqLa"><label>School year</label></div>
+<div class="reqTi"><%= f.text_field :school_year %></div>
+
+<%
+list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
+%>
+<ul id="year_menu" class="mcdropdown_menu">
+  <% list_years.each do |year| %>
+    <li rel_year="<%= year[1] %>">
+      <%= year[0] %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  $("#post_assignment_school_year").mcDropdown("#year_menu", {
+    width: 350,
+    valueAttr: "rel_year"
+  });
+</script>

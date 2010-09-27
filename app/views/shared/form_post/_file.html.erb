@@ -1,0 +1,7 @@
+<div class="postItem">
+    <div class="postTit">Add/Edit File</div>
+    <div id="divinputfile" style="margin-top:-2px">
+      <%= post.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc", :style => "margin-left:-213px" %>
+      <div id="fakeinputfile" style="margin-top:0px"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
+    </div>
+  </div>

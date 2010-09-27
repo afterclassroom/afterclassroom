@@ -133,8 +133,8 @@ class PostMyxesController < ApplicationController
   # GET /post_myxes/new.xml
   def new
     @post_myx = PostMyx.new
-    post = Post.new
-    @post_myx.post = post
+    @post = Post.new
+    @post_myx.post = @post
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_myx }

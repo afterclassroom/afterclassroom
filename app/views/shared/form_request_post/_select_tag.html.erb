@@ -1,0 +1,13 @@
+<div class="reqLa"><label>Tags</label></div>
+<div class="reqTi"><%= text_field_tag "tag" %></div>
+<script type="text/javascript">
+  var tags = <%= array_or_string_for_javascript(@tags) %>;
+  $(function () {
+    $('#tag').tagSuggest ( {
+      tagContainer : 'div',
+      tagWrap : 'div',
+      tags: tags,
+      separator: ', '
+    });
+  }) ;
+</script>

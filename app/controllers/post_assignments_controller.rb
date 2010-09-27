@@ -82,8 +82,8 @@ class PostAssignmentsController < ApplicationController
   # GET /post_assignments/new.xml
   def new
     @post_assignment = PostAssignment.new
-    post = Post.new
-    @post_assignment.post = post
+    @post = Post.new
+    @post_assignment.post = @post
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_assignment }
