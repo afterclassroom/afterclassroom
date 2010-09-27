@@ -10,6 +10,9 @@ class PostJob < ActiveRecord::Base
   has_one :rating_statistic
   has_many :ratings
 
+  has_many :post_job_jobfiles, :dependent => :destroy
+
+
   # Tags
   acts_as_taggable
 
