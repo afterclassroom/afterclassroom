@@ -4,13 +4,14 @@ class UsersController < ApplicationController
   protect_from_forgery :only => [:create]
 
   before_filter :login_required,
-    :except => [:new, :create, :activate, :forgot_login, :forgot_password, :show_comment]
+    :except => [:new, :create, :activate, :forgot_login, :forgot_password]
   before_filter :require_current_user,
-    :except => [:new, :create, :activate, :forgot_login, :forgot_password, :show_comment]
+    :except => [:new, :create, :activate, :forgot_login, :forgot_password]
   
   # render new.rhtml
   def new
     @user = User.new
+    get_variables()
   end
 
   def forgot_login
@@ -62,7 +63,7 @@ class UsersController < ApplicationController
 
   def create
     logout_keeping_session!
-    create_new_user(params[:user])
+    create_new_user(params)
   end
 
   def activate
@@ -139,59 +140,7 @@ class UsersController < ApplicationController
     render :text => @user.avatar.url(:medium)
   end
 
-  def list_comments
-    @comments = @user.comments.paginate :page => params[:page], :per_page => 10, :order => "created_at DESC"
-    render :layout => "inbox"
-  end
-
-  def show_comment
-  end
-  
-  def create_comment
-    user_id_friend = params[:user_id_friend]
-    comment = params[:comment]
-    if comment && user_id_friend
-      obj_comment = Comment.new()
-      obj_comment.comment = comment
-      obj_comment.user = @user
-      user_friend = @user.user_friends.find_by_id(user_id_friend)
-      user_friend.comments << obj_comment
-    end
-    render :text => "Success"
-  end
-
-  def delete_comment
-    if params[:comment_id]
-      comment_id = params[:comment_id]
-      @user.comments.find(comment_id).destroy
-    end
-    redirect_to :action => "list_comments"
-  end
-
   def show
-  end
-
-  def my_post
-    @posts = @user.posts.paginate :page => params[:page], :per_page => 10, :order => "created_at DESC"
-    render :layout => 'inbox'
-  end
-
-  def my_favorite
-    @search_name = ""
-    if params[:search]
-      @search_name = params[:search][:name]
-      @list_favorites = @user.favorites.find(:all, :conditions => "post_id IN (Select id from Posts where title LIKE '%#{@search_name}%' OR description LIKE '%#{@search_name}%')").paginate :page => params[:page], :per_page => 10
-    else
-      @list_favorites = @user.favorites.paginate :page => params[:page], :per_page => 10
-    end
-  end
-
-  def delete_favorite
-    if params[:favorite_id]
-      favorite_id = params[:favorite_id]
-      @user.favorites.find(favorite_id).destroy
-    end
-    redirect_to :action => "my_favorite"
   end
   
   protected
@@ -205,32 +154,62 @@ class UsersController < ApplicationController
   end
 
   def create_new_user(attributes)
-    @user = User.new(attributes)
+    first_name = attributes[:first_name]
+    last_name = attributes[:last_name]
+    session[:first_name] = first_name
+    session[:last_name] = last_name
+    name = first_name + " " + last_name
+    @user = User.new(attributes[:user])
     @user.user_information = UserInformation.new()
     @user.user_education = UserEducation.new()
     @user.user_employment = UserEmployment.new()
+    @user.name = name
+    @user.login = name.downcase
+    session[:your_school] = @user.school_id
+    
     if @user && @user.valid?
       @user.register!
     end
-    
+
     if @user.errors.empty?
-      successful_creation(@user)
+      successful_creation()
     else
-      failed_creation
+      failed_creation(@user, @user.errors.full_messages)
     end
   end
   
-  def successful_creation(user)
+  def successful_creation()
     redirect_back_or_default(root_path)
     flash[:notice] = "Thanks for signing up!"
     flash[:notice] << " We're sending you an email with your activation code."
   end
   
-  def failed_creation(message = 'Sorry, there was an error occured while creating account. Email already exist.')
+  def failed_creation(user, message = 'Sorry, there was an error occured while creating account.')
     flash[:error] = message
-    @countries = Country.has_cities
-    @user = User.new
+    @user = user
     @model_name = "user"
+    get_variables()
     render :action => :new
+  end
+
+  def get_variables
+    @countries = Country.has_cities
+    if session[:your_school]
+      @school = School.find(session[:your_school])
+      @city = @school.city
+      @state = @city.state
+      @country = @state.country
+      @states = @country.states
+      @cities = @state.cities
+      @schools = @city.schools
+    else
+      @country = @countries.first
+      @states = @country.states
+      @state = @states.first
+      @cities = @state.cities
+      @city = @cities.first
+      @schools = @city.schools
+      @school = @schools.first
+    end
   end
 end

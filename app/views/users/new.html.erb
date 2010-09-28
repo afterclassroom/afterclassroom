@@ -14,11 +14,11 @@
         <div class="signNode">*(asterisk) is required.</div>
         <div class="signinItem">
           <div class="signinTit">First Name*:</div>
-          <div class="signinInp"><%= text_field_tag :first_name, "",  :class => "required" %></div>
+          <div class="signinInp"><%= text_field_tag :first_name, session[:first_name],  :class => "required" %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">Last Name*:</div>
-          <div class="signinInp"><%= text_field_tag :last_name, "", :class => "required" %></div>
+          <div class="signinInp"><%= text_field_tag :last_name, session[:last_name], :class => "required" %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">Email*:</div>
@@ -29,8 +29,11 @@
           <div class="signinInp"><%= f.password_field :password, :class => "required password" %></div>
         </div>
         <div class="signinItem">
-          <div class="signinTit">Your school*:</div>
-          <div class="signinInp"><select name="Select1"><option>Select your school...</option></select></div>
+          <div class="signinTit">Confirm*:</div>
+          <div class="signinInp"><%= f.password_field :password_confirmation, :class => "required password" %></div>
+        </div>
+        <div class="popup2" id="select_school">
+          <%= render :partial => "select_school" %>
         </div>
         <div class="signincCheck">
           <div><%= f.check_box :allow_search_by_email %></div>
@@ -52,10 +55,73 @@
 <!--Content-->
 
 <script type="text/javascript">
- function submit(){
-    var result = $("#form_signup").validate();
+  function submit(){
+    var result = $("#form_signup").validate({
+      rules: {
+        user_password_confirmation: {
+          equalTo: "#user_password"
+        }
+      },
+      messages: {
+        user_password_confirmation: {
+          equalTo: "Please enter the same password as above"
+        }
+      }
+    });
     if (result) {
       $("#form_signup").submit();
     }
+  }
+
+  $(document).ready(load_menus);
+  function update_form(type_select, id){
+    $.ajax({
+      url: '/users_select_school/update_form_signup',
+      type: 'GET',
+      cache: false,
+      dataType: 'html',
+      data: ({
+        type : type_select,
+        id : id
+      }),
+      success: function(data){
+        $('#select_school').html(data);
+        load_menus();
+      }
+    });
+  }
+
+  function select_country(){
+    update_form("country", $('#country').val());
+  }
+
+  function select_state(){
+    update_form("state", $('#state').val());
+  }
+
+  function select_city(){
+    update_form("city", $('#city').val());
+  }
+
+  function load_menus (){
+    $("#country").mcDropdown("#country_menu", {
+      width: 230,
+      valueAttr: "rel_country",
+      select: select_country
+    });
+    $("#state").mcDropdown("#state_menu", {
+      width: 230,
+      valueAttr: "rel_state",
+      select: select_state
+    });
+    $("#city").mcDropdown("#city_menu", {
+      width: 230,
+      valueAttr: "rel_city",
+      select: select_city
+    });
+    $("#school").mcDropdown("#school_menu", {
+      width: 230,
+      valueAttr: "rel_school"
+    });
   }
 </script>

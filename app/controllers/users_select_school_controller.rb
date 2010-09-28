@@ -1,5 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class UsersSelectSchoolController < ApplicationController
+  before_filter :get_variables, :only => [:update_form, :update_form_signup]
+  
   def show
     @alphabet = ""
     @countries = Country.has_cities
@@ -24,6 +26,34 @@ class UsersSelectSchoolController < ApplicationController
   end
 
   def update_form
+    render :layout => false
+  end
+
+  def update_form_signup
+    render :layout => false
+  end
+
+  def list_school
+    city_id = params[:city_id]
+    @alphabet = params[:alphabet]
+    @countries = Country.has_cities
+    @city = City.find(city_id)
+    @state = @city.state
+    @country = @state.country
+    @states = @country.states
+    @cities = @state.cities
+    if @alphabet == ""
+      @schools = City.find(city_id).schools
+    else
+      @schools = School.list_school(city_id, @alphabet)
+    end
+    @school ||= @schools.first if @schools.size > 0
+    render :layout => false
+  end
+
+  private
+
+  def get_variables
     type = params[:type]
     id = params[:id]
     @alphabet = ""
@@ -54,24 +84,5 @@ class UsersSelectSchoolController < ApplicationController
         @schools = @city.schools
         @school = @schools.first
     end
-    render :layout => false
-  end
-
-  def list_school
-    city_id = params[:city_id]
-    @alphabet = params[:alphabet]
-    @countries = Country.has_cities
-    @city = City.find(city_id)
-    @state = @city.state
-    @country = @state.country
-    @states = @country.states
-    @cities = @state.cities
-    if @alphabet == ""
-      @schools = City.find(city_id).schools
-    else
-      @schools = School.list_school(city_id, @alphabet)
-    end
-    @school ||= @schools.first if @schools.size > 0
-    render :layout => false
   end
 end

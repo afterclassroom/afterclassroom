@@ -16,6 +16,17 @@
     width: 107px;
     margin-right: 5px;
 }
+.swap div.mcdropdown {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #DBDBDB;
+    padding: 1px;
+    display: -moz-inline-block;
+    display: inline-block;
+    height: 16px;
+    padding: 2px;
+    width: 246px;
+}
 div.mcdropdown {
     position: absolute;
     background: #fff;

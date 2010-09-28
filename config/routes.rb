@@ -69,15 +69,6 @@ ActionController::Routing::Routes.draw do |map|
   
   # Users
   map.resources :users, :member => {
-    :my_post => :get,
-    :list_friends => :get,
-    :my_favorite => :get,
-    :delete_favorite => :get,
-    :delete_friend => :get,
-    :list_comments => :get,
-    :show_comment => :get,
-    :create_comment => :get,
-    :delete_comment => :get,
     :edit_password => :get,
     :update_password => :put,
     :edit_email => :get,
@@ -87,8 +78,7 @@ ActionController::Routing::Routes.draw do |map|
       :collection => { 
       :show_email => :get,
       :send_message => :get,
-      :message_action => :post,
-      :list_friend => :get
+      :message_action => :post
       }
 
     users.resources :settings,

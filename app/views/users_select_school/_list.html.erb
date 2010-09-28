@@ -1,0 +1,34 @@
+<ul id="country_menu" class="mcdropdown_menu">
+  <% @countries.each do |c| %>
+    <li rel_country="<%= c.id %>">
+      <%= c.name %>
+    </li>
+  <% end %>
+</ul>
+<ul id="state_menu" class="mcdropdown_menu">
+  <% @states.each do |s| %>
+    <li rel_state="<%= s.id %>">
+      <%= s.name %>
+    </li>
+  <% end %>
+</ul>
+<ul id="city_menu" class="mcdropdown_menu">
+  <% @cities.each do |ct| %>
+    <li rel_city="<%= ct.id %>">
+      <%= ct.name %>
+    </li>
+  <% end %>
+</ul>
+<ul id="school_menu" class="mcdropdown_menu">
+  <% if @schools.size > 0 %>
+    <% @schools.each do |sc| %>
+      <li rel_school="<%= sc.id %>">
+        <%= sc.name %>
+      </li>
+    <% end %>
+  <% else %>
+    <li rel_school="">
+      No School
+    </li>
+  <% end %>
+</ul>
