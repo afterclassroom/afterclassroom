@@ -1,28 +1,10 @@
 <% fields_for @post_food.post do |post| %>
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
-  <div class="postItem">
-    <div class="postTit">Title*</div>
-    <div class="postInp"><%= post.text_field :title, :class => 'required', :style => "width:360px;" %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Description*</div>
-    <div class="postInput">
-      <div class="postDesInf" id="post_description_counter"><span>0</span> characters (900 max)</div>
-      <div class="postInp"><%= post.text_area :description, :class => 'required' %></div>
-    </div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">School</div>
-    <div class="postInp">Your are at <strong><%= School.find(@school).name %></strong> - <%= link_to("Click here", "/users_select_school/show?height=170", :class => "thickbox", :title => "Select Schoools") %> to choose another school.</div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Email</div>
-    <div class="postRad">
-      <div><%= radio_button "post", "use_this_email", true, :checked => @post_food.post.use_this_email %> Use my login email instead</div>
-      <div><%= radio_button "post", "use_this_email", false, :checked => !@post_food.post.use_this_email %> Reply to [post category] - xxxxxx@afterclassroom.com (AC anonymizes your ..)</div>
-    </div>
-  </div>
+  <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_school" %>
+  <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
     <div class="postTit">Phone</div>
     <div class="postInp"><%= f.text_field :phone, :style => "width:208px" %></div>
@@ -31,41 +13,32 @@
     <div class="postTit">Address</div>
     <div class="postInp"><%= f.text_field :address, :style => "width:208px" %></div>
   </div>
-  <div class="postItem">
-    <div class="postTit">Add/Edit File</div>
-    <div id="divinputfile" style="margin-top:-2px">
-      <%= post.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc" %>
-      <div id="fakeinputfile" style="margin-top:0px"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
-    </div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Tag</div>
-    <div class="postInp"><%= text_field_tag "tag", "", :style => "width:280px" %></div>
-  </div>
+  <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
 
 <script type="text/javascript">
-  $("#post_description").counter({
-    count: 'up',
-    goal: 900
-  });
-  $(function() {
-    $("#post_food_due_date").datepicker();
-  });
-  function submit(){
-    var result = $("#form_post").validate();
-    if (result) {
-      $("#form_post").submit();
-    }
-  }
-   var tags = <%= array_or_string_for_javascript(@tags) %>;
-  $(function () {
-    $('#tag').tagSuggest ( {
-      tagContainer : 'div',
-      tagWrap : 'div',
-      tags: tags,
-      separator: ', '
+    $("#post_description").counter({
+        count: 'up',
+        goal: 900
     });
-  }) ;
+    $(function() {
+        $("#post_food_due_date").datepicker();
+    });
+    function submit(){
+        var result = $("#form_post").validate();
+        if (result) {
+            $("#form_post").submit();
+        }
+    }
+    var tags = <%= array_or_string_for_javascript(@tags) %>;
+    $(function () {
+        $('#tag').tagSuggest ( {
+            tagContainer : 'div',
+            tagWrap : 'div',
+            tags: tags,
+            separator: ', '
+        });
+    }) ;
 
 </script>

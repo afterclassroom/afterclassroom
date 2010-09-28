@@ -1,51 +1,18 @@
 <% fields_for @post_project.post do |post| %>
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
-  <div class="postItem">
-    <div class="postTit">Title*</div>
-    <div class="postInp"><%= post.text_field :title, :class => 'required', :style => "width:360px;" %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Description*</div>
-    <div class="postInput">
-      <div class="postDesInf" id="post_description_counter"><span>0</span> characters (900 max)</div>
-      <div class="postInp"><%= post.text_area :description, :class => 'required' %></div>
-    </div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">School</div>
-    <div class="postInp">Your are at <strong><%= School.find(@school).name %></strong> - <%= link_to("Click here", "/users_select_school/show?height=170", :class => "thickbox", :title => "Select Schoools") %> to choose another school.</div>
-  </div>
-  <div class="postItemDep">
-    <div class="postTit">Department</div>
-    <div class="postDep"><%= f.text_field :department_id %></div>
-  </div>
-  <div class="postItemDep">
-    <div class="postTit">School year</div>
-    <div class="postDep"><%= f.text_field :school_year %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Email</div>
-    <div class="postRad">
-      <div><%= radio_button "post", "use_this_email", true, :checked => @post_project.post.use_this_email %> Use my login email instead</div>
-      <div><%= radio_button "post", "use_this_email", false, :checked => !@post_project.post.use_this_email %> Reply to [post category] - xxxxxx@afterclassroom.com (AC anonymizes your ..)</div>
-    </div>
-  </div>
+  <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_school" %>
+  <%= render :partial => "/shared/form_post/select_department", :locals => {:f => f} %>
+  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:f => f} %>
+  <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
     <div class="postTit">Due date*</div>
     <div class="postInp"><%= text_field_tag "post_project[due_date]", @post_project.due_date != nil ? @post_project.due_date.strftime("%m/%d/%Y") : nil, :id => "post_project_due_date", :class => 'required date', :style => "width:100px" %></div>
   </div>
-  <div class="postItem">
-    <div class="postTit">Add/Edit File</div>
-    <div id="divinputfile">
-      <%= post.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc" %>
-      <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
-    </div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Tag</div>
-    <div class="postInp"><%= text_field_tag "tag", "", :style => "width:280px" %></div>
-  </div>
+  <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
 
 <ul id="department_menu" class="mcdropdown_menu">
@@ -92,34 +59,34 @@ list_years = [["Chose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], 
 </ul>
 
 <script type="text/javascript">
-  $("#post_project_department_id").mcDropdown("#department_menu", {
-    width: 350,
-    valueAttr: "rel_department"
-  });
-  $("#post_project_school_year").mcDropdown("#year_menu", {
-    width: 350,
-    valueAttr: "rel_year"
-  });
-  $("#post_description").counter({
-    count: 'up',
-    goal: 900
-  });
-  $(function() {
-    $("#post_project_due_date").datepicker();
-  });
-  function submit(){
-    var result = $("#form_post").validate();
-    if (result) {
-      $("#form_post").submit();
-    }
-  }
-   var tags = <%= array_or_string_for_javascript(@tags) %>;
-  $(function () {
-    $('#tag').tagSuggest ( {
-      tagContainer : 'div',
-      tagWrap : 'div',
-      tags: tags,
-      separator: ', '
+    $("#post_project_department_id").mcDropdown("#department_menu", {
+        width: 350,
+        valueAttr: "rel_department"
     });
-  }) ;
+    $("#post_project_school_year").mcDropdown("#year_menu", {
+        width: 350,
+        valueAttr: "rel_year"
+    });
+    $("#post_description").counter({
+        count: 'up',
+        goal: 900
+    });
+    $(function() {
+        $("#post_project_due_date").datepicker();
+    });
+    function submit(){
+        var result = $("#form_post").validate();
+        if (result) {
+            $("#form_post").submit();
+        }
+    }
+    var tags = <%= array_or_string_for_javascript(@tags) %>;
+    $(function () {
+        $('#tag').tagSuggest ( {
+            tagContainer : 'div',
+            tagWrap : 'div',
+            tags: tags,
+            separator: ', '
+        });
+    }) ;
 </script>
