@@ -6,17 +6,13 @@
         <% fields_for :post do |p| %>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:f => f} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:f => f} %>
-          <div class="reqSe"><%= f.text_field :post_qa_category_id %></div>
-          <div class="reqTi"><%= p.text_field :title, :value => "Your question...", :onblur => "this.value = this.value || this.defaultValue;", :onfocus => "this.value = '';" %></div>
-          <div class="reqEn"><%= text_area_tag "post[description]", "Content...", :onblur => "this.value = this.value || this.defaultValue;", :onfocus => "this.value = '';" %></div>
+          <div class="reqLa"><label>Category</label></div>
+          <div class="reqTi"><%= f.text_field :post_qa_category_id %></div>
+          <div class="reqLa"><label>Your question</label></div>
+          <div class="reqTi"><%= p.text_field :title %></div>
+          <div class="reqLa"><label>Content</label></div>
+          <div class="reqEn"><%= text_area_tag "post[description]" %></div>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
-          <div id="recaptcha_container">
-            <div class="reqLa"><label>Enter the two words below</label></div>
-            <div class="reqTi"><%= text_field_tag "recaptcha_response_field" %></div>
-            <div id="recaptcha_image"></div>
-          </div>
-          <%= recaptcha_tags(:display => {:theme => "custom"}) %>
-          <div class="regReload"><a class="regRlBt" href="javascript:Recaptcha.reload();">Get new words</a></div>
           <div class="submit"><%= show_submit_form() %></div>
         <% end %>
       <% end %>

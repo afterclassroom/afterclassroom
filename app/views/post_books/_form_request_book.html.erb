@@ -28,13 +28,6 @@
           </div>
           <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
-          <div id="recaptcha_container">
-            <div class="reqLa"><label>Enter the two words below</label></div>
-            <div class="reqTi"><%= text_field_tag "recaptcha_response_field" %></div>
-            <div id="recaptcha_image"></div>
-          </div>
-          <%= recaptcha_tags(:display => {:theme => "custom"}) %>
-          <div class="regReload"><a class="regRlBt" href="javascript:Recaptcha.reload();">Get new words</a></div>
           <div class="submit"><%= show_submit_form() %></div>
         <% end %>
       <% end %>
