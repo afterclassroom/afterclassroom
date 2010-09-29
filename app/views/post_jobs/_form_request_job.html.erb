@@ -4,12 +4,14 @@
     <div class="col300Cont">
       <% form_for :post_job, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%
-          job_type = JobType.find_by_label("i_m_looking_for_job")
-        %>
+        job_type = JobType.find_by_label("i_m_looking_for_job")
+      %>
         <%= hidden_field_tag("post_job[job_type_id]", job_type.id) if job_type %>
         <% fields_for :post do |p| %>
-          <div class="reqTi"><%= p.text_field :title, :value => "Title...", :onblur => "this.value = this.value || this.defaultValue;", :onfocus => "this.value = '';" %></div>
-          <div class="reqEn"><%= text_area_tag "post[description]", "Enter your request...", :onblur => "this.value = this.value || this.defaultValue;", :onfocus => "this.value = '';" %></div>
+          <%= render :partial => "/shared/form_request_post/select_department", :locals => {:f => f} %>
+          <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:f => f} %>
+          <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
           <div class="reqSl">
             <div class="req40">
               <div class="reqLa"><label>Phone</label></div>
@@ -20,12 +22,8 @@
               <div class="reqTi"><%= f.text_field :address %></div>
             </div>
           </div>
-          <div id="divinputfile">
-            <%= p.file_field :attach, :onchange => "$('#fakefilepc').value = this.value;", :size => "39", :class => "filepc" %>
-            <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
-          </div>
-          <div class="reqLa"><label>Tags</label></div>
-          <div class="reqTi"><%= text_field_tag "tag" %></div>
+          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/select_tag" %>
           <div id="recaptcha_container">
             <div class="reqLa"><label>Enter the two words below</label></div>
             <div class="reqTi"><%= text_field_tag "recaptcha_response_field" %></div>
@@ -49,8 +47,8 @@
 </ul>
 
 <script type="text/javascript">
-  $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
-    width: 250,
-    valueAttr: "rel_job_type"
-  });
+    $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
+        width: 250,
+        valueAttr: "rel_job_type"
+    });
 </script>

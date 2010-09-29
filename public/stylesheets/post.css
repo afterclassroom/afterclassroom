@@ -653,6 +653,9 @@ span.btmDown a:hover{
   margin:5px 0px;
   height:22px;
 }
+.reqItem div div{
+    float:left;
+  }
 .reqTi input{
   border:1px solid #CECECE;
   color:#969696;

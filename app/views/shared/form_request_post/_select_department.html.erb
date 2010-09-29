@@ -1,5 +1,5 @@
 <div class="reqLa"><label>Department</label></div>
-<div class="reqTi"><%= f.text_field :department_id %></div>
+<div class="reqTi"><%= f.text_field :department_id, :id => "department" %></div>
 <ul id="department_menu" class="mcdropdown_menu">
   <%
   departments = Department.of_school(@school)
@@ -33,7 +33,7 @@
 </ul>
 
 <script type="text/javascript">
-  $("#post_assignment_department_id").mcDropdown("#department_menu", {
+  $("#department").mcDropdown("#department_menu", {
     width: 350,
     valueAttr: "rel_department"
   });
