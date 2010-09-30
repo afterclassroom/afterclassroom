@@ -9,7 +9,7 @@ class PostJob < ActiveRecord::Base
   has_one :rating_statistic
   has_many :ratings
 
-  has_many :post_job_jobfiles, :dependent => :destroy
+  has_many :job_files, :dependent => :destroy
 
 
   # Tags

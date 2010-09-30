@@ -2,7 +2,7 @@
 #	Application
 #############################################################
 require 'mongrel_cluster/recipes'
-require 'vendor/plugins/thinking-sphinx/recipes/thinking_sphinx'
+#require 'vendor/plugins/thinking-sphinx/recipes/thinking_sphinx'
 
 set :application, "Afterclassroom"
 set :domain, "afterclassroom.com"
