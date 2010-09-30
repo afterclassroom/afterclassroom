@@ -391,14 +391,14 @@ ActiveRecord::Schema.define(:version => 20100927113145) do
     t.string  "rating_status"
   end
 
-  create_table "post_job_jobfiles", :force => true do |t|
+  create_table "post_job_files", :force => true do |t|
     t.string   "caption"
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "job_file_file_name"
-    t.string   "job_file_content_type"
-    t.integer  "job_file_file_size"
+    t.string   "file_name"
+    t.string   "content_type"
+    t.integer  "file_size"
   end
 
   create_table "post_jobs", :force => true do |t|

@@ -1,4 +1,4 @@
-class CreatePostJobfiles < ActiveRecord::Migration
+class CreatePostJobFiles < ActiveRecord::Migration
   def self.up
     create_table :post_job_files do |t|
       t.string :caption

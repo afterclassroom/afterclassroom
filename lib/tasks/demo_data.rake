@@ -182,7 +182,6 @@ end
 def create_demo_posts_assignments
   type_name = "PostAssignment"
   post_category = PostCategory.find_by_class_name(type_name)
-  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   
   50.times do
     user = User.find(rand(User.count) + 1)
@@ -203,7 +202,6 @@ end
 def create_demo_posts_tests
   type_name = "PostTest"
   post_category = PostCategory.find_by_class_name(type_name)
-  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   
   50.times do
     user = User.find(rand(User.count) + 1)
@@ -223,7 +221,6 @@ end
 def create_demo_posts_projects
   type_name = "PostProject"
   post_category = PostCategory.find_by_class_name(type_name)
-  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   
   50.times do
     user = User.find(rand(User.count) + 1)
@@ -243,7 +240,6 @@ end
 def create_demo_posts_exams
   type_name = "PostExam"
   post_category = PostCategory.find_by_class_name(type_name)
-  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
 
   50.times do
     user = User.find(rand(User.count) + 1)
@@ -282,7 +278,6 @@ end
 def create_demo_posts_books
   type_name = "PostBook"
   post_category = PostCategory.find_by_class_name(type_name)
-  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   
   50.times do
     user = User.find(rand(User.count) + 1)
@@ -304,7 +299,6 @@ end
 def create_demo_posts_tutors
   type_name = "PostTutor"
   post_category = PostCategory.find_by_class_name(type_name)
-  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
 
   50.times do
     user = User.find(rand(User.count) + 1)
@@ -325,7 +319,6 @@ end
 def create_demo_posts_jobs
   type_name = "PostJob"
   post_category = PostCategory.find_by_class_name(type_name)
-  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   responsibilities=['role1','role2','role3']
   required_skills=['skill1','skill2','skill3']
   desirable_skills=['skillA','skillB','skillC']
@@ -553,6 +546,7 @@ def create_demo_stories
 end
 
 def create_post(user, school, post_category)
+  schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
   post = Post.create do |p|
     p.user = user
     p.department = school.departments.find(:first)
