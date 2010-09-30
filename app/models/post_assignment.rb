@@ -7,7 +7,6 @@ class PostAssignment < ActiveRecord::Base
   
   # Relations
   belongs_to :post
-  belongs_to :department
 
   # Named Scope
   named_scope :with_limit, :limit => 5

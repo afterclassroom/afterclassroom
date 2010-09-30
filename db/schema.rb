@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100924014931) do
+ActiveRecord::Schema.define(:version => 20100927113145) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -184,6 +184,8 @@ ActiveRecord::Schema.define(:version => 20100924014931) do
   end
 
   create_table "jobs_lists", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -328,8 +330,6 @@ ActiveRecord::Schema.define(:version => 20100924014931) do
 
   create_table "post_assignments", :force => true do |t|
     t.integer  "post_id"
-    t.integer  "department_id"
-    t.string   "school_year"
     t.string   "professor"
     t.datetime "due_date"
   end
@@ -345,8 +345,6 @@ ActiveRecord::Schema.define(:version => 20100924014931) do
   create_table "post_books", :force => true do |t|
     t.integer "post_id",       :null => false
     t.integer "book_type_id"
-    t.integer "department_id"
-    t.string  "school_year"
     t.string  "address"
     t.string  "phone"
     t.string  "price"
@@ -393,11 +391,19 @@ ActiveRecord::Schema.define(:version => 20100924014931) do
     t.string  "rating_status"
   end
 
+  create_table "post_job_jobfiles", :force => true do |t|
+    t.string   "caption"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "job_file_file_name"
+    t.string   "job_file_content_type"
+    t.integer  "job_file_file_size"
+  end
+
   create_table "post_jobs", :force => true do |t|
     t.integer "post_id",                :null => false
     t.integer "job_type_id"
-    t.integer "department_id"
-    t.string  "school_year"
     t.string  "address"
     t.string  "phone"
     t.boolean "prepare_post"
@@ -439,8 +445,6 @@ ActiveRecord::Schema.define(:version => 20100924014931) do
 
   create_table "post_projects", :force => true do |t|
     t.integer  "post_id"
-    t.integer  "department_id"
-    t.string   "school_year"
     t.datetime "due_date"
   end
 
@@ -465,16 +469,12 @@ ActiveRecord::Schema.define(:version => 20100924014931) do
 
   create_table "post_tests", :force => true do |t|
     t.integer  "post_id"
-    t.integer  "department_id"
-    t.string   "school_year"
     t.datetime "due_date"
   end
 
   create_table "post_tutors", :force => true do |t|
     t.integer "post_id"
     t.integer "tutor_type_id"
-    t.integer "department_id"
-    t.string  "school_year"
     t.string  "address"
     t.string  "phone"
     t.string  "rating_status"
@@ -483,6 +483,8 @@ ActiveRecord::Schema.define(:version => 20100924014931) do
   create_table "posts", :force => true do |t|
     t.integer  "user_id",                                :null => false
     t.integer  "post_category_id",                       :null => false
+    t.integer  "department_id"
+    t.string   "school_year"
     t.string   "title",               :default => "",    :null => false
     t.text     "description",                            :null => false
     t.integer  "school_id",                              :null => false

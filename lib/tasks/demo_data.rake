@@ -192,8 +192,6 @@ def create_demo_posts_assignments
     
     post_asm = PostAssignment.create do |pa|
       pa.post = post
-      pa.department = school.departments.find(:first)
-      pa.school_year = schoolyear[rand(schoolyear.size)]
       pa.professor = Faker::Name.name
       pa.due_date = DateTime.now + rand(20)
       pa.tag_list = get_random_list_tags
@@ -215,8 +213,6 @@ def create_demo_posts_tests
     
     post_t = PostTest.create do |pt|
       pt.post = post
-      pt.department = school.departments.find(:first)
-      pt.school_year = schoolyear[rand(schoolyear.size)]
       pt.due_date = DateTime.now + rand(20)
       pt.tag_list = get_random_list_tags
     end
@@ -237,8 +233,6 @@ def create_demo_posts_projects
     
     post_proj = PostProject.create do |prj|
       prj.post = post
-      prj.department = school.departments.find(:first)
-      prj.school_year = schoolyear[rand(schoolyear.size)]
       prj.due_date = DateTime.now + rand(20)
       prj.tag_list = get_random_list_tags
     end
@@ -259,8 +253,6 @@ def create_demo_posts_exams
     
     post_asm = PostExam.create do |pe|
       pe.post = post
-      pe.department = school.departments.find(:first)
-      pe.school_year = schoolyear[rand(schoolyear.size)]
       pe.due_date = DateTime.now + rand(20)
       pe.tag_list = get_random_list_tags
     end
@@ -301,8 +293,6 @@ def create_demo_posts_books
     post_book = PostBook.create do |b|
       b.post = post
       b.book_type = BookType.find(rand(BookType.count) + 1)
-      b.department = school.departments.find(:first)
-      b.school_year = schoolyear[rand(schoolyear.size)]
       b.address = Faker::Address.street_address
       b.phone = Faker::PhoneNumber.phone_number
       b.price = "500"
@@ -325,8 +315,6 @@ def create_demo_posts_tutors
     post_tutor = PostTutor.create do |t|
       t.post = post
       t.tutor_type = TutorType.find(rand(TutorType.count) + 1)
-      t.department = school.departments.find(:first)
-      t.school_year = schoolyear[rand(schoolyear.size)]
       t.address = Faker::Address.street_address
       t.phone = Faker::PhoneNumber.phone_number
       t.tag_list = get_random_list_tags
@@ -353,8 +341,6 @@ def create_demo_posts_jobs
     post_job = PostJob.create do |j|
       j.post = post
       j.job_type = JobType.find(rand(JobType.count) + 1)
-      j.department = school.departments.find(:first)
-      j.school_year = schoolyear[rand(schoolyear.size)]
       j.address=Faker::Address.street_address
       j.phone = Faker::PhoneNumber.phone_number
       j.responsibilities = responsibilities[rand(responsibilities.size)]
@@ -569,6 +555,8 @@ end
 def create_post(user, school, post_category)
   post = Post.create do |p|
     p.user = user
+    p.department = school.departments.find(:first)
+    p.school_year = schoolyear[rand(schoolyear.size)]
     p.post_category = post_category
     p.title = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraphs

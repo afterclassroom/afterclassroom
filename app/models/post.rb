@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
   # Relations
   belongs_to :user
   belongs_to :school
+  belongs_to :department
   belongs_to :post_category
   has_one :post_assignment, :dependent => :destroy
   has_one :post_project, :dependent => :destroy

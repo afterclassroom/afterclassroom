@@ -3,6 +3,8 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.belongs_to :user, :null => false
       t.belongs_to :post_category, :null => false
+      t.belongs_to :department
+      t.string :school_year
       t.string :title, :null => false
       t.text :description, :null => false
       t.belongs_to :school, :null => false

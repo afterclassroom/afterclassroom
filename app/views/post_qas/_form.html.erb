@@ -16,6 +16,8 @@
       <div class="postInp"><%= post.text_area :description, :class => 'required' %></div>
     </div>
   </div>
+  <%= render :partial => "/shared/form_post/select_department", :locals => {:f => f} %>
+  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:f => f} %>
   <%= render :partial => "/shared/form_post/email" %>
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>

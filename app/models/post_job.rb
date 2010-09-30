@@ -6,7 +6,6 @@ class PostJob < ActiveRecord::Base
   # Relations
   belongs_to :post
   belongs_to :job_type
-  belongs_to :department
   has_one :rating_statistic
   has_many :ratings
 

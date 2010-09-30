@@ -3,8 +3,6 @@ class CreatePostBooks < ActiveRecord::Migration
     create_table :post_books do |t|
       t.belongs_to :post, :null => false
       t.belongs_to :book_type
-      t.belongs_to :department
-      t.string :school_year
       t.string :address
       t.string :phone
       t.string :price
