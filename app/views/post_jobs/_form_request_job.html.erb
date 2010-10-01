@@ -24,6 +24,7 @@
           </div>
           <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
+          <%= render :partial => "/shared/form_request_post/resume_cv", :locals => {:p => p}, :locals => {:f => f} %>
           <div class="submit"><%= show_submit_form() %></div>
         <% end %>
       <% end %>

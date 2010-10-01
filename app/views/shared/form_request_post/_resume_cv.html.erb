@@ -1,0 +1,19 @@
+<div class="reqItem">
+  <div class="reqLa"><label>Hello world</label></div>
+  <div class="reqTi"><%= text_field_tag "upload_file", "", :style => "width:280px" %></div>
+</div>
+
+<% @post_job = PostJob.new(params[:post_job]) %>
+
+<% 2.times { @post_job.job_files.build} %>
+
+
+<% f.fields_for :job_files do |builder| %>
+
+
+<p>
+<%= builder.label :caption, "Job File Caption" %>
+<%= builder.text_field :caption %>
+</p>
+
+<% end %>

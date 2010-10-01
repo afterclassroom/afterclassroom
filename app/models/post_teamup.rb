@@ -26,13 +26,19 @@ class PostTeamup < ActiveRecord::Base
   named_scope :next, lambda { |att| {:conditions => ["post_teamups.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, category_id)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
     from_school = params[:from_school]
     with_school = school
     with_school = from_school if from_school
 
     post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category], :order => "posts.created_at DESC") do |post_teamup, post, teamup_category|
+      post.department_id == department if department
+      post.school_year == year if year
       teamup_category.id == category_id
       post.school_id == with_school if with_school
+      post.created_at > Time.now - over.day
     end
 
     posts = []
@@ -42,6 +48,8 @@ class PostTeamup < ActiveRecord::Base
 
   def self.paginated_post_more_like_this(params, post_like)
     post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category], :order => "posts.created_at DESC") do |post_teamup, post, teamup_category|
+      post.department_id == post_like.post_test.department_id
+      post.school_year == post_like.post_test.school_year
       teamup_category.id == post_like.post_teamup.teamup_category_id
       post.school_id == post_like.school_id
     end

@@ -30,8 +30,8 @@ class PostAssignment < ActiveRecord::Base
     with_school = from_school if from_school
 
     post_as = PostAssignment.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_assignment, post|
-      post_assignment.department_id == department if department
-      post_assignment.school_year == year if year
+      post.department_id == department if department
+      post.school_year == year if year
       post.school_id == with_school if with_school
       post.created_at > Time.now - over.day
     end
@@ -43,8 +43,8 @@ class PostAssignment < ActiveRecord::Base
 
   def self.paginated_post_more_like_this(params, post_like)
     post_as = PostAssignment.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_assignment, post|
-      post_assignment.department_id == post_like.post_assignment.department_id
-      post_assignment.school_year == post_like.post_assignment.school_year
+      post.department_id == post_like.post_assignment.department_id
+      post.school_year == post_like.post_assignment.school_year
       post.school_id == post_like.school_id
     end
 

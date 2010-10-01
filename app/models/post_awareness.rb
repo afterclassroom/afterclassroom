@@ -24,13 +24,19 @@ class PostAwareness < ActiveRecord::Base
   named_scope :next, lambda { |att| {:conditions => ["post_awarenesses.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, awareness_type_id)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
     from_school = params[:from_school]
     with_school = school
     with_school = from_school if from_school
 
     post_awarenesss = PostAwareness.ez_find(:all, :include => [:post, :awareness_type], :order => "posts.created_at DESC") do |post_awareness, post, awareness_type|
+      post.department_id == department if department
+      post.school_year == year if year
       awareness_type.id == awareness_type_id
       post.school_id == with_school if with_school
+      post.created_at > Time.now - over.day
     end
 
     posts = []
@@ -40,6 +46,8 @@ class PostAwareness < ActiveRecord::Base
 
   def self.paginated_post_more_like_this(params, post_like)
     post_as = PostAwareness.ez_find(:all, :include => [:post, :awareness_type], :order => "posts.created_at DESC") do |post_awareness, post, awareness_type|
+      post.department_id == post_like.post_project.department_id
+      post.school_year == post_like.post_project.school_year
       awareness_type.id == post_like.post_awareness.awareness_type_id
       post.school_id == post_like.school_id
     end
