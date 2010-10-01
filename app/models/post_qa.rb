@@ -38,6 +38,8 @@ class PostQa < ActiveRecord::Base
     type = params[:type]
     type ||= "answered"
     posts_like = PostQa.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_qa, post|
+      post.department_id == post_like.post_assignment.department_id
+      post.school_year == post_like.post_assignment.school_year
       post_qa.post_qa_category_id == post_like.post_qa.post_qa_category_id
       post.school_id == post_like.school_id
     end
@@ -53,49 +55,65 @@ class PostQa < ActiveRecord::Base
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
-    post_as = self.with_school(school).find_tagged_with(tag_name)
-    post_as.select {|p| arr_p << p.post}
+    post_qa = self.with_school(school).find_tagged_with(tag_name)
+    post_qa.select {|p| arr_p << p.post}
     posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
   def self.paginated_post_conditions_with_answered(params, school)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
     from_school = params[:from_school]
     with_school = school
     with_school = from_school if from_school
+    post_qas = PostQa.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_qa, post|
+      post.department_id == department if department
+      post.school_year == year if year
+      post.school_id == with_school if with_school
+      post.created_at > Time.now - over.day
+    end
     arr_p = []
-    post_as = self.with_school(with_school)
-    post_as.select {|p| arr_p << p.post if p.post.comments.size > 0}
+    post_qas.select {|p| arr_p << p.post if p.post.comments.size > 0}
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
   def self.paginated_post_conditions_with_asked(params, school)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
     from_school = params[:from_school]
     with_school = school
     with_school = from_school if from_school
+    post_qas = PostQa.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_qa, post|
+      post.department_id == department if department
+      post.school_year == year if year
+      post.school_id == with_school if with_school
+      post.created_at > Time.now - over.day
+    end
     arr_p = []
-    post_as = self.with_school(with_school)
-    post_as.select {|p| arr_p << p.post if p.post.comments.size == 0}
+    post_qas.select {|p| arr_p << p.post if p.post.comments.size == 0}
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
   def self.paginated_post_conditions_with_interesting(params, school)
     arr_p = []
-    post_as = self.with_school(school).interesting
-    post_as.select {|p| arr_p << p.post if p.post.favorites.size > 10}
+    post_qa = self.with_school(school).interesting
+    post_qa.select {|p| arr_p << p.post if p.post.favorites.size > 10}
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
   def self.paginated_post_conditions_with_top_answer(params, school)
     arr_p = []
-    post_as = self.with_school(school).top_answer
-    post_as.select {|p| arr_p << p.post if p.post.comments.size == 0}
+    post_qa = self.with_school(school).top_answer
+    post_qa.select {|p| arr_p << p.post if p.post.comments.size == 0}
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
   
   def self.related_posts(school)
     posts = []
-    post_as = self.with_school(school).random(5)
-    post_as.select {|p| posts << p.post}
+    post_qa = self.with_school(school).random(5)
+    post_qa.select {|p| posts << p.post}
     posts
   end
 

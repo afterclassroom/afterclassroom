@@ -23,6 +23,9 @@ class PostHousing < ActiveRecord::Base
   named_scope :next, lambda { |att| {:conditions => ["post_housings.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, category_id)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
     from_school = params[:from_school]
     with_school = school
     with_school = from_school if from_school
@@ -33,8 +36,11 @@ class PostHousing < ActiveRecord::Base
     end
     
     post_housings = PostHousing.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_housing, post|
+      post.department_id == department if department
+      post.school_year == year if year
       post_housing.id === arr_id if arr_id.size > 0
       post.school_id == with_school if with_school
+      post.created_at > Time.now - over.day
     end
 
     posts = []

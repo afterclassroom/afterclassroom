@@ -31,13 +31,19 @@ class PostMyx < ActiveRecord::Base
   acts_as_taggable
 
   def self.paginated_post_conditions_with_option(params, school, rating_status)
+    over = 30 || params[:over].to_i
+    year = params[:year]
+    department = params[:department]
     from_school = params[:from_school]
     with_school = school
     with_school = from_school if from_school
 
     post_myxs = PostMyx.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_myx, post|
+      post.department_id == department if department
+      post.school_year == year if year
       post_myx.rating_status == rating_status
       post.school_id == with_school if with_school
+      post.created_at > Time.now - over.day
     end
 
     posts = []
