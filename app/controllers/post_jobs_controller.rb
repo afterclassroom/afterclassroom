@@ -2,8 +2,8 @@
 class PostJobsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses, :my_job_list]
-  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :my_job_list]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses, :my_job_list, :add_job]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :my_job_list, :add_job]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
   after_filter :store_go_back_url, :only => [:index, :search, :tag, :good_companies, :bad_bosses]
@@ -118,6 +118,7 @@ class PostJobsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_j = @post.post_job
+    @job_lists = current_user.job_lists
     update_view_count(@post)
     posts_as = PostFood.with_school(@school)
     as_next = posts_as.next(@post_j.id).first
@@ -128,6 +129,9 @@ class PostJobsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @post_j }
     end
+  end
+  def add_job
+    render :layout => false
   end
   def my_job_list
     render :layout => false
