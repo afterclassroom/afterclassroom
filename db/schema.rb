@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100927113145) do
+ActiveRecord::Schema.define(:version => 20100930104013) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -176,6 +176,16 @@ ActiveRecord::Schema.define(:version => 20100927113145) do
     t.string "country"
     t.string "state"
     t.string "city"
+  end
+
+  create_table "job_files", :force => true do |t|
+    t.string   "caption"
+    t.integer  "post_job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "resume_cv_file_name"
+    t.string   "resume_cv_content_type"
+    t.integer  "resume_cv_file_size"
   end
 
   create_table "job_types", :force => true do |t|
@@ -389,16 +399,6 @@ ActiveRecord::Schema.define(:version => 20100927113145) do
     t.string  "address"
     t.string  "phone"
     t.string  "rating_status"
-  end
-
-  create_table "post_job_files", :force => true do |t|
-    t.string   "caption"
-    t.integer  "post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "file_name"
-    t.string   "content_type"
-    t.integer  "file_size"
   end
 
   create_table "post_jobs", :force => true do |t|

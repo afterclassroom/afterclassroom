@@ -219,6 +219,14 @@ module ApplicationHelper
     end
   end
 
+  def show_add_job(post)
+    if !logged_in?
+      link_to_require_login("<span>Add job</span>")
+    else
+      link_to("<span>Add job</span>", "#{add_job_post_jobs_path}?&height=340&width=490", :class => "thickbox", :title => "Add Job")
+    end
+  end
+
   def show_become_a_fan(user)
     str = ""
     if !logged_in?

@@ -29,12 +29,7 @@
       <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
 
-<% if !@job_lists.include?(@post_job) %>
-<span class="btmJobList"><span>My Job List</span></span>
 
-<%  if @job_lists.size() > 0 %>
-<span class="btmAddJob"><span>Add Job</span></span>
-<% end %>
 
 </div>
     <div class="jobCom">
