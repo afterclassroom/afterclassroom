@@ -15,11 +15,11 @@
   <div class="col451 student">
     <div class="col451in">
       <div class="col451Cont">
-        <div class="AsDTop">
-          <h1 class="titleH1">Student Awareness</h1>
-        </div>
-
         <%= display_flash_messages %>
+
+        <!--Options-->
+        <%= show_options(@school, params, {"tutor_type_id" => @tutor_type_id}) %>
+        <!--Options-->
 
         <!--List Items-->
         <% @posts.each do |post| %>

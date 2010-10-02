@@ -16,12 +16,12 @@
     <div class="col451 Party">
       <div class="col451in">
         <div class="col451Cont">
-          <div class="AsDTop">
-            <h1 class="titleH1">Party</h1>
-          </div>
-
           <%= display_flash_messages %>
-          
+
+          <!--Options-->
+          <%= show_options(@school, params, {"tutor_type_id" => @tutor_type_id}) %>
+          <!--Options-->
+
           <!--List Items-->
           <% @posts.each do |post| %>
             <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
@@ -49,7 +49,7 @@
     <!--Browser Top party posters-->
     <%= render :partial => "top_party_posters" %>
     <!--Browser Top party posters-->
-    
+
     <!--Browser Poll this Tutors-->
     <%= render :partial => "poll" %>
     <!--Browser Poll this Tutors-->

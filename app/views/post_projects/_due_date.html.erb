@@ -16,10 +16,10 @@
         <%
         end
       %>
-        <div class="dueDbutton"><%= link_to "View more Due Date", due_date_post_projects_path %></div>
-      <%
-      end
-    %>
+        <% if projects_due_date.size > 5 %>
+          <div class="dueDbutton"><%= link_to "View more Due Date", due_date_post_projects_path %></div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -12,7 +12,9 @@
             <div class="dueDTime"><%= p.post.created_at.strftime("%B %d, %Y")%></div>
           </div>
         <% end %>
-        <div class="dueDbutton"><%= link_to "View more Interesting Projects", interesting_post_projects_path %></div>
+        <% if interesting_projects.size > 5 %>
+          <div class="dueDbutton"><%= link_to "View more Interesting Projects", interesting_post_projects_path %></div>
+        <% end %>
       <% end %>
     </div>
   </div>

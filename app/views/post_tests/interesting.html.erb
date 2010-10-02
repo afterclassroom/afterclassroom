@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Exams", post_exams_path, :class => "abLink-detail" %><%= link_to "Due Date", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Tests", post_tests_path, :class => "abLink-detail" %><%= link_to "Interesting Tests", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -16,9 +16,9 @@
     <div class="col451in">
       <div class="col451Cont">
         <div class="AsDTop">
-          <h1 class="titleH1">Due Date</h1>
+          <h1 class="titleH1">Interesting Tests</h1>
           <div class="AsDsearch">
-            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_exams_path} %>
+            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_tests_path} %>
           </div>
         </div>
         <!--List Items-->
@@ -46,7 +46,7 @@
   <!--Browser Due Date-->
 
   <!--Browser Interesting Exam-->
-  <%= render :partial => "interesting_exams"%>
+  <%= render :partial => "interesting_tests"%>
   <!--Browser Interesting Exam-->
 </div>
 
@@ -59,12 +59,12 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Request exam-->
-  <%= render :partial => "form_request_exam" %>
-  <!--Request exam-->
+  <!--Request test-->
+  <%= render :partial => "form_request_test" %>
+  <!--Request test-->
 
-  <!--Recent Request exams-->
-  <%= render :partial => "recent_request_exams" %>
-  <!--Recent Request exams-->
+  <!--Recent Request tests-->
+  <%= render :partial => "recent_request_tests" %>
+  <!--Recent Request tests-->
 </div>
 <!--Content-->

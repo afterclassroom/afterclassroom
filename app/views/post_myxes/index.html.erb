@@ -15,12 +15,12 @@
   <div class="col451 assignment">
     <div class="col451in">
       <div class="col451Cont">
-        <div class="AsDTop">
-          <h1 class="titleH1">MyX</h1>
-        </div>
-
         <%= display_flash_messages %>
-        
+
+        <!--Options-->
+        <%= show_options(@school, params, {"tutor_type_id" => @tutor_type_id}) %>
+        <!--Options-->
+
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
@@ -44,7 +44,7 @@
   <!--Browser Worse Teacher-->
   <%= render :partial => "worse_prof" %>
   <!--Browser Worse Teacher-->
- 
+
   <!--Browser Good Teacher-->
   <%= render :partial => "good_prof" %>
   <!--Browser Good Teacher-->
@@ -52,11 +52,11 @@
   <!--Browser Poll-->
   <%= render :partial => "poll" %>
   <!--Browser Poll-->
-  
+
 </div>
 
 <div class="contMainR">
-   <!--Browser by Subject-->
+  <!--Browser by Subject-->
   <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
   <!--Browser by Subject-->
 

@@ -188,7 +188,8 @@ ActionController::Routing::Routes.draw do |map|
     :download => :get
   }
   map.resources :post_assignments, :collection => {
-    :search => :get, :due_date => :get, :tag => :get
+    :search => :get, :due_date => :get,
+    :interesting => :get, :tag => :get
   }
   map.resources :post_projects, :collection => {
     :search => :get, :due_date => :get,

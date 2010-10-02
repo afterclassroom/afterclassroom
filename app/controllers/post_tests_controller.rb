@@ -2,10 +2,10 @@
 class PostTestsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :due_date, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :interesting, :tag]
+  before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :due_date, :tag]
+  after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting, :tag]
   after_filter :store_go_back_url, :only => [:index, :search, :due_date, :tag]
   # GET /post_tests
   # GET /post_tests.xml

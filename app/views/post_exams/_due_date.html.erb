@@ -16,7 +16,11 @@
         <%
         end
       %>
-        <div class="dueDbutton"><%= link_to "View more Due Date", due_date_post_exams_path %></div>
+        <% if exams_due_date.size > 0 %>
+          <div class="dueDbutton"><%= link_to "View more Due Date", due_date_post_exams_path %></div>
+        <%
+        end
+      %>
       <%
       end
     %>

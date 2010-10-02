@@ -2,11 +2,11 @@
 class PostAssignmentsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :due_date, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :interesting, :tag]
+  before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :due_date, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :due_date, :tag]
+  after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting, :tag]
+  after_filter :store_go_back_url, :only => [:index, :search, :due_date, :interesting, :tag]
   
   # GET /post_assignments
   # GET /post_assignments.xml
@@ -32,7 +32,7 @@ class PostAssignmentsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # search.html.erb
       format.xml  { render :xml => @posts }
     end
   end
@@ -41,7 +41,7 @@ class PostAssignmentsController < ApplicationController
     @posts = PostAssignment.paginated_post_conditions_with_due_date(params, @school)
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # due_date.html.erb
       format.xml  { render :xml => @posts }
     end
   end
@@ -50,7 +50,7 @@ class PostAssignmentsController < ApplicationController
     @posts = PostAssignment.paginated_post_conditions_with_interesting(params, @school)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # interesting.html.erb
       format.xml  { render :xml => @posts }
     end
   end
