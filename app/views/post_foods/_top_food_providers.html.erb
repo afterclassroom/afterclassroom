@@ -13,7 +13,9 @@
             <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_food_path(tt.post) %></div>
           </div>
         <% end %>
-        <div class="dueDbutton"><%= link_to "View more food providers", "#{post_foods_path}?rating_status=Good" %></div>
+        <% if top_foods.size > LIMIT - 1 %>
+          <div class="dueDbutton"><%= link_to "View more food providers", "#{post_foods_path}?rating_status=Good" %></div>
+        <% end %>
       <% end %>
     </div>
   </div>

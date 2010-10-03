@@ -18,7 +18,7 @@ class Story < ActiveRecord::Base
   state :share
 
   # Named Scope
-  named_scope :with_limit, :limit => 5
+  named_scope :with_limit, :limit => LIMIT
   named_scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   named_scope :most_view, :order => "count_view DESC"
 end

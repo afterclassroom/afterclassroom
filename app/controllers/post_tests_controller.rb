@@ -2,11 +2,11 @@
 class PostTestsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :interesting, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :interesting, :tag]
+  before_filter :login_required, :except => [:index, :show, :search, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :due_date, :tag]
+  after_filter :store_location, :only => [:index, :show, :search, :interesting, :tag]
+  after_filter :store_go_back_url, :only => [:index, :search, :tag]
   # GET /post_tests
   # GET /post_tests.xml
   def index
@@ -29,15 +29,6 @@ class PostTestsController < ApplicationController
     if params[:search]
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @posts }
-    end
-  end
-
-  def due_date
-    @posts = PostTest.paginated_post_conditions_with_due_date(params, @school)
 
     respond_to do |format|
       format.html # index.html.erb

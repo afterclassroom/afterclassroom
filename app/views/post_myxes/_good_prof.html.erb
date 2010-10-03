@@ -19,7 +19,11 @@
         <%
         end
       %>
-        <div class="dueDbutton"><%= link_to "View more Good Teacher/Prof", "#{post_myxes_path}?rating_status=Good" %></div>
+        <% if goodProf.size > LIMIT - 1 %>
+          <div class="dueDbutton"><%= link_to "View more Good Teacher/Prof", "#{post_myxes_path}?rating_status=Good" %></div>
+        <%
+        end
+      %>
       <%
       end
     %>

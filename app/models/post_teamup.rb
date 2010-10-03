@@ -16,7 +16,7 @@ class PostTeamup < ActiveRecord::Base
   # Rating for Good or Bad
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
 
-  named_scope :with_limit, :limit => 5
+  named_scope :with_limit, :limit => LIMIT
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :with_category, lambda { |c| {:conditions => ["teamup_category_id = ?", c]} }
