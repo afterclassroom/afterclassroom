@@ -4,14 +4,5 @@
   <span class="btmMail"><%= show_email(post) %></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
   <span class="btmAddJob"><%= show_add_job(post) %></span>
-  <span class="btmJobList"><%= link_to("<span>My Job List</span>", "#{my_job_list_post_jobs_path}?&height=340&width=490", :class => "thickbox", :title => "My Job List") %></span>
+  <span class="btmJobList"><%= show_my_job_list(post) %></span>
 </div>
-<style>
-  span.btmAddJob a{
-    background:url('/images/btmJobList.png') no-repeat;
-    width:91px;
-  }
-  span.btmAddJob a:hover{
-    background:url('/images/btmJobListH.png') no-repeat;
-  }
-</style>

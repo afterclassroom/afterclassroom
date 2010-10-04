@@ -118,7 +118,7 @@ class PostJobsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_j = @post.post_job
-    @job_lists = current_user.jobs_lists
+    
     update_view_count(@post)
     posts_as = PostFood.with_school(@school)
     as_next = posts_as.next(@post_j.id).first
