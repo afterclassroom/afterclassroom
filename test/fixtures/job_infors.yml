@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  belongs_to: 
+  title: MyString
+  description: MyText
+
+two:
+  belongs_to: 
+  title: MyString
+  description: MyText

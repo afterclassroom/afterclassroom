@@ -86,7 +86,7 @@ function option_submit(){
     $("#action_option").submit();
 }
 
-function send_comment(post_id){
+function send_comment(id, type){
     comment = $('#comment').val();
     if (comment != ""){
         $.ajax({
@@ -95,7 +95,8 @@ function send_comment(post_id){
             cache: false,
             dataType: 'html',
             data: ({
-                post_id : post_id,
+                commentable_id : id,
+                commentable_type : type,
                 comment : comment
             }),
             success: function(data){

@@ -2,19 +2,20 @@
   <div class="col195in">
     <h1 class="col195Title">Employment info</h1>
     <div class="col195Cont">
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
-        <div class="dueDTime">Company Limited Name</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
-        <div class="dueDTime">Company Limited Name</div>
-      </div>
-      <div class="dueDItem">
-        <div class="dueDTitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
-        <div class="dueDTime">Company Limited Name</div>
-      </div>
-      <div class="dueDbutton"><a href="#">View more Employment info</a></div>
+      <%
+      job_infors = JobInfor.find(:all, :limit => LIMIT, :order => "created_at DESC")
+    %>
+      <% if job_infors.size > 0 %>
+        <% job_infors.each do |j| %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(j.title, 5), show_job_infor_post_jobs_path(:job_infor_id => j.id) %></div>
+            <div class="dueDTime"><%= truncate_words(j.description, 5) %></div>
+          </div>
+        <% end %>
+        <% if job_infors.size > LIMIT - 1 %>
+          <div class="dueDbutton"><%= link_to "View more Employment info", employment_infor_post_jobs_path %></div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

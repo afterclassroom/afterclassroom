@@ -221,7 +221,7 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :tag => :get,
     :good_companies => :get, :bad_bosses => :get,
     :rate => :get, :require_rate => :get, :my_job_list => :get,
-    :add_job => :get
+    :add_job => :get, :employment_infor => :get, :show_job_infor => :get
   }
   map.resources :post_foods, :collection => {
     :search => :get, :tag => :get,

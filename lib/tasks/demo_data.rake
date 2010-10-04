@@ -9,42 +9,38 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       # Users
-            departments_for_schools
-            create_demo_people
-            create_demo_friendship
-            create_demo_fan
-            create_demo_wall
-      #
-      #      # Begin creating Posts data
-            create_demo_posts_assignments
-            create_demo_posts_tests
-            create_demo_posts_projects
-            create_demo_posts_exams
-            create_demo_posts_myx
-            create_demo_posts_books
-            create_demo_posts_tutors
-            create_demo_posts_jobs
-            create_demo_posts_housings
-            create_demo_posts_parties
-            create_demo_posts_teamups
-            create_demo_posts_awarenesses
-            create_demo_posts_foods
-            create_demo_posts_qas
-            create_demo_phoneapps
-            create_demo_gameapps
-            create_demo_toolapps
-      
-            create_demo_shopping_subcategory
-            create_demo_selling_item
-      #
-      #      # Exam schedule
-            create_demo_posts_exam_schedules
-      #
-      #      # Messages data
-            create_demo_messages
-      #      # Story
-            create_demo_stories
-
+#      departments_for_schools
+#      create_demo_people
+#      create_demo_friendship
+#      create_demo_fan
+#      create_demo_wall
+      # Begin creating Posts data
+#      create_demo_posts_assignments
+#      create_demo_posts_tests
+#      create_demo_posts_projects
+#      create_demo_posts_exams
+#      create_demo_posts_myx
+#      create_demo_posts_books
+#      create_demo_posts_tutors
+       create_demo_posts_jobs
+#      create_demo_posts_housings
+#      create_demo_posts_parties
+#      create_demo_posts_teamups
+#      create_demo_posts_awarenesses
+#      create_demo_posts_foods
+#      create_demo_posts_qas
+#      create_demo_phoneapps
+#      create_demo_gameapps
+#      create_demo_toolapps
+#
+#      create_demo_shopping_subcategory
+#      create_demo_selling_item
+      # Exam schedule
+#      create_demo_posts_exam_schedules
+      # Messages data
+#      create_demo_messages
+      # Story
+#      create_demo_stories
 
     end
     
@@ -184,7 +180,7 @@ def create_demo_posts_assignments
   type_name = "PostAssignment"
   post_category = PostCategory.find_by_class_name(type_name)
   
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
    
@@ -204,7 +200,7 @@ def create_demo_posts_tests
   type_name = "PostTest"
   post_category = PostCategory.find_by_class_name(type_name)
   
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -223,7 +219,7 @@ def create_demo_posts_projects
   type_name = "PostProject"
   post_category = PostCategory.find_by_class_name(type_name)
   
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -242,7 +238,7 @@ def create_demo_posts_exams
   type_name = "PostExam"
   post_category = PostCategory.find_by_class_name(type_name)
 
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -262,7 +258,7 @@ def create_demo_posts_myx
   post_category = PostCategory.find_by_class_name(type_name)
   prof_status = ["Best of the best", "Good", "Bored", "Worse"]
 
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -280,7 +276,7 @@ def create_demo_posts_books
   type_name = "PostBook"
   post_category = PostCategory.find_by_class_name(type_name)
   
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -301,7 +297,7 @@ def create_demo_posts_tutors
   type_name = "PostTutor"
   post_category = PostCategory.find_by_class_name(type_name)
 
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -326,7 +322,7 @@ def create_demo_posts_jobs
   edu_experience_require=['levelA','levelB','levelC']
   compensation=['111','222','333']
     
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -346,6 +342,14 @@ def create_demo_posts_jobs
       j.tag_list = get_random_list_tags
     end
   end
+
+  # Create job information
+  20.times do
+    job_infor = JobInfor.create do |j|
+      j.title = Faker::Lorem.sentence
+      j.description = Faker::Lorem.paragraphs
+    end
+  end
 end
 
 def create_demo_posts_housings
@@ -354,7 +358,7 @@ def create_demo_posts_housings
   rent = ['rentA','rentB', 'rentC']
   currency = ['USD', 'CAD']
 
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -387,7 +391,7 @@ def create_demo_posts_parties
   type_name = "PostParty"
   post_category = PostCategory.find_by_class_name(type_name)
   
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -421,7 +425,7 @@ def create_demo_posts_teamups
   type_name = "PostTeamup"
   post_category = PostCategory.find_by_class_name(type_name)
   
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -443,7 +447,7 @@ def create_demo_posts_awarenesses
   type_name = "PostAwareness"
   post_category = PostCategory.find_by_class_name(type_name)
   
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     
@@ -463,7 +467,7 @@ end
 def create_demo_posts_foods
   post_category = PostCategory.find_by_name("Foods")
 
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     
@@ -482,7 +486,7 @@ end
 def create_demo_posts_qas
   post_category = PostCategory.find_by_name("QAs")
   
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
     
@@ -500,7 +504,7 @@ def create_demo_posts_qas
 end
 
 def create_demo_posts_exam_schedules
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
@@ -518,7 +522,7 @@ def create_demo_posts_exam_schedules
 end
 
 def create_demo_messages
-  50.times do
+  20.times do
     user = User.find(rand(User.count) + 1)
 
     User.find(:all).each do |u|
@@ -706,7 +710,7 @@ end
 def create_demo_selling_item
   allsub = ShoppingSubcategory.find(:all)
   allsub.each do |sc|
-    50.times do
+    20.times do
       user = User.find(rand(User.count)+1)
       create_selling_item(user,sc)
     end
