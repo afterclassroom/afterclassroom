@@ -15,7 +15,7 @@ class PostQa < ActiveRecord::Base
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
 
   # Named Scope
-  named_scope :with_limit, :limit => 5
+  named_scope :with_limit, :limit => LIMIT
   named_scope :with_category, lambda { |c| {:conditions => ["post_qa_category_id = ?", c]} }
   named_scope :recent, {:joins => :post, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0], :order => "created_at DESC"}
   named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }

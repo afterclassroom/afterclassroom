@@ -36,15 +36,6 @@ class PostExamsController < ApplicationController
     end
   end
 
-  def due_date
-    @posts = PostExam.paginated_post_conditions_with_due_date(params, @school)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @posts }
-    end
-  end
-
   def interesting
     @posts = PostExam.paginated_post_conditions_with_interesting(params, @school)
 

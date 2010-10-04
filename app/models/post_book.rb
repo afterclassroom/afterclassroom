@@ -17,7 +17,7 @@ class PostBook < ActiveRecord::Base
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
 
   # Named Scope
-  named_scope :with_limit, :limit => 5
+  named_scope :with_limit, :limit => LIMIT
   named_scope :with_type, lambda { |tp| {:conditions => ["book_type_id = ?", tp]} }
   named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}

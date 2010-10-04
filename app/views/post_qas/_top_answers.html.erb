@@ -5,14 +5,16 @@ top_answers = PostQa.with_school(@school).top_answer.with_limit
   <div class="col195in">
     <h1 class="col195Title">Top answered topics</h1>
     <% if top_answers.size > 0 %>
-    <div class="col195Cont">
-      <% top_answers.each do |qa| %>
-        <div class="dueDItem">
-          <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa.post) %></div>
-        </div>
-      <% end %>
-      <div class="dueDbutton"><%= link_to "View more Top answered topics", top_answer_post_qas_path %></div>
-    </div>
-  <% end %>
+      <div class="col195Cont">
+        <% top_answers.each do |qa| %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa.post) %></div>
+          </div>
+        <% end %>
+        <% if top_answers.size > LIMIT - 1 %>
+          <div class="dueDbutton"><%= link_to "View more Top answered topics", top_answer_post_qas_path %></div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

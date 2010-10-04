@@ -196,12 +196,10 @@ ActionController::Routing::Routes.draw do |map|
     :interesting => :get, :tag => :get
   }
   map.resources :post_tests, :collection => {
-    :search => :get, :due_date => :get,
-    :interesting => :get, :tag => :get
+    :search => :get, :interesting => :get, :tag => :get
   }
   map.resources :post_exams, :collection => {
-    :search => :get, :due_date => :get,
-    :interesting => :get, :tag => :get
+    :search => :get, :interesting => :get, :tag => :get
   }
   map.resources :post_qas, :collection => {
     :search => :get, :tag => :get,
@@ -221,9 +219,9 @@ ActionController::Routing::Routes.draw do |map|
   }
   map.resources :post_jobs, :collection => {
     :search => :get, :tag => :get,
-    :good_companies => :get, :worse_bosses => :get,
+    :good_companies => :get, :bad_bosses => :get,
     :rate => :get, :require_rate => :get, :my_job_list => :get,
-    :add_job => :get
+    :add_job => :get, :employment_infor => :get, :show_job_infor => :get
   }
   map.resources :post_foods, :collection => {
     :search => :get, :tag => :get,

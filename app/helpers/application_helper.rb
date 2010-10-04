@@ -186,6 +186,10 @@ module ApplicationHelper
     
     render :partial => "shared/options", :locals => {:school => school, :department => department, :year => year, :over => over, :options => options}
   end
+
+  def show_post_comments(obj)
+    render :partial => "shared/post_comments", :locals => {:obj => obj}
+  end
   
   def show_favorite(type, item)
     f_size = item.favoriting_users.size

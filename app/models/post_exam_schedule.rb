@@ -4,7 +4,7 @@ class PostExamSchedule < ActiveRecord::Base
   belongs_to :school
 
   # Named Scope
-  named_scope :with_limit, :limit => 5
+  named_scope :with_limit, :limit => LIMIT
   named_scope :with_type, lambda { |tp| {:conditions => ["type_name = ?", tp]} }
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
 

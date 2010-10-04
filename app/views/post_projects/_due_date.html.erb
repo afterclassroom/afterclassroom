@@ -16,7 +16,7 @@
         <%
         end
       %>
-        <% if projects_due_date.size > 5 %>
+        <% if projects_due_date.size > LIMIT - 1 %>
           <div class="dueDbutton"><%= link_to "View more Due Date", due_date_post_projects_path %></div>
         <% end %>
       <% end %>

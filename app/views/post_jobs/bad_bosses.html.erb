@@ -1,0 +1,75 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Jobs", post_jobs_path, :class => "abLink-detail" %><%= link_to "Bad bosses", "#", :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contMainL">
+  <div class="col451 Book">
+    <div class="col451in">
+      <div class="AsDTop">
+        <h1 class="titleH1">Bad bosses</h1>
+        <div class="AsDsearch">
+          <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_jobs_path} %>
+        </div>
+      </div>
+      <div class="col451Cont">
+        <%= display_flash_messages %>
+
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
+        <% end %>
+        <!--List Items-->
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="contMainC">
+  <!--Browser Bad Bosses-->
+  <%= render :partial => "bad_bosses" %>
+  <!--Browser Bad Bosses-->
+
+  <!--Browser Good Companies-->
+  <%= render :partial => "good_companies" %>
+  <!--Browser Good Companies-->
+
+  <!--Browser Employement Info-->
+  <%= render :partial => "employment_info" %>
+  <!--Browser Employement Info-->
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Request Assignment-->
+  <%= render :partial => "form_request_job" %>
+  <!--Request Assignment-->
+
+  <!--Recent Request Assignments-->
+  <%= render :partial => "recent_request_jobs" %>
+  <!--Recent Request Assignments-->
+</div>
+<!--Content-->

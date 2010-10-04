@@ -9,7 +9,7 @@ class PostAssignment < ActiveRecord::Base
   belongs_to :post
 
   # Named Scope
-  named_scope :with_limit, :limit => 5
+  named_scope :with_limit, :limit => LIMIT
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
   named_scope :due_date, :conditions => ["due_date > ?", Time.now], :order => "due_date DESC"

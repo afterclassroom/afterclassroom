@@ -2,8 +2,8 @@
 class PostJobsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses, :my_job_list, :add_job]
-  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses, :my_job_list, :add_job, :employment_infor, :show_job_infor]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :employment_infor, :show_job_infor]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
   after_filter :store_go_back_url, :only => [:index, :search, :tag, :good_companies, :bad_bosses]
@@ -130,9 +130,20 @@ class PostJobsController < ApplicationController
       format.xml  { render :xml => @post_j }
     end
   end
+
+  def employment_info
+    @job_infors = JobInfor.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+  end
+  
+  def show_job_infor
+    job_infor_id = params[:job_infor_id]
+    @job_infor = JobInfor.find(job_infor_id)
+  end
+
   def add_job
     render :layout => false
   end
+
   def my_job_list
     render :layout => false
   end
@@ -157,18 +168,36 @@ class PostJobsController < ApplicationController
   # POST /post_jobs
   # POST /post_jobs.xml
   def create
+
     @post_job = PostJob.new(params[:post_job])
     post = Post.new(params[:post])
     post.user = current_user
-    post.school_id = @school
+    #post.school_id = @school
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
     @post_job.tag_list = params[:tag]
     @post_job.post = post
+
+    
+    
+    @letter = JobFile.new(params[:letter])
+    #@letter.save
+
+    @transcript = JobFile.new(params[:transcript])
+    #@transcript.save
+
+    @resume = JobFile.new(params[:resume])
+    #@resume.save
+
+    @post_job.job_files.build(:resume_cv => @letter )
+    @post_job.job_files.build(:resume_cv => @transcript )
+    @post_job.job_files.build(:resume_cv => @resume )
+
+
     if @post_job.save
       notice "Your post was successfully created."
-      redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
+      redirect_to post_jobs_path #+ "?job_type_id=#{@post_job.job_type_id}"
     else
       error "Failed to create a new post."
       render :action => "new"
