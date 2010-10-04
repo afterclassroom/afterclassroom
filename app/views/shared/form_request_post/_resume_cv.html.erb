@@ -11,9 +11,22 @@
 <% f.fields_for :job_files do |builder| %>
 
 
-<p>
-<%= builder.label :caption, "Job File Caption" %>
-<%= builder.text_field :caption %>
-</p>
+  <p>
+    <%= builder.label :caption, "Job File Caption" %>
+    <%= builder.text_field :caption %>
+    <br/>
+    Field of file:  <%= builder.file_field :resume_cv %> END<br/>
 
+  </p>
+
+<% end %>
+
+<% fields_for :job_file1 do |builder1| %>
+  <p>
+    <%= builder1.label :caption, "Job File Caption" %>
+    <%= builder1.text_field :caption, :readonly => "true", :value => "Resume" %>
+    <br/>
+    Field of file:  <%= builder1.file_field :resume_cv %> END<br/>
+
+  </p>
 <% end %>
