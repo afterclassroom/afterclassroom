@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   has_many :notify_email_settings
   has_many :user_walls, :dependent => :destroy
   has_many :friend_in_groups, :dependent => :destroy
-  has_many :job_lists, :dependent => :destroy
+  has_many :jobs_lists, :dependent => :destroy
 
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]

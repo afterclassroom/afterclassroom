@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(:version => 20101003124721) do
   end
 
   create_table "job_files", :force => true do |t|
-    t.string   "caption"
+    t.string   "category"
     t.integer  "post_job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -189,7 +189,6 @@ ActiveRecord::Schema.define(:version => 20101003124721) do
   end
 
   create_table "job_infors", :force => true do |t|
-    t.integer  "user_id"
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
@@ -411,16 +410,6 @@ ActiveRecord::Schema.define(:version => 20101003124721) do
     t.string  "address"
     t.string  "phone"
     t.string  "rating_status"
-  end
-
-  create_table "post_job_files", :force => true do |t|
-    t.string   "caption"
-    t.integer  "post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "file_name"
-    t.string   "content_type"
-    t.integer  "file_size"
   end
 
   create_table "post_jobs", :force => true do |t|
