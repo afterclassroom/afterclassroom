@@ -5,23 +5,25 @@ class PostsController < ApplicationController
   before_filter :login_required, :except => [:rate_comment, :report_abuse, :create_report_abuse, :download]
   
   def create_comment
-    post_id = params[:post_id]
     comment = params[:comment]
-    if comment && post_id
+    commentable_id = params[:commentable_id]
+    commentable_type = params[:commentable_type]
+    if comment && commentable_id && commentable_type
       @obj_comment = Comment.new()
       @obj_comment.comment = comment
+      @obj_comment.commentable_id = commentable_id
+      @obj_comment.commentable_type = commentable_type
       @obj_comment.user = current_user
-      post = Post.find_by_id(params[:post_id])
-      post.comments << @obj_comment
+      @obj_comment.save
     end
     render :layout => false
   end
 
   def delete_comment
-    post_id = params[:post_id]
     comment_id = params[:comment_id]
-    if comment_id && post_id
-      current_user.posts.find_by_id(post_id).comments.find(comment_id).destroy
+    if comment_id
+      comment = Comment.find(comment_id)
+      comment.destroy if comment
     end
   end
  

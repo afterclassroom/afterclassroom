@@ -1,0 +1,51 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Jobs", post_jobs_path, :class => "abLink-detail" %><%= link_to "Employment information detail", "#", :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contDetL">
+  <div class="contDetLin JobDetail">
+    <div class="AsDTop">
+      <h1 class="titleH1">Employment information detail</h1>
+    </div>
+    <div class="AsDCont">
+      <div class="AsDContL">
+        <h2 class="titleH2"><%= @job_infor.title %></h2>
+        <div class="AsDContLdes"><span>Description:</span><%= @job_infor.description %></div>
+      </div>
+      <div class="AsDContBtm">
+        <span class="btmCom"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');"><span>Comment</span></a></span>
+        <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
+      </div>
+    </div>
+    <%= show_post_comments(@job_infor) %>
+    <div class="goback" id="go_back"><%= show_go_back %></div>
+    <div class="comPage">
+      <span class="compre"><%= link_to "", show_job_infor_post_jobs_path(:job_infor_id => @prev.id) if @prev %> </span>
+      <span class="comnext"><%= link_to "", show_job_infor_post_jobs_path(:job_infor_id => @next.id) if @next %></span>
+      <% if @job_infor.attach_file_name %>
+        <span class="btmDown"><a href="javascript:downloadFile('<%= @job_infor.attach.url %>')" class="downarrow"><span>Download</span></a></span>
+      <% end %>
+    </div>
+    <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+  </div>
+</div>	
+
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Recent Request Jobs-->
+  <%= render :partial => "recent_request_jobs" %>
+  <!--Recent Request Jobs-->
+</div>
+<!--Content-->

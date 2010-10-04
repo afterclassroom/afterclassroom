@@ -1,26 +1,28 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Tests", post_tests_path, :class => "abLink-detail" %><%= link_to "Due Date", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Jobs", post_jobs_path, :class => "abLink-detail" %><%= link_to "Good companies", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
   <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
-  
+
 <% content_for :menu_sub do -%>
   <%= render :partial => "submenu" %>
 <% end -%>
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 QAs">
+  <div class="col451 Book">
     <div class="col451in">
-      <div class="col451Cont">
-        <div class="AsDTop">
-          <h1 class="titleH1">Due Date</h1>
-          <div class="AsDsearch">
-            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_tests_path} %>
-          </div>
+      <div class="AsDTop">
+        <h1 class="titleH1">Good companies</h1>
+        <div class="AsDsearch">
+          <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_jobs_path} %>
         </div>
+      </div>
+      <div class="col451Cont">
+        <%= display_flash_messages %>
+
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
@@ -39,15 +41,18 @@
   </div>
 
 </div>
-
 <div class="contMainC">
-  <!--Browser Due Date-->
-  <%= render :partial => "due_date" %>
-  <!--Browser Due Date-->
+  <!--Browser Bad Bosses-->
+  <%= render :partial => "bad_bosses" %>
+  <!--Browser Bad Bosses-->
 
-  <!--Browser Interesting Exam-->
-  <%= render :partial => "interesting_tests"%>
-  <!--Browser Interesting Exam-->
+  <!--Browser Good Companies-->
+  <%= render :partial => "good_companies" %>
+  <!--Browser Good Companies-->
+
+  <!--Browser Employement Info-->
+  <%= render :partial => "employment_info" %>
+  <!--Browser Employement Info-->
 </div>
 
 <div class="contMainR">
@@ -59,12 +64,12 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 
-  <!--Request test-->
-  <%= render :partial => "form_request_test" %>
-  <!--Request test-->
+  <!--Request Assignment-->
+  <%= render :partial => "form_request_job" %>
+  <!--Request Assignment-->
 
-  <!--Recent Request tests-->
-  <%= render :partial => "recent_request_tests" %>
-  <!--Recent Request tests-->
+  <!--Recent Request Assignments-->
+  <%= render :partial => "recent_request_jobs" %>
+  <!--Recent Request Assignments-->
 </div>
 <!--Content-->

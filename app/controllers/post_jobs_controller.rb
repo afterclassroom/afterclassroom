@@ -2,8 +2,8 @@
 class PostJobsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses, :my_job_list, :add_job]
-  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses, :my_job_list, :add_job, :employment_infor, :show_job_infor]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :employment_infor, :show_job_infor]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
   after_filter :store_go_back_url, :only => [:index, :search, :tag, :good_companies, :bad_bosses]
@@ -130,9 +130,20 @@ class PostJobsController < ApplicationController
       format.xml  { render :xml => @post_j }
     end
   end
+
+  def employment_info
+    @job_infors = JobInfor.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+  end
+  
+  def show_job_infor
+    job_infor_id = params[:job_infor_id]
+    @job_infor = JobInfor.find(job_infor_id)
+  end
+
   def add_job
     render :layout => false
   end
+
   def my_job_list
     render :layout => false
   end
