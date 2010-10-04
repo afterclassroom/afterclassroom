@@ -168,50 +168,40 @@ class PostJobsController < ApplicationController
   # POST /post_jobs
   # POST /post_jobs.xml
   def create
-    puts "HELLO WORLD WITHIN ACTION CREATE"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
-    puts "======================"
 
-    @jf1 = JobFile.new(params[:job_file1])
+    @post_job = PostJob.new(params[:post_job])
+    post = Post.new(params[:post])
+    post.user = current_user
+    #post.school_id = @school
+    post.post_category_id = @type
+    post.type_name = @class_name
+    post.save
+    @post_job.tag_list = params[:tag]
+    @post_job.post = post
 
-    puts "value of jf1" + @jf1.caption
-    @jf1.save
+    
+    
+    @letter = JobFile.new(params[:letter])
+    #@letter.save
+
+    @transcript = JobFile.new(params[:transcript])
+    #@transcript.save
+
+    @resume = JobFile.new(params[:resume])
+    #@resume.save
+
+    @post_job.job_files.build(:resume_cv => @letter )
+    @post_job.job_files.build(:resume_cv => @transcript )
+    @post_job.job_files.build(:resume_cv => @resume )
 
 
-#    @post_job = PostJob.new(params[:post_job])
-#    post = Post.new(params[:post])
-#    post.user = current_user
-#    post.school_id = @school
-#    post.post_category_id = @type
-#    post.type_name = @class_name
-#    post.save
-#    @post_job.tag_list = params[:tag]
-#    @post_job.post = post
-#    if @post_job.save
+    if @post_job.save
       notice "Your post was successfully created."
       redirect_to post_jobs_path #+ "?job_type_id=#{@post_job.job_type_id}"
-#    else
-#      error "Failed to create a new post."
-#      render :action => "new"
-#    end
+    else
+      error "Failed to create a new post."
+      render :action => "new"
+    end
   end
 
   # PUT /post_jobs/1

@@ -1,32 +1,32 @@
-<div class="reqItem">
-  <div class="reqLa"><label>Hello world</label></div>
-  <div class="reqTi"><%= text_field_tag "upload_file", "", :style => "width:280px" %></div>
-</div>
+<!--
+3 types of job files
+Cover letter
+Transcript
+Resume*
 
-<% @post_job = PostJob.new(params[:post_job]) %>
-
-<% 2.times { @post_job.job_files.build} %>
-
-
-<% f.fields_for :job_files do |builder| %>
-
-
+-->
+<% fields_for :letter do |builder1| %>
   <p>
-    <%= builder.label :caption, "Job File Caption" %>
-    <%= builder.text_field :caption %>
-    <br/>
-    Field of file:  <%= builder.file_field :resume_cv %> END<br/>
-
-  </p>
-
-<% end %>
-
-<% fields_for :job_file1 do |builder1| %>
-  <p>
-    <%= builder1.label :caption, "Job File Caption" %>
-    <%= builder1.text_field :caption, :readonly => "true", :value => "Resume" %>
-    <br/>
-    Field of file:  <%= builder1.file_field :resume_cv %> END<br/>
-
+    <%= builder1.label :category, "Cover letter" %>
+    <%#= builder1.text_field :category, :readonly => "true", :value => "Resume" %>
+    <%= builder1.hidden_field :caption, :value => "Cover letter" %>
+    <%= builder1.file_field :resume_cv %>
   </p>
 <% end %>
+<br/>
+<% fields_for :transcript do |builder2| %>
+  <p>
+    <%= builder2.label :category, "Transcript" %>
+    <%= builder2.hidden_field :caption, :value => "Transcript" %>
+    <%= builder2.file_field :resume_cv %>
+  </p>
+<% end %>
+<br/>
+<% fields_for :resume do |builder3| %>
+  <p>
+    <%= builder3.label :category, "Resume*" %>
+    <%= builder3.hidden_field :caption, :value => "Resume*" %>
+    <%= builder3.file_field :resume_cv %>
+  </p>
+<% end %>
+<br/>
