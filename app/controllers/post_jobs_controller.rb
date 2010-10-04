@@ -131,7 +131,7 @@ class PostJobsController < ApplicationController
     end
   end
 
-  def employment_info
+  def employment_infor
     @job_infors = JobInfor.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
   end
   
