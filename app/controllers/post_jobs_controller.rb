@@ -118,7 +118,7 @@ class PostJobsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_j = @post.post_job
-    @job_lists = current_user.jobs_lists
+    
     update_view_count(@post)
     posts_as = PostFood.with_school(@school)
     as_next = posts_as.next(@post_j.id).first
@@ -168,18 +168,36 @@ class PostJobsController < ApplicationController
   # POST /post_jobs
   # POST /post_jobs.xml
   def create
+
     @post_job = PostJob.new(params[:post_job])
     post = Post.new(params[:post])
     post.user = current_user
-    post.school_id = @school
+    #post.school_id = @school
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
     @post_job.tag_list = params[:tag]
     @post_job.post = post
+
+    
+    
+    @letter = JobFile.new(params[:letter])
+    #@letter.save
+
+    @transcript = JobFile.new(params[:transcript])
+    #@transcript.save
+
+    @resume = JobFile.new(params[:resume])
+    #@resume.save
+
+    @post_job.job_files.build(:resume_cv => @letter )
+    @post_job.job_files.build(:resume_cv => @transcript )
+    @post_job.job_files.build(:resume_cv => @resume )
+
+
     if @post_job.save
       notice "Your post was successfully created."
-      redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
+      redirect_to post_jobs_path #+ "?job_type_id=#{@post_job.job_type_id}"
     else
       error "Failed to create a new post."
       render :action => "new"
