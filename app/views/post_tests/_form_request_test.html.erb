@@ -4,8 +4,8 @@
     <div class="col300Cont">
       <% form_for :post_test, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <% fields_for :post do |p| %>
-          <%= render :partial => "/shared/form_request_post/select_department", :locals => {:f => f} %>
-          <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:f => f} %>
+          <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
           <div class="reqSl">

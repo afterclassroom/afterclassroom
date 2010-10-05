@@ -1,5 +1,5 @@
 <div class="reqLa"><label>Department</label></div>
-<div class="reqTi"><%= f.text_field :department_id, :id => "department_id" %></div>
+<div class="reqTi"><%= p.text_field :department_id, :id => "department_id" %></div>
 <ul id="department_menu" class="mcdropdown_menu">
   <%
   departments = Department.of_school(@school)

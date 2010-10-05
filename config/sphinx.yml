@@ -6,9 +6,9 @@ production:
   max_matches: 100000
   seamless_rotate: 1
   preopen_indexes: 1
-  bin_path: /usr/bin/sphinx-searchd
-  searchd_binary_name: sphinx-searchd
-  indexer_binary_name: sphinx-indexer
+  bin_path: /usr/bin
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
   query_log_file: /var/www/after/releases/log/searchd.query.log
   searchd_log_file: /var/www/after/releases/log/searchd.log
   pid_file: /var/www/after/log/searchd.production.pid

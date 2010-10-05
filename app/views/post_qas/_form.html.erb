@@ -1,4 +1,4 @@
-<% fields_for @post_qa.post do |post| %>
+<% fields_for @post do |post| %>
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
   <div class="postItemDep">
@@ -16,8 +16,8 @@
       <div class="postInp"><%= post.text_area :description, :class => 'required' %></div>
     </div>
   </div>
-  <%= render :partial => "/shared/form_post/select_department", :locals => {:f => f} %>
-  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:f => f} %>
+  <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/email" %>
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
