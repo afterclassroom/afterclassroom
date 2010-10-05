@@ -1,11 +1,11 @@
-<% fields_for @post_assignment.post do |post| %>
+<% fields_for @post do |post| %>
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
   <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_school" %>
-  <%= render :partial => "/shared/form_post/select_department", :locals => {:f => f} %>
-  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:f => f} %>
+  <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
     <div class="postTit">Due date*</div>

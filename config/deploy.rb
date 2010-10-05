@@ -48,15 +48,15 @@ set :deploy_via, :remote_cache
 #############################################################
 
 namespace :deploy do
-  task :before_update_code, :roles => [:app] do
-    thinking_sphinx.stop
-  end
+#  task :before_update_code, :roles => [:app] do
+#    thinking_sphinx.stop
+#  end
 
   desc "Create the database yaml file"
   task :after_update_code do
-    symlink_sphinx_indexes
-    thinking_sphinx.configure
-    thinking_sphinx.start
+#    symlink_sphinx_indexes
+#    thinking_sphinx.configure
+#    thinking_sphinx.start
   
     db_config = <<-EOF
     production:
