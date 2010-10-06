@@ -172,7 +172,7 @@ class PostJobsController < ApplicationController
     @post_job = PostJob.new(params[:post_job])
     post = Post.new(params[:post])
     post.user = current_user
-    #post.school_id = @school
+    post.school_id = @school
     post.post_category_id = @type
     post.type_name = @class_name
     post.save
@@ -197,7 +197,7 @@ class PostJobsController < ApplicationController
 
     if @post_job.save
       notice "Your post was successfully created."
-      redirect_to post_jobs_path #+ "?job_type_id=#{@post_job.job_type_id}"
+      redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
     else
       error "Failed to create a new post."
       render :action => "new"

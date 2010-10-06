@@ -9,7 +9,7 @@ Resume*
   <p>
     <%= builder1.label :category, "Cover letter" %>
     <%#= builder1.text_field :category, :readonly => "true", :value => "Resume" %>
-    <%= builder1.hidden_field :caption, :value => "Cover letter" %>
+    <%= builder1.hidden_field :category, :value => "Cover letter" %>
     <%= builder1.file_field :resume_cv %>
   </p>
 <% end %>
@@ -17,7 +17,7 @@ Resume*
 <% fields_for :transcript do |builder2| %>
   <p>
     <%= builder2.label :category, "Transcript" %>
-    <%= builder2.hidden_field :caption, :value => "Transcript" %>
+    <%= builder2.hidden_field :category, :value => "Transcript" %>
     <%= builder2.file_field :resume_cv %>
   </p>
 <% end %>
@@ -25,7 +25,7 @@ Resume*
 <% fields_for :resume do |builder3| %>
   <p>
     <%= builder3.label :category, "Resume*" %>
-    <%= builder3.hidden_field :caption, :value => "Resume*" %>
+    <%= builder3.hidden_field :category, :value => "Resume*" %>
     <%= builder3.file_field :resume_cv %>
   </p>
 <% end %>
