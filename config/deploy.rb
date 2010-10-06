@@ -116,6 +116,12 @@ namespace :deploy do
     task :pack_assets, :roles => [:web,:app] do
       run "cd #{release_path} && rake RAILS_ENV=#{fetch(:rails_env, 'production')} rucksack:pack"
     end
+
+    desc "Start Juggernaut"
+    task :pack_assets, :roles => [:web,:app] do
+      run "juggernaut #{current_release}/config/juggernaut.yml"
+    end
+    
     after "deploy:update_code", "deploy:pack_assets"
 
     task :start, :roles => :app do
