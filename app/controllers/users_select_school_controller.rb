@@ -10,12 +10,12 @@ class UsersSelectSchoolController < ApplicationController
       @city = @school.city
       @state = @city.state
       @country = @state.country
-      @states = @country.states
+      @states = @country.states.has_cities
       @cities = @state.cities
       @schools = @city.schools
     else
       @country = @countries.first
-      @states = @country.states
+      @states = @country.states.has_cities
       @state = @states.first
       @cities = @state.cities
       @city = @cities.first
@@ -40,7 +40,7 @@ class UsersSelectSchoolController < ApplicationController
     @city = City.find(city_id)
     @state = @city.state
     @country = @state.country
-    @states = @country.states
+    @states = @country.states.has_cities
     @cities = @state.cities
     if @alphabet == ""
       @schools = City.find(city_id).schools
@@ -61,7 +61,7 @@ class UsersSelectSchoolController < ApplicationController
     case type
       when "country"
         @country = Country.find(id)
-        @states = @country.states
+        @states = @country.states.has_cities
         @state = @states.first
         @cities = @state.cities
         @city = @cities.first
@@ -70,7 +70,7 @@ class UsersSelectSchoolController < ApplicationController
       when "state"
         @state = State.find(id)
         @country = @state.country
-        @states = @country.states
+        @states = @country.states.has_cities
         @cities = @state.cities
         @city = @cities.first
         @schools = @city.schools
@@ -79,7 +79,7 @@ class UsersSelectSchoolController < ApplicationController
         @city = City.find(id)
         @state = @city.state
         @country = @state.country
-        @states = @country.states
+        @states = @country.states.has_cities
         @cities = @state.cities
         @schools = @city.schools
         @school = @schools.first

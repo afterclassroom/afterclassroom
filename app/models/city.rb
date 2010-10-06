@@ -7,11 +7,12 @@ class City < ActiveRecord::Base
   # Relations
   belongs_to :country
   belongs_to :state
+  has_many :schools, :dependent => :destroy
 
   #Named scopes
   #SQL: select count(*) from schools where schools.city_id = cities.id) > 0
   cond = "(select count(*) from schools where schools.city_id = cities.id) > 0"
-  named_scope :first_city_has_schools, :conditions => cond
+  named_scope :has_schools, :conditions => cond
   
   def full_address_city
     address = self.name
