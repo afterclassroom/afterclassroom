@@ -178,22 +178,17 @@ class PostJobsController < ApplicationController
     post.save
     @post_job.tag_list = params[:tag]
     @post_job.post = post
-
     
     
-    @letter = JobFile.new(params[:letter])
+    #    @letter = JobFile.new(params[:letter])
     #@letter.save
-
-    @transcript = JobFile.new(params[:transcript])
+    #    @transcript = JobFile.new(params[:transcript])
     #@transcript.save
+    #    @resume = JobFile.new(params[:resume])
 
-    @resume = JobFile.new(params[:resume])
-    #@resume.save
-
-    @post_job.job_files.build(:resume_cv => @letter )
-    @post_job.job_files.build(:resume_cv => @transcript )
-    @post_job.job_files.build(:resume_cv => @resume )
-
+    @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
+    @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
+    @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
 
     if @post_job.save
       notice "Your post was successfully created."
