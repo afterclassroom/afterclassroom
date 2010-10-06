@@ -25,7 +25,7 @@ Resume*
 <% fields_for :resume do |builder3| %>
   <p>
     <%= builder3.label :category, "Resume*" %>
-    <%= builder3.hidden_field :category, :value => "Resume*" %>
+    <%= builder3.hidden_field :category, :value => "Resume" %>
     <%= builder3.file_field :resume_cv %>
   </p>
 <% end %>

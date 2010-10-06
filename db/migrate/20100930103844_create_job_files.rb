@@ -3,6 +3,7 @@ class CreateJobFiles < ActiveRecord::Migration
     create_table :job_files do |t|
       t.string :category
       t.integer :post_job_id
+      t.integer :user_id
 
       t.belongs_to :post_job
 
