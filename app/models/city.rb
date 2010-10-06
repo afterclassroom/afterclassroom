@@ -7,7 +7,6 @@ class City < ActiveRecord::Base
   # Relations
   belongs_to :country
   belongs_to :state
-  has_many :schools, :dependent => :destroy
 
   #Named scopes
   #SQL: select count(*) from schools where schools.city_id = cities.id) > 0

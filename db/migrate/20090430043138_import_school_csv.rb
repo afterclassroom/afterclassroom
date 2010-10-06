@@ -1,7 +1,7 @@
 require "fastercsv"
 class ImportSchoolCsv < ActiveRecord::Migration
   def self.up
-    FasterCSV.foreach("#{RAILS_ROOT}/db/UC.csv") do |row|
+    FasterCSV.foreach("#{RAILS_ROOT}/db/UC_live_server.csv") do |row|
       arr = row.to_s.split(";")
       country_iso = arr[0]
       state_name = arr[1]

@@ -7,6 +7,10 @@ class State < ActiveRecord::Base
   # Relations
   belongs_to :country
   has_many :cities, :dependent => :destroy
+
+  #Named scopes
+  cond = "(select count(*) from cities where cities.country_id = countries.id) > 0"
+  named_scope :has_cities, :conditions => cond
   
   def self.paginated_states_conditions_with_search(params)
     search = {}

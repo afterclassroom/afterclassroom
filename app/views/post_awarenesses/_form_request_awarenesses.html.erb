@@ -8,8 +8,8 @@
       %>
         <%= hidden_field_tag("post_awareness[awareness_type_id]", awareness_type.id) if awareness_type %>
         <% fields_for :post do |p| %>
-          <%= render :partial => "/shared/form_request_post/select_department", :locals => {:f => f} %>
-          <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:f => f} %>
+          <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>

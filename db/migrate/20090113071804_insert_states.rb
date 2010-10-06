@@ -3,7 +3,7 @@ class InsertStates < ActiveRecord::Migration
     #Insert State for US
     State.reset_column_information
     # State of USA
-    usa_country = usa_country.find_by_iso3('USA')
+    usa_country = Country.find_by_iso3('USA')
     State.create(:country_id => usa_country.id, :name => 'Alabama', :alias => 'AL')
     State.create(:country_id => usa_country.id, :name => 'Alaska', :alias => 'AK')
     State.create(:country_id => usa_country.id, :name => 'Arizona', :alias => 'AZ')
@@ -57,8 +57,17 @@ class InsertStates < ActiveRecord::Migration
     State.create(:country_id => usa_country.id, :name => 'Wyoming', :alias => 'WY')
 
     # State of CANADA
-    cad_country = cad_country.find_by_iso3('CAD')
-    State.create(:country_id => cad_country.id, :name => 'Alabama', :alias => 'AL')
+    cad_country = Country.find_by_iso3('CAN')
+    State.create(:country_id => cad_country.id, :name => 'Alberta', :alias => 'AB')
+    State.create(:country_id => cad_country.id, :name => 'British Columbia', :alias => 'BC')
+    State.create(:country_id => cad_country.id, :name => 'Manitoba', :alias => 'MB')
+    State.create(:country_id => cad_country.id, :name => 'New Brunswick', :alias => 'NB')
+    State.create(:country_id => cad_country.id, :name => 'Newfoundland and Labrador', :alias => 'NL+LD')
+    State.create(:country_id => cad_country.id, :name => 'Nova Scotia', :alias => 'NS')
+    State.create(:country_id => cad_country.id, :name => 'Ontario', :alias => 'ON')
+    State.create(:country_id => cad_country.id, :name => 'Prince Edward Island', :alias => 'PEI')
+    State.create(:country_id => cad_country.id, :name => 'Québec', :alias => 'QC')
+    State.create(:country_id => cad_country.id, :name => 'Saskatchewan', :alias => 'SK')
   end
 
   def self.down
