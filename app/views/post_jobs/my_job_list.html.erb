@@ -1,6 +1,9 @@
 <div id="detail_window" style="background: #f1f1f1;">
-  <%= render :partial => "my_job_item" %>
+  <% @jobs_lists.each do |job| %>
+    <%= render :partial => "my_job_item" %>
+  <% end %>
 </div>
 <div class="assPageMJL">
   <span class="numPageMJL">Page 1 of 1</span>
 </div >
+
