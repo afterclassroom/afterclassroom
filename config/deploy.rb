@@ -119,7 +119,7 @@ namespace :deploy do
 
     desc "Start Juggernaut"
     task :pack_assets, :roles => [:web,:app] do
-      run "juggernaut #{current_release}/config/juggernaut.yml"
+      run "juggernaut -c #{current_release}/config/juggernaut.yml"
     end
     
     after "deploy:update_code", "deploy:pack_assets"
