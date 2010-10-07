@@ -120,7 +120,7 @@ class PostJobsController < ApplicationController
     @post_j = @post.post_job
     
     update_view_count(@post)
-    posts_as = PostFood.with_school(@school)
+    posts_as = PostJob.with_school(@school)
     as_next = posts_as.next(@post_j.id).first
     as_prev = posts_as.previous(@post_j.id).first
     @next = as_next.post if as_next
@@ -141,15 +141,13 @@ class PostJobsController < ApplicationController
   end
 
   def add_job
-    job_id = params[:job_id]
-    post = Post.find(job_id)
-    job_list = JobList.new()
-    job_list.user = current_user
-    job_list.post_job = post.post_job
-    job_list.save
-    render :text => %Q'
-      <span class="btmAddJob">#{show_add_job(post)}</span>
-      <span class="btmAddJob">#{show_my_job_list(post)}</span>'
+    post_job_id = params[:post_job_id]
+    post = Post.find(post_job_id)
+    job_list = JobsList.find_or_create_by_user_id_and_post_job_id(current_user.id, post.post_job.id)
+    job_lists = current_user.jobs_lists
+    render :text => %Q'<span class="btmAddJob">
+        <a title="My job list" class="thickbox" href="/post_jobs/my_job_list?height=400&amp;width=470" class = "thickbox" title = "My job list"><span>My job list</span></a>
+      </span>'
   end
 
   def my_job_list
@@ -187,13 +185,6 @@ class PostJobsController < ApplicationController
     post.save
     @post_job.tag_list = params[:tag]
     @post_job.post = post
-    
-    
-    #    @letter = JobFile.new(params[:letter])
-    #@letter.save
-    #    @transcript = JobFile.new(params[:transcript])
-    #@transcript.save
-    #    @resume = JobFile.new(params[:resume])
 
     @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
     @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
