@@ -228,7 +228,7 @@ module ApplicationHelper
       link_to_require_login("<span>Add job</span>")
     else
      job_lists = current_user.jobs_lists
-     link_to_remote("<span>Add job</span>", :url => { :action => "add_job"}) if !job_lists.include?(post)
+     link_to_remote("<span>Add job</span>", :update => "show_add_button", :url => { :action => "add_job", :job_id => "post.post_job.id"}) if !job_lists.include?(post)
     end
   end
 

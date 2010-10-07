@@ -141,7 +141,15 @@ class PostJobsController < ApplicationController
   end
 
   def add_job
-    render :layout => false
+    job_id = params[:job_id]
+    post = Post.find(job_id)
+    job_list = JobList.new()
+    job_list.user = current_user
+    job_list.post_job = post.post_job
+    job_list.save
+    render :text => %Q'
+      <span class="btmAddJob">#{show_add_job(post)}</span>
+      <span class="btmAddJob">#{show_my_job_list(post)}</span>'
   end
 
   def my_job_list
