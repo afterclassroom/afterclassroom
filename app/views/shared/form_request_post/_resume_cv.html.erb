@@ -45,3 +45,35 @@ Resume*
   </p>
 <% end %>
 <br/>
+<script language="javascript">
+  $(document).ready(function(){
+    $("#letter_resume_cv").change(function(){
+      var coverletter = this.value;
+      $("#letter_resume_cv").siblings().each(function(){
+        
+        $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+coverletter+"'/>");
+      });
+    });
+
+    $("#transcript_resume_cv").change(function(){
+      var transcript = this.value;
+      $("#transcript_resume_cv").siblings().each(function(){
+
+        $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+transcript+"'/>");
+      });
+    });
+
+    $("#resume_resume_cv").change(function(){
+      var resume = this.value;
+      $("#resume_resume_cv").siblings().each(function(){
+
+        $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+resume+"'/>");
+      });
+    });
+
+
+
+
+
+  });
+</script>
