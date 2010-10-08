@@ -39,7 +39,7 @@
       <span class="comnext"><%= link_to "", post_assignment_path(@next) if @next %></span>
     </div>
     <div class="AsDOr">
-      <h1 class="titleH1">Related Requests Assignments in Assignments Category</h1>
+      <h1 class="titleH1">Related Requests Assignment in Assignments Category</h1>
       <% PostAssignment.related_posts(@school).each do |p| %>
         <div class="AsDOrItem"><%= link_to p.title, post_assignment_path(p) %></div>
       <% end %>
