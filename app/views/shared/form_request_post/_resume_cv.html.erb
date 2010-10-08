@@ -8,9 +8,12 @@ Resume*
 <% fields_for :letter do |builder1| %>
   <p>
     <%= builder1.label :category, "Cover letter" %>
-    <%#= builder1.text_field :category, :readonly => "true", :value => "Resume" %>
+  <%#= builder1.text_field :category, :readonly => "true", :value => "Resume" %>
     <%= builder1.hidden_field :category, :value => "Cover letter" %>
-    <%= builder1.file_field :resume_cv %>
+  <div id="divinputfile">
+    <%= builder1.file_field :resume_cv, :size => "39", :class => "filepc"  %>
+    <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
+  </div>
   </p>
 <% end %>
 <br/>
@@ -18,7 +21,13 @@ Resume*
   <p>
     <%= builder2.label :category, "Transcript" %>
     <%= builder2.hidden_field :category, :value => "Transcript" %>
-    <%= builder2.file_field :resume_cv %>
+
+
+  <div id="divinputfile">
+    <%= builder2.file_field :resume_cv, :size => "39", :class => "filepc"   %>
+    <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
+  </div>
+
   </p>
 <% end %>
 <br/>
@@ -26,7 +35,45 @@ Resume*
   <p>
     <%= builder3.label :category, "Resume*" %>
     <%= builder3.hidden_field :category, :value => "Resume" %>
-    <%= builder3.file_field :resume_cv %>
+
+
+  <div id="divinputfile">
+    <%= builder3.file_field :resume_cv, :size => "39", :class => "filepc"   %>
+    <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
+  </div>
+
   </p>
 <% end %>
 <br/>
+<script language="javascript">
+  $(document).ready(function(){
+    $("#letter_resume_cv").change(function(){
+      var coverletter = this.value;
+      $("#letter_resume_cv").siblings().each(function(){
+        
+        $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+coverletter+"'/>");
+      });
+    });
+
+    $("#transcript_resume_cv").change(function(){
+      var transcript = this.value;
+      $("#transcript_resume_cv").siblings().each(function(){
+
+        $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+transcript+"'/>");
+      });
+    });
+
+    $("#resume_resume_cv").change(function(){
+      var resume = this.value;
+      $("#resume_resume_cv").siblings().each(function(){
+
+        $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+resume+"'/>");
+      });
+    });
+
+
+
+
+
+  });
+</script>

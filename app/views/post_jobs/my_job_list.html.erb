@@ -1,5 +1,8 @@
 <div id="detail_window" style="background: #f1f1f1;">
-  <%= render :partial => "my_job_item" %>
+  <% @jobs_lists.each do |job| %>
+    <%= render :partial => "my_job_item", :locals => {:post => job} %>
+  <% end %>
 </div>
 <div class="assPageMJL">
 </div >
+

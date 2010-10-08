@@ -151,6 +151,7 @@ class PostJobsController < ApplicationController
   end
 
   def my_job_list
+    @jobs_lists = current_user.jobs_lists
     render :layout => false
   end
 
