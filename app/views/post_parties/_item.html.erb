@@ -10,7 +10,7 @@
   <!--info-link-box-->
   <div class="asslinkdown">
     <div class="moreTutor"><%= post.post_party.address %><br/><%= post.post_party.phone %></div>
-    <div class="mySco"><a href="#">View map</a></div>
+    <div class="mySco"><%= show_map(post.post_party.address, post.title) %></div>
   </div>
   <!--info-link-box-->
   <div class="assItemB">
