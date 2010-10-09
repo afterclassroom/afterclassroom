@@ -2,7 +2,7 @@
 class PostPartiesController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :prefer, :show_rsvp]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :prefer, :add_party, :my_party_list, :show_rsvp]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :prefer, :show_rsvp]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
@@ -127,6 +127,21 @@ class PostPartiesController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @post_party }
     end
+  end
+  
+  def add_party
+    post_party_id = params[:post_party_id]
+    post = Post.find(post_party_id)
+    party_list = PartysList.find_or_create_by_user_id_and_post_party_id(current_user.id, post.post_party.id)
+    party_lists = current_user.partys_lists
+    render :text => %Q'<span class="btmFoodList">
+        <a title="My party list" class="thickbox" href="/post_parties/my_party_list?height=400&amp;width=470" class = "thickbox" title = "My party list"><span>My party list</span></a>
+      </span>'
+  end
+
+  def my_party_list
+    @partys_lists = current_user.partys_lists
+    render :layout => false
   end
 
   def show_rsvp

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101003124721) do
+ActiveRecord::Schema.define(:version => 20101009093746) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -305,6 +305,13 @@ ActiveRecord::Schema.define(:version => 20101003124721) do
   create_table "party_types_post_parties", :id => false, :force => true do |t|
     t.integer "post_party_id", :null => false
     t.integer "party_type_id", :null => false
+  end
+
+  create_table "partys_lists", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_party_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "phoneappcategories", :force => true do |t|

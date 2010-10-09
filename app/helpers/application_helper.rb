@@ -241,6 +241,24 @@ def show_my_job_list(post)
     end
   end
   
+def show_add_party(post)
+    if !logged_in?
+      link_to_require_login("<span>Add party</span>")
+    else
+     party_lists = current_user.partys_lists
+     link_to_remote("<span>Add party</span>", :update => "show_party_button", :url => { :action => "add_party", :post_party_id => post.id}) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
+    end
+  end
+
+def show_my_party_list(post)
+    if !logged_in?
+      link_to_require_login("<span>My party list</span>")
+    else
+     party_lists = current_user.partys_lists
+     link_to("<span>My party list</span>", "#{my_party_list_post_parties_path}?height=400&width=470", :class => "thickbox", :title => "My party list") if party_lists.size > 0
+    end
+  end
+  
   def show_become_a_fan(user)
     str = ""
     if !logged_in?
