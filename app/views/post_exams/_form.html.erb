@@ -1,11 +1,11 @@
-<% fields_for @post_exam.post do |post| %>
+<% fields_for @post do |post| %>
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
   <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_school" %>
-  <%= render :partial => "/shared/form_post/select_department", :locals => {:f => f} %>
-  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:f => f} %>
+  <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
     <div class="postTit">Due date*</div>
@@ -14,80 +14,3 @@
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
-
-<ul id="department_menu" class="mcdropdown_menu">
-  <%
-  departments = Department.of_school(@school)
-%>
-  <li rel_department="">
-    Choose department
-  </li>
-  <%
-  category_id = ""
-%>
-  <% departments.each do |dp| %>
-    <% if category_id == "" %>
-      <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
-        <ul>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% elsif category_id == dp.department_category.id %>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% else %>
-        </ul>
-      </li>
-      <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
-        <ul>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% end %>
-        <% category_id = dp.department_category.id %>
-      <% end %>
-    </ul>
-  </li>
-</ul>
-
-<%
-list_years = [["Choose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]]
-%>
-<ul id="year_menu" class="mcdropdown_menu">
-  <% list_years.each do |year| %>
-    <li rel_year="<%= year[1] %>">
-      <%= year[0] %>
-    </li>
-  <% end %>
-</ul>
-
-<script type="text/javascript">
-    $("#post_exam_department_id").mcDropdown("#department_menu", {
-        width: 350,
-        valueAttr: "rel_department"
-    });
-    $("#post_exam_school_year").mcDropdown("#year_menu", {
-        width: 350,
-        valueAttr: "rel_year"
-    });
-    $("#post_description").counter({
-        count: 'up',
-        goal: 900
-    });
-    $(function() {
-        $("#post_exam_due_date").datepicker();
-    });
-    function submit(){
-        var result = $("#form_post").validate();
-        if (result) {
-            $("#form_post").submit();
-        }
-    }
-    var tags = <%= array_or_string_for_javascript(@tags) %>;
-    $(function () {
-        $('#tag').tagSuggest ( {
-            tagContainer : 'div',
-            tagWrap : 'div',
-            tags: tags,
-            separator: ', '
-        });
-    }) ;
-
-</script>

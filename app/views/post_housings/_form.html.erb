@@ -1,4 +1,4 @@
-<% fields_for @post_housing.post do |post| %>
+<% fields_for @post do |post| %>
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
   <div class="postItemDep">
@@ -10,6 +10,8 @@
   <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_school" %>
+  <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
     <div class="postTit">Phone</div>
@@ -32,29 +34,10 @@
 </ul>
 
 <script type="text/javascript">
-    // 'Select All' text changed
-    $("#housing_category").multiSelect({ selectAllText: 'Select All' });
-    $("#post_description").counter({
-        count: 'up',
-        goal: 900
-    });
-    $(function() {
-        $("#post_housing_due_date").datepicker();
-    });
-    function submit(){
-        var result = $("#form_post").validate();
-        if (result) {
-            $("#form_post").submit();
-        }
-    }
-    var tags = <%= array_or_string_for_javascript(@tags) %>;
-    $(function () {
-        $('#tag').tagSuggest ( {
-            tagContainer : 'div',
-            tagWrap : 'div',
-            tags: tags,
-            separator: ', '
-        });
-    }) ;
-
+  // 'Select All' text changed
+  $("#housing_category").multiSelect({ selectAllText: 'Select All' });
+  $("#post_description").counter({
+    count: 'up',
+    goal: 900
+  });
 </script>

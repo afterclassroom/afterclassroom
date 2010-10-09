@@ -1,4 +1,4 @@
-<% fields_for @post_awareness.post do |post| %>
+<% fields_for @post do |post| %>
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
   <div class="postItemDep">
@@ -7,10 +7,9 @@
   </div>
   <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
-  <div class="postItem">
-    <div class="postTit">School</div>
-    <div class="postInp">Your are at <strong><%= School.find(@school).name %></strong> - <%= link_to("Click here", "/users_select_school/show?height=170", :class => "thickbox", :title => "Select Schoools") %> to choose another school.</div>
-  </div>
+  <%= render :partial => "/shared/form_post/select_school" %>
+  <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/email" %>
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_tag" %>
@@ -25,28 +24,8 @@
 </ul>
 
 <script type="text/javascript">
-    $("#post_awareness_awareness_type_id").mcDropdown("#awareness_type_menu", {
-        width: 350,
-        valueAttr: "rel_awareness_type"
-    });
-    $("#post_description").counter({
-        count: 'up',
-        goal: 900
-    });
-    function submit(){
-        var result = $("#form_post").validate();
-        if (result) {
-            $("#form_post").submit();
-        }
-    }
-    var tags = <%= array_or_string_for_javascript(@tags) %>;
-    $(function () {
-        $('#tag').tagSuggest ( {
-            tagContainer : 'div',
-            tagWrap : 'div',
-            tags: tags,
-            separator: ', '
-        });
-    }) ;
-
+  $("#post_awareness_awareness_type_id").mcDropdown("#awareness_type_menu", {
+    width: 350,
+    valueAttr: "rel_awareness_type"
+  });
 </script>

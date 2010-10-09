@@ -1,4 +1,4 @@
-<% fields_for @post_party.post do |post| %>
+<% fields_for @post do |post| %>
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
   <div class="postItem">
@@ -30,22 +30,4 @@
         count: 'up',
         goal: 900
     });
-    $(function() {
-        $("#post_party_due_date").datepicker();
-    });
-    function submit(){
-        var result = $("#form_post").validate();
-        if (result) {
-            $("#form_post").submit();
-        }
-    }
-    var tags = <%= array_or_string_for_javascript(@tags) %>;
-    $(function () {
-        $('#tag').tagSuggest ( {
-            tagContainer : 'div',
-            tagWrap : 'div',
-            tags: tags,
-            separator: ', '
-        });
-    }) ;
 </script>

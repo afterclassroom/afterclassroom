@@ -38,23 +38,4 @@
         width: 350,
         valueAttr: "rel_qa_cat"
     });
-    $("#post_description").counter({
-        count: 'up',
-        goal: 900
-    });
-    function submit(){
-        var result = $("#form_post").validate();
-        if (result) {
-            $("#form_post").submit();
-        }
-    }
-    var tags = <%= array_or_string_for_javascript(@tags) %>;
-    $(function () {
-        $('#tag').tagSuggest ( {
-            tagContainer : 'div',
-            tagWrap : 'div',
-            tags: tags,
-            separator: ', '
-        });
-    }) ;
 </script>
