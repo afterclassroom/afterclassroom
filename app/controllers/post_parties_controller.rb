@@ -134,7 +134,7 @@ class PostPartiesController < ApplicationController
     post = Post.find(post_party_id)
     party_list = PartysList.find_or_create_by_user_id_and_post_party_id(current_user.id, post.post_party.id)
     party_lists = current_user.partys_lists
-    render :text => %Q'<span class="btmFoodList">
+    render :text => %Q'<span class="btmPartyList">
         <a title="My party list" class="thickbox" href="/post_parties/my_party_list?height=400&amp;width=470" class = "thickbox" title = "My party list"><span>My party list</span></a>
       </span>'
   end
