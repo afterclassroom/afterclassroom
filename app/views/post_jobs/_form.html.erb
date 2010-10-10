@@ -19,10 +19,15 @@
     <div class="postTit">Address</div>
     <div class="postInp"><%= f.text_field :address, :style => "width:208px" %></div>
   </div>
-  <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
+  <div id="one_file_area">
+    <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
+  </div>
+  <div id="resume_area">
+    <%= render :partial => "/shared/form_post/resume_for_post", :locals => {:post => p}, :locals => {:f => f} %>
+  </div>
+
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
-
 <ul id="job_type_menu" class="mcdropdown_menu">
   <% JobType.find(:all).each do |t| %>
     <li rel_job_type="<%= t.id %>">
@@ -30,10 +35,65 @@
     </li>
   <% end %>
 </ul>
-
 <script type="text/javascript">
   $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
     width: 350,
     valueAttr: "rel_job_type"
+  });
+  var resume_area;
+  var one_file_area;
+  function ShowResumeCV(){
+    $('#resume_area').html(resume_area);
+    $('#one_file_area').html('');
+  }
+  function HideResumeCV(){
+    $('#one_file_area').html(one_file_area);
+    $('#resume_area').html('');
+  }
+
+  $(document).ready(function(){
+    resume_area = $('#resume_area').html();
+    one_file_area = $('#one_file_area').html();
+
+    $('#resume_area').html('');
+
+    $('#job_type_menu').children().each(function(){
+      /*This one is used to handle event of Mouse click*/
+      $(this).click(function(){
+
+        var content = $(this).text();
+        var index = content.indexOf("I'm looking for job", 0);
+
+        if (index != -1){
+          ShowResumeCV();
+        }else{
+          HideResumeCV();
+        }
+
+      });
+    });/*END $('#job_type_menu')*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $('.mcdropdown').find('input').blur(function(){
+      /*This one is used to handle event of Keyboard select*/
+      console.log(''+$(this).parent().find('input').eq(1).attr('value') );
+    });
+
+
   });
 </script>

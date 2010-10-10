@@ -8,7 +8,6 @@ Resume*
 <% fields_for :letter do |builder1| %>
   <p>
     <%= builder1.label :category, "Cover letter" %>
-  <%#= builder1.text_field :category, :readonly => "true", :value => "Resume" %>
     <%= builder1.hidden_field :category, :value => "Cover letter" %>
   <div id="divinputfile">
     <%= builder1.file_field :resume_cv, :size => "39", :class => "filepc"  %>
