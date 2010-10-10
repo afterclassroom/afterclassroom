@@ -22,7 +22,6 @@
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
-
 <ul id="job_type_menu" class="mcdropdown_menu">
   <% JobType.find(:all).each do |t| %>
     <li rel_job_type="<%= t.id %>">
@@ -35,5 +34,20 @@
   $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
     width: 350,
     valueAttr: "rel_job_type"
+  });
+  $(document).ready(function(){
+    $('#job_type_menu').children().each(function(){
+      /*This one is used to handle event of Mouse click*/
+      $(this).click(function(){
+        console.log(''+$(this).text());
+      });
+    });/*END $('#job_type_menu')*/
+
+    $('.mcdropdown').find('input').blur(function(){
+      /*This one is used to handle event of Keyboard select*/
+      console.log(''+$(this).parent().find('input').eq(1).attr('value') );
+    });
+
+
   });
 </script>
