@@ -73,25 +73,16 @@
       });
     });/*END $('#job_type_menu')*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $('.mcdropdown').find('input').blur(function(){
       /*This one is used to handle event of Keyboard select*/
       console.log(''+$(this).parent().find('input').eq(1).attr('value') );
+      var selected_value = $(this).parent().find('input').eq(1).attr('value');
+      if (selected_value == '4')/*index == 4 equals to "I'm looking for a job" */
+      {
+        ShowResumeCV();
+      }else{
+        HideResumeCV();
+      }
     });
 
 
