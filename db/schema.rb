@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101003124721) do
+ActiveRecord::Schema.define(:version => 20101010150004) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -361,6 +361,14 @@ ActiveRecord::Schema.define(:version => 20101003124721) do
     t.datetime "due_date"
     t.string   "phone"
     t.string   "rating_status"
+  end
+
+  create_table "post_awarenesses_supports", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_awareness_id"
+    t.boolean  "support"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "post_books", :force => true do |t|

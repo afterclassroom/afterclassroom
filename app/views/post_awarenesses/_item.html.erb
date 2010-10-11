@@ -9,9 +9,11 @@
   </div>
   <!--info-link-box-->
   <div class="asslinkdown">
-    <div class="support"><a href="#">support</a></div>
-    <div class="support"><a href="#">not support</a></div>
-    <div class="mySco"><a href="#">View results (4/15)</a></div>
+    <div id="support_action">
+      <div class="support"><%= show_support(post) %></div>
+      <div class="support"><%= show_notsupport(post) %></div>
+    </div>
+    <div class="mySco"><%= link_to "View results", "#{view_results_post_awarenesses_path}?post_awareness_id=#{post.post_awareness.id}&height=325&width=550", :class => "thickbox", :title => "View results" %></div>
   </div>
   <!--info-link-box-->
   <div class="assItemB">
@@ -27,9 +29,9 @@
       <div class="assInfB">
         <div id="rate_<%= post.id %>">
           <%
-            check = PostAwareness.find_rated_by(current_user).include?(post.post_awareness) if logged_in?
-            check ||= false
-          %>
+          check = PostAwareness.find_rated_by(current_user).include?(post.post_awareness) if logged_in?
+          check ||= false
+        %>
           <div class="qashdU">
             <%= show_rating(post.id, post.post_awareness.total_good, controller.controller_name, check, 1) %>
           </div>

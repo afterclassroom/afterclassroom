@@ -294,6 +294,28 @@ def show_my_job_list(post)
   def show_map(address, html)
     link_to("View map", "/gmaps?address=#{address}&html=#{html}&height=325&width=550", :class => "thickbox", :title => "View map")
   end
+
+  def show_support(post)
+    if !logged_in?
+      link_to_require_login("Support")
+    elsif current_user.post_awarenesses_supports.collect{|p| p.post_awareness}.include?(post.post_awareness)
+      str_supported = "You've selected."
+      link_to("Support", "javascript:;", :class => "vtip", :title => str_supported)
+    else
+      link_to_remote("Support", {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :update => "support_action"})
+    end
+  end
+
+  def show_notsupport(post)
+    if !logged_in?
+      link_to_require_login("Not support")
+    elsif current_user.post_awarenesses_supports.collect{|p| p.post_awareness}.include?(post.post_awareness)
+      str_supported = "You've selected."
+      link_to("Not support", "javascript:;", :class => "vtip", :title => str_supported)
+    else
+      link_to_remote("Not support", {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :update => "support_action"})
+    end
+  end
   
   def show_go_back
     link_to "<span>Go back</span>", session[:go_back_url]

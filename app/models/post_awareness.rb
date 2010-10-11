@@ -6,6 +6,7 @@ class PostAwareness < ActiveRecord::Base
   # Relations
   belongs_to :post
   belongs_to :awareness_type
+  has_many :post_awarenesses_supports, :dependent => :destroy
 
   # Tags
   acts_as_taggable
@@ -105,5 +106,13 @@ class PostAwareness < ActiveRecord::Base
   def score_bad
     total = self.total_good + self.total_bad
     (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
+  end
+
+  def total_support
+    self.post_awarenesses_supports.collect{|s| s.support?}
+  end
+
+  def total_notsupport
+    self.post_awarenesses_supports.collect{|s| !s.support?}
   end
 end
