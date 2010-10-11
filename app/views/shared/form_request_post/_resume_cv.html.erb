@@ -20,13 +20,10 @@ Resume*
   <p>
     <%= builder2.label :category, "Transcript" %>
     <%= builder2.hidden_field :category, :value => "Transcript" %>
-
-
   <div id="divinputfile">
     <%= builder2.file_field :resume_cv, :size => "39", :class => "filepc"   %>
     <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
   </div>
-
   </p>
 <% end %>
 <br/>
@@ -34,13 +31,10 @@ Resume*
   <p>
     <%= builder3.label :category, "Resume*" %>
     <%= builder3.hidden_field :category, :value => "Resume" %>
-
-
   <div id="divinputfile">
     <%= builder3.file_field :resume_cv, :size => "39", :class => "filepc"   %>
     <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
   </div>
-
   </p>
 <% end %>
 <br/>
@@ -53,7 +47,6 @@ Resume*
         $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+coverletter+"'/>");
       });
     });
-
     $("#transcript_resume_cv").change(function(){
       var transcript = this.value;
       $("#transcript_resume_cv").siblings().each(function(){
@@ -61,7 +54,6 @@ Resume*
         $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+transcript+"'/>");
       });
     });
-
     $("#resume_resume_cv").change(function(){
       var resume = this.value;
       $("#resume_resume_cv").siblings().each(function(){
@@ -69,10 +61,5 @@ Resume*
         $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+resume+"'/>");
       });
     });
-
-
-
-
-
   });
 </script>
