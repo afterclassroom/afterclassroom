@@ -1,0 +1,6 @@
+<div id="detail_window">
+  <% @partys_lists.each do |party| %>
+    <%= render :partial => "my_party_item", :locals => {:post => party.post_party.post} %>
+  <% end %>
+</div>
+

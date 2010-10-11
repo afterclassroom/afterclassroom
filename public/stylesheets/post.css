@@ -1793,6 +1793,13 @@ div.posterC{
 .Poster .dueDbutton{
   padding-top:10px;
 }
+span.btmPartyList a{
+  background:url('/images/btmPartyList.png') no-repeat;
+  width:97px;
+}
+span.btmPartyList a:hover{
+  background:url('/images/btmPartyListH.png') no-repeat;
+}
 span.btmFoodList a{
   background:url('/images/btmFoodList.png') no-repeat;
   width:90px;

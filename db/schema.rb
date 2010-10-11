@@ -307,6 +307,13 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.integer "party_type_id", :null => false
   end
 
+  create_table "partys_lists", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_party_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "phoneappcategories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"

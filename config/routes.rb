@@ -231,7 +231,8 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :show_rsvp => :get,
     :create_rsvp => :get, :tag => :get,
     :rate => :get, :require_rate => :get,
-    :prefer => :get
+    :prefer => :get, :my_party_list => :get,
+    :add_party => :get
   }
   map.resources :post_myxes, :collection => {
     :search => :get, :tag => :get,
