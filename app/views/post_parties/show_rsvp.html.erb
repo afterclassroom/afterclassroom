@@ -1,15 +1,4 @@
-<div id="detail_window" style="background: #f1f1f1;">
-  <div class="dw_title">
-    <%= @post.title %>
-  </div>
-
-  <div class="dw_location">
-    <%= @post.user.full_name %>, <%= @post.user.school.name %>
-  </div>
-
-  <div class="dw_datetime">
-    <%= @post.created_at.strftime("%B %d, %Y") %>
-  </div>
+<div id="detail_window">
   <div class="detail-info"><!-- detail-info-->
     <div id="rsvp_alert_<%= @post.id %>" style="display:none">
       You sended RSVP.
@@ -19,10 +8,10 @@
         <form id="form_rsvp_<%= @post.id %>" name="form_rsvp_<%= @post.id %>">
           <ul>
             <li>
-              <div class="user_ri1"><label>Where:</label> <%= text_field_tag "where_#{@post.id}", "" %></div>
+              <div class="user_ri1"><label>Where:</label> <span style="margin-left:45px"><%= @post.post_party.address %></span></div>
             </li>
             <li>
-              <div class="user_ri2"><label>When:</label> <%= text_field_tag "when_#{@post.id}", "" %></div>
+              <div class="user_ri2"><label>When:</label> <span style="margin-left:45px"><%= @post.post_party.start_time %></span></div>
             </li>
             <li>
               <div class="user_ri3"><label>First Name*:</label> <%= text_field_tag "first_name_#{@post.id}", "", :class => "required", :width => "330" %></div>

@@ -44,11 +44,8 @@ class User < ActiveRecord::Base
   has_many :user_walls, :dependent => :destroy
   has_many :friend_in_groups, :dependent => :destroy
   has_many :jobs_lists, :dependent => :destroy
-<<<<<<< HEAD:app/models/user.rb
-  has_many :post_awarenesses_supports, :dependent => :destroy
-=======
   has_many :partys_lists, :dependent => :destroy
->>>>>>> 91105f67516a49082925874fff5b8a4ad892d49c:app/models/user.rb
+  has_many :post_awarenesses_supports, :dependent => :destroy
 
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]
