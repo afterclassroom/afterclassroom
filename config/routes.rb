@@ -240,7 +240,8 @@ ActionController::Routing::Routes.draw do |map|
   }
   map.resources :post_awarenesses, :collection => {
     :search => :get, :tag => :get,
-    :rate => :get
+    :rate => :get, :support => :get,
+    :view_results => :get
   }
   map.resources :post_housings, :collection => {
     :search => :get, :tag => :get,

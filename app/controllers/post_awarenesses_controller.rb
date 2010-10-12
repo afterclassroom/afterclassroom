@@ -2,11 +2,11 @@
 class PostAwarenessesController < ApplicationController
   include Viewable
   
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :rate]
-  before_filter :login_required, :except => [:index, :show, :search, :tag, :rate]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :view_results]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :tag, :rate]
-  after_filter :store_go_back_url, :only => [:index, :show, :search, :tag, :rate]
+  after_filter :store_location, :only => [:index, :show, :search, :tag]
+  after_filter :store_go_back_url, :only => [:index, :show, :search, :tag]
   # GET /post_awarenesses
   # GET /post_awarenesses.xml
   def index
@@ -74,6 +74,37 @@ class PostAwarenessesController < ApplicationController
       <script>
         vtip();
       </script>'
+  end
+
+  def support
+    support = params[:support]
+    post = Post.find(params[:post_id])
+    post_a = post.post_awareness
+    post_a_s = PostAwarenessesSupport.create(:user_id => current_user.id, :post_awareness_id => post_a.id, :support => support)
+    str_supported = "You've selected."
+    render :text => %Q'
+      <div class="support"><a href="javascript:;" class="vtip" title="#{str_supported}">Support</a></div>
+      <div class="support"><a href="javascript:;" class="vtip" title="#{str_supported}"> Not support</a></div>
+      <script>
+        vtip();
+      </script>'
+  end
+
+  def view_results
+    post_awareness_id = params[:post_awareness_id]
+    post_awareness = PostAwareness.find(post_awareness_id)
+    total_support = post_awareness.total_support.size
+    total_notsupport = post_awareness.total_notsupport.size
+    chart = GoogleChart.new
+    chart.type = :pie
+    chart.data = [total_support, total_notsupport]
+
+    #reuse and change size, set labels for big chart
+    chart.labels = ['Support','Not support']
+    chart.height = 300
+    chart.width = 550
+    @chart_url = chart.to_url
+    render :layout => false
   end
 
   # GET /post_awarenesses/1

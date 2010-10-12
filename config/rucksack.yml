@@ -108,3 +108,7 @@ stylesheets:
   - swfupload
   admin:
   - main
+  - admin_datePicker
+  - admin_pro_dropline
+  - admin_pro_dropline_ie
+  - admin_screen
