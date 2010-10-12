@@ -3,7 +3,7 @@ class PostAwarenessesController < ApplicationController
   include Viewable
   
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :tag]
+  before_filter :login_required, :except => [:index, :show, :search, :tag, :view_results]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag]
   after_filter :store_go_back_url, :only => [:index, :show, :search, :tag]
@@ -93,19 +93,16 @@ class PostAwarenessesController < ApplicationController
   def view_results
     post_awareness_id = params[:post_awareness_id]
     post_awareness = PostAwareness.find(post_awareness_id)
-    total_support = post_awareness.total_support
-    total_notsupport = post_awareness.total_notsupport
+    total_support = post_awareness.total_support.size
+    total_notsupport = post_awareness.total_notsupport.size
     chart = GoogleChart.new
     chart.type = :pie
     chart.data = [total_support, total_notsupport]
 
-    #change the default colour with the hex code
-    chart.colors = '346090'
-
     #reuse and change size, set labels for big chart
     chart.labels = ['Support','Not support']
-    chart.height = 600
-    chart.width = 350
+    chart.height = 300
+    chart.width = 550
     @chart_url = chart.to_url
     render :layout => false
   end
