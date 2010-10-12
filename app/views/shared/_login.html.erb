@@ -3,6 +3,9 @@
     <% if logged_in? %>
       <ul>
         <li class="signinSelect"><%= link_to "<span>Welcome #{current_user.full_name}</span>", user_profiles_path(current_user), :class => "signinFrist" %></li>
+        <% if admin? %>
+          <li><%= link_to "<span>Admin</span>", "/admin" %></li>
+        <% end %>
         <li><%= link_to "<span>Sign out</span>", logout_url, :method => :delete %></li>
         <li><a href="#"><span>Help</span></a></li>
         <li><a href="#"><span>Suggest improvement</span></a></li>
