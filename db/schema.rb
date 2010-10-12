@@ -181,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20101009093746) do
   create_table "job_files", :force => true do |t|
     t.string   "category"
     t.integer  "post_job_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resume_cv_file_name"
