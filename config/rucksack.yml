@@ -49,6 +49,19 @@ javascripts:
   - thickbox
   - jquery-validate
   - vtip-min
+  - custom-jquery
+  - date
+  - jquery-bind
+  - jquery-dimensions
+  - jquery-datePicker
+  - jquery-filestyle
+  - jquery-pngFix-pack
+  - jquery-selectbox-0.5
+  - jquery-selectbox-0.5-style-2
+  - jquery-selectbox-0.5-style-3
+  - jquery-tooltip
+  - jquery-usermode
+  - ui-checkbox
 stylesheets: 
   application:
   - main
@@ -95,7 +108,7 @@ stylesheets:
   - swfupload
   admin:
   - main
-  - admin_datePicker
-  - admin_pro_dropline
-  - admin_pro_dropline_ie
-  - admin_screen
+  - admin-datePicker
+  - admin-pro-dropline
+  - admin-pro-dropline-ie
+  - admin-screen
