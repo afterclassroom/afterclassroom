@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Student Awareness", post_awarenesses_path, :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Student Awareness", post_awarenesses_path, :class => "abLink-detail" %><%= link_to SCHEDULE_TYPE.rassoc(@type_schedule), "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -16,14 +16,18 @@
     <div class="col451in">
       <div class="col451Cont">
         <div class="AsDTop">
-          <h1 class="titleH1"><%= SCHEDULE_TYPE.rassoc(@type) %></h1>
+          <h1 class="titleH1"><%= SCHEDULE_TYPE.rassoc(@type_schedule) %></h1>
         </div>
 
         <%= display_flash_messages %>
 
+        <!--Options-->
+        <%= show_options(@school, params) %>
+        <!--Options-->
+        
         <!--List Items-->
         <% @posts.each do |post| %>
-          <%= render :partial => "item", :locals => {:post => post}%>
+          <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
         <% end %>
         <!--List Items-->
 
@@ -57,14 +61,9 @@
   <!--Browser by Subject-->
   <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
   <!--Browser by Subject-->
-
+  
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
-
-  <!--Recent Request Comments-->
-  <%= render :partial => "post_awarenesses/recent_comments" %>
-  <!--Recent Request Comments-->
-
 </div>
 <!--Content-->

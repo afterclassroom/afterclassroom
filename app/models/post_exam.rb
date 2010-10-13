@@ -42,8 +42,8 @@ class PostExam < ActiveRecord::Base
 
   def self.paginated_post_more_like_this(params, post_like)
     post_ts = PostExam.ez_find(:all, :include => [:post]) do |post_exam, post|
-      post.department_id == post_like.post_exam.department_id
-      post.school_year == post_like.post_exam.school_year
+      post.department_id == post_like.department_id
+      post.school_year == post_like.school_year
       post.school_id == post_like.school_id
     end
 

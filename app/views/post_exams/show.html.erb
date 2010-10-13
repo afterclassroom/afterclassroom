@@ -23,7 +23,6 @@
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
         <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_exams_path %></span></div>
-        <div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
         <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
         <div class="AsDContLinf"><span>Due date:</span><%= @post_exam.due_date.strftime("%B %d, %Y") %></div>
@@ -35,13 +34,13 @@
     <%= show_post_comments(@post) %>
     <div class="goback" id="go_back"><%= show_go_back %></div>
     <div class="comPage">
-      <span class="compre"><%= link_to "", post_project_path(@prev) if @prev %> </span>
-      <span class="comnext"><%= link_to "", post_project_path(@next) if @next %></span>
+      <span class="compre"><%= link_to "", post_exam_path(@prev) if @prev %> </span>
+      <span class="comnext"><%= link_to "", post_exam_path(@next) if @next %></span>
     </div>
     <div class="AsDOr">
-      <h1 class="titleH1">Related Requests Assignment in Assignments Category</h1>
-      <% PostProject.related_posts(@school).each do |p| %>
-        <div class="AsDOrItem"><%= link_to p.title, post_project_path(p) %></div>
+      <h1 class="titleH1">Related posts</h1>
+      <% PostExam.related_posts(@school).each do |p| %>
+        <div class="AsDOrItem"><%= link_to p.title, post_exam_path(p) %></div>
       <% end %>
     </div>
     <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>

@@ -42,8 +42,8 @@ class PostProject < ActiveRecord::Base
 
   def self.paginated_post_more_like_this(params, post_like)
     post_ts = PostProject.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_project, post|
-      post.department_id == post_like.post_project.department_id
-      post.school_year == post_like.post_project.school_year
+      post.department_id == post_like.department_id
+      post.school_year == post_like.school_year
       post.school_id == post_like.school_id
     end
 

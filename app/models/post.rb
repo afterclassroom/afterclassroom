@@ -2,7 +2,6 @@
 class Post < ActiveRecord::Base
   # Validations
   validates_presence_of :user_id
-  validates_presence_of :post_category_id
   validates_presence_of :title
   validates_presence_of :description
   validates_presence_of :school_id
@@ -26,6 +25,7 @@ class Post < ActiveRecord::Base
   has_one :post_teamup, :dependent => :destroy
   has_one :post_qa, :dependent => :destroy
   has_one :post_food, :dependent => :destroy
+  has_one :post_exam_schedule, :dependent => :destroy
 
   # Attach file
   has_attached_file :attach, :styles => { :medium => "200x200>", :thumb => "61x51#" }

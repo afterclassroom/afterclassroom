@@ -508,14 +508,15 @@ def create_demo_posts_exam_schedules
     user = User.find(rand(User.count) + 1)
     school = user.school
 
+    post = create_post(user, school, nil)
+    
     es = PostExamSchedule.create do |p|
-      p.user = user
-      p.school = school
-      p.subject = Faker::Lorem.sentence
+      p.post = post
       p.teacher_name = Faker::Name.name
       p.place = Faker::Address.street_address
       p.starts_at = DateTime.now + rand(20)
       p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size)].first
+      p.tag_list = get_random_list_tags
     end
 
   end

@@ -48,8 +48,8 @@ class PostTeamup < ActiveRecord::Base
 
   def self.paginated_post_more_like_this(params, post_like)
     post_teamups = PostTeamup.ez_find(:all, :include => [:post, :teamup_category], :order => "posts.created_at DESC") do |post_teamup, post, teamup_category|
-      post.department_id == post_like.post_test.department_id
-      post.school_year == post_like.post_test.school_year
+      post.department_id == post_like.department_id
+      post.school_year == post_like.school_year
       teamup_category.id == post_like.post_teamup.teamup_category_id
       post.school_id == post_like.school_id
     end

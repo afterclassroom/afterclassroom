@@ -1,10 +1,9 @@
 class CreatePostExamSchedules < ActiveRecord::Migration
   def self.up
     create_table :post_exam_schedules do |t|
-      t.belongs_to :user
-      t.belongs_to :school
-      t.string :subject
+      t.belongs_to :post
       t.string :teacher_name
+      t.datetime :due_date
       t.datetime :starts_at
       t.string :place
       t.string :type_name

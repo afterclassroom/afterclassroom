@@ -181,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   create_table "job_files", :force => true do |t|
     t.string   "category"
     t.integer  "post_job_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "resume_cv_file_name"
@@ -393,10 +394,9 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "post_exam_schedules", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "school_id"
-    t.string   "subject"
+    t.integer  "post_id"
     t.string   "teacher_name"
+    t.datetime "due_date"
     t.datetime "starts_at"
     t.string   "place"
     t.string   "type_name"
@@ -458,8 +458,6 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
 
   create_table "post_party_rsvps", :force => true do |t|
     t.integer  "post_party_id"
-    t.string   "where"
-    t.datetime "when"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -508,7 +506,7 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id",                                :null => false
-    t.integer  "post_category_id",                       :null => false
+    t.integer  "post_category_id"
     t.integer  "department_id"
     t.string   "school_year"
     t.string   "title",               :default => "",    :null => false

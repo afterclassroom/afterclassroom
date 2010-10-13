@@ -38,8 +38,8 @@ class PostQa < ActiveRecord::Base
     type = params[:type]
     type ||= "answered"
     posts_like = PostQa.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_qa, post|
-      post.department_id == post_like.post_assignment.department_id
-      post.school_year == post_like.post_assignment.school_year
+      post.department_id == post_like.department_id
+      post.school_year == post_like.school_year
       post_qa.post_qa_category_id == post_like.post_qa.post_qa_category_id
       post.school_id == post_like.school_id
     end

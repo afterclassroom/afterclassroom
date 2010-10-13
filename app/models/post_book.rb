@@ -50,8 +50,8 @@ class PostBook < ActiveRecord::Base
   def self.paginated_post_more_like_this(params, post_like)
     post_ts = PostBook.ez_find(:all, :include => [:post, :book_type], :order => "posts.created_at DESC") do |post_book, post, book_type|
       book_type.id == post_like.post_book.book_type_id
-      post.department_id == post_like.post_book.department_id
-      post.school_year == post_like.post_book.school_year
+      post.department_id == post_like.department_id
+      post.school_year == post_like.school_year
       post.school_id == post_like.school_id
     end
 

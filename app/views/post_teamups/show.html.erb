@@ -23,7 +23,7 @@
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
         <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_teamups_path %></span></div>
-        <div class="AsDContLask">asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
+        <div class="AsDContLask">Posted by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
       </div>
       <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
@@ -37,7 +37,7 @@
       <span class="comnext"><%= link_to "", post_teamup_path(@next) if @next %></span>
     </div>
     <div class="AsDOr">
-      <h1 class="titleH1">Related Requests Team Up in Team Up Category</h1>
+      <h1 class="titleH1">Related posts</h1>
       <% PostTeamup.related_posts(@school).each do |p| %>
         <div class="AsDOrItem"><%= link_to p.title, post_teamup_path(p) %></div>
       <% end %>

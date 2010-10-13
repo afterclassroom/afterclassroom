@@ -47,8 +47,8 @@ class PostAwareness < ActiveRecord::Base
 
   def self.paginated_post_more_like_this(params, post_like)
     post_as = PostAwareness.ez_find(:all, :include => [:post, :awareness_type], :order => "posts.created_at DESC") do |post_awareness, post, awareness_type|
-      post.department_id == post_like.post_project.department_id
-      post.school_year == post_like.post_project.school_year
+      post.department_id == post_like.department_id
+      post.school_year == post_like.school_year
       awareness_type.id == post_like.post_awareness.awareness_type_id
       post.school_id == post_like.school_id
     end
@@ -87,7 +87,7 @@ class PostAwareness < ActiveRecord::Base
   end
 
   def self.recent_comments
-    comments = Comment.find_by_sql("SELECT * FROM comments WHERE commentable_type = 'PostAwareness' ORDER BY created_at DESC LIMIT 5")
+    Comment.find_by_sql("SELECT * FROM comments WHERE commentable_type = 'PostAwareness' ORDER BY created_at DESC LIMIT 5")
   end
 
   def total_good
