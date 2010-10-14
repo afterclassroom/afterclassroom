@@ -108,6 +108,8 @@ module ApplicationHelper
       path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_housing.png"
     when "post_teamups"
       path = file_path ? file_path.url(:thumb) : "/images/icons/icon_defaut/icon_teamup.png"
+    when "post_exam_schedules"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_exam.png"
     else
       path = "/images/noimg.png"
     end

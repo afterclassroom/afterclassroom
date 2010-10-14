@@ -139,6 +139,7 @@ class PostExamSchedulesController < ApplicationController
     @tags = PostAwareness.tag_counts
     @new_post_path = "#{new_post_exam_schedule_path}?type=#{@type_schedule}"
     @class_name = "PostExamSchedule"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end

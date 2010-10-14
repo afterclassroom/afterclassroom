@@ -507,11 +507,11 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   create_table "posts", :force => true do |t|
     t.integer  "user_id",                                :null => false
     t.integer  "post_category_id"
+    t.integer  "school_id",                              :null => false
     t.integer  "department_id"
     t.string   "school_year"
     t.string   "title",               :default => "",    :null => false
     t.text     "description",                            :null => false
-    t.integer  "school_id",                              :null => false
     t.boolean  "use_this_email",      :default => false
     t.string   "type_name"
     t.datetime "created_at"

@@ -57,8 +57,11 @@ function getPostSearchType(post_type){
         case "MyX":
             action = "/post_myxes/search";
             break;
-        case "Foods":
+        case "Food":
             action = "/post_foods";
+            break;
+        case "Schedules":
+            action = "/post_exam_schedule";
             break;
     }
     $('#action_post_search').attr("action", action);

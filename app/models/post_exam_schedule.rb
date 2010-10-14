@@ -1,4 +1,4 @@
-class PostExamScheduleSchedule < ActiveRecord::Base
+class PostExamSchedule < ActiveRecord::Base
   # Relations
   belongs_to :post
 
@@ -8,10 +8,10 @@ class PostExamScheduleSchedule < ActiveRecord::Base
   named_scope :with_type, lambda { |tp| {:conditions => ["type_name = ?", tp]} }
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
   named_scope :due_date, :conditions => ["due_date > ?", Time.now], :order => "due_date DESC"
-  named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_exams.post_id And favorable_type = ?) > ?", "Post", 10]
+  named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_exam_schedules.post_id And favorable_type = ?) > ?", "Post", 10]
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["post_exams.id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["post_exams.id > ?", att]} }
+  named_scope :previous, lambda { |att| {:conditions => ["post_exam_schedules.id < ?", att]} }
+  named_scope :next, lambda { |att| {:conditions => ["post_exam_schedules.id > ?", att]} }
 
   # Tags
   acts_as_taggable

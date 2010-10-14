@@ -25,10 +25,10 @@
         <div class="AsDContLin">in<span><%= link_to "Exam/Test Schedules", post_exam_schedules_path %></span></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
         <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
-        <div class="AsDContLinf"><span>Teacher name:</span><%= @post_exam_schedule.teacher_name.strftime("%B %d, %Y") %></div>
-        <div class="AsDContLinf"><span>Place:</span><%= @post_exam_schedule.place.strftime("%B %d, %Y") %></div>
-        <div class="AsDContLinf"><span>Starts at:</span><%= @post_exam_schedule.starts_at.strftime("%B %d, %Y") %></div>
-        <div class="AsDContLinf"><span>Due date:</span><%= @post_exam_schedule.due_date.strftime("%B %d, %Y") %></div>
+        <div class="AsDContLinf"><span>Teacher name:</span><%= @post_exam_schedule.teacher_name %></div>
+        <div class="AsDContLinf"><span>Place:</span><%= @post_exam_schedule.place %></div>
+        <div class="AsDContLinf"><span>Starts at:</span><%= @post_exam_schedule.starts_at.strftime("%B %d, %Y") if @post_exam_schedule.starts_at %></div>
+        <div class="AsDContLinf"><span>Due date:</span><%= @post_exam_schedule.due_date.strftime("%B %d, %Y") if @post_exam_schedule.due_date %></div>
       </div>
       <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
@@ -41,7 +41,7 @@
       <span class="comnext"><%= link_to "", post_exam_schedule_path(@next) if @next %></span>
     </div>
     <div class="AsDOr">
-      <h1 class="titleH1">Related in Exam/Test Schedules Category</h1>
+      <h1 class="titleH1">Related posts</h1>
       <% PostProject.related_posts(@school).each do |p| %>
         <div class="AsDOrItem"><%= link_to p.title, post_exam_schedule_path(p) %></div>
       <% end %>

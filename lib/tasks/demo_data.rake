@@ -29,12 +29,7 @@ namespace :db do
       create_demo_posts_awarenesses
       create_demo_posts_foods
       create_demo_posts_qas
-      create_demo_phoneapps
-      create_demo_gameapps
-      create_demo_toolapps
 
-      create_demo_shopping_subcategory
-      create_demo_selling_item
       # Exam schedule
       create_demo_posts_exam_schedules
       # Messages data
@@ -514,6 +509,7 @@ def create_demo_posts_exam_schedules
       p.post = post
       p.teacher_name = Faker::Name.name
       p.place = Faker::Address.street_address
+      p.starts_at = DateTime.now + rand(10)
       p.starts_at = DateTime.now + rand(20)
       p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size)].first
       p.tag_list = get_random_list_tags
@@ -557,11 +553,11 @@ def create_post(user, school, post_category)
     p.user = user
     p.department = school.departments.find(:first)
     p.school_year = schoolyear[rand(schoolyear.size)]
-    p.post_category = post_category
+    p.post_category = post_category if post_category
+    p.type_name = post_category.class_name if post_category
     p.title = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraphs
     p.school = school
-    p.type_name = post_category.class_name
   end
 end
 
@@ -581,140 +577,3 @@ def get_random_list_tags
   ]
   arr_list_tag[rand(arr_list_tag.size)]
 end
-
-def create_demo_phoneapps
-
-  state_arr = ["recentlyadded", "verified"]
-
-  count = 1;
-  Phoneappcategory.count.times do
-    apcate = Phoneappcategory.find(count)#ID 1 is iPhone
-    count = count + 1
-
-    mytestphoto = Dir.glob("public/images/pictures/99347_920.jpg").shuffle
-
-    30.times do
-      papp = Phoneapplication.create do |ap|
-        ap.name = Faker::Lorem.sentence
-        ap.phoneappcategory = apcate
-        ap.description = Faker::Lorem.paragraphs
-        ap.price = "500"
-
-        ap.playurl = "http://www.google.com"
-        
-        ap.photo = uploaded_file(mytestphoto, 'image/jpg')
-        
-        ap.popular_rank = rand(500)
-
-        
-
-      end
-      papp.state = state_arr[rand(state_arr.size)]
-      papp.save
-    end
-
-  end
-
-end
-def create_demo_gameapps
-  state_arr = ["recentlyadded", "verified"]
-
-  mytestphoto = Dir.glob("public/images/pictures/99347_920.jpg").shuffle
-
-  99.times do
-    papp = Gameapp.create do |ap|
-      ap.name = Faker::Lorem.sentence
-      ap.description = Faker::Lorem.paragraphs
-
-      ap.playurl = "http://www.google.com"
-
-      ap.gamephoto = uploaded_file(mytestphoto, 'image/jpg')
-
-      ap.popular_rank = rand(500)
-
-
-
-    end
-    papp.state = state_arr[rand(state_arr.size)]
-    papp.save
-  end
-end
-
-def create_demo_toolapps
-  state_arr = ["recentlyadded", "verified"]
-
-  mytestphoto = Dir.glob("public/images/pictures/99347_920.jpg").shuffle
-
-  99.times do
-    papp = Toolapp.create do |ap|
-      ap.name = Faker::Lorem.sentence
-      ap.description = Faker::Lorem.paragraphs
-
-      ap.playurl = "http://www.google.com"
-
-      ap.toolphoto = uploaded_file(mytestphoto, 'image/jpg')
-
-      ap.popular_rank = rand(500)
-    end
-    papp.state = state_arr[rand(state_arr.size)]
-    papp.save
-  end
-end
-def create_demo_shopping_subcategory
-  hash = {"Items For Sale" => ['Musical Instruments', 'Tickets','Furniture','Clothers & Accessories'], 
-    "Electronics" => ['iPod & MP3 Players', 'DVD & Home Theater','Satellite Radio','Satellite & Cable TV'],
-    "Verhicles"=>['Cars','Motocycles','Parts & Accessories','Power Sports'], 
-    "Health & Beauty"=>['General Health', "Children's Health",'Drugs and Medication','Natural Medicine']}
-
-  count = 1;
-  Shoppingcategory.count.times do
-    apcate = Shoppingcategory.find(count)
-    count = count + 1
-    hash[apcate.name].each do |myval|
-      papp = ShoppingSubcategory.create do |ap|
-        ap.shoppingcategory = apcate
-        ap.name = myval
-      end
-    end
-  end
-  
-end
-def create_selling_item(user, shopping_subcategory)
-
-  #mytestphoto = Dir.glob("public/images/pictures/carBig1.png").shuffle
-
-  mytestphoto = Dir.glob("public/images/pictures/carBig1.jpg").shuffle
-
-  item = SellingItem.create do |it|
-    it.user=user
-    it.shopping_subcategory = shopping_subcategory
-    it.name = Faker::Lorem.sentence
-    it.description = Faker::Lorem.paragraphs
-    it.price = "4,250"
-
-    #perform the random from 1 to 10 to upload the number of images for each selling item
-    countvar = rand(4) + 1
-
-    countvar.times {
-      it.selling_item_images.build(:selling_item_photo => uploaded_file(mytestphoto, 'image/jpg'))
-
-    }
-
-    #    countvar.times do
-    #      it.selling_item_image = SellingItemImage.create do |it_img|
-    #        it_img.selling_item_photo = uploaded_file(mytestphoto, 'image/png')
-    #      end
-    #    end
-  end
-end
-
-def create_demo_selling_item
-  allsub = ShoppingSubcategory.find(:all)
-  allsub.each do |sc|
-    20.times do
-      user = User.find(rand(User.count)+1)
-      create_selling_item(user,sc)
-    end
-  end
-end
-
