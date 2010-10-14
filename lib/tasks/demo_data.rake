@@ -460,7 +460,8 @@ def create_demo_posts_awarenesses
 end
 
 def create_demo_posts_foods
-  post_category = PostCategory.find_by_name("Foods")
+  type_name = "PostFood"
+  post_category = PostCategory.find_by_class_name(type_name)
 
   20.times do
     user = User.find(rand(User.count) + 1)
@@ -479,7 +480,8 @@ def create_demo_posts_foods
 end
 
 def create_demo_posts_qas
-  post_category = PostCategory.find_by_name("QAs")
+  type_name = "PostQa"
+  post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
     user = User.find(rand(User.count) + 1)
@@ -499,11 +501,14 @@ def create_demo_posts_qas
 end
 
 def create_demo_posts_exam_schedules
+  type_name = "PostExamSchedule"
+  post_category = PostCategory.find_by_class_name(type_name)
+  
   20.times do
     user = User.find(rand(User.count) + 1)
     school = user.school
 
-    post = create_post(user, school, nil)
+    post = create_post(user, school, post_category)
     
     es = PostExamSchedule.create do |p|
       p.post = post
@@ -553,8 +558,8 @@ def create_post(user, school, post_category)
     p.user = user
     p.department = school.departments.find(:first)
     p.school_year = schoolyear[rand(schoolyear.size)]
-    p.post_category = post_category if post_category
-    p.type_name = post_category.class_name if post_category
+    p.post_category = post_category
+    p.type_name = post_category.class_name
     p.title = Faker::Lorem.sentence
     p.description = Faker::Lorem.paragraphs
     p.school = school

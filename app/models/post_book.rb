@@ -18,7 +18,7 @@ class PostBook < ActiveRecord::Base
 
   # Named Scope
   named_scope :with_limit, :limit => LIMIT
-  named_scope :with_type, lambda { |tp| {:conditions => ["book_type_id = ?", tp]} }
+  named_scope :with_type, lambda { |tp| {:conditions => ["post_books.book_type_id = ?", tp]} }
   named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}

@@ -2,11 +2,11 @@
 class PostExamsController < ApplicationController
   include Viewable
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :interesting, :tag]
-  before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :interesting, :tag]
+  before_filter :login_required, :except => [:index, :show, :search, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :due_date, :interesting, :tag]
+  after_filter :store_location, :only => [:index, :show, :search, :interesting, :tag]
+  after_filter :store_go_back_url, :only => [:index, :search, :interesting, :tag]
   # GET /post_exams
   # GET /post_exams.xml
   def index
@@ -123,10 +123,6 @@ class PostExamsController < ApplicationController
     @post_exam.destroy
 
     redirect_to my_post_user_url(current_user)
-  end
-
-  def update_views(obj)
-    updated = update_view_count(obj)
   end
 
   private

@@ -2,9 +2,10 @@
 class Post < ActiveRecord::Base
   # Validations
   validates_presence_of :user_id
+  validates_presence_of :post_category_id
+  validates_presence_of :school_id
   validates_presence_of :title
   validates_presence_of :description
-  validates_presence_of :school_id
 
   # Relations
   belongs_to :user

@@ -255,7 +255,10 @@ ActionController::Routing::Routes.draw do |map|
   }
 
   # Exam/Test Schedules, Deadline bulletin, General bulletin
-  map.resources :post_exam_schedules
+  map.resources :post_exam_schedules, :collection => {
+    :search => :get, :tag => :get,
+    :rate => :get
+  }
   
   # Administration
   map.namespace(:admin) do |admin|

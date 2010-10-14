@@ -18,7 +18,7 @@ class PostFood < ActiveRecord::Base
 
   # Named Scope
   named_scope :with_limit, :limit => LIMIT
-  named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
+  named_scope :with_status, lambda { |st| {:conditions => ["post_foods.rating_status = ?", st]} }
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}

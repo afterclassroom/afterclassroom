@@ -23,7 +23,7 @@
           <div><span>Posted by:</span><%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
           <div><span>Comments:</span><%= "#{post.user.comments.size} Comment#{"s" if post.user.comments.size > 1}" %></div>
         </div>
-        <div class="assInfR"><%= link_to "more", post_exam_path(post) %></div>
+        <div class="assInfR"><%= link_to "more", post_exam_schedule_path(post) %></div>
       </div>
       <div class="assInfB">
         <div><%= post.created_at.strftime("%I:%M %p %Z") %></div>

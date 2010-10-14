@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Exams", post_exams_path, :class => "abLink-detail" %><%= link_to "Subject: '#{@tag.name}'", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Student Awareness", post_awarenesses_path, :class => "abLink-detail" %><%= link_to SCHEDULE_TYPE.rassoc("exam_schedule")[0], post_exam_schedules_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -12,15 +12,15 @@
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 QAs">
+  <div class="col451 student">
     <div class="col451in">
-      <div class="AsDTop">
-        <h1 class="titleH1">Exams</h1>
-        <div class="AsDsearch">
-          <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_exams_path} %>
-        </div>
-      </div>
       <div class="col451Cont">
+        <div class="AsDTop">
+          <h1 class="titleH1"><%= SCHEDULE_TYPE.rassoc("exam_schedule")[0] %></h1>
+          <div class="AsDsearch">
+            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_exam_schedules_path} %>
+          </div>
+        </div>
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
@@ -39,28 +39,27 @@
   </div>
 
 </div>
-
 <div class="contMainC">
-  <!--Browser Interesting Exam-->
-  <%= render :partial => "interesting_exams"%>
-  <!--Browser Interesting Exam-->
+  <!--Browser Schedules-->
+  <%= render :partial => "schedules" %>
+  <!--Browser Schedules-->
+
+  <!--Browser Deadline Bulletin-->
+  <%= render :partial => "deadline_bulletin" %>
+  <!--Browser Deadline Bulletin-->
+
+  <!--Browser General Bulletin-->
+  <%= render :partial => "general_bulletin" %>
+  <!--Browser General Bulletin-->
 </div>
 
 <div class="contMainR">
   <!--Browser by Subject-->
   <%= render :partial => "shared/browser_by_subject", :locals => {:tags => @tags} %>
   <!--Browser by Subject-->
-
+  
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
-
-  <!--Request Exam-->
-  <%= render :partial => "form_request_exam" %>
-  <!--Request Exam-->
-
-  <!--Recent Request Exams-->
-  <%= render :partial => "recent_request_exams" %>
-  <!--Recent Request Exams-->
 </div>
 <!--Content-->

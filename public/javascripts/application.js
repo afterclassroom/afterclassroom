@@ -61,7 +61,7 @@ function getPostSearchType(post_type){
             action = "/post_foods";
             break;
         case "Schedules":
-            action = "/post_exam_schedule";
+            action = "/post_exam_schedules";
             break;
     }
     $('#action_post_search').attr("action", action);

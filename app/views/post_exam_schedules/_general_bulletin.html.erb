@@ -13,7 +13,9 @@
             <div class="studentInf"><%= link_to truncate_words(it.post.title, 4), post_exam_schedule_path(it.post) %></div>
           </div>
         <% end %>
-        <div class="dueDbutton"><%= link_to "View more General bulletin", "#{post_exam_schedules_path}?type=#{type}" %></div>
+        <% if items.size > LIMIT - 1 %>
+          <div class="dueDbutton"><%= link_to "View more General bulletin", "#{post_exam_schedules_path}?type=#{type}" %></div>
+        <% end %>
       <% end %>
     </div>
   </div>

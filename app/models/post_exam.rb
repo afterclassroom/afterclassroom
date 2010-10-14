@@ -2,7 +2,6 @@
 class PostExam < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
-  validates_presence_of :due_date
 
   # Relations
   belongs_to :post
@@ -11,7 +10,6 @@ class PostExam < ActiveRecord::Base
   named_scope :with_limit, :limit => LIMIT
   named_scope :recent, {:joins => :post, :order => "created_at DESC"}
   named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
-  named_scope :due_date, :conditions => ["due_date > ?", Time.now], :order => "due_date DESC"
   named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_exams.post_id And favorable_type = ?) > ?", "Post", 10]
   named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   named_scope :previous, lambda { |att| {:conditions => ["post_exams.id < ?", att]} }
@@ -49,13 +47,6 @@ class PostExam < ActiveRecord::Base
 
     posts = []
     post_ts.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
-  end
-  
-  def self.paginated_post_conditions_with_due_date(params, school)
-    posts = []
-    post_as = self.with_school(school).due_date
-    post_as.select {|p| posts << p.post}
     posts.paginate :page => params[:page], :per_page => 10
   end
 

@@ -174,6 +174,9 @@ module ApplicationHelper
     when "post_teamups"
       type = PostCategory.find_by_class_name("PostTeamup").id
       search_post_path = search_post_teamups_path
+    when "post_exam_schedules"
+      type = PostCategory.find_by_class_name("PostExamSchedule").id
+      search_post_path = search_post_exam_schedules_path
     else
       type = PostCategory.find_by_class_name("PostAssignment").id
       search_post_path = search_post_assignments_path
@@ -229,35 +232,35 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login("<span>Add job</span>")
     else
-     job_lists = current_user.jobs_lists
-     link_to_remote("<span>Add job</span>", :update => "show_job_button", :url => { :action => "add_job", :post_job_id => post.id}) if !job_lists.collect{|j| j.post_job}.include?(post.post_job)
+      job_lists = current_user.jobs_lists
+      link_to_remote("<span>Add job</span>", :update => "show_job_button", :url => { :action => "add_job", :post_job_id => post.id}) if !job_lists.collect{|j| j.post_job}.include?(post.post_job)
     end
   end
 
-def show_my_job_list(post)
+  def show_my_job_list(post)
     if !logged_in?
       link_to_require_login("<span>My job list</span>")
     else
-     job_lists = current_user.jobs_lists
-     link_to("<span>My job list</span>", "#{my_job_list_post_jobs_path}?height=400&width=470", :class => "thickbox", :title => "My job list") if job_lists.size > 0
+      job_lists = current_user.jobs_lists
+      link_to("<span>My job list</span>", "#{my_job_list_post_jobs_path}?height=400&width=470", :class => "thickbox", :title => "My job list") if job_lists.size > 0
     end
   end
   
-def show_add_party(post)
+  def show_add_party(post)
     if !logged_in?
       link_to_require_login("<span>Add party</span>")
     else
-     party_lists = current_user.partys_lists
-     link_to_remote("<span>Add party</span>", :update => "show_party_button", :url => { :action => "add_party", :post_party_id => post.id}) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
+      party_lists = current_user.partys_lists
+      link_to_remote("<span>Add party</span>", :update => "show_party_button", :url => { :action => "add_party", :post_party_id => post.id}) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
     end
   end
 
-def show_my_party_list(post)
+  def show_my_party_list(post)
     if !logged_in?
       link_to_require_login("<span>My party list</span>")
     else
-     party_lists = current_user.partys_lists
-     link_to("<span>My party list</span>", "#{my_party_list_post_parties_path}?height=400&width=470", :class => "thickbox", :title => "My party list") if party_lists.size > 0
+      party_lists = current_user.partys_lists
+      link_to("<span>My party list</span>", "#{my_party_list_post_parties_path}?height=400&width=470", :class => "thickbox", :title => "My party list") if party_lists.size > 0
     end
   end
   
@@ -281,14 +284,14 @@ def show_my_party_list(post)
       str = link_to_require_login("<span>Invite Friend</span>")
     else
       if current_user.user_friends.include?(user)
-          str = "My friend"
+        str = "My friend"
+      else
+        if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
+          str = "Waiting accept"
         else
-          if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
-            str = "Waiting accept"
-          else
-            str = link_to("<span>Invite Friend</span>", "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
-          end
+          str = link_to("<span>Invite Friend</span>", "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
         end
+      end
     end
     return str
   end

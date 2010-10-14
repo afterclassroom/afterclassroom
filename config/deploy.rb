@@ -90,9 +90,6 @@ namespace :deploy do
       run "mkdir -p #{shared_path}/avatars"
       run "ln -s #{shared_path}/avatars #{release_path}/public/avatars"
       
-      run "mkdir -p #{shared_path}/gamephotos"
-      run "ln -s #{shared_path}/gamephotos #{release_path}/public/gamephotos"
-      
       run "mkdir -p #{shared_path}/music_album_attaches"
       run "ln -s #{shared_path}/music_album_attaches #{release_path}/public/music_album_attaches"
       
@@ -104,27 +101,19 @@ namespace :deploy do
       
       run "mkdir -p #{shared_path}/photos"
       run "ln -s #{shared_path}/photos #{release_path}/public/photos"
-      
-      run "mkdir -p #{shared_path}/selling_item_photos"
-      run "ln -s #{shared_path}/selling_item_photos #{release_path}/public/selling_item_photos"
-      
-      run "mkdir -p #{shared_path}/toolphotos"
-      run "ln -s #{shared_path}/toolphotos #{release_path}/public/toolphotos"
     end
     
     desc "Pack assets with rucksack" 
     task :pack_assets, :roles => [:web,:app] do
       run "cd #{release_path} && rake RAILS_ENV=#{fetch(:rails_env, 'production')} rucksack:pack"
     end
-
-    desc "Start Juggernaut"
-    task :pack_assets, :roles => [:web,:app] do
-      run "juggernaut -c #{current_release}/config/juggernaut.yml"
-    end
     
     after "deploy:update_code", "deploy:pack_assets"
 
     task :start, :roles => :app do
+      # Start Juggernault
+      run "juggernaut -c #{current_release}/config/juggernaut.yml"
+      # Start Server
       run "touch #{current_release}/tmp/restart.txt"
     end
 
@@ -134,6 +123,9 @@ namespace :deploy do
 
     desc "Restart Application"
     task :restart, :roles => :app do
+      # Start Juggernault
+      run "juggernaut -c #{current_release}/config/juggernaut.yml"
+      # Start Server
       run "touch #{current_release}/tmp/restart.txt"
     end
   end
