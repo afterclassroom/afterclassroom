@@ -2,7 +2,6 @@
 #	Application
 #############################################################
 require 'mongrel_cluster/recipes'
-require 'vendor/plugins/thinking-sphinx/recipes/thinking_sphinx'
 
 set :application, "Afterclassroom"
 set :domain, "afterclassroom.com"
@@ -48,15 +47,8 @@ set :deploy_via, :remote_cache
 #############################################################
 
 namespace :deploy do
-  task :before_update_code, :roles => [:app] do
-  thinking_sphinx.stop
-end
-
   desc "Create the database yaml file"
   task :after_update_code do
-  symlink_sphinx_indexes
-  thinking_sphinx.start
-  
     db_config = <<-EOF
     production:
       adapter: mysql
@@ -75,32 +67,6 @@ end
     EOF
 
     put db_config, "#{release_path}/config/database.yml"
-
-    #########################################################
-    # Uncomment the following to symlink an uploads directory.
-    # Just change the paths to whatever you need.
-    #########################################################
-
-    desc "Symlink the upload directories"
-    task :before_symlink do
-      run "mkdir -p #{shared_path}/attaches"
-      run "ln -s #{shared_path}/attaches #{release_path}/public/attaches"
-      
-      run "mkdir -p #{shared_path}/avatars"
-      run "ln -s #{shared_path}/avatars #{release_path}/public/avatars"
-      
-      run "mkdir -p #{shared_path}/music_album_attaches"
-      run "ln -s #{shared_path}/music_album_attaches #{release_path}/public/music_album_attaches"
-      
-      run "mkdir -p #{shared_path}/music_attaches"
-      run "ln -s #{shared_path}/music_attaches #{release_path}/public/music_attaches"
-      
-      run "mkdir -p #{shared_path}/photo_attaches"
-      run "ln -s #{shared_path}/photo_attaches #{release_path}/public/photo_attaches"
-      
-      run "mkdir -p #{shared_path}/photos"
-      run "ln -s #{shared_path}/photos #{release_path}/public/photos"
-    end
     
     desc "Pack assets with rucksack" 
     task :pack_assets, :roles => [:web,:app] do
@@ -122,6 +88,10 @@ end
 
     desc "Restart Application"
     task :restart, :roles => :app do
+      # Stop Sphinx
+      run "cd #{release_path} && rake ts:stop"
+      # Start Sphinx
+      run "cd #{release_path} && rake ts:start"
       # Stop Juggernault
       run "juggernaut -k -c #{current_release}/config/juggernaut.yml"
       # Start Juggernault
