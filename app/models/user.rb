@@ -32,9 +32,6 @@ class User < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   has_many :musics, :dependent => :destroy
   has_many :videos, :dependent => :destroy
-  has_many :users_can_see_photos, :dependent => :destroy
-  has_many :users_can_see_musics, :dependent => :destroy
-  has_many :users_can_see_videos, :dependent => :destroy
   has_many :favorites, :dependent => :destroy
 	has_many :flirting_messages, :dependent => :destroy
 	has_many :flirting_sharrings, :dependent => :destroy

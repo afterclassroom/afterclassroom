@@ -15,57 +15,6 @@ ActionController::Routing::Routes.draw do |map|
   map.user_reset_password  '/users/reset_password/:password_reset_code', :controller => 'users', :action => 'reset_password'
   map.user_forgot_login    '/users/forgot_login',    :controller => 'users', :action => 'forgot_login'
   map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
-
-  map.resources :learningtools, :collection => {
-    :recommendtool => :get,
-    :tooltab => :get,
-    :populartab => :get,
-    :verifiedtab => :get,
-    :recentlyaddedtab => :get,
-    :seealltab => :get,
-    :pagingalltool => :get,
-    :learninglounge => :get,
-    :info => :get,
-    :favorite => :get,
-    :featured_app => :get
-  }
-  map.resources :shoppings, :collection => {
-    :mainpage => :get,
-    :shoppingdetail => :get,
-    :cat_nav => :get,
-    :friendads => :get,
-    :recentitems => :get
-  }
-
-  map.resources :playgames, :collection => {
-    :recommendgame => :get,
-    :info => :get,
-    :gameslounge => :get,
-    :favorite => :get,
-    :gametab => :get,
-    :populartab => :get,
-    :verifiedtab => :get,
-    :recentlyaddedtab => :get,
-    :seealltab => :get,
-    :pagingallgame => :get
-
-  }
-
-  map.resources :phoneapps, :collection => {
-    :recommendapp => :get,
-    :phonelounge => :get,
-    :info => :get,
-    :favorite => :get,
-    :iphonepage => :get,
-    :bberrypage => :get,
-    :googleapppage => :get,
-    :pagingphoneapps => :get,
-    :phoneappstab => :get,
-    :populartab => :get,
-    :verifiedtab => :get,
-    :recentlyaddedtab => :get,
-    :seealltab => :get
-  }
   
   # Users
   map.resources :users, :member => {
@@ -79,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
       :show_email => :get,
       :send_message => :get,
       :message_action => :post
-      }
+    }
 
     users.resources :settings,
       :collection => {
@@ -96,6 +45,7 @@ ActionController::Routing::Routes.draw do |map|
       :change_email => :get,
       :save_email => :get,
       :save_setting => :post}
+
     users.resources :profiles,
       :collection => {:show_profile => :get, :edit_infor => :get,
       :edit_edu_infor => :get, :edit_work_infor => :get,
@@ -103,12 +53,14 @@ ActionController::Routing::Routes.draw do |map|
       :update_edu_infor => :post, :update_work_infor => :post,
       :my_favorite => :get
     }
+
     users.resources :student_lounges,
       :collection => {:invite_chat => :get, :add_users_to_chat => :get,
       :send_data => :get, :stop_chat => :get,
       :chanel_chat_content => :get, :friends_changed_message => :get,
       :friends_you_invited_chat => :get, :friends_want_you_chat => :get
     }
+
     users.resources :friends,
       :collection => {
       :search => :get,
@@ -128,7 +80,8 @@ ActionController::Routing::Routes.draw do |map|
       :send_invite_message => :get,
       :show_invite => :get,
       :become_a_fan => :get
-      }
+    }
+      
     users.resources :stories, 
       :collection => {
       :friend_s => :get, :my_s => :get,
@@ -174,8 +127,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :party_types
   map.resources :job_types
   map.resources :awareness_types
-  map.resources :shipping_methods
-  map.resources :functional_experiences
 
   # Posts
   map.resources :posts,
@@ -187,46 +138,56 @@ ActionController::Routing::Routes.draw do |map|
     :delete_comment => :get,
     :download => :get
   }
+
   map.resources :post_assignments, :collection => {
     :search => :get, :due_date => :get,
     :interesting => :get, :tag => :get
   }
+
   map.resources :post_projects, :collection => {
     :search => :get, :due_date => :get,
     :interesting => :get, :tag => :get
   }
+
   map.resources :post_tests, :collection => {
     :search => :get, :interesting => :get, :tag => :get
   }
+
   map.resources :post_exams, :collection => {
     :search => :get, :interesting => :get, :tag => :get
   }
+
   map.resources :post_qas, :collection => {
     :search => :get, :tag => :get,
     :interesting => :get, :top_answer => :get,
     :create_comment => :get, :show_comment => :get,
     :rate => :get, :require_rate => :get, :prefer => :get
   }
+
   map.resources :post_tutors, :collection => {
     :search => :get, :tag => :get,
     :effective => :get, :dont_hire => :get,
     :rate => :get, :require_rate => :get
   }
+
   map.resources :post_books, :collection => {
     :search => :get, :tag => :get,
     :good_books => :get, :dont_buy => :get,
     :rate => :get, :require_rate => :get
   }
+
   map.resources :post_jobs, :collection => {
     :search => :get, :tag => :get,
     :good_companies => :get, :bad_bosses => :get,
     :rate => :get, :require_rate => :get, :my_job_list => :get,
     :add_job => :get, :employment_infor => :get, :show_job_infor => :get
   }
+
   map.resources :post_foods, :collection => {
     :search => :get, :tag => :get,
     :rate => :get, :require_rate => :get
   }
+
   map.resources :post_parties, :collection => {
     :search => :get, :show_rsvp => :get,
     :create_rsvp => :get, :tag => :get,
@@ -234,20 +195,24 @@ ActionController::Routing::Routes.draw do |map|
     :prefer => :get, :my_party_list => :get,
     :add_party => :get
   }
+
   map.resources :post_myxes, :collection => {
     :search => :get, :tag => :get,
     :rate => :get, :require_rate => :get
   }
+
   map.resources :post_awarenesses, :collection => {
     :search => :get, :tag => :get,
     :rate => :get, :support => :get,
     :view_results => :get
   }
+  
   map.resources :post_housings, :collection => {
     :search => :get, :tag => :get,
     :good_house => :get, :worse_house => :get,
     :rate => :get
   }
+
   map.resources :post_teamups, :collection => {
     :search => :get, :tag => :get,
     :good_org => :get, :worse_org => :get,

@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  post_party_id: 1
-  post_type_id: 1
-
-two:
-  post_party_id: 1
-  post_type_id: 1
