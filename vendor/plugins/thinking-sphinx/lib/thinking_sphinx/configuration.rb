@@ -54,20 +54,22 @@ module ThinkingSphinx
       sql_query_killlist sql_ranged_throttle sql_query_post_index unpack_zlib
       unpack_mysqlcompress unpack_mysqlcompress_maxsize )
     
-    IndexOptions  = %w( charset_table charset_type charset_dictpath docinfo
-      enable_star exceptions html_index_attrs html_remove_elements html_strip
-      index_exact_words ignore_chars inplace_docinfo_gap inplace_enable
-      inplace_hit_gap inplace_reloc_factor inplace_write_factor min_infix_len
-      min_prefix_len min_stemming_len min_word_len mlock morphology ngram_chars
-      ngram_len ondisk_dict overshort_step phrase_boundary phrase_boundary_step
-      preopen stopwords stopwords_step wordforms )
+    IndexOptions  = %w( blend_chars charset_table charset_type charset_dictpath
+      docinfo enable_star exceptions expand_keywords hitless_words
+      html_index_attrs html_remove_elements html_strip index_exact_words
+      ignore_chars inplace_docinfo_gap inplace_enable inplace_hit_gap
+      inplace_reloc_factor inplace_write_factor min_infix_len min_prefix_len
+      min_stemming_len min_word_len mlock morphology ngram_chars ngram_len
+      ondisk_dict overshort_step phrase_boundary phrase_boundary_step preopen
+      stopwords stopwords_step wordforms )
     
     CustomOptions = %w( disable_range )
         
     attr_accessor :searchd_file_path, :allow_star, :database_yml_file,
-      :app_root, :model_directories, :delayed_job_priority
+      :app_root, :model_directories, :delayed_job_priority, :indexed_models
     
     attr_accessor :source_options, :index_options
+    attr_accessor :version
     
     attr_reader :environment, :configuration, :controller
     
@@ -108,21 +110,30 @@ module ThinkingSphinx
       self.model_directories    = ["#{app_root}/app/models/"] +
         Dir.glob("#{app_root}/vendor/plugins/*/app/models/")
       self.delayed_job_priority = 0
+      self.indexed_models       = []
       
       self.source_options  = {}
       self.index_options   = {
         :charset_type => "utf-8"
       }
       
+      self.version = nil
       parse_config
+      self.version ||= @controller.sphinx_version
       
       self
     end
     
     def self.environment
-      Thread.current[:thinking_sphinx_environment] ||= (
-        defined?(Merb) ? Merb.environment : ENV['RAILS_ENV']
-      ) || "development"
+      Thread.current[:thinking_sphinx_environment] ||= begin
+        if defined?(Merb)
+          Merb.environment
+        elsif defined?(RAILS_ENV)
+          RAILS_ENV
+        else
+          ENV['RAILS_ENV'] || 'development'
+        end
+      end
     end
     
     def environment

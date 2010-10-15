@@ -9,11 +9,12 @@ module Cucumber
         :password, :host
       
       def initialize
-        @temporary_directory  = "#{Dir.pwd}/tmp"
-        @migrations_directory = "features/support/db/migrations"
-        @models_directory     = "features/support/models"
-        @fixtures_directory   = "features/support/db/fixtures"
-        @database_file        = "features/support/database.yml"
+        pwd = Dir.pwd
+        @temporary_directory  = "#{pwd}/tmp"
+        @migrations_directory = "#{pwd}/features/thinking_sphinx/db/migrations"
+        @models_directory     = "#{pwd}/features/thinking_sphinx/models"
+        @fixtures_directory   = "#{pwd}/features/thinking_sphinx/db/fixtures"
+        @database_file        = "#{pwd}/features/thinking_sphinx/database.yml"
         
         @adapter  = ENV['DATABASE'] || 'mysql'
         @database = 'thinking_sphinx'

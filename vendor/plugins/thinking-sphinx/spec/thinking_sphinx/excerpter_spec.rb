@@ -1,4 +1,4 @@
-require 'spec/spec_helper'
+require 'spec_helper'
 
 describe ThinkingSphinx::Excerpter do
   before :each do
@@ -38,14 +38,6 @@ describe ThinkingSphinx::Excerpter do
       end
       
       @excerpter.big_name
-    end
-    
-    it "should escape the text in the excerpt" do
-      @search.should_receive(:excerpt_for) do |string, model|
-        string.should == 'test &quot;escaping&quot; &lt;characters&gt;'
-      end
-      
-      @excerpter.string_to_escape
     end
     
     it "should still raise an exception if no column or method exists" do

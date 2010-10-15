@@ -159,3 +159,16 @@ Since I first released this library, there's been quite a few people who have su
 * Dimitri Krassovski
 * Sergey Kojin
 * Brad Sumersford
+* Amir Yalon
+* Edgars Beigarts
+* Ivan Ukhov
+* Tomáš Pospíšek
+* Tom Stuart
+* James Brooks
+* Mark Dodwell
+* Frédéric Malamitsas
+* Jon Gubman
+* Michael Schuerig
+* Ben Hutton
+* Alfonso Jiménez
+* Szymon Nowak

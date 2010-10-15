@@ -1,4 +1,4 @@
-require 'spec/spec_helper'
+require 'spec_helper'
 
 describe ThinkingSphinx::Context do
   before :each do
@@ -53,11 +53,19 @@ describe ThinkingSphinx::Context do
 
     it "should catch database errors with a warning" do
       @class_name.should_receive(:constantize).and_raise(Mysql::Error)
-      STDERR.should_receive(:puts).with('Warning: Error loading a.rb')
-
+      STDERR.stub!(:puts => '')
+      STDERR.should_receive(:puts).with('Warning: Error loading a.rb:')
+      
       lambda {
         @context.prepare
       }.should_not raise_error
+    end
+    
+    it "should not load models if they're explicitly set in the configuration" do
+      @config.indexed_models = ['Alpha', 'Beta']
+      @context.prepare
+      
+      @context.indexed_models.should == ['Alpha', 'Beta']
     end
   end
   

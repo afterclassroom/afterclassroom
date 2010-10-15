@@ -1,4 +1,4 @@
-require 'spec/spec_helper'
+require 'spec_helper'
 require 'will_paginate/collection'
 
 describe ThinkingSphinx::Search do
@@ -43,7 +43,12 @@ describe ThinkingSphinx::Search do
     
     it "should be true once the client request has been made" do
       @search.first
-      @search.populated?.should be_true
+      @search.should be_populated
+    end
+    
+    it "should be populated if :populate is set to true" do
+      search = ThinkingSphinx::Search.new(:populate => true)
+      search.should be_populated
     end
   end
   
@@ -780,9 +785,10 @@ describe ThinkingSphinx::Search do
         end
       
         it "should set up the excerpter with the instances and search" do
-          ThinkingSphinx::Excerpter.should_receive(:new).with(@search, @alpha_a)
-          ThinkingSphinx::Excerpter.should_receive(:new).with(@search, @alpha_b)
-        
+          [@alpha_a, @beta_b, @alpha_b, @beta_a].each do |object|
+            ThinkingSphinx::Excerpter.should_receive(:new).with(@search, object)
+          end
+          
           @search.first
         end
       end
@@ -815,11 +821,6 @@ describe ThinkingSphinx::Search do
         it "should add matching_fields method if using fieldmask ranking mode" do
           search = ThinkingSphinx::Search.new :rank_mode => :fieldmask
           search.first.should respond_to(:matching_fields)
-        end
-        
-        it "should not add matching_fields method if using a different ranking mode" do
-          search = ThinkingSphinx::Search.new :rank_mode => :bm25
-          search.first.should_not respond_to(:matching_fields)
         end
         
         it "should not add matching_fields method if object already have one" do
@@ -1107,6 +1108,15 @@ describe ThinkingSphinx::Search do
       @search.excerpt_for('string')
     end
     
+    it "should respect the provided index option" do
+      @search = ThinkingSphinx::Search.new(:classes => [Alpha], :index => 'foo')
+      @client.should_receive(:excerpts) do |options|
+        options[:index].should == 'foo'
+      end
+      
+      @search.excerpt_for('string')
+    end
+    
     it "should optionally take a second argument to allow for multi-model searches" do
       @client.should_receive(:excerpts) do |options|
         options[:index].should == 'beta_core'
@@ -1170,6 +1180,39 @@ describe ThinkingSphinx::Search do
       @client.filters.detect { |filter|
         filter.attribute == 'int'
       }.should_not be_nil
+    end
+  end
+  
+  describe '#freeze' do
+    before :each do
+      @search = ThinkingSphinx::Search.new
+    end
+    
+    it "should populate the result set" do
+      @search.freeze
+      @search.should be_populated
+    end
+    
+    it "should freeze the underlying array" do
+      @search.freeze
+      @search.to_a.should be_frozen
+    end
+    
+    it "should return the Search object" do
+      @search.freeze.should be_a(ThinkingSphinx::Search)
+    end
+  end
+  
+  describe '#client' do
+    let(:client) { Riddle::Client.new }
+    it "should respect the client in options" do
+      search = ThinkingSphinx::Search.new :client => client
+      search.client.should == client
+    end
+    
+    it "should get a new client from the configuration singleton by default" do
+      ThinkingSphinx::Configuration.instance.stub!(:client => client)
+      ThinkingSphinx::Search.new.client.should == client
     end
   end
 end

@@ -46,9 +46,16 @@ module ThinkingSphinx
           @sphinx_scopes ||= []
           @sphinx_scopes << method
           
-          metaclass.instance_eval do
+          singleton_class.instance_eval do
             define_method(method) do |*args|
               options = {:classes => classes_option}
+              options.merge! block.call(*args)
+              
+              ThinkingSphinx::Search.new(options)
+            end
+            
+            define_method("#{method}_without_default".to_sym) do |*args|
+              options = {:classes => classes_option, :ignore_default => true}
               options.merge! block.call(*args)
               
               ThinkingSphinx::Search.new(options)
@@ -64,7 +71,7 @@ module ThinkingSphinx
         
         def remove_sphinx_scopes
           sphinx_scopes.each do |scope|
-            metaclass.send(:undef_method, scope)
+            singleton_class.send(:undef_method, scope)
           end
           
           sphinx_scopes.clear

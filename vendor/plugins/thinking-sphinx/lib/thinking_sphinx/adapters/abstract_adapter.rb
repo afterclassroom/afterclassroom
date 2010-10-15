@@ -12,7 +12,9 @@ module ThinkingSphinx
     def self.detect(model)
       case model.connection.class.name
       when "ActiveRecord::ConnectionAdapters::MysqlAdapter",
-           "ActiveRecord::ConnectionAdapters::MysqlplusAdapter"
+           "ActiveRecord::ConnectionAdapters::MysqlplusAdapter",
+           "ActiveRecord::ConnectionAdapters::Mysql2Adapter",
+           "ActiveRecord::ConnectionAdapters::NullDBAdapter"
         ThinkingSphinx::MysqlAdapter.new model
       when "ActiveRecord::ConnectionAdapters::PostgreSQLAdapter"
         ThinkingSphinx::PostgreSQLAdapter.new model
@@ -31,6 +33,10 @@ module ThinkingSphinx
     
     def quote_with_table(column)
       "#{@model.quoted_table_name}.#{@model.connection.quote_column_name(column)}"
+    end
+    
+    def bigint_pattern
+      /bigint/i
     end
     
     protected

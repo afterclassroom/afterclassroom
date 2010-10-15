@@ -1,7 +1,6 @@
 require 'active_record'
 require 'after_commit'
 require 'yaml'
-require 'cgi'
 require 'riddle'
 
 require 'thinking_sphinx/auto_version'
@@ -11,6 +10,7 @@ require 'thinking_sphinx/property'
 require 'thinking_sphinx/active_record'
 require 'thinking_sphinx/association'
 require 'thinking_sphinx/attribute'
+require 'thinking_sphinx/bundled_search'
 require 'thinking_sphinx/configuration'
 require 'thinking_sphinx/context'
 require 'thinking_sphinx/excerpter'
@@ -19,6 +19,7 @@ require 'thinking_sphinx/class_facet'
 require 'thinking_sphinx/facet_search'
 require 'thinking_sphinx/field'
 require 'thinking_sphinx/index'
+require 'thinking_sphinx/join'
 require 'thinking_sphinx/source'
 require 'thinking_sphinx/rails_additions'
 require 'thinking_sphinx/search'
@@ -63,17 +64,26 @@ module ThinkingSphinx
   # The collection of indexed models. Keep in mind that Rails lazily loads
   # its classes, so this may not actually be populated with _all_ the models
   # that have Sphinx indexes.
+  @@sphinx_mutex = Mutex.new
+  @@context      = nil
+  
   def self.context
-    if Thread.current[:thinking_sphinx_context].nil?
-      Thread.current[:thinking_sphinx_context] = ThinkingSphinx::Context.new
-      Thread.current[:thinking_sphinx_context].prepare
+    if @@context.nil?
+      @@sphinx_mutex.synchronize do
+        if @@context.nil?
+          @@context = ThinkingSphinx::Context.new
+          @@context.prepare
+        end
+      end
     end
     
-    Thread.current[:thinking_sphinx_context]
+    @@context
   end
   
   def self.reset_context!
-    Thread.current[:thinking_sphinx_context] = nil
+    @@sphinx_mutex.synchronize do
+      @@context = nil
+    end
   end
 
   def self.unique_id_expression(offset = nil)
@@ -206,6 +216,8 @@ module ThinkingSphinx
 
   def self.pid_active?(pid)
     !!Process.kill(0, pid.to_i)
+  rescue Errno::EPERM => e
+    true
   rescue Exception => e
     false
   end

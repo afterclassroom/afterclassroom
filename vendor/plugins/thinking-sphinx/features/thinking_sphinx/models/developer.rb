@@ -1,5 +1,5 @@
-require 'features/support/models/tag'
-require 'features/support/models/tagging'
+require "#{File.dirname(__FILE__)}/tag"
+require "#{File.dirname(__FILE__)}/tagging"
 
 class Developer < ActiveRecord::Base
   has_many :taggings, :as => :taggable

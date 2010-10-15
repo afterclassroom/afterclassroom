@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{thinking-sphinx}
-  s.version = "1.3.14"
+  s.version = "1.3.20"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pat Allan"]
-  s.date = %q{2009-12-22}
+  s.date = %q{2010-09-03}
   s.description = %q{A concise and easy-to-use Ruby library that connects ActiveRecord to the Sphinx search daemon, managing configuration, indexing and searching.}
   s.email = %q{pat@freelancing-gods.com}
   s.extra_rdoc_files = [
@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
      "lib/thinking_sphinx/association.rb",
      "lib/thinking_sphinx/attribute.rb",
      "lib/thinking_sphinx/auto_version.rb",
+     "lib/thinking_sphinx/bundled_search.rb",
      "lib/thinking_sphinx/class_facet.rb",
      "lib/thinking_sphinx/configuration.rb",
      "lib/thinking_sphinx/context.rb",
@@ -49,6 +50,7 @@ Gem::Specification.new do |s|
      "lib/thinking_sphinx/index.rb",
      "lib/thinking_sphinx/index/builder.rb",
      "lib/thinking_sphinx/index/faux_column.rb",
+     "lib/thinking_sphinx/join.rb",
      "lib/thinking_sphinx/property.rb",
      "lib/thinking_sphinx/rails_additions.rb",
      "lib/thinking_sphinx/search.rb",
@@ -70,10 +72,78 @@ http://freelancing-god.github.com/ts/en/upgrading.html
 }
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{ActiveRecord/Rails Sphinx library}
   s.test_files = [
-    "features/abstract_inheritance.feature",
+    "features/step_definitions/alpha_steps.rb",
+     "features/step_definitions/beta_steps.rb",
+     "features/step_definitions/common_steps.rb",
+     "features/step_definitions/extensible_delta_indexing_steps.rb",
+     "features/step_definitions/facet_steps.rb",
+     "features/step_definitions/find_arguments_steps.rb",
+     "features/step_definitions/gamma_steps.rb",
+     "features/step_definitions/scope_steps.rb",
+     "features/step_definitions/search_steps.rb",
+     "features/step_definitions/sphinx_steps.rb",
+     "features/support/env.rb",
+     "features/support/lib/generic_delta_handler.rb",
+     "features/thinking_sphinx/db/fixtures/alphas.rb",
+     "features/thinking_sphinx/db/fixtures/authors.rb",
+     "features/thinking_sphinx/db/fixtures/betas.rb",
+     "features/thinking_sphinx/db/fixtures/boxes.rb",
+     "features/thinking_sphinx/db/fixtures/categories.rb",
+     "features/thinking_sphinx/db/fixtures/cats.rb",
+     "features/thinking_sphinx/db/fixtures/comments.rb",
+     "features/thinking_sphinx/db/fixtures/developers.rb",
+     "features/thinking_sphinx/db/fixtures/dogs.rb",
+     "features/thinking_sphinx/db/fixtures/extensible_betas.rb",
+     "features/thinking_sphinx/db/fixtures/foxes.rb",
+     "features/thinking_sphinx/db/fixtures/gammas.rb",
+     "features/thinking_sphinx/db/fixtures/music.rb",
+     "features/thinking_sphinx/db/fixtures/people.rb",
+     "features/thinking_sphinx/db/fixtures/posts.rb",
+     "features/thinking_sphinx/db/fixtures/robots.rb",
+     "features/thinking_sphinx/db/fixtures/tags.rb",
+     "features/thinking_sphinx/db/migrations/create_alphas.rb",
+     "features/thinking_sphinx/db/migrations/create_animals.rb",
+     "features/thinking_sphinx/db/migrations/create_authors.rb",
+     "features/thinking_sphinx/db/migrations/create_authors_posts.rb",
+     "features/thinking_sphinx/db/migrations/create_betas.rb",
+     "features/thinking_sphinx/db/migrations/create_boxes.rb",
+     "features/thinking_sphinx/db/migrations/create_categories.rb",
+     "features/thinking_sphinx/db/migrations/create_comments.rb",
+     "features/thinking_sphinx/db/migrations/create_developers.rb",
+     "features/thinking_sphinx/db/migrations/create_extensible_betas.rb",
+     "features/thinking_sphinx/db/migrations/create_gammas.rb",
+     "features/thinking_sphinx/db/migrations/create_genres.rb",
+     "features/thinking_sphinx/db/migrations/create_music.rb",
+     "features/thinking_sphinx/db/migrations/create_people.rb",
+     "features/thinking_sphinx/db/migrations/create_posts.rb",
+     "features/thinking_sphinx/db/migrations/create_robots.rb",
+     "features/thinking_sphinx/db/migrations/create_taggings.rb",
+     "features/thinking_sphinx/db/migrations/create_tags.rb",
+     "features/thinking_sphinx/models/alpha.rb",
+     "features/thinking_sphinx/models/animal.rb",
+     "features/thinking_sphinx/models/author.rb",
+     "features/thinking_sphinx/models/beta.rb",
+     "features/thinking_sphinx/models/box.rb",
+     "features/thinking_sphinx/models/cat.rb",
+     "features/thinking_sphinx/models/category.rb",
+     "features/thinking_sphinx/models/comment.rb",
+     "features/thinking_sphinx/models/developer.rb",
+     "features/thinking_sphinx/models/dog.rb",
+     "features/thinking_sphinx/models/extensible_beta.rb",
+     "features/thinking_sphinx/models/fox.rb",
+     "features/thinking_sphinx/models/gamma.rb",
+     "features/thinking_sphinx/models/genre.rb",
+     "features/thinking_sphinx/models/medium.rb",
+     "features/thinking_sphinx/models/music.rb",
+     "features/thinking_sphinx/models/person.rb",
+     "features/thinking_sphinx/models/post.rb",
+     "features/thinking_sphinx/models/robot.rb",
+     "features/thinking_sphinx/models/tag.rb",
+     "features/thinking_sphinx/models/tagging.rb",
+     "features/abstract_inheritance.feature",
      "features/alternate_primary_key.feature",
      "features/attribute_transformation.feature",
      "features/attribute_updates.feature",
@@ -91,84 +161,8 @@ http://freelancing-god.github.com/ts/en/upgrading.html
      "features/searching_with_find_arguments.feature",
      "features/sphinx_detection.feature",
      "features/sphinx_scopes.feature",
-     "features/step_definitions",
-     "features/step_definitions/alpha_steps.rb",
-     "features/step_definitions/beta_steps.rb",
-     "features/step_definitions/common_steps.rb",
-     "features/step_definitions/extensible_delta_indexing_steps.rb",
-     "features/step_definitions/facet_steps.rb",
-     "features/step_definitions/find_arguments_steps.rb",
-     "features/step_definitions/gamma_steps.rb",
-     "features/step_definitions/scope_steps.rb",
-     "features/step_definitions/search_steps.rb",
-     "features/step_definitions/sphinx_steps.rb",
      "features/sti_searching.feature",
-     "features/support",
-     "features/support/database.example.yml",
-     "features/support/database.yml",
-     "features/support/db",
-     "features/support/db/fixtures",
-     "features/support/db/fixtures/alphas.rb",
-     "features/support/db/fixtures/authors.rb",
-     "features/support/db/fixtures/betas.rb",
-     "features/support/db/fixtures/boxes.rb",
-     "features/support/db/fixtures/categories.rb",
-     "features/support/db/fixtures/cats.rb",
-     "features/support/db/fixtures/comments.rb",
-     "features/support/db/fixtures/developers.rb",
-     "features/support/db/fixtures/dogs.rb",
-     "features/support/db/fixtures/extensible_betas.rb",
-     "features/support/db/fixtures/foxes.rb",
-     "features/support/db/fixtures/gammas.rb",
-     "features/support/db/fixtures/music.rb",
-     "features/support/db/fixtures/people.rb",
-     "features/support/db/fixtures/posts.rb",
-     "features/support/db/fixtures/robots.rb",
-     "features/support/db/fixtures/tags.rb",
-     "features/support/db/migrations",
-     "features/support/db/migrations/create_alphas.rb",
-     "features/support/db/migrations/create_animals.rb",
-     "features/support/db/migrations/create_authors.rb",
-     "features/support/db/migrations/create_authors_posts.rb",
-     "features/support/db/migrations/create_betas.rb",
-     "features/support/db/migrations/create_boxes.rb",
-     "features/support/db/migrations/create_categories.rb",
-     "features/support/db/migrations/create_comments.rb",
-     "features/support/db/migrations/create_developers.rb",
-     "features/support/db/migrations/create_extensible_betas.rb",
-     "features/support/db/migrations/create_gammas.rb",
-     "features/support/db/migrations/create_genres.rb",
-     "features/support/db/migrations/create_music.rb",
-     "features/support/db/migrations/create_people.rb",
-     "features/support/db/migrations/create_posts.rb",
-     "features/support/db/migrations/create_robots.rb",
-     "features/support/db/migrations/create_taggings.rb",
-     "features/support/db/migrations/create_tags.rb",
-     "features/support/env.rb",
-     "features/support/lib",
-     "features/support/lib/generic_delta_handler.rb",
-     "features/support/models",
-     "features/support/models/alpha.rb",
-     "features/support/models/animal.rb",
-     "features/support/models/author.rb",
-     "features/support/models/beta.rb",
-     "features/support/models/box.rb",
-     "features/support/models/cat.rb",
-     "features/support/models/category.rb",
-     "features/support/models/comment.rb",
-     "features/support/models/developer.rb",
-     "features/support/models/dog.rb",
-     "features/support/models/extensible_beta.rb",
-     "features/support/models/fox.rb",
-     "features/support/models/gamma.rb",
-     "features/support/models/genre.rb",
-     "features/support/models/medium.rb",
-     "features/support/models/music.rb",
-     "features/support/models/person.rb",
-     "features/support/models/post.rb",
-     "features/support/models/robot.rb",
-     "features/support/models/tag.rb",
-     "features/support/models/tagging.rb",
+     "features/thinking_sphinx/database.example.yml",
      "spec/thinking_sphinx/active_record/delta_spec.rb",
      "spec/thinking_sphinx/active_record/has_many_association_spec.rb",
      "spec/thinking_sphinx/active_record/scopes_spec.rb",
@@ -191,6 +185,7 @@ http://freelancing-god.github.com/ts/en/upgrading.html
      "spec/thinking_sphinx/search_methods_spec.rb",
      "spec/thinking_sphinx/search_spec.rb",
      "spec/thinking_sphinx/source_spec.rb",
+     "spec/thinking_sphinx/test_spec.rb",
      "spec/thinking_sphinx_spec.rb"
   ]
 
@@ -198,19 +193,37 @@ http://freelancing-god.github.com/ts/en/upgrading.html
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<activerecord>, [">= 1.15.6"])
-      s.add_runtime_dependency(%q<riddle>, [">= 1.0.8"])
-      s.add_runtime_dependency(%q<after_commit>, [">= 1.0.5"])
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<activerecord>, [">= 1.15.6", "< 3.0.0"])
+      s.add_runtime_dependency(%q<riddle>, [">= 1.0.10"])
+      s.add_runtime_dependency(%q<after_commit>, [">= 1.0.6"])
+      s.add_development_dependency(%q<yard>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_development_dependency(%q<cucumber>, [">= 0"])
+      s.add_development_dependency(%q<will_paginate>, ["= 2.3.11"])
+      s.add_development_dependency(%q<ginger>, ["= 1.2.0"])
+      s.add_development_dependency(%q<faker>, ["= 0.3.1"])
     else
-      s.add_dependency(%q<activerecord>, [">= 1.15.6"])
-      s.add_dependency(%q<riddle>, [">= 1.0.8"])
-      s.add_dependency(%q<after_commit>, [">= 1.0.5"])
+      s.add_dependency(%q<activerecord>, [">= 1.15.6", "< 3.0.0"])
+      s.add_dependency(%q<riddle>, [">= 1.0.10"])
+      s.add_dependency(%q<after_commit>, [">= 1.0.6"])
+      s.add_dependency(%q<yard>, [">= 0"])
+      s.add_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_dependency(%q<cucumber>, [">= 0"])
+      s.add_dependency(%q<will_paginate>, ["= 2.3.11"])
+      s.add_dependency(%q<ginger>, ["= 1.2.0"])
+      s.add_dependency(%q<faker>, ["= 0.3.1"])
     end
   else
-    s.add_dependency(%q<activerecord>, [">= 1.15.6"])
-    s.add_dependency(%q<riddle>, [">= 1.0.8"])
-    s.add_dependency(%q<after_commit>, [">= 1.0.5"])
+    s.add_dependency(%q<activerecord>, [">= 1.15.6", "< 3.0.0"])
+    s.add_dependency(%q<riddle>, [">= 1.0.10"])
+    s.add_dependency(%q<after_commit>, [">= 1.0.6"])
+    s.add_dependency(%q<yard>, [">= 0"])
+    s.add_dependency(%q<rspec>, [">= 1.2.9"])
+    s.add_dependency(%q<cucumber>, [">= 0"])
+    s.add_dependency(%q<will_paginate>, ["= 2.3.11"])
+    s.add_dependency(%q<ginger>, ["= 1.2.0"])
+    s.add_dependency(%q<faker>, ["= 0.3.1"])
   end
 end
 
