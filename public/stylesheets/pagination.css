@@ -17,7 +17,8 @@
   height:14px;
   background: #2E6AB1;
   color:#fff!important;
-  cursor:default; }
+  cursor:default;
+  padding:0 4px;  }
 .assPage a {
   color:#6f6f63;
   padding:0px 4px;

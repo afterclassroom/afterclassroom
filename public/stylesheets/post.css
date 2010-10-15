@@ -298,6 +298,9 @@
 .assInfB .favOn{
   background:url('/images/icon-favR.png') no-repeat;
 }
+.assInfB .share{
+  padding-right:5px;
+}
 .assInfB .com{
   background:url('/images/icon-comnent.gif') no-repeat left 2px;
   padding:0px 0px 0px 17px;
@@ -654,8 +657,8 @@ span.btmDown a:hover{
   height:22px;
 }
 .reqItem div div{
-    float:left;
-  }
+  float:left;
+}
 .reqTi input{
   border:1px solid #CECECE;
   color:#969696;
@@ -1642,13 +1645,13 @@ span.btmBuy a:hover{
   background:url('/images/icon-jobInfo.png') no-repeat;
   padding-left:20px;
 }
-  span.btmAddJob a{
-    background:url('/images/btmJobList.png') no-repeat;
-    width:91px;
-  }
-  span.btmAddJob a:hover{
-    background:url('/images/btmJobListH.png') no-repeat;
-  }
+span.btmAddJob a{
+  background:url('/images/btmJobList.png') no-repeat;
+  width:91px;
+}
+span.btmAddJob a:hover{
+  background:url('/images/btmJobListH.png') no-repeat;
+}
 span.btmJobList a{
   background:url('/images/btmJobList.png') no-repeat;
   width:91px;
