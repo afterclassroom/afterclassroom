@@ -147,19 +147,6 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.datetime "updated_at"
   end
 
-  create_table "gameapps", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "playurl"
-    t.integer  "popular_rank"
-    t.string   "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "gamephoto_file_name"
-    t.string   "gamephoto_content_type"
-    t.integer  "gamephoto_file_size"
-  end
-
   create_table "housing_categories", :force => true do |t|
     t.string "name"
     t.string "label"
@@ -313,27 +300,6 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.integer  "post_party_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "phoneappcategories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "phoneapplications", :force => true do |t|
-    t.integer  "phoneappcategory_id", :null => false
-    t.string   "name"
-    t.string   "description"
-    t.string   "price"
-    t.string   "playurl"
-    t.integer  "popular_rank"
-    t.string   "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
   end
 
   create_table "photo_albums", :force => true do |t|
@@ -585,23 +551,6 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.string  "website"
   end
 
-  create_table "selling_item_images", :force => true do |t|
-    t.string   "caption"
-    t.integer  "selling_item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "selling_items", :force => true do |t|
-    t.integer  "user_id",                 :null => false
-    t.integer  "shopping_subcategory_id", :null => false
-    t.string   "name"
-    t.string   "description"
-    t.string   "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sessions", :force => true do |t|
     t.string   "session_id",       :default => "", :null => false
     t.text     "data"
@@ -620,23 +569,6 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.text     "description"
     t.string   "field_type",  :default => "string"
     t.text     "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "shipping_methods", :force => true do |t|
-    t.string "name"
-  end
-
-  create_table "shopping_subcategories", :force => true do |t|
-    t.integer  "shoppingcategory_id", :null => false
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "shoppingcategories", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -684,19 +616,6 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   create_table "teamup_categories", :force => true do |t|
     t.string "name"
     t.string "label"
-  end
-
-  create_table "toolapps", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "playurl"
-    t.integer  "popular_rank"
-    t.string   "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "toolphoto_file_name"
-    t.string   "toolphoto_content_type"
-    t.integer  "toolphoto_file_size"
   end
 
   create_table "tutor_types", :force => true do |t|

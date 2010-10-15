@@ -2,7 +2,7 @@
 #	Application
 #############################################################
 require 'mongrel_cluster/recipes'
-#require 'vendor/plugins/thinking-sphinx/recipes/thinking_sphinx'
+require 'vendor/plugins/thinking-sphinx/recipes/thinking_sphinx'
 
 set :application, "Afterclassroom"
 set :domain, "afterclassroom.com"
@@ -48,15 +48,15 @@ set :deploy_via, :remote_cache
 #############################################################
 
 namespace :deploy do
-#  task :before_update_code, :roles => [:app] do
-#    thinking_sphinx.stop
-#  end
+  task :before_update_code, :roles => [:app] do
+  thinking_sphinx.stop
+end
 
   desc "Create the database yaml file"
   task :after_update_code do
-#    symlink_sphinx_indexes
-#    thinking_sphinx.configure
-#    thinking_sphinx.start
+  symlink_sphinx_indexes
+  thinking_sphinx.configure
+  thinking_sphinx.start
   
     db_config = <<-EOF
     production:
@@ -112,7 +112,7 @@ namespace :deploy do
 
     task :start, :roles => :app do
       # Start Juggernault
-      run "juggernaut -c #{current_release}/config/juggernaut.yml"
+      run "juggernaut -c #{current_release}/config/juggernaut.yml -d"
       # Start Server
       run "touch #{current_release}/tmp/restart.txt"
     end
@@ -123,8 +123,10 @@ namespace :deploy do
 
     desc "Restart Application"
     task :restart, :roles => :app do
+      # Stop Juggernault
+      run "juggernaut -k -c #{current_release}/config/juggernaut.yml"
       # Start Juggernault
-      run "juggernaut -c #{current_release}/config/juggernaut.yml"
+      run "juggernaut  -d -c #{current_release}/config/juggernaut.yml"
       # Start Server
       run "touch #{current_release}/tmp/restart.txt"
     end
