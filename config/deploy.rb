@@ -55,7 +55,6 @@ end
   desc "Create the database yaml file"
   task :after_update_code do
   symlink_sphinx_indexes
-  thinking_sphinx.configure
   thinking_sphinx.start
   
     db_config = <<-EOF
