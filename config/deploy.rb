@@ -1,12 +1,9 @@
 #############################################################
 #	Application
 #############################################################
-require 'mongrel_cluster/recipes'
-
 set :application, "Afterclassroom"
 set :domain, "afterclassroom.com"
 set :deploy_to, "/var/www/after"
-set :mongrel_conf, "#{deploy_to}/current/config/mongrel_cluster.yml"
 
 #############################################################
 #	Settings
