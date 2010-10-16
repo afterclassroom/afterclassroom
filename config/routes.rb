@@ -180,7 +180,8 @@ ActionController::Routing::Routes.draw do |map|
     :search => :get, :tag => :get,
     :good_companies => :get, :bad_bosses => :get,
     :rate => :get, :require_rate => :get, :my_job_list => :get,
-    :add_job => :get, :employment_infor => :get, :show_job_infor => :get
+    :add_job => :get, :employment_infor => :get, :show_job_infor => :get,
+    :apply_job => :get
   }
 
   map.resources :post_foods, :collection => {

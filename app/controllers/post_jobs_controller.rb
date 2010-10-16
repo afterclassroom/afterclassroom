@@ -224,6 +224,10 @@ class PostJobsController < ApplicationController
 
     redirect_to my_post_user_url(current_user)
   end
+  def apply_job
+    render :layout => false
+  end
+
   
   private
 
@@ -245,4 +249,5 @@ class PostJobsController < ApplicationController
     end
     return @user
   end
+
 end

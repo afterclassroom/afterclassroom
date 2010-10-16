@@ -1,5 +1,24 @@
 <div class="AsDContBtm">
-  <span class="btmApp"><a href="#">Apply now</a></span>
+
+  
+  <% joboffer = post.post_job %>
+  <% joboffer.job_files.each do |jf| %>
+    <% if jf.resume_cv.url != "" %>
+      <% if jf.category == "Add/Edit File" %>
+        <span class="btmApp"><a title="Apply now" class="thickbox" href="/post_jobs/apply_job?&height=288&width=500&subject=UploadFileForApply" id="myaclick">Apply now</a></span>
+      <% end %>
+    <% end %>
+  <% end %>
+
+
+
+
+
+
+
+
+
+
   <span class="btmCom"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');"><span>Comment</span></a></span>
   <span class="btmMail"><%= show_email(post) %></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
