@@ -189,15 +189,11 @@ class PostJobsController < ApplicationController
     if (params[:jobinfo] != nil)
       @post_job.job_files.build(params[:jobinfo].merge({:user_id => current_user.id}))
     else
-      if (params[:letter] != nil)
-        @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
-      end
-      if (params[:transcript] != nil)
-        @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
-      end
-      if (params[:resume] != nil)
-        @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
-      end
+      #If user does not upload file, records for these 3 files are created with empty url
+      #user can upload these files later
+      @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
+      @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
+      @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
     end
 
     if @post_job.save
