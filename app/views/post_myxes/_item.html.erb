@@ -12,7 +12,7 @@
     <div class="mySco"><a href="#">View score</a></div>
   </div>
   <div class="assItemB">
-    <div class="assPic"><a href="#"><div><img src="pictures/pic2.png"/></div></a></div>
+    <div class="assPic"><%= link_to "<div>#{image_tag(post.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
     <div class="assInfT">
       <div class="assInfT">
         <div class="assInfL">
