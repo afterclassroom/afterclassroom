@@ -31,9 +31,22 @@
     </div>
     <div class="jobCom">
       <div class="jobComMenu">
-        <div class="cover"><a href="#">Cover letter</a></div>
-        <div class="trans"><a href="#">Transcript</a></div>
-        <div class="resume"><a href="#">Resume*</a></div>
+        <% pj = @post.post_job %>
+        <% pj.job_files.each do |jf| %>
+          <% if jf.resume_cv.url != "" %>
+            <% if jf.category == "Add/Edit File" %>
+              <div class="cover"><a href="javascript:downloadFile('<%= jf.resume_cv.url %>')">Job Details</a></div>
+            <% else %>
+              <div class="cover"><a href="javascript:downloadFile('<%= jf.resume_cv.url %>')"><%= jf.category %></a></div>
+            <% end %>
+
+          <% else %>
+            <div class="cover"><a href="#">No <%= jf.category %> Available</a></div>
+          <% end %>
+        <% end %>
+<%#*<div class="cover"><a href="#">No Cover letter</a></div>%>
+<%#*<div class="trans"><a href="#">No Transcript</a></div>%>
+<%#*<div class="resume"><a href="#">No Resume*</a></div>%>
       </div>
     </div>
     <%= show_post_comments(@post) %>
