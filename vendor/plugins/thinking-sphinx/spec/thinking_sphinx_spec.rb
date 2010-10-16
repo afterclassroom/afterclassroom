@@ -1,4 +1,4 @@
-require 'spec/spec_helper'
+require 'spec_helper'
 
 describe ThinkingSphinx do
   describe '.context' do
@@ -26,7 +26,7 @@ describe ThinkingSphinx do
       Thread.current[:thinking_sphinx_context] = existing
     end
   end
-  
+    
   describe '.define_indexes?' do
     it "should define indexes by default" do
       ThinkingSphinx.define_indexes?.should be_true

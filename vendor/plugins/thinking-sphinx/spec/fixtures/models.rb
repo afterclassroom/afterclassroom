@@ -30,6 +30,10 @@ class Friendship < ActiveRecord::Base
     set_property :latitude_attr   => :person_id
     set_property :longitude_attr  => :person_id
   end
+  
+  sphinx_scope(:reverse) {
+    {:order => "@weight ASC"}
+  }
 end
 
 class Link < ActiveRecord::Base
@@ -104,10 +108,6 @@ class Alpha < ActiveRecord::Base
   
   def big_name
     name.upcase
-  end
-  
-  def string_to_escape
-    'test "escaping" <characters>'
   end
   
   def sphinx_attributes

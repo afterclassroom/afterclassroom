@@ -41,7 +41,6 @@ javascripts:
   - swfupload
   - swfupload-handlers
   admin:
-  - application
   - jquery
   - jquery-ui
   - jrails
@@ -107,8 +106,8 @@ stylesheets:
   - footer-menu
   - swfupload
   admin:
-  - main
+  - admin-screen
   - admin-datePicker
   - admin-pro-dropline
   - admin-pro-dropline-ie
-  - admin-screen
+  

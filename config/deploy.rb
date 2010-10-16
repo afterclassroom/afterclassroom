@@ -1,12 +1,9 @@
 #############################################################
 #	Application
 #############################################################
-require 'mongrel_cluster/recipes'
-
 set :application, "Afterclassroom"
 set :domain, "afterclassroom.com"
 set :deploy_to, "/var/www/after"
-set :mongrel_conf, "#{deploy_to}/current/config/mongrel_cluster.yml"
 
 #############################################################
 #	Settings
@@ -77,8 +74,14 @@ namespace :deploy do
     after "deploy:update_code", "deploy:pack_assets"
 
     task :start, :roles => :app do
+      # Stop Sphinx
+      run "cd #{release_path} && rake ts:stop"
+      # Start Sphinx
+      run "cd #{release_path} && rake ts:start"
+      # Stop Juggernault
+      run "juggernaut -k -c #{current_release}/config/juggernaut.yml"
       # Start Juggernault
-      run "juggernaut -c #{current_release}/config/juggernaut.yml -d"
+      run "juggernaut  -d -c #{current_release}/config/juggernaut.yml"
       # Start Server
       run "touch #{current_release}/tmp/restart.txt"
     end
@@ -89,14 +92,6 @@ namespace :deploy do
 
     desc "Restart Application"
     task :restart, :roles => :app do
-      # Stop Sphinx
-      run "cd #{release_path} && rake ts:stop"
-      # Start Sphinx
-      run "cd #{release_path} && rake ts:start"
-      # Stop Juggernault
-      run "juggernaut -k -c #{current_release}/config/juggernaut.yml"
-      # Start Juggernault
-      run "juggernaut  -d -c #{current_release}/config/juggernaut.yml"
       # Start Server
       run "touch #{current_release}/tmp/restart.txt"
     end

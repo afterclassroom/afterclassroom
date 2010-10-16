@@ -1,4 +1,4 @@
-require 'spec/spec_helper'
+require 'spec_helper'
 
 describe ThinkingSphinx::Source do
   before :each do
@@ -47,6 +47,10 @@ describe ThinkingSphinx::Source do
       ThinkingSphinx::Attribute.new(
         @source, ThinkingSphinx::Index::FauxColumn.new(:contacts, :id),
         :as => :contact_ids, :source => :query
+      )
+      
+      ThinkingSphinx::Join.new(
+        @source, ThinkingSphinx::Index::FauxColumn.new(:links)
       )
       
       @source.conditions << "`birthday` <= NOW()"
@@ -134,6 +138,10 @@ describe ThinkingSphinx::Source do
       
       it "should not include joins for the sourced MVA attribute" do
         @query.should_not match(/LEFT OUTER JOIN `contacts`/)
+      end
+      
+      it "should include explicitly requested joins" do
+        @query.should match(/LEFT OUTER JOIN `links`/)
       end
       
       it "should include any defined conditions" do

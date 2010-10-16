@@ -1,4 +1,4 @@
-require 'spec/spec_helper'
+require 'spec_helper'
 
 describe ThinkingSphinx::Index::FauxColumn do  
   describe "coerce class method" do
@@ -25,6 +25,12 @@ describe ThinkingSphinx::Index::FauxColumn do
       ThinkingSphinx::Index::FauxColumn.coerce([:one, :two]).should == [
         @column, @column
       ]
+    end
+  end
+  
+  describe '#to_ary' do
+    it "should return an array with the instance inside it" do
+      subject.to_ary.should == [subject]
     end
   end
 end
