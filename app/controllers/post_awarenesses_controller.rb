@@ -100,7 +100,13 @@ class PostAwarenessesController < ApplicationController
     chart.data = [total_support, total_notsupport]
 
     #reuse and change size, set labels for big chart
-    chart.labels = ['Support','Not support']
+    str = "Reliable"
+    str_not = "Not Reliable"
+    if post_awareness.awareness_type.label == "take_action_now"
+      str = "Support"
+      str_not = "Not Support"
+    end
+    chart.labels = [str,str_not]
     chart.height = 300
     chart.width = 550
     @chart_url = chart.to_url
