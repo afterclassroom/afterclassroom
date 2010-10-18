@@ -96,8 +96,4 @@ namespace :deploy do
       run "touch #{current_release}/tmp/restart.txt"
     end
   end
-  
-  task :symlink_sphinx_indexes, :roles => [:app] do
-    run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
-  end
 end
