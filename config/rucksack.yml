@@ -106,8 +106,9 @@ stylesheets:
   - footer-menu
   - swfupload
   admin:
-  - admin-screen
+  - main
   - admin-datePicker
   - admin-pro-dropline
   - admin-pro-dropline-ie
+  - admin-screen
   

@@ -319,24 +319,28 @@ module ApplicationHelper
   end
 
   def show_support(post)
+    str = "Reliable"
+    str = "Support" if post.post_awareness.awareness_type.label == "take_action_now"
     if !logged_in?
-      link_to_require_login("Support")
+      link_to_require_login(str)
     elsif current_user.post_awarenesses_supports.collect{|p| p.post_awareness}.include?(post.post_awareness)
       str_supported = "You've selected."
-      link_to("Support", "javascript:;", :class => "vtip", :title => str_supported)
+      link_to(str, "javascript:;", :class => "vtip", :title => str_supported)
     else
-      link_to_remote("Support", {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :update => "support_action"})
+      link_to_remote(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :update => "support_action"})
     end
   end
 
   def show_notsupport(post)
+    str = "Not Reliable"
+    str = "Not Support" if post.post_awareness.awareness_type.label == "take_action_now"
     if !logged_in?
-      link_to_require_login("Not support")
+      link_to_require_login(str)
     elsif current_user.post_awarenesses_supports.collect{|p| p.post_awareness}.include?(post.post_awareness)
       str_supported = "You've selected."
-      link_to("Not support", "javascript:;", :class => "vtip", :title => str_supported)
+      link_to(str, "javascript:;", :class => "vtip", :title => str_supported)
     else
-      link_to_remote("Not support", {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :update => "support_action"})
+      link_to_remote(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :update => "support_action"})
     end
   end
   

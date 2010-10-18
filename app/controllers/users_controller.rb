@@ -199,12 +199,12 @@ class UsersController < ApplicationController
       @city = @school.city
       @state = @city.state
       @country = @state.country
-      @states = @country.states
+      @states = @country.states.has_cities
       @cities = @state.cities
       @schools = @city.schools
     else
       @country = @countries.first
-      @states = @country.states
+      @states = @country.states.has_cities
       @state = @states.first
       @cities = @state.cities
       @city = @cities.first
