@@ -1,1 +1,27 @@
-hello i am apply job
+<% form_for :apply_job, :url => {:action => "save_apply_job"}, :html =>{:multipart => true, :id => "form_applyjob"} do |f| %>
+  <%= render :partial => "/shared/form_request_post/resume_cv", :locals => {:p => p}, :locals => {:f => f} %>
+  <div style="padding-left: 90px;" class="submit"><a onclick="upload_files()" href="javascript:;">Send</a></div>
+<% end %>
+
+
+<script type="text/javascript">
+
+  function upload_files(){
+    $form_url = $('form#form_applyjob').attr('action');
+
+    $.ajax({
+      url: $form_url,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        alert(msg);
+        $('#TB_closeWindowButton').click();
+      }
+    });
+    
+  }
+
+</script>
