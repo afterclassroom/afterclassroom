@@ -4,31 +4,34 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>:: <%= configatron.site_name %> ::</title>
-    <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default" />
+
     <%= stylesheet_link_packed :admin %>
     <%= javascript_include_packed :admin %>
+
   </head>
   <body>
     <!-- Start: page-top-outer -->
-        <%= render :partial => 'shared/admin/header' %>
+<%= render :partial => 'shared/admin/header' %>
     <!-- End: page-top-outer -->
     <div class="clear">&nbsp;</div>
     <!--  start nav-outer-repeat START -->
-        <%= render :partial => 'shared/admin/menu' %>
+<%= render :partial => 'shared/admin/menu' %>
     <!--  start nav-outer-repeat END -->
     <div class="clear"></div>
 
     <!-- start content-outer START -->
     <div id="content-outer">
-    <!-- start content -->
-        <%= render :partial => 'shared/admin/content' %>
+      <!-- start content -->
+<%= render :partial => 'shared/admin/content' %>
     <!--  end content -->
       <div class="clear">&nbsp;</div>
     </div>
     <!--  end content-outer END -->
     <div class="clear">&nbsp;</div>
     <!-- start footer -->
-        <%= render :partial => 'shared/admin/footer' %>
+<%= render :partial => 'shared/admin/footer' %>
     <!-- end footer -->
+
   </body>
 </html>
+

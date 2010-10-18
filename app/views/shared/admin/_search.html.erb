@@ -4,16 +4,34 @@
       <td><input type="text" value="Search" onblur="if (this.value=='') { this.value='Search'; }" onfocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" /></td>
       <td>
         <select  class="styledselect">
+
           <option value=""> All</option>
           <option value=""> Products</option>
           <option value=""> Categories</option>
           <option value="">Clients</option>
           <option value="">News</option>
+
         </select>
       </td>
       <td>
-        <input type="image" src="images/admin/shared/top_search_btn.gif"  />
+        <input type="image" src="/images/admin/shared/top_search_btn.gif"  />
       </td>
     </tr>
   </table>
 </div>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('.styledselect').selectbox({ inputClass: "selectbox_styled" });
+        });
+    </script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.styledselect_form_1').selectbox({ inputClass: "styledselect_form_1" });
+            $('.styledselect_form_2').selectbox({ inputClass: "styledselect_form_2" });
+        });
+    </script>
+
+
