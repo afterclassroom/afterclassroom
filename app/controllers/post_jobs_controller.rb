@@ -227,6 +227,27 @@ class PostJobsController < ApplicationController
   def apply_job
     render :layout => false
   end
+  def save_apply_job
+
+
+    myjf = JobFile.new(params[:letter])
+    
+    render :text => "Successfuly"
+    puts "hello world:: "+myjf.resume_cv.url
+    puts "hello world === "+params[:letter].to_s
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+    puts "hello world"
+  end
 
   
   private
