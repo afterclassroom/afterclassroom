@@ -1,6 +1,4 @@
-<div id="content-outer">
-  <!-- start content -->
-  <div id="content">
+
 
     <!--  start page-heading -->
     <div id="page-heading">
@@ -52,9 +50,9 @@
                     
                     <td class="options-width">
                   
-                      <a><%= link_to '', post_category, :class => 'icon-1 info-tooltip', :title => 'Show' %></a>
-                      <a><%= link_to '', edit_post_category_path(post_category), :class => 'icon-2 info-tooltip', :title => 'Edit'  %></a>
-                      <a><%= link_to '', post_category, :confirm => 'Are you sure?', :method => :delete, :class => 'icon-3 info-tooltip', :title => 'Destroy'  %></a>
+                      <a><%= link_to '', post_category, :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
+                      <a><%= link_to '', edit_post_category_path(post_category), :class => 'icon-1 info-tooltip', :title => 'Edit'  %></a>
+                      <a><%= link_to '', post_category, :confirm => 'Are you sure?', :method => :delete, :class => 'icon-2 info-tooltip', :title => 'Destroy'  %></a>
                     </td>
                   </tr>
                   <% end %>
@@ -122,14 +120,8 @@
   
   <!--  end content -->
   <div class="clear">&nbsp;</div>
-</div>
-</div>
+
 <!--  end content-outer........................................................END -->
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.styledselect_pages').selectbox({ inputClass: "styledselect_pages" });
-    });
-</script>
 
 
