@@ -7,3 +7,6 @@ public/photos/**/*
 public/photo_attaches/**/*
 public/music_attaches/**/*
 public/resume_cvs/**/*
+public/gamephotos/**/*
+public/selling_item_photos/**/*
+public/toolphotos/**/*
