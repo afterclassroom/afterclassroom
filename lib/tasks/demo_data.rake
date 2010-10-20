@@ -426,9 +426,6 @@ def create_demo_posts_teamups
     pteam = PostTeamup.create do |pt|
       pt.post = post
       pt.teamup_category_id = TeamupCategory.find(rand(TeamupCategory.count)+1)
-      pt.ourStatus = Faker::Lorem.sentence
-      pt.founded_in = DateTime.now - rand(30)
-      pt.noOfMember = rand(200)
       pt.tag_list = get_random_list_tags
     end
     

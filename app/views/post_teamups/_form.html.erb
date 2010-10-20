@@ -11,18 +11,6 @@
   <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/email" %>
-  <div class="postItem">
-    <div class="postTit">Our Status</div>
-    <div class="postInp"><%= f.text_field :ourStatus, :style => "width:208px" %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Founded In</div>
-    <div class="postInp"><%= f.text_field :founded_in, :style => "width:208px" %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Members</div>
-    <div class="postInp"><%= f.text_field :noOfMember, :style => "width:208px" %></div>
-  </div>
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
