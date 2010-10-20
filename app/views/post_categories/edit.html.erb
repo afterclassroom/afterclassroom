@@ -5,7 +5,6 @@
     <th class="topleft"></th>
     <td id="tbl-border-top">&nbsp;</td>
     <th class="topright"></th>
-
     <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="100" alt="" /></th>
   </tr>
   <tr>
@@ -13,75 +12,27 @@
     <td>
       <!--  start content-table-inner -->
       <div id="content-table-inner">
+        <% content_for :header do -%>
+          <%= link_to 'Post categories', post_categories_path %>
+        <% end -%>
+        <% form_for(@post_category, :html => {:id => "form"}) do |f| %>
+          <div class="postItem">
+            <span class="postTit">Name*: </span>
+            <span class="postCa"><%= f.text_field :name, :class => "required" %></span>
+          </div>
+          <div class="submitCr">
+            <a href="javascript:;" onclick="submit();">Update</a>
+          </div>
+        <% end %>
+        <div class="postForm">
+          <%= link_to 'Show', @post_category, :class => 'form-show' %>
 
-        <table border="0" width="100%" cellpadding="0" cellspacing="0">
-          <tr valign="top">
-            <td>
-
-              <table border="0" cellpadding="0" cellspacing="0"  id="id-form">
-                <% content_for :header do -%>
-                  <%= link_to 'Post categories', post_categories_path %>
-                <% end -%>
-
-                <div id="posting-section">
-                  <% form_for(@post_category, :html => {:id => "form"}) do |f| %>
-
-                    <legend><strong></strong></legend>
-
-                    <tr>
-                      <th valign="top">Name*:</th>
-                      <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
-
-                      <td>
-                        <div class="submit">
-                          <a href="javascript:;" onclick="submit();">Update</a>
-                        </div>
-
-                      </td>
-                    </tr>
-
-                    <div id="elements_store"></div>
-
-                  <% end %>
-
-                </div>
-
-                <tr>
-                  <th>&nbsp;</th>
-                  <td valign="top">
-                    <%= link_to 'Show', @post_category, :class => 'form-show' %>
-
-                    <%= link_to 'Back', post_categories_path, :class => 'form-back' %>
-                  </td>
-                </tr>
-
-              </table>
-
-              <!-- end id-form  -->
-
-            </td>
-            <td>
-
-              <!--  start related-activities -->
-
-        <!-- end related-activities -->
-
-            </td>
-          </tr>
-          <tr>
-            <td><img src="/images/admin/shared/blank.gif" width="695" height="1" alt="blank" /></td>
-            <td></td>
-          </tr>
-        </table>
-
-        <div class="clear"></div>
-
-
+          <%= link_to 'Back', post_categories_path, :class => 'form-back' %>
+        </div>
       </div>
       <!--  end content-table-inner  -->
     </td>
     <td id="tbl-border-right"></td>
-
   </tr>
   <tr>
     <th class="sized bottomleft"></th>
@@ -89,10 +40,6 @@
     <th class="sized bottomright"></th>
   </tr>
 </table>
-
-
-
-
 <!--  end content -->
 
 <!--  end content-outer -->
@@ -107,8 +54,3 @@
         });
     });
 </script>
-
-
-
-
-
