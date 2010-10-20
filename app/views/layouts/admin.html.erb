@@ -11,26 +11,26 @@
   </head>
   <body>
     <!-- Start: page-top-outer -->
-<%= render :partial => 'shared/admin/header' %>
+    <%= render :partial => 'shared/admin/header' %>
     <!-- End: page-top-outer -->
     <div class="clear">&nbsp;</div>
     <!--  start nav-outer-repeat START -->
-<%= render :partial => 'shared/admin/menu' %>
+    <%= render :partial => 'shared/admin/menu' %>
     <!--  start nav-outer-repeat END -->
     <div class="clear"></div>
 
     <!-- start content-outer START -->
     <div id="content-outer">
-    <div id="content">
-      <!-- start content -->
-<%= yield %>
-    <!--  end content -->
+      <div id="content">
+        <!-- start content -->
+        <%= yield %>
+        <!--  end content -->
+      </div>
     </div>
-  </div>
     <!--  end content-outer END -->
     <div class="clear">&nbsp;</div>
     <!-- start footer -->
-<%= render :partial => 'shared/admin/footer' %>
+    <%= render :partial => 'shared/admin/footer' %>
     <!-- end footer -->
 
   </body>
