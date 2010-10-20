@@ -1,106 +1,93 @@
-<div id="page-heading"><h1>Add product</h1></div>
-
-
+<div id="page-heading"><h1>Edit category</h1></div>
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
-<tr>
-	<th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="100" alt="" /></th>
-	<th class="topleft"></th>
-	<td id="tbl-border-top">&nbsp;</td>
-	<th class="topright"></th>
+  <tr>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="100" alt="" /></th>
+    <th class="topleft"></th>
+    <td id="tbl-border-top">&nbsp;</td>
+    <th class="topright"></th>
 
-	<th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="100" alt="" /></th>
-</tr>
-<tr>
-	<td id="tbl-border-left"></td>
-	<td>
-	<!--  start content-table-inner -->
-	<div id="content-table-inner">
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="100" alt="" /></th>
+  </tr>
+  <tr>
+    <td id="tbl-border-left"></td>
+    <td>
+      <!--  start content-table-inner -->
+      <div id="content-table-inner">
 
-	<table border="0" width="100%" cellpadding="0" cellspacing="0">
-	<tr valign="top">
-	<td>
+        <table border="0" width="100%" cellpadding="0" cellspacing="0">
+          <tr valign="top">
+            <td>
 
+              <table border="0" cellpadding="0" cellspacing="0"  id="id-form">
+                <% content_for :header do -%>
+                  <%= link_to 'Post categories', post_categories_path %>
+                <% end -%>
 
+                <div id="posting-section">
+                  <% form_for(@post_category, :html => {:id => "form"}) do |f| %>
 
-		<!--  start step-holder -->
-		
-		<!--  end step-holder -->
+                    <legend><strong></strong></legend>
 
-		<!-- start id-form -->
+                    <tr>
+                      <th valign="top">Name*:</th>
+                      <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
 
-		<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
-		<% content_for :header do -%>
-	<%= link_to 'Post categories', post_categories_path %>
-<% end -%>
+                      <td>
+                        <div class="submit">
+                          <a href="javascript:;" onclick="submit();">Update</a>
+                        </div>
 
-<div id="posting-section">
-  <% form_for(@post_category, :html => {:id => "form"}) do |f| %>
-  
-      <legend><strong>Edit category</strong></legend>
-     
-        <tr>
-          <th valign="top">Name*:</th>
-          <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
-        
-        <td>
-          <div class="post_cbt">
-            <!-- post  button -->
-            <a href="javascript:submit()" title="Post" class="link_bt">
-              <span class="ltred_l"></span>
-              <span class="form-update">Update</span>
-              <span class="ltred_r"></span>
-            </a>
-            <!-- end post button -->
-          </div>
-        </td>
-        </tr>
-     
-      <div id="elements_store"></div>
-   
-<% end %>
-</div>
-<tr>
-  <th>&nbsp;</th>
-<td valign="top">
-<%= link_to 'Show', @post_category, :class => 'form-show' %>
+                      </td>
+                    </tr>
 
-<%= link_to 'Back', post_categories_path, :class => 'form-back' %>
-</td>
-</tr>
-	
-	</table>
+                    <div id="elements_store"></div>
 
-	<!-- end id-form  -->
+                  <% end %>
 
-	</td>
-	<td>
+                </div>
 
-	<!--  start related-activities -->
-	
-	<!-- end related-activities -->
+                <tr>
+                  <th>&nbsp;</th>
+                  <td valign="top">
+                    <%= link_to 'Show', @post_category, :class => 'form-show' %>
 
-</td>
-</tr>
-<tr>
-<td><img src="/images/admin/shared/blank.gif" width="695" height="1" alt="blank" /></td>
-<td></td>
-</tr>
-</table>
+                    <%= link_to 'Back', post_categories_path, :class => 'form-back' %>
+                  </td>
+                </tr>
 
-<div class="clear"></div>
+              </table>
+
+              <!-- end id-form  -->
+
+            </td>
+            <td>
+
+              <!--  start related-activities -->
+
+        <!-- end related-activities -->
+
+            </td>
+          </tr>
+          <tr>
+            <td><img src="/images/admin/shared/blank.gif" width="695" height="1" alt="blank" /></td>
+            <td></td>
+          </tr>
+        </table>
+
+        <div class="clear"></div>
 
 
-</div>
-<!--  end content-table-inner  -->
-</td>
-<td id="tbl-border-right"></td>
+      </div>
+      <!--  end content-table-inner  -->
+    </td>
+    <td id="tbl-border-right"></td>
 
-</tr>
-<tr>
-	<th class="sized bottomleft"></th>
-	<td id="tbl-border-bottom">&nbsp;</td>
-	<th class="sized bottomright"></th>
-</tr>
+  </tr>
+  <tr>
+    <th class="sized bottomleft"></th>
+    <td id="tbl-border-bottom">&nbsp;</td>
+    <th class="sized bottomright"></th>
+  </tr>
 </table>
 
 
@@ -110,22 +97,18 @@
 
 <!--  end content-outer -->
 
-
-
-
-
-
-<script type="text/javascript">
-  var valid = new Validation('form', {immediate : true, onSubmit:false});
-  function submit(){
-    var result = valid.validate();
-    if (result) {
-      Tips.hideAll();
-      $$('.prototip').each(function(element){
-        $('elements_store').insert(element, { position: content });
-      });
-      $('form').submit();
+<script language="javascript">
+    function submit(){
+        $("#form").submit();
     }
-  }
+    $().ready(function() {
+        $("#form").validate({
+            errorLabelContainer: $("#form .eerror")
+        });
+    });
 </script>
+
+
+
+
 
