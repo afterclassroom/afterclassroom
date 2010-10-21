@@ -12,23 +12,29 @@
     <td>
       <!--  start content-table-inner -->
       <div id="content-table-inner">
-        <% content_for :header do -%>
-          <%= link_to 'Post categories', post_categories_path %>
-        <% end -%>
-        <% form_for(@post_category, :html => {:id => "form"}) do |f| %>
-          <div class="postItem">
-            <span class="postTit">Name*: </span>
-            <span class="postCa"><%= f.text_field :name, :class => "required" %></span>
-          </div>
-          <div class="submitCr">
-            <a href="javascript:;" onclick="submit();">Update</a>
-          </div>
-        <% end %>
-        <div class="postForm">
-          <%= link_to 'Show', @post_category, :class => 'form-show' %>
-
-          <%= link_to 'Back', post_categories_path, :class => 'form-back' %>
-        </div>
+        <table cellspacing="0" cellpadding="0" border="0" id="id-form">
+          <% content_for :header do -%>
+            <%= link_to 'Post categories', post_categories_path %>
+          <% end -%>
+          <% form_for(@post_category, :html => {:id => "form"}) do |f| %>
+            <tr>
+              <th valign="top">Name*:</th>
+              <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
+              <td class="submit"><a href="javascript:;" onclick="submit();">Update</a></td>
+              <td>
+                <div class="error-left"></div>
+                <div class="error-inner">This field is required.</div>
+              </td>
+            </tr>
+          <% end %>
+          <tr>
+            <th>&nbsp;</th>
+            <td valign="top">
+              <%= link_to 'Show', @post_category, :class => 'form-show' %>
+              <%= link_to 'Back', post_categories_path, :class => 'form-back' %>
+            </td>
+          </tr>
+        </table>
       </div>
       <!--  end content-table-inner  -->
     </td>
@@ -44,8 +50,9 @@
 
 <!--  end content-outer -->
 
-<script language="javascript">
-   function submit(){
+<script type="text/javascript">
+// only for demo purposes
+function submit(){
     var result = $("#form").validate();
     if (result) {
         $("#form").submit();
