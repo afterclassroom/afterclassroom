@@ -12,15 +12,21 @@
     <td>
       <!--  start content-table-inner -->
       <div id="content-table-inner">
-        <% content_for :header do -%>
-          <%= link_to 'Post categories', post_categories_path %>
-        <% end -%>
-        <% form_for(@post_category, :html => {:id => "form"}) do |f| %>
-          <div class="postItem">
-            <span class="postTit">Name*: </span>
-            <span class="postCa"><%= f.text_field :name, :class => "required" %></span>       
-          </div>
-          <div class="submitCr"><a href="javascript:;" onclick="submit();">Create</a></div>
+        <table cellspacing="0" cellpadding="0" border="0" id="id-form">
+          <% content_for :header do -%>
+            <%= link_to 'Post categories', post_categories_path %>
+          <% end -%>
+          <% form_for(@post_category, :html => {:id => "form"}) do |f| %>
+            <tr>
+              <th valign="top">Name*:</th>
+              <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
+            </tr>
+
+          </table>
         <% end %>
         <!-- end id-form  -->
       </div>
@@ -41,10 +47,9 @@
 
 <script language="javascript">
     function submit(){
-    var result = $("#form").validate();
-    if (result) {
-        $("#form").submit();
+        var result = $("#form").validate();
+        if (result) {
+            $("#form").submit();
+        }
     }
-}
 </script>
-
