@@ -41,12 +41,10 @@
 
 <script language="javascript">
     function submit(){
+    var result = $("#form").validate();
+    if (result) {
         $("#form").submit();
     }
-    $().ready(function() {
-        $("#form").validate({
-            errorLabelContainer: $("#form .error")
-        });
-    });
+}
 </script>
 

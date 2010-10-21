@@ -19,11 +19,7 @@ class PostCategoriesController < ApplicationController
   # GET /post_categories/1.xml
   def show
     @post_category = PostCategory.find(params[:id])
-    @post = @post_category.post
-    @post_category_id = @post.post_category_id
-    @type_name = @post.post_category.name
-    @comments = @post.comments.find(:all, :limit => 5, :order => "created_at DESC")
-    update_views(@post_category.post)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_category }
