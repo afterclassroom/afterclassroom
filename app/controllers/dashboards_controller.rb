@@ -1,5 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
-class DashboardController < ApplicationController
+class DashboardsController < ApplicationController
   # GET /
   # The default dashboard
   def index

@@ -229,7 +229,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # Administration
   map.namespace(:admin) do |admin|
-    admin.root :controller => 'dashboard', :action => 'index'
+    admin.resources :dashboards
     admin.resources :settings
     admin.resources :users, :member => { :suspend   => :put,
       :unsuspend => :put,
@@ -240,10 +240,11 @@ ActionController::Routing::Routes.draw do |map|
       :active    => :get,
       :suspended => :get,
       :deleted   => :get }
+    admin.root :controller => 'dashboards', :action => 'index'
   end
   
   # Dashboard as the default location
-  map.root :controller => 'dashboard', :action => 'index'
+  map.root :controller => 'dashboards', :action => 'index'
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'

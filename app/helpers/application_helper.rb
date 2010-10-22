@@ -41,6 +41,10 @@ module ApplicationHelper
     "<li class='#{link_current}' >" + link_to("<span>" + name + "</span>", url, {}) + "</li>"
   end
 
+  def tab_to_admin(name, ctrl_name, path, sub_menus = nil)
+    render :partial => "shared/admin/menu_item", :locals => {:name => name, :ctrl_name => ctrl_name, :path => path, :sub_menus => sub_menus}
+  end
+
   # Return true if the currently logged in user is an admin
   def admin?
     logged_in? && current_user.has_role?(:admin)
