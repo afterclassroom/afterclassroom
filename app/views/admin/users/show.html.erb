@@ -32,16 +32,12 @@
 <% end -%>
 
 <table class="overview">
-	<%= cell "Login", h(@user.login) %>
-	<%= cell "User ID", h(@user.id) %>
+	<%= h(@user.login) %>
+	<%= h(@user.id) %>
 
-	<%= cell_separator %>
+	<%= h(@user.email) %>
+	<%= "#{"*"*8} <small>#{link_to_if !@user.deleted?, "send new password", reset_password_admin_user_url(@user), :method => :put}</small>" %>
 	
-	<%= cell "Email", h(@user.email) %>
-	<%= cell "Password", "#{"*"*8} <small>#{link_to_if !@user.deleted?, "send new password", reset_password_admin_user_url(@user), :method => :put}</small>" %>
-	
-	<%= cell_separator %>
-	
-	<%= cell "Account created", @user.created_at.to_s(:long) %>
-	<%= cell "Last updated", @user.updated_at.to_s(:long) %>
+	<%= @user.created_at.to_s(:long) %>
+	<%= @user.updated_at.to_s(:long) %>
 </table>

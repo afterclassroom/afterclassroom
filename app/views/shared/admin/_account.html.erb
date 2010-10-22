@@ -1,0 +1,11 @@
+<div class="account-content">
+  <div class="account-drop-inner">
+    <%= link_to "Settings", setting_user_settings_path(current_user), :id => "acc-settings", :target => "_blank" %>
+    <div class="clear">&nbsp;</div>
+    <div class="acc-line">&nbsp;</div>
+    <%= link_to "Profile", user_profiles_path(current_user), :id => "acc-details", :target => "_blank" %>
+    <div class="clear">&nbsp;</div>
+    <div class="acc-line">&nbsp;</div>
+    <%= link_to "Inbox", user_messages_path(current_user), :id => "acc-inbox", :target => "_blank" %>
+  </div>
+</div>

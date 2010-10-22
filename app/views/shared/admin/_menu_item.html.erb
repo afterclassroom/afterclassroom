@@ -1,13 +1,15 @@
-<ul class="<%= @controller.controller_name == ctrl_name ? "current" : "select" %>">
+<ul class="<%= current_menu %>">
   <li>
     <a href="<%= path %>"><b><%= name %></b><!--[if IE 7]><!--></a><!--<![endif]-->
     <!--[if lte IE 6]><table><tr><td><![endif]-->
-    <div class="select_sub <%= @controller.controller_name == ctrl_name ? "show" : "" %>">
+    <div class="select_sub <%= current_sub %>">
+      <% if sub_menus.is_a?(Array) && sub_menus.size > 0 %>
       <ul class="sub">
-        <li><a href="#nogo">Dashboard Details 1</a></li>
-        <li><a href="#nogo">Dashboard Details 2</a></li>
-        <li><a href="#nogo">Dashboard Details 3</a></li>
+        <% sub_menus.each do |item| %>
+        <li <%= "class='sub_show'" if item[1] == current_item %>><a href="<%= item[2] %>"><%= item[0] %></a></li>
+        <% end %>
       </ul>
+      <% end %>
     </div>
     <!--[if lte IE 6]></td></tr></table></a><![endif]-->
   </li>

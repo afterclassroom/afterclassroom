@@ -42,7 +42,20 @@ module ApplicationHelper
   end
 
   def tab_to_admin(name, ctrl_name, path, sub_menus = nil)
-    render :partial => "shared/admin/menu_item", :locals => {:name => name, :ctrl_name => ctrl_name, :path => path, :sub_menus => sub_menus}
+    current_menu = "select"
+    current_sub = ""
+    current_item = @controller.action_name
+    
+    if ctrl_name.is_a?(Array)# Multi controllers on one menu
+      current_menu = "current" if ctrl_name.include?(@controller.controller_name)
+      current_sub = "show"
+      current_item = @controller.controller_name
+    else# One controller with multi action
+      current_menu = "current" if ctrl_name == @controller.controller_name
+      current_sub = "show"
+    end
+
+    render :partial => "shared/admin/menu_item", :locals => {:name => name, :current_menu => current_menu, :current_sub => current_sub, :current_item => current_item, :path => path, :sub_menus => sub_menus}
   end
 
   # Return true if the currently logged in user is an admin

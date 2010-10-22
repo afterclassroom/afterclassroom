@@ -4,7 +4,7 @@
 
     <!-- start nav-right -->
     <div id="nav-right">
-
+      
       <div class="nav-divider">&nbsp;</div>
       <div class="showhide-account"><img height="14" width="93" alt="" src="/images/admin/shared/nav/nav_myaccount.gif"/></div>
       <div class="nav-divider">&nbsp;</div>
@@ -12,23 +12,7 @@
       <div class="clear">&nbsp;</div>
 
       <!--  start account-content -->
-      <div class="account-content">
-        <div class="account-drop-inner">
-          <a id="acc-settings" href="">Settings</a>
-          <div class="clear">&nbsp;</div>
-          <div class="acc-line">&nbsp;</div>
-          <a id="acc-details" href="">Personal details </a>
-          <div class="clear">&nbsp;</div>
-          <div class="acc-line">&nbsp;</div>
-          <a id="acc-project" href="">Project details</a>
-          <div class="clear">&nbsp;</div>
-          <div class="acc-line">&nbsp;</div>
-          <a id="acc-inbox" href="">Inbox</a>
-          <div class="clear">&nbsp;</div>
-          <div class="acc-line">&nbsp;</div>
-          <a id="acc-stats" href="">Statistics</a>
-        </div>
-      </div>
+      <%= render :partial => "shared/admin/account" %>
       <!--  end account-content -->
 
     </div>
@@ -38,9 +22,36 @@
     <!--  start nav -->
     <div class="nav">
       <div class="table">
-
-        <%= tab_to_admin("Dashboard", "dashboards", admin_dashboards_path) %>
-
+        <%
+          dashboard_submenus = [
+            ["Dashboard 1", "dashboard1", "path_dashboard1"],
+            ["Dashboard 1", "dashboard1", "path_dashboard1"],
+            ["Dashboard 1", "dashboard1", "path_dashboard1"]
+          ]
+          category_menus = [
+            "states", "cities", 
+            "schools", "departments",
+            "post_categories", "housing_categories",
+            "teamup_categories", "party_types",
+            "job_types", "awareness_types"
+          ]
+          category_submenus = [
+            ["States", "states", states_path],
+            ["Cities", "cities", cities_path],
+            ["Schools", "schools", schools_path],
+            ["Departments", "departments", departments_path],
+            ["Posts", "post_categories", post_categories_path],
+            ["Housings", "housing_categories", housing_categories_path],
+            ["Teamups", "teamup_categories", teamup_categories_path],
+            ["Parties", "party_types", party_types_path],
+            ["Jobs", "job_types", job_types_path],
+            ["Student Awarenesses", "awareness_types", awareness_types_path]
+          ]
+        %>
+        <%= tab_to_admin("Dashboard", "dashboards", admin_dashboards_path, dashboard_submenus) %>
+        <%= tab_to_admin("Members", "users", admin_users_path) %>
+        <%= tab_to_admin("Settings", "settings", admin_settings_path) %>
+        <%= tab_to_admin("Categories", category_menus, "javascript:;", category_submenus) %>
         <div class="clear"></div>
       </div>
       <div class="clear"></div>
