@@ -231,6 +231,7 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace(:admin) do |admin|
     admin.resources :dashboards
     admin.resources :settings
+    admin.resources :posts
     admin.resources :users, :member => { :suspend   => :put,
       :unsuspend => :put,
       :activate  => :put,

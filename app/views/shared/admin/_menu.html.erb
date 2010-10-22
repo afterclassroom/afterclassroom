@@ -28,6 +28,15 @@
             ["Dashboard 1", "dashboard1", "path_dashboard1"],
             ["Dashboard 1", "dashboard1", "path_dashboard1"]
           ]
+          post_submenus = [
+            ["View All Posts", "index", admin_posts_path]
+          ]
+          member_submenus = [
+            ["View All Members", "index", admin_users_path]
+          ]
+          setting_submenus = [
+            ["General Setting", "index", admin_settings_path]
+          ]
           category_menus = [
             "states", "cities", 
             "schools", "departments",
@@ -49,8 +58,9 @@
           ]
         %>
         <%= tab_to_admin("Dashboard", "dashboards", admin_dashboards_path, dashboard_submenus) %>
-        <%= tab_to_admin("Members", "users", admin_users_path) %>
-        <%= tab_to_admin("Settings", "settings", admin_settings_path) %>
+        <%= tab_to_admin("Posts", "posts", admin_users_path, post_submenus) %>
+        <%= tab_to_admin("Members", "users", admin_users_path, member_submenus) %>
+        <%= tab_to_admin("Settings", "settings", admin_settings_path, setting_submenus) %>
         <%= tab_to_admin("Categories", category_menus, "javascript:;", category_submenus) %>
         <div class="clear"></div>
       </div>
