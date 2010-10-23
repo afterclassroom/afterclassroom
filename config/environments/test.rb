@@ -24,3 +24,4 @@ config.action_mailer.delivery_method = :test
 # Restful Authentication
 REST_AUTH_SITE_KEY = '5a5e73a69a893311f859ccff1ffd0fa2d7ea25fd'
 REST_AUTH_DIGEST_STRETCHES = 15
+PAPERCLIP_STORAGE_OPTIONS = {}

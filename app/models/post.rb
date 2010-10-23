@@ -29,8 +29,11 @@ class Post < ActiveRecord::Base
   has_one :post_exam_schedule, :dependent => :destroy
 
   # Attach file
-  has_attached_file :attach, :styles => { :medium => "200x200>", :thumb => "61x51#" }
-
+  has_attached_file :attach, {
+    :bucket => 'afterclassroom_post',
+    :styles => { :medium => "200x200>", :thumb => "61x51#" }
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
+    
   # Comments
   acts_as_commentable
 

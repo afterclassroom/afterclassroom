@@ -6,14 +6,14 @@ class Music < ActiveRecord::Base
   belongs_to :music_album
 
   # Attach
-  has_attached_file :music_attach, 
-#    :storage => :s3,
-#    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-#    :bucket => 'afterclassroom_musics',
+  has_attached_file :music_attach, {
+    :bucket => 'afterclassroom_musics',
     :content_type => [
-    'audio/mp3',
-    'audio/wav',
-    'audio/mpeg3']
+      'audio/mp3',
+      'audio/wav',
+      'audio/mpeg3']
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
+    
 
   # Comments
   acts_as_commentable
@@ -31,6 +31,13 @@ class Music < ActiveRecord::Base
   named_scope :with_limit, :limit => 6
   named_scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   named_scope :most_view, :order => "count_view DESC", :group => "music_album_id"
+
+  # ThinkSphinx
+  define_index do
+    indexes title, :sortable => true
+    indexes artist
+    has user_id, music_album_id, created_at
+  end
 
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)
