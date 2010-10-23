@@ -63,11 +63,21 @@ class User < ActiveRecord::Base
   has_private_messages
   
   # Avatar
-  has_attached_file :avatar,
+  has_attached_file :avatar, {
+    :bucket => 'afterclassroom_avatar',
     :default_url => "/images/icons/:style/members.png",
     :styles => { :medium => "169x169>",
     :thumb => "45x45#" }
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
+    
   validates_attachment_content_type :avatar, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
+
+  # ThinkSphinx
+  define_index do
+    indexes name, :sortable => true
+    indexes email
+    has school_id, created_at
+  end
   
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation

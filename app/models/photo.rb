@@ -6,12 +6,10 @@ class Photo < ActiveRecord::Base
   belongs_to :photo_album
 
   # Attach
-  has_attached_file :photo_attach,
-#    :storage => :s3,
-#    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-#    :bucket => 'afterclassroom_photos',
-    :styles => { :medium => "555x417>",
-    :thumb => "92x68#" }
+  has_attached_file :photo_attach, {
+    :bucket => 'afterclassroom_photos',
+    :styles => { :medium => "555x417>", :thumb => "92x68#" }
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
   validates_attachment_content_type :photo_attach, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 
   # Comments
@@ -31,6 +29,13 @@ class Photo < ActiveRecord::Base
   named_scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   named_scope :most_view, :order => "count_view DESC", :group => "photo_album_id"
 
+  # ThinkSphinx
+  define_index do
+    indexes title, :sortable => true
+    indexes description
+    has user_id, photo_album_id, created_at
+  end
+  
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)
     data.content_type = MIME::Types.type_for(data.original_filename).to_s

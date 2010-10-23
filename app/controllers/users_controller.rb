@@ -75,10 +75,10 @@ class UsersController < ApplicationController
       flash[:notice] = "Signup complete! Please sign in to continue."
       redirect_to login_path
     when params[:activation_code].blank?
-      flash[:error] = "The activation code was missing.  Please follow the URL from your email."
+      flash[:error] = "The activation code was missing.<br/>Please follow the URL from your email."
       redirect_back_or_default(root_path)
     else 
-      flash[:error]  = "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
+      flash[:error]  = "We couldn't find a user with that activation code -- check your email?<br/>Or maybe you've already activated -- try signing in."
       redirect_back_or_default(root_path)
     end
   end
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
           redirect_to edit_password_user_url(@user)
         end
       else
-        flash[:error] = "Your current password is not correct. Your password has not been updated."
+        flash[:error] = "Your current password is not correct.<br/>Your password has not been updated."
         redirect_to edit_password_user_url(@user)
       end
     else
@@ -180,8 +180,8 @@ class UsersController < ApplicationController
   
   def successful_creation()
     redirect_back_or_default(root_path)
-    flash[:notice] = "Thanks for signing up!"
-    flash[:notice] << " We're sending you an email with your activation code."
+    flash[:notice] = "Thanks for signing up!<br/>"
+    flash[:notice] << "We're sending you an email with your activation code."
   end
   
   def failed_creation(user, message = 'Sorry, there was an error occured while creating account.')
