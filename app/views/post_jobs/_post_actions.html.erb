@@ -3,7 +3,7 @@
   <% joboffer.job_files.each do |jf| %>
     <% if jf.resume_cv.url != "" %>
       <% if jf.category == "Add/Edit File" %>
-        <span class="btmApp"><a title="Apply now" class="thickbox" href="/post_jobs/apply_job?&height=288&width=500&subject=UploadFileForApply" id="myaclick">Apply now</a></span>
+        <span class="btmApp"><a title="Apply now" class="thickbox" href="/post_jobs/apply_job?&height=288&width=500&subject=Apply&job_id=<%= post.post_job.id %>" id="myaclick">Apply now</a></span>
       <% end %>
     <% end %>
   <% end %>

@@ -182,7 +182,9 @@ ActionController::Routing::Routes.draw do |map|
     :rate => :get, :require_rate => :get, :my_job_list => :get,
     :add_job => :get, :employment_infor => :get, :show_job_infor => :get,
     :apply_job => :get,
-    :save_apply_job => :get
+    :save_letter => :get,
+    :save_script => :get,
+    :save_resume => :get
   }
 
   map.resources :post_foods, :collection => {

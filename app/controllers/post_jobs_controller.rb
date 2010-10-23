@@ -2,6 +2,8 @@
 class PostJobsController < ApplicationController
   include Viewable
 
+  skip_before_filter :verify_authenticity_token
+
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses, :my_job_list, :add_job, :employment_infor, :show_job_infor]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :employment_infor, :show_job_infor]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
@@ -225,30 +227,59 @@ class PostJobsController < ApplicationController
     redirect_to my_post_user_url(current_user)
   end
   def apply_job
+    @post_job_id = params[:job_id]
+
     render :layout => false
   end
-  def save_apply_job
+  def save_letter
 
-
-    myjf = JobFile.new(params[:letter])
+    cover_letter = JobFile.new
     
-    render :text => "Successfuly"
-    puts "hello world:: "+myjf.resume_cv.url
-    puts "hello world === "+params[:letter].to_s
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
-    puts "hello world"
+    @post_job = PostJob.find(params[:job_id])
+    
+    cover_letter = @post_job.job_files.build(:resume_cv => params[:cover_letter])
+    cover_letter.category = "Cover letter"
+    cover_letter.user_id = current_user.id
+
+
+    @post_job.save
+
+    render :text => cover_letter.resume_cv.url
+
   end
 
+  def save_script
+
+    transcript = JobFile.new
+
+    @post_job = PostJob.find(params[:job_id])
+
+    transcript = @post_job.job_files.build(:resume_cv => params[:transcript])
+    transcript.category = "Transcript"
+    transcript.user_id = current_user.id
+
+    @post_job.save
+
+    render :text => transcript.resume_cv.url
+
+  end
+
+  def save_resume
+
+    resume = JobFile.new
+
+    @post_job = PostJob.find(params[:job_id])
+
+    resume = @post_job.job_files.build(:resume_cv => params[:resume])
+    resume.category = "Resume"
+    resume.user_id = current_user.id
+
+
+    @post_job.save
+
+    render :text => resume.resume_cv.url
+
+  end
   
   private
 

@@ -1,22 +1,125 @@
-<% content_for :header do -%>
-	Party types
-<% end -%>
-
-<table>
+<!--  start page-heading -->
+<div id="page-heading"><h1>Party type</h1></div>
+<!-- end page-heading -->
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
   <tr>
-    <th>Name</th>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+    <th class="topleft"></th>
+    <td id="tbl-border-top">&nbsp;</td>
+    <th class="topright"></th>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
   </tr>
-
-<% for party_type in @party_types %>
   <tr>
-    <td><%=h party_type.name %></td>
-    <td><%= link_to 'Show', party_type %></td>
-    <td><%= link_to 'Edit', edit_party_type_path(party_type) %></td>
-    <td><%= link_to 'Destroy', party_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td id="tbl-border-left"></td>
+    <td>
+      <!--  start content-table-inner -->
+      <div id="content-table-inner">
+        <!--  start table-content  -->
+        <div id="table-content">
+          <!--  start product-table -->
+          <form id="mainform" action="">
+            <table border="0" width="100%" cellpadding="0" cellspacing="0">
+              <tr valign="top">
+                <td>
+                  <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+                    <tr>
+                      <th class="table-header-check"></th>
+                      <th class="table-header-repeat line-left minwidth-1"><a href="">Name</a></th>
+                      <th class="table-header-options line-left"><a href="">Options</a></th>
+                    </tr>
+                    <% content_for :header do -%>
+                      Party types
+                    <% end -%>
+                    <% for party_type in @party_types %>
+                      <tr class="alternate-row">
+                        <td></td>
+                        <td><%=h party_type.name %></td>
+                        <td class="options-width">
+                          <a><%= link_to '', party_type, :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
+                          <a><%= link_to '', edit_party_type_path(party_type), :class => 'icon-1 info-tooltip', :title => 'Edit'  %></a>
+                          <a><%= link_to '', party_type, :confirm => 'Are you sure?', :method => :delete, :class => 'icon-2 info-tooltip', :title => 'Destroy'  %></a>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </table>
+                </td>
+                <td>
+                  <div id="related-activities">
+                    <!--  start related-act-top -->
+                    <div id="related-act-top">
+                      <img src="/images/admin/forms/header_related_act.gif" width="271" height="43" alt="" />
+                    </div>
+                    <!-- end related-act-top -->
+                <!--  start related-act-bottom -->
+                    <div id="related-act-bottom">
+                      <!--  start related-act-inner -->
+                      <div id="related-act-inner">
+                        <div class="left"><a href=""><img src="/images/admin/forms/icon_plus.gif" width="21" height="21" alt="" /></a></div>
+                        <div class="right">
+                          <h5><%= link_to 'New party_type', new_party_type_path %></h5>
+                          Lorem ipsum dolor sit amet consectetur
+                          adipisicing elitsed do eiusmod tempor.
+                          <ul class="greyarrow">
+                            <li><a href="">Click here to visit</a></li>
+                            <li><a href="">Click here to visit</a> </li>
+                          </ul>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="lines-dotted-short"></div>
+                        <div class="left"><a href=""><img src="/images/admin/forms/icon_minus.gif" width="21" height="21" alt="" /></a></div>
+                        <div class="right">
+                          <h5>Delete products</h5>
+                          Lorem ipsum dolor sit amet consectetur
+                          adipisicing elitsed do eiusmod tempor.
+                          <ul class="greyarrow">
+                            <li><a href="">Click here to visit</a></li>
+                            <li><a href="">Click here to visit</a> </li>
+                          </ul>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="lines-dotted-short"></div>
+                        <div class="left"><a href=""><img src="/images/admin/forms/icon_edit.gif" width="21" height="21" alt="" /></a></div>
+                        <div class="right">
+                          <h5>Edit categories</h5>
+                          Lorem ipsum dolor sit amet consectetur
+                          adipisicing elitsed do eiusmod tempor.
+                          <ul class="greyarrow">
+                            <li><a href="">Click here to visit</a></li>
+                            <li><a href="">Click here to visit</a> </li>
+                          </ul>
+                        </div>
+                        <div class="clear"></div>
+                      </div>
+                      <!-- end related-act-inner -->
+                      <div class="clear"></div>
+                    </div>
+                    <!-- end related-act-bottom -->
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <!--  end product-table -->
+          </form>
+        </div>
+        <!--  end content-table  -->
+        <!--  start actions-box -->
+
+        <!-- end actions-box -->
+        <!--  start paging -->
+        <!--  end paging-->
+        <div class="clear"></div>
+      </div>
+      <!--  end content-table-inner END  -->
+    </td>
+    <td id="tbl-border-right"></td>
   </tr>
-<% end %>
+  <tr>
+    <th class="sized bottomleft"></th>
+    <td id="tbl-border-bottom">&nbsp;</td>
+    <th class="sized bottomright"></th>
+  </tr>
 </table>
+<!--  end content -->
+<!--  end content-outer END -->
 
-<br />
-
-<%= link_to 'New party_type', new_party_type_path %>
