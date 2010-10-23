@@ -22,4 +22,6 @@ config.action_mailer.raise_delivery_errors = false
 REST_AUTH_SITE_KEY = '5a5e73a69a893311f859ccff1ffd0fa2d7ea25fd'
 REST_AUTH_DIGEST_STRETCHES = 15
 PAPERCLIP_STORAGE_OPTIONS = {:storage => :s3,
-  :s3_credentials => "#{Rails.root}/config/s3.yml"}
+  :s3_credentials => "#{Rails.root}/config/s3.yml",
+  :path => "/:style/:filename"
+  }
