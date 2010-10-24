@@ -1,5 +1,5 @@
 <!--  start page-heading -->
-<div id="page-heading"><h1>Housing Category</h1></div>
+<div id="page-heading"><h1>Awareness Type</h1></div>
 <!-- end page-heading -->
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
   <tr>
@@ -28,16 +28,16 @@
                       <th class="table-header-options line-left"><a href="">Options</a></th>
                     </tr>
                     <% content_for :header do -%>
-                      Housing categories
+                      Awareness types
                     <% end -%>
-                    <% for housing_category in @housing_categories %>
+                    <% for awareness_type in @awareness_types %>
                       <tr class="alternate-row">
                         <td></td>
-                        <td><%=h housing_category.name %></td>
+                        <td><%=h awareness_type.name %></td>
                         <td class="options-width">
-                          <a><%= link_to '', housing_category, :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
-                          <a><%= link_to '', edit_housing_category_path(housing_category), :class => 'icon-1 info-tooltip', :title => 'Edit'  %></a>
-                          <a><%= link_to '', housing_category, :confirm => 'Are you sure?', :method => :delete, :class => 'icon-2 info-tooltip', :title => 'Destroy'  %></a>
+                          <a><%= link_to '', awareness_type, :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
+                          <a><%= link_to '', edit_awareness_type_path(awareness_type), :class => 'icon-1 info-tooltip', :title => 'Edit'  %></a>
+                          <a><%= link_to '', awareness_type, :confirm => 'Are you sure?', :method => :delete, :class => 'icon-2 info-tooltip', :title => 'Destroy'  %></a>
                         </td>
                       </tr>
                     <% end %>
@@ -56,7 +56,7 @@
                       <div id="related-act-inner">
                         <div class="left"><a href=""><img src="/images/admin/forms/icon_plus.gif" width="21" height="21" alt="" /></a></div>
                         <div class="right">
-                          <h5><%= link_to 'New Housing Category', new_housing_category_path %></h5>
+                          <h5><%= link_to 'New Awareness Type', new_awareness_type_path %></h5>
                           Lorem ipsum dolor sit amet consectetur
                           adipisicing elitsed do eiusmod tempor.
                           <ul class="greyarrow">
