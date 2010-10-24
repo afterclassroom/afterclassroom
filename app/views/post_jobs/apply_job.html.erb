@@ -1,17 +1,32 @@
-<% form_for :apply_letter, :url => {:action => "save_letter"}, :html =>{:multipart => true, :id => "form_letter"} do |f| %>
-  <a id="upload_letter" href="javascript:;">Cover Letter</a>
+<% if  @post_job.job_files.with_current_user(current_user.id).with_letter().size > 0 %>
+  Your Cover Letter has been uploaded<br/>
+<% else %>
+  <% form_for :apply_letter, :url => {:action => "save_letter"}, :html =>{:multipart => true, :id => "form_letter"} do |f| %>
+    <a id="upload_letter" href="javascript:;">Cover Letter</a>
+  <% end %>
+  <a id="letter_url" href="" style="visibility:hidden;">Download Cover Letter</a>
 <% end %>
-<a id="letter_url" href="" style="visibility:hidden;">Download Cover Letter</a>
 
-<% form_for :apply_script, :url => {:action => "save_script"}, :html =>{:multipart => true, :id => "form_script"} do |f| %>
-  <a id="upload_script" href="javascript:;">Transcript</a>
+<% if  @post_job.job_files.with_current_user(current_user.id).with_resume().size > 0 %>
+  Your resume has been uploaded<br/>
+<% else %>
+  <% form_for :apply_resume, :url => {:action => "save_resume"}, :html =>{:multipart => true, :id => "form_resume"} do |f| %>
+    <a id="upload_resume" href="javascript:;">Resume</a>
+  <% end %>
+  <a id="resume_url" href="" style="visibility:hidden;">Download Resume</a>
 <% end %>
-<a id="script_url" href="" style="visibility:hidden;">Download Transcript</a>
 
-<% form_for :apply_resume, :url => {:action => "save_resume"}, :html =>{:multipart => true, :id => "form_resume"} do |f| %>
-  <a id="upload_resume" href="javascript:;">Resume</a>
+<% if  @post_job.job_files.with_current_user(current_user.id).with_transcript().size > 0 %>
+  Your transcript has been uploaded<br/>
+<% else %>
+  <% form_for :apply_script, :url => {:action => "save_script"}, :html =>{:multipart => true, :id => "form_script"} do |f| %>
+    <a id="upload_script" href="javascript:;">Transcript</a>
+  <% end %>
+  <a id="script_url" href="" style="visibility:hidden;">Download Transcript</a>
 <% end %>
-<a id="resume_url" href="" style="visibility:hidden;">Download Resume</a>
+
+
+
 
 
 <script type="text/javascript">
@@ -19,146 +34,159 @@
 
   $(document).ready(function(){
     /*HANDLE EVENT UPLOAD COVER LETTER============================================*/
+    
     var $letter = $('#upload_letter');
 
-    var interval;
-    $form_url = $('form#form_letter').attr('action');
-    $form_url = $form_url+'?job_id=<%= @post_job_id %>';
+    if($('#upload_letter').html()  != null){
+      var interval;
+      $form_url = $('form#form_letter').attr('action');
+      $form_url = $form_url+'?job_id=<%= @post_job_id %>';
 
-    new AjaxUpload($letter, {
-      action: $form_url,
-      name: 'cover_letter',
+      new AjaxUpload($letter, {
+        action: $form_url,
+        name: 'cover_letter',
 
-      onSubmit : function(file, ext){
+        onSubmit : function(file, ext){
 
-        // change button text, when user selects file
-        $letter.text('Uploading');
+          // change button text, when user selects file
+          $letter.text('Uploading');
 
-        // If you want to allow uploading only 1 file at time,
-        // you can disable upload button
-        this.disable();
+          // If you want to allow uploading only 1 file at time,
+          // you can disable upload button
+          this.disable();
 
-        // Uploding -> Uploading. -> Uploading...
-        interval = window.setInterval(function(){
-          var text = $letter.text();
-          if (text.length < 13){
-            $letter.text(text + '.');
-          } else {
-            $letter.text('Uploading');
-          }
-        }, 200);
+          // Uploding -> Uploading. -> Uploading...
+          interval = window.setInterval(function(){
+            var text = $letter.text();
+            if (text.length < 13){
+              $letter.text(text + '.');
+            } else {
+              $letter.text('Uploading');
+            }
+          }, 200);
 
-      },
-      onComplete: function(file, response){
-        $letter.text('Uploaded_File_Done');
+        },
+        onComplete: function(file, response){
+          $letter.text('Uploaded_File_Done');
 
-        window.clearInterval(interval);
+          window.clearInterval(interval);
 
-        // enable upload button
-        //this.enable();
+          // enable upload button
+          //this.enable();
 
-        // update GUI with return text
-        $("#response_data").html(response);
-        $('#letter_url').attr('href',response);
-        $('#letter_url').css('visibility','');
-        $letter.css('visibility','hidden');
+          // update GUI with return text
+          $("#response_data").html(response);
+          $('#letter_url').attr('href',response);
+          $('#letter_url').css('visibility','');
+          $letter.css('visibility','hidden');
 
-      }
-    });
+        }
+      });
+    }//end if($('#upload_letter')
+
+    
     /*HANDLE EVENT UPLOAD TRANSCRIPT==============================================*/
     
     var $transcript = $('#upload_script');
 
-    var script_interval;
-    $form_script_url = $('form#form_script').attr('action');
-    $form_script_url = $form_script_url+'?job_id=<%= @post_job_id %>';
+    if ($('#upload_script').html() != null){
+      var script_interval;
+      $form_script_url = $('form#form_script').attr('action');
+      $form_script_url = $form_script_url+'?job_id=<%= @post_job_id %>';
 
-    new AjaxUpload($transcript, {
-      action: $form_script_url,
-      name: 'transcript',
+      new AjaxUpload($transcript, {
+        action: $form_script_url,
+        name: 'transcript',
 
-      onSubmit : function(file, ext){
+        onSubmit : function(file, ext){
 
-        // change button text, when user selects file
-        $transcript.text('Uploading');
+          // change button text, when user selects file
+          $transcript.text('Uploading');
 
-        // If you want to allow uploading only 1 file at time,
-        // you can disable upload button
-        this.disable();
+          // If you want to allow uploading only 1 file at time,
+          // you can disable upload button
+          this.disable();
 
-        // Uploding -> Uploading. -> Uploading...
-        script_interval = window.setInterval(function(){
-          var text = $transcript.text();
-          if (text.length < 13){
-            $transcript.text(text + '.');
-          } else {
-            $transcript.text('Uploading');
-          }
-        }, 200);
+          // Uploding -> Uploading. -> Uploading...
+          script_interval = window.setInterval(function(){
+            var text = $transcript.text();
+            if (text.length < 13){
+              $transcript.text(text + '.');
+            } else {
+              $transcript.text('Uploading');
+            }
+          }, 200);
 
-      },
-      onComplete: function(file, response){
-        $transcript.text('Uploaded_File_Done');
+        },
+        onComplete: function(file, response){
+          $transcript.text('Uploaded_File_Done');
 
-        window.clearInterval(script_interval);
+          window.clearInterval(script_interval);
 
-        // enable upload button
-        //this.enable();
+          // enable upload button
+          //this.enable();
 
-        // update GUI with return text
-        $('#script_url').attr('href',response);
-        $('#script_url').css('visibility','');
-        $transcript.css('visibility','hidden');
+          // update GUI with return text
+          $('#script_url').attr('href',response);
+          $('#script_url').css('visibility','');
+          $transcript.css('visibility','hidden');
 
-      }
-    });
+        }
+      });
+    }//end if ($('#upload_script')
+
+    
     /*HANDLE EVENT UPLOAD RESUME==================================================*/
     
     var $resume = $('#upload_resume');
 
-    var resume_interval;
-    $form_resume_url = $('form#form_resume').attr('action');
-    $form_resume_url = $form_resume_url+'?job_id=<%= @post_job_id %>';
+    if ($('#upload_resume').html() != null){
+      var resume_interval;
+      $form_resume_url = $('form#form_resume').attr('action');
+      $form_resume_url = $form_resume_url+'?job_id=<%= @post_job_id %>';
 
-    new AjaxUpload($resume, {
-      action: $form_resume_url,
-      name: 'resume',
+      new AjaxUpload($resume, {
+        action: $form_resume_url,
+        name: 'resume',
 
-      onSubmit : function(file, ext){
+        onSubmit : function(file, ext){
 
-        // change button text, when user selects file
-        $resume.text('Uploading');
+          // change button text, when user selects file
+          $resume.text('Uploading');
 
-        // If you want to allow uploading only 1 file at time,
-        // you can disable upload button
-        this.disable();
+          // If you want to allow uploading only 1 file at time,
+          // you can disable upload button
+          this.disable();
 
-        // Uploding -> Uploading. -> Uploading...
-        resume_interval = window.setInterval(function(){
-          var text = $resume.text();
-          if (text.length < 13){
-            $resume.text(text + '.');
-          } else {
-            $resume.text('Uploading');
-          }
-        }, 200);
+          // Uploding -> Uploading. -> Uploading...
+          resume_interval = window.setInterval(function(){
+            var text = $resume.text();
+            if (text.length < 13){
+              $resume.text(text + '.');
+            } else {
+              $resume.text('Uploading');
+            }
+          }, 200);
 
-      },
-      onComplete: function(file, response){
-        $resume.text('Uploaded_File_Done');
+        },
+        onComplete: function(file, response){
+          $resume.text('Uploaded_File_Done');
 
-        window.clearInterval(resume_interval);
+          window.clearInterval(resume_interval);
 
-        // enable upload button
-        //this.enable();
+          // enable upload button
+          //this.enable();
 
-        // update GUI with return text
-        $('#resume_url').attr('href',response);
-        $('#resume_url').css('visibility','');
-        $resume.css('visibility','hidden');
+          // update GUI with return text
+          $('#resume_url').attr('href',response);
+          $('#resume_url').css('visibility','');
+          $resume.css('visibility','hidden');
 
-      }
-    });
+        }
+      });
+    }//end if ($('#upload_resume')
+
+    
     /*============================================================================*/
 
   });

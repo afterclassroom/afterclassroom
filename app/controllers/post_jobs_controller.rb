@@ -229,6 +229,8 @@ class PostJobsController < ApplicationController
   def apply_job
     @post_job_id = params[:job_id]
 
+    @post_job = PostJob.find(params[:job_id])
+
     render :layout => false
   end
   def save_letter

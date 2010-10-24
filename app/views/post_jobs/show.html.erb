@@ -33,19 +33,62 @@
     </div>
     <div class="jobCom">
       <div class="jobComMenu">
+        <!-- if job is "I'm looking for job"-->
         <% pj = @post.post_job %>
-        <% pj.job_files.each do |jf| %>
-          <% if jf.resume_cv.url != "" %>
-            <% if jf.category == "Add/Edit File" %>
-              <div class="cover"><a href="javascript:downloadFile('<%= jf.resume_cv.url %>')">Job Details</a></div>
+        <% if pj.job_type.name == "I'm looking for job" %>
+          <% pj.job_files.each do |jf| %>
+
+
+
+            <% if jf.resume_cv.url != "" %>
+              <% if jf.category != "Add/Edit File" %>
+                <div class="cover"><a href="javascript:downloadFile('<%= jf.resume_cv.url %>')"><%= jf.category %></a></div>
+              <% end %>
             <% else %>
-              <div class="cover"><a href="javascript:downloadFile('<%= jf.resume_cv.url %>')"><%= jf.category %></a></div>
+              <div class="cover"><a href="#">No <%= jf.category %> Available</a></div>
             <% end %>
 
-          <% else %>
-            <div class="cover"><a href="#">No <%= jf.category %> Available</a></div>
-          <% end %>
-        <% end %>
+
+
+
+
+
+          <% end %><!--END pj.job_files.each -->
+        <% else %> <!-- this else for job == "fulltime, parttime, coopintern" -->
+          <% pj.job_files.each do |jf| %>
+
+
+            <% if jf.resume_cv.url != "" %>
+              <% if jf.category == "Add/Edit File" %>
+                <div class="cover"><a href="javascript:downloadFile('<%= jf.resume_cv.url %>')">Job Details</a></div>
+              <% end %>
+            <% else %>
+              <div class="cover"><a href="#">No <%= jf.category %> Available</a></div>
+            <% end %>
+
+
+
+          <% end %><!--END pj.job_files.each -->
+
+        <% end %><!-- end if if pj.job_type.name -->
+
+        <!-- display link to download resume,cv,transcript-->
+        <!-- else, display link to download job detail-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
     </div>
     <%= show_post_comments(@post) %>
