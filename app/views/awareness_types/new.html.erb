@@ -44,11 +44,15 @@
 
 <!--  end content-outer -->
 
-<script language="javascript">
+<script type="text/javascript">
     function submit(){
-        var result = $("#form").validate();
-        if (result) {
-            $("#form").submit();
-        }
+        $("#form").submit();
     }
+    $(document).ready(function(){
+        $("#form").validate({
+            errorElement: "div",
+            errorClass: "error-inner",
+            wrapper: "div class=error-left"
+        })
+    });
 </script>
