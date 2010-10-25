@@ -6,20 +6,12 @@ module Paperclip
 
     # Infer the MIME-type of the file from the extension.
     def content_type
-      type = (self.path.match(/\.(\w+)$/)[1] rescue "octet-stream").downcase
+      type = self.path.match(/\.(\w+)$/)[1] rescue "octet-stream"
       case type
-      when %r"jp(e|g|eg)"            then "image/jpeg"
-      when %r"tiff?"                 then "image/tiff"
-      when %r"png", "gif", "bmp"     then "image/#{type}"
-      when "txt"                     then "text/plain"
-      when %r"html?"                 then "text/html"
-      when "js"                      then "application/js"
-      when "csv", "xml", "css"       then "text/#{type}"
-      else
-        # On BSDs, `file` doesn't give a result code of 1 if the file doesn't exist.
-        content_type = (Paperclip.run("file", "-b --mime-type :file", :file => self.path).split(':').last.strip rescue "application/x-#{type}")
-        content_type = "application/x-#{type}" if content_type.match(/\(.*?\)/)
-        content_type
+      when "jpg", "png", "gif" then "image/#{type}"
+      when "txt" then "text/plain"
+      when "csv", "xml", "html", "htm", "css", "js" then "text/#{type}"
+      else "x-application/#{type}"
       end
     end
 
@@ -32,29 +24,8 @@ module Paperclip
     def size
       File.size(self)
     end
-
-    # Returns the hash of the file.
-    def fingerprint
-      data = self.read
-      self.rewind
-      Digest::MD5.hexdigest(data)
-    end
   end
-end
 
-if defined? StringIO
-  class StringIO
-    attr_accessor :original_filename, :content_type, :fingerprint
-    def original_filename
-      @original_filename ||= "stringio.txt"
-    end
-    def content_type
-      @content_type ||= "text/plain"
-    end
-    def fingerprint
-      @fingerprint ||= Digest::MD5.hexdigest(self.string)
-    end
-  end
 end
 
 class File #:nodoc:

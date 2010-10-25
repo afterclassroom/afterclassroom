@@ -1,4 +1,5 @@
 test:
   adapter: sqlite3
+  #dbfile: paperclip.db
   database: ":memory:"
 
