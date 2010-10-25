@@ -1,5 +1,7 @@
 *~
 *.swp
 tmp
-s3.yml
+test/s3.yml
 public
+paperclip*.gem
+capybara*.html
