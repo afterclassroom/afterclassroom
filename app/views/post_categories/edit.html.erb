@@ -21,10 +21,8 @@
               <th valign="top">Name*:</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
               <td class="form-buttom"><a href="javascript:;" onclick="submit();">Update</a></td>
-              <td>
-                <div class="error-left"></div>
-                <div class="error-inner">This field is required.</div>               
-              </td>
+              <td class="error-innerr"></td>
+              
             </tr>
           <% end %>
           <tr>
@@ -51,11 +49,14 @@
 <!--  end content-outer -->
 
 <script type="text/javascript">
-// only for demo purposes
-function submit(){
-    var result = $("#form").validate();
-    if (result) {
+    function submit(){
         $("#form").submit();
     }
-}
+    $(document).ready(function(){
+        $("#form").validate({
+
+            errorLabelContainer: ".error-innerr"
+
+        })
+    });
 </script>
