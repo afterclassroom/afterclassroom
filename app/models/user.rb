@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   # Avatar
   has_attached_file :avatar, {
     :bucket => 'afterclassroom_avatar',
-    :default_url => "/images/icons/:style/members.png",
+    :default_url => "/images/icons/icon_default/icon_members.png",
     :styles => { :medium => "169x169>",
     :thumb => "45x45#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)

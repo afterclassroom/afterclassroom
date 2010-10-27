@@ -24,5 +24,5 @@ REST_AUTH_DIGEST_STRETCHES = 15
 PAPERCLIP_STORAGE_OPTIONS = {:storage => :s3,
   :s3_credentials => "#{Rails.root}/config/s3.yml",
   :path => "/:style/:filename",
-  :s3_permissions => :public_read
+  :s3_permissions => "public_read"
   }
