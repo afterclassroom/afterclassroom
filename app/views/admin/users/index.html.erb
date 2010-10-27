@@ -1,37 +1,90 @@
-<% content_for :header do -%>
-	<%= configatron.site_name %> Users
-<% end -%>
-
-<% content_for :sidebar do -%>
-	<ul>
-		<li><%= link_to "All users", admin_users_url %></li>
-		<li><%= link_to "Active users only", active_admin_users_url %></li>
-		<li><%= link_to "Suspended users only", suspended_admin_users_url %></li>
-		<li><%= link_to "Pending users only", pending_admin_users_url %></li>
-		<li><%= link_to "Deleted users only", deleted_admin_users_url %></li>
-	</ul>
-<% end -%>
-
-<table class="index">
+<!--  start page-heading -->
+<div id="page-heading"><h1>All Member</h1></div>
+<!-- end page-heading -->
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
   <tr>
-	<th>ID</th>
-	<th>Login</th>
-	<th>Email</th>
-	<th>Status</th>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+    <th class="topleft"></th>
+    <td id="tbl-border-top">&nbsp;</td>
+    <th class="topright"></th>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
   </tr>
-
-<% # TODO: (base_app) Add some sort of search feature to easily find users %>
-<% for user in @users %>
   <tr>
-	<td><%=h user.id %></td>
-	<td><%= link_to h(user.login), admin_user_url(user) %></td>
-	<td><%=h user.email %></td>
-	<td><%=h user.state %></td>
-    <td class="actions">
-		<%= link_to 'Show', admin_user_url(user) %>
-	</td>
+    <td id="tbl-border-left"></td>
+    <td>
+      <!--  start content-table-inner -->
+      <div id="content-table-inner">
+        <!--  start table-content  -->
+        <div id="table-content">
+          <!--  start product-table -->
+          <form id="mainform" action="">
+            <table border="0" width="100%" cellpadding="0" cellspacing="0">
+              <tr valign="top">
+                <td>
+                  <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table-user">
+                    <tr>
+                      <th class="table-header-check"></th>
+                      <th class="table-header-repeat line-left"></th>
+                      <th class="table-header-repeat line-left"><a href="">ID</a></th>
+                      <th class="table-header-repeat line-left"><a href="">Login</a></th>
+                      <th class="table-header-repeat line-left"><a href="">Email</a></th>
+                      <th class="table-header-options line-left"><a href="">Status</a></th>
+
+                    </tr>
+                    <% content_for :header do -%>
+                      <%= configatron.site_name %> Users
+                    <% end -%>
+                    <% content_for :sidebar do -%>
+                      <ul>
+                        <li><%= link_to "All users", admin_users_url %></li>
+                        <li><%= link_to "Active users only", active_admin_users_url %></li>
+                        <li><%= link_to "Suspended users only", suspended_admin_users_url %></li>
+                        <li><%= link_to "Pending users only", pending_admin_users_url %></li>
+                        <li><%= link_to "Deleted users only", deleted_admin_users_url %></li>
+                      </ul>
+                    <% end -%>
+                    <% # TODO: (base_app) Add some sort of search feature to easily find users %>
+                    <% for user in @users %>
+                      <tr class="alternate-row">
+                        <td></td>
+                        <td><%=h user.id %></td>
+                        <td><%= link_to h(user.login), admin_user_url(user) %></td>
+                        <td><%=h user.email %></td>
+                        <td><%=h user.state %></td>
+                        <td class="options-width">
+                          <a><%= link_to '', admin_user_url(user), :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
+
+                        </td>
+                      </tr>
+                    <% end -%>
+                  </table>
+                  <%= will_paginate @users %>
+                </td>
+
+              </tr>
+            </table>
+            <!--  end product-table -->
+          </form>
+        </div>
+        <!--  end content-table  -->
+        <!--  start actions-box -->
+
+        <!-- end actions-box -->
+        <!--  start paging -->
+        <!--  end paging-->
+        <div class="clear"></div>
+      </div>
+      <!--  end content-table-inner END  -->
+    </td>
+    <td id="tbl-border-right"></td>
   </tr>
-<% end %>
+  <tr>
+    <th class="sized bottomleft"></th>
+    <td id="tbl-border-bottom">&nbsp;</td>
+    <th class="sized bottomright"></th>
+  </tr>
 </table>
+<!--  end content -->
+<!--  end content-outer END -->
 
-<%= will_paginate @users %>
+

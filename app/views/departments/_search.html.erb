@@ -1,38 +1,60 @@
-<div id="posting-section">
-  <% form_for :department, @department, :html => {:id => "form", :method => :get} do |f| %>
-    <fieldset>
-      <legend><strong>Search</strong></legend>
-      <ul>
-        <li>
-          <%= render :partial => "department_category", :locals => {:department_category_name => @department_category_name, :department_categories => @department_categories, :action_name => "index"} %>
-        </li>
-        <li><label>Department name</label>
-          <div class="user_ri">
-            <%= f.text_field :name %>
-          </div>
-        </li>
-        <li>
-          <div class="post_cbt">
-            <!-- post  button -->
-            <a href="javascript:submit()" title="Post" class="link_bt">
-              <span class="ltred_l"></span>
-              <span class="ltred_c btf">Search</span>
-              <span class="ltred_r"></span>
-            </a>
-            <!-- end post button -->
-          </div>
-        </li>
-      </ul>
-      <div id="elements_store"></div>
-    </fieldset>
-  <% end %>
+<div id="related-activities-user">
+  <!--  start related-act-top -->
+  <div id="related-act-top">
+    <img src="/images/admin/forms/header_related_act.gif" width="271" height="43" alt="" />
+  </div>
+  <!-- end related-act-top -->
+                <!--  start related-act-bottom -->
+  <div id="related-act-bottom">
+    <!--  start related-act-inner -->
+    <div id="related-act-inner">
+      
+      <div class="right">
+        <div id="posting-section">
+          <% form_for :department, @department, :html => {:id => "form", :method => :get} do |f| %>
+            
+              <legend><strong>Search</strong></legend>
+              <ul>
+                <li>
+                  <%= render :partial => "department_category", :locals => {:department_category_name => @department_category_name, :department_categories => @department_categories, :action_name => "index"} %>
+                </li>
+                <li><label>Department name</label>
+                  <div class="user_ri">
+                    <%= f.text_field :name %>
+                  </div>
+                </li>
+                <li>
+                  <div class="post_cbt">
+                    <!-- post  button -->
+                    <a href="javascript:submit()" title="Post" class="link_bt">
+                      <span class="ltred_l"></span>
+                      <span class="ltred_c btf">Search</span>
+                      <span class="ltred_r"></span>
+                    </a>
+                    <!-- end post button -->
+                  </div>
+                </li>
+              </ul>
+              <div id="elements_store"></div>
+            
+          <% end %>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!-- end related-act-inner -->
+    <div class="clear"></div>
+  </div>
+
+  <!-- end related-act-bottom -->
 </div>
+
 <script type="text/javascript">
-  function submit(){
-    Tips.hideAll();
-    $$('.prototip').each(function(element){
-      $('elements_store').insert(element, { position: content });
-    });
-    $('form').submit();
-  }
+    function submit(){
+        Tips.hideAll();
+        $$('.prototip').each(function(element){
+            $('elements_store').insert(element, { position: content });
+        });
+        $('form').submit();
+    }
 </script>
