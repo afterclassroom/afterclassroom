@@ -45,7 +45,6 @@ class UsersController < ApplicationController
     else
       # Render forgot_password.html.erb
     end
-    render :layout => "signin"
   end
   
   def reset_password    
