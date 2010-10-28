@@ -1,29 +1,27 @@
-<tr>
-  <th valign="top">Category<%= "*" if action_name == "new" || action_name == "edit" %></th>
-  <td class="inp-form"><%= text_field_tag 'department_category_name', "#{department_category_name}", :class => "required tb_arrow", :readonly => "readonly" %></td>
-  <td class="error-innerr"></td>
-</tr>
-<div id="department_category_div" class="menu_select" style="display:none;">
-  <ul>
-    <% for department_category in department_categories %>
-      <li>
-        <%= radio_button "department", "department_category_id", department_category.id, :onClick => "getDepartmentCategory('#{department_category.name}')" %>
-        <label onClick="getDepartmentCategory(this.innerHTML)" for="department_department_category_id_<%= department_category.id %>"><%= department_category.name %></label>
-      </li>
-    <% end %>
-  </ul>
+<label>Category<%= "*" if action_name == "new" || action_name == "edit" %></label>
+<div class="user_ri">
+  <%= text_field_tag 'department_category_name', "#{department_category_name}", :class => "required tb_arrow", :readonly => "readonly" %>
+  <div id="department_category_div" class="menu_select" style="display:none;">
+    <ul>
+      <% for department_category in department_categories %>
+        <li>
+          <%= radio_button "department", "department_category_id", department_category.id, :onClick => "getDepartmentCategory('#{department_category.name}')" %>
+          <label onClick="getDepartmentCategory(this.innerHTML)" for="department_department_category_id_<%= department_category.id %>"><%= department_category.name %></label>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
-
 <script language="javascript">
-    function getDepartmentCategory(department_category_select){
-        $('department_category_name').value = department_category_select;
-    }
-    new Tip('department_category_name', $('department_category_div'), {
-        width: 'auto',
-        title: 'Select Deparment Category',
-        showOn: 'click',
-        hideOthers: true,
-        hideOn: { element: 'closeButton', event: 'click'},
-        hook: { target: 'bottomLeft', tip: 'topLeft' },
-        offset: {x:0, y:0} });
+  function getDepartmentCategory(department_category_select){
+    $('department_category_name').value = department_category_select;
+  }
+  new Tip('department_category_name', $('department_category_div'), {
+    width: 'auto',
+    title: 'Select Deparment Category',
+    showOn: 'click',
+    hideOthers: true,
+    hideOn: { element: 'closeButton', event: 'click'},
+    hook: { target: 'bottomLeft', tip: 'topLeft' },
+    offset: {x:0, y:0} });
 </script>

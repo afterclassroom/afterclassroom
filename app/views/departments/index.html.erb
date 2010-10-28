@@ -2,100 +2,104 @@
 <div id="page-heading"><h1>Departments</h1></div>
 <!-- end page-heading -->
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
-<tr>
-  <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
-  <th class="topleft"></th>
-  <td id="tbl-border-top">&nbsp;</td>
-  <th class="topright"></th>
-  <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
-</tr>
-<tr>
-  <td id="tbl-border-left"></td>
-  <td>
-  <!--  start content-table-inner -->
-  <div id="content-table-inner">
-  <!--  start table-content  -->
-  <div id="table-content">
-  <!--  start product-table -->
-  <form id="mainform" action="">
-  <table border="0" width="100%" cellpadding="0" cellspacing="0">
-    <tr valign="top">
+  <tr>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+    <th class="topleft"></th>
+    <td id="tbl-border-top">&nbsp;</td>
+    <th class="topright"></th>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+  </tr>
+  <tr>
+    <td id="tbl-border-left"></td>
     <td>
-      <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table-user">
-      <tr>
-        <th class="table-header-check"></th>
-        <th class="table-header-repeat line-left minwidth-1"><a href="">Category</a></th>
-        <th class="table-header-repeat line-left minwidth-1"><a href="">Department Name</a></th>
-        <th class="table-header-options line-left"><a href="">Options</a></th>
-      </tr>
-      <% content_for :header do -%>
-        Departments
-      <% end -%>
+      <!--  start content-table-inner -->
+      <div id="content-table-inner">
+        <!--  start table-content  -->
+        <div id="table-content">
+          <!--  start product-table -->
+          <form id="mainform" action="">
+            <table border="0" width="100%" cellpadding="0" cellspacing="0">
+              <tr valign="top">
+                <td>
+                  <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table-user">
+                    <tr>
+                      <th class="table-header-check"></th>
+                      <th class="table-header-repeat line-left minwidth-1"><a href="">Category</a></th>
+                      <th class="table-header-repeat line-left minwidth-1"><a href="">Department Name</a></th>
+                      <th class="table-header-options line-left"><a href="">Options</a></th>
+                    </tr>
+                    <% content_for :header do -%>
+                      Departments
+                    <% end -%>
 
-      <% for department in @departments %>
-        <tr class="alternate-row">
-          <td></td>
-          <td><%=h department.department_category.name %></td>
-          <td><%=h department.name %></td>
-          <td class="options-width">
-            <a><%= link_to '', department, :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
-            <a><%= link_to '', edit_department_path(department), :class => 'icon-1 info-tooltip', :title => 'Edit'  %></a>
-            <a><%= link_to '', department, :confirm => 'Are you sure?', :method => :delete, :class => 'icon-2 info-tooltip', :title => 'Destroy'  %></a>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-    <%= will_paginate @departments, :class => "digg_pagination" %>
-  </td>
-  <td>
-    <div id="related-activities-user">
-      <!--  start related-act-top -->
-      <div id="related-act-top">
-        <img src="/images/admin/forms/header_related_act.gif" width="271" height="43" alt="" />
-      </div>
-      <!-- end related-act-top -->
+                    <% for department in @departments %>
+                      <tr class="alternate-row">
+                        <td></td>
+                        <td><%=h department.department_category.name %></td>
+                        <td><%=h department.name %></td>
+                        <td class="options-width">
+                          <a><%= link_to '', department, :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
+                          <a><%= link_to '', edit_department_path(department), :class => 'icon-1 info-tooltip', :title => 'Edit'  %></a>
+                          <a><%= link_to '', department, :confirm => 'Are you sure?', :method => :delete, :class => 'icon-2 info-tooltip', :title => 'Destroy'  %></a>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </table>
+                  <div class="assPage">
+                    <span class="numPage"></span>
+                    <%= will_paginate @departments, :class => "digg_pagination" %>
+                  </div>
+                </td>
+                
+                <td>
+                  <div id="related-activities-user">
+                    <!--  start related-act-top -->
+                    <div id="related-act-top">
+                      <img src="/images/admin/forms/header_related_act.gif" width="271" height="43" alt="" />
+                    </div>
+                    <!-- end related-act-top -->
                 <!--  start related-act-bottom -->
-      <div id="related-act-bottom">
-        <!--  start related-act-inner -->
-        <div id="related-act-inner">
-          <div class="left"><a href=""><img src="/images/admin/forms/icon_plus.gif" width="21" height="21" alt="" /></a></div>
-          <div class="right">
-            <h5><%= link_to 'New department', new_department_path %></h5>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <!-- end related-act-inner -->
-        <div class="clear"></div>
-      </div>
+                    <div id="related-act-bottom">
+                      <!--  start related-act-inner -->
+                      <div id="related-act-inner">
+                        <div class="left"><a href=""><img src="/images/admin/forms/icon_plus.gif" width="21" height="21" alt="" /></a></div>
+                        <div class="right">
+                          <h5><%= link_to 'New department', new_department_path %></h5>
+                        </div>
+                        <div class="clear"></div>
+                      </div>
+                      <!-- end related-act-inner -->
+                      <div class="clear"></div>
+                    </div>
 
-      <!-- end related-act-bottom -->
-    </div>
-    
-      <%= render :partial => "search", :locals => {:department => @department} %>
-   
-  </td>
-</tr>
-</table>
-<!--  end product-table -->
-</form>
-</div>
-<!--  end content-table  -->
+                    <!-- end related-act-bottom -->
+                  </div>
+
+                  <%= render :partial => "search", :locals => {:department => @department} %>
+
+                </td>
+              </tr>
+            </table>
+            <!--  end product-table -->
+          </form>
+        </div>
+        <!--  end content-table  -->
         <!--  start actions-box -->
 
         <!-- end actions-box -->
         <!--  start paging -->
-<!--  end paging-->
-<div class="clear"></div>
-</div>
-<!--  end content-table-inner END  -->
-</td>
-<td id="tbl-border-right"></td>
-</tr>
-<tr>
-  <th class="sized bottomleft"></th>
-  <td id="tbl-border-bottom">&nbsp;</td>
-  <th class="sized bottomright"></th>
-</tr>
+        <!--  end paging-->
+        <div class="clear"></div>
+      </div>
+      <!--  end content-table-inner END  -->
+    </td>
+    <td id="tbl-border-right"></td>
+  </tr>
+  <tr>
+    <th class="sized bottomleft"></th>
+    <td id="tbl-border-bottom">&nbsp;</td>
+    <th class="sized bottomright"></th>
+  </tr>
 </table>
 <!--  end content -->
 <!--  end content-outer END -->
