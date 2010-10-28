@@ -1,45 +1,44 @@
-<li>
-  <label>Department</label>
-  <div class="user_ri">
-    <%= text_field_tag 'department_name', department_name, :class => "tb_arrow" %>
-    <div id="select_department_div" class="menu_select" style="display:none; overflow-y:auto; height:300px">
-      <% for department_category in department_categories %>
-        <label><%= department_category.name %></label>
-        <ul>
-          <% for department in department_category.departments %>
-            <li>
-              <%= check_box_tag("school[department_ids][]",
-                department.id,
-                @school.departments.include?(department), :id => "school_departments_id_#{department.id}", :title => "#{department.name}", :onclick => "getDepartment()", :checked => check) %>
-              <label onClick="getDepartment()" for="school_departments_id_<%= department.id %>"><%= department.name %></label>
-            </li>
-          <% end %>
-        </ul>
-        <br>
-      <% end %>
-    </div>
+<th valign="top">Department</th>
+<td class="inp-form">
+  <%= text_field_tag 'department_name', department_name, :class => "tb_arrow" %>
+  <div id="select_department_div" class="menu_select" style="display:none; overflow-y:auto; height:300px">
+    <% for department_category in department_categories %>
+      <label><%= department_category.name %></label>
+      <ul>
+        <% for department in department_category.departments %>
+          <li>
+            <%= check_box_tag("school[department_ids][]",
+              department.id,
+              @school.departments.include?(department), :id => "school_departments_id_#{department.id}", :title => "#{department.name}", :onclick => "getDepartment()", :checked => check) %>
+            <label onClick="getDepartment()" for="school_departments_id_<%= department.id %>"><%= department.name %></label>
+          </li>
+        <% end %>
+      </ul>
+      <br>
+    <% end %>
   </div>
-</li>
+</td>
+
 <script language="javascript">
-  new Tip('department_name', $('select_department_div'), {
-    width: 'auto',
-    title: 'Select Department',
-    showOn: 'click',
-    hideOthers: true,
-    hideOn: { element: 'closeButton', event: 'click'},
-    hook: { target: 'bottomLeft', tip: 'topLeft' },
-    offset: {x:0, y:0} });
-  function getDepartment(){
-    $('department_name').value = get_check_value();
-  }
-  function get_check_value()
-  {
-    var f = $$('input[name="school[department_ids][]"]');
-    var s = '';
-    for(var i=0; i<f.length; i++){
-      if (f[i].checked)
-        s += f[i].readAttribute("title") + ', ';
+    new Tip('department_name', $('select_department_div'), {
+        width: 'auto',
+        title: 'Select Department',
+        showOn: 'click',
+        hideOthers: true,
+        hideOn: { element: 'closeButton', event: 'click'},
+        hook: { target: 'bottomLeft', tip: 'topLeft' },
+        offset: {x:0, y:0} });
+    function getDepartment(){
+        $('department_name').value = get_check_value();
     }
-    return s;
-  }
+    function get_check_value()
+    {
+        var f = $$('input[name="school[department_ids][]"]');
+        var s = '';
+        for(var i=0; i<f.length; i++){
+            if (f[i].checked)
+                s += f[i].readAttribute("title") + ', ';
+        }
+        return s;
+    }
 </script>

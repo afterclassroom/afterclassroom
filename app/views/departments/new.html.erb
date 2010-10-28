@@ -23,15 +23,16 @@
             <tr>
               <th valign="top">Department Name*:</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
+              <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
               <td class="error-innerr"></td>
             </tr>
             <tr>
               <td></td>
-              <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
+              <td><%= link_to 'Back', departments_path, :class => 'form-back' %></td>
             </tr>
           <% end %>
         </table>
-        <%= link_to 'Back', departments_path, :class => 'form-back' %>
+        
         <!-- end id-form  -->
       </div>
       <!--  end content-table-inner  -->
