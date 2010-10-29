@@ -1,41 +1,62 @@
-<div id="posting-section">
-  <% form_for :city, @city, :html => {:id => "form", :method => :get} do |f| %>
-    <fieldset>
-      <legend><strong>Search</strong></legend>
-      <ul>
-        <%= render :partial => "country_state", :locals => {:countries => countries, :country_name => country_name, :state_name => state_name, :states => states, :action_name => "index"} %>
-        <li><label>City name</label>
-          <div class="user_ri">
-            <%= f.text_field :name %>
-          </div>
-        </li>
-        <li>
-          <div class="post_cbt">
-            <!-- post  button -->
-            <a href="javascript:submit()" title="Post" class="link_bt">
-              <span class="ltred_l"></span>
-              <span class="ltred_c btf">Search</span>
-              <span class="ltred_r"></span>
-            </a>
-            <!-- end post button -->
-          </div>
-        </li>
-      </ul>
-      <div id="elements_store"></div>
-    </fieldset>
-  <% end %>
+<div id="related-activities-user">
+  <!--  start related-act-top -->
+  <div id="related-act-top">
+    <img src="/images/admin/forms/header_related_act.gif" width="271" height="43" alt="" />
+  </div>
+  <!-- end related-act-top -->
+                <!--  start related-act-bottom -->
+  <div id="related-act-bottom">
+    <!--  start related-act-inner -->
+    <div id="related-act-inner">
+
+      <div class="right">
+        <div id="posting-section">
+          <% form_for :city, @city, :html => {:id => "form", :method => :get} do |f| %>
+
+            <legend><strong>Search</strong></legend>
+            <ul>
+              <%= render :partial => "country_state", :locals => {:countries => countries, :country_name => country_name, :state_name => state_name, :states => states, :action_name => "index"} %>
+              <li><label>City name</label>
+                <div class="user_ri">
+                  <%= f.text_field :name %>
+                </div>
+              </li>
+              <li>
+                <div class="post_cbt">
+                  <!-- post  button -->
+                  <a href="javascript:submit()" title="Post" class="link_bt">
+                    <span class="ltred_l"></span>
+                    <span class="ltred_c btf">Search</span>
+                    <span class="ltred_r"></span>
+                  </a>
+                  <!-- end post button -->
+                </div>
+              </li>
+            </ul>
+            <div id="elements_store"></div>
+          
+          <% end %>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!-- end related-act-inner -->
+    <div class="clear"></div>
+  </div>
+
+  <!-- end related-act-bottom -->
 </div>
 
 <script type="text/javascript">
-  var valid = new Validation('form', {immediate : true, onSubmit:false});
-  function submit(){
-    var result = valid.validate();
-    if (result) {
-      Tips.hideAll();
-      $$('.prototip').each(function(element){
-        $('elements_store').insert(element, { position: content });
-      });
-      $('form').submit();
+    var valid = new Validation('form', {immediate : true, onSubmit:false});
+    function submit(){
+        var result = valid.validate();
+        if (result) {
+            Tips.hideAll();
+            $$('.prototip').each(function(element){
+                $('elements_store').insert(element, { position: content });
+            });
+            $('form').submit();
+        }
     }
-  }
 </script>
