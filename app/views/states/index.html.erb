@@ -1,27 +1,108 @@
-<% content_for :header do -%>
-	States
-<% end -%>
-
-<%= render :partial => "search", :locals => {:country_name => @country_name, :countries => @countries} %>
-<table>
+<!--  start page-heading -->
+<div id="page-heading"><h1>States</h1></div>
+<!-- end page-heading -->
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
   <tr>
-    <th>Country</th>
-    <th>Name</th>
-    <th>Alias</th>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+    <th class="topleft"></th>
+    <td id="tbl-border-top">&nbsp;</td>
+    <th class="topright"></th>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
   </tr>
-
-<% for state in @states %>
   <tr>
-    <td><%=h state.country.printable_name %></td>
-    <td><%=h state.name %></td>
-    <td><%=h state.alias %></td>
-    <td><%= link_to 'Show', state %></td>
-    <td><%= link_to 'Edit', edit_state_path(state) %></td>
-    <td><%= link_to 'Destroy', state, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td id="tbl-border-left"></td>
+    <td>
+      <!--  start content-table-inner -->
+      <div id="content-table-inner">
+        <!--  start table-content  -->
+        <div id="table-content">
+          <!--  start product-table -->
+          <form id="mainform" action="">
+            <table border="0" width="100%" cellpadding="0" cellspacing="0">
+              <tr valign="top">
+                <td>
+                  <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table-user">
+                    <tr>
+                      <th class="table-header-check"></th>
+                      <th class="table-header-repeat line-left minwidth-1"><a href="">Country</a></th>
+                      <th class="table-header-repeat line-left minwidth-1"><a href="">Name</a></th>
+                      <th class="table-header-repeat line-left minwidth-1"><a href="">Alias</a></th>
+                      <th class="table-header-options line-left"></th>
+                    </tr>
+                    <% content_for :header do -%>
+                      States
+                    <% end -%>
+
+                    <% for state in @states %>
+                      <tr class="alternate-row">
+                        <td></td>
+                        <td><%=h state.country.printable_name %></td>
+                        <td><%=h state.name %></td>
+                        <td><%=h state.alias %></td>
+                        <td class="options-width">
+                          <a><%= link_to '', state, :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
+                          <a><%= link_to '', edit_state_path(state), :class => 'icon-1 info-tooltip', :title => 'Edit'  %></a>
+                          <a><%= link_to '', state, :confirm => 'Are you sure?', :method => :delete, :class => 'icon-2 info-tooltip', :title => 'Destroy'  %></a>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </table>
+                  <div class="assPage">
+                    <span class="numPage"></span>
+                    <%= will_paginate @states, :class => "digg_pagination" %>
+                  </div>
+                </td>
+
+                <td>
+                  <div id="related-activities-user">
+                    <!--  start related-act-top -->
+                    <div id="related-act-top">
+                      <img src="/images/admin/forms/header_related_act.gif" width="271" height="43" alt="" />
+                    </div>
+                    <!-- end related-act-top -->
+                <!--  start related-act-bottom -->
+                    <div id="related-act-bottom">
+                      <!--  start related-act-inner -->
+                      <div id="related-act-inner">
+                        <div class="left"><a href=""><img src="/images/admin/forms/icon_plus.gif" width="21" height="21" alt="" /></a></div>
+                        <div class="right">
+                          <h5><%= link_to 'New state', new_state_path %></h5>
+                        </div>
+                        <div class="clear"></div>
+                      </div>
+                      <!-- end related-act-inner -->
+                      <div class="clear"></div>
+                    </div>
+
+                    <!-- end related-act-bottom -->
+                  </div>
+
+                  <%= render :partial => "search", :locals => {:country_name => @country_name, :countries => @countries} %>
+
+                </td>
+              </tr>
+            </table>
+            <!--  end product-table -->
+          </form>
+        </div>
+        <!--  end content-table  -->
+        <!--  start actions-box -->
+
+        <!-- end actions-box -->
+        <!--  start paging -->
+        <!--  end paging-->
+        <div class="clear"></div>
+      </div>
+      <!--  end content-table-inner END  -->
+    </td>
+    <td id="tbl-border-right"></td>
   </tr>
-<% end %>
+  <tr>
+    <th class="sized bottomleft"></th>
+    <td id="tbl-border-bottom">&nbsp;</td>
+    <th class="sized bottomright"></th>
+  </tr>
 </table>
-<%= will_paginate @states, :class => "digg_pagination" %>
-<br />
+<!--  end content -->
+<!--  end content-outer END -->
 
-<%= link_to 'New state', new_state_path %>
