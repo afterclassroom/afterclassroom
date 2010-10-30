@@ -1,18 +1,20 @@
+<div style="display: inline">
   <% form_for :apply_letter, :url => {:action => "save_letter"}, :html =>{:multipart => true, :id => "form_letter"} do |f| %>
     <a id="upload_letter" href="javascript:;">Cover Letter</a>
   <% end %>
-  <a id="letter_url" href="" style="visibility:hidden;">Download Cover Letter</a>
+</div>
+<div style="display: inline">
 
   <% form_for :apply_resume, :url => {:action => "save_resume"}, :html =>{:multipart => true, :id => "form_resume"} do |f| %>
     <a id="upload_resume" href="javascript:;">Resume</a>
   <% end %>
-  <a id="resume_url" href="" style="visibility:hidden;">Download Resume</a>
+</div>
+<div style="display: inline">
 
   <% form_for :apply_script, :url => {:action => "save_script"}, :html =>{:multipart => true, :id => "form_script"} do |f| %>
     <a id="upload_script" href="javascript:;">Transcript</a>
   <% end %>
-  <a id="script_url" href="" style="visibility:hidden;">Download Transcript</a>
-
+</div>
 
 
 
@@ -55,7 +57,7 @@
 
         },
         onComplete: function(file, response){
-          $letter.text('Uploaded_File_Done');
+          $letter.text('Uploaded Successfully');
 
           window.clearInterval(interval);
 
@@ -63,10 +65,6 @@
           //this.enable();
 
           // update GUI with return text
-          $("#response_data").html(response);
-          $('#letter_url').attr('href',response);
-          $('#letter_url').css('visibility','');
-          $letter.css('visibility','hidden');
 
         }
       });
@@ -107,7 +105,7 @@
 
         },
         onComplete: function(file, response){
-          $transcript.text('Uploaded_File_Done');
+          $transcript.text('Uploaded Successfully');
 
           window.clearInterval(script_interval);
 
@@ -115,9 +113,6 @@
           //this.enable();
 
           // update GUI with return text
-          $('#script_url').attr('href',response);
-          $('#script_url').css('visibility','');
-          $transcript.css('visibility','hidden');
 
         }
       });
@@ -158,7 +153,7 @@
 
         },
         onComplete: function(file, response){
-          $resume.text('Uploaded_File_Done');
+          $resume.text('Uploaded Successfully');
 
           window.clearInterval(resume_interval);
 
@@ -166,9 +161,6 @@
           //this.enable();
 
           // update GUI with return text
-          $('#resume_url').attr('href',response);
-          $('#resume_url').css('visibility','');
-          $resume.css('visibility','hidden');
 
         }
       });
