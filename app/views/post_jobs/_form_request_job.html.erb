@@ -26,7 +26,7 @@
               <div class="reqTi"><%= f.text_field :address %></div>
             </div>
           </div>
-          
+
           <%= render :partial => "/shared/form_request_post/select_tag" %>
           <%= render :partial => "/shared/form_request_post/resume_cv", :locals => {:p => p}, :locals => {:f => f} %>
           <div class="submit"><%= show_submit_form() %></div>
@@ -45,8 +45,17 @@
 </ul>
 
 <script type="text/javascript">
-    $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
-        width: 250,
-        valueAttr: "rel_job_type"
-    });
+  $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
+    width: 250,
+    valueAttr: "rel_job_type"
+  });
+
+  $("#form_post").validate({
+    rules: {
+      resume_resume_cv: {
+        required: true
+      }
+    }
+  });
+
 </script>
