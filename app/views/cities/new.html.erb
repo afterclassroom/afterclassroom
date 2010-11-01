@@ -24,7 +24,7 @@
               <th valign="top">City name*</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
               <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
-              <td class="error-innerr"></td>
+              
             </tr>
 
           <% end %>
@@ -35,6 +35,7 @@
               <%= link_to 'Back', cities_path, :class => 'form-back' %>
             </td>
           </tr>
+          <td class="error-innerr"></td>
         </table>
       </div>
       <!--  end content-table-inner  -->

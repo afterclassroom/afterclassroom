@@ -1,5 +1,5 @@
-<li><label>Country<%= "*" if action_name == "new" || action_name == "edit" %></label>
-  <div class="user_ri">
+<div class="reqLa"><strong>Country<%= "*" if action_name == "new" || action_name == "edit" %></strong></div>
+  <div class="inp-formS">
     <%= text_field_tag 'country_name', "#{country_name}", :class => "required tb_arrow", :readonly => "readonly" %>
     <div id="country_div" class="menu_select" style="display:none;">
       <ul>
@@ -12,9 +12,9 @@
       </ul>
     </div>
   </div>
-</li>
-<li><label>State<%= "*" if action_name == "new" || action_name == "edit" %></label>
-  <div class="user_ri">
+
+<div class="reqLa"><strong>State<%= "*" if action_name == "new" || action_name == "edit" %></strong></div>
+  <div class="inp-formS">
     <%= text_field_tag 'state_name', "#{state_name}", :class => "required tb_arrow", :readonly => "readonly" %>
     <div id="state_div" class="menu_select" style="display:none;">
       <ul>
@@ -29,7 +29,6 @@
       </ul>
     </div>
   </div>
-</li>
 
 <script language="javascript">
   function getCountry(country_select){
