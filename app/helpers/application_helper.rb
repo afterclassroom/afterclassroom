@@ -212,6 +212,14 @@ module ApplicationHelper
   def show_post_comments(obj)
     render :partial => "shared/post_comments", :locals => {:obj => obj}
   end
+
+  def show_student_lounge()
+    if !logged_in?
+      link_to_require_login("Student Lounge")
+    else
+      link_to "Student Lounge", user_student_lounges_path(current_user)
+    end
+  end
   
   def show_favorite(type, item)
     f_size = item.favoriting_users.size

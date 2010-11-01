@@ -1,5 +1,9 @@
 <div class="AsDContBtm">
-  <span class="btmApp"><a title="Apply now" class="thickbox" href="/post_jobs/apply_job?&height=288&width=500&subject=Apply&job_id=<%= post.post_job.id %>" id="myaclick">Apply now</a></span>
+  <% if  post.post_job.job_type.name != "I'm looking for job" %>
+    <span class="btmApp"><a title="Apply now" id="apply_now">Apply now</a></span>
+  <% end %>
+
+
   <span class="btmCom"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');"><span>Comment</span></a></span>
   <span class="btmMail"><%= show_email(post) %></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
@@ -8,3 +12,38 @@
     <span class="btmJobList"><%= show_my_job_list(post) %></span>
   </div>
 </div>
+<script type="text/javascript">
+  var upload_area = false;
+
+  function LoadSpinner(divname){
+    $('#'+divname).html('<img src="/images/ajax-loader.gif" alt="Please wait..." />');
+  }
+
+  $(document).ready(function(){
+
+    var uploadurl= "/post_jobs/apply_job?job_id=<%= post.post_job.id %>";
+
+    $("#apply_now").click(function(){
+
+      if (upload_area == false){
+        upload_area = true;
+
+        LoadSpinner('storagePlace');
+        $.ajax({
+          url: uploadurl,
+          type: "GET",
+          dataType: "html",
+          failure: function(msg){
+            alert('ajax fail:'+msg);
+          },
+          success: function(msg){
+            var str_content = $('.jobComMenu').html();
+            str_content = str_content + '<div class="cover">'+msg+'</div>'
+            $('.jobComMenu').html(str_content);
+          }
+        });
+
+      }
+    });
+  });
+</script>

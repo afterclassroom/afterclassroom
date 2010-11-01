@@ -20,7 +20,7 @@
     <div class="postInp"><%= f.text_field :address, :style => "width:208px" %></div>
   </div>
   <div id="one_file_area">
-    <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
+    <%= render :partial => "/shared/form_post/upload_file", :locals => {:post => post} %>
   </div>
   <div id="resume_area">
     <%= render :partial => "/shared/form_post/resume_for_post", :locals => {:post => p}, :locals => {:f => f} %>
