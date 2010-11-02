@@ -29,17 +29,18 @@
             <tr>
               <th valign="top">Alias*</th>
               <td class="inp-form"><%= f.text_field :alias, :class => "required" %></td>
-              <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
-              <td class="error-innerr"></td>
+              
+              
             </tr>
 
           <% end %>
           <tr>
             <th>&nbsp;</th>
+            <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
             <td valign="top">
-               <%= link_to 'Show', @state, :class => 'form-show' %>
               <%= link_to 'Back', states_path, :class => 'form-back' %>
             </td>
+            <td class="error-innerr"></td>
           </tr>
         </table>
       </div>

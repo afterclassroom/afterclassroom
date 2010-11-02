@@ -24,22 +24,18 @@
             <tr>
               <th valign="top">State name*</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
-
             </tr>
             <tr>
               <th valign="top">Alias*</th>
               <td class="inp-form"><%= f.text_field :alias, :class => "required" %></td>
-              <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
-              <td class="error-innerr"></td>
+              
             </tr>
-
           <% end %>
           <tr>
             <th>&nbsp;</th>
-            <td valign="top">
-
-              <%= link_to 'Back', states_path, :class => 'form-back' %>
-            </td>
+            <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
+            <td valign="top"><%= link_to 'Back', states_path, :class => 'form-back' %></td>
+            <td class="error-innerr"></td>
           </tr>
         </table>
       </div>
@@ -61,9 +57,9 @@
     function submit(){
         $("#form").submit();
     }
-    $(document).ready(function(){
+    $().ready(function(){
         $("#form").validate({
-
+                 
             errorLabelContainer: ".error-innerr"
 
         })
