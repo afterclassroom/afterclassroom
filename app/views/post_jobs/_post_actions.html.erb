@@ -25,6 +25,8 @@
 
     var uploadurl= "/post_jobs/apply_job?job_id=<%= post.post_job.id %>";
 
+    $("#apply_now").css('cursor','pointer');
+
     $("#apply_now").click(function(){
 
       if (upload_area == false){
