@@ -271,6 +271,15 @@ module ApplicationHelper
     end
   end
   
+  def show_apply_now()
+    if !logged_in?
+      link_to_require_login("<span>Apply now</span>")
+    else
+      return "<a title='Apply now' id='apply_now'>Apply now</a>"
+    end
+  end
+  
+  
   def show_add_party(post)
     if !logged_in?
       link_to_require_login("<span>Add party</span>")

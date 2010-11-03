@@ -1,6 +1,8 @@
 <div class="AsDContBtm">
   <% if  post.post_job.job_type.name != "I'm looking for job" %>
-    <span class="btmApp"><a title="Apply now" id="apply_now">Apply now</a></span>
+    <%#*<span class="btmApp"><a title="Apply now" id="apply_now">Apply now</a></span>%>
+
+    <span class="btmApp"><%= show_apply_now() %></span>
   <% end %>
 
 
