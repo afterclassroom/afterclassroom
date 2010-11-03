@@ -44,6 +44,7 @@ class TeamupCategoriesController < ApplicationController
   # POST /teamup_categories.xml
   def create
     @teamup_category = TeamupCategory.new(params[:teamup_category])
+    @teamup_category.label = to_slug(@teamup_category.name)
 
     respond_to do |format|
       if @teamup_category.save

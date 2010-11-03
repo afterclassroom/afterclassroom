@@ -44,6 +44,7 @@ class PartyTypesController < ApplicationController
   # POST /party_types.xml
   def create
     @party_type = PartyType.new(params[:party_type])
+    @party_type.label = to_slug(@party_type.name)
 
     respond_to do |format|
       if @party_type.save

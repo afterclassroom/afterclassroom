@@ -44,6 +44,7 @@ class HousingCategoriesController < ApplicationController
   # POST /housing_categories.xml
   def create
     @housing_category = HousingCategory.new(params[:housing_category])
+    @housing_category.label = to_slug(@housing_category.name)
 
     respond_to do |format|
       if @housing_category.save

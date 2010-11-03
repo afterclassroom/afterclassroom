@@ -44,6 +44,7 @@ class JobTypesController < ApplicationController
   # POST /job_types.xml
   def create
     @job_type = JobType.new(params[:job_type])
+    @job_type.label = to_slug(@job_type.name)
 
     respond_to do |format|
       if @job_type.save

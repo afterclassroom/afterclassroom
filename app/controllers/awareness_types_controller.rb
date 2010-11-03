@@ -34,6 +34,7 @@ class AwarenessTypesController < ApplicationController
   
    def create
     @awareness_type = AwarenessType.new(params[:awareness_type])
+    @awareness_type.label = to_slug(@awareness_type.name)
 
     respond_to do |format|
       if @awareness_type.save
