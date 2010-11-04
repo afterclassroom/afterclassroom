@@ -273,7 +273,7 @@ module ApplicationHelper
   
   def show_apply_now()
     if !logged_in?
-      link_to_require_login("<span>Apply now</span>")
+      link_to_require_login("<span style='padding-left:10px'>Apply now</span>")
     else
       return "<a title='Apply now' id='apply_now'>Apply now</a>"
     end
