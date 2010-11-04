@@ -1,15 +1,15 @@
-<div style="display: inline">
+<div style="display: inline; padding-top: 1px">
   <% form_for :apply_letter, :url => {:action => "save_letter"}, :html =>{:multipart => true, :id => "form_letter"} do |f| %>
     <a id="upload_letter" href="javascript:;">Cover Letter</a>
   <% end %>
 </div>
-<div style="display: inline">
+<div style="display: inline; padding-top: 1px">
 
   <% form_for :apply_resume, :url => {:action => "save_resume"}, :html =>{:multipart => true, :id => "form_resume"} do |f| %>
     <a id="upload_resume" href="javascript:;">Resume</a>
   <% end %>
 </div>
-<div style="display: inline">
+<div style="display: inline; padding-top: 1px"">
 
   <% form_for :apply_script, :url => {:action => "save_script"}, :html =>{:multipart => true, :id => "form_script"} do |f| %>
     <a id="upload_script" href="javascript:;">Transcript</a>

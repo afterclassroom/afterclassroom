@@ -1,7 +1,5 @@
 <div class="AsDContBtm">
   <% if  post.post_job.job_type.name != "I'm looking for job" %>
-    <%#*<span class="btmApp"><a title="Apply now" id="apply_now">Apply now</a></span>%>
-
     <span class="btmApp"><%= show_apply_now() %></span>
   <% end %>
 
@@ -17,10 +15,6 @@
 <script type="text/javascript">
   var upload_area = false;
 
-  function LoadSpinner(divname){
-    $('#'+divname).html('<img src="/images/ajax-loader.gif" alt="Please wait..." />');
-  }
-
   $(document).ready(function(){
 
     var uploadurl= "/post_jobs/apply_job?job_id=<%= post.post_job.id %>";
@@ -28,11 +22,13 @@
     $("#apply_now").css('cursor','pointer');
 
     $("#apply_now").click(function(){
-
       if (upload_area == false){
         upload_area = true;
 
-        LoadSpinner('storagePlace');
+        var str_place = $('.jobComMenu').html();
+        var str_waiting = str_place + '<img src="/images/ajax-loader.gif" alt="Please wait..." />';
+        $('.jobComMenu').html(str_waiting);
+
         $.ajax({
           url: uploadurl,
           type: "GET",
@@ -41,12 +37,14 @@
             alert('ajax fail:'+msg);
           },
           success: function(msg){
-            var str_content = $('.jobComMenu').html();
-            str_content = str_content + '<div class="cover">'+msg+'</div>'
+            var str_content = str_place + '<div class="cover">'+msg+'</div>';
+            
             $('.jobComMenu').html(str_content);
           }
         });
-
+      }
+      else{
+        $('.jobComMenu').toggle('slow');
       }
     });
   });
