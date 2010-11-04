@@ -1,34 +1,61 @@
-<% content_for :header do -%>
-	Application Settings
-<% end -%>
+<div id="page-heading"><h1>Show Departments</h1></div>
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+  <tr>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="100" alt="" /></th>
+    <th class="topleft"></th>
+    <td id="tbl-border-top">&nbsp;</td>
+    <th class="topright"></th>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="100" alt="" /></th>
+  </tr>
+  <tr>
+    <td id="tbl-border-left"></td>
+    <td>
+      <!--  start content-table-inner -->
+      <div id="content-table-inner">
+        <table cellspacing="0" cellpadding="0" border="0" id="id-form">
+          <% content_for :header do -%>
+            Application Settings
+          <% end -%>
 
-<% content_for :sidebar do -%>
-	<p>
-		These are site-wide settings. They will be used through-out your application.
-	</p>
-	<p>
-		To add new settings, simple create a migration (see migration #006 for an example), and add  your 
-		settings code here to allow the administrator to edit it.
-	</p>
-<% end -%>
+          <% content_for :sidebar do -%>
+            <p>
+              These are site-wide settings. They will be used through-out your application.
+            </p>
+            <p>
+              To add new settings, simple create a migration (see migration #006 for an example), and add  your
+              settings code here to allow the administrator to edit it.
+            </p>
+          <% end -%>
 
-<% form_tag :action => 'update' do %>
+          <% form_tag :action => 'update' do %>
 
-<h3>General</h3>
-	
-	
-	
-<%= settings_field(Setting.load(:site_name)) %>
-<%= settings_field(Setting.load(:company_name)) %>
-<%= settings_field(Setting.load(:site_url)) %>
+            <h3>General</h3>
 
-<h3>Support</h3>
-	
-<%= settings_field(Setting.load(:support_name)) %>
-<%= settings_field(Setting.load(:support_email)) %>
 
-<div id="submitbutton">
-	<p><%= submit_tag 'Save Settings' %></p>
-</div>
 
-<% end %>
+            <%= settings_field(Setting.load(:site_name)) %>
+            <%= settings_field(Setting.load(:company_name)) %>
+            <%= settings_field(Setting.load(:site_url)) %>
+
+            <h3>Support</h3>
+
+            <%= settings_field(Setting.load(:support_name)) %>
+            <%= settings_field(Setting.load(:support_email)) %>
+
+            <div id="submitbutton">
+              <p><%= submit_tag 'Save Settings' %></p>
+            </div>
+
+          <% end %>
+        </table>
+      </div>
+      <!--  end content-table-inner  -->
+    </td>
+    <td id="tbl-border-right"></td>
+  </tr>
+  <tr>
+    <th class="sized bottomleft"></th>
+    <td id="tbl-border-bottom">&nbsp;</td>
+    <th class="sized bottomright"></th>
+  </tr>
+</table>

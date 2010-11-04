@@ -25,10 +25,10 @@
                     <tr>
                       <th class="table-header-check"></th>
                       <th class="table-header-repeat line-left"></th>
-                      <th class="table-header-repeat line-left"><a href="">ID</a></th>
-                      <th class="table-header-repeat line-left"><a href="">Login</a></th>
+                      <th class="table-header-repeat line-left"><a href="">Fullname</a></th>
                       <th class="table-header-repeat line-left"><a href="">Email</a></th>
                       <th class="table-header-options line-left"><a href="">Status</a></th>
+                      <th class="table-header-options line-left"><a href="">Options</a></th>
 
                     </tr>
                     <% content_for :header do -%>
@@ -53,7 +53,8 @@
                         <td><%=h user.state %></td>
                         <td class="options-width">
                           <a><%= link_to '', admin_user_url(user), :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
-
+                          <a><%= link_to '', edit_admin_user_path(user), :class => 'icon-1 info-tooltip', :title => 'Edit'  %></a>
+                          <a><%= link_to '', admin_user_url(user), :confirm => 'Are you sure?', :method => :delete, :class => 'icon-2 info-tooltip', :title => 'Destroy'  %></a>
                         </td>
                       </tr>
                     <% end -%>
