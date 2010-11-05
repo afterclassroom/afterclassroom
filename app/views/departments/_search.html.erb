@@ -1,7 +1,27 @@
 <div class="right">
-  <% form_for :department, @department, :html => {:id => "form", :method => :get} do |f| %>
-    <%= f.text_field :name, :class => "inp-form" %>
-    <div class="clear"></div>
-    <%= submit_tag "Search", :class => "form-submit" %>
-  <% end %>
+  <div id="posting-section">
+    <% form_for :department, @department, :html => {:id => "form", :method => :get} do |f| %>
+      <div class="reqLa"><strong>Category</strong></div>
+      <div>
+        <%= select_tag "department[department_category_id]", options_from_collection_for_select(@department_categories, "id", "name"), :style => "width: 198px" %>
+      </div>
+      <div class="reqLa"><strong>Department name</strong></div>
+      <div class="inp-formS">
+        <%= f.text_field :name %>
+      </div>
+      <div class="clear"></div>
+      <div class="reqLa">
+        <div class="form-buttom">
+          <!-- post  button -->
+          <a href="javascript:$('form').submit();" title="Post" class="link_bt">
+            <span class="ltred_l"></span>
+            <span class="ltred_c btf">Search</span>
+            <span class="ltred_r"></span>
+          </a>
+          <!-- end post button -->
+        </div>
+      </div>
+      <div id="elements_store"></div>
+    <% end %>
+  </div>
 </div>

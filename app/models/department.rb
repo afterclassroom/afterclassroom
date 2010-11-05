@@ -6,13 +6,7 @@ class Department < ActiveRecord::Base
 
   # Relations
   belongs_to :department_category
-  has_many :post_assignments, :dependent => :destroy
-  has_many :post_projects, :dependent => :destroy
-  has_many :post_tests, :dependent => :destroy
-  has_many :post_exams, :dependent => :destroy
-  has_many :post_books, :dependent => :destroy
-  has_many :post_jobs, :dependent => :destroy
-  has_many :post_tutors, :dependent => :destroy
+  has_many :posts, :dependent => :destroy
   has_and_belongs_to_many :schools
 
   # Named Scope
@@ -22,6 +16,7 @@ class Department < ActiveRecord::Base
     search = {}
     search['name'] = params[:department][:name] || nil if params[:department]
     search['department_category_id'] = params[:department][:department_category_id] || nil if params[:department]
+    search['department_category_id'] = params[:department_category_id] if params[:department_category_id]
     cond = Caboose::EZ::Condition.new :departments do
       if search['name']
         name =~ "%#{search['name']}%"

@@ -35,7 +35,7 @@
                     <% for department in @departments %>
                       <tr class="alternate-row">
                         <td></td>
-                        <td><%=h department.department_category.name %></td>
+                        <td><%= link_to  department.department_category.name, departments_path(:department_category_id => department.department_category) %></td>
                         <td><%=h department.name %></td>
                         <td class="options-width">
                           <a><%= link_to '', department, :class => 'icon-5 info-tooltip', :title => 'Show' %></a>
