@@ -1,4 +1,4 @@
-<div id="page-heading"><h1>Show Departments</h1></div>
+<div id="page-heading"><h1></h1></div>
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
   <tr>
     <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="100" alt="" /></th>
@@ -13,6 +13,7 @@
       <!--  start content-table-inner -->
       <div id="content-table-inner">
         <table cellspacing="0" cellpadding="0" border="0" id="id-form">
+
           <% content_for :header do -%>
             Application Settings
           <% end -%>
@@ -29,22 +30,22 @@
 
           <% form_tag :action => 'update' do %>
 
-            <h3>General</h3>
+          
+              <h3>General</h3>
 
+              <%= settings_field(Setting.load(:site_name)) %>
+              <%= settings_field(Setting.load(:company_name)) %>
+              <%= settings_field(Setting.load(:site_url)) %>
+           
+              <h3>Support</h3>
 
-
-            <%= settings_field(Setting.load(:site_name)) %>
-            <%= settings_field(Setting.load(:company_name)) %>
-            <%= settings_field(Setting.load(:site_url)) %>
-
-            <h3>Support</h3>
-
-            <%= settings_field(Setting.load(:support_name)) %>
-            <%= settings_field(Setting.load(:support_email)) %>
-
+              <%= settings_field(Setting.load(:support_name)) %>
+              <%= settings_field(Setting.load(:support_email)) %>
+           
             <div id="submitbutton">
               <p><%= submit_tag 'Save Settings' %></p>
             </div>
+
 
           <% end %>
         </table>
