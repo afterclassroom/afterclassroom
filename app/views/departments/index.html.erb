@@ -67,6 +67,8 @@
                           <h5><%= link_to 'New department', new_department_path %></h5>
                         </div>
                         <div class="clear"></div>
+                        <div class="lines-dotted-short"></div>
+                        <%= render :partial => "search", :locals => {:department => @department} %>
                       </div>
                       <!-- end related-act-inner -->
                       <div class="clear"></div>
@@ -74,8 +76,6 @@
 
                     <!-- end related-act-bottom -->
                   </div>
-
-                  <%= render :partial => "search", :locals => {:department => @department} %>
 
                 </td>
               </tr>
