@@ -1,4 +1,4 @@
-# © Copyright 2009 AfterClassroom.com — All Rights Reserved
+# ï¿½ Copyright 2009 AfterClassroom.com ï¿½ All Rights Reserved
 class DepartmentsController < ApplicationController
   require_role :admin
   layout 'admin'
@@ -8,16 +8,7 @@ class DepartmentsController < ApplicationController
     @department = Department.new(params[:department])
     cond = Department.paginated_departments_conditions_with_search(params)
     @departments = Department.paginate :conditions => cond.to_sql, :page => params[:page], :per_page => 10
-    @department_category_name = 'Select Department Category'
-    if params[:department]
-      if params[:department][:department_category_id]
-        department_category_id = params[:department][:department_category_id]
-      end
-    end
 
-    if department_category_id
-      @department_category_name = DepartmentCategory.find_by_id(department_category_id).name
-    end
     @department_categories = DepartmentCategory.find(:all)
 
     respond_to do |format|

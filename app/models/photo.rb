@@ -7,9 +7,9 @@ class Photo < ActiveRecord::Base
 
   # Attach
   has_attached_file :photo_attach, {
-    :bucket => 'afterclassroom_photos',
+    #:bucket => 'afterclassroom_photos',
     :styles => { :medium => "555x417>", :thumb => "92x68#" }
-  }.merge(PAPERCLIP_STORAGE_OPTIONS)
+  }#.merge(PAPERCLIP_STORAGE_OPTIONS)
   validates_attachment_content_type :photo_attach, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 
   # Comments

@@ -10,27 +10,27 @@
     <div id="related-act-inner">
       <div class="right">
         <div id="posting-section">
-          <% form_for :state, @state, :html => {:id => "form", :method => :get} do |f| %>                    
-              <div class="reqLa"><strong>Country</strong></div>
-                <div class="inp-formS">
-                  <%= render :partial => "country", :locals => {:countries => countries, :country_name => @country_name} %>
-                </div>                          
-               <div class="reqLa"><strong>State Name</strong></div>
-                <div class="inp-formS">
-                  <%= f.text_field :name %> <br/>
-                </div>
-                <div class="reqLa">
-                <div class="form-buttom">
-                  <!-- post  button -->
-                  <a href="javascript:submit()" title="Post" class="link_bt">
-                    <span class="ltred_l"></span>
-                    <span class="ltred_c btf">Search</span>
-                    <span class="ltred_r"></span>
-                  </a>
-                  <!-- end post button -->
-                </div>
+          <% form_for :state, @state, :html => {:id => "form", :method => :get} do |f| %>
+            <div class="reqLa"><strong>Country</strong></div>
+            <div class="inp-formS">
+              <%= render :partial => "country", :locals => {:countries => countries, :country_name => @country_name} %>
+            </div>
+            <div class="reqLa"><strong>State Name</strong></div>
+            <div class="inp-formS">
+              <%= f.text_field :name %> <br/>
+            </div>
+            <div class="reqLa">
+              <div class="form-buttom">
+                <!-- post  button -->
+                <a href="javascript:submit()" title="Post" class="link_bt">
+                  <span class="ltred_l"></span>
+                  <span class="ltred_c btf">Search</span>
+                  <span class="ltred_r"></span>
+                </a>
+                <!-- end post button -->
               </div>
-            <div id="elements_store"></div>          
+            </div>
+            <div id="elements_store"></div>
           <% end %>
         </div>
       </div>
@@ -42,7 +42,7 @@
   <!-- end related-act-bottom -->
 </div>
 <script type="text/javascript">
-var valid = new Validation('form', {immediate : true, onSubmit:false});
+  var valid = new Validation('form', {immediate : true, onSubmit:false});
   function submit(){
     var result = valid.validate();
     if (result) {
