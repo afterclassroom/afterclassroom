@@ -20,6 +20,7 @@ Rails::Initializer.run do |config|
     :version => '1.3.20'
   )
   config.gem "domainatrix"
+  config.gem 'delayed_paperclip'
   config.gem "rest-open-uri"
   config.gem "hpricot"
   config.gem 'gdata', :lib => 'gdata'

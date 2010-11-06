@@ -69,6 +69,8 @@ class User < ActiveRecord::Base
     :styles => { :medium => "169x169>",
     :thumb => "45x45#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
+  
+  process_in_background :avatar
     
   validates_attachment_content_type :avatar, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 

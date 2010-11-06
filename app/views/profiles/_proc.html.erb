@@ -31,7 +31,7 @@
       name: 'user[avatar]',
       onSubmit : function(file, ext){
         // Allow only images. You should add security check on the server-side.
-        if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){
+        if (ext && /^(jpg|png|jpeg|gif)$/.test(ext.toLowerCase())){
           // change button text, when user selects file
           button.text('Uploading');
 
