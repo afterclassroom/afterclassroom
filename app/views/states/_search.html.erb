@@ -12,8 +12,8 @@
         <div id="posting-section">
           <% form_for :state, @state, :html => {:id => "form", :method => :get} do |f| %>
             <div class="reqLa"><strong>Country</strong></div>
-            <div class="inp-formS">
-              <%= render :partial => "country", :locals => {:countries => countries, :country_name => @country_name} %>
+            <div>
+              <%= select_tag "state[country_id]", options_from_collection_for_select(@countries, "id", "name"), :style => "width: 198px" %>
             </div>
             <div class="reqLa"><strong>State Name</strong></div>
             <div class="inp-formS">
