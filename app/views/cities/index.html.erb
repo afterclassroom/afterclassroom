@@ -49,7 +49,7 @@
                   </table>
                   <div class="assPage">
                     <span class="numPage"></span>
-                  <%= will_paginate @cities, :class => "digg_pagination" %>
+                    <%= will_paginate @cities, :class => "digg_pagination" %>
                   </div>
                 </td>
                 <td>
@@ -68,6 +68,9 @@
                           <h5><%= link_to 'New city', new_city_path %></h5>
                         </div>
                         <div class="clear"></div>
+                        <div class="lines-dotted-short"></div>
+                        <%= render :partial => "search", :locals => {:country_name => @country_name, :state_name => @state_name, :countries => @countries, :states => @states} %>
+                        <div class="clear"></div>
                       </div>
                       <!-- end related-act-inner -->
                       <div class="clear"></div>
@@ -75,8 +78,6 @@
 
                     <!-- end related-act-bottom -->
                   </div>
-
-                  <%= render :partial => "search", :locals => {:country_name => @country_name, :state_name => @state_name, :countries => @countries, :states => @states} %>
 
                 </td>
 

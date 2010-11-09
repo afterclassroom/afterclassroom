@@ -23,20 +23,15 @@
             <tr>
               <th valign="top">City name*</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
-              
-              
             </tr>
-
           <% end %>
           <tr>
             <th>&nbsp;</th>
             <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
-            <td valign="top">
-              <%= link_to 'Back', cities_path, :class => 'form-back' %>
-            </td>
+            <td valign="top"><%= link_to 'Back', cities_path, :class => 'form-backK' %></td>
             <td class="error-innerr"></td>
           </tr>
-          
+
         </table>
       </div>
       <!--  end content-table-inner  -->

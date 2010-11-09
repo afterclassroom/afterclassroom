@@ -23,18 +23,13 @@
             <tr>
               <th valign="top">City name*:</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
-              <td class="form-buttom"><a href="javascript:;" onclick="submit();">Update</a></td>
-              <td class="error-innerr"></td>
             </tr>
-
-
           <% end %>
           <tr>
             <th>&nbsp;</th>
-            <td valign="top">
-              <%= link_to 'Show', @city, :class => 'form-show' %>
-              <%= link_to 'Back', cities_path, :class => 'form-back' %>
-            </td>
+            <td class="form-buttom"><a href="javascript:;" onclick="submit();">Update</a></td>
+            <td class="form-show-back"><%= link_to 'Back', cities_path, :class => 'form-back' %></td>
+            <td class="error-innerr"></td>
           </tr>
         </table>
       </div>

@@ -1,57 +1,98 @@
-<div id="related-activities-user">
-  <!--  start related-act-top -->
-  <div id="related-act-top">
-    <img src="/images/admin/forms/header_related_search.png" width="271" height="43" alt="" />
-  </div>
-  <!-- end related-act-top -->
-                <!--  start related-act-bottom -->
-  <div id="related-act-bottom">
-    <!--  start related-act-inner -->
-    <div id="related-act-inner">
-      <div class="right">
-        <div id="posting-section">
-          <% form_for :city, @city, :html => {:id => "form", :method => :get} do |f| %>
+<div class="right">
+  <div id="posting-section">
+    <% form_for :city, @city, :html => {:id => "form", :method => :get} do |f| %>
 
-            <%= render :partial => "country_state", :locals => {:countries => countries, :country_name => country_name, :state_name => state_name, :states => states, :action_name => "index"} %>
-          <div class="reqLa"><strong>City name</strong></div>
-            <div class="inp-formS">
-              <%= f.text_field :name %>
-            </div>
-            <div class="reqLa">
-              <div class="form-buttom">
-                <!-- post  button -->
-                <a href="javascript:submit()" title="Post" class="link_bt">
-                  <span class="ltred_l"></span>
-                  <span class="ltred_c btf">Search</span>
-                  <span class="ltred_r"></span>
-                </a>
-                <!-- end post button -->
-              </div>
-            </div>
-
-            <div id="elements_store"></div>
-          <% end %>
+      <div class="reqLa"><strong>Country<%= "*" if action_name == "new" || action_name == "edit" %></strong></div>
+      <div class="inp-formS">
+        <%= text_field_tag 'country_name', "#{country_name}", :class => "required tb_arrow", :readonly => "readonly" %>
+        <div id="country_div" class="menu_select" style="display:none;">
+          <ul>
+            <% for country in countries %>
+              <li>
+                <%= radio_button "city", "country_id", country.id, :onChange =>  "loadState(this.value)", :onClick => "getCountry('#{country.printable_name}')" %>
+                <label onClick="getCountry(this.innerHTML)" for="city_country_id_<%= country.id %>"><%= country.printable_name %></label>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
-      <div class="clear"></div>
-    </div>
-    <!-- end related-act-inner -->
-    <div class="clear"></div>
+
+      <div class="reqLa"><strong>State<%= "*" if action_name == "new" || action_name == "edit" %></strong></div>
+      <div class="inp-formS">
+        <%= text_field_tag 'state_name', "#{state_name}", :class => "required tb_arrow", :readonly => "readonly" %>
+        <div id="state_div" class="menu_select" style="display:none;">
+          <ul>
+            <% if states %>
+              <% for state in states %>
+                <li>
+                  <%= radio_button "city", "state_id", state.id, :onClick => "getState('#{state.name}')" %>
+                  <label onClick="getState(this.innerHTML)" for="city_state_id_<%= state.id %>"><%= state.name %></label>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="reqLa"><strong>City name</strong></div>
+      <div class="inp-formS">
+        <%= f.text_field :name %>
+      </div>
+      <div class="reqLa">
+        <div class="form-buttom">
+          <!-- post  button -->
+          <a href="javascript:submit()" title="Post" class="link_bt">
+            <span class="ltred_l"></span>
+            <span class="ltred_c btf">Search</span>
+            <span class="ltred_r"></span>
+          </a>
+          <!-- end post button -->
+        </div>
+      </div>
+      <div class="error-innerr"></div>
+    <% end %>
   </div>
-
-  <!-- end related-act-bottom -->
 </div>
-
-<script type="text/javascript">
-    var valid = new Validation('form', {immediate : true, onSubmit:false});
+<script language="javascript">
     function submit(){
-        var result = valid.validate();
-        if (result) {
-            Tips.hideAll();
-            $$('.prototip').each(function(element){
-                $('elements_store').insert(element, { position: content });
-            });
-            $('form').submit();
-        }
+        $("#form").submit();
     }
+    $(document).ready(function(){
+        $("#form").validate({
+            errorLabelContainer: ".error-innerr"
+        })
+    });
+    function getCountry(country_select){
+        $('country_name').value = country_select;
+    }
+    function getState(state_select){
+        $('state_name').value = state_select;
+    }
+    function loadState(country_id) {
+        new Ajax.Updater('state_div', '/cities/state',
+        {asynchronous:true,
+            evalScripts:true,
+            method:'get',
+            on500:function(request){alert('Sorry, there was an error.'.l); return false},
+            parameters:{country_id:country_id}}
+    );
+    }
+    new Tip('country_name', $('country_div'), {
+        width: 'auto',
+        title: 'Select Country',
+        showOn: 'click',
+        hideOthers: true,
+        hideOn: { element: 'closeButton', event: 'click'},
+        hook: { target: 'bottomLeft', tip: 'topLeft' },
+        offset: {x:0, y:0} });
+
+    new Tip('state_name', $('state_div'), {
+        width: 'auto',
+        title: 'Select State',
+        showOn: 'click',
+        hideOthers: true,
+        hideOn: { element: 'closeButton', event: 'click'},
+        hook: { target: 'bottomLeft', tip: 'topLeft' },
+        offset: {x:0, y:0} });
 </script>
+
+
