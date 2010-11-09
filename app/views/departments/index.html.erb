@@ -50,7 +50,7 @@
                     <%= will_paginate @departments, :class => "digg_pagination" %>
                   </div>
                 </td>
-                
+
                 <td>
                   <div id="related-activities-user">
                     <!--  start related-act-top -->
@@ -69,6 +69,7 @@
                         <div class="clear"></div>
                         <div class="lines-dotted-short"></div>
                         <%= render :partial => "search", :locals => {:department => @department} %>
+                        <div class="clear"></div>
                       </div>
                       <!-- end related-act-inner -->
                       <div class="clear"></div>

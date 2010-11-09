@@ -2213,7 +2213,7 @@ th.line-left	{
   margin: 0 auto 0px auto;
   padding: 10px 0 20px 0;
   width: 225px;
-  min-height: 200px;
+  /*min-height: 200px;*/
 }
 #related-act-inner .left	{
   float: left;
@@ -2222,7 +2222,8 @@ th.line-left	{
 #related-act-inner .right	{
   float: left;
   width: 195px;
-  padding: 2px 0 0 0;
+  /* padding: 2px 0 0 0;*/
+  margin-top:-18px;
 }
 #related-act-inner .right h5	{
   color: #393939;
@@ -2244,9 +2245,9 @@ ul.greyarrow li a:hover	{
   text-decoration: underline;
 }
 .lines-dotted-short	{
-  background: url('/images/admin/forms/lines_dotted_short.gif') no-repeat 0px 14px;
+  background: url('/images/admin/forms/lines_dotted_short.gif') no-repeat 0px 0px;
   font-size: 0px;
-  height: 28px;
+  /* height: 28px;*/
   line-height: 0;
 }
 
