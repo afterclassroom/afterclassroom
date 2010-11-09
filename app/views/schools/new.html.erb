@@ -33,17 +33,14 @@
               </td>
             </tr>
             <tr>
-              <%= render :partial => "department", :locals => {:department_name => @department_name, :department_categories => @department_categories, :check => true} %>
-              <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
-              <td class="error-innerr"></td>
+              <%= render :partial => "department", :locals => {:department_name => @department_name, :department_categories => @department_categories, :check => true} %>            
             </tr>
           <% end %>
           <tr>
             <th>&nbsp;</th>
-            <td valign="top">
-              
-              <%= link_to 'Back', schools_path, :class => 'form-back' %>
-            </td>
+            <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
+            <td class="form-show-back"><%= link_to 'Back', cities_path, :class => 'form-back' %></td>
+            <td class="error-innerr"></td>
           </tr>
         </table>
       </div>

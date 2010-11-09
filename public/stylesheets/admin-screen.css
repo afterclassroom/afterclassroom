@@ -2394,6 +2394,10 @@ a:hover.action-delete	{
   text-indent: -3000px;
   width: 80px;
 }
+.form-show-back{
+  position:absolute;
+  margin-left:-125px;
+}
 .form-backK	{
   background: url('/images/admin/forms/form_back.png') no-repeat;
   border: none;

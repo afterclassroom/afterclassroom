@@ -1,5 +1,6 @@
-<div class="reqLa"><strong>Country<%= "*" if action_name == "new" || action_name == "edit" %></strong></div>
-  <div class="inp-formS">
+<tr>
+  <th valign="top">Country<%= "*" if action_name == "new" || action_name == "edit" %></th>
+  <td class="inp-form">
     <%= text_field_tag 'country_name', "#{country_name}", :class => "required tb_arrow", :readonly => "readonly" %>
     <div id="country_div" class="menu_select" style="display:none;">
       <ul>
@@ -11,10 +12,11 @@
         <% end %>
       </ul>
     </div>
-  </div>
-
-<div class="reqLa"><strong>State<%= "*" if action_name == "new" || action_name == "edit" %></strong></div>
-  <div class="inp-formS">
+  </td>
+</tr>
+<tr>
+  <th class="reqLa"><strong>State<%= "*" if action_name == "new" || action_name == "edit" %></strong></th>
+  <td class="inp-form">
     <%= text_field_tag 'state_name', "#{state_name}", :class => "required tb_arrow", :readonly => "readonly" %>
     <div id="state_div" class="menu_select" style="display:none;">
       <ul>
@@ -28,39 +30,40 @@
         <% end %>
       </ul>
     </div>
-  </div>
+  </td>
+</tr>
 
 <script language="javascript">
-  function getCountry(country_select){
-    $('country_name').value = country_select;
-  }
-  function getState(state_select){
-    $('state_name').value = state_select;
-  }
-  function loadState(country_id) {
-    new Ajax.Updater('state_div', '/cities/state',
-    {asynchronous:true,
-      evalScripts:true,
-      method:'get',
-      on500:function(request){alert('Sorry, there was an error.'.l); return false},
-      parameters:{country_id:country_id}}
-  );
-  }
-  new Tip('country_name', $('country_div'), {
-    width: 'auto',
-    title: 'Select Country',
-    showOn: 'click',
-    hideOthers: true,
-    hideOn: { element: 'closeButton', event: 'click'},
-    hook: { target: 'bottomLeft', tip: 'topLeft' },
-    offset: {x:0, y:0} });
+    function getCountry(country_select){
+        $('country_name').value = country_select;
+    }
+    function getState(state_select){
+        $('state_name').value = state_select;
+    }
+    function loadState(country_id) {
+        new Ajax.Updater('state_div', '/cities/state',
+        {asynchronous:true,
+            evalScripts:true,
+            method:'get',
+            on500:function(request){alert('Sorry, there was an error.'.l); return false},
+            parameters:{country_id:country_id}}
+    );
+    }
+    new Tip('country_name', $('country_div'), {
+        width: 'auto',
+        title: 'Select Country',
+        showOn: 'click',
+        hideOthers: true,
+        hideOn: { element: 'closeButton', event: 'click'},
+        hook: { target: 'bottomLeft', tip: 'topLeft' },
+        offset: {x:0, y:0} });
 
-  new Tip('state_name', $('state_div'), {
-    width: 'auto',
-    title: 'Select State',
-    showOn: 'click',
-    hideOthers: true,
-    hideOn: { element: 'closeButton', event: 'click'},
-    hook: { target: 'bottomLeft', tip: 'topLeft' },
-    offset: {x:0, y:0} });
+    new Tip('state_name', $('state_div'), {
+        width: 'auto',
+        title: 'Select State',
+        showOn: 'click',
+        hideOthers: true,
+        hideOn: { element: 'closeButton', event: 'click'},
+        hook: { target: 'bottomLeft', tip: 'topLeft' },
+        offset: {x:0, y:0} });
 </script>
