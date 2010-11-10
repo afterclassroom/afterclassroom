@@ -63,16 +63,16 @@ class User < ActiveRecord::Base
   has_private_messages
   
   # Avatar
-  #has_attached_file :avatar, {
-  #  :bucket => 'afterclassroom_avatar',
-  #  :default_url => "/images/icons/icon_defaut/icon_members.png",
-  #  :styles => { :medium => "169x169>",
-  #  :thumb => "45x45#" }
-  #}.merge(PAPERCLIP_STORAGE_OPTIONS)
+  has_attached_file :avatar, {
+    :bucket => 'afterclassroom_avatar',
+    :default_url => "/images/icons/icon_defaut/icon_members.png",
+    :styles => { :medium => "169x169>",
+    :thumb => "45x45#" }
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   # process_in_background :avatar
     
-  #validates_attachment_content_type :avatar, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
+  validates_attachment_content_type :avatar, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 
   # ThinkSphinx
   define_index do
