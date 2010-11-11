@@ -711,9 +711,9 @@ span.btmDown a:hover{
   padding-left:18px;
 }
 #divinputfile{
-  background:url(/images/upload_file.png) no-repeat 100% 1px;
-  height:28px;
-  margin-top:5px;
+  background:url(/images/upload_file.png) no-repeat 75% 1px;
+  height:26px;
+  /*margin-top:5px;*/
 }
 #divinputfile .filepc{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -723,7 +723,7 @@ span.btmDown a:hover{
   opacity: 0.0;
 }
 #fakeinputfile{
-  margin-top:-21px;
+  margin-top:3px;
 }
 #fakeinputfile #fakefilepc{
   width:208px;
