@@ -9,11 +9,13 @@ class MusicAlbum < ActiveRecord::Base
   has_many :musics
   
   # Attach
-  has_attached_file :music_album_attach, 
+  has_attached_file :music_album_attach, {
+    :bucket => 'afterclassroom_musics',
     :default_url => "/images/music.png",
-    :styles => { :medium => "555x417>",
-    :thumb => "92x68#" }
-
+    :styles => { :medium => "555x417>", :thumb => "92x68#" }
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
+  validates_attachment_content_type :music_album_attach, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
+  
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)
     data.content_type = MIME::Types.type_for(data.original_filename).to_s
