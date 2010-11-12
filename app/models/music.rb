@@ -7,14 +7,11 @@ class Music < ActiveRecord::Base
 
   # Attach
   has_attached_file :music_attach, {
-    :bucket => 'afterclassroom_musics',
-    :content_type => [
-      'audio/mp3',
-      'audio/wav',
-      'audio/mpeg3']
+    :bucket => 'afterclassroom_musics'
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
+  validates_attachment_size :music_attach, :less_than => 100.megabytes
+  validates_attachment_content_type :music_attach, :content_type => ['audio/mp3', 'audio/wav', 'audio/mpeg3']
     
-
   # Comments
   acts_as_commentable
 
