@@ -55,7 +55,7 @@ ActionController::Routing::Routes.draw do |map|
     }
 
     users.resources :student_lounges,
-      :collection => {:invite_chat => :get, :add_users_to_chat => :get,
+      :collection => {:chat => :get,:invite_chat => :get, :add_users_to_chat => :get,
       :send_data => :get, :stop_chat => :get,
       :chanel_chat_content => :get, :friends_changed_message => :get,
       :friends_you_invited_chat => :get, :friends_want_you_chat => :get
