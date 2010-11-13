@@ -20,10 +20,12 @@
             <tr>
               <th valign="top">Name*:</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
+              <td class="error-innerr"></td>
             </tr>
             <tr>
               <td></td>
               <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
+              <td valign="top"><%= link_to 'Back', job_types_path, :class => 'form-backK' %></td>
             </tr>
           <% end %>
         </table>
@@ -46,9 +48,11 @@
 
 <script language="javascript">
     function submit(){
-        var result = $("#form").validate();
-        if (result) {
-            $("#form").submit();
-        }
+        $("#form").submit();
     }
+    $(document).ready(function(){
+        $("#form").validate({
+            errorLabelContainer: ".error-innerr"
+        })
+    });
 </script>

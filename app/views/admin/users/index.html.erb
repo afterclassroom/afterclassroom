@@ -23,13 +23,11 @@
                 <td>
                   <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table-user">
                     <tr>
-                      <th class="table-header-check"></th>
-                      <th class="table-header-repeat line-left"></th>
+                      <th class="table-header-check"></th>                     
                       <th class="table-header-repeat line-left"><a href="">Fullname</a></th>
                       <th class="table-header-repeat line-left"><a href="">Email</a></th>
                       <th class="table-header-options line-left"><a href="">Status</a></th>
                       <th class="table-header-options line-left"><a href="">Options</a></th>
-
                     </tr>
                     <% content_for :header do -%>
                       <%= configatron.site_name %> Users
@@ -46,8 +44,7 @@
                     <% # TODO: (base_app) Add some sort of search feature to easily find users %>
                     <% for user in @users %>
                       <tr class="alternate-row">
-                        <td></td>
-                        <td><%=h user.id %></td>
+                        <td></td>                       
                         <td><%= link_to h(user.login), admin_user_url(user) %></td>
                         <td><%=h user.email %></td>
                         <td><%=h user.state %></td>

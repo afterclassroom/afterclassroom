@@ -24,6 +24,8 @@
             <tr>
               <td></td>
               <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
+              <td valign="top"><%= link_to 'Back', department_categories_path, :class => 'form-backK' %></td>
+              <td class="error-innerr"></td>
             </tr>
 
           </table>
@@ -47,10 +49,12 @@
 
 <script language="javascript">
     function submit(){
-        var result = $("#form").validate();
-        if (result) {
-            $("#form").submit();
-        }
+        $("#form").submit();
     }
+    $(document).ready(function(){
+        $("#form").validate({
+            errorLabelContainer: ".error-innerr"
+        })
+    });
 </script>
 

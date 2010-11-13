@@ -726,8 +726,29 @@ a:hover.action-delete	{
   text-indent: -3000px;
   width: 80px;
 }
-.form-buttom{
+.form-save{
+  background: url('/images/admin/forms/form_saveSet.png') no-repeat;
+  border: none;
+  cursor: pointer;
+  display: block;
+  float: left;
+  height: 30px;
+  margin: 0 4px 0 0;
+  padding: 0;
+  text-indent: -3000px;
+  width: 120px;
+}
+.form-save a{
   
+  border: none;
+  cursor: pointer;
+  display: block;
+  float: left;
+  height: 30px;
+  margin: 0 4px 0 0;
+  padding: 0;
+  text-indent: -3000px;
+  width: 120px;
 }
 .form-buttom a	{
   background: url('/images/admin/forms/form_buttom.png') no-repeat;
@@ -2894,7 +2915,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
   position: absolute;
   text-align: left;
   top: 37px;
-  width: 750px;
+  width: 1024px;
   z-index: 100;
 }
 .nav .current .show	{
