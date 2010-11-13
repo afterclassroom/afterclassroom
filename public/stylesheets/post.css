@@ -711,9 +711,9 @@ span.btmDown a:hover{
   padding-left:18px;
 }
 #divinputfile{
-  background:url(/images/upload_file.png) no-repeat 75% 1px;
+  background:url(/images/upload_file.png) no-repeat 100% 1px;
   height:26px;
-  /*margin-top:5px;*/
+  margin-top:5px;
 }
 #divinputfile .filepc{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -722,8 +722,11 @@ span.btmDown a:hover{
   -moz-opacity: 0.0;
   opacity: 0.0;
 }
-#fakeinputfile{
-  margin-top:3px;
+#fakeinputfile input{
+ margin-top:3px;
+}
+#fakefilepc{
+  
 }
 #fakeinputfile #fakefilepc{
   width:208px;
@@ -731,7 +734,7 @@ span.btmDown a:hover{
   border:1px solid #CECECE;
   color:#969696;
   height:15px;
-  margin-top:3px;
+ 
   text-indent:2px;
   padding-top:3px;
 }

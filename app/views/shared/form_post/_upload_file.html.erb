@@ -2,8 +2,8 @@
   <% fields_for :jobinfo do |builder1| %>
     <div class="postTit"><%= builder1.label :category, "Add/Edit File" %><%= builder1.hidden_field :category, :value => "Add/Edit File" %></div>
     <div id="divinputfile" style="margin-top:-2px">
-      <%= builder1.file_field :resume_cv, :size => "49", :class => "filepc", :style => "margin-left:-213px"    %>
-      <div id="fakeinputfile" style="margin-top:0px"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
+      <%= builder1.file_field :resume_cv, :size => "49", :class => "filepc", :style => "margin-left:-213px" %>
+      <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" ></div>
     </div>
   <% end %>
 </div>
