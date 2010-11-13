@@ -710,6 +710,22 @@ span.btmDown a:hover{
   background:url('/images/learnFeed.png') no-repeat left top;
   padding-left:18px;
 }
+.postItemm {
+  overflow:hidden;
+  padding:3px 0 3px 10px;
+}
+.postItemm div{
+  float:left;
+}
+.postTitt {
+  font-weight:bold;
+  line-height:20px;
+  width:110px;
+}
+.ccc{
+  
+  margin-top:23px;
+}
 #divinputfile{
   background:url(/images/upload_file.png) no-repeat 100% 1px;
   height:26px;
@@ -722,19 +738,13 @@ span.btmDown a:hover{
   -moz-opacity: 0.0;
   opacity: 0.0;
 }
-#fakeinputfile input{
- margin-top:3px;
-}
-#fakefilepc{
-  
-}
+
 #fakeinputfile #fakefilepc{
   width:208px;
   height:22px;
   border:1px solid #CECECE;
   color:#969696;
   height:15px;
- 
   text-indent:2px;
   padding-top:3px;
 }
