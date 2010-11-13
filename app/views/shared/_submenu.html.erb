@@ -1,6 +1,6 @@
 <div class="stuLtop">
   <div class="menuRL">
-    <div class="menuRItem mnChat"><%= link_to '<span class="span1"><span class="span2">Chat</span></span>', user_student_lounges_path(current_user), :class => "#{'menuRselect' if @controller.controller_name == 'student_lounges'}" %></div>
+    <div class="menuRItem mnChat"><%= link_to '<span class="span1"><span class="span2">Chat</span></span>', :controller => 'student_lounges', :action => 'chat', :current_user => current_user , :class => "#{'menuRselect' if @controller.controller_name == 'student_lounges'}" %></div>
     <div class="menuRItem mnShare"><%= link_to '<span class="span1"><span class="span2">Share a Story</span></span>', user_stories_path(current_user), :class => "#{'menuRselect'  if @controller.controller_name == 'stories'}" %></div>
     <div class="menuRItem mnPho"><%= link_to '<span class="span1"><span class="span2">Photos</span></span>', user_photos_path(current_user), :class => "#{'menuRselect' if @controller.controller_name == 'photos'}" %></div>
     <div class="menuRItem mnMus"><%= link_to '<span class="span1"><span class="span2">Musics</span></span>', user_musics_path(current_user), :class => "#{'menuRselect' if @controller.controller_name == 'musics'}" %></div>
