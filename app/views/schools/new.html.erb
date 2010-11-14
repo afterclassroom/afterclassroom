@@ -12,18 +12,14 @@
     <td>
       <!--  start content-table-inner -->
       <div id="content-table-inner">
-        <table cellspacing="0" cellpadding="0" border="0" id="id-form">
-          <% content_for :header do -%>
-            <%= link_to 'Schools', schools_path %>
-          <% end -%>
-          <% form_for(@school, :html => {:id => "form"}) do |f| %>
-            <tr>
-              <%= render :partial => "select_city", :locals => {:countries => @countries, :states => nil, :cities => nil, :country_name => nil, :state_name => nil, :city_name => nil, :action_name => "new"} %>
-            </tr>
+        <% form_for(@school, :html => {:id => "form"}) do |f| %>
+          <div id="state_city">
+            <%= render :partial => "select_city" %>
+          </div>
+          <table cellspacing="0" cellpadding="0" border="0" id="id-form">
             <tr>
               <th valign="top">School Name:</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
-
             </tr>
             <tr>
               <th valign="top">Type:</th>
@@ -33,16 +29,19 @@
               </td>
             </tr>
             <tr>
-              <%= render :partial => "department", :locals => {:department_name => @department_name, :department_categories => @department_categories, :check => true} %>            
+              <th valign="top">Departments:</th>
+              <td>
+                <%= render :partial => "department" %>
+              </td>
             </tr>
-          <% end %>
-          <tr>
-            <th>&nbsp;</th>
-            <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
-            <td class="form-show-back"><%= link_to 'Back', cities_path, :class => 'form-back' %></td>
-            <td class="error-innerr"></td>
-          </tr>
-        </table>
+            <tr>
+              <th>&nbsp;</th>
+              <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>
+              <td class="form-show-back"><%= link_to 'Back', schools_path, :class => 'form-back' %></td>
+              <td class="error-innerr"></td>
+            </tr>
+          </table>
+        <% end %>
       </div>
       <!--  end content-table-inner  -->
     </td>
@@ -59,15 +58,15 @@
 <!--  end content-outer -->
 
 <script type="text/javascript">
-    function submit(){
-        $("#form").submit();
-    }
-    $(document).ready(function(){
-        $("#form").validate({
-
-            errorLabelContainer: ".error-innerr"
-
-        })
-    });
+  function submit(){
+    $("#form").submit();
+  }
+  $(document).ready(function(){
+    $("#form").validate({
+      errorLabelContainer: ".error-innerr"
+    })
+  });
+  // 'Select All' text changed
+  $("#department_select").multiSelect({ selectAllText: 'Select All' }); 
 </script>
 

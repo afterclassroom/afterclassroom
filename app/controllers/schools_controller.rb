@@ -5,9 +5,13 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.xml
   def index
-    @country_name = 'Select Country'
-    @state_name = 'Select State'
-    @city_name = 'Select City'
+    @countries = Country.has_cities
+    @country = @countries.first
+    @states = @country.states
+    @state = @states.first
+    @cities = @state.cities
+    @city = @cities.first
+    
     if params[:school]
       @school = School.new(params[:school])
       if params[:state]
@@ -21,7 +25,6 @@ class SchoolsController < ApplicationController
     
     if country_id
       country = Country.find_by_id(country_id)
-      @country_name = country.printable_name
       @states = country.states
       @state = State.new
       @state.country_id = country_id
@@ -30,16 +33,10 @@ class SchoolsController < ApplicationController
     if state_id
       state = State.find_by_id(state_id)
       @cities = state.cities
-      @state_name = state.name
       @city = City.new
       @city.state_id = state_id
     end
 
-    if city_id
-      @city_name = City.find_by_id(city_id).name
-    end
-    
-    @countries = Country.has_cities
     cond = School.paginated_schools_conditions_with_search(params)
     @schools = School.paginate :include => [{:city => {:state => :country}}], :conditions => cond.to_sql, :page => params[:page], :per_page => 10
 
@@ -50,26 +47,36 @@ class SchoolsController < ApplicationController
   end
   
   def state_or_city
+    type = params[:type]
     country_id = params[:country_id]
-    states = State.find_all_by_country_id(country_id)
-    if states.size > 0
-      render :partial => "state", :locals => {
-        :states => states
-      }
+    @countries = Country.has_cities
+    @country = Country.find(country_id)
+    @states = @country.states
+    @state = @states.first
+    @cities = @state.cities
+    @city = @cities.first
+    if type == "search"
+      render :partial => "search_select_city"
     else
-      cities = City.find_all_by_state_id(country_id)
-      render :partial => "city", :locals => {
-        :cities => cities
-      }
+      render :partial => "select_city"
     end
   end
   
   def city
+    type = params[:type]
     state_id = params[:state_id]
+    @countries = Country.has_cities
+    @state = State.find(state_id)
+    @country = @state.country
+    @states = @country.states
+    @cities = @state.cities
+    @city = @cities.first
     cities = City.find_all_by_state_id(state_id)
-    render :partial => "city", :locals => {
-      :cities => cities
-    }
+    if type == "search"
+      render :partial => "search_select_city"
+    else
+      render :partial => "select_city"
+    end
   end
   
   # GET /schools/1
@@ -87,7 +94,13 @@ class SchoolsController < ApplicationController
   # GET /schools/new.xml
   def new
     @countries = Country.has_cities
+    @country = @countries.first
+    @states = @country.states
+    @state = @states.first
+    @cities = @state.cities
+    @city = @cities.first
     @school = School.new
+    @school.type_school = "University"
     @department_categories = DepartmentCategory.find(:all)
     respond_to do |format|
       format.html # new.html.erb
@@ -100,20 +113,10 @@ class SchoolsController < ApplicationController
     @countries = Country.has_cities
     @school = School.find(params[:id])
     @department_categories = DepartmentCategory.find(:all)
-    @department_name = ""
-    for department in @school.departments
-      @department_name += department.name + ", "
-    end
+
     city = @school.city
-    @city_name = city.name
     state = city.state
-    @city = City.new
-    @city.state_id = state.id
     country = city.country
-    @state = State.new
-    @state.country_id = country.id
-    @state_name = state.name
-    @country_name = country.name
     @states = country.states
     @cities = state.cities
   end
@@ -121,6 +124,7 @@ class SchoolsController < ApplicationController
   # POST /schools
   # POST /schools.xml
   def create
+    params[:school][:department_ids] = params[:department_select]
     @school = School.new(params[:school])
     respond_to do |format|
       if @school.save
@@ -137,6 +141,8 @@ class SchoolsController < ApplicationController
   # PUT /schools/1
   # PUT /schools/1.xml
   def update
+    params[:school][:department_ids] = params[:department_select]
+    params[:school][:department_ids] ||= []
     @school = School.find(params[:id])
 
     respond_to do |format|

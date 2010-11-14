@@ -10,10 +10,6 @@
         <% fields_for :post do |p| %>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
-          <div class="reqSl">
-            <div class="reqLa"><label>Type</label></div>
-            <div class="reqTi"><%= f.text_field :job_type_id %></div>
-          </div>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
           <div class="reqSl">
@@ -35,18 +31,3 @@
     </div>
   </div>
 </div>
-
-<ul id="job_type_menu" class="mcdropdown_menu">
-  <% JobType.find(:all).each do |j| %>
-    <li rel_job_type="<%= j.id %>">
-      <%= j.name %>
-    </li>
-  <% end %>
-</ul>
-
-<script type="text/javascript">
-  $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
-    width: 250,
-    valueAttr: "rel_job_type"
-  });
-</script>

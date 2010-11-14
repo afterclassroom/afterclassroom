@@ -61,6 +61,7 @@ javascripts:
   - jquery-tooltip
   - jquery-usermode
   - ui-checkbox
+  - jquery-multiselect
 stylesheets: 
   application:
   - main
@@ -111,4 +112,5 @@ stylesheets:
   - admin-pro-dropline
   - admin-pro-dropline-ie
   - admin-screen
+  - jquery-multiSelect
   

@@ -1,4 +1,0 @@
-<% for city in cities %>
-  <%= radio_button "school", "city_id", city.id, :onClick => "getCity('#{city.name}')" %>
-  <label onClick="getCity('#{city.name}')" for="school_city_id_<%= city.id %>"><%= city.name %></label>
-<% end %>

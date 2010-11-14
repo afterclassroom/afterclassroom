@@ -1,0 +1,21 @@
+<div class="reqLa"><strong>Country*</strong></div>
+<div>
+  <%= select_tag "state[country_id]", options_from_collection_for_select(@countries, "id", "name", @country), :id => "state_country_id", :style => "width: 198px" %>
+  <%= observe_field "state_country_id", :url => { :action => :state_or_city ,
+    :controller => :schools},
+    :update => "state_city",
+    :with => "'country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>
+</div>
+
+<div class="reqLa"><strong>State*</strong></div>
+<div>
+  <%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state), :id => "city_state_id", :style => "width: 198px" %>
+  <%= observe_field "city_state_id", :url => { :action => :city ,
+    :controller => :schools},
+    :update => "state_city",
+    :with => "'state_id='+ escape($('#city_state_id').val()) + '&type=search'" %>
+</div>
+<div class="reqLa"><strong>City*</strong></div>
+<div>
+  <%= select_tag "school[city_id]", options_from_collection_for_select(@cities, "id", "name", @city), :style => "width: 198px" %>
+</div>
