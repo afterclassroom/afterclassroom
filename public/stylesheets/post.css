@@ -710,26 +710,26 @@ span.btmDown a:hover{
   background:url('/images/learnFeed.png') no-repeat left top;
   padding-left:18px;
 }
-.postItemm {
-  overflow:hidden;
-  padding:3px 0 3px 10px;
+.postItemB {
+  background:url(/images/upload_file.png) no-repeat 100% 2px;
+  height:26px;
+  padding:5px 0 1px 0;
 }
-.postItemm div{
-  float:left;
+.postItemA {
+  background:url(/images/upload_file.png) no-repeat 60% 2px;
+  height:24px;
+  padding:3px 0 2px 0;
 }
 .postTitt {
   font-weight:bold;
   line-height:20px;
   width:110px;
-}
-.ccc{
-  
-  margin-top:23px;
-}
-#divinputfile{
-  background:url(/images/upload_file.png) no-repeat 100% 1px;
-  height:26px;
+  position:absolute;
   margin-top:5px;
+  margin-left:10px;
+}
+.postUpfile{
+  margin-top:-21px;
 }
 #divinputfile .filepc{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -737,8 +737,8 @@ span.btmDown a:hover{
   -khtml-opacity: 0.0;
   -moz-opacity: 0.0;
   opacity: 0.0;
+  margin-left: 120px;
 }
-
 #fakeinputfile #fakefilepc{
   width:208px;
   height:22px;
