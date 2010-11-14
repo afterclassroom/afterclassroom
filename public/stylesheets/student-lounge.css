@@ -5832,3 +5832,75 @@ span.btmTag a:hover{
 .NodeClose a:hover{
     background:url('/images/postCloseH.png') no-repeat right top;
 }
+/**** student lounges 2 ***/
+.stuItem{
+	overflow:hidden;
+	padding:5px 0px;
+	_height:100%;
+}
+.stuItem div{
+	float:left;
+	line-height:18px;
+}
+.stuItemL{
+	width:120px;
+}
+.stuItemL a{
+	text-decoration:none;
+	color:#6f6f63;
+	padding-left:25px;
+}
+.stuItemL a:hover{
+	color:#d00;
+}
+.inbox, .homew, .tutor, .jobs{
+	border-bottom:1px #e4e4e4 solid;
+}
+.inbox .stuItemL{
+	background:url('/images/iconMail.png') no-repeat;
+}
+.friend .stuItemL{
+	background:url('/images/iconFriend.png') no-repeat;
+}
+.homew .stuItemL{
+	background:url('/images/iconHomew.png') no-repeat;
+}
+.tutor .stuItemL{
+	background:url('/images/iconTuto.png') no-repeat;
+}
+.jobs .stuItemL{
+	background:url('/images/iconJobs.png') no-repeat;
+}
+.cmore{
+	padding-top:5px;
+}
+.cmore a{
+	color:#0a81c4;
+	text-decoration:none;
+	font-weight:bold;
+	font-size:10px;
+	background:url('/images/iconMore.gif') no-repeat left 3px;
+	padding-left:12px;
+}
+.cmore a:hover{
+	color:#d00;
+}
+.col300in .stuItemL{
+	width:225px;
+}
+.playG, .phoneA, .shopp{
+	border-bottom:1px #e4e4e4 solid;
+}
+.playG .stuItemL{
+	background:url('/images/playG.png') no-repeat;
+}
+.phoneA .stuItemL{
+	background:url('/images/phone.png') no-repeat;
+}
+.shopp .stuItemL{
+	background:url('/images/iconShop.png') no-repeat;
+}
+.learnT .stuItemL{
+	background:url('/images/iconLearn.png') no-repeat;
+}
+/****/
