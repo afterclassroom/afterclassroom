@@ -1,3 +1,60 @@
 <% content_for :menu_top_student_lounge do -%>
   <%= render :partial => '/shared/submenu' %>
 <% end -%>
+<div class="contMainC">
+  <div class="col195 stuLLeft">
+    <div class="col195in">
+      <h1 class="col300Title">Friends wanted to chat with you</h1>
+      <div id="div_friends_want_you_chat"></div>
+    </div>
+  </div>
+  <div class="col195 stuLLeft">
+    <div class="col195in">
+      <h1 class="col300Title">Friends changed their message</h1>
+      <div id="div_friends_changed_their_message"></div>
+    </div>
+  </div>
+</div>
+<div class="contMainL">
+  <div class="col451 proCen" id="user_wall">
+    <%= render :partial => "user_walls/wall_form_ajax" %>
+    <div class="col451in">
+      <div class="proCenCont">
+
+        <%= render :partial => "stu_lounge_item", :locals => {:walls => @walls} %>
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @walls %></span>
+          <%= will_paginate @walls %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contMainR">
+  <%= render :partial => "friends_in_chatting" %>
+  <div class="col300 stuL300">
+    <div class="col300in">
+      <h1 class="col300Title">Friends you invited to chat chit</h1>
+      <div class="col300Cont">
+        <div id="div_friends_you_invited_to_chat"></div>
+      </div>
+    </div>
+  </div>
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
+
+<script>
+<% if @user_invite_chat %>
+    window.onload(invite_chat('<%= @user_invite_chat.id %>'));
+<% end %>
+  friends_changed_message();
+  friends_you_invited_chat();
+  friends_want_you_chat();
+</script>

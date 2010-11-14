@@ -2,16 +2,34 @@
   <%= render :partial => '/shared/submenu' %>
 <% end -%>
 <div class="contMainC">
-  <div class="col195 stuLLeft">
+  <div class="col195">
     <div class="col195in">
-      <h1 class="col300Title">Friends wanted to chat with you</h1>
-      <div id="div_friends_want_you_chat"></div>
+      <div class="stuItem inbox">
+        <div class="stuItemL"><a href="#">Inbox</a></div>
+        <div class="stuItemR">1/200</div>
+      </div>
+      <div class="stuItem friend">
+        <div class="stuItemL"><a href="#">Friends</a></div>
+        <div class="stuItemR">3/20</div>
+      </div>
     </div>
   </div>
-  <div class="col195 stuLLeft">
+
+  <div class="col195">
     <div class="col195in">
-      <h1 class="col300Title">Friends changed their message</h1>
-      <div id="div_friends_changed_their_message"></div>
+      <div class="stuItem homew">
+        <div class="stuItemL"><a href="#">Homework</a></div>
+        <div class="stuItemR">2/10,000</div>
+      </div>
+      <div class="stuItem tutor">
+        <div class="stuItemL"><a href="#">Tutors</a></div>
+        <div class="stuItemR">0/400</div>
+      </div>
+      <div class="stuItem jobs">
+        <div class="stuItemL"><a href="#">Jobs</a></div>
+        <div class="stuItemR">5/2,000</div>
+      </div>
+      <div class="cmore"><a href="#">Choose More...</a></div>
     </div>
   </div>
 </div>
@@ -30,21 +48,75 @@
         </div>
         <!--Pagination-->
         <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
-        
+
       </div>
     </div>
   </div>
 </div>
 <div class="contMainR">
-  <%= render :partial => "friends_in_chatting" %>
   <div class="col300 stuL300">
     <div class="col300in">
-      <h1 class="col300Title">Friends you invited to chat chit</h1>
-      <div class="col300Cont">
-        <div id="div_friends_you_invited_to_chat"></div>
+      <div class="stuItem playG">
+        <div class="stuItemL"><a href="#">Play Games</a></div>
+        <div class="stuItemR">3/3,000</div>
+      </div>
+      <div class="stuItem phoneA">
+        <div class="stuItemL"><a href="#">Phone Apps</a></div>
+        <div class="stuItemR">2/500</div>
+      </div>
+      <div class="stuItem shopp">
+        <div class="stuItemL"><a href="#">Shopping</a></div>
+        <div class="stuItemR">20/400</div>
+      </div>
+      <div class="stuItem learnT">
+        <div class="stuItemL"><a href="#">Learning tools</a></div>
+        <div class="stuItemR">5/10</div>
       </div>
     </div>
   </div>
+  <div class="advert">
+    <div class="creAdv"><a href="#">Create an Ad</a></div>
+    <div class="advertTitle">Advertisement</div>
+    <div class="Dani"><a href="#">DaniWeb - IT Discussion Community</a></div>
+    <div class="advertImg"><img src="/pictures/pic6.png"/></div>
+    <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+    <div class="advertInf">
+      <div class="advertInfL">
+        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+      </div>
+      <div class="advertInfR">
+        <span class="pre"><a href="#">&nbsp;</a></span>
+        <span class="next"><a href="#">&nbsp;</a></span></div>
+    </div>
+  </div>
+  <div class="advert">
+    <div class="Dani"><a href="#">MTV - New Music Videos, Reality TV Shows...</a></div>
+    <div class="advertImg"><img src="/pictures/adv.png"/></div>
+    <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+    <div class="advertInf">
+      <div class="advertInfL">
+        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+      </div>
+      <div class="advertInfR">
+        <span class="pre"><a href="#">&nbsp;</a></span>
+        <span class="next"><a href="#">&nbsp;</a></span></div>
+    </div>
+  </div>
+
+  <div class="advert">
+    <div class="Dani"><a href="#">MTV - New Music Videos, Reality TV Shows...</a></div>
+    <div class="advertImg"><img src="/pictures/adv1.png"/></div>
+    <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+    <div class="advertInf">
+      <div class="advertInfL">
+        <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+      </div>
+      <div class="advertInfR">
+        <span class="pre"><a href="#">&nbsp;</a></span>
+        <span class="next"><a href="#">&nbsp;</a></span></div>
+    </div>
+  </div>
+
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
