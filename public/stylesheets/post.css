@@ -719,8 +719,9 @@ span.btmDown a:hover{
   background:url(/images/upload_file.png) no-repeat 60% 2px;
   height:24px;
   padding:3px 0 2px 0;
+  margin:3px 0;
 }
-#divinputfile{
+#divinputfileA{
    background:url(/images/upload_file.png) no-repeat 100% 1px;
    height:24px;
    padding-bottom:2px;
@@ -751,7 +752,7 @@ span.btmDown a:hover{
   height:15px;
   text-indent:2px;
   padding-top:3px;
-  margin-top:5px;
+  margin-top:1px;
 }
 .submit a{
   background:url('/images/btm48.png') no-repeat;
