@@ -720,6 +720,11 @@ span.btmDown a:hover{
   height:24px;
   padding:3px 0 2px 0;
 }
+#divinputfile{
+   background:url(/images/upload_file.png) no-repeat 100% 1px;
+   height:24px;
+   padding-bottom:2px;
+}
 .postTitt {
   font-weight:bold;
   line-height:20px;
@@ -737,7 +742,6 @@ span.btmDown a:hover{
   -khtml-opacity: 0.0;
   -moz-opacity: 0.0;
   opacity: 0.0;
-  margin-left: 120px;
 }
 #fakeinputfile #fakefilepc{
   width:208px;
@@ -747,6 +751,7 @@ span.btmDown a:hover{
   height:15px;
   text-indent:2px;
   padding-top:3px;
+  margin-top:5px;
 }
 .submit a{
   background:url('/images/btm48.png') no-repeat;

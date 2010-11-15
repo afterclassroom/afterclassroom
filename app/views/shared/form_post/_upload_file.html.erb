@@ -1,7 +1,7 @@
 <div class="postItem">
   <% fields_for :jobinfo do |builder1| %>
     <div class="postTit"><%= builder1.label :category, "Add/Edit File" %><%= builder1.hidden_field :category, :value => "Add/Edit File" %></div>
-    <div id="divinputfile">
+    <div id="divinputfile" style="margin-top:-23px">
       <%= builder1.file_field :resume_cv, :size => "49", :class => "filepc" %>
       <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" ></div>
     </div>
