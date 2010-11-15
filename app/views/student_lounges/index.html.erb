@@ -29,7 +29,23 @@
         <div class="stuItemL"><a href="#">Jobs</a></div>
         <div class="stuItemR">5/2,000</div>
       </div>
-      <div class="cmore"><a href="#">Choose More...</a></div>
+      <div class="cmore">
+        <a id="choosemore" href="#">Choose More...</a>
+      </div>
+      <div id="moreinner">
+        <div class="stuItem jobs">
+          <div class="stuItemL"><a href="#">Jobs</a></div>
+          <div class="stuItemR">5/2,000</div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL"><a href="#">Jobs</a></div>
+          <div class="stuItemR">5/2,000</div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL"><a href="#">Jobs</a></div>
+          <div class="stuItemR">5/2,000</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -129,4 +145,12 @@
   friends_changed_message();
   friends_you_invited_chat();
   friends_want_you_chat();
+
+  $(document).ready(function(){
+    $('#moreinner').toggle('slow');
+    $('#choosemore').click(function(){
+      $('#moreinner').toggle('slow');
+    });
+  });
+
 </script>
