@@ -6,11 +6,11 @@
     <div class="col195in">
       <div class="stuItem inbox">
         <div class="stuItemL"><a href="#">Inbox</a></div>
-        <div class="stuItemR">1/200</div>
+        <div class="stuItemR"><%= current_user.received_messages.size %></div>
       </div>
       <div class="stuItem friend">
         <div class="stuItemL"><a href="#">Friends</a></div>
-        <div class="stuItemR">3/20</div>
+        <div class="stuItemR"><%= current_user.user_friends.size %></div>
       </div>
     </div>
   </div>
@@ -34,16 +34,36 @@
       </div>
       <div id="moreinner">
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Jobs</a></div>
-          <div class="stuItemR">5/2,000</div>
+          <div class="stuItemL"><a href="#">Q.As</a></div>
+          <div class="stuItemR">5</div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Jobs</a></div>
-          <div class="stuItemR">5/2,000</div>
+          <div class="stuItemL"><a href="#">Books</a></div>
+          <div class="stuItemR">5</div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Jobs</a></div>
-          <div class="stuItemR">5/2,000</div>
+          <div class="stuItemL"><a href="#">Food</a></div>
+          <div class="stuItemR">5</div>
+        </div
+        <div class="stuItem jobs">
+          <div class="stuItemL"><a href="#">Party</a></div>
+          <div class="stuItemR">5</div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL"><a href="#">Myx</a></div>
+          <div class="stuItemR">5</div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL"><a href="#">Awareness</a></div>
+          <div class="stuItemR">5</div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL"><a href="#">Housing</a></div>
+          <div class="stuItemR">5</div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL"><a href="#">Teamup</a></div>
+          <div class="stuItemR">5</div>
         </div>
       </div>
     </div>
