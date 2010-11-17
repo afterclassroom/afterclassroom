@@ -1,12 +1,15 @@
-# © Copyright 2009 AfterClassroom.com — All Rights Reserved
+# ï¿½ Copyright 2009 AfterClassroom.com ï¿½ All Rights Reserved
 class CitiesController < ApplicationController
   require_role :admin
   layout 'admin'
   # GET /cities
   # GET /cities.xml
   def index
-    @country_name = 'Select Country'
-    @state_name = 'Select State'
+    @countries = Country.has_cities
+    @country = @countries.first
+    @states = @country.states
+    @state = @states.first
+    
     if params[:city]
       @city = City.new(params[:city])
       if params[:city][:country_id]
@@ -18,16 +21,13 @@ class CitiesController < ApplicationController
     end
 
     if country_id
-      @country_name = Country.find_by_id(country_id).printable_name     
+      country = Country.find_by_id(country_id)
+      @states = country.states
+      @state = State.new
+      @state.country_id = country_id
     end
-    
-    if state_id
-      @state_name = State.find_by_id(state_id).name
-    end
-    
-    @countries = Country.find(:all)
-    cond = City.paginated_cities_conditions_with_search(params)
-    @states = country_id ? State.find_all_by_country_id(country_id) : nil
+       
+    cond = City.paginated_cities_conditions_with_search(params)    
     @cities = City.paginate :conditions => cond.to_sql, :page => params[:page], :per_page => 10
 
     respond_to do |format|
@@ -37,11 +37,14 @@ class CitiesController < ApplicationController
   end
   
   def state
+   
     country_id = params[:country_id]
-    states = State.find_all_by_country_id(country_id)
-    render :partial => "state", :locals => {
-      :states => states
-    }
+    @countries = Country.has_cities
+    @country = Country.find(country_id)
+    @states = @country.states
+    @state = @states.first    
+    states = State.find_all_by_state_id(country_id)
+  
   end
 
   # GET /cities/1

@@ -2,13 +2,21 @@
   <div id="posting-section">
     <% form_for :city, @city, :html => {:id => "form", :method => :get} do |f| %>
 
-      <div class="reqLa"><strong>Country<%= "*" if action_name == "new" || action_name == "edit" %></strong></div>
-      <%= select_tag "city[country_id]", options_from_collection_for_select(@countries, "id", "name"), :style => "width: 198px" %>
+     <div class="reqLa"><strong>Country*</strong></div>
+<div>
+  <%= select_tag "state[country_id]", options_from_collection_for_select(@countries, "id", "name", @country), :id => "state_country_id", :style => "width: 198px" %>
+  <%= observe_field "state_country_id", :url => { :action => :state ,
+    :controller => :cities},
+    :update => "state_city",
+    :with => "'country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>
+</div>
 
-      <div class="reqLa"><strong>State<%= "*" if action_name == "new" || action_name == "edit" %></strong></div>
-      <div class="inp-formS">
-       
-      </div>
+<div class="reqLa"><strong>State*</strong></div>
+<div>
+  <%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state), :style => "width: 198px" %>
+
+</div>
+
       <div class="reqLa"><strong>City name</strong></div>
       <div class="inp-formS">
         <%= f.text_field :name %>
