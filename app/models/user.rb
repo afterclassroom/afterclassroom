@@ -251,6 +251,14 @@ class User < ActiveRecord::Base
     over = 30
     self.fans.find(:all, :conditions => ["updated_at < ?", Time.now - over.day], :order => "updated_at DESC")
   end
+
+  def get_posts_with_type(type)
+    self.posts.find(:all, :conditions => ["type_name = ?", type], :order => "updated_at DESC")
+  end
+
+  def get_total_posts_with_type(type)
+    get_posts_with_type(type).size
+  end
     
   protected
 

@@ -19,11 +19,11 @@
     <div class="col195in">
       <div class="stuItem homew">
         <div class="stuItemL"><a href="#">Homework</a></div>
-        <div class="stuItemR">2/10,000</div>
+        <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostAssignment") %></div>
       </div>
       <div class="stuItem tutor">
         <div class="stuItemL"><a href="#">Tutors</a></div>
-        <div class="stuItemR">0/400</div>
+        <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostTutors") %></div>
       </div>
       <div class="stuItem jobs">
         <div class="stuItemL"><a href="#">Jobs</a></div>
@@ -159,13 +159,6 @@
 </div>
 
 <script>
-<% if @user_invite_chat %>
-    window.onload(invite_chat('<%= @user_invite_chat.id %>'));
-<% end %>
-  friends_changed_message();
-  friends_you_invited_chat();
-  friends_want_you_chat();
-
   $(document).ready(function(){
     $('#moreinner').toggle('slow');
     $('#choosemore').click(function(){
