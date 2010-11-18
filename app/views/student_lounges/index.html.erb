@@ -18,52 +18,52 @@
   <div class="col195">
     <div class="col195in">
       <div class="stuItem homew">
-        <div class="stuItemL"><a href="#">Homework</a></div>
+        <div class="stuItemL"><%= link_to "Homework", {:controller => post_assignments_path} %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostAssignment") %></div>
       </div>
       <div class="stuItem tutor">
-        <div class="stuItemL"><a href="#">Tutors</a></div>
+        <div class="stuItemL"><%= link_to "Tutors", {:controller => post_tutors_path} %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostTutor") %></div>
       </div>
       <div class="stuItem jobs">
-        <div class="stuItemL"><a href="#">Jobs</a></div>
-        <div class="stuItemR">5/2,000</div>
+        <div class="stuItemL"><%= link_to "Jobs", {:controller => post_jobs_path} %></div>
+        <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostJob") %></div>
       </div>
       <div class="cmore">
         <a id="choosemore" href="#">Choose More...</a>
       </div>
       <div id="moreinner">
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Q.As</a></div>
-          <div class="stuItemR">5</div>
+          <div class="stuItemL"><%= link_to "Q.As", {:controller => post_qas_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostQa") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Books</a></div>
-          <div class="stuItemR">5</div>
+          <div class="stuItemL"><%= link_to "Books", {:controller => post_books_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostBook") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Food</a></div>
-          <div class="stuItemR">5</div>
+          <div class="stuItemL"><%= link_to "Food", {:controller => post_foods_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostFood") %></div>
         </div
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Party</a></div>
-          <div class="stuItemR">5</div>
+          <div class="stuItemL"><%= link_to "Party", {:controller => post_parties_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostParty") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Myx</a></div>
-          <div class="stuItemR">5</div>
+          <div class="stuItemL"><%= link_to "Myx", {:controller => post_myxes_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostMyx") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Awareness</a></div>
-          <div class="stuItemR">5</div>
+          <div class="stuItemL"><%= link_to "Awareness", {:controller => post_awarenesses_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostAwareness") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Housing</a></div>
-          <div class="stuItemR">5</div>
+          <div class="stuItemL"><%= link_to "Housing", {:controller => post_housings_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostHousing") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL"><a href="#">Teamup</a></div>
-          <div class="stuItemR">5</div>
+          <div class="stuItemL"><%= link_to "Teamup", {:controller => post_teamups_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostTeamup") %></div>
         </div>
       </div>
     </div>

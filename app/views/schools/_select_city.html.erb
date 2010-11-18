@@ -13,10 +13,7 @@
     <th valign="top">State*:</th>
     <td>
       <%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state), :id => "city_state_id", :style => "width: 198px" %>
-      <%= observe_field "city_state_id", :url => { :action => :city ,
-        :controller => :schools},
-        :update => "state_city",
-        :with => "'state_id='+ escape($('#city_state_id').val())" %>
+    
     </td>
   </tr>
   <tr>
