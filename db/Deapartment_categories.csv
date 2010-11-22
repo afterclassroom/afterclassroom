@@ -1,147 +1,354 @@
-AGRICULTURE, AGRICULTURE OPERATIONS, AND RELATED SCIENCES;agribusiness/agricultural business operations
-;food science
-;animal sciences
-;agriculture, agriculture operations, and related sciences
-;plant sciences
-;city/urban
-;community
-;regional planning
-NATURAL RESOURCES AND CONSERVATION;environmental science
-;forestry
-COMMUNICATION, JOURNALISM, AND RELATED PROGRAMS;communication studies/speech communication and rhetoric
-;journalism
-;digital communication and media/multimedia
-;public relations/image management
-;environmental studies
-;communication and media studies
-;mass communication/media studies
-COMPUTER AND INFORMATION SCIENCES AND SUPPORT SERVICES;information technology
-;computer science
-;computer and information sciences
-;information science/studies
-EDUCATION;special education and teaching
-;special education and teaching
-;junior high/intermediate/middle school education and teaching
-;secondary education and teaching
-;art teacher education
-;English/language arts teacher education
-;foreign language teacher education
-;mathematics teacher education
-;music teacher education
-;physical education teaching and coaching
-;science teacher education/general science teacher education
-;social studies teacher education
-;biology teacher education
-;computer graphics
-;history teacher education
-;education
-;teacher education
-;social science teacher education
-;health teacher education
-;educational leadership and administration
-;education/teaching of individuals with speech or language impairments
-;early childhood education and teaching
-;reading teacher education
-;elementary education and teaching
-ENGINEERING;engineering science
-;civil engineering
-;mechanical engineering
-FOREIGN LANGUAGES, LITERATURES, AND LINGUISTICS;Spanish language and literature
-;French language and literature
-;German language and literature
-;classics and classical languages
-;literatures
-;linguistics
-FAMILY AND CONSUMER SCIENCES/HUMAN SCIENCES;human development and family studies
-;family and consumer sciences/human sciences
-LEGAL PROFESSIONS AND STUDIES;pre-law studies
-ENGLISH LANGUAGE AND LITERATURE/LETTERS;English language and literature
-;creative writing
-LIBERAL ARTS AND SCIENCES STUDIES, AND HUMANITIES;liberal arts and sciences/liberal studies
-;humanities/humanistic studies
-BIOLOGICAL AND BIOMEDICAL SCIENCES;biology/biological sciences
-;biochemistry
-MATHEMATICS AND STATISTICS;mathematics
-MULTI/INTERDISCIPLINARY STUDIES;international/global studies
-;multi/interdisciplinary studies
-;biological and physical sciences
-;neuroscience
-PARKS, RECREATION, LEISURE, AND FITNESS STUDIES;health and physical education
-;kinesiology and exercise science
-;sport and fitness administration/management
-THEOLOGY AND RELIGIOUS VOCATIONS;Bible/biblical studies
-;missions/missionary studies and missiology
-;youth ministry
-;pastoral counseling and specialized ministries
-;theology and religious vocations
-PHYSICAL SCIENCES;chemistry
-;geology/earth science
-;physics
-;astrophysics
-PSYCHOLOGY;psychology
-;clinical psychology
-;counseling psychology
-PUBLIC ADMINISTRATION AND SOCIAL SERVICE PROFESSIONS;social work
-SOCIAL SCIENCES;political science and government
-;social sciences
-;sociology
-;anthropology
-;economics
-;international relations and affairs
-VISUAL AND PERFORMING ARTS;interior design
-;graphic design
-;drama and dramatics/theater arts
-;fine/studio arts
-;arts management
-;music
-;piano and organ
-;commercial and advertising art
-;voice and opera
-;industrial design
-;fashion/apparel design
-;illustration
-;fine arts and art studies
-;photography
-;art/art studies
-;cinematography and film/video production
-;dance
-;visual and performing arts
-HEALTH PROFESSIONS AND RELATED CLINICAL SCIENCES;speech-language pathology/pathologist
-;health/medical preparatory programs
-;nursing/registered nurse training (R.N., A.S.N., B.S.N., M.S.N.)
-;dietetics/dietitian (R.D.)
-;audiology/audiologist and speech-language pathology/pathologist
-;pre-medicine/pre-medical studies
-;pre-pharmacy studies
-;pre-dentistry studies
-;pre-veterinary studies
-BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES;business administration and management
-;accounting
-;finance
-;information resources management/cio training
-;marketing/marketing management
-;business
-;management
-;marketing
-;related support services
-;international business
-;business/commerce
-HISTORY;history
-COMMUNICATIONS TECHNOLOGIES/TECHNICIANS AND SUPPORT SERVICES;animation
-;interactive technology
-;video graphics
-;radio and television broadcasting technology/technician
-COMMUNICATION, JOURNALISM, AND RELATED PROGRAMS;advertising
-;communication studies/speech communication and rhetoric
-AREA, ETHNIC, CULTURAL, AND GENDER STUDIES;Latin American studies
+Agriculture and Bioresources;Animal and Poultry Science
+;Soil Science
+;Plant Sciences
+;Bioresource Policy, Business and Economics
+;Food and Bioproduct Sciences
+;Agriculture science
+Architecture;Architecture Science;Landscape Architecture
+;Environmental Design
+;Urban Design
+;Global Architecture
+;Building Science
+;House Design
+Engineering;Chemical Engineering;Civil Engineering
+;Computing and Software
+;Electrical and Computer Engineering
+;Engineering Physics
+;Materials Science and Engineering
+;Mechanical Engineering
+;Biomedical Engineering
+;Computational Engineering & Science
+;Engineering Practice
+;Engineering & Management
+;Engineering & Society
+;Engineering and International Studies
+;Business Informatics
+;Mechatronics Engineering
+;Software Engineering (Embedded Systems)
+;Software Engineering (Game Design)
+;Aerospace Engineering
+;Bio engineering
+;Environmental Engineering
+;Industrial Systems Engineering
+;Mineral Engineering
+;Sustainable Energy Engineering
+;Nano engineering
+;Physics engineering
+;Material Engineering
+;Biochemical engineering
+;Energy Resrouces Engineering
+;Space Engineering
+Dentistry;Anaesthesia
+;Endodontics
+;Oral Surgery
+;Orthodontics
+;Paediatric Dentistry
+;Periodontology
+;Prosthodontics
+;Restorative Dentistry
+;Biomaterials
+;Dental Public Health
+;Oral Microbilogy
+;Oral Pathology & Oral Medicine
+;Oral Physiology
+;Oral Radiology
+;Preventive  Dentistry
+;Developmental Biology
+;Oral and Maxillo Facial Surgery
+;Oral Health policy and Epidemiology
+;Oral Medicine, Infection, and Immunity
+;Restrative Dentistry and Biomaterials Science
+Law;Juris Doctor (JD)
+;Master of Laws (LL.M) 
+;Master of Library Science Law (MLS)
+;Business Law
+;Intellectual Property and Information Technology
+;International Exchange
+;International Law Internship
+;Community Legal Services
+;Dispute Resolution Centre 
+;Pro Bono Program
+;Sports Solution
+;Environmental
+Medicine;Anatomy & Cell Biology
+;Anesthesiology
+;Biochemistry
+;Community Health and Epidemiology
+;Family Medicine
+;Medical Imaging
+;Microbiology & Immunology
+;Obstetrics & Gynecology
+;Oncology/Radiology
+;Ophthalmology
+;Pathology and Laboratory Medicine
+;Pediatrics
+;Pharmacology
+;Physiology
+;Physical Medicine and Rehabilitation
+;Psychiatry
+;School of Physical Therapy
+;Surgery
+;Pharmacy
+Education;Curriculum Studies (ECUR)
+;Educational Technology and Design (ETED)
+;Educational Administration (EADM)
+;Educational Foundations (EFDT)
+;Integrated Master of Education
+;Educational Psychology and Special Education (EPSE)
+;Special Education Certificate
+Veterinary Medicine;Large Animal Clinical Sciences
+;Small Animal Clinical Sciences
+;Veterinary Biomedical Sciences
+;Veterinary Microbiology
+;Veterinary Pathology
+;WCVM Veterinary Teaching Hospital
+Languages and linguistics;Arabic
+;Chinese
+;Classics
+;Cognitive science
+;Comparative Literature
+;English
+;French
+;German
+;Greek (modern)
+;Hebrew
+;Italian
+;Japanese
+;Korean
+;Linguistics
+;Russian literature and culture
+;Slavic Languages
+;Spanish
+;Turkish�
+;Vietnamese
+Literature and cultural studies;American studies
+;Arabic studies
+;Catholic studies
+;Chinese studies
+;English studies
+;French studies
+;German studies
+;Greek (modern) studies
+;Hebrew�studies
+;Italian studies
 ;Japanese studies
+;Justice and peace studies
+;Korean studies
+;Liberal Studies
+;Medieval studies
+;Russian studies
+;Slavic studies
+;Spanish studies
+;Turkish studies
+;Women's studies
+;Men's studies
+;Vietnamese studies
+Religious;Catholic studies
+;Muslim studies
+;Buddha studies
+;Christian studies
+;Liberal studies
+Theology;Theology
+;Pastoral ministry
+;Divinity
+;Arts in Catholic Leadership
+;Theology and Ecology
+Government and Politics;Culture and politics
+;Government management and Policy
+;Justice and peace studies
+;International political economy
+;International politics
+;Political economy
+;Social and political thought
+;International affairs
+;Political
+;International relations
+Nurse;General Nursing
+;Anesthesia care
+;Practical Nursing
+;Family Nurse
+;Rural Nurse
+Performing arts;Theatre & Performance studies
+;Music Theatre
+;Technical Production for Theatre and Live Events
+;Theatre & Drama studies
+;Dancing
+;Monologue
+;Television and Film 
+;Acting
+;Film studies
+Musics;Bass
+;Cello
+;Drums/Percussion
+;French Horn
+;Guitar
+;Keyboard
+;Saxophone/Woodwind
+;Trombone
+;Tuba
+;Violin
+;Voice
+;Composition
+;Jazz
+;Music history & culture
+;Opera
+;Music performance
+;Music Adminisrative studies
+;Popular music studies
+;Musical arts
+;Music theory & composition
+Science;Biochemistry
+;Biomedical science
+;Biology
+;Chemistry
+;Contemporary Science
+;Medical Physics
+;Physics
+;Physics and Astronomy
+;Astronomy
+Mathematics;Statistics
+;Applied Mathematics
+;Mathematics for Commerce
+;Mathematics for Education
+;Mathematics
+;Mathematics & its applications
+;Mathematics & Philosophy
+;Mathematics & Physics
+;Mathematics & Chemistry
+;Mathematics & Biology
+;Applied Statistics
+Computer science;Computer Science
+;Computer Science and Economics
+;Computer Science and Mathematics
+;Computer Science and Physics
+;Computer Science and Statistics
+;Computer Science Artificial Intelligence Option
+;Human Computer Interactions
+;Computer Science Information Systems Option
+;Computer Science Software Engineering Option
+;Computer Science Comprehensive Stream
+;Computer Science Information Systems Stream
+;Computer Science Joint Mathematics Stream
+;Computer Science Joint Physics Stream
+;Computer Science Joint Statistics Stream
+;Computer Science Software Engineering Stream
+;Bioinformatics
+;Computer Science
+;Information Security
+Life Science;Anthropology, Biological
+;Anthropological Sciences
+;Archaeological Science
+;Behaviour
+;Biochemistry
+;Biogeography
+;Bioinformatics and Computational Biology
+;Biology
+;Biological Chemistry
+;Biophysics
+;Botany
+;Comparative Animal Physiology
+;Developmental Biology
+;Earth Systems: Physics and Environment
+;Ecology
+;Ecology and Evolutionary Biology
+;Environmental Health
+;Environmental and Science
+;Environmental and Toxicology
+;Environmental Biology
+;Evolutionary Biology
+;Forest Conservation Science
+;Human Biology: Genes,Genetics and Biotechnology
+;Human Biology: Health and Disease
+;Human Biology: Human Behavioural Biology
+;Immunology
+;Life and Environmental Physics
+;Life Science
+;Molecular Genetics and Microbiology
+;Molecular Plant Biology
+;Neuroscience
+;Nutritional Sciences
+;Past Environments
+;Pathobiology
+;Pharmacology
+;Pharmacology and Toxicology
+;Pharmaceutical Chemistry
+;Physical and Environment Geography
+;PhysiologyPsychology
+;Psychology Research
+;Toxicology
+;Zoology
+Social Science;American Studies
+Commercial Aviation Management Program
+;First Nations Studies
+;History
+;International Relations
+;Management and Organizational Studies (MOS)
+;Migration and Ethnic Relations
+;Neuroscience
+;Political Science
+;Psychology
+;Sociology
+;Theory and Criticism
+;Women's Studies and Feminist Research
+;Aboriginal studies
 ;African studies
-;women's studies
-PHILOSOPHY AND RELIGIOUS STUDIES;philosophy
-;religion/religious studies
-SECURITY AND PROTECTIVE SERVICES;criminal justice/safety studies
-;criminal justice/law enforcement administration
-ENGINEERING TECHNOLOGIES/TECHNICIANS;civil engineering technology/technician
-;electrical and electronic engineering technologies/technicians
-;industrial technology/technician
-;mechanical-engineering-related technologies/technicians
+;Asean studies
+;European studies
+;Globalization & The Human Condition
+;health, Aging, and Society
+;Labour Studies 
+;Psychology, Neuroscience & Behaviour
+;Social Psychology
+;Social Work
+Health Science;Communication Sciences and Disorders
+;Health & Rehabilitation Sciences
+;Health studies
+;Kinesiology
+;Occupational therapy
+;Physical therapy
+;Sports & Recreation services
+;Earth Childhood education
+;Child & Youth care
+Earth Science;Geological & Environmental Sciences
+;Geophysics
+;Energy Resources
+;Environmental Earth System Science
+;Geography and planning
+;Archaeology and Anthropology
+;Geography
+Public Health;Biostatistics
+;Environmental health
+;Epideminlogy
+;Genetics & Complex diseases
+;Global health & population
+;Health policy & management
+;Immunlogy & infectious diseases
+;Nutrition
+;Society, Human development & health
+;Health service management
+;Health Information management
+;Health Informatics
+Business;Commerce
+;Accounting
+;Finance & Economics
+;Business Management
+;Commerce & Finance
+;Marketing
+;Human Resource Management
+;MBA
+;Economics
+;Office Administrative
+;Financial planning
+;Business Technology Management
+;Hospitality & Tourism management
+;Retail management
+;Entrepreneurship
+;Start-up technology company
+;International Business Adminstration
+Environmental;Ecosystem Management
+;Environmental studies
+;Environmental studies areas of concentration
+;International project management
+;Refugee & migration studies
+;Urban Ecologies
+;Urban Sustainability

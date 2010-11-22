@@ -1,4 +1,56 @@
+.pop-mail{
+  width:500px;
+  margin:0px auto;
+}
+.popClose{
+  float:right;
+  padding-bottom:7px;
+}
+.popClose a{
+  background:url('/images/feedback/pop500C.gif');
+  text-decoration:none;
+  height:15px;
+  width:15px;
+  display:block;
+}
+.popClose a:hover{
+  background:url('/images/feedback/pop500CH.gif');
+}
 
+.mailCont{
+  clear:both;
+  background:#f4f4f4 url('/images/feedback/popMailB.png') left bottom no-repeat;
+  overflow:hidden;
+}
+.mailTitle{
+  background:url('/images/feedback/popMailTitle.png') no-repeat;
+  height:35px;
+  line-height:35px;
+  font-size:16px;
+  font-weight:bold;
+  padding-left:15px;
+}
+.malMain{
+  padding:5px 10px 20px 12px;
+  overflow:hidden;
+}
+.please{
+  padding:10px 0px;
+  overflow:hidden;
+  color:#716f63;
+  font-style:italic;
+}
+.popItem{
+  padding:3px 0px;
+}
+.label{
+  color:#6f6f63;
+  font-size:11px;
+  font-weight:bold;
+  width:68px;
+  float:left;
+  line-height:22px;
+}
 div#feedback {
   position: absolute;	
   top: 0;
@@ -116,9 +168,9 @@ form#feedback_form .error {
   font-weight: bold;
 }
 #feedback_subject {
-  margin-left:21px;
-  width: 296px;
-  
+  width:405px;
+  font-size:11px;
+  color:#646464;   
 }
 #feedback_subject option {
   
