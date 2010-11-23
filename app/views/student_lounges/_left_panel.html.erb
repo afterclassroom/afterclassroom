@@ -31,6 +31,7 @@
       </div>
       <div id="moreinner">
         <div class="stuItem jobs">
+<<<<<<< HEAD
           <div class="stuItemL" style="background:url('/images/footer_menu/qas-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Q.As", {:controller => post_qas_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostQa") %></div>
         </div>
@@ -60,6 +61,37 @@
         </div>
         <div class="stuItem jobs">
           <div class="stuItemL" style="background:url('/images/footer_menu/teamUp-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Teamup", {:controller => post_teamups_path}, :style => "margin:1px" %></div>
+=======
+          <div class="stuItemL" style="background-image:url('/images/iconQas.png');"><%= link_to "Q.As", {:controller => post_qas_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostQa") %></div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL" style="background-image:url('/images/iconBooks.png');"><%= link_to "Books", {:controller => post_books_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostBook") %></div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL" style="background-image:url('/images/iconFoods.png');"><%= link_to "Food", {:controller => post_foods_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostFood") %></div>
+        </div
+        <div class="stuItem jobs">
+          <div class="stuItemL" style="background-image:url('/images/iconParty.png');"><%= link_to "Party", {:controller => post_parties_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostParty") %></div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL" style="background-image:url('/images/iconMyx.png');"><%= link_to "Myx", {:controller => post_myxes_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostMyx") %></div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL" style="background-image:url('/images/iconStud_awareness.png');"><%= link_to "Awareness", {:controller => post_awarenesses_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostAwareness") %></div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL" style="background-image:url('/images/iconHousing.png');"><%= link_to "Housing", {:controller => post_housings_path} %></div>
+          <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostHousing") %></div>
+        </div>
+        <div class="stuItem jobs">
+          <div class="stuItemL" style="background-image:url('/images/iconTeamUp.png');"><%= link_to "Teamup", {:controller => post_teamups_path} %></div>
+>>>>>>> f6be279ec8193a015bd11057ca1f92448a82bd2c
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostTeamup") %></div>
         </div>
       </div>

@@ -116,6 +116,7 @@ class PostTeamupsController < ApplicationController
 
   # GET /post_teamups/1/edit
   def edit
+    @post = Post.find(params[:id])
   end
 
   # POST /post_teamups
