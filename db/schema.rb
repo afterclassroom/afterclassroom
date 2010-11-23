@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "cities", :force => true do |t|
-    t.string  "name",       :limit => 100, :null => false
-    t.integer "state_id",                  :null => false
-    t.integer "country_id",                :null => false
+    t.string  "name",       :limit => 100, :default => "", :null => false
+    t.integer "state_id",                                  :null => false
+    t.integer "country_id",                                :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -55,12 +55,12 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "department_categories", :force => true do |t|
-    t.string "name", :null => false
+    t.string "name", :default => "", :null => false
   end
 
   create_table "departments", :force => true do |t|
-    t.integer "department_category_id", :null => false
-    t.string  "name",                   :null => false
+    t.integer "department_category_id",                 :null => false
+    t.string  "name",                   :default => "", :null => false
   end
 
   create_table "departments_schools", :id => false, :force => true do |t|
@@ -212,8 +212,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "music_albums", :force => true do |t|
-    t.integer  "user_id",                         :null => false
-    t.string   "name",                            :null => false
+    t.integer  "user_id",                                         :null => false
+    t.string   "name",                            :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "music_album_attach_file_name"
@@ -303,8 +303,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "photo_albums", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "name",       :null => false
+    t.integer  "user_id",                    :null => false
+    t.string   "name",       :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -355,8 +355,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "post_categories", :force => true do |t|
-    t.string "name",       :null => false
-    t.string "class_name", :null => false
+    t.string "name",       :default => "", :null => false
+    t.string "class_name", :default => "", :null => false
   end
 
   create_table "post_exam_schedules", :force => true do |t|
@@ -451,9 +451,6 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   create_table "post_teamups", :force => true do |t|
     t.integer "post_id",            :null => false
     t.integer "teamup_category_id", :null => false
-    t.string  "ourStatus"
-    t.string  "founded_in"
-    t.string  "noOfMember"
     t.string  "rating_status"
   end
 
@@ -476,7 +473,7 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.integer  "school_id",                              :null => false
     t.integer  "department_id"
     t.string   "school_year"
-    t.string   "title",                                  :null => false
+    t.string   "title",               :default => "",    :null => false
     t.text     "description",                            :null => false
     t.boolean  "use_this_email",      :default => false
     t.string   "type_name"
@@ -545,14 +542,14 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string  "name",        :null => false
-    t.integer "city_id",     :null => false
-    t.string  "type_school", :null => false
+    t.string  "name",        :default => "", :null => false
+    t.integer "city_id",                     :null => false
+    t.string  "type_school", :default => "", :null => false
     t.string  "website"
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id",       :null => false
+    t.string   "session_id",       :default => "", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -574,9 +571,9 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "states", :force => true do |t|
-    t.integer "country_id",               :null => false
-    t.string  "name",       :limit => 50, :null => false
-    t.string  "alias",      :limit => 2,  :null => false
+    t.integer "country_id",                               :null => false
+    t.string  "name",       :limit => 50, :default => "", :null => false
+    t.string  "alias",      :limit => 2,  :default => "", :null => false
   end
 
   create_table "stats_ratings", :force => true do |t|
@@ -590,8 +587,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   add_index "stats_ratings", ["rated_type", "rated_id"], :name => "index_stats_ratings_on_rated_type_and_rated_id"
 
   create_table "stories", :force => true do |t|
-    t.integer  "user_id",                   :null => false
-    t.string   "title",                     :null => false
+    t.integer  "user_id",                    :null => false
+    t.string   "title",      :default => "", :null => false
     t.text     "content"
     t.integer  "count_view", :default => 0
     t.string   "state"
@@ -734,8 +731,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
   create_table "video_albums", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "name",       :null => false
+    t.integer  "user_id",                    :null => false
+    t.string   "name",       :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
