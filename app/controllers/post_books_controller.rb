@@ -145,6 +145,7 @@ class PostBooksController < ApplicationController
 
   # GET /post_books/1/edit
   def edit
+    @post = Post.find(params[:id])
   end
 
   # POST /post_books

@@ -143,6 +143,7 @@ class PostMyxesController < ApplicationController
 
   # GET /post_myxes/1/edit
   def edit
+    @post = Post.find(params[:id])
   end
 
   # POST /post_myxes

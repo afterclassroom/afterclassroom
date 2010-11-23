@@ -143,6 +143,7 @@ class PostFoodsController < ApplicationController
 
   # GET /post_foods/1/edit
   def edit
+    @post = Post.find(params[:id])
   end
 
   # POST /post_foods
