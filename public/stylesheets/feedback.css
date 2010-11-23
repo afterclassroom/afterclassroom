@@ -2,25 +2,10 @@
   width:500px;
   margin:0px auto;
 }
-.popClose{
-  float:right;
-  padding-bottom:7px;
-}
-.popClose a{
-  background:url('/images/feedback/pop500C.gif');
-  text-decoration:none;
-  height:15px;
-  width:15px;
-  display:block;
-}
-.popClose a:hover{
-  background:url('/images/feedback/pop500CH.gif');
-}
-
 .mailCont{
-  clear:both;
+ /* clear:both;  
+  overflow:hidden;*/
   background:#f4f4f4 url('/images/feedback/popMailB.png') left bottom no-repeat;
-  overflow:hidden;
 }
 .mailTitle{
   background:url('/images/feedback/popMailTitle.png') no-repeat;
@@ -39,6 +24,7 @@
   overflow:hidden;
   color:#716f63;
   font-style:italic;
+  font-size:12px;
 }
 .popItem{
   padding:3px 0px;
@@ -113,24 +99,33 @@ a#feedback_link.bottom {
 }
 
 a#feedback_close_link {
-  right: 5pt;
-  top: 3pt;
+  right: 0pt;
+  top: -16pt;
   position: absolute;
-  height: 22px;
-  width: 66px;
-  background-image: url(/images/feedback/closelabel.gif);
-  _background-image: url(/images/feedback/closelabel.gif);
+  height: 15px;
+  width: 15px;
+  background-image: url(/images/feedback/pop500C.gif);
+  _background-image: url(/images/feedback/pop500C.gif);
+}
+a#feedback_close_link:hover {
+  right: 0pt;
+  top: -16pt;
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-image: url(/images/feedback/pop500CH.gif);
+  _background-image: url(/images/feedback/pop500CH.gif);
 }
 
 div#feedback_modal_window {
-  width: 400px;
+  width: 500px;
   margin: 0 auto;				
   position: relative;
   background-color: #FFFFFF;
 }
 
 div#feedback_modal_content {				
-  padding: 12px;				
+  /*padding: 12px;*/
 }
 
 div#feedback_loading {				
@@ -191,16 +186,17 @@ form#feedback_form .error {
   padding:1px;
 }
 #feedback_email {
-  margin-left:33px;
-  width: 292px;
+  /*margin-left:33px;*/
+  width: 400px;
 }
 #feedback_comment {
-  margin-left:60px;
-  margin-top:-13px;
+  /*margin-left:60px;
+  margin-top:-13px;*/
+  width: 400px;
 }
 #feedback_submit {
-  margin-left:308px;
-  background:transparent url(/images/btm48.png) no-repeat scroll 1px 3px;
+  margin-left:68px;
+  background:transparent url(/images/feedback/btmSendH.jpg) no-repeat scroll 1px 3px;
   display:block;
   height:29px;
   line-height:25px;
@@ -211,7 +207,7 @@ form#feedback_form .error {
   cursor:pointer;
 }
 #feedback_submit:hover {
-  background:url('/images/btm48Red.png') no-repeat scroll 1px 3px;
+  background:url('/images/feedback/btmSend.jpg') no-repeat scroll 1px 3px;
 }
 #feedback_submit:visited{
   color: #000;
