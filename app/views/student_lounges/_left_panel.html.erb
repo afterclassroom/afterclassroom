@@ -31,35 +31,35 @@
       </div>
       <div id="moreinner">
         <div class="stuItem jobs">
-          <div class="stuItemL" style="background-image:url('/images/footer_menu/qas-1.png');"><%= link_to "Q.As", {:controller => post_qas_path} %></div>
+          <div class="stuItemL" style="background:url('/images/footer_menu/qas-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Q.As", {:controller => post_qas_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostQa") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL" style="background-image:url('/images/footer_menu/books-1.png');"><%= link_to "Books", {:controller => post_books_path} %></div>
+          <div class="stuItemL" style="background:url('/images/footer_menu/books-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Books", {:controller => post_books_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostBook") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL" style="background-image:url('/images/footer_menu/foods-1.png');"><%= link_to "Food", {:controller => post_foods_path} %></div>
+          <div class="stuItemL" style="background:url('/images/footer_menu/foods-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Food", {:controller => post_foods_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostFood") %></div>
         </div
         <div class="stuItem jobs">
-          <div class="stuItemL" style="background-image:url('/images/footer_menu/party-1.png');"><%= link_to "Party", {:controller => post_parties_path} %></div>
+          <div class="stuItemL" style="background:url('/images/footer_menu/party-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Party", {:controller => post_parties_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostParty") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL" style="background-image:url('/images/footer_menu/myx-1.png');"><%= link_to "Myx", {:controller => post_myxes_path} %></div>
+          <div class="stuItemL" style="background:url('/images/footer_menu/myx-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Myx", {:controller => post_myxes_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostMyx") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL" style="background-image:url('/images/footer_menu/student_awareness-1.png');"><%= link_to "Awareness", {:controller => post_awarenesses_path} %></div>
+          <div class="stuItemL" style="background:url('/images/footer_menu/student_awareness-1.png') no-repeat scroll -3px 65% transparent;"><%= link_to "Awareness", {:controller => post_awarenesses_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostAwareness") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL" style="background-image:url('/images/footer_menu/housing-1.png');"><%= link_to "Housing", {:controller => post_housings_path} %></div>
+          <div class="stuItemL" style="background:url('/images/footer_menu/housing-1.png') no-repeat scroll -3px 50% transparent;"><%= link_to "Housing", {:controller => post_housings_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostHousing") %></div>
         </div>
         <div class="stuItem jobs">
-          <div class="stuItemL" style="background-image:url('/images/footer_menu/teamUp-1.png');"><%= link_to "Teamup", {:controller => post_teamups_path} %></div>
+          <div class="stuItemL" style="background:url('/images/footer_menu/teamUp-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Teamup", {:controller => post_teamups_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostTeamup") %></div>
         </div>
       </div>
@@ -67,12 +67,12 @@
   </div>
 </div>
 <script>
-  $(document).ready(function(){
-    $('#moreinner').toggle('slow');
-    $('#choosemore').click(function(){
-      $('#moreinner').toggle('slow');
-      $('.cmore').html('');
+    $(document).ready(function(){
+        $('#moreinner').toggle('slow');
+        $('#choosemore').click(function(){
+            $('#moreinner').toggle('slow');
+            $('.cmore').html('');
+        });
     });
-  });
 
 </script>
