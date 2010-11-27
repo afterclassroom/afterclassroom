@@ -1,0 +1,58 @@
+<div class="shopP2">
+  <div class="tablePost">
+    <table cellspacing="0" cellpadding="0" style="width: 100%;">
+      <tbody><tr class="postHead">
+          <th class="post1"><div class="date"><a href="#">Date</a></div></th>
+          <th class="post3">
+            <div>
+              <select name="Select1">
+                <option>Category</option>
+                <%  @post_cat.each do |pc| %>
+                  <option><%= pc.name %></option>
+                <% end %>
+              </select>
+            </div>
+          </th>
+          <th class="post4"><div>Title</div></th>
+          <th class="post5"><div>View</div></th>
+          <th class="post6"><div>Promote Your Ad</div></th>
+          <th class="post8"><div>Available Amount</div></th>
+          <th class="post9"><div>Track your promotion expense</div></th>
+          <th class="post10"><div>Status</div></th>
+        </tr>
+        <%  @all_posts.each do |p| %>
+        <tr>
+          <td><%= p.created_at.strftime("%d %b %y") %></td>
+          <td class="postCate"><a href="#">Assignments</a></td>
+          <td class="postTitle">Sed tincidunt sem sollicitudin enim dapibus hendrerit.
+            <div><a href="#">Click here to edit</a></div>
+          </td>
+          <td>100</td>
+          <td class="postPro">Not promoted
+            <div><a href="#">Click here to promote</a></div>
+          </td>
+          <td>$0</td>
+          <td>Not available</td>
+          <td>Running for 7 more days</td>
+        </tr>
+        <% end %>
+      </tbody></table>
+  </div>
+  <div class="assPage">
+    <div class="numPage">Page 6 of 6</div>
+    <div class="curPage">
+      <span class="firstPage"><a href="#">First Page</a></span>
+      <span class="prevPage"><a href="#">Prev</a></span>
+      <span class="currentPage">
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a class="selected" href="#">6</a>
+      </span>
+      <span class="nextPage"><a href="#">Next</a></span>
+      <span class="lastPage"><a href="#">Last Page</a></span>
+    </div>
+  </div>
+</div>
+</div>
+</div>
