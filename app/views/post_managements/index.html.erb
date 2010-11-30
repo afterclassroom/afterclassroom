@@ -5,7 +5,7 @@
           <th class="post1"><div class="date"><a href="#">Date</a></div></th>
           <th class="post3">
             <div>
-              <select name="Select1">
+              <select id="category" name="Select1">
                 <option>Category</option>
                 <%  @post_cat.each do |pc| %>
                   <option><%= pc.name %></option>
@@ -21,20 +21,20 @@
           <th class="post10"><div>Status</div></th>
         </tr>
         <%  @all_posts.each do |p| %>
-        <tr>
-          <td><%= p.created_at.strftime("%d %b %y") %></td>
-          <td class="postCate"><a href="#">Assignments</a></td>
-          <td class="postTitle">Sed tincidunt sem sollicitudin enim dapibus hendrerit.
-            <div><a href="#">Click here to edit</a></div>
-          </td>
-          <td>100</td>
-          <td class="postPro">Not promoted
-            <div><a href="#">Click here to promote</a></div>
-          </td>
-          <td>$0</td>
-          <td>Not available</td>
-          <td>Running for 7 more days</td>
-        </tr>
+          <tr>
+            <td><%= p.created_at.strftime("%d %b %y") %></td>
+            <td class="postCate"><a href="#">Assignments</a></td>
+            <td class="postTitle">Sed tincidunt sem sollicitudin enim dapibus hendrerit.
+              <div><a href="#">Click here to edit</a></div>
+            </td>
+            <td>100</td>
+            <td class="postPro">Not promoted
+              <div><a href="#">Click here to promote</a></div>
+            </td>
+            <td>$0</td>
+            <td>Not available</td>
+            <td>Running for 7 more days</td>
+          </tr>
         <% end %>
       </tbody></table>
   </div>
@@ -54,5 +54,29 @@
     </div>
   </div>
 </div>
-</div>
-</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("select#category").change(function(){
+      var selected = $(this).children(":selected").html();
+
+
+
+      $.ajax({
+        url: '/post_managements?category='+selected,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          var str_content = msg;
+          alert('va == '+str_content);
+        }
+      });
+
+
+
+
+    });
+  });
+</script>
