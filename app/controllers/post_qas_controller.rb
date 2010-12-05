@@ -155,14 +155,14 @@ class PostQasController < ApplicationController
   # POST /post_qas.xml
   def create
     @post_qa = PostQa.new(params[:post_qa])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_qa.tag_list = params[:tag]
-    @post_qa.post = post
+    @post_qa.post = @post
     if @post_qa.save
       notice "Your post was successfully created."
       redirect_to post_qas_path + "?type=asked"

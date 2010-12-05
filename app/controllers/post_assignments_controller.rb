@@ -99,14 +99,14 @@ class PostAssignmentsController < ApplicationController
   # POST /post_assignments.xml
   def create
     @post_assignment = PostAssignment.new(params[:post_assignment])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_assignment.tag_list = params[:tag]
-    @post_assignment.post = post
+    @post_assignment.post = @post
     if @post_assignment.save
       notice "Your post was successfully created."
       redirect_to post_assignments_path

@@ -152,14 +152,14 @@ class PostAwarenessesController < ApplicationController
   # POST /post_awarenesses.xml
   def create
     @post_awareness = PostAwareness.new(params[:post_awareness])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_awareness.tag_list = params[:tag]
-    @post_awareness.post = post
+    @post_awareness.post = @post
     if @post_awareness.save
       notice "Your post was successfully created."
       redirect_to post_awarenesses_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"

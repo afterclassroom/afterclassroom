@@ -180,14 +180,14 @@ class PostJobsController < ApplicationController
   def create
 
     @post_job = PostJob.new(params[:post_job])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_job.tag_list = params[:tag]
-    @post_job.post = post
+    @post_job.post = @post
 
     if (params[:jobinfo] != nil)
       @post_job.job_files.build(params[:jobinfo].merge({:user_id => current_user.id}))

@@ -186,14 +186,14 @@ class PostPartiesController < ApplicationController
   def create
     params[:post_party][:party_type_ids] = params[:party_type]
     @post_party = PostParty.new(params[:post_party])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_party.tag_list = params[:tag]
-    @post_party.post = post
+    @post_party.post = @post
     if @post_party.save
       notice "Your post was successfully created."
       redirect_to post_parties_path

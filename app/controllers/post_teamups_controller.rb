@@ -123,14 +123,14 @@ class PostTeamupsController < ApplicationController
   # POST /post_teamups.xml
   def create
     @post_teamup = PostTeamup.new(params[:post_teamup])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_teamup.tag_list = params[:tag]
-    @post_teamup.post = post
+    @post_teamup.post = @post
     @post_teamup.teamup_category_id ||= TeamupCategory.first.id
     if @post_teamup.save
       notice "Your post was successfully created."

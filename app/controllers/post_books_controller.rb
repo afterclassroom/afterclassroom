@@ -152,14 +152,14 @@ class PostBooksController < ApplicationController
   # POST /post_books.xml
   def create
     @post_book = PostBook.new(params[:post_book])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_book.tag_list = params[:tag]
-    @post_book.post = post
+    @post_book.post = @post
     @post_book.book_type_id ||= BookType.first.id
     if @post_book.save
       notice "Your post was successfully created."

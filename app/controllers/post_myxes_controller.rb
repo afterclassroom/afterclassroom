@@ -150,14 +150,14 @@ class PostMyxesController < ApplicationController
   # POST /post_myxes.xml
   def create
     @post_myx = PostMyx.new(params[:post_myx])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_myx.tag_list = params[:tag]
-    @post_myx.post = post
+    @post_myx.post = @post
     if @post_myx.save
       notice "Your post was successfully created."
       redirect_to post_myxes_path

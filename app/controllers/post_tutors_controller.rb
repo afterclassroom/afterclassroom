@@ -152,14 +152,14 @@ class PostTutorsController < ApplicationController
   # POST /post_tutors.xml
   def create
     @post_tutor = PostTutor.new(params[:post_tutor])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_tutor.tag_list = params[:tag]
-    @post_tutor.post = post
+    @post_tutor.post = @post
     @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
     if @post_tutor.save
       notice "Your post was successfully created."

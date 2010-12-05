@@ -98,14 +98,14 @@ class PostProjectsController < ApplicationController
   # POST /post_projects.xml
   def create
     @post_project = PostProject.new(params[:post_project])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_project.tag_list = params[:tag]
-    @post_project.post = post
+    @post_project.post = @post
     if @post_project.save
       notice "Your post was successfully created."
       redirect_to post_projects_path

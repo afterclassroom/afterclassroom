@@ -89,14 +89,14 @@ class PostExamsController < ApplicationController
   # POST /post_exams.xml
   def create
     @post_exam = PostExam.new(params[:post_exam])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_exam.tag_list = params[:tag]
-    @post_exam.post = post
+    @post_exam.post = @post
     if @post_exam.save
       notice "Your post was successfully created."
       redirect_to post_exams_path

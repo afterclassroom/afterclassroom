@@ -150,14 +150,14 @@ class PostFoodsController < ApplicationController
   # POST /post_foods.xml
   def create
     @post_food = PostFood.new(params[:post_food])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_food.tag_list = params[:tag]
-    @post_food.post = post
+    @post_food.post = @post
     if @post_food.save
       notice "Your post was successfully created."
       redirect_to post_foods_path

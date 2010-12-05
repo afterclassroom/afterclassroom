@@ -88,14 +88,14 @@ class PostTestsController < ApplicationController
   # POST /post_tests.xml
   def create
     @post_test = PostTest.new(params[:post_test])
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_test.tag_list = params[:tag]
-    @post_test.post = post
+    @post_test.post = @post
     if @post_test.save
       notice "Your post was successfully created."
       redirect_to post_tests_path
