@@ -23,7 +23,7 @@
         <%  @all_posts.each do |p| %>
           <tr>
             <td><%= p.created_at.strftime("%d %b %y") %></td>
-            <td class="postCate"><a href="#"><%= p.post_category.name %></a></td>
+            <td class="postCate"><a href="#">Assignments</a></td>
             <td class="postTitle">Sed tincidunt sem sollicitudin enim dapibus hendrerit.
               <div><a href="#">Click here to edit</a></div>
             </td>
@@ -59,6 +59,8 @@
     $("select#category").change(function(){
       var selected = $(this).children(":selected").html();
 
+
+
       $.ajax({
         url: '/post_managements/with_type?category='+selected,
         type: "GET",
@@ -67,7 +69,8 @@
           alert('ajax fail:'+msg);
         },
         success: function(msg){
-          $('.shopP2').html(msg);
+          var str_content = msg;
+          alert('va == '+str_content);
         }
       });
 
