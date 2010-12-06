@@ -10,13 +10,13 @@ class PostManagementsController < ApplicationController
 
   def with_type
     @post_cat = PostCategory.find(:all)
-    category = params[:category]
+    @category = params[:category]
     @all_posts = nil
 
-    if category == "Category"
+    if @category == "Category"
       @all_posts = PostCategory.find(:all)
     else
-      @all_posts = current_user.get_posts_with_type(category)
+      @all_posts = current_user.get_posts_with_type(@category)
     end
 
     render :layout => false

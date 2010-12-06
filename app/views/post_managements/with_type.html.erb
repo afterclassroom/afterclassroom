@@ -7,7 +7,11 @@
             <select id="category" name="Select1">
               <option>Category</option>
               <%  @post_cat.each do |pc| %>
-                <option value="<%= pc.class_name %>"><%= pc.name %></option>
+                <% if @category == pc.class_name %>
+                    <option value="<%= pc.class_name %>" selected><%= pc.name %></option>
+                <% else %>
+                  <option value="<%= pc.class_name %>"><%= pc.name %></option>
+                <% end %>
               <% end %>
             </select>
           </div>
