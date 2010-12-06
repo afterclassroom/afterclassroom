@@ -8,7 +8,7 @@
               <select id="category" name="Select1">
                 <option>Category</option>
                 <%  @post_cat.each do |pc| %>
-                  <option><%= pc.name %></option>
+                  <option value="<%= pc.class_name %>"><%= pc.name %></option>
                 <% end %>
               </select>
             </div>
@@ -57,8 +57,8 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $("select#category").change(function(){
-      var selected = $(this).children(":selected").html();
-
+      var selected = $(this).children(":selected").val();
+      
       $.ajax({
         url: '/post_managements/with_type?category='+selected,
         type: "GET",
@@ -70,10 +70,7 @@
           $('.shopP2').html(msg);
         }
       });
-
-
-
-
+      
     });
   });
 </script>
