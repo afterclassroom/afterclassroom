@@ -20,22 +20,27 @@
           <th class="post9"><div>Track your promotion expense</div></th>
           <th class="post10"><div>Status</div></th>
         </tr>
-        <%  @all_posts.each do |p| %>
-          <tr>
-            <td><%= p.created_at.strftime("%d %b %y") %></td>
-            <td class="postCate"><a href="#"><%= p.post_category.name %></a></td>
-            <td class="postTitle">Sed tincidunt sem sollicitudin enim dapibus hendrerit.
-              <div><a href="#">Click here to edit</a></div>
-            </td>
-            <td>100</td>
-            <td class="postPro">Not promoted
-              <div><a href="#">Click here to promote</a></div>
-            </td>
-            <td>$0</td>
-            <td>Not available</td>
-            <td>Running for 7 more days</td>
-          </tr>
+        <% if @all_posts.size > 0 %>
+          <%  @all_posts.each do |p| %>
+            <tr>
+              <td><%= p.created_at.strftime("%d %b %y") %></td>
+              <td class="postCate"><a href="#"><%= p.post_category.name %></a></td>
+              <td class="postTitle">Sed tincidunt sem sollicitudin enim dapibus hendrerit.
+                <div><a href="#">Click here to edit</a></div>
+              </td>
+              <td>100</td>
+              <td class="postPro">Not promoted
+                <div><a href="#">Click here to promote</a></div>
+              </td>
+              <td>$0</td>
+              <td>Not available</td>
+              <td>Running for 7 more days</td>
+            </tr>
+          <% end %>
+        <% else %>
+          No result found
         <% end %>
+
       </tbody></table>
   </div>
   <div class="assPage">
