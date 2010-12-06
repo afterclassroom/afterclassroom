@@ -134,7 +134,7 @@ module ApplicationHelper
     image_tag path
   end
 
-  def getGender(sex)
+  def get_gender(sex)
     if sex
       sex == true ? "Male" : "Female"
     else

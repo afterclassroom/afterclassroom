@@ -102,7 +102,7 @@ class FriendsController < ApplicationController
     content = "I found After Classroom as a great place for socialize and study after school, thus I would like to invite you to join" if content == ""
     login = params[:mail_account][:login]
     password = params[:mail_account][:password]
-    mail_type = params[:mail_account][:mail_type]
+    mail_type = params[:mail_type]
     mail_account = MailAccount.new(login, password, mail_type)
     begin
       contacts = mail_account.contacts
@@ -114,6 +114,7 @@ class FriendsController < ApplicationController
     rescue Contacts::AuthenticationError => oops
       error oops
     end
+    notice "Invite Friends Successfully."
     redirect_to :action => "invite"
   end
 
@@ -163,7 +164,7 @@ class FriendsController < ApplicationController
     invite_message = params[:invite_message]
     
     if (user_id_friend && invite_message)
-      invite = UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
+      UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
       render :text => "Wait "+params[:full_name]+" to accept"
     end
   end
@@ -207,7 +208,7 @@ class FriendsController < ApplicationController
     friend_invitation.email = email
     friend_invitation.save
     friend_invitation.reload
-    send_user_email(UserMailer.create_invitation(current_user, email, request.host_with_port, friend_invitation.invitation_code, content))
+    UserMailer.deliver_invitation(current_user, email, request.host_with_port, friend_invitation.invitation_code, content)
   end
 
 end

@@ -11,7 +11,7 @@
       <div class="col451Cont">
         <h1 class="titleH1">Invite Friends to join AfterClassroom</h1>
         <%= display_flash_messages %>
-        <% form_tag invite_by_list_email_user_friends_path(current_user), :html => {:id => "list_email"} do %>
+        <% form_tag invite_by_list_email_user_friends_path(current_user), :id => "list_email" do %>
         <div class="fInvFrom">
           <div class="fInvTxt">From</div>
           <div class="fInvIn"><%= current_user.full_name %> <%= "&#60;#{current_user.email}&#62;" %></div>
