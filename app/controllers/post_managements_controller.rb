@@ -14,7 +14,7 @@ class PostManagementsController < ApplicationController
     @all_posts = nil
 
     if @category == "Category"
-      @all_posts = PostCategory.find(:all)
+      @all_posts = Post.with_user_id(current_user.id)
     else
       @all_posts = current_user.get_posts_with_type(@category)
     end
