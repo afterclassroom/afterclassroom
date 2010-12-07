@@ -722,9 +722,9 @@ span.btmDown a:hover{
   margin:3px 0;
 }
 #divinputfileA{
-   background:url(/images/upload_file.png) no-repeat 100% 1px;
-   height:24px;
-   padding-bottom:2px;
+  background:url(/images/upload_file.png) no-repeat 100% 1px;
+  height:24px;
+  padding-bottom:2px;
 }
 .postTitt {
   font-weight:bold;
@@ -2182,4 +2182,17 @@ span.btmFan a:hover{
 .popCancel a:hover{
   background:url('/images/btm53Red.png') no-repeat left top;
   color:#fff;
+}
+/************* Form Invite Friend popup **********************/
+.sendFr{
+  background: url("/images/signinR.png") no-repeat scroll right top transparent;
+  display: inline-block;
+  margin-top: 5px;
+}
+.sendFr a{
+  background: url("/images/signinL.png") no-repeat scroll left top transparent;
+  color: #FFFFFF;
+  display: inline-block;
+  height: 23px;
+  padding: 3px;
 }
