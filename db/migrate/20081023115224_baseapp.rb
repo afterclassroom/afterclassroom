@@ -30,7 +30,7 @@ class Baseapp < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :users, :login, :unique => true
+    add_index :users, :email, :unique => true
     
     create_table :roles do |t|
       t.column :name, :string

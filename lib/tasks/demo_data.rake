@@ -109,7 +109,7 @@ def create_demo_people
       end
       
       user = User.create do |u|
-        u.login = name.downcase
+        u.login = "#{name.downcase}@example.com"
         u.password = password
         u.email = "#{name.downcase}@example.com"
         u.name = name
