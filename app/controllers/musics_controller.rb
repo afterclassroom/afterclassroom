@@ -17,11 +17,13 @@ class MusicsController < ApplicationController
     @music_albums = current_user.music_albums
     arr_user_id = []
     current_user.user_friends.collect {|f| arr_user_id << f.id}
-    cond = Caboose::EZ::Condition.new :musics do
-      user_id === arr_user_id
+    if arr_user_id.size > 0
+      cond = Caboose::EZ::Condition.new :musics do
+        user_id === arr_user_id
+      end
+      @friend_musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC", :group => "music_album_id").paginate :page => params[:page], :per_page => 5
     end
     @my_musics = current_user.musics.find(:all, :order => "created_at DESC", :group => "music_album_id").paginate :page => params[:page], :per_page => 5
-    @friend_musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC", :group => "music_album_id").paginate :page => params[:page], :per_page => 5
   end
 
   def friend_m
