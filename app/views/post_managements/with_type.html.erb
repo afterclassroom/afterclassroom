@@ -8,7 +8,7 @@
               <option>Category</option>
               <%  @post_cat.each do |pc| %>
                 <% if @category == pc.class_name %>
-                    <option value="<%= pc.class_name %>" selected><%= pc.name %></option>
+                  <option value="<%= pc.class_name %>" selected><%= pc.name %></option>
                 <% else %>
                   <option value="<%= pc.class_name %>"><%= pc.name %></option>
                 <% end %>
@@ -50,13 +50,9 @@
   <div class="numPage">Page 6 of 6</div>
   <div class="curPage">
     <span class="firstPage"><a href="#">First Page</a></span>
-    <span class="prevPage"><a href="#">Prev</a></span>
-    <span class="currentPage">
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a class="selected" href="#">6</a>
-    </span>
+
+    <%= will_paginate @all_posts %>
+
     <span class="nextPage"><a href="#">Next</a></span>
     <span class="lastPage"><a href="#">Last Page</a></span>
   </div>

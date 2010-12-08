@@ -43,18 +43,14 @@
 
       </tbody></table>
   </div>
-  <%= will_paginate @all_posts %>
+  
   <div class="assPage">
     <div class="numPage">Page 6 of 6</div>
     <div class="curPage">
       <span class="firstPage"><a href="#">First Page</a></span>
-      <span class="prevPage"><a href="#">Prev</a></span>
-      <span class="currentPage">
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a class="selected" href="#">6</a>
-      </span>
+
+      <%= will_paginate @all_posts %>
+
       <span class="nextPage"><a href="#">Next</a></span>
       <span class="lastPage"><a href="#">Last Page</a></span>
     </div>
