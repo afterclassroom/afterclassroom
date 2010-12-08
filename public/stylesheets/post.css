@@ -2185,14 +2185,24 @@ span.btmFan a:hover{
 }
 /************* Form Invite Friend popup **********************/
 .sendFr{
-  background: url("/images/signinR.png") no-repeat scroll right top transparent;
+  background: url("/images/btmFriend2.png") no-repeat scroll right top transparent;
   display: inline-block;
   margin-top: 5px;
 }
 .sendFr a{
-  background: url("/images/signinL.png") no-repeat scroll left top transparent;
+  background: url("/images/btmFriend3.png") no-repeat scroll left top transparent;
   color: #FFFFFF;
   display: inline-block;
-  height: 23px;
-  padding: 3px;
+  padding: 5px;
+}
+.sendFr:hover{
+  background: url("/images/btmFriendRed1.png") no-repeat scroll right top transparent;
+  display: inline-block;
+  margin-top: 5px;
+}
+.sendFr a:hover{
+  background: url("/images/btmFriendRed2.png") no-repeat scroll left top transparent;
+  color: #FFFFFF;
+  display: inline-block;
+  padding: 5px;
 }

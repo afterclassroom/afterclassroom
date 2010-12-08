@@ -1720,7 +1720,7 @@ a:hover.back-login	{
 .submit-login:hover	{
   background: url('/images/admin/login/submit_login.gif') no-repeat 0 -29px;
 }
- 
+
 =======
 *	{
   margin: 0;
@@ -2457,10 +2457,10 @@ a:hover.action-delete	{
   width: 80px;
 }
 .form-save {
-   
+
   font-weight:bold;
   margin-left:110px;
-  }
+}
 .form-buttom a	{
   background: url('/images/admin/forms/form_buttom.png') no-repeat;
   display:block;
@@ -3411,4 +3411,15 @@ a:hover.back-login	{
 }
 .submit-login:hover	{
   background: url('/images/admin/login/submit_login.gif') no-repeat 0 -29px;
+}
+.SendPass a{
+  margin-left:45px;
+  margin-top:81px;
+  background: url("/images/admin/forms/form_send.png") no-repeat scroll 0 0 transparent;
+  padding-left:13px;
+  color:#FFFFFF;
+  font-weight:bold;
+  font-size:13px;
+  width:150px;
+  position:absolute;
 }

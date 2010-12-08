@@ -46,7 +46,7 @@ class Post < ActiveRecord::Base
   define_index do
     indexes title, :sortable => true
     indexes description
-    has post_category_id, school_id, created_at
+    has user_id, post_category_id, school_id, created_at
   end
 
   def self.paginated_post_conditions_with_search(params, school, type)

@@ -14,11 +14,13 @@ class PhotosController < ApplicationController
     @photo_albums = current_user.photo_albums
     arr_user_id = []
     current_user.user_friends.collect {|f| arr_user_id << f.id}
-    cond = Caboose::EZ::Condition.new :photos do
-      user_id === arr_user_id
+    if arr_user_id.size > 0
+      cond = Caboose::EZ::Condition.new :photos do
+        user_id === arr_user_id
+      end
+      @friend_photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC", :group => "photo_album_id").paginate :page => params[:page], :per_page => 5
     end
     @my_photos = current_user.photos.find(:all, :order => "created_at DESC", :group => "photo_album_id").paginate :page => params[:page], :per_page => 5
-    @friend_photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC", :group => "photo_album_id").paginate :page => params[:page], :per_page => 5
   end
 
   def friend_p
