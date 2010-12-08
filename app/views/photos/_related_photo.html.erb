@@ -14,14 +14,14 @@
   </div>
 </div>
 <script type="text/javascript">
-    jQuery(document).ready(function () {
-        var carrousel = jQuery("#myCarousel").carrousel({
+    $(document).ready(function () {
+        var carrousel = $("#myCarousel").carrousel({
             controls	: '',
             effects	: 'reflection',
             direction	: 'left',
             easing	: 'easeOutBounce',
             speed 	: 100,
-            dispTimeout : 2000,
+            dispTimeout : 20000,
             scroll      : 1,
             dispNumber	: 6,
             auto	: false,
@@ -29,13 +29,13 @@
             api		: true
         });
         function giveCurrent() {
-            jQuery('#current').val(carrousel.getCurrent())
+            $('#current').val(carrousel.getCurrent())
         }
-        jQuery('#next').click(function () {
+        $('#next').click(function () {
             carrousel.next();
             return false;
         });
-        jQuery('#prev').click(function () {
+        $('#prev').click(function () {
             carrousel.prev();
             return false;
         });
