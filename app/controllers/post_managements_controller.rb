@@ -3,9 +3,7 @@ class PostManagementsController < ApplicationController
   before_filter :login_required
 
   def index
-    #@all_posts = Post.with_user_id(current_user.id).paginate(:page => 1, :per_page => 3, :order => "created_at DESC")
     @all_posts = Post.paginated_post_management(params,"ASC",current_user.id)
-
 
     @post_cat = PostCategory.find(:all)
     category = params[:category]

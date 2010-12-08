@@ -2,7 +2,7 @@
   <div class="tablePost">
     <table cellspacing="0" cellpadding="0" style="width: 100%;">
       <tbody><tr class="postHead">
-          <th class="post1"><div class="date"><a href="#">Date</a></div></th>
+          <th class="post1"><div class="date" id="date"><a href="#">Date</a></div></th>
           <th class="post3">
             <div>
               <select id="category" name="Select1">
@@ -45,14 +45,10 @@
   </div>
   
   <div class="assPage">
-    <div class="numPage">Page 6 of 6</div>
     <div class="curPage">
-      <span class="firstPage"><a href="#">First Page</a></span>
 
       <%= will_paginate @all_posts %>
 
-      <span class="nextPage"><a href="#">Next</a></span>
-      <span class="lastPage"><a href="#">Last Page</a></span>
     </div>
   </div>
 </div>
@@ -72,7 +68,19 @@
           $('.shopP2').html(msg);
         }
       });
-      
     });
+
+    $('#date').click(function(){
+      var strImg = $('#date a').css("background-image");
+
+      if ( strImg.indexOf('Desc', 0) > 0)
+        alert('goting to sort descending');
+      else
+        alert('going to sort ascending');
+
+
+      $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
+    });
+
   });
 </script>
