@@ -43,7 +43,7 @@
 
       </tbody></table>
   </div>
-  
+
   <div class="assPage">
     <div class="curPage">
 
@@ -54,8 +54,11 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
+
+    var selected = $("select#category").children(":selected").val();
+
     $("select#category").change(function(){
-      var selected = $(this).children(":selected").val();
+      
       
       $.ajax({
         url: '/post_managements/with_type?category='+selected,
@@ -70,17 +73,39 @@
       });
     });
 
+    var currentSort = '<%= @sort %>';
+    if (currentSort == 'DESC'){
+      $('#date a').css("background-image", "url(/images/icon-Date.gif)");
+    }
+    else{
+      $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
+    }
+
     $('#date').click(function(){
       var strImg = $('#date a').css("background-image");
+      var sortType = '';
 
-      if ( strImg.indexOf('Desc', 0) > 0)
-        alert('goting to sort descending');
-      else
-        alert('going to sort ascending');
-
-
-      $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
+      if ( strImg.indexOf('Desc', 0) > 0){
+        //alert('goting to sort descending');
+        $('#date a').css("background-image", "url(/images/icon-Date.gif)");
+        sortType = 'DESC';
+      }
+      else{
+        //alert('going to sort ascending');
+        $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
+        sortType = 'ASC';
+      }
+      $.ajax({
+        url: '/post_managements/with_type?category='+selected+'&sort='+sortType,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('.shopP2').html(msg);
+        }
+      });
     });
-
   });
 </script>
