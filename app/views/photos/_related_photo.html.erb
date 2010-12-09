@@ -26,50 +26,6 @@
     );
     });
 </script>
-
-<style type="text/css">
-
-    .example {
-      border: 1px solid #CCC;
-      background: #f2f2f2;
-      padding: 10px;
-    }
-    ul {
-      list-style-image:url(list-style.gif);
-    }
-    pre {
-      font-family: "Lucida Console", "Courier New", Verdana;
-      border: 1px solid #CCC;
-      background: #f2f2f2;
-      padding: 10px;
-    }
-    code {
-      font-family: "Lucida Console", "Courier New", Verdana;
-      margin: 0;
-      padding: 0;
-    }
-
-    #gallery {
-      padding: 20px;
-      background: #e1eef5;
-    }
-    #descriptions {
-      position: relative;
-      height: 50px;
-      background: #EEE;
-      margin-top: 10px;
-      width: 640px;
-      padding: 10px;
-      overflow: hidden;
-    }
-    #descriptions .ad-image-description {
-      position: absolute;
-    }
-    #descriptions .ad-image-description .ad-description-title {
-      display: block;
-    }
-</style>
-<title>A demo of AD Gallery - Coffeescripter.com</title>
 <div id="container">
   <div id="gallery" class="ad-gallery">
     <div class="ad-image-wrapper">
@@ -78,19 +34,16 @@
     </div>
     <div class="ad-nav">
       <div class="ad-thumbs">
-        <ul class="ad-thumb-list">          
+        <ul class="ad-thumb-list">
           <% @photo.photo_album.photos.each do |p| %>
-
             <li>
               <%= link_to "#{image_tag p.photo_attach.url(:thumb)}", p.photo_attach.url %>
             </li>
-
           <% end %>
         </ul>
       </div>
     </div>
   </div>
-
   <p>Examples of how you can alter the behaviour on the fly;
     Effect: <select id="switch-effect">
       <option value="slide-hori">Slide horizontal</option>
@@ -99,6 +52,5 @@
       <option value="fade">Fade</option>
       <option value="">None</option>
     </select><br>
-
   </p>
 </div>
