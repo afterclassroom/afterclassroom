@@ -12,15 +12,15 @@
         <h1 class="titleH1">Friend Requests</h1>
         <div id="friend_list">
           <% @invites.each do |i| %>
-          <div class="flistItem" id="friend_request_<%= i.id %>">
+            <div class="flistItem" id="friend_request_<%= i.id %>">
               <div class="assPic"><%= link_to "<div>#{image_tag(i.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => i.user.id} %></div>
               <div class="flistInf">
                 <div class="flistN"><%= link_to i.user.full_name, {:controller => "profile", :action => "show_profile", :id => i.user.id} %></div>
                 <div class="flistS"><span>at</span><%= i.user.school.name %></div>
               </div>
               <div class="asslinkdown">
-                <div class="support"><%= link_to_remote "Accept", :url => accept_user_friends_path(current_user), :with => "invite_id=#{i.id}", :complete => "$('#friend_request_#{i.id}').remove" %></div>
-                <div class="support"><%= link_to_remote "Deaccept", :url => de_accept_user_friends_path(current_user), :with => "invite_id=#{i.id}", :complete => "$('#friend_request_#{i.id}').remove" %></div>
+                <div class="support"><%= link_to_remote "Accept", :url => accept_user_friends_path(current_user), :with => "'invite_id=#{i.id}'", :complete => "$('#friend_request_#{i.id}').remove();" %></div>
+                <div class="support"><%= link_to_remote "No Accept", :url => de_accept_user_friends_path(current_user), :with => "'invite_id=#{i.id}'", :complete => "$('#friend_request_#{i.id}').remove();" %></div>
               </div>
             </div>
           <% end %>
