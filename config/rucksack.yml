@@ -40,6 +40,7 @@ javascripts:
   - jquery-opacityrollover
   - swfupload
   - swfupload-handlers
+  - jquery.ad-gallery
   admin:
   - jquery
   - jquery-ui
@@ -106,6 +107,7 @@ stylesheets:
   - jquery-carrousel
   - footer-menu
   - swfupload
+  - jquery.ad-gallery
   admin:
   - main
   - admin-datePicker
