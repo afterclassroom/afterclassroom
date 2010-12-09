@@ -24,12 +24,8 @@
             <div class="stoDetRT"><%= @photo.user.full_name %>: <%= @photo.title %></div>
           </div>
         </div>
-        <div class="phoDetImg"><%= image_tag @photo.photo_attach.url(:medium) %></div>
+        <div class="ad-preloads"></div>
         <div class="AsDOr RePho">
-          <div class="comPage">
-            <span class="compre"><a id="prev" href="#"></a></span>
-            <span class="comnext"><a id="next" href="#"></a></span>
-          </div>
           <%= render :partial => "related_photo" %>
         </div>
         <%= render :partial => "photo_action" %>

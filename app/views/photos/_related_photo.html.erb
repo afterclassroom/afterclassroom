@@ -1,99 +1,97 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-  <script type="text/javascript">
-  $(function() {
-      var galleries = $('.ad-gallery').adGallery();
-    $('#switch-effect').change(
-      function() {
-        galleries[0].settings.effect = $(this).val();
-        return false;
-      }
-    );
-    $('#toggle-slideshow').click(
-      function() {
-        galleries[0].slideshow.toggle();
-        return false;
-      }
-    );
-    $('#toggle-description').click(
-      function() {
-        if(!galleries[0].settings.description_wrapper) {
-          galleries[0].settings.description_wrapper = $('#descriptions');
-        } else {
-          galleries[0].settings.description_wrapper = false;
+<script type="text/javascript">
+    $(function() {
+        var galleries = $('.ad-gallery').adGallery();
+        $('#switch-effect').change(
+        function() {
+            galleries[0].settings.effect = $(this).val();
+            return false;
         }
-        return false;
-      }
     );
-  });
-  </script>
+        $('#toggle-slideshow').click(
+        function() {
+            galleries[0].slideshow.toggle();
+            return false;
+        }
+    );
+        $('#toggle-description').click(
+        function() {
+            if(!galleries[0].settings.description_wrapper) {
+                galleries[0].settings.description_wrapper = $('#descriptions');
+            } else {
+                galleries[0].settings.description_wrapper = false;
+            }
+            return false;
+        }
+    );
+    });
+</script>
 
-  <style type="text/css">
+<style type="text/css">
 
-  .example {
-    border: 1px solid #CCC;
-    background: #f2f2f2;
-    padding: 10px;
-  }
-  ul {
-    list-style-image:url(list-style.gif);
-  }
-  pre {
-    font-family: "Lucida Console", "Courier New", Verdana;
-    border: 1px solid #CCC;
-    background: #f2f2f2;
-    padding: 10px;
-  }
-  code {
-    font-family: "Lucida Console", "Courier New", Verdana;
-    margin: 0;
-    padding: 0;
-  }
+    .example {
+      border: 1px solid #CCC;
+      background: #f2f2f2;
+      padding: 10px;
+    }
+    ul {
+      list-style-image:url(list-style.gif);
+    }
+    pre {
+      font-family: "Lucida Console", "Courier New", Verdana;
+      border: 1px solid #CCC;
+      background: #f2f2f2;
+      padding: 10px;
+    }
+    code {
+      font-family: "Lucida Console", "Courier New", Verdana;
+      margin: 0;
+      padding: 0;
+    }
 
-  #gallery {
-    padding: 20px;
-    background: #e1eef5;
-  }
-  #descriptions {
-    position: relative;
-    height: 50px;
-    background: #EEE;
-    margin-top: 10px;
-    width: 640px;
-    padding: 10px;
-    overflow: hidden;
-  }
+    #gallery {
+      padding: 20px;
+      background: #e1eef5;
+    }
+    #descriptions {
+      position: relative;
+      height: 50px;
+      background: #EEE;
+      margin-top: 10px;
+      width: 640px;
+      padding: 10px;
+      overflow: hidden;
+    }
     #descriptions .ad-image-description {
       position: absolute;
     }
-      #descriptions .ad-image-description .ad-description-title {
-        display: block;
-      }
-  </style>
-  <title>A demo of AD Gallery - Coffeescripter.com</title>
-</head>
-<body>
-  <div id="container">
-   
+    #descriptions .ad-image-description .ad-description-title {
+      display: block;
+    }
+</style>
+<title>A demo of AD Gallery - Coffeescripter.com</title>
+<div id="container">
+  <div id="gallery" class="ad-gallery">
+    <div class="ad-image-wrapper">
+    </div>
+    <div class="ad-controls">
+    </div>
+    <div class="ad-nav">
+      <div class="ad-thumbs">
+        <ul class="ad-thumb-list">          
+          <% @photo.photo_album.photos.each do |p| %>
 
-    <div id="gallery" class="ad-gallery">
-      <div class="ad-image-wrapper">
-      </div>
-      <div class="ad-controls">
-      </div>
-      <div class="ad-nav">
-        <div class="ad-thumbs">
-          <ul class="ad-thumb-list">
-           <% @photo.photo_album.photos.each do |p| %>
+            <li>
+              <%= link_to "#{image_tag p.photo_attach.url(:thumb)}", p.photo_attach.url %>
+            </li>
 
-            <%= link_to "<li>#{image_tag p.photo_attach.url(:thumb)}</li>", user_photo_path(p.user, p) %>
-
-        <% end %>
-          </ul>
-        </div>
+          <% end %>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <p>Examples of how you can alter the behaviour on the fly;
+  <p>Examples of how you can alter the behaviour on the fly;
     Effect: <select id="switch-effect">
       <option value="slide-hori">Slide horizontal</option>
       <option value="slide-vert">Slide vertical</option>
@@ -101,6 +99,6 @@
       <option value="fade">Fade</option>
       <option value="">None</option>
     </select><br>
-   
-    </p>
-  </div>
+
+  </p>
+</div>
