@@ -8,11 +8,11 @@
     <div class="assDes"><%= truncate_words(description) %></div>
   </div>
   <div class="assItemB">
-    <div class="assPic"><%= link_to "<div>#{image_tag(post.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
+    <div class="assPic"><%= show_image_user_post(post.user) %></div>
     <div class="assInfT">
       <div class="assInfT">
         <div class="assInfL">
-          <div><span>Posted by:</span><%= link_to post.user.full_name, {:controller => "profile", :action => "show_profile", :id => post.user.id} %></div>
+          <div><span>Posted by:</span><%= show_user_post(post.user) %></div>
           <div><span>Comments:</span><%= "#{post.user.comments.size} Comment#{"s" if post.user.comments.size > 1}" %></div>
         </div>
         <div class="assInfR"><%= link_to "more", post_teamup_path(post) %></div>

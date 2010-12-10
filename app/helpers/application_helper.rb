@@ -149,11 +149,11 @@ module ApplicationHelper
   end
 
   def show_image_user_post(user)
-    link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", users_path(user)
+    link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", user_path(user)
   end
 
-  def show_image_post(user)
-    link_to user.full_name, users_path(user)
+  def show_user_post(user)
+    link_to user.full_name, user_path(user)
   end
 
   def show_search_form(ctrl_name, query)

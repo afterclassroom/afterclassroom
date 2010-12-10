@@ -11,8 +11,9 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.xml
   def index
-    @photo_albums = current_user.photo_albums
+    @friend_photos = []
     arr_user_id = []
+    @photo_albums = current_user.photo_albums
     current_user.user_friends.collect {|f| arr_user_id << f.id}
     if arr_user_id.size > 0
       cond = Caboose::EZ::Condition.new :photos do

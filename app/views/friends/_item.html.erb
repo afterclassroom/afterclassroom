@@ -1,17 +1,17 @@
 <div class="flistItem">
-  <div class="assPic"><%= link_to "<div>#{image_tag(friend.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => friend.id} %></div>
+  <div class="assPic"><%= show_image_user_post(friend) %></div>
   <div class="flistInf">
-    <div class="flistN"><%= link_to friend.full_name, {:controller => "profile", :action => "show_profile", :id => friend.id} %></div>
+    <div class="flistN"><%= show_user_post(friend) %></div>
     <div class="flistS"><span>at</span><%= friend.school.name %></div>
   </div>
   <div class="flistR">
     <div class="flistRAdd">
       <a href="#"><span>Add to List</span></a>
       <ul>
-        <li><input id="Family members" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "family_members" %>"><%= link_to "Family members", list_user_friends_path(current_user, :group => "family_members") %></li>
-        <li><input id="Friends from school" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "friends_from_school" %>"><%= link_to "Friends from school", list_user_friends_path(current_user, :group => "friends_from_school") %></li>
-        <li><input id="Friends from work" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "friends_from_work" %>"><%= link_to "Friends from work", list_user_friends_path(current_user, :group => "friends_from_work") %></li>
-        <li><input id="General Friends" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "general_friends" %>"><%= link_to "General Friends", list_user_friends_path(current_user, :group => "general_friends") %></li>
+        <li><input id="Family members" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "family_members" %> /><%= link_to "Family members", list_user_friends_path(current_user, :group => "family_members") %></li>
+        <li><input id="Friends from school" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "friends_from_school" %> /><%= link_to "Friends from school", list_user_friends_path(current_user, :group => "friends_from_school") %></li>
+        <li><input id="Friends from work" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "friends_from_work" %> /><%= link_to "Friends from work", list_user_friends_path(current_user, :group => "friends_from_work") %></li>
+        <li><input id="General Friends" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "general_friends" %> /><%= link_to "General Friends", list_user_friends_path(current_user, :group => "general_friends") %></li>
       </ul>
     </div>
     <div class="flistRdelete"><a href="javascript:;" onclick="DeleteFriend('<%= friend.id %>');"> </a></div>

@@ -19,7 +19,7 @@
         <%= display_flash_messages %>
         <%= render :partial => "expand_create_photo_album" %>
         <div class="stoDet phoD">
-          <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@photo.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => @photo.user.id} %></div>
+          <div class="AsDcomImg"><%= show_image_user_post(@photo.user) %></div>
           <div class="stoDetR">
             <div class="stoDetRT"><%= @photo.user.full_name %>: <%= @photo.title %></div>
           </div>

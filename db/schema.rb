@@ -728,7 +728,7 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.boolean  "online",                                   :default => false
   end
 
-  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
   create_table "video_albums", :force => true do |t|
     t.integer  "user_id",                    :null => false
