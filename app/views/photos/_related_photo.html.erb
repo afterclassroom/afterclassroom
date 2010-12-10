@@ -1,4 +1,30 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<div id="container">
+  <div id="gallery" class="ad-gallery">
+    <div class="ad-image-wrapper">
+    </div>
+    <div class="ad-controls">
+    </div>
+    <div class="ad-nav">
+      <div class="ad-thumbs">
+        <ul class="ad-thumb-list">
+          <% @photo.photo_album.photos.each do |p| %>
+            <li>
+              <%= link_to "#{image_tag(p.photo_attach.url(:thumb), :alt => p.title)}", p.photo_attach.url %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p><select id="switch-effect">
+      <option value="slide-hori">Slide horizontal</option>
+      <option value="slide-vert">Slide vertical</option>
+      <option value="resize">Shrink/grow</option>
+      <option value="fade">Fade</option>
+      <option value="">None</option>
+    </select><br>
+  </p>
+</div>
 <script type="text/javascript">
     $(function() {
         var galleries = $('.ad-gallery').adGallery();
@@ -26,31 +52,3 @@
     );
     });
 </script>
-<div id="container">
-  <div id="gallery" class="ad-gallery">
-    <div class="ad-image-wrapper">
-    </div>
-    <div class="ad-controls">
-    </div>
-    <div class="ad-nav">
-      <div class="ad-thumbs">
-        <ul class="ad-thumb-list">
-          <% @photo.photo_album.photos.each do |p| %>
-            <li>
-              <%= link_to "#{image_tag p.photo_attach.url(:thumb)}", p.photo_attach.url %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <p>Examples of how you can alter the behaviour on the fly;
-    Effect: <select id="switch-effect">
-      <option value="slide-hori">Slide horizontal</option>
-      <option value="slide-vert">Slide vertical</option>
-      <option value="resize">Shrink/grow</option>
-      <option value="fade">Fade</option>
-      <option value="">None</option>
-    </select><br>
-  </p>
-</div>
