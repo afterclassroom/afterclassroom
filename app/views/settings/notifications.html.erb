@@ -25,7 +25,7 @@
           </div>
           <% form_tag(save_setting_user_settings_path(current_user), :method => :post, :id => "setting_form") do %>
             <% @types.each_with_index do |tp, i| %>
-              <div id="<%= tp[0] %>">
+              <div id="<%= tp[0] %>" >
                 <div class="setItemT1">
                   <div class="setItemTL"><div class="setItemTL<%= i + 1 %>"><%=h tp[1] %></div></div>
                   <div class="setItemTC"><img src="/images/email.png" /></div>
@@ -34,7 +34,7 @@
                 <% notifications = Notification.with_type(tp[1]) %>
                 <% notifications.each do |ntfobj| %>
                   <div class="setItemT2">
-                    <div class="setItemTL"><div><%=  ntfobj.name %></div></div>
+                    <div class="setItemTL"><div><%= ntfobj.name %></div></div>
                     <div class="setItemTC">
                       <% if ntfobj.email_allow == true %>
                         <% check = current_user.notify_email_settings.select{|e| e.notification}.include?(ntfobj) %>
@@ -57,7 +57,6 @@
             </div>
           <% end #END FORM %>
         </div>
-
         <div class="settNotR">
           <div class="settNotRTitle">View settings for:</div>
           <% @types.each_with_index do |item, index| %>
@@ -66,14 +65,10 @@
             </div>
           <% end %>
         </div>
-
       </div>
     </div>
-
   </div>
-
 </div>
-
 <script type="text/javascript">
   function sendChange(){
     $("#setting_form").submit();
