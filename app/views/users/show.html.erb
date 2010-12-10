@@ -1,18 +1,35 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Friends", :action_path => "#{list_friends_user_path(current_user)}"} %>
-<% end -%>
+<div class="topLearning">
+</div>
 
-<% content_for :tabs_inbox do -%>
-  <%= render :partial => 'shared/tabs_inbox' %>
-<% end -%>
+<div class="contMainC">
+  <%= render :partial => "profiles/proc" %>
+  <%= render :partial => "profiles/infor" %>
+  <%= render :partial => "profiles/friends" %>
+  <%#= render :partial => "profiles/links" %>
+</div>
 
-<div id="profile_wrapper"><!-- profile wrapper -->
-  <%= render :partial => "shared/edit_profile_menu" %>
-  <div id="profile_update_zone">
-
-    Email: <%= @user.email %>, <%= link_to 'Change', edit_email_user_url(@user) %> <br/>
-    Password: <%= "*"*8 %>, <%= link_to 'Change', edit_password_user_url(@user) %> <br/>
-    Account created: <%= @user.created_at.to_s(:long) %> <br/>
-    Last updated: <%= @user.updated_at.to_s(:long) %>
+<div class="contMainL">
+  <div class="col451 proCen" id="user_wall">
+    <%= render :partial => "user_walls/wall_form_ajax" %>
+    <div class="col451in">
+      <div class="proCenCont">
+        <% @walls.each do |w| %>
+          <%= render :partial => "user_walls/wall_item", :locals => {:wall => w} %>
+        <% end %>
+        <%= render :partial => "user_walls/alert" %>
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @walls %></span>
+          <%= will_paginate @walls %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+      </div>
+    </div>
   </div>
-</div><!-- profile wrapper -->
+</div>
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>

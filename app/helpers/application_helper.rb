@@ -148,6 +148,14 @@ module ApplicationHelper
     words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
   end
 
+  def show_image_user_post(user)
+    link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", users_path(user)
+  end
+
+  def show_image_post(user)
+    link_to user.full_name, users_path(user)
+  end
+
   def show_search_form(ctrl_name, query)
     case ctrl_name
     when "post_assignments"

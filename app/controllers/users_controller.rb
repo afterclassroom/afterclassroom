@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :login_required,
     :except => [:new, :create, :activate, :forgot_login, :forgot_password]
   before_filter :require_current_user,
-    :except => [:new, :create, :activate, :forgot_login, :forgot_password]
+    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
   
   # render new.rhtml
   def new
@@ -140,6 +140,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
+    render :layout => "student_lounge"
   end
   
   protected

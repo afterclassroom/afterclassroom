@@ -3,7 +3,7 @@
   <div class="proInfGR"><a href="#">Edit My Fans</a></div>
 </div>
 <%
-fans_rc = current_user.fans_recent_update
+fans_rc = @user.fans_recent_update
 fans_rc_total = fans_rc.size
 %>
 <% if fans_rc_total > 0 %>
@@ -31,7 +31,7 @@ fans_rc_total = fans_rc.size
 <% end %>
 
 <%
-fans_nv = current_user.fans_not_visit
+fans_nv = @user.fans_not_visit
 fans_nv_total = fans_nv.size
 %>
 <% if fans_nv_total > 0 %>
