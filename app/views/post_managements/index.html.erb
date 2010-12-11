@@ -55,10 +55,13 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-    var selected = $("select#category").children(":selected").val();
+    var selected = '';
 
     $("select#category").change(function(){
-      
+
+      selected = $("select#category").children(":selected").val();
+
+      console.log('value == '+selected);
       
       $.ajax({
         url: '/post_managements/with_type?category='+selected,
