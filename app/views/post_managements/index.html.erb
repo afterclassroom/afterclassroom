@@ -110,5 +110,27 @@
         }
       });
     });
+    
+    $('.curPage .current').each(function(){
+      var page_href = $(this).attr('href');
+      $(this).attr('href','#');
+      
+      $(this).click(function(){
+        console.log('str =='+page_href);
+      });
+
+    });
+    $('.curPage .disabled').each(function(){
+      var prev_next_href = $(this).attr('href');
+      $(this).attr('href','#');
+
+      if (prev_next_href!= undefined){
+        $(this).click(function(){
+          console.log('str ==');
+        });
+      }
+
+    });
+
   });
 </script>
