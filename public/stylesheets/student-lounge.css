@@ -5902,10 +5902,9 @@ span.btmTag a:hover{
 .learnT .stuItemL{
   background:url('/images/iconLearn.png') no-repeat;
 }
+/**************** Setting Private Student-loungs ***************************/
 .flistRAddPa{
-  float:left;
-  border-right:1px #e3e3e3 solid;
-  width:86px;
+
 }
 .flistRAddPa a{
   height:30px;
@@ -5924,8 +5923,8 @@ span.btmTag a:hover{
 .flistRAddPa span{
   background: url('/images/flistA.gif') no-repeat center right;
   float: left;
-  width:68px;
-  margin-left:10px;
+  width:75px;
+  margin-left:30px;
 }
 .flistRAddPa a:hover span{
   background:url('/images/flistAH.gif')no-repeat center right;
@@ -5963,12 +5962,17 @@ span.btmTag a:hover{
 .flistNPa{
   font-weight: bold;
 }
+.settNetLPaT{
+  border: 1px solid #E3E3E3;
+  margin-left: 15px;
+  width: 925px;
+}
 .settNetLPa{
   color: #000000;
   float: left;
   font-weight: bold;
-  padding-top: 10px;
-  width: 220px;
+  padding: 15px;
+  width: 200px;
 }
 .flistRPa{
   background-color: #F6F6F6;
