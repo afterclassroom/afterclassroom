@@ -55,7 +55,8 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-    var selected = '';
+    var selected = 'Category';/*Default value*/
+    var sortType = 'DESC';/*Default value*/
 
     $("select#category").change(function(){
 
@@ -86,7 +87,6 @@
 
     $('#date').click(function(){
       var strImg = $('#date a').css("background-image");
-      var sortType = '';
 
       if ( strImg.indexOf('Desc', 0) > 0){
         //alert('goting to sort descending');
@@ -113,11 +113,35 @@
     
     $('.curPage .current').each(function(){
       var page_href = $(this).attr('href');
+      
       $(this).attr('href','#');
       
       $(this).click(function(){
         console.log('str =='+page_href);
+
+        if (page_href != undefined){
+          var arr = page_href.split('page=');
+          console.log('len of arr == '+arr[1]);
+        }
+
+        var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
+        console.log('sortType=='+sortType+' ||||| category=='+selected);
+
+        
+        $.ajax({
+          url: str_href,
+          type: "GET",
+          dataType: "html",
+          failure: function(msg){
+            alert('ajax fail:'+msg);
+          },
+          success: function(msg){
+            $('.shopP2').html(msg);
+          }
+        });
+
       });
+
 
     });
     $('.curPage .disabled').each(function(){
@@ -126,7 +150,7 @@
 
       if (prev_next_href!= undefined){
         $(this).click(function(){
-          console.log('str ==');
+          console.log('str =='+prev_next_href);
         });
       }
 
