@@ -49,6 +49,9 @@ class SettingsController < ApplicationController
       notice @inf_msg
     end
   end
+  
+  def private
+  end
 
   def networks
   end

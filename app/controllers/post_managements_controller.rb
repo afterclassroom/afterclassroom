@@ -15,12 +15,21 @@ class PostManagementsController < ApplicationController
     @category = params[:category]
     @all_posts = nil
 
-    @sort = params[:sort]
+    @sort = "DESC"
+    if params[:sort]!= nil
+      @sort = params[:sort]
+    end
+    
+    cur_page = 1
+
+    if params[:page] != nil && params[:page] != ""
+      cur_page = params[:page]
+    end
 
     if @category == "Category"
       @all_posts = Post.paginated_post_management(params,current_user.id)
     else
-      @all_posts = current_user.get_posts_with_type(@category).paginate(:page => params[:page], :per_page => 3, :order => "created_at "+params[:sort])
+      @all_posts = current_user.get_posts_with_type(@category).paginate(:page => cur_page, :per_page => 3, :order => "created_at "+@sort)
     end
 
     render :layout => false

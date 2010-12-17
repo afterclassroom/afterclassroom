@@ -23,6 +23,10 @@
         <th class="post9"><div>Track your promotion expense</div></th>
         <th class="post10"><div>Status</div></th>
       </tr>
+      ===========CATEGORY::::<%= @category %>
+      ===========SORT::::<%= @sort %>
+      ===========PAGE::::<%= params[:page] %>
+
       <% if @all_posts.size > 0 %>
         <%  @all_posts.each do |p| %>
           <tr>
@@ -56,10 +60,14 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-    var selected = $("select#category").children(":selected").val();
+    var selected = '<%= @category %>';/*Selected value*/
+    var sortType = '<%= @sort %>';/*Selected value*/
 
     $("select#category").change(function(){
 
+      selected = $("select#category").children(":selected").val();
+
+      console.log('value == '+selected);
 
       $.ajax({
         url: '/post_managements/with_type?category='+selected,
@@ -84,7 +92,6 @@
 
     $('#date').click(function(){
       var strImg = $('#date a').css("background-image");
-      var sortType = '';
 
       if ( strImg.indexOf('Desc', 0) > 0){
         //alert('goting to sort descending');
@@ -108,5 +115,51 @@
         }
       });
     });
+
+    $('.curPage .current').each(function(){
+      var page_href = $(this).attr('href');
+
+      $(this).attr('href','#');
+
+      $(this).click(function(){
+        console.log('str =='+page_href);
+
+        if (page_href != undefined){
+          var arr = page_href.split('page=');
+          console.log('len of arr == '+arr[1]);
+        }
+
+        var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
+        console.log('sortType=='+sortType+' ||||| category=='+selected);
+
+
+        $.ajax({
+          url: str_href,
+          type: "GET",
+          dataType: "html",
+          failure: function(msg){
+            alert('ajax fail:'+msg);
+          },
+          success: function(msg){
+            $('.shopP2').html(msg);
+          }
+        });
+
+      });
+
+
+    });
+    $('.curPage .disabled').each(function(){
+      var prev_next_href = $(this).attr('href');
+      $(this).attr('href','#');
+
+      if (prev_next_href!= undefined){
+        $(this).click(function(){
+          console.log('str =='+prev_next_href);
+        });
+      }
+
+    });
+
   });
 </script>
