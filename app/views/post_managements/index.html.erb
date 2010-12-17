@@ -64,6 +64,8 @@
 
       console.log('value == '+selected);
       
+      call_with_ajax('1',sortType,selected);
+      /*
       $.ajax({
         url: '/post_managements/with_type?category='+selected,
         type: "GET",
@@ -74,7 +76,8 @@
         success: function(msg){
           $('.shopP2').html(msg);
         }
-      });
+      });*/
+
     });
 
     var currentSort = '<%= @sort %>';
@@ -98,6 +101,8 @@
         $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
         sortType = 'ASC';
       }
+      call_with_ajax('1',sortType,selected);
+      /*
       $.ajax({
         url: '/post_managements/with_type?category='+selected+'&sort='+sortType,
         type: "GET",
@@ -108,7 +113,7 @@
         success: function(msg){
           $('.shopP2').html(msg);
         }
-      });
+      });*/
     });
     
     $('.curPage .current').each(function(){
@@ -127,7 +132,8 @@
         var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
         console.log('sortType=='+sortType+' ||||| category=='+selected);
 
-        
+        call_with_ajax('1',sortType,selected);
+        /*
         $.ajax({
           url: str_href,
           type: "GET",
@@ -138,7 +144,7 @@
           success: function(msg){
             $('.shopP2').html(msg);
           }
-        });
+        });*/
 
       });
 
@@ -157,4 +163,20 @@
     });
 
   });
+  function call_with_ajax(page,sort,category){
+
+    var str_href = '/post_managements/with_type?category='+category+'&sort='+sort+'&page='+page;
+
+    $.ajax({
+      url: str_href,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('.shopP2').html(msg);
+      }
+    });
+  }
 </script>
