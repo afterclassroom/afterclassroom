@@ -23,43 +23,41 @@
             <div class="setItemTC">Email</div>
             <div class="setItemTR">SMS</div>
           </div>
-          <% form_tag(save_setting_user_settings_path(current_user), :method => :post, :id => "setting_form") do %>
-            <% @types.each_with_index do |tp, i| %>
-              <div id="<%= tp[0] %>" >
-                <div class="setItemT1">
-                  <div class="setItemTL"><div class="setItemTL<%= i + 1 %>"><%=h tp[1] %></div></div>
-                  <div class="setItemTC"><img src="/images/email.png" /></div>
-                  <div class="setItemTR"><img src="/images/mobile.png" /></div>
-                </div>
-                <% notifications = Notification.with_type(tp[1]) %>
-                <% notifications.each do |ntfobj| %>
-                  <div class="setItemT2">
-                    <div class="setItemTL"><div><%= ntfobj.name %></div></div>
-                    <div class="setItemTC">
-                      <% if ntfobj.email_allow == true %>
-                        <% check = current_user.notify_email_settings.select{|e| e.notification}.include?(ntfobj) %>
-                        <%= check_box_tag("emailarr[]", ntfobj.id, check)%>
-                      <% end #END IF EMAIL ALLOW %>
-                    </div>
-                    <div class="setItemTR">
-                      <% if ntfobj.sms_allow == true %>
-                        <% check = current_user.notify_sms_settings.select{|s| s.notification}.include?(ntfobj) %>
-                        <%= check_box_tag("smsarr[]", ntfobj.id, check)%>
-                      <% end #END IF SMS_ALLOW %>
-                    </div>
-                  </div>
-                <% end #END LOOP NOTIFICATIONS %>
+          <% @type_notfs.each_with_index do |tp, i| %>
+            <div id="<%= tp[0] %>" >
+              <div class="setItemT1">
+                <div class="setItemTL"><div class="setItemTL<%= i + 1 %>"><%=h tp[1] %></div></div>
+                <div class="setItemTC"><img src="/images/email.png" /></div>
+                <div class="setItemTR"><img src="/images/mobile.png" /></div>
               </div>
-            <% end #END LOOP NOTIFY_TYPE %>
-            <div class="Showmore"></div>
-            <div class="Savechanges">
-              <%= link_to_function "Save Changes", "sendChange()" %>
+              <% notifications = Notification.with_type(tp[1]) %>
+              <% notifications.each do |ntfobj| %>
+                <div class="setItemT2">
+                  <div class="setItemTL"><div><%= ntfobj.name %></div></div>
+                  <div class="setItemTC">
+                    <% if ntfobj.email_allow == true %>
+                      <% check = current_user.notify_email_settings.select{|e| e.notification}.include?(ntfobj) %>
+                      <%= check_box_tag("emailarr[]", ntfobj.id, check)%>
+                    <% end %>
+                  </div>
+                  <div class="setItemTR">
+                    <% if ntfobj.sms_allow == true %>
+                      <% check = current_user.notify_sms_settings.select{|s| s.notification}.include?(ntfobj) %>
+                      <%= check_box_tag("smsarr[]", ntfobj.id, check) %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
             </div>
-          <% end #END FORM %>
+          <% end %>
+          <div class="Showmore"></div>
+          <div class="Savechanges">
+            <%= link_to_function "Save Changes", "sendChange()" %>
+          </div>
         </div>
         <div class="settNotR">
           <div class="settNotRTitle">View settings for:</div>
-          <% @types.each_with_index do |item, index| %>
+          <% @type_notfs.each_with_index do |item, index| %>
             <div class="setNotRItem setNotRItem<%= index + 1 %>">
               <a href="javascript:;" onclick="goToByScroll('<%= item[0] %>')"><%= item[1] %></a>
             </div>

@@ -20,7 +20,7 @@ Please reorder and remove files in config/rucksack.yml so dependencies are loade
 
 Change your _javascript_include_tag_ and _stylesheet_link_tag_ to _javascript_include_packed_ and _stylesheet_link_packed_. For example:
 
-   <%= javascript_include_packed :base %>
+  <%= javascript_include_packed :base %>
 	<%= stylesheet_link_packed :base %>
 
 h3. Deploy

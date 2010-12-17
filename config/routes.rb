@@ -27,7 +27,8 @@ ActionController::Routing::Routes.draw do |map|
       :collection => { 
       :show_email => :get,
       :send_message => :get,
-      :message_action => :post
+      :message_action => :post,
+      :list_friend => :get
     }
 
     users.resources :settings,
