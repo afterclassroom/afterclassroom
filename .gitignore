@@ -8,6 +8,7 @@ log/*.log
 tmp/**/*
 doc/api
 doc/app
+db/sphinx/**/*
 public/attaches/**/*
 public/avatars/**/*
 public/uploaded_files/**/*
