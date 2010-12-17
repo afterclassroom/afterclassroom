@@ -1,3 +1,6 @@
+<input type="text" id="search_text" value="" name="searchPost"/>
+<button type="button" id="idsearch">Search</button>
+
 <div class="shopP2">
   <div class="tablePost">
     <table cellspacing="0" cellpadding="0" style="width: 100%;">
@@ -143,4 +146,25 @@
       }
     });
   }
+  /*BEGIN SEARCH*/
+  $('#idsearch').click(function(){
+
+    str_search = $('#search_text').val();
+
+    var schr_href = '/post_managements/search_post?str_search='+str_search;
+
+    $.ajax({
+      url: schr_href,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('.shopP2').html(msg);
+      }
+    });
+
+  });
+  /*END SEARCH*/
 </script>

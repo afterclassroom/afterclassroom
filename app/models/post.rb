@@ -61,11 +61,19 @@ class Post < ActiveRecord::Base
   end
 
   def self.paginated_post_management(params, current_user_id)
-    sort = 'DESC'
+    sort = "DESC"
     if params[:sort]
       sort = params[:sort]
     end
     Post.search(:match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 3)
+  end
+
+  def self.searchpost(params, current_user_id)
+    sort = "DESC"
+    if params[:sort]
+      sort = params[:sort]
+    end
+    Post.search(:match_mode => :any, :with => {:user_id => current_user_id, :description => "Sed"}, :order => "created_at "+sort, :page => params[:page], :per_page => 3)
   end
   
 end

@@ -34,5 +34,12 @@ class PostManagementsController < ApplicationController
 
     render :layout => false
   end
+
+  def search_post
+    @post_cat = PostCategory.find(:all)
+    @all_posts = Post.searchpost(params,current_user.id)
+
+    render :layout => false
+  end
   
 end
