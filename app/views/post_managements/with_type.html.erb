@@ -69,17 +69,7 @@
 
       console.log('value == '+selected);
 
-      $.ajax({
-        url: '/post_managements/with_type?category='+selected,
-        type: "GET",
-        dataType: "html",
-        failure: function(msg){
-          alert('ajax fail:'+msg);
-        },
-        success: function(msg){
-          $('.shopP2').html(msg);
-        }
-      });
+      call_with_ajax('1',sortType,selected);
     });
 
     var currentSort = '<%= @sort %>';
@@ -103,17 +93,7 @@
         $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
         sortType = 'ASC';
       }
-      $.ajax({
-        url: '/post_managements/with_type?category='+selected+'&sort='+sortType,
-        type: "GET",
-        dataType: "html",
-        failure: function(msg){
-          alert('ajax fail:'+msg);
-        },
-        success: function(msg){
-          $('.shopP2').html(msg);
-        }
-      });
+      call_with_ajax('<%= params[:page] %>',sortType,selected);
     });
 
     $('.curPage .current').each(function(){
@@ -132,18 +112,7 @@
         var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
         console.log('sortType=='+sortType+' ||||| category=='+selected);
 
-
-        $.ajax({
-          url: str_href,
-          type: "GET",
-          dataType: "html",
-          failure: function(msg){
-            alert('ajax fail:'+msg);
-          },
-          success: function(msg){
-            $('.shopP2').html(msg);
-          }
-        });
+        call_with_ajax(arr[1],sortType,selected);
 
       });
 
