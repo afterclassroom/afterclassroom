@@ -13,7 +13,7 @@
         <%= display_flash_messages %>
         <div id="take_a_picture" >
           <% form_for @music, :url => user_musics_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
-            <div class="musicEx">
+            <div class="photoEx">
               <div class="stoExItem">
                 <div class="stoExItemL">Music album</div>
                 <div class="stoExItemR" id="select_music_album">
