@@ -42,6 +42,11 @@ class PostManagementsController < ApplicationController
   end
 
   def search_post
+    @sort = "DESC"
+    if params[:sort]!= nil
+      @sort = params[:sort]
+    end
+    
     @post_cat = PostCategory.find(:all)
     @all_posts = Post.searchpost(params,current_user.id)
 

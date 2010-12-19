@@ -40,7 +40,7 @@
           </tr>
         <% end %>
       <% else %>
-          No result found
+        No result found
       <% end %>
     </tbody>
   </table>
@@ -88,7 +88,7 @@
         $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
         sortType = 'ASC';
       }
-      call_with_ajax('<%= params[:page] %>',sortType,selected);
+      paging_search_with_ajax('<%= params[:page] %>',sortType);
     });
 
     $('.curPage .current').each(function(){
@@ -104,10 +104,12 @@
           console.log('len of arr == '+arr[1]);
         }
 
-        var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
+        /*
+         var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
         console.log('sortType=='+sortType+' ||||| category=='+selected);
+          */
 
-        call_with_ajax(arr[1],sortType,selected);
+        paging_search_with_ajax(arr[1],sortType);
 
       });
 
@@ -126,4 +128,21 @@
     });
 
   });
+  function paging_search_with_ajax(page,sort){
+    var search_val = $('#search_text').val();
+
+    var str_href = '/post_managements/search_post?&sort='+sort+'&page='+page+'&str_search='+search_val;
+
+    $.ajax({
+      url: str_href,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        $('.shopP2').html(msg);
+      }
+    });
+  }
 </script>
