@@ -14,6 +14,7 @@ class MusicsController < ApplicationController
   # GET /musics
   # GET /musics.xml
   def index
+    @friend_musics = []
     @music_albums = current_user.music_albums
     arr_user_id = []
     current_user.user_friends.collect {|f| arr_user_id << f.id}
@@ -114,8 +115,10 @@ class MusicsController < ApplicationController
   # POST /musics
   # POST /musics.xml
   def create
+    @music_albums = current_user.music_albums
     @music = Music.new(params[:music])
     @music.user = current_user
+    @music.tag_list = params[:tag_list]
     respond_to do |format|
       if @music.save
         mp3_info = Mp3Info.open(@music.music_attach.path)
@@ -128,6 +131,7 @@ class MusicsController < ApplicationController
         format.html { redirect_to user_music_path(current_user, @music) }
         format.xml  { render :xml => @music, :status => :created, :location => @music }
       else
+        flash[:notice] = 'Music was unsuccessfully created.'
         format.html { render :action => "new" }
         format.xml  { render :xml => @music.errors, :status => :unprocessable_entity }
       end
