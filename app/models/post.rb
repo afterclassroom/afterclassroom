@@ -69,11 +69,33 @@ class Post < ActiveRecord::Base
   end
 
   def self.searchpost(params, current_user_id)
+
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+
     sort = "DESC"
     if params[:sort]
       sort = params[:sort]
     end
-    Post.search(:match_mode => :any, :with => {:user_id => current_user_id, :description => "Sed"}, :order => "created_at "+sort, :page => params[:page], :per_page => 3)
+    str_search = ""
+    if params[:str_search]
+      str_search = params[:str_search]
+    end
+
+    Post.search(str_search, :match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 3)
   end
   
 end
