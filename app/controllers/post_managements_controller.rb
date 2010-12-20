@@ -8,6 +8,7 @@ class PostManagementsController < ApplicationController
     @post_cat = PostCategory.find(:all)
     category = params[:category]
     @sort = "DESC"
+    @cur_page = 1
   end
 
   def with_type
