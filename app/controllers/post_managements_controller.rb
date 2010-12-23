@@ -8,7 +8,6 @@ class PostManagementsController < ApplicationController
     @post_cat = PostCategory.find(:all)
     category = params[:category]
     @sort = "DESC"
-    @cur_page = 1
   end
 
   def with_type
@@ -28,12 +27,6 @@ class PostManagementsController < ApplicationController
     end
 
     if @category == "Category"
-      puts "category category category category category "
-      puts "category category category category category "
-      puts "category category category category category "
-      puts "category category category category category "
-      puts "category category category category category "
-      puts "category category category category category "
       @all_posts = Post.paginated_post_management(params,current_user.id)
     else
       @all_posts = current_user.get_posts_with_type(@category).paginate(:page => cur_page, :per_page => 3, :order => "created_at "+@sort)

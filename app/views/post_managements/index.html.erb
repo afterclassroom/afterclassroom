@@ -79,8 +79,6 @@
 
       selected = $("select#category").children(":selected").val();
 
-      console.log('value == '+selected);
-      
       call_with_ajax('1',sortType,selected);
 
     });
@@ -115,15 +113,12 @@
       $(this).attr('href','#');
       
       $(this).click(function(){
-        console.log('str =='+page_href);
 
         if (page_href != undefined){
           var arr = page_href.split('page=');
-          console.log('len of arr == '+arr[1]);
         }
 
         var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
-        console.log('sortType=='+sortType+' ||||| category=='+selected);
 
         call_with_ajax(arr[1],sortType,selected);
 
@@ -134,24 +129,12 @@
     $('.curPage .disabled').each(function(){
       var prev_next_href = $(this).attr('href');
       $(this).attr('href','#');
-      var operation = $(this).html();
-      var sel_page = 0;
-
-      var cur_page = <%= @cur_page %>;
-
-      if (operation == 'Prev'){
-        sel_page = cur_page - 1;
-      }
-      else /*operation ==  'Next'*/{
-        sel_page = cur_page + 1;
-      }
 
       if (prev_next_href!= undefined){
         $(this).click(function(){
-          console.log('selpage =='+sel_page);
+          var arr = prev_next_href.split('page=');
           
-          call_with_ajax(''+sel_page,sortType,selected);
-          
+          call_with_ajax(arr[1],sortType,selected);
         });
       }
 
