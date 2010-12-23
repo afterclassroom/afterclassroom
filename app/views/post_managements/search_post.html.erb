@@ -59,11 +59,7 @@
     var sortType = '<%= @sort %>';/*Selected value*/
 
     $("select#category").change(function(){
-
       selected = $("select#category").children(":selected").val();
-
-      console.log('value == '+selected);
-
       call_with_ajax('1',sortType,selected);
     });
 
@@ -79,12 +75,10 @@
       var strImg = $('#date a').css("background-image");
 
       if ( strImg.indexOf('Desc', 0) > 0){
-        //alert('goting to sort descending');
         $('#date a').css("background-image", "url(/images/icon-Date.gif)");
         sortType = 'DESC';
       }
       else{
-        //alert('going to sort ascending');
         $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
         sortType = 'ASC';
       }
@@ -97,42 +91,28 @@
       $(this).attr('href','#');
 
       $(this).click(function(){
-        console.log('str =='+page_href);
-
         if (page_href != undefined){
           var arr = page_href.split('page=');
-          console.log('len of arr == '+arr[1]);
         }
-
-        /*
-         var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
-        console.log('sortType=='+sortType+' ||||| category=='+selected);
-          */
-
         paging_search_with_ajax(arr[1],sortType);
-
       });
-
-
     });
+    
     $('.curPage .disabled').each(function(){
       var prev_next_href = $(this).attr('href');
       $(this).attr('href','#');
-
       if (prev_next_href!= undefined){
         $(this).click(function(){
-          console.log('str =='+prev_next_href);
+           var arr = prev_next_href.split('page=');
+          paging_search_with_ajax(arr[1],sortType);
         });
       }
-
     });
-
   });
+  
   function paging_search_with_ajax(page,sort){
     var search_val = $('#search_text').val();
-
     var str_href = '/post_managements/search_post?&sort='+sort+'&page='+page+'&str_search='+search_val;
-
     $.ajax({
       url: str_href,
       type: "GET",

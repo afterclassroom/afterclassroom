@@ -62,8 +62,6 @@
 
       selected = $("select#category").children(":selected").val();
 
-      console.log('value == '+selected);
-
       call_with_ajax('1',sortType,selected);
     });
 
@@ -79,12 +77,10 @@
       var strImg = $('#date a').css("background-image");
 
       if ( strImg.indexOf('Desc', 0) > 0){
-        //alert('goting to sort descending');
         $('#date a').css("background-image", "url(/images/icon-Date.gif)");
         sortType = 'DESC';
       }
       else{
-        //alert('going to sort ascending');
         $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
         sortType = 'ASC';
       }
@@ -97,15 +93,12 @@
       $(this).attr('href','#');
 
       $(this).click(function(){
-        console.log('str =='+page_href);
 
         if (page_href != undefined){
           var arr = page_href.split('page=');
-          console.log('len of arr == '+arr[1]);
         }
 
         var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
-        console.log('sortType=='+sortType+' ||||| category=='+selected);
 
         call_with_ajax(arr[1],sortType,selected);
 
@@ -119,7 +112,9 @@
 
       if (prev_next_href!= undefined){
         $(this).click(function(){
-          console.log('str =='+prev_next_href);
+          var arr = prev_next_href.split('page=');
+
+          call_with_ajax(arr[1],sortType,selected);
         });
       }
 
