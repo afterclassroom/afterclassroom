@@ -104,10 +104,6 @@
           console.log('len of arr == '+arr[1]);
         }
 
-        /*
-         var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
-        console.log('sortType=='+sortType+' ||||| category=='+selected);
-          */
 
         paging_search_with_ajax(arr[1],sortType);
 
@@ -121,7 +117,9 @@
 
       if (prev_next_href!= undefined){
         $(this).click(function(){
-          console.log('str =='+prev_next_href);
+           var arr = prev_next_href.split('page=');
+          console.log('arr =='+arr[1]);
+          paging_search_with_ajax(arr[1],sortType);
         });
       }
 
