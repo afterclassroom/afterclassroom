@@ -9,17 +9,32 @@
     <a id="upload_resume" href="javascript:;">Resume</a>
   <% end %>
 </div>
-<div style="display: inline; padding-top: 1px"">
+<div style="display: inline; padding-top: 1px">
 
   <% form_for :apply_script, :url => {:action => "save_script"}, :html =>{:multipart => true, :id => "form_script"} do |f| %>
     <a id="upload_script" href="javascript:;">Transcript</a>
   <% end %>
 </div>
 
+<button type="button" id="apply_all">Submit All</button>
+
 <script type="text/javascript">
 
 
   $(document).ready(function(){
+
+
+    var letterHandler, transHandler, resumeHandler;
+    var letterFile, transFile, resumeFile;
+
+    $("#apply_all").click(function(){
+      if (letterFile!= undefined)
+        letterHandler.submit();
+      if (transFile!= undefined)
+        transHandler.submit();
+      if (resumeFile!= undefined)
+        resumeHandler.submit();
+    });
     /*HANDLE EVENT UPLOAD COVER LETTER============================================*/
     
     var $letter = $('#upload_letter');
@@ -29,9 +44,15 @@
       $form_url = $('form#form_letter').attr('action');
       $form_url = $form_url+'?job_id=<%= @post_job_id %>';
 
-      new AjaxUpload($letter, {
+      letterHandler = new AjaxUpload($letter, {
         action: $form_url,
+        autoSubmit: false,
         name: 'cover_letter',
+
+        onChange: function(file, response){
+
+          letterFile = file;
+        },
 
         onSubmit : function(file, ext){
 
@@ -77,9 +98,14 @@
       $form_script_url = $('form#form_script').attr('action');
       $form_script_url = $form_script_url+'?job_id=<%= @post_job_id %>';
 
-      new AjaxUpload($transcript, {
+      transHandler = new AjaxUpload($transcript, {
         action: $form_script_url,
+        autoSubmit: false,
         name: 'transcript',
+        onChange: function(file, response){
+
+          transFile = file;
+        },
 
         onSubmit : function(file, ext){
 
@@ -125,9 +151,17 @@
       $form_resume_url = $('form#form_resume').attr('action');
       $form_resume_url = $form_resume_url+'?job_id=<%= @post_job_id %>';
 
-      new AjaxUpload($resume, {
+      resumeHandler = new AjaxUpload($resume, {
         action: $form_resume_url,
+        autoSubmit: false,
         name: 'resume',
+
+        onChange: function(file, response){
+
+          resumeFile = file;
+        },
+
+
 
         onSubmit : function(file, ext){
 
