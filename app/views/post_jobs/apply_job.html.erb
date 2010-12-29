@@ -50,8 +50,9 @@
         name: 'cover_letter',
 
         onChange: function(file, response){
-
           letterFile = file;
+          var f_name = ""+letterFile;
+          $('#upload_letter').html(f_name);
         },
 
         onSubmit : function(file, ext){
@@ -103,19 +104,17 @@
         autoSubmit: false,
         name: 'transcript',
         onChange: function(file, response){
-
           transFile = file;
+          var f_name = ""+transFile;
+          $('#upload_script').html(f_name);
         },
-
         onSubmit : function(file, ext){
-
           // change button text, when user selects file
           $transcript.text('Uploading');
 
           // If you want to allow uploading only 1 file at time,
           // you can disable upload button
           this.disable();
-
           // Uploding -> Uploading. -> Uploading...
           script_interval = window.setInterval(function(){
             var text = $transcript.text();
@@ -129,14 +128,10 @@
         },
         onComplete: function(file, response){
           $transcript.text('Uploaded Successfully');
-
           window.clearInterval(script_interval);
-
           // enable upload button
           //this.enable();
-
           // update GUI with return text
-
         }
       });
     }//end if ($('#upload_script')
@@ -150,19 +145,15 @@
       var resume_interval;
       $form_resume_url = $('form#form_resume').attr('action');
       $form_resume_url = $form_resume_url+'?job_id=<%= @post_job_id %>';
-
       resumeHandler = new AjaxUpload($resume, {
         action: $form_resume_url,
         autoSubmit: false,
         name: 'resume',
-
         onChange: function(file, response){
-
           resumeFile = file;
+          var f_name = ""+resumeFile;
+          $('#upload_resume').html(f_name);
         },
-
-
-
         onSubmit : function(file, ext){
 
           // change button text, when user selects file
