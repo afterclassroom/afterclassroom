@@ -166,7 +166,7 @@ class UsersController < ApplicationController
     @user.user_education = UserEducation.new()
     @user.user_employment = UserEmployment.new()
     @user.name = name
-    @user.login = @user.email
+    @user.login = to_slug(name)
     session[:your_school] = @user.school_id
     
     if @user && @user.valid?

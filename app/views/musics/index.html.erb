@@ -20,7 +20,7 @@
               <div class="slsTopLT">Friends shared musics</div>
               <div class="slsTopLB friLeft">
                 <div class="search">
-                  <% form_tag friend_m_user_musics_path(current_user), {:id => "friend_musics_search", :method => "GET"} do %>
+                  <%= form_tag friend_m_user_musics_path(current_user), {:id => "friend_musics_search", :method => "GET"} do %>
                     <div class="textS"><%= text_field_tag "search[name]", "" %></div>
                     <div class="btmS"><a href="javascript:;" onclick="searchFriendMusics();"><img src="/images/iconSF.png"/></a></div>
                   <% end %>
@@ -54,7 +54,7 @@
               <div class="slsTopLT">Your musics</div>
               <div class="slsTopLB friLeft">
                 <div class="search">
-                  <% form_tag my_m_user_musics_path(current_user), {:id => "my_musics_search", :method => "GET"} do %>
+                  <%= form_tag my_m_user_musics_path(current_user), {:id => "my_musics_search", :method => "GET"} do %>
                     <div class="textS"><%= text_field_tag "search[name]", "" %></div>
                     <div class="btmS"><a href="javascript:;" onclick="searchMyMusics();"><img src="/images/iconSF.png"/></a></div>
                   <% end %>

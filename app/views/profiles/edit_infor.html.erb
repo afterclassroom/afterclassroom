@@ -1,5 +1,5 @@
-<% form_for :user, @user, :url => update_infor_user_profiles_url(@user), :html => {:id => "form_infor", :method => :post} do |f| %>
-  <% fields_for @user.user_information do |info| %>
+<%= form_for :user, @user, :url => update_infor_user_profiles_url(@user), :html => {:id => "form_infor", :method => :post} do |f| %>
+  <%= fields_for @user.user_information do |info| %>
     <div class="popLearn2">
       <div class="popLearnItem">
         <div class="popLearnLabel" style="width: 100px">Sex</div>

@@ -150,7 +150,7 @@ EO_CREATE_DATABASE_FAILED
   end
 
   def check_mysql_is_working
-    require 'activerecord'
+    require 'active_record'
     colour_puts "<banner>check mysql is working</banner>"
     puts
 
@@ -220,7 +220,7 @@ EO_CREATE_DATABASE_FAILED
 
   def connect_to_db
     config = YAML.load_file(db_yml)
-    config.update(:adapter => mysql_adapter, :database => 'test')
+    config.update(:adapter => mysql_adapter, :database => 'thinking_sphinx')
     config.symbolize_keys!
 
     ActiveRecord::Base.establish_connection(config)

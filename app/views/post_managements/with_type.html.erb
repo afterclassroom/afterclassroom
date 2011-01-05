@@ -23,9 +23,14 @@
         <th class="post9"><div>Track your promotion expense</div></th>
         <th class="post10"><div>Status</div></th>
       </tr>
+      ===========CATEGORY::::<%= @category %>
+      ===========SORT::::<%= @sort %>
+      ===========PAGE::::<%= params[:page] %>
+
       <% if @all_posts.size > 0 %>
         <%  @all_posts.each do |p| %>
-          <tr>            <td><%= p.created_at.strftime("%d %b %y") %></td>
+          <tr>
+            <td><%= p.created_at.strftime("%d %b %y") %></td>
             <td class="postCate"><a href="#"><%= p.post_category.name %></a></td>
             <td class="postTitle">Sed tincidunt sem sollicitudin enim dapibus hendrerit.
               <div><a href="#">Click here to edit</a></div>
@@ -40,7 +45,7 @@
           </tr>
         <% end %>
       <% else %>
-          No result found
+        No result found
       <% end %>
     </tbody>
   </table>
@@ -62,7 +67,19 @@
 
       selected = $("select#category").children(":selected").val();
 
-      call_with_ajax('1',sortType,selected);
+      console.log('value == '+selected);
+
+      $.ajax({
+        url: '/post_managements/with_type?category='+selected,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('.shopP2').html(msg);
+        }
+      });
     });
 
     var currentSort = '<%= @sort %>';
@@ -77,14 +94,26 @@
       var strImg = $('#date a').css("background-image");
 
       if ( strImg.indexOf('Desc', 0) > 0){
+        //alert('goting to sort descending');
         $('#date a').css("background-image", "url(/images/icon-Date.gif)");
         sortType = 'DESC';
       }
       else{
+        //alert('going to sort ascending');
         $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
         sortType = 'ASC';
       }
-      call_with_ajax('<%= params[:page] %>',sortType,selected);
+      $.ajax({
+        url: '/post_managements/with_type?category='+selected+'&sort='+sortType,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('.shopP2').html(msg);
+        }
+      });
     });
 
     $('.curPage .current').each(function(){
@@ -93,14 +122,28 @@
       $(this).attr('href','#');
 
       $(this).click(function(){
+        console.log('str =='+page_href);
 
         if (page_href != undefined){
           var arr = page_href.split('page=');
+          console.log('len of arr == '+arr[1]);
         }
 
         var str_href = '/post_managements/with_type?category='+selected+'&sort='+sortType+'&page='+arr[1];
+        console.log('sortType=='+sortType+' ||||| category=='+selected);
 
-        call_with_ajax(arr[1],sortType,selected);
+
+        $.ajax({
+          url: str_href,
+          type: "GET",
+          dataType: "html",
+          failure: function(msg){
+            alert('ajax fail:'+msg);
+          },
+          success: function(msg){
+            $('.shopP2').html(msg);
+          }
+        });
 
       });
 
@@ -112,9 +155,7 @@
 
       if (prev_next_href!= undefined){
         $(this).click(function(){
-          var arr = prev_next_href.split('page=');
-
-          call_with_ajax(arr[1],sortType,selected);
+          console.log('str =='+prev_next_href);
         });
       }
 

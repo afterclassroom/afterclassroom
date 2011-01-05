@@ -11,20 +11,20 @@ class PostBook < ActiveRecord::Base
   has_many :ratings
 
   # Tags
-  acts_as_taggable
+  # acts_as_taggable
 
   # Rating for Good or Bad
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
 
   # Named Scope
-  named_scope :with_limit, :limit => LIMIT
-  named_scope :with_type, lambda { |tp| {:conditions => ["post_books.book_type_id = ?", tp]} }
-  named_scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
-  named_scope :recent, {:joins => :post, :order => "created_at DESC"}
-  named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
-  named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["post_books.id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["post_books.id > ?", att]} }
+  scope :with_limit, :limit => LIMIT
+  scope :with_type, lambda { |tp| {:conditions => ["post_books.book_type_id = ?", tp]} }
+  scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
+  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
+  scope :previous, lambda { |att| {:conditions => ["post_books.id < ?", att]} }
+  scope :next, lambda { |att| {:conditions => ["post_books.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, type_id)
     over = 30 || params[:over].to_i

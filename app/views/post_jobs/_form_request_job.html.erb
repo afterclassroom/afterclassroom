@@ -2,12 +2,12 @@
   <div class="col300in">
     <h1 class="col300Title">Want a job? Post here</h1>
     <div class="col300Cont">
-      <% form_for :post_job, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+      <%= form_for :post_job, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%
         job_type = JobType.find_by_label("i_m_looking_for_job")
       %>
         <%= hidden_field_tag("post_job[job_type_id]", job_type.id) if job_type %>
-        <% fields_for :post do |p| %>
+        <%= fields_for :post do |p| %>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>

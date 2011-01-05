@@ -1,10 +1,11 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
@@ -30,9 +31,9 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "cities", :force => true do |t|
-    t.string  "name",       :limit => 100, :default => "", :null => false
-    t.integer "state_id",                                  :null => false
-    t.integer "country_id",                                :null => false
+    t.string  "name",       :limit => 100, :null => false
+    t.integer "state_id",                  :null => false
+    t.integer "country_id",                :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -55,12 +56,12 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "department_categories", :force => true do |t|
-    t.string "name", :default => "", :null => false
+    t.string "name", :null => false
   end
 
   create_table "departments", :force => true do |t|
-    t.integer "department_category_id",                 :null => false
-    t.string  "name",                   :default => "", :null => false
+    t.integer "department_category_id", :null => false
+    t.string  "name",                   :null => false
   end
 
   create_table "departments_schools", :id => false, :force => true do |t|
@@ -212,8 +213,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "music_albums", :force => true do |t|
-    t.integer  "user_id",                                         :null => false
-    t.string   "name",                            :default => "", :null => false
+    t.integer  "user_id",                         :null => false
+    t.string   "name",                            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "music_album_attach_file_name"
@@ -241,8 +242,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.integer "rated_id"
     t.string  "rated_type"
     t.integer "rating_count"
-    t.integer "rating_total", :limit => 10, :precision => 10, :scale => 0
-    t.decimal "rating_avg",                 :precision => 10, :scale => 2
+    t.decimal "rating_total", :precision => 10, :scale => 0
+    t.decimal "rating_avg",   :precision => 10, :scale => 2
   end
 
   add_index "my_statistics", ["rated_type", "rated_id"], :name => "index_my_statistics_on_rated_type_and_rated_id"
@@ -251,16 +252,16 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.integer "rater_id"
     t.integer "rated_id"
     t.string  "rated_type"
-    t.integer "rating",     :limit => 10, :precision => 10, :scale => 0
+    t.decimal "rating",     :precision => 10, :scale => 0
   end
 
-  add_index "my_stats_ratings", ["rater_id"], :name => "index_my_stats_ratings_on_rater_id"
   add_index "my_stats_ratings", ["rated_type", "rated_id"], :name => "index_my_stats_ratings_on_rated_type_and_rated_id"
+  add_index "my_stats_ratings", ["rater_id"], :name => "index_my_stats_ratings_on_rater_id"
 
   create_table "no_rater_ratings", :force => true do |t|
     t.integer "rated_id"
     t.string  "rated_type"
-    t.integer "rating",     :limit => 10, :precision => 10, :scale => 0
+    t.decimal "rating",     :precision => 10, :scale => 0
   end
 
   add_index "no_rater_ratings", ["rated_type", "rated_id"], :name => "index_no_rater_ratings_on_rated_type_and_rated_id"
@@ -303,8 +304,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "photo_albums", :force => true do |t|
-    t.integer  "user_id",                    :null => false
-    t.string   "name",       :default => "", :null => false
+    t.integer  "user_id",    :null => false
+    t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -355,8 +356,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "post_categories", :force => true do |t|
-    t.string "name",       :default => "", :null => false
-    t.string "class_name", :default => "", :null => false
+    t.string "name",       :null => false
+    t.string "class_name", :null => false
   end
 
   create_table "post_exam_schedules", :force => true do |t|
@@ -473,7 +474,7 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.integer  "school_id",                              :null => false
     t.integer  "department_id"
     t.string   "school_year"
-    t.string   "title",               :default => "",    :null => false
+    t.string   "title",                                  :null => false
     t.text     "description",                            :null => false
     t.boolean  "use_this_email",      :default => false
     t.string   "type_name"
@@ -502,8 +503,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.integer "rated_id"
     t.string  "rated_type"
     t.integer "rating_count"
-    t.integer "rating_total", :limit => 10, :precision => 10, :scale => 0
-    t.decimal "rating_avg",                 :precision => 10, :scale => 2
+    t.decimal "rating_total", :precision => 10, :scale => 0
+    t.decimal "rating_avg",   :precision => 10, :scale => 2
   end
 
   add_index "rating_statistics", ["rated_type", "rated_id"], :name => "index_rating_statistics_on_rated_type_and_rated_id"
@@ -512,11 +513,11 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
     t.integer "rater_id"
     t.integer "rated_id"
     t.string  "rated_type"
-    t.integer "rating",     :limit => 10, :precision => 10, :scale => 0
+    t.decimal "rating",     :precision => 10, :scale => 0
   end
 
-  add_index "ratings", ["rater_id"], :name => "index_ratings_on_rater_id"
   add_index "ratings", ["rated_type", "rated_id"], :name => "index_ratings_on_rated_type_and_rated_id"
+  add_index "ratings", ["rater_id"], :name => "index_ratings_on_rater_id"
 
   create_table "report_abuse_categories", :force => true do |t|
     t.string "name"
@@ -542,14 +543,14 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string  "name",        :default => "", :null => false
-    t.integer "city_id",                     :null => false
-    t.string  "type_school", :default => "", :null => false
+    t.string  "name",        :null => false
+    t.integer "city_id",     :null => false
+    t.string  "type_school", :null => false
     t.string  "website"
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id",       :default => "", :null => false
+    t.string   "session_id",       :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -571,24 +572,24 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   end
 
   create_table "states", :force => true do |t|
-    t.integer "country_id",                               :null => false
-    t.string  "name",       :limit => 50, :default => "", :null => false
-    t.string  "alias",      :limit => 2,  :default => "", :null => false
+    t.integer "country_id",               :null => false
+    t.string  "name",       :limit => 50, :null => false
+    t.string  "alias",      :limit => 2,  :null => false
   end
 
   create_table "stats_ratings", :force => true do |t|
     t.integer "rater_id"
     t.integer "rated_id"
     t.string  "rated_type"
-    t.integer "rating",     :limit => 10, :precision => 10, :scale => 0
+    t.decimal "rating",     :precision => 10, :scale => 0
   end
 
-  add_index "stats_ratings", ["rater_id"], :name => "index_stats_ratings_on_rater_id"
   add_index "stats_ratings", ["rated_type", "rated_id"], :name => "index_stats_ratings_on_rated_type_and_rated_id"
+  add_index "stats_ratings", ["rater_id"], :name => "index_stats_ratings_on_rater_id"
 
   create_table "stories", :force => true do |t|
-    t.integer  "user_id",                    :null => false
-    t.string   "title",      :default => "", :null => false
+    t.integer  "user_id",                   :null => false
+    t.string   "title",                     :null => false
     t.text     "content"
     t.integer  "count_view", :default => 0
     t.string   "state"
@@ -731,8 +732,8 @@ ActiveRecord::Schema.define(:version => 20101010150004) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
   create_table "video_albums", :force => true do |t|
-    t.integer  "user_id",                    :null => false
-    t.string   "name",       :default => "", :null => false
+    t.integer  "user_id",    :null => false
+    t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

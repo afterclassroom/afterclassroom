@@ -1,6 +1,7 @@
 require 'thinking_sphinx/active_record/attribute_updates'
 require 'thinking_sphinx/active_record/delta'
 require 'thinking_sphinx/active_record/has_many_association'
+require 'thinking_sphinx/active_record/log_subscriber'
 require 'thinking_sphinx/active_record/scopes'
 
 module ThinkingSphinx
@@ -41,7 +42,7 @@ module ThinkingSphinx
           end
           
           def to_crc32s
-            (subclasses << self).collect { |klass| klass.to_crc32 }
+            (descendants << self).collect { |klass| klass.to_crc32 }
           end
           
           def sphinx_database_adapter
@@ -52,20 +53,6 @@ module ThinkingSphinx
           def sphinx_name
             self.name.underscore.tr(':/\\', '_')
           end
-          
-          #
-          # The above method to_crc32s is dependant on the subclasses being loaded consistently
-          # After a reset_subclasses is called (during a Dispatcher.cleanup_application in development)
-          # Our subclasses will be lost but our context will not reload them for us.
-          #
-          # We reset the context which causes the subclasses to be reloaded next time the context is called.
-          #
-          def reset_subclasses_with_thinking_sphinx
-            reset_subclasses_without_thinking_sphinx
-            ThinkingSphinx.reset_context!
-          end
-          
-          alias_method_chain :reset_subclasses, :thinking_sphinx
           
           private
           
@@ -197,7 +184,7 @@ module ThinkingSphinx
       
       def insert_sphinx_index(index)
         self.sphinx_indexes << index
-        subclasses.each { |klass| klass.insert_sphinx_index(index) }
+        descendants.each { |klass| klass.insert_sphinx_index(index) }
       end
       
       def has_sphinx_indexes?
@@ -310,8 +297,8 @@ module ThinkingSphinx
         if delta && !delta_indexed_by_sphinx?
           include ThinkingSphinx::ActiveRecord::Delta
           
-          before_save   :toggle_delta
-          after_commit  :index_delta
+          before_save :toggle_delta
+          after_commit :index_delta
         end
       end
       
@@ -363,7 +350,7 @@ module ThinkingSphinx
     # @return [Integer] Unique record id for the purposes of Sphinx.
     # 
     def primary_key_for_sphinx
-      @primary_key_for_sphinx ||= read_attribute(self.class.primary_key_for_sphinx)
+      read_attribute(self.class.primary_key_for_sphinx)
     end
     
     def sphinx_document_id

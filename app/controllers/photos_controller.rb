@@ -112,7 +112,6 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.xml
   def create
-    @photo_albums = current_user.photo_albums
     @photo = Photo.new(params[:photo])
     @photo.user = current_user
     @photo.tag_list = params[:tag_list]
@@ -122,7 +121,6 @@ class PhotosController < ApplicationController
         format.html { redirect_to user_photo_path(current_user, @photo) }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
       else
-        flash[:notice] = 'Photo was unsuccessfully created.'
         format.html { render :action => "new" }
         format.xml  { render :xml => @photo.errors, :status => :unprocessable_entity }
       end

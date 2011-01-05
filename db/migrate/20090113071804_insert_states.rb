@@ -1,3 +1,4 @@
+# coding: utf-8
 class InsertStates < ActiveRecord::Migration
   def self.up
     #Insert State for US

@@ -16,7 +16,7 @@
           <% content_for :header do -%>
             <%= link_to 'States', states_path %>
           <% end -%>
-          <% form_for(@state, :html => {:id => "form"}) do |f| %>
+          <%= form_for(@state, :html => {:id => "form"}) do |f| %>
             <tr>
               <th valign="top">Country*</th>
               <td class="inp-form"><%= render :partial => "country", :locals => {:countries => @countries} %></td>

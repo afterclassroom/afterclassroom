@@ -3,5 +3,5 @@ class Notification < ActiveRecord::Base
   has_many :notify_sms_settings
   has_many :notify_email_settings
   # Named Scope
-  named_scope :with_type, lambda { |tp| {:conditions => ["notify_type = ?", tp]} }
+  scope :with_type, lambda { |tp| {:conditions => ["notify_type = ?", tp]} }
 end

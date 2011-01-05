@@ -7,7 +7,7 @@
 // Example:
 //   AddImage("images/" + image_name);  ->  AddImage("/images/" + image_name);
 
-// Images from the swfupload demo are saved in #{RAILS_ROOT}/public/images
+// Images from the swfupload demo are saved in #{Rails.root}/public/images
 
 // uploadSuccess was changed
 // The line: AddImage("thumbnail.php?id=" + server_data);

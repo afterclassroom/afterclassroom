@@ -1,6 +1,6 @@
 <div class="right">
   <div id="posting-section">
-    <% form_for :school, @school, :html => {:id => "form", :method => :get} do |f| %>
+    <%= form_for :school, @school, :html => {:id => "form", :method => :get} do |f| %>
       <ul>
         <div id="state_city">
           <%= render :partial => "search_select_city" %>
@@ -26,4 +26,3 @@
     <% end %>
   </div>
 </div>
-

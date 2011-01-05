@@ -2,7 +2,7 @@ require 'active_record'
 require 'active_record/fixtures'
 require 'faker'
 
-DATA_DIRECTORY = File.join(RAILS_ROOT, "lib", "tasks", "sample_data")
+DATA_DIRECTORY = File.join(Rails.root, "lib", "tasks", "sample_data")
 
 namespace :db do
   namespace :demo_data do
@@ -64,16 +64,13 @@ end
 
 def departments_for_schools
   #Set departments for Schools
-  schools = School.find(:all)
+  schools = School.all
   schools.each do |school|
-    5.times do
-      school.departments << Department.find(rand(Department.count) + 1)
-    end
+    school.departments << Department.all
   end
 end
 
 def create_demo_people
-  description = "This is a description for "
   sex = {"male" => true, "female" => false}
   relationship_status = ["Single", "Married"]
   %w[male female].each do |gender|
@@ -82,12 +79,13 @@ def create_demo_people
     password = "foobar"
     avatars = Dir.glob("lib/tasks/sample_data/#{gender}_photos/*.jpg").shuffle
     names.each_with_index do |name, i|
+      
       name.strip!
-      school = School.find(rand(School.count) + 1)
+      school = School.find(rand(School.count).to_i + 1)
 
       user_infor = UserInformation.new do |f|
         f.sex = sex[gender.to_s]
-        f.relationship_status = relationship_status[rand(relationship_status.size)]
+        f.relationship_status = relationship_status[rand(relationship_status.size).to_i]
         f.looking_for = Faker::Lorem.paragraphs
         f.polictical_view = Faker::Lorem.paragraphs
         f.mobile_number = Faker::PhoneNumber.phone_number
@@ -109,26 +107,28 @@ def create_demo_people
       end
       
       user = User.create do |u|
-        u.login = "#{name.downcase}@example.com"
-        u.password = password
+        u.login = name.downcase
+        u.password = u.password_confirmation = password
         u.email = "#{name.downcase}@example.com"
         u.name = name
         u.school = school
-        u.avatar = uploaded_file(avatars[i], 'image/jpg')
+        u.avatar = uploaded_file(avatars[i])
         u.user_information = user_infor
         u.user_education = user_edu
         u.user_employment = user_employ
       end
       
-      user.register!
-      user.activate!
+      user.register
+      user.activate
+
+      user.save
     end
   end
 end
 
 def create_demo_friendship
-  users = User.find(:all)
-  friends = User.find(:all)
+  users = User.all
+  friends = User.all
   users.each do |u|
     friends.each do |f|
       unless u == f
@@ -141,8 +141,8 @@ def create_demo_friendship
 end
 
 def create_demo_fan
-  users = User.find(:all)
-  fans = User.find(:all)
+  users = User.all
+  fans = User.all
   users.each do |u|
     fans.each do |f|
       unless u == f
@@ -155,11 +155,11 @@ def create_demo_fan
 end
 
 def create_demo_wall
-  users = User.find(:all)
+  users = User.all
   users.each do |u|
     friends = u.user_friends
     friends.each do |f|
-      user_wall = UserWall.create do |w|
+      UserWall.create do |w|
         w.user_id = u.id
         w.user_id_post = f.id
         w.content = Faker::Lorem.paragraphs
@@ -173,15 +173,15 @@ def create_demo_posts_assignments
   post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
    
     post = create_post(user, school, post_category)
     
-    post_asm = PostAssignment.create do |pa|
+    PostAssignment.create do |pa|
       pa.post = post
       pa.professor = Faker::Name.name
-      pa.due_date = DateTime.now + rand(20)
+      pa.due_date = DateTime.now + rand(20).to_i
       pa.tag_list = get_random_list_tags
     end
     
@@ -193,14 +193,14 @@ def create_demo_posts_tests
   post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
     
-    post_t = PostTest.create do |pt|
+    PostTest.create do |pt|
       pt.post = post
-      pt.due_date = DateTime.now + rand(20)
+      pt.due_date = DateTime.now + rand(20).to_i
       pt.tag_list = get_random_list_tags
     end
     
@@ -212,14 +212,14 @@ def create_demo_posts_projects
   post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
     
-    post_proj = PostProject.create do |prj|
+    PostProject.create do |prj|
       prj.post = post
-      prj.due_date = DateTime.now + rand(20)
+      prj.due_date = DateTime.now + rand(20).to_i
       prj.tag_list = get_random_list_tags
     end
     
@@ -231,14 +231,14 @@ def create_demo_posts_exams
   post_category = PostCategory.find_by_class_name(type_name)
 
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
     
-    post_asm = PostExam.create do |pe|
+    PostExam.create do |pe|
       pe.post = post
-      pe.due_date = DateTime.now + rand(20)
+      pe.due_date = DateTime.now + rand(20).to_i
       pe.tag_list = get_random_list_tags
     end
 
@@ -248,15 +248,14 @@ end
 def create_demo_posts_myx
   type_name = "PostMyx"
   post_category = PostCategory.find_by_class_name(type_name)
-  prof_status = ["Best of the best", "Good", "Bored", "Worse"]
 
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
     
-    post_asm = PostMyx.create do |px|
+    PostMyx.create do |px|
       px.post = post
       px.professor = Faker::Name.name
       px.tag_list = get_random_list_tags
@@ -269,14 +268,14 @@ def create_demo_posts_books
   post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
     
-    post_book = PostBook.create do |b|
+    PostBook.create do |b|
       b.post = post
-      b.book_type = BookType.find(rand(BookType.count) + 1)
+      b.book_type = BookType.find(rand(BookType.count).to_i + 1)
       b.address = Faker::Address.street_address
       b.phone = Faker::PhoneNumber.phone_number
       b.price = "500"
@@ -290,14 +289,14 @@ def create_demo_posts_tutors
   post_category = PostCategory.find_by_class_name(type_name)
 
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
       
-    post_tutor = PostTutor.create do |t|
+    PostTutor.create do |t|
       t.post = post
-      t.tutor_type = TutorType.find(rand(TutorType.count) + 1)
+      t.tutor_type = TutorType.find(rand(TutorType.count).to_i + 1)
       t.address = Faker::Address.street_address
       t.phone = Faker::PhoneNumber.phone_number
       t.tag_list = get_random_list_tags
@@ -315,29 +314,29 @@ def create_demo_posts_jobs
   compensation=['111','222','333']
     
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
       
-    post_job = PostJob.create do |j|
+    PostJob.create do |j|
       j.post = post
-      j.job_type = JobType.find(rand(JobType.count) + 1)
+      j.job_type = JobType.find(rand(JobType.count).to_i + 1)
       j.address=Faker::Address.street_address
       j.phone = Faker::PhoneNumber.phone_number
-      j.responsibilities = responsibilities[rand(responsibilities.size)]
-      j.required_skills = required_skills[rand(required_skills.size)]
-      j.desirable_skills = desirable_skills[rand(desirable_skills.size)]
-      j.edu_experience_require = edu_experience_require[rand(edu_experience_require.size)]
-      j.compensation = compensation[rand(compensation.size)]
-      j.prepare_post = rand(2);
+      j.responsibilities = responsibilities[rand(responsibilities.size).to_i]
+      j.required_skills = required_skills[rand(required_skills.size).to_i]
+      j.desirable_skills = desirable_skills[rand(desirable_skills.size).to_i]
+      j.edu_experience_require = edu_experience_require[rand(edu_experience_require.size).to_i]
+      j.compensation = compensation[rand(compensation.size).to_i]
+      j.prepare_post = rand(2).to_i;
       j.tag_list = get_random_list_tags
     end
   end
 
   # Create job information
   20.times do
-    job_infor = JobInfor.create do |j|
+    JobInfor.create do |j|
       j.title = Faker::Lorem.sentence
       j.description = Faker::Lorem.paragraphs
     end
@@ -351,7 +350,7 @@ def create_demo_posts_housings
   currency = ['USD', 'CAD']
 
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)  
@@ -359,19 +358,19 @@ def create_demo_posts_housings
     phouse = PostHousing.create do |ph|
       ph.post = post
       ph.address = Faker::Address.street_address
-      ph.rent = rent[rand(rent.size)]
-      ph.currency = currency[rand(currency.size)]
+      ph.rent = rent[rand(rent.size).to_i]
+      ph.currency = currency[rand(currency.size).to_i]
       ph.tag_list = get_random_list_tags
     end
   	  
     #generate number of housingCategory that PostHousing belongs to
-    noOfMapping = rand(HousingCategory.count) + 1
+    noOfMapping = rand(HousingCategory.count).to_i + 1
     pivotArray = [false,false,false,false]
   	  
     noOfMapping.times do
-      index = rand(HousingCategory.count) + 1
+      index = rand(HousingCategory.count).to_i + 1
       while (pivotArray[index] == true)
-        index = rand(HousingCategory.count) + 1
+        index = rand(HousingCategory.count).to_i + 1
       end
       pivotArray[index] = true;
       phouse.housing_categories << HousingCategory.find(index)
@@ -384,7 +383,7 @@ def create_demo_posts_parties
   post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
@@ -392,19 +391,19 @@ def create_demo_posts_parties
     pty = PostParty.create do |pt|
       pt.post = post
       pt.start_time = DateTime.now
-      pt.end_time = DateTime.now + rand(3)
+      pt.end_time = DateTime.now + rand(3).to_i
       pt.address = Faker::Address.street_address
       pt.tag_list = get_random_list_tags
     end
 
     #generate number of partyTypes that PostParty belongs to
-    noOfMapping = rand(PartyType.count) + 1
+    noOfMapping = rand(PartyType.count).to_i + 1
     pivotArray = [false,false,false,false,false,false,false,false,false,false]
   	  
     noOfMapping.times do
-      index = rand(PartyType.count) + 1
+      index = rand(PartyType.count).to_i + 1
       while (pivotArray[index] == true)
-        index = rand(PartyType.count) + 1
+        index = rand(PartyType.count).to_i + 1
       end
       pivotArray[index] = true;
       pty.party_types << PartyType.find(index)
@@ -418,12 +417,12 @@ def create_demo_posts_teamups
   post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
     
-    pteam = PostTeamup.create do |pt|
+    PostTeamup.create do |pt|
       pt.post = post
       pt.teamup_category_id = TeamupCategory.find(rand(TeamupCategory.count)+1)
       pt.tag_list = get_random_list_tags
@@ -437,16 +436,16 @@ def create_demo_posts_awarenesses
   post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
     
     post = create_post(user, school, post_category)
     
-    post_a = PostAwareness.create do |pa|
-      type = AwarenessType.find(rand(AwarenessType.count) + 1)
+    PostAwareness.create do |pa|
+      type = AwarenessType.find(rand(AwarenessType.count).to_i + 1)
       pa.post = post
       pa.awareness_type = type
-      pa.due_date = DateTime.now + rand(20) if type.label == "take_action_now"
+      pa.due_date = DateTime.now + rand(20).to_i if type.label == "take_action_now"
       pa.phone = Faker::PhoneNumber.phone_number if type.label == "emergency_alerts"
       pa.tag_list = get_random_list_tags
     end
@@ -458,12 +457,12 @@ def create_demo_posts_foods
   post_category = PostCategory.find_by_class_name(type_name)
 
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
     
     post = create_post(user, school, post_category)
     
-    pf = PostFood.create do |p|
+    PostFood.create do |p|
       p.post = post
       p.address = Faker::Address.street_address
       p.phone = Faker::PhoneNumber.phone_number
@@ -478,14 +477,14 @@ def create_demo_posts_qas
   post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
     
     post = create_post(user, school, post_category)
     
-    qaCat = PostQaCategory.find(rand(PostQaCategory.count) + 1)
+    qaCat = PostQaCategory.find(rand(PostQaCategory.count).to_i + 1)
     
-    post_qa = PostQa.create do |p|
+    PostQa.create do |p|
       p.post = post
       p.post_qa_category = qaCat
       p.tag_list = get_random_list_tags
@@ -499,18 +498,18 @@ def create_demo_posts_exam_schedules
   post_category = PostCategory.find_by_class_name(type_name)
   
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
     school = user.school
 
     post = create_post(user, school, post_category)
     
-    es = PostExamSchedule.create do |p|
+    PostExamSchedule.create do |p|
       p.post = post
       p.teacher_name = Faker::Name.name
       p.place = Faker::Address.street_address
-      p.starts_at = DateTime.now + rand(10)
-      p.starts_at = DateTime.now + rand(20)
-      p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size)].first
+      p.starts_at = DateTime.now + rand(10).to_i
+      p.starts_at = DateTime.now + rand(20).to_i
+      p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size).to_i].first
       p.tag_list = get_random_list_tags
     end
 
@@ -519,11 +518,11 @@ end
 
 def create_demo_messages
   20.times do
-    user = User.find(rand(User.count) + 1)
+    user = User.find(rand(User.count).to_i + 1)
 
-    User.find(:all).each do |u|
+    User.all.each do |u|
       unless user == u
-        ms = Message.create do |m|
+        Message.create do |m|
           m.sender_id = user.id
           m.recipient_id = u.id
           m.subject = Faker::Lorem.sentence
@@ -535,9 +534,9 @@ def create_demo_messages
 end
 
 def create_demo_stories
-  User.find(:all).each do |u|
+  User.all.each do |u|
     20.times do
-      st = Story.create do |s|
+      Story.create do |s|
         s.user_id = u.id
         s.title = Faker::Lorem.sentence
         s.content = Faker::Lorem.paragraphs
@@ -548,10 +547,10 @@ end
 
 def create_post(user, school, post_category)
   schoolyear = ["1year", "2year", "3year", "4year", "ms.c", "ph.d"]
-  post = Post.create do |p|
+  Post.create do |p|
     p.user = user
     p.department = school.departments.find(:first)
-    p.school_year = schoolyear[rand(schoolyear.size)]
+    p.school_year = schoolyear[rand(schoolyear.size).to_i]
     p.post_category = post_category
     p.type_name = post_category.class_name
     p.title = Faker::Lorem.sentence
@@ -560,8 +559,8 @@ def create_post(user, school, post_category)
   end
 end
 
-def uploaded_file(filename, content_type)
-  f = File.new(File.join(RAILS_ROOT, filename))
+def uploaded_file(filename)
+  f = File.new(File.join(Rails.root, filename))
   return f
 end
 
@@ -574,5 +573,5 @@ def get_random_list_tags
     "tag 41, tag 42, tag 43, tag 44",
     "tag 51, tag 52, tag 53, tag 54"
   ]
-  arr_list_tag[rand(arr_list_tag.size)]
+  arr_list_tag[rand(arr_list_tag.size).to_i]
 end

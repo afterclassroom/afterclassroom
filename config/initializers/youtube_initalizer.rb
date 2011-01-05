@@ -1,1 +1,1 @@
-YT_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/youtube_config.yml")
+YT_CONFIG = YAML.load_file("#{Rails.root}/config/youtube_config.yml")

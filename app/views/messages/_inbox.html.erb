@@ -1,5 +1,5 @@
 <div class="inboxTitle">Inbox</div>
-<% form_tag message_action_user_messages_path(current_user), {:name => "msg_form", :id => "msg_form"} do %>
+<%= form_tag message_action_user_messages_path(current_user), {:name => "msg_form", :id => "msg_form"} do %>
   <%= hidden_field_tag "act" %>
   <div class="inboxTop">
     <div class="mark"><%= link_to_function "Mark as read", "MsgAction('mark_as_read')" %></div>

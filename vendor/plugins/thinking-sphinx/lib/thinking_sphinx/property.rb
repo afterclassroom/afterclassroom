@@ -13,6 +13,7 @@ module ThinkingSphinx
       @alias    = options[:as]
       @faceted  = options[:facet]
       @admin    = options[:admin]
+      @sortable = options[:sortable] || false
       
       @alias    = @alias.to_sym unless @alias.blank?
       
@@ -62,9 +63,8 @@ module ThinkingSphinx
     def changed?(instance)
       return true if is_string? || @columns.any? { |col| !col.__stack.empty? }
       
-      !@columns.all? { |col|
-        instance.respond_to?("#{col.__name.to_s}_changed?") &&
-        !instance.send("#{col.__name.to_s}_changed?")
+      @columns.any? { |col|
+        instance.send("#{col.__name.to_s}_changed?")
       }
     end
     

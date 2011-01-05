@@ -11,7 +11,7 @@
         </div>
         <% if session[:token] %>
           <div class="photoEx">
-            <% form_tag @upload_info[:url], :id => "form", :multipart => true do %>
+            <%= form_tag @upload_info[:url], :id => "form", :multipart => true do %>
               <%= hidden_field_tag :token, @upload_info[:token] %>
               <div class="stoExItem">
                 <div class="stoExItemL">file</div>

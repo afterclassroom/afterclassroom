@@ -1,4 +1,4 @@
-<% form_for :mail_account, @mail_account, :url => find_email_user_friends_path(current_user), :html => {:id => "form_account_email"} do |f| %>
+<%= form_for :mail_account, @mail_account, :url => find_email_user_friends_path(current_user), :html => {:id => "form_account_email"} do |f| %>
   <div class="error" style="padding: 10px; display:none;"></div>
   <div class="findItem">
     <div class="findText">Your Email*</div>

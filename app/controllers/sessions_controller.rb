@@ -65,7 +65,7 @@ class SessionsController < ApplicationController
     redirect_back_or_default(user_student_lounges_path(current_user))
     #Set session your school
     session[:your_school] = self.current_user.school.id if self.current_user.school
-    notice "Logged in successfully"
+    flash[:notice] = "Logged in successfully"
   end
 
   def note_failed_signin

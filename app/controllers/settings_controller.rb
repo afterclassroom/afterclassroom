@@ -57,7 +57,7 @@ class SettingsController < ApplicationController
   end
 
   def notifications
-    @type_notfs = [["afterclassroomtab", "AfterClassroom"],
+    @types = [["afterclassroomtab", "AfterClassroom"],
       ["photostab", "Photos"],
       ["groupstab", "Groups"],
       ["pagestab", "Pages"],

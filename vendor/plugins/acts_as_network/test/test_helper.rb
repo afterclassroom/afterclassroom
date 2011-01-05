@@ -9,7 +9,7 @@ config = YAML::load(IO.read( File.join(File.dirname(__FILE__),'database.yml')))
 
 # cleanup logs and databases between test runs
 #FileUtils.rm File.join(File.dirname(__FILE__), "debug.log"), :force => true
-FileUtils.rm File.join(RAILS_ROOT, config['sqlite3'][:dbfile]), :force => true
+FileUtils.rm File.join(Rails.root, config['sqlite3'][:dbfile]), :force => true
 
 ActiveRecord::Base.logger = Logger.new(File.join(File.dirname(__FILE__), "debug.log"))
 ActiveRecord::Base.establish_connection(config[ENV['DB'] || 'sqlite3'])

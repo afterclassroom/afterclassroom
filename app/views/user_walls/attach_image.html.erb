@@ -3,7 +3,7 @@
   <div class="AfterTitle"><%= link_to @user_wall_photo.title, @user_wall_photo.link, :target => "_blank" %></div>
   <div class="AfterDes"><%= @user_wall_photo.sub_content %></div>
 </div>
-<% fields_for @user_wall_photo do |p| %>
+<%= fields_for @user_wall_photo do |p| %>
   <%= p.hidden_field :link %>
   <%= p.hidden_field :title %>
   <%= p.hidden_field :sub_content %>

@@ -18,16 +18,17 @@ class Photo < ActiveRecord::Base
   # Tracker
   acts_as_activity :user
 
-  #Tags
-  acts_as_taggable
+  # Tags
+  # acts_as_taggable
+  
 
   # Favorite
   acts_as_favorite
 
   # Named Scope
-  named_scope :with_limit, :limit => 6
-  named_scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
-  named_scope :most_view, :order => "count_view DESC", :group => "photo_album_id"
+  scope :with_limit, :limit => 6
+  scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
+  scope :most_view, :order => "count_view DESC", :group => "photo_album_id"
 
   # ThinkSphinx
   define_index do

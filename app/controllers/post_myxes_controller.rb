@@ -189,7 +189,7 @@ class PostMyxesController < ApplicationController
   private
 
   def get_variables
-    @tags = PostMyx.tag_counts
+    # @tags = PostMyx.tag_counts
     @new_post_path = new_post_myx_path
     @class_name = "PostMyx"
     @type = PostCategory.find_by_class_name(@class_name).id

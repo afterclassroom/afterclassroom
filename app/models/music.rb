@@ -10,7 +10,7 @@ class Music < ActiveRecord::Base
     :bucket => 'afterclassroom_musics'
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   validates_attachment_size :music_attach, :less_than => 100.megabytes
-  #validates_attachment_content_type :music_attach, :content_type => ['audio/base', 'audio/mpeg', 'audio/x-wav']
+  validates_attachment_content_type :music_attach, :content_type => ['audio/mp3', 'audio/wav', 'audio/mpeg3']
     
   # Comments
   acts_as_commentable
@@ -18,16 +18,17 @@ class Music < ActiveRecord::Base
   # Tracker
   acts_as_activity :user
 
-  #Tags
-  acts_as_taggable
+  # Tags
+  # acts_as_taggable
+  
 
   # Favorite
   acts_as_favorite
 
   # Named Scope
-  named_scope :with_limit, :limit => 6
-  named_scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
-  named_scope :most_view, :order => "count_view DESC", :group => "music_album_id"
+  scope :with_limit, :limit => 6
+  scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
+  scope :most_view, :order => "count_view DESC", :group => "music_album_id"
 
   # ThinkSphinx
   define_index do

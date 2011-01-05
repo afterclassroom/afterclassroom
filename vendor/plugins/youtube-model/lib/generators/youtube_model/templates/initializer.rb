@@ -1,0 +1,1 @@
+YT_CONFIG = YAML.load_file("#{Rails.root}/config/<%= file_name %>_config.yml")

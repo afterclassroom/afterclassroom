@@ -48,6 +48,7 @@ class Video < ActiveRecord::Base
   # Tracker
   acts_as_activity :user
 
-  #Tags
-  acts_as_taggable
+  # Tags
+  # acts_as_taggable
+  
 end

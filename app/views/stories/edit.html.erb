@@ -11,7 +11,7 @@
   <div id="user-post-story">
     <div id="share-story-text">
       <h3>Write your story here...</h3>
-      <% form_for(@story) do |f| %>
+      <%= form_for(@story) do |f| %>
         <%= f.text_area :content, :rows => 8, :cols => 20 %>
         <div id="pss-bt">
           <input type="button" value="Cancel" class="grayround-bt cancel" onclick="document.location.href='<%= stories_path %>'">

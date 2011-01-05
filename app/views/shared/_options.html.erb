@@ -9,7 +9,7 @@
       options.each_pair {|key, value| list_hidden << hidden_field_tag(key, value)}
     end
     %>
-    <%= list_hidden %>
+    <%= raw(list_hidden) %>
   </form>
 </div>
 <ul id="department_menu" class="mcdropdown_menu">

@@ -3,7 +3,7 @@
   <div class="AfterTitle"><%= link_to @user_wall_music.title, @user_wall_music.link, :target => "_blank" %></div>
   <div class="AfterDes"><%= @user_wall_music.sub_content %></div>
 </div>
-<% fields_for @user_wall_music do |p| %>
+<%= fields_for @user_wall_music do |p| %>
   <%= p.hidden_field :link %>
   <%= p.hidden_field :title %>
   <%= p.hidden_field :sub_content %>

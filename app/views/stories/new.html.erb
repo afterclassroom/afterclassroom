@@ -11,7 +11,7 @@
         </div>
         <%= display_flash_messages %>
         <div class="stoEx" id="story_form_new">
-          <% form_for @story, :url => user_stories_path(current_user), :html => {:id => "form_new"} do |f| %>
+          <%= form_for @story, :url => user_stories_path(current_user), :html => {:id => "form_new"} do |f| %>
             <%= hidden_field_tag "state", "", :id => "story_state" %>
             <div class="stoExItem">
               <div class="stoExItemL">Title*</div>

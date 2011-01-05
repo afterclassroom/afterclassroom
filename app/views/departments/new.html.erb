@@ -16,7 +16,7 @@
           <% content_for :header do -%>
              <%= link_to 'Departments', departments_path %>
           <% end -%>
-          <% form_for(@department, :html => {:id => "form"}) do |f| %>
+          <%= form_for(@department, :html => {:id => "form"}) do |f| %>
             <tr>
               <%= render :partial => "department_category", :locals => {:department_category_name => "", :department_categories => @department_categories, :action_name => "new"} %>
             </tr>

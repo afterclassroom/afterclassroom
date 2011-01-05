@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>:: <%= configatron.site_name %> ::</title>
-    <%= stylesheet_link_packed :student_lounge %>
-    <%= javascript_include_packed :student_lounge %>
+    <%= raw stylesheet_link_merged :student_lounge %>
+    <%= raw javascript_include_merged :student_lounge %>
     <%= javascript_include_tag 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'juggernaut/swfobject' %>
     <%= juggernaut :debug => false, :client_id => current_user.login if logged_in? %>
     <%= feedback_includes %>
@@ -30,10 +30,4 @@
     <%= render :partial => 'shared/footer' %>
     <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
   </body>
-  <!--Debugs-->
-  <% if RAILS_ENV == 'development' %>
-    <center><button onclick="show_debug_popup(); return false;">Show debug popup</button></center>
-    <%= debug_popup %>
-  <% end %>
-  <!--Debugs-->
 </html>

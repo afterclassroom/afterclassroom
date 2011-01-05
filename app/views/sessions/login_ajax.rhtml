@@ -1,7 +1,7 @@
 <div class="signinCont">
   <%= display_flash_messages %>
   <div class="postReq">*(asterisk) is required.</div>
-  <% form_tag session_path, :name => "form_login_ajax", :id => "form_login_ajax" do -%>
+  <%= form_tag session_path, :name => "form_login_ajax", :id => "form_login_ajax" do -%>
     <div class="signinItem">
       <div class="signinTit">Email*</div>
       <div class="signinInp"><%= text_field_tag 'email', '', :class => 'required email' %></div>

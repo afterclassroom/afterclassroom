@@ -3,7 +3,7 @@
     <div class="mailTitle">Feedback</div>
     <div class="malMain">
       <div class="please">Please leave us feedback, it’s really appreciated</div>
-      <% form_for :feedback, @feedback, :url => feedback_path, :html => {:id => "feedback_form"} do |f| -%>
+      <%= form_for :feedback, @feedback, :url => feedback_path, :html => {:id => "feedback_form"} do |f| -%>
         <% unless @error_message.blank? %>
           <p class="error">
             <%=h @error_message %>

@@ -1,4 +1,5 @@
 module Viewable
+  include ActiveSupport
   protected
   def update_view_count(viewable)
     stack_name = Inflector.underscore(viewable.class).downcase

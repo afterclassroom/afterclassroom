@@ -1,6 +1,6 @@
 <div class="assItem">
   <div class="assItemL">
-    <div class="assImg"><div><%= link_to image_post_thumb(@controller.controller_name, post), post %></div></div>
+    <div class="assImg"><div><%= link_to image_post_thumb(controller.controller_name, post), post %></div></div>
     <div class="assContT">
       <h2 class="titleH2"><%= link_to title, post_assignment_path(post) %></h2>
       <div class="assCate"><span>From:</span><%= link_to post.school.name, :controller => "post_assignments", :action => "index", :from_school => post.school %></div>

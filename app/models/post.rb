@@ -29,7 +29,7 @@ class Post < ActiveRecord::Base
   has_one :post_exam_schedule, :dependent => :destroy
   
   # Named scope
-  named_scope :with_user_id, lambda {|usr| {:conditions => ["user_id = ?", usr], :order => "created_at DESC"}}
+  scope :with_user_id, lambda {|usr| {:conditions => ["user_id = ?", usr], :order => "created_at DESC"}}
 
   # Attach file
   has_attached_file :attach, {
@@ -61,25 +61,11 @@ class Post < ActiveRecord::Base
   end
 
   def self.paginated_post_management(params, current_user_id)
-    sort = "DESC"
+    sort = 'DESC'
     if params[:sort]
       sort = params[:sort]
     end
     Post.search(:match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 3)
-  end
-
-  def self.searchpost(params, current_user_id)
-
-    sort = "DESC"
-    if params[:sort]
-      sort = params[:sort]
-    end
-    str_search = ""
-    if params[:str_search]
-      str_search = params[:str_search]
-    end
-
-    Post.search(str_search, :match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 3)
   end
   
 end

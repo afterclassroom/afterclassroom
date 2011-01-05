@@ -7,5 +7,5 @@ class Country < ActiveRecord::Base
   #Named scopes
   #SQL: select * from countries where (select count(*) from cities where cities.country_id = countries.id) > 0
   cond = "(select count(*) from cities where cities.country_id = countries.id) > 0"
-  named_scope :has_cities, :conditions => cond
+  scope :has_cities, :conditions => cond
 end

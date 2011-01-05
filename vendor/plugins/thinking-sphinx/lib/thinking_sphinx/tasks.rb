@@ -1,15 +1,11 @@
 require 'fileutils'
+require 'timeout'
 
 namespace :thinking_sphinx do
   task :app_env do
-    if defined?(RAILS_ROOT)
+    if defined?(Rails)
       Rake::Task[:environment].invoke
-      
-      if defined?(Rails.configuration)
-        Rails.configuration.cache_classes = false
-      else
-        Rails::Initializer.run { |config| config.cache_classes = false }
-      end
+      Rails.configuration.cache_classes = false
     end
     
     Rake::Task[:merb_env].invoke    if defined?(Merb)
@@ -52,6 +48,12 @@ namespace :thinking_sphinx do
       config = ThinkingSphinx::Configuration.instance
       pid    = sphinx_pid
       config.controller.stop
+      
+      # Ensure searchd is stopped, but don't try too hard
+      Timeout.timeout(5) do
+        sleep(1) until config.controller.stop
+      end
+      
       puts "Stopped search daemon (pid #{pid})."
     end
   end

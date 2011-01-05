@@ -11,7 +11,7 @@
       <div class="col451Cont">
         <h1 class="titleH1">Invite Friends to join AfterClassroom</h1>
         <%= display_flash_messages %>
-        <% form_tag invite_by_list_email_user_friends_path(current_user), :id => "list_email" do %>
+        <%= form_tag invite_by_list_email_user_friends_path(current_user), :id => "list_email" do %>
         <div class="fInvFrom">
           <div class="fInvTxt">From</div>
           <div class="fInvIn"><%= current_user.full_name %> <%= "&#60;#{current_user.email}&#62;" %></div>
@@ -33,7 +33,7 @@
         <div class="import"><a href="#">Import Email Addresses</a></div>
         <div class="importD">from almost any online email service to invite your friends.</div>
         <%= render :partial => "mailbox_list" %>
-        <% form_for :mail_account, @mail_account, :url => invite_by_import_email_user_friends_path(current_user), :html => {:id => "form_account_email"} do |f| %>
+        <%= form_for :mail_account, @mail_account, :url => invite_by_import_email_user_friends_path(current_user), :html => {:id => "form_account_email"} do |f| %>
           <div class="error" style="padding: 10px; display:none;"></div>
           <div class="findItem">
             <div class="findText">Your Email*</div>

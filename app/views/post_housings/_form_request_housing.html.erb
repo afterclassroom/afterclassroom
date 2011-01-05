@@ -2,12 +2,12 @@
   <div class="col300in">
     <h1 class="col300Title">Requests House/Apt/Room</h1>
     <div class="col300Cont">
-      <% form_for :post_housing, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+      <%= form_for :post_housing, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%
         housing_category = HousingCategory.find_by_label("i_need_a_place")
       %>
         <%= hidden_field_tag("post_housing[housing_category_ids][]", housing_category.id) if housing_category %>
-        <% fields_for :post do |p| %>
+        <%= fields_for :post do |p| %>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>

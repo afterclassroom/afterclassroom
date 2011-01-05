@@ -11,7 +11,7 @@ module Caboose
 	    # need this so that id doesn't call Object#id
 	    # left it open to add more methods that
 	    # conflict when I find them
-	    [:id, :type].each { |m| undef_method m }
+	    # [:id, :type].each { |m| undef_method m }
       
       # these are also reserved words regarding SQL column names
       # use esc_* prefix to circumvent any issues

@@ -149,7 +149,7 @@ Also add a link to upload the video at the index page.
   <%= link_to "Upload Video", new_video_url %><br/>
 
   #app/views/videos/new.html.erb
-  <% form_for 'video', :url => upload_new_video_path do |f| %>
+  <%= form_for 'video', :url => upload_new_video_path do |f| %>
   <%= f.hidden_field :auth_sub, :value => session[:token] %>
     
     <%= f.label :title %>
@@ -169,7 +169,7 @@ Also add a link to upload the video at the index page.
 
 
   #app/views/videos/upload.html.erb
-  <% form_tag @upload_info[:url], :multipart => true do %>
+  <%= form_tag @upload_info[:url], :multipart => true do %>
   <%= hidden_field_tag :token, @upload_info[:token] %>
     
     <%= label_tag :file %>
@@ -212,7 +212,7 @@ To get the videos updated by a user you can use the method @update_video@ passin
   end
 	
   #app/views/videos/edit.html.erb
-  <% form_for @youtube, :url => video_url, :html => { :multipart => true }  do |f| %>
+  <%= form_for @youtube, :url => video_url, :html => { :multipart => true }  do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>
     

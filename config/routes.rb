@@ -1,256 +1,280 @@
-# See how all your routes lay out with "rake routes"
-ActionController::Routing::Routes.draw do |map|
-  map.feedback 'feedbacks', :controller => 'feedbacks', :action => 'create'
-  map.new_feedback 'feedbacks/new', :controller => 'feedbacks', :action => 'new'
-    
+Afterclassroom::Application.routes.draw do
   # RESTful rewrites
-  map.signup   '/signup',   :controller => 'users',    :action => 'new'
-  map.activate '/activate/:activation_code', :controller => 'users',    :action => 'activate'
-  map.login    '/login',    :controller => 'sessions', :action => 'new'
-  map.login_ajax    '/login_ajax',    :controller => 'sessions', :action => 'login_ajax'
-  map.logout   '/logout',   :controller => 'sessions', :action => 'destroy', :conditions => {:method => :delete}
-  
-  map.user_troubleshooting '/users/troubleshooting', :controller => 'users', :action => 'troubleshooting'
-  map.user_forgot_password '/users/forgot_password', :controller => 'users', :action => 'forgot_password'
-  map.user_reset_password  '/users/reset_password/:password_reset_code', :controller => 'users', :action => 'reset_password'
-  map.user_forgot_login    '/users/forgot_login',    :controller => 'users', :action => 'forgot_login'
-  map.user_clueless        '/users/clueless',        :controller => 'users', :action => 'clueless'
-  
+  match '/signup' => 'users#new', :as => :signup
+  match '/activate/:activation_code' => 'users#activate', :as => :activate
+  match '/login' => 'sessions#new', :as => :login
+  match '/login_ajax' => 'sessions#login_ajax', :as => :login_ajax
+  match '/logout' => 'sessions#destroy', :as => :logout, :conditions => {:method => :delete}
+
+  match '/users/troubleshooting' => 'users#troubleshooting', :as => :user_troubleshooting
+  match '/users/forgot_password' => 'users#forgot_password', :as => :user_forgot_password
+  match '/users/reset_password/:password_reset_code' => 'users#reset_password', :as => :user_reset_password
+  match '/users/forgot_login' => 'users#forgot_login', :as => :user_forgot_login
+  match '/users/clueless' => 'users#clueless', :as => :user_clueless
+
   # Users
-  map.resources :users, :member => {
-    :edit_password => :get,
-    :update_password => :put,
-    :edit_email => :get,
-    :update_email => :put,
-    :update_avatar => :post} do |users|
-    users.resources :messages,
-      :collection => { 
-      :show_email => :get,
-      :send_message => :get,
-      :message_action => :post,
-      :list_friend => :get
-    }
+  resources :users do
+    member do
+      get :edit_password, :edit_email
+      put :update_password, :update_email
+      post :update_avatar
+    end
 
-    users.resources :settings,
-      :collection => {
-      :networks => :get,
-      :notifications => :get,
-      :language => :get,
-      :payments => :get,
-      :ads => :get,
-      :setting => :get,
-      :change_psw => :get,
-      :save_psw => :get,
-      :change_name => :get,
-      :save_name => :get,
-      :change_email => :get,
-      :save_email => :get,
-      :save_setting => :post}
+    resources :messages do
+      collection do
+        get :show_email, :send_message
+        post :message_action
+      end
+    end
 
-    users.resources :profiles,
-      :collection => {:show_profile => :get, :edit_infor => :get,
-      :edit_edu_infor => :get, :edit_work_infor => :get,
-      :update_about_yourself => :post, :update_infor => :post,
-      :update_edu_infor => :post, :update_work_infor => :post,
-      :my_favorite => :get
-    }
+    resources :settings do
+      collection do
+        get :networks, :notifications, :language,
+          :payments, :ads, :setting,
+          :change_psw, :save_psw, :change_name,
+          :save_name, :change_email, :save_email
+        post :save_setting
+      end
+    end
 
-    users.resources :student_lounges,
-      :collection => {:chat => :get, :invite_chat => :get, :add_users_to_chat => :get,
-      :send_data => :get, :stop_chat => :get,
-      :chanel_chat_content => :get, :friends_changed_message => :get,
-      :friends_you_invited_chat => :get, :friends_want_you_chat => :get
-    }
+    resources :profiles do
+      collection do
+        get :show_profile, :edit_infor, :edit_edu_infor,
+          :edit_work_infor, :my_favorite
+        post :update_about_yourself, :update_infor, :update_edu_infor, :update_work_infor
+      end
+    end
 
-    users.resources :friends,
-      :collection => {
-      :search => :get,
-      :find => :get,
-      :find_email => :post,
-      :display_email => :post,
-      :recently_added => :get,
-      :recently_updated => :get,
-      :friend_request => :get,
-      :list => :get,
-      :invite => :get,
-      :invite_by_list_email => :post,
-      :invite_by_import_email => :post,
-      :delete => :post,
-      :accept => :post,
-      :de_accept => :post,
-      :send_invite_message => :get,
-      :show_invite => :get,
-      :become_a_fan => :get
-    }
-      
-    users.resources :stories, 
-      :collection => {
-      :friend_s => :get, :my_s => :get,
-      :create_comment => :get, :delete_comment => :get
-    }
+    resources :student_lounges do
+      collection do
+        get :chat, :invite_chat, :add_users_to_chat,
+          :send_data, :stop_chat, :chanel_chat_content,
+          :friends_changed_message, :friends_you_invited_chat, :friends_want_you_chat
+      end
+    end
+
+    resources :friends do
+      collection do
+        get :search, :find, :recently_added, :recently_updated,
+          :friend_request, :list, :invite,
+          :send_invite_message, :show_invite, :become_a_fan
+        post :find_email, :display_email, :invite_by_list_email,
+          :invite_by_import_email, :delete, :accept, :de_accept
+      end
+    end
+
+    resources :stories do
+      collection do
+        get :friend_s, :my_s, :create_comment, :delete_comment
+      end
+    end
 
     # Video Album
-    users.resources :video_albums
-    users.resources :videos, :collection => {:create_album => :get}
+    resources :video_albums
+    resources :videos do
+      collection do
+        get :create_album
+      end
+    end
 
     # Music Album
-    users.resources :music_albums
-    users.resources :musics, :collection => {:create_album => :post, :friend_m => :get, :my_m => :get, :upload => :post, :create_playlist => :get}
-    
+    resources :music_albums
+    resources :musics do
+      collection do
+        get :friend_m, :my_m, :create_playlistend
+        post :create_album, :upload
+      end
+    end
+
     # Photo Album
-    users.resources :photo_albums
-    users.resources :photos, :collection => {:create_album => :post, :friend_p => :get, :my_p => :get, :upload => :post}
+    resources :photo_albums
+    resources :photos do
+      collection do
+        get :friend_p, :my_p
+        post :create_album, :upload
+      end
+    end
 
     # Youtube
-    users.resources :youtubes, :new => {:upload => :post}, :collection => {:authorise => :get }
+    resources :youtubes do
+      new do
+        post :upload
+      end
+
+      collection do
+        get :authorise
+      end
+    end
   end
-  
+
   # Sessions
-  map.resource :session, :collection => {:change_school => :get}
-  
+  resource :session do
+    collection do
+      get :change_school
+    end
+  end
+
   # State
-  map.resources :states
-  
+  resources :states
+
   # City
-  map.resources :cities, :collection => {:state => :get}
-  
+  resources :cities do 
+    collection do
+      get :state
+    end
+  end
+
   # School
-  map.resources :schools, :collection => {:state_or_city => :get, :city => :get}
-  
+  resources :schools do
+    collection do
+      get :state_or_city, :city
+    end
+  end
+
   # Department
-  map.resources :department_categories
-  map.resources :departments, :collection => {:create_department => :get}
+  resources :department_categories
+  resources :departments do 
+    collection do
+      get :create_department
+    end
+  end
 
   # Post Categories
-  map.resources :post_categories
-  map.resources :housing_categories
-  map.resources :teamup_categories
-  map.resources :party_types
-  map.resources :job_types
-  map.resources :awareness_types
+  resources :post_categories
+  resources :housing_categories
+  resources :teamup_categories
+  resources :party_types
+  resources :job_types
+  resources :awareness_types
 
   # Posts
-  map.resources :posts,
-    :collection => {
-    :rate_comment => :get,
-    :create_comment => :get,
-    :report_abuse => :get,
-    :create_report_abuse => :get,
-    :delete_comment => :get,
-    :download => :get
-  }
+  resources :posts do
+    collection do
+      get :rate_comment, :create_comment, :report_abuse, :create_report_abuse, :delete_comment, :download
+    end
+  end
 
-  map.resources :post_assignments, :collection => {
-    :search => :get, :due_date => :get,
-    :interesting => :get, :tag => :get
-  }
+  resources :post_assignments do
+    collection do
+      get :search, :due_date, :interesting, :tag
+    end
+  end
 
-  map.resources :post_projects, :collection => {
-    :search => :get, :due_date => :get,
-    :interesting => :get, :tag => :get
-  }
+  resources :post_projects do
+    collection do
+      get :search, :due_date, :interesting, :tag
+    end
+  end
 
-  map.resources :post_tests, :collection => {
-    :search => :get, :interesting => :get, :tag => :get
-  }
+  resources :post_tests do
+    collection do
+      get :search, :interesting, :tag
+    end
+  end
 
-  map.resources :post_exams, :collection => {
-    :search => :get, :interesting => :get, :tag => :get
-  }
+  resources :post_exams do
+    collection do
+      get :search, :interesting, :tag
+    end
+  end
 
-  map.resources :post_qas, :collection => {
-    :search => :get, :tag => :get,
-    :interesting => :get, :top_answer => :get,
-    :create_comment => :get, :show_comment => :get,
-    :rate => :get, :require_rate => :get, :prefer => :get
-  }
+  resources :post_qas do
+    collection do
+      get :search, :tag, :interesting, :top_answer, :create_comment, :show_comment, :rate, :require_rate, :prefer
+    end
+  end
 
-  map.resources :post_tutors, :collection => {
-    :search => :get, :tag => :get,
-    :effective => :get, :dont_hire => :get,
-    :rate => :get, :require_rate => :get
-  }
+  resources :post_tutors do
+    collection do
+      get :search, :tag, :effective, :dont_hire, :rate, :require_rate
+    end
+  end
 
-  map.resources :post_books, :collection => {
-    :search => :get, :tag => :get,
-    :good_books => :get, :dont_buy => :get,
-    :rate => :get, :require_rate => :get
-  }
+  resources :post_books do
+    collection do
+      get :search, :tag, :good_books, :dont_buy, :rate, :require_rate
+    end
+  end
 
-  map.resources :post_jobs, :collection => {
-    :search => :get, :tag => :get,
-    :good_companies => :get, :bad_bosses => :get,
-    :rate => :get, :require_rate => :get, :my_job_list => :get,
-    :add_job => :get, :employment_infor => :get, :show_job_infor => :get,
-    :apply_job => :get,
-    :save_letter => :get,
-    :save_script => :get,
-    :save_resume => :get
-  }
+  resources :post_jobs do
+    collection do
+      get :search, :tag, :good_companies, :bad_bosses,
+        :rate, :require_rate, :my_job_list, :add_job,
+        :employment_infor, :show_job_infor, :apply_job,
+        :save_letter, :save_script, :save_resume
+    end
+  end
 
-  map.resources :post_foods, :collection => {
-    :search => :get, :tag => :get,
-    :rate => :get, :require_rate => :get
-  }
+  resources :post_foods do
+    collection do
+      get :search, :tag, :rate, :require_rate
+    end
+  end
 
-  map.resources :post_parties, :collection => {
-    :search => :get, :show_rsvp => :get,
-    :create_rsvp => :get, :tag => :get,
-    :rate => :get, :require_rate => :get,
-    :prefer => :get, :my_party_list => :get,
-    :add_party => :get
-  }
+  resources :post_parties do
+    collection do
+      get :search, :show_rsvp, :create_rsvp,
+        :tag, :rate, :require_rate,
+        :prefer, :my_party_list, :add_party
+    end
+  end
 
-  map.resources :post_myxes, :collection => {
-    :search => :get, :tag => :get,
-    :rate => :get, :require_rate => :get
-  }
+  resources :post_myxes do
+    collection do
+      get :search, :tag, :rate, :require_rate
+    end
+  end
 
-  map.resources :post_awarenesses, :collection => {
-    :search => :get, :tag => :get,
-    :rate => :get, :support => :get,
-    :view_results => :get
-  }
-  
-  map.resources :post_housings, :collection => {
-    :search => :get, :tag => :get,
-    :good_house => :get, :worse_house => :get,
-    :rate => :get
-  }
+  resources :post_awarenesses do
+    collection do
+      get :search, :tag, :rate, :support, :view_results
+    end
+  end
 
-  map.resources :post_teamups, :collection => {
-    :search => :get, :tag => :get,
-    :good_org => :get, :worse_org => :get,
-    :more_startup => :get, :rate => :get
-  }
+  resources :post_housings do
+    collection do
+      get :search, :tag, :good_house, :worse_house, :rate
+    end
+  end
+
+  resources :post_teamups do
+    collection do
+      get :search, :tag, :good_org, :worse_org, :more_startup, :rate
+    end
+  end
 
   # Exam/Test Schedules, Deadline bulletin, General bulletin
-  map.resources :post_exam_schedules, :collection => {
-    :search => :get, :tag => :get,
-    :rate => :get
-  }
-  
-  # Administration
-  map.namespace(:admin) do |admin|
-    admin.resources :dashboards
-    admin.resources :settings
-    admin.resources :posts
-    admin.resources :users, :member => { :suspend   => :put,
-      :unsuspend => :put,
-      :activate  => :put,
-      :purge     => :delete,
-      :reset_password => :put },
-      :collection => { :pending   => :get,
-      :active    => :get,
-      :suspended => :get,
-      :deleted   => :get }
-    admin.root :controller => 'dashboards', :action => 'index'
+  resources :post_exam_schedules do
+    collection do
+      get :search, :tag, :rate
+    end
   end
-  
+
+  # Feedback
+  match 'feedbacks' => 'feedbacks#create', :as => :feedback
+  match 'feedbacks/new' => 'feedbacks#new', :as => :new_feedback
+
+  # Administration
+  namespace :admin do
+    resources :dashboards
+    resources :settings
+    resources :posts
+    resources :users do
+      member do
+        put :suspend, :unsuspend, :activate, :reset_password
+        delete :purge
+      end
+
+      collection do
+        get :pending, :active, :suspended, :deleted
+      end
+    end
+    root :to => 'dashboards#index'
+  end
+
   # Dashboard as the default location
-  map.root :controller => 'dashboards', :action => 'index'
+  root :to => 'dashboards#index'
 
   # Install the default routes as the lowest priority.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  match ':controller(/:action(/:id(.:format)))'
 end

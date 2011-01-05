@@ -33,7 +33,7 @@ module Caboose
       # need this so that id doesn't call Object#id
       # left it open to add more methods that
       # conflict when I find them
-      [:id, :type].each { |m| undef_method m }
+      # [:id, :type].each { |m| undef_method m }
       
       attr_reader :name, :test, :value
       
@@ -44,14 +44,14 @@ module Caboose
         @negate = false
         @case_insensitive = false
         case args.length
-        when 0:
+        when 0
           raise 'Expected at least one parameter'
-        when 1:
+        when 1
           @name = args.first.to_s
-        when 2:
+        when 2
           @table_prefix = args[0].to_s + '.' unless args[0].to_s.empty? 
           @name = args[1].to_s
-        when 3:
+        when 3
           @table_prefix = args[0].to_s + '.' unless args[0].to_s.empty? 
           @name = args[1].to_s
           @negate = args[2]
@@ -202,7 +202,7 @@ module Caboose
       def initialize(names, table_name = nil, inner = :or)
         @test = :multi 
         @operator = :==
-        @value = nil
+          @value = nil
         @names, @table_name, @inner, = names, table_name, inner
       end
       

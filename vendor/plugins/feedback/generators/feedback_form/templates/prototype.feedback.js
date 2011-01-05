@@ -66,6 +66,7 @@ if(Feedback == undefined) {
   }
 	
   Feedback.submitFeedback = function(event){
+		$('feedback_page').value = location.href;
     var data = Form.serialize($(Feedback.settings.form));
     var url = $(Feedback.settings.form).action;
     Feedback.loading(Feedback.settings.sendingText);

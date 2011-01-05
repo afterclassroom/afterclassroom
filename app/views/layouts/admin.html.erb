@@ -5,8 +5,8 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>:: <%= configatron.site_name %> ::</title>
 
-    <%= stylesheet_link_packed :admin %>
-    <%= javascript_include_packed :admin %>
+    <%= raw stylesheet_link_merged :admin %>
+    <%= raw javascript_include_merged :admin %>
 
   </head>
   <body>
@@ -32,7 +32,6 @@
     <!-- start footer -->
     <%= render :partial => 'shared/admin/footer' %>
     <!-- end footer -->
-
   </body>
 </html>
 

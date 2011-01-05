@@ -9,12 +9,12 @@ class User < ActiveRecord::Base
   
   # Validations
   validates_presence_of :login
-  validates_format_of :name, :with => RE_NAME_OK, :message => MSG_NAME_BAD, :allow_nil => true
+  validates_format_of :name, :with => Authentication.name_regex, :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of :name, :maximum => 100
   validates_presence_of :email
   validates_length_of :email, :within => 6..100
   validates_uniqueness_of :email, :case_sensitive => false
-  validates_format_of :email, :with => RE_EMAIL_OK, :message => MSG_EMAIL_BAD
+  validates_format_of :email, :with => Authentication.email_regex, :message => Authentication.bad_email_message
   validates_presence_of :school_id
 
   # Relations

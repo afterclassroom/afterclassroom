@@ -9,20 +9,20 @@ class PostAwareness < ActiveRecord::Base
   has_many :post_awarenesses_supports, :dependent => :destroy
 
   # Tags
-  acts_as_taggable
+  # acts_as_taggable
 
   # Rating for Good or Bad
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
 
   # Named Scope
-  named_scope :with_limit, :limit => LIMIT
-  named_scope :recent, {:joins => :post, :order => "created_at DESC"}
-  named_scope :with_status, lambda { |st| {:conditions => ["post_awarenesses.rating_status = ?", st]} }
-  named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
-  named_scope :with_type, lambda { |c| {:conditions => ["post_awarenesses.awareness_type_id = ?", c]} }
-  named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["post_awarenesses.id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["post_awarenesses.id > ?", att]} }
+  scope :with_limit, :limit => LIMIT
+  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :with_status, lambda { |st| {:conditions => ["post_awarenesses.rating_status = ?", st]} }
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :with_type, lambda { |c| {:conditions => ["post_awarenesses.awareness_type_id = ?", c]} }
+  scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
+  scope :previous, lambda { |att| {:conditions => ["post_awarenesses.id < ?", att]} }
+  scope :next, lambda { |att| {:conditions => ["post_awarenesses.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, awareness_type_id)
     over = 30 || params[:over].to_i

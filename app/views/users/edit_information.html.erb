@@ -7,7 +7,7 @@
   <div id="profile_update_zone">
     <div id="posting-section"><!-- posting-section-->
       <h3 class="post_header">Information</h3>
-      <% form_for :user, @user, :url => update_information_user_url(@user), :html => {:id => "form", :method => :put} do |f| %>
+      <%= form_for :user, @user, :url => update_information_user_url(@user), :html => {:id => "form", :method => :put} do |f| %>
         <ul>
         <li><label>Name</label>
           <div class="user_ri"><%= f.text_field :name %>
@@ -17,7 +17,7 @@
           <div class="user_ri"><%= f.check_box :allow_search_by_email  %>
             Let others find my post on AfterClassroom if they have my email address
         </div></li>
-        <% fields_for @user.user_information do |info| %>
+        <%= fields_for @user.user_information do |info| %>
           <li><label>Sex</label>
             <div class="user_ri"><%= select_tag 'user_information[sex]', options_for_select(@select_sex, @user.user_information.sex), {:id => 'user_information_sex'} %>
           </div></li>

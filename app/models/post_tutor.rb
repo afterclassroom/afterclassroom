@@ -10,20 +10,20 @@ class PostTutor < ActiveRecord::Base
   has_many :ratings
 
   # Tags
-  acts_as_taggable
-  
+  # acts_as_taggable
+
   # Rating for Good or Bad
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
 
   # Named Scope
-  named_scope :with_limit, :limit => LIMIT
-  named_scope :with_type, lambda { |tp| {:conditions => ["post_tutors.tutor_type_id = ?", tp]} }
-  named_scope :with_status, lambda { |st| {:conditions => ["post_tutors.rating_status = ?", st]} }
-  named_scope :recent, {:joins => :post, :order => "created_at DESC"}
-  named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
-  named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["post_tutors.id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["post_tutors.id > ?", att]} }
+  scope :with_limit, :limit => LIMIT
+  scope :with_type, lambda { |tp| {:conditions => ["post_tutors.tutor_type_id = ?", tp]} }
+  scope :with_status, lambda { |st| {:conditions => ["post_tutors.rating_status = ?", st]} }
+  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
+  scope :previous, lambda { |att| {:conditions => ["post_tutors.id < ?", att]} }
+  scope :next, lambda { |att| {:conditions => ["post_tutors.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, type_id)
     over = 30 || params[:over].to_i
@@ -89,17 +89,17 @@ class PostTutor < ActiveRecord::Base
 
   def self.effective_tutors(school)   
     tutor_type = TutorType.find_by_name("Tutor providers")
-    post_tutors = self.with_type(tutor_type.id).with_school(school).with_status("Good")
+    self.with_type(tutor_type.id).with_school(school).with_status("Good")
   end
 
   def self.dont_hire(school)
     tutor_type = TutorType.find_by_name("Tutor providers")
-    post_tutors = self.with_type(tutor_type.id).with_school(school).with_status("Bad")
+    self.with_type(tutor_type.id).with_school(school).with_status("Bad")
   end
 
   def self.require_rating(school)
     tutor_type = TutorType.find_by_name("Tutor providers")
-    post_tutors = self.with_type(tutor_type.id).with_school(school).with_status("Require Rating").random(1)
+    self.with_type(tutor_type.id).with_school(school).with_status("Require Rating").random(1)
   end
 
   def total_good

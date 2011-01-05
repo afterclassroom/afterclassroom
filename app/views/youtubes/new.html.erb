@@ -11,7 +11,7 @@
         </div>
         <% if session[:token] %>
           <div class="photoEx">
-            <% form_for 'video', :url => upload_new_user_youtube_path(current_user), :html => {:id => "form"} do |f| %>
+            <%= form_for 'video', :url => upload_new_user_youtube_path(current_user), :html => {:id => "form"} do |f| %>
               <%= f.hidden_field :auth_sub, :value => session[:token] %>
               <div class="stoExItem">
                 <div class="stoExItemL">Title</div>

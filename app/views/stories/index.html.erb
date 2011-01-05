@@ -14,7 +14,7 @@
         </div>
         <%= display_flash_messages %>
         <div class="stoEx" id="story_form_new" style="display:none">
-          <% form_for :story, :url => user_stories_path(current_user), :html => {:id => "form_new"} do |f| %>
+          <%= form_for :story, :url => user_stories_path(current_user), :html => {:id => "form_new"} do |f| %>
             <%= hidden_field_tag "state", "", :id => "story_state" %>
             <div class="stoExItem">
               <div class="stoExItemL">Title*</div>
@@ -38,7 +38,7 @@
               <div class="slsTopLT">Friends shared stories</div>
               <div class="slsTopLB friLeft">
                 <div class="search">
-                  <% form_tag friend_s_user_stories_path(current_user), {:id => "friend_stories_search", :method => "GET"} do %>
+                  <%= form_tag friend_s_user_stories_path(current_user), {:id => "friend_stories_search", :method => "GET"} do %>
                     <div class="textS"><%= text_field_tag "search[name]", "" %></div>
                     <div class="btmS"><a href="javascript:;" onclick="searchFriendStories();"><img src="/images/iconSF.png"/></a></div>
                   <% end %>
@@ -70,7 +70,7 @@
               <div class="slsTopLT">Your stories</div>
               <div class="slsTopLB friLeft">
                 <div class="search">
-                  <% form_tag my_s_user_stories_path(current_user), {:id => "my_stories_search", :method => "GET"} do %>
+                  <%= form_tag my_s_user_stories_path(current_user), {:id => "my_stories_search", :method => "GET"} do %>
                     <div class="textS"><%= text_field_tag "search[name]", "" %></div>
                     <div class="btmS"><a href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a></div>
                   <% end %>

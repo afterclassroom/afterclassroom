@@ -67,9 +67,9 @@ namespace :deploy do
     
     desc "Pack assets with rucksack" 
     task :pack_assets, :roles => [:web,:app] do
-      run "cd #{release_path} && rake RAILS_ENV=#{fetch(:rails_env, 'production')} rucksack:unpack"
-      run "cd #{release_path} && rake RAILS_ENV=#{fetch(:rails_env, 'production')} rucksack:install"
-      run "cd #{release_path} && rake RAILS_ENV=#{fetch(:rails_env, 'production')} rucksack:pack"
+      run "cd #{release_path} && rake Rails.env=#{fetch(:rails_env, 'production')} rucksack:unpack"
+      run "cd #{release_path} && rake Rails.env=#{fetch(:rails_env, 'production')} rucksack:install"
+      run "cd #{release_path} && rake Rails.env=#{fetch(:rails_env, 'production')} rucksack:pack"
     end
     
     after "deploy:update_code", "deploy:pack_assets"

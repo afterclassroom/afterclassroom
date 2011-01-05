@@ -1,8 +1,16 @@
+require "csv"
+
 class ImportDepartmentCsv < ActiveRecord::Migration
   def self.up
     category_temp = nil
-    FasterCSV.foreach("#{RAILS_ROOT}/db/Deapartment_categories.csv") do |row|
-      arr = row.to_s.split(";")
+    path = File.join("#{Rails.root}/db/Deapartment_categories.csv")
+    if CSV.const_defined? :Reader
+      csv = FasterCSV
+    else
+      csv = CSV
+    end
+    csv.foreach(path) do |row|
+      arr = row[0].split(";")
       category_name = arr[0]
       department_name = arr[1]
       if department_name != ""

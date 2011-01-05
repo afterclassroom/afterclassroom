@@ -737,11 +737,6 @@ span.btmDown a:hover{
 .postUpfile{
   margin-top:-21px;
 }
-#divinputfile{
-  background:url(/images/upload_file.png) no-repeat 100% 1px;
-  height:28px;
-  margin-top:5px;
-}
 #divinputfile .filepc{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);

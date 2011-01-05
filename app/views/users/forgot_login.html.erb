@@ -21,7 +21,7 @@
     <% else %>
       Please enter the email address associated with your account.<br/>
       We will send you an email with your login shortly.
-      <% form_tag user_forgot_login_url, :name => "form", :id => "form", :method => :put do %>
+      <%= form_tag user_forgot_login_url, :name => "form", :id => "form", :method => :put do %>
         <label>Your email address</label><%= text_field_tag :email %>
         <div class="bt-signin">
           <!-- button -->

@@ -3,34 +3,34 @@ class PostQa < ActiveRecord::Base
   validates_presence_of :post_id
   
   # Relations
-  belongs_to :post_qa_category
   belongs_to :post
+  belongs_to :post_qa_category
   has_one :rating_statistic
   has_many :ratings
 
   # Tags
-  acts_as_taggable
+  # acts_as_taggable
 
   # Rating for Good or Bad
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
 
   # Named Scope
-  named_scope :with_limit, :limit => LIMIT
-  named_scope :with_category, lambda { |c| {:conditions => ["post_qas.post_qa_category_id = ?", c]} }
-  named_scope :recent, {:joins => :post, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0], :order => "created_at DESC"}
-  named_scope :with_status, lambda { |st| {:conditions => ["post_qas.rating_status = ?", st]} }
-  named_scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
-  named_scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_qas.post_id And favorable_type = ?) > ?", "Post", 10]
-  named_scope :top_answer, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 10]
-  named_scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  named_scope :previous, lambda { |att| {:conditions => ["post_qas.id < ?", att]} }
-  named_scope :next, lambda { |att| {:conditions => ["post_qas.id > ?", att]} }
+  scope :with_limit, :limit => LIMIT
+  scope :with_category, lambda { |c| {:conditions => ["post_qas.post_qa_category_id = ?", c]} }
+  scope :recent, {:joins => :post, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0], :order => "created_at DESC"}
+  scope :with_status, lambda { |st| {:conditions => ["post_qas.rating_status = ?", st]} }
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_qas.post_id And favorable_type = ?) > ?", "Post", 10]
+  scope :top_answer, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 10]
+  scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
+  scope :previous, lambda { |att| {:conditions => ["post_qas.id < ?", att]} }
+  scope :next, lambda { |att| {:conditions => ["post_qas.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, type)
     if type == "answered"
-      posts = self.paginated_post_conditions_with_answered(params, school)
+      self.paginated_post_conditions_with_answered(params, school)
     else
-      posts = self.paginated_post_conditions_with_asked(params, school)
+      self.paginated_post_conditions_with_asked(params, school)
     end
   end
   
@@ -50,7 +50,7 @@ class PostQa < ActiveRecord::Base
       posts_like.select {|p| arr_p << p.post if p.post.comments.size == 0}
     end
     
-    posts = arr_p.paginate :page => params[:page], :per_page => 10
+    arr_p.paginate :page => params[:page], :per_page => 10
   end
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
@@ -118,7 +118,7 @@ class PostQa < ActiveRecord::Base
   end
 
   def self.require_rating(school)
-    post_qas = self.with_school(school).with_status("Require Rating").random(1)
+    self.with_school(school).with_status("Require Rating").random(1)
   end
 
   def total_good

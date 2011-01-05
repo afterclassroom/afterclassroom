@@ -11,24 +11,24 @@ When /^I search for the document id of (\w+) (\w+) in the (\w+) index$/ do |mode
 end
 
 Then "it should exist" do
-  ThinkingSphinx::Search.search_for_id(@id, @index).should == true
+  ThinkingSphinx.search_for_id(@id, @index).should == true
 end
 
 Then "it should not exist" do
-  ThinkingSphinx::Search.search_for_id(@id, @index).should == false
+  ThinkingSphinx.search_for_id(@id, @index).should == false
 end
 
 Then "it should exist if using Rails 2.1 or newer" do
   require 'active_record/version'
   unless ActiveRecord::VERSION::STRING.to_f < 2.1
-    ThinkingSphinx::Search.search_for_id(@id, @index).should == true
+    ThinkingSphinx.search_for_id(@id, @index).should == true
   end
 end
 
 Then "it should not exist if using Rails 2.1 or newer" do
   require 'active_record/version'
   unless ActiveRecord::VERSION::STRING.to_f < 2.1
-    ThinkingSphinx::Search.search_for_id(@id, @index).should == false
+    ThinkingSphinx.search_for_id(@id, @index).should == false
   end
 end
 
@@ -86,4 +86,9 @@ end
 
 Then /^the first result should have a (\w+\s?\w*) of (\d+)$/ do |attribute, value|
   results.first.sphinx_attributes[attribute.gsub(/\s+/, '_')].should == value.to_i
+end
+
+Given /^I provide excerpt option "([a-z_]*)" with value "([^"]*)"$/ do |k, v|
+  @options[:excerpt_options] ||= {}
+  @options[:excerpt_options][k.to_sym] = v
 end

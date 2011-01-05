@@ -59,7 +59,7 @@ module Jaap3
         s << "#{str}#{options[:button_html]}</a><script type=\"text/javascript\" src=\"#{options[:script_src]}\"></script>"
         s << "<!-- AddThis Button END -->"
         s = s * "\n"
-        options[:secure] ? s.gsub(/http:\/\/s[57]\.addthis\.com/, "https://secure.addthis.com") : s
+        raw(options[:secure] ? s.gsub(/http:\/\/s[57]\.addthis\.com/, "https://secure.addthis.com") : s)
       end
 
       def addthis_custom_script(options = {})
@@ -68,6 +68,7 @@ module Jaap3
           s << "var addthis_#{custom} = #{options[custom].is_a?(Integer) ? options[custom] : "'#{options[custom]}'"};" unless options[custom].nil?
         end
         s << "</script>"
+        raw(s)
       end
 
       def addthis_open(type, url, title = nil)

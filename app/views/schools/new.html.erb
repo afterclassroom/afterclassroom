@@ -12,7 +12,7 @@
     <td>
       <!--  start content-table-inner -->
       <div id="content-table-inner">
-        <% form_for(@school, :html => {:id => "form"}) do |f| %>
+        <%= form_for(@school, :html => {:id => "form"}) do |f| %>
           <div id="state_city">
             <%= render :partial => "select_city" %>
           </div>

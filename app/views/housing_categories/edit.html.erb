@@ -16,7 +16,7 @@
           <% content_for :header do -%>
             <%= link_to 'Housing categories', housing_categories_path %>
           <% end -%>
-          <% form_for(@housing_category, :html => {:id => "form"}) do |f| %>
+          <%= form_for(@housing_category, :html => {:id => "form"}) do |f| %>
             <tr>
               <th valign="top">Name*:</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>

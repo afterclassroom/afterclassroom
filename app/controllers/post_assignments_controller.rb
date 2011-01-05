@@ -138,7 +138,7 @@ class PostAssignmentsController < ApplicationController
   private
 
   def get_variables
-    @tags = PostAssignment.tag_counts
+    # @tags = PostAssignment.tag_counts
     @new_post_path = new_post_assignment_path
     @class_name = "PostAssignment"
     @type = PostCategory.find_by_class_name(@class_name).id

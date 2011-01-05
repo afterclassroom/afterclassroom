@@ -7,9 +7,9 @@
   <div id="profile_update_zone">
     <div id="posting-section"><!-- posting-section-->
       <h3 class="post_header">Employment</h3>
-      <% form_for :user, @user, :url => update_information_user_url(@user), :html => {:id => "form", :method => :put} do |f| %>
+      <%= form_for :user, @user, :url => update_information_user_url(@user), :html => {:id => "form", :method => :put} do |f| %>
         <ul>
-          <% fields_for @user.user_employment do |info| %>
+          <%= fields_for @user.user_employment do |info| %>
             <li><label>Resume</label>
               <div class="user_ri"><%= info.text_area :resume %>
             </div></li>

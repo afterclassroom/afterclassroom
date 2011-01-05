@@ -3,28 +3,29 @@ Dir[File.join(File.dirname(__FILE__), '../vendor/*/lib')].each do |path|
   $:.unshift path
 end
 
-require 'rubygems'
 require 'fileutils'
-require 'ginger'
-require 'jeweler'
+require 'logger'
+require 'bundler'
 
+Bundler.require :default, :development
+
+require 'active_support/core_ext/module/attribute_accessors'
 require "#{File.dirname(__FILE__)}/../lib/thinking_sphinx"
-
-require 'will_paginate'
-
 require "#{File.dirname(__FILE__)}/sphinx_helper"
 
-ActiveRecord::Base.logger = Logger.new(StringIO.new)
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
-Spec::Runner.configure do |config|
+ThinkingSphinx::ActiveRecord::LogSubscriber.logger = Logger.new(StringIO.new)
+
+RSpec.configure do |config|
   %w( tmp tmp/config tmp/log tmp/db ).each do |path|
     FileUtils.mkdir_p "#{Dir.pwd}/#{path}"
   end
   
-  Kernel.const_set :RAILS_ROOT, "#{Dir.pwd}/tmp" unless defined?(RAILS_ROOT)
-  
   sphinx = SphinxHelper.new
   sphinx.setup_mysql
+  
+  ActiveRecord::Base.send(:include, ThinkingSphinx::ActiveRecord)
   
   require "#{File.dirname(__FILE__)}/fixtures/models"
   ThinkingSphinx.context.define_indexes

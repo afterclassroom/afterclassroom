@@ -1,5 +1,5 @@
 <div class="postItemA">
-  <% fields_for :jobinfo do |builder1| %>
+  <%= fields_for :jobinfo do |builder1| %>
     <div class="postTitt"><%= builder1.label :category, "Add/Edit File" %><%= builder1.hidden_field :category, :value => "Add/Edit File" %></div>
     <div id="divinputfile" style="margin-left:120px">
       <div class="postItemC" style="margin-left:130px">

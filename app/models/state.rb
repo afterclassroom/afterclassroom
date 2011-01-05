@@ -10,7 +10,7 @@ class State < ActiveRecord::Base
 
   #Named scopes
   cond = "(select count(*) from cities where cities.state_id = states.id) > 0"
-  named_scope :has_cities, :conditions => cond
+  scope :has_cities, :conditions => cond
   
   def self.paginated_states_conditions_with_search(params)
     search = {}

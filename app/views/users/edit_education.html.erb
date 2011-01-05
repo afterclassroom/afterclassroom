@@ -7,9 +7,9 @@
   <div id="profile_update_zone">
     <div id="posting-section"><!-- posting-section-->
       <h3 class="post_header">Education</h3>
-      <% form_for :user, @user, :url => update_information_user_url(@user), :html => {:id => "form", :method => :put} do |f| %>
+      <%= form_for :user, @user, :url => update_information_user_url(@user), :html => {:id => "form", :method => :put} do |f| %>
         <ul>
-          <% fields_for @user.user_education do |info| %>
+          <%= fields_for @user.user_education do |info| %>
             <li><label>Grad School</label>
               <div class="user_ri"><%= info.text_field :grad_school %>
             </div></li>

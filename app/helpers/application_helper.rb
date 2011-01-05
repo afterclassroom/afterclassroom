@@ -1,7 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 module ApplicationHelper
   include TagsHelper
-  # Yield the content for a given block. If the block yiels nothing, the optionally specified default text is shown. 
+  # Yield the content for a given block. If the block yiels nothing, the optionally specified default text is shown.
   #
   #   yield_or_default(:user_status)
   #
@@ -14,14 +14,14 @@ module ApplicationHelper
   end
 
   # Create tab.
-  # 
+  #
   # The tab will link to the first options hash in the all_options array,
   # and make it the current tab if the current url is any of the options
   # in the same array.
-  # 
+  #
   # +name+ specifies the name of the tab
   # +all_options+ is an array of hashes, where the first hash of the array is the tab's link and all others will make the tab show up as current.
-  # 
+  #
   # If now options are specified, the tab will point to '#', and will never have the 'active' state.
   def tab_to(name, all_options = nil)
     url = all_options.is_a?(Array) ? all_options[0].merge({:only_path => false}) : "#"
@@ -35,23 +35,23 @@ module ApplicationHelper
           link_current = "select"
           break
         end
-      end  
+      end
     end
 
-    "<li class='#{link_current}' >" + link_to("<span>" + name + "</span>", url, {}) + "</li>"
+    raw "<li class='#{link_current}' >" + link_to(raw("<span>" + name + "</span>"), url, {}) + "</li>"
   end
 
   def tab_to_admin(name, ctrl_name, path, sub_menus = nil)
     current_menu = "select"
     current_sub = ""
     current_item = @controller.action_name
-    
+
     if ctrl_name.is_a?(Array)# Multi controllers on one menu
-      current_menu = "current" if ctrl_name.include?(@controller.controller_name)
+      current_menu = "current" if ctrl_name.include?(controller.controller_name)
       current_sub = "show"
-      current_item = @controller.controller_name
+      current_item = controller.controller_name
     else# One controller with multi action
-      current_menu = "current" if ctrl_name == @controller.controller_name
+      current_menu = "current" if ctrl_name == controller.controller_name
       current_sub = "show"
     end
 
@@ -62,7 +62,7 @@ module ApplicationHelper
   def admin?
     logged_in? && current_user.has_role?(:admin)
   end
-  
+
   # Write a secure email adress
   def secure_mail_to(email)
     mail_to email, nil, :encode => 'javascript'
@@ -141,7 +141,7 @@ module ApplicationHelper
       "N/A"
     end
   end
-  
+
   def truncate_words(text, length = 30, end_string = '...')
     return if text.blank?
     words = strip_tags(text).split()
@@ -149,7 +149,7 @@ module ApplicationHelper
   end
 
   def show_image_user_post(user)
-    link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", user_path(user)
+    link_to raw("<div>#{image_tag(user.avatar.url(:thumb))}</div>"), user_path(user)
   end
 
   def show_user_post(user)
@@ -214,7 +214,7 @@ module ApplicationHelper
     department = params[:department] if params[:department]
     year = params[:year] if params[:year]
     over = params[:over] ? params[:over] : "30"
-    
+
     render :partial => "shared/options", :locals => {:school => school, :department => department, :year => year, :over => over, :options => options}
   end
 
@@ -229,7 +229,7 @@ module ApplicationHelper
       link_to "Student Lounge", user_student_lounges_path(current_user)
     end
   end
-  
+
   def show_favorite(type, item)
     f_size = item.favoriting_users.size
     if !logged_in?
@@ -238,7 +238,7 @@ module ApplicationHelper
       str_favorited = "It`s already in your favourite list."
       link_to("Favorite (#{f_size})", "javascript:;", :class => "vtip", :title => str_favorited)
     else
-      link_to_remote "Favorite (#{f_size})", { :update => "item_favorite_#{item.id}", :url => {:controller => "favorites", :action => "add_to_favorite", :item_id => item.id, :type => type }, :method => "get" }
+      link_to "Favorite (#{f_size})", {:remote => true, :update => "item_favorite_#{item.id}", :url => {:controller => "favorites", :action => "add_to_favorite", :item_id => item.id, :type => type }, :method => "get" }
     end
   end
 
@@ -248,74 +248,74 @@ module ApplicationHelper
       link_to_require_login("<span id='favorite_action'>Favorite (#{f_size})</span>")
     elsif current_user.has_favorite?(item)
       str_favorited = "It`s already in your favourite list."
-      link_to("<span id='favorite_action'>Favorite (#{f_size})</span>", "javascript:;", :class => "vtip", :title => str_favorited)
+      link_to(raw("<span id='favorite_action'>Favorite (#{f_size})</span>"), "javascript:;", :class => "vtip", :title => str_favorited)
     else
-      link_to_remote "<span>Favorite (#{f_size})</span>", { :update => "item_favorite_#{item.id}", :url => {:controller => "favorites", :action => "add_to_favorite_in_detail", :item_id => item.id, :type => type }, :method => "get" }
+      link_to raw("<span>Favorite (#{f_size})</span>"), {:remote => true, :update => "item_favorite_#{item.id}", :url => {:controller => "favorites", :action => "add_to_favorite_in_detail", :item_id => item.id, :type => type }, :method => "get" }
     end
   end
 
   def show_email(post)
     if !logged_in?
-      link_to_require_login("<span>Email</span>")
+      link_to_require_login(raw("<span>Email</span>"))
     else
-      link_to("<span>Email</span>", "#{show_email_user_messages_path(current_user)}?recipient_id=#{post.user.id}&height=300&width=470", :class => "thickbox", :title => "Send to #{post.user.full_name}")
+      link_to(raw("<span>Email</span>"), "#{show_email_user_messages_path(current_user)}?recipient_id=#{post.user.id}&height=300&width=470", :class => "thickbox", :title => "Send to #{post.user.full_name}")
     end
   end
 
   def show_add_job(post)
-    if !logged_in?
-      link_to_require_login("<span>Add job</span>")
+    unless logged_in?
+      link_to_require_login(raw("<span>Add job</span>"))
     else
       job_lists = current_user.jobs_lists
-      link_to_remote("<span>Add job</span>", :update => "show_job_button", :url => { :action => "add_job", :post_job_id => post.id}) if !job_lists.collect{|j| j.post_job}.include?(post.post_job)
+      link_to(raw("<span>Add job</span>"), {:remote => true, :update => "show_job_button"}, :url => { :action => "add_job", :post_job_id => post.id}) if !job_lists.collect{|j| j.post_job}.include?(post.post_job)
     end
   end
 
   def show_my_job_list(post)
     if !logged_in?
-      link_to_require_login("<span>My job list</span>")
+      link_to_require_login(raw("<span>My job list</span>"))
     else
       job_lists = current_user.jobs_lists
-      link_to("<span>My job list</span>", "#{my_job_list_post_jobs_path}?height=400&width=470", :class => "thickbox", :title => "My job list") if job_lists.size > 0
+      link_to(raw("<span>My job list</span>"), "#{my_job_list_post_jobs_path}?height=400&width=470", :class => "thickbox", :title => "My job list") if job_lists.size > 0
     end
   end
-  
+
   def show_apply_now()
     if !logged_in?
-      link_to_require_login("<span style='padding-left:10px'>Apply now</span>")
+      link_to_require_login(raw("<span style='padding-left:10px'>Apply now</span>"))
     else
       return "<a title='Apply now' id='apply_now'>Apply now</a>"
     end
   end
-  
-  
+
+
   def show_add_party(post)
     if !logged_in?
-      link_to_require_login("<span>Add party</span>")
+      link_to_require_login(raw("<span>Add party</span>"))
     else
       party_lists = current_user.partys_lists
-      link_to_remote("<span>Add party</span>", :update => "show_party_button", :url => { :action => "add_party", :post_party_id => post.id}) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
+      link_to_remote(raw("<span>Add party</span>"), :update => "show_party_button", :url => { :action => "add_party", :post_party_id => post.id}) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
     end
   end
 
   def show_my_party_list(post)
     if !logged_in?
-      link_to_require_login("<span>My party list</span>")
+      link_to_require_login(raw("<span>My party list</span>"))
     else
       party_lists = current_user.partys_lists
-      link_to("<span>My party list</span>", "#{my_party_list_post_parties_path}?height=400&width=470", :class => "thickbox", :title => "My party list") if party_lists.size > 0
+      link_to(raw("<span>My party list</span>"), "#{my_party_list_post_parties_path}?height=400&width=470", :class => "thickbox", :title => "My party list") if party_lists.size > 0
     end
   end
-  
+
   def show_become_a_fan(user)
     str = ""
     if !logged_in?
-      str = link_to_require_login("<span>Become a Fan</span>")
+      str = link_to_require_login(raw("<span>Become a Fan</span>"))
     else
       if user.fans.include?(current_user)
         str = "You are a fan"
       else
-        str = link_to_function "<span>Become a Fan</span>", "become_a_fan('#{become_a_fan_user_friends_path(current_user)}?user_id=#{user.id}')"
+        str = link_to_function raw("<span>Become a Fan</span>"), "become_a_fan('#{become_a_fan_user_friends_path(current_user)}?user_id=#{user.id}')"
       end
     end
     return str
@@ -386,7 +386,7 @@ module ApplicationHelper
       link_to_remote(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :update => "support_action"})
     end
   end
-  
+
   def show_go_back
     link_to "<span>Go back</span>", session[:go_back_url]
   end
@@ -405,7 +405,7 @@ module ApplicationHelper
       link_to_remote numb, { :update => "rate_#{id}", :url => {:controller => ctrl_name, :action => "rate", :post_id => id, :rating => val_rate } }
     end
   end
-  
+
   def show_submit_rating(post_id, path)
     if !logged_in?
       link_to_require_login("<span>Submit</span>")
@@ -466,14 +466,17 @@ module ApplicationHelper
   end
 
   def gmap_key
-    key = GMAP_KEY_SITE if Rails.env.production?
-    key = GMAP_KEY_LOCAL if Rails.env.development?
+    key = GMAP_KEY_SITE if Rails.env == 'production'
+    key = GMAP_KEY_LOCAL if Rails.env == 'development'
     return key
   end
-  
+
+  def textilize(text)
+    Textilizer.new(text).to_html.html_safe unless text.blank?
+  end
+
   private
   def link_to_require_login(str)
     link_to(str, "/login_ajax?height=300&width=540", :class => "thickbox", :title => "Sign In")
   end
-
 end

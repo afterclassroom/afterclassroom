@@ -12,7 +12,7 @@ class City < ActiveRecord::Base
   #Named scopes
   #SQL: select count(*) from schools where schools.city_id = cities.id) > 0
   cond = "(select count(*) from schools where schools.city_id = cities.id) > 0"
-  named_scope :has_schools, :conditions => cond
+  scope :has_schools, :conditions => cond
   
   def full_address_city
     address = self.name

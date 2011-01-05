@@ -16,7 +16,7 @@
           <% content_for :header do -%>
             <%= link_to 'Party types', party_types_path %>
           <% end -%>
-          <% form_for(@party_type, :html => {:id => "form"}) do |f| %>
+          <%= form_for(@party_type, :html => {:id => "form"}) do |f| %>
             <tr>
               <th valign="top">Name*:</th>
               <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>

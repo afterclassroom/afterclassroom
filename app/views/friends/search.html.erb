@@ -36,7 +36,7 @@
 
 <!--Alert-->
 <div id="delete_alert" title="Alert" style="display:none;">
-  <% form_tag delete_user_friends_path(current_user), {:id => "delete_form"} do %>
+  <%= form_tag delete_user_friends_path(current_user), {:id => "delete_form"} do %>
     <%= hidden_field_tag "user_id_friend", "" %>
     Are you sure?
   <% end %>

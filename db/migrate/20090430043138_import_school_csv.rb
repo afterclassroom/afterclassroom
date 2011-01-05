@@ -1,15 +1,22 @@
-require "fastercsv"
+require "csv"
+
 class ImportSchoolCsv < ActiveRecord::Migration
   def self.up
-    FasterCSV.foreach("#{RAILS_ROOT}/db/UC_live_server.csv") do |row|
-      arr = row.to_s.split(";")
+    path = File.join("#{Rails.root}/db/UC_live_server.csv")
+    if CSV.const_defined? :Reader
+      csv = FasterCSV
+    else
+      csv = CSV
+    end
+    csv.foreach(path) do |row|
+      arr = row[0].split(";")
       country_iso = arr[0]
       state_name = arr[1]
       city_name = arr[2]
       university = arr[3]
       college = arr[4]
       website = arr[5]
-
+      
       if country_iso != "" && state_name != "" && city_name != ""
         if university != ""
           type = "University"
