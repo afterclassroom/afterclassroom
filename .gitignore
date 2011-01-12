@@ -6,6 +6,7 @@ nbproject/
 Capfile
 log/*.log
 tmp/**/*
+db/sphinx/**/*
 doc/api
 doc/app
 public/attaches/**/*

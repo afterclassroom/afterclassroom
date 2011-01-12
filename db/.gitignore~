@@ -1,9 +1,2 @@
-public/attaches/**/*
-public/avatars/**/*
-public/uploaded_files/**/*
-public/uploads/**/*
-public/music_album_attaches/**/*
-public/photos/**/*
-public/photo_attaches/**/*
-public/music_attaches/**/*
-public/resume_cvs/**/*
+schema.rb
+sphinx/**/*

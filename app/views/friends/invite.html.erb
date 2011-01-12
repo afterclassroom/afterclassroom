@@ -10,7 +10,7 @@
     <div class="col451in">
       <div class="col451Cont">
         <h1 class="titleH1">Invite Friends to join AfterClassroom</h1>
-        <%= display_flash_messages %>
+        <%= display_flash_messages_with_raw %>
         <%= form_tag invite_by_list_email_user_friends_path(current_user), :id => "list_email" do %>
         <div class="fInvFrom">
           <div class="fInvTxt">From</div>

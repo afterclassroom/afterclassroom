@@ -1,5 +1,5 @@
 <div class="signinCont">
-  <%= display_flash_messages %>
+  <%= display_flash_messages_with_raw %>
   <div class="postReq">*(asterisk) is required.</div>
   <%= form_tag session_path, :name => "form_login_ajax", :id => "form_login_ajax" do -%>
     <div class="signinItem">

@@ -471,6 +471,10 @@ module ApplicationHelper
     return key
   end
 
+  def display_flash_messages_with_raw
+    raw(display_flash_messages)
+  end
+
   def textilize(text)
     Textilizer.new(text).to_html.html_safe unless text.blank?
   end

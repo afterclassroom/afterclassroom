@@ -1,5 +1,5 @@
 <%= fields_for @post do |post| %>
-  <%= display_flash_messages %>
+  <%= display_flash_messages_with_raw %>
   <div class="postReq">*(asterisk) is required.</div>
   <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>

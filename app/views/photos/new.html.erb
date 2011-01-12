@@ -9,7 +9,7 @@
         <div class="slsShare">
           <div class="slsShareL">Post your photo</div>
         </div>
-        <%= display_flash_messages %>
+        <%= display_flash_messages_with_raw %>
         <div id="take_a_picture" >
           <%= form_for @photo, :url => user_photos_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
           <div class="stoError"></div>

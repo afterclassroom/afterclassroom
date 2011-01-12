@@ -11,7 +11,7 @@
       <div class="col451Cont">
         <h1 class="titleH1">All connection</h1>
         <div id="friend_list">
-          <%= display_flash_messages %>
+          <%= display_flash_messages_with_raw %>
           <% @friends.each do |f| %>
             <%= render :partial => "item", :locals => {:friend => f} %>
           <% end %>

@@ -9,7 +9,7 @@
       <h1 class="titleH1">Sign Up</h1>
     </div>
     <div class="signUpCont">
-      <%= display_flash_messages %>
+      <%= display_flash_messages_with_raw %>
       <%= form_for :user, :url => users_path, :html => {:id => "form_signup", :name => "form_signup"} do |f| -%>
         <div class="signNode">*(asterisk) is required.</div>
         <div class="signinItem">
