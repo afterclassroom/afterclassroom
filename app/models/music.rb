@@ -19,7 +19,7 @@ class Music < ActiveRecord::Base
   acts_as_activity :user
 
   # Tags
-  # acts_as_taggable
+  acts_as_taggable
   
 
   # Favorite

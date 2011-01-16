@@ -193,7 +193,7 @@ class PostTutorsController < ApplicationController
   private
 
   def get_variables
-    # @tags = PostTutor.tag_counts
+    @tags = PostTutor.tag_counts_on(:tags)
     @new_post_path = new_post_tutor_path
     @type = PostCategory.find_by_class_name("PostTutor").id
     @school = session[:your_school]

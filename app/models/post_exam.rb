@@ -7,7 +7,7 @@ class PostExam < ActiveRecord::Base
   belongs_to :post
 
   # Tags
-  # acts_as_taggable
+  acts_as_taggable
 
   # Named Scope
   scope :with_limit, :limit => LIMIT

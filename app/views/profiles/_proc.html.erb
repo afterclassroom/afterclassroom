@@ -1,15 +1,15 @@
 <div class="col195 proPic">
   <div class="col195in">
     <div class="demo">
-      <div class="proImg"><%= link_to "<div>#{image_tag(@user.avatar.url(:medium), {:id => "avatar"})}</div>", user_path(@user) %></div>
+      <div class="proImg"><%= link_to raw("<div>#{image_tag(@user.avatar.url(:medium), {:id => "avatar"})}</div>"), user_path(@user) %></div>
       <div class="proItem"><a href="javascript:;" id="upload_avatar">Change photo</a></div>
-      <div class="proItem"><%= link_to "View Stories of Me (#{@user.stories.size})", "#" %></div>
-      <div class="proItem"><%= link_to "View Photos of Me (#{@user.photos.size})", "#" %></div>
-      <div class="proItem"><%= link_to "View Musics of Me (#{@user.musics.size})", "#" %></div>
-      <div class="proItem"><%= link_to "View Videos of Me (#{@user.videos.size})", "#" %></div>
+      <div class="proItem"><%= link_to "View Stories of Me (#{@user.stories.size})", user_stories_path(@user) %></div>
+      <div class="proItem"><%= link_to "View Photos of Me (#{@user.photos.size})", user_photos_path(@user) %></div>
+      <div class="proItem"><%= link_to "View Musics of Me (#{@user.musics.size})", user_musics_path(@user) %></div>
+      <div class="proItem"><%= link_to "View Videos of Me (#{@user.videos.size})", user_videos_path(@user) %></div>
       <div class="proItem"><%= link_to "Edit My Profile", show_profile_user_profiles_path(@user) %></div>
       <div class="proBtm" id="about_yourself">
-        <%= @user.user_information.about_yourself %>
+        <%= @user.user_information.about_yourself if @user.user_information%>
       </div>
     </div>
   </div>

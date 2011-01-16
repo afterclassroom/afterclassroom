@@ -14,7 +14,7 @@ class PostExamSchedule < ActiveRecord::Base
   scope :next, lambda { |att| {:conditions => ["post_exam_schedules.id > ?", att]} }
 
   # Tags
-  # acts_as_taggable
+  acts_as_taggable
   
   def self.paginated_post_conditions_with_option(params, school, type)
     over = 30 || params[:over].to_i

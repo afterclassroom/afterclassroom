@@ -1,6 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 module ApplicationHelper
-  include TagsHelper
+  include ActsAsTaggableOn::TagsHelper
   # Yield the content for a given block. If the block yiels nothing, the optionally specified default text is shown.
   #
   #   yield_or_default(:user_status)
@@ -402,7 +402,7 @@ module ApplicationHelper
     elsif check_rated
       link_to(numb, "javascript:;", :class => "vtip", :title => "#{configatron.str_rated}")
     else
-      link_to_remote numb, { :update => "rate_#{id}", :url => {:controller => ctrl_name, :action => "rate", :post_id => id, :rating => val_rate } }
+      link_to numb, { :remote => true, :update => "rate_#{id}", :url => {:controller => ctrl_name, :action => "rate", :post_id => id, :rating => val_rate } }
     end
   end
 

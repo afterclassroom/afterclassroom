@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   
   # process_in_background :avatar
     
-  validates_attachment_content_type :avatar, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/gif', 'image/png']
 
   # ThinkSphinx
   define_index do

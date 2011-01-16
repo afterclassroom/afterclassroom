@@ -222,7 +222,7 @@ class PostQasController < ApplicationController
   private
 
   def get_variables
-    # @tags = PostQa.tag_counts
+    @tags = PostQa.tag_counts_on(:tags)
     @new_post_path = new_post_qa_path
     @class_name = "PostQa"
     @type = PostCategory.find_by_class_name(@class_name).id

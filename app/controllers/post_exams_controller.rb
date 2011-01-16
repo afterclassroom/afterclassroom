@@ -129,7 +129,7 @@ class PostExamsController < ApplicationController
   private
 
   def get_variables
-    # @tags = PostExam.tag_counts
+    @tags = PostExam.tag_counts_on(:tags)
     @new_post_path = new_post_exam_path
     @class_name = "PostExam"
     @type = PostCategory.find_by_class_name(@class_name).id

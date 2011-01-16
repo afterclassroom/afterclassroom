@@ -19,7 +19,7 @@ class PostAssignment < ActiveRecord::Base
   scope :next, lambda { |att| {:conditions => ["post_assignments.id > ?", att]} }
 
   # Tags
-  # acts_as_taggable
+  acts_as_taggable
   
   def self.paginated_post_conditions_with_option(params, school)
     over = 30 || params[:over].to_i

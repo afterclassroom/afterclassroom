@@ -105,7 +105,7 @@ class PostAssignmentsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    @post_assignment.tag_list = params[:tag]
+    #@post_assignment.tag_list = params[:tag]
     @post_assignment.post = @post
     if @post_assignment.save
       notice "Your post was successfully created."
@@ -138,7 +138,7 @@ class PostAssignmentsController < ApplicationController
   private
 
   def get_variables
-    # @tags = PostAssignment.tag_counts
+    @tags = PostAssignment.tag_counts_on(:tags)
     @new_post_path = new_post_assignment_path
     @class_name = "PostAssignment"
     @type = PostCategory.find_by_class_name(@class_name).id

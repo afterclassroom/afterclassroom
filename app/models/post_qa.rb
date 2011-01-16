@@ -9,7 +9,7 @@ class PostQa < ActiveRecord::Base
   has_many :ratings
 
   # Tags
-  # acts_as_taggable
+  acts_as_taggable
 
   # Rating for Good or Bad
   acts_as_rated :rating_range => 0..1, :with_stats_table => true

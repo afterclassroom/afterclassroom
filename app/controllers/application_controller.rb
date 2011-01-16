@@ -10,9 +10,6 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery :secret => '9fe6825f97cc334d88925fde5c4808a8'
 
-  # Auto-geocode the user's ip address and store it in the session
-  geocode_ip_address
-
   # Temp
   USER_NAME, PASSWORD = "afterclassroom", "teamwork"
 

@@ -36,4 +36,4 @@ gem 'activerecord', '>= 3.0.3'
 gem 'riddle',       '>= 1.2.1'
 gem 'thinking-sphinx', :require => 'thinking_sphinx', :git => "git://github.com/freelancing-god/thinking-sphinx.git", :branch => "rails3"
 gem "paperclip", "~> 2.3"
-gem 'acts_as_taggable_on_steroids'
+gem 'acts-as-taggable-on'

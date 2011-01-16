@@ -192,7 +192,7 @@ class PostAwarenessesController < ApplicationController
   private
 
   def get_variables
-    # @tags = PostAwareness.tag_counts
+    @tags = PostAwareness.tag_counts_on(:tags)
     @new_post_path = new_post_awareness_path
     @class_name = "PostAwareness"
     @type = PostCategory.find_by_class_name(@class_name).id
