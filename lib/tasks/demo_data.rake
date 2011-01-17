@@ -112,16 +112,17 @@ def create_demo_people
         u.email = "#{name.downcase}@example.com"
         u.name = name
         u.school = school
-        u.user_information = user_infor
-        u.user_education = user_edu
-        u.user_employment = user_employ
         u.avatar = uploaded_file(avatars[i])
       end
-      
-      user.register
-      user.activate
 
-      user.save
+      user.user_information = user_infor
+      user.user_education = user_edu
+      user.user_employment = user_employ
+
+      user.save!
+      
+      user.register!
+      user.activate!
     end
   end
 end

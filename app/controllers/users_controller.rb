@@ -161,12 +161,16 @@ class UsersController < ApplicationController
     session[:first_name] = first_name
     session[:last_name] = last_name
     name = first_name + " " + last_name
+    
     @user = User.new(attributes[:user])
+    @user.name = name
+    @user.login = to_slug(name)
+    @user.save!
+
     @user.user_information = UserInformation.new()
     @user.user_education = UserEducation.new()
     @user.user_employment = UserEmployment.new()
-    @user.name = name
-    @user.login = to_slug(name)
+    
     session[:your_school] = @user.school_id
     
     if @user && @user.valid?
