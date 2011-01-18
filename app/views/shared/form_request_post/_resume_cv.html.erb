@@ -13,9 +13,9 @@ Resume*
   <div class="postItemB">
     <div id="divinputfile">
       <div class="postItemC" style="margin-left:130px">
-        <%= builder1.file_field :resume_cv, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc"  %>
+        <%= builder1.file_field :resume_cv, :onchange => "$('#fakefilepc0').val(this.value);", :size => "39", :class => "filepc"  %>
       </div>
-      <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
+      <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc0" /></div>
     </div>
   </div>
 <% end %>
@@ -28,9 +28,9 @@ Resume*
   <div class="postItemB">
     <div id="divinputfile">
       <div class="postItemC" style="margin-left:130px">
-        <%= builder2.file_field :resume_cv, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc"   %>
+        <%= builder2.file_field :resume_cv, :onchange => "$('#fakefilepc1').val(this.value);", :size => "39", :class => "filepc"   %>
       </div>
-      <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc" /></div>
+      <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc1" /></div>
     </div>
   </div>
 <% end %>
@@ -43,15 +43,20 @@ Resume*
   <div class="postItemB">
     <div id="divinputfile">
       <div class="postItemC" style="margin-left:130px">
-        <%= builder3.file_field :resume_cv, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc"   %>
+        <%= builder3.file_field :resume_cv, :onchange => "$('#fakefilepc2').val(this.value);", :size => "39", :class => "filepc"   %>
       </div>
-      <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc"/></div>
+      <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc2"/></div>
     </div>
   </div>
 <% end %>
 
 <script language="javascript">
     $(document).ready(function(){
+        $('#fakefilepc0').css('width','195px');
+        $('#fakefilepc1').css('width','195px');
+        $('#fakefilepc2').css('width','195px');
+
+
         $("#letter_resume_cv").change(function(){
             var coverletter = this.value;
             $("#letter_resume_cv").siblings().each(function(){
@@ -60,16 +65,15 @@ Resume*
             });
         });
         $("#transcript_resume_cv").change(function(){
+            $(this).css('border','red solid 3px');
             var transcript = this.value;
             $("#transcript_resume_cv").siblings().each(function(){
-
                 $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+transcript+"'/>");
             });
         });
         $("#resume_resume_cv").change(function(){
             var resume = this.value;
             $("#resume_resume_cv").siblings().each(function(){
-
                 $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+resume+"'/>");
             });
         });
