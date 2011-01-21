@@ -51,7 +51,7 @@ body input, body textarea, body select{
     float:right;width:500px;
 }
 .signin a{
-    background:url('/images/help.png') no-repeat left 4px;
+    background:url('/images/help..png') no-repeat left 4px;
     cursor:pointer;
 }
 .signin a.signinFrist{
@@ -466,6 +466,24 @@ div.menuMain ul li.select a.menuFirst, div.menuMain ul li a.menuFirst:hover span
 }
 .RmenuRbtm2 a:hover{
     background:url('/images/btm38Red.png') right top no-repeat;
+    text-decoration:none;
+}
+.RmenuRbtm2 div{
+    background:url('/images/btm38.png') no-repeat;
+    width:38px;
+    height:25px;
+    display:block;
+    text-align:center;
+}
+.RmenuRbtm2 div input{
+    background:url('/images/btm38.png') no-repeat;
+    width:38px;
+    height:25px;
+    display:block;
+    text-align:center;
+}
+.RmenuRbtm2 div input:hover{
+    background:url('/images/btm38Red.png') no-repeat;
     text-decoration:none;
 }
 .RmenuRbtm1 a:link, .RmenuRbtm1 a:visited, .RmenuRbtm2 a:link, .RmenuRbtm2 a:visited, .RmenuRbtm1 a:hover, .RmenuRbtm2 a:hover{
