@@ -12,9 +12,12 @@ class Admin::SettingsController < ApplicationController
       setting = Setting.find(input[0])
       
       value = case(setting.field_type)
-      when 'string':        input[1].to_s
-      when 'integer':       input[1].to_i
-      when 'float':         input[1].to_f
+      when 'string'
+        input[1].to_s
+      when 'integer'
+        input[1].to_i
+      when 'float'
+        input[1].to_f
       end
       
       setting.update_attribute(:value, value)

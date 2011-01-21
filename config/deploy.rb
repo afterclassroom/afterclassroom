@@ -65,20 +65,13 @@ namespace :deploy do
 
     put db_config, "#{release_path}/config/database.yml"
     
-    desc "Pack assets with rucksack" 
-    task :pack_assets, :roles => [:web,:app] do
-      run "cd #{release_path} && rake Rails.env=#{fetch(:rails_env, 'production')} rucksack:unpack"
-      run "cd #{release_path} && rake Rails.env=#{fetch(:rails_env, 'production')} rucksack:install"
-      run "cd #{release_path} && rake Rails.env=#{fetch(:rails_env, 'production')} rucksack:pack"
-    end
-    
     after "deploy:update_code", "deploy:pack_assets"
 
     task :start, :roles => :app do
       # Stop Sphinx
-      run "cd #{release_path} && rake ts:stop"
+#      run "cd #{release_path} && rake ts:stop"
       # Start Sphinx
-      run "cd #{release_path} && rake ts:start"
+#      run "cd #{release_path} && rake ts:start"
       # Stop Juggernault
       run "juggernaut -k -c #{current_release}/config/juggernaut.yml"
       # Start Juggernault

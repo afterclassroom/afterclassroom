@@ -4,9 +4,9 @@ module RPH
       TYPES = [:notice, :warning, :error]
       
       TYPES.each do |type|
-        define_method(type) { |msg| flash[type] = msg }
+        define_method(type) { |msg| flash[type] = raw(msg) }
         
-        define_method("#{type}_now") { |msg| flash.now[type] = msg }
+        define_method("#{type}_now") { |msg| flash.now[type] = raw(msg) }
       end
     end
   
