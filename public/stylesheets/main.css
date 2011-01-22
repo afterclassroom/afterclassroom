@@ -60,6 +60,19 @@ body input, body textarea, body select{
 .signin, .log{
     float:right;
 }
+.signin .signinLogin div input{
+    cursor: pointer;
+}
+.signin .signinLogin div input:hover{
+    color: #DD0000;
+}
+.signin .signinSignup div input{
+    cursor: pointer;
+    margin-left: 5px;
+}
+.signin .signinSignup div input:hover{
+    color: #DD0000;
+}
 .signin ul,.signin ul li{
     list-style:none;display:inline-block;float:left;padding:0px;margin:0px;
 }
@@ -440,7 +453,6 @@ div.menuMain ul li.select a.menuFirst, div.menuMain ul li a.menuFirst:hover span
 }
 .RmenuRtext a:hover{
     color:#d00;
-
 }
 .RmenuRbtm1, .RmenuRbtm2{
     float:left;
@@ -469,24 +481,26 @@ div.menuMain ul li.select a.menuFirst, div.menuMain ul li a.menuFirst:hover span
     text-decoration:none;
 }
 .RmenuRbtm2 div{
-    background:url('/images/btm38.png') no-repeat;
-    width:38px;
+    width:40px;
     height:25px;
-    display:block;
-    text-align:center;
 }
 .RmenuRbtm2 div input{
     background:url('/images/btm38.png') no-repeat;
-    width:38px;
-    height:25px;
+    height:29px;
     display:block;
     text-align:center;
+    margin-left: -2px;
+    margin-top: -2px;
+    color: #FFFFFF;
+    cursor: pointer;
 }
 .RmenuRbtm2 div input:hover{
     background:url('/images/btm38Red.png') no-repeat;
     text-decoration:none;
+    margin-left: -2px;
+    margin-top: -2px;
 }
-.RmenuRbtm1 a:link, .RmenuRbtm1 a:visited, .RmenuRbtm2 a:link, .RmenuRbtm2 a:visited, .RmenuRbtm1 a:hover, .RmenuRbtm2 a:hover{
+.RmenuRbtm1 a:link, .RmenuRbtm1 a:visited, .RmenuRbtm2 a:link, .RmenuRbtm2 a:visited, .RmenuRbtm1 a:hover, .RmenuRbtm2 a:hover, .RmenuRbtm2 div input:link, .RmenuRbtm2 div input:visited, .RmenuRbtm2 div input:hover{
     color:#fff;
     text-decoration:none;
 }
