@@ -4,9 +4,9 @@ module RPH
       TYPES = [:notice, :warning, :error]
       
       TYPES.each do |type|
-        define_method(type) { |msg| flash[type] = raw(msg) }
+        define_method(type) { |msg| flash[type] = msg }
         
-        define_method("#{type}_now") { |msg| flash.now[type] = raw(msg) }
+        define_method("#{type}_now") { |msg| flash.now[type] = msg }
       end
     end
   
@@ -16,7 +16,7 @@ module RPH
           flash.each do |css_class, message|
             if message != ""
               the_close = content_tag(:div, raw("<a href='javascript:;' onClick='hideFlashes();'> </a>"), :class => 'postErrClo')
-              the_content = content_tag(:div, message, :class => 'postErrNote')
+              the_content = content_tag(:div, raw(message), :class => 'postErrNote')
               html << content_tag(:div, the_content + the_close, :id => "flash_#{css_class}")
               html << content_tag(:script, "setTimeout(hideFlashes, 25000);", :type => 'text/javascript')
               flash.delete(css_class)
