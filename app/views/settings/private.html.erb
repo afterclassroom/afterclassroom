@@ -10,38 +10,37 @@
       </ul>
     </div>
     <div class="settNetLPaT"></div>
-    <div class="settNetLPa">Những thứ tôi chia sẻ.</div>
+    <div class="settNetLPa">Control your sharing information</div>
     <div class="settC">
       <div class="flistItem">
         <div class="flistInf">
-          <div class="flistNPa"><span>Bài viết của tôi</span></div>
-          <div class="flistS">Thiết lập mặc định cho bài đăng</div>
+          <div class="flistNPa"><span>My story</span></div>
+          <div class="flistS"></div>
         </div>
         <div class="flistRPa">
           <div class="flistRAddPa">
-            <a href="#"><span class="flistAPa">Chỉ bạn bè</span></a>
+            <a href="#"><span class="flistAPa">Friends from work</span></a>
             <ul>
-              <li><input type="checkbox" id="Family members"><a href="/users/3/friends/list?group=family_members">Mọi người</a></li>
-              <li><input type="checkbox" id="Friends from school"><a href="/users/3/friends/list?group=friends_from_school">Bạn của bạn bè</a></li>
-              <li><input type="checkbox" id="Friends from work"><a href="/users/3/friends/list?group=friends_from_work">Chỉ bạn bè</a></li>
-              <li><input type="checkbox" id="General Friends"><a href="/users/3/friends/list?group=general_friends">Tùy chỉnh</a></li>
+              <li><input type="checkbox" id="Family members"><a href="/users/3/friends/list?group=family_members">Family members</a></li>
+              <li><input type="checkbox" id="Friends from school"><a href="/users/3/friends/list?group=friends_from_school">Friends from school</a></li>
+              <li><input type="checkbox" id="Friends from work"><a href="/users/3/friends/list?group=friends_from_work">Friends from work</a></li>
+              <li><input type="checkbox" id="General Friends"><a href="/users/3/friends/list?group=general_friends">General Friends</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="flistItem">
         <div class="flistInf">
-          <div class="flistNPa"><span>Gia đình</span></div>
+          <div class="flistNPa"><span>My profile</span></div>
         </div>
-        <div class="flistRPa">
-          <div class="flistRAddPa">
-            <a href="#"><span class="flistAPa">Chỉ bạn bè</span></a>
-            <ul>
-              <li><input type="checkbox" id="Family members"><a href="/users/3/friends/list?group=family_members">Mọi người</a></li>
-              <li><input type="checkbox" id="Friends from school"><a href="/users/3/friends/list?group=friends_from_school">Bạn của bạn bè</a></li>
-              <li><input type="checkbox" id="Friends from work"><a href="/users/3/friends/list?group=friends_from_work">Chỉ bạn bè</a></li>
-              <li><input type="checkbox" id="General Friends"><a href="/users/3/friends/list?group=general_friends">Tùy chỉnh</a></li>
-            </ul>
+        <div class="Browse">
+          <div>
+            <form action="" id="select_list" name="select_list">
+              <select onchange="$('#select_list').submit();" name="group" id="group"><option value="family_members">Family members</option>
+                <option value="friends_from_school">Friends from school</option>
+                <option selected="selected" value="friends_from_work">Friends from work</option>
+                <option value="general_friends">General Friends</option></select>
+            </form>
           </div>
         </div>
       </div>

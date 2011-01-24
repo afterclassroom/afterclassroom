@@ -45,6 +45,7 @@
                               '</div>' +
                             '</div>'
     settings.overlayHtml = '<div id="' + settings.overlay + '" class="feedback_hide"></div>';
+    /*settings.tabHtml = '<%= button_to 'Feedback' :action => '#', :id => 'feedback_link', :class => 'feedback_link ' + settings.tabPosition + '' %>'*/
     settings.tabHtml = '<a href="#" id="feedback_link" class="feedback_link ' + settings.tabPosition + '"></a>';
     settings.main = '#' + settings.main;
     settings.closeLink = '#' + settings.closeLink;
@@ -93,7 +94,8 @@
   
   var initOverlay = function() {
     if ($(settings.overlay).length == 0)
-      $("body").append(settings.overlayHtml)
+      $("body").append(settings.overlayHtml)
+
     return $(settings.overlay).hide().addClass("feedback_overlayBG")
   } 
  
