@@ -41,7 +41,5 @@ module Afterclassroom
     config.filter_parameters += [:password]
 
     config.active_record.observers = :user_observer
-
-    config.middleware.insert 5, Rack::ForceActiveRecordSession
   end
 end

@@ -11,6 +11,7 @@ gem 'capistrano'
 # gem 'ruby-debug19'
 
 # Bundle the extra gems:
+gem 'rack'
 gem 'aasm', '2.2.0'
 gem 'i18n', '0.5.0'
 gem 'gemcutter'

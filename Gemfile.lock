@@ -148,6 +148,7 @@ DEPENDENCIES
   juggernaut
   mysql2
   paperclip (~> 2.3)
+  rack
   rails (= 3.0.3)
   rest-open-uri
   riddle (>= 1.2.1)
