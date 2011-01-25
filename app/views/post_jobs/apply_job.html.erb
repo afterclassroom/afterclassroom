@@ -1,3 +1,5 @@
+<button type="button" id="save_all">Save all</button>
+
 <div style="display: inline; padding-top: 1px">
   <%= form_for :apply_letter, :url => {:action => "save_letter"}, :html =>{:multipart => true, :id => "form_letter"} do |f| %>
     <a id="upload_letter" href="javascript:;">Cover Letter</a>
@@ -9,18 +11,33 @@
     <a id="upload_resume" href="javascript:;">Resume</a>
   <% end %>
 </div>
-<div style="display: inline; padding-top: 1px"">
+<div style="display: inline; padding-top: 1px">
 
-  <%= form_for :apply_script, :url => {:action => "save_script"}, :html =>{:multipart => true, :id => "form_script"} do |f| %>
-    <a id="upload_script" href="javascript:;">Transcript</a>
+     <%= form_for :apply_script, :url => {:action => "save_script"}, :html =>{:multipart => true, :id => "form_script"} do |f| %>
+       <a id="upload_script" href="javascript:;">Transcript</a>
   <% end %>
 </div>
+
 
 <script type="text/javascript">
 
 
   $(document).ready(function(){
+    $('#save_all').click(function(){
+      if (coverName != undefined)
+        coverFile.submit();
+      if (transName != undefined)
+        transFile.submit();
+      if (resumeName != undefined){
+        resumeFile.submit();
+      }
+        
+    });
     /*HANDLE EVENT UPLOAD COVER LETTER============================================*/
+    var coverFile=null;
+    var transFile=null;
+    var resumeFile=null;
+    var coverName, transName, resumeName;
     
     var $letter = $('#upload_letter');
 
@@ -29,10 +46,15 @@
       $form_url = $('form#form_letter').attr('action');
       $form_url = $form_url+'?job_id=<%= @post_job_id %>';
 
-      new AjaxUpload($letter, {
+      coverFile = new AjaxUpload($letter, {
         action: $form_url,
         name: 'cover_letter',
+        autoSubmit: false,
 
+        onChange: function(file, extension){
+          coverName = ''+file;
+          $('#upload_letter').html("Cover letter<br/><span style='color: black'>"+file+"</span>");
+        },
         onSubmit : function(file, ext){
 
           // change button text, when user selects file
@@ -77,10 +99,15 @@
       $form_script_url = $('form#form_script').attr('action');
       $form_script_url = $form_script_url+'?job_id=<%= @post_job_id %>';
 
-      new AjaxUpload($transcript, {
+      transFile = new AjaxUpload($transcript, {
         action: $form_script_url,
         name: 'transcript',
+        autoSubmit: false,
 
+        onChange: function(file, extension){
+          transName = ''+file;
+          $('#upload_script').html("Transcript<br/><span style='color: black'>"+file+"</span>");
+        },
         onSubmit : function(file, ext){
 
           // change button text, when user selects file
@@ -125,10 +152,16 @@
       $form_resume_url = $('form#form_resume').attr('action');
       $form_resume_url = $form_resume_url+'?job_id=<%= @post_job_id %>';
 
-      new AjaxUpload($resume, {
+      resumeFile = new AjaxUpload($resume, {
         action: $form_resume_url,
         name: 'resume',
 
+        autoSubmit: false,
+
+        onChange: function(file, extension){
+          resumeName = ''+file;
+          $('#upload_resume').html("Resume<br/><span style='color: black'>"+file+"</span>");
+        },
         onSubmit : function(file, ext){
 
           // change button text, when user selects file
