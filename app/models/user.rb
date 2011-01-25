@@ -142,7 +142,7 @@ class User < ActiveRecord::Base
 	
 	def check_user_online
 		check = false
-		online_sessions = CGI::Session::ActiveRecordStore::Session.find( :all,
+		online_sessions = ActiveRecord::SessionStore::Session.find( :all,
 			:select => "user_id",
 			:conditions => [ "user_id = ?", self.id])
 		check = true if online_sessions.size > 0

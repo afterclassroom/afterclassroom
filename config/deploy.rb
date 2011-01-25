@@ -48,14 +48,14 @@ namespace :deploy do
   task :after_update_code do
     db_config = <<-EOF
     production:
-      adapter: mysql
+      adapter: mysql2
       encoding: utf8
       username: after
       password: huyettam2010
       database: afterclassroom_production
       socket: /var/lib/mysql/mysql.sock
     development:
-      adapter: mysql
+      adapter: mysql2
       encoding: utf8
       username: after
       password: huyettam2010

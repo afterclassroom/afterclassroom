@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
   # Temp
   USER_NAME, PASSWORD = "afterclassroom", "teamwork"
 
+  session = env['rack.session.record'].data rescue {}[200, {"Content-Type" => "text/html"}, session.inspect]
+
   before_filter :authenticate
   before_filter :session_update
 
@@ -74,11 +76,11 @@ class ApplicationController < ActionController::Base
   end
 
   def session_update
-    #session.model.update_attribute(:user_id, session[:user_id])
-    #session.model.update_attribute(:last_url_visited, request.url)
+    session.model.update_attribute(:user_id, session[:user_id])
+    session.model.update_attribute(:last_url_visited, request.url)
   end
 
   def save_url
-    #session.model.update_attribute(:go_back_url, request.url)
+    session.model.update_attribute(:go_back_url, request.url)
   end
 end
