@@ -1,4 +1,4 @@
-<button type="button" id="save_all">Save all</button>
+<button type="button" id="save_all" disabled="disabled">Save all</button>
 
 <div style="display: inline; padding-top: 1px">
   <%= form_for :apply_letter, :url => {:action => "save_letter"}, :html =>{:multipart => true, :id => "form_letter"} do |f| %>
@@ -54,6 +54,7 @@
         onChange: function(file, extension){
           coverName = ''+file;
           $('#upload_letter').html("Cover letter<br/><span style='color: black'>"+file+"</span>");
+          $('#save_all').attr('disabled','');
         },
         onSubmit : function(file, ext){
 
@@ -107,6 +108,7 @@
         onChange: function(file, extension){
           transName = ''+file;
           $('#upload_script').html("Transcript<br/><span style='color: black'>"+file+"</span>");
+          $('#save_all').attr('disabled','');
         },
         onSubmit : function(file, ext){
 
@@ -161,6 +163,7 @@
         onChange: function(file, extension){
           resumeName = ''+file;
           $('#upload_resume').html("Resume<br/><span style='color: black'>"+file+"</span>");
+          $('#save_all').attr('disabled','');
         },
         onSubmit : function(file, ext){
 
