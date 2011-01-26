@@ -1,5 +1,5 @@
 class PostExamSchedulesController < ApplicationController
-  include Viewable
+  
 
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search]
   before_filter :login_required, :except => [:index, :show, :search]

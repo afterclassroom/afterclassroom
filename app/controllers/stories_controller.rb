@@ -2,7 +2,7 @@
 class StoriesController < ApplicationController
   layout 'student_lounge'
   
-  include Viewable
+  
   
   before_filter :login_required
   before_filter :require_current_user, :only => [:edit, :update, :destroy, :delete_comment]

@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
     :bucket => 'afterclassroom_avatar',
     :default_url => "/images/icons/icon_defaut/icon_members.png",
     :styles => { :medium => "169x169>",
-    :thumb => "45x45#" }
+      :thumb => "45x45#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   # process_in_background :avatar
@@ -139,13 +139,19 @@ class User < ActiveRecord::Base
   def full_name
     self.name == "" ? self.login : self.name
   end
-	
+
+  def self.get_online_users
+    sessions = ActiveRecord::SessionStore::Session.find(:all, :conditions => ["updated_at >= ?", 30.minutes.ago])
+    user_ids = sessions.collect{|s| s.data["user_id"]}.compact.uniq
+
+    online_users = User.find(user_ids)
+    return online_users
+  end
+
 	def check_user_online
 		check = false
-		online_sessions = ActiveRecord::SessionStore::Session.find( :all,
-			:select => "user_id",
-			:conditions => [ "user_id = ?", self.id])
-		check = true if online_sessions.size > 0
+		online_users = self.get_online_users
+		check = online_users.include?(self)
 		return check
 	end
 	

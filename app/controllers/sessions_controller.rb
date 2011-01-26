@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def login_ajax
-    notice "This function is available only to registered users."
+    flash.now[:notice] = "This function is available only to registered users."
     render :layout => false
   end
 
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_killing_session!
-    notice "You have been logged out."
+    flash.now[:notice] = "You have been logged out."
     redirect_back_or_default(root_path)
   end
 
@@ -65,11 +65,11 @@ class SessionsController < ApplicationController
     redirect_back_or_default(user_student_lounges_path(current_user))
     #Set session your school
     session[:your_school] = self.current_user.school.id if self.current_user.school
-    flash[:notice] = "Logged in successfully"
+    flash.now[:notice] = "Logged in successfully"
   end
 
   def note_failed_signin
-    error "Couldn't log you in as '#{params[:email]}'"
+    flash.now[:error] =  "Couldn't log you in as '#{params[:email]}'"
     logger.warn "Failed login for '#{params[:email]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end

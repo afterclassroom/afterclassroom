@@ -2,7 +2,8 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
-
+  include Viewable
+  
   helper :all # include all helpers, all the time
   #config.filter_parameters :password, :password_confirmation
 
@@ -76,9 +77,5 @@ class ApplicationController < ActionController::Base
   def session_update
 #    session.model.update_attribute(:user_id, session[:user_id])
 #    session.model.update_attribute(:last_url_visited, request.url)
-  end
-
-  def save_url
-#    session.model.update_attribute(:go_back_url, request.url)
   end
 end

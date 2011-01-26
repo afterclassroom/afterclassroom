@@ -1,6 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostPartiesController < ApplicationController
-  include Viewable
+  
 
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :prefer, :add_party, :my_party_list, :show_rsvp]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :prefer, :show_rsvp]

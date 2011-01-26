@@ -370,7 +370,7 @@ module ApplicationHelper
       str_supported = "You've selected."
       link_to(str, "javascript:;", :class => "vtip", :title => str_supported)
     else
-      link_to_remote(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :update => "support_action"})
+      link_to(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :update => "support_action", :remote => true})
     end
   end
 
@@ -383,7 +383,7 @@ module ApplicationHelper
       str_supported = "You've selected."
       link_to(str, "javascript:;", :class => "vtip", :title => str_supported)
     else
-      link_to_remote(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :update => "support_action"})
+      link_to(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :update => "support_action", :remote => true})
     end
   end
 
