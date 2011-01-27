@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
 
 	def check_user_online
 		check = false
-		online_users = self.get_online_users
+		online_users = User.get_online_users
 		check = online_users.include?(self)
 		return check
 	end

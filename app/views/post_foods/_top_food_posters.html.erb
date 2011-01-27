@@ -5,7 +5,7 @@
       <div class="posterItem">
         <% users = PostFood.top_food_posters %>
         <% users.each do |user| %>
-          <div class="posterL"><%= link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => user.id} %></div>
+          <div class="posterL"><%= link_to raw("<div>#{image_tag(user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => user.id} %></div>
         <% end %>
       </div>
     </div>
