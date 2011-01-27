@@ -51,7 +51,7 @@ body input, body textarea, body select{
     float:right;width:500px;
 }
 .signin a{
-    background:url('/images/help..png') no-repeat left 4px;
+    background:url('/images/help.png') no-repeat left 4px;
     cursor:pointer;
 }
 .signin a.signinFrist{

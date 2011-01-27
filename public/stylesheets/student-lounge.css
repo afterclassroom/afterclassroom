@@ -5923,7 +5923,7 @@ span.btmTag a:hover{
 .flistRAddPa span{
   background: url('/images/flistA.gif') no-repeat center right;
   float: left;
-  width:75px;
+  width:115px;
   margin-left:30px;
 }
 .flistRAddPa a:hover span{
@@ -5980,7 +5980,7 @@ span.btmTag a:hover{
   float: right;
   height: 30px;
   line-height: 30px;
-  width: 116px;
-  margin-right:150px;
+  width: 152px;
+  margin-right:60px;
 }
 /****/

@@ -5,6 +5,7 @@ class SettingsController < ApplicationController
   
   def index
     redirect_to :action => "setting"
+       
   end
 
   def save_setting
@@ -51,6 +52,7 @@ class SettingsController < ApplicationController
   end
   
   def private
+   
   end
 
   def networks
@@ -122,7 +124,6 @@ class SettingsController < ApplicationController
       redirect_to :action => "setting", :inf_msg => "Updated Failed"
     end
   end
-
 
 
 end

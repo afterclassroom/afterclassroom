@@ -24,7 +24,7 @@
           <div><%= check_box_tag('remember_me') %> </div>
           <div class="signincCheckTxt">Remember me for next login</div>
         </div>
-        <div class="btmLogme"><a href="javascript:;" onclick="submit()">Log me in</a></div>
+        <div class="btmLogme2"><a href="javascript:;" onclick="submit()"><%= submit_tag 'Log me in' %></a></div>
         <div class="forgotPass"><span><%= link_to "Forgot Password", user_forgot_password_url %></span></div>
       <% end -%>
     </div>

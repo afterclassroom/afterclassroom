@@ -19,47 +19,70 @@
         </div>
         <div class="flistRPa">
           <div class="flistRAddPa">
-            <a href="#"><span class="flistAPa">Friends from work</span></a>
+            <a href="#"><span class="flistAPa">Add to list</span></a>
             <ul>
-              <li><input type="checkbox" id="Family members"><a href="/users/3/friends/list?group=family_members">Family members</a></li>
-              <li><input type="checkbox" id="Friends from school"><a href="/users/3/friends/list?group=friends_from_school">Friends from school</a></li>
-              <li><input type="checkbox" id="Friends from work"><a href="/users/3/friends/list?group=friends_from_work">Friends from work</a></li>
-              <li><input type="checkbox" id="General Friends"><a href="/users/3/friends/list?group=general_friends">General Friends</a></li>
+              <li><input type="checkbox" id="Family members"><a href="">Family members</a></li>
+              <li><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></li>
+              <li><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></li>
+              <li><input type="checkbox" id="General Friends"><a href="">General Friends</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="flistItem">
         <div class="flistInf">
-          <div class="flistNPa"><span>My profile</span></div>
+          <div class="flistNPa"><span>My Q&A</span></div>
         </div>
         <div class="Browse">
           <div>
             <form action="" id="select_list" name="select_list">
-              <select onchange="$('#select_list').submit();" name="group" id="group"><option value="family_members">Family members</option>
+              <select onchange="$('#select_list').submit();" name="group" id="group">
+                <option value="family_members">Family members</option>
                 <option value="friends_from_school">Friends from school</option>
                 <option selected="selected" value="friends_from_work">Friends from work</option>
-                <option value="general_friends">General Friends</option></select>
+                <option value="general_friends">General Friends</option>
+              </select>
             </form>
           </div>
         </div>
       </div>
       <div class="flistItem">
         <div class="flistInf">
-          <div class="flistNPa"><span>Quan tâm và đang tìm kiếm</span></div>
-        </div>
-        <div class="flistRPa">
-          <div class="flistRAddPa">
-            <a href="#"><span class="flistAPa">Chỉ bạn bè</span></a>
-            <ul>
-              <li><input type="checkbox" id="Family members"><a href="/users/3/friends/list?group=family_members">Mọi người</a></li>
-              <li><input type="checkbox" id="Friends from school"><a href="/users/3/friends/list?group=friends_from_school">Bạn của bạn bè</a></li>
-              <li><input type="checkbox" id="Friends from work"><a href="/users/3/friends/list?group=friends_from_work">Chỉ bạn bè</a></li>
-              <li><input type="checkbox" id="General Friends"><a href="/users/3/friends/list?group=general_friends">Tùy chỉnh</a></li>
-            </ul>
+          <div class="flistNPa"><span>My Job</span></div>
+          <div class="flist">
+
           </div>
+        </div>
+
+        <div class="flistItem">
+          <div class="flistInf">
+            <div class="flistNPa"><span>Quan tâm và đang tìm kiếm</span></div>
+          </div>
+
+          <div class="form_row">
+            <label for="features[]">Features:</label>
+            <br><%= check_box_tag 'features[]', 'scenarios' %> Scenarios
+            <br><%= check_box_tag 'features[]', 'role_profiles' %> Role profiles
+            <br><%= check_box_tag 'features[]', 'private_messages' %> Private messages
+            <br><%= check_box_tag 'features[]', 'chatrooms' %> Chatrooms
+            <br><%= check_box_tag 'features[]', 'forums' %> Forums
+            <br><%= check_box_tag 'features[]', 'news' %> News
+            <br><%= check_box_tag 'features[]', 'polls' %> Polls
+
+          </div>
+          <div class="form_row">
+            <label for="features[]">Features:</label>
+            <% [ 'scenarios', 'role_profiles', 'polls' ].each do |feature| %>
+              <br><%= check_box_tag 'features[]', feature,
+                (params[:features] || {}).include?(feature) %>
+              <%= feature.humanize %>
+            <% end %>
+          </div>
+          <div>
+            <a class="multiSelect" href="javascript:;" id="housing_category"><span style="width: 338px;">Select options</span></a><div style="position: absolute; z-index: 99999; visibility: hidden; width: 361px; top: 274px; left: 342.5px;" class="multiSelectOptions"><label class="selectAll"><input type="checkbox" class="selectAll">Select All</label><label class=""><input type="checkbox" value="1" name="housing_category[]">Room for share</label><label class=""><input type="checkbox" value="2" name="housing_category[]">Apartment for rent</label><label class=""><input type="checkbox" value="3" name="housing_category[]">House for rent</label><label class=""><input type="checkbox" value="4" name="housing_category[]">Summer rental</label><label class=""><input type="checkbox" value="5" name="housing_category[]">I need a place</label></div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
-</div>

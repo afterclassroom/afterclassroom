@@ -12,7 +12,11 @@ development:
   database: afterclassroom_development
   pool: 5
   username: root
+<<<<<<< HEAD
   password:
+=======
+  password: 
+>>>>>>> a535f245908b5909eaa6a1271d891701bd38f009
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -25,7 +29,11 @@ test:
   database: afterclassroom_test
   pool: 5
   username: root
+<<<<<<< HEAD
   password:
+=======
+  password: 
+>>>>>>> a535f245908b5909eaa6a1271d891701bd38f009
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -35,5 +43,9 @@ production:
   database: afterclassroom_production
   pool: 5
   username: root
+<<<<<<< HEAD
   password:
+=======
+  password: 
+>>>>>>> a535f245908b5909eaa6a1271d891701bd38f009
   socket: /var/run/mysqld/mysqld.sock

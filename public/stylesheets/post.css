@@ -1527,7 +1527,7 @@ div.signinInf{
 .signincCheckTxt a:hover{
   color:#d00;
 }
-.btmLogme, .btmCreAc{
+.btmLogme, .btmLogme2, .btmCreAc{
   padding-left:76px;
   padding-top:10px;
 }
@@ -1542,6 +1542,25 @@ div.signinInf{
   text-align:center;
   display:block;
 }
+/*--button submit Log me in--*/
+.btmLogme2 a{
+    
+}
+.btmLogme2 a input{
+    background:url('/images/btm71.png') no-repeat;
+    height:25px;
+    width: 71px;
+    display:block;
+    text-align:center;
+    color: #FFFFFF;
+    cursor: pointer;
+    border: none;
+}
+.btmLogme2 a input:hover{
+    background:url('/images/btm71Red.png') no-repeat;
+    text-decoration:none;
+}
+/*--------*/
 .btmCreAc a{
   width:106px;
   background:url('/images/btm106.png') no-repeat;
