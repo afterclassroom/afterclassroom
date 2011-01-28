@@ -127,13 +127,26 @@ div.signin ul li.select a:hover{
     display:block;
     background:url('/images/btm-signin.png') no-repeat;
 }
-.log-btm a, .log-btm a:link, .log-btm a:visited{
+.log-btm2{
+    line-height:25px;
+    float:left;
+}
+.log-btm2 a input{
+    background:url('/images/btm-signin.png') no-repeat;
+    height:20px;
+    width: 45px;
+    display:block;
+    text-align:center;
+    cursor: pointer;
+    border: none;
+}
+.log-btm2 a, .log-btm2 a:link, .log-btm2 a:visited{
     color:#6e6e62;
     text-decoration:none;
     text-align:center;
     line-height:20px;
 }
-.log-btm a:hover{
+.log-btm2 a input:hover{
     color:#d00;
 }
 .menu{

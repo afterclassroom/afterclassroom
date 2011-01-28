@@ -1547,9 +1547,9 @@ div.signinInf{
     
 }
 .btmLogme2 a input{
-    background:url('/images/btm71.png') no-repeat;
+    background:url('/images/btm62.png') no-repeat;
     height:25px;
-    width: 71px;
+    width:62px;
     display:block;
     text-align:center;
     color: #FFFFFF;
@@ -1557,22 +1557,24 @@ div.signinInf{
     border: none;
 }
 .btmLogme2 a input:hover{
-    background:url('/images/btm71Red.png') no-repeat;
+    background:url('/images/btm62Red.png') no-repeat;
     text-decoration:none;
 }
 /*--------*/
-.btmCreAc a{
+.btmCreAc a input{
   width:106px;
   background:url('/images/btm106.png') no-repeat;
+  height: 25px;
+  border: none;
 }
 .btmLogme a:hover{
   background:url('/images/btm62Red.png') no-repeat;
 }
-.btmCreAc a:hover{
+.btmCreAc a input:hover{
   background:url('/images/btm106Red.png') no-repeat;
 }
 .btmLogme a, .btmLogme a:link, .btmLogme a:visited, .btmLogme a:hover,
-.btmCreAc a, .btmCreAc a:link, .btmCreAc a:visited, .btmCreAc a:hover{
+.btmCreAc a input, .btmCreAc a input:link, .btmCreAc a input:visited, .btmCreAc a input:hover{
   color:#fff;
   text-decoration:none;
 }

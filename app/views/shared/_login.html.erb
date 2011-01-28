@@ -24,7 +24,7 @@
       <%= form_tag session_path, :name => "form_login", :id => "form_login" do -%>
         <span class="log-user"><%= text_field_tag 'email', 'Email...', :class => 'userlogin-un', :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></span>
         <span class="log-pass"><%= password_field_tag 'password', 'Password...', :class => 'userlogin-pw', :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></span>
-        <span class="log-btm"><a href="javascript:;" onclick="$('#form_login').submit();">Sign in</a></span>
+        <span class="log-btm2"><a href="javascript:;" onclick="$('#form_login').submit();"><%= submit_tag 'Sign in' %></a></span>
       <% end -%>
     </div>
   <% end -%>
