@@ -1,6 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostsController < ApplicationController
-  include Viewable
+  
   
   before_filter :login_required, :except => [:rate_comment, :report_abuse, :create_report_abuse, :download]
   

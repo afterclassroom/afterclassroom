@@ -245,7 +245,7 @@ module ApplicationHelper
   def show_favorite_in_detail(type, item)
     f_size = item.favoriting_users.size
     if !logged_in?
-      link_to_require_login("<span id='favorite_action'>Favorite (#{f_size})</span>")
+      link_to_require_login(raw("<span id='favorite_action'>Favorite (#{f_size})</span>"))
     elsif current_user.has_favorite?(item)
       str_favorited = "It`s already in your favourite list."
       link_to(raw("<span id='favorite_action'>Favorite (#{f_size})</span>"), "javascript:;", :class => "vtip", :title => str_favorited)
@@ -284,7 +284,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login(raw("<span style='padding-left:10px'>Apply now</span>"))
     else
-      return "<a title='Apply now' id='apply_now'>Apply now</a>"
+      return raw("<a title='Apply now' id='apply_now'>Apply now</a>")
     end
   end
 
@@ -294,7 +294,7 @@ module ApplicationHelper
       link_to_require_login(raw("<span>Add party</span>"))
     else
       party_lists = current_user.partys_lists
-      link_to_remote(raw("<span>Add party</span>"), :update => "show_party_button", :url => { :action => "add_party", :post_party_id => post.id}) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
+      link_to(raw("<span>Add party</span>"), :remote => true, :update => "show_party_button", :url => { :action => "add_party", :post_party_id => post.id}) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
     end
   end
 
@@ -324,7 +324,7 @@ module ApplicationHelper
   def show_invite_friend(user)
     str = ""
     if !logged_in?
-      str = link_to_require_login("<span>Invite Friend</span>")
+      str = link_to_require_login(raw("<span>Invite Friend</span>"))
     else
       if current_user.user_friends.include?(user)
         str = "My friend"
@@ -332,7 +332,7 @@ module ApplicationHelper
         if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
           str = "Waiting accept"
         else
-          str = link_to("<span>Invite Friend</span>", "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+          str = link_to(raw("<span>Invite Friend</span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
         end
       end
     end
@@ -342,7 +342,7 @@ module ApplicationHelper
   def show_invite_chat(user)
     str = ""
     if !logged_in?
-      str = link_to_require_login("<span>Invite Chat</span>")
+      str = link_to_require_login(raw("<span>Invite Chat</span>"))
     else
       if user.check_user_online
         if user.check_user_in_chatting_session(current_user.id)
@@ -370,7 +370,7 @@ module ApplicationHelper
       str_supported = "You've selected."
       link_to(str, "javascript:;", :class => "vtip", :title => str_supported)
     else
-      link_to_remote(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :update => "support_action"})
+      link_to(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :update => "support_action", :remote => true})
     end
   end
 
@@ -383,12 +383,12 @@ module ApplicationHelper
       str_supported = "You've selected."
       link_to(str, "javascript:;", :class => "vtip", :title => str_supported)
     else
-      link_to_remote(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :update => "support_action"})
+      link_to(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :update => "support_action", :remote => true})
     end
   end
 
   def show_go_back
-    link_to "<span>Go back</span>", session[:go_back_url]
+    link_to raw("<span>Go back</span>"), session[:go_back_url]
   end
 
   # id : id of post
@@ -408,9 +408,9 @@ module ApplicationHelper
 
   def show_submit_rating(post_id, path)
     if !logged_in?
-      link_to_require_login("<span>Submit</span>")
+      link_to_require_login(raw("<span>Submit</span>"))
     else
-      link_to("<span>Submit</span>", "javascript:;", :onclick => "requireRating('#{post_id}', '#{path}');")
+      link_to(raw("<span>Submit</span>"), "javascript:;", :onclick => "requireRating('#{post_id}', '#{path}');")
     end
   end
 
@@ -444,14 +444,14 @@ module ApplicationHelper
 
     if wall.user_wall_video
       link = wall.user_wall_video.link
-      image = link_to_remote image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + "<span class='play'/>", :url => {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :update => "show_jplayer_#{wall.id}"
+      image = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + "<span class='play'/>", :url => {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :update => "show_jplayer_#{wall.id}", :remote => true
       title = wall.user_wall_video.title
       sub_content = wall.user_wall_video.sub_content
     end
 
     if wall.user_wall_music
       link = wall.user_wall_music.link
-      image = link_to_remote image_tag("/images/music.png", :style => "width:92px;height:68px") + "<span class='play'/>", :url => {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :update => "show_jplayer_#{wall.id}"
+      image = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + "<span class='play'/>", :url => {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :update => "show_jplayer_#{wall.id}", :remote => true
       title = wall.user_wall_music.title
       sub_content = wall.user_wall_music.sub_content
     end

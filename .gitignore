@@ -6,6 +6,7 @@ nbproject/
 Capfile
 log/*.log
 tmp/**/*
+config/database.yml
 db/sphinx/**/*
 doc/api
 doc/app
@@ -22,3 +23,4 @@ public/javascripts/cache/
 public/stylesheets/cache/
 vendor/gems/**/ext/**/*
 vendor/**/.git/**/*
+vendor/cache/**/*

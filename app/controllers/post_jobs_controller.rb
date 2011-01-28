@@ -1,6 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostJobsController < ApplicationController
-  include Viewable
+  
 
   skip_before_filter :verify_authenticity_token
 
@@ -200,10 +200,10 @@ class PostJobsController < ApplicationController
     end
 
     if @post_job.save
-      notice "Your post was successfully created."
+      flash.now[:notice] = "Your post was successfully created."
       redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
     else
-      error "Failed to create a new post."
+      flash.now[:error] =  "Failed to create a new post."
       render :action => "new"
     end
   end

@@ -1,6 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostCategoriesController < ApplicationController
-  include Viewable
+  
 
   require_role :admin
   layout 'admin'

@@ -19,8 +19,8 @@
                 <div class="flistS"><span>at</span><%= i.user.school.name %></div>
               </div>
               <div class="asslinkdown">
-                <div class="support"><%= link_to_remote "Accept", :url => accept_user_friends_path(current_user), :with => "'invite_id=#{i.id}'", :complete => "$('#friend_request_#{i.id}').remove();" %></div>
-                <div class="support"><%= link_to_remote "No Accept", :url => de_accept_user_friends_path(current_user), :with => "'invite_id=#{i.id}'", :complete => "$('#friend_request_#{i.id}').remove();" %></div>
+                <div class="support"><%= link_to "Accept", :url => accept_user_friends_path(current_user), :with => "'invite_id=#{i.id}'", :complete => "$('#friend_request_#{i.id}').remove();", :remote => true %></div>
+                <div class="support"><%= link_to "No Accept", :url => de_accept_user_friends_path(current_user), :with => "'invite_id=#{i.id}'", :complete => "$('#friend_request_#{i.id}').remove();", :remote => true %></div>
               </div>
             </div>
           <% end %>
