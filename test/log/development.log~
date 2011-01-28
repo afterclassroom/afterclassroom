@@ -1,0 +1,855 @@
+DEPRECATION WARNING: RAILS_ROOT is deprecated. Please use ::Rails.root.to_s. (called from <module:Juggernaut> at /var/www/afterclassroom/vendor/plugins/juggernaut/lib/juggernaut.rb:5)
+DEPRECATION WARNING: Use toplevel init.rb; rails/init.rb is deprecated: /var/www/afterclassroom/vendor/plugins/paperclip/rails/init.rb. (called from <top (required)> at /var/www/afterclassroom/config/environment.rb:5)
+DEPRECATION WARNING: Use toplevel init.rb; rails/init.rb is deprecated: /var/www/afterclassroom/vendor/plugins/restful_authentication/rails/init.rb. (called from <top (required)> at /var/www/afterclassroom/config/environment.rb:5)
+  [1m[36mSQL (1.9ms)[0m  [1mdescribe `roles_users`[0m
+  [1m[35mSQL (2.2ms)[0m  describe `housing_categories_post_housings`
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `housing_categories_post_housings`[0m
+  [1m[35mSQL (2.6ms)[0m  describe `party_types_post_parties`
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `roles_users`[0m
+  [1m[35mSQL (2.1ms)[0m  describe `party_types_post_parties`
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `departments_schools`[0m
+  [1m[35mSQL (2.4ms)[0m  describe `departments_schools`
+
+
+Started GET "/post_tutors" for 127.0.0.1 at 2011-01-04 11:13:00 +0700
+  Processing by PostTutorsController#index as HTML
+Creating scope :find. Overwriting existing method PostTutor.find.
+  [1m[36mSQL (0.3ms)[0m  [1mSELECT COUNT(*) FROM `post_tutors`[0m
+  [1m[35mPostTutor Load (0.4ms)[0m  SELECT `post_tutors`.* FROM `post_tutors`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM `post_tutors`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `post_tutors`.* FROM `post_tutors`
+  [1m[36mTag Load (17.7ms)[0m  [1mSELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN post_tutors ON post_tutors.id = taggings.taggable_id #<PostTutor:0xd765ef0> #<PostTutor:0xd765e28> #<PostTutor:0xd765d60> #<PostTutor:0xd765c98> #<PostTutor:0xd765bbc> #<PostTutor:0xd765b1c> #<PostTutor:0xd765a54> #<PostTutor:0xd7659b4> #<PostTutor:0xd765900> #<PostTutor:0xd765838> #<PostTutor:0xd765798> #<PostTutor:0xd7656d0> #<PostTutor:0xd765630> #<PostTutor:0xd765568> #<PostTutor:0xd7654b4> #<PostTutor:0xd7653ec> #<PostTutor:0xd76534c> #<PostTutor:0xd765284> #<PostTutor:0xd7651e4> #<PostTutor:0xd765144> WHERE (#<PostTutor:0xd289814> AND #<PostTutor:0xd289760> AND #<PostTutor:0xd289698> AND #<PostTutor:0xd2895d0> AND #<PostTutor:0xd28951c> AND #<PostTutor:0xd289468> AND #<PostTutor:0xd2893c8> AND #<PostTutor:0xd2892ec> AND #<PostTutor:0xd2891fc> AND #<PostTutor:0xd289148> AND #<PostTutor:0xd289080> AND #<PostTutor:0xd288fb8> AND #<PostTutor:0xd288ef0> AND #<PostTutor:0xd288e28> AND #<PostTutor:0xd288d88> AND #<PostTutor:0xd288ce8> AND #<PostTutor:0xd288c34> AND #<PostTutor:0xd288b80> AND #<PostTutor:0xd288ae0> AND #<PostTutor:0xd288a2c> AND taggings.taggable_type = 'PostTutor') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0[0m
+  [1m[35mPostCategory Load (0.3ms)[0m  SELECT `post_categories`.* FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostTutor') LIMIT 1
+  [1m[36mTutorType Load (0.4ms)[0m  [1mSELECT `tutor_types`.* FROM `tutor_types` LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `post_tutors`.* FROM `post_tutors`
+  [1m[36mPost Load (1.4ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 121) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 122) LIMIT 1
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 123) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 124) LIMIT 1
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 125) LIMIT 1[0m
+  [1m[35mPost Load (1.5ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 126) LIMIT 1
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 127) LIMIT 1[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 128) LIMIT 1
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 129) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 130) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 131) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 132) LIMIT 1
+  [1m[36mPost Load (1.2ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 133) LIMIT 1[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 134) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 135) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 136) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 137) LIMIT 1[0m
+  [1m[35mPost Load (1.1ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 138) LIMIT 1
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 139) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 140) LIMIT 1
+Rendered shared/_select_school.html.erb (2.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (users.state = 'active') AND (`users`.`email` = 'afterclassroom') LIMIT 1[0m
+Rendered shared/_post_button.html.erb (23.2ms)
+  [1m[35mTutorType Load (1.7ms)[0m  SELECT `tutor_types`.* FROM `tutor_types`
+Rendered post_tutors/_submenu.html.erb (7.3ms)
+DEPRECATION WARNING: Object#returning has been deprecated in favor of Object#tap. (called from display_flash_messages at /var/www/afterclassroom/vendor/plugins/pretty_flash/lib/pretty_flash.rb:15)
+  [1m[36mDepartment Load (0.8ms)[0m  [1mSELECT `departments`.* FROM `departments`[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (1.5ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (1.1ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.4ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (1.2ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.6ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mDepartmentCategory Load (1.4ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1
+  [1m[36mDepartmentCategory Load (1.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mDepartmentCategory Load (1.5ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mDepartmentCategory Load (1.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (4.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 21) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.4ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1
+Rendered shared/_options.html.erb (653.8ms)
+  [1m[36mSchool Load (0.3ms)[0m  [1mSELECT `schools`.* FROM `schools` WHERE (`schools`.`id` = 1) LIMIT 1[0m
+Rendered post_tutors/_item.html.erb (503.3ms)
+Rendered post_tutors/index.html.erb within layouts/application (1265.3ms)
+Completed   in 2726ms
+
+ActionView::Template::Error (undefined method `tutor_type' for "#<ActiveRecord::Relation:0xcc2fe78>":ActiveRecord::Relation):
+    3:     <div class="assImg"><div><%= link_to image_post_thumb(controller.controller_name, post), post %></div></div>
+    4:     <div class="assContT">
+    5:       <h2 class="titleH2"><%= link_to title, post_tutor_path(post) %></h2>
+    6:       <div class="assCate"><span>From:</span><%= link_to post.school.name, :controller => "post_tutors", :action => "index", :from_school => post.school, :tutor_type_id => post.post_tutor.tutor_type.id %></div>
+    7:     </div>
+    8:     <div class="assDes"><%= truncate_words(description) %></div>
+    9:   </div>
+  app/views/post_tutors/_item.html.erb:6:in `_app_views_post_tutors__item_html_erb__935202676_107600140_678194829'
+  app/views/post_tutors/index.html.erb:27:in `block in _app_views_post_tutors_index_html_erb___7007343_111963230__976679623'
+  app/views/post_tutors/index.html.erb:26:in `each'
+  app/views/post_tutors/index.html.erb:26:in `_app_views_post_tutors_index_html_erb___7007343_111963230__976679623'
+  app/controllers/post_tutors_controller.rb:23:in `index'
+
+Rendered /home/dungtqa/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.6ms)
+Rendered /home/dungtqa/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (25.9ms)
+Rendered /home/dungtqa/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (49.3ms)
+
+
+Started GET "/post_tutors" for 127.0.0.1 at 2011-01-04 11:13:07 +0700
+  [1m[35mSQL (2.1ms)[0m  describe `roles_users`
+  [1m[36mSQL (2.3ms)[0m  [1mdescribe `housing_categories_post_housings`[0m
+  [1m[35mSQL (2.1ms)[0m  describe `housing_categories_post_housings`
+  [1m[36mSQL (2.6ms)[0m  [1mdescribe `party_types_post_parties`[0m
+  [1m[35mSQL (2.1ms)[0m  describe `roles_users`
+  [1m[36mSQL (2.2ms)[0m  [1mdescribe `party_types_post_parties`[0m
+  [1m[35mSQL (2.5ms)[0m  describe `departments_schools`
+  [1m[36mSQL (2.1ms)[0m  [1mdescribe `departments_schools`[0m
+  Processing by PostTutorsController#index as HTML
+Creating scope :find. Overwriting existing method PostTutor.find.
+  [1m[35mSQL (1.0ms)[0m  SELECT COUNT(*) FROM `post_tutors`
+  [1m[36mPostTutor Load (0.3ms)[0m  [1mSELECT `post_tutors`.* FROM `post_tutors`[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM `post_tutors`
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `post_tutors`.* FROM `post_tutors`[0m
+  [1m[35mTag Load (17.1ms)[0m  SELECT tags.id, tags.name, COUNT(*) AS count FROM `tags` INNER JOIN taggings ON tags.id = taggings.tag_id INNER JOIN post_tutors ON post_tutors.id = taggings.taggable_id #<PostTutor:0xd1b3a5c> #<PostTutor:0xd1b39bc> #<PostTutor:0xd1b38f4> #<PostTutor:0xd1b382c> #<PostTutor:0xd1b373c> #<PostTutor:0xd1b35e8> #<PostTutor:0xd1b3494> #<PostTutor:0xd1b337c> #<PostTutor:0xd1b32a0> #<PostTutor:0xd1acec8> #<PostTutor:0xd1acd4c> #<PostTutor:0xd1acc70> #<PostTutor:0xd1ac9c8> #<PostTutor:0xd1ac7fc> #<PostTutor:0xd1ac694> #<PostTutor:0xd1ac43c> #<PostTutor:0xd1ac39c> #<PostTutor:0xd1ac2c0> #<PostTutor:0xd1ac1d0> #<PostTutor:0xd1ac040> WHERE (#<PostTutor:0xd2a8958> AND #<PostTutor:0xd2a8778> AND #<PostTutor:0xd2a86d8> AND #<PostTutor:0xd2a855c> AND #<PostTutor:0xd2a84a8> AND #<PostTutor:0xd2a8304> AND #<PostTutor:0xd2a80fc> AND #<PostTutor:0xd2a7ff8> AND #<PostTutor:0xd2a7db4> AND #<PostTutor:0xd2a7cd8> AND #<PostTutor:0xd2a7b5c> AND #<PostTutor:0xd2a7968> AND #<PostTutor:0xd2a78a0> AND #<PostTutor:0xd2a7788> AND #<PostTutor:0xd2a7670> AND #<PostTutor:0xd2a73c8> AND #<PostTutor:0xd2a72c4> AND #<PostTutor:0xd2a6ef0> AND #<PostTutor:0xd2a6c70> AND #<PostTutor:0xd2a6ae0> AND taggings.taggable_type = 'PostTutor') GROUP BY tags.id, tags.name HAVING COUNT(*) > 0
+  [1m[36mPostCategory Load (0.3ms)[0m  [1mSELECT `post_categories`.* FROM `post_categories` WHERE (`post_categories`.`class_name` = 'PostTutor') LIMIT 1[0m
+  [1m[35mTutorType Load (1.6ms)[0m  SELECT `tutor_types`.* FROM `tutor_types` LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `post_tutors`.* FROM `post_tutors`[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 121) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 122) LIMIT 1[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 123) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 124) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 125) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 126) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 127) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 128) LIMIT 1[0m
+  [1m[35mPost Load (0.5ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 129) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 130) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 131) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 132) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 133) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 134) LIMIT 1[0m
+  [1m[35mPost Load (0.4ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 135) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 136) LIMIT 1[0m
+  [1m[35mPost Load (0.3ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 137) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 138) LIMIT 1[0m
+  [1m[35mPost Load (0.6ms)[0m  SELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 139) LIMIT 1
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT `posts`.* FROM `posts` WHERE (`posts`.`id` = 140) LIMIT 1[0m
+Rendered shared/_select_school.html.erb (2.6ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE (users.state = 'active') AND (`users`.`email` = 'afterclassroom') LIMIT 1
+Rendered shared/_post_button.html.erb (20.7ms)
+  [1m[36mTutorType Load (0.3ms)[0m  [1mSELECT `tutor_types`.* FROM `tutor_types`[0m
+Rendered post_tutors/_submenu.html.erb (6.1ms)
+DEPRECATION WARNING: Object#returning has been deprecated in favor of Object#tap. (called from display_flash_messages at /var/www/afterclassroom/vendor/plugins/pretty_flash/lib/pretty_flash.rb:15)
+  [1m[35mDepartment Load (0.8ms)[0m  SELECT `departments`.* FROM `departments`
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 1) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 2) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 3) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.7ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 4) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.4ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 5) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.4ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 6) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 7) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.4ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 8) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.4ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 9) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 10) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 11) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 12) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 13) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 14) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 15) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 16) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 17) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.7ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 18) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 19) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 20) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 21) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.4ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 22) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1[0m
+  [1m[35mCACHE (1.6ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 23) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 24) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.3ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 25) LIMIT 1[0m
+  [1m[35mDepartmentCategory Load (0.4ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 26) LIMIT 1
+  [1m[36mDepartmentCategory Load (0.3ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `department_categories`.* FROM `department_categories` WHERE (`department_categories`.`id` = 27) LIMIT 1[0m
+Rendered shared/_options.html.erb (863.0ms)
+  [1m[35mSchool Load (0.4ms)[0m  SELECT `schools`.* FROM `schools` WHERE (`schools`.`id` = 1) LIMIT 1
+Rendered post_tutors/_item.html.erb (92.3ms)
+Rendered post_tutors/index.html.erb within layouts/application (1058.5ms)
+Completed   in 2040ms
+
+ActionView::Template::Error (undefined method `tutor_type' for "#<ActiveRecord::Relation:0xcd4491c>":ActiveRecord::Relation):
+    3:     <div class="assImg"><div><%= link_to image_post_thumb(controller.controller_name, post), post %></div></div>
+    4:     <div class="assContT">
+    5:       <h2 class="titleH2"><%= link_to title, post_tutor_path(post) %></h2>
+    6:       <div class="assCate"><span>From:</span><%= link_to post.school.name, :controller => "post_tutors", :action => "index", :from_school => post.school, :tutor_type_id => post.post_tutor.tutor_type.id %></div>
+    7:     </div>
+    8:     <div class="assDes"><%= truncate_words(description) %></div>
+    9:   </div>
+  app/views/post_tutors/_item.html.erb:6:in `_app_views_post_tutors__item_html_erb__935202676_107739090_678194829'
+  app/views/post_tutors/index.html.erb:27:in `block in _app_views_post_tutors_index_html_erb___7007343_108302410__976679623'
+  app/views/post_tutors/index.html.erb:26:in `each'
+  app/views/post_tutors/index.html.erb:26:in `_app_views_post_tutors_index_html_erb___7007343_108302410__976679623'
+  app/controllers/post_tutors_controller.rb:23:in `index'
+
+Rendered /home/dungtqa/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.2ms)
+Rendered /home/dungtqa/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (22.6ms)
+Rendered /home/dungtqa/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (45.6ms)

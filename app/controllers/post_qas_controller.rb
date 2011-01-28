@@ -1,7 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostQasController < ApplicationController
-  
-
+ 
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
@@ -59,8 +58,8 @@ class PostQasController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_q = post.post_qa
+    @post = Post.find(params[:post_id])
+    post_q = @post.post_qa
     post_q.rate rating.to_i, current_user
     # Update rating status
     score_good = post_q.score_good
@@ -78,16 +77,8 @@ class PostQasController < ApplicationController
 
     post_q.save
 
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_q.total_good}</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_q.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_q.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_q.total_bad}</a></div>"
   end
 
   def require_rate
@@ -164,7 +155,7 @@ class PostQasController < ApplicationController
     @post_qa.tag_list = params[:tag]
     @post_qa.post = @post
     if @post_qa.save
-      notice "Your post was successfully created."
+      flash.now[:notice] = "Your post was successfully created."
       redirect_to post_qas_path + "?type=asked"
     else
       error "Failed to create a new post."

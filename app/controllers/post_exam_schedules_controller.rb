@@ -48,9 +48,8 @@ class PostExamSchedulesController < ApplicationController
   end
 
   def tag
-    tag_id = params[:tag_id]
-    @tag = Tag.find(tag_id)
-    @posts = PostExamSchedule.paginated_post_conditions_with_tag(params, @school, @tag.name)
+    @tag_name = params[:tag_name]
+    @posts = PostExamSchedule.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
 
   def rate
@@ -118,7 +117,7 @@ class PostExamSchedulesController < ApplicationController
     @post_exam_schedule.tag_list = params[:tag]
     @post_exam_schedule.post = post
     if @post_exam_schedule.save
-      notice "Your post was successfully created."
+      flash.now[:notice] = "Your post was successfully created."
       redirect_to post_exam_schedules_path + "?type=#{@post_exam_schedule.type_name}"
     else
       error "Failed to create a new post."

@@ -4,7 +4,6 @@ javascripts:
   - application
   - jquery
   - jquery-ui
-  - jrails
   - jquery-mcdropdown
   - jquery-auto-suggest
   - jquery-validate
@@ -18,11 +17,11 @@ javascripts:
   - jquery-galleriffic
   - jquery-opacityrollover
   - jquery-gmap
+  - rails
 - student_lounge:
   - application
   - jquery
   - jquery-ui
-  - jrails
   - jquery-mcdropdown
   - jquery-auto-suggest
   - jquery-validate
@@ -41,10 +40,10 @@ javascripts:
   - swfupload
   - swfupload-handlers
   - jquery.ad-gallery
+  - rails
 - admin:
   - jquery
   - jquery-ui
-  - jrails
   - jquery-mcdropdown
   - thickbox
   - jquery-validate
@@ -56,13 +55,11 @@ javascripts:
   - jquery-datePicker
   - jquery-filestyle
   - jquery-pngFix-pack
-  - jquery-selectbox-0.5
-  - jquery-selectbox-0.5-style-2
-  - jquery-selectbox-0.5-style-3
   - jquery-tooltip
   - jquery-usermode
   - ui-checkbox
   - jquery-multiselect
+  - rails
 stylesheets:
 - application:
   - main

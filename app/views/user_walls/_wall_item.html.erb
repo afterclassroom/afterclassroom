@@ -1,5 +1,5 @@
 <div class="AfterItem" id="wall_<%= wall.id %>">
-  <div class="assPic"><%= link_to "<div>#{image_tag(wall.user_post.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %></div>
+  <div class="assPic"><%= link_to raw("<div>#{image_tag(wall.user_post.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %></div>
   <div class="AfterInfo">
     <div class="AfterCl"><%= link_to wall.user_post.full_name, {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %> - <%= wall.content %></div>
     <!--Attach-->
@@ -27,7 +27,7 @@
       <div id="wall_list_comment_<%= wall.id %>">
         <% if wall.comments.size > 2 %>
           <div class="proList">
-            <div class="writeCom"><%= link_to_remote "View all comments", :url => {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall.id}, :update => "wall_list_comment_#{wall.id}" %></div>
+            <div class="writeCom"><%= link_to "View all comments", :url => {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall.id}, :update => "wall_list_comment_#{wall.id}", :remote => true %></div>
           </div>
         <% end %>
         <% wall.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>

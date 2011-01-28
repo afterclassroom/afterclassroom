@@ -33,7 +33,7 @@
     <div class="AsDcom" id="form_comment" style="display: none">
       <h1 class="titleH1">Leave your answer</h1>
       <% if logged_in? %>
-        <div class="AsDcomImg"><%= link_to "<div>#{image_tag(current_user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+        <div class="AsDcomImg"><%= link_to raw("<div>#{image_tag(current_user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
         <div class="AsDcomIn">
           <form name="form_comment" id="form_comment" action="" method="get">
             <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
@@ -87,10 +87,15 @@
   <!--Recent Request QAs-->
 </div>
 <!--Content-->
-<%= observe_field(:show,
-  :url => { :action => :show_comment },
-  :frequency => 0.5,
-  :update => :list_comments,
-  :with => "'show=' + value + '&post_id=#{@post.id}'")
-%>
 
+<script>
+jQuery(function($) {
+  // when the #search field changes
+  $("#show").change(function() {
+    // make a POST call and replace the content
+    $.post(<%= url_for(:controller => "post_qas", :action => "show_comment") %>, {"show": $("#show").val(), "post_id": <%=  @post.id %>}, function(data) {
+      $("#list_comments").html(data);
+    });
+  });
+})
+</script>

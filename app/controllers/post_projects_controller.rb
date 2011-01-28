@@ -55,9 +55,8 @@ class PostProjectsController < ApplicationController
   end
 
   def tag
-    tag_id = params[:tag_id]
-    @tag = Tag.find(tag_id)
-    @posts = PostProject.paginated_post_conditions_with_tag(params, @school, @tag.name)
+    @tag_name = params[:tag_name]
+    @posts = PostProject.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
 
   # GET /post_projects/1
@@ -107,7 +106,7 @@ class PostProjectsController < ApplicationController
     @post_project.tag_list = params[:tag]
     @post_project.post = @post
     if @post_project.save
-      notice "Your post was successfully created."
+      flash.now[:notice] = "Your post was successfully created."
       redirect_to post_projects_path
     else
       error "Failed to create a new post."

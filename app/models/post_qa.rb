@@ -55,7 +55,7 @@ class PostQa < ActiveRecord::Base
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
-    post_qa = self.with_school(school).find_tagged_with(tag_name)
+    post_qa = self.with_school(school).tagged_with(tag_name)
     post_qa.select {|p| arr_p << p.post}
     posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
