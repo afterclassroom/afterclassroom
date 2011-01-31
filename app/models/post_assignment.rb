@@ -19,7 +19,7 @@ class PostAssignment < ActiveRecord::Base
   scope :next, lambda { |att| {:conditions => ["post_assignments.id > ?", att]} }
 
   # Tags
-  acts_as_taggable
+  acts_as_taggable_on :tags
   
   def self.paginated_post_conditions_with_option(params, school)
     over = 30 || params[:over].to_i
@@ -69,7 +69,7 @@ class PostAssignment < ActiveRecord::Base
 
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
-    post_as = self.with_school(@school).find_tagged_with(tag_name)
+    post_as = self.with_school(@school).tagged_with(tag_name)
     post_as.select {|p| arr_p << p.post}
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end

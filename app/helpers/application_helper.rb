@@ -238,7 +238,7 @@ module ApplicationHelper
       str_favorited = "It`s already in your favourite list."
       link_to("Favorite (#{f_size})", "javascript:;", :class => "vtip", :title => str_favorited)
     else
-      link_to "Favorite (#{f_size})", {:remote => true, :update => "item_favorite_#{item.id}", :url => {:controller => "favorites", :action => "add_to_favorite", :item_id => item.id, :type => type }, :method => "get" }
+      link_to "Favorite (#{f_size})", {:controller => "favorites", :action => "add_to_favorite", :item_id => item.id, :type => type }, :remote => true, :method => "get"
     end
   end
 
@@ -250,7 +250,7 @@ module ApplicationHelper
       str_favorited = "It`s already in your favourite list."
       link_to(raw("<span id='favorite_action'>Favorite (#{f_size})</span>"), "javascript:;", :class => "vtip", :title => str_favorited)
     else
-      link_to raw("<span>Favorite (#{f_size})</span>"), {:remote => true, :update => "item_favorite_#{item.id}", :url => {:controller => "favorites", :action => "add_to_favorite_in_detail", :item_id => item.id, :type => type }, :method => "get" }
+      link_to raw("<span>Favorite (#{f_size})</span>"), {:controller => "favorites", :action => "add_to_favorite_in_detail", :item_id => item.id, :type => type }, :remote => true, :method => "get"
     end
   end
 
@@ -402,7 +402,7 @@ module ApplicationHelper
     elsif check_rated
       link_to(numb, "javascript:;", :class => "vtip", :title => "#{configatron.str_rated}")
     else
-      link_to numb, { :remote => true, :update => "rate_#{id}", :url => {:controller => ctrl_name, :action => "rate", :post_id => id, :rating => val_rate } }
+      link_to numb, { :controller => ctrl_name, :action => "rate", :post_id => id, :rating => val_rate }, :remote => true
     end
   end
 

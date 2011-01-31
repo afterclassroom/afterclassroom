@@ -73,9 +73,8 @@ class PostHousingsController < ApplicationController
   end
 
   def tag
-    tag_id = params[:tag_id]
-    @tag = Tag.find(tag_id)
-    @posts = PostHousing.paginated_post_conditions_with_tag(params, @school, @tag.name)
+    @tag_name = params[:tag_name]
+    @posts = PostHousing.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
 
   # GET /post_housings/1
@@ -125,7 +124,7 @@ class PostHousingsController < ApplicationController
     @post.save
     @post_housing.post = @post
     if @post_housing.save
-      notice "Your post was successfully created."
+      flash.now[:notice] = "Your post was successfully created."
       redirect_to post_housings_path
     else
       error "Failed to create a new post."

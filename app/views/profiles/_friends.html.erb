@@ -19,7 +19,7 @@
       %>
       <% (0..count).each do |i| %>
       <div class="fanImg1">
-        <%= link_to "<div>#{image_tag friends[i].avatar.url(:thumb)}</div>", user_path(friends[i]) %>
+        <%= link_to raw("<div>#{image_tag friends[i].avatar.url(:thumb)}</div>"), user_path(friends[i]) %>
         <div class="fanName"><%= link_to friends[i].full_name, user_path(friends[i]) %></div>
       </div>
       <% end %>

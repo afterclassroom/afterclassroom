@@ -71,6 +71,9 @@ class User < ActiveRecord::Base
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   # process_in_background :avatar
+
+  # Taggable
+  acts_as_tagger
     
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/gif', 'image/png']
 

@@ -14,10 +14,10 @@
       </div>
       <div class="proAttL" id="attach_icon">
         <span>Attach:</span>
-        <span class="att1"><%= link_to "", :remote => true, :url => {:controller => "user_walls", :action => "link_image"}, :update => "attach", :complete => "openAttach()"%></span>
-        <span class="att2"><%= link_to "", :remote => true, :url => {:controller => "user_walls", :action => "link_video"}, :update => "attach", :complete => "openAttach()"%></span>
-        <span class="att3"><%= link_to "", :remote => true, :url => {:controller => "user_walls", :action => "link_music"}, :update => "attach", :complete => "openAttach()"%></span>
-        <span class="att4"><%= link_to "", :remote => true, :url => {:controller => "user_walls", :action => "link_link"}, :update => "attach", :complete => "openAttach()"%></span>
+        <span class="att1"><%= link_to "", {:controller => "user_walls", :action => "link_image"}, :update => "attach", :complete => "openAttach()", :remote => true %></span>
+        <span class="att2"><%= link_to "", {:controller => "user_walls", :action => "link_video"}, :update => "attach", :complete => "openAttach()", :remote => true %></span>
+        <span class="att3"><%= link_to "", {:controller => "user_walls", :action => "link_music"}, :update => "attach", :complete => "openAttach()", :remote => true %></span>
+        <span class="att4"><%= link_to "", {:controller => "user_walls", :action => "link_link"}, :update => "attach", :complete => "openAttach()", :remote => true %></span>
       </div>
       <div class="proAttR"><%= submit_tag 'Share', :class => "button" %></div>
     </div>

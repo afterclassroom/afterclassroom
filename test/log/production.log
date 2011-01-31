@@ -1,0 +1,112 @@
+
+
+Started GET "/" for 127.0.0.1 at 2011-01-24 09:49:58 +0700
+  Processing by DashboardsController#index as HTML
+Completed 401 Unauthorized in 2ms
+
+
+Started GET "/" for 127.0.0.1 at 2011-01-24 09:50:01 +0700
+  Processing by DashboardsController#index as HTML
+Redirected to http://localhost:3000/post_books
+Completed 302 Found in 9ms
+
+
+Started GET "/post_books" for 127.0.0.1 at 2011-01-24 09:50:01 +0700
+  Processing by PostBooksController#index as HTML
+Rendered shared/_select_school.html.erb (2.8ms)
+Rendered shared/_post_button.html.erb (326.8ms)
+Rendered post_books/_submenu.html.erb (8.5ms)
+Rendered shared/_options.html.erb (517.1ms)
+Rendered post_books/_item.html.erb (2227.9ms)
+Rendered post_books/_item.html.erb (124.9ms)
+Rendered post_books/_item.html.erb (123.4ms)
+Rendered post_books/_item.html.erb (120.9ms)
+Rendered post_books/_item.html.erb (121.6ms)
+Rendered post_books/_item.html.erb (129.9ms)
+Rendered post_books/_dont_buy.html.erb (9.6ms)
+Rendered post_books/_good_book.html.erb (7.3ms)
+Rendered post_books/_free_book.html.erb (8.9ms)
+Rendered shared/_browser_by_subject.html.erb (58.7ms)
+Rendered ads/_show_vertical_ads.html.erb (1.7ms)
+Rendered shared/form_request_post/_select_department.html.erb (600.7ms)
+Rendered shared/form_request_post/_select_school_year.html.erb (3.5ms)
+Rendered shared/form_request_post/_title.html.erb (2.2ms)
+Rendered shared/form_request_post/_description.html.erb (1.8ms)
+Rendered shared/form_request_post/_file.html.erb (2.3ms)
+Rendered shared/form_request_post/_select_tag.html.erb (2.4ms)
+Rendered post_books/_form_request_book.html.erb (693.5ms)
+Rendered shared/_login.html.erb (13.2ms)
+Rendered shared/_menu_main.html.erb (29.7ms)
+Rendered shared/_search_posts.html.erb (7.4ms)
+Rendered shared/_footer.html.erb (3.0ms)
+Rendered post_books/index.html.erb within layouts/application (4776.0ms)
+Completed 200 OK in 5289ms (Views: 4555.0ms | ActiveRecord: 339.3ms | Sphinx: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-01-24 10:34:54 +0700
+  Processing by DashboardsController#index as HTML
+Redirected to http://localhost:3000/post_assignments
+Completed 302 Found in 10ms
+
+
+Started GET "/post_assignments" for 127.0.0.1 at 2011-01-24 10:34:54 +0700
+  Processing by PostAssignmentsController#index as HTML
+Rendered shared/_select_school.html.erb (2.9ms)
+Rendered shared/_post_button.html.erb (23.0ms)
+Rendered post_assignments/_submenu.html.erb (4.0ms)
+Rendered shared/_options.html.erb (711.5ms)
+Rendered post_assignments/_item.html.erb (1981.6ms)
+Rendered post_assignments/_item.html.erb (106.4ms)
+Rendered post_assignments/_item.html.erb (104.8ms)
+Rendered post_assignments/_item.html.erb (102.9ms)
+Rendered post_assignments/_item.html.erb (103.2ms)
+Rendered post_assignments/_item.html.erb (104.3ms)
+Rendered post_assignments/_item.html.erb (105.2ms)
+Rendered post_assignments/_item.html.erb (102.6ms)
+Rendered post_assignments/_item.html.erb (105.1ms)
+Rendered post_assignments/_item.html.erb (104.9ms)
+Rendered post_assignments/_due_date.html.erb (39.3ms)
+Rendered post_assignments/_interesting_assignments.html.erb (7.3ms)
+Rendered shared/_browser_by_subject.html.erb (43.6ms)
+Rendered ads/_show_vertical_ads.html.erb (1.6ms)
+Rendered shared/form_request_post/_select_department.html.erb (408.0ms)
+Rendered shared/form_request_post/_select_school_year.html.erb (227.7ms)
+Rendered shared/form_request_post/_title.html.erb (2.1ms)
+Rendered shared/form_request_post/_description.html.erb (1.8ms)
+Rendered shared/form_request_post/_file.html.erb (2.5ms)
+Rendered shared/form_request_post/_select_tag.html.erb (2.2ms)
+Rendered post_assignments/_form_request_assignment.html.erb (678.1ms)
+Rendered post_assignments/_recent_request_assignments.html.erb (255.6ms)
+Rendered shared/_login.html.erb (12.8ms)
+Rendered shared/_menu_main.html.erb (30.0ms)
+Rendered shared/_search_posts.html.erb (6.3ms)
+Rendered shared/_footer.html.erb (2.8ms)
+Rendered post_assignments/index.html.erb within layouts/application (4901.4ms)
+Completed 200 OK in 5238ms (Views: 4922.8ms | ActiveRecord: 96.1ms | Sphinx: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2011-01-24 10:36:59 +0700
+  Processing by SessionsController#new as HTML
+Rendered sessions/_welcome.rhtml (1.5ms)
+Rendered ads/_show_vertical_ads.html.erb (0.1ms)
+Rendered sessions/_benefit.rhtml (1.3ms)
+Rendered shared/_login.html.erb (13.5ms)
+Rendered shared/_menu_main.html.erb (27.2ms)
+Rendered shared/_search_posts.html.erb (4.0ms)
+Rendered shared/_footer.html.erb (0.9ms)
+Rendered sessions/new.rhtml within layouts/application (189.8ms)
+Completed 200 OK in 296ms (Views: 287.6ms | ActiveRecord: 7.4ms | Sphinx: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2011-01-24 10:37:05 +0700
+  Processing by UsersController#new as HTML
+Rendered users_select_school/_list.html.erb (19.4ms)
+Rendered users/_select_school.html.erb (26.4ms)
+Rendered users/_welcome_back.rhtml (3.3ms)
+Rendered ads/_show_vertical_ads.html.erb (0.1ms)
+Rendered shared/_login.html.erb (9.0ms)
+Rendered shared/_menu_main.html.erb (26.8ms)
+Rendered shared/_search_posts.html.erb (4.2ms)
+Rendered shared/_footer.html.erb (0.9ms)
+Rendered users/new.html.erb within layouts/application (122.2ms)
+Completed 200 OK in 338ms (Views: 199.9ms | ActiveRecord: 13.1ms | Sphinx: 0.0ms)

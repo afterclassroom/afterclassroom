@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= csrf_meta_tag %>
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>:: <%= configatron.site_name %> ::</title>
     <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= gmap_key %>"></script>
@@ -10,7 +11,6 @@
     <%= juggernaut :debug => false, :client_id => current_user.login if logged_in? %>
     <%= feedback_includes %>
     <%= feedback_tab(:position => 'right') %>
-    <%= csrf_meta_tag %>
   </head>
   <body>
     <div class="top" id="top_page">

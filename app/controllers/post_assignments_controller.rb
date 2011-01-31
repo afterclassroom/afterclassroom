@@ -56,14 +56,14 @@ class PostAssignmentsController < ApplicationController
   end
 
   def tag
-    tag_id = params[:tag_id]
-    @tag = Tag.find(tag_id)
-    @posts = PostAssignment.paginated_post_conditions_with_tag(params, @school, @tag.name)
+    @tag_name = params[:tag_name]
+    @posts = PostAssignment.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
 
   # GET /post_assignments/1
   # GET /post_assignments/1.xml
-  def show
+  def sho
+    @tag = PostAssignment.tagged_with(tag_name)
     @post = Post.find(params[:id])
     @post_assignment = @post.post_assignment
     update_view_count(@post)
@@ -108,7 +108,7 @@ class PostAssignmentsController < ApplicationController
     #@post_assignment.tag_list = params[:tag]
     @post_assignment.post = @post
     if @post_assignment.save
-      notice "Your post was successfully created."
+      flash.now[:notice] = "Your post was successfully created."
       redirect_to post_assignments_path
     else
       error "Failed to create a new post."

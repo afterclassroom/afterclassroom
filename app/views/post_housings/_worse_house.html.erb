@@ -10,7 +10,7 @@
         bad_housings.each do |tt|
         %>
           <div class="dueDItem">
-            <div class="studentImg"><%= link_to "<div>#{image_tag(tt.post.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => tt.post.user.id} %></div>
+            <div class="studentImg"><%= link_to raw("<div>#{image_tag(tt.post.user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => tt.post.user.id} %></div>
             <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_housing_path(tt.post) %></div>
           </div>
         <% end %>

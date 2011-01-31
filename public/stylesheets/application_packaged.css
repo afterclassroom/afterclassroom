@@ -15,6 +15,10 @@ body input, body textarea, body select{ font-family:Arial;font-size:11px;color:#
 .signin a{ background:url('/images/help.png') no-repeat left 4px; cursor:pointer}
 .signin a.signinFrist{ background-image:none}
 .signin, .log{ float:right}
+.signin .signinLogin div input{ cursor: pointer}
+.signin .signinLogin div input:hover{ color: #DD0000}
+.signin .signinSignup div input{ cursor: pointer; margin-left: 5px}
+.signin .signinSignup div input:hover{ color: #DD0000}
 .signin ul,.signin ul li{ list-style:none;display:inline-block;float:left;padding:0px;margin:0px}
 .signin a span{ height:23px;line-height:23px;display:block;float:left;color:#1fa6f3;font-size:12px;padding-left:7px}
 .signin a{ text-decoration:none;float:left;padding-right:7px;cursor:pointer}
@@ -28,8 +32,10 @@ div.signin ul li.select a:hover{ color:#1fa6f3}
 .log-user input, .log-pass input{ border:1px #dbdbdb solid; color:#bababa; font-size:10px; width:152px; padding:2px}
 .log-btm{ line-height:25px; float:left}
 .log-btm a{ width:45px; height:20px; display:block; background:url('/images/btm-signin.png') no-repeat}
-.log-btm a, .log-btm a:link, .log-btm a:visited{ color:#6e6e62; text-decoration:none; text-align:center; line-height:20px}
-.log-btm a:hover{ color:#d00}
+.log-btm2{ line-height:25px; float:left}
+.log-btm2 a input{ background:url('/images/btm-signin.png') no-repeat; height:20px; width: 45px; display:block; text-align:center; cursor: pointer; border: none}
+.log-btm2 a, .log-btm2 a:link, .log-btm2 a:visited{ color:#6e6e62; text-decoration:none; text-align:center; line-height:20px}
+.log-btm2 a input:hover{ color:#d00}
 .menu{ height:31px; background:url('/images/menu-ver.png') repeat-x}
 .menusearch{ width:962px; height:31px; margin:0px auto; overflow:hidden; background:url('/images/bgmenu.png') no-repeat}
 .menuMain{ float:left}
@@ -105,7 +111,10 @@ div.menuMain ul li.select a.menuFirst, div.menuMain ul li a.menuFirst:hover span
 .RmenuRbtm1 a:hover{ background:url('/images/btm98Red.png') right top no-repeat; text-decoration:none}
 .RmenuRbtm2 a{ background:url('/images/btm38.png') right top no-repeat; width:38px; height:25px; display:block; text-align:center}
 .RmenuRbtm2 a:hover{ background:url('/images/btm38Red.png') right top no-repeat; text-decoration:none}
-.RmenuRbtm1 a:link, .RmenuRbtm1 a:visited, .RmenuRbtm2 a:link, .RmenuRbtm2 a:visited, .RmenuRbtm1 a:hover, .RmenuRbtm2 a:hover{ color:#fff; text-decoration:none}
+.RmenuRbtm2 div{ width:40px; height:25px}
+.RmenuRbtm2 div input{ background:url('/images/btm38.png') no-repeat; height:25px; display:block; text-align:center; color: #FFFFFF; cursor: pointer; border: none}
+.RmenuRbtm2 div input:hover{ background:url('/images/btm38Red.png') no-repeat; text-decoration:none}
+.RmenuRbtm1 a:link, .RmenuRbtm1 a:visited, .RmenuRbtm2 a:link, .RmenuRbtm2 a:visited, .RmenuRbtm1 a:hover, .RmenuRbtm2 a:hover, .RmenuRbtm2 div input:link, .RmenuRbtm2 div input:visited, .RmenuRbtm2 div input:hover{ color:#fff; text-decoration:none}
  .footer{ border-top:1px #dbdbdb solid; padding-top:14px; background-color:white; overflow:hidden}
 .footer1{ margin:0px auto; width:962px; padding-bottom:20px; overflow:hidden}
 .footer table{ margin-left:20px; margin-top:10px}
@@ -517,13 +526,16 @@ div.signinInf{ color:#be2626; line-height:24px; padding-left:8px; font-style:ita
 .signincCheckTxt{ line-height:20px; padding-left:4px}
 .signincCheckTxt a, .signincCheckTxt a:link, .signincCheckTxt a:visited{ color:#0a81c4; text-decoration:underline}
 .signincCheckTxt a:hover{ color:#d00}
-.btmLogme, .btmCreAc{ padding-left:76px; padding-top:10px}
+.btmLogme, .btmLogme2, .btmCreAc{ padding-left:76px; padding-top:10px}
 .signUpCont .signincCheck, .signUpCont .btmLogme, .signUpCont .btmCreAc{ padding-left:116px}
 .btmLogme a, .btmCreAc a{ background:url('/images/btm62.png') no-repeat; width:62px; height:25px; line-height:25px; text-align:center; display:block}
-.btmCreAc a{ width:106px; background:url('/images/btm106.png') no-repeat}
+ .btmLogme2 a{ }
+.btmLogme2 a input{ background:url('/images/btm62.png') no-repeat; height:25px; width:62px; display:block; text-align:center; color: #FFFFFF; cursor: pointer; border: none}
+.btmLogme2 a input:hover{ background:url('/images/btm62Red.png') no-repeat; text-decoration:none}
+ .btmCreAc a input{ width:106px; background:url('/images/btm106.png') no-repeat; height: 25px; border: none}
 .btmLogme a:hover{ background:url('/images/btm62Red.png') no-repeat}
-.btmCreAc a:hover{ background:url('/images/btm106Red.png') no-repeat}
-.btmLogme a, .btmLogme a:link, .btmLogme a:visited, .btmLogme a:hover, .btmCreAc a, .btmCreAc a:link, .btmCreAc a:visited, .btmCreAc a:hover{ color:#fff; text-decoration:none}
+.btmCreAc a input:hover{ background:url('/images/btm106Red.png') no-repeat}
+.btmLogme a, .btmLogme a:link, .btmLogme a:visited, .btmLogme a:hover, .btmCreAc a input, .btmCreAc a input:link, .btmCreAc a input:visited, .btmCreAc a input:hover{ color:#fff; text-decoration:none}
 .forgotPass{ padding-left:76px; padding-top:15px}
 .forgotPass a, .forgotPass a:link, .forgotPass a:visited{ color:#1c97dd; text-decoration:underline; font-style:italic}
 .forgotPass a:hover{ color:#d00}

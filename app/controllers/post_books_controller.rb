@@ -39,9 +39,8 @@ class PostBooksController < ApplicationController
   end
 
   def tag
-    tag_id = params[:tag_id]
-    @tag = Tag.find(tag_id)
-    @posts = PostBook.paginated_post_conditions_with_tag(params, @school, @tag.name)
+    @tag_name = params[:tag_name]
+    @posts = PostBook.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
 
   def good_books
@@ -162,7 +161,7 @@ class PostBooksController < ApplicationController
     @post_book.post = @post
     @post_book.book_type_id ||= BookType.first.id
     if @post_book.save
-      notice "Your post was successfully created."
+      flash.now[:notice] = "Your post was successfully created."
       redirect_to post_books_path + "?book_type_id=#{@post_book.book_type_id}"
     else
       error "Failed to create a new post."

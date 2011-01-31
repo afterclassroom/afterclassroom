@@ -46,9 +46,8 @@ class PostTestsController < ApplicationController
   end
 
   def tag
-    tag_id = params[:tag_id]
-    @tag = Tag.find(tag_id)
-    @posts = PostText.paginated_post_conditions_with_tag(params, @school, @tag.name)
+    @tag_name = params[:tag_name]
+    @posts = PostText.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
 
   # GET /post_tests/1
@@ -97,7 +96,7 @@ class PostTestsController < ApplicationController
     @post_test.tag_list = params[:tag]
     @post_test.post = @post
     if @post_test.save
-      notice "Your post was successfully created."
+      flash.now[:notice] = "Your post was successfully created."
       redirect_to post_tests_path
     else
       error "Failed to create a new post."
