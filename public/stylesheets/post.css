@@ -761,11 +761,29 @@ span.btmDown a:hover{
   line-height:25px;
   text-align:center;
   display:block;
+  border: none;
 }
 .submit a:hover{
   background:url('/images/btm48Red.png') no-repeat;
 }
 .submit a, .submit a:link, .submit a:visited, .submit a:hover{
+  color:#fff;
+  text-decoration:none;
+}
+.submit a input{
+  background:url('/images/btm48.png') no-repeat;
+  width:48px;
+  height:25px;
+  line-height:25px;
+  text-align:center;
+  display:block;
+  border: none;
+  cursor: pointer;
+}
+.submit a input:hover{
+  background:url('/images/btm48Red.png') no-repeat;
+}
+.submit a input, .submit a input:link, .submit a input:visited, .submit a input:hover{
   color:#fff;
   text-decoration:none;
 }
@@ -1531,7 +1549,7 @@ div.signinInf{
   padding-left:76px;
   padding-top:10px;
 }
-.signUpCont .signincCheck, .signUpCont .btmLogme, .signUpCont .btmCreAc{
+.signUpCont .signincCheck, .signUpCont .btmLogme, .signUpCont .btmLogme2, .signUpCont .btmCreAc{
   padding-left:116px;
 }
 .btmLogme a, .btmCreAc a{
@@ -1543,22 +1561,22 @@ div.signinInf{
   display:block;
 }
 /*--button submit Log me in--*/
-.btmLogme2 a{
-    
-}
-.btmLogme2 a input{
+.btmLogme a input{
     background:url('/images/btm62.png') no-repeat;
     height:25px;
     width:62px;
     display:block;
     text-align:center;
-    color: #FFFFFF;
     cursor: pointer;
     border: none;
 }
-.btmLogme2 a input:hover{
+.btmLogme a input:hover{
     background:url('/images/btm62Red.png') no-repeat;
     text-decoration:none;
+}
+.btmLogme a input, .btmLogme a input:link, .btmLogme a input:visited, .btmLogme a input:hover{
+  color:#fff;
+  text-decoration:none;
 }
 /*--------*/
 .btmCreAc a input{
@@ -1566,6 +1584,7 @@ div.signinInf{
   background:url('/images/btm106.png') no-repeat;
   height: 25px;
   border: none;
+  cursor: pointer;
 }
 .btmLogme a:hover{
   background:url('/images/btm62Red.png') no-repeat;
