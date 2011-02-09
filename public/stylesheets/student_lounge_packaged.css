@@ -355,9 +355,12 @@ span.btmDown a:hover{ background:url('/images/btmDownH.png') no-repeat}
 .postUpfile{ margin-top:-21px}
 #divinputfile .filepc{ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -khtml-opacity: 0.0; -moz-opacity: 0.0; opacity: 0.0}
 #fakeinputfile #fakefilepc{ width:208px; height:22px; border:1px solid #CECECE; color:#969696; height:15px; text-indent:2px; padding-top:3px; margin-top:1px}
-.submit a{ background:url('/images/btm48.png') no-repeat; width:48px; height:25px; line-height:25px; text-align:center; display:block}
+.submit a{ background:url('/images/btm48.png') no-repeat; width:48px; height:25px; line-height:25px; text-align:center; display:block; border: none}
 .submit a:hover{ background:url('/images/btm48Red.png') no-repeat}
 .submit a, .submit a:link, .submit a:visited, .submit a:hover{ color:#fff; text-decoration:none}
+.submit a input{ background:url('/images/btm48.png') no-repeat; width:48px; height:25px; line-height:25px; text-align:center; display:block; border: none; cursor: pointer}
+.submit a input:hover{ background:url('/images/btm48Red.png') no-repeat}
+.submit a input, .submit a input:link, .submit a input:visited, .submit a input:hover{ color:#fff; text-decoration:none}
  .AsDcom{ padding:5px 10px 10px 20px; overflow:hidden; _height:100%}
 .AsDcom h1.titleH1, .AsDcomL h1.titleH1{ border:0px}
 .AsDcomImg{ float:left; width:60px}
@@ -527,12 +530,12 @@ div.signinInf{ color:#be2626; line-height:24px; padding-left:8px; font-style:ita
 .signincCheckTxt a, .signincCheckTxt a:link, .signincCheckTxt a:visited{ color:#0a81c4; text-decoration:underline}
 .signincCheckTxt a:hover{ color:#d00}
 .btmLogme, .btmLogme2, .btmCreAc{ padding-left:76px; padding-top:10px}
-.signUpCont .signincCheck, .signUpCont .btmLogme, .signUpCont .btmCreAc{ padding-left:116px}
+.signUpCont .signincCheck, .signUpCont .btmLogme, .signUpCont .btmLogme2, .signUpCont .btmCreAc{ padding-left:116px}
 .btmLogme a, .btmCreAc a{ background:url('/images/btm62.png') no-repeat; width:62px; height:25px; line-height:25px; text-align:center; display:block}
- .btmLogme2 a{ }
-.btmLogme2 a input{ background:url('/images/btm62.png') no-repeat; height:25px; width:62px; display:block; text-align:center; color: #FFFFFF; cursor: pointer; border: none}
-.btmLogme2 a input:hover{ background:url('/images/btm62Red.png') no-repeat; text-decoration:none}
- .btmCreAc a input{ width:106px; background:url('/images/btm106.png') no-repeat; height: 25px; border: none}
+ .btmLogme a input{ background:url('/images/btm62.png') no-repeat; height:25px; width:62px; display:block; text-align:center; cursor: pointer; border: none}
+.btmLogme a input:hover{ background:url('/images/btm62Red.png') no-repeat; text-decoration:none}
+.btmLogme a input, .btmLogme a input:link, .btmLogme a input:visited, .btmLogme a input:hover{ color:#fff; text-decoration:none}
+ .btmCreAc a input{ width:106px; background:url('/images/btm106.png') no-repeat; height: 25px; border: none; cursor: pointer}
 .btmLogme a:hover{ background:url('/images/btm62Red.png') no-repeat}
 .btmCreAc a input:hover{ background:url('/images/btm106Red.png') no-repeat}
 .btmLogme a, .btmLogme a:link, .btmLogme a:visited, .btmLogme a:hover, .btmCreAc a input, .btmCreAc a input:link, .btmCreAc a input:visited, .btmCreAc a input:hover{ color:#fff; text-decoration:none}

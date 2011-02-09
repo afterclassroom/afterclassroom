@@ -1,8 +1,8 @@
 ---
 javascripts:
-- application:
-  - application
+- base:
   - jquery
+  - rails
   - jquery-ui
   - jquery-mcdropdown
   - jquery-auto-suggest
@@ -17,7 +17,7 @@ javascripts:
   - jquery-galleriffic
   - jquery-opacityrollover
   - jquery-gmap
-  - rails
+  - application
 - student_lounge:
   - application
   - jquery
@@ -61,7 +61,7 @@ javascripts:
   - jquery-multiselect
   - rails
 stylesheets:
-- application:
+- base:
   - main
   - post
   - jquery-ui
