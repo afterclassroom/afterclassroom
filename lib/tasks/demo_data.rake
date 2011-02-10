@@ -94,9 +94,9 @@ def create_demo_people
       end
 
       user_edu = UserEducation.new do |f|
-        f.grad_school = Faker::Lorem.paragraphs
-        f.college = Faker::Lorem.paragraphs
-        f.high_school = Faker::Lorem.paragraphs
+        f.grad_school = Faker::Lorem.sentence
+        f.college = Faker::Lorem.sentence
+        f.high_school = Faker::Lorem.sentence
       end
 
       user_employ = UserEmployment.new do |f|
