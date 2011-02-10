@@ -34,5 +34,9 @@ production:
   reconnect: false
   database: afterclassroom_production
   pool: 5
+<<<<<<< HEAD
   password:
+=======
+  password: 
+>>>>>>> 91117759adc50754943b9371ee5f376c170d415d
   socket: /var/run/mysqld/mysqld.sock

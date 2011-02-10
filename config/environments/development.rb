@@ -26,6 +26,7 @@ Afterclassroom::Application.configure do
   # Restful Authentication
   REST_AUTH_SITE_KEY = '5a5e73a69a893311f859ccff1ffd0fa2d7ea25fd'
   REST_AUTH_DIGEST_STRETCHES = 15
+  
+  # Paperclip
   PAPERCLIP_STORAGE_OPTIONS = {}
 end
-

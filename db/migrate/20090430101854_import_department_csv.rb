@@ -4,11 +4,7 @@ class ImportDepartmentCsv < ActiveRecord::Migration
   def self.up
     category_temp = nil
     path = File.join("#{Rails.root}/db/Deapartment_categories.csv")
-    if CSV.const_defined? :Reader
-      csv = FasterCSV
-    else
-      csv = CSV
-    end
+    csv = CSV
     csv.foreach(path) do |row|
       arr = row[0].split(";")
       category_name = arr[0]
@@ -28,7 +24,7 @@ class ImportDepartmentCsv < ActiveRecord::Migration
       end
     end
   end
-
+  
   def self.down
   end
 end
