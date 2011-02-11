@@ -62,8 +62,7 @@ class PostAssignmentsController < ApplicationController
 
   # GET /post_assignments/1
   # GET /post_assignments/1.xml
-  def sho
-    @tag = PostAssignment.tagged_with(tag_name)
+  def show
     @post = Post.find(params[:id])
     @post_assignment = @post.post_assignment
     update_view_count(@post)
