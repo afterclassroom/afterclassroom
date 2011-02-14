@@ -42,21 +42,7 @@ class PostPartiesController < ApplicationController
     @post_p.rating_status = status
 
     @post_p.save
-=begin
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_p.total_good}</a>
-      </div>
-      <div class="cheap">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">It\'s Ok(#{post_p.total_ok})</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_p.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
-=end
+
   end
 
   def require_rate
