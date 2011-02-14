@@ -29,12 +29,12 @@ class PostHousingsController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_h = post.post_housing
-    post_h.rate rating.to_i, current_user
+    @post = Post.find(params[:post_id])
+    @post_h = @post.post_housing
+    @post_h.rate rating.to_i, current_user
     # Update rating status
-    score_good = post_h.score_good
-    score_bad = post_h.score_bad
+    score_good = @post_h.score_good
+    score_bad = @post_h.score_bad
 
     if score_good > score_bad
       status = "Good"
@@ -44,10 +44,10 @@ class PostHousingsController < ApplicationController
       status = "Bad"
     end
 
-    post_h.rating_status = status
+    @post_h.rating_status = status
 
-    post_h.save
-
+    @post_h.save
+=begin
     render :text => %Q'
       <div class="qashdU">
         <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_h.total_good}</a>
@@ -58,6 +58,7 @@ class PostHousingsController < ApplicationController
       <script>
         vtip();
       </script>'
+=end
   end
 
   def search
