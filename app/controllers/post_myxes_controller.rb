@@ -22,13 +22,13 @@ class PostMyxesController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_p = post.post_myx
-    post_p.rate rating.to_i, current_user
+    @post = Post.find(params[:post_id])
+    @post_p = @post.post_myx
+    @post_p.rate rating.to_i, current_user
     # Update rating status
-    score_good = post_p.score_good
-    score_bored = post_p.score_bored
-    score_bad = post_p.score_bad
+    score_good = @post_p.score_good
+    score_bored = @post_p.score_bored
+    score_bad = @post_p.score_bad
 
     if score_good == score_bored && score_bored == score_bad
       status = "Require Rating"
@@ -38,10 +38,10 @@ class PostMyxesController < ApplicationController
       status = arr_rating_status.last.first
     end
 
-    post_p.rating_status = status
+    @post_p.rating_status = status
 
-    post_p.save
-
+    @post_p.save
+=begin
     render :text => %Q'
       <div class="qashdU">
         <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_p.total_good}</a>
@@ -55,6 +55,7 @@ class PostMyxesController < ApplicationController
       <script>
         vtip();
       </script>'
+=end
   end
 
   def require_rate
