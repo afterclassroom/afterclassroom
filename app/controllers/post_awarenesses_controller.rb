@@ -45,12 +45,12 @@ class PostAwarenessesController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_a = post.post_awareness
-    post_a.rate rating.to_i, current_user
+    @post = Post.find(params[:post_id])
+    @post_a = @post.post_awareness
+    @post_a.rate rating.to_i, current_user
     # Update rating status
-    score_good = post_a.score_good
-    score_bad = post_a.score_bad
+    score_good = @post_a.score_good
+    score_bad = @post_a.score_bad
 
     if score_good > score_bad
       status = "Good"
@@ -60,9 +60,10 @@ class PostAwarenessesController < ApplicationController
       status = "Bad"
     end
 
-    post_a.rating_status = status
+    @post_a.rating_status = status
 
-    post_a.save
+    @post_a.save
+=begin
     render :text => %Q'
       <div class="qashdU">
         <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_a.total_good}</a>
@@ -73,6 +74,7 @@ class PostAwarenessesController < ApplicationController
       <script>
         vtip();
       </script>'
+=end
   end
 
   def support
