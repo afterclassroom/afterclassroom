@@ -33,7 +33,7 @@
              
                 <!-- post  button -->
                 <div>
-                  <span class="submitRSVP"><a href="javascript:submit_rsvp(<%= @post.id %>);" onclick="sendPSVP()">Send</a></span>
+                  <span class="submitRSVP"><a href="javascript:submit_rsvp(<%= @post.id %>);" onclick="sendPSVP()"><%= submit_tag 'Send' %></a></span>
                   <span class="error" style="padding: 0px;"></span>
                </div>
                 <!-- end post button -->

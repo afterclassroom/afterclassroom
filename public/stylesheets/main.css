@@ -132,7 +132,7 @@ div.signin ul li.select a:hover{
     float:left;
 }
 .log-btm2 a input{
-    background:url('/images/btm-signin.png') no-repeat;
+    background:url("/images/btm-signin.png") no-repeat scroll 0 0 transparent;
     height:20px;
     width: 45px;
     display:block;
