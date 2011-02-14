@@ -53,12 +53,12 @@ class PostTeamupsController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_tm = post.post_teamup
-    post_tm.rate rating.to_i, current_user
+    @post = Post.find(params[:post_id])
+    @post_tm = @post.post_teamup
+    @post_tm.rate rating.to_i, current_user
     # Update rating status
-    score_good = post_tm.score_good
-    score_bad = post_tm.score_bad
+    score_good = @post_tm.score_good
+    score_bad = @post_tm.score_bad
 
     if score_good > score_bad
       status = "Good"
@@ -68,19 +68,9 @@ class PostTeamupsController < ApplicationController
       status = "Bad"
     end
 
-    post_tm.rating_status = status
+    @post_tm.rating_status = status
 
-    post_tm.save
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tm.total_good}</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tm.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
+    @post_tm.save
   end
   
   # GET /post_teamups/1

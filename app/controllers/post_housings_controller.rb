@@ -47,18 +47,6 @@ class PostHousingsController < ApplicationController
     @post_h.rating_status = status
 
     @post_h.save
-=begin
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_h.total_good}</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_h.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
-=end
   end
 
   def search
