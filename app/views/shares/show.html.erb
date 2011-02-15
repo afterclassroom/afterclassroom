@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @share.user %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @share.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @share.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_share_path(@share) %> |
+<%= link_to 'Back', shares_path %>

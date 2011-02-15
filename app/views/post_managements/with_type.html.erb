@@ -23,10 +23,6 @@
         <th class="post9"><div>Track your promotion expense</div></th>
         <th class="post10"><div>Status</div></th>
       </tr>
-      ===========CATEGORY::::<%= @category %>
-      ===========SORT::::<%= @sort %>
-      ===========PAGE::::<%= params[:page] %>
-
       <% if @all_posts.size > 0 %>
         <%  @all_posts.each do |p| %>
           <tr>
@@ -45,7 +41,9 @@
           </tr>
         <% end %>
       <% else %>
-        No result found
+          <tr>
+            <td colspan="8">No result found</td>
+          </tr>
       <% end %>
     </tbody>
   </table>
