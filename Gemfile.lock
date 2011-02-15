@@ -70,6 +70,7 @@ GEM
       rails (~> 3.0)
       thor (~> 0.14.4)
     json (1.4.6)
+    json (1.4.6-x86-mingw32)
     juggernaut (2.0.1)
       redis
     mail (2.2.14)
@@ -79,6 +80,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mysql2 (0.2.6)
+    mysql2 (0.2.6-x86-mingw32)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -112,7 +114,6 @@ GEM
     redis (2.1.1)
     rest-open-uri (1.0.0)
     riddle (1.2.2)
-    rmagick (2.13.1)
     ruby-mp3info (0.6.13)
     thinking-sphinx (2.0.1)
       activerecord (>= 3.0.3)
@@ -127,6 +128,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   aasm (= 2.2.0)
@@ -156,7 +158,6 @@ DEPENDENCIES
   rails (= 3.0.3)
   rest-open-uri
   riddle (>= 1.2.1)
-  rmagick
   ruby-mp3info
   thinking-sphinx
   will_paginate (~> 3.0.beta)

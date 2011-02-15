@@ -55,8 +55,8 @@ class PostJobsController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_j = post.post_job
+    @post = Post.find(params[:post_id])
+    post_j = @post.post_job
     post_j.rate rating.to_i, current_user
     # Update rating status
     score_good = post_j.score_good
@@ -74,16 +74,8 @@ class PostJobsController < ApplicationController
 
     post_j.save
 
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_j.total_good}</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_j.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_j.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_j.total_bad}</a></div>"
   end
 
   def require_rate

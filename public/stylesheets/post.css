@@ -1271,6 +1271,22 @@ div.postInf{
   color:#fff;
   text-decoration:none;
 }
+.submitRSVP a input{
+  background:url("/images/btm48.png") no-repeat scroll 78px 0 transparent;
+  width:48px;
+  height:25px;
+  line-height:25px;
+  text-align:center;
+  display:block;
+  border: none;
+}
+.submitRSVP a input:hover{
+  background:url('/images/btm48Red.png') no-repeat scroll 78px 0 transparent;
+}
+.submitRSVP a input, .submitRSVP a input:link, .post_cbt a input:visited, .post_cbt a input:hover{
+  color:#fff;
+  text-decoration:none;
+}
 
 
 /** Post detail **/

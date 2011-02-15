@@ -574,7 +574,7 @@ ActiveRecord::Schema.define(:version => 20110114084530) do
   create_table "states", :force => true do |t|
     t.integer "country_id",               :null => false
     t.string  "name",       :limit => 50, :null => false
-    t.string  "alias",      :limit => 2,  :null => false
+    t.string  "alias",      :limit => 10, :null => false
   end
 
   create_table "stats_ratings", :force => true do |t|

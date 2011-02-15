@@ -53,8 +53,8 @@ class PostBooksController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_b = post.post_book
+    @post = Post.find(params[:post_id])
+    post_b = @post.post_book
     post_b.rate rating.to_i, current_user
     # Update rating status
     score_good = post_b.score_good
@@ -72,16 +72,8 @@ class PostBooksController < ApplicationController
 
     post_b.save
 
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_b.total_good}</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_b.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_b.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_b.total_bad}</a></div>"
   end
 
   def require_rate

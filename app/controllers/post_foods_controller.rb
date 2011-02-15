@@ -22,13 +22,13 @@ class PostFoodsController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_f = post.post_food
-    post_f.rate rating.to_i, current_user
+    @post = Post.find(params[:post_id])
+    @post_f = @post.post_food
+    @post_f.rate rating.to_i, current_user
     # Update rating status
-    score_good = post_f.score_good
-    score_cheap_but_good = post_f.score_cheap_but_good
-    score_bad = post_f.score_bad
+    score_good = @post_f.score_good
+    score_cheap_but_good = @post_f.score_cheap_but_good
+    score_bad = @post_f.score_bad
 
     if score_good == score_cheap_but_good && score_cheap_but_good == score_bad
       status = "Require Rating"
@@ -38,23 +38,10 @@ class PostFoodsController < ApplicationController
       status = arr_rating_status.last.first
     end
 
-    post_f.rating_status = status
+    @post_f.rating_status = status
 
-    post_f.save
+    @post_f.save
 
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">#{post_f.total_good}</a>
-      </div>
-      <div class="cheap">
-        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">Cheap but Good(#{post_f.total_cheap_but_good})</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">#{post_f.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
   end
 
   def require_rate

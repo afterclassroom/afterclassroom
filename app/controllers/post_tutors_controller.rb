@@ -53,8 +53,8 @@ class PostTutorsController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_tt = post.post_tutor
+    @post = Post.find(params[:post_id])
+    post_tt = @post.post_tutor
     post_tt.rate rating.to_i, current_user
     # Update rating status
     score_good = post_tt.score_good
@@ -71,17 +71,8 @@ class PostTutorsController < ApplicationController
     post_tt.rating_status = status
 
     post_tt.save
-
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tt.total_good}</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_tt.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_tt.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_tt.total_bad}</a></div>"
   end
 
   def require_rate

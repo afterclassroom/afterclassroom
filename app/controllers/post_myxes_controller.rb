@@ -22,13 +22,13 @@ class PostMyxesController < ApplicationController
 
   def rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_p = post.post_myx
-    post_p.rate rating.to_i, current_user
+    @post = Post.find(params[:post_id])
+    @post_p = @post.post_myx
+    @post_p.rate rating.to_i, current_user
     # Update rating status
-    score_good = post_p.score_good
-    score_bored = post_p.score_bored
-    score_bad = post_p.score_bad
+    score_good = @post_p.score_good
+    score_bored = @post_p.score_bored
+    score_bad = @post_p.score_bad
 
     if score_good == score_bored && score_bored == score_bad
       status = "Require Rating"
@@ -38,35 +38,21 @@ class PostMyxesController < ApplicationController
       status = arr_rating_status.last.first
     end
 
-    post_p.rating_status = status
+    @post_p.rating_status = status
 
-    post_p.save
-
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_p.total_good}</a>
-      </div>
-      <div class="cheap">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">Bored(#{post_p.total_bored})</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_p.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
+    @post_p.save
   end
 
   def require_rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    post_p = post.post_myx
-    if !Postmyx.find_rated_by(current_user).include?(post_p)
-      post_p.rate rating.to_i, current_user
+    @post = Post.find(params[:post_id])
+    @post_p = @post.post_myx
+    if !Postmyx.find_rated_by(current_user).include?(@post_p)
+      @post_p.rate rating.to_i, current_user
       # Update rating status
-      score_good = post_p.score_good
-      score_bored = post_p.score_bored
-      score_bad = post_p.score_bad
+      score_good = @post_p.score_good
+      score_bored = @post_p.score_bored
+      score_bad = @post_p.score_bad
 
       if score_good == score_bored && score_bored == score_bad
         status = "Require Rating"
@@ -76,21 +62,10 @@ class PostMyxesController < ApplicationController
         status = arr_rating_status.last.first
       end
 
-      post_p.rating_status = status
+      @post_p.rating_status = status
 
-      post_p.save
+      @post_p.save
     end
-
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;">#{post_p.total_good}</a>
-      </div>
-      <div class="cheap">
-        <a href="javascript:;">Bored(#{post_p.total_bored})</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;">#{post_p.total_bad}</a>
-      </div>'
   end
 
   def tag
