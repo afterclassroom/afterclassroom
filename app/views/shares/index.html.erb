@@ -1,27 +1,45 @@
-<h1>Listing shares</h1>
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<!--Content-->
+<div class="contDetL">
+  <div class="contDetLin post">
+    <div class="AsDTop">
+      <h1 class="titleH1">My Share</h1>
+    </div>
+    <div class="postCont">
+      <div class="tablePost"><table cellspacing="0" cellpadding="0" style="width: 100%;">
+          <tbody><tr class="postHead">
+              <th class="post1"><div class="date" id="date"><a href="#">Date</a></div></th>
+              <th class="post4"><div>Title</div></th>
+              <th class="post6"><div>Recipient</div></th>
+              <th class="post5"><div>Action</div></th>
+            </tr>
+            <% if @shares.size > 0 %>
+              <%  @shares.each do |s| %>
+                <tr>
+                  <td><%= s.created_at.strftime("%d %b %y") %></td>
+                  <td class="postCate"><a href="javascript:;"><%= s.title %></a></td>
+                  <td class="postTitle"><%= s.description %></td>
+                  <td class="postPro"></td>
+                  <td></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="4">No result found</td>
+              </tr>
+            <% end %>
+          </tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% @shares.each do |share| %>
-  <tr>
-    <td><%= share.user %></td>
-    <td><%= share.title %></td>
-    <td><%= share.description %></td>
-    <td><%= link_to 'Show', share %></td>
-    <td><%= link_to 'Edit', edit_share_path(share) %></td>
-    <td><%= link_to 'Destroy', share, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Share', new_share_path %>
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
+<!--Content-->

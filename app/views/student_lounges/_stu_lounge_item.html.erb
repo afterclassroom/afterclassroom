@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="assItemB">
-        <div class="assPic"><%= link_to "<div>#{image_tag(w.user_post.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => w.user_post.id} %></div>
+        <div class="assPic"><%= link_to raw("<div>#{image_tag(w.user_post.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => w.user_post.id} %></div>
         <div class="assInfT">
           <div class="assInfT">
             <div class="assInfL">

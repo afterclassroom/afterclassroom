@@ -41,7 +41,7 @@
         <div class="stuItem jobs">
           <div class="stuItemL" style="background:url('/images/footer_menu/foods-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Food", {:controller => post_foods_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostFood") %></div>
-        </div
+        </div>
         <div class="stuItem jobs">
           <div class="stuItemL" style="background:url('/images/footer_menu/party-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Party", {:controller => post_parties_path}, :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostParty") %></div>
@@ -67,12 +67,12 @@
   </div>
 </div>
 <script>
-    $(document).ready(function(){
-        $('#moreinner').toggle('slow');
-        $('#choosemore').click(function(){
-            $('#moreinner').toggle('slow');
-            $('.cmore').html('');
-        });
+  $(document).ready(function(){
+    $('#moreinner').toggle('slow');
+    $('#choosemore').click(function(){
+      $('#moreinner').toggle('slow');
+      $('.cmore').html('');
     });
+  });
 
 </script>

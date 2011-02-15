@@ -1,8 +1,11 @@
 class SharesController < ApplicationController
+  before_filter :login_required, :except => [:index, :show, :new]
+  before_filter :require_current_user, :only => [:destroy]
+  
   # GET /shares
   # GET /shares.xml
   def index
-    @shares = Share.all
+    @shares = current_user.shares
 
     respond_to do |format|
       format.html # index.html.erb
@@ -32,11 +35,6 @@ class SharesController < ApplicationController
     end
   end
 
-  # GET /shares/1/edit
-  def edit
-    @share = Share.find(params[:id])
-  end
-
   # POST /shares
   # POST /shares.xml
   def create
@@ -53,22 +51,6 @@ class SharesController < ApplicationController
     end
   end
 
-  # PUT /shares/1
-  # PUT /shares/1.xml
-  def update
-    @share = Share.find(params[:id])
-
-    respond_to do |format|
-      if @share.update_attributes(params[:share])
-        format.html { redirect_to(@share, :notice => 'Share was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @share.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /shares/1
   # DELETE /shares/1.xml
   def destroy
@@ -79,5 +61,16 @@ class SharesController < ApplicationController
       format.html { redirect_to(shares_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def require_current_user
+    share = Share.find(params[:id])
+    @user ||= share.user
+    unless (@user && (@user.eql?(current_user)))
+      redirect_back_or_default(root_path)and return false
+    end
+    return @user
   end
 end

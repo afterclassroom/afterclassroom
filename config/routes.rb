@@ -1,6 +1,4 @@
 Afterclassroom::Application.routes.draw do
-  resources :shares
-
   # RESTful rewrites
   match '/signup' => 'users#new', :as => :signup
   match '/activate/:activation_code' => 'users#activate', :as => :activate
@@ -24,7 +22,7 @@ Afterclassroom::Application.routes.draw do
 
     resources :messages do
       collection do
-        get :show_email, :send_message
+        get :show_email, :send_message, :list_friend
         post :message_action
       end
     end
@@ -107,6 +105,9 @@ Afterclassroom::Application.routes.draw do
         get :authorise
       end
     end
+
+    # Share files
+    resources :shares
   end
 
   # Sessions
