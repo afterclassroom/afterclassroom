@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :case_sensitive => false
   validates_format_of :email, :with => Authentication.email_regex, :message => Authentication.bad_email_message
   validates_presence_of :school_id
-
+  
   # Relations
   belongs_to :school
   has_and_belongs_to_many :roles
@@ -33,9 +33,9 @@ class User < ActiveRecord::Base
   has_many :musics, :dependent => :destroy
   has_many :videos, :dependent => :destroy
   has_many :favorites, :dependent => :destroy
-	has_many :flirting_messages, :dependent => :destroy
-	has_many :flirting_sharrings, :dependent => :destroy
-	has_many :flirting_user_inchats, :dependent => :destroy
+  has_many :flirting_messages, :dependent => :destroy
+  has_many :flirting_sharrings, :dependent => :destroy
+  has_many :flirting_user_inchats, :dependent => :destroy
   has_many :notify_sms_settings
   has_many :notify_email_settings
   has_many :user_walls, :dependent => :destroy
@@ -47,19 +47,19 @@ class User < ActiveRecord::Base
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]
-
+  
   # Acts_as_fannable
   acts_as_fannable
   
   # Active tracker
   tracks_unlinked_activities [:updated_profile, :updated_avatar]
-
+  
   # Comments
   acts_as_commentable
-
+  
   # Favorite
   acts_as_favorite_user
-
+  
   # Message
   has_private_messages
   
@@ -72,12 +72,12 @@ class User < ActiveRecord::Base
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   # process_in_background :avatar
-
+  
   # Taggable
   acts_as_tagger
-    
+  
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/gif', 'image/png']
-
+  
   # ThinkSphinx
   define_index do
     indexes name, :sortable => true
@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
     list ||= self.roles.collect(&:name)
     list.include?(role.to_s) || list.include?('admin')
   end
-
+  
   # Authenticates a user by their email and unencrypted password.  Returns the user or nil.
   def self.authenticate(email, password)
     u = find_in_state :first, :active, :conditions => {:email => email} # need to get the salt
@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
   rescue
     nil
   end
-
+  
   def self.paginated_users_conditions_with_search(params)
     user_name = params[:search][:name] if params[:search]
     cond = Caboose::EZ::Condition.new :users do
@@ -139,115 +139,115 @@ class User < ActiveRecord::Base
     end
     User.find :all, :conditions => cond.to_sql(), :order => "activated_at DESC"
   end
-
+  
   def full_name
     self.name == "" ? self.login : self.name
   end
-
+  
   def self.get_online_users
     sessions = ActiveRecord::SessionStore::Session.find(:all, :conditions => ["updated_at >= ?", 30.minutes.ago])
     user_ids = sessions.collect{|s| s.data["user_id"]}.compact.uniq
-
+    
     online_users = User.find(user_ids)
     return online_users
   end
-
-	def check_user_online
-		check = false
-		online_users = User.get_online_users
-		check = online_users.include?(self)
-		return check
-	end
-	
-	def check_user_in_chatting_session(user_id)
-		flirting_user_inchats = FlirtingUserInchat.find :all, :conditions => "(user_id = #{self.id} And user_id_invite = #{user_id}) Or (user_id = #{user_id} And user_id_invite = #{self.id})"
-		if flirting_user_inchats.size > 0 then
-			return true
-		else
-			return false
-		end
-	end
-	
-	def check_user_in_chat(v_user_id)
-		cond = Caboose::EZ::Condition.new :flirting_user_inchats do
-			status == "Chat"
-			any{ user_id == v_user_id; user_id_invite == v_user_id }
-		end
-		flirting_user_inchats = FlirtingUserInchat.find :all, :conditions => cond.to_sql()
-		if flirting_user_inchats.size > 0 then
-			return true
-		else
-			return false
-		end
-	end
-	
-	def check_user_is_invited(v_user_id)
-		cond = Caboose::EZ::Condition.new :flirting_user_inchats do
-			status == "Invite"
-			any{ user_id == v_user_id; user_id_invite == v_user_id }
-		end
-		flirting_user_inchats = FlirtingUserInchat.find :all, :conditions => cond.to_sql()
-		if flirting_user_inchats.size > 0 then
-			return true
-		else
-			return false
-		end
-	end	
-	
-	def check_user_in_chanel(v_user_id, v_chanel_id)
-		cond = Caboose::EZ::Condition.new :flirting_user_inchats do
-			flirting_chanel_id == v_chanel_id
-			any{ user_id == v_user_id; user_id_invite == v_user_id }
-		end
-		flirting_user_inchats = FlirtingUserInchat.find :all, :include => :flirting_chanel, :conditions => cond.to_sql()
-		if flirting_user_inchats.size > 0 then
-			return true
-		else
-			return false
-		end
-	end
-	
-	def friends_change_message
-		v_user_id = self.id
-		cond = Caboose::EZ::Condition.new :flirting_user_inchats do
-			status == "Chat"
-			any{ user_id == v_user_id; user_id_invite == v_user_id }
-		end
-		friends_change = FlirtingUserInchat.find :all, :conditions => cond.to_sql, :order => "created_at DESC"
-		return friends_change
-	end
-	
-	def friends_want_chat
-		friends_want = FlirtingUserInchat.find_all_by_user_id_and_status(self.id, "Invite")
-		return friends_want
-	end
-	
-	def friends_invite_chat
-		friends_invite = FlirtingUserInchat.find_all_by_user_id_invite_and_status(self.id, "Invite")
-		return friends_invite
-	end
-	
-	def friends_with_chanel(chanel_id)
-		friends = []
-		for friend in self.user_friends
-			friends << friend if !check_user_in_chanel(friend.id, chanel_id)
-		end
-		return friends
-	end
-	
-	def friends_in_chat
-		friends = []
-		for friend in self.user_friends
-			friends << friend if check_user_in_chat(friend.id)
-		end
-		return friends
-	end
-
+  
+  def check_user_online
+    check = false
+    online_users = User.get_online_users
+    check = online_users.include?(self)
+    return check
+  end
+  
+  def check_user_in_chatting_session(user_id)
+    flirting_user_inchats = FlirtingUserInchat.find :all, :conditions => "(user_id = #{self.id} And user_id_invite = #{user_id}) Or (user_id = #{user_id} And user_id_invite = #{self.id})"
+    if flirting_user_inchats.size > 0 then
+      return true
+    else
+      return false
+    end
+  end
+  
+  def check_user_in_chat(v_user_id)
+    cond = Caboose::EZ::Condition.new :flirting_user_inchats do
+      status == "Chat"
+      any{ user_id == v_user_id; user_id_invite == v_user_id }
+    end
+    flirting_user_inchats = FlirtingUserInchat.find :all, :conditions => cond.to_sql()
+    if flirting_user_inchats.size > 0 then
+      return true
+    else
+      return false
+    end
+  end
+  
+  def check_user_is_invited(v_user_id)
+    cond = Caboose::EZ::Condition.new :flirting_user_inchats do
+      status == "Invite"
+      any{ user_id == v_user_id; user_id_invite == v_user_id }
+    end
+    flirting_user_inchats = FlirtingUserInchat.find :all, :conditions => cond.to_sql()
+    if flirting_user_inchats.size > 0 then
+      return true
+    else
+      return false
+    end
+  end	
+  
+  def check_user_in_chanel(v_user_id, v_chanel_id)
+    cond = Caboose::EZ::Condition.new :flirting_user_inchats do
+      flirting_chanel_id == v_chanel_id
+      any{ user_id == v_user_id; user_id_invite == v_user_id }
+    end
+    flirting_user_inchats = FlirtingUserInchat.find :all, :include => :flirting_chanel, :conditions => cond.to_sql()
+    if flirting_user_inchats.size > 0 then
+      return true
+    else
+      return false
+    end
+  end
+  
+  def friends_change_message
+    v_user_id = self.id
+    cond = Caboose::EZ::Condition.new :flirting_user_inchats do
+      status == "Chat"
+      any{ user_id == v_user_id; user_id_invite == v_user_id }
+    end
+    friends_change = FlirtingUserInchat.find :all, :conditions => cond.to_sql, :order => "created_at DESC"
+    return friends_change
+  end
+  
+  def friends_want_chat
+    friends_want = FlirtingUserInchat.find_all_by_user_id_and_status(self.id, "Invite")
+    return friends_want
+  end
+  
+  def friends_invite_chat
+    friends_invite = FlirtingUserInchat.find_all_by_user_id_invite_and_status(self.id, "Invite")
+    return friends_invite
+  end
+  
+  def friends_with_chanel(chanel_id)
+    friends = []
+    for friend in self.user_friends
+      friends << friend if !check_user_in_chanel(friend.id, chanel_id)
+    end
+    return friends
+  end
+  
+  def friends_in_chat
+    friends = []
+    for friend in self.user_friends
+      friends << friend if check_user_in_chat(friend.id)
+    end
+    return friends
+  end
+  
   def has_role?(role)
     list ||= self.roles.collect(&:name)
     list.include?(role.to_s) || list.include?('admin')
   end
-
+  
   def my_walls
     UserWall.find(:all, :conditions => ["user_id_post = ?", self.id], :order => "created_at DESC")
   end
@@ -256,27 +256,27 @@ class User < ActiveRecord::Base
     over = 30
     self.fans.find(:all, :conditions => ["updated_at > ?", Time.now - over.day], :order => "updated_at DESC")
   end
-
+  
   def fans_not_visit
     over = 30
     self.fans.find(:all, :conditions => ["updated_at < ?", Time.now - over.day], :order => "updated_at DESC")
   end
-
+  
   def get_posts_with_type(type)
     self.posts.find(:all, :conditions => ["type_name = ?", type], :order => "updated_at DESC")
   end
-
+  
   def get_total_posts_with_type(type)
     get_posts_with_type(type).size
   end
-    
+  
   protected
-
+  
   def make_activation_code
     self.deleted_at = nil
     self.activation_code = self.class.make_token
   end
-
+  
   def make_password_reset_code
     self.password_reset_code = self.class.make_token
   end
