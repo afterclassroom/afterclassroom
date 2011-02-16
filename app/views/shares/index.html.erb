@@ -20,9 +20,9 @@
               <%  @shares.each do |s| %>
                 <tr>
                   <td><%= s.created_at.strftime("%d %b %y") %></td>
-                  <td class="postCate"><a href="javascript:;"><%= link_to(s.title, "#{user_share_path(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail") %></a></td>
+                  <td class="postCate"><a href="javascript:;"><%= link_to(s.title, "#{user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail") %></a></td>
                   <td class="postTitle"><%= s.users.collect{|x| x.name}.join(", ") %></td>
-                  <td class="postPro"><%= link_to "Share", "#{edit_user_share_path(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail" %> | <%= link_to "Del", user_share_path(current_user, s), :confirm => "Are you sure?", :method => :delete %></td>
+                  <td class="postPro"><%= link_to "Share", "#{edit_user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail" %> | <%= link_to "Del", user_share_path(current_user, s), :confirm => "Are you sure?", :method => :delete %></td>
                 </tr>
               <% end %>
             <% else %>

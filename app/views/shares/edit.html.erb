@@ -1,4 +1,4 @@
-<%= form_for(@share, :url => user_shares_path(current_user), :html => {:id => "form_post" }) do |f| %>
+<%= form_for([current_user, @share], :html => {:id => "form_post" }) do |f| %>
   <%= hidden_field_tag "recipient" %>
   <div class="postItem">
     <div class="postTit">Share File</div>

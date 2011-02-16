@@ -583,6 +583,11 @@ ActiveRecord::Schema.define(:version => 20110214141941) do
     t.datetime "attach_updated_at"
   end
 
+  create_table "shares_users", :id => false, :force => true do |t|
+    t.integer "share_id"
+    t.integer "user_id"
+  end
+
   create_table "states", :force => true do |t|
     t.integer "country_id",               :null => false
     t.string  "name",       :limit => 50, :null => false
@@ -745,11 +750,6 @@ ActiveRecord::Schema.define(:version => 20110214141941) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-
-  create_table "users_shares", :force => true do |t|
-    t.integer "user_id"
-    t.integer "share_id"
-  end
 
   create_table "video_albums", :force => true do |t|
     t.integer  "user_id",    :null => false

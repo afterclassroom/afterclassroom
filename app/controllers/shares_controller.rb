@@ -74,7 +74,7 @@ class SharesController < ApplicationController
     if user_ids.size > 0 
       user_ids.each do |i|
         u = User.find(i)
-        @share.users << u if u and !@sare.users.include?(u)
+        @share.users << u if u and !@share.users.include?(u)
       end
     end
     respond_to do |format|
@@ -89,7 +89,7 @@ class SharesController < ApplicationController
     @share.destroy
     
     respond_to do |format|
-      format.html { redirect_to(shares_url) }
+      format.html { redirect_to(user_shares_url(current_user)) }
       format.xml  { head :ok }
     end
   end
@@ -98,7 +98,7 @@ class SharesController < ApplicationController
   
   def require_current_user
     share = Share.find(params[:id])
-    @user ||= share.user
+    @user ||= User.find(share.user_id)
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end
