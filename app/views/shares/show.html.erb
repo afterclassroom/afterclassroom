@@ -1,0 +1,34 @@
+<div class="postItem">
+    <div class="postTit">
+        Share to
+    </div>
+    <div class="postInp">
+    	<%= @share.users.collect{|x| x.name}.join(", ") %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Share File
+    </div>
+    <div class="postInp">
+    	<%= @share.attach_file_name %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Title
+    </div>
+    <div class="postInp">
+        <%= @share.title %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Description
+    </div>
+    <div class="postInput">
+        <div class="postInp">
+            <%= @share.description %>
+        </div>
+    </div>
+</div>
