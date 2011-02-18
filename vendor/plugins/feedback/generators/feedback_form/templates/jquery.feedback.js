@@ -94,8 +94,7 @@
   
   var initOverlay = function() {
     if ($(settings.overlay).length == 0)
-      $("body").append(settings.overlayHtml)
-
+      $("body").append(settings.overlayHtml)
     return $(settings.overlay).hide().addClass("feedback_overlayBG")
   } 
  

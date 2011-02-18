@@ -2,12 +2,13 @@ class FeedbacksController < ApplicationController
   layout false
   
   def new
-    @feedback = Feedback.new    
+    @feedback = Feedback.new
   end
   
   def create
     
     @feedback = Feedback.new(params[:feedback])
+    
     if @feedback.valid?
       FeedbackMailer.deliver_feedback(@feedback)
       render :status => :created, :text => '<h3>Thank you for your feedback!</h3>'

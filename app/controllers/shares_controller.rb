@@ -53,7 +53,17 @@ class SharesController < ApplicationController
         if user_ids.size > 0 
           user_ids.each do |i|
             u = User.find(i)
-            @share.users << u if u
+            if u
+              mess = Message.new
+              mess.sender_id = current_user.id
+              mess.recipient_id = u.id
+              mess.subject = @share.title
+              content = "File: <a href=\"javascript:downloadFile('#{@share.attach.url}')\" class=\"downarrow\"><span>#{@share.attach.url}</span></a> <br/> #{@share.description}"
+              mess.body = content
+              mess.save
+              @share.users << u
+            end
+            
           end
         end
         format.html { redirect_to(user_shares_url(current_user), :notice => 'Share was successfully created.') }

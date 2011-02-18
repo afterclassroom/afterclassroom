@@ -40,6 +40,10 @@ GEM
       builder
       mime-types
       xml-simple
+    backgroundrb-rails3 (1.1.3)
+      chronic (>= 0.2.3)
+      packet (>= 0.1.15)
+      rails (>= 3.0.0)
     builder (2.1.2)
     capistrano (2.5.19)
       highline
@@ -47,6 +51,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
+    chronic (0.3.0)
     configatron (2.6.4)
       yamler (>= 0.1.0)
     contacts (1.2.4)
@@ -88,6 +93,7 @@ GEM
     net-ssh (2.0.24)
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
+    packet (0.1.15)
     paperclip (2.3.8)
       activerecord
       activesupport
@@ -138,7 +144,9 @@ DEPENDENCIES
   acts_as_favorite
   ajaxful_rating
   aws-s3
+  backgroundrb-rails3
   capistrano
+  chronic
   configatron
   contacts
   domainatrix
@@ -153,6 +161,7 @@ DEPENDENCIES
   json
   juggernaut
   mysql2
+  packet
   paperclip (~> 2.3)
   rack
   rails (= 3.0.3)

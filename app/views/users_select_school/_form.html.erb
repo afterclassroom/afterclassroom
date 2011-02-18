@@ -34,7 +34,7 @@
 <div class="popupAl" id="list_alphabet">
   <%= link_to_function "All", "select_alphabet('')", :class => "#{"selected" if @alphabet == ""}" %>
   <% ('A'..'Z').each do |a| %>
-    <%= link_to_function a.to_a, "select_alphabet('#{a.to_a}')", :class => "#{"selected" if @alphabet == a}" %>
+    <%= link_to_function a.to_s, "select_alphabet('#{a.to_s}')", :class => "#{"selected" if @alphabet == a}" %>
   <% end %>
 </div>
 <div class="popupBtm"><a href="javascript:;" onclick="select_school();">Select</a></div>
