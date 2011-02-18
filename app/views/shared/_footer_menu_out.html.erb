@@ -94,11 +94,18 @@
       <li><a class="shopping" href="#"></a>
         <div id="tipshopping" class="tip">
           <ul>
-            <li><%= link_to "Shopping", "http://shopping.afterclassroom.com/users/login/#{current_user.salt}" %></li>
+            <li><%= link_to "Shoppingd", "http://shopping.afterclassroom.com/users/login/#{current_user.salt}" %></li>
           </ul>
         </div>
       </li>
-
+      <li><a class="share" href="#"></a>
+        <div id="tipshare" class="tip">
+          <ul>
+            <li><%= link_to "My Share", user_shares_url(current_user) %></li>
+            <li><%= link_to "| Share", new_user_share_url(current_user) %></li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </div>
   <div class="rightside"> <!-- all things in floating left side -->
