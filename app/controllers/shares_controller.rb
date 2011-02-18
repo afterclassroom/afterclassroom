@@ -5,7 +5,10 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.xml
   def index
-    @shares = current_user.shares
+    @srt = "DESC"
+    @srt = params[:sort] if params[:sort]
+    
+    @shares = current_user.shares.find(:all, :order => "created_at #{@srt}")
     
     respond_to do |format|
       format.html # index.html.erb

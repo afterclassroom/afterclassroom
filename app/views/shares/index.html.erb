@@ -11,7 +11,7 @@
     <div class="postCont">
       <div class="tablePost"><table cellspacing="0" cellpadding="0" style="width: 100%;">
           <tbody><tr class="postHead">
-              <th class="post1"><div class="date" id="date"><a href="#">Date</a></div></th>
+              <th class="post1"><div class="date" id="date"><a href="<%= user_shares_url(current_user) %>?sort=<%= @srt == "DESC" ? "ASC" : "DESC" %>">Date</a></div></th>
               <th class="post4"><div>Title</div></th>
               <th class="post6"><div>Recipient</div></th>
               <th class="post5"><div>Action</div></th>

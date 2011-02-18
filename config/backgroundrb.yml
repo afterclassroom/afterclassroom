@@ -1,4 +1,8 @@
 --- 
-:backgroundrb: 
+:backgroundrb:
   :ip: 0.0.0.0
   :port: 11006
+:schedules:
+  :share_worker:
+    :del_share_expire:
+      :trigger_args: 0 30 1 * * * *
