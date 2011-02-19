@@ -81,10 +81,10 @@ class UserWallsController < ApplicationController
 
   def rate
     rating = params[:rating]
-    wall = UserWall.find(params[:post_id])
-    wall.rate rating.to_i, current_user
+    @wall = UserWall.find(params[:post_id])
+    @wall.rate rating.to_i, current_user
     #    wall.save
-
+=begin
     render :text => %Q'
       <div class="qashdU">
         <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{wall.total_good}</a>
@@ -95,6 +95,7 @@ class UserWallsController < ApplicationController
       <script>
         vtip();
       </script>'
+=end
   end
   
   def link_image
