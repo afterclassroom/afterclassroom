@@ -1,2 +1,4 @@
 <div class="menuRItem <%= "menuRselect" if @type == "answered" %>"><a href="<%= "#{post_qas_path}?type=answered" %>"><span class="span1"><span class="span2">Answered Questions</span></span></a></div>
 <div class="menuRItem <%= "menuRselect" if @type == "asked" %>"><a href="<%= "#{post_qas_path}?type=asked" %>"><span class="span1"><span class="span2">Asked Questions</span></span></a></div>
+
+<div style="margin-left:20px" class="menuRItem"><a href="<%= "#{user_post_managements_url(current_user)}?category=#{@class_name}" %>"><span class="span1"><span class="span2">Post management</span></span></a></div>

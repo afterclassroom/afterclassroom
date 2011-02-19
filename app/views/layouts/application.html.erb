@@ -11,11 +11,8 @@
     <%= juggernaut :debug => false, :client_id => current_user.login if logged_in? %>
     <%= feedback_includes %>
     <%= feedback_tab(:position => 'right') %>
-    <%= javascript_include_tag 'feedback.jQuery.js' %>
-    <script type="text/javascript"> $(document).ready(function(){$('#feedback1').feedback1();});</script>
   </head>
   <body>
-    <img src="/images/feedback/feedback.png" width="30" height="100" alt="feedback" id="feedback1" />
     <div class="top" id="top_page">
       <div class="banner">
         <div class="logo"><a href="/"><img alt="classroom" src="/images/logo.png" /></a></div>

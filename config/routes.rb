@@ -105,7 +105,15 @@ Afterclassroom::Application.routes.draw do
         get :authorise
       end
     end
-
+  
+    # Post managements
+    resources :post_managements do
+      collection do
+        get :with_type
+      end
+    end
+    
+    
     # Share files
     resources :shares
   end
