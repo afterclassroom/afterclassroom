@@ -40,7 +40,7 @@
             check = UserWall.find_rated_by(current_user).include?(w) if logged_in?
             check ||= false
           %>
-            <div id="rate_<%= w.user_post.id %>">
+            <div id="rate_<%= w.id %>">
               <div class="qashdU">
                 <%= show_rating( w.id.to_s, w.total_good, 'user_walls', check, 1) %>
               </div>
