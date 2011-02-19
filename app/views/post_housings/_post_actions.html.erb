@@ -2,7 +2,7 @@
   <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Reply</a</span>
   <span class="btmMail"><%= show_email(post) %></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
-  <span class="btmFav"><a href="#"><span>Favorite</span></a></span>
+  <span class="btmFav" id="item_favorite_<%=  post.id %>"><%= show_favorite_in_detail("Post", post) %></span>
   <span class="btmMore"><%= link_to raw(raw("<span>More like this</span>")), :controller => "post_housings", :action => "index", :more_like_this_id => post %></span>
   <span class="btmAbuse"><%=  link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=PostHousing&height=200&width=280", :class => "thickbox", :title => "Report Abuse") %></span>
 </div>
