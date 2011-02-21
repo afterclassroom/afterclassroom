@@ -1,0 +1,150 @@
+<div class="tablePost">
+    <table cellspacing="0" cellpadding="0" style="width: 100%;">
+      <tbody><tr class="postHead">
+          <th class="post1"><div class="date" id="date"><a href="#">Date</a></div></th>
+          <th class="post3">
+            <div>
+              <select id="category" name="Select1">
+                <option>Category</option>
+                <%  @post_cat.each do |pc| %>
+                  <option value="<%= pc.class_name %>"><%= pc.name %></option>
+                <% end %>
+              </select>
+            </div>
+          </th>
+          <th class="post4"><div>Title</div></th>
+          <th class="post5"><div>View</div></th>
+          <th class="post6"><div>Promote Your Ad</div></th>
+          <th class="post8"><div>Available Amount</div></th>
+          <th class="post9"><div>Track your promotion expense</div></th>
+          <th class="post10"><div>Status</div></th>
+        </tr>
+        <% if @all_posts.size > 0 %>
+          <%  @all_posts.each do |p| %>
+            <tr>
+              <td><%= p.created_at.strftime("%d %b %y") %></td>
+              <td class="postCate"><%= link_to p.post_category.name, "#{user_post_managements_url(current_user)}?category=#{p.post_category.class_name}"%></td>
+              <td class="postTitle"><%= link_to p.title, link_to_edit_post(p) %>
+                <div><%= link_to "Click here to edit", link_to_edit_post(p) %></div>
+              </td>
+              <td>100</td>
+              <td class="postPro">Not promoted
+                <div><a href="#">Click here to promote</a></div>
+              </td>
+              <td>$0</td>
+              <td>Not available</td>
+              <td>Running for 7 more days</td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="8">No result found</td>
+          </tr>
+        <% end %>
+
+      </tbody></table>
+  </div>
+
+  <div class="assPage">
+    <div class="curPage">
+
+      <%= will_paginate @all_posts %>
+
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(){
+
+    var selected = 'Category';/*Default value*/
+    var sortType = 'DESC';/*Default value*/
+	var path = '<%= "#{with_type_user_post_managements_url(current_user)}?category="%>';
+	
+    $("select#category").change(function(){
+
+      selected = $("select#category").children(":selected").val();
+
+      console.log('value == '+selected);
+      
+      $.ajax({
+        url: path + selected,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('.shopP2').html(msg);
+        }
+      });
+    });
+
+    var currentSort = '<%= @sort %>';
+    if (currentSort == 'DESC'){
+      $('#date a').css("background-image", "url(/images/icon-Date.gif)");
+    }
+    else{
+      $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
+    }
+
+    $('#date').click(function(){
+      var strImg = $('#date a').css("background-image");
+
+      if ( strImg.indexOf('Desc', 0) > 0){
+        //alert('goting to sort descending');
+        $('#date a').css("background-image", "url(/images/icon-Date.gif)");
+        sortType = 'DESC';
+      }
+      else{
+        //alert('going to sort ascending');
+        $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
+        sortType = 'ASC';
+      }
+      $.ajax({
+        url: '/post_managements/with_type?category='+selected+'&sort='+sortType,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('.shopP2').html(msg);
+        }
+      });
+    });
+    
+    $('.curPage a').each(function(){
+      var page_href = $(this).attr('href');
+      
+      $(this).attr('href','#');
+      
+      $(this).click(function(){
+        console.log('str =='+page_href);
+
+        if (page_href != undefined){
+          var arr = page_href.split('page=');
+          console.log('len of arr == '+arr[1]);
+        }
+
+        var str_href = "<%= with_type_user_post_managements_url(current_user) %>?category="+selected+'&sort='+sortType+'&page='+arr[1];
+        console.log('sortType=='+sortType+' ||||| category=='+selected);
+
+        
+        $.ajax({
+          url: str_href,
+          type: "GET",
+          dataType: "html",
+          failure: function(msg){
+            alert('ajax fail:'+msg);
+          },
+          success: function(msg){
+            $('.shopP2').html(msg);
+          }
+        });
+
+      });
+
+
+    });
+
+  });
+</script>
