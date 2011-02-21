@@ -2,4 +2,8 @@
 <div class="menuRItem <%= "menuRselect" if @teamup_category_id && @teamup_category_id.to_i == tt.id %>"><a href="<%= "#{post_teamups_path}?teamup_category_id=#{tt.id}" %>"><span class="span1"><span class="span2"><%= tt.name %></span></span></a></div>
 <% end %>
 
-<div style="margin-left:20px" class="menuRItem"><a href="<%= "#{user_post_managements_url(current_user)}?category=#{@class_name}" %>"><span class="span1"><span class="span2">Post management</span></span></a></div>
+<% if logged_in? %>
+<div style="margin-left:20px" class="menuRItem">
+    <a href="<%= "#{user_post_managements_url(current_user)}?category=#{@class_name}"  %>"><span class="span1"><span class="span2">Post management</span></span></a>
+</div>
+<% end %>
