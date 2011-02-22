@@ -19,7 +19,7 @@
           <div class="settItemTL">Name</div>
 
           <div class="settItemTR">
-            <%=  link_to("<span>change</span>", "#{change_name_user_settings_path(current_user)}?height=120&width=470&typeOfChange=name", :class => "thickbox", :title => "Change Name") %>
+            <%=  link_to(raw("<span>change</span>"), "#{change_name_user_settings_path(current_user)}?height=120&width=470&typeOfChange=name", :class => "thickbox", :title => "Change Name") %>
           </div>
         </div>
         <div class="settItemB">
@@ -31,7 +31,7 @@
         <div class="settItemT">
           <div class="settItemTL">Email</div>
           <div class="settItemTR">
-            <%=  link_to("<span>change</span>", "#{change_email_user_settings_path(current_user)}?height=120&width=520&typeOfChange=email", :class => "thickbox", :title => "Change email address") %>
+            <%=  link_to(raw("<span>change</span>"), "#{change_email_user_settings_path(current_user)}?height=120&width=520&typeOfChange=email", :class => "thickbox", :title => "Change email address") %>
           </div>
         </div>
         <div class="settItemB">
@@ -43,7 +43,7 @@
         <div class="settItemT">
           <div class="settItemTL">Password</div>
           <div class="settItemTR">
-            <%=  link_to("<span>change</span>", "#{change_psw_user_settings_path(current_user)}?height=170&width=500&typeOfChange=psw", :class => "thickbox", :title => "Report Abuse") %>
+            <%=  link_to(raw("<span>change</span>"), "#{change_psw_user_settings_path(current_user)}?height=170&width=500&typeOfChange=psw", :class => "thickbox", :title => "Report Abuse") %>
           </div>
         </div>
         <div class="settItemB">
