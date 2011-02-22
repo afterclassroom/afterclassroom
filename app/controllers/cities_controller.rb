@@ -37,14 +37,12 @@ class CitiesController < ApplicationController
   end
   
   def state
-   
     country_id = params[:country_id]
     @countries = Country.has_cities
     @country = Country.find(country_id)
     @states = @country.states
-    @state = @states.first    
-    states = State.find_all_by_state_id(country_id)
-  
+    @state = @states.first
+    render :layout => false
   end
 
   # GET /cities/1
@@ -61,7 +59,10 @@ class CitiesController < ApplicationController
   # GET /cities/new
   # GET /cities/new.xml
   def new
-    @countries = Country.find(:all)
+    @countries = Country.has_cities
+    @country = @countries.first
+    @states = @country.states
+    @state = @states.first
     @city = City.new
     
     respond_to do |format|
@@ -75,11 +76,14 @@ class CitiesController < ApplicationController
     @countries = Country.find(:all)
     @city = City.find(params[:id])
     @states = State.find_all_by_country_id(@city.country_id)
+    @state = @states.first
+    @country = @state.country
   end
 
   # POST /cities
   # POST /cities.xml
   def create
+
     @city = City.new(params[:city])
 
     respond_to do |format|

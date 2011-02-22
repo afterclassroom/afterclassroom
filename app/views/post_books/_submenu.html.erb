@@ -1,3 +1,9 @@
 <% BookType.find(:all).each do |bt| %>
 <div class="menuRItem <%= "menuRselect" if @book_type_id && @book_type_id.to_i == bt.id %>"><a href="<%= "#{post_books_path}?book_type_id=#{bt.id}" %>"><span class="span1"><span class="span2"><%= bt.name %></span></span></a></div>
 <% end %>
+
+<% if logged_in? %>
+<div style="margin-left:20px" class="menuRItem">
+    <a href="<%= "#{user_post_managements_url(current_user)}?category=#{@class_name}"  %>"><span class="span1"><span class="span2">Post management</span></span></a>
+</div>
+<% end %>

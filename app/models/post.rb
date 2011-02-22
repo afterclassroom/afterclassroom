@@ -65,7 +65,7 @@ class Post < ActiveRecord::Base
     if params[:sort]
       sort = params[:sort]
     end
-    Post.search(:match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 3)
+    Post.search(:match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
   end
   
 end

@@ -1,0 +1,23 @@
+<%= form_for([current_user, @share], :html => {:id => "form_post" }) do |f| %>
+  <%= hidden_field_tag "recipient" %>
+  <div class="postItem">
+    <div class="postTit">Share File</div>
+    <div class="postInp"><%= @share.attach_file_name %></div>
+  </div>
+  <div class="postItem">
+    <div class="postTit">Share to</div>
+    <div class="postInp"><%= text_field_tag "share_to" %></div>
+  </div>
+  <div class="postItem">
+  </div>
+  <div class="submit"><a href="javascript:;" onclick="Share();">Share</a></div>
+<% end %>
+<script type="text/javascript">
+  var path = "<%= list_friend_user_messages_path %>";
+
+  $("#share_to").autoSuggest(path, {asHtmlID: "share_to", selectedItemProp: "name", searchObjProps: "name", selectionLimit:0});
+  function Share(){
+    $('#recipient').val($('#as-values-share_to').val());
+    $('#form_post').submit();
+  }
+</script>

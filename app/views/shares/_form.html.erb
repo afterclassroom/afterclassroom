@@ -1,0 +1,45 @@
+<%= form_for(@share, :url => user_shares_url(current_user), :html => {:multipart => true, :id => "form_post" }) do |f| %>
+  <%= hidden_field_tag "recipient" %>
+  <div class="postItem">
+    <div class="postTit">Share to</div>
+    <div class="postInp"><%= text_field_tag "share_to" %></div>
+  </div>
+  <div class="postTitt">Add File*</div>
+  <div class="postItemA">
+    <div id="divinputfile" style="margin-left:120px">
+      <div class="postItemC" style="margin-left:130px">
+        <%= f.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc" %>
+      </div>
+      <div class="postUpfile">
+        <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc"></div>
+      </div>
+    </div>
+  </div>
+  <div class="postItem">
+    <div class="postTit">Title*</div>
+    <div class="postInp"><%= f.text_field :title, :class => 'required', :style => "width:360px;" %></div>
+  </div>
+  <div class="postItem">
+    <div class="postTit">Description</div>
+    <div class="postInput">
+      <div class="postDesInf" id="post_description_counter"><span>0</span> characters (900 max)</div>
+      <div class="postInp"><%= f.text_area :description %></div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $("#post_description").counter({
+      count: 'up',
+      goal: 900
+    });
+  </script>
+  <div class="submit"><a href="javascript:;" onclick="Share();">Share</a></div>
+<% end %>
+<script type="text/javascript">
+  var path = "<%= list_friend_user_messages_path %>";
+
+  $("#share_to").autoSuggest(path, {asHtmlID: "share_to", selectedItemProp: "name", searchObjProps: "name", selectionLimit:0});
+  function Share(){
+    $('#recipient').val($('#as-values-share_to').val());
+    $('#form_post').submit();
+  }
+</script>

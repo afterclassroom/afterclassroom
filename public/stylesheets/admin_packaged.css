@@ -33,7 +33,7 @@ div.signin ul li.select a:hover{ color:#1fa6f3}
 .log-btm{ line-height:25px; float:left}
 .log-btm a{ width:45px; height:20px; display:block; background:url('/images/btm-signin.png') no-repeat}
 .log-btm2{ line-height:25px; float:left}
-.log-btm2 a input{ background:url('/images/btm-signin.png') no-repeat; height:20px; width: 45px; display:block; text-align:center; cursor: pointer; border: none}
+.log-btm2 a input{ background:url("/images/btm-signin.png") no-repeat scroll 0 0 transparent; height:20px; width: 45px; display:block; text-align:center; cursor: pointer; border: none}
 .log-btm2 a, .log-btm2 a:link, .log-btm2 a:visited{ color:#6e6e62; text-decoration:none; text-align:center; line-height:20px}
 .log-btm2 a input:hover{ color:#d00}
 .menu{ height:31px; background:url('/images/menu-ver.png') repeat-x}
@@ -186,7 +186,9 @@ h2.titleH2 a:hover{ color:#d00}
 .renew a:hover{ color:#d00}
 .tablePost table td.postPromoted{ color:#5a923c; font-weight:bold}
 .postTR td{ background-color:#f2f2f2}
- table.jCalendar {background: #fff; border-collapse: collapse}
+  body {height:1500px;}
+  #feedback1 {cursor:pointer; border:3px solid #ddd; border-right:0}
+table.jCalendar {background: #fff; border-collapse: collapse}
 table.jCalendar th {background: url('/images/admin/shared/cal_th_repeat.jpg') repeat-x; color: #fff; font-weight: bold; padding: 8px 8px}
 table.jCalendar td {color: #777777; font-size: 11px; font-weight: bold; padding: 9px 9px; text-align: center}
 table.jCalendar td.other-month {background: #ddd; color: #aaa; font-weight: bold}

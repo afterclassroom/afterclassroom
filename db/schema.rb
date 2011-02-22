@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110114084530) do
+ActiveRecord::Schema.define(:version => 20110218025252) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,26 @@ ActiveRecord::Schema.define(:version => 20110114084530) do
   create_table "awareness_types", :force => true do |t|
     t.string "name"
     t.string "label"
+  end
+
+  create_table "bdrb_job_queues", :force => true do |t|
+    t.text     "args"
+    t.string   "worker_name"
+    t.string   "worker_method"
+    t.string   "job_key"
+    t.integer  "taken"
+    t.integer  "finished"
+    t.integer  "timeout"
+    t.integer  "priority"
+    t.datetime "submitted_at"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "archived_at"
+    t.string   "tag"
+    t.string   "submitter_info"
+    t.string   "runner_info"
+    t.string   "worker_key"
+    t.datetime "scheduled_at"
   end
 
   create_table "book_types", :force => true do |t|
@@ -569,6 +589,103 @@ ActiveRecord::Schema.define(:version => 20110114084530) do
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "shares", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "attach_updated_at"
+  end
+
+  create_table "shares_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "share_id"
+  end
+
+  create_table "shopping_refines", :force => true do |t|
+    t.integer "shoppingdetail_id",  :null => false
+    t.integer "shopping_search_id", :null => false
+    t.string  "value",              :null => false
+  end
+
+  create_table "shopping_searches", :force => true do |t|
+    t.integer "shoppingcategory_id", :default => 0, :null => false
+    t.string  "name",                               :null => false
+    t.text    "value",                              :null => false
+  end
+
+  create_table "shopping_subcategories", :force => true do |t|
+    t.integer  "shoppingcategory_id", :null => false
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shoppingcategories", :force => true do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "ordered",  :default => 0, :null => false
+    t.datetime "created"
+    t.datetime "modified"
+  end
+
+  create_table "shoppingcomments", :force => true do |t|
+    t.integer  "shoppingdetail_id",                                    :null => false
+    t.integer  "user_id"
+    t.text     "content",           :limit => 16777215
+    t.datetime "created",                                              :null => false
+    t.integer  "thumb_up",                              :default => 0, :null => false
+    t.integer  "thumb_down",                            :default => 0, :null => false
+    t.integer  "abuse",                                 :default => 0, :null => false
+  end
+
+  create_table "shoppingdetails", :force => true do |t|
+    t.string   "fullname"
+    t.string   "email",                                     :null => false
+    t.string   "phone",                                     :null => false
+    t.string   "messenger",                                 :null => false
+    t.string   "messenger_type",                            :null => false
+    t.string   "address",                                   :null => false
+    t.integer  "city_id",                :default => 0
+    t.string   "title"
+    t.float    "price"
+    t.text     "description"
+    t.integer  "shoppingsubcategory_id"
+    t.integer  "user_id"
+    t.datetime "created"
+    t.datetime "modified"
+    t.integer  "req_reduce",             :default => 0,     :null => false
+    t.integer  "place_bid",              :default => 0,     :null => false
+    t.integer  "req_exchange",           :default => 0,     :null => false
+    t.integer  "viewed",                 :default => 0,     :null => false
+    t.boolean  "usedcar",                :default => false, :null => false
+    t.boolean  "published",              :default => true,  :null => false
+    t.integer  "thumb_up",               :default => 0,     :null => false
+    t.integer  "thumb_down",             :default => 0,     :null => false
+    t.integer  "abuse",                  :default => 0,     :null => false
+    t.integer  "referring",              :default => 0,     :null => false
+    t.integer  "sharing",                :default => 0,     :null => false
+    t.integer  "country_id"
+    t.integer  "state_id"
+    t.string   "link_youtube"
+  end
+
+  create_table "shoppinglocations", :force => true do |t|
+    t.integer "parent_id", :default => 0,    :null => false
+    t.string  "name",                        :null => false
+    t.boolean "published", :default => true, :null => false
+  end
+
+  create_table "shoppingphotos", :force => true do |t|
+    t.integer  "shoppingdetail_id", :null => false
+    t.string   "name"
+    t.datetime "created",           :null => false
   end
 
   create_table "states", :force => true do |t|

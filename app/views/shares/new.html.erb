@@ -1,0 +1,23 @@
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contDetL">
+  <div class="contDetLin post">
+    <div class="AsDTop">
+      <h1 class="titleH1">Share file</h1>
+    </div>
+    <div class="postCont">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>
+
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
+<!--Content-->
+

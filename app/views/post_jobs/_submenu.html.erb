@@ -1,3 +1,9 @@
 <% JobType.find(:all).each do |jt| %>
 <div class="menuRItem <%= "menuRselect" if @job_type_id && @job_type_id.to_i == jt.id %>"><a href="<%= "#{post_jobs_path}?job_type_id=#{jt.id}" %>"><span class="span1"><span class="span2"><%= jt.name %></span></span></a></div>
 <% end %>
+
+<% if logged_in? %>
+<div style="margin-left:20px" class="menuRItem">
+    <a href="<%= "#{user_post_managements_url(current_user)}?category=#{@class_name}"  %>"><span class="span1"><span class="span2">Post management</span></span></a>
+</div>
+<% end %>

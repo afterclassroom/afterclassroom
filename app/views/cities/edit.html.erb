@@ -18,7 +18,7 @@
           <% end -%>
           <%= form_for(@city, :html => {:id => "form"}) do |f| %>
             <tr>
-              <%= render :partial => "country_state", :locals => {:countries => @countries, :country_name => @city.country.name, :state_name => @city.state.name, :states => @states, :action_name => "edit"} %>
+              <%= render :partial => "country_state" %>
             </tr>
             <tr>
               <th valign="top">City name*:</th>

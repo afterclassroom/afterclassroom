@@ -19,7 +19,7 @@
           <%= form_for(@state, :html => {:id => "form"}) do |f| %>
             <tr>
               <th valign="top">Country*</th>
-              <td class="inp-form"><%= render :partial => "country", :locals => {:countries => @countries, :country_name => @state.country.name} %></td>
+              <td><%= render :partial => "country", :locals => {:countries => @countries, :country_name => @state.country.name} %></td>
             </tr>
             <tr>
               <th valign="top">State name*</th>

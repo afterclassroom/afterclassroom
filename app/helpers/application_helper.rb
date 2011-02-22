@@ -209,6 +209,42 @@ module ApplicationHelper
     end
     render :partial => "shared/search_posts", :locals => {:type => type, :search_post_path => search_post_path, :query => query}
   end
+  
+  def link_to_edit_post(post)
+    case post.type_name
+    when "PostAssignment"
+      link_edit = edit_post_assignment_url(post)
+    when "PostProject"
+      link_edit = edit_post_project_url(post)
+    when "PostTest"
+      link_edit = edit_post_test_url(post)
+    when "PostExam"
+      link_edit = edit_post_exam_url(post)
+    when "PostQa"
+      link_edit = edit_post_qa_url(post)
+    when "PostTutor"
+      link_edit = edit_post_tutor_url(post)
+    when "PostBook"
+      link_edit = edit_post_book_url(post)
+    when "PostJob"
+      link_edit = edit_post_job_url(post)
+    when "PostFood"
+      link_edit = edit_post_food_url(post)
+    when "PostParty"
+      link_edit = edit_post_party_url(post)
+    when "PostMyx"
+      link_edit = edit_post_myx_url(post)
+    when "PostAwareness"
+      link_edit = edit_post_awareness_url(post)
+    when "PostHousing"
+      link_edit = edit_post_housing_url(post)
+    when "PostTeamup"
+      link_edit = edit_post_teamup_url(post)
+    when "PostExamSchedule"
+      link_edit = edit_post_exam_schedule_url(post)
+    end
+    return link_edit
+  end
 
   def show_options(school, params, options = {})
     department = params[:department] if params[:department]

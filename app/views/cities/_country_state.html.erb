@@ -1,36 +1,24 @@
 <tr>
-  <th valign="top">Country<%= "*" if action_name == "new" || action_name == "edit" %></th>
-  <td class="inp-form">
-    <%= text_field_tag 'country_name', "#{country_name}", :class => "required tb_arrow", :readonly => "readonly" %>
-    <div id="country_div" class="menu_select" style="display:none;">
-      <ul>
-        <% for country in countries %>
-          <li>
-            <%= radio_button "city", "country_id", country.id, :onChange =>  "loadState(this.value)", :onClick => "getCountry('#{country.printable_name}')" %>
-            <label onClick="getCountry(this.innerHTML)" for="city_country_id_<%= country.id %>"><%= country.printable_name %></label>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+  <th valign="top">Country*</th>
+  <td>
+    <%= select_tag "city[country_id]", options_from_collection_for_select(@countries, "id", "name", @country), :id => "state_country_id", :style => "width: 198px" %>
   </td>
 </tr>
 <tr>
-  <th class="reqLa"><strong>State<%= "*" if action_name == "new" || action_name == "edit" %></strong></th>
-  <td class="inp-form">
-    <%= text_field_tag 'state_name', "#{state_name}", :class => "required tb_arrow", :readonly => "readonly" %>
-    <div id="state_div" class="menu_select" style="display:none;">
-      <ul>
-        <% if states %>
-          <% for state in states %>
-            <li>
-              <%= radio_button "city", "state_id", state.id, :onClick => "getState('#{state.name}')" %>
-              <label onClick="getState(this.innerHTML)" for="city_state_id_<%= state.id %>"><%= state.name %></label>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
+  <th class="reqLa"><strong>State*</strong></th>
+  <td id="state_city">
+    <%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state), :style => "width: 198px" %>
   </td>
 </tr>
-
-
+<script>
+    // Append the function to the "document ready" chain
+    jQuery(function($) {
+      // when the #search field changes
+      $("#state_country_id").change(function() {
+        // make a POST call and replace the content
+        $.post(<%= "'#{state_cities_path}?country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>, function(data) {
+          $("#state_city").html(data);
+        });
+      });
+    })
+</script>

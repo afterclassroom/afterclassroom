@@ -22,7 +22,7 @@ Afterclassroom::Application.routes.draw do
 
     resources :messages do
       collection do
-        get :show_email, :send_message
+        get :show_email, :send_message, :list_friend
         post :message_action
       end
     end
@@ -105,6 +105,17 @@ Afterclassroom::Application.routes.draw do
         get :authorise
       end
     end
+  
+    # Post managements
+    resources :post_managements do
+      collection do
+        get :with_type
+      end
+    end
+    
+    
+    # Share files
+    resources :shares
   end
 
   # Sessions
@@ -253,6 +264,8 @@ Afterclassroom::Application.routes.draw do
   # Feedback
   match 'feedbacks' => 'feedbacks#create', :as => :feedback
   match 'feedbacks/new' => 'feedbacks#new', :as => :new_feedback
+  match 'feedbacks_form' => 'feedbacks_form#create', :as => :feedbackk
+  match 'feedbacks_form/new' => 'feedbacks_form#new', :as => :new_feedback
 
   # Administration
   namespace :admin do

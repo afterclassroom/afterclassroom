@@ -754,6 +754,15 @@ span.btmDown a:hover{
   padding-top:3px;
   margin-top:1px;
 }
+#fakeinputfile #fakefilepc0{
+  border:1px solid #CECECE;
+}
+#fakeinputfile #fakefilepc1{
+  border:1px solid #CECECE;
+}
+#fakeinputfile #fakefilepc2{
+  border:1px solid #CECECE;
+}
 .submit a{
   background:url('/images/btm48.png') no-repeat;
   width:48px;
@@ -1154,6 +1163,9 @@ span.btmAbuse a:hover{
   width:250px;
   height:15px;
   padding-top:3px;
+}
+.postItem input{
+  border:1px #cecece solid;
 }
 .postItem .postInp span{
   margin-left:5px;

@@ -1,3 +1,9 @@
 <% TutorType.find(:all).each do |tt| %>
 <div class="menuRItem <%= "menuRselect" if @tutor_type_id && @tutor_type_id.to_i == tt.id %>"><a href="<%= "#{post_tutors_path}?tutor_type_id=#{tt.id}" %>"><span class="span1"><span class="span2"><%= tt.name %></span></span></a></div>
 <% end %>
+
+<% if logged_in? %>
+<div style="margin-left:20px" class="menuRItem">
+    <a href="<%= "#{user_post_managements_url(current_user)}?category=#{@class_name}"  %>"><span class="span1"><span class="span2">Post management</span></span></a>
+</div>
+<% end %>

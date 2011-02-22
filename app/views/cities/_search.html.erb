@@ -1,41 +1,44 @@
 <div class="right">
-  <div id="posting-section">
-    <%= form_for :city, @city, :html => {:id => "form", :method => :get} do |f| %>
-
-     <div class="reqLa"><strong>Country*</strong></div>
-<div>
-  <%= select_tag "state[country_id]", options_from_collection_for_select(@countries, "id", "name", @country), :id => "state_country_id", :style => "width: 198px" %>
-  <%= observe_field "state_country_id", :url => { :action => :state ,
-    :controller => :cities},
-    :update => "state_city",
-    :with => "'country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>
-</div>
-
-<div class="reqLa"><strong>State*</strong></div>
-<div>
-  <%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state), :style => "width: 198px" %>
-
-</div>
-
-      <div class="reqLa"><strong>City name</strong></div>
-      <div class="inp-formS">
-        <%= f.text_field :name %>
-      </div>
-      <div class="reqLa">
-        <div class="form-buttom">
-          <!-- post  button -->
-          <a href="javascript:submit()" title="Post" class="link_bt">
-            <span class="ltred_l"></span>
-            <span class="ltred_c btf">Search</span>
-            <span class="ltred_r"></span>
-          </a>
-          <!-- end post button -->
+    <div id="posting-section">
+        <%= form_for :city, @city, :html => {:id => "form", :method => :get} do |f| %>
+        <div class="reqLa">
+            <strong>Country*</strong>
         </div>
-      </div>
-      <div id="elements_store"></div>
-    <% end %>
-  </div>
+        <div>
+            <%= select_tag "state[country_id]", options_from_collection_for_select(@countries, "id", "name", @country), :id => "state_country_id", :style => "width: 198px" %>
+        </div>
+        <div class="reqLa">
+            <strong>State*</strong>
+        </div>
+        <div id="state_city">
+            <%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state), :style => "width: 198px" %>
+        </div>
+        <div class="reqLa">
+            <strong>City name</strong>
+        </div>
+        <div class="inp-formS">
+            <%= f.text_field :name %>
+        </div>
+        <div class="reqLa">
+            <div class="form-buttom">
+                <!-- post  button --><a href="javascript:submit()" title="Post" class="link_bt"><span class="ltred_l"></span><span class="ltred_c btf">Search</span><span class="ltred_r"></span></a>
+                <!-- end post button -->
+            </div>
+        </div>
+        <div id="elements_store">
+        </div>
+        <% end %>
+    </div>
 </div>
-
-
-
+<script>
+    // Append the function to the "document ready" chain
+    jQuery(function($) {
+      // when the #search field changes
+      $("#state_country_id").change(function() {
+        // make a POST call and replace the content
+        $.post(<%= "'#{state_cities_path}?country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>, function(data) {
+          $("#state_city").html(data);
+        });
+      });
+    })
+</script>

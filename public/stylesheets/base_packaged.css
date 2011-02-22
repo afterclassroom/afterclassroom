@@ -33,7 +33,7 @@ div.signin ul li.select a:hover{ color:#1fa6f3}
 .log-btm{ line-height:25px; float:left}
 .log-btm a{ width:45px; height:20px; display:block; background:url('/images/btm-signin.png') no-repeat}
 .log-btm2{ line-height:25px; float:left}
-.log-btm2 a input{ background:url('/images/btm-signin.png') no-repeat; height:20px; width: 45px; display:block; text-align:center; cursor: pointer; border: none}
+.log-btm2 a input{ background:url("/images/btm-signin.png") no-repeat scroll 0 0 transparent; height:20px; width: 45px; display:block; text-align:center; cursor: pointer; border: none}
 .log-btm2 a, .log-btm2 a:link, .log-btm2 a:visited{ color:#6e6e62; text-decoration:none; text-align:center; line-height:20px}
 .log-btm2 a input:hover{ color:#d00}
 .menu{ height:31px; background:url('/images/menu-ver.png') repeat-x}
@@ -186,7 +186,9 @@ h2.titleH2 a:hover{ color:#d00}
 .renew a:hover{ color:#d00}
 .tablePost table td.postPromoted{ color:#5a923c; font-weight:bold}
 .postTR td{ background-color:#f2f2f2}
-  .Br-by-sub .col300Cont{ line-height:170%; color:#6e7062}
+  body {height:1500px;}
+  #feedback1 {cursor:pointer; border:3px solid #ddd; border-right:0}
+ .Br-by-sub .col300Cont{ line-height:170%; color:#6e7062}
 .tabClouse a, .tabClouse a:link, .tabClouse a:visited{ color:#6e7062; text-decoration:none}
 .tabClouse a:hover{ color:#d00}
 .sub1{ font-size:12px; font-weight:bold}
@@ -355,6 +357,9 @@ span.btmDown a:hover{ background:url('/images/btmDownH.png') no-repeat}
 .postUpfile{ margin-top:-21px}
 #divinputfile .filepc{ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -khtml-opacity: 0.0; -moz-opacity: 0.0; opacity: 0.0}
 #fakeinputfile #fakefilepc{ width:208px; height:22px; border:1px solid #CECECE; color:#969696; height:15px; text-indent:2px; padding-top:3px; margin-top:1px}
+#fakeinputfile #fakefilepc0{ border:1px solid #CECECE}
+#fakeinputfile #fakefilepc1{ border:1px solid #CECECE}
+#fakeinputfile #fakefilepc2{ border:1px solid #CECECE}
 .submit a{ background:url('/images/btm48.png') no-repeat; width:48px; height:25px; line-height:25px; text-align:center; display:block; border: none}
 .submit a:hover{ background:url('/images/btm48Red.png') no-repeat}
 .submit a, .submit a:link, .submit a:visited, .submit a:hover{ color:#fff; text-decoration:none}
@@ -474,6 +479,9 @@ div.postInf{ color:#be2626; line-height:20px; padding-left:5px; font-style:itali
 .submitRSVP a{ background:url("/images/btm48.png") no-repeat scroll 78px 0 transparent; width:48px; height:25px; line-height:25px; text-align:center; display:block; padding-left: 78px}
 .submitRSVP a:hover{ background:url('/images/btm48Red.png') no-repeat scroll 78px 0 transparent}
 .submitRSVP a, .submitRSVP a:link, .post_cbt a:visited, .post_cbt a:hover{ color:#fff; text-decoration:none}
+.submitRSVP a input{ background:url("/images/btm48.png") no-repeat scroll 78px 0 transparent; width:48px; height:25px; line-height:25px; text-align:center; display:block; border: none}
+.submitRSVP a input:hover{ background:url('/images/btm48Red.png') no-repeat scroll 78px 0 transparent}
+.submitRSVP a input, .submitRSVP a input:link, .post_cbt a input:visited, .post_cbt a input:hover{ color:#fff; text-decoration:none}
  .AsDContBtm span.btmReply a{ background:url('/images/btm48.png') no-repeat; text-align:center; width:48px; color:#fff!important; padding-left:0px}
  .popup2{ overflow:hidden; width:610px; padding-bottom:5px; _height:100%}
 .popupItem{ padding-left:10px; clear:both; overflow:hidden; min-height:42px}
@@ -1202,10 +1210,10 @@ span.showbar a { padding: 5px; font-size: 10px; color: #989898}
 .rightside {float: right; margin-top:8px}
  ul#social li {display: inline}
 a.rss {display: inline-block; width: 104px; height: 30px; margin-left: 5px; background: url(/images/footer_menu/rss.png) no-repeat}
-a.chatt, a.share_story, a.musics, a.photos, a.videos, a.inbox, a.friends, a.profile, a.setting, a.phone_app, a.play_games, a.shopping, a.assignments, a.projects, a.past_tests, a.past_exams, a.qas, a.tutors, a.books, a.jobs, a.foods, a.party, a.myx, a.student_awareness, a.housing, a.teamUp {display: inline-block; width: 40px; height: 30px; margin-top: 3px; border-right:1px solid #EBEBEB; margin-left:5px}
-a.rss:hover, a.chatt:hover, a.share_story:hover, a.musics:hover, a.photos:hover, a.videos:hover, a.inbox:hover, a.friends:hover, a.profile:hover, a.setting:hover, a.phone_app:hover, a.play_games:hover, a.shopping:hover, a.assignments:hover, a.projects:hover, a.past_tests:hover, a.past_exams:hover, a.qas:hover, a.tutors:hover, a.books:hover, a.jobs:hover, a.foods:hover, a.party:hover, a.myx:hover, a.student_awareness:hover, a.housing:hover, a.teamUp:hover {background-position: 1px 1px;  }
+a.chatt, a.share_story, a.musics, a.photos, a.videos, a.inbox, a.friends, a.profile, a.setting, a.phone_app, a.play_games, a.shopping, a.assignments, a.projects, a.past_tests, a.past_exams, a.qas, a.tutors, a.books, a.jobs, a.foods, a.party, a.myx, a.student_awareness, a.housing, a.teamUp, a.share {display: inline-block; width: 40px; height: 30px; margin-top: 3px; border-right:1px solid #EBEBEB; margin-left:5px}
+a.rss:hover, a.chatt:hover, a.share_story:hover, a.musics:hover, a.photos:hover, a.videos:hover, a.inbox:hover, a.friends:hover, a.profile:hover, a.setting:hover, a.phone_app:hover, a.play_games:hover, a.shopping:hover, a.assignments:hover, a.projects:hover, a.past_tests:hover, a.past_exams:hover, a.qas:hover, a.tutors:hover, a.books:hover, a.jobs:hover, a.foods:hover, a.party:hover, a.myx:hover, a.student_awareness:hover, a.housing:hover, a.teamUp:hover, a.share:hover {background-position: 1px 1px;  }
 a.chatt {background: url(/images/footer_menu/chatt-1.png) no-repeat}
-a.share_story {background: url(/images/footer_menu/share_story-1.png) no-repeat}
+a.share_story {background: url(/images/footer_menu/projects-1.png) no-repeat}
 a.photos {background: url(/images/footer_menu/photos-1.png) no-repeat}
 a.musics {background: url(/images/footer_menu/musics-1.png) no-repeat}
 a.videos {background: url(/images/footer_menu/videos-1.png) no-repeat}
@@ -1230,6 +1238,7 @@ a.myx {background: url(/images/footer_menu/myx-1.png) no-repeat}
 a.student_awareness {background: url(/images/footer_menu/student_awareness-1.png) no-repeat}
 a.housing {background: url(/images/footer_menu/housing-1.png) no-repeat}
 a.teamUp {background: url(/images/footer_menu/teamUp-1.png) no-repeat}
+a.share {background: url(/images/footer_menu/share_story-1.png) no-repeat}
 .tip {position: absolute;  top: -65px; width: 250px; height: 78px; background: url(/images/footer_menu/tip.png) no-repeat; float: left; display: none}
  #tipassignments {left: -20px}
 #tipchatt {left: -20px}
@@ -1257,6 +1266,7 @@ a.teamUp {background: url(/images/footer_menu/teamUp-1.png) no-repeat}
 #tipstudent_awareness {left: 518px}
 #tiphousing {left: 569px}
 #tipteamUp {left: 617px}
+#tipshare {left: 570px}
 .tip ul {padding: 22px 0 0 25px}
 .tip ul li {display: inline; padding-left: 3px}
 .tip ul li a {font-size: 15px; color: #989898}

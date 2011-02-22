@@ -2,3 +2,9 @@
 <% HousingCategory.find(:all).each do |hc| %>
 <div class="menuRItem <%= "menuRselect" if @housing_category_id && @housing_category_id.to_i == hc.id %>"><a href="<%= "#{post_housings_path}?housing_category_id=#{hc.id}" %>"><span class="span1"><span class="span2"><%= hc.name %></span></span></a></div>
 <% end %>
+
+<% if logged_in? %>
+<div style="margin-left:20px" class="menuRItem">
+    <a href="<%= "#{user_post_managements_url(current_user)}?category=#{@class_name}"  %>"><span class="span1"><span class="span2">Post management</span></span></a>
+</div>
+<% end %>

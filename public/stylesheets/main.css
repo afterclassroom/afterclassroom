@@ -634,189 +634,199 @@ h2.titleH2 a:hover{
     overflow:hidden;
     padding:10px;
     _height:100%;
-   /* margin-top:50px;*/
+    /* margin-top:50px;*/
 }
 /**** Home postManagement  *****/
 .postMTop{
-	width:962px;
-	margin:0px auto;
-	padding:10px 0px;
-	overflow:hidden;
+    width:962px;
+    margin:0px auto;
+    padding:10px 0px;
+    overflow:hidden;
 }
 .postMTLeft{
-	float:left;
-	padding-top:4px;
-	font-weight:bold;
+    float:left;
+    padding-top:4px;
+    font-weight:bold;
 }
 .postMTRight{
-	float:right;
+    float:right;
 }
 .btm-Credit{
-	float:left;
-	padding-right:5px;
+    float:left;
+    padding-right:5px;
 }
 .btm-Credit a{
-	background-image:url('images/btmCredit.jpg');
-	width:148px;
-	height:25px;
-	display:block;
-	line-height:25px;
-	color:#969696;
-	text-decoration:none;
+    background-image:url('images/btmCredit.jpg');
+    width:148px;
+    height:25px;
+    display:block;
+    line-height:25px;
+    color:#969696;
+    text-decoration:none;
 }
 .btm-Credit a:hover{
-	background-image:url('images/btmCreditH.jpg');
+    background-image:url('images/btmCreditH.jpg');
 }
 .btm-Credit a span{
-	padding-left:28px;
+    padding-left:28px;
 }
 .btm-Pricing a{
-	background-image:url('images/btmPricing.jpg');
-	width:50px;
-	height:25px;
-	line-height:25px;
-	text-align:center;
-	text-decoration:none;
-	color:#fff;
-	display:block;
+    background-image:url('images/btmPricing.jpg');
+    width:50px;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    display:block;
 }
 .btm-Pricing a:hover{
-	background-image:url('images/btmPricingH.jpg');
+    background-image:url('images/btmPricingH.jpg');
 }
 .shopPost{
-	clear:both;
-	width:962px;
-	margin:0px auto 20px auto;
-	background:url('images/bg963R.jpg') repeat-y;
+    clear:both;
+    width:962px;
+    margin:0px auto 20px auto;
+    background:url('images/bg963R.jpg') repeat-y;
 }
 .shopP1{
-	background:url('images/bg963B.jpg') no-repeat left bottom;
-	overflow:hidden;
+    background:url('images/bg963B.jpg') no-repeat left bottom;
+    overflow:hidden;
 }
 .shopP2{
-	background:url('images/bg963T.jpg') no-repeat left top;
-	padding:7px;
+    background:url('images/bg963T.jpg') no-repeat left top;
+    padding:7px;
 }
 .shopPost .assPage{
-	border:0px;
+    border:0px;
 }
 .shopPost .numPage{
-	width:auto;
-	padding-right:20px;
+    width:auto;
+    padding-right:20px;
 }
 .tablePost table{
-	border-collapse:collapse;
+    border-collapse:collapse;
 }
 .tablePost table td{
-	border:1px #cbcbc4 solid;
-	padding:5px 7px;
-	vertical-align:top;
-	color:#68685e;
-	font-size:11px;
+    border:1px #cbcbc4 solid;
+    padding:5px 7px;
+    vertical-align:top;
+    color:#68685e;
+    font-size:11px;
 }
 .tablePost table .postHead th{
-	border:1px #474640 solid;
-	color:#fff;
-	font-size:11px;
-	text-align:left;
-	vertical-align:top;
-	padding:8px 0px;
-	background:#65645a url('images/bgHead.png') repeat-x;
+    border:1px #474640 solid;
+    color:#fff;
+    font-size:11px;
+    text-align:left;
+    vertical-align:top;
+    padding:8px 0px;
+    background:#65645a url('images/bgHead.png') repeat-x;
 }
 .tablePost table .postHead th div{
-	padding:0px 7px;
+    padding:0px 7px;
 }
 .post1{
-	width:75px;
+    width:75px;
 }
 .post2{
-	width:80px;
+    width:80px;
 }
 .post3{
-	width:116px;
+    width:116px;
 }
 .post4{
-	width:147px;
+    width:147px;
 }
 .post5{
-	width:48px;
+    width:48px;
 }
 .post6{
-	width:126px;
+    width:126px;
 }
 .post7{
-	width:80px;
+    width:80px;
 }
 .post8{
-	width:70px;
+    width:70px;
 }
 .post9{
-	width:124px;
+    width:124px;
 }
 .post10{
-	width:80px;
+    width:80px;
 }
 .post3 select{
-	width:100px;
+    width:100px;
 }
 .postCate a{
-	text-decoration:none;
-	color:#1fa6f3;
+    text-decoration:none;
+    color:#1fa6f3;
 }
 .postCate a:hover{
-	color:#d00;
+    color:#d00;
 }
 .postTitle{
-	color:#2c2c27;
+    color:#2c2c27;
 }
 .postTitle a{
-	color:#7c7c73;
+    color:#7c7c73;
 }
 .postTitle div{
-	padding-top:5px;
+    padding-top:5px;
 }
 .postTitle a:hover{
-	color:#d00 ;
+    color:#d00 ;
 }
 .postPro div, .addCre{
-	padding-top:5px;
+    padding-top:5px;
 }
 .postPro a, .addCre a{
-	color:#2c2c27;
-	text-decoration:none;
+    color:#2c2c27;
+    text-decoration:none;
 }
 .addCre a{
-	background:url('/images/icon-add.gif') no-repeat left 3px;
-	padding-left:12px;
+    background:url('/images/icon-add.gif') no-repeat left 3px;
+    padding-left:12px;
 }
 .postPro a:hover, .addCre a:hover{
-	color:#d00;
+    color:#d00;
 }
 .date a, .location a{
-	text-decoration:none;
-	color:#fff;
-	background:url('/images/icon-Date.gif') no-repeat right 2px;
-	padding-right:15px;
+    text-decoration:none;
+    color:#fff;
+    background:url('/images/icon-Date.gif') no-repeat right 2px;
+    padding-right:15px;
 }
 .date a:hover, .location a:hover{
-	color:#1fa6f3;
-	background:url('/images/icon-DateH.gif') no-repeat right 2px;
+    color:#1fa6f3;
+    background:url('/images/icon-DateH.gif') no-repeat right 2px;
 }
 .expired{
-	color:#b62626;
+    color:#b62626;
 }
 .renew a{
-	color:#68685e;
-	text-decoration:none;
+    color:#68685e;
+    text-decoration:none;
 }
 .renew a:hover{
-	color:#d00;
+    color:#d00;
 }
 .tablePost table td.postPromoted{
-	color:#5a923c;
-	font-weight:bold;
+    color:#5a923c;
+    font-weight:bold;
 }
 .postTR td{
-	background-color:#f2f2f2;
+    background-color:#f2f2f2;
 }
 /**** END Home postManagement  *****/
+/* feedback 1*/
+body {height:1500px;}
+/* any styles above this can be eliminated */
+
+/*include this sample css */
+#feedback1 {
+    cursor:pointer;
+    border:3px solid #ddd;
+    border-right:0;
+}

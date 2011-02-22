@@ -1,0 +1,44 @@
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contDetL">
+  <div class="contDetLin post">
+    <div class="AsDTop">
+      <h1 class="titleH1">My Share</h1>
+    </div>
+    <div class="postCont">
+      <div class="tablePost"><table cellspacing="0" cellpadding="0" style="width: 100%;">
+          <tbody><tr class="postHead">
+              <th class="post1"><div class="date" id="date"><a href="<%= user_shares_url(current_user) %>?sort=<%= @srt == "DESC" ? "ASC" : "DESC" %>">Date</a></div></th>
+              <th class="post4"><div>Title</div></th>
+              <th class="post6"><div>Recipient</div></th>
+              <th class="post5"><div>Action</div></th>
+            </tr>
+            <% if @shares.size > 0 %>
+              <%  @shares.each do |s| %>
+                <tr>
+                  <td><%= s.created_at.strftime("%d %b %y") %></td>
+                  <td class="postCate"><a href="javascript:;"><%= link_to(s.title, "#{user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail") %></a></td>
+                  <td class="postTitle"><%= s.users.collect{|x| x.name}.join(", ") %></td>
+                  <td class="postPro"><%= link_to "Share", "#{edit_user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail" %> | <%= link_to "Del", user_share_path(current_user, s), :confirm => "Are you sure?", :method => :delete %></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td colspan="4">No result found</td>
+              </tr>
+            <% end %>
+          </tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
+<!--Content-->

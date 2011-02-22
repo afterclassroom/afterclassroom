@@ -1,10 +1,10 @@
 <div class="stuLtop">
   <div class="menuRL">
-    <div class="menuRItem mnChat"><%= link_to '<span class="span1"><span class="span2">Chat</span></span>', chat_user_student_lounges_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'student_lounges' && @controller.action_name == 'chat'}" %></div>
-    <div class="menuRItem mnShare"><%= link_to '<span class="span1"><span class="span2">Share a Story</span></span>', user_stories_path(current_user), :class => "#{'menuRselect'  if controller.controller_name == 'stories'}" %></div>
-    <div class="menuRItem mnPho"><%= link_to '<span class="span1"><span class="span2">Photos</span></span>', user_photos_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'photos'}" %></div>
-    <div class="menuRItem mnMus"><%= link_to '<span class="span1"><span class="span2">Musics</span></span>', user_musics_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'musics'}" %></div>
-    <div class="menuRItem mnVi"><%= link_to '<span class="span1"><span class="span2">Videos</span></span>', user_youtubes_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'youtubes'}" %></div>
+    <div class="menuRItem mnChat"><%= link_to raw('<span class="span1"><span class="span2">Chat</span></span>'), chat_user_student_lounges_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'student_lounges' && @controller.action_name == 'chat'}" %></div>
+    <div class="menuRItem mnShare"><%= link_to raw('<span class="span1"><span class="span2">Share a Story</span></span>'), user_stories_path(current_user), :class => "#{'menuRselect'  if controller.controller_name == 'stories'}" %></div>
+    <div class="menuRItem mnPho"><%= link_to raw('<span class="span1"><span class="span2">Photos</span></span>'), user_photos_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'photos'}" %></div>
+    <div class="menuRItem mnMus"><%= link_to raw('<span class="span1"><span class="span2">Musics</span></span>'), user_musics_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'musics'}" %></div>
+    <div class="menuRItem mnVi"><%= link_to raw('<span class="span1"><span class="span2">Videos</span></span>'), user_youtubes_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'youtubes'}" %></div>
   </div>
   <% if ['stories', 'photos', 'musics', 'youtubes'].include?(controller.controller_name) %>
   <%
