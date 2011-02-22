@@ -3,10 +3,6 @@
 </div>
 <div>
     <%= select_tag "state[country_id]", options_from_collection_for_select(@countries, "id", "name", @country), :id => "state_country_id", :style => "width: 198px" %>
-    <%= observe_field "state_country_id", :url => { :action => :state_or_city ,
-    :controller => :schools},
-    :update => "state_city",
-    :with => "'country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>
 </div>
 <div id="state_city">
     <div class="reqLa">
@@ -21,25 +17,22 @@
     </div>
 </div>
 <script>
-                // Append the function to the "document ready" chain
-                jQuery(function($) {
-                  // when the #search field changes
-                  $("#state_country_id").change(function() {
-                    // make a POST call and replace the content
-                    $.post(<%= "'#{state_or_city_schools_path}?country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>, function(data) {
-                      $("#state_city").html(data);
-                    });
-                  });
-                })
-            	
-            	// Append the function to the "document ready" chain
-                jQuery(function($) {
-                  // when the #search field changes
-                  $("#city_state_id").change(function() {
-                    // make a POST call and replace the content
-                    $.post(<%= "'#{city_schools_path}?state_id=' + escape($('#city_state_id').val()) + '&type=search'" %>, function(data) {
-                      $("#city").html(data);
-                    });
-                  });
-        
+                    // Append the function to the "document ready" chain
+                    jQuery(function($) {
+                      // when the #search field changes
+                      $("#state_country_id").change(function() {
+                        // make a POST call and replace the content
+                        $.post(<%= "'#{state_or_city_schools_path}?country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>, function(data) {
+                          $("#state_city").html(data);
+                        });
+                      });
+    				  // when the #search field changes
+                      $("#city_state_id").change(function() {
+                        // make a POST call and replace the content
+                        $.post(<%= "'#{city_schools_path}?state_id=' + escape($('#city_state_id').val()) + '&type=search'" %>, function(data) {
+                          $("#city").html(data);
+                        });
+                      });
+                    })
+            
 </script>
