@@ -114,11 +114,11 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
     @department_categories = DepartmentCategory.find(:all)
 
-    city = @school.city
-    state = city.state
-    country = city.country
-    @states = country.states
-    @cities = state.cities
+    @city = @school.city
+    @state = @city.state
+    @country = @city.country
+    @states = @country.states
+    @cities = @state.cities
   end
 
   # POST /schools
