@@ -169,6 +169,7 @@ class UserWallsController < ApplicationController
 
   def attach_video
     link = params[:link]
+    @err = false
     begin
       url = Domainatrix.parse(link)
       domain = get_domain(url)
@@ -183,12 +184,14 @@ class UserWallsController < ApplicationController
       @user_wall_video.title = domain
       @user_wall_video.sub_content = link
     rescue
-      render :action => "error_link"
+      @err = true
     end
+    render :layout => false
   end
 
   def attach_music
     link = params[:link]
+    @err = false
     begin
       url = Domainatrix.parse(link)
       domain = get_domain(url)
@@ -197,12 +200,14 @@ class UserWallsController < ApplicationController
       @user_wall_music.title = domain
       @user_wall_music.sub_content = link
     rescue
-      render :action => "error_link"
+      @err = true
     end
+    render :layout => false
   end
 
   def attach_link
     link = params[:link]
+    @err = false
     begin
       url = Domainatrix.parse(link)
       domain = get_domain(url)
@@ -226,8 +231,9 @@ class UserWallsController < ApplicationController
       @user_wall_link.title = domain
       @user_wall_link.sub_content = p
     rescue
-      render :action => "error_link"
+      @err = true
     end
+    render :layout => false
   end
 
   def jplayer_music
