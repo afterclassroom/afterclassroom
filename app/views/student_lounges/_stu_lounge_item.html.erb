@@ -8,20 +8,21 @@
 
         <div class="assCate"><span><a href="#" style="color: #000000;">&nbsp;&nbsp;<%= w.content %></a></span></div>
       </div>
-      <div class="asslinkdown">
-        <div class="morelink"><a href="#">Invite Chat</a></div>
-        <div class="down"><a href="#">Match Making</a></div>
-
-        <div class="like">
-          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= w.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
+      <% if user != current_user %>
+        <div class="asslinkdown">
+          <div class="morelink"><a href="#">Invite Chat</a></div>
+          <div class="down"><a href="#">Match Making</a></div>
+          <div class="like">
+            <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= w.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
+          </div>
+          <div class="love">
+            <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
+          </div>
+          <div class="hate">
+            <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
+          </div>
         </div>
-        <div class="love">
-          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
-        </div>
-        <div class="hate">
-          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
-        </div>
-      </div>
+      <% end %>
       <div class="assItemB">
         <div class="assPic"><%= link_to raw("<div>#{image_tag(w.user_post.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => w.user_post.id} %></div>
         <div class="assInfT">
