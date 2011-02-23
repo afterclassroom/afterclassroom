@@ -14,7 +14,7 @@
       </div>
       <div class="proAttL" id="attach_icon">
         <span>Attach:</span>
-        <span class="att1"><%= link_to "", :url => {:controller => "user_walls", :action => "link_image"}, :update => "attach", :complete => "openAttach()", :remote => true %></span>
+        <span class="att1"><%= link_to "", :url => {:controller => "user_walls", :action => "link_image"}, :remote => true %></span>
         <span class="att2"><%= link_to "", :url => {:controller => "user_walls", :action => "link_video"}, :update => "attach", :complete => "openAttach()", :remote => true %></span>
         <span class="att3"><%= link_to "", :url => {:controller => "user_walls", :action => "link_music"}, :update => "attach", :complete => "openAttach()", :remote => true %></span>
         <span class="att4"><%= link_to "", :url => {:controller => "user_walls", :action => "link_link"}, :update => "attach", :complete => "openAttach()", :remote => true %></span>
@@ -28,9 +28,5 @@
   function closeAttach(){
     $('#wrap_content_attach').hide();
     $('#attach_icon').show();
-  }
-  function openAttach(){
-    $('#wrap_content_attach').show();
-    $('#attach_icon').hide();
   }
 </script>

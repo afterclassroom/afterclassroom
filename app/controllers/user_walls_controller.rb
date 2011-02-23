@@ -1,4 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
+include ActionView::Helpers::UrlHelper
+
 class UserWallsController < ApplicationController
   before_filter :login_required
   
@@ -83,19 +85,10 @@ class UserWallsController < ApplicationController
     rating = params[:rating]
     @wall = UserWall.find(params[:post_id])
     @wall.rate rating.to_i, current_user
-    #    wall.save
-=begin
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{wall.total_good}</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{wall.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
-=end
+    @wall.save
+
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@wall.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@wall.total_bad}</a></div>"
   end
   
   def link_image
@@ -160,6 +153,7 @@ class UserWallsController < ApplicationController
   
   def attach_image
     link = params[:link]
+    @err = false
     begin
       url = Domainatrix.parse(link)
       domain = get_domain(url)
@@ -168,8 +162,9 @@ class UserWallsController < ApplicationController
       @user_wall_photo.title = domain
       @user_wall_photo.sub_content = link
     rescue
-      render :action => "error_link"
+      @err = true
     end
+    render :layout => false
   end
 
   def attach_video
@@ -246,10 +241,7 @@ class UserWallsController < ApplicationController
     wall = UserWall.find(wall_id)
     @user_wall_video = wall.user_wall_video
   end
-
-  def error_link
-  end
-
+  
   private
   def get_domain(url)
     url.public_suffix

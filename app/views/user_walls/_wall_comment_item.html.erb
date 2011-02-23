@@ -1,5 +1,5 @@
 <div class="proList">
-  <div class="proListPic"><%= link_to "<div>#{image_tag(comment.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => comment.user.id} %></div>
+  <div class="proListPic"><%= link_to raw("<div>#{image_tag(comment.user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => comment.user.id} %></div>
   <div class="proListR">
     <div class="AfterClCom"><%= link_to comment.user.full_name, {:controller => "profile", :action => "show_profile", :id => comment.user.id} %> - <%= comment.comment %></div>
     <div class="proListCont">
