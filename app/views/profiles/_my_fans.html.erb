@@ -21,7 +21,7 @@ fans_rc_total = fans_rc.size
         <% (0..count_rc).each do |i| %>
           <% user_rc = User.find(fans_rc[i].user_id) %>
           <div class="fanImg1">
-            <%= link_to "<div>#{image_tag user_rc.avatar.url(:thumb)}</div>", user_path(user_rc) %>
+            <%= link_to raw("<div>#{image_tag user_rc.avatar.url(:thumb)}</div>"), user_path(user_rc) %>
             <div class="fanName"><%= link_to user_rc.full_name, user_path(user_rc) %></div>
           </div>
         <% end %>

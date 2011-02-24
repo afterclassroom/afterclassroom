@@ -16,18 +16,18 @@ end
         <script type="text/javascript">
           <!--
           swfobject.addDomLoadEvent(function() {
-          swfobject.embedSWF(
+            swfobject.embedSWF(
 					
-					{
-						cloud_data:"cloud_data.xml",
-						tcolor:"0x21D900",
-						tcolor2:"0x96FF00",
-						hicolor:"0x138000",
-						tspeed:"500",
-						fontFace:"Arial"
-					},
-					{wmode: "window", menu: "false", quality: "best"}
-					);
+            {
+              cloud_data:"<%= "#{url_for(:controller => "tags", :action => "show_tags")}?class_name=#{@class_name}" %>",
+              tcolor:"0x21D900",
+              tcolor2:"0x96FF00",
+              hicolor:"0x138000",
+              tspeed:"500",
+              fontFace:"Arial"
+            },
+            {wmode: "window", menu: "false", quality: "best"}
+          );
           });
           //-->
         </script>

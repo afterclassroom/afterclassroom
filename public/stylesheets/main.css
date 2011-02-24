@@ -820,13 +820,3 @@ h2.titleH2 a:hover{
     background-color:#f2f2f2;
 }
 /**** END Home postManagement  *****/
-/* feedback 1*/
-body {height:1500px;}
-/* any styles above this can be eliminated */
-
-/*include this sample css */
-#feedback1 {
-    cursor:pointer;
-    border:3px solid #ddd;
-    border-right:0;
-}

@@ -278,7 +278,7 @@ class PostJobsController < ApplicationController
   private
 
   def get_variables
-    @tags = PostJob.tag_counts_on(:tags)
+    #@tags = PostJob.tag_counts_on(:tags)
     @new_post_path = new_post_job_path
     @class_name = "PostJob"
     @type = PostCategory.find_by_class_name(@class_name).id

@@ -14,7 +14,7 @@
         <%= form_tag invite_by_list_email_user_friends_path(current_user), :id => "list_email" do %>
         <div class="fInvFrom">
           <div class="fInvTxt">From</div>
-          <div class="fInvIn"><%= current_user.full_name %> <%= "&#60;#{current_user.email}&#62;" %></div>
+          <div class="fInvIn"><%= current_user.full_name %> <%= raw("&#60;#{current_user.email}&#62;") %></div>
         </div>
         <div class="fInvTo">
           <div class="fInvTxt">To<br/><span>(use commas to separate emails)</span></div>

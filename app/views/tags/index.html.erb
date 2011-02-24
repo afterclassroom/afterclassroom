@@ -1,0 +1,16 @@
+<% content_for :search do -%>
+  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Home", :action_path => "#{dashboard_user_path(current_user)}"} %>
+<% end -%>
+
+<h1>Invite Message</h1>
+<% if @invite_message.size == 0 %>
+  No invite message
+<% else %>
+  <% for invite in @invite_message %>
+  <div id="user_<%= invite.id %>_invite">
+    <%= image_tag invite.user.avatar.url(:thumb) %><%= image_tag invite.user.login %>
+    <div><%= invite.message %></div>
+    <%= link_to "Accept", :action => "accept", :invite_id => invite.id %> | <%= link_to "DeAccept", :action => "de_accept", :invite_id => invite.id %>
+  </div>
+<% end %>
+<% end %>

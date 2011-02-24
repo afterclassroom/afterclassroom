@@ -136,7 +136,7 @@ class PostProjectsController < ApplicationController
   private
 
   def get_variables
-    @tags = PostProject.tag_counts_on(:tags)
+    #@tags = PostProject.tag_counts_on(:tags)
     @new_post_path = new_post_project_path
     @class_name = "PostProject"
     @type = PostCategory.find_by_class_name(@class_name).id

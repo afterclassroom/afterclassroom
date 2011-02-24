@@ -147,7 +147,7 @@ class PostExamSchedulesController < ApplicationController
   def get_variables
     @type_schedule = params[:type]
     @type_schedule ||= "exam_schedule"
-    @tags = PostExamSchedule.tag_counts_on(:tags)
+    #@tags = PostExamSchedule.tag_counts_on(:tags)
     @new_post_path = "#{new_post_exam_schedule_path}?type=#{@type_schedule}"
     @class_name = "PostExamSchedule"
     @type = PostCategory.find_by_class_name(@class_name).id

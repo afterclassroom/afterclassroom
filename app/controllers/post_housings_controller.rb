@@ -145,7 +145,7 @@ class PostHousingsController < ApplicationController
   private
 
   def get_variables
-    @tags = PostHousing.tag_counts_on(:tags)
+    #@tags = PostHousing.tag_counts_on(:tags)
     @new_post_path = new_post_housing_path
     @class_name = "PostHousing"
     @type = PostCategory.find_by_class_name(@class_name).id

@@ -2,7 +2,7 @@
   <%= hidden_field_tag "user_wall_id", @user.id %>
   <div class="proMind">
     <div class="proMindT">
-      <div class="proques"><%= text_field_tag "your_mind", "What’s on your mind?", :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></div>
+      <div class="proques"><%= text_field_tag "your_mind", "What’s on your mind?", :onfocus => "if(this.value == this.defaultValue){ this.value = '';};", :onblur => "this.value = this.value || this.defaultValue;" %></div>
     </div>
     <div class="proAtt">
       <div class="proAttItem" id="wrap_content_attach">
