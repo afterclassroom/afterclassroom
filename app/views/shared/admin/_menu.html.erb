@@ -4,7 +4,7 @@
 
     <!-- start nav-right -->
     <div id="nav-right">
-      
+
       <div class="nav-divider">&nbsp;</div>
       <div class="showhide-account"><img height="14" width="93" alt="" src="/images/admin/shared/nav/nav_myaccount.gif"/></div>
       <div class="nav-divider">&nbsp;</div>
@@ -23,41 +23,41 @@
     <div class="nav">
       <div class="table">
         <%
-          dashboard_submenus = [
-            ["Dashboard 1", "dashboard1", "path_dashboard1"],
-            ["Dashboard 1", "dashboard1", "path_dashboard1"],
-            ["Dashboard 1", "dashboard1", "path_dashboard1"]
-          ]
-          post_submenus = [
-            ["View All Posts", "index", admin_posts_path]
-          ]
-          member_submenus = [
-            ["View All Members", "index", admin_users_path]
-          ]
-          setting_submenus = [
-            ["General Setting", "index", admin_settings_path]
-          ]
-          category_menus = [
-            "states", "cities", 
-            "schools", "departments",
-            "post_categories", "housing_categories",
-            "teamup_categories", "party_types",
-            "job_types", "awareness_types"
-          ]
-          category_submenus = [
-            ["States", "states", states_path],
-            ["Cities", "cities", cities_path],
-            ["Schools", "schools", schools_path],
-            ["Department Categories", "department_categories", department_categories_path],
-            ["Departments", "departments", departments_path],
-            ["Posts", "post_categories", post_categories_path],
-            ["Housings", "housing_categories", housing_categories_path],
-            ["Teamups", "teamup_categories", teamup_categories_path],
-            ["Parties", "party_types", party_types_path],
-            ["Jobs", "job_types", job_types_path],
-            ["Student Awarenesses", "awareness_types", awareness_types_path]
-          ]
-        %>
+        dashboard_submenus = [
+          ["Dashboard 1", "dashboard1", "path_dashboard1"],
+          ["Dashboard 1", "dashboard1", "path_dashboard1"],
+          ["Dashboard 1", "dashboard1", "path_dashboard1"]
+        ]
+        post_submenus = [
+          ["View All Posts", "index", admin_posts_path]
+        ]
+        member_submenus = [
+          ["View All Members", "index", admin_users_path]
+        ]
+        setting_submenus = [
+          ["General Setting", "index", admin_settings_path]
+        ]
+        category_menus = [
+          "states", "cities",
+          "schools", "departments",
+          "post_categories", "housing_categories",
+          "teamup_categories", "party_types",
+          "job_types", "awareness_types"
+        ]
+        category_submenus = [
+          ["States", "states", states_path],
+          ["Cities", "cities", cities_path],
+          ["Schools", "schools", schools_path],
+          ["Department Categories", "department_categories", department_categories_path],
+          ["Departments", "departments", departments_path],
+          ["Posts", "post_categories", post_categories_path],
+          ["Housings", "housing_categories", housing_categories_path],
+          ["Teamups", "teamup_categories", teamup_categories_path],
+          ["Parties", "party_types", party_types_path],
+          ["Jobs", "job_types", job_types_path],
+          ["Student Awarenesses", "awareness_types", awareness_types_path]
+        ]
+      %>
         <%= tab_to_admin("Dashboard", "dashboards", admin_dashboards_path, dashboard_submenus) %>
         <%= tab_to_admin("Posts", "posts", admin_users_path, post_submenus) %>
         <%= tab_to_admin("Members", "users", admin_users_path, member_submenus) %>
@@ -89,71 +89,14 @@
 </script>
 
 
-<script type="text/javascript" charset="utf-8">
-  $(function()
-  {
-
-    // initialise the "Select date" link
-    $('#date-pick')
-    .datePicker(
-    // associate the link with a date picker
-    {
-      createButton:false,
-      startDate:'01/01/2005',
-      endDate:'31/12/2020'
-    }
-  ).bind(
-    // when the link is clicked display the date picker
-    'click',
-    function()
-    {
-      updateSelects($(this).dpGetSelected()[0]);
-      $(this).dpDisplay();
+<script type="text/javascript">
+  $(function(){
+    $('input').checkBox();
+    $('#toggle-all').click(function(){
+      $('#toggle-all').toggleClass('toggle-checked');
+      $('#mainform input[type=checkbox]').checkBox('toggle');
       return false;
-    }
-  ).bind(
-    // when a date is selected update the SELECTs
-    'dateSelected',
-    function(e, selectedDate, $td, state)
-    {
-      updateSelects(selectedDate);
-    }
-  ).bind(
-    'dpClosed',
-    function(e, selected)
-    {
-      updateSelects(selected[0]);
-    }
-  );
-
-    var updateSelects = function (selectedDate)
-    {
-      var selectedDate = new Date(selectedDate);
-      $('#d option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
-      $('#m option[value=' + (selectedDate.getMonth()+1) + ']').attr('selected', 'selected');
-      $('#y option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
-    }
-    // listen for when the selects are changed and update the picker
-    $('#d, #m, #y')
-    .bind(
-    'change',
-    function()
-    {
-      var d = new Date(
-      $('#y').val(),
-      $('#m').val()-1,
-      $('#d').val()
-    );
-      $('#date-pick').dpSetSelected(d.asString());
-    }
-  );
-
-    // default the position of the selects to today
-    var today = new Date();
-    updateSelects(today.getTime());
-
-    // and update the datePicker to reflect it...
-    $('#d').trigger('change');
+    });
   });
 </script>
 

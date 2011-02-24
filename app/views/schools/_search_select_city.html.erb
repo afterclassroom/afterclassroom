@@ -1,38 +1,36 @@
 <div class="reqLa">
-    <strong>Country*</strong>
+  <strong>Country*</strong>
 </div>
 <div>
-    <%= select_tag "state[country_id]", options_from_collection_for_select(@countries, "id", "name", @country), :id => "state_country_id", :style => "width: 198px" %>
+  <%= select_tag "state[country_id]", options_from_collection_for_select(@countries, "id", "name", @country.id), :id => "state_country_id", :style => "width: 198px" %>
 </div>
-<div id="state_city">
-    <div class="reqLa">
-        <strong>State*</strong>
-    </div>
-    <%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state), :id => "city_state_id", :style => "width: 198px" %>
-    <div class="reqLa">
-        <strong>City*</strong>
-    </div>
-    <div id="city">
-        <%= select_tag "school[city_id]", options_from_collection_for_select(@cities, "id", "name", @city), :style => "width: 198px" %>
-    </div>
+<div class="reqLa">
+  <strong>State*</strong>
+</div>
+<%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state.id), :id => "city_state_id", :style => "width: 198px" %>
+<div class="reqLa">
+  <strong>City*</strong>
+</div>
+<div>
+  <%= select_tag "school[city_id]", options_from_collection_for_select(@cities, "id", "name", @city), :style => "width: 198px" %>
 </div>
 <script>
-                    // Append the function to the "document ready" chain
-                    jQuery(function($) {
-                      // when the #search field changes
-                      $("#state_country_id").change(function() {
-                        // make a POST call and replace the content
-                        $.post(<%= "'#{state_or_city_schools_path}?country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>, function(data) {
-                          $("#state_city").html(data);
-                        });
-                      });
-    				  // when the #search field changes
-                      $("#city_state_id").change(function() {
-                        // make a POST call and replace the content
-                        $.post(<%= "'#{city_schools_path}?state_id=' + escape($('#city_state_id').val()) + '&type=search'" %>, function(data) {
-                          $("#city").html(data);
-                        });
-                      });
-                    })
-            
+  // Append the function to the "document ready" chain
+  jQuery(function($) {
+    // when the #search field changes
+    $("#state_country_id").change(function() {
+      // make a POST call and replace the content
+      $.post(<%= "'#{state_or_city_schools_path}?country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>, function(data) {
+        $("#state_city").html(data);
+      });
+    });
+    // when the #search field changes
+    $("#city_state_id").change(function() {
+      // make a POST call and replace the content
+      $.post(<%= "'#{city_schools_path}?state_id=' + escape($('#city_state_id').val()) + '&type=search'" %>, function(data) {
+        $("#state_city").html(data);
+      });
+    });
+  })
+
 </script>

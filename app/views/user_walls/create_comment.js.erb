@@ -1,0 +1,1 @@
+$("#wall_<%= @wall.id %>").html("<%= escape_javascript( render :partial => "wall_item", :locals => {:wall => @wall} ) %>");

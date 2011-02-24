@@ -69,8 +69,8 @@ class PostTutorsController < ApplicationController
     post_tt.rating_status = status
 
     post_tt.save
-    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_tt.total_good}</a></div>"
-    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_tt.total_bad}</a></div>"
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_tt.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_tt.total_bad}</a></div>"
   end
 
   def require_rate

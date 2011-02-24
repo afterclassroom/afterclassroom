@@ -1,7 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostsController < ApplicationController
   
-  
   before_filter :login_required, :except => [:rate_comment, :report_abuse, :create_report_abuse, :download]
   
   def create_comment
@@ -29,15 +28,10 @@ class PostsController < ApplicationController
  
   def rate_comment
     rating = params[:rating]
-    comnt = Comment.find(params[:comment_id])
-    comnt.rate rating.to_i
-    render :text => %Q'
-      <div class="AsDcomRe1">
-        <a href="javascript:;">#{comnt.total_good}</a>
-      </div>
-      <div class="AsDcomRe2">
-        <a href="javascript:;">#{comnt.total_bad}</a>
-      </div>'
+    @comnt = Comment.find(params[:comment_id])
+    @comnt.rate rating.to_i
+    @text = "<div class='AsDcomRe1'><a href='javascript:;'>#{@comnt.total_good}</a></div>"
+    @text << "<div class='AsDcomRe2'><a href='javascript:;'>#{@comnt.total_bad}</a></div>"
   end
 
   def report_abuse

@@ -52,8 +52,11 @@ class ProfilesController < ApplicationController
 
   def update_about_yourself
     about_yourself = params["about_yourself"]
+    if current_user.user_information.nil?
+      current_user.user_information = UserInformation.new()
+    end
     current_user.user_information.about_yourself = about_yourself
-    current_user.save
+    current_user.user_information.save
     render :text => about_yourself.to_s
   end
 

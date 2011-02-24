@@ -473,28 +473,28 @@ module ApplicationHelper
   def show_attach(wall)
     if wall.user_wall_photo
       link = wall.user_wall_photo.link
-      image = link_to image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px"), link, :target => "_blank"
+      image = link_to raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), link, :target => "_blank"
       title = wall.user_wall_photo.title
       sub_content = wall.user_wall_photo.sub_content
     end
 
     if wall.user_wall_video
       link = wall.user_wall_video.link
-      image = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + "<span class='play'/>", :url => {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :update => "show_jplayer_#{wall.id}", :remote => true
+      image = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
       title = wall.user_wall_video.title
       sub_content = wall.user_wall_video.sub_content
     end
 
     if wall.user_wall_music
       link = wall.user_wall_music.link
-      image = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + "<span class='play'/>", :url => {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :update => "show_jplayer_#{wall.id}", :remote => true
+      image = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
       title = wall.user_wall_music.title
       sub_content = wall.user_wall_music.sub_content
     end
 
     if wall.user_wall_link
       link = wall.user_wall_link.link
-      image = link_to image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px"), link, :target => "_blank"
+      image = link_to raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank"
       title = wall.user_wall_link.title
       sub_content = wall.user_wall_link.sub_content
     end

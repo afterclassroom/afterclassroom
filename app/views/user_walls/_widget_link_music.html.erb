@@ -1,0 +1,22 @@
+<div class="wrapTitle">Music link:</div>
+<div style="float:left; margin-right:3px"><input type="text" value="" width="300px" name="link_music" id="link_music" /></div>
+<div class="submit" style="float:left"><%= link_to "Attach", "javascript:;", :id => "link_music_attach" %></div>
+<script>
+  var path = '/user_walls/attach_music';
+  $(document).ready(function() {
+    $("#link_music_attach").click(function() {
+      $.ajax({
+        url: path,
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+          link : $("#link_music").val()
+        }),
+        success: function(data){
+          $('#attach').html(data);
+        }
+      });
+    });
+  });
+</script>

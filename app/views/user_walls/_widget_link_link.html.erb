@@ -1,0 +1,22 @@
+<div class="wrapTitle">link link:</div>
+<div style="float:left; margin-right:3px"><input type="text" value="" width="300px" name="link_link" id="link_link" /></div>
+<div class="submit" style="float:left"><%= link_to "Attach", "javascript:;", :id => "link_link_attach" %></div>
+<script>
+  var path = '/user_walls/attach_link';
+  $(document).ready(function() {
+    $("#link_link_attach").click(function() {
+      $.ajax({
+        url: path,
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+          link : $("#link_link").val()
+        }),
+        success: function(data){
+          $('#attach').html(data);
+        }
+      });
+    });
+  });
+</script>

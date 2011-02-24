@@ -66,10 +66,10 @@ class PostAwarenessesController < ApplicationController
 =begin
     render :text => %Q'
       <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_a.total_good}</a>
+        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">#{post_a.total_good}</a>
       </div>
       <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{Setting.get(:str_rated)}">#{post_a.total_bad}</a>
+        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">#{post_a.total_bad}</a>
       </div>
       <script>
         vtip();

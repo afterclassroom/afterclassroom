@@ -74,8 +74,8 @@ class PostJobsController < ApplicationController
 
     post_j.save
 
-    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_j.total_good}</a></div>"
-    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{Setting.get(:str_rated)}'>#{post_j.total_bad}</a></div>"
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_j.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_j.total_bad}</a></div>"
   end
 
   def require_rate

@@ -1,123 +1,102 @@
-<script src="/javascripts/ajaxupload.js" type="text/javascript"></script>
-
+<script src="/javascripts/ajaxupload.js" type="text/javascript">
+</script>
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Jobs", post_jobs_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
+You are here: <a href="/">Home</a>
+<%= link_to "Jobs", post_jobs_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
 <% end -%>
-
 <% content_for :post_button do -%>
-  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
-
 <% content_for :menu_sub do -%>
-  <%= render :partial => "submenu" %>
+<%= render :partial => "submenu" %>
 <% end -%>
-
 <!--Content-->
 <div class="contDetL">
-  <div class="contDetLin JobDetail">
-    <div class="AsDTop">
-      <h1 class="titleH1">Job detail</h1>
-      <div class="AsDsearch">
-        <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_jobs_path} %>
-      </div>
-    </div>
-    <div class="AsDCont">
-      <div class="AsDContL">
-        <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_jobs_path %></span></div>
-        <div class="AsDContLask">Posted by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
-        <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
-      </div>
-      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
-      <%= render :partial => "post_actions", :locals => {:post => @post} %>
-    </div>
-    <div class="jobCom">
-      <div class="jobComMenu">
-        <!-- if job is "I'm looking for job"-->
-        <% pj = @post.post_job %>
-        <% if pj.job_type.name == "I'm looking for job" %>
-          <% pj.job_files.each do |jf| %>
-
-
-
-            <% if jf.resume_cv.url != "" %>
-              <% if jf.category != "Add/Edit File" %>
-                <div class="cover"><a href="javascript:downloadFile('<%= jf.resume_cv.url %>')"><%= jf.category %></a></div>
-              <% end %>
-            <% else %>
-              <div class="cover"><a href="#">No <%= jf.category %> Available</a></div>
+    <div class="contDetLin JobDetail">
+        <div class="AsDTop">
+            <h1 class="titleH1">Job detail</h1>
+            <div class="AsDsearch">
+                <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_jobs_path} %>
+            </div>
+        </div>
+        <div class="AsDCont">
+            <div class="AsDContL">
+                <h2 class="titleH2"><%= @post.title %></h2>
+                <div class="AsDContLin">
+                    in<span><%= link_to @post.post_category.name, post_jobs_path %></span>
+                </div>
+                <div class="AsDContLask">
+                    Posted by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+                </div>
+                <div class="AsDContLdes">
+                    <span>Description:</span>
+                    <%= @post.description %>
+                </div>
+            </div>
+            <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
+            <%= render :partial => "post_actions", :locals => {:post => @post} %>
+        </div>
+        <div class="jobCom">
+            <div class="jobComMenu">
+                <!-- if job is "I'm looking for job"--><% pj = @post.post_job %>
+                <% if pj.job_type.name == "I'm looking for job" %>
+                <% pj.job_files.each do |jf| %>
+                <% if jf.resume_cv.url != "" %>
+                <% if jf.category != "Add/Edit File" %>
+                <div class="cover">
+                    <a href="javascript:downloadFile('<%= jf.resume_cv.url %>')"><%= jf.category %></a>
+                </div>
+                <% end %>
+                <% else %>
+                <div class="cover">
+                    <a href="#">No <%= jf.category %>Available</a>
+                </div>
+                <% end %>
+                <% end %><!--END pj.job_files.each --><% else %><!-- this else for job == "fulltime, parttime, coopintern" --><% pj.job_files.each do |jf| %>
+                <% if jf.resume_cv.url != "" %>
+                <% if jf.category == "Add/Edit File" %>
+                <div class="cover">
+                    <a href="javascript:downloadFile('<%= jf.resume_cv.url %>')">Job Details</a>
+                </div>
+                <% end %>
+                <% else %>
+                <div class="cover">
+                    <a href="#">No <%= jf.category %>Available</a>
+                </div>
+                <% end %>
+                <% end %><!--END pj.job_files.each --><% end %><!-- end if if pj.job_type.name --><!-- display link to download resume,cv,transcript--><!-- else, display link to download job detail-->
+            </div>
+        </div>
+        <%= show_post_comments(@post) %>
+        <div class="goback" id="go_back">
+            <%= show_go_back %>
+        </div>
+        <div class="comPage">
+            <span class="compre"><%= link_to "", post_job_path(@prev) if @prev %></span>
+            <span class="comnext"><%= link_to "", post_job_path(@next) if @next %></span>
+        </div>
+        <div class="AsDOr">
+            <h1 class="titleH1">Related posts</h1>
+            <% PostJob.related_posts(@school).each do |p| %>
+            <div class="AsDOrItem">
+                <%= link_to p.title, post_job_path(p) %>
+            </div>
             <% end %>
-
-
-
-
-
-
-          <% end %><!--END pj.job_files.each -->
-        <% else %> <!-- this else for job == "fulltime, parttime, coopintern" -->
-          <% pj.job_files.each do |jf| %>
-
-
-            <% if jf.resume_cv.url != "" %>
-              <% if jf.category == "Add/Edit File" %>
-                <div class="cover"><a href="javascript:downloadFile('<%= jf.resume_cv.url %>')">Job Details</a></div>
-              <% end %>
-            <% else %>
-              <div class="cover"><a href="#">No <%= jf.category %> Available</a></div>
-            <% end %>
-
-
-
-          <% end %><!--END pj.job_files.each -->
-
-        <% end %><!-- end if if pj.job_type.name -->
-
-        <!-- display link to download resume,cv,transcript-->
-        <!-- else, display link to download job detail-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
+        </div>
+        <div class="goTop">
+            <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+        </div>
     </div>
-    <%= show_post_comments(@post) %>
-    <div class="goback" id="go_back"><%= show_go_back %></div>
-    <div class="comPage">
-      <span class="compre"><%= link_to "", post_job_path(@prev) if @prev %> </span>
-      <span class="comnext"><%= link_to "", post_job_path(@next) if @next %></span>
-    </div>
-    <div class="AsDOr">
-      <h1 class="titleH1">Related posts</h1>
-      <% PostJob.related_posts(@school).each do |p| %>
-        <div class="AsDOrItem"><%= link_to p.title, post_job_path(p) %></div>
-      <% end %>
-    </div>
-    <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
-  </div>
-</div>	
-
+</div>
 <div class="contMainR">
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
-
-  <!--Request Job-->
-  <%= render :partial => "form_request_job" %>
-  <!--Request Job-->
-
-  <!--Recent Request Jobs-->
-  <%= render :partial => "recent_request_jobs" %>
-  <!--Recent Request Jobs-->
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+    <!--Request Job-->
+    <%= render :partial => "form_request_job" %>
+    <!--Request Job-->
+    <!--Recent Request Jobs-->
+    <%= render :partial => "recent_request_jobs" %>
+    <!--Recent Request Jobs-->
 </div>
 <!--Content-->

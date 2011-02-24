@@ -1,10 +1,16 @@
-<div style="min-height:80px">
-  <div class="AfterImg"><div class="imgDiv"><%= image_tag "/images/music.png", :width => "92px", :height => "68px" %></div></div>
-  <div class="AfterTitle"><%= link_to @user_wall_music.title, @user_wall_music.link, :target => "_blank" %></div>
-  <div class="AfterDes"><%= @user_wall_music.sub_content %></div>
-</div>
-<%= fields_for @user_wall_music do |p| %>
-  <%= p.hidden_field :link %>
-  <%= p.hidden_field :title %>
-  <%= p.hidden_field :sub_content %>
+<% if @err %>
+  <div class="wrapTitle">
+    Link error.
+  </div>
+<% else %>
+  <div style="min-height:80px">
+    <div class="AfterImg"><div class="imgDiv"><%= image_tag "/images/music.png", :width => "92px", :height => "68px" %></div></div>
+    <div class="AfterTitle"><%= link_to @user_wall_music.title, @user_wall_music.link, :target => "_blank" %></div>
+    <div class="AfterDes"><%= @user_wall_music.sub_content %></div>
+  </div>
+  <%= fields_for @user_wall_music do |p| %>
+    <%= p.hidden_field :link %>
+    <%= p.hidden_field :title %>
+    <%= p.hidden_field :sub_content %>
+  <% end %>
 <% end %>
