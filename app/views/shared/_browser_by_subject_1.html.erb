@@ -1,0 +1,20 @@
+<%
+  case controller.controller_name
+  when 'post_qas'
+    text = "Browser by category"
+  else
+    text = "Browse by subject "
+  end
+%>
+<div class="col300 Br-by-sub">
+  <div class="col300in">
+    <h1 class="col300Title"><%= text %></h1>
+    <div class="col300Cont">
+      <div class="tabClouse">
+        <% tag_cloud tags, %w(sub1 sub2 sub3 sub4 sub5 sub6) do |tag, css_class| %>
+          <%= link_to tag.name, { :action => :tag, :tag_name => tag.name }, :class => css_class %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,20 +1,40 @@
 <%
-  case controller.controller_name
-  when 'post_qas'
-    text = "Browser by category"
-  else
-    text = "Browse by subject "
-  end
+case controller.controller_name
+when 'post_qas'
+  text = "Browser by category"
+else
+  text = "Browse by subject "
+end
 %>
 <div class="col300 Br-by-sub">
   <div class="col300in">
     <h1 class="col300Title"><%= text %></h1>
     <div class="col300Cont">
       <div class="tabClouse">
-        <% tag_cloud tags, %w(sub1 sub2 sub3 sub4 sub5 sub6) do |tag, css_class| %>
-          <%= link_to tag.name, { :action => :tag, :tag_name => tag.name }, :class => css_class %>
-        <% end %>
+        <%= javascript_include_tag 'swfobject.js'%>
+        <%= swf_tag "text_and_image_cloud" %>
+        <script type="text/javascript">
+          <!--
+          swfobject.addDomLoadEvent(function() {
+          swfobject.embedSWF(
+					
+					{
+						cloud_data:"cloud_data.xml",
+						tcolor:"0x21D900",
+						tcolor2:"0x96FF00",
+						hicolor:"0x138000",
+						tspeed:"500",
+						fontFace:"Arial"
+					},
+					{wmode: "window", menu: "false", quality: "best"}
+					);
+          });
+          //-->
+        </script>
       </div>
     </div>
   </div>
 </div>
+<style>
+  #text_and_image_cloud{height: 200px;}
+</style>
