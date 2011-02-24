@@ -14,30 +14,17 @@
           </div>
         </div>
         <div class="stoDet">
-          <div class="AsDcomImg"><%= link_to "<div>#{image_tag(@story.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => @story.user.id} %></div>
+          <div class="AsDcomImg"><%= link_to raw("<div>#{image_tag(@story.user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => @story.user.id} %></div>
           <div class="stoDetR">
             <div class="stoDetRT"><%= @story.user.full_name %>: <%= @story.title %></div>
-            <div class="stoDetRB"><a href="#" class="stoDetRBN">Huy Quach’s Story</a><a href="#">HuyQuach’s Profile</a></div>
+            <div class="stoDetRB"><%= link_to "#{@story.user.name}'s Story", user_stories_url(), :class => "stoDetRBN" %><%= link_to "#{@story.user.name}'s Profile", user_url(@story.user) %></div>
           </div>
         </div>
         <div class="stoDcont">
           <%= @story.content %>
         </div>
         <%= render :partial => "story_action" %>
-        <div class="AsDcom" id="form_comment" style="display: none">
-          <h1 class="titleH1">Leave your comments</h1>
-          <% if logged_in? %>
-            <div class="AsDcomImg"><%= link_to "<div>#{image_tag(current_user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
-            <div class="AsDcomIn">
-              <form name="form_comment" id="form_comment" action="" method="get">
-                <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
-                <div class="submit"><a href="javascript:;" onclick="send_comment('<%= @story.id %>');" >Submit</a></div>
-              </form>
-            </div>
-          <% else %>
-            You must be <%= link_to "logged in", login_url %> to post a comment.
-          <% end %>
-        </div>
+        <%= show_post_comments(@story) %>
         <div class="AsDcomL" id="list_comments">
           <% if @story.comments.size > 0 %>
             <h1 class="titleH1"><a href="javascript:;">Comments (<%= @story.comments.size %>)</a></h1>
