@@ -240,12 +240,14 @@ class UserWallsController < ApplicationController
     wall_id = params[:wall_id]
     wall = UserWall.find(wall_id)
     @user_wall_music = wall.user_wall_music
+    render :layout => false
   end
 
   def jplayer_video
     wall_id = params[:wall_id]
     wall = UserWall.find(wall_id)
     @user_wall_video = wall.user_wall_video
+    render :layout => false
   end
   
   private
