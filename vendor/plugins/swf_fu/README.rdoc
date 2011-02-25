@@ -41,7 +41,7 @@ You can specify alternate content either with the options <tt>:alt => "Get Flash
   <% end %>
 
 === Options
-
+http://www.roytanck.com/wp-content/uploads/unicodetest/tagcloud.xml
 * <tt>:id</tt> - the DOM +id+ of the flash +object+ element that is used to contain the Flash object; defaults to the name of the swf in +source+
 * <tt>:width, :height</tt> - the width & height of the Flash object. Defaults to "100%". These could also specified using :size
 * <tt>:size</tt> - the size of the Flash object, in the form "400x300".

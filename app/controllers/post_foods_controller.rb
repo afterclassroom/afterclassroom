@@ -175,7 +175,7 @@ class PostFoodsController < ApplicationController
   private
 
   def get_variables
-    #@tags = PostFood.tag_counts_on(:tags)
+    @tags = PostFood.tag_counts_on(:tags)
     @new_post_path = new_post_food_path
     @class_name = "PostFood"
     @type = PostCategory.find_by_class_name(@class_name).id

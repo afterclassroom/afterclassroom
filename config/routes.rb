@@ -260,13 +260,19 @@ Afterclassroom::Application.routes.draw do
       get :search, :tag, :rate
     end
   end
-
+  
   # Feedback
   match 'feedbacks' => 'feedbacks#create', :as => :feedback
   match 'feedbacks/new' => 'feedbacks#new', :as => :new_feedback
   match 'feedbacks_form' => 'feedbacks_form#create', :as => :feedbackk
   match 'feedbacks_form/new' => 'feedbacks_form#new', :as => :new_feedback
-
+  # Tags
+  resources :tags do
+    collection do
+      get :show_tags
+    end
+  end
+  
   # Administration
   namespace :admin do
     resources :dashboards

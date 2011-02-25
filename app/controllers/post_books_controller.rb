@@ -183,7 +183,7 @@ class PostBooksController < ApplicationController
   private
 
   def get_variables
-    #@tags = PostBook.tag_counts_on(:tags)
+    @tags = PostBook.tag_counts_on(:tags)
     @new_post_path = new_post_book_path
     @class_name = "PostBook"
     @type = PostCategory.find_by_class_name(@class_name).id
