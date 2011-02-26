@@ -54,7 +54,7 @@
 	    Khi click vào checkbox:
 	  Thay đổi class của tr và hiển thị menu
 	     */
-	    $('#mytable input[type="checkbox"]').bind('click',function(e) {
+	    $('#mytable input[id="check_1"]').bind('click',function(e) {
 	        var $this = $(this);
 	        if($this.is(':checked'))
 	            $this.parents('tr:first').addClass('selected');
@@ -320,11 +320,11 @@
     margin-right:5px;
   }
   .actionsBox .menu a.open{
-    background:#fff url(../open.png) no-repeat center center;
+    background:#fff url(/images/open.png) no-repeat center center;
 
   }
   .actionsBox .menu a.closed{
-    background:#fff url(../closed.png) no-repeat center center;
+    background:#fff url(/images/closed.png) no-repeat center center;
   }
   .actionsBox .menu a.open:hover,
   .actionsBox .menu a.closed:hover{
