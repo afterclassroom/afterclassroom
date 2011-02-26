@@ -162,7 +162,7 @@ class PostMyxesController < ApplicationController
   private
 
   def get_variables
-    #@tags = PostMyx.tag_counts_on(:tags)
+    @tags = PostMyx.tag_counts_on(:tags)
     @new_post_path = new_post_myx_path
     @class_name = "PostMyx"
     @type = PostCategory.find_by_class_name(@class_name).id
