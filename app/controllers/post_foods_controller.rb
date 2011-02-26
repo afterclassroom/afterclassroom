@@ -47,13 +47,13 @@ class PostFoodsController < ApplicationController
   def require_rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
-    post_f = post.post_food
-    if !PostFood.find_rated_by(current_user).include?(post_f)
-      post_f.rate rating.to_i, current_user
+    @post_f = post.post_food
+    if !PostFood.find_rated_by(current_user).include?(@post_f)
+      @post_f.rate rating.to_i, current_user
       # Update rating status
-      score_good = post_f.score_good
-      score_cheap_but_good = post_f.score_cheap_but_good
-      score_bad = post_f.score_bad
+      score_good = @post_f.score_good
+      score_cheap_but_good = @post_f.score_cheap_but_good
+      score_bad = @post_f.score_bad
 
       if score_good == score_cheap_but_good && score_cheap_but_good == score_bad
         status = "Require Rating"
@@ -63,11 +63,11 @@ class PostFoodsController < ApplicationController
         status = arr_rating_status.last.first
       end
 
-      post_f.rating_status = status
+      @post_f.rating_status = status
 
-      post_f.save
+      @post_f.save
     end
-
+=begin
     render :text => %Q'
       <div class="qashdU">
         <a href="javascript:;">#{post_f.total_good}</a>
@@ -78,7 +78,8 @@ class PostFoodsController < ApplicationController
       <div class="qashdD">
         <a href="javascript:;">#{post_f.total_bad}</a>
       </div>'
-  end
+=end
+    end
 
   def search
     @query = params[:search][:query] if params[:search]

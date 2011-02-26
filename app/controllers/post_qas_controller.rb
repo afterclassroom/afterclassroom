@@ -84,12 +84,12 @@ class PostQasController < ApplicationController
   def require_rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
-    post_q = post.post_qa
-    if !PostQa.find_rated_by(current_user).include?(post_q)
-      post_q.rate rating.to_i, current_user
+    @post_q = post.post_qa
+    if !PostQa.find_rated_by(current_user).include?(@post_q)
+      @post_q.rate rating.to_i, current_user
       # Update rating status
-      score_good = post_q.score_good
-      score_bad = post_q.score_bad
+      score_good = @post_q.score_good
+      score_bad = @post_q.score_bad
 
       if score_good > score_bad
         status = "Good"
@@ -99,15 +99,16 @@ class PostQasController < ApplicationController
         status = "Bad"
       end
 
-      post_q.rating_status = status
+      @post_q.rating_status = status
 
-      post_q.save
+      @post_q.save
     end
-
+=begin
     render :text => %Q'
       <div class="QAsDet">Good <strong>(#{post_q.total_good})</strong></div>
       <div class="QAsDet">Bad <strong>(#{post_q.total_bad})</strong></div>'
-  end
+=end
+    end
 
   # GET /post_qas/1
   # GET /post_qas/1.xml

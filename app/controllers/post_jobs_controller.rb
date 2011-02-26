@@ -81,12 +81,12 @@ class PostJobsController < ApplicationController
   def require_rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
-    post_j = post.post_job
-    if !PostJob.find_rated_by(current_user).include?(post_j)
-      post_j.rate rating.to_i, current_user
+    @post_j = post.post_job
+    if !PostJob.find_rated_by(current_user).include?(@post_j)
+      @post_j.rate rating.to_i, current_user
       # Update rating status
-      score_good = post_j.score_good
-      score_bad = post_j.score_bad
+      score_good = @post_j.score_good
+      score_bad = @post_j.score_bad
 
       if score_good > score_bad
         status = "Good"
@@ -96,15 +96,16 @@ class PostJobsController < ApplicationController
         status = "Bad"
       end
 
-      post_j.rating_status = status
+      @post_j.rating_status = status
 
-      post_j.save
+      @post_j.save
     end
-
+=begin
     render :text => %Q'
       <div class="QAsDet">Good <strong>(#{post_j.total_good})</strong></div>
       <div class="QAsDet">Bad <strong>(#{post_j.total_bad})</strong></div>'
-  end
+=end
+    end
   
   # GET /post_jobs/1
   # GET /post_jobs/1.xml

@@ -79,12 +79,12 @@ class PostBooksController < ApplicationController
   def require_rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
-    post_b = post.post_book
-    if !PostBook.find_rated_by(current_user).include?(post_b)
-      post_b.rate rating.to_i, current_user
+    @post_b = post.post_book
+    if !PostBook.find_rated_by(current_user).include?(@post_b)
+      @post_b.rate rating.to_i, current_user
       # Update rating status
-      score_good = post_b.score_good
-      score_bad = post_b.score_bad
+      score_good = @post_b.score_good
+      score_bad = @post_b.score_bad
 
       if score_good > score_bad
         status = "Good"
@@ -94,15 +94,16 @@ class PostBooksController < ApplicationController
         status = "Bad"
       end
 
-      post_b.rating_status = status
+      @post_b.rating_status = status
 
-      post_b.save
+      @post_b.save
     end
-
+=begin
     render :text => %Q'
       <div class="QAsDet">Good <strong>(#{post_b.total_good})</strong></div>
       <div class="QAsDet">Bad <strong>(#{post_b.total_bad})</strong></div>'
-  end
+=end
+    end
   
   # GET /post_books/1
   # GET /post_books/1.xml
