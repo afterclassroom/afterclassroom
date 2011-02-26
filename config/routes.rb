@@ -264,8 +264,6 @@ Afterclassroom::Application.routes.draw do
   # Feedback
   match 'feedbacks' => 'feedbacks#create', :as => :feedback
   match 'feedbacks/new' => 'feedbacks#new', :as => :new_feedback
-  match 'feedbacks_form' => 'feedbacks_form#create', :as => :feedbackk
-  match 'feedbacks_form/new' => 'feedbacks_form#new', :as => :new_feedback
 
   # Administration
   namespace :admin do

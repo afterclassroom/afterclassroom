@@ -86,9 +86,8 @@
               <!--Pagination-->
             </div>
           </div>
-
           <% @my_stories.each do |m_s| %>
-            <%= render :partial => "item", :locals => {:story => m_s} %>
+            <%= render :partial => "item_2", :locals => {:story => m_s} %>
           <% end %>
         </div>
         <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
