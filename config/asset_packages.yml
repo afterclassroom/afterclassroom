@@ -41,6 +41,7 @@ javascripts:
   - swfupload-handlers
   - jquery.ad-gallery
   - rails
+  - checkboxmenu
 - admin:
   - jquery
   - jquery-ui
@@ -105,6 +106,7 @@ stylesheets:
   - footer-menu
   - swfupload
   - jquery.ad-gallery
+  - checkboxmenu
 - admin:
   - main
   - admin-datePicker
