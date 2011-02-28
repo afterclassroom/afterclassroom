@@ -12,7 +12,7 @@
         <%= display_flash_messages_with_raw %>
         <div id="take_a_picture" >
           <%= form_for @music, :url => user_musics_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
-            <div class="musicEx">
+            <div class="photoEx">
               <div class="stoExItem">
                 <div class="stoExItemL">Music album</div>
                 <div class="stoExItemR" id="select_music_album">
@@ -24,9 +24,13 @@
               <div class="stoExItem">
                 <div class="stoExItemL">Location</div>
                 <div class="stoExItemR">
-                  <div id="divinputfile" style="width:252px">
-                    <%= f.file_field :music_attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc required" %>
-                    <div id="fakeinputfile"><input type="text" id="fakefilepc" name="fakefilepc" style="width:181px"/></div>
+                  <div id="divinputfile" style="margin-left:120px">
+                    <div class="postItemC">
+                      <%= f.file_field :music_attach, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc" %>
+                    </div>
+                    <div class="postUpfile">
+                      <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc"></div>
+                    </div>
                   </div>
                 </div>
               </div>

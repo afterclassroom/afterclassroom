@@ -5423,7 +5423,7 @@ div.navigation a.next:hover {
   border-bottom:1px solid #E4E4E4;
 }
 .stoExItem{
-  padding:3px 0px;
+  padding:7px 0px;
   overflow:hidden;
   _height:100%;
 }
@@ -5616,7 +5616,7 @@ span.btmTag a:hover{
   _height:100%;
 }
 .photoEx .stoExItemL{
-  width:115px;
+  width:170px;
 }
 .photoEx .stoExItemR input{
   width:250px;
@@ -5639,7 +5639,7 @@ span.btmTag a:hover{
   width:230px;
 }
 .photoEx .stoExBtm{
-  padding-left:115px;
+  padding-left:170px;
 }
 .phoExIn{
   float:left;
