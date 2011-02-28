@@ -17,6 +17,8 @@ javascripts:
   - jquery-galleriffic
   - jquery-opacityrollover
   - jquery-gmap
+  - jquery.fileupload
+  - jquery.fileupload-ui
   - application
 - student_lounge:
   - application
@@ -40,6 +42,8 @@ javascripts:
   - swfupload
   - swfupload-handlers
   - jquery.ad-gallery
+  - jquery.fileupload
+  - jquery.fileupload-ui
   - rails
 - admin:
   - jquery
@@ -81,6 +85,7 @@ stylesheets:
   - jquery-wysiwyg
   - tag
   - footer-menu
+  - jquery.fileupload-ui
 - student_lounge:
   - main
   - post
@@ -105,6 +110,7 @@ stylesheets:
   - footer-menu
   - swfupload
   - jquery.ad-gallery
+  - jquery.fileupload-ui
 - admin:
   - main
   - admin-datePicker

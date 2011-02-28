@@ -34,5 +34,5 @@ production:
   reconnect: false
   database: afterclassroom_development
   pool: 5
-  password: '
+  password: 
   socket: /var/run/mysqld/mysqld.sock
