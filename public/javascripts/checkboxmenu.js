@@ -39,6 +39,15 @@ $(function() {
                     var BoxesChecked = $('#mytable input:checked').length;
                     /* update the number of checked inputs */
                     $('#cntBoxMenu').html(BoxesChecked);
+
+                    var $acBox = $('#acBox');
+                    if(BoxesChecked > 1){
+                        $acBox.hide();
+                    }
+                    else
+                    {
+                        $acBox.show();
+                    }
                     /*
                     if there is at least one selected, show the BoxActions Menu
                     otherwise hide it
@@ -95,7 +104,7 @@ $(function() {
                  */
                 $('#closeBoxMenu').bind('click',function(e){
                     $('#actionsBox').animate({'top':'-50px','opacity':'0'},1000,function(){
-                        $(this).remove();
+                        if(BoxesChecked > 0);
                     });
                 });
 
