@@ -45,6 +45,7 @@ javascripts:
   - jquery.fileupload
   - jquery.fileupload-ui
   - rails
+  - checkboxmenu
 - admin:
   - jquery
   - jquery-ui
@@ -110,7 +111,11 @@ stylesheets:
   - footer-menu
   - swfupload
   - jquery.ad-gallery
+<<<<<<< HEAD:config/asset_packages.yml
   - jquery.fileupload-ui
+=======
+  - checkboxmenu
+>>>>>>> f048551d672ce01e5d73f42044bd2741636de721:config/asset_packages.yml
 - admin:
   - main
   - admin-datePicker
