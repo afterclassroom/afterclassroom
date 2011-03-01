@@ -2,6 +2,7 @@
 class City < ActiveRecord::Base
   # Validations
   validates_presence_of :country_id
+  validates_presence_of :state_id
   validates_presence_of :name
 
   # Relations
