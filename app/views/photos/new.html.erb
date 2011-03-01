@@ -15,72 +15,62 @@
                     <%= form_for @photo, :url => user_photos_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
                     <div class="stoError">
                     </div>
-                    <div class="photoEx">
-                        <div class="stoExItem">
-                            <div class="stoExItemL">
-                                Photo album*
-                            </div>
-                            <div class="stoExItemR" id="select_photo_album">
-                                <% if @photo_albums.size > 0 %>
-                                <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px", :class => "required"} %>
-                                <% end %>
-                            </div>
+					<div class="postItem">
+                        <div class="postTit">
+                            Photo album*
                         </div>
-                        <div class="stoExItem">
-                            <div class="stoExItemL">
-                                Location
-                            </div>
-                            <div class="stoExItemR postItemB">
-                                <div id="divinputfile">
-                                    <%= f.file_field :photo_attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc required" %>
-                                    <div id="fakeinputfile" style="margin-top:-10px;">
-                                        <input type="text" id="fakefilepc" name="fakefilepc" style="width:176px"/>
-                                    </div>
+                        <div class="postInp">
+                            <% if @photo_albums.size > 0 %>
+                            <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px", :class => "required"} %>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="stoExItem">
+                        <div class="stoExItemL">
+                            Location
+                        </div>
+                        <div class="stoExItemR postItemB">
+                            <div id="divinputfile">
+                                <%= f.file_field :photo_attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc required" %>
+                                <div id="fakeinputfile" style="margin-top:-10px;">
+                                    <input type="text" id="fakefilepc" name="fakefilepc" style="width:176px"/>
                                 </div>
                             </div>
                         </div>
-                        <div class="stoExItem">
-                            <div class="stoExItemL">
-                                Title
-                            </div>
-                            <div class="stoExItemR">
-                                <%= f.text_field :title %>
-                            </div>
+                    </div>
+                    <div class="stoExItem">
+                        <div class="stoExItemL">
+                            Title
                         </div>
-                        <div class="stoExItem">
-                            <div class="stoExItemL">
-                                Description
-                            </div>
-                            <div class="stoExItemR">
-                                <%= f.text_area :description %>
-                            </div>
+                        <div class="stoExItemR">
+                            <%= f.text_field :title %>
                         </div>
-                        <div class="stoExItem">
-                            <div class="stoExItemL">
-                                Tag line
-                            </div>
-                            <div class="stoExItemR">
-                                <%= text_field_tag 'tag_list', "" %>
-                            </div>
+                    </div>
+                    <div class="stoExItem">
+                        <div class="stoExItemL">
+                            Description
                         </div>
-                        <div class="stoExBtm">
-                            <div class="stoExCre">
-                                <a href="javascript:;" onclick="submit();">Add picture</a>
-                            </div>
-                            <div class="stoExCan">
-                                <%= link_to "Cancel", user_photos_path(current_user) %>
-                            </div>
+                        <div class="stoExItemR">
+                            <%= f.text_area :description %>
+                        </div>
+                    </div>
+                    <div class="stoExItem">
+                        <div class="stoExItemL">
+                            Tag line
+                        </div>
+                        <div class="stoExItemR">
+                            <%= text_field_tag 'tag_list', "" %>
+                        </div>
+                    </div>
+                    <div class="stoExBtm">
+                        <div class="stoExCre">
+                            <a href="javascript:;" onclick="submit();">Add picture</a>
+                        </div>
+                        <div class="stoExCan">
+                            <%= link_to "Cancel", user_photos_path(current_user) %>
                         </div>
                     </div>
                     <% end %>
-                    <div class="postItem">
-                        <div class="postTit">
-                            Title*
-                        </div>
-                        <div class="postInp">
-                            <input type="text" style="width: 360px;" size="30" name="post[title]" id="post_title" class="required">
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
