@@ -26,7 +26,7 @@
     cursor:move;
 }
 .actionsBox .menu{
-    width:240px;
+    width:225px;
     color:#47708F;
     line-height:30px;
     text-shadow:1px 1px 0px #fff;
@@ -57,6 +57,7 @@
 
 }
 .actionsBox .menu .button{
+    color:#47708F;
     padding:4px 7px;
     border:1px solid #D9EAF2;
     background:#e8f4fa;
@@ -86,6 +87,7 @@
 }
 .actionsBox .menu .button:hover{
     background:#fff;
+    color:#47708F;
 }
 .actionsBox .menu span{
     padding:0px 10px;
@@ -148,4 +150,3 @@
 .actionsBox .menu a.closed:hover{
     opacity:1.0;
 }
-
