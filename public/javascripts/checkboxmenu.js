@@ -42,11 +42,11 @@ $(function() {
 
                     var $acBox = $('#acBox');
                     if(BoxesChecked > 1){
-                        $acBox.hide();
+                        document.getElementById("acBox").style.visibility="hidden";
                     }
                     else
                     {
-                        $acBox.show();
+                        document.getElementById("acBox").style.visibility="visible";
                     }
                     /*
                     if there is at least one selected, show the BoxActions Menu
