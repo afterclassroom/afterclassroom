@@ -11,9 +11,22 @@
     </div>
   </div>
 
-  <div id="divFileProgressContainer"></div>
-  <div id="thumbnails"></div>
+  <div id="file_upload_container">
+    <input type="file" name="file" multiple>
+    <button>Upload</button>
+    <div>Upload files</div>
+  </div>
 
 <% end %>
 
-<%= swfupload_load(:upload_url => upload_user_musics_path(current_user), :form_id => "form_album", :file_type => "*.mp3", :debug => true) %>
+<%#= swfupload_load(:upload_url => upload_user_musics_path(current_user), :form_id => "form_album", :file_type => "*.mp3", :debug => true) %>
+
+<script>
+  $('#form_album').fileUploadUI({
+    uploadTable: $('#files'),
+    downloadTable: $('#files'),
+    buildUploadRow: function (files, index) {/**/},
+    buildDownloadRow: function (file) {/**/},
+    dropZone: $('#file_upload_container')
+});
+</script>

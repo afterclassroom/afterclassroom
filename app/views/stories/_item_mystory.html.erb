@@ -17,10 +17,11 @@
       </div>
     </td>
     <td class="check">
-      <input id="check_1" name="check_1" type="checkbox" value="1" />
+      <input id="<%= story.user_id %>" name="<%= story.user_id %>" type="checkbox" value="<%= story.user.full_name %>: <%= story.title %>" />
     </td>
   </tr>
 </table>
+<<<<<<< HEAD:app/views/stories/_item_2.html.erb
 
 <div id="actionsBox" class="actionsBox">
   <div id="actionsBoxMenu" class="menu">
@@ -37,3 +38,6 @@
     <a class="last box_action">Spam</a>
   </div>
 </div>
+=======
+<%= render :partial => "action_box_menu" %>
+>>>>>>> 328d00d9192456502c8f84b94231fcf02d5d68b2:app/views/stories/_item_mystory.html.erb
