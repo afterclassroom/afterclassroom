@@ -2,8 +2,6 @@
 class PhotosController < ApplicationController
   layout "student_lounge"
   
-  session :cookie_only => false, :only => :upload
-  skip_before_filter :verify_authenticity_token, :only => [:upload]
   before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
@@ -160,7 +158,6 @@ class PhotosController < ApplicationController
   
   def upload
     @photo = Photo.new(params[:photo])
-    #@photo.title = params[:title]
     @photo.user = current_user
     if @photo.save
       render :json => { :pic_path => @photo.photo_attach.url.to_s , :name => @photo.photo_attach.instance.attributes["photo_attach_file_name"] }, :content_type => 'text/html'
