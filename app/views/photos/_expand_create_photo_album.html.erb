@@ -1,5 +1,5 @@
 <div id="create_a_album" style="display:none">
-  <% form_tag :url => create_album_user_photos_path(current_user), :remote => true, :update => "create_a_album", :html => {:id => "form_album", :name => "form_album"} do %>
+  <% form_tag create_album_user_photos_path(current_user), :remote => true, :id => "form_album", :name => "form_album" do %>
     <div class="photoEx">
       <div class="stoExItem">
         <div class="stoExItemL">Photo album name*</div>
@@ -35,7 +35,7 @@
         }
       });
     }else{
-      $("#form_album").trigger("onsubmit");
+	  $("#form_album").submit();
     }
   }
 </script>

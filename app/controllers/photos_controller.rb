@@ -1,7 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PhotosController < ApplicationController
   layout "student_lounge"
-
+  
   session :cookie_only => false, :only => :upload
   skip_before_filter :verify_authenticity_token, :only => [:upload]
   before_filter :login_required
@@ -23,24 +23,24 @@ class PhotosController < ApplicationController
     end
     @my_photos = current_user.photos.find(:all, :order => "created_at DESC", :group => "photo_album_id").paginate :page => params[:page], :per_page => 5
   end
-
+  
   def friend_p
     arr_user_id = []
-
+    
     if current_user.user_friends
       current_user.user_friends.each do |friend|
         arr_user_id << friend.id
       end
     end
-
+    
     @search_name = ""
-
+    
     if params[:search]
       @search_name = params[:search][:name]
     end
-
+    
     content_search = @search_name
-
+    
     cond = Caboose::EZ::Condition.new :photos do
       user_id === arr_user_id
       if content_search != ""
@@ -48,19 +48,19 @@ class PhotosController < ApplicationController
         description =~ "%#{content_search}%"
       end
     end
-
+    
     @photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
-
+    
     render :layout => false
   end
-
+  
   def my_p
     @search_name = ""
-
+    
     if params[:search]
       @search_name = params[:search][:name]
     end
-
+    
     content_search = @search_name
     id = current_user.id
     cond = Caboose::EZ::Condition.new :photos do
@@ -70,24 +70,24 @@ class PhotosController < ApplicationController
         description =~ "%#{content_search}%"
       end
     end
-
+    
     @photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
-
+    
     render :layout => false
   end
-
+  
   # GET /photos/1
   # GET /photos/1.xml
   def show
     @photo_albums = current_user.photo_albums
     @photo = Photo.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @photo }
     end
   end
-
+  
   # GET /photos/new
   # GET /photos/new.xml
   def new
@@ -101,14 +101,14 @@ class PhotosController < ApplicationController
       format.xml  { render :xml => @photo }
     end
   end
-
+  
   # GET /photos/1/edit
   def edit
     @photo_albums = PhotoAlbum.find(:all)
     @photo = Photo.find(params[:id])
     @tag_list = @photo.tag_list.join(", ")
   end
-
+  
   # POST /photos
   # POST /photos.xml
   def create
@@ -126,12 +126,12 @@ class PhotosController < ApplicationController
       end
     end
   end
-
+  
   # PUT /photos/1
   # PUT /photos/1.xml
   def update
     @photo = Photo.find(params[:id])
-
+    
     respond_to do |format|
       if @photo.update_attributes(params[:photo])
         @photo.tag_list = params[:tag_list]
@@ -145,7 +145,7 @@ class PhotosController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /photos/1
   # DELETE /photos/1.xml
   def destroy
@@ -157,7 +157,7 @@ class PhotosController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
+  
   def upload
     photo_album_id = params[:photo_album][:id]
     photo_album = PhotoAlbum.find(photo_album_id)
@@ -170,7 +170,7 @@ class PhotosController < ApplicationController
       render :text => photo.photo_attach.url(:thumb)
     end
   end
-
+  
   def create_album
     @photo_album = PhotoAlbum.find_or_create_by_name(params[:photo_album][:name])
     @photo_album.user = current_user
@@ -179,7 +179,7 @@ class PhotosController < ApplicationController
   end
   
   protected
-
+  
   def require_current_user
     @user ||= Photo.find(params[:photo_album_id] || params[:id]).user
     unless (@user && (@user.eql?(current_user)))

@@ -36,7 +36,7 @@ module PhotosHelper
 
   function upload() {
     swfu = new SWFUpload({
-      upload_url: "#{upload_url}?_geokit_session_id=#{session.session_id}",
+      upload_url: "#{upload_url}",
       flash_url : "/flash/swfupload.swf",
 
       // Button settings
@@ -88,6 +88,6 @@ module PhotosHelper
   #{function_send_form_data}
 </script>
     EOS
-    return_data
+    raw(return_data)
   end
 end

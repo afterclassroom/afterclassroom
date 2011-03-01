@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   USER_NAME, PASSWORD = "afterclassroom", "teamwork"
 
   before_filter :authenticate
-  before_filter :session_update
 
   def help
     Helper.instance
@@ -72,10 +71,5 @@ class ApplicationController < ActionController::Base
 
     end
 
-  end
-
-  def session_update
-#    session.model.update_attribute(:user_id, session[:user_id])
-#    session.model.update_attribute(:last_url_visited, request.url)
   end
 end

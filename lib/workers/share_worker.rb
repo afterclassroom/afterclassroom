@@ -7,8 +7,11 @@ class ShareWorker < BackgrounDRb::MetaWorker
   end
   
   def del_share_expire
-    share_files = ShareFile.find(:all, :conditions => ["created_at < ?", Time.now - 1.week])
-    share_files.delete_all
+#    share_files = ShareFile.find(:all, :conditions => ["created_at < ?", Time.now - 1.week])
+#    share_files.delete_all
+    puts '=====================================Cron job====================================='
+    logger.info '=================================================================='
     logger.info 'Delete share expire'
+    logger.info '=================================================================='
   end
 end

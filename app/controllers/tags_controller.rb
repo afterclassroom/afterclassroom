@@ -5,6 +5,7 @@ class TagsController < ApplicationController
   end
   
   def show_tags
+    ctrl_name = params[:ctrl_name]
     class_name = params[:class_name]
     case class_name
       when "PostQa"
@@ -42,7 +43,7 @@ class TagsController < ApplicationController
     @tags = PostProject.tag_counts_on(:tags)
     text = "<tags>"
     @tags.each do |tg|
-      text << "<a href='#{url_for(:action => "tag", :tag_name => tg.name)}' style='font-size: 12pt;'>#{tg.name}</a>"
+      text << "<a href='/#{ctrl_name}/tag/?tag_name=#{tg.name}' style='font-size: 12pt;'>#{tg.name}</a>"
     end
     text << "</tags>"
     
