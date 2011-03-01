@@ -13,53 +13,53 @@
                 <%= display_flash_messages_with_raw %>
                 <div class="postCont">
                     <%= form_for @photo, :url => user_photos_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
-                    <div class="stoError">
-                    </div>
-					<div class="postItem">
+                    <div class="postItem">
                         <div class="postTit">
                             Photo album*
                         </div>
                         <div class="postInp">
                             <% if @photo_albums.size > 0 %>
-                            <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:250px", :class => "required"} %>
+                            <%= f.select :photo_album_id, @photo_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:360px", :class => "required"} %>
                             <% end %>
                         </div>
                     </div>
-                    <div class="stoExItem">
-                        <div class="stoExItemL">
-                            Location
-                        </div>
-                        <div class="stoExItemR postItemB">
-                            <div id="divinputfile">
+                    <div class="postTitt">
+                        Location
+                    </div>
+                    <div class="postItemA">
+                        <div id="divinputfile" style="margin-left:120px">
+                            <div class="postItemC">
                                 <%= f.file_field :photo_attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc required" %>
-                                <div id="fakeinputfile" style="margin-top:-10px;">
-                                    <input type="text" id="fakefilepc" name="fakefilepc" style="width:176px"/>
+                            </div>
+                            <div class="postUpfile">
+                                <div id="fakeinputfile">
+                                    <input name="fakefilepc" type="text" id="fakefilepc">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="stoExItem">
-                        <div class="stoExItemL">
+					<div class="postItem">
+                        <div class="postTit">
                             Title
                         </div>
-                        <div class="stoExItemR">
-                            <%= f.text_field :title %>
+                        <div class="postInp">
+                            <%= f.text_field :title, :style => "width:360px" %>
                         </div>
                     </div>
-                    <div class="stoExItem">
-                        <div class="stoExItemL">
+                    <div class="postItem">
+                        <div class="postTit">
                             Description
                         </div>
-                        <div class="stoExItemR">
+                        <div class="postInp">
                             <%= f.text_area :description %>
                         </div>
                     </div>
-                    <div class="stoExItem">
-                        <div class="stoExItemL">
+					<div class="postItem">
+                        <div class="postTit">
                             Tag line
                         </div>
-                        <div class="stoExItemR">
-                            <%= text_field_tag 'tag_list', "" %>
+                        <div class="postInp">
+                            <%= text_field_tag 'tag_list', "", :style => "width:360px" %>
                         </div>
                     </div>
                     <div class="stoExBtm">

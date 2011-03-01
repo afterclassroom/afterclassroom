@@ -6,8 +6,10 @@
 </tr>
 <tr>
   <th class="reqLa"><strong>State*</strong></th>
-  <td id="state_city">
-    <%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state), :style => "width: 198px" %>
+  <td >
+  	<div>
+  		<%= select_tag "city[state_id]", options_from_collection_for_select(@states, "id", "name", @state), :style => "width: 198px", :id => "state_city" %>
+  	</div>
   </td>
 </tr>
 <script>
@@ -16,7 +18,7 @@
       // when the #search field changes
       $("#state_country_id").change(function() {
         // make a POST call and replace the content
-        $.post(<%= "'#{state_cities_path}?country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>, function(data) {
+        $.get(<%= "'#{state_cities_path}?country_id=' + escape($('#state_country_id').val()) + '&type=search'" %>, function(data) {
           $("#state_city").html(data);
         });
       });

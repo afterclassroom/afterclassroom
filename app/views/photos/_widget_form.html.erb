@@ -1,17 +1,90 @@
-<%= form_for :photo_album, :html => {:id => "form_album", :name => "form_album", :multipart => true } do |f| %>
-  <%= f.hidden_field :id %>
-  <div class="photoEx">
-    <div class="stoExItem">
-      <div class="stoExItemL">Photo album name</div>
-      <div class="stoExItemR"><%= @photo_album.name %></div>
+<div class="files">
+    <%= form_for :photo, :url => upload_user_photos_url(current_user), :html => { :class => "upload", :multipart => true, :id => "photo_form" } do |f| %>
+    <%= hidden_field_tag "photo[photo_album_id]", @photo_album.id %>
+    <%= file_field_tag "photo[photo_attach]", :multiple => true %>
+    <div>
+        Upload files
     </div>
-    <div class="stoExBtm">
-      <div class="stoExCre"><span id="spanButtonPlaceHolder"></span></div>
-      <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').toggle('slow');">Cancel</a></div>
-    </div>
-  </div>
-  <div id="divFileProgressContainer" style="height: 35px;"></div>
-  <div id="thumbnails"></div>
-<% end %>
-  
-<%= swfupload_load(:upload_url => upload_user_photos_path(current_user), :form_id => "form_album", :file_type => "*.jpg;*.gif;*.JPG;*.GIF", :debug => true) %>
+    <% end %>
+    <table class="upload_files">
+    </table>
+    <table class="download_files">
+    </table>
+    <button id="start_uploads" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-state-hover">
+        Start uploads
+    </button>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(function(){
+        $('#photo_form').each(function () {
+            // Fix for browsers which support multiple file selection but not the File API:
+            // https://github.com/blueimp/jQuery-File-Upload/issues#issue/36
+            if (typeof File === 'undefined') {
+                $(this).find('input:file').each(function () {
+                    $(this).removeAttr('multiple')
+                        // Fix for Opera, which ignores just removing the multiple attribute:
+                        .replaceWith($(this).clone(true));
+                });
+            }
+        }).fileUploadUI({
+            uploadTable: $('.upload_files'),
+            downloadTable: $('.download_files'),
+            buildUploadRow: function(files, index){
+                var fileNames;
+                if (typeof index == 'number') {
+                    fileNames = files[index].name;
+                }
+                else {
+                    fileNames = '';
+                    for (i = 0; i < files.length; i += 1) {
+                        fileNames = fileNames + files[i].name + '<br>';
+                    }
+                }
+                return $('<tr><td class="file_upload_preview"><\/td>' +
+                '<td class="file_upload_title">' + fileNames + '<input type="text" title="Title"><\/td>' +
+                '<td class="file_upload_progress"><div><\/div><\/td>' +
+                '<td class="file_upload_start">' +
+                '<button class="ui-state-default ui-corner-all" title="Start Upload">' +
+                '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' +
+                '<\/button><\/td>' +
+                '<td class="file_upload_cancel">' +
+                '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+                '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+                '<\/button><\/td><\/tr>');
+            },
+            buildDownloadRow: function(file){
+                return $('<tr><td><img alt="Photo" width="40" height="40" src="' + file.pic_path + '">' + file.name + '<\/td><\/tr>');
+            },
+            beforeSend: function(event, files, index, xhr, handler, callBack){
+                var regexp = /\.(png)|(jpg)|(gif)$/i;
+                // Using the filename extension for our test,
+                // as legacy browsers don't report the mime type
+                if (!regexp.test(files[index].name)) {
+                    handler.uploadRow.find('.file_upload_progress').html('ONLY IMAGES ALLOWED!');
+                    setTimeout(function(){
+                        handler.removeNode(handler.uploadRow);
+                    }, 10000);
+                    return;
+                }
+                
+                if (files[index].size > 5000000) {
+                    handler.uploadRow.find('.file_upload_progress').html('FILE TOO BIG!');
+                    setTimeout(function(){
+                        handler.removeNode(handler.uploadRow);
+                    }, 10000);
+                    return;
+                }
+                handler.uploadRow.find('.file_upload_start button').click(function(){
+					handler.formData = {
+                		title: handler.uploadRow.find('.file_upload_title input').val()
+            		};
+					callBack();
+				});
+            },
+        });
+    });
+    
+    $('#start_uploads').click(function(){
+        $('.file_upload_start button').click();
+    });
+</script>
