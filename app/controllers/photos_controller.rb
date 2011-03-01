@@ -159,15 +159,12 @@ class PhotosController < ApplicationController
   end
   
   def upload
-    photo_album_id = params[:photo_album][:id]
-    photo_album = PhotoAlbum.find(photo_album_id)
-    if photo_album && params[:Filedata]
-      photo = Photo.new()
-      photo.photo_album = photo_album
-      photo.user = current_user
-      photo.swfupload_file = params[:Filedata]
-      photo.save!
-      render :text => photo.photo_attach.url(:thumb)
+    @photo = Photo.new(params[:photo])
+    @photo.user = current_user
+    if @photo.save
+      render :json => { :pic_path => @photo.photo_attach.url.to_s , :name => @photo.photo_attach.instance.attributes["photo_attach_file_name"] }, :content_type => 'text/html'
+    else
+      render :json => { :result => 'error'}, :content_type => 'text/html'
     end
   end
   
