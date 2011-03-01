@@ -15,7 +15,7 @@ most_viewed_photos = Photo.with_users(u).with_limit.most_view
     <div class="photoRow">
       <% most_viewed_photos.each do |p| %>
         <div class="photoItem">
-          <div class="photoImg"><%= link_to "<div>#{image_tag p.photo_attach.url(:thumb)}</div>", user_photo_path(p.user, p) %></div>
+          <div class="photoImg"><%= link_to raw("<div>#{image_tag p.photo_attach.url(:thumb)}</div>"), user_photo_path(p.user, p) %></div>
         </div>
       <% end %>
     </div>

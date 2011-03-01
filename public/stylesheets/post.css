@@ -722,7 +722,6 @@ span.btmDown a:hover{
   margin:3px 0;
 }
 #divinputfile{
-  background:url(/images/upload_file.png) no-repeat 100% 1px;
   height:24px;
   padding-bottom:2px;
 }
@@ -743,6 +742,7 @@ span.btmDown a:hover{
   -khtml-opacity: 0.0;
   -moz-opacity: 0.0;
   opacity: 0.0;
+  width:300px;
 }
 #fakeinputfile #fakefilepc{
   width:208px;
