@@ -1,90 +1,177 @@
-<div class="files">
-  <%= form_for :photo, :url => upload_user_photos_url(current_user), :html => { :class => "upload", :multipart => true, :id => "photo_form" } do |f| %>
-    <%= hidden_field_tag "photo[photo_album_id]", @photo_album.id %>
-    <%= file_field_tag "photo[photo_attach]", :multiple => true %>
-    <div>
-      Upload files
+<div class="photoEx">
+    <div class="stoExItem">
+        <div class="stoExItemL">
+            Photo album name:
+        </div>
+        <div class="stoExItemR">
+            <%= @photo_album.name %>
+        </div
     </div>
-  <% end %>
-  <table class="upload_files"></table>
-  <table class="download_files"></table>
-  <button id="start_uploads" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-state-hover">
-    Start uploads
-  </button>
+    <div class="files">
+        <%= form_for :photo, :url => upload_user_photos_url(current_user), :html => { :class => "upload", :multipart => true, :id => "photo_form" } do |f| %>
+        <%= hidden_field_tag "photo[photo_album_id]", @photo_album.id %>
+        <%= file_field_tag "photo[photo_attach]", :multiple => true %>
+        <div>
+            Upload photos
+        </div>
+        <% end %>
+        <table class="upload_files" width="100%">
+        </table>
+        <div class="stoExBtm">
+            <div class="stoExSave" id="start_uploads">
+                <a onclick="$('#story_state').val('draft');$('#form_new').submit();" href="javascript:;">Start Uploads</a>
+            </div>
+            <div class="stoExShare" id="cancel_uploads">
+                <a onclick="$('#story_state').val('share');$('#form_new').submit();" href="javascript:;">Cancel uploads</a>
+            </div>
+        </div>
+		<br/>
+        <table class="download_files" width="100%">
+        </table>
+    </div>
 </div>
+
+<!--Alert-->
+<div id="delete-dialog-message" title="Confirm delete?" style="display:none;">
+  <p>
+    Really delete the highlighted element?
+  </p>
+</div>
+<!--Alert-->
+
 <script type="text/javascript" charset="utf-8">
-  $(function(){
-    $('#photo_form').each(function () {
-      // Fix for browsers which support multiple file selection but not the File API:
-      // https://github.com/blueimp/jQuery-File-Upload/issues#issue/36
-      if (typeof File === 'undefined') {
-        $(this).find('input:file').each(function () {
-          $(this).removeAttr('multiple')
-          // Fix for Opera, which ignores just removing the multiple attribute:
-          .replaceWith($(this).clone(true));
+        $(function(){
+            $('#photo_form').each(function(){
+                // Fix for browsers which support multiple file selection but not the File API:
+                // https://github.com/blueimp/jQuery-File-Upload/issues#issue/36
+                if (typeof File === 'undefined') {
+                    $(this).find('input:file').each(function(){
+                        $(this).removeAttr('multiple') // Fix for Opera, which ignores just removing the multiple attribute:
+        .replaceWith($(this).clone(true));
+                    });
+                }
+            }).fileUploadUI({
+                uploadTable: $('.upload_files'),
+                downloadTable: $('.download_files'),
+                buildUploadRow: function(files, index){
+                    var fileNames;
+                    if (typeof index == 'number') {
+                        fileNames = files[index].name;
+                    }
+                    else {
+                        fileNames = '';
+                        for (i = 0; i < files.length; i += 1) {
+                            fileNames = fileNames + files[i].name + '<br>';
+                        }
+                    }
+                    return $('<tr><td class="file_upload_preview"><\/td>' +
+                    '<td class="file_upload_title">' +
+                    fileNames +
+                    '<\/td>' +
+                    '<td class="file_upload_txt_title"><input type="text" value="Title" title="Title" onclick="this.value = \'\';" onblur="this.value = this.value || this.defaultValue;"><\/td>' +
+                    '<td class="file_upload_progress"><div><\/div><\/td>' +
+                    '<td class="file_upload_start">' +
+                    '<button class="ui-state-default ui-corner-all" title="Start Upload">' +
+                    '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' +
+                    '<\/button><\/td>' +
+                    '<td class="file_upload_cancel">' +
+                    '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+                    '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+                    '<\/button><\/td><\/tr>');
+                },
+                buildDownloadRow: function(file){
+                    return $('<tr id="file_' + file.id + '"><td><div class="photoImg"><a href="javascript:;"><div><img src="' + file.pic_path + '"></div></a></div>' + file.name + '<\/td>' + 
+					'<td class="file_delete"><button title="Delete" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-trash"></span></button></td>' + 
+					'<\/tr>');
+                },
+                beforeSend: function(event, files, index, xhr, handler, callBack){
+                    var regexp = /\.(png)|(jpg)|(gif)$/i;
+                    // Using the filename extension for our test,
+                    // as legacy browsers don't report the mime type
+                    if (!regexp.test(files[index].name)) {
+                        handler.uploadRow.find('.file_upload_progress').html('ONLY IMAGES ALLOWED!');
+                        setTimeout(function(){
+                            handler.removeNode(handler.uploadRow);
+                        }, 10000);
+                        return;
+                    }
+                    
+                    if (files[index].size > 5000000) {
+                        handler.uploadRow.find('.file_upload_progress').html('FILE TOO BIG!');
+                        setTimeout(function(){
+                            handler.removeNode(handler.uploadRow);
+                        }, 10000);
+                        return;
+                    }
+                    
+                    handler.uploadRow.find('.file_upload_start button').click(function(){
+    					title = handler.uploadRow.find('.file_upload_title input').val();
+    					if (title == "Title"){
+    						handler.uploadRow.find('.file_upload_title input').val() = "";
+    					}
+                        handler.formData = {
+                            "photo[title]": handler.uploadRow.find('.file_upload_title input').val(),
+                            "photo[photo_album_id]": $('#photo_photo_album_id').val()
+                        };
+                        callBack();
+                    });
+                },
+            });
         });
-      }
-    }).fileUploadUI({
-      uploadTable: $('.upload_files'),
-      downloadTable: $('.download_files'),
-      buildUploadRow: function(files, index){
-        var fileNames;
-        if (typeof index == 'number') {
-          fileNames = files[index].name;
-        }
-        else {
-          fileNames = '';
-          for (i = 0; i < files.length; i += 1) {
-            fileNames = fileNames + files[i].name + '<br>';
+        
+        $('#start_uploads').click(function(){
+            $('.file_upload_start button').click();
+        });
+    	
+    	$('#cancel_uploads').click(function(){
+            $('.file_upload_cancel button').click();
+        });
+		
+		$('.file_delete button').live('click', function () {
+                deleteFile(getKey($(this).closest('tr')));
+                return false;
+            });
+			
+function deleteItem(node, url, callBack) {
+	console.log("url === "+url);
+            node.addClass('ui-state-highlight');
+			$("#delete-dialog-message").dialog({
+        modal: true,
+        buttons: {
+          Delete: function() {
+            $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function (data) {
+                        
+                    }
+                });
+          },
+		  Cancel: function() {
+            $(this).dialog('close');
+			node.removeClass('ui-state-highlight');
           }
         }
-        return $('<tr><td class="file_upload_preview"><\/td>' +
-          '<td class="file_upload_title">' + fileNames + '<input type="text" title="Title"><\/td>' +
-          '<td class="file_upload_progress"><div><\/div><\/td>' +
-          '<td class="file_upload_start">' +
-          '<button class="ui-state-default ui-corner-all" title="Start Upload">' +
-          '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' +
-          '<\/button><\/td>' +
-          '<td class="file_upload_cancel">' +
-          '<button class="ui-state-default ui-corner-all" title="Cancel">' +
-          '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
-          '<\/button><\/td><\/tr>');
-      },
-      buildDownloadRow: function(file){
-        return $('<tr><td><img alt="Photo" width="40" height="40" src="' + file.pic_path + '">' + file.name + '<\/td><\/tr>');
-      },
-      beforeSend: function(event, files, index, xhr, handler, callBack){
-        var regexp = /\.(png)|(jpg)|(gif)$/i;
-        // Using the filename extension for our test,
-        // as legacy browsers don't report the mime type
-        if (!regexp.test(files[index].name)) {
-          handler.uploadRow.find('.file_upload_progress').html('ONLY IMAGES ALLOWED!');
-          setTimeout(function(){
-            handler.removeNode(handler.uploadRow);
-          }, 10000);
-          return;
+      });
         }
-                
-        if (files[index].size > 5000000) {
-          handler.uploadRow.find('.file_upload_progress').html('FILE TOO BIG!');
-          setTimeout(function(){
-            handler.removeNode(handler.uploadRow);
-          }, 10000);
-          return;
+
+function deleteFile(key) {
+	console.log("key == "+key);
+	var path = "<%= user_photos_url(current_user)%>/" + key;
+            var node = getFileNode(key);
+            deleteItem(node, path, function (data) {
+                node.fadeOut(function () {
+                    $(this).remove();
+                });
+            });
         }
-        
-        handler.uploadRow.find('.file_upload_start button').click(function(){
-          handler.formData = {
-            "photo[title]": handler.uploadRow.find('.file_upload_title input').val(),
-            "photo[photo_album_id]": $('#photo_photo_album_id').val()
-          };
-          callBack();
-        });
-      },
-    });
-  });
-    
-  $('#start_uploads').click(function(){
-    $('.file_upload_start button').click();
-  });
+		
+		function getKey(node) {
+                return node.attr('id').replace(/\w+?_/, '');
+            };
+			
+function getFileNode(key) {
+            return $('#file_' + key);
+        }
+
 </script>

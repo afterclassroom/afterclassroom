@@ -90,7 +90,7 @@ Afterclassroom::Application.routes.draw do
     resources :photo_albums
     resources :photos do
       collection do
-        get :friend_p, :my_p
+        get :friend_p, :my_p, :create_form
         post :create_album, :upload
       end
     end

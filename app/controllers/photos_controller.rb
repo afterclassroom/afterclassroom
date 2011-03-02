@@ -160,10 +160,13 @@ class PhotosController < ApplicationController
     @photo = Photo.new(params[:photo])
     @photo.user = current_user
     if @photo.save
-      render :json => { :pic_path => @photo.photo_attach.url.to_s , :name => @photo.photo_attach.instance.attributes["photo_attach_file_name"] }, :content_type => 'text/html'
+      render :json => { :id => @photo.id, :pic_path => @photo.photo_attach.url.to_s , :name => @photo.photo_attach.instance.attributes["photo_attach_file_name"] }, :content_type => 'text/html'
     else
       render :json => { :result => 'error'}, :content_type => 'text/html'
     end
+  end
+  
+  def create_form
   end
   
   def create_album
