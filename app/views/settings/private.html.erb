@@ -17,13 +17,17 @@
           <div class="flistNPa"><span>My story</span></div>
           <div class="flistS"></div>
         </div>
-        <select id="control_7" name="control_7[]" multiple="multiple" size="5">
-          <option value=""></option>
-          <option value="option_1">Family members</option>
-          <option value="option_2">Friends from school</option>
-          <option value="option_3">Friends from work</option>
-          <option value="option_4">General Friends</option>
-        </select>
+        <div class="flistRPa">
+          <div class="flistRAddPa">
+            <a href="#"><span class="flistAPa">Add to list</span></a>
+            <ul>
+              <li><label><input type="checkbox" id="Family members"><a href="">Family members</a></label></li>
+              <li><label><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></label></li>
+              <li><label><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></label></li>
+              <li><label><input type="checkbox" id="General Friends"><a href="">General Friends</a></label></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <div class="settNetLPaT"></div>
@@ -34,26 +38,34 @@
           <div class="flistNPa"><span>My Family</span></div>
           <div class="flistS"></div>
         </div>
-        <select id="control_9" name="control_9[]" multiple="multiple" size="5">
-          <option value=""></option>
-          <option value="option_1">Family members</option>
-          <option value="option_2">Friends from school</option>
-          <option value="option_3">Friends from work</option>
-          <option value="option_4">General Friends</option>
-        </select>
+        <div class="flistRPa">
+          <div class="flistRAddPa">
+            <a href="#"><span class="flistAPa">Add to list</span></a>
+            <ul>
+              <li><label><input type="checkbox" id="Family members"><a href="">Family members</a></label></li>
+              <li><label><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></label></li>
+              <li><label><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></label></li>
+              <li><label><input type="checkbox" id="General Friends"><a href="">General Friends</a></label></li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="flistItem">
         <div class="flistInf">
           <div class="flistNPa"><span>Web Page</span></div>
           <div class="flistS"></div>
         </div>
-        <select id="control_10" name="control_10[]" multiple="multiple" size="5">
-          <option value=""></option>
-          <option value="option_1">Family members</option>
-          <option value="option_2">Friends from school</option>
-          <option value="option_3">Friends from work</option>
-          <option value="option_4">General Friends</option>
-        </select>
+        <div class="flistRPa">
+          <div class="flistRAddPa">
+            <a href="#"><span class="flistAPa">Add to list</span></a>
+            <ul>
+              <li><label><input type="checkbox" id="Family members"><a href="">Family members</a></label></li>
+              <li><label><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></label></li>
+              <li><label><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></label></li>
+              <li><label><input type="checkbox" id="General Friends"><a href="">General Friends</a></label></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <div class="settNetLPaT"></div>
@@ -68,10 +80,10 @@
           <div class="flistRAddPa">
             <a href="#"><span class="flistAPa">Add to list</span></a>
             <ul>
-              <li><input type="checkbox" id="Family members"><a href="">Family members</a></li>
-              <li><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></li>
-              <li><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></li>
-              <li><input type="checkbox" id="General Friends"><a href="">General Friends</a></li>
+              <li><label><input type="checkbox" id="Family members"><a href="">Family members</a></label></li>
+              <li><label><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></label></li>
+              <li><label><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></label></li>
+              <li><label><input type="checkbox" id="General Friends"><a href="">General Friends</a></label></li>
             </ul>
           </div>
         </div>
@@ -85,10 +97,10 @@
           <div class="flistRAddPa">
             <a href="#"><span class="flistAPa">Add to list</span></a>
             <ul>
-              <li><input type="checkbox" id="Family members"><a href="">Family members</a></li>
-              <li><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></li>
-              <li><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></li>
-              <li><input type="checkbox" id="General Friends"><a href="">General Friends</a></li>
+              <li><label><input type="checkbox" id="Family members"><a href="">Family members</a></label></li>
+              <li><label><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></label></li>
+              <li><label><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></label></li>
+              <li><label><input type="checkbox" id="General Friends"><a href="">General Friends</a></label></li>
             </ul>
           </div>
         </div>
@@ -96,50 +108,3 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-			$(document).ready( function() {
-				// Default options
-				$("#control_1, #control_3, #control_4, #control_5").multiSelect();
-
-				// With callback
-				$("#control_6").multiSelect( null, function(el) {
-					$("#callbackResult").show().fadeOut();
-				});
-
-				// Options displayed in comma-separated list
-				$("#control_7").multiSelect({ oneOrMoreSelected: '*' });
-                                $("#control_9").multiSelect({ oneOrMoreSelected: '*' });
-                                $("#control_10").multiSelect({ oneOrMoreSelected: '*' });
-
-				// 'Select All' text changed
-				$("#control_8").multiSelect({ selectAllText: 'Pick &lsquo;em all!' });
-
-				// Show test data
-				$("FORM").submit( function() {
-					$.post('result.php', $(this).serialize(), function(r) {
-						alert(r);
-					});
-					return false;
-				});
-
-			});
-
-</script>
-<style>
-  #control_7 #control_9 #control_10{
-    width: 133px;
-  }
-  .settC .multiSelectOptions{
-    width: 133px;
-}
-  .settC .multiSelectOptions label{
-    text-align: left;
-    
-    display: block;
-    white-space: nowrap;
-  }
-  .settC .multiSelectOptions label.checked{
-    background: #DCE5F8;
-    width: 226px;
-  }
-</style>
