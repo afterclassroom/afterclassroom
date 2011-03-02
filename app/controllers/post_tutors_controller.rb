@@ -74,19 +74,10 @@ class PostTutorsController < ApplicationController
   end
 
   def require_rate
-    puts "1"
-    puts "1"
-    puts "1"
-    puts "1"
-    puts "1"
-    puts "1"
-    puts "1"
-    puts "1"
     rating = params[:rating]
     post = Post.find(params[:post_id])
     @post_tt = post.post_tutor
     if !PostTutor.find_rated_by(current_user).include?(@post_tt)
-      puts "2"
       @post_tt.rate rating.to_i, current_user
       # Update rating status
       score_good = @post_tt.score_good
@@ -104,15 +95,6 @@ class PostTutorsController < ApplicationController
 
       @post_tt.save
     end
-    puts "3"
-    respond_to do |format|
-      format.js  { render :js => @post_tt }
-    end
-=begin
-    render :text => %Q'
-      <div class="QAsDet">Good <strong>(#{post_tt.total_good})</strong></div>
-      <div class="QAsDet">Bad <strong>(#{post_tt.total_bad})</strong></div>'
-=end
   end
   
   # GET /post_tutors/1
