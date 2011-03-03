@@ -87,10 +87,15 @@ Afterclassroom::Application.routes.draw do
     end
 
     # Photo Album
-    resources :photo_albums
+    resources :photo_albums do
+      collection do
+        get :delete_all, :delete_photos
+      end
+    end
+    
     resources :photos do
       collection do
-        get :friend_p, :my_p, :create_form
+        get :friend_p, :my_p, :create_form, :destroy_all
         post :create_album, :upload
       end
     end

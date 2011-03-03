@@ -4,7 +4,7 @@ class PhotoAlbumsController < ApplicationController
   
   before_filter :login_required
   before_filter :require_current_user,
-    :only => [:edit, :update, :destroy, :delete_comment]
+    :only => [:edit, :update, :destroy, :delete_all, :delete_photos]
   # GET /photo_albums
   # GET /photo_albums.xml
   def index
@@ -60,6 +60,33 @@ class PhotoAlbumsController < ApplicationController
       format.html { redirect_to(photo_albums_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def delete_all
+    list_ids = params[:list_ids]
+    list_ids = list_ids.slice(0..list_ids.length - 2)
+    ids = list_ids.split(", ")
+    photo_albums = current_user.photo_albums.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
+    if photo_albums.size > 0
+      photo_albums.each do |abl|
+        abl.destroy
+      end
+    end
+    redirect_to(user_photo_albums_url(current_user))
+  end
+  
+  def delete_photos
+    photo_album = PhotoAlbum.find(params[:id])
+    list_ids = params[:list_ids]
+    list_ids = list_ids.slice(0..list_ids.length - 2)
+    ids = list_ids.split(", ")
+    photos = current_user.photos.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
+    if photos.size > 0
+      photos.each do |abl|
+        abl.destroy
+      end
+    end
+    redirect_to(user_photo_album_url(current_user, photo_album))
   end
 
   protected

@@ -32,7 +32,7 @@
 </div>
 
 <!--Alert-->
-<div id="delete-dialog-message" title="Confirm delete?" style="display:none;">
+<div id="delete-dialog-message" title="Confirm delete" style="display:none;">
   <p>
     Really delete the highlighted element?
   </p>
@@ -107,10 +107,10 @@
         handler.uploadRow.find('.file_upload_start button').click(function(){
           title = handler.uploadRow.find('.file_upload_title input').val();
           if (title == "Title"){
-            handler.uploadRow.find('.file_upload_title input').val() = "";
+            title = "";
           }
           handler.formData = {
-            "photo[title]": handler.uploadRow.find('.file_upload_title input').val(),
+            "photo[title]": title,
             "photo[photo_album_id]": $('#photo_photo_album_id').val()
           };
           callBack();
