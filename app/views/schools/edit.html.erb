@@ -13,7 +13,9 @@
       <!--  start content-table-inner -->
       <div id="content-table-inner">
         <%= form_for(@school, :html => {:id => "form"}) do |f| %>
-          <%= render :partial => "select_city", :locals => {:countries => @countries, :states => @states, :cities => @cities, :country_name => @country_name, :state_name => @state_name, :city_name => @city_name, :action_name => "edit"} %>
+          <div id="state_city">
+            <%= render :partial => "select_city" %>
+          </div>
           <table cellspacing="0" cellpadding="0" border="0" id="id-form">
             <tr>
               <th valign="top">School Name*:</th>

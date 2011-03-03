@@ -112,12 +112,12 @@ $(function() {
                 as an example, for all the actions (className:box_action)
                 alert the values of the checked inputs
                  */
-                $('#actionsBox .box_action').bind('click',function(e){
-                    var ids = '';
-                    $('#mytable input:checked').each(function(e,i){
-                        var $this = $(this);
-                        ids += 'id : ' + $this.attr('id') + ' , value : ' + $this.val() + '\n';
-                    });
-                    alert('checked inputs:\n'+ids);
-                });
+                //$('#actionsBox .box_action').bind('click',function(e){
+                //    var ids = '';
+                //    $('#mytable input:checked').each(function(e,i){
+                //        var $this = $(this);
+                //        ids += 'id : ' + $this.attr('id') + ' , value : ' + $this.val() + '\n';
+                //    });
+                //    alert('checked inputs:\n'+ids);
+                //});
             });

@@ -482,6 +482,7 @@
 .photoItem{
     width:107px;
     float:left;
+	margin-bottom:10px;
 }
 .photoRow{
     /*padding-bottom:10px;*/
