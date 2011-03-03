@@ -84,6 +84,11 @@ class PostHousing < ActiveRecord::Base
     post_housings = self.with_school(school).with_status("Bad")
   end
 
+  def self.require_rating(school)
+    house_type = HousingCategory.find_by_name("Room for share")
+    self.with_category(house_type.id).with_school(school).with_status("Require Rating").random(1)
+  end
+
   def total_good
     self.ratings.count(:conditions => ["rating = ?", 1])
   end

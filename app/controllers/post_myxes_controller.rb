@@ -47,7 +47,7 @@ class PostMyxesController < ApplicationController
     rating = params[:rating]
     @post = Post.find(params[:post_id])
     @post_p = @post.post_myx
-    if !Postmyx.find_rated_by(current_user).include?(@post_p)
+    if !PostMyx.find_rated_by(current_user).include?(@post_p)
       @post_p.rate rating.to_i, current_user
       # Update rating status
       score_good = @post_p.score_good

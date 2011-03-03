@@ -89,6 +89,11 @@ class PostAwareness < ActiveRecord::Base
   def self.recent_comments
     Comment.find_by_sql("SELECT * FROM comments WHERE commentable_type = 'PostAwareness' ORDER BY created_at DESC LIMIT 5")
   end
+  
+  def self.require_rating(school)
+    aware_type = AwarenessType.find_by_name("Take Action Now")
+    self.with_type(aware_type.id).with_school(school).with_status("Require Rating").random(1)
+  end
 
   def total_good
     self.ratings.count(:conditions => ["rating = ?", 1])
