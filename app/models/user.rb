@@ -145,13 +145,11 @@ class User < ActiveRecord::Base
   end
   
   def self.get_online_users
-    sessions = CGI::Session::ActiveRecordStore::Session.find(:all, :conditions => ["updated_at >= ?", 15.minutes.ago], :order => "created_at ASC") 
-    sessions.each do |session| 
-      if session.data[:user] 
-        online_users << User.find(session.data[:user]) 
-      end 
-    end 
-    return online_users
+    online_users = []
+    sessions = ActiveRecord::SessionStore::Session.find(:all, :conditions => ["updated_at >= ?", 30.minutes.ago])
+    for session in sessions
+      online_users << User.find(session.data[:user_id]) if session.data[:user_id] != nil
+    end
   end
   
   def check_user_online

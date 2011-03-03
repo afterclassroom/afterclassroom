@@ -1,0 +1,5 @@
+<div class="photoItem">
+  <div class="photoImg"><%= link_to get_first_photo(album), "" %></div>
+  <div class="photoName"><%= check_box_tag "photo_album_id", album.id %><%= album.name %></div>
+  <div class="photoInf"><%= pluralize(album.photos.size, "photo") %></div>
+</div>

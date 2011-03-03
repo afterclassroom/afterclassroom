@@ -1,4 +1,6 @@
 class SharesController < ApplicationController
+  layout "student_lounge"
+  
   before_filter :login_required
   before_filter :require_current_user, :only => [:update, :destroy]
   

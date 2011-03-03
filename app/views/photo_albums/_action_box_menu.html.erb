@@ -1,0 +1,19 @@
+<div id="actionsBox" class="actionsBox">
+    <div id="actionsBoxMenu" class="menu">
+        <span id="cntBoxMenu">0</span>
+        <a id="acBox" class="button box_action" style="visibility: visible;">Edit</a>
+        <a class="button box_action">Delete</a>
+        <a id="toggleBoxMenu" class="open"></a>
+        <a id="closeBoxMenu" class="button">X</a>
+    </div>
+    <div class="submenu" sytle="width:160px; margin-left:60px">
+        <%= link_to "Create a Photo Album", create_form_user_photos_url(current_user), :remote => true %>
+    </div>
+</div>
+<script>
+    $('#acBox').click(function(){
+        var $this = $('#mytable input:checked').first();
+		var path = "/users/<%= current_user.id %>/photo_albums/" + $this.val() + "/edit?height=215&width=390";
+		tb_show("Edit Album", path);
+    })
+</script>
