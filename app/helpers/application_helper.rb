@@ -494,9 +494,9 @@ module ApplicationHelper
 
     if wall.user_wall_link
       link = wall.user_wall_link.link
-      image = link_to raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank"
+      image = link_to(raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank") if wall.user_wall_link.image_link
       title = wall.user_wall_link.title
-      sub_content = wall.user_wall_link.sub_content
+      sub_content = wall.user_wall_link.sub_content if wall.user_wall_link.sub_content
     end
     render :partial => "user_walls/wall_attach", :locals => {:wall_id => wall.id, :image => image, :title => title, :link => link, :sub_content => sub_content}
   end

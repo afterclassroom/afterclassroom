@@ -48,7 +48,7 @@ class PostHousingsController < ApplicationController
 
     @post_h.save
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]

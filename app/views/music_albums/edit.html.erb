@@ -1,23 +1,18 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Musics", :action_path => "#{musics_path}"} %>
-<% end -%>
+<div id="div_send_report" class="postCont">
+  <%= form_for [current_user, @music_album], :html => {:id => "album_form"} do |f| %>
+    <div class="postItem">
+      <div style="width: 100px;" class="postItem1">Album name*</div>
+      <div class="postInp"><%= f.text_field :name, :class => "required" %></div>
+    </div>
+    <div style="padding-left: 110px;" class="submit"><a onclick="$('#album_form').submit();" href="javascript:;">Update</a></div>
+    <div style="padding: 10px;" class="error-innerr"></div>
+  <% end %>
+</div>
 
-<% content_for :tabs_inbox do -%>
-  <%= render :partial => 'shared/tabs_inbox' %>
-<% end -%>
-
-<h1>Editing music_album</h1>
-
-<%= form_for(@music_album) do |f| %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @music_album %> |
-<%= link_to 'Back', music_albums_path %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#album_form").validate({
+      errorLabelContainer: ".error-innerr"
+    })
+  });
+</script>

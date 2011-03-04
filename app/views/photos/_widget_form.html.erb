@@ -1,26 +1,52 @@
-<div class="files">
-  <%= form_for :photo, :url => upload_user_photos_url(current_user), :html => { :class => "upload", :multipart => true, :id => "photo_form" } do |f| %>
-    <%= hidden_field_tag "photo[photo_album_id]", @photo_album.id %>
-    <%= file_field_tag "photo[photo_attach]", :multiple => true %>
-    <div>
-      Upload files
+<div class="photoEx">
+  <div class="stoExItem">
+    <div class="stoExItemL">
+      Photo album name:
     </div>
-  <% end %>
-  <table class="upload_files"></table>
-  <table class="download_files"></table>
-  <button id="start_uploads" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-state-hover">
-    Start uploads
-  </button>
+    <div class="stoExItemR">
+      <%= @photo_album.name %>
+    </div>
+  </div>
+  <div class="files">
+    <%= form_for :photo, :url => upload_user_photos_url(current_user), :html => { :class => "upload", :multipart => true, :id => "photo_form" } do |f| %>
+      <%= hidden_field_tag "photo[photo_album_id]", @photo_album.id %>
+      <%= file_field_tag "photo[photo_attach]", :multiple => true %>
+      <div>
+        Upload photos
+      </div>
+    <% end %>
+    <table class="upload_files" width="100%">
+    </table>
+    <div class="stoExBtm">
+      <div class="stoExSave" id="start_uploads">
+        <a onclick="$('#story_state').val('draft');$('#form_new').submit();" href="javascript:;">Start Uploads</a>
+      </div>
+      <div class="stoExShare" id="cancel_uploads">
+        <a onclick="$('#story_state').val('share');$('#form_new').submit();" href="javascript:;">Cancel uploads</a>
+      </div>
+    </div>
+    <br/>
+    <table class="download_files" width="100%">
+    </table>
+  </div>
 </div>
+
+<!--Alert-->
+<div id="delete-dialog-message" title="Confirm delete" style="display:none;">
+  <p>
+    Really delete the highlighted element?
+  </p>
+</div>
+<!--Alert-->
+
 <script type="text/javascript" charset="utf-8">
   $(function(){
-    $('#photo_form').each(function () {
+    $('#photo_form').each(function(){
       // Fix for browsers which support multiple file selection but not the File API:
       // https://github.com/blueimp/jQuery-File-Upload/issues#issue/36
       if (typeof File === 'undefined') {
-        $(this).find('input:file').each(function () {
-          $(this).removeAttr('multiple')
-          // Fix for Opera, which ignores just removing the multiple attribute:
+        $(this).find('input:file').each(function(){
+          $(this).removeAttr('multiple') // Fix for Opera, which ignores just removing the multiple attribute:
           .replaceWith($(this).clone(true));
         });
       }
@@ -39,7 +65,10 @@
           }
         }
         return $('<tr><td class="file_upload_preview"><\/td>' +
-          '<td class="file_upload_title">' + fileNames + '<input type="text" title="Title"><\/td>' +
+          '<td class="file_upload_title">' +
+          fileNames +
+          '<\/td>' +
+          '<td class="file_upload_txt_title"><input type="text" value="Title" title="Title" onclick="this.value = \'\';" onblur="this.value = this.value || this.defaultValue;"><\/td>' +
           '<td class="file_upload_progress"><div><\/div><\/td>' +
           '<td class="file_upload_start">' +
           '<button class="ui-state-default ui-corner-all" title="Start Upload">' +
@@ -51,7 +80,9 @@
           '<\/button><\/td><\/tr>');
       },
       buildDownloadRow: function(file){
-        return $('<tr><td><img alt="Photo" width="40" height="40" src="' + file.pic_path + '">' + file.name + '<\/td><\/tr>');
+        return $('<tr id="file_' + file.id + '"><td><div class="photoImg"><a href="javascript:;"><div><img src="' + file.pic_path + '"></div></a></div>' + file.name + '<\/td>' +
+          '<td class="file_delete"><button title="Delete" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-trash"></span></button></td>' +
+          '<\/tr>');
       },
       beforeSend: function(event, files, index, xhr, handler, callBack){
         var regexp = /\.(png)|(jpg)|(gif)$/i;
@@ -64,7 +95,7 @@
           }, 10000);
           return;
         }
-                
+                    
         if (files[index].size > 5000000) {
           handler.uploadRow.find('.file_upload_progress').html('FILE TOO BIG!');
           setTimeout(function(){
@@ -72,10 +103,14 @@
           }, 10000);
           return;
         }
-        
+                    
         handler.uploadRow.find('.file_upload_start button').click(function(){
+          title = handler.uploadRow.find('.file_upload_txt_title input').val();
+          if (title == "Title"){
+            title = "";
+          }
           handler.formData = {
-            "photo[title]": handler.uploadRow.find('.file_upload_title input').val(),
+            "photo[title]": title,
             "photo[photo_album_id]": $('#photo_photo_album_id').val()
           };
           callBack();
@@ -83,8 +118,59 @@
       },
     });
   });
-    
+        
   $('#start_uploads').click(function(){
     $('.file_upload_start button').click();
   });
+    	
+  $('#cancel_uploads').click(function(){
+    $('.file_upload_cancel button').click();
+  });
+		
+  $('.file_delete button').live('click', function () {
+    deleteFile(getKey($(this).closest('tr')));
+    return false;
+  });
+			
+  function deleteItem(node, url, callBack) {
+    node.addClass('ui-state-highlight');
+    $("#delete-dialog-message").dialog({
+      modal: true,
+      buttons: {
+        Delete: function() {
+          $.ajax({
+            url: url,
+            type: 'DELETE',
+            success: function (data) {
+              callBack(data);
+            }
+          });
+        },
+        Cancel: function() {
+          $("#delete-dialog-message").dialog('close');
+          node.removeClass('ui-state-highlight');
+        }
+      }
+    });
+  }
+
+  function deleteFile(key) {
+    var path = "<%= user_photos_url(current_user)%>/" + key;
+    var node = getFileNode(key);
+    deleteItem(node, path, function (data) {
+      node.fadeOut(function () {
+        $(this).dialog('close');
+        $(this).remove();
+      });
+    });
+  }
+		
+  function getKey(node) {
+    return node.attr('id').replace(/\w+?_/, '');
+  }
+			
+  function getFileNode(key) {
+    return $('#file_' + key);
+  }
+
 </script>

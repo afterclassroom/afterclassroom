@@ -100,12 +100,7 @@ class PostJobsController < ApplicationController
 
       @post_j.save
     end
-=begin
-    render :text => %Q'
-      <div class="QAsDet">Good <strong>(#{post_j.total_good})</strong></div>
-      <div class="QAsDet">Bad <strong>(#{post_j.total_bad})</strong></div>'
-=end
-    end
+  end
   
   # GET /post_jobs/1
   # GET /post_jobs/1.xml

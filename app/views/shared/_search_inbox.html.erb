@@ -1,6 +1,6 @@
 <form id="action_inbox_search" name="search" action="<%= action_path %>">
   <div id="search-form"><!-- search form -->
-    <a href="<%= list_friends_user_url(@user) %>" title="Your title goes here" class="link_bt">
+    <a href="<%= list_friends_users_url(@user) %>" title="Your title goes here" class="link_bt">
 
       <span class="ltblue_l"></span>
       <span class="ltblue_c btf">My Friends</span>
@@ -77,25 +77,25 @@
     switch(inbox_type)
     {
       case "Home":
-        action = "<%= dashboard_user_path(current_user) %>";
+        action = "<%= dashboard_users_path(current_user) %>";
         break;
       case "Friends":
-        action = "<%= list_friends_user_path(current_user) %>";
+        action = "<%= list_friends_users_path(current_user) %>";
         break;
       case "Stories":
-        action = "<%= stories_path %>";
+        action = "<%= user_stories_path(current_user) %>";
         break;
       case "Photos":
-        action = "<%= photos_path %>";
+        action = "<%= user_photos_path(current_user) %>";
         break;
       case "Musics":
-        action = "<%= musics_path %>";
+        action = "<%= user_musics_path(current_user) %>";
         break;
       case "Videos":
-        action = "<%= videos_path %>";
+        action = "<%= user_videos_path(current_user) %>";
         break;
       case "Favorites":
-        action = "<%= my_favorite_user_path(current_user) %>";
+        action = "<%= my_favorite_users_path(current_user) %>";
         break;
       }
       $('action_inbox_search').action = action;

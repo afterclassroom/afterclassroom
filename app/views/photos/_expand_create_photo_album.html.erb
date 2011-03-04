@@ -1,17 +1,4 @@
-<div id="create_a_album" style="display:none">
-  <% form_tag create_album_user_photos_path(current_user), :remote => true, :id => "form_album", :name => "form_album" do %>
-    <div class="photoEx">
-      <div class="stoExItem">
-        <div class="stoExItemL">Photo album name*</div>
-        <div class="stoExItemR" ><%= text_field_tag "photo_album[name]", "", :id => "album_name", :class => "required" %></div>
-      </div>
-      <div class="stoExBtm">
-        <div class="stoExCre"><a href="javascript:;" onclick="check_form_photo_album();">Create</a></div>
-        <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').toggle('slow');">Cancel</a></div>
-      </div>
-      <div class="error_photo" style="padding: 10px;"></div>
-    </div>
-  <% end %>
+<div id="create_a_album">
 </div>
 
 <!--Alert-->
@@ -38,4 +25,3 @@
     }
   }
 </script>
-

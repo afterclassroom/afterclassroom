@@ -78,19 +78,29 @@ Afterclassroom::Application.routes.draw do
     end
 
     # Music Album
-    resources :music_albums
+    resources :music_albums do
+      collection do
+        get :delete_all, :delete_musics
+      end
+    end
+    
     resources :musics do
       collection do
-        get :friend_m, :my_m, :create_playlistend
+        get :friend_m, :my_m, :create_playlist, :create_form
         post :create_album, :upload
       end
     end
 
     # Photo Album
-    resources :photo_albums
+    resources :photo_albums do
+      collection do
+        get :delete_all, :delete_photos
+      end
+    end
+    
     resources :photos do
       collection do
-        get :friend_p, :my_p
+        get :friend_p, :my_p, :create_form, :destroy_all
         post :create_album, :upload
       end
     end
@@ -238,7 +248,7 @@ Afterclassroom::Application.routes.draw do
 
   resources :post_awarenesses do
     collection do
-      get :search, :tag, :rate, :support, :view_results
+      get :search, :tag, :rate, :support, :view_results, :require_rate
     end
   end
 

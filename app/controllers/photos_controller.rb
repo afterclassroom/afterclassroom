@@ -102,9 +102,10 @@ class PhotosController < ApplicationController
   
   # GET /photos/1/edit
   def edit
-    @photo_albums = PhotoAlbum.find(:all)
+    @photo_albums = current_user.photo_albums
     @photo = Photo.find(params[:id])
     @tag_list = @photo.tag_list.join(", ")
+    render :layout => false
   end
   
   # POST /photos
@@ -135,7 +136,7 @@ class PhotosController < ApplicationController
         @photo.tag_list = params[:tag_list]
         @photo.save
         flash[:notice] = 'Photo was successfully updated.'
-        format.html { redirect_to(@photo) }
+        format.html { redirect_to(user_photo_album_url(current_user, @photo.photo_album)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -150,20 +151,20 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     @photo.destroy
     
-    respond_to do |format|
-      format.html { redirect_to(photos_url) }
-      format.xml  { head :ok }
-    end
+    render :nothing => true
   end
   
   def upload
     @photo = Photo.new(params[:photo])
     @photo.user = current_user
     if @photo.save
-      render :json => { :pic_path => @photo.photo_attach.url.to_s , :name => @photo.photo_attach.instance.attributes["photo_attach_file_name"] }, :content_type => 'text/html'
+      render :json => { :id => @photo.id, :pic_path => @photo.photo_attach.url.to_s , :name => @photo.photo_attach.instance.attributes["photo_attach_file_name"] }, :content_type => 'text/html'
     else
       render :json => { :result => 'error'}, :content_type => 'text/html'
     end
+  end
+  
+  def create_form
   end
   
   def create_album

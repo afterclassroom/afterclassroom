@@ -1,25 +1,15 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class MusicAlbumsController < ApplicationController
+  layout "student_lounge"
+  
   before_filter :login_required
   before_filter :require_current_user,
-                :only => [:edit, :update, :destroy, :delete_comment]
+                :only => [:edit, :update, :destroy]
   # GET /music_albums
   # GET /music_albums.xml
   def index
     @my_music_albums = current_user.music_albums.find(:all, :order => "created_at DESC")
-    arr_user_id = []
-    if current_user.user_friends
-      current_user.user_friends.each do |friend|
-        arr_user_id << friend.id
-      end
-    end
-    if arr_user_id.size > 0
-      cond = Caboose::EZ::Condition.new :music_albums do
-        user_id === arr_user_id
-      end
-      @my_friend_music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
-    end
-
+   
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @my_music_albums }
@@ -30,20 +20,9 @@ class MusicAlbumsController < ApplicationController
   # GET /music_albums/1.xml
   def show
     @music_album = MusicAlbum.find(params[:id])
-    @musics = @music_album.musics.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    @musics = @music_album.musics.find(:all, :order => "created_at DESC")
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @music_album }
-    end
-  end
-
-  # GET /music_albums/new
-  # GET /music_albums/new.xml
-  def new
-    @music_album = MusicAlbum.new
-
-    respond_to do |format|
-      format.html # new.html.erb
       format.xml  { render :xml => @music_album }
     end
   end
@@ -51,23 +30,7 @@ class MusicAlbumsController < ApplicationController
   # GET /music_albums/1/edit
   def edit
     @music_album = MusicAlbum.find(params[:id])
-  end
-
-  # POST /music_albums
-  # POST /music_albums.xml
-  def create
-    @music_album = MusicAlbum.new(params[:music_album])
-    @music_album.user = current_user
-    respond_to do |format|
-      if @music_album.save
-        flash[:notice] = 'MusicAlbum was successfully created.'
-        format.html { redirect_to(@music_album) }
-        format.xml  { render :xml => @music_album, :status => :created, :location => @music_album }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @music_album.errors, :status => :unprocessable_entity }
-      end
-    end
+    render :layout => false
   end
 
   # PUT /music_albums/1
@@ -78,7 +41,7 @@ class MusicAlbumsController < ApplicationController
     respond_to do |format|
       if @music_album.update_attributes(params[:music_album])
         flash[:notice] = 'MusicAlbum was successfully updated.'
-        format.html { redirect_to(@music_album) }
+        format.html { redirect_to(user_music_albums_url(current_user)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -97,6 +60,33 @@ class MusicAlbumsController < ApplicationController
       format.html { redirect_to(music_albums_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def delete_all
+    list_ids = params[:list_ids]
+    list_ids = list_ids.slice(0..list_ids.length - 2)
+    ids = list_ids.split(", ")
+    music_albums = current_user.music_albums.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
+    if music_albums.size > 0
+      music_albums.each do |abl|
+        abl.destroy
+      end
+    end
+    redirect_to(user_music_albums_url(current_user))
+  end
+  
+  def delete_musics
+    music_album = MusicAlbum.find(params[:id])
+    list_ids = params[:list_ids]
+    list_ids = list_ids.slice(0..list_ids.length - 2)
+    ids = list_ids.split(", ")
+    musics = current_user.musics.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
+    if musics.size > 0
+      musics.each do |abl|
+        abl.destroy
+      end
+    end
+    redirect_to(user_music_album_url(current_user, music_album))
   end
 
   protected

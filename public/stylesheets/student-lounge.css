@@ -16,7 +16,7 @@
     background:url('/images/bg477b.png') no-repeat left bottom;
     padding-bottom:10px;
 }
-.homeTop{
+.homeTop{.musicL 
     overflow:hidden;
     height:100%;
     height:31px;
@@ -482,6 +482,7 @@
 .photoItem{
     width:107px;
     float:left;
+	margin-bottom:10px;
 }
 .photoRow{
     /*padding-bottom:10px;*/
@@ -5749,8 +5750,9 @@ span.btmTag a:hover{
     _height:100%;
 }
 .musicL{
-    width:310px;
+    width:305px;
     float:left;
+	margin-bottom:10px
 }
 .musicR{
     width:310px;

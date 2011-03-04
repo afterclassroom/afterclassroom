@@ -72,6 +72,10 @@ class PostFood < ActiveRecord::Base
     users
   end
 
+  def self.require_rating(school)
+    self.with_school(school).with_status("Require Rating").random(1)
+  end
+
   def total_good
     self.ratings.count(:conditions => ["rating = ?", 2])
   end

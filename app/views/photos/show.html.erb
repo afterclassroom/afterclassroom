@@ -9,8 +9,8 @@
         <div class="slsShare">
           <div class="slsShareL">
             <span>You are here:</span>
-            <a href="#" class="slsShareLink">Photos</a>
-            <a href="#" class="slsShareLinkL">Friends shared photos</a>
+			<%= link_to "Photos", user_photos_url(current_user), :class => "slsShareLink" %>
+            <a href="javascript:;" class="slsShareLinkL"><%= current_user == @photo.user ? "My photos" : "Friends shared photos" %></a>
           </div>
           <div class="slsShareR">
             <%= render :partial => "menu" %>
