@@ -47,7 +47,7 @@ javascripts:
   - jquery.fileupload-ui
   - rails
   - checkboxmenu
-  - jquery-multiselect
+  - cust_select_plugin
 - admin:
   - jquery
   - jquery-ui
@@ -115,7 +115,7 @@ stylesheets:
   - jquery.ad-gallery
   - jquery.fileupload-ui
   - checkboxmenu
-  - jquery-multiSelect
+  - cust_select_plugin
 - admin:
   - main
   - admin-datePicker
