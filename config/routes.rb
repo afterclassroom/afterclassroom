@@ -248,7 +248,7 @@ Afterclassroom::Application.routes.draw do
 
   resources :post_awarenesses do
     collection do
-      get :search, :tag, :rate, :support, :view_results
+      get :search, :tag, :rate, :support, :view_results, :require_rate
     end
   end
 

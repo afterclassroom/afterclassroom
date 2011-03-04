@@ -63,19 +63,32 @@ class PostAwarenessesController < ApplicationController
     @post_a.rating_status = status
 
     @post_a.save
-=begin
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">#{post_a.total_good}</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">#{post_a.total_bad}</a>
-      </div>
-      <script>
-        vtip();
-      </script>'
-=end
   end
+
+  def require_rate
+    rating = params[:rating]
+    post = Post.find(params[:post_id])
+    @post_a = post.post_awareness
+    if !PostAwareness.find_rated_by(current_user).include?(@post_a)
+      @post_a.rate rating.to_i, current_user
+      # Update rating status
+      score_good = @post_a.score_good
+      score_bad = @post_a.score_bad
+
+      if score_good > score_bad
+        status = "Good"
+      elsif score_good == score_bad
+        status = "Require Rating"
+      else
+        status = "Bad"
+      end
+
+      @post_a.rating_status = status
+
+      @post_a.save
+    end
+  end
+
 
   def support
     support = params[:support]
