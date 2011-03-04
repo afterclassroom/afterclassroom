@@ -1,45 +1,53 @@
-<% content_for :search do -%>
-  <%= render :partial => 'shared/search_inbox', :locals => {:search_name => @search_name, :type_name => "Musics", :action_path => "#{musics_path}"} %>
+<% content_for :menu_top_student_lounge do -%>
+<%= render :partial => '/shared/submenu' %>
 <% end -%>
+<div class="slStoryL">
+    <div class="contDetL">
+        <div class="contDetLin">
+            <div class="inboxLeft">
+                <div class="slsShare">
+                    <div class="slsShareL">
+                        Music Albums
+                    </div>
+                    <div class="slsShareR">
+                        <%= render :partial => "musics/menu" %>
+                    </div>
+                </div>
+                <%= display_flash_messages_with_raw %>
+                <%= render :partial => "musics/expand_create_music_album" %>
+                <div id="my_musics_list">
+                    <div class="slsTop">
+                        <div class="musicRow" id="mytable">
+                            <% @my_music_albums.each do |m_p| %>
+                            <%= render :partial => "item_my_album", :locals => {:album => m_p} %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<% content_for :tabs_inbox do -%>
-  <%= render :partial => 'shared/tabs_inbox' %>
-<% end -%>
+<div class="contMainR">
+    <!--Most Viewed-->
+    <%= render :partial => "musics/most_viewed" %>
+    <!--Most Viewed-->
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+</div>
 
-<h1>Listing my music_albums</h1>
+<%= render :partial => "action_box_menu" %>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
-  <% for music_album in @my_music_albums %>
-    <tr>
-      <td><%=h music_album.name %></td>
-      <td><%= link_to 'Show', music_album %></td>
-      <td><%= link_to 'Edit', edit_music_album_path(music_album) %></td>
-      <td><%= link_to 'Destroy', music_album, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-
-<br />
-
-<h1>Listing my friends music_albums</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <% if @my_friend_music_albums %>
-    <% for friend_music_albums in @my_friend_music_albums %>
-      <tr>
-        <td><%=h friend_music_albums.name %></td>
-        <td><%= link_to 'Show', friend_music_albums %></td>
-      </tr>
-    <% end %>
-  <% end %>
-</table>
-
-<br />
-<%= link_to 'New music_album', new_music_album_path %>
+<script type="text/javascript">
+    function submit(){
+        $("#form_new").submit();
+    }
+    
+    $().ready(function(){
+        $("#form_new").validate({
+            errorLabelContainer: $("#form_new div.stoError")
+        });
+    });
+</script>

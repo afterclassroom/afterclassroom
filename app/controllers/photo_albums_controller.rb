@@ -4,7 +4,7 @@ class PhotoAlbumsController < ApplicationController
   
   before_filter :login_required
   before_filter :require_current_user,
-    :only => [:edit, :update, :destroy, :delete_all, :delete_photos]
+    :only => [:edit, :update, :destroy]
   # GET /photo_albums
   # GET /photo_albums.xml
   def index
@@ -20,7 +20,7 @@ class PhotoAlbumsController < ApplicationController
   # GET /photo_albums/1.xml
   def show
     @photo_album = PhotoAlbum.find(params[:id])
-    @photos = @photo_album.photos.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    @photos = @photo_album.photos.find(:all, :order => "created_at DESC")
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @photo_album }

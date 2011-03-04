@@ -5,7 +5,7 @@
     </div>
     <div class="stoExItemR">
       <%= @photo_album.name %>
-    </div
+    </div>
   </div>
   <div class="files">
     <%= form_for :photo, :url => upload_user_photos_url(current_user), :html => { :class => "upload", :multipart => true, :id => "photo_form" } do |f| %>
@@ -105,7 +105,7 @@
         }
                     
         handler.uploadRow.find('.file_upload_start button').click(function(){
-          title = handler.uploadRow.find('.file_upload_title input').val();
+          title = handler.uploadRow.find('.file_upload_txt_title input').val();
           if (title == "Title"){
             title = "";
           }

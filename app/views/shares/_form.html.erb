@@ -1,4 +1,4 @@
-<%= form_for(@share, :url => user_shares_url(current_user), :html => {:multipart => true, :id => "form_post" }) do |f| %>
+<%= form_for(@share, :url => user_shares_url(current_user), :multipart => true, :id => "form_post") do |f| %>
   <%= hidden_field_tag "recipient" %>
   <div class="postItem">
     <div class="postTit">Share to</div>
@@ -22,16 +22,9 @@
   <div class="postItem">
     <div class="postTit">Description</div>
     <div class="postInput">
-      <div class="postDesInf" id="post_description_counter"><span>0</span> characters (900 max)</div>
       <div class="postInp"><%= f.text_area :description %></div>
     </div>
   </div>
-  <script type="text/javascript">
-    $("#post_description").counter({
-      count: 'up',
-      goal: 900
-    });
-  </script>
   <div class="submit"><a href="javascript:;" onclick="Share();">Share</a></div>
 <% end %>
 <script type="text/javascript">

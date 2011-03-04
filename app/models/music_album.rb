@@ -6,7 +6,7 @@ class MusicAlbum < ActiveRecord::Base
 
   # Relations
   belongs_to :user
-  has_many :musics
+  has_many :musics, :dependent => :destroy
   
   # Attach
   has_attached_file :music_album_attach, {
@@ -14,7 +14,7 @@ class MusicAlbum < ActiveRecord::Base
     :default_url => "/images/music.png",
     :styles => { :medium => "555x417>", :thumb => "92x68#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
-  validates_attachment_content_type :music_album_attach, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
+#  validates_attachment_content_type :music_album_attach, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
   
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)

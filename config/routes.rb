@@ -78,10 +78,15 @@ Afterclassroom::Application.routes.draw do
     end
 
     # Music Album
-    resources :music_albums
+    resources :music_albums do
+      collection do
+        get :delete_all, :delete_musics
+      end
+    end
+    
     resources :musics do
       collection do
-        get :friend_m, :my_m, :create_playlistend
+        get :friend_m, :my_m, :create_playlist, :create_form
         post :create_album, :upload
       end
     end

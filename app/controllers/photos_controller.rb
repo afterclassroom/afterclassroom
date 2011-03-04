@@ -102,9 +102,10 @@ class PhotosController < ApplicationController
   
   # GET /photos/1/edit
   def edit
-    @photo_albums = PhotoAlbum.find(:all)
+    @photo_albums = current_user.photo_albums
     @photo = Photo.find(params[:id])
     @tag_list = @photo.tag_list.join(", ")
+    render :layout => false
   end
   
   # POST /photos
@@ -135,7 +136,7 @@ class PhotosController < ApplicationController
         @photo.tag_list = params[:tag_list]
         @photo.save
         flash[:notice] = 'Photo was successfully updated.'
-        format.html { redirect_to(@photo) }
+        format.html { redirect_to(user_photo_album_url(current_user, @photo.photo_album)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

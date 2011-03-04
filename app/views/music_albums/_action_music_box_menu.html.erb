@@ -12,7 +12,7 @@
 </div>
 
 <!--Alert-->
-<div id="delete-photo-dialog-message" title="Confirm delete" style="display:none;">
+<div id="delete-music-dialog-message" title="Confirm delete" style="display:none;">
   <p>
     Are you sure?
   </p>
@@ -22,12 +22,12 @@
 <script>
     $('#acBox').click(function(){
         var $this = $('#mytable input:checked').first();
-        var path = "/users/<%= current_user.id %>/photos/" + $this.val() + "/edit?height=450&width=400";
-        tb_show("Edit Photo", path);
+        var path = "/users/<%= current_user.id %>/musics/" + $this.val() + "/edit?height=350&width=400";
+        tb_show("Edit music", path);
     });
     
     $('#act_delete').click(function(){
-        $("#delete-photo-dialog-message").dialog({
+        $("#delete-music-dialog-message").dialog({
             modal: true,
             buttons: {
                 Ok: function(){
@@ -36,7 +36,7 @@
                         var $this = $(this);
                         ids += $this.val() + ", ";
                     });
-                    document.location.href = "<%= delete_photos_user_photo_albums_url(current_user) %>?id=<%= @photo_album.id %>&list_ids=" + ids;
+                    document.location.href = "<%= delete_musics_user_music_albums_url(current_user) %>?id=<%= @music_album.id %>&list_ids=" + ids;
                 },
                 Cancel: function(){
                     $("#delete-dialog-message").dialog('close');

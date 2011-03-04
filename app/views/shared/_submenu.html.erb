@@ -4,10 +4,10 @@
 	<div class="menuRItem mnShare"><%= link_to raw('<span class="span1"><span class="span2">Share file</span></span>'), new_user_share_path(current_user), :class => "#{'menuRselect'  if controller.controller_name == 'shares'}" %></div>
     <div class="menuRItem mnShare"><%= link_to raw('<span class="span1"><span class="span2">Share a Story</span></span>'), user_stories_path(current_user), :class => "#{'menuRselect'  if controller.controller_name == 'stories'}" %></div>
     <div class="menuRItem mnPho"><%= link_to raw('<span class="span1"><span class="span2">Photos</span></span>'), user_photos_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'photos' or controller.controller_name == 'photo_albums'}" %></div>
-    <div class="menuRItem mnMus"><%= link_to raw('<span class="span1"><span class="span2">Musics</span></span>'), user_musics_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'musics'}" %></div>
+    <div class="menuRItem mnMus"><%= link_to raw('<span class="span1"><span class="span2">Musics</span></span>'), user_musics_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'musics' or controller.controller_name == 'music_albums'}" %></div>
     <div class="menuRItem mnVi"><%= link_to raw('<span class="span1"><span class="span2">Videos</span></span>'), user_youtubes_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'youtubes'}" %></div>
   </div>
-  <% if ['stories', 'photos', 'musics', 'youtubes'].include?(controller.controller_name) %>
+  <% if ['stories', 'photos', 'musics', 'youtubes', 'shares'].include?(controller.controller_name) %>
   <%
     case controller.controller_name
     when 'stories'
@@ -18,6 +18,8 @@
       s_link = link_to("Post", new_user_music_path(current_user))
     when 'youtubes'
       s_link = link_to("Post", new_user_youtube_path(current_user))
+	when 'shares'
+      s_link = link_to("Share", new_user_share_path(current_user))
     end
   %>
   <div class="postdiv">
