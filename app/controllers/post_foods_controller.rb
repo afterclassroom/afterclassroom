@@ -67,19 +67,7 @@ class PostFoodsController < ApplicationController
 
       @post_f.save
     end
-=begin
-    render :text => %Q'
-      <div class="qashdU">
-        <a href="javascript:;">#{post_f.total_good}</a>
-      </div>
-      <div class="cheap">
-        <a href="javascript:;">Cheap but Good(#{post_f.total_cheap_but_good})</a>
-      </div>
-      <div class="qashdD">
-        <a href="javascript:;">#{post_f.total_bad}</a>
-      </div>'
-=end
-    end
+  end
 
   def search
     @query = params[:search][:query] if params[:search]

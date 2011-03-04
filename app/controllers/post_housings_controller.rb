@@ -49,30 +49,6 @@ class PostHousingsController < ApplicationController
     @post_h.save
   end
   
-  def require_rate
-    rating = params[:rating]
-    post = Post.find(params[:post_id])
-    @post_h = post.post_housing
-    if !PostHousing.find_rated_by(current_user).include?(@post_h)
-      @post_h.rate rating.to_i, current_user
-      # Update rating status
-      score_good = @post_h.score_good
-      score_bad = @post_h.score_bad
-
-      if score_good > score_bad
-        status = "Good"
-      elsif score_good == score_bad
-        status = "Require Rating"
-      else
-        status = "Bad"
-      end
-
-      @post_h.rating_status = status
-
-      @post_h.save
-    end
-  end
-
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]

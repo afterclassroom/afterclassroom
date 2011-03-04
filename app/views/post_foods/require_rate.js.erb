@@ -1,1 +1,3 @@
-$("#rate_<%= @post.id %>").html("<div class='qashdU'><a href='javascript:;'><%= @post_f.total_good %></a></div><div class='cheap'><a href='javascript:;'>Cheap but Good(<%= @post_f.total_cheap_but_good %>)</a></div><div class='qashdD'></div>");
+<div class='QAsDet'>Good <strong>(<%= @post_f.total_good %>)</strong></div>
+<div class='QAsDet'>Bad <strong>(<%= @post_f.total_cheap_but_good %>)</strong></div>
+<div class='QAsDet'>Bad <strong>(<%= @post_f.total_bad %>)</strong></div>

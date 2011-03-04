@@ -103,12 +103,7 @@ class PostQasController < ApplicationController
 
       @post_q.save
     end
-=begin
-    render :text => %Q'
-      <div class="QAsDet">Good <strong>(#{post_q.total_good})</strong></div>
-      <div class="QAsDet">Bad <strong>(#{post_q.total_bad})</strong></div>'
-=end
-    end
+  end
 
   # GET /post_qas/1
   # GET /post_qas/1.xml
