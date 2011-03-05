@@ -6,7 +6,7 @@
   <div class="contDetLin">
     <div class="inboxLeft">
       <%= form_for @message, :url => user_messages_path(current_user), :html => {:id => "msg_form"} do |f| %>
-        <%= hidden_field_tag "recipient" %>
+        <%= hidden_field_tag "recipient", @message.recipient_id %>
         <div class="inboxTitle">Compose message</div>
         <div class="inboxTop">
           <div class="compSent"><%= link_to_function "Send", "CreateNew()" %></div>

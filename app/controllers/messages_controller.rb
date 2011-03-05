@@ -122,7 +122,7 @@ class MessagesController < ApplicationController
       }
       flash[:notice] = "Messages deleted"
     end
-    redirect_to user_message_path(current_user, @messages)
+    redirect_to user_messages_path(current_user)
   end
 
   def mark_read_selected
@@ -132,7 +132,7 @@ class MessagesController < ApplicationController
       }
       flash[:notice] = "Messages readed"
     end
-    redirect_to user_message_path(current_user, @messages)
+    redirect_to user_messages_path(current_user)
   end
 
   def mark_unread_selected
@@ -146,6 +146,6 @@ class MessagesController < ApplicationController
       }
       flash[:notice] = "Messages unread"
     end
-    redirect_to user_message_path(current_user, @messages)
+    redirect_to user_messages_path(current_user)
   end
 end

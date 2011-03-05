@@ -14,6 +14,7 @@ class MusicsController < ApplicationController
   # GET /musics
   # GET /musics.xml
   def index
+    @friend_musics = []
     @music_albums = current_user.music_albums
     arr_user_id = []
     current_user.user_friends.collect {|f| arr_user_id << f.id}
