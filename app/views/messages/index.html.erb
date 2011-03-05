@@ -5,6 +5,7 @@
 <div class="contDetL">
   <div class="contDetLin">
     <div class="inboxLeft">
+      <%= display_flash_messages_with_raw %>
       <% if params[:mailbox] == "sent" %>
         <%= render :partial => "sent" %>
       <% elsif params[:mailbox] == "trash" %>
