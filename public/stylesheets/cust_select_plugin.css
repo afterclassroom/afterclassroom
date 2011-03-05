@@ -11,48 +11,53 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
- /************* CUSTOM TAG FOR SELECT *************************/
-  .setScroll{
+/************* CUSTOM TAG FOR SELECT *************************/
+.setScroll{
     overflow-y:scroll;
-  }
-  .hideitem,.elmValue{
+}
+.hideitem,.elmValue{
     display: none;
-  }
-  .selectbox{
+}
+.selectbox{
     background: url("/images/selectBox/dropdown.png") no-repeat 0 0;
     padding:0px 0px 0px 35px;
     float:right;
     margin:0 0 5px 0;
-  }
-  .selectbox ul{
+    
+}
+.selectbox ul{
     background: url("/images/selectBox/dropdown.png") no-repeat top right;
     padding:8px 22px 6px 0px;
     margin:0;
     vertical-align:top; /*causes ie to align text correctly*/
     list-style: none;
-  }
-  .select_wrap{
+    
+}
+.select_wrap{
     clear:both;
     margin:0 5px 0px 0px;
     border:1px solid #fff;
     float: right;
-  }
-  .selectboxopen{
+}
+.selectboxopen{
+    
     clear:both;
     background: url("/images/selectBox/dropdownopen.png") no-repeat 0 0;
     padding:0px 0px 0px 35px;
     float:left;
     margin:0;
-  }
-  .selectboxopen ul{
+    background: url('/images/flistA.gif') no-repeat 0 0;
+}
+.selectboxopen ul{
     background: url("/images/selectBox/dropdownopen.png") no-repeat top right;
     padding:7px 22px 6px 0px;
     height:19px;
     margin:0;
     vertical-align:top; /*causes ie to align text correctly*/
     list-style: none;
-  }
-  .selectbox ul li,.selectboxopen ul li{
+    
+}
+.selectbox ul li,.selectboxopen ul li{
     list-style: none;
     padding:0;
     margin:0;
@@ -60,22 +65,22 @@
     color:#333;
     font-size: 12px;
     cursor: pointer;
-  }
-  .selectboxoptions_wrap{
+}
+.selectboxoptions_wrap{
     display: none;
     clear:both;
     padding:0;
     margin:0;
-  }
+}
 
-  .selectboxoptions_radio,.selectboxoptions_check{
+.selectboxoptions_radio,.selectboxoptions_check{
     clear:both;
     list-style: none;
     padding:0;
     margin:0 ;
     background:#e6e9ed;
-  }
-  .selectboxoptions_radio li, .selectboxoptions_check li{
+}
+.selectboxoptions_radio li, .selectboxoptions_check li{
     list-style: none;
     padding:3px 0 2px 20px;
     margin:2px 0 0 2px;
@@ -83,42 +88,127 @@
     color:#333;
     font-size: 12px;
     cursor: pointer;
-  }
-  .hover{
+}
+.hover{
     background-color:#e6e9ed;
-  }
-  .selectboxoptions_check li{
+}
+.selectboxoptions_check li{
     background:#e6e9ed url(/images/selectBox/checkboxoff.png) no-repeat 5px 6px;
-  }
-  .selectboxoptions_radio li{
+}
+.selectboxoptions_radio li{
     background:#e6e9ed url(/images/selectBox/radiooff..png) no-repeat 5px 6px;
-  }
-  .selectboxoptions_radio li.selected{
+}
+.selectboxoptions_radio li.selected{
     background:#f2f2f2 url(/images/selectBox/acc.gif) no-repeat 5px 6px;
     display:block;
-  }
-  .selectboxoptions_radio li.selected_disable{
+}
+.selectboxoptions_radio li.selected_disable{
     background:#f2f2f2 url(/images/selectBox/selectradio_disable.png) no-repeat 5px 6px;
     display:block ;
-  }
-  .selectboxoptions_check li.selected{
+}
+.selectboxoptions_check li.selected{
     background:#f2f2f2 url(images/selectBox/selectcheck.png) no-repeat 5px 6px;
     display:block;
-  }
-  .selectboxoptions_check li.selected_disable{
+}
+.selectboxoptions_check li.selected_disable{
     background:#f2f2f2 url(/images/selectBox/selectcheck_disable.png) no-repeat 5px 6px;
     display:block ;
-  }
-  .selectboxoptions_radio li.hover,.selectboxoptions_check li.hover{
+}
+.selectboxoptions_radio li.hover,.selectboxoptions_check li.hover{
     background-color:#f2f2f2;
-  }
-  .selectboxfoot{
+}
+.selectboxfoot{
     background:url("/images/selectBox/selectfoot.png") no-repeat 0 0;
     padding:0px 0px 0px 35px;
     float:left;
-  }
-  .selectboxfoot div{
+}
+.selectboxfoot div{
     background:url("/images/selectBox/selectfoot.png") no-repeat top right;
     padding:7px 22px 10px 0px;
     margin:0;
-  }
+}
+
+/**************** Setting Private Student-loungs ***************************/
+.flistRAddPa{
+
+}
+.flistRAddPa a{
+    height:30px;
+    display:block;
+    color:#818181;
+    text-decoration:none;
+}
+.flistRAddPa a:hover{
+    background-color:#6f6f63;
+    color:#fff;
+}
+.flistRAddPa span.subhover {
+    background:url('/images/flistAH.gif')no-repeat center center;
+    cursor: pointer;
+}
+.flistRAddPa span{
+    background: url('/images/flistA.gif') no-repeat center right;
+    float: left;
+    width:115px;
+    margin-left:30px;
+}
+.flistRAddPa a:hover span{
+    background:url('/images/flistAH.gif')no-repeat center right;
+}
+.flistRAddPa ul {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    background:#F6F6F6;
+    border:1px solid #E3E3E3;
+    display: none;
+    float: left;
+    list-style:none outside none;
+    margin:0;
+    padding:0;
+    position:absolute;
+    width:150px;
+    border-top: 1px black solid;
+}
+.flistRAddPa ul li {
+    border-top:1px solid #E3E3E3;
+    clear:both;
+    width:150px;
+}
+.flistRAddPa:hover ul {
+    display: block;
+}
+.flistRAddPa ul li a {
+    text-align: left;
+    margin-top:-32px;
+    padding-left:25px;
+}
+.flistRAddPa ul li a:hover {
+    background-color: #818181;
+}
+.flistNPa{
+    font-weight: bold;
+}
+.settNetLPaT{
+    border: 1px solid #E3E3E3;
+    margin-left: 15px;
+    width: 925px;
+}
+.settNetLPa{
+    color: #000000;
+    float: left;
+    font-weight: bold;
+    padding: 15px;
+    width: 200px;
+}
+.flistRPa{
+    background-color: #F6F6F6;
+    border: 1px solid #E3E3E3;
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    width: 152px;
+    margin-right:60px;
+}
+.flistRAddPa ul li label{
+    text-align: left;
+}

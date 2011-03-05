@@ -14,6 +14,7 @@
         </div>
         <%= display_flash_messages_with_raw %>
         <%= render :partial => "expand_create_music_album" %>
+		<% if @friend_musics != [] %>
         <div id="friend_musics_list">
           <div class="slsTop">
             <div class="slsTopL">
@@ -42,6 +43,7 @@
             <!--Pagination-->
           </div>
         </div>
+		<% end %>
       </div>
     </div>
   </div>

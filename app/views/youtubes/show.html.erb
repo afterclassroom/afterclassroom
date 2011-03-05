@@ -13,7 +13,7 @@
           </div>
         </div>
         <% if session[:token] %>
-          <div class="musicVideo"><%= youtube_embed @video %></div>
+          <div class="musicVideo"><%= raw(youtube_embed @video) %></div>
         <% else %>
           <%= render :partial => "authorise" %>
         <% end %>
