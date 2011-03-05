@@ -150,3 +150,95 @@
 .actionsBox .menu a.closed:hover{
     opacity:1.0;
 }
+
+/************* CUSTOM TAG FOR SELECT *************************/
+
+.hideitem,.elmValue{
+    display: none;
+}
+.selectbox{
+    background: url("/images/selectBox/iconPass.png") no-repeat 10px center;
+    padding:0px 0px 0px 35px;
+    float:right;
+    margin-right: 60px;
+    background-color: #F6F6F6;
+    border: 1px solid #E3E3E3;
+    float: right;
+    width: 120px;
+
+}
+.selectbox ul{
+    /* background: url("/images/selectBox/dropdown.png") no-repeat top right;*/
+    padding:8px 22px 6px 0px;
+    margin:0;
+    vertical-align:top; /*causes ie to align text correctly*/
+    list-style: none;
+    background-color: #F6F6F6;
+    background: url("/images/flistA.gif") no-repeat scroll 90px center transparent;
+}
+.select_wrap{
+    clear:both;
+    margin:0 5px 0px 0px;
+    /* border:1px solid #fff;*/
+    float: right;
+
+}
+.selectboxopen{
+    clear:both;
+    background: url("/images/selectBox/dropdownopen..png") no-repeat 0 0;
+    padding:0px 0px 0px 35px;
+    float:right;
+    margin:0;
+    border: 1px solid #E3E3E3;
+    width: 120px;
+    margin-right: 60px;
+    background: url("/images/selectBox/iconPass.png") no-repeat 10px center;
+}
+.selectboxopen ul{
+    background: url("/images/selectBox/dropdownopen..png") no-repeat top right;
+    padding:8px 22px 6px 0px;
+    margin:0;
+    vertical-align:top; /*causes ie to align text correctly*/
+    list-style: none;
+    background-color: #F6F6F6;
+    width: 120px;
+    background: url("/images/flistA.gif") no-repeat scroll 90px center transparent;
+}
+.selectbox ul li,.selectboxopen ul li{
+    list-style: none;
+    padding:0;
+    margin:0;
+    font-family: arial,helvetica,san-serif;
+    color:#333;
+    font-size: 12px;
+    cursor: pointer;
+
+}
+.selectboxoptions_wrap{
+    display:none;
+    clear:both;
+}
+.selectboxoptions_radio,.selectboxoptions_check{
+    clear:both;
+    list-style: none;
+    padding:0;
+    margin:-2px 1px;
+    background:#e6e9ed;
+    position: absolute;
+}
+.selectboxoptions_radio li, .selectboxoptions_check li{
+    list-style: none;
+    padding:3px 0 2px 20px;
+    margin:2px 0 0 2px;
+    font-family: arial,helvetica,san-serif;
+    color:#333;
+    font-size: 12px;
+    cursor: pointer;
+}
+.selectboxoptions_radio li{
+    background:#EBEBEB;
+}
+.selectboxoptions_radio li.selected{
+    background:#f2f2f2 url(/images/selectBox/acc.gif) no-repeat 5px 6px;
+    /*display:block !important;*/
+}

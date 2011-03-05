@@ -1,7 +1,7 @@
 /**
  * cust_select_plugin.js
  * Copyright (c) 2009 myPocket technologies (www.mypocket-technologies.com)
- 
+
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -18,9 +18,9 @@
  * @date 5/13/2009
  * @projectDescription Replaces the standard HTML form selectbox with a custom looking selectbox. Allows for disable, multiselect, scrolling, and very customizable.
  * @version 2.1.4
- * 
+ *
  * @requires jquery.js (tested with 1.3.2)
- * 
+ *
  * @param isscrolling: 		false,				//scrolls long lists
  * @param scrollminitems:	15,					//items before scrolling
  * @param scrollheight:		150,				//height of scrolling window
@@ -34,7 +34,7 @@
 (function(jQuery) {
 
 	jQuery.fn.custSelectBox = function(options){
-		
+
 		//css names
 		var classselectbox = "selectbox";
 		var selectbox = "." + classselectbox;
@@ -45,14 +45,14 @@
 		var classselectboxfoot ="selectboxfoot";
 		var selectboxfoot = "." +classselectboxfoot;
 		var elmValue = ".elmValue";
-		
+
 		var defaults = {
 				isscrolling: 	false,				//scrolls long lists
 				scrollminitems:	15,					//items before scrolling
 				scrollheight:	150,				//height of scrolling window
 				preopenselect:	true,				//opens prechecked select boxes
 				hoverstyle:		"hover",			//css hover style name
-				openspeed:		"fast",			//selectbox open speed "slow","normal","fast" or numbers 1000
+				openspeed:		"normal",			//selectbox open speed "slow","normal","fast" or numbers 1000
 				alldisabled:	false,				//disables the selectbox
 				selectwidth:	"auto",				//set width of selectbox
 				wrappername:	".select_wrap"
@@ -60,8 +60,8 @@
 		//override defaults
 		var opts = jQuery.extend(defaults, options);
 
-		return this.each(function() { 
-		
+		return this.each(function() {
+
 		/** FUNCTIONS **/
 		jQuery.fn.disable = function(thisElm){
 			//loop through items
@@ -73,14 +73,14 @@
 				}
 				jQuery(jQuery(thisElm).find("ul").find("li").get(i)).unbind();
 				jQuery(jQuery(thisElm).find("ul").get(i)).find("input").attr("disabled","disabled");
-			}				
+			}
 		};
-	
+
 		//adds form elements to the selectbox
 		jQuery.fn.addformelms = function(thisElm){
 				var currElm = jQuery(thisElm);
 				var boxtype = jQuery(thisElm).find(selectboxoptions_wrap+ " ul").attr("class");
-				
+
 				if(boxtype.indexOf("selectboxoptions_radio") >-1)
 				{
 					var radioVal = jQuery(currElm).find("."+classselected+" span").text();
@@ -92,7 +92,7 @@
 					{
 						var currInnerElm = jQuery(currElm).find(selectboxoptions_wrap + " li").get(i);
 						jQuery(currInnerElm).append("<input type=\"hidden\" id=\""+jQuery(main_currElm).attr("id") +"_"+ i+"\" name=\""+jQuery(main_currElm).attr("name") +"_"+ i+"\" value=\"\">");
-						
+
 						if(jQuery(currInnerElm).hasClass(classselected))
 						{
 							var checkVal = jQuery(currInnerElm).find("span").text();
@@ -101,12 +101,12 @@
 					}
 				}
 		};
-		
+
 		//opens selectboxs if they have pre selected options
 		jQuery.fn.openSelectBoxsThatArePrePopulated = function(currElm)
 		{
 				var boxtype = jQuery(currElm).find(selectboxoptions_wrap+ " ul").attr("class");
-				
+
 				if(jQuery(selectbox).parent().find("." +boxtype).find("li").hasClass(classselected))
 				{
 					jQuery(selectbox).addClass(classselectboxopen);
@@ -114,7 +114,7 @@
 					jQuery(selectbox).parent().find("." +boxtype).find("li").addClass(hideitem);
 				}
 		};
-		
+
 		jQuery.fn.scrolling = function (theElm, isOpen)
 		{
 			if(isOpen)
@@ -128,7 +128,7 @@
 			}
 		};
 		/** FUNCTIONS **/
-		
+
 		//BUILD HTML TO CREATE CUSTOM SELECT BOX
 		var main_currElm = jQuery(this);
 		var wrapperElm = jQuery(main_currElm).parent();
@@ -139,7 +139,7 @@
 		var isMulti = jQuery(main_currElm).attr("multiple");
 		var boxtype = "selectboxoptions_radio";
 		var disabled = "";
-		
+
 		if(isMulti){boxtype = "selectboxoptions_check";}
 		if(isDisabled){disabled="disabled";}
 		//loop through options
@@ -147,7 +147,7 @@
 		{
 			var checked="";
 			var currOption = jQuery(select_options).get(i);
-			
+
 			if(i===0){
 				name =jQuery(currOption).text();
 			}
@@ -158,10 +158,10 @@
 				opts_str = opts_str + "<li class=\""+checked +" "+disabled+"\"><span class=\"elmValue\">"+jQuery(currOption).val()+"</span>"+jQuery(currOption).text()+"</li>";
 			}
 		}
-		
+
 		jQuery(wrapperElm).empty().html("<div class=\"selectbox\"><ul><li>"+name+"</li></ul></div><div class=\"selectboxoptions_wrap\"><ul class=\""+boxtype+"\">"+opts_str+"</ul></div>");
 		jQuery(wrapperElm).find(selectboxoptions_wrap +" ul").after("<div class=\""+classselectboxfoot+"\"><div></div></div>"); //add footer
-		
+
 		if("auto" != opts.selectwidth){
 			jQuery(wrapperElm).find(selectbox + " ul").css({width:opts.selectwidth});
 			jQuery(wrapperElm).find(selectboxoptions_wrap + " ul").attr("class",boxtype).css({width:(opts.selectwidth+57) + "px"});
@@ -172,17 +172,17 @@
 		}
 
 		if(isDisabled){jQuery.fn.disable(jQuery(wrapperElm).find(selectboxoptions_wrap));}
-		
+
 		var thisElement = jQuery(opts.wrappername);
 
 		//bind item clicks
 		jQuery(selectboxoptions_wrap+ " ul li").unbind().click( function() {
-			
+
 			if(jQuery(this).attr("class").indexOf("disabled") < 0)
 			{
 				var id;
 				var boxtype = jQuery(this).parent().attr("class");
-				
+
 				if(boxtype.indexOf("selectboxoptions_radio") >-1)
 				{
 					if(!jQuery(this).hasClass(classselected))
@@ -210,7 +210,7 @@
 					else
 					{
 						//gets the value of the element
-						id = jQuery(this).find(elmValue).text();	
+						id = jQuery(this).find(elmValue).text();
 						jQuery(this).addClass(classselected);
 						jQuery(this).find("input").val(id);
 					}
@@ -238,7 +238,7 @@
 				if(jQuery(this).parent().find(selectboxoptions_wrap+ " ul li").hasClass(classselected))
 				{
 					jQuery(this).parent().find(selectboxoptions_wrap+ " ul li").addClass(hideitem);
-				}	
+				}
 				else
 				{
 					//makes the arrows go up or down
@@ -246,17 +246,16 @@
 					//slides the options up
 					jQuery(this).parent().find(selectboxoptions_wrap).slideUp("normal");
 				}
-				
+
 				if(opts.isscrolling){jQuery.fn.scrolling(jQuery(this),false);}
 			});
-		
-			
+
+
 			jQuery.fn.addformelms(jQuery(wrapperElm));
 			if(opts.preopenselect){ jQuery.fn.openSelectBoxsThatArePrePopulated(jQuery(wrapperElm));}
 			if(opts.alldisabled){jQuery.fn.disable(jQuery(thisElement));}
 		});
-		
-	};
-	
-})(jQuery);
 
+	};
+
+})(jQuery);
