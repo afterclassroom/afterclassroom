@@ -14,67 +14,70 @@
         </div>
         <%= display_flash_messages_with_raw %>
         <%= render :partial => "expand_create_photo_album" %>
-		<% if @friend_photos != [] %>
-        <div id="friend_photos_list">
+        <% if @friend_photos != [] %>
           <div class="slsTop">
             <div class="slsTopL">
               <div class="slsTopLT">Friends shared photos</div>
               <div class="slsTopLB friLeft">
                 <div class="search" style="margin-top:-19px; margin-bottom:20px">
-                  <%= form_tag friend_p_user_photos_path(current_user), {:id => "friend_photos_search", :method => "GET"} do %>
+                  <%= form_for :search_friend_photo, :url => friend_p_user_photos_path(current_user), :html => {:id => "friend_photos_search", :method => "GET", :onsubmit => "return false"} do %>
                     <div class="textS"><%= text_field_tag "search[name]", "" %></div>
                     <div class="btmS"><a href="javascript:;" onclick="searchFriendPhotos();"><img src="/images/iconSF.png"/></a></div>
                   <% end %>
                 </div>
               </div>
-            </div>
-            <div class="photoRow">
-              <% @friend_photos.each do |f_p| %>
-                <%= render :partial => "item_friend_photo", :locals => {:photo => f_p}  %>
-              <% end %>
-            </div>
-            <div class="slsTopR">
-              <!--Pagination-->
-              <div class="assPage friend_photos">
-                <span class="numPage"><%= page_entries_info @friend_photos %></span>
-                <%= will_paginate @friend_photos %>
+
+              <div id="friend_photos_list">
+                <div class="photoRow">
+                  <% @friend_photos.each do |f_p| %>
+                    <%= render :partial => "item_friend_photo", :locals => {:photo => f_p}  %>
+                  <% end %>
+                </div>
+                <div class="slsTopR">
+                  <!--Pagination-->
+                  <div class="assPage friend_photos">
+                    <span class="numPage"><%= page_entries_info @friend_photos %></span>
+                    <%= will_paginate @friend_photos %>
+                  </div>
+                  <!--Pagination-->
+                </div>
               </div>
-              <!--Pagination-->
             </div>
           </div>
-        </div>
-		<% end %>
+        <% end %>
       </div>
     </div>
   </div>
   <div class="contDetL">
     <div class="contDetLin">
       <div class="inboxLeft">
-        <div id="my_photos_list">
-          <div class="slsTop">
-            <div class="slsTopL">
-              <div class="slsTopLT">Your photos</div>
-              <div class="slsTopLB friLeft">
-                <div class="search" style="margin-top:-19px; margin-bottom:20px">
-                  <%= form_tag my_p_user_photos_path(current_user), {:id => "my_photos_search", :method => "GET"} do %>
-                    <div class="textS"><%= text_field_tag "search[name]", "" %></div>
-                    <div class="btmS"><a href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a></div>
-                  <% end %>
+
+        <div class="slsTop">
+          <div class="slsTopL">
+            <div class="slsTopLT">Your photos</div>
+            <div class="slsTopLB friLeft">
+              <div class="search" style="margin-top:-19px; margin-bottom:20px">
+                <%= form_for :search_friend_photo, :url => my_p_user_photos_path(current_user), :html => {:id => "my_photos_search", :method => "GET", :onsubmit => "return false"} do %>
+                  <div class="textS"><%= text_field_tag "search[name]", "" %></div>
+                  <div class="btmS"><a href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a></div>
+                <% end %>
+              </div>
+            </div>
+
+            <div id="my_photos_list">
+              <div class="photoRow">
+                <% @my_photos.each do |m_p| %>
+                  <%= render :partial => "item_my_photo", :locals => {:photo => m_p}  %>
+                <% end %>
+              </div>
+              <div class="slsTopR">
+                <!--Pagination-->
+                <div class="assPage friend_photos">
+                  <span class="numPage"><%= page_entries_info @my_photos %></span>
+                  <%= will_paginate @my_photos %>
                 </div>
+                <!--Pagination-->
               </div>
-            </div>
-            <div class="photoRow">
-              <% @my_photos.each do |m_p| %>
-                <%= render :partial => "item_my_photo", :locals => {:photo => m_p}  %>
-              <% end %>
-            </div>
-            <div class="slsTopR">
-              <!--Pagination-->
-              <div class="assPage friend_photos">
-                <span class="numPage"><%= page_entries_info @my_photos %></span>
-                <%= will_paginate @my_photos %>
-              </div>
-              <!--Pagination-->
             </div>
           </div>
 

@@ -38,7 +38,7 @@
               <div class="slsTopLT">Friends shared stories</div>
               <div class="slsTopLB friLeft">
                 <div class="search">
-                  <%= form_tag friend_s_user_stories_path(current_user), {:id => "friend_stories_search", :method => "GET"} do %>
+                  <%= form_for :search_friend_story, :url => friend_s_user_stories_path(current_user), :html => {:id => "friend_stories_search", :method => "GET", :onsubmit => "return false;"} do %>
                     <div class="textS"><%= text_field_tag "search[name]", "" %></div>
                     <div class="btmS"><a href="javascript:;" onclick="searchFriendStories();"><img src="/images/iconSF.png"/></a></div>
                   <% end %>
@@ -70,7 +70,7 @@
               <div class="slsTopLT">Your stories</div>
               <div class="slsTopLB friLeft">
                 <div class="search">
-                  <%= form_tag my_s_user_stories_path(current_user), {:id => "my_stories_search", :method => "GET"} do %>
+                  <%= form_for :search_my_story, :url => my_s_user_stories_path(current_user), :html => {:id => "my_stories_search", :method => "GET", :onsubmit => "return false;"} do %>
                     <div class="textS"><%= text_field_tag "search[name]", "" %></div>
                     <div class="btmS"><a href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a></div>
                   <% end %>
@@ -122,9 +122,9 @@
     {
         $('#story_content').wysiwyg({
             controls: {
-                createLink : { visible : false },
+                createLink : { visible : true },
 
-                insertImage : { visible : false },
+                insertImage : { visible : true },
 
                 separator05 : { visible : false },
 

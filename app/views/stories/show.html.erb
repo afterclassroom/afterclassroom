@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="stoDcont">
-          <%= @story.content %>
+          <%= raw(@story.content) %>
         </div>
         <%= render :partial => "story_action" %>
         <%= show_post_comments(@story) %>

@@ -1,8 +1,10 @@
-<div class="slsTop">
-  <div class="slsTopL">
-    <div class="slsTopLT">Friends shared photos</div>
-  </div>
-  <div class="slsTopR">
+<div class="photoRow">
+  <% @photos.each do |f_p| %>
+    <%= render :partial => "item_friend_photo", :locals => {:photo => f_p}  %>
+  <% end %>
+</div>
+
+<div class="slsTopR">
     <!--Pagination-->
     <div class="assPage friend_photos">
       <span class="numPage"><%= page_entries_info @friend_photos %></span>
@@ -10,13 +12,6 @@
     </div>
     <!--Pagination-->
   </div>
-</div>
-<div class="photoRow">
-  <% @friend_photos.each do |f_p| %>
-    <%= render :partial => "item_friend_photo", :locals => {:photo => f_p}  %>
-  <% end %>
-</div>
-
 <script type="text/javascript" >
   formatLinkForPaginationURLFriendPhoto();
 </script>

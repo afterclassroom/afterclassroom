@@ -217,7 +217,7 @@ class UserWallsController < ApplicationController
       open(link, hdrs).each {|s| my_html << s}
       @web_doc= Hpricot(my_html)
       @arr_img = []
-      @web_doc.search("img").each{ |e| @arr_img << "http://" + domain + e.attributes['src'] }
+      @web_doc.search("img").each{ |e| @arr_img << "http://" + domain + e.attributes['src'] if e.attributes['width'].to_i > 200 }
       image_link = ""
       image_link = @arr_img[0] if @arr_img.size > 0
       arr_p = []

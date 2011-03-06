@@ -65,7 +65,7 @@ Afterclassroom::Application.routes.draw do
 
     resources :stories do
       collection do
-        get :friend_s, :my_s, :create_comment, :delete_comment
+        get :friend_s, :my_s, :create_comment, :delete_comment, :delete_all
       end
     end
 

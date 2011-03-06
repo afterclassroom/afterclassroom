@@ -5,15 +5,15 @@
   <div class="slsTopR">
     <!--Pagination-->
     <div class="assPage friend_photos">
-      <span class="numPage"><%= page_entries_info @friend_photos %></span>
-      <%= will_paginate @friend_photos %>
+      <span class="numPage"><%= page_entries_info @musics %></span>
+      <%= will_paginate @musics %>
     </div>
     <!--Pagination-->
   </div>
 </div>
 <div class="photoRow">
-  <% @friend_photos.each do |f_p| %>
-    <%= render :partial => "item_friend_photo", :locals => {:photo => f_p}  %>
+  <% @musics.each do |f_p| %>
+    <%= render :partial => "item_friend_music", :locals => {:music => f_p}  %>
   <% end %>
 </div>
 

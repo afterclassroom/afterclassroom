@@ -2,8 +2,6 @@
 class StoriesController < ApplicationController
   layout 'student_lounge'
   
-  
-  
   before_filter :login_required
   before_filter :require_current_user, :only => [:edit, :update, :destroy, :delete_comment]
   # GET /stories
@@ -38,8 +36,10 @@ class StoriesController < ApplicationController
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
       if content_search != ""
-        title =~ "%#{content_search}%"
-        content =~ "%#{content_search}%"
+        any do
+          title =~ "%#{content_search}%"
+          content =~ "%#{content_search}%"
+        end
       end
     end
 
@@ -60,8 +60,10 @@ class StoriesController < ApplicationController
     cond = Caboose::EZ::Condition.new :stories do
       user_id == id
       if content_search != ""
-        title =~ "%#{content_search}%"
-        content =~ "%#{content_search}%"
+        any do
+          title =~ "%#{content_search}%"
+          content =~ "%#{content_search}%"
+        end
       end
     end
 
@@ -121,12 +123,14 @@ class StoriesController < ApplicationController
   # PUT /stories/1
   # PUT /stories/1.xml
   def update
+    state = params[:state]
     @story = Story.find(params[:id])
 
+    @story.state = state
     respond_to do |format|
       if @story.update_attributes(params[:story])
         flash[:notice] = 'Story was successfully updated.'
-        format.html { redirect_to(@story) }
+        format.html { redirect_to(user_stories_path(current_user)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -168,6 +172,19 @@ class StoriesController < ApplicationController
       story.comments.find_by_id(comment_id).destroy
       redirect_to story
     end
+  end
+
+  def delete_all
+    list_ids = params[:list_ids]
+    list_ids = list_ids.slice(0..list_ids.length - 2)
+    ids = list_ids.split(", ")
+    stories = current_user.stories.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
+    if stories.size > 0
+      stories.each do |abl|
+        abl.destroy
+      end
+    end
+    redirect_to(user_stories_url(current_user))
   end
   
   protected

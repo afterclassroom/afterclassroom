@@ -42,8 +42,10 @@ class PhotosController < ApplicationController
     cond = Caboose::EZ::Condition.new :photos do
       user_id === arr_user_id
       if content_search != ""
-        title =~ "%#{content_search}%"
-        description =~ "%#{content_search}%"
+        any do
+          title =~ "%#{content_search}%"
+          description =~ "%#{content_search}%"
+        end
       end
     end
     
@@ -62,11 +64,13 @@ class PhotosController < ApplicationController
     content_search = @search_name
     id = current_user.id
     cond = Caboose::EZ::Condition.new :photos do
-      user_id == id
       if content_search != ""
-        title =~ "%#{content_search}%"
-        description =~ "%#{content_search}%"
+        any do
+          title =~ "%#{content_search}%"
+          description =~ "%#{content_search}%"
+        end
       end
+      user_id == id
     end
     
     @photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5

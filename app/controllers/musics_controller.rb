@@ -48,7 +48,6 @@ class MusicsController < ApplicationController
       user_id === arr_user_id
       if content_search != ""
         title =~ "%#{content_search}%"
-        description =~ "%#{content_search}%"
       end
     end
     
@@ -70,7 +69,6 @@ class MusicsController < ApplicationController
       user_id == id
       if content_search != ""
         title =~ "%#{content_search}%"
-        description =~ "%#{content_search}%"
       end
     end
     

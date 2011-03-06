@@ -115,7 +115,6 @@ stylesheets:
   - jquery.ad-gallery
   - jquery.fileupload-ui
   - checkboxmenu
-  - cust_select_plugin
 - admin:
   - main
   - admin-datePicker

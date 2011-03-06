@@ -225,6 +225,8 @@
     margin:-2px 1px;
     background:#e6e9ed;
     position: absolute;
+    margin-left:0px;
+    width:157px;
 }
 .selectboxoptions_radio li, .selectboxoptions_check li{
     list-style: none;
@@ -237,6 +239,8 @@
 }
 .selectboxoptions_radio li{
     background:#EBEBEB;
+    height:20px;
+    padding-top:5px;
 }
 .selectboxoptions_radio li.selected{
     background:#f2f2f2 url(/images/selectBox/acc.gif) no-repeat 5px 6px;
