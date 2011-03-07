@@ -2,7 +2,7 @@
 class PostAssignmentsController < ApplicationController
   
 
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :due_date, :interesting, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :search, :due_date, :interesting, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting, :tag]
@@ -92,21 +92,22 @@ class PostAssignmentsController < ApplicationController
   # GET /post_assignments/1/edit
   def edit
     @post = Post.find(params[:id])
+    @post_assignment = @post.post_assignment
   end
 
   # POST /post_assignments
   # POST /post_assignments.xml
-  def create
-    @post_assignment = PostAssignment.new(params[:post_assignment])
+  def create 
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    #@post_assignment.tag_list = params[:tag]
+    @post_assignment = PostAssignment.new(params[:post_assignment])
+    @post_assignment.tag_list = params[:tag]
     @post_assignment.post = @post
-    if @post_assignment.save
+    if @post_assignment.save!
       flash.now[:notice] = "Your post was successfully created."
       redirect_to post_assignments_path
     else

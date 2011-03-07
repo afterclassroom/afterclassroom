@@ -1,7 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostHousingsController < ApplicationController
-  
-
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_house, :worse_house]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :good_house, :worse_house]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]

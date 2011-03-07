@@ -1,6 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostQasController < ApplicationController
- 
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]

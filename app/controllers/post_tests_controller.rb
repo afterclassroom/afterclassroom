@@ -1,7 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostTestsController < ApplicationController
-  
-
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :interesting, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]

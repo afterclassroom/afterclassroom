@@ -1,7 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostTeamupsController < ApplicationController
-  
-
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_org, :worse_org]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :good_org, :worse_org]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]

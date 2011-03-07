@@ -4,14 +4,13 @@ class PostManagementsController < ApplicationController
 
   def index
     @post_cat = PostCategory.find(:all)
-    @category = "Category" 
     @category = params[:category] if params[:category]
     @sort = "DESC"
     @all_posts = Post.paginated_post_management(params, current_user.id)
     
     cur_page = 1
     
-    if @category == "Category"
+    if @category == "" &&
       @all_posts = Post.paginated_post_management(params, current_user.id)
     else
       @all_posts = current_user.get_posts_with_type(@category).paginate(:page => cur_page, :per_page => 10, :order => "created_at "+@sort)

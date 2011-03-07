@@ -9,7 +9,7 @@
   <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
     <div class="postTit">Due date*</div>
-    <div class="postInp"><%= text_field_tag "post_assignment[due_date]", @post_assignment.due_date != nil ? @post_assignment.due_date.strftime("%m/%d/%Y") : nil, :id => "post_assignment_due_date", :class => 'required date', :style => "width:100px" %></div>
+    <div class="postInp"><%= text_field_tag "post_assignment[due_date]", @post_assignment.due_date != nil ? @post_assignment.due_date.strftime("%m/%d/%Y") : "", :id => "post_assignment_due_date", :class => 'required date', :style => "width:100px" %></div>
   </div>
   <div class="postItem">
     <div class="postTit">Professor*</div>
@@ -21,6 +21,6 @@
   
 <script type="text/javascript">
   $(function() {
-    $("#post_assignment_due_date").datepicker();
+    //$("#post_assignment_due_date").datepicker();
   });
 </script>
