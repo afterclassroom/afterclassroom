@@ -1,18 +1,16 @@
-<% @tag_names = @tags.collect{|t| t.name} %>
 <div class="postItem">
   <div class="postTit">Tag</div>
-  <div class="postInp"><%= text_field_tag "tag", "", :style => "width:360px" %></div>
+  <div class="postInp"><%= text_field_tag "tag", @tag_list, :style => "width:282px" %></div>
 </div>
 
 <script type="text/javascript">
-  var tags = <%= array_or_string_for_javascript(@tag_names) %>;
-  
+  var path = "<%= show_tags_list_tags_url %>?class_name=<%= @class_name %>";
   $(function () {
     $('#tag').tagSuggest ( {
       tagContainer : 'div',
       tagWrap : 'div',
-      tags: tags,
+	  url: path,
       separator: ', '
     });
-  }) ;
+  });
 </script>

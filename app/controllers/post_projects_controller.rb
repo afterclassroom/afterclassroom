@@ -89,6 +89,8 @@ class PostProjectsController < ApplicationController
   # GET /post_projects/1/edit
   def edit
     @post = Post.find(params[:id])
+    @post_project = @post.post_project
+    @tag_list = @post_project.tag_list
   end
 
   # POST /post_projects

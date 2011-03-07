@@ -1,15 +1,14 @@
-<% @tag_names = @tags.collect{|t| t.name} %>
 <div class="reqItem">
   <div class="reqLa"><label>Tags</label></div>
   <div class="reqTi"><%= text_field_tag "tag", "", :style => "width:280px" %></div>
 </div>
 <script type="text/javascript">
-    var tags = <%= array_or_string_for_javascript(@tag_names) %>;
+    var path = "<%= show_tags_list_tags_url %>?class_name=<%= @class_name %>";
     $(function () {
         $('#tag').tagSuggest ( {
             tagContainer : 'div',
             tagWrap : 'div',
-            tags: tags,
+            url: path,
             separator: ', '
         });
     }) ;

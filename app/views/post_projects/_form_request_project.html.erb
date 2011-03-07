@@ -11,7 +11,7 @@
           <div class="reqSl">
             <div class="req40">
               <div class="reqLa"><label>Due date</label></div>
-              <div class="reqTi"><%= f.text_field :due_date %></div>
+              <div class="reqTi"><%= text_field_tag "due_date" %></div>
             </div>
           </div>
           <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
@@ -24,6 +24,6 @@
 </div>
 <script type="text/javascript">
     $(function() {
-        $("#post_project_due_date").datepicker();
+        $("#due_date").datepicker();
     });
 </script>

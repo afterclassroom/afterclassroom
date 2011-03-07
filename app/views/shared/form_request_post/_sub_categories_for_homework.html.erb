@@ -1,0 +1,36 @@
+<div class="reqLa"><label>Sub Category</label></div>
+<div class="reqTi"><%= text_field_tag "subcategory", @class_name, :id => "subcategory" %></div>
+
+<%
+sub = [["Post Assignment", "PostAssignment"], ["Post Project", "PostProject"], ["Post Test", "PostTest"], ["Post Exam", "PostExam"]]
+%>
+<ul id="subcategory_menu" class="mcdropdown_menu">
+  <% sub.each do |s| %>
+    <li rel_sub="<%= s[1] %>">
+      <%= s[0] %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  $("#subcategory").mcDropdown("#subcategory_menu", {
+    width: 350,
+    valueAttr: "rel_sub",
+	select: function(){
+		switch($('#subcategory').val()){
+			case "PostAssignment":
+				
+				break;
+			case "PostProject":
+				
+				break;
+			case "PostTest":
+				
+				break;
+			case "PostExam":
+				
+				break;
+		}
+	}
+  });
+</script>

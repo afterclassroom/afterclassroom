@@ -278,7 +278,7 @@ Afterclassroom::Application.routes.draw do
   # Tags
   resources :tags do
     collection do
-      get :show_tags
+      get :show_tags, :show_tags_list
     end
   end
   

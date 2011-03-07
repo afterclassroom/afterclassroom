@@ -4,14 +4,15 @@
     <div class="col300Cont">
       <%= form_for :post_assignment, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%= fields_for :post do |p| %>
-          <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/sub_categories_for_homework" %>
+		  <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
           <div class="reqSl">
             <div class="req40">
               <div class="reqLa"><label>Due date</label></div>
-              <div class="reqTi"><%= f.text_field :due_date %></div>
+              <div class="reqTi"><%= text_field_tag "due_date", "" %></div>
             </div>
             <div class="req60">
               <div class="reqLa"><label>Professor</label></div>
@@ -28,6 +29,6 @@
 </div>
 <script type="text/javascript">
   $(function() {
-    $("#post_assignment_due_date").datepicker();
+    $("#due_date").datepicker();
   });
 </script>

@@ -63,8 +63,8 @@ class PostAssignmentsController < ApplicationController
   # GET /post_assignments/1
   # GET /post_assignments/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_assignment = @post.post_assignment
+    @post_assignment = PostAssignment.find(params[:id])
+    @post = @post_assignment.post
     update_view_count(@post)
     posts_as = PostAssignment.with_school(@school)
     as_next = posts_as.next(@post_assignment.id).first
@@ -91,8 +91,9 @@ class PostAssignmentsController < ApplicationController
 
   # GET /post_assignments/1/edit
   def edit
-    @post = Post.find(params[:id])
-    @post_assignment = @post.post_assignment
+    @post_assignment = PostAssignment.find(params[:id])
+    @post = @post_assignment.post
+    @tag_list = @post_assignment.tags_from(@post.school).join(", ")
   end
 
   # POST /post_assignments
@@ -105,9 +106,13 @@ class PostAssignmentsController < ApplicationController
     @post.type_name = @class_name
     @post.save
     @post_assignment = PostAssignment.new(params[:post_assignment])
-    @post_assignment.tag_list = params[:tag]
+    @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+    @post.school.tag(@post_assignment, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_assignment.post = @post
-    if @post_assignment.save!
+    
+    if @post_assignment.save
       flash.now[:notice] = "Your post was successfully created."
       redirect_to post_assignments_path
     else
@@ -119,10 +124,14 @@ class PostAssignmentsController < ApplicationController
   # PUT /post_assignments/1
   # PUT /post_assignments/1.xml
   def update
-    @post = Post.find(params[:id])
-    @post_assignment = @post.post_assignment
+    @post_assignment = PostAssignment.find(params[:id])
+    @post = @post_assignment.post
+    
     if (@post_assignment.update_attributes(params[:post_assignment]) && @post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+      @post.school.tag(@post_assignment, :with => params[:tag], :on => :tags)
+      @post_assignment.save!
+      redirect_to post_assignment_url(@post_assignment)
     end
   end
 
@@ -138,17 +147,16 @@ class PostAssignmentsController < ApplicationController
   private
 
   def get_variables
-    @tags = PostAssignment.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_assignment_path
     @class_name = "PostAssignment"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_assignment = post.post_assignment
+    post_assignment = PostAssignment.find(params[:id])
+    post = post_assignment.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

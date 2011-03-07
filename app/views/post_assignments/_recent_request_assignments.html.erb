@@ -14,7 +14,7 @@
             <div class="recentInf">
               <div class="recentName"><%= link_to asg.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => asg.post.user.id} %></div>
               <div class="recentUni"><span>at</span><%= link_to asg.post.school.name, :controller => "post_assignments", :action => "index", :from_school => asg.post.school %></div>
-              <div class="recentDes"><%= link_to asg.post.title, post_assignment_path(asg.post) %></div>
+              <div class="recentDes"><%= link_to asg.post.title, post_assignment_path(asg.post.post_assignment) %></div>
             </div>
           </div>
         <% end %>

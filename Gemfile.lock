@@ -127,9 +127,12 @@ GEM
       activerecord (>= 3.0.3)
       riddle (>= 1.2.1)
     thor (0.14.6)
+    timeliness (0.3.3)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    validates_timeliness (3.0.5)
+      timeliness (~> 0.3.2)
     will_paginate (3.0.pre)
     xml-simple (1.0.12)
     yamler (0.1.0)
@@ -172,4 +175,5 @@ DEPENDENCIES
   riddle (>= 1.2.1)
   ruby-mp3info
   thinking-sphinx
+  validates_timeliness (~> 3.0.2)
   will_paginate (~> 3.0.beta)
