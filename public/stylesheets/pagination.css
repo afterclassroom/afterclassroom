@@ -1,4 +1,5 @@
-.assPage{
+.assPage
+{
   float:left;
   /*margin-right:15px;*/
   /*padding:10px 0px 10px 0px;
@@ -7,9 +8,11 @@
   }
   .assPage span {
 /*padding:0px 4px*/ }
-.assPage span.disabled {
+.assPage span.disabled
+{
 }
-.assPage span.current {
+.assPage span.current
+{
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -18,15 +21,30 @@
   background: #2E6AB1;
   color:#fff!important;
   cursor:default;
-  padding:0 4px;  }
-.assPage a {
+  padding:0 4px;
+}
+.assPage a
+{
   color:#6f6f63;
-  padding:0px 4px;
-  text-decoration: none;}
-.assPage a:hover {
-  color:#d00;
-  text-decoration: none;}
-.assPage a.current:hover {
+  padding:1px 4px;
+  text-decoration: none;
+}
+.assPage a:hover
+{
+  height:14px;
+  background:url('/images/bgdivpageL.png') no-repeat left top;
+  color:#fff!important;
+  cursor:pointer;
+}
+.assPage a:hover page
+{
+  height:14px;
+  background:url('/images/bgdivpageR.png') no-repeat right top;
+  color:#fff!important;
+  cursor:pointer;
+}
+.assPage a.current:hover
+{
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -34,14 +52,18 @@
   height:14px;
   background: #2E6AB1;
   color:#fff!important;
-  text-decoration: none;}
-.numPage{
+  text-decoration: none;
+}
+.numPage
+{
   margin-top:20px;
   /*padding-right:20px;*/
 }
-.next_page{
+.next_page
+{
   padding-right:8px;
 }
-.click_here{
+.click_here
+{
   margin-left:10px;
 }
