@@ -10,6 +10,12 @@
 /*padding:0px 4px*/ }
 .assPage span.disabled
 {
+    margin-right: 4px;
+}
+.assPage em
+{
+    margin-right: 4px;
+    margin-left: 2px;
 }
 .assPage span.current
 {
@@ -32,7 +38,7 @@
 .assPage a:hover
 {
   height:14px;
-  background:url('/images/bgdivpageL.png') no-repeat left top;
+  background:url('/images/bgdivpageLR.png') no-repeat left top;
   color:#fff!important;
   cursor:pointer;
 }
@@ -61,7 +67,7 @@
 }
 .next_page
 {
-  padding-right:8px;
+  /*margin-left:8px;*/
 }
 .click_here
 {
