@@ -13,7 +13,7 @@
           <div class="recentInf">
             <div class="recentName"><%= link_to book.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => book.post.user.id} %></div>
             <div class="recentUni"><span>at</span><%= link_to book.post.school.name, :controller => "post_books", :action => "index", :from_school => book.post.school, :type => @type %></div>
-            <div class="recentDes"><%= link_to book.post.title, post_project_path(book.post) %></div>
+            <div class="recentDes"><%= link_to book.post.title, post_project_path(book) %></div>
           </div>
         </div>
       <% end %>

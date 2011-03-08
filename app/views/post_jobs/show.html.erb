@@ -79,7 +79,7 @@ You are here: <a href="/">Home</a>
             <h1 class="titleH1">Related posts</h1>
             <% PostJob.related_posts(@school).each do |p| %>
             <div class="AsDOrItem">
-                <%= link_to p.title, post_job_path(p) %>
+                <%= link_to p.title, post_job_path(p.post_job) %>
             </div>
             <% end %>
         </div>

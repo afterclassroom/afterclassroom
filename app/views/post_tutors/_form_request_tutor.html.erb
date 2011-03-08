@@ -1,3 +1,7 @@
+<%
+type = params[:tutor_type_id]
+type ||= 1
+%>
 <div class="col300 Request">
   <div class="col300in">
     <h1 class="col300Title">Quick post for Tutor</h1>
@@ -5,7 +9,7 @@
       <%= form_for :post_tutor, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%= fields_for :post do |p| %>
 		<div class="reqLa"><label>Type</label></div>
-		<div class="reqTi"><%= text_field_tag "post_tutor[tutor_type_id]", "1" %></div>
+		<div class="reqTi"><%= text_field_tag "post_tutor[tutor_type_id]", type %></div>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>

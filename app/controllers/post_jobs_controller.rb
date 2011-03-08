@@ -103,18 +103,18 @@ class PostJobsController < ApplicationController
   # GET /post_jobs/1
   # GET /post_jobs/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_j = @post.post_job
+    @post_job = PostJob.find(params[:id])
+    @post = @post_job.post
     
     update_view_count(@post)
     posts_as = PostJob.with_school(@school)
-    as_next = posts_as.next(@post_j.id).first
-    as_prev = posts_as.previous(@post_j.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    as_next = posts_as.next(@post_job.id).first
+    as_prev = posts_as.previous(@post_job.id).first
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @post_j }
+      format.xml  { render :xml => @post_job }
     end
   end
 
@@ -157,21 +157,24 @@ class PostJobsController < ApplicationController
 
   # GET /post_jobs/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post_job = PostJob.find(params[:id])
+    @post = @post_job.post
+    @tag_list = @post_job.tags_from(@post.school).join(", ")
   end
 
   # POST /post_jobs
   # POST /post_jobs.xml
   def create
-
-    @post_job = PostJob.new(params[:post_job])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    @post_job.tag_list = params[:tag]
+    @post_job = PostJob.new(params[:post_job])
+    @post.school.tag(@post_job, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_job.post = @post
 
     if (params[:jobinfo] != nil)
@@ -197,9 +200,11 @@ class PostJobsController < ApplicationController
   # PUT /post_jobs/1.xml
   def update
     @post_job = PostJob.find(params[:id])
+    @post = @post_job.post
 
     if (@post_job.update_attributes(params[:post_job]) && @post_job.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post.school.tag(@post_job, :with => params[:tag], :on => :tags)
+      redirect_to post_job_url(@post_job)
     end
 
   end
@@ -212,6 +217,7 @@ class PostJobsController < ApplicationController
 
     redirect_to my_post_user_url(current_user)
   end
+  
   def apply_job
     @post_job_id = params[:job_id]
 
@@ -219,6 +225,7 @@ class PostJobsController < ApplicationController
 
     render :layout => false
   end
+  
   def save_letter
 
     cover_letter = JobFile.new
@@ -272,17 +279,16 @@ class PostJobsController < ApplicationController
   private
 
   def get_variables
-    @tags = PostJob.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_job_path
     @class_name = "PostJob"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_job = post.post_job
+    post_job = PostJob.find(params[:id])
+    post = post_job.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

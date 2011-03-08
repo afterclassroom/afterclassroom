@@ -13,7 +13,7 @@ class PostJob < ActiveRecord::Base
 
 
   # Tags
-  acts_as_taggable
+  acts_as_taggable_on :tags
 
   # Rating for Good or Bad
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
