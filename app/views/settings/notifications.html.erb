@@ -1,7 +1,9 @@
 <% content_for :menu_top_student_lounge do -%>
   <%= render :partial => 'submenu' %>
 <% end -%>
-
+<%
+idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab","storytab","linkstab","musictab","videotab","giftstab","helptab","loungetab","othertab"]
+%>
 <div class="contMain">
   <div class="settCont">
     <div class="settCont1">
@@ -24,53 +26,122 @@
             <div class="setItemTR">SMS</div>
           </div>
           <%= form_tag(save_setting_user_settings_path(current_user), :method => :post, :id => "setting_form") do %>
-            <% @types.each_with_index do |tp, i| %>
-              <div id="<%= tp[0] %>" >
-                <div class="setItemT1">
-                  <div class="setItemTL"><div class="setItemTL<%= i + 1 %>"><%=h tp[1] %></div></div>
-                  <div class="setItemTC"><img src="/images/email.png" /></div>
-                  <div class="setItemTR"><img src="/images/mobile.png" /></div>
-                </div>
-                <% notifications = Notification.with_type(tp[1]) %>
-                <% notifications.each do |ntfobj| %>
-                  <div class="setItemT2">
-                    <div class="setItemTL"><div><%= ntfobj.name %></div></div>
-                    <div class="setItemTC">
-                      <% if ntfobj.email_allow == true %>
-                        <% check = current_user.notify_email_settings.select{|e| e.notification}.include?(ntfobj) %>
-                        <%= check_box_tag("emailarr[]", ntfobj.id, check)%>
-                      <% end #END IF EMAIL ALLOW %>
-                    </div>
-                    <div class="setItemTR">
-                      <% if ntfobj.sms_allow == true %>
-                        <% check = current_user.notify_sms_settings.select{|s| s.notification}.include?(ntfobj) %>
-                        <%= check_box_tag("smsarr[]", ntfobj.id, check)%>
-                      <% end #END IF SMS_ALLOW %>
-                    </div>
+            <% if @types != nil %>
+              <% count = 1 %>
+              <% @types.each do |tp| %>
+                <div id="<%= idfortoggle[count-1] %>">
+                  <div class="setItemT1">
+                    <div class="setItemTL"><div class="setItemTL<%= count %>"><%=h tp.notify_type %></div></div>
+                    <% count = count + 1 %>
+                    <div class="setItemTC"><img src="/images/email.png"/></div>
+                    <div class="setItemTR"><img src="/images/mobile.png"/></div>
                   </div>
-                <% end #END LOOP NOTIFICATIONS %>
-              </div>
-            <% end #END LOOP NOTIFY_TYPE %>
-            <div class="Showmore"></div>
-            <div class="Savechanges">
-              <%= link_to_function "Save Changes", "sendChange()" %>
-            </div>
+                  <% @notifications.each do |ntfobj| %>
+                    <% if ntfobj.notify_type == tp.notify_type %>
+                      <div class="setItemT2">
+                        <div class="setItemTL"><div><%= ntfobj.name %></div></div>
+                        <% if ntfobj.email_allow == true %>
+                          <% check = false; %>
+                          <% current_user.notify_email_settings.each do |userntfe| %>
+                            <% if userntfe.notification.id == ntfobj.id %>
+                              <% check = true; %>
+                            <% end %>
+                          <% end #END LOOP CURRENT_USER %>
+                          <div class="setItemTC">
+                            <%= check_box_tag("emailarr[]", ntfobj.id, checked = check )%>
+                          </div>
+                        <% else %>
+                          <div class="setItemTC">
+                          </div>
+                        <% end #END IF EMAIL ALLOW %>
+                        <% if ntfobj.sms_allow == true %>
+                          <% check = false; %>
+                          <% current_user.notify_sms_settings.each do |userntfs| %>
+                            <% if userntfs.notification.id == ntfobj.id %>
+                              <% check = true; %>
+                            <% end %>
+                          <% end #END LOOP CURRENT_USER %>
+                          <div class="setItemTR">
+                            <%= check_box_tag("smsarr[]", ntfobj.id, checked = check )%>
+                          </div>
+                        <% else %>
+                          <div class="setItemTR">
+                          </div>
+                        <% end #END IF SMS_ALLOW %>
+                      </div>
+                    <% end #END IF NOTIFY_TYPE %>
+                  <% end #END LOOP NOTIFICATIONS %>
+                </div>
+              <% end #END LOOP TYPE %>
+            <% end #END IF TYPE!=NIL %>
+            <div class="Showmore"><a href="#">Show more (19)</a></div>
+            <div class="Savechanges"><a href="javascript:;" onclick="sendChange()">Save Changes</a></div>
           <% end #END FORM %>
         </div>
         <div class="settNotR">
           <div class="settNotRTitle">View settings for:</div>
-          <% @types.each_with_index do |item, index| %>
-            <div class="setNotRItem setNotRItem<%= index + 1 %>">
-              <a href="javascript:;" onclick="goToByScroll('<%= item[0] %>')"><%= item[1] %></a>
-            </div>
-          <% end %>
+          <div class="setNotRItem setNotRItem1">
+            <a href="javascript:;" onclick="TabHandler('afterclassroomtab')">AfterClassroom</a>
+          </div>
+          <div class="setNotRItem setNotRItem2">
+            <a href="javascript:;" onclick="TabHandler('photostab')">Photos</a>
+          </div>
+          <div class="setNotRItem setNotRItem3">
+            <a href="javascript:;" onclick="TabHandler('groupstab')">Groups</a>
+          </div>
+          <div class="setNotRItem setNotRItem4">
+            <a href="javascript:;" onclick="TabHandler('pagestab')">Pages</a>
+          </div>
+          <div class="setNotRItem setNotRItem5">
+            <a href="javascript:;" onclick="TabHandler('eventstab')">Events</a>
+          </div>
+          <div class="setNotRItem setNotRItem6">
+            <a href="javascript:;" onclick="TabHandler('storytab')">Story</a>
+          </div>
+          <div class="setNotRItem setNotRItem7">
+            <a href="javascript:;" onclick="TabHandler('linkstab')">Links</a>
+          </div>
+          <div class="setNotRItem setNotRItem8">
+            <a href="javascript:;" onclick="TabHandler('musictab')">Music</a>
+          </div>
+          <div class="setNotRItem setNotRItem9">
+            <a href="javascript:;" onclick="TabHandler('videotab')">Video</a>
+          </div>
+          <div class="setNotRItem setNotRItem10">
+            <a href="javascript:;" onclick="TabHandler('giftstab')">Gifts</a>
+          </div>
+          <div class="setNotRItem setNotRItem11">
+            <a href="javascript:;" onclick="TabHandler('helptab')">Help</a>
+          </div>
+          <div class="setNotRItem setNotRItem12">
+            <a href="javascript:;" onclick="TabHandler('loungetab')">Lounge</a>
+          </div>
+          <div class="setNotRItem setNotRItem13">
+            <a href="javascript:;" onclick="TabHandler('othertab')">Others</a>
+          </div>
+          <div class="setNotRItem setNotRItem14">
+            <a href="javascript:;" onclick="TabHandler('othertab')">Other Applications</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
-  function sendChange(){
-    $("#setting_form").submit();
+
+  $(document).ready(function(){
+    var jsidfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab","storytab","linkstab","musictab","videotab","giftstab","helptab","loungetab","othertab"];
+    for (var i = 1; i < jsidfortoggle.length; i++){
+      TabHandler(jsidfortoggle[i]);
+    }
+
+  });
+  function TabHandler(tabid){
+    $('#'+tabid).toggle('slow');
+    return false;
   }
+  function sendChange(){
+    $("form:first").submit();
+  }
+
 </script>

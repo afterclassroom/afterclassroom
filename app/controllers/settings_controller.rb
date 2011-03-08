@@ -14,32 +14,51 @@ class SettingsController < ApplicationController
     smsarrs = params[:smsarr]
     if smsarrs != nil
       if smsarrs != nil
-      
+
         current_user.notify_sms_settings.destroy_all
 
         smsarrs.each do |eachsms|
+          puts "each == " + eachsms.to_s
           @nfst = NotifySmsSetting.new
           @nfst.notification = Notification.find(eachsms)
           @nfst.user = current_user
+
+          if @nfst.save
+            puts "save setting successfully"
+          else
+            puts "failed to save setting"
+          end
+
+          puts "selected notification == "+@nfst.notification.name
         end
       end
+    else
+      current_user.notify_sms_settings.destroy_all
     end
 
     #UPDATE EMAIL SETTING
     emailarrs = params[:emailarr]
     if emailarrs != nil
-      puts "mysmsarr == "+emailarrs.length.to_s
       if emailarrs != nil
 
         current_user.notify_email_settings.destroy_all
 
         emailarrs.each do |eachemail|
-          puts "each == " + eachemail.to_s
           @nfse = NotifyEmailSetting.new
           @nfse.notification = Notification.find(eachemail)
           @nfse.user = current_user
+
+          if @nfse.save
+            puts "save setting successfully"
+          else
+            puts "failed to save setting"
+          end
+
+          puts "selected notification == "+@nfse.notification.name
         end
       end
+    else
+      current_user.notify_email_settings.destroy_all
     end
 
     redirect_to :action => "notifications"
@@ -59,20 +78,11 @@ class SettingsController < ApplicationController
   end
 
   def notifications
-    @types = [["afterclassroomtab", "AfterClassroom"],
-      ["photostab", "Photos"],
-      ["groupstab", "Groups"],
-      ["pagestab", "Pages"],
-      ["eventstab", "Events"],
-      ["storytab", "Story"],
-      ["linkstab", "Links"],
-      ["musictab", "Music"],
-      ["videotab", "Video"],
-      ["giftstab", "Gifts"],
-      ["helptab", "Help"],
-      ["loungetab", "Lounge"],
-      ["othertab", "Others"]]
+    @notifications = Notification.find(:all)
+    @types = Notification.find( :all, :select => 'DISTINCT notify_type' )
   end
+
+
 
   def language
   end
