@@ -8,7 +8,7 @@ interestings = PostQa.with_school(@school).interesting.with_limit
       <div class="col195Cont">
         <% interestings.each do |qa| %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa.post) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa) %></div>
           </div>
         <% end %>
         <% if interestings.size > LIMIT - 1 %>

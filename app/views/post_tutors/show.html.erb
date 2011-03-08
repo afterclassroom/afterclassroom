@@ -39,7 +39,7 @@
     <div class="AsDOr">
       <h1 class="titleH1">Related posts</h1>
       <% PostTutor.related_posts(@school).each do |p| %>
-        <div class="AsDOrItem"><%= link_to p.title, post_tutor_path(p) %></div>
+        <div class="AsDOrItem"><%= link_to p.title, post_tutor_path(p.post_tutor) %></div>
       <% end %>
     </div>
     <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>

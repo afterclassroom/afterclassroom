@@ -100,14 +100,14 @@ class PostTutorsController < ApplicationController
   # GET /post_tutors/1
   # GET /post_tutors/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_tt = @post.post_tutor
+    @post_tt = PostTutor.find(params[:id])
+    @post = @post_tt.post
     update_view_count(@post)
     posts_as = PostTutor.with_school(@school)
     as_next = posts_as.next(@post_tt.id).first
     as_prev = posts_as.previous(@post_tt.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_tt }
@@ -129,20 +129,24 @@ class PostTutorsController < ApplicationController
 
   # GET /post_tutors/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post_tt = PostTutor.find(params[:id])
+    @post = @post_tt.post
+    @tag_list = @post_tt.tags_from(@post.school).join(", ")
   end
 
   # POST /post_tutors
   # POST /post_tutors.xml
   def create
-    @post_tutor = PostTutor.new(params[:post_tutor])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    @post_tutor.tag_list = params[:tag]
+    @post_tutor = PostTutor.new(params[:post_tutor])
+    @post.school.tag(@post_tutor, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_tutor.post = @post
     @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
     if @post_tutor.save
@@ -158,9 +162,10 @@ class PostTutorsController < ApplicationController
   # PUT /post_tutors/1.xml
   def update
     @post_tutor = PostTutor.find(params[:id])
-
+    @post = @post_tutor.post
     if (@post_tutor.update_attributes(params[:post_tutor]) && @post_tutor.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post.school.tag(@post_tutor, :with => params[:tag], :on => :tags)
+      redirect_to post_tutor_url(@post_tutor)
     end
 
   end
@@ -177,16 +182,16 @@ class PostTutorsController < ApplicationController
   private
 
   def get_variables
-    @tags = PostTutor.tag_counts_on(:tags)
-    @new_post_path = new_post_tutor_path
-    @type = PostCategory.find_by_class_name("PostTutor").id
     @school = session[:your_school]
+    @new_post_path = new_post_tutor_path
+    @class_name = "PostTutor"
+    @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_tutor = post.post_tutor
+    post_tutor = PostTutor.find(params[:id])
+    post = post_tutor.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

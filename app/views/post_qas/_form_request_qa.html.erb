@@ -8,9 +8,9 @@
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <div class="reqLa"><label>Category</label></div>
           <div class="reqTi"><%= f.text_field :post_qa_category_id %></div>
-          <div class="reqLa"><label>Your question</label></div>
+          <div class="reqLa"><label>Your question*</label></div>
           <div class="reqTi"><%= p.text_field :title %></div>
-          <div class="reqLa"><label>Content</label></div>
+          <div class="reqLa"><label>Content*</label></div>
           <div class="reqEn"><%= text_area_tag "post[description]" %></div>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
           <div class="submit"><%= show_submit_form() %></div>

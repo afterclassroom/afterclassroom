@@ -1,9 +1,11 @@
 <div class="col300 Request">
   <div class="col300in">
-    <h1 class="col300Title">Want to hire Tutor?</h1>
+    <h1 class="col300Title">Quick post for Tutor</h1>
     <div class="col300Cont">
       <%= form_for :post_tutor, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%= fields_for :post do |p| %>
+		<div class="reqLa"><label>Type</label></div>
+		<div class="reqTi"><%= text_field_tag "post_tutor[tutor_type_id]", "1" %></div>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
@@ -26,3 +28,18 @@
     </div>
   </div>
 </div>
+
+<ul id="tutor_type_menu" class="mcdropdown_menu">
+  <% TutorType.find(:all).each do |t| %>
+    <li rel_tutor_type="<%= t.id %>">
+      <%= t.name %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  $("#post_tutor_tutor_type_id").mcDropdown("#tutor_type_menu", {
+    width: 350,
+    valueAttr: "rel_tutor_type"
+  });
+</script>

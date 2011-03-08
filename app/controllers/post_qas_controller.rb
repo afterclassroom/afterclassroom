@@ -107,14 +107,14 @@ class PostQasController < ApplicationController
   # GET /post_qas/1
   # GET /post_qas/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_qa = @post.post_qa
+    @post_qa = PostQa.find(params[:id])
+    @post = @post_qa.post
     update_view_count(@post)
     posts_as = PostQa.with_school(@school)
     as_next = posts_as.next(@post_qa.id).first
     as_prev = posts_as.previous(@post_qa.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_qa }
@@ -135,19 +135,24 @@ class PostQasController < ApplicationController
 
   # GET /post_qas/1/edit
   def edit
+    @post_qa = PostQa.find(params[:id])
+    @post = @post_qa.post
+    @tag_list = @post_qa.tags_from(@post.school).join(", ")
   end
 
   # POST /post_qas
   # POST /post_qas.xml
   def create
-    @post_qa = PostQa.new(params[:post_qa])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    @post_qa.tag_list = params[:tag]
+    @post_qa = PostQa.new(params[:post_qa])
+    @post.school.tag(@post_qa, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_qa.post = @post
     if @post_qa.save
       flash.now[:notice] = "Your post was successfully created."
@@ -161,17 +166,18 @@ class PostQasController < ApplicationController
   # PUT /post_qas/1
   # PUT /post_qas/1.xml
   def update
-    @post = Post.find(params[:id])
-    @post_qa = @post.post_qa
+    @post_qa = Post.find(params[:id])
+    @post = @post_qa.post
     if (@post_qa.update_attributes(params[:post_qa]) && @post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post.school.tag(@post_qa, :with => params[:tag], :on => :tags)
+      redirect_to post_qa_url(@post_qa)
     end
   end
 
   # DELETE /post_qas/1
   # DELETE /post_qas/1.xml
   def destroy
-    @post_qa = PostBook.find(params[:id])
+    @post_qa = PostQa.find(params[:id])
     @post_qa.destroy
 
     redirect_to my_post_user_url(current_user)
@@ -199,6 +205,8 @@ class PostQasController < ApplicationController
     post_id = params[:post_id]
     post = Post.find(post_id)
     get_comments(post, show)
+    
+    render :layout => false
   end
   
   def prefer
@@ -208,11 +216,10 @@ class PostQasController < ApplicationController
   private
 
   def get_variables
-    @tags = PostQa.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_qa_path
     @class_name = "PostQa"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
@@ -237,8 +244,8 @@ class PostQasController < ApplicationController
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_qa = post.post_qa
+    post_qa = PostQa.find(params[:id])
+    post = post_qa.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

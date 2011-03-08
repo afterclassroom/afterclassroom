@@ -6,10 +6,10 @@
     <div class="AsDcomRe">
       <div id="rate_comment_<%= comnt.id %>">
         <div class="AsDcomRe1">
-          <%= link_to_remote comnt.total_good, { :update => "rate_comment_#{comnt.id}", :url => {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "1" } } %>
+          <%= link_to comnt.total_good, {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "1" }, :remote => true %>
         </div>
         <div class="AsDcomRe2">
-          <%= link_to_remote comnt.total_bad, { :update => "rate_comment_#{comnt.id}", :url => {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "0" } } %>
+          <%= link_to comnt.total_bad, {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "0" }, :remote => true %>
         </div>
       </div>
       <div class="AsDcomRe3"><%=  link_to("Report Abuse", "#{report_abuse_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=200&width=280", :class => "thickbox", :title => "Report Abuse") %></div>

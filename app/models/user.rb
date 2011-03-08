@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
   
   def self.get_online_users
     online_users = []
-    sessions = ActiveRecord::SessionStore::Session.find(:all, :conditions => ["updated_at >= ?", 30.minutes.ago])
+    sessions = ActiveRecord::SessionStore::Session.find(:all, :conditions => ["updated_at >= ?", 5.minutes.ago])
     for session in sessions
       online_users << User.find(session.data[:user_id]) if session.data[:user_id] != nil
     end
