@@ -51,14 +51,14 @@ class PostExamsController < ApplicationController
   # GET /post_exams/1
   # GET /post_exams/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_exam = @post.post_exam
+    @post_exam = PostExam.find(params[:id])
+    @post = @post_exam.post
     update_view_count(@post)
     posts_as = PostExam.with_school(@school)
     as_next = posts_as.next(@post_exam.id).first
     as_prev = posts_as.previous(@post_exam.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_exam }
@@ -79,20 +79,25 @@ class PostExamsController < ApplicationController
 
   # GET /post_exams/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post_exam = PostExam.find(params[:id])
+    @post = @post_exam.post
+    @tag_list = @post_exam.tags_from(@post.school).join(", ")
   end
 
   # POST /post_exams
   # POST /post_exams.xml
   def create
-    @post_exam = PostExam.new(params[:post_exam])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    @post_exam.tag_list = params[:tag]
+    @post_exam = PostExam.new(params[:post_exam])
+    @post_exam = PostProject.new(params[:post_project])
+    @post.school.tag(@post_exam, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_exam.post = @post
     if @post_exam.save
       flash.now[:notice] = "Your post was successfully created."
@@ -106,11 +111,12 @@ class PostExamsController < ApplicationController
   # PUT /post_exams/1
   # PUT /post_exams/1.xml
   def update
-    params[:post_exam][:exam_type_ids] ||= []
     @post_exam = PostExam.find(params[:id])
-
+    @post = @post_exam.post
+    
     if (@post_exam.update_attributes(params[:post_exam]) && @post_exam.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post.school.tag(@post_exam, :with => params[:tag], :on => :tags)
+      redirect_to post_exam_url(@post_exam)
     end
   end
 
@@ -122,21 +128,25 @@ class PostExamsController < ApplicationController
 
     redirect_to my_post_user_url(current_user)
   end
+  
+  def quick_post_form
+    @class_name = "PostExam"
+    render :partial => "form_request_exam"
+  end
 
   private
 
   def get_variables
-    @tags = PostExam.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_exam_path
     @class_name = "PostExam"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_exam = post.post_exam
+    post_exam = PostExam.find(params[:id])
+    post = post_exam.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

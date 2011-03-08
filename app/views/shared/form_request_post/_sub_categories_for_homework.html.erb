@@ -19,18 +19,27 @@ sub = [["Post Assignment", "PostAssignment"], ["Post Project", "PostProject"], [
 	select: function(){
 		switch($('#subcategory').val()){
 			case "PostAssignment":
-				
+				path = "/post_assignments/quick_post_form";
 				break;
 			case "PostProject":
-				
+				path = "/post_projects/quick_post_form";
 				break;
 			case "PostTest":
-				
+				path = "/post_tests/quick_post_form";
 				break;
 			case "PostExam":
-				
+				path = "/post_exams/quick_post_form";
 				break;
 		}
+		$.ajax({
+            url: path,
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            success: function(data){
+                $('#quick_post_homework').html(data);
+            }
+        });
 	}
   });
 </script>

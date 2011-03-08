@@ -69,8 +69,8 @@ class PostAssignmentsController < ApplicationController
     posts_as = PostAssignment.with_school(@school)
     as_next = posts_as.next(@post_assignment.id).first
     as_prev = posts_as.previous(@post_assignment.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_assignment }
@@ -130,7 +130,7 @@ class PostAssignmentsController < ApplicationController
     if (@post_assignment.update_attributes(params[:post_assignment]) && @post.update_attributes(params[:post]))
       @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
       @post.school.tag(@post_assignment, :with => params[:tag], :on => :tags)
-      @post_assignment.save!
+      @post_assignment.save
       redirect_to post_assignment_url(@post_assignment)
     end
   end
@@ -142,6 +142,11 @@ class PostAssignmentsController < ApplicationController
     @post_assignment.destroy
 
     redirect_to my_post_user_url(current_user)
+  end
+  
+  def quick_post_form
+    @class_name = "PostAssignment"
+    render :partial => "form_request_assignment"
   end
 
   private

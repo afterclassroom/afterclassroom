@@ -213,35 +213,35 @@ module ApplicationHelper
   def link_to_edit_post(post)
     case post.type_name
     when "PostAssignment"
-      link_edit = edit_post_assignment_url(post)
+      link_edit = edit_post_assignment_url(post.post_assignment)
     when "PostProject"
-      link_edit = edit_post_project_url(post)
+      link_edit = edit_post_project_url(post.post_project)
     when "PostTest"
-      link_edit = edit_post_test_url(post)
+      link_edit = edit_post_test_url(post.post_test)
     when "PostExam"
-      link_edit = edit_post_exam_url(post)
+      link_edit = edit_post_exam_url(post.post_exam)
     when "PostQa"
-      link_edit = edit_post_qa_url(post)
+      link_edit = edit_post_qa_url(post.post_qa)
     when "PostTutor"
-      link_edit = edit_post_tutor_url(post)
+      link_edit = edit_post_tutor_url(post.post_tutor)
     when "PostBook"
-      link_edit = edit_post_book_url(post)
+      link_edit = edit_post_book_url(post.post_book)
     when "PostJob"
-      link_edit = edit_post_job_url(post)
+      link_edit = edit_post_job_url(post.post_job)
     when "PostFood"
-      link_edit = edit_post_food_url(post)
+      link_edit = edit_post_food_url(post.post_food)
     when "PostParty"
-      link_edit = edit_post_party_url(post)
+      link_edit = edit_post_party_url(post.post_party)
     when "PostMyx"
-      link_edit = edit_post_myx_url(post)
+      link_edit = edit_post_myx_url(post.post_myx)
     when "PostAwareness"
-      link_edit = edit_post_awareness_url(post)
+      link_edit = edit_post_awareness_url(post.post_awareness)
     when "PostHousing"
-      link_edit = edit_post_housing_url(post)
+      link_edit = edit_post_housing_url(post.post_housing)
     when "PostTeamup"
-      link_edit = edit_post_teamup_url(post)
+      link_edit = edit_post_teamup_url(post.post_teamup)
     when "PostExamSchedule"
-      link_edit = edit_post_exam_schedule_url(post)
+      link_edit = edit_post_exam_schedule_url(post.post_exam)
     end
     return link_edit
   end

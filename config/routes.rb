@@ -177,25 +177,25 @@ Afterclassroom::Application.routes.draw do
 
   resources :post_assignments do
     collection do
-      get :search, :due_date, :interesting, :tag
+      get :search, :due_date, :interesting, :tag, :quick_post_form
     end
   end
 
   resources :post_projects do
     collection do
-      get :search, :due_date, :interesting, :tag
+      get :search, :due_date, :interesting, :tag, :quick_post_form
     end
   end
 
   resources :post_tests do
     collection do
-      get :search, :interesting, :tag
+      get :search, :interesting, :tag, :quick_post_form
     end
   end
 
   resources :post_exams do
     collection do
-      get :search, :interesting, :tag
+      get :search, :interesting, :tag, :quick_post_form
     end
   end
 

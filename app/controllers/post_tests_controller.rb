@@ -51,14 +51,14 @@ class PostTestsController < ApplicationController
   # GET /post_tests/1
   # GET /post_tests/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_test = @post.post_test
+    @post_test = PostTest.find(params[:id])
+    @post = @post_test.post
     update_view_count(@post)
     posts_as = PostTest.with_school(@school)
     as_next = posts_as.next(@post_test.id).first
     as_prev = posts_as.previous(@post_test.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_test }
@@ -79,19 +79,24 @@ class PostTestsController < ApplicationController
 
   # GET /post_tests/1/edit
   def edit
+    @post_test = PostTest.find(params[:id])
+    @post = @post_test.post
+    @tag_list = @post_test.tags_from(@post.school).join(", ")
   end
 
   # POST /post_tests
   # POST /post_tests.xml
   def create
-    @post_test = PostTest.new(params[:post_test])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    @post_test.tag_list = params[:tag]
+    @post_test = PostTest.new(params[:post_test])
+    @post.school.tag(@post_test, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_test.post = @post
     if @post_test.save
       flash.now[:notice] = "Your post was successfully created."
@@ -105,11 +110,12 @@ class PostTestsController < ApplicationController
   # PUT /post_tests/1
   # PUT /post_tests/1.xml
   def update
-    params[:post_test][:test_type_ids] ||= []
     @post_test = PostTest.find(params[:id])
-
-    if (@post_test.update_attributes(params[:post_test]) && @post_test.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+    @post = @post_test.post
+    
+    if (@post_test.update_attributes(params[:post_test]) && @post.update_attributes(params[:post]))
+      @post.school.tag(@post_test, :with => params[:tag], :on => :tags)
+      redirect_to post_test_url(@post_test)
     end
   end
 
@@ -121,21 +127,25 @@ class PostTestsController < ApplicationController
 
     redirect_to my_post_user_url(current_user)
   end
+  
+  def quick_post_form
+    @class_name = "PostTest"
+    render :partial => "form_request_test"
+  end
 
   private
 
   def get_variables
-    @tags = PostTest.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_test_path
     @class_name = "PostTest"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_exam = post.post_test
+    post_test = PostTest.find(params[:id])
+    post = post_test.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

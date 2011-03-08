@@ -60,14 +60,14 @@ class PostProjectsController < ApplicationController
   # GET /post_projects/1
   # GET /post_projects/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_project = @post.post_project
+    @post_project = PostProject.find(params[:id])
+    @post = @post_project.post
     update_view_count(@post)
     posts_as = PostProject.with_school(@school)
     as_next = posts_as.next(@post_project.id).first
     as_prev = posts_as.previous(@post_project.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_project }
@@ -88,22 +88,25 @@ class PostProjectsController < ApplicationController
 
   # GET /post_projects/1/edit
   def edit
-    @post = Post.find(params[:id])
-    @post_project = @post.post_project
-    @tag_list = @post_project.tag_list
+    @post_project = PostProject.find(params[:id])
+    @post = @post_project.post
+    @tag_list = @post_project.tags_from(@post.school).join(", ")
   end
 
   # POST /post_projects
   # POST /post_projects.xml
   def create
-    @post_project = PostProject.new(params[:post_project])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    @post_project.tag_list = params[:tag]
+    @post_project = PostProject.new(params[:post_project])
+    @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+    @post.school.tag(@post_assignment, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_project.post = @post
     if @post_project.save
       flash.now[:notice] = "Your post was successfully created."
@@ -118,9 +121,13 @@ class PostProjectsController < ApplicationController
   # PUT /post_projects/1.xml
   def update
     @post_project = PostProject.find(params[:id])
-
+    @post = @post_project.post
+    
     if (@post_project.update_attributes(params[:post_project]) && @post_project.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+      @post.school.tag(@post_project, :with => params[:tag], :on => :tags)
+      @post_project.save
+      redirect_to post_project_url(@post_project)
     end
   end
 
@@ -132,21 +139,25 @@ class PostProjectsController < ApplicationController
 
     redirect_to my_post_user_url(current_user)
   end
+  
+  def quick_post_form
+    @class_name = "PostProject"
+    render :partial => "form_request_project"
+  end
 
   private
 
   def get_variables
-    @tags = PostProject.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_project_path
     @class_name = "PostProject"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_exam = post.post_project
+    post_project = PostProject.find(params[:id])
+    post = post_project.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

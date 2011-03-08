@@ -9,12 +9,6 @@
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
-          <div class="reqSl">
-            <div class="req40">
-              <div class="reqLa"><label>Due date</label></div>
-              <div class="reqTi"><%= f.text_field :due_date %></div>
-            </div>
-          </div>
           <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
           <div class="submit"><%= show_submit_form() %></div>

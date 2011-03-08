@@ -8,7 +8,7 @@
       <% if interesting_tests.size > 0 %>
         <% interesting_tests.each do |p| %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(p.post.title, 4), post_test_path(p.post) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(p.post.title, 4), post_test_path(p) %></div>
             <div class="dueDTime"><%= p.post.created_at.strftime("%B %d, %Y")%></div>
           </div>
         <% end %>
