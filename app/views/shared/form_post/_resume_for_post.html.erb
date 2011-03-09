@@ -1,4 +1,4 @@
-<div class="postItem">
+<div class="postItem" style="background:url(/images/upload_file.png) no-repeat 60% 2px;">
   <%= fields_for :letter do |builder1| %>
     <div class="postTit"><%= builder1.label :category, "Cover letter" %><%= builder1.hidden_field :category, :value => "Cover letter" %></div>
     <div id="divinputfile" style="margin-top:-2px">
@@ -8,7 +8,7 @@
   <% end %>
 </div>
 
-<div class="postItem">
+<div class="postItem" style="background:url(/images/upload_file.png) no-repeat 60% 2px;">
   <%= fields_for :transcript do |builder2| %>
     <div class="postTit"><%= builder2.label :category, "Transcript" %><%= builder2.hidden_field :category, :value => "Transcript" %></div>
     <div id="divinputfile" style="margin-top:-2px">
@@ -18,7 +18,7 @@
   <% end %>
 </div>
 
-<div class="postItem">
+<div class="postItem" style="background:url(/images/upload_file.png) no-repeat 60% 2px;">
   <%= fields_for :resume do |builder3| %>
     <div class="postTit"><%= builder3.label :category, "Resume*" %><%= builder3.hidden_field :category, :value => "Resume" %></div>
     <div id="divinputfile" style="margin-top:-2px">

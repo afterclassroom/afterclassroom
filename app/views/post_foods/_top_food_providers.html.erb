@@ -10,7 +10,7 @@
         top_foods.each do |tt|
         %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_food_path(tt.post) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_food_path(tt) %></div>
           </div>
         <% end %>
         <% if top_foods.size > LIMIT - 1 %>

@@ -10,7 +10,7 @@ class PostMyx < ActiveRecord::Base
   has_many :ratings
 
   # Tags
-  acts_as_taggable
+  acts_as_taggable_on :tags
 
   # Rating for Bad, Bored, Good
   # Bad: 0

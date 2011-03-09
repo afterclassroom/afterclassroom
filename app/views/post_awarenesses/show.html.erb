@@ -38,7 +38,7 @@
     <div class="AsDOr">
       <h1 class="titleH1">Related posts</h1>
       <% PostAwareness.related_posts(@school).each do |p| %>
-        <div class="AsDOrItem"><%= link_to p.title, post_awareness_path(p) %></div>
+        <div class="AsDOrItem"><%= link_to p.title, post_awareness_path(p.post_awareness) %></div>
       <% end %>
     </div>
     <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>

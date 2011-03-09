@@ -88,14 +88,14 @@ class PostPartiesController < ApplicationController
   # GET /post_parties/1
   # GET /post_parties/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_party = @post.post_party
+    @post_party = PostFood.find(params[:id])
+    @post = @post_party.post
     update_view_count(@post)
     posts_as = PostParty.with_school(@school)
     as_next = posts_as.next(@post_party.id).first
     as_prev = posts_as.previous(@post_party.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_party }
@@ -151,20 +151,25 @@ class PostPartiesController < ApplicationController
   
   # GET /post_parties/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post_party = PostParty.find(params[:id])
+    @post = @post_party.post
+    @tag_list = @post_party.tags_from(@post.school).join(", ")
   end
   
   # POST /post_parties
   # POST /post_parties.xml
   def create
     params[:post_party][:party_type_ids] = params[:party_type]
-    @post_party = PostParty.new(params[:post_party])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
+    @post_party = PostParty.new(params[:post_party])
+    @post.school.tag(@post_party, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_party.tag_list = params[:tag]
     @post_party.post = @post
     if @post_party.save
@@ -182,9 +187,11 @@ class PostPartiesController < ApplicationController
     params[:post_party][:party_type_ids] = params[:party_type]
     params[:post_party][:party_type_ids] ||= []
     @post_party = PostParty.find(params[:id])
+    @post = @post_party.post
     
     if (@post_party.update_attributes(params[:post_party]) && @post_party.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post.school.tag(@post_party, :with => params[:tag], :on => :tags)
+      redirect_to post_party_url(@post_party)
     end
   end
   
@@ -204,17 +211,16 @@ class PostPartiesController < ApplicationController
   private
   
   def get_variables
-    @tags = PostParty.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_party_path
     @class_name = "PostParty"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
   
   def require_current_user
-    post = Post.find(params[:id])
-    @post_party = post.post_party
+    post_party = PostParty.find(params[:id])
+    post = post_party.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

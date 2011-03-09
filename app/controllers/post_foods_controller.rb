@@ -88,14 +88,14 @@ class PostFoodsController < ApplicationController
   # GET /post_foods/1
   # GET /post_foods/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_food = @post.post_food
+    @post_food = PostFood.find(params[:id])
+    @post = @post_food.post
     update_view_count(@post)
     posts_as = PostFood.with_school(@school)
     as_next = posts_as.next(@post_food.id).first
     as_prev = posts_as.previous(@post_food.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_food }
@@ -116,20 +116,24 @@ class PostFoodsController < ApplicationController
 
   # GET /post_foods/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post_food = PostFood.find(params[:id])
+    @post = @post_food.post
+    @tag_list = @post_food.tags_from(@post.school).join(", ")
   end
 
   # POST /post_foods
   # POST /post_foods.xml
   def create
-    @post_food = PostFood.new(params[:post_food])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    @post_food.tag_list = params[:tag]
+    @post_food = PostFood.new(params[:post_food])
+    @post.school.tag(@post_food, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_food.post = @post
     if @post_food.save
       flash.now[:notice] = "Your post was successfully created."
@@ -144,9 +148,11 @@ class PostFoodsController < ApplicationController
   # PUT /post_foods/1.xml
   def update
     @post_food = PostFood.find(params[:id])
+    @post = @post_food.post
 
     if (@post_food.update_attributes(params[:post_food]) && @post_food.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post.school.tag(@post_food, :with => params[:tag], :on => :tags)
+      redirect_to post_food_url(@post_food)
     end
   end
 
@@ -162,17 +168,16 @@ class PostFoodsController < ApplicationController
   private
 
   def get_variables
-    @tags = PostFood.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_food_path
     @class_name = "PostFood"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_food = post.post_food
+    post_food = PostFood.find(params[:id])
+    post = post_food.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

@@ -87,14 +87,14 @@ class PostMyxesController < ApplicationController
   # GET /post_myxes/1
   # GET /post_myxes/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_myx = @post.post_myx
+    @post_myx = PostMyx.find(params[:id])
+    @post = @post_myx.post
     update_view_count(@post)
     posts_as = PostMyx.with_school(@school)
     as_next = posts_as.next(@post_myx.id).first
     as_prev = posts_as.previous(@post_myx.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_myx }
@@ -115,19 +115,24 @@ class PostMyxesController < ApplicationController
 
   # GET /post_myxes/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post_myx = PostMyx.find(params[:id])
+    @post = @post_myx.post
+    @tag_list = @post_myx.tags_from(@post.school).join(", ")
   end
 
   # POST /post_myxes
   # POST /post_myxes.xml
   def create
-    @post_myx = PostMyx.new(params[:post_myx])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
+    @post_myx = PostMyx.new(params[:post_myx])
+    @post.school.tag(@post_myx, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_myx.tag_list = params[:tag]
     @post_myx.post = @post
     if @post_myx.save
@@ -142,10 +147,12 @@ class PostMyxesController < ApplicationController
   # PUT /post_myxes/1
   # PUT /post_myxes/1.xml
   def update
-    @post_myx = PostMyx.find(params[:id])
+    @post_myx = PostFood.find(params[:id])
+    @post = @post_myx.post
 
     if (@post_myx.update_attributes(params[:post_myx]) && @post_myx.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post.school.tag(@post_myx, :with => params[:tag], :on => :tags)
+      redirect_to post_myx_url(@post_myx)
     end
   end
 
@@ -161,17 +168,16 @@ class PostMyxesController < ApplicationController
   private
 
   def get_variables
-    @tags = PostMyx.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_myx_path
     @class_name = "PostMyx"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_myx = post.post_myx
+    post_myx = PostMyx.find(params[:id])
+    post = post_myx.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

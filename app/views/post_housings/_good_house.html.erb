@@ -11,7 +11,7 @@
         %>
           <div class="dueDItem">
             <div class="studentImg"><%= link_to raw("<div>#{image_tag(tt.post.user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => tt.post.user.id} %></div>
-            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_housing_path(tt.post) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_housing_path(tt) %></div>
           </div>
         <% end %>
         <div class="dueDbutton"><%= link_to "View more Good House/Apt", good_house_post_housings_path %></div>

@@ -11,7 +11,7 @@ class PostParty < ActiveRecord::Base
   has_many :ratings
 
   # Tags
-  acts_as_taggable
+  acts_as_taggable_on :tags
 
   # Rating for Bad, Ok, Good
   # Bad: 0

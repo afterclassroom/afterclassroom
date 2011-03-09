@@ -67,14 +67,14 @@ class PostHousingsController < ApplicationController
   # GET /post_housings/1
   # GET /post_housings/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_housing = @post.post_housing
+    @post_housing = PostHousing.find(params[:id])
+    @post = @post_housing.post
     update_view_count(@post)
     posts_as = PostHousing.with_school(@school)
     as_next = posts_as.next(@post_housing.id).first
     as_prev = posts_as.previous(@post_housing.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_housing }
@@ -95,20 +95,25 @@ class PostHousingsController < ApplicationController
 
   # GET /post_housings/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post_housing = PostHousing.find(params[:id])
+    @post = @post_housing.post
+    @tag_list = @post_housing.tags_from(@post.school).join(", ")
   end
 
   # POST /post_housings
   # POST /post_housings.xml
   def create
     params[:post_housing][:housing_category_ids] = params[:housing_category]
-    @post_housing = PostHousing.new(params[:post_housing])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
+    @post_housing = PostHousing.new(params[:post_housing])
+    @post.school.tag(@post_housing, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_housing.post = @post
     if @post_housing.save
       flash.now[:notice] = "Your post was successfully created."
@@ -125,9 +130,10 @@ class PostHousingsController < ApplicationController
     params[:post_housing][:housing_category_ids] = params[:housing_category]
     params[:post_housing][:housing_category_ids] ||= []
     @post_housing = PostHousing.find(params[:id])
-
+    @post = @post_housing.post
     if (@post_housing.update_attributes(params[:post_housing]) && @post_housing.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post.school.tag(@post_housing, :with => params[:tag], :on => :tags)
+      redirect_to post_housing_url(@post_housing)
     end
   end
 
@@ -143,17 +149,16 @@ class PostHousingsController < ApplicationController
   private
 
   def get_variables
-    @tags = PostHousing.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_housing_path
     @class_name = "PostHousing"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_housing = post.post_housing
+    post_housing = PostHousing.find(params[:id])
+    post = post_housing.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

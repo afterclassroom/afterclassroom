@@ -130,14 +130,14 @@ class PostAwarenessesController < ApplicationController
   # GET /post_awarenesses/1
   # GET /post_awarenesses/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post_awareness = @post.post_awareness
+    @post_awareness = PostFood.find(params[:id])
+    @post = @post_awareness.post
     update_view_count(@post)
     posts_as = PostAwareness.with_school(@school)
     as_next = posts_as.next(@post_awareness.id).first
     as_prev = posts_as.previous(@post_awareness.id).first
-    @next = as_next.post if as_next
-    @prev = as_prev.post if as_prev
+    @next = as_next if as_next
+    @prev = as_prev if as_prev
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post_awareness }
@@ -159,20 +159,24 @@ class PostAwarenessesController < ApplicationController
 
   # GET /post_awarenesses/1/edit
   def edit
-    @post = Post.find(params[:id])
+    @post_awareness = PostAwareness.find(params[:id])
+    @post = @post_awareness.post
+    @tag_list = @post_awareness.tags_from(@post.school).join(", ")
   end
 
   # POST /post_awarenesses
   # POST /post_awarenesses.xml
   def create
-    @post_awareness = PostAwareness.new(params[:post_awareness])
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post.save
-    @post_awareness.tag_list = params[:tag]
+    @post_awareness = PostAwareness.new(params[:post_awareness])
+    @post.school.tag(@post_awareness, :with => params[:tag], :on => :tags)
+    @post.school.owned_taggings
+    @post.school.owned_tags
     @post_awareness.post = @post
     if @post_awareness.save
       flash.now[:notice] = "Your post was successfully created."
@@ -186,11 +190,12 @@ class PostAwarenessesController < ApplicationController
   # PUT /post_awarenesses/1
   # PUT /post_awarenesses/1.xml
   def update
-    params[:post_awareness][:awareness_issue_ids] ||= []
     @post_awareness = PostAwareness.find(params[:id])
+    @post = @post_awareness.post
 
     if (@post_awareness.update_attributes(params[:post_awareness]) && @post_awareness.post.update_attributes(params[:post]))
-      redirect_to my_post_user_url(current_user)
+      @post.school.tag(@post_awareness, :with => params[:tag], :on => :tags)
+      redirect_to post_awareness_url(@post_awareness)
     end
   end
 
@@ -206,17 +211,16 @@ class PostAwarenessesController < ApplicationController
   private
 
   def get_variables
-    @tags = PostAwareness.tag_counts_on(:tags)
+    @school = session[:your_school]
     @new_post_path = new_post_awareness_path
     @class_name = "PostAwareness"
     @type = PostCategory.find_by_class_name(@class_name).id
-    @school = session[:your_school]
     @query = params[:search][:query] if params[:search]
   end
 
   def require_current_user
-    post = Post.find(params[:id])
-    @post_awareness = post.post_awareness
+    post_food = PostAwareness.find(params[:id])
+    post = post_food.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false

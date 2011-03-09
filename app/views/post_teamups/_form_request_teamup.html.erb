@@ -1,13 +1,15 @@
+<%
+type = params[:teamup_category_id]
+type ||= 1
+%>
 <div class="col300 requestteamup">
   <div class="col300in">
     <h1 class="col300Title">I want to establish a group</h1>
     <div class="col300Cont">
       <%= form_for :post_teamup, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-        <%
-        teamup_category = TeamupCategory.find_by_label("your_future_team")
-      %>
-        <%= hidden_field_tag("post_teamup[teamup_category_id]", teamup_category.id) if teamup_category %>
         <%= fields_for :post do |p| %>
+		<div class="postTit">Type</div>
+    	<div class="postDep"><%= text_field_tag "post_teamup[teamup_category_id]", type %></div>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
@@ -20,3 +22,18 @@
     </div>
   </div>
 </div>
+
+<ul id="teamup_category_menu" class="mcdropdown_menu">
+  <% TeamupCategory.find(:all).each do |t| %>
+    <li rel_teamup_category="<%= t.id %>">
+      <%= t.name %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  $("#post_teamup_teamup_category_id").mcDropdown("#teamup_category_menu", {
+    width: 350,
+    valueAttr: "rel_teamup_category"
+  });
+</script>

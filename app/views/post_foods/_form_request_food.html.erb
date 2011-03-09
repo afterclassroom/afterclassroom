@@ -1,6 +1,6 @@
 <div class="col300 requestFood">
   <div class="col300in">
-    <h1 class="col300Title">Requests Foods</h1>
+    <h1 class="col300Title">Quick post for Food</h1>
     <div class="col300Cont">
       <%= form_for :post_food, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%= fields_for :post do |p| %>

@@ -1,13 +1,13 @@
 <div class="col300 requestHous">
   <div class="col300in">
-    <h1 class="col300Title">Requests House/Apt/Room</h1>
+    <h1 class="col300Title">Quick post for Housing</h1>
     <div class="col300Cont">
       <%= form_for :post_housing, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-        <%
-        housing_category = HousingCategory.find_by_label("i_need_a_place")
-      %>
-        <%= hidden_field_tag("post_housing[housing_category_ids][]", housing_category.id) if housing_category %>
         <%= fields_for :post do |p| %>
+		<div class="postTit">Type</div>
+	    <div>
+	      <%= select_tag("post_housing[housing_category_ids][]", options_for_select(HousingCategory.find(:all).collect {|p| [ p.name, p.id ] }, []), { :include_blank => "Select Type", :multiple => true, :id => "housing_category", :style => "width:252px" }) %>
+	    </div>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
@@ -30,3 +30,8 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  // 'Select All' text changed
+  $("#housing_category").multiSelect({ selectAllText: 'Select All' });
+</script>
