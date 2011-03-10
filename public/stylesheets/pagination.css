@@ -38,9 +38,11 @@
 .assPage a:hover
 {
   height:14px;
-  background:url('/images/bgdivpageLR.png') no-repeat left top;
+  /*background:url('/images/bgdivpageLR.png') no-repeat left top;*/
   color:#fff!important;
   cursor:pointer;
+  -moz-border-radius: 2px;
+  background: none repeat scroll 0 0 #2E6AB1;
 }
 .assPage a:hover page
 {
