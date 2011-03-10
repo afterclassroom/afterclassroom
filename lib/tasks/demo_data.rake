@@ -179,12 +179,13 @@ def create_demo_posts_assignments
    
     post = create_post(user, school, post_category)
     
-    PostAssignment.create do |pa|
+    post_assignment = PostAssignment.create do |pa|
       pa.post = post
       pa.professor = Faker::Name.name
       pa.due_date = DateTime.now + rand(20).to_i
-      pa.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_assignment, :with => get_random_list_tags, :on => :tags)
     
   end
 end
@@ -199,11 +200,12 @@ def create_demo_posts_tests
 
     post = create_post(user, school, post_category)
     
-    PostTest.create do |pt|
+    post_test = PostTest.create do |pt|
       pt.post = post
       pt.due_date = DateTime.now + rand(20).to_i
-      pt.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_test, :with => get_random_list_tags, :on => :tags)
     
   end
 end
@@ -218,11 +220,12 @@ def create_demo_posts_projects
 
     post = create_post(user, school, post_category)
     
-    PostProject.create do |prj|
+    post_project = PostProject.create do |prj|
       prj.post = post
       prj.due_date = DateTime.now + rand(20).to_i
-      prj.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_project, :with => get_random_list_tags, :on => :tags)
     
   end
 end
@@ -237,11 +240,12 @@ def create_demo_posts_exams
 
     post = create_post(user, school, post_category)
     
-    PostExam.create do |pe|
+    post_exam = PostExam.create do |pe|
       pe.post = post
       pe.due_date = DateTime.now + rand(20).to_i
-      pe.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_exam, :with => get_random_list_tags, :on => :tags)
 
   end
 end
@@ -256,11 +260,13 @@ def create_demo_posts_myx
 
     post = create_post(user, school, post_category)
     
-    PostMyx.create do |px|
+    post_myx = PostMyx.create do |px|
       px.post = post
       px.professor = Faker::Name.name
-      px.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_myx, :with => get_random_list_tags, :on => :tags)
+    
   end
 end
 
@@ -274,14 +280,16 @@ def create_demo_posts_books
 
     post = create_post(user, school, post_category)
     
-    PostBook.create do |b|
+    post_book = PostBook.create do |b|
       b.post = post
       b.book_type = BookType.find(rand(BookType.count).to_i + 1)
       b.address = Faker::Address.street_address
       b.phone = Faker::PhoneNumber.phone_number
       b.price = "500"
-      b.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_book, :with => get_random_list_tags, :on => :tags)
+    
   end
 end
 
@@ -295,13 +303,15 @@ def create_demo_posts_tutors
 
     post = create_post(user, school, post_category)
       
-    PostTutor.create do |t|
+    post_tutor = PostTutor.create do |t|
       t.post = post
       t.tutor_type = TutorType.find(rand(TutorType.count).to_i + 1)
       t.address = Faker::Address.street_address
       t.phone = Faker::PhoneNumber.phone_number
-      t.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_tutor, :with => get_random_list_tags, :on => :tags)
+    
   end
 end
 
@@ -320,7 +330,7 @@ def create_demo_posts_jobs
 
     post = create_post(user, school, post_category)
       
-    PostJob.create do |j|
+    post_job = PostJob.create do |j|
       j.post = post
       j.job_type = JobType.find(rand(JobType.count).to_i + 1)
       j.address=Faker::Address.street_address
@@ -331,8 +341,10 @@ def create_demo_posts_jobs
       j.edu_experience_require = edu_experience_require[rand(edu_experience_require.size).to_i]
       j.compensation = compensation[rand(compensation.size).to_i]
       j.prepare_post = rand(2).to_i;
-      j.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_job, :with => get_random_list_tags, :on => :tags)
+    
   end
 
   # Create job information
@@ -356,13 +368,14 @@ def create_demo_posts_housings
 
     post = create_post(user, school, post_category)  
       
-    phouse = PostHousing.create do |ph|
+    post_housing = PostHousing.create do |ph|
       ph.post = post
       ph.address = Faker::Address.street_address
       ph.rent = rent[rand(rent.size).to_i]
       ph.currency = currency[rand(currency.size).to_i]
-      ph.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_housing, :with => get_random_list_tags, :on => :tags)
   	  
     #generate number of housingCategory that PostHousing belongs to
     noOfMapping = rand(HousingCategory.count).to_i + 1
@@ -389,13 +402,14 @@ def create_demo_posts_parties
 
     post = create_post(user, school, post_category)
       
-    pty = PostParty.create do |pt|
+    post_party = PostParty.create do |pt|
       pt.post = post
       pt.start_time = DateTime.now
       pt.end_time = DateTime.now + rand(3).to_i
       pt.address = Faker::Address.street_address
-      pt.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_party, :with => get_random_list_tags, :on => :tags)
 
     #generate number of partyTypes that PostParty belongs to
     noOfMapping = rand(PartyType.count).to_i + 1
@@ -423,11 +437,12 @@ def create_demo_posts_teamups
 
     post = create_post(user, school, post_category)
     
-    PostTeamup.create do |pt|
+    post_teamup = PostTeamup.create do |pt|
       pt.post = post
       pt.teamup_category_id = TeamupCategory.find(rand(TeamupCategory.count)+1)
-      pt.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_teamup, :with => get_random_list_tags, :on => :tags)
     
   end
 end
@@ -442,14 +457,16 @@ def create_demo_posts_awarenesses
     
     post = create_post(user, school, post_category)
     
-    PostAwareness.create do |pa|
+    post_awareness = PostAwareness.create do |pa|
       type = AwarenessType.find(rand(AwarenessType.count).to_i + 1)
       pa.post = post
       pa.awareness_type = type
       pa.due_date = DateTime.now + rand(20).to_i if type.label == "take_action_now"
       pa.phone = Faker::PhoneNumber.phone_number if type.label == "emergency_alerts"
-      pa.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_awareness, :with => get_random_list_tags, :on => :tags)
+    
   end
 end
 
@@ -463,12 +480,13 @@ def create_demo_posts_foods
     
     post = create_post(user, school, post_category)
     
-    PostFood.create do |p|
+    post_food = PostFood.create do |p|
       p.post = post
       p.address = Faker::Address.street_address
       p.phone = Faker::PhoneNumber.phone_number
-      p.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_food, :with => get_random_list_tags, :on => :tags)
     
   end
 end
@@ -485,11 +503,12 @@ def create_demo_posts_qas
     
     qaCat = PostQaCategory.find(rand(PostQaCategory.count).to_i + 1)
     
-    PostQa.create do |p|
+    post_qa = PostQa.create do |p|
       p.post = post
       p.post_qa_category = qaCat
-      p.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_qa, :with => get_random_list_tags, :on => :tags)
     
   end
 end
@@ -504,15 +523,16 @@ def create_demo_posts_exam_schedules
 
     post = create_post(user, school, post_category)
     
-    PostExamSchedule.create do |p|
+    post_examschedule = PostExamSchedule.create do |p|
       p.post = post
       p.teacher_name = Faker::Name.name
       p.place = Faker::Address.street_address
       p.starts_at = DateTime.now + rand(10).to_i
       p.starts_at = DateTime.now + rand(20).to_i
       p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size).to_i].first
-      p.tag_list = get_random_list_tags
     end
+    
+    post.school.tag(post_examschedule, :with => get_random_list_tags, :on => :tags)
 
   end
 end
