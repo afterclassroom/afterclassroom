@@ -1,13 +1,13 @@
 .assPage
 {
-  float:left;
-  /*margin-right:15px;*/
-  /*padding:10px 0px 10px 0px;
-  color:#6f6f63;
-  font-size:11px;
-  }
-  .assPage span {
-/*padding:0px 4px*/ }
+    float:left;
+    /*margin-right:15px;*/
+    /*padding:10px 0px 10px 0px;
+    color:#6f6f63;
+    font-size:11px;
+    }
+    .assPage span {
+  /*padding:0px 4px*/ }
 .assPage span.disabled
 {
     margin-right: 4px;
@@ -16,62 +16,67 @@
 {
     margin-right: 4px;
     margin-left: 2px;
+    color:#fff!important;
+    cursor:pointer;
+    -moz-border-radius: 2px;
+    background: none repeat scroll 0 0 #2E6AB1;
+    padding: 1px 4px;
 }
 .assPage span.current
 {
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  width:14px;
-  height:14px;
-  background: #2E6AB1;
-  color:#fff!important;
-  cursor:default;
-  padding:0 4px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    width:14px;
+    height:14px;
+    background: #2E6AB1;
+    color:#fff!important;
+    cursor:default;
+    padding:0 4px;
 }
 .assPage a
 {
-  color:#6f6f63;
-  padding:1px 4px;
-  text-decoration: none;
+    color:#6f6f63;
+    padding:1px 4px;
+    text-decoration: none;
 }
 .assPage a:hover
 {
-  height:14px;
-  /*background:url('/images/bgdivpageLR.png') no-repeat left top;*/
-  color:#fff!important;
-  cursor:pointer;
-  -moz-border-radius: 2px;
-  background: none repeat scroll 0 0 #2E6AB1;
+    height:14px;
+    /*background:url('/images/bgdivpageLR.png') no-repeat left top;*/
+    color:#fff!important;
+    cursor:pointer;
+    -moz-border-radius: 2px;
+    background: none repeat scroll 0 0 #2E6AB1;
 }
 .assPage a:hover page
 {
-  height:14px;
-  background:url('/images/bgdivpageR.png') no-repeat right top;
-  color:#fff!important;
-  cursor:pointer;
+    height:14px;
+    background:url('/images/bgdivpageR.png') no-repeat right top;
+    color:#fff!important;
+    cursor:pointer;
 }
 .assPage a.current:hover
 {
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  width:14px;
-  height:14px;
-  background: #2E6AB1;
-  color:#fff!important;
-  text-decoration: none;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    width:14px;
+    height:14px;
+    background: #2E6AB1;
+    color:#fff!important;
+    text-decoration: none;
 }
 .numPage
 {
-  margin-top:20px;
-  /*padding-right:20px;*/
+    margin-top:20px;
+    /*padding-right:20px;*/
 }
 .next_page
 {
-  /*margin-left:8px;*/
+    /*margin-left:8px;*/
 }
 .click_here
 {
-  margin-left:10px;
+    margin-left:10px;
 }
