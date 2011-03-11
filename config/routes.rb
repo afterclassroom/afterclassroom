@@ -33,7 +33,7 @@ Afterclassroom::Application.routes.draw do
           :payments, :ads, :setting,
           :change_psw, :save_psw, :change_name,
           :save_name, :change_email, :save_email
-        post :save_setting
+        post :save_setting, :save_private_setting
       end
     end
 

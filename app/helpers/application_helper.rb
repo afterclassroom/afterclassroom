@@ -469,6 +469,17 @@ module ApplicationHelper
   def show_work_infor
     link_to("Edit My Work", "#{edit_work_infor_user_profiles_path(current_user)}?height=200&width=470", :class => "thickbox", :title => "Edit My Work")
   end
+  
+  def show_status_setting(user, type)
+    val = user.private_settings[type] if user.private_settings
+    str = val ? Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}].key(val.to_i) : "No setting"
+    "Share to: " + str
+  end
+  
+  def show_options_setting(user, type)
+    val = user.private_settings[type] if user.private_settings
+    select_tag "#{type}", options_for_select(OPTIONS_SETTING, val), :class => "menuPrivate"
+  end
 
   def show_attach(wall)
     if wall.user_wall_photo

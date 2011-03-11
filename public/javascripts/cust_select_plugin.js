@@ -50,7 +50,7 @@
 				isscrolling: 	false,				//scrolls long lists
 				scrollminitems:	15,					//items before scrolling
 				scrollheight:	150,				//height of scrolling window
-				preopenselect:	true,				//opens prechecked select boxes
+				preopenselect:	false,				//opens prechecked select boxes
 				hoverstyle:		"hover",			//css hover style name
 				openspeed:		"normal",			//selectbox open speed "slow","normal","fast" or numbers 1000
 				alldisabled:	false,				//disables the selectbox
@@ -177,7 +177,7 @@
 
 		//bind item clicks
 		jQuery(selectboxoptions_wrap+ " ul li").unbind().click( function() {
-
+			
 			if(jQuery(this).attr("class").indexOf("disabled") < 0)
 			{
 				var id;
@@ -197,6 +197,9 @@
 						jQuery(this).parent().find("." + classselected).removeClass(classselected);
 						jQuery(this).parent().parent().find("input").val("");
 					}
+					value = jQuery(this).parent().parent().find("input").val();
+					type = jQuery(this).parent().parent().find("input").attr("id");
+					share_select(value, type);
 				}
 				else //checkbox
 				{
@@ -214,6 +217,9 @@
 						jQuery(this).addClass(classselected);
 						jQuery(this).find("input").val(id);
 					}
+					value = jQuery(this).find("input").val();
+					type = jQuery(this).find("input").attr("id");
+					share_select(value, type);
 				}
 			}
 		}).hover(function(){

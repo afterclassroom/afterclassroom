@@ -76,6 +76,9 @@ class User < ActiveRecord::Base
   # Taggable
   acts_as_tagger
   
+  # Private settings
+  has_dynamic_attributes :column_name => :private_settings
+  
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/gif', 'image/png']
   
   # ThinkSphinx

@@ -1,117 +1,250 @@
 <% content_for :menu_top_student_lounge do -%>
-  <%= render :partial => 'submenu' %>
+<%= render :partial => 'submenu' %>
 <% end -%>
-
 <div class="settCont">
-  <div class="settCont12">
-    <div class="settMenu">
-      <ul>
-        <%= render :partial => "setting_menu" %>
-      </ul>
-    </div>
-    <div class="settNetLPaT"></div>
-    <div class="settNetLPa">Control your sharing information</div>
-    <div class="settC">
-      <div class="flistItem">
-        <div class="flistInf">
-          <div class="flistNPa"><span>My story</span></div>
-          <div class="flistS"></div>
+    <div class="settCont1">
+        <div class="settMenu">
+            <ul>
+                <%= render :partial => "setting_menu" %>
+            </ul>
         </div>
-        <div class="select_wrap">
-          <select name="sample_select" class="menuPrivate">
-            <option>Add to List</option>
-            <option value="1">Family members</option>
-            <option value="2">Friends from school</option>
-            <option value="3">Friends from work</option>
-            <option value="4">General Friends</option>
-          </select>
+        <div class="settNetLPa">
+            Control your sharing information
         </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="settNetLPaT"></div>
-  <div class="settNetLPa">My Profile</div>
-  <div class="settC">
-    <div class="flistItem">
-      <div class="flistInf">
-        <div class="flistNPa"><span>My Family</span></div>
-        <div class="flistS"></div>
-      </div>
-      <div class="flistRPa">
-        <div class="flistRAddPa">
-          <a href="#"><span class="flistAPa">Add to list</span></a>
-          <ul>
-            <li><label><input type="checkbox" id="Family members"><a href="">Family members</a></label></li>
-            <li><label><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></label></li>
-            <li><label><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></label></li>
-            <li><label><input type="checkbox" id="General Friends"><a href="">General Friends</a></label></li>
-          </ul>
+        <div class="settC">
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>About myself</span>
+                    </div>
+                    <div class="flistS" id="about_myself_share_status">
+                        <%= show_status_setting(current_user, "about_myself") %>
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <%= show_options_setting(current_user, "about_myself") %>
+                </div>
+            </div>
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>Sex</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <select name="sample_select" class="menuPrivate">
+                        <option>Add to List</option>
+                        <option value="1">Family members</option>
+                        <option valusettCont12e="2">Friends from school</option>
+                        <option value="3">Friends from work</option>
+                        <option value="4">General Friends</option>
+                        <option value="5">Every one</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>Relationship Status</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <select name="sample_select" class="menuPrivate">
+                        <option>Add to List</option>
+                        <option value="1">Family members</option>
+                        <option valusettCont12e="2">Friends from school</option>
+                        <option value="3">Friends from work</option>
+                        <option value="4">General Friends</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>Looking for</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <select name="sample_select" class="menuPrivate">
+                        <option>Add to List</option>
+                        <option value="1">Family members</option>
+                        <option value="2">Friends from school</option>
+                        <option value="3">Friends from work</option>
+                        <option value="4">General Friends</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>Political views</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <select name="sample_select" class="menuPrivate">
+                        <option>Add to List</option>
+                        <option value="1">Family members</option>
+                        <option value="2">Friends from school</option>
+                        <option value="3">Friends from work</option>
+                        <option value="4">General Friends</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>Mobile Number</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <select name="sample_select" class="menuPrivate">
+                        <option>Option to share</option>
+                        <option value="1">Friend from school</option>
+                        <option value="2">Friend of friends</option>
+                        <option value="3">My Family</option>
+                        <option value="4">Friends from work</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>Current City</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <select name="sample_select" class="menuPrivate">
+                        <option>Option to share</option>
+                        <option value="1">Friend from school</option>
+                        <option value="2">Friend of friends</option>
+                        <option value="3">My Family</option>
+                        <option value="4">Friends from work</option>
+                    </select>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="flistItem">
-      <div class="flistInf">
-        <div class="flistNPa"><span>Web Page</span></div>
-        <div class="flistS"></div>
-      </div>
-      <div class="flistRPa">
-        <div class="flistRAddPa">
-          <a href="#"><span class="flistAPa">Add to list</span></a>
-          <ul>
-            <li><label><input type="checkbox" id="Family members"><a href="">Family members</a></label></li>
-            <li><label><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></label></li>
-            <li><label><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></label></li>
-            <li><label><input type="checkbox" id="General Friends"><a href="">General Friends</a></label></li>
-          </ul>
+        <div class="settNetLPaT">
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="settNetLPaT"></div>
-  <div class="settNetLPa">Box</div>
-  <div class="settC">
-    <div class="flistItem">
-      <div class="flistInf">
-        <div class="flistNPa"><span>My Assignment</span></div>
-        <div class="flistS"></div>
-      </div>
-      <div class="flistRPa">
-        <div class="flistRAddPa">
-          <a href="#"><span class="flistAPa">Add to list</span></a>
-          <ul>
-            <li><label><input type="checkbox" id="Family members"><a href="">Family members</a></label></li>
-            <li><label><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></label></li>
-            <li><label><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></label></li>
-            <li><label><input type="checkbox" id="General Friends"><a href="">General Friends</a></label></li>
-          </ul>
+        <div class="settNetLPa">
+            Friends and Fans
         </div>
-      </div>
-    </div>
-    <div class="flistItem">
-      <div class="flistInf">
-        <div class="flistNPa"><span>My Project</span></div>
-        <div class="flistS"></div>
-      </div>
-      <div class="flistRPa">
-        <div class="flistRAddPa">
-          <a href="#"><span class="flistAPa">Add to list</span></a>
-          <ul>
-            <li><label><input type="checkbox" id="Family members"><a href="">Family members</a></label></li>
-            <li><label><input type="checkbox" id="Friends from school"><a href="">Friends from school</a></label></li>
-            <li><label><input type="checkbox" id="Friends from work"><a href="">Friends from work</a></label></li>
-            <li><label><input type="checkbox" id="General Friends"><a href="">General Friends</a></label></li>
-          </ul>
+        <div class="settC">
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>My Friends</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <select name="sample_select" class="menuPrivate">
+                        <option>Option to share</option>
+                        <option value="1">Friend from school</option>
+                        <option value="2">Friend of friends</option>
+                        <option value="3">My Family</option>
+                        <option value="4">Friends from work</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>My Fans</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+        			
+                </div>
+            </div>
         </div>
-      </div>
+		<div class="settNetLPaT">
+        </div>
+        <div class="settNetLPa">
+            Photos and Musics
+        </div>
+        <div class="settC">
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>My Photos</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <select name="sample_select" class="menuPrivate">
+                        <option>Option to share</option>
+                        <option value="1">Friend from school</option>
+                        <option value="2">Friend of friends</option>
+                        <option value="3">My Family</option>
+                        <option value="4">Friends from work</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>My Musics</span>
+                    </div>
+                    <div class="flistS">
+                        Share to: Every one
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <select name="sample_select" class="menuPrivate">
+                        <option>Option to share</option>
+                        <option value="1">Friend from school</option>
+                        <option value="2">Friend of friends</option>
+                        <option value="3">My Family</option>
+                        <option value="4">Friends from work</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <script>
-	$(document).ready( function() {
-		$(".menuPrivate").custSelectBox();
-
-	});
+    $(document).ready(function(){
+        $(".menuPrivate").custSelectBox();
+    });
+	
+	function share_select(val, tp) { 
+		$.ajax({
+			url: '<%= save_private_setting_user_settings_path(current_user) %>',
+            type: 'POST',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                type : tp,
+                value : val
+            }),
+            success: function(data){
+                $('#' + tp + '_share_status').html(data);
+            }
+        });
+	};
 </script>
-
-
