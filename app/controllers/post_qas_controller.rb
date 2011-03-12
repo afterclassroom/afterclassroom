@@ -273,6 +273,9 @@ class PostQasController < ApplicationController
     puts ("HELLO WORLD")
     puts ("HELLO WORLD")
     puts ("HELLO WORLD")
+
+    QaSendMail.refer_to_expert("HELLO ATER", params[:strContent], params[:emailAddr]).deliver
+    
     # render :layout => false
     render :text => %Q'Mail sent to'
   end
