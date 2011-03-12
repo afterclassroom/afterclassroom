@@ -1,7 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostJobsController < ApplicationController
   skip_before_filter :verify_authenticity_token
-
+  
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses, :my_job_list, :add_job, :employment_infor, :show_job_infor]
   before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :employment_infor, :show_job_infor]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
@@ -19,38 +19,38 @@ class PostJobsController < ApplicationController
       @job_type_id ||= JobType.find(:first).id
       @posts = PostJob.paginated_post_conditions_with_option(params, @school, @job_type_id)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def tag
     @tag_name = params[:tag_name]
     @posts = PostJob.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
-
+  
   def good_companies
     @posts = PostJob.paginated_post_conditions_with_good_companies(params, @school)
   end
-
+  
   def bad_bosses
     @posts = PostJob.paginated_post_conditions_with_bad_bosses(params, @school)
   end
-
+  
   def rate
     rating = params[:rating]
     @post = Post.find(params[:post_id])
@@ -59,7 +59,7 @@ class PostJobsController < ApplicationController
     # Update rating status
     score_good = post_j.score_good
     score_bad = post_j.score_bad
-
+    
     if score_good > score_bad
       status = "Good"
     elsif score_good == score_bad
@@ -67,15 +67,15 @@ class PostJobsController < ApplicationController
     else
       status = "Bad"
     end
-
+    
     post_j.rating_status = status
-
+    
     post_j.save
-
+    
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_j.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_j.total_bad}</a></div>"
   end
-
+  
   def require_rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
@@ -85,7 +85,7 @@ class PostJobsController < ApplicationController
       # Update rating status
       score_good = @post_j.score_good
       score_bad = @post_j.score_bad
-
+      
       if score_good > score_bad
         status = "Good"
       elsif score_good == score_bad
@@ -93,9 +93,9 @@ class PostJobsController < ApplicationController
       else
         status = "Bad"
       end
-
+      
       @post_j.rating_status = status
-
+      
       @post_j.save
     end
   end
@@ -117,7 +117,7 @@ class PostJobsController < ApplicationController
       format.xml  { render :xml => @post_job }
     end
   end
-
+  
   def employment_infor
     @job_infors = JobInfor.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
   end
@@ -126,7 +126,7 @@ class PostJobsController < ApplicationController
     job_infor_id = params[:job_infor_id]
     @job_infor = JobInfor.find(job_infor_id)
   end
-
+  
   def add_job
     post_job_id = params[:post_job_id]
     post = Post.find(post_job_id)
@@ -186,12 +186,17 @@ class PostJobsController < ApplicationController
       @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
       @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
     end
-
-    if @post_job.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
+    
+    if simple_captcha_valid?
+      if @post_job.save
+        flash.now[:notice] = "Your post was successfully created."
+        redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
+      else
+        flash.now[:error] =  "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      flash.now[:error] =  "Failed to create a new post."
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end

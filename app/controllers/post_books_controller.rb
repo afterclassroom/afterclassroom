@@ -18,38 +18,38 @@ class PostBooksController < ApplicationController
       @book_type_id ||= BookType.find(:first).id
       @posts = PostBook.paginated_post_conditions_with_option(params, @school, @book_type_id)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def tag
     @tag_name = params[:tag_name]
     @posts = PostBook.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
-
+  
   def good_books
     @posts = PostBook.paginated_post_conditions_with_good_books(params, @school)
   end
-    
+  
   def dont_buy
     @posts = PostBook.paginated_post_conditions_with_dont_buy(params, @school)
   end
-
+  
   def rate
     rating = params[:rating]
     @post = Post.find(params[:post_id])
@@ -58,7 +58,7 @@ class PostBooksController < ApplicationController
     # Update rating status
     score_good = post_b.score_good
     score_bad = post_b.score_bad
-
+    
     if score_good > score_bad
       status = "Good"
     elsif score_good == score_bad
@@ -66,15 +66,15 @@ class PostBooksController < ApplicationController
     else
       status = "Bad"
     end
-
+    
     post_b.rating_status = status
-
+    
     post_b.save
-
+    
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_b.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_b.total_bad}</a></div>"
   end
-
+  
   def require_rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
@@ -84,7 +84,7 @@ class PostBooksController < ApplicationController
       # Update rating status
       score_good = @post_b.score_good
       score_bad = @post_b.score_bad
-
+      
       if score_good > score_bad
         status = "Good"
       elsif score_good == score_bad
@@ -92,9 +92,9 @@ class PostBooksController < ApplicationController
       else
         status = "Bad"
       end
-
+      
       @post_b.rating_status = status
-
+      
       @post_b.save
     end
   end
@@ -115,7 +115,7 @@ class PostBooksController < ApplicationController
       format.xml  { render :xml => @post_book }
     end
   end
-
+  
   # GET /post_books/new
   # GET /post_books/new.xml
   def new
@@ -128,14 +128,14 @@ class PostBooksController < ApplicationController
       format.xml  { render :xml => @post_book }
     end
   end
-
+  
   # GET /post_books/1/edit
   def edit
     @post_book = PostBook.find(params[:id])
     @post = @post_book.post
     @tag_list = @post_book.tags_from(@post.school).join(", ")
   end
-
+  
   # POST /post_books
   # POST /post_books.xml
   def create
@@ -151,15 +151,20 @@ class PostBooksController < ApplicationController
     @post.school.owned_tags
     @post_book.post = @post
     @post_book.book_type_id ||= BookType.first.id
-    if @post_book.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_books_path + "?book_type_id=#{@post_book.book_type_id}"
+    if simple_captcha_valid?
+      if @post_book.save
+        flash.now[:notice] = "Your post was successfully created."
+        redirect_to post_books_path + "?book_type_id=#{@post_book.book_type_id}"
+      else
+        error "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      error "Failed to create a new post."
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end
-
+  
   # PUT /post_books/1
   # PUT /post_books/1.xml
   def update
@@ -171,18 +176,18 @@ class PostBooksController < ApplicationController
       redirect_to my_post_user_url(current_user)
     end
   end
-
+  
   # DELETE /post_books/1
   # DELETE /post_books/1.xml
   def destroy
     @post_book = PostBook.find(params[:id])
     @post_book.destroy
-
+    
     redirect_to my_post_user_url(current_user)
   end
-
+  
   private
-
+  
   def get_variables
     @school = session[:your_school]
     @new_post_path = new_post_book_path
@@ -190,7 +195,7 @@ class PostBooksController < ApplicationController
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
-
+  
   def require_current_user
     post_book = PostBook.find(params[:id])
     post = post_book.post

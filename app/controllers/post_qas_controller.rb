@@ -7,7 +7,7 @@ class PostQasController < ApplicationController
   after_filter :store_go_back_url, :only => [:index, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   # GET /post_qas
   # GET /post_qas.xml
-    
+  
   def index
     @type = params[:type]
     @type ||= "answered"
@@ -18,13 +18,13 @@ class PostQasController < ApplicationController
     else
       @posts = PostQa.paginated_post_conditions_with_option(params, @school, @type)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]
@@ -36,25 +36,25 @@ class PostQasController < ApplicationController
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def interesting
     @posts = PostQa.paginated_post_conditions_with_interesting(params, @school)
-
+    
     respond_to do |format|
       format.html # interesting.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def top_answer
     @posts = PostQa.paginated_post_conditions_with_top_answer(params, @school)
-
+    
     respond_to do |format|
       format.html # top_answer.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def rate
     rating = params[:rating]
     @post = Post.find(params[:post_id])
@@ -63,7 +63,7 @@ class PostQasController < ApplicationController
     # Update rating status
     score_good = post_q.score_good
     score_bad = post_q.score_bad
-
+    
     if score_good > score_bad
       status = "Good"
     elsif score_good == score_bad
@@ -71,15 +71,15 @@ class PostQasController < ApplicationController
     else
       status = "Bad"
     end
-
+    
     post_q.rating_status = status
-
+    
     post_q.save
-
+    
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_q.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_q.total_bad}</a></div>"
   end
-
+  
   def require_rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
@@ -89,7 +89,7 @@ class PostQasController < ApplicationController
       # Update rating status
       score_good = @post_q.score_good
       score_bad = @post_q.score_bad
-
+      
       if score_good > score_bad
         status = "Good"
       elsif score_good == score_bad
@@ -97,13 +97,13 @@ class PostQasController < ApplicationController
       else
         status = "Bad"
       end
-
+      
       @post_q.rating_status = status
-
+      
       @post_q.save
     end
   end
-
+  
   # GET /post_qas/1
   # GET /post_qas/1.xml
   def show
@@ -120,7 +120,7 @@ class PostQasController < ApplicationController
       format.xml  { render :xml => @post_qa }
     end
   end
-
+  
   # GET /post_qas/new
   # GET /post_qas/new.xml
   def new
@@ -132,14 +132,14 @@ class PostQasController < ApplicationController
       format.xml  { render :xml => @post_qa }
     end
   end
-
+  
   # GET /post_qas/1/edit
   def edit
     @post_qa = PostQa.find(params[:id])
     @post = @post_qa.post
     @tag_list = @post_qa.tags_from(@post.school).join(", ")
   end
-
+  
   # POST /post_qas
   # POST /post_qas.xml
   def create
@@ -154,15 +154,20 @@ class PostQasController < ApplicationController
     @post.school.owned_taggings
     @post.school.owned_tags
     @post_qa.post = @post
-    if @post_qa.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_qas_path + "?type=asked"
+    if simple_captcha_valid?
+      if @post_qa.save
+        flash.now[:notice] = "Your post was successfully created."
+        redirect_to post_qas_path + "?type=asked"
+      else
+        error "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      error "Failed to create a new post."
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end
-
+  
   # PUT /post_qas/1
   # PUT /post_qas/1.xml
   def update
@@ -173,16 +178,16 @@ class PostQasController < ApplicationController
       redirect_to post_qa_url(@post_qa)
     end
   end
-
+  
   # DELETE /post_qas/1
   # DELETE /post_qas/1.xml
   def destroy
     @post_qa = PostQa.find(params[:id])
     @post_qa.destroy
-
+    
     redirect_to my_post_user_url(current_user)
   end
-
+  
   def create_comment
     post_id = params[:post_id]
     comment = params[:comment]
@@ -198,7 +203,7 @@ class PostQasController < ApplicationController
     get_comments(post, show)
     render :layout => false
   end
-
+  
   def show_comment
     show = params[:show]
     show ||= "0"
@@ -214,7 +219,7 @@ class PostQasController < ApplicationController
   end
   
   private
-
+  
   def get_variables
     @school = session[:your_school]
     @new_post_path = new_post_qa_path
@@ -222,17 +227,17 @@ class PostQasController < ApplicationController
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
-
+  
   def get_comments(post, show)
     @comments = []
     case show
-    when "0"
+      when "0"
       @comments = post.comments
-    when "1"
+      when "1"
       @comments = post.comments
-    when "2"
+      when "2"
       @comments = post.comments.find(:all, :order => "created_at DESC")
-    when "3"
+      when "3"
       arr_comnt = []
       post.comments.each do |c|
         arr_comnt << {:obj => c, :total_good => c.total_good}
@@ -242,7 +247,7 @@ class PostQasController < ApplicationController
       end
     end
   end
-
+  
   def require_current_user
     post_qa = PostQa.find(params[:id])
     post = post_qa.post

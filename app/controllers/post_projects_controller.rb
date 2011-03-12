@@ -15,19 +15,19 @@ class PostProjectsController < ApplicationController
     else
       @posts = PostProject.paginated_post_conditions_with_option(params, @school)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -36,27 +36,27 @@ class PostProjectsController < ApplicationController
   
   def due_date
     @posts = PostProject.paginated_post_conditions_with_due_date(params, @school)
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def interesting
     @posts = PostProject.paginated_post_conditions_with_interesting(params, @school)
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def tag
     @tag_name = params[:tag_name]
     @posts = PostProject.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
-
+  
   # GET /post_projects/1
   # GET /post_projects/1.xml
   def show
@@ -73,7 +73,7 @@ class PostProjectsController < ApplicationController
       format.xml  { render :xml => @post_project }
     end
   end
-
+  
   # GET /post_projects/new
   # GET /post_projects/new.xml
   def new
@@ -85,14 +85,14 @@ class PostProjectsController < ApplicationController
       format.xml  { render :xml => @post_project }
     end
   end
-
+  
   # GET /post_projects/1/edit
   def edit
     @post_project = PostProject.find(params[:id])
     @post = @post_project.post
     @tag_list = @post_project.tags_from(@post.school).join(", ")
   end
-
+  
   # POST /post_projects
   # POST /post_projects.xml
   def create
@@ -108,15 +108,20 @@ class PostProjectsController < ApplicationController
     @post.school.owned_taggings
     @post.school.owned_tags
     @post_project.post = @post
-    if @post_project.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_projects_path
+    if simple_captcha_valid?
+      if @post_project.save
+        flash.now[:notice] = "Your post was successfully created."
+        redirect_to post_projects_path
+      else
+        error "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      error "Failed to create a new post."
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end
-
+  
   # PUT /post_projects/1
   # PUT /post_projects/1.xml
   def update
@@ -130,13 +135,13 @@ class PostProjectsController < ApplicationController
       redirect_to post_project_url(@post_project)
     end
   end
-
+  
   # DELETE /post_projects/1
   # DELETE /post_projects/1.xml
   def destroy
     @post_project = PostProject.find(params[:id])
     @post_project.destroy
-
+    
     redirect_to my_post_user_url(current_user)
   end
   
@@ -144,9 +149,9 @@ class PostProjectsController < ApplicationController
     @class_name = "PostProject"
     render :partial => "form_request_project"
   end
-
+  
   private
-
+  
   def get_variables
     @school = session[:your_school]
     @new_post_path = new_post_project_path
@@ -154,7 +159,7 @@ class PostProjectsController < ApplicationController
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
-
+  
   def require_current_user
     post_project = PostProject.find(params[:id])
     post = post_project.post

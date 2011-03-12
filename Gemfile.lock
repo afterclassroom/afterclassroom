@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/galetahub/simple-captcha.git
+  revision: b8493942e9a9bb58c58712fa21d41963330da6aa
+  specs:
+    simple_captcha (0.1.1)
+
 PATH
   remote: vendor/plugins/rubycas-client-rails
   specs:
@@ -185,6 +191,7 @@ DEPENDENCIES
   ruby-mp3info
   rubycas-client
   rubycas-client-rails!
+  simple_captcha!
   thinking-sphinx
   validates_timeliness (~> 3.0.2)
   will_paginate (~> 3.0.beta)

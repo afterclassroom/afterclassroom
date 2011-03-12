@@ -15,34 +15,34 @@ class PostExamsController < ApplicationController
     else
       @posts = PostExam.paginated_post_conditions_with_option(params, @school)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def interesting
     @posts = PostExam.paginated_post_conditions_with_interesting(params, @school)
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def tag
     @tag_name = params[:tag_name]
     @posts = PostExam.paginated_post_conditions_with_tag(params, @school, @tag_name)
@@ -64,7 +64,7 @@ class PostExamsController < ApplicationController
       format.xml  { render :xml => @post_exam }
     end
   end
-
+  
   # GET /post_exams/new
   # GET /post_exams/new.xml
   def new
@@ -76,14 +76,14 @@ class PostExamsController < ApplicationController
       format.xml  { render :xml => @post_exam }
     end
   end
-
+  
   # GET /post_exams/1/edit
   def edit
     @post_exam = PostExam.find(params[:id])
     @post = @post_exam.post
     @tag_list = @post_exam.tags_from(@post.school).join(", ")
   end
-
+  
   # POST /post_exams
   # POST /post_exams.xml
   def create
@@ -99,15 +99,20 @@ class PostExamsController < ApplicationController
     @post.school.owned_taggings
     @post.school.owned_tags
     @post_exam.post = @post
-    if @post_exam.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_exams_path
+    if simple_captcha_valid?
+      if @post_exam.save
+        flash.now[:notice] = "Your post was successfully created."
+        redirect_to post_exams_path
+      else
+        error "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      error "Failed to create a new post."
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end
-
+  
   # PUT /post_exams/1
   # PUT /post_exams/1.xml
   def update
@@ -119,13 +124,13 @@ class PostExamsController < ApplicationController
       redirect_to post_exam_url(@post_exam)
     end
   end
-
+  
   # DELETE /post_exams/1
   # DELETE /post_exams/1.xml
   def destroy
     @post_exam = PostExam.find(params[:id])
     @post_exam.destroy
-
+    
     redirect_to my_post_user_url(current_user)
   end
   
@@ -133,9 +138,9 @@ class PostExamsController < ApplicationController
     @class_name = "PostExam"
     render :partial => "form_request_exam"
   end
-
+  
   private
-
+  
   def get_variables
     @school = session[:your_school]
     @new_post_path = new_post_exam_path
@@ -143,7 +148,7 @@ class PostExamsController < ApplicationController
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
-
+  
   def require_current_user
     post_exam = PostExam.find(params[:id])
     post = post_exam.post

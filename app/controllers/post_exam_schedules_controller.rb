@@ -1,6 +1,6 @@
 class PostExamSchedulesController < ApplicationController
   
-
+  
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search]
   before_filter :login_required, :except => [:index, :show, :search]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
@@ -11,13 +11,13 @@ class PostExamSchedulesController < ApplicationController
   # GET /post_exam_schedules.xml
   def index
     @posts = PostExamSchedule.paginated_post_conditions_with_option(params, @school, @type_schedule)
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   # GET /post_exam_schedules/1
   # GET /post_exam_schedules/1.xml
   def show
@@ -34,24 +34,24 @@ class PostExamSchedulesController < ApplicationController
       format.xml  { render :xml => @post_exam_schedule }
     end
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def tag
     @tag_name = params[:tag_name]
     @posts = PostExamSchedule.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
-
+  
   def rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
@@ -60,7 +60,7 @@ class PostExamSchedulesController < ApplicationController
     # Update rating status
     score_good = post_tt.score_good
     score_bad = post_tt.score_bad
-
+    
     if score_good > score_bad
       status = "Good"
     elsif score_good == score_bad
@@ -68,11 +68,11 @@ class PostExamSchedulesController < ApplicationController
     else
       status = "Bad"
     end
-
+    
     post_tt.rating_status = status
-
+    
     post_tt.save
-
+    
     render :text => %Q'
       <div class="qashdU">
         <a href="javascript:;" class="vtip" title="#{configatron.str_rated}">#{post_tt.total_good}</a>
@@ -120,11 +120,16 @@ class PostExamSchedulesController < ApplicationController
     @post.school.owned_taggings
     @post.school.owned_tags
     @post_exam_schedule.post = post
-    if @post_exam_schedule.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_exam_schedules_path + "?type=#{@post_exam_schedule.type_name}"
+    if simple_captcha_valid?
+      if @post_exam_schedule.save
+        flash.now[:notice] = "Your post was successfully created."
+        redirect_to post_exam_schedules_path + "?type=#{@post_exam_schedule.type_name}"
+      else
+        error "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      error "Failed to create a new post."
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end

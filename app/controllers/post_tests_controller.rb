@@ -98,11 +98,16 @@ class PostTestsController < ApplicationController
     @post.school.owned_taggings
     @post.school.owned_tags
     @post_test.post = @post
-    if @post_test.save
+    if simple_captcha_valid?
+      if @post_test.save
       flash.now[:notice] = "Your post was successfully created."
       redirect_to post_tests_path
     else
       error "Failed to create a new post."
+      render :action => "new"
+    end
+    else
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end

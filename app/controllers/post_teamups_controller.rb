@@ -7,7 +7,7 @@ class PostTeamupsController < ApplicationController
   after_filter :store_go_back_url, :only => [:index, :search, :tag, :good_org, :worse_org]
   # GET /post_teamups
   # GET /post_teamups.xml
-   def index
+  def index
     if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
@@ -17,7 +17,7 @@ class PostTeamupsController < ApplicationController
       @teamup_category_id ||= TeamupCategory.find(:first).id
       @posts = PostTeamup.paginated_post_conditions_with_option(params, @school, @teamup_category_id)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -29,26 +29,26 @@ class PostTeamupsController < ApplicationController
     if params[:search]
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def tag
     @tag_name = params[:tag_name]
     @posts = PostTeamup.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
-
+  
   def good_org
     @posts = PostTeamup.paginated_post_conditions_with_good_org(params, @school)
   end
-
+  
   def worse_org
     @posts = PostTeamup.paginated_post_conditions_with_worse_org(params, @school)
   end
-
+  
   def rate
     rating = params[:rating]
     @post = Post.find(params[:post_id])
@@ -57,7 +57,7 @@ class PostTeamupsController < ApplicationController
     # Update rating status
     score_good = @post_tm.score_good
     score_bad = @post_tm.score_bad
-
+    
     if score_good > score_bad
       status = "Good"
     elsif score_good == score_bad
@@ -65,9 +65,9 @@ class PostTeamupsController < ApplicationController
     else
       status = "Bad"
     end
-
+    
     @post_tm.rating_status = status
-
+    
     @post_tm.save
   end
   
@@ -87,7 +87,7 @@ class PostTeamupsController < ApplicationController
       format.xml  { render :xml => @post_teamup }
     end
   end
-
+  
   # GET /post_teamups/new
   # GET /post_teamups/new.xml
   def new
@@ -100,14 +100,14 @@ class PostTeamupsController < ApplicationController
       format.xml  { render :xml => @post_teamup }
     end
   end
-
+  
   # GET /post_teamups/1/edit
   def edit
     @post_teamup = PostTeamup.find(params[:id])
     @post = @post_teamup.post
     @tag_list = @post_teamup.tags_from(@post.school).join(", ")
   end
-
+  
   # POST /post_teamups
   # POST /post_teamups.xml
   def create
@@ -123,38 +123,43 @@ class PostTeamupsController < ApplicationController
     @post.school.owned_tags
     @post_teamup.post = @post
     @post_teamup.teamup_category_id ||= TeamupCategory.first.id
-    if @post_teamup.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_teamups_path + "?teamup_category_id=#{@post_teamup.teamup_category_id}"
+    if simple_captcha_valid?
+      if @post_teamup.save
+        flash.now[:notice] = "Your post was successfully created."
+        redirect_to post_teamups_path + "?teamup_category_id=#{@post_teamup.teamup_category_id}"
+      else
+        error "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      error "Failed to create a new post."
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end
-
+  
   # PUT /post_teamups/1
   # PUT /post_teamups/1.xml
   def update
     @post_teamup = PostFood.find(params[:id])
     @post = @post_teamup.post
-
+    
     if (@post_teamup.update_attributes(params[:post_teamup]) && @post_teamup.post.update_attributes(params[:post]))
       @post.school.tag(@post_teamup, :with => params[:tag], :on => :tags)
       redirect_to post_food_url(@post_teamup)
     end
   end
-
+  
   # DELETE /post_teamups/1
   # DELETE /post_teamups/1.xml
   def destroy
     @post_teamup = PostTeamup.find(params[:id])
     @post_teamup.destroy
-
+    
     redirect_to my_post_user_url(current_user)
   end
-
+  
   private
-
+  
   def get_variables
     @school = session[:your_school]
     @new_post_path = new_post_teamup_path
@@ -162,7 +167,7 @@ class PostTeamupsController < ApplicationController
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
-
+  
   def require_current_user
     post_teamup = PostTeamup.find(params[:id])
     post = post_teamup.post

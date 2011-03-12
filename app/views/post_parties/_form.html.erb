@@ -21,6 +21,9 @@
   </div>
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_tag" %>
+  <div style="margin-left:120px">
+  	<%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+  </div>
 <% end %>
 
 <script type="text/javascript">

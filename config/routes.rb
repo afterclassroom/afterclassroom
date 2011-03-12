@@ -282,6 +282,9 @@ Afterclassroom::Application.routes.draw do
     end
   end
   
+  #Simple Captcha
+  match 'simple_captcha/:id', :to => 'simple_captcha#show', :as => :simple_captcha
+  
   # Administration
   namespace :admin do
     resources :dashboards

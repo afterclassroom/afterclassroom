@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110312044847) do
+ActiveRecord::Schema.define(:version => 20110312152507) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -696,6 +696,15 @@ ActiveRecord::Schema.define(:version => 20110312044847) do
     t.datetime "created",           :null => false
   end
 
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
+
   create_table "states", :force => true do |t|
     t.integer "country_id",               :null => false
     t.string  "name",       :limit => 50, :null => false
@@ -855,8 +864,6 @@ ActiveRecord::Schema.define(:version => 20110312044847) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "online",                                   :default => false
-    t.text     "private_settings"
-    t.string   "dynamic_attributes",                       :default => "",        :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

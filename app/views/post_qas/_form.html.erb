@@ -1,10 +1,6 @@
 <%= fields_for @post do |post| %>
   <%= display_flash_messages_with_raw %>
   <div class="postReq">*(asterisk) is required.</div>
-  <div class="postItemDep">
-    <div class="postTit">Category</div>
-    <div class="postDep"><%= f.text_field :post_qa_category_id %></div>
-  </div>
   <div class="postItem">
     <div class="postTit">Your question*</div>
     <div class="postInp"><%= post.text_field :title, :class => 'required', :style => "width:360px;" %></div>

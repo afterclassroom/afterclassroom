@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
   include Viewable
+  include SimpleCaptcha::ControllerHelpers
   
   helper :all # include all helpers, all the time
   #config.filter_parameters :password, :password_confirmation

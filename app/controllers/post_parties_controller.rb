@@ -172,11 +172,16 @@ class PostPartiesController < ApplicationController
     @post.school.owned_tags
     @post_party.tag_list = params[:tag]
     @post_party.post = @post
-    if @post_party.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_parties_path
+    if simple_captcha_valid?
+      if @post_party.save
+        flash.now[:notice] = "Your post was successfully created."
+        redirect_to post_parties_path
+      else
+        error "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      error "Failed to create a new post."
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end

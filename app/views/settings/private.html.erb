@@ -30,19 +30,12 @@
                     <div class="flistNPa">
                         <span>Sex</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+                    <div class="flistS" id="sex_share_status">
+                        <%= show_status_setting(current_user, "sex") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-                    <select name="sample_select" class="menuPrivate">
-                        <option>Add to List</option>
-                        <option value="1">Family members</option>
-                        <option valusettCont12e="2">Friends from school</option>
-                        <option value="3">Friends from work</option>
-                        <option value="4">General Friends</option>
-                        <option value="5">Every one</option>
-                    </select>
+                    <%= show_options_setting(current_user, "sex") %>
                 </div>
             </div>
             <div class="flistItem">
@@ -50,18 +43,12 @@
                     <div class="flistNPa">
                         <span>Relationship Status</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+                    <div class="flistS" id="relationship_status_share_status">
+                        <%= show_status_setting(current_user, "relationship_status") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-                    <select name="sample_select" class="menuPrivate">
-                        <option>Add to List</option>
-                        <option value="1">Family members</option>
-                        <option valusettCont12e="2">Friends from school</option>
-                        <option value="3">Friends from work</option>
-                        <option value="4">General Friends</option>
-                    </select>
+                    <%= show_options_setting(current_user, "relationship_status") %>
                 </div>
             </div>
             <div class="flistItem">
@@ -69,18 +56,12 @@
                     <div class="flistNPa">
                         <span>Looking for</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+                    <div class="flistS" id="looking_for_share_status">
+                        <%= show_status_setting(current_user, "looking_for") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-                    <select name="sample_select" class="menuPrivate">
-                        <option>Add to List</option>
-                        <option value="1">Family members</option>
-                        <option value="2">Friends from school</option>
-                        <option value="3">Friends from work</option>
-                        <option value="4">General Friends</option>
-                    </select>
+                    <%= show_options_setting(current_user, "looking_for") %>
                 </div>
             </div>
             <div class="flistItem">
@@ -88,56 +69,38 @@
                     <div class="flistNPa">
                         <span>Political views</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+                    <div class="flistS" id="political_views_share_status">
+                        <%= show_status_setting(current_user, "political_views") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-                    <select name="sample_select" class="menuPrivate">
-                        <option>Add to List</option>
-                        <option value="1">Family members</option>
-                        <option value="2">Friends from school</option>
-                        <option value="3">Friends from work</option>
-                        <option value="4">General Friends</option>
-                    </select>
+                    <%= show_options_setting(current_user, "political_views") %>
                 </div>
             </div>
             <div class="flistItem">
                 <div class="flistInf">
                     <div class="flistNPa">
-                        <span>Mobile Number</span>
+                        <span>Mobile number</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+                    <div class="flistS" id="mobile_number_share_status">
+                        <%= show_status_setting(current_user, "mobile_number") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-                    <select name="sample_select" class="menuPrivate">
-                        <option>Option to share</option>
-                        <option value="1">Friend from school</option>
-                        <option value="2">Friend of friends</option>
-                        <option value="3">My Family</option>
-                        <option value="4">Friends from work</option>
-                    </select>
+                    <%= show_options_setting(current_user, "mobile_number") %>
                 </div>
             </div>
             <div class="flistItem">
                 <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>Current City</span>
+                	<div class="flistNPa">
+                        <span>Current city</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+					<div class="flistS" id="current_city_share_status">
+                        <%= show_status_setting(current_user, "current_city") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-                    <select name="sample_select" class="menuPrivate">
-                        <option>Option to share</option>
-                        <option value="1">Friend from school</option>
-                        <option value="2">Friend of friends</option>
-                        <option value="3">My Family</option>
-                        <option value="4">Friends from work</option>
-                    </select>
+                    <%= show_options_setting(current_user, "current_city") %>
                 </div>
             </div>
         </div>
@@ -152,18 +115,12 @@
                     <div class="flistNPa">
                         <span>My Friends</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+                    <div class="flistS" id="my_friends_share_status">
+                        <%= show_status_setting(current_user, "my_friends") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-                    <select name="sample_select" class="menuPrivate">
-                        <option>Option to share</option>
-                        <option value="1">Friend from school</option>
-                        <option value="2">Friend of friends</option>
-                        <option value="3">My Family</option>
-                        <option value="4">Friends from work</option>
-                    </select>
+                    <%= show_options_setting(current_user, "my_friends") %>
                 </div>
             </div>
             <div class="flistItem">
@@ -171,12 +128,12 @@
                     <div class="flistNPa">
                         <span>My Fans</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+                    <div class="flistS" id="my_fans_share_status">
+                        <%= show_status_setting(current_user, "my_fans") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-        			
+        			<%= show_options_setting(current_user, "my_fans") %>
                 </div>
             </div>
         </div>
@@ -191,18 +148,12 @@
                     <div class="flistNPa">
                         <span>My Photos</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+                    <div class="flistS" id="my_photos_share_status">
+                        <%= show_status_setting(current_user, "my_photos") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-                    <select name="sample_select" class="menuPrivate">
-                        <option>Option to share</option>
-                        <option value="1">Friend from school</option>
-                        <option value="2">Friend of friends</option>
-                        <option value="3">My Family</option>
-                        <option value="4">Friends from work</option>
-                    </select>
+                    <%= show_options_setting(current_user, "my_photos") %>
                 </div>
             </div>
             <div class="flistItem">
@@ -210,18 +161,12 @@
                     <div class="flistNPa">
                         <span>My Musics</span>
                     </div>
-                    <div class="flistS">
-                        Share to: Every one
+                    <div class="flistS" id="my_musics_share_status">
+                        <%= show_status_setting(current_user, "my_musics") %>
                     </div>
                 </div>
                 <div class="select_wrap">
-                    <select name="sample_select" class="menuPrivate">
-                        <option>Option to share</option>
-                        <option value="1">Friend from school</option>
-                        <option value="2">Friend of friends</option>
-                        <option value="3">My Family</option>
-                        <option value="4">Friends from work</option>
-                    </select>
+                    <%= show_options_setting(current_user, "my_musics") %>
                 </div>
             </div>
         </div>

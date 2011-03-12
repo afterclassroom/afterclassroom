@@ -6,34 +6,15 @@
         <%= fields_for :post do |p| %>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
-          <div class="reqLa"><label>Category</label></div>
-          <div class="reqTi"><%= f.text_field :post_qa_category_id %></div>
           <div class="reqLa"><label>Your question*</label></div>
           <div class="reqTi"><%= p.text_field :title %></div>
           <div class="reqLa"><label>Content*</label></div>
           <div class="reqEn"><%= text_area_tag "post[description]" %></div>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
+		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
           <div class="submit"><%= show_submit_form() %></div>
         <% end %>
       <% end %>
     </div>
   </div>
 </div>
-
-<ul id="qa_cat_menu" class="mcdropdown_menu">
-  <li rel_qa_cat="">
-    Select category
-  </li>
-  <% PostQaCategory.find(:all).each do |p| %>
-    <li rel_qa_cat="<%= p.id %>">
-      <%= p.name %>
-    </li>
-  <% end %>
-</ul>
-
-<script type="text/javascript">
-    $("#post_qa_post_qa_category_id").mcDropdown("#qa_cat_menu", {
-        width: 250,
-        valueAttr: "rel_qa_cat"
-    });
-</script>
