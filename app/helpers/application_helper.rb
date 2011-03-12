@@ -471,13 +471,15 @@ module ApplicationHelper
   end
   
   def show_status_setting(user, type)
-    val = user.private_settings[type] if user.private_settings
-    str = val ? Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}].key(val.to_i) : "No setting"
+    pr = user.private_settings.where(:type_setting => type)
+    
+    str = (pr != []) ? Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}].key(pr.share_to) : "No setting"
     "Share to: " + str
   end
   
   def show_options_setting(user, type)
-    val = user.private_settings[type] if user.private_settings
+    pr = user.private_settings.where(:type_setting => type)
+    val = (pr != []) ? pr.share_to : 0
     select_tag "#{type}", options_for_select(OPTIONS_SETTING, val), :class => "menuPrivate"
   end
 

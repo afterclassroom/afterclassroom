@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_many :partys_lists, :dependent => :destroy
   has_many :post_awarenesses_supports, :dependent => :destroy
   has_many :shares
+  has_many :private_settings
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]
@@ -73,11 +74,6 @@ class User < ActiveRecord::Base
   
   # process_in_background :avatar
   
-  # Taggable
-  acts_as_tagger
-  
-  # Private settings
-  has_dynamic_attributes :column_name => :private_settings
   
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/gif', 'image/png']
   

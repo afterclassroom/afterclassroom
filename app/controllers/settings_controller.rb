@@ -77,9 +77,8 @@ class SettingsController < ApplicationController
     type = params[:type]
     val = params[:value]
     
-    str = "current_user.#{type} = #{val}"
-    eval(str)
-    current_user.about_myself = val
+    pr = PrivateSetting.find_or_create_by_user_id_and_type_setting(current_user.id, type)
+    pr.share_to = val.to_i
     hash = Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}]
     render :text => "Share to: " + hash.index(val.to_i)
   end

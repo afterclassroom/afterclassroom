@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110311041345) do
+ActiveRecord::Schema.define(:version => 20110312044847) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -507,6 +507,14 @@ ActiveRecord::Schema.define(:version => 20110311041345) do
     t.integer  "count_view",          :default => 0
   end
 
+  create_table "private_settings", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "type_setting"
+    t.integer  "share_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "rates", :force => true do |t|
     t.integer  "post_id"
     t.integer  "rateable_id"
@@ -847,7 +855,8 @@ ActiveRecord::Schema.define(:version => 20110311041345) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "online",                                   :default => false
-    t.string   "private_settings"
+    t.text     "private_settings"
+    t.string   "dynamic_attributes",                       :default => "",        :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
