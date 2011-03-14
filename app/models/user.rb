@@ -74,15 +74,12 @@ class User < ActiveRecord::Base
   
   # process_in_background :avatar
   
-<<<<<<< HEAD
-=======
   # Taggable
   acts_as_tagger
   
   # Private settings
   # has_dynamic_attributes :column_name => :private_settings
   
->>>>>>> 186374800c467876d648ff8aaa151cc091eebd11
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/gif', 'image/png']
   
   # ThinkSphinx
