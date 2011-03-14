@@ -1,0 +1,104 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center {
+/*	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent; */
+}
+.fl 
+{
+float:left;
+}
+
+.fr 
+{
+float: right;
+}
+.clear { 
+   /* clear: both; line-height: 0px !important; font-size: 0px !important; height: 0 !important */
+}
+
+body {
+/*	background: #FFFFFF;
+	font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+    font-size: 11px;
+    margin: 10px;*/
+}
+
+
+a 
+{
+ /*  color:   #555555;
+   font-weight: bold;*/
+}
+
+b 
+{
+  /* color:   #555555;
+   font-weight: bold;*/
+}
+
+.duration 
+{
+    font-size:10px;
+    color:#777;
+}
+
+.btn.play 
+{
+    width:16px;
+    height:17px;
+    background-image: url(/images/Photo/play.gif);
+    display: inline-block;
+}
+
+.btn.pause
+{
+    width:16px;
+    height:17px;
+    background-image: url(/images/Photo/pause.gif?2);
+}
+
+.btn.paused
+{
+    width:16px;
+    height:17px;
+    background-image: url(/images/Photo/play.gif?3);
+    display: inline-block;
+}
+
+
+div.player 
+{
+    width:380px;
+    height:14px;
+    margin-top:5px;
+    padding-left:20px;
+}
+
+div.player.inactive
+{
+    margin-top:5px;
+    margin-bottom:0px;
+    border-top: dashed 1px #555555;
+}
+
+.item .title 
+{
+    -vertical-align:middle;
+}
+
+.item .btn 
+{
+    display:inline;
+    float:left; 
+    margin-right:5px;
+    cursor:pointer;
+}
