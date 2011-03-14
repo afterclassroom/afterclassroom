@@ -15,9 +15,13 @@ Afterclassroom::Application.routes.draw do
   # Users
   resources :users do
     member do
-      get :edit_password, :edit_email
+      get :edit_password, :edit_email, :show_lounge
       put :update_password, :update_email
       post :update_avatar
+    end
+    
+    collection do
+      get :show_lounge
     end
 
     resources :messages do
@@ -36,7 +40,7 @@ Afterclassroom::Application.routes.draw do
         post :save_setting, :save_private_setting
       end
     end
-
+ 
     resources :profiles do
       collection do
         get :show_profile, :edit_infor, :edit_edu_infor,

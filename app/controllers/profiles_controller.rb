@@ -15,6 +15,8 @@ class ProfilesController < ApplicationController
   end
   
   def show_profile
+    @user = User.find(params[:user_id])
+    @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
   end
 
   def edit_infor

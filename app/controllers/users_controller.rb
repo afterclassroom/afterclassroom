@@ -4,9 +4,9 @@ class UsersController < ApplicationController
   protect_from_forgery :only => [:create]
 
   before_filter :login_required,
-    :except => [:new, :create, :activate, :forgot_login, :forgot_password]
+    :except => [:new, :create, :activate, :forgot_login, :forgot_password, :show_lounge]
   before_filter :require_current_user,
-    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
+    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge]
   
   # render new.rhtml
   def new
@@ -141,7 +141,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
+    render :layout => "student_lounge"
+  end
+  
+  def show_lounge
+    @user = User.find(params[:id])
+    @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     render :layout => "student_lounge"
   end
   

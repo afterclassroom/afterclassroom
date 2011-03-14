@@ -170,6 +170,37 @@
                 </div>
             </div>
         </div>
+		<div class="settNetLPa">
+            Stories and Links
+        </div>
+        <div class="settC">
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>My Stories</span>
+                    </div>
+                    <div class="flistS" id="my_stories_share_status">
+                        <%= show_status_setting(current_user, "my_stories") %>
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <%= show_options_setting(current_user, "my_stories") %>
+                </div>
+            </div>
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>My Links</span>
+                    </div>
+                    <div class="flistS" id="my_links_share_status">
+                        <%= show_status_setting(current_user, "my_links") %>
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <%= show_options_setting(current_user, "my_links") %>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script>
