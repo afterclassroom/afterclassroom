@@ -1,0 +1,36 @@
+<div id="actionsBox" class="actionsBox">
+    <div id="actionsBoxMenu" class="menu" style="width:130px;margin-left:30px">
+        <span id="cntBoxMenu">0</span>
+        <a class="button box_action" id="act_delete">Delete</a>
+        <a id="closeBoxMenu" class="button">X</a>
+    </div>
+</div>
+
+<!--Alert-->
+<div id="delete-fan-dialog-message" title="Confirm delete" style="display:none;">
+  <p>
+    Are you sure?
+  </p>
+</div>
+<!--Alert-->
+
+<script>
+    $('#act_delete').click(function(){
+        $("#delete-fan-dialog-message").dialog({
+            modal: true,
+            buttons: {
+                Ok: function(){
+                    var ids = '';
+                    $('#mytable input:checked').each(function(e, i){
+                        var $this = $(this);
+                        ids += $this.val() + ", ";
+                    });
+                    document.location.href = "<%= delete_fans_user_profiles_url(current_user) %>?list_ids=" + ids;
+                },
+                Cancel: function(){
+                    $("#delete-fan-dialog-message").dialog('close');
+                }
+            }
+        });
+    });
+</script>

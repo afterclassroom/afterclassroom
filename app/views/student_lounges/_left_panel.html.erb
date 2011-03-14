@@ -2,11 +2,11 @@
   <div class="col195">
     <div class="col195in">
       <div class="stuItem inbox">
-        <div class="stuItemL"><a href="#">Inbox</a></div>
+        <div class="stuItemL"><%= link_to "Inbox", user_messages_path(current_user) %></div>
         <div class="stuItemR"><%= current_user.received_messages.size %></div>
       </div>
       <div class="stuItem friend">
-        <div class="stuItemL"><a href="#">Friends</a></div>
+        <div class="stuItemL"><%= link_to "Friends", user_friends_path(current_user) %></div>
         <div class="stuItemR"><%= current_user.user_friends.size %></div>
       </div>
     </div>

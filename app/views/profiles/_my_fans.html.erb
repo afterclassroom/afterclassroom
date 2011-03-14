@@ -1,6 +1,6 @@
 <div class="proInfG">
   <div class="proInfGL">My Fans</div>
-  <div class="proInfGR"><a href="#">Edit My Fans</a></div>
+  <div class="proInfGR"><%= link_to "Edit My Fans", fan_user_profiles_path(current_user) %></div>
 </div>
 <%
 fans_rc = @user.fans_recent_update
@@ -10,7 +10,7 @@ fans_rc_total = fans_rc.size
   <div class="proInfGItem">
     <div class="proInfGLL">
       <div class="proInfGlabel">Recently Update Fans:</div>
-      <div class="proInfGlink"><a href="#">See All (<%= fans_rc_total %>)</a></div>
+      <div class="proInfGlink"><%= link_to "See All (#{fans_rc_total})", fan_user_profiles_path(current_user) %></div>
     </div>
     <div class="proInfGRR">
       <div class="fanImg">

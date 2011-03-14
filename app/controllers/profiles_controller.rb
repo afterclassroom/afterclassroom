@@ -67,6 +67,27 @@ class ProfilesController < ApplicationController
     user = User.find_by_id(@user_id)
     @full_name = user.full_name
   end
+  
+  def fan
+    fan_ids = current_user.fans_recent_update.collect{|f| f.user_id}
+
+    @fans = User.ez_find(:all) do |user|
+      user.id === fan_ids
+    end
+  end
+  
+  def delete_fans
+    list_ids = params[:list_ids]
+    list_ids = list_ids.slice(0..list_ids.length - 2)
+    ids = list_ids.split(", ")
+    fans = Fan.find(:all, :conditions => ["fannable_id = ? AND fannable_type = ? AND user_id IN(#{ids.join(", ")})", current_user.id, "User"])
+    if fans.size > 0
+      fans.each do |f|
+        f.destroy
+      end
+    end
+    redirect_to(fan_user_profiles_url(current_user))
+  end
 
   protected
 
