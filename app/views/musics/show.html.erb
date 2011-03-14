@@ -36,7 +36,7 @@
             so_<%= @music.id %>.addVariable('playlistfile','<%= create_playlist_user_musics_path(current_user, :music_album_id => @music.music_album) %>');
             so_<%= @music.id %>.write('player_<%= @music.id %>');
           </script>
-
+          <%= render :partial => "music_playlist" %>
         </div>
         <%= render :partial => "music_action" %>
         <div class="AsDcom" id="form_comment" style="display: none">
@@ -75,31 +75,3 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
-<%= javascript_include_tag 'drplayer.js' %>
-<%= stylesheet_link_tag 'drplayer.css' %>
-<div id="playlist">
-        <div href="/nhac/01 mot coi di ve.mp3" style="width: 400px;" class="item">
-            <div>
-                <div class="fr duration">02:06</div>
-                <div class="btn play"></div>
-                <div class="title"><b>The Ting Tings</b> - Shut up and let me go</div>
-            </div>
-            <div class="player inactive"></div>
-        </div>
-    </div>
-    <div class="clear"></div>
-
-    <a href="javascript:void(0);" onClick="$('#playlist').playlist('prev');">Prev</a>
-    <a href="javascript:void(0);" onClick="$('#playlist').playlist('next');">Next</a>
-
-    <a href="javascript:void(0);" onClick="$('#playlist').playlist('pause');">Pause</a>
-    <a href="javascript:void(0);" onClick="$('#playlist').playlist('play');">Play</a>
-<script type="text/javascript">
-  $(document).ready(function() {
-  $("#playlist").playlist(
-  {
-  playerurl: "/swfs/drplayer.swf"
-  }
-  );
-  });
-</script>
