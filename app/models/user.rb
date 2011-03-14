@@ -73,7 +73,17 @@ class User < ActiveRecord::Base
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   # process_in_background :avatar
+<<<<<<< HEAD
 
+=======
+  
+  # Taggable
+  acts_as_tagger
+  
+  # Private settings
+  # has_dynamic_attributes :column_name => :private_settings
+  
+>>>>>>> eb19ac392133c15804ea38230789d0fbcc792b9b
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/gif', 'image/png']
   
   # ThinkSphinx
