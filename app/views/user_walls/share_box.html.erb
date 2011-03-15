@@ -1,15 +1,26 @@
+<form id="form_send_message">
+  <div class="postItem">
+    <div style="width: 80px;" class="postItem1">Subject*</div>
+    <input type="text" value="<%= @subject %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" size="30" class="required" name="subject" id="message_subject" style="width: 330px;"/></div>
+  <div class="postItem">
+    <div class="postInp">
+    	<%=  @wall.content %>
+    	<%= show_attach(@wall) if @wall.has_attach %>
+    </div>
+  </div>
+  <div style="padding-left: 90px;" class="submit"><a onclick="submit_passion()" href="javascript:;">Share</a></div>
+  <div style="padding: 10px;" class="error"></div>
+</form>
+
 <script language="javascript">
   /*
    */
   function submit_passion(){
-
     var messageSubject = $('#message_subject').attr('value');
-    ///console.log('sub == '+messageSubject);
     var content  = $('#message_body').attr('value');
-    //console.log('content == == '+messageSubject);
 
     $.ajax({
-      url: '/user_walls/submit_share?message_subject='+messageSubject+'&content='+content+'&user_id=<%=  @user_id %>&user_id_post=<%=  @user_id_post %>',
+      url: '/user_walls/submit_share?message_subject='+messageSubject+'&content='+content+'&wall_id=<%=  @wall.id %>',
       type: "GET",
       dataType: "html",
       failure: function(msg){
@@ -23,16 +34,3 @@
     
   }
 </script>
-
-<form id="form_send_message">
-  <div class="postItem">
-    <div style="width: 80px;" class="postItem1">Subject*</div>
-    <input type="text" value="<%= @subject %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" size="30" class="required" name="subject" id="message_subject" style="width: 330px;"/></div>
-  <div class="postItem">
-    <div style="width: 80px;" class="postItem1">Message*</div>
-    <div class="postInp"><textarea value ="<%= @current_wall %>" onblur="this.value = this.value || this.defaultValue;" class="required" name="body" id="message_body" style="width: 330px; height: 200px;"><%= @current_wall %></textarea></div>
-  </div>
-  <div style="padding-left: 90px;" class="submit"><a onclick="submit_passion()" href="javascript:;">Send</a></div>
-  <div style="padding: 10px;" class="error"></div>
-</form>
-

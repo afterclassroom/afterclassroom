@@ -136,17 +136,7 @@ class UserWallsController < ApplicationController
     render :layout => false
   end
   
-  def share_box
-    @subject = params[:subject]
-    @user_id = params[:user_id]
-    @user_id_post = params[:user_id_post]
-    @current_wall = params[:current_wall]
-    render :layout => false
-  end
-  
   def submit_passion
-    @returnmess = params[:message_subject]+params[:content]+"//userid == "+params[:user_id]+"//user_id_post=="+params[:user_id_post]
-    
     new_user_wall = UserWall.new
     new_user_wall.user_id_post = params[:user_id_post]
     new_user_wall.user_id = params[:user_id]
@@ -157,23 +147,47 @@ class UserWallsController < ApplicationController
     
     new_user_wall.save
     
-    render :text => "Success=="+@returnmess
+    render :text => "Success"
   end
   
-  def submit_share
-    @returnmess = params[:message_subject]+params[:content]+"//userid == "+params[:user_id]+"//user_id_post=="+params[:user_id_post]
-    
+  def share_box
+    @wall = UserWall.find(params[:wall_id])
+    render :layout => false
+  end
+  
+  def submit_share   
+    w = UserWall.find(params[:wall_id])
     new_user_wall = UserWall.new
-    new_user_wall.user_id_post = params[:user_id_post]
-    new_user_wall.user_id = params[:user_id]
+    new_user_wall.user_id_post = current_user.id
+    new_user_wall.user_id = current_user.id
     
-    content_of_wall = "Subject: "+params[:message_subject]+" Content: "+params[:content]
-    
-    new_user_wall.content = content_of_wall
+    new_user_wall.content = params[:message_subject]
     
     new_user_wall.save
     
-    render :text => "Success=="+@returnmess
+    if w.user_wall_photo
+      user_wall_photo = w.user_wall_photo
+      new_user_wall.user_wall_photo = user_wall_photo
+    end
+    
+    if w.user_wall_video
+      user_wall_video = w.user_wall_video
+      new_user_wall.user_wall_video = user_wall_video
+    end
+    
+    if w.user_wall_music
+      user_wall_music = w.user_wall_music
+      new_user_wall.user_wall_music = user_wall_music
+    end
+    
+    if w.user_wall_link
+      user_wall_link = w.user_wall_link
+      new_user_wall.user_wall_link = user_wall_link
+    end
+    
+    new_user_wall.save
+    
+    render :text => "Success"
   end
   
   
