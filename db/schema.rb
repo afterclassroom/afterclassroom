@@ -50,11 +50,6 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
     t.string "label"
   end
 
-  create_table "cake_sessions", :force => true do |t|
-    t.text    "data"
-    t.integer "expires"
-  end
-
   create_table "cities", :force => true do |t|
     t.string  "name",       :limit => 100, :null => false
     t.integer "state_id",                  :null => false
@@ -619,90 +614,6 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
   create_table "shares_users", :id => false, :force => true do |t|
     t.integer "share_id"
     t.integer "user_id"
-<<<<<<< HEAD
-  end
-
-  create_table "shopping_refines", :force => true do |t|
-    t.integer "shoppingdetail_id",  :null => false
-    t.integer "shopping_search_id", :null => false
-    t.string  "value",              :null => false
-  end
-
-  create_table "shopping_searches", :force => true do |t|
-    t.integer "shoppingcategory_id", :default => 0, :null => false
-    t.string  "name",                               :null => false
-    t.text    "value",                              :null => false
-  end
-
-  create_table "shopping_subcategories", :force => true do |t|
-    t.integer  "shoppingcategory_id", :null => false
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "shoppingcategories", :force => true do |t|
-    t.string   "name"
-    t.string   "image"
-    t.integer  "ordered",  :default => 0, :null => false
-    t.datetime "created"
-    t.datetime "modified"
-  end
-
-  create_table "shoppingcomments", :force => true do |t|
-    t.integer  "shoppingdetail_id",                                    :null => false
-    t.integer  "user_id"
-    t.text     "content",           :limit => 16777215
-    t.datetime "created",                                              :null => false
-    t.integer  "thumb_up",                              :default => 0, :null => false
-    t.integer  "thumb_down",                            :default => 0, :null => false
-    t.integer  "abuse",                                 :default => 0, :null => false
-  end
-
-  create_table "shoppingdetails", :force => true do |t|
-    t.string   "fullname"
-    t.string   "email",                                     :null => false
-    t.string   "phone",                                     :null => false
-    t.string   "messenger",                                 :null => false
-    t.string   "messenger_type",                            :null => false
-    t.string   "address",                                   :null => false
-    t.integer  "city_id",                :default => 0
-    t.string   "title"
-    t.float    "price"
-    t.text     "description"
-    t.integer  "shoppingsubcategory_id"
-    t.integer  "user_id"
-    t.datetime "created"
-    t.datetime "modified"
-    t.date     "expired_date"
-    t.integer  "req_reduce",             :default => 0,     :null => false
-    t.integer  "place_bid",              :default => 0,     :null => false
-    t.integer  "req_exchange",           :default => 0,     :null => false
-    t.integer  "viewed",                 :default => 0,     :null => false
-    t.boolean  "usedcar",                :default => false, :null => false
-    t.boolean  "published",              :default => true,  :null => false
-    t.integer  "thumb_up",               :default => 0,     :null => false
-    t.integer  "thumb_down",             :default => 0,     :null => false
-    t.integer  "abuse",                  :default => 0,     :null => false
-    t.integer  "referring",              :default => 0,     :null => false
-    t.integer  "sharing",                :default => 0,     :null => false
-    t.integer  "country_id"
-    t.integer  "state_id"
-    t.string   "link_youtube"
-  end
-
-  create_table "shoppinglocations", :force => true do |t|
-    t.integer "parent_id", :default => 0,    :null => false
-    t.string  "name",                        :null => false
-    t.boolean "published", :default => true, :null => false
-  end
-
-  create_table "shoppingphotos", :force => true do |t|
-    t.integer  "shoppingdetail_id", :null => false
-    t.string   "name"
-    t.datetime "created",           :null => false
-=======
->>>>>>> 4727b9cd64b5f36bf5cacdada3d97a0b3f8684e0
   end
 
   create_table "simple_captcha_data", :force => true do |t|
@@ -717,7 +628,7 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
   create_table "states", :force => true do |t|
     t.integer "country_id",               :null => false
     t.string  "name",       :limit => 50, :null => false
-    t.string  "alias",      :limit => 2,  :null => false
+    t.string  "alias",      :limit => 10, :null => false
   end
 
   create_table "stats_ratings", :force => true do |t|
