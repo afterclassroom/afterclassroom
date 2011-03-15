@@ -24,54 +24,48 @@
             <div class="stoDetRT"><%= @music.user.full_name %>: <%= @music.title %></div>
           </div>
         </div>
-        <div class="musicVideo" id="player_<%= @music.id %>">
-          <script type='text/javascript'>
-            var so_<%= @music.id %> = new SWFObject('/javascripts/player.swf','ply_<%= @music.id %>','500','300','9','#000000');
-            so_<%= @music.id %>.addParam('allowfullscreen','true');
-            so_<%= @music.id %>.addParam('wmode','transparent');
-            so_<%= @music.id %>.addVariable('autostart','true');
-            so_<%= @music.id %>.addVariable('repeat','always');
-            so_<%= @music.id %>.addVariable('playlistsize','180');
-            so_<%= @music.id %>.addVariable('playlist','bottom');
-            so_<%= @music.id %>.addVariable('playlistfile','<%= create_playlist_user_musics_path(current_user, :music_album_id => @music.music_album) %>');
-            so_<%= @music.id %>.write('player_<%= @music.id %>');
-          </script>
-          <%= render :partial => "music_playlist" %>
-        </div>
-        <%= render :partial => "music_action" %>
-        <div class="AsDcom" id="form_comment" style="display: none">
-          <h1 class="titleH1">Leave your comments</h1>
-          <% if logged_in? %>
-            <div class="AsDcomImg"><%= link_to raw("<div>#{image_tag(current_user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
-            <div class="AsDcomIn">
-              <form name="form_comment" id="form_comment" action="" method="get">
-                <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
-                <div class="submit"><a href="javascript:;" onclick="send_comment('<%= @music.id %>', 'Music');" >Submit</a></div>
-              </form>
+        <div class="musicVideo" id="playlist_list">
+          <% if  %>
+            <div class="photoImg">
+              <%= image_tag @music.music_album.music_album_attach.url(:thumb) %>
             </div>
-          <% else %>
-            You must be <%= link_to "logged in", login_url %> to post a comment.
-          <% end %>
-        </div>
-        <div class="AsDcomL" id="list_comments">
-          <% if @music.comments.size > 0 %>
-            <h1 class="titleH1"><a href="javascript:;">Comments (<%= @music.comments.size %>)</a></h1>
-            <% @music.comments.each do |c| %>
-              <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
+            <% end  %>
+            <%= render :partial => "music_playlist" %>
+          </div>
+          <%= render :partial => "music_action" %>
+          <div class="AsDcom" id="form_comment" style="display: none">
+            <h1 class="titleH1">Leave your comments</h1>
+            <% if logged_in? %>
+              <div class="AsDcomImg"><%= link_to raw("<div>#{image_tag(current_user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+              <div class="AsDcomIn">
+                <form name="form_comment" id="form_comment" action="" method="get">
+                  <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
+                  <div class="submit"><a href="javascript:;" onclick="send_comment('<%= @music.id %>', 'Music');" >Submit</a></div>
+                </form>
+              </div>
+            <% else %>
+              You must be <%= link_to "logged in", login_url %> to post a comment.
             <% end %>
-          <% end %>
+          </div>
+          <div class="AsDcomL" id="list_comments">
+            <% if @music.comments.size > 0 %>
+              <h1 class="titleH1"><a href="javascript:;">Comments (<%= @music.comments.size %>)</a></h1>
+              <% @music.comments.each do |c| %>
+                <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
         </div>
-        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
     </div>
   </div>
-</div>
-<div class="contMainR">
-  <!--Most Viewed-->
-  <%= render :partial => "on_this_music" %>
-  <!--Most Viewed-->
+  <div class="contMainR">
+    <!--Most Viewed-->
+    <%= render :partial => "on_this_music" %>
+    <!--Most Viewed-->
 
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
-</div>
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+  </div>

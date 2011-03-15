@@ -48,6 +48,7 @@ javascripts:
   - rails
   - checkboxmenu
   - cust_select_plugin
+  - drplayer
 - admin:
   - jquery
   - jquery-ui
