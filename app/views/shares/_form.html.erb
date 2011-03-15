@@ -27,8 +27,15 @@
   </div>
   <div class="submit"><a href="javascript:;" onclick="Share();">Share</a></div>
 <% end %>
+
+<style>
+	.postInp ul{
+		width:329px;
+	}
+</style>
+
 <script type="text/javascript">
-  var path = "<%= list_friend_user_messages_path %>";
+  var path = "<%= list_friend_user_messages_path(current_user) %>";
 
   $("#share_to").autoSuggest(path, {asHtmlID: "share_to", selectedItemProp: "name", searchObjProps: "name", selectionLimit:0});
   function Share(){

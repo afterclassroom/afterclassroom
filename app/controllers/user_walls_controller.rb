@@ -103,6 +103,18 @@ class UserWallsController < ApplicationController
   def link_link
   end
 
+  def match_making_box
+    @user_id_post = params[:user_id_post]
+    render :layout => false
+  end
+  
+  def match_making_send
+    content = params[:content]
+    recipient = params[:recipient]
+    user_id_post = params[:user_id_post]
+    render :text => "Success"
+  end
+
   def passion_box
     @subject = params[:subject]
     @user_id = params[:user_id]

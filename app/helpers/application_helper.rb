@@ -392,6 +392,24 @@ module ApplicationHelper
     end
     return str
   end
+  
+  def show_invite_chat_student_lounge(user)
+    str = ""
+    if !logged_in?
+      str = link_to_require_login(raw("Invite Chat"))
+    else
+      if user.check_user_online
+        if user.check_user_in_chatting_session(current_user.id)
+          str = "Chatting..."
+        else
+          str = link_to_function "Invite Chat", "invite_chat('#{user.id}')"
+        end
+      else
+        str = "Offline"
+      end
+    end
+    return str
+  end
 
   def show_map(address, html)
     link_to("View map", "/gmaps?address=#{address}&html=#{html}&height=325&width=550", :class => "thickbox", :title => "View map")
