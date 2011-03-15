@@ -246,3 +246,83 @@
     background:#f2f2f2 url(/images/selectBox/acc.gif) no-repeat 5px 6px;
     /*display:block !important;*/
 }
+
+/************* drplayer muscic *************************/
+
+.fl
+{
+    float:left;
+}
+
+.fr
+{
+    float: right;
+}
+
+.duration
+{
+    font-size:10px;
+    color:#777;
+}
+
+.btn.play
+{
+    width:16px;
+    height:17px;
+    background-image: url(/images/Photo/play.gif);
+    display: inline-block;
+}
+
+.btn.pause
+{
+    width:16px;
+    height:17px;
+    background-image: url(/images/Photo/pause.gif?2);
+}
+
+.btn.paused
+{
+    width:16px;
+    height:17px;
+    background-image: url(/images/Photo/play.gif?3);
+    display: inline-block;
+}
+
+
+div.player
+{
+    width:380px;
+    height:14px;
+    margin-top:5px;
+    padding-left:20px;
+}
+
+div.player.inactive
+{
+    margin-top:5px;
+    margin-bottom:0px;
+    border-top: dashed 1px #555555;
+}
+
+.item .title
+{
+    -vertical-align:middle;
+}
+
+.item .btn
+{
+    display:inline;
+    float:left;
+    margin-right:5px;
+    cursor:pointer;
+}
+#playlist_list div div.item{
+    margin-left: 120px;
+}
+#playlist_list img{
+    margin-top: 3px;
+}
+#playlist_list .photoImg {
+    background: url("/images/bgphoto.png") no-repeat scroll center center transparent;
+    margin-bottom: 20px;
+}
