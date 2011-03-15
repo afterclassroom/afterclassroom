@@ -619,6 +619,7 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
   create_table "shares_users", :id => false, :force => true do |t|
     t.integer "share_id"
     t.integer "user_id"
+<<<<<<< HEAD
   end
 
   create_table "shopping_refines", :force => true do |t|
@@ -700,6 +701,8 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
     t.integer  "shoppingdetail_id", :null => false
     t.string   "name"
     t.datetime "created",           :null => false
+=======
+>>>>>>> 4727b9cd64b5f36bf5cacdada3d97a0b3f8684e0
   end
 
   create_table "simple_captcha_data", :force => true do |t|
