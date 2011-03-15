@@ -6,10 +6,13 @@ class QaSendMail < ActionMailer::Base
   #
   #   en.qa_send_mail.refer_to_expert.subject
   #
-  def refer_to_expert(qapost, content, receiver_email)
-    @greeting = "HELLO FROM REFER TO EXPERT"
+  def refer_to_expert(introduce, receiver_email,post_id)
+    
+    @post = Post.find_by_id(post_id)
+    @introduce = introduce
 
-    mail :to => receiver_email, :subject => "Plese response"
+
+    mail :to => receiver_email, :subject => "Please response. Thank you for your support !"
     
   end
 end

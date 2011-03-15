@@ -50,6 +50,11 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
     t.string "label"
   end
 
+  create_table "cake_sessions", :force => true do |t|
+    t.text    "data"
+    t.integer "expires"
+  end
+
   create_table "cities", :force => true do |t|
     t.string  "name",       :limit => 100, :null => false
     t.integer "state_id",                  :null => false
@@ -612,8 +617,8 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
   end
 
   create_table "shares_users", :id => false, :force => true do |t|
-    t.integer "user_id"
     t.integer "share_id"
+    t.integer "user_id"
   end
 
   create_table "shopping_refines", :force => true do |t|
@@ -668,6 +673,7 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
     t.integer  "user_id"
     t.datetime "created"
     t.datetime "modified"
+    t.date     "expired_date"
     t.integer  "req_reduce",             :default => 0,     :null => false
     t.integer  "place_bid",              :default => 0,     :null => false
     t.integer  "req_exchange",           :default => 0,     :null => false
@@ -708,7 +714,7 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
   create_table "states", :force => true do |t|
     t.integer "country_id",               :null => false
     t.string  "name",       :limit => 50, :null => false
-    t.string  "alias",      :limit => 10, :null => false
+    t.string  "alias",      :limit => 2,  :null => false
   end
 
   create_table "stats_ratings", :force => true do |t|

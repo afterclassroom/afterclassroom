@@ -1,7 +1,7 @@
 <div class="postCont" id="div_send_report">
   <form id="form_send_report" >
     <div class="postItem">
-      <div class="postItem1" style="width: 100px">>>>>>>>>Email*</div>
+      <div class="postItem1" style="width: 100px">Email*</div>
       <div class="postInp"><input type="text" style="width:330px;" value="" id="changedValue" name="changedValue" class="required email"/></div>
     </div>
     <div class="postItem">
@@ -21,7 +21,7 @@
     var emailAddr = $('#changedValue').val();
     var strContent = $('#abuse_content').val();
 
-    var dataString = '?emailAddr='+ emailAddr + '&strContent=' + strContent;
+    var dataString = '?emailAddr='+ emailAddr + '&strContent=' + strContent+ '&post_id='+<%= @post_id %>;
     url = url + dataString;
     //alert (dataString);return false;
     $.ajax({

@@ -215,71 +215,14 @@ class PostQasController < ApplicationController
   end
   
   def prefer
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
-    puts "============================"
+
+    @post_id = params[:post_id]
     render :layout => false
   end
 
   def sendmail
 
-
-    puts ("HELLO WORLD;  params[:emailAddr] == "+params[:emailAddr])
-    puts ("HELLO WORLD; strContent=== "+params[:strContent])
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-    puts ("HELLO WORLD")
-
-    QaSendMail.refer_to_expert("HELLO ATER", params[:strContent], params[:emailAddr]).deliver
+    QaSendMail.refer_to_expert(params[:strContent], params[:emailAddr],params[:post_id]).deliver
     
     # render :layout => false
     render :text => %Q'Mail sent to'
