@@ -1,0 +1,60 @@
+<form id="form_send_message">
+    <div class="postItem">
+        <div class="postItem1">
+            Send to
+        </div>
+        <div class="postInp">
+            <%= text_field_tag "share_to" %>
+        </div>
+    </div>
+    <div class="postItem">
+        <div style="width: 80px;" class="postItem1">
+            Message
+        </div>
+        <div class="postInp">
+            <textarea onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" class="required" name="body" id="message_body" style="width: 330px; height: 150px;">
+            </textarea>
+        </div>
+    </div>
+    <div style="padding-left: 90px;" class="submit">
+        <a onclick="submit_match_making()" href="javascript:;">Send</a>
+    </div>
+    <div style="padding: 10px;" class="error">
+    </div>
+</form>
+
+<style>
+	.postInp ul{
+		margin-left:43px;
+		width:330px;
+	}
+</style>
+
+<script type="text/javascript">
+    var path = "<%= list_friend_user_messages_path(current_user) %>";
+    
+    $("#share_to").autoSuggest(path, {
+        asHtmlID: "share_to",
+        selectedItemProp: "name",
+        searchObjProps: "name",
+        selectionLimit: 0
+    });
+	
+    function submit_match_making(){  
+    var content  = $('#message_body').attr('value');
+	var recipient = $('#as-values-share_to').val();
+    $.ajax({
+      url: '/user_walls/match_making_send?content='+content+'&user_id_post=<%=  @user_id_post %>&recipient=' + recipient,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        alert(msg);
+        $('#TB_closeWindowButton').click();
+      }
+    });
+    
+  }
+</script>

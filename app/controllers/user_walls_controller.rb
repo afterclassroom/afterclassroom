@@ -17,22 +17,22 @@ class UserWallsController < ApplicationController
         user_wall_photo = UserWallPhoto.new(params[:user_wall_photo])
         user_wall.user_wall_photo = user_wall_photo
       end
-
+      
       if params[:user_wall_video]
         user_wall_video = UserWallVideo.new(params[:user_wall_video])
         user_wall.user_wall_video = user_wall_video
       end
-
+      
       if params[:user_wall_music]
         user_wall_music = UserWallMusic.new(params[:user_wall_music])
         user_wall.user_wall_music = user_wall_music
       end
-
+      
       if params[:user_wall_link]
         user_wall_link = UserWallLink.new(params[:user_wall_link])
         user_wall.user_wall_link = user_wall_link
       end
-
+      
       user_wall.save
       
       @user.user_walls << user_wall
@@ -46,7 +46,7 @@ class UserWallsController < ApplicationController
       }
     end
   end
-
+  
   def view_all_comments
     wall_id = params[:wall_id]
     @wall = UserWall.find_by_id(params[:wall_id])
@@ -55,13 +55,13 @@ class UserWallsController < ApplicationController
     end
     render :layout => false
   end
-
+  
   def create_comment
     wall_id = params[:wall_id]
     comment = params[:comment]
-
+    
     @wall = UserWall.find_by_id(params[:wall_id])
-
+    
     if @wall
       obj_comment = Comment.new()
       obj_comment.comment = comment
@@ -70,7 +70,7 @@ class UserWallsController < ApplicationController
     end
     render :layout => false
   end
-
+  
   def delete_comment
     comment_id = params[:comment_id]
     comment = Comment.find(comment_id)
@@ -80,29 +80,29 @@ class UserWallsController < ApplicationController
     end
     render :layout => false
   end
-
+  
   def rate
     rating = params[:rating]
     @wall = UserWall.find(params[:post_id])
     @wall.rate rating.to_i, current_user
     @wall.save
-
+    
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@wall.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@wall.total_bad}</a></div>"
   end
   
   def link_image
   end
-
+  
   def link_video
   end
-
+  
   def link_music
   end
-
+  
   def link_link
   end
-
+  
   def match_making_box
     @user_id_post = params[:user_id_post]
     render :layout => false
@@ -112,9 +112,23 @@ class UserWallsController < ApplicationController
     content = params[:content]
     recipient = params[:recipient]
     user_id_post = params[:user_id_post]
+    usr = User.find(user_id_post)
+    list_ids = recipient.split(",")
+    list_ids.each do |id|
+      u = User.find(id)
+      if u and u != usr
+        message = Message.new
+        message.sender = current_user
+        message.recipient = u
+        message.subject = "#{current_user.full_name} introduce #{usr.full_name} with you"
+        message.body = content + "<br />" + "Click #{link_to "here", user_path(usr), :target => "blank"} to view profile of #{usr.full_name}"
+        message.save
+      end
+    end
+    
     render :text => "Success"
   end
-
+  
   def passion_box
     @subject = params[:subject]
     @user_id = params[:user_id]
@@ -129,39 +143,39 @@ class UserWallsController < ApplicationController
     @current_wall = params[:current_wall]
     render :layout => false
   end
-
+  
   def submit_passion
     @returnmess = params[:message_subject]+params[:content]+"//userid == "+params[:user_id]+"//user_id_post=="+params[:user_id_post]
-
+    
     new_user_wall = UserWall.new
     new_user_wall.user_id_post = params[:user_id_post]
     new_user_wall.user_id = params[:user_id]
-
+    
     content_of_wall = params[:content]
-
+    
     new_user_wall.content = content_of_wall
-
+    
     new_user_wall.save
-
+    
     render :text => "Success=="+@returnmess
   end
-
+  
   def submit_share
     @returnmess = params[:message_subject]+params[:content]+"//userid == "+params[:user_id]+"//user_id_post=="+params[:user_id_post]
-
+    
     new_user_wall = UserWall.new
     new_user_wall.user_id_post = params[:user_id_post]
     new_user_wall.user_id = params[:user_id]
-
+    
     content_of_wall = "Subject: "+params[:message_subject]+" Content: "+params[:content]
-
+    
     new_user_wall.content = content_of_wall
-
+    
     new_user_wall.save
-
+    
     render :text => "Success=="+@returnmess
   end
-
+  
   
   def attach_image
     link = params[:link]
@@ -178,7 +192,7 @@ class UserWallsController < ApplicationController
     end
     render :layout => false
   end
-
+  
   def attach_video
     link = params[:link]
     @err = false
@@ -200,7 +214,7 @@ class UserWallsController < ApplicationController
     end
     render :layout => false
   end
-
+  
   def attach_music
     link = params[:link]
     @err = false
@@ -216,7 +230,7 @@ class UserWallsController < ApplicationController
     end
     render :layout => false
   end
-
+  
   def attach_link
     link = params[:link]
     @err = false
@@ -236,7 +250,7 @@ class UserWallsController < ApplicationController
       @web_doc.search("p").each{ |e| arr_p << e.inner_html.gsub(/<\/?[^>]*>/, "") }
       p = ""
       p = arr_p.max{|a, b| a.length <=> b.length} if arr_p.size > 0
-
+      
       @user_wall_link = UserWallLink.new
       @user_wall_link.link = link
       @user_wall_link.image_link = image_link
@@ -247,14 +261,14 @@ class UserWallsController < ApplicationController
     end
     render :layout => false
   end
-
+  
   def jplayer_music
     wall_id = params[:wall_id]
     wall = UserWall.find(wall_id)
     @user_wall_music = wall.user_wall_music
     render :layout => false
   end
-
+  
   def jplayer_video
     wall_id = params[:wall_id]
     wall = UserWall.find(wall_id)
