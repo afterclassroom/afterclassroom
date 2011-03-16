@@ -125,6 +125,7 @@ class MusicsController < ApplicationController
         @music.length_in_seconds = mp3_info.length.to_i
         @music.save
         flash[:notice] = 'Music was successfully created.'
+        music_wall(@music)
         format.html { redirect_to user_music_album_path(current_user, @music.music_album) }
         format.xml  { render :xml => @music, :status => :created, :location => @music }
       else

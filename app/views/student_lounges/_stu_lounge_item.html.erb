@@ -3,7 +3,7 @@
     <div class="assItem" id="wall_<%= w.id %>">
         <div class="assItemL">
             <div class="assCate">
-                <span><a href="#" style="color: #000000;">&nbsp;&nbsp;<%= w.content %></a></span>
+                <span><a href="#" style="color: #000000;">&nbsp;&nbsp;<%= raw(w.content) %></a></span>
             </div>
         </div>
         <%= show_attach(w) if w.has_attach %>
