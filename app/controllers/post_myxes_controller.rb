@@ -138,6 +138,7 @@ class PostMyxesController < ApplicationController
     if simple_captcha_valid?
       if @post_myx.save
         flash.now[:notice] = "Your post was successfully created."
+        post_wall(@post, post_myx_path(@post))
         redirect_to post_myxes_path
       else
         error "Failed to create a new post."

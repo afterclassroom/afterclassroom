@@ -15,7 +15,7 @@ class PostTestsController < ApplicationController
     else
       @posts = PostTest.paginated_post_conditions_with_option(params, @school)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -27,27 +27,27 @@ class PostTestsController < ApplicationController
     if params[:search]
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def interesting
     @posts = PostTest.paginated_post_conditions_with_interesting(params, @school)
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def tag
     @tag_name = params[:tag_name]
     @posts = PostText.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
-
+  
   # GET /post_tests/1
   # GET /post_tests/1.xml
   def show
@@ -64,7 +64,7 @@ class PostTestsController < ApplicationController
       format.xml  { render :xml => @post_test }
     end
   end
-
+  
   # GET /post_tests/new
   # GET /post_tests/new.xml
   def new
@@ -76,14 +76,14 @@ class PostTestsController < ApplicationController
       format.xml  { render :xml => @post_test }
     end
   end
-
+  
   # GET /post_tests/1/edit
   def edit
     @post_test = PostTest.find(params[:id])
     @post = @post_test.post
     @tag_list = @post_test.tags_from(@post.school).join(", ")
   end
-
+  
   # POST /post_tests
   # POST /post_tests.xml
   def create
@@ -100,18 +100,19 @@ class PostTestsController < ApplicationController
     @post_test.post = @post
     if simple_captcha_valid?
       if @post_test.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_tests_path
-    else
-      error "Failed to create a new post."
-      render :action => "new"
-    end
+        flash.now[:notice] = "Your post was successfully created."
+        post_wall(@post, post_test_path(@post))
+        redirect_to post_tests_path
+      else
+        error "Failed to create a new post."
+        render :action => "new"
+      end
     else
       flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end
-
+  
   # PUT /post_tests/1
   # PUT /post_tests/1.xml
   def update
@@ -123,13 +124,13 @@ class PostTestsController < ApplicationController
       redirect_to post_test_url(@post_test)
     end
   end
-
+  
   # DELETE /post_tests/1
   # DELETE /post_tests/1.xml
   def destroy
     @post_test = PostTest.find(params[:id])
     @post_test.destroy
-
+    
     redirect_to my_post_user_url(current_user)
   end
   
@@ -137,9 +138,9 @@ class PostTestsController < ApplicationController
     @class_name = "PostTest"
     render :partial => "form_request_test"
   end
-
+  
   private
-
+  
   def get_variables
     @school = session[:your_school]
     @new_post_path = new_post_test_path
@@ -147,7 +148,7 @@ class PostTestsController < ApplicationController
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
-
+  
   def require_current_user
     post_test = PostTest.find(params[:id])
     post = post_test.post

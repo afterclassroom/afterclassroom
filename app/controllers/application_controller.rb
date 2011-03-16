@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
   include Viewable
+  include Postwall
   include SimpleCaptcha::ControllerHelpers
   
   helper :all # include all helpers, all the time

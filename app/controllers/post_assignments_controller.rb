@@ -1,7 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostAssignmentsController < ApplicationController
-  
-
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :search, :due_date, :interesting, :tag]
   before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
@@ -18,13 +16,13 @@ class PostAssignmentsController < ApplicationController
     else
       @posts = PostAssignment.paginated_post_conditions_with_option(params, @school)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]
@@ -36,7 +34,7 @@ class PostAssignmentsController < ApplicationController
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def due_date
     @posts = PostAssignment.paginated_post_conditions_with_due_date(params, @school)
     
@@ -45,21 +43,21 @@ class PostAssignmentsController < ApplicationController
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def interesting
     @posts = PostAssignment.paginated_post_conditions_with_interesting(params, @school)
-
+    
     respond_to do |format|
       format.html # interesting.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def tag
     @tag_name = params[:tag_name]
     @posts = PostAssignment.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
-
+  
   # GET /post_assignments/1
   # GET /post_assignments/1.xml
   def show
@@ -76,7 +74,7 @@ class PostAssignmentsController < ApplicationController
       format.xml  { render :xml => @post_assignment }
     end
   end
-
+  
   # GET /post_assignments/new
   # GET /post_assignments/new.xml
   def new
@@ -88,14 +86,14 @@ class PostAssignmentsController < ApplicationController
       format.xml  { render :xml => @post_assignment }
     end
   end
-
+  
   # GET /post_assignments/1/edit
   def edit
     @post_assignment = PostAssignment.find(params[:id])
     @post = @post_assignment.post
     @tag_list = @post_assignment.tags_from(@post.school).join(", ")
   end
-
+  
   # POST /post_assignments
   # POST /post_assignments.xml
   def create 
@@ -111,16 +109,21 @@ class PostAssignmentsController < ApplicationController
     @post.school.owned_taggings
     @post.school.owned_tags
     @post_assignment.post = @post
-    
-    if @post_assignment.save
-      flash.now[:notice] = "Your post was successfully created."
-      redirect_to post_assignments_path
+    if simple_captcha_valid?
+      if @post_assignment.save
+        flash.now[:notice] = "Your post was successfully created."
+        post_wall(@post, post_assignment_path(@post))
+        redirect_to post_assignments_path
+      else
+        error "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      error "Failed to create a new post."
+      flash.now[:warning] = "Captcha not match."
       render :action => "new"
     end
   end
-
+  
   # PUT /post_assignments/1
   # PUT /post_assignments/1.xml
   def update
@@ -134,13 +137,13 @@ class PostAssignmentsController < ApplicationController
       redirect_to post_assignment_url(@post_assignment)
     end
   end
-
+  
   # DELETE /post_assignments/1
   # DELETE /post_assignments/1.xml
   def destroy
     @post_assignment = PostAssignment.find(params[:id])
     @post_assignment.destroy
-
+    
     redirect_to my_post_user_url(current_user)
   end
   
@@ -148,9 +151,9 @@ class PostAssignmentsController < ApplicationController
     @class_name = "PostAssignment"
     render :partial => "form_request_assignment"
   end
-
+  
   private
-
+  
   def get_variables
     @school = session[:your_school]
     @new_post_path = new_post_assignment_path
@@ -158,7 +161,7 @@ class PostAssignmentsController < ApplicationController
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
-
+  
   def require_current_user
     post_assignment = PostAssignment.find(params[:id])
     post = post_assignment.post

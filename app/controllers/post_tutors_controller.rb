@@ -152,6 +152,7 @@ class PostTutorsController < ApplicationController
     if simple_captcha_valid?
       if @post_tutor.save
         flash.now[:notice] = "Your post was successfully created."
+        post_wall(@post, post_tutor_path(@post))
         redirect_to post_tutors_path + "?tutor_type_id=#{@post_tutor.tutor_type_id}"
       else
         flash.now[:error] = "Failed to create a new post."

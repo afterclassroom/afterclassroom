@@ -111,6 +111,7 @@ class PostProjectsController < ApplicationController
     if simple_captcha_valid?
       if @post_project.save
         flash.now[:notice] = "Your post was successfully created."
+        post_wall(@post, post_project_path(@post))
         redirect_to post_projects_path
       else
         error "Failed to create a new post."
