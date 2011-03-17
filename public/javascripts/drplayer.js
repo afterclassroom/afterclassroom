@@ -22,7 +22,8 @@ $(window).unload(function() {
         var flashWidth = settings.progressBarWidth + settings.barSpace + settings.volumeBarWidth;
         var flashHeight = Math.max(settings.volumeSliderHeight, settings.progressSliderHeight);
             
-    var settingsStr = "&amp;backgroundColor=" + settings.backgroundColor +
+    var settingsStr = "&amp;autoplay=" + settings.autoplay +
+"&amp;backgroundColor=" + settings.backgroundColor +
 "&amp;volumeBarWidth=" + settings.volumeBarWidth +
 "&amp;progressBarWidth=" + settings.progressBarWidth + 
 "&amp;barSpace=" + settings.barSpace + 
@@ -141,6 +142,7 @@ $(window).unload(function() {
         init: function(options) {
         
             var settings = {
+                autoplay             : 1,
                 backgroundColor      : 0xFFFFFF,
                 volumeBarWidth       : 40,
                 progressBarWidth     : 320,
@@ -157,7 +159,6 @@ $(window).unload(function() {
                 progressSliderColor  : 0x555555,
                 bufferColor          : 0x555555,
 		playerurl	     : "drplayer.swf",
-                autoPlay             : true
             }
 
             if (options) {
