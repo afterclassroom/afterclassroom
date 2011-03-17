@@ -10,7 +10,7 @@
         parties_recent.each do |party|
         %>
           <div class="recentItem">
-            <div class="recentImg"><div><%= link_to image_tag(party.post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => party.post.user.id} %></div></div>
+            <div class="recentImg"><%= show_image_user_post(party.post.user) %></div>
             <div class="recentInf">
               <div class="recentName"><%= link_to party.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => party.post.user.id} %></div>
               <div class="recentUni"><span>at</span><%= link_to party.post.school.name, :controller => "post_assignments", :action => "index", :from_school => party.post.school %></div>

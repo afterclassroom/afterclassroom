@@ -157,6 +157,7 @@ class PostQasController < ApplicationController
     if simple_captcha_valid?
       if @post_qa.save
         flash.now[:notice] = "Your post was successfully created."
+        post_wall(@post, post_qa_path(@post))
         redirect_to post_qas_path + "?type=asked"
       else
         error "Failed to create a new post."

@@ -10,7 +10,7 @@
         foods_recent.each do |food|
         %>
           <div class="recentItem">
-            <div class="recentImg"><div><%= link_to image_tag(food.post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => food.post.user.id} %></div></div>
+            <div class="recentImg"><%= show_image_user_post(food.post.user) %></div>
             <div class="recentInf">
               <div class="recentName"><%= link_to food.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => food.post.user.id} %></div>
               <div class="recentUni"><span>at</span><%= link_to food.post.school.name, :controller => "post_assignments", :action => "index", :from_school => food.post.school %></div>

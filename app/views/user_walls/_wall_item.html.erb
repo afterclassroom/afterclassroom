@@ -1,7 +1,7 @@
 <div class="AfterItem" id="wall_<%= wall.id %>">
   <div class="assPic"><%= link_to raw("<div>#{image_tag(wall.user_post.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %></div>
   <div class="AfterInfo">
-    <div class="AfterCl"><%= link_to wall.user_post.full_name, {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %> - <%= wall.content %></div>
+    <div class="AfterCl"><%= link_to wall.user_post.full_name, {:controller => "profile", :action => "show_profile", :id => wall.user_post.id} %> - <%= raw(wall.content) %></div>
     <!--Attach-->
     <%= show_attach(wall) if wall.has_attach %>
     <!--Attach-->

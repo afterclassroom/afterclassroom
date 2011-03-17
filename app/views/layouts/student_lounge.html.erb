@@ -16,12 +16,20 @@
     <div class="top" id="top_page">
       <div class="banner">
         <div class="logo"><a href="/"><img alt="classroom" src="/images/logo.png" /></a></div>
-        <%= render :partial => 'shared/login_sl' %>
+		<% if logged_in? %>
+        	<%= render :partial => 'shared/login_sl' %>
+		<% else %>
+			<%= render :partial => 'shared/login' %>
+		<% end %>
       </div>
     </div>
     <div class="menu">
       <div class="menuFriend">
-        <%= render :partial => 'shared/menu_main_sl' %>
+      	<% if logged_in? %>
+        	<%= render :partial => 'shared/menu_main_sl' %>
+		<% else %>
+			<%= render :partial => 'shared/menu_main' %>
+		<% end %>
       </div>
     </div>
     <%= yield_or_default(yield(:menu_top_student_lounge)) %>

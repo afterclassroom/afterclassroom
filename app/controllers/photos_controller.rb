@@ -121,6 +121,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo.save
         flash[:notice] = 'Photo was successfully created.'
+        image_wall(@photo)
         format.html { redirect_to user_photo_path(current_user, @photo) }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
       else

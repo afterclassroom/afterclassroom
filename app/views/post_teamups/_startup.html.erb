@@ -10,7 +10,7 @@
         teamStartup.each do |ts|
         %>
           <div class="studentItem">
-            <div class="studentImg"><%= link_to raw("<div>#{image_tag(ts.post.user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => ts.post.user.id} %></div>
+            <div class="studentImg"><%= show_image_user_post(ts.post.user) %></div>
             <div class="studentInf"><%= link_to truncate_words(ts.post.title, 4), post_teamup_path(ts) %></div>
           </div>
         <%

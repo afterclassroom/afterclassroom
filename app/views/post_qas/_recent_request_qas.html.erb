@@ -9,7 +9,7 @@
       qas_recent.each do |qa|
       %>
         <div class="recentItem">
-          <div class="recentImg"><div><%= link_to image_tag(qa.post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => qa.post.user.id} %></div></div>
+          <div class="recentImg"><%= show_image_user_post(qa.post.user) %></div>
           <div class="recentInf">
             <div class="recentName"><%= link_to qa.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => qa.post.user.id} %></div>
             <div class="recentUni"><span>at</span><%= link_to qa.post.school.name, :controller => "post_qas", :action => "index", :from_school => qa.post.school, :type => @type %></div>

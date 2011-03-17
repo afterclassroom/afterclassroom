@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   protect_from_forgery :only => [:create]
 
   before_filter :login_required,
-    :except => [:new, :create, :activate, :forgot_login, :forgot_password, :show_lounge]
+    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
   before_filter :require_current_user,
     :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge]
   
