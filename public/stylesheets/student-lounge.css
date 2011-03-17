@@ -4312,6 +4312,7 @@ div.helpAdv2{
 .slsItemR{
     float:left;
     width:485px;
+	margin-left:10px;
 }
 .slsItemTitle a, .slsItemTitle a:link, .slsItemTitle a:visited{
     color:#1e1e1e;

@@ -10,7 +10,7 @@
         jobs_recent.each do |job|
         %>
           <div class="recentItem">
-            <div class="recentImg"><div><%= link_to image_tag(job.post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => job.post.user.id} %></div></div>
+            <div class="recentImg"><%= show_image_user_post(job.post.user) %></div>
             <div class="recentInf">
               <div class="recentName"><%= link_to job.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => job.post.user.id} %></div>
               <div class="recentUni"><span>at</span><%= link_to job.post.school.name, :controller => "post_assignments", :action => "index", :from_school => job.post.school %></div>

@@ -10,7 +10,7 @@
         myxes_recent.each do |myx|
         %>
           <div class="recentItem">
-            <div class="recentImg"><div><%= link_to image_tag(myx.post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => myx.post.user.id} %></div></div>
+            <div class="recentImg"><%= show_image_user_post(myx.post.user) %></div>
             <div class="recentInf">
               <div class="recentName"><%= link_to myx.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => myx.post.user.id} %></div>
               <div class="recentUni"><span>at</span><%= link_to myx.post.school.name, :controller => "post_assignments", :action => "index", :from_school => myx.post.school %></div>

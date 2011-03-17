@@ -10,7 +10,7 @@
         assignments_recent.each do |asg|
         %>
           <div class="recentItem">
-            <div class="recentImg"><div><%= link_to image_tag(asg.post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => asg.post.user.id} %></div></div>
+            <div class="recentImg"><%= show_image_user_post(asg.post.user) %></div>
             <div class="recentInf">
               <div class="recentName"><%= link_to asg.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => asg.post.user.id} %></div>
               <div class="recentUni"><span>at</span><%= link_to asg.post.school.name, :controller => "post_assignments", :action => "index", :from_school => asg.post.school %></div>
