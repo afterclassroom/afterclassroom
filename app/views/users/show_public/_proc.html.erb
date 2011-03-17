@@ -6,10 +6,12 @@
       <div class="proItem"><%= link_to "#{@user.full_name}'s Photos (#{@user.photos.size})", user_photos_path(@user) %></div>
       <div class="proItem"><%= link_to "#{@user.full_name}'s Musics (#{@user.musics.size})", user_musics_path(@user) %></div>
       <div class="proItem"><%= link_to "#{@user.full_name}'s Videos (#{@user.videos.size})", user_videos_path(@user) %></div>
+	  <% if check_private_permission(@user, "about_myself") and @user.user_information and @user.user_information.about_yourself %>
       <div class="proItem">About myself</div>
       <div class="proBtm">
-        <%= @user.user_information.about_yourself if @user.user_information%>
+        <%= @user.user_information.about_yourself if @user.user_information %>
       </div>
+	  <% end %>
     </div>
   </div>
 </div>

@@ -268,6 +268,12 @@ class User < ActiveRecord::Base
     get_posts_with_type(type).size
   end
   
+  def friend_of_friends
+    fof = UserInvite.find_by_sql("SELECT DISTINCT tb.user_id_target FROM user_invites AS tl JOIN user_invites AS tb ON tl.user_id_target = tb.user_id WHERE tl.user_id = #{self.id}")
+    ids = fof.collect {|f| f.user_id_target}
+    User.find(:all, :conditions => ["id IN(#{ids.join(',')})"])
+  end
+  
   protected
   
   def make_activation_code

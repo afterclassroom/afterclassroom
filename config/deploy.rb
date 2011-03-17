@@ -1,96 +1,85 @@
-#############################################################
-#	Application
-#############################################################
-set :application, "Afterclassroom"
-set :domain, "afterclassroom.com"
-set :deploy_to, "/var/www/after"
+# This is a sample Capistrano config file for EC2 on Rails.
+# It should be edited and customized.
 
-#############################################################
-#	Settings
-#############################################################
-ssh_options[:paranoid] = true
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
-default_run_options[:pty] = true # required for svn+ssh:// andf git:// sometimes
+set :application, "yourapp"
 
-set :use_sudo, true
-set :scm_verbose, true
-set :rails_env, "production"
-set :runner, nil
-
-#############################################################
-#	Servers
-#############################################################
-
-set :user, "root"
-set :domain, "68.168.106.96:10222"
-server domain, :app, :web
-role :db, domain, :primary => true
-
-#############################################################
-#	Git
-#############################################################
-
-set :scm, :git
-set :scm_user, "afterclassroom"
-set :scm_passphrase, "huyettam"
 set :repository, "git@github.com:afterclassroom/afterclassroom.git"
-set :remote, "origin"
-set :branch, "master"
-set :deploy_via, :remote_cache
 
-#############################################################
-#	Passenger
-#############################################################
+# NOTE: for some reason Capistrano requires you to have both the public and
+# the private key in the same folder, the public key should have the 
+# extension ".pub".
+ssh_options[:keys] = ["#{ENV['HOME']}/.ssh/your-ec2-key"]
 
-namespace :deploy do
-  desc "Create the database yaml file"
-  task :after_update_code do
-    db_config = <<-EOF
-    production:
-      adapter: mysql2
-      encoding: utf8
-      username: after
-      password: huyettam2010
-      database: afterclassroom_production
-      socket: /var/lib/mysql/mysql.sock
-    development:
-      adapter: mysql2
-      encoding: utf8
-      username: after
-      password: huyettam2010
-      database: afterclassroom_production
-      socket: /var/lib/mysql/mysql.sock
-    EOF
+# Your EC2 instances. Use the ec2-xxx....amazonaws.com hostname, not
+# any other name (in case you have your own DNS alias) or it won't
+# be able to resolve to the internal IP address.
+role :web,      "ec2-75-101-204-3.compute-1.amazonaws.com"
+role :app,      "ec2-75-101-204-3.compute-1.amazonaws.com"
+role :db,       "ec2-75-101-204-3.compute-1.amazonaws.com", :primary => true
+role :memcache, "ec2-75-101-204-3.compute-1.amazonaws.com"
 
-    put db_config, "#{release_path}/config/database.yml"
-    
-    after "deploy:update_code", "deploy:pack_assets"
+# Whatever you set here will be taken set as the default RAILS_ENV value
+# on the server. Your app and your hourly/daily/weekly/monthly scripts
+# will run with RAILS_ENV set to this value.
+set :rails_env, "production"
 
-    task :start, :roles => :app do
-      # Asset packager
-      run "cd #{release_path} && rake asset:packager:delete_all"
-      run "cd #{release_path} && rake asset:packager:build_all"
-      # Stop Sphinx
-#      run "cd #{release_path} && rake ts:stop"
-      # Start Sphinx
-#      run "cd #{release_path} && rake ts:start"
-      # Stop Juggernault
-      run "juggernaut -k -c #{current_release}/config/juggernaut.yml"
-      # Start Juggernault
-      run "juggernaut  -d -c #{current_release}/config/juggernaut.yml"
-      # Start Server
-      run "touch #{current_release}/tmp/restart.txt"
-    end
-
-    task :stop, :roles => :app do
-      # Do nothing.
-    end
-
-    desc "Restart Application"
-    task :restart, :roles => :app do
-      # Start Server
-      run "touch #{current_release}/tmp/restart.txt"
-    end
-  end
-end
+# EC2 on Rails config. 
+# NOTE: Some of these should be omitted if not needed.
+set :ec2onrails_config, {
+  # S3 bucket and "subdir" used by the ec2onrails:db:restore task
+  :restore_from_bucket => "your-bucket",
+  :restore_from_bucket_subdir => "database",
+  
+  # S3 bucket and "subdir" used by the ec2onrails:db:archive task
+  # This does not affect the automatic backup of your MySQL db to S3, it's
+  # just for manually archiving a db snapshot to a different bucket if 
+  # desired.
+  :archive_to_bucket => "your-other-bucket",
+  :archive_to_bucket_subdir => "db-archive/#{Time.new.strftime('%Y-%m-%d--%H-%M-%S')}",
+  
+  # Set a root password for MySQL. Run "cap ec2onrails:db:set_root_password"
+  # to enable this. This is optional, and after doing this the
+  # ec2onrails:db:drop task won't work, but be aware that MySQL accepts 
+  # connections on the public network interface (you should block the MySQL
+  # port with the firewall anyway). 
+  # If you don't care about setting the mysql root password then remove this.
+  :mysql_root_password => "",
+  
+  # Any extra Ubuntu packages to install if desired
+  # If you don't want to install extra packages then remove this.
+  # :packages => ["logwatch", "imagemagick"],
+  
+  # Any extra RubyGems to install if desired: can be "gemname" or if a 
+  # particular version is desired "gemname -v 1.0.1"
+  # If you don't want to install extra rubygems then remove this
+  # :rubygems => ["rmagick", "rfacebook -v 0.9.7"],
+  
+  # Set the server timezone. run "cap -e ec2onrails:server:set_timezone" for 
+  # details
+  :timezone => "Canada/Eastern",
+  
+  # Files to deploy to the server (they'll be owned by root). It's intended
+  # mainly for customized config files for new packages installed via the 
+  # ec2onrails:server:install_packages task. Subdirectories and files inside
+  # here will be placed in the same structure relative to the root of the
+  # server's filesystem. 
+  # If you don't need to deploy customized config files to the server then
+  # remove this.
+  :server_config_files_root => "../server_config",
+  
+  # If config files are deployed, some services might need to be restarted.
+  # If you don't need to deploy customized config files to the server then
+  # remove this.
+  :services_to_restart => %w(apache2 postfix sysklogd),
+  
+  # Set an email address to forward admin mail messages to. If you don't
+  # want to receive mail from the server (e.g. monit alert messages) then
+  # remove this.
+  :admin_mail_forward_address => "admin@afterclassroom.com",
+  
+  # Set this if you want SSL to be enabled on the web server. The SSL cert 
+  # and key files need to exist on the server, The cert file should be in
+  # /etc/ssl/certs/default.pem and the key file should be in
+  # /etc/ssl/private/default.key (see :server_config_files_root).
+  :enable_ssl => true
+}
