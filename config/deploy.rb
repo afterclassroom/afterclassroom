@@ -22,8 +22,8 @@ set :runner, nil
 # Servers
 #############################################################
 
-set :user, "root"
-set :domain, "75.101.204.3"
+set :user, "after"
+set :domain, "ec2-75-101-204-3.compute-1.amazonaws.com"
 server domain, :app, :web
 role :db, domain, :primary => true
 
