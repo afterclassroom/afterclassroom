@@ -62,34 +62,40 @@
     var strUrlFamily_<%= friend.id %> = $('#Family_members_<%= friend.id %>').next().attr('href');
     $('#Family_members_<%= friend.id %>').next().attr('href','javascript:;');
     $('#Family_members_<%= friend.id %>').next().click(function(){
-      //alert('a == '+strUrlFamily_<%= friend.id %>);
-      AddToWithAjax(strUrlFamily_<%= friend.id %>);
+      AddToWithAjax(strUrlFamily_<%= friend.id %>,'Family_members_<%= friend.id %>');
+      strUrlFamily_<%= friend.id %> = UpdateURL(strUrlFamily_<%= friend.id %>);
     });
     $('#Family_members_<%= friend.id %>').click(function(){
-      //alert('a == '+strUrlFamily_<%= friend.id %>);
-      AddToWithAjax(strUrlFamily_<%= friend.id %>);
+      AddToWithAjax(strUrlFamily_<%= friend.id %>,null);
+      strUrlFamily_<%= friend.id %> = UpdateURL(strUrlFamily_<%= friend.id %>);
     });
     /*END Hanle ajax call for Adding/Removing Family Member Group*/
 
     /*BEGIN Hanle ajax call for Adding/Removing Friend From School Group*/
     var strUrlFriend_<%= friend.id %> = $('#Friends_from_school_<%= friend.id %>').next().attr('href');
+    var status = false;
     $('#Friends_from_school_<%= friend.id %>').next().attr('href','javascript:;');
     $('#Friends_from_school_<%= friend.id %>').next().click(function(){
-      AddToWithAjax(strUrlFriend_<%= friend.id %>);
+      AddToWithAjax(strUrlFriend_<%= friend.id %>,'Friends_from_school_<%= friend.id %>');
+      strUrlFriend_<%= friend.id %>=UpdateURL(strUrlFriend_<%= friend.id %>);
     });
     $('#Friends_from_school_<%= friend.id %>').click(function(){
-      AddToWithAjax(strUrlFriend_<%= friend.id %>);
+      AddToWithAjax(strUrlFriend_<%= friend.id %>,null);
+      strUrlFriend_<%= friend.id %>=UpdateURL(strUrlFriend_<%= friend.id %>);
     });
+
     /*END Hanle ajax call for Adding/Removing Friend From School Group*/
 
     /*BEGIN Hanle ajax call for Adding/Removing Friend From Work Group*/
     var strUrlWork_<%= friend.id %> = $('#Friends_from_work_<%= friend.id %>').next().attr('href');
     $('#Friends_from_work_<%= friend.id %>').next().attr('href','javascript:;');
     $('#Friends_from_work_<%= friend.id %>').next().click(function(){
-      AddToWithAjax(strUrlWork_<%= friend.id %>);
+      AddToWithAjax(strUrlWork_<%= friend.id %>,'Friends_from_work_<%= friend.id %>');
+      strUrlWork_<%= friend.id %>=UpdateURL(strUrlWork_<%= friend.id %>);
     });
     $('#Friends_from_work_<%= friend.id %>').click(function(){
-      AddToWithAjax(strUrlWork_<%= friend.id %>);
+      AddToWithAjax(strUrlWork_<%= friend.id %>,null);
+      strUrlWork_<%= friend.id %>=UpdateURL(strUrlWork_<%= friend.id %>);
     });
     /*END Hanle ajax call for Adding/Removing Friend From Work Group*/
 
@@ -97,10 +103,12 @@
     var strUrlGen_<%= friend.id %> = $('#General_Friends_<%= friend.id %>').next().attr('href');
     $('#General_Friends_<%= friend.id %>').next().attr('href','javascript:;');
     $('#General_Friends_<%= friend.id %>').next().click(function(){
-      AddToWithAjax(strUrlGen_<%= friend.id %>);
+      AddToWithAjax(strUrlGen_<%= friend.id %>,'General_Friends_<%= friend.id %>');
+      strUrlGen_<%= friend.id %>=UpdateURL(strUrlGen_<%= friend.id %>);
     });
     $('#General_Friends_<%= friend.id %>').click(function(){
-      AddToWithAjax(strUrlGen_<%= friend.id %>);
+      AddToWithAjax(strUrlGen_<%= friend.id %>,null);
+      strUrlGen_<%= friend.id %>=UpdateURL(strUrlGen_<%= friend.id %>);
     });
     /*END Hanle ajax call for Adding/Removing General Friend Group*/
   });

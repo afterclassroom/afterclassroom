@@ -60,7 +60,8 @@
   }
 
 
-  function AddToWithAjax(path){
+  function AddToWithAjax(path, id_checkbox){
+    /*Display waiting dialog*/
     $('#wait_dialog').show();
     $("#wait_dialog").dialog({
       modal: true
@@ -71,7 +72,13 @@
       type: 'GET',
       url: path,
       success: function(data) {
-        $('.ui-dialog-titlebar-close').click();
+        $('.ui-dialog-titlebar-close').click();/*Close waiting dialog*/
+        if (id_checkbox != null){
+          if ( $('#'+id_checkbox).attr('checked') )
+            $('#'+id_checkbox).attr('checked','');
+          else
+            $('#'+id_checkbox).attr('checked','true');
+        }
         alert(''+data);
       },
       error: function(er){
@@ -79,7 +86,15 @@
       }
     });
   }
+  
+  function UpdateURL(path){
+    if ( path.indexOf('status=checked') != -1 )
+      path = path.replace('check_status=checked','check_status=');
+    else
+      path = path.replace('check_status=','check_status=checked');
 
+    return path;
+  }
 
 
 </script>
