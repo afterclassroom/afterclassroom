@@ -53,7 +53,6 @@ namespace :deploy do
       username: root
       password: 
       database: afterclassroom
-      socket: /var/lib/mysql/mysql.sock
     EOF
 
     put db_config, "#{release_path}/config/database.yml"
