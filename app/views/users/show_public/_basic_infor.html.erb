@@ -1,19 +1,29 @@
+<% if check_private_permission(@user, "sex") and check_private_permission(@user, "relationship_status") and check_private_permission(@user, "looking_for") and check_private_permission(@user, "political_views") %>
 <div class="proInfItem">
   <div class="proInfTit">Basic Information</div>
+  <% if check_private_permission(@user, "sex") %>
   <div class="proInfLR">
     <div class="proInfLabel">Sex:</div>
     <div class="proInfCont"><%= get_gender(@user.user_information.sex) %></div>
   </div>
+  <% end %>
+  <% if check_private_permission(@user, "relationship_status") %>
   <div class="proInfLR">
     <div class="proInfLabel">Relationship Status:</div>
     <div class="proInfCont"><%= @user.user_information.relationship_status %></div>
   </div>
+  <% end %>
+  <% if check_private_permission(@user, "looking_for") %>
   <div class="proInfLR">
     <div class="proInfLabel">Looking For:</div>
     <div class="proInfCont"><%= @user.user_information.looking_for %></div>
   </div>
+  <% end %>
+  <% if check_private_permission(@user, "political_views") %>
   <div class="proInfLR">
     <div class="proInfLabel">Political Views:</div>
     <div class="proInfCont"><%= @user.user_information.polictical_view %></div>
   </div>
+  <% end %>
 </div>
+<% end %>

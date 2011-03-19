@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery :secret => '9fe6825f97cc334d88925fde5c4808a8'
 
   # Temp
-  USER_NAME, PASSWORD = "afterclassroom", "teamwork"
+  # USER_NAME, PASSWORD = "afterclassroom", "teamwork"
 
   before_filter :authenticate
 

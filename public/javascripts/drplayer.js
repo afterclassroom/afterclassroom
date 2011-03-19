@@ -173,7 +173,11 @@ $(window).unload(function() {
                 //init
                 $.each($(el).find(".item"), function() {
                     var item = $(this);        
-                    $(this).data("settings", settings);   
+                    $(this).data("settings", settings);
+                    if ($(el).find(".current").length == 0) {
+                    var tr = $(el).find(".item:first");
+                    playTrack(tr, $(el).data("id"));
+                }
                     $(this).find(".btn").click(function() {
                         if ($(item).hasClass("paused")) {
                             $(item).removeClass("paused");
