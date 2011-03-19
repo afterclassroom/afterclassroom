@@ -58,5 +58,32 @@
       }
     });
   }
+/*
+  $(document).ready(function(){
+    $('div.flistRAdd ul li a').each(function(){
+      var strUrl = $(this).attr('href');
+      $(this).attr('href','javascript:;');
+      $(this).click(function(){
+        console.log('url == '+strUrl);
+        AddToWithAjax(strUrl);
+      });
+    });
+  });
+
+
+  function AddToWithAjax(path){
+    $.ajax({
+      type: 'GET',
+      url: path,
+      success: function(data) {
+        alert('Success communicate with server: '+data);
+      },
+      error: function(er){
+        alert('Failed to communicate with server: '+er);
+      }
+    });
+  }
+*/
+
 
 </script>
