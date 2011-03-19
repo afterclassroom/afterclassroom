@@ -186,9 +186,7 @@ h2.titleH2 a:hover{ color:#d00}
 .renew a:hover{ color:#d00}
 .tablePost table td.postPromoted{ color:#5a923c; font-weight:bold}
 .postTR td{ background-color:#f2f2f2}
-  body {height:1500px;}
-  #feedback1 {cursor:pointer; border:3px solid #ddd; border-right:0}
- .Br-by-sub .col300Cont{ line-height:170%; color:#6e7062}
+  .Br-by-sub .col300Cont{ line-height:170%; color:#6e7062}
 .tabClouse a, .tabClouse a:link, .tabClouse a:visited{ color:#6e7062; text-decoration:none}
 .tabClouse a:hover{ color:#d00}
 .sub1{ font-size:12px; font-weight:bold}
@@ -352,10 +350,10 @@ span.btmDown a:hover{ background:url('/images/btmDownH.png') no-repeat}
 .regRlBt{ background:url('/images/learnFeed.png') no-repeat left top; padding-left:18px}
 .postItemB {background:url(/images/upload_file.png) no-repeat 100% 2px; height:26px; padding:5px 0 1px 0}
 .postItemA {background:url(/images/upload_file.png) no-repeat 60% 2px; height:24px; padding:3px 0 2px 0; margin:3px 0}
-#divinputfileA{ background:url(/images/upload_file.png) no-repeat 100% 1px; height:24px; padding-bottom:2px}
+#divinputfile{ height:24px; padding-bottom:2px}
 .postTitt {font-weight:bold; line-height:20px; width:110px; position:absolute; margin-top:5px; margin-left:10px}
 .postUpfile{ margin-top:-21px}
-#divinputfile .filepc{ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -khtml-opacity: 0.0; -moz-opacity: 0.0; opacity: 0.0}
+#divinputfile .filepc{ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -khtml-opacity: 0.0; -moz-opacity: 0.0; opacity: 0.0; width:300px}
 #fakeinputfile #fakefilepc{ width:208px; height:22px; border:1px solid #CECECE; color:#969696; height:15px; text-indent:2px; padding-top:3px; margin-top:1px}
 #fakeinputfile #fakefilepc0{ border:1px solid #CECECE}
 #fakeinputfile #fakefilepc1{ border:1px solid #CECECE}
@@ -453,6 +451,7 @@ span.btmAbuse a:hover{ background:url('/images/btmAbuseH.png') no-repeat}
 .postItem div{ float:left}
 .postItem .postRad div{ clear:both; width:500px}
 .postItem .postInp input{ border:1px #cecece solid; width:250px; height:15px; padding-top:3px}
+.postItem input{ border:1px #cecece solid}
 .postItem .postInp span{ margin-left:5px}
 .postItem select{ width:253px}
 .postItem textarea{ border:1px #cecece solid; width:360px; height:160px }
@@ -1101,15 +1100,17 @@ ul.as-selections li.as-selection-item a.as-close {margin-left: 4px; margin-top: 
 ul.as-selections li.as-selection-item a.as-close {margin-left: 4px\9; margin-top: 0\9}
  ul.as-list, x:-moz-any-link, x:default {border: 1px solid #888}
 BODY:first-of-type ul.as-list, x:-moz-any-link, x:default { border: none}
-.assPage{ float:left;   }
-.assPage span.disabled {}
+.assPage {float:left;   }
+.assPage span.disabled {margin-right: 4px}
+.assPage em {margin-right: 4px; margin-left: 2px; color:#fff!important; cursor:pointer; -moz-border-radius: 2px; background: none repeat scroll 0 0 #2E6AB1; padding: 1px 4px}
 .assPage span.current {-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; width:14px; height:14px; background: #2E6AB1; color:#fff!important; cursor:default; padding:0 4px}
-.assPage a {color:#6f6f63; padding:0px 4px; text-decoration: none;}
-.assPage a:hover {color:#d00; text-decoration: none;}
-.assPage a.current:hover {-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; width:14px; height:14px; background: #2E6AB1; color:#fff!important; text-decoration: none;}
-.numPage{ margin-top:20px;  }
-.next_page{ padding-right:8px}
-.click_here{ margin-left:10px}
+.assPage a {color:#6f6f63; padding:1px 4px; text-decoration: none}
+.assPage a:hover {height:14px;  color:#fff!important; cursor:pointer; -moz-border-radius: 2px; background: none repeat scroll 0 0 #2E6AB1}
+.assPage a:hover page {height:14px; background:url('/images/bgdivpageR.png') no-repeat right top; color:#fff!important; cursor:pointer}
+.assPage a.current:hover {-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; width:14px; height:14px; background: #2E6AB1; color:#fff!important; text-decoration: none}
+.numPage {margin-top:20px;  }
+.next_page { }
+.click_here {margin-left:10px}
 .error{ color: red; font-weight: bold}
 #flash_notice, #flash_error, #flash_warning, #flash_info{ border:1px solid #FEE203; overflow:hidden; margin:10px}
 #flash_error {background:#FFFDEE url('/images/icons/flash/error.png') no-repeat scroll 8px 7px}
@@ -1190,8 +1191,9 @@ div.wysiwyg ul.panel li a.html {background-position: -47px -46px}
 div.wysiwyg ul.panel li a.removeFormat {background-position: -80px -63px}
 div.wysiwyg ul.panel li a.empty {background-position: -64px -80px}
 div.wysiwyg iframe {border: 0; clear: left; margin: 4px 0 0 1px}
-.tagMatches{ position:absolute; background:#e4e4e4; width:362px}
+.tagMatches{ position:absolute; background:#e4e4e4; width:282px}
 .tagMatches div{ margin:5px; cursor:pointer}
+#text_and_image_cloud{ height: 200px}
 ol,ul {list-style:none}
 a {text-decoration: none}
 a:focus {outline: 0}
@@ -1283,3 +1285,15 @@ span.downarr a {display: block; width: 36px; height: 22px; padding: 10px 0 0 15p
 .quickmenu ul li a:hover {color: #666}
 .left {float:left; margin:11px}
 .AsDTopA{ border-bottom:1px solid #E4E4E4; clear:both; overflow:hidden; padding:9px 0}
+.files{ padding: 10px}
+.file_upload {position: relative; overflow: hidden; direction: ltr; cursor: pointer; text-align: center; color: #333; font-weight: bold; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width: 110px; height: 25px; line-height: 25px; background: #E4E4E4; border: 1px solid limegreen}
+.file_upload_small {width: 200px; height: 30px; line-height: 30px; font-size: auto; background: palegreen; border: 1px solid limegreen}
+.file_upload_large {width: 100%; height: 150px; line-height: 150px; font-size: 20px; background: palegreen; border: 1px solid limegreen}
+.file_upload_highlight {background: lawngreen}
+.file_upload input {position: absolute; top: 0; right: 0; margin: 0; border: 300px solid transparent; opacity: 0; -ms-filter: 'alpha(opacity=0)'; filter: alpha(opacity=0); -o-transform: translate(-300px, -300px) scale(10); -moz-transform: translate(-800px, 0) scale(10); cursor: pointer}
+.file_upload iframe, .file_upload button {display: none}
+.file_upload_preview img {width: 80px}
+.file_upload_progress .ui-progressbar-value {background: url(/images/pbar-ani.gif)}
+.file_upload_progress div {width: 150px; height: 15px}
+.file_upload_cancel button {cursor: pointer}
+.upload_files{ margin-top: 10px}

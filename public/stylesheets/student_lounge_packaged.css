@@ -186,9 +186,7 @@ h2.titleH2 a:hover{ color:#d00}
 .renew a:hover{ color:#d00}
 .tablePost table td.postPromoted{ color:#5a923c; font-weight:bold}
 .postTR td{ background-color:#f2f2f2}
-  body {height:1500px;}
-  #feedback1 {cursor:pointer; border:3px solid #ddd; border-right:0}
- .Br-by-sub .col300Cont{ line-height:170%; color:#6e7062}
+  .Br-by-sub .col300Cont{ line-height:170%; color:#6e7062}
 .tabClouse a, .tabClouse a:link, .tabClouse a:visited{ color:#6e7062; text-decoration:none}
 .tabClouse a:hover{ color:#d00}
 .sub1{ font-size:12px; font-weight:bold}
@@ -352,10 +350,10 @@ span.btmDown a:hover{ background:url('/images/btmDownH.png') no-repeat}
 .regRlBt{ background:url('/images/learnFeed.png') no-repeat left top; padding-left:18px}
 .postItemB {background:url(/images/upload_file.png) no-repeat 100% 2px; height:26px; padding:5px 0 1px 0}
 .postItemA {background:url(/images/upload_file.png) no-repeat 60% 2px; height:24px; padding:3px 0 2px 0; margin:3px 0}
-#divinputfileA{ background:url(/images/upload_file.png) no-repeat 100% 1px; height:24px; padding-bottom:2px}
+#divinputfile{ height:24px; padding-bottom:2px}
 .postTitt {font-weight:bold; line-height:20px; width:110px; position:absolute; margin-top:5px; margin-left:10px}
 .postUpfile{ margin-top:-21px}
-#divinputfile .filepc{ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -khtml-opacity: 0.0; -moz-opacity: 0.0; opacity: 0.0}
+#divinputfile .filepc{ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -khtml-opacity: 0.0; -moz-opacity: 0.0; opacity: 0.0; width:300px}
 #fakeinputfile #fakefilepc{ width:208px; height:22px; border:1px solid #CECECE; color:#969696; height:15px; text-indent:2px; padding-top:3px; margin-top:1px}
 #fakeinputfile #fakefilepc0{ border:1px solid #CECECE}
 #fakeinputfile #fakefilepc1{ border:1px solid #CECECE}
@@ -453,6 +451,7 @@ span.btmAbuse a:hover{ background:url('/images/btmAbuseH.png') no-repeat}
 .postItem div{ float:left}
 .postItem .postRad div{ clear:both; width:500px}
 .postItem .postInp input{ border:1px #cecece solid; width:250px; height:15px; padding-top:3px}
+.postItem input{ border:1px #cecece solid}
 .postItem .postInp span{ margin-left:5px}
 .postItem select{ width:253px}
 .postItem textarea{ border:1px #cecece solid; width:360px; height:160px }
@@ -816,7 +815,7 @@ span.btmFan a:hover{ background:url('/images/btmFanH.png') no-repeat}
 .photoSet{ padding-left:5px; border-left:1px #6e6e6e solid}
 .photoPage .assPage{ padding:0px}
 .photoShow{ width:643px; float:left}
-.photoItem{ width:107px; float:left}
+.photoItem{ width:107px; float:left; margin-bottom:10px}
 .photoRow{  overflow:hidden; _height:100%}
 .photoImg div{ background:url('/images/bgphoto.png') no-repeat left top; padding:3px;  width:98px; height:74px}
 .photoImg a:hover div{ background:url('/images/bgphotoH.png') no-repeat left top}
@@ -1444,7 +1443,7 @@ div.helpAdv2{ padding:5px 20px 15px 20px}
 .proInfGRR a, .proInfGRR a:link, .proInfGRR a:visited{ color:#0b8ccb; text-decoration:none}
 .proInfGRR a:hover{ color:#d00; text-decoration:none}
 .proInfGRR .fanImg{ padding-top:0px; padding-bottom:10px; overflow:hidden; _height:100%}
-.proInfGRR .fanImg1, .proInfGRR .fanImg2{ width:117px}
+.proInfGRR .fanImg1, .proInfGRR .fanImg2{ width:75px}
 .proInfGRR .fanName{ clear:both; width:51px}
  .proFavItem{ clear:both; padding:10px 0px; border-bottom:1px #e4e4e4 solid; _height:100%}
 .proFavImg{ float:left; width:108px; overflow:hidden}
@@ -1573,169 +1572,6 @@ div.helpAdv2{ padding:5px 20px 15px 20px}
 .setAftNote{ padding:10px; background-color:#fffdee; border:1px #ffe205 solid; color:#645d2a; margin:0px 10px 10px 10px; font-weight:bold}
 .setAftNote a, .setAftNote a:link, .setAftNote a:visited{ color:#1c97dd; text-decoration:none}
 .setAftNote a:hover{ color:#d00; text-decoration:none}
- .shopRitem{ overflow:hidden; clear:both; padding:5px 10px; _height:100%}
-.shopRitemT{ overflow:hidden; border-bottom:1px #d4d5d0 solid; padding:5px 0px; margin-bottom:3px; _height:100%}
-.shopRitemTLSale, .shopRitemTLVerhi, .shopRitemTLElec, .shopRitemTLHeath{ float:left; background:url('/images/sale.png') no-repeat left top; padding-left:23px; font-weight:bold; line-height:18px}
-.shopRitemTLVerhi{ background:url('/images/verhi.png') no-repeat left top}
-.shopRitemTLElec{ background:url('/images/elec.png') no-repeat left top}
-.shopRitemTLHeath{ background:url('/images/heath.png') no-repeat left top}
-.shopRitemTR{ float:right; background:url('/images/post.gif') no-repeat left 6px; padding-left:10px; line-height:18px}
-.shopRlist{ padding:4px 0px}
-.shopRlist a{ background:url('/images/dotBlue.png') no-repeat left 5px; padding-left:10px}
-.shopRmore{ padding-left:10px; font-weight:bold; padding-bottom:5px; overflow:hidden; _height:100%}
-.shopRlist a, .shopRlist a:link, .shopRlist a:visited, .shopRmore a, .shopRmore a:link, .shopRmore a:visited, .shopRitemTR a, .shopRitemTR a:link, .shopRitemTR a:visited{ color:#2b9ee0; text-decoration:none}
-.shopRlist a:hover, .shopRmore a:hover, .shopRitemTR a:hover{ color:#d00; text-decoration:none}
-div.shopRmore a{ text-decoration:underline!important; background:url('/images/more.gif') no-repeat right 7px; padding-right:10px}
-h3.titleH3{ margin:0px 0px 3px 0px; font-size:12px; font-weight:bold; padding-bottom:4px; color:#2b9ee0; border-bottom:1px #dbdbdb solid}
-.shopFriends{ padding:10px 0px; overflow:hidden; _height:100%}
-.shopFriPre, .shopFriNext{ width:22px; float:left; padding-top:37px}
-.shopFriNext{ float:right}
-.shopFriPre a{ background:url('/images/btmPagePre.png') no-repeat left top; width:19px; height:19px; text-decoration:none; display:block}
-.shopFriPre a:hover{ background:url('/images/btmPagePreH.png') no-repeat left top}
-.shopFriNext a{ background:url('/images/btmPageNext.png') no-repeat left top; width:19px; height:19px; text-decoration:none; display:block}
-.shopFriNext a:hover{ background:url('/images/btmPageNextH.png') no-repeat left top}
-.shopFriItem{ width:118px; float:left; margin:0px 5px}
-.shopFriImg div{ background:url('/images/bgshopImg.png') no-repeat left top; padding:4px}
-.shopFriImg a:hover div{ background:url('/images/bgshopImgH.png') no-repeat left top}
-.shopFriImg img{ border:0px}
-.shopFriDes{ padding:4px 0px; font-weight:bold}
-.shopFriDes a, .shopFriDes a:link, .shopFriDes a:visited{ color:#1e1e1e; text-decoration:none}
-.shopFriName, .shopFriIn, .shopFriSch{ color:#6f6f63; font-size:10px}
-.shopFriName a, .shopFriName a:link, .shopFriName a:visited{ color:#6f6f63; text-decoration:none}
-.shopFriIn a, .shopFriIn a:link, .shopFriIn a:visited{ color:#2b9ee0; text-decoration:none}
-.shopFriIn a:hover, .shopFriDes a:hover, .shopFriName a:hover{ color:#d00; text-decoration:none}
-.shopMostL{ width:210px; float:left}
-.shopMostR{ width:210px; float:right}
-.shopMostR .shopRmore{ padding-left:22px}
-.shopMostL .shopRmore{ padding-left:60px}
-.shopMostTitle{ color:#1fa6f3; font-weight:bold; padding:10px 0px 5px 0px; font-size:12px; border-bottom:1px #dbdbdb solid}
-.shopMostItem{ clear:both; padding:5px 0px 10px 0px; overflow:hidden; _height:100%}
-.shopMostItemTitle a, .shopMostItemTitle a:link, .shopMostItemTitle a:visited{ color:#1e1e1e; text-decoration:none; font-weight:bold}
-.shopMostItemTitle a:hover{ color:#d00; text-decoration:none}
-.shopMostItemTitle span{ color:#1fa6f3}
-.shopMostPage .currentPage{ padding:0px 0px 0px 3px}
-.shopMostPage .currentPage a{ margin:0px}
-.shoMostItemR{ float:left; width:150px}
-.shopMostDes{ padding:2px 0px; color:#6f6f63}
-.shopMostName, .shopMostSch{ font-size:10px; color:#6f6f63}
-.shopMostName a, .shopMostName a:link, .shopMostName a:visited{ color:#1fa6f3; text-decoration:none}
-.shopMostName a:hover{ color:#d00; text-decoration:none}
-.shopMostRItem{ overflow:hidden; clear:both; padding:5px 0px 10px 0px}
-div.sale{ background:url('/images/sale.png') no-repeat left top; padding-left:22px; display:block}
-div.elec{ background:url('/images/elec.png') no-repeat left top; padding-left:22px; display:block}
-div.health{ background:url('/images/heath.png') no-repeat left top; padding-left:22px; display:block}
-div.verhi{ background:url('/images/verhi.png') no-repeat left top; padding-left:22px; display:block}
-.shopMostRTitle{ padding-bottom:4px}
-.shopMostRTitle a, .shopMostRTitle a:link, .shopMostRTitle a:visited{ color:#1e1e1e; text-decoration:none; font-weight:bold; cursor:pointer}
-.shopMostRIn{ color:#6e6e6e; padding-left:22px}
-.shopMostRIn a, .shopMostRIn a:link, .shopMostRIn a:visited{ color:#1fa6f3; text-decoration:none}
-.shopMostRTitle a:hover, .shopMostRIn a:hover{ color:#d00; text-decoration:none}
-.shopTop{ width:962px; margin:0px auto; overflow:hidden}
-.shopTop .postdiv{ float:right; width:100px}
-.shopTop .shopTopL{ float:left; padding-top:8px; overflow:hidden; width:500px; _height:100%}
-.shopTopLT{ overflow:hidden; padding-left:10px; _height:100%}
-.shopTopLTtitle{ color:#2b9ee0; font-size:12px; font-weight:bold; float:left; padding-right:15px}
-.shopTopLTtab a, .shopTopLTtab a:link, .shopTopLTtab a:visited{ color:#2b9ee0; text-decoration:none}
-.shopTopLTtab a.home{ color:#969696; background:url('/images/bor10.png') no-repeat right center; text-decoration:none; padding-right:5px; margin-right:5px}
-.shopTopLTtab a:hover{ color:#d00; text-decoration:none}
-.shopTopLink{ background:url('/images/iconLN.gif') no-repeat right center; padding-right:10px}
-.shopTopLB{ padding-top:5px; padding-left:10px; padding-bottom:10px; overflow:hidden; clear:both; _height:100%}
-.shopTloca{ color:#6f6f63; font-weight:bold; padding-right:10px; float:left; line-height:23px}
-.shopTbtm{ float:left; padding-right:10px}
-.shopTbtm a{ width:139px; height:23px; text-align:center; background:url('/images/shopTbtm.png') no-repeat left center; text-decoration:none; color:#fff; display:block; line-height:23px}
-.shopTbtm a:hover{ background:url('/images/shopTbtmH.png') no-repeat left center}
-span.shopTset{ background:url('/images/setting.png') no-repeat left center; padding-left:20px; line-height:23px; font-weight:bold; float:left}
-.shopTset a, .shopTset a:link, .shopTset a:visited{ color:#2b9ee0; text-decoration:none}
-.shopTset a:hover{ color:#d00; text-decoration:none}
- .proName{ font-size:12px; font-weight:bold; color:#0a81c4; padding:8px 0px 4px 0px; border-bottom:1px #e4e4e4 solid}
-.proName a, .proName a:link, .proName a:visited{ color:#0a81c4; text-decoration:none}
-.proName a:hover{ color:#d00; text-decoration:none}
-.proLocal{ color:#b4b4b4; padding-top:5px}
-.proLocalD{ color:#6f6f63}
-.shopDSItem{ padding:7px 0px; border-top:1px #e4e4e4 solid}
-.shopDSOffer, .shopDSRes, .shopDSAsk, .shopDSGift{ font-size:12px; font-weight:bold; background:url('/images/shopShare.png') no-repeat left 2px; padding-left:22px; line-height:19px; padding-bottom:4px}
-.shopDSRes{ background:url('/images/shopRes.png') no-repeat left 2px}
-.shopDSAsk{ background:url('/images/shopAsk.png') no-repeat left 2px}
-.shopDSGift{ background:url('/images/shopGift.png') no-repeat left 2px}
-.shopDSlist{ padding:4px 0px; overflow:hidden; _height:100%}
-.shopDSlist, .shopDSlist a,.shopDSlist a:link, .shopDSlist a:visited{ color:#6f6f63; text-decoration:none}
-.shopDSlist a:hover{ color:#d00; text-decoration:none}
-.shopDSlist div{ padding-left:5px; float:left; line-height:20px}
-.btmOffer a{ background:url('/images/btm-signin.png') no-repeat; text-align:center; text-decoration:none; color:#666; line-height:20px; height:20px; width:45px; display:block; font-weight:bold}
-.btmOffer a:link, .btmOffer a:visited{ color:#666}
-.btmOffer a:hover{ background:url('/images/btm-signinH.png') no-repeat; color:#666}
-.makeIn{ }
-.shopDSlist input{ width:30px}
-.shopDInf .proTop{ border-bottom:0px; margin-bottom:0px}
-.staySafe{ width:195px; background:url('/images/safeR.png') repeat-y}
-.staySafein{ background:url('/images/safeB.png') no-repeat left bottom; overflow:hidden; padding-bottom:8px}
-.staySafeTitle{ background:url('/images/safeT.png') no-repeat left top; font-size:12px; color:#363109; padding:10px 10px 3px 10px; margin:0px}
-.staySafeItem{ padding:3px 10px}
-.staySafeItem{ background:url('/images/dotGray.png') no-repeat left 8px; margin-left:10px}
-.staySafeItem a, .staySafeItem a:link, .staySafeItem a:visited{ color:#645d2a; text-decoration:none}
-.staySafeItem span a, .staySafeItem span a:link, .staySafeItem span a:visited{ color:#108ad0; text-decoration:none}
-.staySafeItem span a{ background-image:none; padding-left:0px}
-.staySafeItem a:hover, .staySafeItem span a:hover{ color:#d00; text-decoration:none}
-.shopDshare{ float:right; background:url('/images/icon-share.png') no-repeat left 0px; padding-left:18px}
-.shopDshare a{ background:url('/images/share.gif') no-repeat right center; padding-right:9px}
-.shopDshare a, .shopDshare a:link, .shopDshare a:visited{ color:#797979; text-decoration:none}
-.shopDshare a:hover{ background:url('/images/shareH.gif') no-repeat right center; color:#d00}
-.shopDT{ overflow:hidden; padding-bottom:10px; _height:100%}
-.shopDTR{ }
-.shopDTL, .shopDTC{ padding-right:5px; float:left}
-.shopDTL a{ background:url('/images/bgList.png') no-repeat right center; width:81px; height:23px; text-align:center; text-decoration:none; color:#fff; line-height:23px; display:block}
-.shopDTL a:hover{ background:url('/images/bgListH.png') no-repeat right center}
-.shopDTC a{ background:url('/images/btmListR.png') no-repeat right center; height:23px; text-decoration:none; color:#fff; line-height:23px; display:block; cursor:pointer; float:left}
-.shopDTC a span{ background:url('/images/btmListL.png') no-repeat left center; height:23px; line-height:23px; padding:0px 5px; display:block; float:left}
-.shopDTC a:hover{ background:url('/images/btmListRH.png') no-repeat right center}
-.shopDTC a:hover span{ background:url('/images/btmListLH.png') no-repeat left center}
-.shopDTR a{ background:url('/images/btmListR.png') no-repeat right center; height:23px; text-decoration:none; color:#fff; line-height:23px; display:block; cursor:pointer; float:left}
-.shopDTR a span{ background:url('/images/btmListL.png') no-repeat left center; height:23px; line-height:23px; padding:0px 5px; display:block; float:left}
-.shopDTR a:hover{ background:url('/images/btmListRH.png') no-repeat right center}
-.shopDTR a:hover span{ background:url('/images/btmListLH.png') no-repeat left center}
-.shopContact{ background:url('/images/bgContact.png') no-repeat left top; width:431px; height:36px}
-.btmContact{ float:left; padding-left:10px; padding-top:7px}
-.btmContact a{ background:url('/images/btmContactR.png') no-repeat right top; cursor:pointer; float:left; text-decoration:none}
-.btmContact a span{ background:url('/images/btmContactL.png') no-repeat left top; display:block; height:23px; line-height:23px; padding:0px 8px; color:#fff; text-decoration:none; float:left}
-.btmContact a:hover{ background:url('/images/btmListRH.png') no-repeat right top; cursor:pointer}
-.btmContact a:hover span{ background:url('/images/btmListLH.png') no-repeat left top}
-.shopContactR{ float:right; padding-right:10px; padding-top:12px}
-.shopContactR a{ font-size:11px; color:#655e2a; text-decoration:none}
-.shopContactR a:hover{ color:#d00}
-.shopU{ background:url('/images/icon-hdup.gif') no-repeat right center; padding-right:18px}
-.shopU:hover{ background:url('/images/icon-hdupH.gif') no-repeat right center}
-.shopD{ background:url('/images/icon-hdd.gif') no-repeat right center; padding-right:18px; margin:0px 10px}
-.shopD:hover{ background:url('/images/icon-hddH.gif') no-repeat right center}
-.shopC{ background:url('/images/comment.png') no-repeat left center; padding-left:18px; margin-right:8px}
-.shopS{ background:url('/images/icon-share.png') no-repeat left center; padding-left:18px}
-.shopS span{ background:url('/images/share.gif') no-repeat right center; padding-right:9px}
-.shopS:hover span{ background:url('/images/shareH.gif') no-repeat right center}
-.forSale{ padding:10px 0px 10px 10px; overflow:hidden}
-.forSaleT{ color:#6f6f63; padding-bottom:3px; font-size:12px}
-.forSaleD{ font-size:12px; font-weight:bold; padding-bottom:3px}
-.forSaleI{ overflow:hidden; padding:6px 0px; _height:100%}
-.forSaleL{ width:70px; padding-right:5px; text-align:right; float:left; font-weight:bold; color:#6f6f63}
-.forSaleR{ float:left; color:#6f6f63; width:330px}
-.forSaleR span{ font-weight:bold; color:#000}
-.forSaleR a.itemFS{ color:#0a81c4}
-.itemFS, .itemFS:link, .itemFS:visited{ color:#0a81c4; text-decoration:none}
-a.itemFS:hover{ color:#d00; text-decoration:none}
-.photoBigImg{ padding-top:5px}
-.photoBigImg img{ padding:1px; border:1px #dbdbdb solid}
-.photo .shopFriImg img{ padding:1px; border:1px #dbdbdb solid}
-.photo .shopFriImg a:hover img{ padding:1px; border:1px #d00 solid}
-.shopcom{ padding-top:20px}
-.shopcomText{ padding:5px 0px}
-.shopcomText textarea{ width:420px; height:110px; border:1px #cecece solid; color:#b4b4b4; padding:3px}
-.shopcom .btmComment a{ background:url('/images/btm71.png') no-repeat; text-align:center; width:71px; color:#fff; padding-left:0px; display:block; height:25px; line-height:25px; text-decoration:none}
-.shopcom .btmComment a:hover{ background:url('/images/btm71Red.png') no-repeat}
-.shopview{ padding-top:5px}
-.shopview, .shopReport{ text-align:center}
-.shopGot{ float:left; padding-top:5px}
-.shopGot a, .shopGot a:link, .shopGot a:visited, .shopReport a, .shopReport a:link, .shopReport a:visited{ color:#0a81c4; text-decoration:none}
-.shopGot a:hover, .shopReport a:hover{ color:#d00; text-decoration:none}
-.shopB{ margin-top:10px; clear:both; border-top:1px #dbdbdb solid}
-.shopB .goTop{ padding-top:5px}
  .stuLtop{ width:962px; margin:0px auto; overflow:hidden}
 .stuLtop .postdiv{ width:100px; float:right}
 .stuLtop .menuRL{ padding:8px 0px}
@@ -1829,16 +1665,16 @@ a.itemFS:hover{ color:#d00; text-decoration:none}
 .slStoryL .sLyourmind input{ width:585px}
  .slsItem{ padding:10px 0px; margin:0px 10px; overflow:hidden; clear:both; border-top:1px #e4e4e4 solid; _height:100%}
 .slsItemL{ width:48px; float:left; margin-right:10px; height:48px; border:2px #cdcccc solid; background-color:#f5f5f5}
-.slsItemR{ float:left; width:485px}
+.slsItemR{ float:left; width:485px; margin-left:10px}
 .slsItemTitle a, .slsItemTitle a:link, .slsItemTitle a:visited{ color:#1e1e1e; text-decoration:none; font-size:12px; font-weight:bold}
 .slsItemTitle a:hover{ color:#d00; text-decoration:none}
 .slsItemTime{ color:#aeaeae; padding:1px 0px 3px 0px}
 .slsItemDes{ color:#6f6f6e}
 .slsItemLN{ text-align:center; font-weight:bold; color:#6f6f63; font-size:26px; padding-top:3px}
 .slsItemLV{ color:#969696; text-align:center}
-.slStoryL .assImg div{ background:url('/images/bg71-61.png') no-repeat; padding:3px}
+.slStoryL .assImg div{ background:url('/images/bg71-61.png') no-repeat}
 .slStoryL .assImg a:hover div{ background:url('/images/bg71-61H.png') no-repeat}
-.assImg img{ border:0px; width:65px; height:55px}
+.assImg img{ border:0px; width:65px; height:55px; margin-top:-2px}
 .slsTop{ overflow:hidden; padding:13px 10px 3px 10px}
 .slsTopL{  padding:5px}
 .slsTopR{ float:right; margin-right:15px}
@@ -1906,7 +1742,7 @@ div.navigation a.next:hover {background-image:url("/images/btmPageNextH.png")}
 .stoDbtm .btmShare{ margin-left:5px}
 .btmhand a{ float:left}
  .stoEx{ padding:10px 20px; overflow:hidden; height:100%; border-bottom:1px solid #E4E4E4}
-.stoExItem{ padding:3px 0px; overflow:hidden; _height:100%}
+.stoExItem{ padding:7px 0px; overflow:hidden; _height:100%}
 .stoExItemL{ width:75px; float:left; color:#6f6f63; font-weight:bold; line-height:21px}
 .stoExItemR{ float:left; margin-top:4px}
 .stoExItemR textarea{ width:525px; height:70px; border:1px #cecece solid}
@@ -1914,7 +1750,7 @@ div.navigation a.next:hover {background-image:url("/images/btmPageNextH.png")}
 .stoExItemPri{ float:left; border:1px #cecece solid; background-color:#f2f2f2; padding:10px; overflow:hidden}
 .stoExItemPriT{ background:url('/images/iconKey.gif') no-repeat left 1px; padding-bottom:5px; line-height:20px; padding-left:18px; color:#646464}
 .stoExItemPriS select{ border:1px #cecece solid; width:250px}
-.stoExBtm{ padding-left:75px; padding-top:5px}
+.stoExBtm{ padding-left:120px; padding-top:5px}
 .stoExBtm div{ float:left; padding-right:5px}
 .stoExBtm .stoExSave a{ background:url('/images/btm87.png') no-repeat left top; width:87px; color:#fff; text-decoration:none; text-align:center; line-height:25px; height:25px; display:block}
 .stoExBtm .stoExSave a:hover{ background:url('/images/btm87Red.png') no-repeat left top}
@@ -1944,14 +1780,14 @@ span.btmTag a:hover{ background:url('/images/btmTagH.png') no-repeat}
  .stoExBtm .stoExCre a{ background:url('/images/btm106.png') no-repeat left top; width:106px; color:#fff; text-decoration:none; text-align:center; line-height:25px; height:25px; display:block}
 .stoExBtm .stoExCre a:hover{ background:url('/images/btm106Red.png') no-repeat left top}
 .photoEx{ margin:0px 10px; padding:10px; overflow:hidden; border-bottom:1px #e4e4e4 solid; _height:100%}
-.photoEx .stoExItemL{ width:115px}
+.photoEx .stoExItemL{ width:170px}
 .photoEx .stoExItemR input{ width:250px}
 .photoEx .stoExItemR textarea{ width:250px}
 .photoEx .stoExItemPri{ width:250px; padding:10px 0px}
 .photoEx .stoExItemPri div{ padding-left:10px}
 .photoEx .stoExItemPri .stoExItemPriT{ padding-left:28px; background-position:10px 1px}
 .photoEx .stoExItemPriS select{ width:230px}
-.photoEx .stoExBtm{ padding-left:115px}
+.photoEx .stoExBtm{ padding-left:170px}
 .phoExIn{ float:left}
 .phoExBtm{ width:60px; float:left; padding-left:3px}
 .phoExBtm a{ background:url('/images/btmBro.jpg') no-repeat left top; height:19px; width:51px; text-align:center; text-decoration:none; color:#969696; line-height:19px; display:block; font-size:10px}
@@ -1973,7 +1809,7 @@ span.btmTag a:hover{ background:url('/images/btmTagH.png') no-repeat}
 .mostMSadd{ background:url('/images/msadd.png') no-repeat left top; width:14px; height:14px; display:block; text-decoration:none; float:left}
 .mostMSadd:hover{ background:url('/images/msaddH.png') no-repeat left top}
 .musicRow{ padding:5px 10px; overflow:hidden; clear:both; _height:100%}
-.musicL{ width:310px; float:left}
+.musicL{ width:305px; float:left; margin-bottom:10px }
 .musicR{ width:310px; float:right}
 .musicL .photoImg, .musicR .photoImg{ width:83px; float:left}
 .musicL .mostMSR, .musicR .mostMSR{ width:202px; float:right}
@@ -2026,6 +1862,7 @@ span.btmTag a:hover{ background:url('/images/btmTagH.png') no-repeat}
 .settNetLPaT{ border: 1px solid #E3E3E3; margin-left: 15px; width: 925px}
 .settNetLPa{ color: #000000; float: left; font-weight: bold; padding: 15px; width: 200px}
 .flistRPa{ background-color: #F6F6F6; border: 1px solid #E3E3E3; float: right; height: 30px; line-height: 30px; width: 152px; margin-right:60px}
+.flistRAddPa ul li label{ text-align: left}
    .ui-helper-hidden {display: none}
 .ui-helper-hidden-accessible {position: absolute; left: -99999999px}
 .ui-helper-reset {margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none}
@@ -2423,15 +2260,17 @@ BODY:first-of-type ul.as-list, x:-moz-any-link, x:default { border: none}
 .customWindowClose {display: block; float: right; background: url(/images/chatC.png) no-repeat center center; border: 0; padding: 0px; cursor: pointer; width: 16px; height: 16px}
 .customWindowTitle {display: block; white-space: nowrap; overflow: hidden; margin: 0px 0px 0px 10px; border: 0px; padding: 10px 0px 0px 26px; background: url(/images/icon-chat.png) no-repeat left bottom; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; text-decoration: none; line-height: 18px}
 .customWindowcontent {padding: 8px; background-color: #FCFCFC}
-.assPage{ float:left;   }
-.assPage span.disabled {}
+.assPage {float:left;   }
+.assPage span.disabled {margin-right: 4px}
+.assPage em {margin-right: 4px; margin-left: 2px; color:#fff!important; cursor:pointer; -moz-border-radius: 2px; background: none repeat scroll 0 0 #2E6AB1; padding: 1px 4px}
 .assPage span.current {-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; width:14px; height:14px; background: #2E6AB1; color:#fff!important; cursor:default; padding:0 4px}
-.assPage a {color:#6f6f63; padding:0px 4px; text-decoration: none;}
-.assPage a:hover {color:#d00; text-decoration: none;}
-.assPage a.current:hover {-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; width:14px; height:14px; background: #2E6AB1; color:#fff!important; text-decoration: none;}
-.numPage{ margin-top:20px;  }
-.next_page{ padding-right:8px}
-.click_here{ margin-left:10px}
+.assPage a {color:#6f6f63; padding:1px 4px; text-decoration: none}
+.assPage a:hover {height:14px;  color:#fff!important; cursor:pointer; -moz-border-radius: 2px; background: none repeat scroll 0 0 #2E6AB1}
+.assPage a:hover page {height:14px; background:url('/images/bgdivpageR.png') no-repeat right top; color:#fff!important; cursor:pointer}
+.assPage a.current:hover {-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; width:14px; height:14px; background: #2E6AB1; color:#fff!important; text-decoration: none}
+.numPage {margin-top:20px;  }
+.next_page { }
+.click_here {margin-left:10px}
 .error{ color: red; font-weight: bold}
 #flash_notice, #flash_error, #flash_warning, #flash_info{ border:1px solid #FEE203; overflow:hidden; margin:10px}
 #flash_error {background:#FFFDEE url('/images/icons/flash/error.png') no-repeat scroll 8px 7px}
@@ -2512,8 +2351,9 @@ div.wysiwyg ul.panel li a.html {background-position: -47px -46px}
 div.wysiwyg ul.panel li a.removeFormat {background-position: -80px -63px}
 div.wysiwyg ul.panel li a.empty {background-position: -64px -80px}
 div.wysiwyg iframe {border: 0; clear: left; margin: 4px 0 0 1px}
-.tagMatches{ position:absolute; background:#e4e4e4; width:362px}
+.tagMatches{ position:absolute; background:#e4e4e4; width:282px}
 .tagMatches div{ margin:5px; cursor:pointer}
+#text_and_image_cloud{ height: 200px}
 #api {padding-left:28px; text-align:center}
 .myCarousel {height:75px; margin:0; padding:0}
 .myCarousel li {float:left; height:75px; list-style:none outside none; margin:0 4px; width:75px}
@@ -2676,3 +2516,55 @@ code {font-family: "Lucida Console", "Courier New", Verdana; margin: 0; padding:
 .ad-gallery .ad-thumbs li a img {border: 3px solid #CCC; display: block}
 .ad-gallery .ad-thumbs li a.ad-active img {border: 3px solid #616161}
  .ad-preloads {position: absolute; left: -9000px; top: -9000px}
+.files{ padding: 10px}
+.file_upload {position: relative; overflow: hidden; direction: ltr; cursor: pointer; text-align: center; color: #333; font-weight: bold; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; width: 110px; height: 25px; line-height: 25px; background: #E4E4E4; border: 1px solid limegreen}
+.file_upload_small {width: 200px; height: 30px; line-height: 30px; font-size: auto; background: palegreen; border: 1px solid limegreen}
+.file_upload_large {width: 100%; height: 150px; line-height: 150px; font-size: 20px; background: palegreen; border: 1px solid limegreen}
+.file_upload_highlight {background: lawngreen}
+.file_upload input {position: absolute; top: 0; right: 0; margin: 0; border: 300px solid transparent; opacity: 0; -ms-filter: 'alpha(opacity=0)'; filter: alpha(opacity=0); -o-transform: translate(-300px, -300px) scale(10); -moz-transform: translate(-800px, 0) scale(10); cursor: pointer}
+.file_upload iframe, .file_upload button {display: none}
+.file_upload_preview img {width: 80px}
+.file_upload_progress .ui-progressbar-value {background: url(/images/pbar-ani.gif)}
+.file_upload_progress div {width: 150px; height: 15px}
+.file_upload_cancel button {cursor: pointer}
+.upload_files{ margin-top: 10px}
+  .slsItemRr{ float: left; width: 460px}
+.actionsBox{ font-size:13px; font-family:Helvetica,Arial,Verdana; font-style:normal; left:50%; position:absolute; top:-50px; opacity:0; cursor:move}
+.actionsBox .menu{ width:225px; color:#47708F; line-height:30px; text-shadow:1px 1px 0px #fff; padding:7px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; font-weight:bold; border:1px solid #D9EAF2; background:#e8f4fa; background: -webkit-gradient( linear, left bottom, left top, color-stop(0.58, rgb(217,234,242)), color-stop(0.93, rgb(232,244,250)) ); background: -moz-linear-gradient( center bottom, rgb(217,234,242) 58%, rgb(232,244,250) 93% ); -moz-box-shadow:1px 1px 3px #999; -webkit-box-shadow:1px 1px 3px #999; box-shadow:1px 1px 3px #999}
+.actionsBox .menu .button{ color:#47708F; padding:4px 7px; border:1px solid #D9EAF2; background:#e8f4fa; background: -webkit-gradient( linear, left bottom, left top, color-stop(0.38, rgb(230,243,249)), color-stop(0.88, rgb(245,249,250)) ) ; background: -moz-linear-gradient( center bottom, rgb(230,243,249) 38%, rgb(245,249,250) 88% ) ; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; -moz-box-shadow:0px 1px 0px #f9f9f9; -webkit-box-shadow:0px 1px 0px #f9f9f9; box-shadow:0px 1px 0px #f9f9f9; cursor:pointer}
+.actionsBox .menu .button:hover{ background:#fff; color:#47708F}
+.actionsBox .menu span{ padding:0px 10px}
+.actionsBox .submenu{ display:none; width:160px; margin-left:60px; top:46px; right:10px; background:#fff; border:1px solid #D9EAF2; border-top:none; -moz-border-radius:0px 0px 10px 10px; -webkit-border-bottom-left-radius:10px; -webkit-border-bottom-right-radius:10px; border-bottom-left-radius:10px; border-bottom-right-radius:10px; -moz-box-shadow:0px 1px 4px #ddd; -webkit-box-shadow:0px 1px 4px #ddd; box-shadow:0px 1px 4px #ddd}
+.actionsBox .submenu a{ display:block; cursor:pointer; padding:10px 15px; border-top:1px solid #D9EAF2}
+.actionsBox .submenu a.last{ -moz-border-radius:0px 0px 10px 10px}
+.actionsBox .submenu a.first{ border-top:none}
+.actionsBox .submenu a:hover{ background-color:#f9f9f9}
+.actionsBox .menu a.open, .actionsBox .menu a.closed{ border:1px solid #D9EAF2; padding:4px 17px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; -moz-box-shadow:0px 1px 0px #f9f9f9; -webkit-box-shadow:0px 1px 0px #f9f9f9; box-shadow:0px 1px 0px #f9f9f9; cursor:pointer; opacity:0.6; margin-right:5px}
+.actionsBox .menu a.open{ background:#fff url(/images/open.png) no-repeat center center}
+.actionsBox .menu a.closed{ background:#fff url(/images/closed.png) no-repeat center center}
+.actionsBox .menu a.open:hover, .actionsBox .menu a.closed:hover{ opacity:1.0}
+ .hideitem,.elmValue{ display: none}
+.selectbox{ background: url("/images/selectBox/iconPass.png") no-repeat 10px center; padding:0px 0px 0px 35px; float:right; margin-right: 60px; background-color: #F6F6F6; border: 1px solid #E3E3E3; float: right; width: 120px}
+.selectbox ul{  padding:8px 22px 6px 0px; margin:0; vertical-align:top;  list-style: none; background-color: #F6F6F6; background: url("/images/flistA.gif") no-repeat scroll 90px center transparent}
+.select_wrap{ clear:both; margin:-20px 5px 0px 0px;  float: right}
+.selectboxopen{ clear:both; background: url("/images/selectBox/dropdownopen..png") no-repeat 0 0; padding:0px 0px 0px 35px; float:right; margin:0; border: 1px solid #E3E3E3; width: 120px; margin-right: 60px; background: url("/images/selectBox/iconPass.png") no-repeat 10px center}
+.selectboxopen ul{ background: url("/images/selectBox/dropdownopen..png") no-repeat top right; padding:8px 22px 6px 0px; margin:0; vertical-align:top;  list-style: none; background-color: #F6F6F6; width: 120px; background: url("/images/flistA.gif") no-repeat scroll 90px center transparent}
+.selectbox ul li,.selectboxopen ul li{ list-style: none; padding:0; margin:0; font-family: arial,helvetica,san-serif; color:#333; font-size: 12px; cursor: pointer}
+.selectboxoptions_wrap{ display:none; clear:both}
+.selectboxoptions_radio,.selectboxoptions_check{ clear:both; list-style: none; padding:0; margin:-2px 1px; background:#e6e9ed; position: absolute; margin-left:0px; width:157px}
+.selectboxoptions_radio li, .selectboxoptions_check li{ list-style: none; padding:3px 0 2px 20px; margin:2px 0 0 2px; font-family: arial,helvetica,san-serif; color:#333; font-size: 12px; cursor: pointer}
+.selectboxoptions_radio li{ background:#EBEBEB; height:20px; padding-top:5px}
+.selectboxoptions_radio li.selected{ background:#f2f2f2 url(/images/selectBox/acc.gif) no-repeat 5px 6px;  }
+ .fl {float:left}
+.fr {float: right}
+.duration {font-size:10px; color:#777}
+.btn.play {width:16px; height:17px; background-image: url(/images/Photo/play.gif); display: inline-block}
+.btn.pause {width:16px; height:17px; background-image: url(/images/Photo/pause.gif?2)}
+.btn.paused {width:16px; height:17px; background-image: url(/images/Photo/play.gif?3); display: inline-block}
+div.player {width:380px; height:14px; margin-top:5px; padding-left:20px}
+div.player.inactive {margin-top:5px; margin-bottom:0px; border-top: dashed 1px #555555}
+.item .title {-vertical-align:middle}
+.item .btn {display:inline; float:left; margin-right:5px; cursor:pointer}
+#playlist_list div div.item{ margin-left: 120px}
+#playlist_list img{ margin-top: 3px}
+#playlist_list .photoImg {background: url("/images/bgphoto.png") no-repeat scroll center center transparent; margin-bottom: 20px}
