@@ -42,7 +42,7 @@
   <% end %>
 </div>
 <!--Alert-->
-
+<div visible="false" id="wait_dialog" style="display:none;">Please wait...</div>
 <script type="text/javascript">
   function DeleteFriend(friend_id){
     $("#user_id_friend").val(friend_id);
@@ -58,32 +58,28 @@
       }
     });
   }
-/*
-  $(document).ready(function(){
-    $('div.flistRAdd ul li a').each(function(){
-      var strUrl = $(this).attr('href');
-      $(this).attr('href','javascript:;');
-      $(this).click(function(){
-        console.log('url == '+strUrl);
-        AddToWithAjax(strUrl);
-      });
-    });
-  });
 
 
   function AddToWithAjax(path){
+    $('#wait_dialog').show();
+    $("#wait_dialog").dialog({
+      modal: true
+    });
+    $('.ui-dialog-titlebar').hide();
+    
     $.ajax({
       type: 'GET',
       url: path,
       success: function(data) {
-        alert('Success communicate with server: '+data);
+        $('.ui-dialog-titlebar-close').click();
+        alert(''+data);
       },
       error: function(er){
         alert('Failed to communicate with server: '+er);
       }
     });
   }
-*/
+
 
 
 </script>

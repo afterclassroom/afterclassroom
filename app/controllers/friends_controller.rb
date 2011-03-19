@@ -110,12 +110,40 @@ class FriendsController < ApplicationController
     puts "friend_id == "+params[:friend_id]
     puts "current_user == "+current_user.name
     puts "what is user "+@user.name
-    if params[:group]
-      @group = FriendGroup.find_by_label(params[:group])
-      @friend_in_groups = @user.friend_in_groups.find(:all, :conditions => ["friend_group_id = ?", @group]).paginate :page => params[:page], :per_page => 10
+    puts "group_id == "+params[:group_id]
+    puts ":check_status == "+params[:check_status]
+
+    # new object friendInGroup fig
+    # fig.setUserID == current_user.id
+    # fig.setFriendID = friend.id
+    # fig.setGroupID = groupID
+    if params[:check_status] == ""
+
+      fig = FriendInGroup.new
+      fig.user_id = current_user.id
+      fig.friend_group_id = params[:group_id]
+      fig.user_id_friend = params[:friend_id]
+      if fig.save
+        render :text => "Saved selected group successfully"
+      else
+        render :text => "Failed to save selected group"
+      end
     else
-      redirect_to :action => "index"
+      group = @user.friend_in_groups.find(:first, :conditions => ["friend_group_id = ? and user_id_friend = ?", params[:group_id], params[:friend_id]])
+      if FriendInGroup.delete(group.id)
+        render :text => "Removed group successfully"
+      else
+        render :text => "Failed to remove group"
+      end
     end
+
+    # current_user and @user are the same
+    #    if params[:group]
+    #      @group = FriendGroup.find_by_label(params[:group])
+    #      @friend_in_groups = @user.friend_in_groups.find(:all, :conditions => ["friend_group_id = ?", @group]).paginate :page => params[:page], :per_page => 10
+    #    else
+    #      redirect_to :action => "index"
+    #    end
   end
 
   def invite
