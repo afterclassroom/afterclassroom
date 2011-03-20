@@ -4,6 +4,12 @@ GIT
   specs:
     simple_captcha (0.1.1)
 
+GIT
+  remote: git://github.com/rails/exception_notification.git
+  revision: 192a49a02d63d28b23ed41cebadfedd490929cf1
+  specs:
+    exception_notification (1.0.0)
+
 PATH
   remote: vendor/plugins/rubycas-client-rails
   specs:
@@ -171,6 +177,7 @@ DEPENDENCIES
   contacts
   domainatrix
   eventmachine
+  exception_notification!
   faker
   fastercsv
   gemcutter
