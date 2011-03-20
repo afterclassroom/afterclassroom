@@ -23,7 +23,7 @@ set :runner, nil
 #############################################################
 
 set :user, "after"
-set :domain, "ec2-75-101-204-3.compute-1.amazonaws.com"
+set :domain, "afterclassroom.com"
 server domain, :app, :web
 role :db, domain, :primary => true
 
