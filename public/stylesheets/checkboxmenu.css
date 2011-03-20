@@ -326,3 +326,13 @@ div.player.inactive
     background: url("/images/bgphoto.png") no-repeat scroll center center transparent;
     margin-bottom: 20px;
 }
+#playlists .player embed{
+    width: 310px;
+    margin-left: -20px;
+}
+#playlists #player_border{
+    margin-left: 110px;
+    margin-top: 19px;
+    position: absolute;
+    width: 300px;
+}
