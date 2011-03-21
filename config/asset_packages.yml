@@ -10,6 +10,7 @@ javascripts:
   - jquery-counter
   - jquery-multiselect
   - jquery-wysiwyg
+  - jquery-swfobject
   - thickbox
   - vtip-min
   - tag
@@ -21,6 +22,8 @@ javascripts:
   - jquery.fileupload-ui
   - ajaxupload
   - application
+  - drplayer
+  - swfobject
 - student_lounge:
   - application
   - jquery
@@ -49,6 +52,7 @@ javascripts:
   - checkboxmenu
   - cust_select_plugin
   - drplayer
+  - swfobject
 - admin:
   - jquery
   - jquery-ui

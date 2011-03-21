@@ -1,3 +1,4 @@
+<% if check_private_permission(@user, "my_fans") %>
 <div class="proInfG">
   <div class="proInfGL">My Fans</div>
 </div>
@@ -55,4 +56,5 @@ fans_nv_total = fans_nv.size
       </div>
     </div>
   </div>
+<% end %>
 <% end %>

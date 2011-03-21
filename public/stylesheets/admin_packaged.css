@@ -186,9 +186,7 @@ h2.titleH2 a:hover{ color:#d00}
 .renew a:hover{ color:#d00}
 .tablePost table td.postPromoted{ color:#5a923c; font-weight:bold}
 .postTR td{ background-color:#f2f2f2}
-  body {height:1500px;}
-  #feedback1 {cursor:pointer; border:3px solid #ddd; border-right:0}
-table.jCalendar {background: #fff; border-collapse: collapse}
+ table.jCalendar {background: #fff; border-collapse: collapse}
 table.jCalendar th {background: url('/images/admin/shared/cal_th_repeat.jpg') repeat-x; color: #fff; font-weight: bold; padding: 8px 8px}
 table.jCalendar td {color: #777777; font-size: 11px; font-weight: bold; padding: 9px 9px; text-align: center}
 table.jCalendar td.other-month {background: #ddd; color: #aaa; font-weight: bold}

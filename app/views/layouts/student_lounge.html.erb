@@ -1,42 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <%= csrf_meta_tag %>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <title>:: <%= configatron.site_name %> ::</title>
-    <%= raw stylesheet_link_merged :student_lounge %>
-    <%= raw javascript_include_merged :student_lounge %>
-    <%= javascript_include_tag 'juggernaut/juggernaut', 'juggernaut/jquerynaut', 'juggernaut/swfobject' %>
-    <%= juggernaut :debug => false, :client_id => current_user.login if logged_in? %>
-    <%= feedback_includes %>
-    <%= feedback_tab(:position => 'right') %>
-  </head>
-  <body>
-    <div class="top" id="top_page">
-      <div class="banner">
-        <div class="logo"><a href="/"><img alt="classroom" src="/images/logo.png" /></a></div>
-		<% if logged_in? %>
-        	<%= render :partial => 'shared/login_sl' %>
-		<% else %>
-			<%= render :partial => 'shared/login' %>
-		<% end %>
-      </div>
-    </div>
-    <div class="menu">
-      <div class="menuFriend">
-      	<% if logged_in? %>
-        	<%= render :partial => 'shared/menu_main_sl' %>
-		<% else %>
-			<%= render :partial => 'shared/menu_main' %>
-		<% end %>
-      </div>
-    </div>
-    <%= yield_or_default(yield(:menu_top_student_lounge)) %>
-    <div class="contMain">
-      <%= yield %>
-    </div>
-    <%= render :partial => 'shared/footer' %>
-    <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
-  </body>
+    <head>
+        <%= csrf_meta_tag %>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>:: <%= configatron.site_name %>::</title>
+        <%= raw stylesheet_link_merged :student_lounge %>
+        <%= raw javascript_include_merged :student_lounge %>
+        <%= feedback_includes %>
+        <%= feedback_tab(:position => 'right') %>
+    </head>
+    <body>
+        <div class="top" id="top_page">
+            <div class="banner">
+                <div class="logo">
+                    <a href="/"><img alt="classroom" src="/images/logo.png" /></a>
+                </div><% if logged_in? %>
+                <%= render :partial => 'shared/login_sl' %>
+                <% else %>
+                <%= render :partial => 'shared/login' %>
+                <% end %>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="menuFriend">
+                <% if logged_in? %>
+                <%= render :partial => 'shared/menu_main_sl' %>
+                <% else %>
+                <%= render :partial => 'shared/menu_main' %>
+                <% end %>
+            </div>
+        </div>
+        <%= yield_or_default(yield(:menu_top_student_lounge)) %>
+        <div class="contMain">
+            <%= yield %>
+        </div>
+        <%= render :partial => 'shared/footer' %>
+        <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
+    </body>
 </html>

@@ -1,3 +1,31 @@
+<%  family = @user.friend_in_groups.find(:first, :conditions => ["friend_group_id = ? and user_id_friend = ?", 1, friend.id])%>
+<% if family != nil %>
+  <% family_checked = "checked" %>
+<% else %>
+  <% family_checked = "" %>
+<%end %>
+
+<%  school = @user.friend_in_groups.find(:first, :conditions => ["friend_group_id = ? and user_id_friend = ?", 2, friend.id])%>
+<% if school != nil %>
+  <% school_checked = "checked" %>
+<% else %>
+  <% school_checked = "" %>
+<%end %>
+
+<%  work = @user.friend_in_groups.find(:first, :conditions => ["friend_group_id = ? and user_id_friend = ?", 3, friend.id])%>
+<% if work != nil %>
+  <% work_checked = "checked" %>
+<% else %>
+  <% work_checked = "" %>
+<%end %>
+
+<%  general = @user.friend_in_groups.find(:first, :conditions => ["friend_group_id = ? and user_id_friend = ?", 4, friend.id])%>
+<% if general != nil %>
+  <% general_checked = "checked" %>
+<% else %>
+  <% general_checked = "" %>
+<%end %>
+
 <div class="flistItem">
   <div class="assPic"><%= show_image_user_post(friend) %></div>
   <div class="flistInf">
@@ -8,10 +36,16 @@
     <div class="flistRAdd">
       <a href="#"><span>Add to List</span></a>
       <ul>
-        <li><input id="Family members" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "family_members" %> /><%= link_to "Family members", list_user_friends_path(current_user, :group => "family_members") %></li>
-        <li><input id="Friends from school" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "friends_from_school" %> /><%= link_to "Friends from school", list_user_friends_path(current_user, :group => "friends_from_school") %></li>
-        <li><input id="Friends from work" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "friends_from_work" %> /><%= link_to "Friends from work", list_user_friends_path(current_user, :group => "friends_from_work") %></li>
-        <li><input id="General Friends" type="checkbox" <%= "friSelect" if action_name == "list" && @group == "general_friends" %> /><%= link_to "General Friends", list_user_friends_path(current_user, :group => "general_friends") %></li>
+        <li>
+          <input id="Family_members_<%= friend.id %>" type="checkbox" <%= family_checked %> />
+          <%= link_to "Family members", list_user_friends_path(current_user, :group => "family_members", :friend_id => friend.id, :group_id => "1", :check_status => family_checked) %>
+        </li>
+        <li><input id="Friends_from_school_<%= friend.id %>" type="checkbox" <%= school_checked %> />
+          <%= link_to "Friends from school", list_user_friends_path(current_user, :group => "friends_from_school", :friend_id => friend.id, :group_id => "2", :check_status => school_checked) %></li>
+        <li><input id="Friends_from_work_<%= friend.id %>" type="checkbox" <%= work_checked %> />
+          <%= link_to "Friends from work", list_user_friends_path(current_user, :group => "friends_from_work", :friend_id => friend.id, :group_id => "3", :check_status => work_checked) %></li>
+        <li><input id="General_Friends_<%= friend.id %>" type="checkbox" <%= general_checked %> />
+          <%= link_to "General Friends", list_user_friends_path(current_user, :group => "general_friends", :friend_id => friend.id, :group_id => "4", :check_status => general_checked) %></li>
       </ul>
     </div>
     <div class="flistRdelete"><a href="javascript:;" onclick="DeleteFriend('<%= friend.id %>');"> </a></div>
@@ -21,3 +55,61 @@
 
 
 
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    /*BEGIN Hanle ajax call for Adding/Removing Family Member Group*/
+    var strUrlFamily_<%= friend.id %> = $('#Family_members_<%= friend.id %>').next().attr('href');
+    $('#Family_members_<%= friend.id %>').next().attr('href','javascript:;');
+    $('#Family_members_<%= friend.id %>').next().click(function(){
+      AddToWithAjax(strUrlFamily_<%= friend.id %>,'Family_members_<%= friend.id %>');
+      strUrlFamily_<%= friend.id %> = UpdateURL(strUrlFamily_<%= friend.id %>);
+    });
+    $('#Family_members_<%= friend.id %>').click(function(){
+      AddToWithAjax(strUrlFamily_<%= friend.id %>,null);
+      strUrlFamily_<%= friend.id %> = UpdateURL(strUrlFamily_<%= friend.id %>);
+    });
+    /*END Hanle ajax call for Adding/Removing Family Member Group*/
+
+    /*BEGIN Hanle ajax call for Adding/Removing Friend From School Group*/
+    var strUrlFriend_<%= friend.id %> = $('#Friends_from_school_<%= friend.id %>').next().attr('href');
+    var status = false;
+    $('#Friends_from_school_<%= friend.id %>').next().attr('href','javascript:;');
+    $('#Friends_from_school_<%= friend.id %>').next().click(function(){
+      AddToWithAjax(strUrlFriend_<%= friend.id %>,'Friends_from_school_<%= friend.id %>');
+      strUrlFriend_<%= friend.id %>=UpdateURL(strUrlFriend_<%= friend.id %>);
+    });
+    $('#Friends_from_school_<%= friend.id %>').click(function(){
+      AddToWithAjax(strUrlFriend_<%= friend.id %>,null);
+      strUrlFriend_<%= friend.id %>=UpdateURL(strUrlFriend_<%= friend.id %>);
+    });
+
+    /*END Hanle ajax call for Adding/Removing Friend From School Group*/
+
+    /*BEGIN Hanle ajax call for Adding/Removing Friend From Work Group*/
+    var strUrlWork_<%= friend.id %> = $('#Friends_from_work_<%= friend.id %>').next().attr('href');
+    $('#Friends_from_work_<%= friend.id %>').next().attr('href','javascript:;');
+    $('#Friends_from_work_<%= friend.id %>').next().click(function(){
+      AddToWithAjax(strUrlWork_<%= friend.id %>,'Friends_from_work_<%= friend.id %>');
+      strUrlWork_<%= friend.id %>=UpdateURL(strUrlWork_<%= friend.id %>);
+    });
+    $('#Friends_from_work_<%= friend.id %>').click(function(){
+      AddToWithAjax(strUrlWork_<%= friend.id %>,null);
+      strUrlWork_<%= friend.id %>=UpdateURL(strUrlWork_<%= friend.id %>);
+    });
+    /*END Hanle ajax call for Adding/Removing Friend From Work Group*/
+
+    /*BEGIN Hanle ajax call for Adding/Removing General Friend Group*/
+    var strUrlGen_<%= friend.id %> = $('#General_Friends_<%= friend.id %>').next().attr('href');
+    $('#General_Friends_<%= friend.id %>').next().attr('href','javascript:;');
+    $('#General_Friends_<%= friend.id %>').next().click(function(){
+      AddToWithAjax(strUrlGen_<%= friend.id %>,'General_Friends_<%= friend.id %>');
+      strUrlGen_<%= friend.id %>=UpdateURL(strUrlGen_<%= friend.id %>);
+    });
+    $('#General_Friends_<%= friend.id %>').click(function(){
+      AddToWithAjax(strUrlGen_<%= friend.id %>,null);
+      strUrlGen_<%= friend.id %>=UpdateURL(strUrlGen_<%= friend.id %>);
+    });
+    /*END Hanle ajax call for Adding/Removing General Friend Group*/
+  });
+</script>

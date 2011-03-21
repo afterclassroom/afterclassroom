@@ -9,7 +9,12 @@ class TagsController < ApplicationController
     ctrl_name = params[:ctrl_name]
     class_name = params[:class_name]
     school = session[:your_school]
-    tags = School.find(school).owned_tags.where(["taggable_type = ?", class_name])
+    
+    if school
+      tags = School.find(school).owned_tags.where(["taggable_type = ?", class_name])
+    else
+      tags = eval(class_name).tag_counts
+    end
 
     text = "<tags>"
     tags.each do |tg|
