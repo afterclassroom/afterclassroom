@@ -5,7 +5,7 @@
  * Licensed under the MIT License:
  *   http://www.opensource.org/licenses/mit-license.php
  */
-;(function($) {
+(function($) {
 	var defaults = {
 		mouseOutOpacity:   0.67,
 		mouseOverOpacity:  1.0,
