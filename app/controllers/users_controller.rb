@@ -168,15 +168,15 @@ class UsersController < ApplicationController
     name = first_name + " " + last_name
 
     @user = User.new(attributes[:user])
-    @user.user_information = UserInformation.new()
-    @user.user_education = UserEducation.new()
-    @user.user_employment = UserEmployment.new()
     @user.name = name
     @user.login = to_slug(name)
     session[:your_school] = @user.school_id
     
     if @user && @user.valid?
       @user.register!
+      UserInformation.create(:user_id => @user.id)
+      UserEducation.create(:user_id => @user.id)
+      UserEmployment.create(:user_id => @user.id)
     end
 
     if @user.errors.empty?
