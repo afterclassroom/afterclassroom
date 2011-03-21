@@ -23,7 +23,7 @@ set :runner, nil
 #############################################################
 
 set :user, "after"
-set :domain, "afterclassroom.com"
+set :domain, "www.afterclassroom.com"
 server domain, :app, :web
 role :db, domain, :primary => true
 

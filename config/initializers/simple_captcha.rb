@@ -22,5 +22,5 @@ SimpleCaptcha.setup do |sc|
   # possible values: 'low', 'medium', 'high', 'random'
   sc.distortion = 'medium'
   
-  sc.image_magick_path = '/usr/local/bin/'
+  sc.image_magick_path = '/usr/bin/'
 end

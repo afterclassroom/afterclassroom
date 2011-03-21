@@ -57,5 +57,5 @@ Afterclassroom::Application.configure do
     :path => ":attachment/:id/:basename_:style.:extension"
   }
   Paperclip::Railtie.insert
-  Paperclip.options[:command_path] = "/usr/local/bin/"
+  Paperclip.options[:command_path] = "/usr/bin/"
 end
