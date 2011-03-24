@@ -23,7 +23,7 @@ set :runner, nil
 #############################################################
 
 set :user, "after"
-set :domain, "www.afterclassroom.com"
+set :domain, "ec2-50-17-125-32.compute-1.amazonaws.com"
 server domain, :app, :web
 role :db, domain, :primary => true
 
@@ -50,8 +50,8 @@ namespace :deploy do
     production:
       adapter: mysql2
       encoding: utf8
-      username: root
-      password: 
+      username: after
+      password: 9Jke.w9itA
       database: afterclassroom
     EOF
 

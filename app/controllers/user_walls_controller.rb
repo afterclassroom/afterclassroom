@@ -2,7 +2,10 @@
 include ActionView::Helpers::UrlHelper
 
 class UserWallsController < ApplicationController
-  before_filter :login_required
+  before_filter RubyCAS::Filter::GatewayFilter
+  before_filter RubyCAS::Filter
+  before_filter :cas_user
+  #before_filter :login_required
   
   def create_wall
     user_wall_id = params[:user_wall_id]

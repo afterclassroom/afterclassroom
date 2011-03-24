@@ -1,6 +1,9 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class VideosController < ApplicationController
-  before_filter :login_required
+  before_filter RubyCAS::Filter::GatewayFilter
+  before_filter RubyCAS::Filter
+  before_filter :cas_user
+  #before_filter :login_required
   before_filter :require_current_user,
                 :only => [:edit, :update, :destroy, :delete_comment]
   # GET /videos

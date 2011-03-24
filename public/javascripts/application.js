@@ -6,15 +6,14 @@ function submit(){
         $("#form_post").submit();
     }
 }
-  
+
 function downloadFile(path){
     document.location.href = path;
 }
-  
+
 function getPostSearchType(post_type){
     action = "";
-    switch(post_type)
-    {
+    switch (post_type) {
         case "Assignments":
             action = "/post_assignments/search";
             break;
@@ -67,7 +66,7 @@ function getPostSearchType(post_type){
     $('#action_post_search').attr("action", action);
 }
 
-function load_options (){
+function load_options(){
     $("#department").mcDropdown("#department_menu", {
         width: 170,
         valueAttr: "rel_department",
@@ -91,16 +90,16 @@ function option_submit(){
 
 function send_comment(id, type){
     comment = $('#comment').val();
-    if (comment != ""){
+    if (comment != "") {
         $.ajax({
             url: '/posts/create_comment',
             type: 'GET',
             cache: false,
             dataType: 'html',
             data: ({
-                commentable_id : id,
-                commentable_type : type,
-                comment : comment
+                commentable_id: id,
+                commentable_type: type,
+                comment: comment
             }),
             success: function(data){
                 $('#list_comments').append(data);
@@ -113,16 +112,16 @@ function send_comment(id, type){
 
 function send_answer(post_id){
     comment = $('#comment').val();
-    if (comment != ""){
+    if (comment != "") {
         $.ajax({
             url: '/post_qas/create_comment',
             type: 'GET',
             cache: false,
             dataType: 'html',
             data: ({
-                post_id : post_id,
-                comment : comment,
-                show : $('#show').val()
+                post_id: post_id,
+                comment: comment,
+                show: $('#show').val()
             }),
             success: function(data){
                 $('#list_comments').html(data);
@@ -136,41 +135,40 @@ function send_answer(post_id){
 function sendEmail(current_user_id, user_id){
     subject = $('#message_subject').val();
     body = $('#message_body').val();
-    $.ajax(
-    {
+    $.ajax({
         url: '/users/' + current_user_id + '/messages/send_message',
         type: 'GET',
         cache: false,
         dataType: 'html',
         data: ({
-            recipient_id : user_id,
-            subject : subject,
-            body : body
+            recipient_id: user_id,
+            subject: subject,
+            body: body
         }),
         success: function(data){
             $('#div_send_message').html(data);
         }
     });
 }
-    
+
 
 function sendReportAbuse(){
     reported_id = $('#reported_id').val();
     reported_type = $('#reported_type').val();
     abuse_type_id = $('#abuse_type_id').val();
     abuse_content = $('#abuse_content').val();
-
-    if (reported_id != "" && reported_type != "" && content != ""){
+    
+    if (reported_id != "" && reported_type != "" && content != "") {
         $.ajax({
             url: '/posts/create_report_abuse',
             type: 'GET',
             cache: false,
             dataType: 'html',
             data: ({
-                reported_id : reported_id,
-                reported_type : reported_type,
-                abuse_type_id : abuse_type_id,
-                abuse_content : abuse_content
+                reported_id: reported_id,
+                reported_type: reported_type,
+                abuse_type_id: abuse_type_id,
+                abuse_content: abuse_content
             }),
             success: function(data){
                 $('#div_send_report').html(data);
@@ -181,16 +179,16 @@ function sendReportAbuse(){
 
 function requireRating(post_id, path){
     rating = $('input[name=rating]:checked').val();
-
-    if (rating != ""){
+    
+    if (rating != "") {
         $.ajax({
             url: path,
             type: 'GET',
             cache: false,
             dataType: 'script',
             data: ({
-                rating : rating,
-                post_id : post_id
+                rating: rating,
+                post_id: post_id
             }),
             success: function(data){
                 $('#require_rating_action').html(data);
@@ -214,7 +212,7 @@ function showCommentForm(wall_id){
 }
 
 function hideCommentForm(wall_id){
-    if($('#comment_' + wall_id).val() == ""){
+    if ($('#comment_' + wall_id).val() == "") {
         $('#wall_comment_' + wall_id).show();
         $('#wall_comment_form_' + wall_id).hide();
     }
@@ -222,18 +220,18 @@ function hideCommentForm(wall_id){
 
 function goToByScroll(id){
     $('html,body').animate({
-        scrollTop: $("#"+id).offset().top
-    },'slow');
+        scrollTop: $("#" + id).offset().top
+    }, 'slow');
 }
 
-function resetForm(id) {
-    $('#'+id).each(function(){
+function resetForm(id){
+    $('#' + id).each(function(){
         this.reset();
     });
 }
 
 // Pretty flash
-function hideFlashes() {
+function hideFlashes(){
     $('#flash_notice, #flash_warning, #flash_error').fadeOut(1500);
 }
 
@@ -244,23 +242,24 @@ function become_a_fan(path){
         type: "GET",
         dataType: "html",
         failure: function(msg){
-            alert('ajax fail:'+msg);
+            alert('ajax fail:' + msg);
         },
         success: function(msg){
             $('.AsDContR .fan').html(msg);
         }
     });
 }
+
 //Chat
 
-function invite_chat(id) {
+function invite_chat(id){
     $.ajax({
         url: '/student_lounges/invite_chat',
         type: 'GET',
         cache: false,
         dataType: 'html',
         data: ({
-            user_id : id
+            user_id: id
         }),
         success: function(data){
             $('.AsDContR .chat').text('Chatting...');
@@ -268,7 +267,7 @@ function invite_chat(id) {
         error: function(data){
             alert('Error connecting to server');
         }
-
+        
     });
 }
 
@@ -276,28 +275,26 @@ function add_users_to_chat(chanel_name){
     obj_form = document.forms['form_' + chanel_name];
     len = obj_form.elements.length;
     val = "";
-    var i=0;
-    for(i=0; i<len ; i++)
-    {
-        if(obj_form.elements[i].type == "checkbox" && obj_form.elements[i].checked)
-        {
+    var i = 0;
+    for (i = 0; i < len; i++) {
+        if (obj_form.elements[i].type == "checkbox" && obj_form.elements[i].checked) {
             val += obj_form.elements[i].value + ";";
         }
     }
-
+    
     $.ajax({
         url: '/student_lounges/add_users_to_chat',
         type: 'GET',
         cache: false,
         dataType: 'html',
         data: ({
-            user_id : val,
+            user_id: val,
             chanel_name: chanel_name
         })
     });
 }
 
-function send_data(id, chanel_name) {
+function send_data(id, chanel_name){
     $.ajax({
         url: '/student_lounges/send_data',
         type: 'GET',
@@ -305,9 +302,9 @@ function send_data(id, chanel_name) {
         dataType: 'html',
         data: ({
             chanel_name: chanel_name,
-            chat_input: $('#chat_input_'+id).val()
+            chat_input: $('#chat_input_' + id).val()
         }),
-        success: function(data) {
+        success: function(data){
             $("#chat_input_" + id).val("");
         }
     });
@@ -322,8 +319,8 @@ function stop_chat(chanel_name){
         data: ({
             chanel_name: chanel_name
         }),
-        success: function(data) {
-        //Close window chat
+        success: function(data){
+            //Close window chat
         }
     });
 }
@@ -334,7 +331,7 @@ function friends_changed_message(){
         type: 'GET',
         cache: false,
         dataType: 'html',
-        success: function(data) {
+        success: function(data){
             $('#div_friends_changed_their_message').html(data);
         }
     });
@@ -346,7 +343,7 @@ function friends_you_invited_chat(){
         type: 'GET',
         cache: false,
         dataType: 'html',
-        success: function(data) {
+        success: function(data){
             $("#div_friends_you_invited_to_chat").html(data);
         }
     });
@@ -358,24 +355,24 @@ function friends_want_you_chat(){
         type: 'GET',
         cache: false,
         dataType: 'html',
-        success: function(data) {
+        success: function(data){
             $("#div_friends_want_you_chat").html(data);
         }
     });
 }
 
 function insert_text_to_chatcontent(chanel_name, text_chat){
-    if($('#' + chanel_name)){
+    if ($('#' + chanel_name)) {
         $('#' + chanel_name).before(text_chat);
         scroll_div('#chat_content_' + chanel_name);
     }
 }
 
 function openChat(title, chanel_name){
-    if ($('#' + chanel_name).length == 0){
+    if ($('#' + chanel_name).length == 0) {
         var win = $.customWindow({
             title: title,
-            onopen: function (cont, obj) {
+            onopen: function(cont, obj){
                 $.ajax({
                     url: '/student_lounges/chanel_chat_content',
                     type: 'GET',
@@ -384,16 +381,16 @@ function openChat(title, chanel_name){
                     data: ({
                         chanel_name: chanel_name
                     }),
-                    success: function(data) {
+                    success: function(data){
                         cont.html(data);
                     }
                 });
             },
-            onclose: function () {
-            //
+            onclose: function(){
+                //
             },
-            onresize: function (obj) {
-            //Nothing
+            onresize: function(obj){
+                //Nothing
             }
         });
     }
@@ -404,6 +401,7 @@ function scroll_div(id){
         scrollTop: $(id).attr("scrollHeight")
     }, 3000);
 }
+
 //Chat
 
 //My Stories
@@ -411,7 +409,7 @@ function searchFriendStories(){
     var form = $("#friend_stories_search");
     var url = form.attr("action");
     var formData = form.serialize();
-    $.get(url, formData, function(html) {
+    $.get(url, formData, function(html){
         $("#friend_stories_list").html(html);
     });
 }
@@ -420,46 +418,47 @@ function searchMyStories(){
     var form = $("#my_stories_search");
     var url = form.attr("action");
     var formData = form.serialize();
-    $.get(url, formData, function(html) {
+    $.get(url, formData, function(html){
         $("#my_stories_list").html(html);
     });
 }
 
-function formatLinkForPaginationURLFriend() {
+function formatLinkForPaginationURLFriend(){
     var form = $("#friend_stories_search");
     var url = form.attr("action");
-    $("div.friend_stories").find("a").each(function() {
-        var linkElement = $( this );
+    $("div.friend_stories").find("a").each(function(){
+        var linkElement = $(this);
         var page = linkElement.html();
         linkElement.attr({
             "page": page,
             "href": "javascript:;"
         });
-
-        linkElement.click(function() {
+        
+        linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
             searchFriendStories();
         });
     });
 }
 
-function formatLinkForPaginationURLMy() {
+function formatLinkForPaginationURLMy(){
     var form = $("#my_stories_search");
     var url = form.attr("action");
-    $("div.my_stories").find("a").each(function() {
-        var linkElement = $( this );
+    $("div.my_stories").find("a").each(function(){
+        var linkElement = $(this);
         var page = linkElement.html();
         linkElement.attr({
             "page": page,
             "href": "javascript:;"
         });
-
-        linkElement.click(function() {
+        
+        linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
             searchMyStories();
         });
     });
 }
+
 //My Stories
 
 //My Photos
@@ -467,7 +466,7 @@ function searchFriendPhotos(){
     var form = $("#friend_photos_search");
     var url = form.attr("action");
     var formData = form.serialize();
-    $.get(url, formData, function(html) {
+    $.get(url, formData, function(html){
         $("#friend_photos_list").html(html);
     });
 }
@@ -476,46 +475,47 @@ function searchMyPhotos(){
     var form = $("#my_photos_search");
     var url = form.attr("action");
     var formData = form.serialize();
-    $.get(url, formData, function(html) {
+    $.get(url, formData, function(html){
         $("#my_photos_list").html(html);
     });
 }
 
-function formatLinkForPaginationURLFriendPhoto() {
+function formatLinkForPaginationURLFriendPhoto(){
     var form = $("#friend_photos_search");
     var url = form.attr("action");
-    $("div.friend_photos").find("a").each(function() {
-        var linkElement = $( this );
+    $("div.friend_photos").find("a").each(function(){
+        var linkElement = $(this);
         var page = linkElement.html();
         linkElement.attr({
             "page": page,
             "href": "javascript:;"
         });
-
-        linkElement.click(function() {
+        
+        linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
             searchFriendStories();
         });
     });
 }
 
-function formatLinkForPaginationURLMyPhoto() {
+function formatLinkForPaginationURLMyPhoto(){
     var form = $("#my_photos_search");
     var url = form.attr("action");
-    $("div.my_photos").find("a").each(function() {
-        var linkElement = $( this );
+    $("div.my_photos").find("a").each(function(){
+        var linkElement = $(this);
         var page = linkElement.html();
         linkElement.attr({
             "page": page,
             "href": "javascript:;"
         });
-
-        linkElement.click(function() {
+        
+        linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
             searchMyStories();
         });
     });
 }
+
 //My Photos
 
 //My Musics
@@ -523,7 +523,7 @@ function searchFriendMusics(){
     var form = $("#friend_musics_search");
     var url = form.attr("action");
     var formData = form.serialize();
-    $.get(url, formData, function(html) {
+    $.get(url, formData, function(html){
         $("#friend_musics_list").html(html);
     });
 }
@@ -532,44 +532,45 @@ function searchMyMusics(){
     var form = $("#my_musics_search");
     var url = form.attr("action");
     var formData = form.serialize();
-    $.get(url, formData, function(html) {
+    $.get(url, formData, function(html){
         $("#my_musics_list").html(html);
     });
 }
 
-function formatLinkForPaginationURLFriendMusic() {
+function formatLinkForPaginationURLFriendMusic(){
     var form = $("#friend_musics_search");
     var url = form.attr("action");
-    $("div.friend_musics").find("a").each(function() {
-        var linkElement = $( this );
+    $("div.friend_musics").find("a").each(function(){
+        var linkElement = $(this);
         var page = linkElement.html();
         linkElement.attr({
             "page": page,
             "href": "javascript:;"
         });
-
-        linkElement.click(function() {
+        
+        linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
             searchFriendStories();
         });
     });
 }
 
-function formatLinkForPaginationURLMyMusic() {
+function formatLinkForPaginationURLMyMusic(){
     var form = $("#my_musics_search");
     var url = form.attr("action");
-    $("div.my_musics").find("a").each(function() {
-        var linkElement = $( this );
+    $("div.my_musics").find("a").each(function(){
+        var linkElement = $(this);
         var page = linkElement.html();
         linkElement.attr({
             "page": page,
             "href": "javascript:;"
         });
-
-        linkElement.click(function() {
+        
+        linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
             searchMyStories();
         });
     });
 }
+
 //My Musics

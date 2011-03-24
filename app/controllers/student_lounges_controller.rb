@@ -1,7 +1,10 @@
 # � Copyright 2009 AfterClassroom.com � All Rights Reserved
 class StudentLoungesController < ApplicationController
   layout 'student_lounge'
-  before_filter :login_required
+  before_filter RubyCAS::Filter::GatewayFilter
+  before_filter RubyCAS::Filter
+  before_filter :cas_user
+  #before_filter :login_required
 
   def index
     @user = current_user

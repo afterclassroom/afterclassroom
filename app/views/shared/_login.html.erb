@@ -13,12 +13,13 @@
     <% else %>
       <ul>
         <li><a href="#" class="signinFrist"><span>Help</span></a></li>
-        <li><%= link_to raw("<span>Sign in</span>"), login_url %></li>
+        <li><%= link_to raw("<span>Sign in</span>"), RubyCAS::Filter.login_url(controller) %></li>
         <li><%= link_to raw("<span>Simple sign up</span>"), signup_url %></li>
         <li><%= link_to raw("<span>Forget password</span>"), user_forgot_password_url %></li>
       </ul>
     <% end %>
   </div>
+  <!--
   <% if !logged_in? %>
     <div class="log">
       <%= form_tag session_path, :name => "form_login", :id => "form_login" do -%>
@@ -28,4 +29,5 @@
       <% end -%>
     </div>
   <% end -%>
+  -->
 </div>

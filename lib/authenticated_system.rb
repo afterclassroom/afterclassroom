@@ -1,3 +1,6 @@
+require 'casclient' 
+require 'casclient/frameworks/rails/filter'
+
 module AuthenticatedSystem
   protected
     # Returns true or false if the user is logged in.
@@ -108,7 +111,7 @@ module AuthenticatedSystem
     #
     # Login
     #
-
+    
     # Called from #current_user.  First attempt to login by the user id stored in the session.
     def login_from_session
       self.current_user = User.find_by_id(session[:user_id]) if session[:user_id]
