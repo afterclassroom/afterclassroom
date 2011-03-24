@@ -3,6 +3,7 @@ javascripts:
 - base:
   - jquery
   - rails
+  - swfobject
   - jquery-ui
   - jquery-mcdropdown
   - jquery-auto-suggest
@@ -23,10 +24,10 @@ javascripts:
   - ajaxupload
   - application
   - drplayer
-  - swfobject
 - student_lounge:
   - application
   - jquery
+  - swfobject
   - jquery-ui
   - jquery-mcdropdown
   - jquery-auto-suggest
@@ -52,7 +53,6 @@ javascripts:
   - checkboxmenu
   - cust_select_plugin
   - drplayer
-  - swfobject
 - admin:
   - jquery
   - jquery-ui

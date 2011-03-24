@@ -1,32 +1,37 @@
-<h1>Editing post_exam_schedule</h1>
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Student Awareness", post_awarenesses_path, :class => "abLink-detail" %><%= link_to SCHEDULE_TYPE.rassoc("exam_schedule")[0], post_exam_schedules_path, :class => "abLink-detail" %><%= link_to "New", "#", :class => "abLink-detail" %>
+<% end -%>
 
-<%= form_for(@post_exam_schedule) do |f| %>
-  <%= f.error_messages %>
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
 
-  <p>
-    <%= f.label :subject %><br />
-    <%= f.text_field :subject %>
-  </p>
-  <p>
-    <%= f.label :teacher_name %><br />
-    <%= f.text_field :teacher_name %>
-  </p>
-  <p>
-    <%= f.label :school %><br />
-    <%= f.text_field :school %>
-  </p>
-  <p>
-    <%= f.label :starts_at %><br />
-    <%= f.datetime_select :starts_at %>
-  </p>
-  <p>
-    <%= f.label :place %><br />
-    <%= f.text_field :place %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
 
-<%= link_to 'Show', @post_exam_schedule %> |
-<%= link_to 'Back', post_exam_schedules_path %>
+<!--Content-->
+<div class="contDetL">
+  <div class="contDetLin post">
+    <div class="AsDTop">
+      <h1 class="titleH1">Posting to the world!</h1>
+    </div>
+    <div class="postCont">
+    	<%= display_flash_messages_with_raw %>
+      <%= form_for(@post_exam_schedule, :html => {:multipart => true, :id => "form_post" }) do |f| %>
+        <%= render :partial => "form", :locals => {:f => f} %>
+		<div style="margin-left:120px">
+		  	<%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+		</div>
+        <div class="submit"><a href="javascript:;" onclick="submit();"><%= submit_tag 'Update' %></a></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>
+<!--Content-->

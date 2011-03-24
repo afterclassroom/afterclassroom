@@ -7,23 +7,23 @@ class SessionsController < ApplicationController
   
   def new
   end
-
+  
   def login_ajax
     flash.now[:notice] = "This function is available only to registered users."
     render :layout => false
   end
-
+  
   def create
     logout_keeping_session!
+    
     password_authentication
   end
-
+  
   def destroy
-    logout_killing_session!
     flash.now[:notice] = "You have been logged out."
-    redirect_back_or_default(root_path)
+    RubyCAS::Filter.logout(self, root_url) and return
   end
-
+  
   def change_school
     if params[:school_id]
       school_id = params[:school_id]
@@ -34,10 +34,14 @@ class SessionsController < ApplicationController
   end
   
   protected
-
+  
   def password_authentication
-    user = User.authenticate(params[:email], params[:password])
-    if user
+    credentials = { :username => params[:email], :password => params[:password]} 
+    dashboard_url = "http://afterclassroom.com"
+    
+    @response = RubyCAS::Filter.login_to_service(self, credentials, dashboard_url)
+    if @response.is_success?
+      user = User.authenticate(params[:email], params[:password])
       self.current_user = user
       successful_login
     else
@@ -67,7 +71,7 @@ class SessionsController < ApplicationController
     session[:your_school] = self.current_user.school.id if self.current_user.school
     flash.now[:notice] = "Logged in successfully"
   end
-
+  
   def note_failed_signin
     flash.now[:error] =  "Couldn't log you in as '#{params[:email]}'"
     logger.warn "Failed login for '#{params[:email]}' from #{request.remote_ip} at #{Time.now.utc}"

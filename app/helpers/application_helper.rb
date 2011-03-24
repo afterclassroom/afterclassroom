@@ -590,6 +590,8 @@ module ApplicationHelper
   
   private
   def link_to_require_login(str)
-    link_to(str, "/login_ajax?height=300&width=540", :class => "thickbox", :title => "Sign In")
+    #link_to(str, "/login_ajax?height=300&width=540", :class => "thickbox", :title => "Sign In")
+    str_require_login = "This function is available only to registered users."
+    link_to(str, "javascript:;", :class => "vtip", :title => str_require_login)
   end
 end

@@ -1,7 +1,10 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostQasController < ApplicationController
+  before_filter RubyCAS::Filter::GatewayFilter
+  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
+  before_filter :cas_user
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :asked, :interesting, :top_answer, :prefer]
-  before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
+  #before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   after_filter :store_go_back_url, :only => [:index, :search, :tag, :asked, :interesting, :top_answer, :prefer]

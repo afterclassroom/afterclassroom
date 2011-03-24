@@ -20,6 +20,7 @@
       </div>
     </div>
     <div class="AsDCont">
+    	<%= display_flash_messages_with_raw %>
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
         <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_foods_path %></span></div>

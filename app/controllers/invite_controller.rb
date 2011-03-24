@@ -1,7 +1,10 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class InviteController < ApplicationController
   layout 'inbox'
-  before_filter :login_required
+  before_filter RubyCAS::Filter::GatewayFilter
+  before_filter RubyCAS::Filter
+  before_filter :cas_user
+  #before_filter :login_required
   before_filter :set_user
   
   def index
