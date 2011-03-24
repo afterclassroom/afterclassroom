@@ -345,9 +345,9 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
   end
 
   create_table "post_assignments", :force => true do |t|
-    t.integer  "post_id"
-    t.string   "professor"
-    t.datetime "due_date"
+    t.integer "post_id"
+    t.string  "professor"
+    t.date    "due_date"
   end
 
   create_table "post_awarenesses", :force => true do |t|

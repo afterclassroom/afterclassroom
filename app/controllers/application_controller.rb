@@ -15,9 +15,15 @@ class ApplicationController < ActionController::Base
   
   # Temp
   USER_NAME, PASSWORD = "afterclassroom", "teamwork"
+<<<<<<< HEAD
   
   before_filter :authenticate
   
+=======
+
+  # before_filter :authenticate
+
+>>>>>>> 086297a416177cbef3c16662e88a3f7fa9364cac
   def help
     Helper.instance
   end

@@ -1,19 +1,19 @@
 <div style="min-height:80px">
-    <% if image %>
+  <% if image %>
     <div class="AfterImg">
-        <div class="imgDiv">
-            <%= image %>
-        </div>
+      <div class="imgDiv">
+        <%= image %>
+      </div>
     </div>
-    <% end %>
-    <div class="AfterTitle">
-        <%= link_to title, link, :target => "_blank" %>
-    </div>
-	<% if sub_content %>
+  <% end %>
+  <div class="AfterTitle">
+    <%= link_to title, link, :target => "_blank" %>
+  </div>
+  <% if sub_content %>
     <div class="AfterDes">
-        <%= sub_content %>
+      <%= sub_content %>
     </div>
-	<% end %>
-    <div id="show_jplayer_<%= wall_id %>">
-    </div>
+  <% end %>
+  <div id="show_jplayer_<%= wall_id %>">
+  </div>
 </div>

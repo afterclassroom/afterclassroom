@@ -3,7 +3,7 @@
     Link error.
   </div>
 <% else %>
-  <div style="min-height:80px">
+  <div style="min-height:80px" class="aa">
     <div class="AfterImg"><div class="imgDiv"><%= image_tag "/images/music.png", :width => "92px", :height => "68px" %></div></div>
     <div class="AfterTitle"><%= link_to @user_wall_music.title, @user_wall_music.link, :target => "_blank" %></div>
     <div class="AfterDes"><%= @user_wall_music.sub_content %></div>

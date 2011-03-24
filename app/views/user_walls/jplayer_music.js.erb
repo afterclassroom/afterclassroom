@@ -1,8 +1,6 @@
-$("#show_jplayer_<%= @user_wall_music.user_wall.id %>").html('<div id="player_<%= @user_wall_music.user_wall.id %>"></div>');
-  var so_<%= @user_wall_music.user_wall.id %> = new SWFObject('/javascripts/player.swf','player_<%= @user_wall_music.user_wall.id %>','320','24','9','#000000');
-  so_<%= @user_wall_music.user_wall.id %>.addParam('allowfullscreen','true');
-  so_<%= @user_wall_music.user_wall.id %>.addParam('allowscriptaccess','always');
-  so_<%= @user_wall_music.user_wall.id %>.addParam('wmode','opaque');
-  so_<%= @user_wall_music.user_wall.id %>.addVariable('autostart','true');
-  so_<%= @user_wall_music.user_wall.id %>.addVariable('file','<%= @user_wall_music.link %>');
-  so_<%= @user_wall_music.user_wall.id %>.write('player_<%= @user_wall_music.user_wall.id %>');
+$("#show_jplayer_<%= @user_wall_music.user_wall.id %>").html('<div id="playlists"><div href="<%= @user_wall_music.link %>" style="width: 400px;" class="item"><div><div class="fr duration"></div><div class="btn play"></div><div class="title"><b></b></div></div><div id="player_border" class="player inactive"></div></div></div>');
+$("#playlists").playlist(
+{
+playerurl: "/swfs/drplayer.swf"
+}
+);
