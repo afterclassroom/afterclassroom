@@ -18,6 +18,7 @@
         <div class="AsDTop">
           <h1 class="titleH1">Housing</h1>
         </div>
+		<%= display_flash_messages_with_raw %>
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>bad

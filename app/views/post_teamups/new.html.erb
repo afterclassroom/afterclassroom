@@ -17,6 +17,7 @@
       <h1 class="titleH1">Posting to the world!</h1>
     </div>
     <div class="postCont">
+    	<%= display_flash_messages_with_raw %>
       <%= form_for(@post_teamup, :html => {:multipart => true, :id => "form_post" }) do |f| %>
         <%= render :partial => "form", :locals => {:f => f} %>
 		<div style="margin-left:120px">

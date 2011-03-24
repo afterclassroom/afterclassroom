@@ -21,6 +21,7 @@
             <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_myxs_path} %>
           </div>
         </div>
+		<%= display_flash_messages_with_raw %>
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>
