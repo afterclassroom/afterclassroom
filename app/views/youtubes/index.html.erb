@@ -12,6 +12,7 @@
             <%= link_to "Upload a Video", new_user_youtube_path(current_user) if session[:token] %>
           </div>
         </div>
+		<%= display_flash_messages_with_raw %>
         <% if session[:token] %>
           <div class="slsTop">
             <div class="slsTopL">
