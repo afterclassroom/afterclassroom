@@ -19,9 +19,9 @@
         </td>
         <td class="after">
           <h2 class="footTitle">After Classroom</h2>
-          <div class="footItem"><%=link_to 'Company Information',:controller => 'about_us',:action => 'index'%></div>
-          <div class="footItem"><a href="#">Terms of use</a></div>
-          <div class="footItem"><a href="#">Privacy Policy</a></div>
+          <div class="footItem"><%=  link_to 'Company Information', :controller => 'statics', :action => 'index'%></div>
+          <div class="footItem"><%= link_to 'Terms of use', :controller => 'statics', :action => 'terms'%></div>
+          <div class="footItem"><%= link_to 'Privacy Policy', :controller => 'statics', :action => 'privacy' %></div>
           <div class="footItem"><a href="#">Press</a></div>
         </td>
       </tr>

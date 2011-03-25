@@ -625,12 +625,12 @@ h2.titleH2 a:hover{
 }
 /*** column 451 public ***/
 .col451{
-    background:white url('/images/top451.png') no-repeat;
-    width:451px;
+    background:white url('/images/top654.png') no-repeat;
+    width:654px;
     margin-bottom:8px;
 }
 .col451in{
-    background:url('/images/bot451.png') no-repeat left bottom;
+    background:url('/images/bot654.png') no-repeat left bottom;
     overflow:hidden;
     padding:10px;
     _height:100%;
