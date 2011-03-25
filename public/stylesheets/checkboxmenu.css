@@ -330,9 +330,14 @@ div.player.inactive
     width: 310px;
     margin-left: -20px;
 }
-#playlists #player_border{
+#player_border{
     margin-left: 110px;
-    margin-top: 19px;
+    margin-top: 20px;
     position: absolute;
     width: 300px;
+}
+#player_border embed{
+    width: 310px;
+    position: absolute;
+    margin-left: -20px;
 }
