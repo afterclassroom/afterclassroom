@@ -127,7 +127,6 @@ Afterclassroom::Application.routes.draw do
       end
     end
     
-    
     # Share files
     resources :shares
   end

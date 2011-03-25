@@ -1,23 +1,25 @@
+<!--
 <%
-most_view_size = 5
-count = 0
-most_view_videos = Youtube.most_viewed()
+#most_view_size = 5
+#count = 0
+#most_view_videos = Youtube.most_recent()
 %>
 <div class="col300 slStory">
   <div class="col300in mostMS">
     <h1 class="col300Title">Most viewed videos</h1>
-    <% most_view_videos.videos.each do |video| %>
-      <% if count < most_view_size %>
+    <% #most_view_videos.videos.each do |video| %>
+      <% #if count < most_view_size %>
         <div class="musicL">
-          <div class="photoImg"><%= link_to raw("<div>#{image_tag(video.group.thumbnail.first.url, :alt => video.title)}</div>"), user_youtube_path(current_user, video.id) %></div>
+          <div class="photoImg"><%#= link_to raw("<div>#{image_tag(video.group.thumbnail.first.url, :alt => video.title)}</div>"), user_youtube_path(current_user, video.id) %></div>
           <div class="mostMSR">
-            <div class="mostMStitle"><%= simple_format truncate(video.title) %></div>
-            <div class="mostMStime"><%= simple_format truncate(video.content) %></div>
-            <div class="mostMSA"><%= link_to "", user_youtube_path(current_user, video.id), :class => "mostMSPlay" %><a href="#" class="mostMSadd"> </a></div>
+            <div class="mostMStitle"><%#= simple_format truncate(video.title) %></div>
+            <div class="mostMStime"><%#= simple_format truncate(video.content) %></div>
+            <div class="mostMSA"><%#= link_to "", user_youtube_path(current_user, video.id), :class => "mostMSPlay" %><a href="#" class="mostMSadd"> </a></div>
           </div>
         </div>
-      <% end %>
-    <% count = count + 1 %>
-    <% end %>
+      <% #end %>
+    <% #count = count + 1 %>
+    <% #end %>
   </div>
 </div>
+-->

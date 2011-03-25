@@ -54,6 +54,7 @@ GEM
     acts_as_favorite (0.1.2)
     addressable (2.2.2)
     ajaxful_rating (2.2.8.2)
+    archive-tar-minitar (0.5.2)
     arel (2.0.7)
     aws-s3 (0.6.2)
       builder
@@ -71,6 +72,7 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
     chronic (0.3.0)
+    columnize (0.3.2)
     configatron (2.6.4)
       yamler (>= 0.1.0)
     contacts (1.2.4)
@@ -99,6 +101,8 @@ GEM
     json (1.4.6-x86-mingw32)
     juggernaut (2.0.1)
       redis
+    linecache19 (0.5.11)
+      ruby_core_source (>= 0.1.4)
     mail (2.2.14)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -141,7 +145,17 @@ GEM
     redis (2.1.1)
     rest-open-uri (1.0.0)
     riddle (1.2.2)
+    ruby-debug-base19 (0.11.24)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
     ruby-mp3info (0.6.13)
+    ruby_core_source (0.1.4)
+      archive-tar-minitar (>= 0.5.2)
     rubycas-client (2.2.1)
       activesupport
     thinking-sphinx (2.0.1)
@@ -195,6 +209,7 @@ DEPENDENCIES
   rails (= 3.0.3)
   rest-open-uri
   riddle (>= 1.2.1)
+  ruby-debug19
   ruby-mp3info
   rubycas-client
   rubycas-client-rails!
