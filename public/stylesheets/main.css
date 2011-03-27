@@ -625,16 +625,44 @@ h2.titleH2 a:hover{
 }
 /*** column 451 public ***/
 .col451{
+    background:white url('/images/top451.png') no-repeat;
+    width:451px;
+    margin-bottom:8px;
+}
+.col451in{
+    background:url('/images/bot451.png') no-repeat left bottom;
+    overflow:hidden;
+    padding:10px;
+    _height:100%;
+    /* margin-top:50px;*/
+}
+/*** column 654 public ***/
+.col654{
     background:white url('/images/top654.png') no-repeat;
     width:654px;
     margin-bottom:8px;
 }
-.col451in{
+.col654in{
     background:url('/images/bot654.png') no-repeat left bottom;
     overflow:hidden;
     padding:10px;
     _height:100%;
     /* margin-top:50px;*/
+}
+.mainSignUpS{
+   
+}
+.sponsorS{
+    float: left;
+    width: 850px;
+}
+.sponsorS div{
+    margin-top: 3px;
+}
+.txtsignup1{
+    color: #6F6F63;
+    font-weight: bold;
+    padding-bottom: 2px;
 }
 /**** Home postManagement  *****/
 .postMTop{
