@@ -1,5 +1,6 @@
 class StaticsController < ApplicationController
   def index
+
   end
 
   def terms
