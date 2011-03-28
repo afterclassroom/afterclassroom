@@ -49,3 +49,5 @@ gem 'rubycas-client'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'rubycas-client-rails', :path => 'vendor/plugins/rubycas-client-rails'
 gem "exception_notification", :git => "git://github.com/rails/exception_notification.git", :require => "exception_notifier"
+#gem 'redis'
+#gem 'redis-store'
