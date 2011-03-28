@@ -1,5 +1,5 @@
 <div class="mainSignUpS">
-  <div class="AsDContImg"><a href="#"><div><img src="/images/pic11.png"></div></a></div>
+  <div class="AsDContImg"><a href="/"><div><img src="/images/pic11.png"></div></a></div>
   <div class="txtsignup topHelp">
     <div class="AftBe">
       <div class="txtsignup1">AfterClassroom</div>
@@ -7,12 +7,9 @@
     <div class="sponsorS">
       <div class="sponsorLink">
         <div class="menuRL">
-          <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Company Information</span></span></a></div>
-          <div class="menuRItem"><a href="/statics/terms"><span class="span1"><span class="span2">Terms Of User</span></span></a></div>
-          <div class="menuRItem"><a href="/statics/privacy"><span class="span1"><span class="span2">Privacy Policy</span></span></a></div>
-         
-          <div class="menuRItemB"><a href="#">&nbsp;</a></div>
-  
+          <div class="menuRItem <%= "menuRselect" if controller.action_name == "index" %>"><a href="/statics/index"><span class="span1"><span class="span2">Company Information</span></span></a></div>
+          <div class="menuRItem <%= "menuRselect" if controller.action_name == "terms" %>"><a href="/statics/terms"><span class="span1"><span class="span2">Terms Of User</span></span></a></div>
+          <div class="menuRItem <%= "menuRselect" if controller.action_name == "privacy" %>"><a href="/statics/privacy"><span class="span1"><span class="span2">Privacy Policy</span></span></a></div>
         </div>
       </div>
     </div>

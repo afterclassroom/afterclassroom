@@ -283,7 +283,8 @@ a.share {
   left: 470px;
 }
 #tipshopping {
-  left: 517px;
+  /*--left: 517px; --*/
+  left: 422px;
 }
 #tipstudent_awareness {
   left: 518px;
@@ -295,7 +296,8 @@ a.share {
   left: 617px;
 }
 #tipshare {
-  left: 570px;
+  /*-- left: 570px; --*/
+ left: 470px;
 }
 .tip ul {
   padding: 22px 0 0 25px;

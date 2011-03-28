@@ -1,41 +1,5 @@
-<div class="reqLa"><label>Notification category</label></div>
-<div class="reqTi"  style="width: 200px;">
-  <input type="text" id="list_cate"/>
-</div>
-
-<%
-list_cats = [
-
-  ["Choose category", ""],
-  ["AfterClassroom", "AfterClassroom"],
-  ["Photos", "Photos"],
-  ["Groups","Groups"],
-  ["Pages","Pages"],
-  ["Events","Events"],
-  ["Story", "Story"],
-  ["Links", "Links"],
-  ["Music", "Music"],
-  ["Video","Video"],
-  ["Gifts","Gifts"],
-  ["Help","Help"],
-  ["Lounge","Lounge"],
-  ["Others","Others"],
-  ["Other Applications","Others"]
-]
-%>
-<ul id="category_menu" class="mcdropdown_menu">
-  <% list_cats.each do |cate| %>
-    <li rel_year="<%= cate[1] %>">
-      <%= cate[0] %>
-    </li>
-  <% end %>
-</ul>
-
 <script type="text/javascript">
-  $("#list_cate").mcDropdown("#category_menu", {
-    width: 350,
-    valueAttr: "rel_year"
-  });
+
   /*
    *
    *DATNT NOTE:
@@ -61,11 +25,85 @@ list_cats = [
    */
 </script>
 
-<div style="display: inline">SMS</div>
-<div style="display: inline"><input type="checkbox" value="14" name="smscheck" id="smscheck"/><br/></div>
+<div style="display: inline;border: 2px solid green;" id="add">Add</div>
+<div style="display: inline;border: 2px solid yellow;" id="edit">Edit</div>
+<div style="display: inline;border: 2px solid black;" id="delete">Delete</div>
 
-<div style="display: inline">Mobile</div>
-<div style="display: inline"><input type="checkbox" value="14" name="emailcheck" id="emailcheck"/><br/></div>
+<div id="addnew_dialog" title="Add New" style="/*display:none;*/">HELLO WORLD</div>
 
-Notification <br/>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Notify Type</th>
+    <th>SMS</th>
+    <th>Email</th>
+  </tr>
+  <% @notifications.each do |ntfobj| %>
 
+    <tr id="tr_<%= ntfobj.id %>">
+      <td><%= ntfobj.name %></td>
+      <td><%= ntfobj.notify_type %></td>
+      <td><%= check_box_tag("smsarr[]", ntfobj.id, checked = ntfobj.sms_allow, :disabled => true ) %>  </td>
+      <td><%= check_box_tag("emailarr[]", ntfobj.id, checked = ntfobj.email_allow, :disabled => true  )%> </td>
+    </tr>
+
+
+  <% end %>
+
+</table>
+
+<script type="text/javascript">
+  var selectedTR;
+  $(document).ready(function(){
+    $('#add').click(function(){
+      AddNotifyAjax();
+    });
+
+    $('tr:gt(1)').click(function(){
+
+      if (selectedTR!= undefined){
+        selectedTR.css('border','1px solid black');
+      }
+      
+      selectedTR = $(this);
+      $(this).css('border','3px solid red');
+
+      $('#edit').click(function(){
+        alert('edit this row');
+      });
+      $('#delete').click(function(){
+        alert('delete this row')
+      });
+
+    });
+
+
+    function AddNotifyAjax(){
+      $.ajax({
+        url: '/admin/setnotifies/addnew',
+        type: 'GET',
+        dataType: 'html',
+        data: 'comment_id=',
+        success: function(html){
+          //$('#addnew_dialog').html(html);
+          
+          $('#addnew_dialog').dialog({
+            modal: true,
+            buttons: {
+              Ok: function() {
+                alert('save add new');
+              },
+              Cancel: function() {
+                alert('do not save');
+              }
+            }
+          });
+        },
+        failure: function(err){
+          alert('call ajax failed');
+        }
+      });
+
+    }
+  });
+</script>

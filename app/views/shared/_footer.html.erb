@@ -1,41 +1,67 @@
 <div class="footer">
-  <div class="footer1">
-    <table cellspacing="0" cellpadding="0">
-      <tr>
-        <td class="account">
-          <h2 class="footTitle">Your Account</h2>
-          <div class="footItem"><a href="#">Inbox</a></div>
-          <div class="footItem"><a href="#">Contact</a></div>
-          <div class="footItem"><a href="#">Blog</a></div>
-          <div class="footItem"><a href="#">Subscriptions</a></div>
-          <div class="footItem"><a href="#">Jobs</a></div>
-        </td>
-        <td class="help">
-          <h2 class="footTitle">Help & Information</h2>
-          <div class="footItem"><a href="#">Help Resources</a></div>
-          <div class="footItem"><a href="#">Community Help Forum</a></div>
-          <div class="footItem"><a href="#">AfterClassroom Handbook</a></div>
-          <div class="footItem"><a href="#">Advertising</a></div>
-        </td>
-        <td class="after">
-          <h2 class="footTitle">After Classroom</h2>
-          <div class="footItem"><%=  link_to 'Company Information', :controller => 'statics', :action => 'index'%></div>
-          <div class="footItem"><%= link_to 'Terms of use', :controller => 'statics', :action => 'terms'%></div>
-          <div class="footItem"><%= link_to 'Privacy Policy', :controller => 'statics', :action => 'privacy' %></div>
-          <div class="footItem"><a href="#">Press</a></div>
-        </td>
-      </tr>
-    </table>
-    <div class="flogo">
-      <div class="flogoimg"><img alt="classroom" src="/images/logo.png" /></div>
-      <div class="flogoinf">
-        &copy; 2009 AfterClassroom. All rights reserved. Content created and posted by AfterClassroom users is dedicated to the public domain.
-        <br/>
-        <span id="siteseal" style="float:left;padding-top:10px;">
-          <script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=rT0oCQOspgUUG5mJTLbnxNMQiLMxNDt3SsQp4aezqIT8rEW3frT7pNA"></script>
-          <br/><a style="font-family: arial; font-size: 9px" href="http://www.godaddy.com/ssl/ssl-certificates.aspx" target="_blank">SSL</a>
-        </span>
-      </div>
+    <div class="footer1">
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="account">
+                    <h2 class="footTitle">Your Account</h2>
+                    <div class="footItem">
+                        <% if logged_in? %>
+                        <%= link_to "Inbox", user_messages_path(current_user) %>
+                        <% else %>
+                        <a href="javascript:;" class="vtip" title="This function is available only to registered users.">Inbox</a>
+                        <% end %>
+                    </div>
+                    <div class="footItem">
+                        <% if logged_in? %>
+                        <%= link_to "Profile", user_profiles_path(current_user) %>
+                        <% else %>
+                        <a href="javascript:;" class="vtip" title="This function is available only to registered users.">Profile</a>
+                        <% end %>
+                    </div>
+                </td>
+                <td class="help">
+                    <h2 class="footTitle">Help & Information</h2>
+                    <div class="footItem">
+                        <a href="#">Help Resources</a>
+                    </div>
+                    <div class="footItem">
+                        <a href="#">Community Help Forum</a>
+                    </div>
+                    <div class="footItem">
+                        <a href="#">AfterClassroom Handbook</a>
+                    </div>
+                    <div class="footItem">
+                        <a href="#">Advertising</a>
+                    </div>
+                </td>
+                <td class="after">
+                    <h2 class="footTitle">After Classroom</h2>
+                    <div class="footItem">
+                        <%= link_to 'Company Information', :controller => 'statics', :action => 'index' %>
+                    </div>
+                    <div class="footItem">
+                        <%= link_to 'Terms of use', :controller => 'statics', :action => 'terms' %>
+                    </div>
+                    <div class="footItem">
+                        <%= link_to 'Privacy Policy', :controller => 'statics', :action => 'privacy' %>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="flogo">
+            <div class="flogoimg">
+                <img alt="classroom" src="/images/logo.png" />
+            </div>
+            <div class="flogoinf">
+                &copy; 2009 AfterClassroom. All rights reserved. Content created and posted by AfterClassroom users is dedicated to the public domain.
+                <br/>
+                <span id="siteseal" style="float:left;padding-top:10px;">
+                    <script type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=rT0oCQOspgUUG5mJTLbnxNMQiLMxNDt3SsQp4aezqIT8rEW3frT7pNA">
+                    </script>
+                    <br/>
+                    <a style="font-family: arial; font-size: 9px" href="http://www.godaddy.com/ssl/ssl-certificates.aspx" target="_blank">SSL</a>
+                </span>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

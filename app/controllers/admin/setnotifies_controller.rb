@@ -4,5 +4,10 @@ class Admin::SetnotifiesController < ApplicationController
   layout 'admin'
 
   def index
+    @notifications = Notification.find(:all, :order => "notify_type")
+  end
+
+  def addnew
+    render :layout => false
   end
 end
