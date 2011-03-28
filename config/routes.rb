@@ -293,6 +293,7 @@ Afterclassroom::Application.routes.draw do
     resources :dashboards
     resources :settings
     resources :posts
+    resources :setnotifies
     resources :users do
       member do
         put :suspend, :unsuspend, :activate, :reset_password

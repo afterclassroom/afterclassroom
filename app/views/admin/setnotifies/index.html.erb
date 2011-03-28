@@ -1,0 +1,48 @@
+<div class="reqLa"><label>Notification category</label></div>
+<div class="reqTi"  style="width: 200px;">
+  <input type="text" id="list_cate"/>
+</div>
+
+<%
+list_cats = [
+  
+  ["Choose category", ""],
+  ["AfterClassroom", "AfterClassroom"],
+  ["Photos", "Photos"], 
+  ["Groups","Groups"],
+  ["Pages","Pages"],
+  ["Events","Events"],
+  ["Story", "Story"],
+  ["Links", "Links"],
+  ["Music", "Music"],
+  ["Video","Video"],
+  ["Gifts","Gifts"],
+  ["Help","Help"],
+  ["Lounge","Lounge"],
+  ["Others","Others"],
+  ["Other Applications","Others"]
+  ]
+%>
+<ul id="category_menu" class="mcdropdown_menu">
+  <% list_cats.each do |cate| %>
+    <li rel_year="<%= cate[1] %>">
+      <%= cate[0] %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  $("#list_cate").mcDropdown("#category_menu", {
+    width: 350,
+    valueAttr: "rel_year"
+  });
+</script>
+
+<div style="display: inline">SMS</div>
+<div style="display: inline"><input type="checkbox" value="14" name="emailarr[]" id="emailarr_"/><br/></div>
+
+<div style="display: inline">Mobile</div>
+<div style="display: inline"><input type="checkbox" value="14" name="emailarr[]" id="emailarr_"/><br/></div>
+
+Notification <br/>
+
