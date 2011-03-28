@@ -140,6 +140,12 @@ h2.titleH2 a:hover{ color:#d00}
 .col195in{ background:url('/images/bot195.png') no-repeat left bottom; overflow:hidden; padding:10px; _height:100%}
  .col451{ background:white url('/images/top451.png') no-repeat; width:451px; margin-bottom:8px}
 .col451in{ background:url('/images/bot451.png') no-repeat left bottom; overflow:hidden; padding:10px; _height:100%;  }
+ .col654{ background:white url('/images/top654.png') no-repeat; width:654px; margin-bottom:8px}
+.col654in{ background:url('/images/bot654.png') no-repeat left bottom; overflow:hidden; padding:10px; _height:100%;  }
+.mainSignUpS{ }
+.sponsorS{ float: left; width: 850px}
+.sponsorS div{ margin-top: 3px}
+.txtsignup1{ color: #6F6F63; font-weight: bold; padding-bottom: 2px}
  .postMTop{ width:962px; margin:0px auto; padding:10px 0px; overflow:hidden}
 .postMTLeft{ float:left; padding-top:4px; font-weight:bold}
 .postMTRight{ float:right}
@@ -2568,3 +2574,6 @@ div.player.inactive {margin-top:5px; margin-bottom:0px; border-top: dashed 1px #
 #playlist_list div div.item{ margin-left: 120px}
 #playlist_list img{ margin-top: 3px}
 #playlist_list .photoImg {background: url("/images/bgphoto.png") no-repeat scroll center center transparent; margin-bottom: 20px}
+#playlists .player embed{ width: 310px; margin-left: -20px}
+#player_border{ margin-left: 110px; margin-top: 20px; position: absolute; width: 300px}
+#player_border embed{ width: 310px; position: absolute; margin-left: -20px}
