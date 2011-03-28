@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="musicVideo" id="playlist_list">
-          <% if  %>
+          <% if @music.music_album.music_album_attach %>
             <div class="photoImg">
               <%= image_tag @music.music_album.music_album_attach.url(:thumb) %>
             </div>
