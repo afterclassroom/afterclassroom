@@ -5,10 +5,10 @@
 
 <%
 list_cats = [
-  
+
   ["Choose category", ""],
   ["AfterClassroom", "AfterClassroom"],
-  ["Photos", "Photos"], 
+  ["Photos", "Photos"],
   ["Groups","Groups"],
   ["Pages","Pages"],
   ["Events","Events"],
@@ -21,7 +21,7 @@ list_cats = [
   ["Lounge","Lounge"],
   ["Others","Others"],
   ["Other Applications","Others"]
-  ]
+]
 %>
 <ul id="category_menu" class="mcdropdown_menu">
   <% list_cats.each do |cate| %>
@@ -36,13 +36,36 @@ list_cats = [
     width: 350,
     valueAttr: "rel_year"
   });
+  /*
+   *
+   *DATNT NOTE:
+   *
+   *All the CRUD of Admin/setnotifies will be organized as 1 screen ,
+   *Screen 1 == View all, and a button AddNew which is clicked will open a dialog to Add new, --> re-update the table by using ajax
+   *If user select a Row, and click on button Edit, there will be a dialog for user to edit a setting --> reupdate the table by using ajax
+   *If user selcts a Row, and click on button Delete, there will be a confirm alert to delete this row --> reupdate the table by using ajax
+   *
+   *
+   *
+   *
+   *0> Edit screen> will create button call ajax, submit async to server,
+   *controller will receive the data of input
+   *checkboxes (SMS, EMAIL) status and store to database
+   *store the data to table: notifications
+   *
+   *1 > View All screen: > Another thing need to do is:
+   *list all the current notification to the gui
+   *
+   *1.a> View All screen: also have the button for Edit, Delete
+   *1.b> User select a
+   */
 </script>
 
 <div style="display: inline">SMS</div>
-<div style="display: inline"><input type="checkbox" value="14" name="emailarr[]" id="emailarr_"/><br/></div>
+<div style="display: inline"><input type="checkbox" value="14" name="smscheck" id="smscheck"/><br/></div>
 
 <div style="display: inline">Mobile</div>
-<div style="display: inline"><input type="checkbox" value="14" name="emailarr[]" id="emailarr_"/><br/></div>
+<div style="display: inline"><input type="checkbox" value="14" name="emailcheck" id="emailcheck"/><br/></div>
 
 Notification <br/>
 
