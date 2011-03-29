@@ -12,6 +12,6 @@
     <%= tab_to "Play Games", "" %>
     -->
     <li class="menuSpace2">&nbsp;</li>
-    <li class=""><a href="http://shopping.afterclassroom.com"><span>Shopping</span></a></li>
+    <li class=""><a href="http://shopping.afterclassroom.com<%= "?ticket=#{session[:ticket]}" if session[:ticket] %>"><span>Shopping</span></a></li>
   </ul>
 </div>
