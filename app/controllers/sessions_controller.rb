@@ -36,12 +36,8 @@ class SessionsController < ApplicationController
   protected
   
   def password_authentication
-    credentials = { :username => params[:email], :password => params[:password]} 
-    dashboard_url = "http://afterclassroom.com"
-    
-    @response = RubyCAS::Filter.login_to_service(self, credentials, dashboard_url)
-    if @response.is_success?
-      user = User.authenticate(params[:email], params[:password])
+    user = User.authenticate(params[:email], params[:password])
+    if user
       self.current_user = user
       successful_login
     else

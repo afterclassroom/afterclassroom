@@ -64,14 +64,13 @@ class ApplicationController < ActionController::Base
   end
   
   def cas_user
+    # Get ticket
     path = request.fullpath
     arr = path.split("ticket=")
     if arr.length > 1
       session[:ticket] = arr[1]
     end
     self.current_user = User.find_by_email(session[:cas_user]) if session[:cas_user]
-    # Set session ticket
-    #session[:ticket] = params[:ticket] if params[:ticket]
     # Set session your school
     session[:your_school] = self.current_user.school.id if self.current_user
   end
