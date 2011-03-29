@@ -72,6 +72,7 @@ javascripts:
   - ui-checkbox
   - jquery-multiselect
   - rails
+  - post
 stylesheets:
 - base:
   - main
@@ -126,5 +127,6 @@ stylesheets:
   - admin-pro-dropline
   - admin-pro-dropline-ie
   - admin-screen
-  - jquery-multiSelect
+  - thickbox
+  - post
   - jquery-mcdropdown
