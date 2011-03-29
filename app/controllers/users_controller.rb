@@ -1,8 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class UsersController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:create]
-  protect_from_forgery :only => [:create]
-  
   before_filter RubyCAS::Filter::GatewayFilter, :except => [:create]
   before_filter RubyCAS::Filter, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
   before_filter :cas_user
