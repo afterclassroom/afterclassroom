@@ -70,7 +70,11 @@ class ApplicationController < ActionController::Base
     if arr.length > 1
       session[:ticket] = arr[1]
     end
-    self.current_user = User.find_by_email(session[:cas_user]) if session[:cas_user]
+    if session[:cas_user] and self.current_user == nil
+      self.current_user = User.find_by_email(session[:cas_user])
+      self.current_user.update_attribute("online", true)
+    end
+     
     # Set session your school
     session[:your_school] = self.current_user.school.id if self.current_user
   end

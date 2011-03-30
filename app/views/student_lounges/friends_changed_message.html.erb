@@ -4,7 +4,7 @@
   user = (current_user == friend_change.user) ? friend_change.user_invite : friend_change.user
   %>
     <div class="stuLFriT">
-      <div class="studentImg"><%= link_to "<div>#{image_tag(user.avatar.url(:thumb))}</div>", "javascript:;", :onclick => "openChat('#{user.full_name}', '#{friend_change.flirting_chanel.chanel_name}')" %></div>
+      <div class="studentImg"><%= link_to raw("<div>#{image_tag(user.avatar.url(:thumb))}</div>"), "javascript:;", :onclick => "openChat('#{user.full_name}', '#{friend_change.flirting_chanel.chanel_name}')" %></div>
       <div class="stuLFname"><%= link_to user.full_name, "javascript:;", :onclick => "openChat('#{user.full_name}', '#{friend_change.flirting_chanel.chanel_name}')" %></div>
       <div class="stuLFtime"><%= distance_of_time_in_words_to_now(friend_change.flirting_chanel.created_at, false) + " ago." %></div>
     </div>

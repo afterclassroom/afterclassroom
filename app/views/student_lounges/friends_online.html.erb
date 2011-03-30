@@ -1,0 +1,13 @@
+<div id="friends_online">
+  <% for friend in @friends_online %>
+        <div class="stuLFri">
+          <div class="stuLFriT">
+            <div class="studentImg"><%= link_to raw("<div>#{image_tag(friend.avatar.url(:thumb))}</div>"), "javascript:;" %></div>
+            <div class="stuLFname"><%= link_to friend.full_name, "javascript:;" %></div>
+          </div>
+          <div class="assInfB">
+            <div class="addmein"><a href="#">Add me in</a></div>
+          </div>
+        </div>
+      <% end %>
+</div>
