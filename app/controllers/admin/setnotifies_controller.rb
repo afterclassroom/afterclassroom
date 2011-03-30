@@ -34,6 +34,8 @@ class Admin::SetnotifiesController < ApplicationController
     puts "VALUE SMS== "+params[:sms].to_s
     puts "VALUE MOBILE ==  "+params[:email].to_s
     puts "VALUE combobox ==  "+params[:list_cate].to_s
+    puts "VALUE name ==  "+params[:name].to_s
+
     redirect_to :action => "index"
   end
   
