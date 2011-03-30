@@ -49,7 +49,7 @@ fans_nv_total = fans_nv.size
         <% (0..count_nv).each do |i| %>
           <% user_nv = User.find(fans_nv[i].user_id) %>
           <div class="fanImg1">
-            <%= link_to "<div>#{image_tag user_nv.avatar.url(:thumb)}</div>", user_path(user_nv) %>
+            <%= link_to raw("<div>#{image_tag user_nv.avatar.url(:thumb)}</div>"), user_path(user_nv) %>
             <div class="fanName"><%= link_to user_nv.full_name, user_path(user_nv) %></div>
           </div>
         <% end %>

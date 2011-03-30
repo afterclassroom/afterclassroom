@@ -554,8 +554,8 @@ module ApplicationHelper
       case share_to
         when 1 # Friend from school
           if current_user
-            fg = FriendGroup.where(:label => "friends_from_school")
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id)
+            fg = FriendGroup.where(:label => "friends_from_school").first
+            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
             check = true if fng
           end
         when 2 # Friend of friends
@@ -565,20 +565,20 @@ module ApplicationHelper
           end
         when 3 # My Family
           if current_user
-            fg = FriendGroup.where(:label => "family_members")
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id)
+            fg = FriendGroup.where(:label => "family_members").first
+            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
             check = true if fng
           end
         when 4 # General friends
           if current_user
-            fg = FriendGroup.where(:label => "general_friends")
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id)
+            fg = FriendGroup.where(:label => "general_friends").first
+            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
             check = true if fng
           end
         when 5 # Friends from work
           if current_user
-            fg = FriendGroup.where(:label => "friends_from_work")
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id)
+            fg = FriendGroup.where(:label => "friends_from_work").first
+            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
             check = true if fng
           end
         when 6 # Every one
