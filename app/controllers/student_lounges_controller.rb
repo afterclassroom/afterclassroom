@@ -155,5 +155,9 @@ class StudentLoungesController < ApplicationController
     @friends_want = current_user.friends_want_chat
     render :layout => false
   end
-  
+
+  def friends_online
+    @friends_online = current_user.friends_online
+    render :layout => false
+  end
 end

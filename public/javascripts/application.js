@@ -361,6 +361,18 @@ function friends_want_you_chat(){
     });
 }
 
+function friends_online(){
+    $.ajax({
+        url: '/student_lounges/friends_online',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data){
+            $("#div_friends_online").html(data);
+        }
+    });
+}
+
 function insert_text_to_chatcontent(chanel_name, text_chat){
     if ($('#' + chanel_name)) {
         $('#' + chanel_name).before(text_chat);

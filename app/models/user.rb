@@ -143,18 +143,11 @@ class User < ActiveRecord::Base
   end
   
   def self.get_online_users
-    online_users = []
-    sessions = ActiveRecord::SessionStore::Session.find(:all, :conditions => ["updated_at >= ?", 5.minutes.ago])
-    for session in sessions
-      online_users << User.find(session.data[:user_id]) if session.data[:user_id] != nil
-    end
+    User.where(:online => true)
   end
   
   def check_user_online
-    check = false
-    online_users = User.get_online_users
-    check = online_users.include?(self)
-    return check
+    self.online
   end
   
   def check_user_in_chatting_session(user_id)
@@ -237,6 +230,14 @@ class User < ActiveRecord::Base
     friends = []
     for friend in self.user_friends
       friends << friend if check_user_in_chat(friend.id)
+    end
+    return friends
+  end
+
+  def friends_online
+    friends = []
+    for friend in self.user_friends
+      friends << friend if friend.online
     end
     return friends
   end

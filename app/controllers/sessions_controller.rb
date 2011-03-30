@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
   
   def destroy
     flash.now[:notice] = "You have been logged out."
+    self.current_user.update_attribute("online", false)
     RubyCAS::Filter.logout(self, root_url) and return
   end
   
