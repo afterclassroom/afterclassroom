@@ -297,6 +297,7 @@ Afterclassroom::Application.routes.draw do
     resources :setnotifies do
       collection do
         get :addnew
+        post :save
       end
     end
 

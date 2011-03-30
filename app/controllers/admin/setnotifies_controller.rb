@@ -8,6 +8,33 @@ class Admin::SetnotifiesController < ApplicationController
   end
 
   def addnew
-    render :layout => false
+    @notification = Notification.new
   end
+
+  def save
+
+    sms_box = params[:sms]
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "============================="
+    puts "VALUE SMS== "+params[:sms].to_s
+    puts "VALUE MOBILE ==  "+params[:email].to_s
+    puts "VALUE combobox ==  "+params[:list_cate].to_s
+    redirect_to :action => "index"
+  end
+  
 end

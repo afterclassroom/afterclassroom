@@ -25,12 +25,12 @@
    */
 </script>
 
-<div style="display: inline;border: 2px solid green;" id="add">Add</div>
+<div style="display: inline;border: 2px solid green;" id="add">Add
+<%= link_to "Add New", addnew_admin_setnotifies_path %>
+</div>
 <div style="display: inline;border: 2px solid yellow;" id="edit">Edit</div>
 <div style="display: inline;border: 2px solid black;" id="delete">Delete</div>
 
-<div id="addnew_dialog" title="Add New">HELLO WORLD</div>
-<%=  link_to("Report Abuse", "#{addnew_admin_setnotifies_path}?height=300&width=680", :class => "thickbox", :title => "Add New") %>
 <table border="1">
   <tr>
     <th>Name</th>
@@ -55,9 +55,6 @@
 <script type="text/javascript">
   var selectedTR;
   $(document).ready(function(){
-    $('#add').click(function(){
-      AddNotifyAjax();
-    });
 
     $('tr:gt(1)').click(function(){
 
@@ -78,32 +75,5 @@
     });
 
 
-    function AddNotifyAjax(){
-      $.ajax({
-        url: '/admin/setnotifies/addnew',
-        type: 'GET',
-        dataType: 'html',
-        data: 'comment_id=',
-        success: function(html){
-          //$('#addnew_dialog').html(html);
-          
-          $('#addnew_dialog').dialog({
-            modal: true,
-            buttons: {
-              Ok: function() {
-                alert('save add new');
-              },
-              Cancel: function() {
-                alert('do not save');
-              }
-            }
-          });
-        },
-        failure: function(err){
-          alert('call ajax failed');
-        }
-      });
-
-    }
   });
 </script>
