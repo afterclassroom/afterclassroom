@@ -53,6 +53,7 @@ javascripts:
   - checkboxmenu
   - cust_select_plugin
   - drplayer
+  - jquery.jqpageflow
 - admin:
   - jquery
   - jquery-ui
@@ -121,6 +122,7 @@ stylesheets:
   - jquery.ad-gallery
   - jquery.fileupload-ui
   - checkboxmenu
+  - jqpageflow
 - admin:
   - main
   - admin-datePicker
