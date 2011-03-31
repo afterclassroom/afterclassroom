@@ -61,8 +61,6 @@ namespace :deploy do
     after "deploy:update_code", "deploy:pack_assets"
 
     task :start, :roles => :app do
-      # Bundle
-      run "cd #{release_path} && bundle install"
       # Asset packager
       run "cd #{release_path} && rake asset:packager:delete_all"
       run "cd #{release_path} && rake asset:packager:build_all"

@@ -9,6 +9,7 @@ development: &local
     admin_email: admin@afterclassroom.com
     
     support_name: Support
+    #support_email: support@afterclassroom.com
     support_email: support@afterclassroom.com
 
     # Alert

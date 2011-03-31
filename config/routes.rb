@@ -53,7 +53,7 @@ Afterclassroom::Application.routes.draw do
       collection do
         get :chat, :invite_chat, :add_users_to_chat,
           :send_data, :stop_chat, :chanel_chat_content,
-          :friends_changed_message, :friends_you_invited_chat, :friends_want_you_chat
+          :friends_changed_message, :friends_you_invited_chat, :friends_want_you_chat, :friends_online
       end
     end
 
@@ -297,6 +297,7 @@ Afterclassroom::Application.routes.draw do
     resources :setnotifies do
       collection do
         get :addnew
+        post :save
       end
     end
 

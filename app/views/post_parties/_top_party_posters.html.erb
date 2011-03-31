@@ -2,9 +2,9 @@
   <div class="col195in">
     <h1 class="col195Title">Top posters</h1>
     <div class="col195Cont">
-      <% users = PostParty.top_party_posters %>
+      <% users = PostParty.top_party_posters(session[:your_school]) %>
         <% users.each do |user| %>
-          <div class="posterL"><%= link_to raw("<div>#{image_tag(user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => user.id} %></div>
+          <div class="posterL"><%= show_image_user_post(user) %></div>
         <% end %>
     </div>
   </div>

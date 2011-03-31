@@ -1,7 +1,7 @@
 <div id="friends_want_you_chat">
   <% for friend_want in @friends_want %>
     <div class="stuLFriT">
-      <div class="studentImg"><%= link_to "<div>#{image_tag(friend_want.user_invite.avatar.url(:thumb))}</div>", "javascript:;", :onclick => "openChat('#{friend_want.user_invite.full_name}', '#{friend_want.flirting_chanel.chanel_name}')" %></div>
+      <div class="studentImg"><%= link_to raw("<div>#{image_tag(friend_want.user_invite.avatar.url(:thumb))}</div>"), "javascript:;", :onclick => "openChat('#{friend_want.user_invite.full_name}', '#{friend_want.flirting_chanel.chanel_name}')" %></div>
       <div class="stuLFname"><%= link_to friend_want.user_invite.full_name, "javascript:;", :onclick => "openChat('#{friend_want.user_invite.full_name}', '#{friend_want.flirting_chanel.chanel_name}')" %></div>
       <div class="stuLFtime"><%= distance_of_time_in_words_to_now(friend_want.flirting_chanel.created_at, false) + " ago." %></div>
     </div>

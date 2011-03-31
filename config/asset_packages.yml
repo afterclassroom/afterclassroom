@@ -53,6 +53,8 @@ javascripts:
   - checkboxmenu
   - cust_select_plugin
   - drplayer
+  - jquery.jqpageflow
+  - jquery.fancybox-1.3.4.pack
 - admin:
   - jquery
   - jquery-ui
@@ -72,6 +74,7 @@ javascripts:
   - ui-checkbox
   - jquery-multiselect
   - rails
+  - post
 stylesheets:
 - base:
   - main
@@ -120,11 +123,14 @@ stylesheets:
   - jquery.ad-gallery
   - jquery.fileupload-ui
   - checkboxmenu
+  - jqpageflow
+  - jquery.fancybox-1.3.4
 - admin:
   - main
   - admin-datePicker
   - admin-pro-dropline
   - admin-pro-dropline-ie
   - admin-screen
-  - jquery-multiSelect
+  - thickbox
+  - post
   - jquery-mcdropdown

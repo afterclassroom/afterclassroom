@@ -1,7 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class UsersController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:create]
-  protect_from_forgery :only => [:create]
+  #skip_before_filter :verify_authenticity_token, :only => [:create]
+  #protect_from_forgery :only => [:create]
   
   before_filter RubyCAS::Filter::GatewayFilter, :except => [:create]
   before_filter RubyCAS::Filter, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
@@ -189,9 +189,9 @@ class UsersController < ApplicationController
   end
   
   def successful_creation()
-    redirect_back_or_default(root_path)
     flash[:notice] = "Thanks for signing up!<br/>"
     flash[:notice] << "We're sending you an email with your activation code."
+    redirect_back_or_default(root_path)
   end
   
   def failed_creation(user, message = 'Sorry, there was an error occured while creating account.')

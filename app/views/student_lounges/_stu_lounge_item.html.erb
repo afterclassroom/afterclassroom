@@ -28,14 +28,14 @@
         <% end %>
         <div class="assItemB">
             <div class="assPic">
-                <%= link_to raw("<div>#{image_tag(w.user_post.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => w.user_post.id} %>
+                <%= show_image_user_post(w.user_post) %>
             </div>
             <div class="assInfT">
                 <div class="assInfT">
                     <div class="assInfL">
                         <div>
                             <span>Posted by:</span>
-                            <%= link_to w.user_post.full_name, {:controller => "profile", :action => "show_profile", :id => w.user_post.id} %>
+                            <%= show_user_post(w.user_post) %>
                         </div>
                         <div>
                             <span>Comments:</span>
