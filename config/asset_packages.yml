@@ -54,6 +54,7 @@ javascripts:
   - cust_select_plugin
   - drplayer
   - jquery.jqpageflow
+  - jquery.fancybox-1.3.4.pack
 - admin:
   - jquery
   - jquery-ui
@@ -123,6 +124,7 @@ stylesheets:
   - jquery.fileupload-ui
   - checkboxmenu
   - jqpageflow
+  - jquery.fancybox-1.3.4
 - admin:
   - main
   - admin-datePicker
