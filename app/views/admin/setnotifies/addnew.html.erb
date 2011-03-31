@@ -1,7 +1,11 @@
-<div class="reqLa"><label>Notification category</label></div>
-<div class="reqTi"  style="width: 200px;">
-  <input type="text" id="list_cate"/>
-</div>
+<%= form_tag(save_admin_setnotifies_path, :method => :post, :id => "setting_form") do %>
+
+
+
+Notification Name: <%= text_field_tag "name", "", :id => "name" %> <br/>
+
+
+
 
 <%
 list_cats = [
@@ -31,15 +35,30 @@ list_cats = [
   <% end %>
 </ul>
 
+Notification type <br/>
+<div class="reqTi"  style="width: 200px;">
+  <input type="text" id="list_cate"/>
+</div>
+
+
+SMS <%= check_box_tag("sms", @notification.id, checked = false )%>
+Email <%= check_box_tag("email", @notification.id, checked = false )%>
+
+
+<% end %>
+
+<a href="javascript:;" onclick="sendChange()">Save Changes</a>
+
+
+
+
+
 <script type="text/javascript">
   $("#list_cate").mcDropdown("#category_menu", {
     width: 350,
     valueAttr: "rel_year"
   });
+  function sendChange(){
+    $("form:first").submit();
+  }
 </script>
-
-SMS   <input type="checkbox" value="14" name="smscheck" id="smscheck"/><br/>
-
-Mobile <input type="checkbox" value="14" name="emailcheck" id="emailcheck"/><br/>
-
-Notification <br/>
