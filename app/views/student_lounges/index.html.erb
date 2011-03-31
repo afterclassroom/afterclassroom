@@ -1,25 +1,36 @@
 <% content_for :menu_top_student_lounge do -%>
-  <%= render :partial => '/shared/submenu' %>
+<%= render :partial => '/shared/submenu' %>
 <% end -%>
-
 <%= render :partial => "left_panel" %>
 <div class="contMainL">
-  <div class="col451 proCen" id="user_wall">
-    <%= render :partial => "user_walls/wall_form" %>
-    <div class="col451in">
-      <div class="proCenCont">
-
-        <%= render :partial => "stu_lounge_item", :locals => {:walls => @walls} %>
-
-        <!--Pagination-->
-        <div class="assPage">
-          <span class="numPage"><%= page_entries_info @walls %></span>
-          <%= will_paginate @walls %>
+    <div class="col451 proCen">
+        <%= render :partial => "user_walls/wall_form" %>
+        <div class="col451in">
+            <div class="proCenCont">
+            	<div id="wall_page_wrap">
+            		<%= render :partial => "stu_lounge_item", :locals => {:walls => @walls} %>
+            	</div>     
+                <div class="goTop">
+                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+                </div>
+            </div>
         </div>
-        <!--Pagination-->
-        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
-      </div>
     </div>
-  </div>
 </div>
 <%= render :partial => "right_panel" %>
+<script type="text/javascript">
+	var path = "/user_walls/next_page_wall?user_id=<%= current_user.id %>";
+	var total_wall = <%= @walls.total_entries %>;
+    $(document).ready(function(){
+        $("body").flexiPagination({
+            url: path,
+            currentPage: 1,
+            totalResults: total_wall,
+            perPage: 10,
+            container: "#wall_page_wrap",
+            pagerVar: "page",
+            loaderImgPath: "/images/loader.gif",
+            debug: 0
+        });
+    });
+</script>
