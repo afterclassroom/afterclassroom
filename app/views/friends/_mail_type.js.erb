@@ -1,0 +1,1 @@
+$("#mail_type_span").html('<%= escape_javascript(raw(display_mailtype(@mail_account.mail_type)))%><%= escape_javascript(hidden_field_tag "mail_type", @mail_account.mail_type) %>');

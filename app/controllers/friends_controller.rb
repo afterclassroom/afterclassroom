@@ -177,11 +177,11 @@ class FriendsController < ApplicationController
   def send_invite_message
 
     user_id_friend = params[:user_invite]
-    invite_message = params[:invite_message]
+    invite_message = params[:invite_message] || "let's be friends!"
     
     if (user_id_friend && invite_message)
       UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
-      render :text => "Wait "+params[:full_name]+" to accept"
+      render :text => "Waiting accept"
     end
   end
 
@@ -194,6 +194,11 @@ class FriendsController < ApplicationController
     user_follow.fans << fan
 
     render :text => "You are a fan"
+  end
+  
+  def find_people
+    @query = params[:search][:query]
+    @users = User.search(@query, :match_mode => :any, :order => "created_at DESC", :page => params[:page], :per_page => 10)
   end
   
   protected
