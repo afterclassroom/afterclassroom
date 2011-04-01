@@ -45,6 +45,7 @@ class FriendsController < ApplicationController
       contacts = mail_account.contacts
       arr_mails = []
       contacts.collect {|m| arr_mails << m[1]}
+      
       users = User.find(:all, :conditions => "email IN('#{arr_mails.split("', '")}')") if arr_mails.size > 0
       unless users.nil?
         user_id_friends = @user.user_friends.collect(&:id)
@@ -54,6 +55,7 @@ class FriendsController < ApplicationController
         flash.now[:notice] = "Find successfuly."
       end
     rescue Contacts::AuthenticationError => oops
+      flash.now[:error] = "Account email incorrect."
       error oops
     end
     redirect_to find_user_friends_path(@user)
