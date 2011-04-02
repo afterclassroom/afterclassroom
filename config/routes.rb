@@ -298,6 +298,8 @@ Afterclassroom::Application.routes.draw do
       collection do
         get :addnew
         get :delete
+        get :edit
+        post :save_edit
         post :save
       end
     end
