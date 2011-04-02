@@ -387,7 +387,7 @@ def create_demo_posts_housings
         index = rand(HousingCategory.count).to_i + 1
       end
       pivotArray[index] = true;
-      phouse.housing_categories << HousingCategory.find(index)
+      post_housing.housing_categories << HousingCategory.find(index)
     end
   end
 end
@@ -421,7 +421,7 @@ def create_demo_posts_parties
         index = rand(PartyType.count).to_i + 1
       end
       pivotArray[index] = true;
-      pty.party_types << PartyType.find(index)
+      post_party.party_types << PartyType.find(index)
     end
       
   end #END LOOP

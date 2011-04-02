@@ -31,9 +31,8 @@
             <% @user_suggestions.each do |u| %>
               <div class="suggesItem">
                 <div class="AsDContImg"><%= show_image_user_post(u) %></div>
-                <div class="suggesC"><a href="javascript:;"><img src="/images/suggesC.png"/></a></div>
                 <div class="suggesName"><%= show_user_post(u) %></div>
-                <div class="suggesAdd"><span id="friend_<%= user.id %>"><%= show_invite_friend(user) %></span></div>
+                <div class="suggesAdd"><span id="friend_<%= u.id %>"><%= show_invite_friend(u) %></span></div>
               </div>
             <% end %>
           </div>

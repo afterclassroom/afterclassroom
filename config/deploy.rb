@@ -54,6 +54,18 @@ namespace :deploy do
       username: after
       password: 9Jke.w9itA
       database: afterclassroom
+    development:
+      adapter: mysql2
+      encoding: utf8
+      username: after
+      password: 9Jke.w9itA
+      database: afterclassroom_development
+    test:
+      adapter: mysql2
+      encoding: utf8
+      username: after
+      password: 9Jke.w9itA
+      database: afterclassroom_test
     EOF
 
     put db_config, "#{release_path}/config/database.yml"
