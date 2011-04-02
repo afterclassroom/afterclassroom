@@ -15,12 +15,14 @@
         <%= render :partial => "mailbox_list" %>
         <div class="findPeo">
           <div class="findTop">
-            <div class="findLeft">Find People You Email</div>
-            <div class="findRight"><a href="#">Upload Contact File</a></div>
+            <div class="findLeft">Invite friends from email accounts</div>
+            <!--
+			<div class="findRight"><a href="#">Upload Contact File</a></div>
+			-->
           </div>
           <div class="findDes">Searching your email account is the fastest way to find your friends on AterClassroom</div>
           <%= render :partial => "mail_form" %>
-          <div class="findPass">AfterClassroom will not store your password.<a href="#">Learn more</a></div>
+          <div class="findPass">AfterClassroom will not store your password.<!--<a href="#">Learn more</a>--></div>
         </div>
         <div class="sugges">Suggestions</div>
         <div class="suggesDes">Add people you know as friends and become a fan of public profiles you like</div>
@@ -28,10 +30,10 @@
           <div class="suggesRow">
             <% @user_suggestions.each do |u| %>
               <div class="suggesItem">
-                <div class="AsDContImg"><%= link_to "<div>#{image_tag(u.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => u.id} %></div>
-                <div class="suggesC"><a href="#"><img src="/images/suggesC.png"/></a></div>
-                <div class="suggesName"><%= u.full_name %></div>
-                <div class="suggesAdd"><a href="#">Add as friends</a></div>
+                <div class="AsDContImg"><%= show_image_user_post(u) %></div>
+                <div class="suggesC"><a href="javascript:;"><img src="/images/suggesC.png"/></a></div>
+                <div class="suggesName"><%= show_user_post(u) %></div>
+                <div class="suggesAdd"><span id="friend_<%= user.id %>"><%= show_invite_friend(user) %></span></div>
               </div>
             <% end %>
           </div>
@@ -41,10 +43,13 @@
             <div class="searchPtitle">Search for People</div>
             <div class="searchPInput">
               <div class="search">
-                <div class="textS"><input type="text" name="Text1"/></div>
-                <div class="btmS"><a href=""><img src="/images/iconSF.png"/></a></div>
+              	<form id="action_people_search" name="search" action="<%= find_people_user_friends_path(current_user) %>" method="get">
+	                <div class="textS"><input type="text" name="search[query]" value="Enter your search keywords..." onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" /></div>
+	                <div class="btmS"><a href="javascript:;" onclick="$('#action_people_search').submit();"><img src="/images/iconSF.png"/></a></div>
+				</form>
               </div>
             </div>
+			<!--
             <div class="searchPList">
               <div class="searchPItem"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit<span> </span></a></div>
               <div class="searchPItem"><a href="#">Aliquam euismod ligula at mauris molestie nec vulputate lacus commodo. Aliquam vitae adipiscing est<span> </span></a></div>
@@ -53,13 +58,16 @@
               <div class="searchPItem"><a href="#">Donec lobortis ipsum vel ante accumsan sagittis<span> </span></a></div>
               <div class="searchPItem"><a href="#">Sed tincidunt tempor tincidunt. Vivamus tincidunt lobortis odio ornare<span> </span></a></div>
             </div>
+			-->
           </div>
+		  <!--
           <div class="findIM">
             <div class="findIMtitle">Find People You IM</div>
             <div class="findIMdes">Find out which of your AOL Instant Messenger or Windows Live Messenger bubdies are on AfterClassroom.</div>
             <div class="findIMitem"><a href="#">Import AIM Bubdy List<span> </span></a></div>
             <div class="findIMitem"><a href="#">Import Windows Live Contacts<span> </span></a></div>
           </div>
+		  -->
         </div>
       </div>
     </div>

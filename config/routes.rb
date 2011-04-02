@@ -59,10 +59,10 @@ Afterclassroom::Application.routes.draw do
 
     resources :friends do
       collection do
-        get :search, :find, :recently_added, :recently_updated,
-          :friend_request, :list, :invite,
+        get :search, :find, :find_people, :recently_added, :recently_updated,
+          :friend_request, :list, :invite, :display_email,
           :send_invite_message, :show_invite, :become_a_fan
-        post :find_email, :display_email, :invite_by_list_email,
+        post :find_email, :invite_by_list_email,
           :invite_by_import_email, :delete, :accept, :de_accept
       end
     end
@@ -297,6 +297,9 @@ Afterclassroom::Application.routes.draw do
     resources :setnotifies do
       collection do
         get :addnew
+        get :delete
+        get :edit
+        post :save_edit
         post :save
       end
     end

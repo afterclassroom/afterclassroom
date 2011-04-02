@@ -24,11 +24,11 @@
           <div class="fInvTxt">Message<br/><span>(optional)</span></div>
           <div class="fInvIn"><%= text_area_tag "content", nil, :rows => 2, :cols => 20 %></div>
         </div>
-        <div class="fInvites">Invites will be sent in English (US)<a href="#">[change]</a></div>
+        <div class="fInvites">Invites will be sent in English (US)<!--<a href="#">[change]</a>--></div>
         <div class="fInvBtm">
           <div class="fInvBtmInvite"><a href="javascript:;" onclick="$('#list_email').submit();">Invite</a></div>
         </div>
-        <div class="fInvites">AfterClassroom will send each person above an invite in your name asking them to join AfterClassroom.<a href="#">See Example</a></div>
+        <div class="fInvites">AfterClassroom will send each person above an invite in your name asking them to join AfterClassroom.<!--<a href="#">See Example</a>--></div>
         <% end %>
         <div class="import"><a href="#">Import Email Addresses</a></div>
         <div class="importD">from almost any online email service to invite your friends.</div>
@@ -43,7 +43,7 @@
             <div class="findText">Email Password*</div>
             <div class="findIn"><%= f.password_field :password, :style => "width:150px", :class => "required password" %></div>
           </div>
-          <div class="findPass">AfterClassroom will not store your password.<a href="#">Learn more</a></div>
+          <div class="findPass">AfterClassroom will not store your password.<!--<a href="#">Learn more</a>--></div>
           <div class="fInvMess">
             <div class="fInvTxt">Message<br/><span>(optional)</span></div>
             <div class="fInvIn"><%= text_area_tag "content", nil, :rows => 2, :cols => 20 %></div>
@@ -51,10 +51,12 @@
            <div class="fInvBtm">
           <div class="fInvBtmInvite"><a href="javascript:;" onclick="$('#form_account_email').submit();">Invite</a></div>
         </div>
-        <div class="fInvites">AfterClassroom will send each person above an invite in your name asking them to join AfterClassroom.<a href="#">See Example</a></div>
+        <div class="fInvites">AfterClassroom will send each person above an invite in your name asking them to join AfterClassroom.<!--<a href="#">See Example</a>--></div>
         <% end %>
+		<!--
         <div class="import"><a href="#">View All Invites</a></div>
         <div class="importD">see your entrie history of invitaions, including who has joined because of you.</div>
+		-->
       </div>
     </div>
   </div>

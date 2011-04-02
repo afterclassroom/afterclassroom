@@ -1,7 +1,7 @@
 <script language="javascript">
     var submit_url = $('#form_invite_friend').find('a').attr('href');
     $('#form_invite_friend').find('a').bind('click',function(){
-        var strMessage = $('#form_invite_friend .user_ri').text();
+        var strMessage = $('#message').val();
         $.ajax({
             url: submit_url,
             type: "GET",
@@ -16,22 +16,19 @@
             },
             success: function(msg){
                 $('#TB_closeWindowButton').click();
-                $('.friend').html(msg);
+                $('#friend_<%= @user_invite %>').html(msg);
             }
         });
 
         return false;
     });
 </script>
-<div id="send_invite_message_alert" style="display:none">
-  You sended invite message to <%= @full_name %>.
-</div>
 <div id="send_invite_message" class="postCont">
   <form name="form_send_invite" id="form_invite_friend">
     <div class="postItem" style="margin-top: 15px">
       <div class="postItem1" style="width: 80px;">Message:</div>
       <div class="postInp">
-        <textarea style="width: 330px; height: 200px;" id="message_<%= @user_invite %>"></textarea>
+        <textarea style="width: 330px; height: 200px;" id="message"></textarea>
       </div>
     </div>
     <!-- post  button -->
@@ -41,6 +38,5 @@
       </div>
     </div>
     <!-- end post button -->
-    <input type="hidden" id="user_id_friend_<%= @user_invite %>" value="<%= @user_invite %>" />
   </form>
 </div>

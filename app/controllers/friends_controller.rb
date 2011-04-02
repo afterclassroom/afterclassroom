@@ -45,6 +45,7 @@ class FriendsController < ApplicationController
       contacts = mail_account.contacts
       arr_mails = []
       contacts.collect {|m| arr_mails << m[1]}
+      
       users = User.find(:all, :conditions => "email IN('#{arr_mails.split("', '")}')") if arr_mails.size > 0
       unless users.nil?
         user_id_friends = @user.user_friends.collect(&:id)
@@ -54,6 +55,7 @@ class FriendsController < ApplicationController
         flash.now[:notice] = "Find successfuly."
       end
     rescue Contacts::AuthenticationError => oops
+      flash.now[:error] = "Account email incorrect."
       error oops
     end
     redirect_to find_user_friends_path(@user)
@@ -177,11 +179,11 @@ class FriendsController < ApplicationController
   def send_invite_message
 
     user_id_friend = params[:user_invite]
-    invite_message = params[:invite_message]
+    invite_message = params[:invite_message] || "let's be friends!"
     
     if (user_id_friend && invite_message)
       UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
-      render :text => "Wait "+params[:full_name]+" to accept"
+      render :text => "Waiting accept"
     end
   end
 
@@ -194,6 +196,11 @@ class FriendsController < ApplicationController
     user_follow.fans << fan
 
     render :text => "You are a fan"
+  end
+  
+  def find_people
+    @query = params[:search][:query]
+    @users = User.search(@query, :match_mode => :any, :order => "created_at DESC", :page => params[:page], :per_page => 10)
   end
   
   protected
