@@ -13,14 +13,14 @@
         <div id="friend_list">
           <% @invites.each do |i| %>
             <div class="flistItem" id="friend_request_<%= i.id %>">
-              <div class="assPic"><%= link_to "<div>#{image_tag(i.user.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => i.user.id} %></div>
+              <div class="assPic"><%= show_image_user_post(i) %></div>
               <div class="flistInf">
-                <div class="flistN"><%= link_to i.user.full_name, {:controller => "profile", :action => "show_profile", :id => i.user.id} %></div>
+                <div class="flistN"><%= show_user_post(i) %></div>
                 <div class="flistS"><span>at</span><%= i.user.school.name %></div>
               </div>
               <div class="asslinkdown">
-                <div class="support"><%= link_to "Accept", :url => accept_user_friends_path(current_user), :with => "'invite_id=#{i.id}'", :complete => "$('#friend_request_#{i.id}').remove();", :remote => true %></div>
-                <div class="support"><%= link_to "No Accept", :url => de_accept_user_friends_path(current_user), :with => "'invite_id=#{i.id}'", :complete => "$('#friend_request_#{i.id}').remove();", :remote => true %></div>
+                <div class="support"><%= link_to "Accept", accept_user_friends_path(current_user, :invite_id => i.id), :remote => true %></div>
+                <div class="support"><%= link_to "No Accept", de_accept_user_friends_path(current_user, :invite_id => i.id), :remote => true %></div>
               </div>
             </div>
           <% end %>

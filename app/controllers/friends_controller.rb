@@ -153,24 +153,24 @@ class FriendsController < ApplicationController
     @mail_account = MailAccount.new(nil, nil, mail_box)
     respond_to do |format|
       format.js do
-        render :partial=>"mail_type",:layout=>false
+        render :partial=>"mail_type", :layout => false
       end
     end
   end
 
   def accept
-    invite_id = params[:invite_id]
-    invite = @user.user_invites_in.find_by_id(invite_id)
-    invite.is_accepted = true
-    invite.save
-    render :text => "Successful."
+    @invite_id = params[:invite_id]
+    @invite = @user.user_invites_in.find_by_id(@invite_id)
+    @invite.is_accepted = true
+    @invite.save
+    render :layout => false
   end
 
   def de_accept
-    invite_id = params[:invite_id]
-    invite = @user.user_invites_in.find_by_id(invite_id)
-    invite.destroy
-    render :text => "Successful."
+    @invite_id = params[:invite_id]
+    @invite_id = @user.user_invites_in.find_by_id(@invite_id)
+    @invite_id.destroy
+    render :layout => false
   end
 
   def show_invite
