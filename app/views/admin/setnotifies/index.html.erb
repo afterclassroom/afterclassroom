@@ -1,33 +1,19 @@
-<%= @notify_message %>
-<script type="text/javascript">
-
-  /*
-   *
-   *DATNT NOTE:
-   *
-   *All the CRUD of Admin/setnotifies will be organized as 1 screen ,
-   *Screen 1 == View all, and a button AddNew which is clicked will open a dialog to Add new, --> re-update the table by using ajax
-   *If user select a Row, and click on button Edit, there will be a dialog for user to edit a setting --> reupdate the table by using ajax
-   *If user selcts a Row, and click on button Delete, there will be a confirm alert to delete this row --> reupdate the table by using ajax
-   *
-   *
-   *
-   *
-   *0> Edit screen> will create button call ajax, submit async to server,
-   *controller will receive the data of input
-   *checkboxes (SMS, EMAIL) status and store to database
-   *store the data to table: notifications
-   *
-   *1 > View All screen: > Another thing need to do is:
-   *list all the current notification to the gui
-   *
-   *1.a> View All screen: also have the button for Edit, Delete
-   *1.b> User select a
-   */
-</script>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
+HELLO wOLD:: <%= @notify_message %><BR/>
 
 <div style="display: inline;border: 2px solid green;" id="add">Add
-<%= link_to "Add New", addnew_admin_setnotifies_path %>
+  <%= link_to "Add New", addnew_admin_setnotifies_path %>
 </div>
 <div style="display: inline;border: 2px solid yellow;" id="edit">Edit</div>
 <div style="display: inline;border: 2px solid black;" id="delete">Delete</div>
@@ -55,9 +41,13 @@
 
 <script type="text/javascript">
   var selectedTR;
+  var deleteURL = '<%= delete_admin_setnotifies_path %>';
   $(document).ready(function(){
 
     $('tr:gt(1)').click(function(){
+
+      var selectedID = $(this).find('td:eq(2)>input').attr('value');
+
 
       if (selectedTR!= undefined){
         selectedTR.css('border','1px solid black');
@@ -66,11 +56,17 @@
       selectedTR = $(this);
       $(this).css('border','3px solid red');
 
+      $('#edit').unbind('click');
       $('#edit').click(function(){
-        alert('edit this row');
+          window.location = '<%= edit_admin_setnotifies_url %>?selectedID='+selectedID;
       });
+      $('#delete').unbind('click');
       $('#delete').click(function(){
-        alert('delete this row')
+        var answer = confirm ("Are you sure to delete this notification?")
+        if (answer){
+          window.location = '<%= delete_admin_setnotifies_url %>?selectedID='+selectedID;
+        }
+
       });
 
     });

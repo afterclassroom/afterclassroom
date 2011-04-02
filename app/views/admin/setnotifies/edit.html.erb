@@ -1,0 +1,65 @@
+<%= form_tag(save_edit_admin_setnotifies_path, :method => :post, :id => "setting_form") do %>
+
+
+
+Notification Name: <%= text_field_tag "name", "", :id => "name", :value => @notification.name %> <br/>
+
+
+
+
+<%
+list_cats = [
+
+  ["Choose category", ""],
+  ["AfterClassroom", "AfterClassroom"],
+  ["Photos", "Photos"],
+  ["Groups","Groups"],
+  ["Pages","Pages"],
+  ["Events","Events"],
+  ["Story", "Story"],
+  ["Links", "Links"],
+  ["Music", "Music"],
+  ["Video","Video"],
+  ["Gifts","Gifts"],
+  ["Help","Help"],
+  ["Lounge","Lounge"],
+  ["Others","Others"],
+  ["Other Applications","Others"]
+]
+%>
+<ul id="category_menu" class="mcdropdown_menu">
+  <% list_cats.each do |cate| %>
+    <li rel_year="<%= cate[1] %>">
+      <%= cate[0] %>
+    </li>
+  <% end %>
+</ul>
+
+Notification type <br/>
+<div class="reqTi"  style="width: 200px;">
+  <input type="text" id="list_cate" value="<%= @notification.notify_type %>"/>
+</div>
+
+<input type="hidden" name="editing_id" value="<%=  @notification.id %>" id="editing_id"/>
+
+SMS <%= check_box_tag("sms", @notification.id, checked = @notification.sms_allow  )%>
+Email <%= check_box_tag("email", @notification.id, checked = @notification.email_allow )%>
+
+
+<% end %>
+
+<a href="javascript:;" onclick="sendChange()">Save Changes</a>
+
+
+
+
+
+<script type="text/javascript">
+  $("#list_cate").mcDropdown("#category_menu", {
+    width: 350,
+    valueAttr: "rel_year"
+  });
+  function sendChange(){
+    $("form:first").submit();
+  }
+</script>
