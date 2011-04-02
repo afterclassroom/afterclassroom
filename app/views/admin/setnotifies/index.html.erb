@@ -27,7 +27,7 @@
 </script>
 
 <div style="display: inline;border: 2px solid green;" id="add">Add
-<%= link_to "Add New", addnew_admin_setnotifies_path %>
+  <%= link_to "Add New", addnew_admin_setnotifies_path %>
 </div>
 <div style="display: inline;border: 2px solid yellow;" id="edit">Edit</div>
 <div style="display: inline;border: 2px solid black;" id="delete">Delete</div>
@@ -55,9 +55,13 @@
 
 <script type="text/javascript">
   var selectedTR;
+  var deleteURL = '<%= delete_admin_setnotifies_path %>';
   $(document).ready(function(){
 
     $('tr:gt(1)').click(function(){
+
+      var selectedID = $(this).find('td:eq(2)>input').attr('value');
+
 
       if (selectedTR!= undefined){
         selectedTR.css('border','1px solid black');
@@ -66,11 +70,20 @@
       selectedTR = $(this);
       $(this).css('border','3px solid red');
 
+      $('#edit').unbind('click');
       $('#edit').click(function(){
         alert('edit this row');
       });
+      $('#delete').unbind('click');
       $('#delete').click(function(){
-        alert('delete this row')
+        ///url == admin/setnotifies/delete
+        //rails code: delete_admin_setnotifies_path + '?selectedID='+selectedID
+        
+        var answer = confirm ("Are you sure to delete this notification?")
+        if (answer){
+          window.location = '<%= delete_admin_setnotifies_url %>?selectedID='+selectedID;
+        }
+
       });
 
     });
