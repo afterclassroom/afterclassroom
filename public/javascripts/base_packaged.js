@@ -1914,6 +1914,7 @@ function stop_chat(chanel_name){$.ajax({url:'/student_lounges/stop_chat',type:'G
 function friends_changed_message(){$.ajax({url:'/student_lounges/friends_changed_message',type:'GET',cache:false,dataType:'html',success:function(data){$('#div_friends_changed_their_message').html(data);}});}
 function friends_you_invited_chat(){$.ajax({url:'/student_lounges/friends_you_invited_chat',type:'GET',cache:false,dataType:'html',success:function(data){$("#div_friends_you_invited_to_chat").html(data);}});}
 function friends_want_you_chat(){$.ajax({url:'/student_lounges/friends_want_you_chat',type:'GET',cache:false,dataType:'html',success:function(data){$("#div_friends_want_you_chat").html(data);}});}
+function friends_online(){$.ajax({url:'/student_lounges/friends_online',type:'GET',cache:false,dataType:'html',success:function(data){$("#div_friends_online").html(data);}});}
 function insert_text_to_chatcontent(chanel_name,text_chat){if($('#'+chanel_name)){$('#'+chanel_name).before(text_chat);scroll_div('#chat_content_'+chanel_name);}}
 function openChat(title,chanel_name){if($('#'+chanel_name).length==0){var win=$.customWindow({title:title,onopen:function(cont,obj){$.ajax({url:'/student_lounges/chanel_chat_content',type:'GET',cache:false,dataType:'html',data:({chanel_name:chanel_name}),success:function(data){cont.html(data);}});},onclose:function(){},onresize:function(obj){}});}}
 function scroll_div(id){$(id).animate({scrollTop:$(id).attr("scrollHeight")},3000);}

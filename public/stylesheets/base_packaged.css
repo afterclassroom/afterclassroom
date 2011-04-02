@@ -1270,11 +1270,11 @@ a.share {background: url(/images/footer_menu/share_story-1.png) no-repeat}
 #tipparty {left: 422px}
 #tipplay_games {left: 470px}
 #tipmyx {left: 470px}
-#tipshopping {left: 517px}
+#tipshopping { left: 422px}
 #tipstudent_awareness {left: 518px}
 #tiphousing {left: 569px}
 #tipteamUp {left: 617px}
-#tipshare {left: 570px}
+#tipshare { left: 470px}
 .tip ul {padding: 22px 0 0 25px}
 .tip ul li {display: inline; padding-left: 3px}
 .tip ul li a {font-size: 15px; color: #989898}

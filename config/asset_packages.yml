@@ -74,7 +74,6 @@ javascripts:
   - ui-checkbox
   - jquery-multiselect
   - rails
-  - post
 stylesheets:
 - base:
   - main
