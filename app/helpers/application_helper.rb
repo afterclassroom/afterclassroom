@@ -149,7 +149,7 @@ module ApplicationHelper
   end
   
   def show_image_user_post(user)
-    link_to raw("<div>#{image_tag(user.avatar.url(:thumb))}</div>"), user_path(user)
+    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip", :title => user.name)}</div>"), user_path(user)
   end
   
   def show_user_post(user)
