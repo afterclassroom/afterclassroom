@@ -25,7 +25,7 @@ You are here: <a href="/">Home</a>
                     in<span><%= link_to @post.post_category.name, post_qas_path %></span>
                 </div>
                 <div class="AsDContLask">
-                    Asked by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+                    Asked by <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
                 </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>><%= @post.description %>

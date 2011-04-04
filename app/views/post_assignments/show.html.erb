@@ -28,7 +28,7 @@
 		<% if @post_assignment.professor %>
         <div class="AsDContLinf"><span>Professor:</span><%= @post_assignment.professor %></div>
 		<% end %>
-        <div class="AsDContLinf"><span>Posted by:</span><%= show_user_post(@post.user) %></div>
+        <div class="AsDContLinf"><span>Posted by:</span><%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <% if @post_assignment.due_date %>
 		<div class="AsDContLinf"><span>Due date:</span><%= @post_assignment.due_date.strftime("%B %d, %Y") %></div>
 		<% end %>

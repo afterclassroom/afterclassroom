@@ -24,7 +24,7 @@
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
         <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_teamups_path %></span></div>
-        <div class="AsDContLask">Posted by<%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
+        <div class="AsDContLask"><span>Posted by:</span><%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
       </div>
       <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
