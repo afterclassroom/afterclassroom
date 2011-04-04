@@ -23,6 +23,8 @@ javascripts:
   - jquery.fileupload-ui
   - ajaxupload
   - application
+  - checkboxmenu
+  - cust_select_plugin
   - drplayer
 - student_lounge:
   - application
@@ -96,6 +98,7 @@ stylesheets:
   - tag
   - footer-menu
   - jquery.fileupload-ui
+  - checkboxmenu
 - student_lounge:
   - main
   - post

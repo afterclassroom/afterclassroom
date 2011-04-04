@@ -66,7 +66,7 @@ class FriendsController < ApplicationController
   end
 
   def recently_updated
-
+    @friends = @user.user_friends.find(:all, :order => "updated_at DESC").paginate :page => params[:page], :per_page => 10 
   end
 
   def friend_request
@@ -74,6 +74,15 @@ class FriendsController < ApplicationController
   end
   
   def list
+    if params[:group]
+      @group = FriendGroup.find_by_label(params[:group])
+      @friend_in_groups = @user.friend_in_groups.find(:all, :conditions => ["friend_group_id = ?", @group]).paginate :page => params[:page], :per_page => 10
+    else
+      redirect_to :action => "index"
+    end
+  end
+  
+  def add_to_group
     if params[:check_status] == ""
 
       fig = FriendInGroup.new

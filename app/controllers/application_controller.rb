@@ -73,10 +73,9 @@ class ApplicationController < ActionController::Base
     if session[:cas_user] and self.current_user == nil
       self.current_user = User.find_by_email(session[:cas_user])
       self.current_user.update_attribute("online", true)
+      # Set session your school
+      session[:your_school] = self.current_user.school.id
     end
-     
-    # Set session your school
-    session[:your_school] = self.current_user.school.id if self.current_user
   end
   
   private

@@ -28,7 +28,7 @@
 		<% if @post_assignment.professor %>
         <div class="AsDContLinf"><span>Professor:</span><%= @post_assignment.professor %></div>
 		<% end %>
-        <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
+        <div class="AsDContLinf"><span>Posted by:</span><%= show_user_post(@post.user) %></div>
         <% if @post_assignment.due_date %>
 		<div class="AsDContLinf"><span>Due date:</span><%= @post_assignment.due_date.strftime("%B %d, %Y") %></div>
 		<% end %>
