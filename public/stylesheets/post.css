@@ -1166,6 +1166,7 @@ span.btmAbuse a:hover{
 }
 .postItem input{
   border:1px #cecece solid;
+  margin-left: 0px;
 }
 .postItem .postInp span{
   margin-left:5px;
@@ -1225,7 +1226,7 @@ div.postInf{
   text-decoration:none;
 }
 .post .submit{
-  padding:10px 20px;
+  padding:10px 10px;
 }
 .postDesInf{
   padding-bottom:3px;
