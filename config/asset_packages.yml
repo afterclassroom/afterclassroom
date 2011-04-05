@@ -16,18 +16,15 @@ javascripts:
   - vtip-min
   - tag
   - json
-  - jquery-galleriffic
   - jquery-opacityrollover
   - jquery-gmap
+  - ajaxupload
+  - checkboxmenu
+  - drplayer
+  - application
   - jquery.fileupload
   - jquery.fileupload-ui
-  - ajaxupload
-  - application
-  - checkboxmenu
-  - cust_select_plugin
-  - drplayer
 - student_lounge:
-  - application
   - jquery
   - swfobject
   - jquery-ui
@@ -49,14 +46,13 @@ javascripts:
   - swfupload
   - swfupload-handlers
   - jquery.ad-gallery
-  - jquery.fileupload
-  - jquery.fileupload-ui
   - rails
   - checkboxmenu
-  - cust_select_plugin
   - drplayer
   - jquery.jqpageflow
-  - jquery.fancybox-1.3.4.pack
+  - jquery.fancybox
+  - jquery.fileupload
+  - jquery.fileupload-ui
 - admin:
   - jquery
   - jquery-ui
@@ -70,12 +66,12 @@ javascripts:
   - jquery-dimensions
   - jquery-datePicker
   - jquery-filestyle
-  - jquery-pngFix-pack
   - jquery-tooltip
   - jquery-usermode
   - ui-checkbox
   - jquery-multiselect
   - rails
+  - application
 stylesheets:
 - base:
   - main
@@ -126,7 +122,7 @@ stylesheets:
   - jquery.fileupload-ui
   - checkboxmenu
   - jqpageflow
-  - jquery.fancybox-1.3.4
+  - jquery.fancybox
 - admin:
   - main
   - admin-datePicker
