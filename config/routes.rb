@@ -60,7 +60,7 @@ Afterclassroom::Application.routes.draw do
     resources :friends do
       collection do
         get :search, :find, :find_people, :recently_added, :recently_updated,
-          :friend_request, :list, :invite, :display_email,
+          :friend_request, :list, :invite, :display_email, :add_to_group,
           :send_invite_message, :show_invite, :become_a_fan, :accept, :de_accept
         post :find_email, :invite_by_list_email,
           :invite_by_import_email, :delete
@@ -123,7 +123,7 @@ Afterclassroom::Application.routes.draw do
     # Post managements
     resources :post_managements do
       collection do
-        get :with_type
+        get :with_type, :delete_all
       end
     end
     

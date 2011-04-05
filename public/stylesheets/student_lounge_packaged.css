@@ -2534,7 +2534,7 @@ code {font-family: "Lucida Console", "Courier New", Verdana; margin: 0; padding:
 .file_upload_progress div {width: 150px; height: 15px}
 .file_upload_cancel button {cursor: pointer}
 .upload_files{ margin-top: 10px}
-  .slsItemRr{ float: left; width: 460px}
+  .slsItemRr{ float: left; width: 460px; margin-left: 10px}
 .actionsBox{ font-size:13px; font-family:Helvetica,Arial,Verdana; font-style:normal; left:50%; position:absolute; top:-50px; opacity:0; cursor:move}
 .actionsBox .menu{ width:225px; color:#47708F; line-height:30px; text-shadow:1px 1px 0px #fff; padding:7px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; font-weight:bold; border:1px solid #D9EAF2; background:#e8f4fa; background: -webkit-gradient( linear, left bottom, left top, color-stop(0.58, rgb(217,234,242)), color-stop(0.93, rgb(232,244,250)) ); background: -moz-linear-gradient( center bottom, rgb(217,234,242) 58%, rgb(232,244,250) 93% ); -moz-box-shadow:1px 1px 3px #999; -webkit-box-shadow:1px 1px 3px #999; box-shadow:1px 1px 3px #999}
 .actionsBox .menu .button{ color:#47708F; padding:4px 7px; border:1px solid #D9EAF2; background:#e8f4fa; background: -webkit-gradient( linear, left bottom, left top, color-stop(0.38, rgb(230,243,249)), color-stop(0.88, rgb(245,249,250)) ) ; background: -moz-linear-gradient( center bottom, rgb(230,243,249) 38%, rgb(245,249,250) 88% ) ; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; -moz-box-shadow:0px 1px 0px #f9f9f9; -webkit-box-shadow:0px 1px 0px #f9f9f9; box-shadow:0px 1px 0px #f9f9f9; cursor:pointer}

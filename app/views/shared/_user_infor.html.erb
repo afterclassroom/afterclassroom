@@ -1,4 +1,4 @@
-<div class="AsDContImg"><%= link_to raw("<div>#{image_tag(user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => user.id} %></div>
+<div class="AsDContImg"><%= show_image_user_post(user) %></div>
 <div class="AsDContR">
   <% if current_user != user %>
     <div class="fan"><%= show_become_a_fan(user) %>  </div>

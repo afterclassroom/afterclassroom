@@ -56,8 +56,6 @@
     <%= render :partial => "ads/show_vertical_ads" %>
     <!--Ads-->
 </div>
-<script src="http://localhost:8080/application.js" type="text/javascript" charset="utf-8">
-</script>
 <script type="text/javascript" charset="utf-8">
       var jug = new Juggernaut;
       jug.subscribe("chat_<%= current_user.id %>", function(data){

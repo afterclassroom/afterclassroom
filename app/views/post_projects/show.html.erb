@@ -26,7 +26,7 @@
         <h2 class="titleH2"><%= @post.title %></h2>
         <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_projects_path %></span></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
-        <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
+        <div class="AsDContLinf"><span>Posted by:</span><%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <% if @post_project.due_date %>
 		<div class="AsDContLinf"><span>Due date:</span><%= @post_project.due_date.strftime("%B %d, %Y") %></div>
 		<% end %>
