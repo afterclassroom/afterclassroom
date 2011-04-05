@@ -3,6 +3,7 @@ javascripts:
 - base:
   - jquery
   - rails
+  - application
   - swfobject
   - jquery-ui
   - jquery-mcdropdown
@@ -18,14 +19,15 @@ javascripts:
   - json
   - jquery-opacityrollover
   - jquery-gmap
-  - ajaxupload
   - checkboxmenu
   - drplayer
-  - application
   - jquery.fileupload
   - jquery.fileupload-ui
+  - ajaxupload
 - student_lounge:
   - jquery
+  - rails
+  - app
   - swfobject
   - jquery-ui
   - jquery-mcdropdown
@@ -38,7 +40,6 @@ javascripts:
   - jquery-customWindow
   - thickbox
   - vtip-min
-  - ajaxupload
   - tag
   - json
   - jquery-galleriffic
@@ -46,13 +47,13 @@ javascripts:
   - swfupload
   - swfupload-handlers
   - jquery.ad-gallery
-  - rails
   - checkboxmenu
   - drplayer
   - jquery.jqpageflow
   - jquery.fancybox
   - jquery.fileupload
   - jquery.fileupload-ui
+  - ajaxupload
 - admin:
   - jquery
   - jquery-ui
@@ -71,7 +72,7 @@ javascripts:
   - ui-checkbox
   - jquery-multiselect
   - rails
-  - application
+  - app
 stylesheets:
 - base:
   - main

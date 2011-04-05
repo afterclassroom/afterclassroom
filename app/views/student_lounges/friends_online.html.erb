@@ -1,21 +1,19 @@
 <div id="friends_online">
     <% for friend in @friends_online %>
-    <% if friend != current_user %>
-    <div class="stuLFri">
-        <div class="stuLFriT">
-            <div class="studentImg">
-                <%= link_to raw("<div>#{image_tag(friend.avatar.url(:thumb))}</div>"), "javascript:;" %>
-            </div>
-            <div class="stuLFname">
-                <%= link_to friend.full_name, "javascript:;" %>
-            </div>
-        </div>
-        <div class="assInfB">
-            <div class="addmein">
-                <%= show_invite_chat(friend) %>
-            </div>
-        </div>
-    </div>
-    <% end %>
+		    <div class="stuLFri">
+		        <div class="stuLFriT">
+		            <div class="studentImg">
+		                <%= link_to raw("<div>#{image_tag(friend.avatar.url(:thumb))}</div>"), "javascript:;" %>
+		            </div>
+		            <div class="stuLFname">
+		                <%= link_to friend.full_name, "javascript:;" %>
+		            </div>
+		        </div>
+		        <div class="assInfB">
+		            <div class="addmein">
+		                <%= show_invite_chat(friend) %>
+		            </div>
+		        </div>
+		    </div>
     <% end %>
 </div>
