@@ -711,12 +711,12 @@ span.btmDown a:hover{
   padding-left:18px;
 }
 .postItemB {
-  background:url(/images/upload_file.png) no-repeat 100% 2px;
+  background:url(/images/upload_file.png) no-repeat 100% 4px;
   height:26px;
-  padding:5px 0 1px 0;
+  padding:4px 0 0 0;
 }
 .postItemA {
-  background:url(/images/upload_file.png) no-repeat 60% 2px;
+  background:url(/images/upload_file.png) no-repeat 59% 2px;
   height:24px;
   padding:3px 0 2px 0;
   margin:3px 0;
@@ -1166,6 +1166,7 @@ span.btmAbuse a:hover{
 }
 .postItem input{
   border:1px #cecece solid;
+  margin-left: 0px;
 }
 .postItem .postInp span{
   margin-left:5px;
@@ -1225,7 +1226,7 @@ div.postInf{
   text-decoration:none;
 }
 .post .submit{
-  padding:10px 20px;
+  padding:10px 10px;
 }
 .postDesInf{
   padding-bottom:3px;
