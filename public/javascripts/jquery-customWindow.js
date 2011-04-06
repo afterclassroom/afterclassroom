@@ -182,8 +182,8 @@
         // default settings
         _settings = $.extend({
             winId: null,
-            width: 435,
-            height: 255,
+            width: 550,
+            height: 350,
             title: 'Custom Window',
             appendTo: 'body',
             onopen: null,

@@ -37,7 +37,7 @@
       $("#state_country_id").change(function() {
         // make a POST call and replace the content
         $.post(<%= "'#{state_cities_path}?country_id=' + escape($('#state_country_id').val())" %>, function(data) {
-          $("#state_city").html(data);
+          $("#city_state_id").html(data);
         });
       });
     })

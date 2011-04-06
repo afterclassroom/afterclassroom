@@ -4173,8 +4173,9 @@ div.helpAdv2{
 }
 .SLchatView{
     border:1px #e2e2e2 solid;
-    width:348px;
+    width:450px;
     background-color:#f4f5f4;
+	height: 220px;
 }
 .SLchatViewT{
     height:25px;
@@ -4205,12 +4206,12 @@ div.helpAdv2{
 .SLchatSend{
     clear:both;
     margin-top:10px;
-    width:348px;
+    width:450px;
     height:49px;
 }
 .SLchatSendCont{
     float:left;
-    width:295px;
+    width:100%;
     height:48px;
 }
 .SLchatSendBtm{
@@ -5228,3 +5229,39 @@ span.btmTag a:hover{
     text-align: left;
 }
 /****/
+
+.callout {
+    position: relative;
+    margin: 5px 0;
+    padding: 10px 15px;
+    background-color: #eef4f9;
+    /* easy rounded corners for modern browsers */
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.callout .notch {
+    position: absolute;
+    top: -10px;
+    left: 5px;
+    margin: 0;
+    border-top: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #eef4f9;
+    padding: 0;
+    width: 0;
+    height: 0;
+    /* ie6 height fix */
+    font-size: 0;
+    line-height: 0;
+     /* ie6 transparent fix */
+    _border-right-color: pink;
+    _border-left-color: pink;
+    _filter: chroma(color=pink);
+}
+
+.border-callout { border: 1px solid #c5d9e8; margin-right: 15px;}
+
+.border-callout .border-notch { border-bottom-color: #c5d9e8; top: -11px; }

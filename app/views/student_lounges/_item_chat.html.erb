@@ -1,0 +1,16 @@
+<div class="stuLFriT">
+    <div class="studentImg">
+        <%= link_to raw("<div>#{image_tag(message.user.avatar.url(:thumb))}</div>"), "javascript:;" %>
+    </div>
+    <div class="stuLFname">
+        <%= message.user.full_name %>
+    </div>
+    <div class="stuLFtime">
+        <%= distance_of_time_in_words_to_now(message.created_at, false) + " ago." %>
+    </div>
+</div>
+<div class="callout border-callout">
+    <em><%= message.message %></em>
+    <b class="border-notch notch"></b>
+    <b class="notch"></b>
+</div>

@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   class Helper
     include Singleton
     include ActionView::Helpers::UrlHelper
+    include ActionView::Helpers::RawOutputHelper
   end
   
   def object_with_type(type, id)

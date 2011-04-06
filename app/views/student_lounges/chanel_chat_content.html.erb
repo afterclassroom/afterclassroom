@@ -1,27 +1,56 @@
 <form name="form_<%= @chanel.chanel_name %>">
-  <div class="SLchatB">
-    <div class="assPic"><%= link_to raw("<div>#{image_tag(@user_with_chat.avatar.url(:thumb))}</div>"), "javascript:;" %></div>
-    <div class="SLchatR">
-      <div class="SLchatView">
-        <div class="SLchatViewTCont">
-          <div id="chat_content_<%= @chanel.chanel_name %>" style="height:100px; overflow-y:auto;">
-            <ul>
-              <% for message in @messages %>
-                <li>
-                  <%= message.user.full_name + ":" if !message.notify_msg %> <%= message.message %>
-                </li>
-              <% end %>
-              <li id="<%= @chanel.chanel_name %>"></li>
-            </ul>
-          </div>
+    <div class="SLchatB">
+        <div class="assPic">
+            <%= link_to raw("<div>#{image_tag(@user_with_chat.avatar.url(:thumb))}</div>"), "javascript:;" %>
         </div>
-      </div>
-      <div class="SLchatSend">
-        <div class="SLchatSendCont">
-          <div class="reqEn"><textarea style="height:46px;" name="chat_input_<%= @user_with_chat.id %>" id="chat_input_<%= @user_with_chat.id %>"></textarea></div>
+        <div class="SLchatR">
+            <div class="SLchatView">
+                <div class="SLchatViewTCont">
+                    <div id="chat_content_<%= @chanel.chanel_name %>" style="height:218px; overflow-y:auto;">
+                        <ul style="margin-left: -25px">
+                            <% for message in @messages %>
+                            <li>
+                                <% if !message.notify_msg %>
+                                	<%= render :partial => "item_chat", :locals => {:message => message} %>
+                                <% else %>
+                                <%= message.message %>
+                                <% end %>
+                            </li>
+                            <% end %>
+                            <li id="<%= @chanel.chanel_name %>">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="SLchatSend">
+                <div class="SLchatSendCont">
+                    <div class="reqEn" style="margin-top: 5px">
+                        <div class="proBtm" id="chat_input_<%= @user_with_chat.id %>" style="line-height: 30px">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="SLchatSendBtm"><%= link_to "Send", "javascript:;", :onclick => "send_data('#{@user_with_chat.id}', '#{@chanel.chanel_name}')" %></div>
-      </div>
     </div>
-  </div>
 </form>
+<script type="text/javascript">
+    // Write chat
+    var path = '/student_lounges/send_data';
+    var chanel_name = '<%= @chanel.chanel_name %>';
+    $(document).ready(function(){
+        $('#chat_input_<%= @user_with_chat.id %>').editable(path, {
+            name: 'chat_input',
+            submitdata: ({
+                chanel_name: chanel_name
+            }),
+            height: 30,
+            indicator: 'Sending...',
+            placeholder: 'Write to chat',
+            tooltip: 'Click to write...'
+        });
+    });
+    $("#chat_content_<%= @chanel.chanel_name %>").attr({
+        scrollTop: $("#chat_content_<%= @chanel.chanel_name %>").attr("scrollHeight")
+    });
+</script>
