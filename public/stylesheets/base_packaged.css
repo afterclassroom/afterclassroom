@@ -1270,11 +1270,11 @@ a.share {background: url(/images/footer_menu/share_story-1.png) no-repeat}
 #tipparty {left: 422px}
 #tipplay_games {left: 470px}
 #tipmyx {left: 470px}
-#tipshopping {left: 517px}
+#tipshopping { left: 422px}
 #tipstudent_awareness {left: 518px}
 #tiphousing {left: 569px}
 #tipteamUp {left: 617px}
-#tipshare {left: 570px}
+#tipshare { left: 470px}
 .tip ul {padding: 22px 0 0 25px}
 .tip ul li {display: inline; padding-left: 3px}
 .tip ul li a {font-size: 15px; color: #989898}
@@ -1303,3 +1303,46 @@ span.downarr a {display: block; width: 36px; height: 22px; padding: 10px 0 0 15p
 .file_upload_progress div {width: 150px; height: 15px}
 .file_upload_cancel button {cursor: pointer}
 .upload_files{ margin-top: 10px}
+  .slsItemRr{ float: left; width: 460px; margin-left: 10px}
+.actionsBox{ font-size:13px; font-family:Helvetica,Arial,Verdana; font-style:normal; left:50%; position:absolute; top:-50px; opacity:0; cursor:move}
+.actionsBox .menu{ width:225px; color:#47708F; line-height:30px; text-shadow:1px 1px 0px #fff; padding:7px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; font-weight:bold; border:1px solid #D9EAF2; background:#e8f4fa; background: -webkit-gradient( linear, left bottom, left top, color-stop(0.58, rgb(217,234,242)), color-stop(0.93, rgb(232,244,250)) ); background: -moz-linear-gradient( center bottom, rgb(217,234,242) 58%, rgb(232,244,250) 93% ); -moz-box-shadow:1px 1px 3px #999; -webkit-box-shadow:1px 1px 3px #999; box-shadow:1px 1px 3px #999}
+.actionsBox .menu .button{ color:#47708F; padding:4px 7px; border:1px solid #D9EAF2; background:#e8f4fa; background: -webkit-gradient( linear, left bottom, left top, color-stop(0.38, rgb(230,243,249)), color-stop(0.88, rgb(245,249,250)) ) ; background: -moz-linear-gradient( center bottom, rgb(230,243,249) 38%, rgb(245,249,250) 88% ) ; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; -moz-box-shadow:0px 1px 0px #f9f9f9; -webkit-box-shadow:0px 1px 0px #f9f9f9; box-shadow:0px 1px 0px #f9f9f9; cursor:pointer}
+.actionsBox .menu .button:hover{ background:#fff; color:#47708F}
+.actionsBox .menu span{ padding:0px 10px}
+.actionsBox .submenu{ display:none; width:160px; margin-left:60px; top:46px; right:10px; background:#fff; border:1px solid #D9EAF2; border-top:none; -moz-border-radius:0px 0px 10px 10px; -webkit-border-bottom-left-radius:10px; -webkit-border-bottom-right-radius:10px; border-bottom-left-radius:10px; border-bottom-right-radius:10px; -moz-box-shadow:0px 1px 4px #ddd; -webkit-box-shadow:0px 1px 4px #ddd; box-shadow:0px 1px 4px #ddd}
+.actionsBox .submenu a{ display:block; cursor:pointer; padding:10px 15px; border-top:1px solid #D9EAF2}
+.actionsBox .submenu a.last{ -moz-border-radius:0px 0px 10px 10px}
+.actionsBox .submenu a.first{ border-top:none}
+.actionsBox .submenu a:hover{ background-color:#f9f9f9}
+.actionsBox .menu a.open, .actionsBox .menu a.closed{ border:1px solid #D9EAF2; padding:4px 17px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; -moz-box-shadow:0px 1px 0px #f9f9f9; -webkit-box-shadow:0px 1px 0px #f9f9f9; box-shadow:0px 1px 0px #f9f9f9; cursor:pointer; opacity:0.6; margin-right:5px}
+.actionsBox .menu a.open{ background:#fff url(/images/open.png) no-repeat center center}
+.actionsBox .menu a.closed{ background:#fff url(/images/closed.png) no-repeat center center}
+.actionsBox .menu a.open:hover, .actionsBox .menu a.closed:hover{ opacity:1.0}
+ .hideitem,.elmValue{ display: none}
+.selectbox{ background: url("/images/selectBox/iconPass.png") no-repeat 10px center; padding:0px 0px 0px 35px; float:right; margin-right: 60px; background-color: #F6F6F6; border: 1px solid #E3E3E3; float: right; width: 120px}
+.selectbox ul{  padding:8px 22px 6px 0px; margin:0; vertical-align:top;  list-style: none; background-color: #F6F6F6; background: url("/images/flistA.gif") no-repeat scroll 90px center transparent}
+.select_wrap{ clear:both; margin:-20px 5px 0px 0px;  float: right}
+.selectboxopen{ clear:both; background: url("/images/selectBox/dropdownopen..png") no-repeat 0 0; padding:0px 0px 0px 35px; float:right; margin:0; border: 1px solid #E3E3E3; width: 120px; margin-right: 60px; background: url("/images/selectBox/iconPass.png") no-repeat 10px center}
+.selectboxopen ul{ background: url("/images/selectBox/dropdownopen..png") no-repeat top right; padding:8px 22px 6px 0px; margin:0; vertical-align:top;  list-style: none; background-color: #F6F6F6; width: 120px; background: url("/images/flistA.gif") no-repeat scroll 90px center transparent}
+.selectbox ul li,.selectboxopen ul li{ list-style: none; padding:0; margin:0; font-family: arial,helvetica,san-serif; color:#333; font-size: 12px; cursor: pointer}
+.selectboxoptions_wrap{ display:none; clear:both}
+.selectboxoptions_radio,.selectboxoptions_check{ clear:both; list-style: none; padding:0; margin:-2px 1px; background:#e6e9ed; position: absolute; margin-left:0px; width:157px}
+.selectboxoptions_radio li, .selectboxoptions_check li{ list-style: none; padding:3px 0 2px 20px; margin:2px 0 0 2px; font-family: arial,helvetica,san-serif; color:#333; font-size: 12px; cursor: pointer}
+.selectboxoptions_radio li{ background:#EBEBEB; height:20px; padding-top:5px}
+.selectboxoptions_radio li.selected{ background:#f2f2f2 url(/images/selectBox/acc.gif) no-repeat 5px 6px;  }
+ .fl {float:left}
+.fr {float: right}
+.duration {font-size:10px; color:#777}
+.btn.play {width:16px; height:17px; background-image: url(/images/Photo/play.gif); display: inline-block}
+.btn.pause {width:16px; height:17px; background-image: url(/images/Photo/pause.gif?2)}
+.btn.paused {width:16px; height:17px; background-image: url(/images/Photo/play.gif?3); display: inline-block}
+div.player {width:380px; height:14px; margin-top:5px; padding-left:20px}
+div.player.inactive {margin-top:5px; margin-bottom:0px; border-top: dashed 1px #555555}
+.item .title {-vertical-align:middle}
+.item .btn {display:inline; float:left; margin-right:5px; cursor:pointer}
+#playlist_list div div.item{ margin-left: 120px}
+#playlist_list img{ margin-top: 3px}
+#playlist_list .photoImg {background: url("/images/bgphoto.png") no-repeat scroll center center transparent; margin-bottom: 20px}
+#playlists .player embed{ width: 310px; margin-left: -20px}
+#player_border{ margin-left: 110px; margin-top: 20px; position: absolute; width: 300px}
+#player_border embed{ width: 310px; position: absolute; margin-left: -20px}

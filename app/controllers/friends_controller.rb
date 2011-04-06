@@ -33,27 +33,29 @@ class FriendsController < ApplicationController
       session[:user_id_suggestions] = user_id_suggestions
     end
     @user_suggestions = []
-    @user_suggestions = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})", :limit => 6) if user_id_suggestions.size > 0
+    @user_suggestions = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})") if user_id_suggestions.size > 0
   end
 
   def find_email
     login = params[:mail_account][:login]
     password = params[:mail_account][:password]
-    mail_type = params[:mail_account][:mail_type]
+    mail_type = params[:mail_type]
     mail_account = MailAccount.new(login, password, mail_type)
     begin
       contacts = mail_account.contacts
       arr_mails = []
       contacts.collect {|m| arr_mails << m[1]}
-      users = User.find(:all, :conditions => "email IN('#{arr_mails.split("', '")}')") if arr_mails.size > 0
+      
+      users = User.find(:all, :conditions => "email IN('#{arr_mails.join("', '")}')") if arr_mails.size > 0
       unless users.nil?
         user_id_friends = @user.user_friends.collect(&:id)
         user_id_by_mails = users.collect(&:id)
         user_id_suggestions = user_id_by_mails - user_id_friends
-        session[:user_id_suggestions] = user_id_suggestions if user_id_suggestion.size > 0
+        session[:user_id_suggestions] = user_id_suggestions if user_id_suggestions.size > 0
         flash.now[:notice] = "Find successfuly."
       end
     rescue Contacts::AuthenticationError => oops
+      flash.now[:error] = "Account email incorrect."
       error oops
     end
     redirect_to find_user_friends_path(@user)
@@ -64,7 +66,7 @@ class FriendsController < ApplicationController
   end
 
   def recently_updated
-
+    @friends = @user.user_friends.find(:all, :order => "updated_at DESC").paginate :page => params[:page], :per_page => 10 
   end
 
   def friend_request
@@ -72,6 +74,15 @@ class FriendsController < ApplicationController
   end
   
   def list
+    if params[:group]
+      @group = FriendGroup.find_by_label(params[:group])
+      @friend_in_groups = @user.friend_in_groups.find(:all, :conditions => ["friend_group_id = ?", @group]).paginate :page => params[:page], :per_page => 10
+    else
+      redirect_to :action => "index"
+    end
+  end
+  
+  def add_to_group
     if params[:check_status] == ""
 
       fig = FriendInGroup.new
@@ -133,6 +144,10 @@ class FriendsController < ApplicationController
     flash.now[:notice] = "Invite Friends Successfully."
     redirect_to :action => "invite"
   end
+  
+  def send_invite_by_import_email
+    
+  end
 
   def delete
     user_id_friend = params[:user_id_friend]
@@ -147,24 +162,24 @@ class FriendsController < ApplicationController
     @mail_account = MailAccount.new(nil, nil, mail_box)
     respond_to do |format|
       format.js do
-        render :partial=>"mail_type",:layout=>false
+        render :partial=>"mail_type", :layout => false
       end
     end
   end
 
   def accept
-    invite_id = params[:invite_id]
-    invite = @user.user_invites_in.find_by_id(invite_id)
-    invite.is_accepted = true
-    invite.save
-    render :text => "Successful."
+    @invite_id = params[:invite_id]
+    @invite = @user.user_invites_in.find_by_id(@invite_id)
+    @invite.is_accepted = true
+    @invite.save
+    render :layout => false
   end
 
   def de_accept
-    invite_id = params[:invite_id]
-    invite = @user.user_invites_in.find_by_id(invite_id)
-    invite.destroy
-    render :text => "Successful."
+    @invite_id = params[:invite_id]
+    @invite_id = @user.user_invites_in.find_by_id(@invite_id)
+    @invite_id.destroy
+    render :layout => false
   end
 
   def show_invite
@@ -177,11 +192,11 @@ class FriendsController < ApplicationController
   def send_invite_message
 
     user_id_friend = params[:user_invite]
-    invite_message = params[:invite_message]
+    invite_message = params[:invite_message] || "let's be friends!"
     
     if (user_id_friend && invite_message)
       UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
-      render :text => "Wait "+params[:full_name]+" to accept"
+      render :text => "Waiting accept"
     end
   end
 
@@ -194,6 +209,11 @@ class FriendsController < ApplicationController
     user_follow.fans << fan
 
     render :text => "You are a fan"
+  end
+  
+  def find_people
+    @query = params[:search][:query]
+    @users = User.search(@query, :match_mode => :any, :order => "created_at DESC", :page => params[:page], :per_page => 10)
   end
   
   protected

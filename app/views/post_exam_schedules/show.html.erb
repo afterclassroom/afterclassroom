@@ -25,7 +25,7 @@
         <h2 class="titleH2"><%= @post.title %></h2>
         <div class="AsDContLin">in<span><%= link_to "Exam/Test Schedules", post_exam_schedules_path %></span></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
-        <div class="AsDContLinf"><span>Posted by:</span><%= link_to @post.user.full_name, {:controller => "profile", :action => "show_profile", :id => @post.user.id} %></div>
+        <div class="AsDContLinf"><span>Posted by:</span><%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLinf"><span>Teacher name:</span><%= @post_exam_schedule.teacher_name %></div>
         <div class="AsDContLinf"><span>Place:</span><%= @post_exam_schedule.place %></div>
         <div class="AsDContLinf"><span>Starts at:</span><%= @post_exam_schedule.starts_at.strftime("%B %d, %Y") if @post_exam_schedule.starts_at %></div>

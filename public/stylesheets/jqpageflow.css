@@ -1,0 +1,16 @@
+.jqpageflow-loader {
+	position: fixed; 
+	display: none;
+	right: 50%; 
+	z-index: 10001; 
+	bottom: 175px;
+}
+
+.jqpageflow-loadertext {
+	width: 80px;  
+	text-align: center; 
+	position: absolute; 
+	top: 30px;
+	bottom: 25px; 
+	left: 2px;
+}

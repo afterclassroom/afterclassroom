@@ -44,4 +44,18 @@ class PostManagementsController < ApplicationController
     render :layout => false
   end
   
+  def delete_all
+    category = params[:category]
+    list_ids = params[:list_ids]
+    list_ids = list_ids.slice(0..list_ids.length - 2)
+    ids = list_ids.split(", ")
+    posts = current_user.posts.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
+    if posts.size > 0
+      posts.each do |abl|
+        abl.destroy
+      end
+    end
+    redirect_to(user_post_managements_url(current_user, :category => category))
+  end
+  
 end

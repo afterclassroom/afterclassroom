@@ -22,13 +22,9 @@
         <%= render :partial => "user_walls/wall_form" %>
         <div class="col451in">
             <div class="proCenCont">
-                <%= render :partial => "stu_lounge_item", :locals => {:walls => @walls} %>
-                <!--Pagination-->
-                <div class="assPage">
-                    <span class="numPage"><%= page_entries_info @walls %></span>
-                    <%= will_paginate @walls %>
-                </div>
-                <!--Pagination-->
+            	<div id="wall_page_wrap">
+            		<%= render :partial => "stu_lounge_item", :locals => {:walls => @walls} %>
+            	</div>
                 <div class="goTop">
                     <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
                 </div>
@@ -60,8 +56,6 @@
     <%= render :partial => "ads/show_vertical_ads" %>
     <!--Ads-->
 </div>
-<script src="http://localhost:8080/application.js" type="text/javascript" charset="utf-8">
-</script>
 <script type="text/javascript" charset="utf-8">
       var jug = new Juggernaut;
       jug.subscribe("chat_<%= current_user.id %>", function(data){
@@ -111,4 +105,20 @@
       friends_you_invited_chat();
       friends_want_you_chat();
       friends_online();
+</script>
+<script type="text/javascript">
+	var path = "/user_walls/next_page_wall?user_id=<%= current_user.id %>";
+	var total_wall = <%= @walls.total_entries %>;
+    $(document).ready(function(){
+        $("body").flexiPagination({
+            url: path,
+            currentPage: 1,
+            totalResults: total_wall,
+            perPage: 10,
+            container: "#wall_page_wrap",
+            pagerVar: "page",
+            loaderImgPath: "/images/loader.gif",
+            debug: 0
+        });
+    });
 </script>

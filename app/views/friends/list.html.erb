@@ -23,14 +23,10 @@
         <div class="flistBt">Use the dropdown menu above to browse your friends by list.</div>
         <% @friend_in_groups.each do |f| %>
           <div class="flistItem">
-            <div class="assPic"><%= link_to "<div>#{image_tag(f.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => f.id} %></div>
+            <div class="assPic"><%= show_image_user_post(f.friend) %></div>
             <div class="flistInf">
-              <div class="flistN"><%= link_to f.full_name, {:controller => "profile", :action => "show_profile", :id => f.id} %></div>
-              <div class="flistS"><span>at</span><%= f.school.name %></div>
-            </div>
-            <div class="flistR">
-              <div class="flistREdit"><a href="#"> </a></div>
-              <div class="flistRdelete"><a href="#"> </a></div>
+              <div class="flistN"><%= show_user_post(f.friend) %></div>
+              <div class="flistS"><span>at</span><%= f.friend.school.name %></div>
             </div>
         </div>
         <% end %>

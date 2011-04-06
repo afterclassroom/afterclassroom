@@ -3,6 +3,7 @@ javascripts:
 - base:
   - jquery
   - rails
+  - application
   - swfobject
   - jquery-ui
   - jquery-mcdropdown
@@ -16,17 +17,17 @@ javascripts:
   - vtip-min
   - tag
   - json
-  - jquery-galleriffic
   - jquery-opacityrollover
   - jquery-gmap
+  - checkboxmenu
+  - drplayer
   - jquery.fileupload
   - jquery.fileupload-ui
   - ajaxupload
-  - application
-  - drplayer
 - student_lounge:
-  - application
   - jquery
+  - rails
+  - app
   - swfobject
   - jquery-ui
   - jquery-mcdropdown
@@ -39,7 +40,6 @@ javascripts:
   - jquery-customWindow
   - thickbox
   - vtip-min
-  - ajaxupload
   - tag
   - json
   - jquery-galleriffic
@@ -47,14 +47,13 @@ javascripts:
   - swfupload
   - swfupload-handlers
   - jquery.ad-gallery
-  - jquery.fileupload
-  - jquery.fileupload-ui
-  - rails
   - checkboxmenu
-  - cust_select_plugin
   - drplayer
   - jquery.jqpageflow
-  - jquery.fancybox-1.3.4.pack
+  - jquery.fancybox
+  - jquery.fileupload
+  - jquery.fileupload-ui
+  - ajaxupload
 - admin:
   - jquery
   - jquery-ui
@@ -68,13 +67,12 @@ javascripts:
   - jquery-dimensions
   - jquery-datePicker
   - jquery-filestyle
-  - jquery-pngFix-pack
   - jquery-tooltip
   - jquery-usermode
   - ui-checkbox
   - jquery-multiselect
   - rails
-  - post
+  - app
 stylesheets:
 - base:
   - main
@@ -97,6 +95,7 @@ stylesheets:
   - tag
   - footer-menu
   - jquery.fileupload-ui
+  - checkboxmenu
 - student_lounge:
   - main
   - post
@@ -124,7 +123,7 @@ stylesheets:
   - jquery.fileupload-ui
   - checkboxmenu
   - jqpageflow
-  - jquery.fancybox-1.3.4
+  - jquery.fancybox
 - admin:
   - main
   - admin-datePicker

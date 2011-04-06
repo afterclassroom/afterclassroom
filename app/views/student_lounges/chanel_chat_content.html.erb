@@ -1,12 +1,8 @@
 <form name="form_<%= @chanel.chanel_name %>">
   <div class="SLchatB">
-    <div class="assPic"><%= link_to "<div>#{image_tag(@user_with_chat.avatar.url(:thumb))}</div>", "javascript:;" %></div>
+    <div class="assPic"><%= link_to raw("<div>#{image_tag(@user_with_chat.avatar.url(:thumb))}</div>"), "javascript:;" %></div>
     <div class="SLchatR">
       <div class="SLchatView">
-        <div class="SLchatViewT">
-          <div class="SLchatViewL"><a href="#">Invite Wing man</a></div>
-          <div class="SLchatViewR"><a href="#">Invite Wing woman</a></div>
-        </div>
         <div class="SLchatViewTCont">
           <div id="chat_content_<%= @chanel.chanel_name %>" style="height:100px; overflow-y:auto;">
             <ul>

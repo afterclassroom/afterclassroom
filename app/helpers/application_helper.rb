@@ -149,7 +149,7 @@ module ApplicationHelper
   end
   
   def show_image_user_post(user)
-    link_to raw("<div>#{image_tag(user.avatar.url(:thumb))}</div>"), user_path(user)
+    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip", :title => user.name)}</div>"), user_path(user)
   end
   
   def show_user_post(user)
@@ -379,24 +379,6 @@ module ApplicationHelper
     str = ""
     if !logged_in?
       str = link_to_require_login(raw("<span>Invite Chat</span>"))
-    else
-      if user.check_user_online
-        if user.check_user_in_chatting_session(current_user.id)
-          str = "Chatting..."
-        else
-          str = link_to_function "Invite Chat", "invite_chat('#{user.id}')"
-        end
-      else
-        str = "Offline"
-      end
-    end
-    return str
-  end
-  
-  def show_invite_chat_student_lounge(user)
-    str = ""
-    if !logged_in?
-      str = link_to_require_login(raw("Invite Chat"))
     else
       if user.check_user_online
         if user.check_user_in_chatting_session(current_user.id)

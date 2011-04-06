@@ -20,9 +20,6 @@
     	<%= display_flash_messages_with_raw %>
       <%= form_for(@post_party, :html => {:multipart => true, :id => "form_post" }) do |f| %>
         <%= render :partial => "form", :locals => {:f => f} %>
-		<div style="margin-left:120px">
-		  	<%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-		</div>
         <div class="submit"><a href="javascript:;" onclick="submit();"><%= submit_tag 'Submit' %></a></div>
       <% end %>
     </div>

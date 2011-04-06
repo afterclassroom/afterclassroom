@@ -10,7 +10,7 @@
         <% if w.user_post != current_user %>
         <div class="asslinkdown">
             <div class="morelink">
-                <%= show_invite_chat_student_lounge(w.user) %>
+                <%= show_invite_chat(w.user_post) %>
             </div>
             <div class="down">
                 <a title="Match Making" class="thickbox" href="/user_walls/match_making_box?&height=288&width=500&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">Match Making</a>

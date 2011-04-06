@@ -293,6 +293,20 @@ class UserWallsController < ApplicationController
     render :layout => false
   end
   
+  def next_page_my_wall
+    user_id = params[:user_id]
+    user = User.find(user_id)
+    @walls = user.my_walls.paginate :page => params[:page], :per_page => 10
+    render :layout => false
+  end
+  
+  def next_page_wall
+    user_id = params[:user_id]
+    user = User.find(user_id)
+    @walls = user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    render :layout => false
+  end
+  
   private
   def get_domain(url)
     url.public_suffix
