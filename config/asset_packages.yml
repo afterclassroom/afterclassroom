@@ -126,6 +126,7 @@ stylesheets:
   - jquery.fancybox
 - admin:
   - main
+  - jquery-multiSelect
   - admin-datePicker
   - admin-pro-dropline
   - admin-pro-dropline-ie
