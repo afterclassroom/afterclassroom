@@ -19,13 +19,13 @@
  * Date: 2009-10-29
  * Rev:  1.2.10
  */
-    $.fn.mcDropdownA = function(list, options) {
+    $.fn.mcDropdownB = function(list, options) {
         // track the dropdown object
         var dd;
 
         // create a dropdown for each match
         this.each(function() {
-            dd = $.data(this, "mcDropdownA");
+            dd = $.data(this, "mcDropdownB");
 			
             // we're already a dropdown, return a reference to myself
             if( dd ) return false;
@@ -38,7 +38,7 @@
     };
 
     // set default options
-    $.mcDropdownA = {
+    $.mcDropdownB = {
         version: "1.2.10",
         setDefaults: function(options){
             $.extend(defaults, options);
@@ -192,7 +192,7 @@
         $("li > ul", $list).parent().addClass("mc_parent");
 
         // create the div to wrap everything in
-        $divInput = $('<div class="mcdropdownA"><a href="#" tabindex="-1"></a><input type="hidden" name="' + (el.name || el.id) + '" id="' + (el.id || el.name) + '" /></div>')
+        $divInput = $('<div class="mcdropdownB"><a href="#" tabindex="-1"></a><input type="hidden" name="' + (el.name || el.id) + '" id="' + (el.id || el.name) + '" /></div>')
         .appendTo($('<div style="position: relative;"></div>'))
         .parent();
 			
@@ -205,7 +205,7 @@
         var $hidden = $divInput.find(":input");
 		
         // put the input element back in the div.mcdropdown layer
-        $divInput = $divInput.find(".mcdropdownA").prepend($input);
+        $divInput = $divInput.find(".mcdropdownB").prepend($input);
 		
         // make a visible copy of the element so we can get the correct sizes, then delete it
         var $divInputClone = $divInput.clone().css({
@@ -221,7 +221,7 @@
         $divInputClone.remove();
 		
         // store a reference to this link select
-        $.data($hidden[0], "mcDropdownA", thismenu);
+        $.data($hidden[0], "mcDropdownB", thismenu);
 
         // update the height of the outer relative div, this allows us to
         // correctly anchor the dropdown
@@ -655,7 +655,7 @@
             $target.css({
                 position: "fixed"
                 ,
-                top: "44%"
+                top: "48%"
                 ,
                 left: pos.left
             });
