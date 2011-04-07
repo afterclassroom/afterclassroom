@@ -50,6 +50,7 @@
             tooltip: 'Click to write...'
         });
     });
+	scroll_div("chat_content_<%= @chanel.chanel_name %>");
     $("#chat_content_<%= @chanel.chanel_name %>").attr({
         scrollTop: $("#chat_content_<%= @chanel.chanel_name %>").attr("scrollHeight")
     });
