@@ -1,7 +1,8 @@
 <div class="popup2" id="select_school">
   <%= render :partial => "form", :locals => {:countries => @countries, :states => @states, :cities => @cities, :schools => @schools, :country => @country, :state => @state, :city => @city, :school => @school} %>
 </div>
-<%= javascript_include_tag 'jquery-mcdropdownA' %>
+<%= javascript_include_tag 'jquery-mcdropdownB.js' %>
+<%= javascript_include_tag 'jquery-mcdropdownA.js' %>
 <%= stylesheet_link_tag 'jquery-mcdropdownA' %>
 <script type="text/javascript">
   $(document).ready(load_menus);
@@ -61,23 +62,21 @@
 
   function load_menus (){
     $("#country").mcDropdownA("#country_menu", {
-    
       width: 170,
       valueAttr: "rel_country",
       select: select_country
-     
     });
     $("#state").mcDropdownA("#state_menu", {
       width: 170,
       valueAttr: "rel_state",
       select: select_state
     });
-    $("#city").mcDropdownA("#city_menu", {
+    $("#city").mcDropdownB("#city_menu", {
       width: 170,
       valueAttr: "rel_city",
       select: select_city
     });
-    $("#school").mcDropdownA("#school_menu", {
+    $("#school").mcDropdownB("#school_menu", {
       width: 170,
       valueAttr: "rel_school"
     });
