@@ -41,7 +41,7 @@
         </div>
         <div class="btmCreAc"><a href="javascript:;" onclick="submit();"><%= submit_tag 'Create my account' %></a></div>
         <div class="signincCheck">
-          By clicking "Create my account", you agree to Afterclassroom <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+          By clicking "Create my account", you agree to Afterclassroom <%= link_to 'Terms of use', :controller => 'statics', :action => 'terms' %> and <%= link_to 'Privacy Policy', :controller => 'statics', :action => 'privacy' %>.
         </div>
       <% end -%>
     </div>

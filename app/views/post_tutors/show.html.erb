@@ -26,6 +26,12 @@
         <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_tutors_path %></span></div>
         <div class="AsDContLask"><span>Posted by:</span> <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
         <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
+		<% if @post_tt.phone %>
+		<div class="AsDContLinf"><span>Phone:</span><%= @post_tt.phone %></div>
+		<% end %>
+		<% if @post_tt.address %>
+		<div class="AsDContLinf"><span>Address:</span><%= @post_tt.address %></div>
+		<% end %>
       </div>
       <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
       <%= render :partial => "post_actions", :locals => {:post => @post} %>

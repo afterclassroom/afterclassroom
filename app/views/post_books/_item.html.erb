@@ -1,6 +1,6 @@
 <div class="assItem">
   <div class="assItemL">
-    <div class="assImg"><div><%= link_to image_post_thumb(controller.controller_name, post), post.post_book %></div></div>
+    <div class="assPic"><%= show_image_user_post(post.user) %></div>
     <div class="assContT">
       <h2 class="titleH2"><%= link_to title, post_book_path(post.post_book) %></h2>
       <div class="assCate"><span>From:</span><%= link_to post.school.name, :controller => "post_books", :action => "index", :from_school => post.school, :book_type_id => post.post_book.book_type.id %></div>
@@ -16,14 +16,12 @@
   </div>
   <!--info-link-box-->
   <div class="assItemB">
-    <div class="assPic"><%= show_image_user_post(post.user) %></div>
+    <div class="assImg"><div><%= link_to image_post_thumb(controller.controller_name, post), post.post_book %></div></div>
     <div class="assInfT">
       <div class="assInfT">
         <div class="assInfL">
           <div><span>Posted by:</span><%= show_user_post(post.user) %></div>
-          <div><span>Comments:</span><%= "#{post.user.comments.size} Comment#{"s" if post.user.comments.size > 1}" %></div>
         </div>
-        <div class="assInfR"><%= link_to "more", post_book_path(post.post_book) %></div>
       </div>
       <div class="assInfB">
         <div id="rate_<%= post.id %>">
@@ -40,7 +38,7 @@
         </div>
         <div class="vie"><%= "View (#{post.count_view})" %></div>
         <div class="fav" id="item_favorite_<%= post.id %>"><%= show_favorite("Post", post) %></div>
-        <div class="com"><%= link_to "Comments (#{post.comments.size})", "#" %></div>
+        <div class="com"><%= "Comments (#{post.comments.size})" %></div>
       </div>
     </div>
   </div>

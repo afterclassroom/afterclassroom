@@ -7,7 +7,6 @@
   <div class="col195in">
     <div class="proTop">
       <h1 class="col195Title"><%= @user.full_name %>'s Friends</h1>
-      <div class="proEdit"><a href="#"> </a></div>
     </div>
     <div class="infoFans">
       <div class="infoFan"><%= f_total %> friend(s)</div>
@@ -20,8 +19,7 @@
       %>
       <% (0..count).each do |i| %>
       <div class="fanImg1">
-        <%= link_to raw("<div>#{image_tag friends[i].avatar.url(:thumb)}</div>"), user_path(friends[i]) %>
-        <div class="fanName"><%= link_to friends[i].full_name, user_path(friends[i]) %></div>
+        <%= show_image_user_post(friends[i]) %>
       </div>
       <% end %>
     </div>

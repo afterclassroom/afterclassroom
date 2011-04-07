@@ -69,12 +69,5 @@ class PostsController < ApplicationController
   end
   
   def download
-    path = params['path']
-    #Set the X-Accel-Redirect header with the path relative to the /downloads location in nginx
-    response.headers['X-Accel-Redirect'] = path
-    #Set the Content-Type header as nginx won't change it and Rails will send text/html
-    response.headers['Content-Type'] = 'application/octet-stream'
-    #Make sure we don't render anything
-    render :nothing => true
   end
 end

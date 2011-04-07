@@ -14,7 +14,9 @@
             <div class="dueDTime"><%= b.post.user.full_name %></div>
           </div>
         <% end %>
+		<% if good_books.size > LIMIT - 1 %>
         <div class="dueDbutton"><%= link_to "View more Good books", good_books_post_books_path %></div>
+		<% end %>
       <% end %>
     </div>
   </div>

@@ -182,7 +182,7 @@
 .assImg div{
   background:url('/images/bgimg71.png') no-repeat;
   height:61px;
-  padding-top:5px;
+  padding:5px 5px;
   text-align:center;
   width:71px;
 }
@@ -190,8 +190,6 @@
   border:0px;
 }
 .assContT{
-  float:right;
-  width:245px;
   word-wrap:break-word;
 }
 .assDes{

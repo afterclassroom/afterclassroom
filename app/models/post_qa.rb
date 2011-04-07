@@ -112,7 +112,7 @@ class PostQa < ActiveRecord::Base
   
   def self.related_posts(school)
     posts = []
-    post_qa = self.with_school(school).random(5)
+    post_qa = self.random(5).with_school(school)
     post_qa.select {|p| posts << p.post}
     posts
   end

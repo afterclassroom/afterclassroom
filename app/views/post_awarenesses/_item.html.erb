@@ -22,7 +22,7 @@
       <div class="assInfT">
         <div class="assInfL">
           <div><span>Posted by:</span><%= show_user_post(post.user) %></div>
-          <div><span>Comments:</span><%= "#{post.user.comments.size} Comment#{"s" if post.user.comments.size > 1}" %></div>
+          
         </div>
         <div class="assInfR"><%= link_to "more", post_awareness_path(post.post_awareness) %></div>
       </div>
@@ -41,7 +41,7 @@
         </div>
         <div class="vie"><%= "View (#{post.count_view})" %></div>
         <div class="fav" id="item_favorite_<%= post.id %>"><%= show_favorite("Post", post) %></div>
-        <div class="com"><%= link_to "Comments (#{post.comments.size})", "#" %></div>
+        <div class="com"><%= "Comments (#{post.comments.size})" %></div>
       </div>
     </div>
   </div>

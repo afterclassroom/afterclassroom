@@ -15,7 +15,9 @@
             <div class="dueDTime"><%= b.post.user.full_name %></div>
           </div>
         <% end %>
+		<% if free_books.size > LIMIT - 1 %>
         <div class="dueDbutton"><%= link_to "View more Free books", "#{post_books_path}?book_type_id=#{book_type.id}" %></div>
+		<% end %>
       <% end %>
     </div>
   </div>

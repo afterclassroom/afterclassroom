@@ -3,13 +3,13 @@ development:
   port: 587
   domain: afterclassroom.com
   authentication: plain
-  username: register@afterclassroom.com
+  username: technical@afterclassroom.com
   password: huyettam2011
 production:
   server: smtp.gmail.com
   port: 587
   domain: afterclassroom.com
   authentication: plain
-  username: register@afterclassroom.com
+  username: technical@afterclassroom.com
   password: huyettam2011
   tls: true

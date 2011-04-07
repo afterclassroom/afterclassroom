@@ -85,7 +85,7 @@ class PostJob < ActiveRecord::Base
 
   def self.related_posts(school)
     posts = []
-    post_as = self.with_school(school).random(5)
+    post_as = self.random(5).with_school(school)
     post_as.select {|p| posts << p.post}
     posts
   end

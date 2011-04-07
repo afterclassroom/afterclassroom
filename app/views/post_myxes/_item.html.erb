@@ -1,6 +1,6 @@
 <div class="assItem">
   <div class="assItemL">
-    <div class="assImg"><div><%= link_to image_post_thumb(controller.controller_name, post), post.post_myx %></div></div>
+    <div class="assPic"><%= show_image_user_post(post.user) %></div>
     <div class="assContT">
       <h2 class="titleH2"><%= link_to title, post_myx_path(post.post_myx) %></h2>
       <div class="assCate"><span>Neighborhood:</span><%= link_to post.school.name, :controller => "post_myxes", :action => "index", :from_school => post.school, :rating_status => post.post_myx.rating_status %></div>
@@ -12,14 +12,12 @@
     <div class="mySco"><a href="#">View score</a></div>
   </div>
   <div class="assItemB">
-    <div class="assPic"><%= show_image_user_post(post.user) %></div>
+    <div class="assImg"><div><%= link_to image_post_thumb(controller.controller_name, post), post.post_myx %></div></div>
     <div class="assInfT">
       <div class="assInfT">
         <div class="assInfL">
-          <div><span>Posted by:</span><%= show_user_post(post.user) %></div>
-          <div><span>Comments:</span><%= "#{post.user.comments.size} Comment#{"s" if post.user.comments.size > 1}" %></div>
+          <div><span>Posted by:</span><%= show_user_post(post.user) %></div> 
         </div>
-        <div class="assInfR"><%= link_to "more", post_myx_path(post.post_myx) %></div>
       </div>
       <div class="assInfB">
         <div id="rate_<%= post.id %>">

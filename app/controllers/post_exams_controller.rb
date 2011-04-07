@@ -97,7 +97,6 @@ class PostExamsController < ApplicationController
     @post.type_name = @class_name
     @post.save
     @post_exam = PostExam.new(params[:post_exam])
-    @post_exam = PostProject.new(params[:post_project])
     @post.school.tag(@post_exam, :with => params[:tag], :on => :tags)
     @post.school.owned_taggings
     @post.school.owned_tags

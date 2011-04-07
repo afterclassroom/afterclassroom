@@ -1,20 +1,24 @@
 <div class="col195 tutorEff">
-  <div class="col195in">
-    <h1 class="col195Title">Effective Tutors</h1>
-    <div class="col195Cont">
-      <%
-      effective_tutors = PostTutor.with_limit.effective_tutors(@school)
-    %>
-      <% if effective_tutors.size > 0 %>
-        <%
-        effective_tutors.each do |tt|
-        %>
-          <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_tutor_path(tt) %></div>
-          </div>
-        <% end %>
-        <div class="dueDbutton"><%= link_to "View more Effective Tutors", effective_post_tutors_path %></div>
-      <% end %>
+    <div class="col195in">
+        <h1 class="col195Title">Effective Tutors</h1>
+        <div class="col195Cont">
+            <%
+            effective_tutors = PostTutor.with_limit.effective_tutors(@school) %>
+            <% if effective_tutors.size > 0 %>
+            <%
+            effective_tutors.each do |tt| %>
+            <div class="dueDItem">
+                <div class="dueDTitle">
+                    <%= link_to truncate_words(tt.post.title, 4), post_tutor_path(tt) %>
+                </div>
+            </div>
+            <% end %>
+            <% if effective_tutors.size > LIMIT - 1 %>
+            <div class="dueDbutton">
+                <%= link_to "View more Effective Tutors", effective_post_tutors_path %>
+            </div>
+            <% end %>
+            <% end %>
+        </div>
     </div>
-  </div>
 </div>

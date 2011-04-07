@@ -115,9 +115,11 @@ class SettingsController < ApplicationController
     @user = current_user
     @user.password = params[:password]
     if @user.save
-      redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+      flash[:notice] = "Updated Successfully"
+      redirect_to :action => "setting"
     else
-      redirect_to :action => "setting", :inf_msg => "Updated Failed"
+      flash[:error] = "Updated Failed"
+      redirect_to :action => "setting"
     end
   end
   
@@ -129,9 +131,11 @@ class SettingsController < ApplicationController
     @user = current_user
     @user.name = params[:changed_value]
     if @user.save
-      redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+      flash[:notice] = "Updated Successfully"
+      redirect_to :action => "setting"
     else
-      redirect_to :action => "setting", :inf_msg => "Updated Failed"
+      flash[:error] = "Updated Failed"
+      redirect_to :action => "setting"
     end
   end
   
@@ -143,9 +147,11 @@ class SettingsController < ApplicationController
     @user = current_user
     @user.email = params[:changed_value]
     if @user.save
-      redirect_to :action => "setting", :inf_msg => "Updated Successfully"
+      flash[:notice] = "Updated Successfully"
+      redirect_to :action => "setting"
     else
-      redirect_to :action => "setting", :inf_msg => "Updated Failed"
+      flash[:error] = "Updated Failed"
+      redirect_to :action => "setting"
     end
   end
   

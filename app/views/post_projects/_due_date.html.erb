@@ -3,7 +3,7 @@
     <h1 class="col195Title">Due date</h1>
     <div class="col195Cont">
       <%
-      projects_due_date = PostProject.due_date(@school).with_limit
+      projects_due_date = PostProject.due_date.with_school(@school).with_limit
     %>
       <% if projects_due_date.size > 0 %>
         <%

@@ -1,20 +1,24 @@
 <div class="col195 tutorHire">
-  <div class="col195in">
-    <h1 class="col195Title">Don't hire</h1>
-    <div class="col195Cont">
-      <%
-      dont_hires = PostTutor.with_limit.dont_hire(@school)
-    %>
-      <% if dont_hires.size > 0 %>
-        <%
-        dont_hires.each do |tt|
-        %>
-          <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_tutor_path(tt) %></div>
-          </div>
-        <% end %>
-        <div class="dueDbutton"><%= link_to "View more Don't hire", dont_hire_post_tutors_path %></div>
-      <% end %>
+    <div class="col195in">
+        <h1 class="col195Title">Don't hire</h1>
+        <div class="col195Cont">
+            <%
+            dont_hires = PostTutor.with_limit.dont_hire(@school) %>
+            <% if dont_hires.size > 0 %>
+            <%
+            dont_hires.each do |tt| %>
+            <div class="dueDItem">
+                <div class="dueDTitle">
+                    <%= link_to truncate_words(tt.post.title, 4), post_tutor_path(tt) %>
+                </div>
+            </div>
+            <% end %>
+            <% if dont_hires.size > LIMIT - 1 %>
+            <div class="dueDbutton">
+                <%= link_to "View more Don't hire", dont_hire_post_tutors_path %>
+            </div>
+            <% end %>
+            <% end %>
+        </div>
     </div>
-  </div>
 </div>
