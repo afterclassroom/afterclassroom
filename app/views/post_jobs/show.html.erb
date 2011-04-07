@@ -18,19 +18,20 @@ You are here: <a href="/">Home</a>
             </div>
         </div>
         <div class="AsDCont">
-        	<%= display_flash_messages_with_raw %>
+            <%= display_flash_messages_with_raw %>
             <div class="AsDContL">
                 <h2 class="titleH2"><%= @post.title %></h2>
                 <div class="AsDContLin">
                     in<span><%= link_to @post.post_category.name, post_jobs_path %></span>
                 </div>
                 <div class="AsDContLask">
-                    <span>Posted by:</span><%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
+                    <span>Posted by:</span>
+                    <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
                 </div>
-                <div class="AsDContLdes">
-                    <span>Description:</span>
-                    <%= @post.description %>
-                </div>
+            </div>
+            <div class="AsDContLdes">
+                <span>Description:</span>
+                <%= @post.description %>
             </div>
             <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
             <%= render :partial => "post_actions", :locals => {:post => @post} %>
@@ -86,6 +87,7 @@ You are here: <a href="/">Home</a>
             <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
         </div>
     </div>
+</div>
 <div class="contMainR">
     <!--Ads-->
     <%= render :partial => "ads/show_vertical_ads" %>
