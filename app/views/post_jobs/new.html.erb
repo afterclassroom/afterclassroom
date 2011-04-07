@@ -17,12 +17,12 @@
       <h1 class="titleH1">Posting to the world!</h1>
     </div>
     <div class="postCont">
-    	<%= display_flash_messages_with_raw %>
+      <%= display_flash_messages_with_raw %>
       <%= form_for(@post_job, :html => {:multipart => true, :id => "form_post" }) do |f| %>
         <%= render :partial => "form", :locals => {:f => f} %>
-		<div style="margin-left:120px">
-		  	<%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-		</div>
+        <div style="margin-left:120px">
+          <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+        </div>
         <div class="submit"><a href="javascript:;" onclick="submit();"><%= submit_tag 'Submit' %></a></div>
       <% end %>
     </div>
@@ -43,6 +43,3 @@
   <!--Recent Request Jobs-->
 </div>
 <!--Content-->
-<script language="javascript">
-
-</script>

@@ -179,9 +179,7 @@ class PostJobsController < ApplicationController
     @post.school.owned_tags
     @post_job.post = @post
 
-    if (params[:jobinfo] != nil)
-      @post_job.job_files.build(params[:jobinfo].merge({:user_id => current_user.id}))
-    else
+    if (@post_job.job_type.label == "i_m_looking_for_job")
       #If user does not upload file, records for these 3 files are created with empty url
       #user can upload these files later
       @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))

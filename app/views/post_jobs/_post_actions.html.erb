@@ -1,5 +1,5 @@
 <div class="AsDContBtm">
-  <% if  post.post_job.job_type.name != "I'm looking for job" %>
+  <% if post.post_job.job_type.name != "I'm looking for job" %>
     <span class="btmApp"><%= show_apply_now() %></span>
   <% end %>
 
@@ -10,7 +10,10 @@
   <div  id="show_job_button">
     <span class="btmAddJob"><%= show_add_job(post) %></span>
     <span class="btmJobList"><%= show_my_job_list(post) %></span>
-  </div>
+  </div
+  <% if post.attach_file_name and post.post_job.job_type.label != "i_m_looking_for_job" %>
+    <span class="btmDown"><a href="javascript:downloadFile('<%= post.attach.url %>')" class="downarrow"><span>Download</span></a></span>
+  <% end %>
 </div>
 <script type="text/javascript">
   var upload_area = false;

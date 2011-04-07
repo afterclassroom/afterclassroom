@@ -33,7 +33,7 @@ type ||= 1
 		  	<%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
 		  </div>
 		  <div id="resume_area">
-         	<%= render :partial => "/shared/form_request_post/resume_cv", :locals => {:p => p}, :locals => {:f => f} %>
+         	<%= render :partial => "/shared/form_request_post/resume_cv" %>
 		  </div>
 		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
           <div class="submit"><%= show_submit_form() %></div>
