@@ -192,11 +192,13 @@
 .assContT{
   float:right;
   width:245px;
+  word-wrap:break-word;
 }
 .assDes{
   clear:both;
   color:#6f6f63;
   padding:2px 0px 7px 0px;
+  word-wrap: break-word;
 }
 .assCate, .assInfL{
   font-size:11px;
@@ -434,6 +436,7 @@
   float:left;
   width:450px;
   padding-right:10px;
+  word-wrap: break-word;
 }
 .AsDContLin span, .AsDContLask span{
   color:#0b8ccb;
@@ -449,6 +452,7 @@
 }
 .AsDContLdes{
   padding:5px 0px;
+  word-wrap: break-word;
 }
 .AsDContLinf{
   padding-bottom:3px;
@@ -1001,6 +1005,7 @@ span.btmDown a:hover{
   background:url('/images/dotBlack.png') no-repeat left 6px;
   padding-left:10px;
   padding-bottom:5px;
+  word-wrap: break-word;
 }
 .AsDOrItem a, .AsDOrItem a:link{
   color:#323232;
