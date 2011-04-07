@@ -97,10 +97,9 @@ class StudentLoungesController < ApplicationController
       msg = FlirtingMessage.new({:user_id => current_user.id, :message => message})
       chanel.flirting_messages << msg
       chanel.save
-      content = help.raw(render(:partial => "item_chat", :locals => {:message => msg}))
+      content = help.raw(render_to_string(:partial => "item_chat", :locals => {:message => msg}))
       Juggernaut.publish(client_ids, {:chanel_name => chanel.chanel_name, :message => "<li>#{content}</li>", :event => "send_data"})
     end
-    
     render :nothing => true
   end
   

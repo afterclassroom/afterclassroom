@@ -367,6 +367,7 @@ function insert_text_to_chatcontent(chanel_name, text_chat){
 function openChat(title, chanel_name){
     if ($('#' + chanel_name).length == 0) {
         var win = $.customWindow({
+			winId: chanel_name,
             title: title,
             onopen: function(cont, obj){
                 $.ajax({
