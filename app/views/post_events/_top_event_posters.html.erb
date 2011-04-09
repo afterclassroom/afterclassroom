@@ -1,0 +1,12 @@
+<div class="col195 Poster">
+  <div class="col195in">
+    <h1 class="col195Title">Top posters</h1>
+    <div class="col195Cont">
+      <% users = PostEvent.top_event_posters(session[:your_school]) %>
+        <% users.each do |user| %>
+          <div class="posterL"><%= show_image_user_post(user) %></div>
+        <% end %>
+    </div>
+  </div>
+</div>
+

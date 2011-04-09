@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110312152507) do
+ActiveRecord::Schema.define(:version => 20110312152508) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -345,9 +345,9 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
   end
 
   create_table "post_assignments", :force => true do |t|
-    t.integer  "post_id"
-    t.string   "professor"
-    t.datetime "due_date"
+    t.integer "post_id"
+    t.string  "professor"
+    t.date    "due_date"
   end
 
   create_table "post_awarenesses", :force => true do |t|
@@ -378,6 +378,13 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
   create_table "post_categories", :force => true do |t|
     t.string "name",       :null => false
     t.string "class_name", :null => false
+  end
+
+  create_table "post_events", :force => true do |t|
+    t.integer "post_id"
+    t.string  "address"
+    t.string  "phone"
+    t.string  "rating_status"
   end
 
   create_table "post_exam_schedules", :force => true do |t|
@@ -578,10 +585,12 @@ ActiveRecord::Schema.define(:version => 20110312152507) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+    t.string   "session_id",       :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "last_url_visited"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"

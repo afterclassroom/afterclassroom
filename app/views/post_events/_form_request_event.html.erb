@@ -1,0 +1,27 @@
+<div class="col300 requestEvent">
+  <div class="col300in">
+    <h1 class="col300Title">Quick post for Event</h1>
+    <div class="col300Cont">
+      <%= form_for :post_party, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+        <%= fields_for :post do |p| %>
+          <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
+          <div class="reqSl">
+            <div class="req40">
+              <div class="reqLa"><label>Phone</label></div>
+              <div class="reqTi"><%= f.text_field :phone %></div>
+            </div>
+            <div class="req60">
+              <div class="reqLa"><label>Address</label></div>
+              <div class="reqTi"><%= f.text_field :address %></div>
+            </div>
+          </div>
+          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/select_tag" %>
+		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+          <div class="submit"><%= show_submit_form() %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

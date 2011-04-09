@@ -106,6 +106,8 @@ module ApplicationHelper
       path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_test.png"
       when "post_exams"
       path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_exam.png"
+	  when "post_events"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_party.png"
       when "post_qas"
       path = "/images/icons/icon_defaut/icon_qa.png"
       when "post_tutors"
@@ -170,6 +172,8 @@ module ApplicationHelper
       when "post_exams"
       type = PostCategory.find_by_class_name("PostExam").id
       search_post_path = search_post_assignments_path
+	  when "post_events"
+      type = PostCategory.find_by_class_name("PostEvent").id
       when "post_qas"
       type = PostCategory.find_by_class_name("PostQa").id
       search_post_path = search_post_qas_path
@@ -220,6 +224,8 @@ module ApplicationHelper
       link_edit = edit_post_test_url(post.post_test)
       when "PostExam"
       link_edit = edit_post_exam_url(post.post_exam)
+	  when "PostEvent"
+      link_edit = edit_post_event_url(post.post_event)
       when "PostQa"
       link_edit = edit_post_qa_url(post.post_qa)
       when "PostTutor"

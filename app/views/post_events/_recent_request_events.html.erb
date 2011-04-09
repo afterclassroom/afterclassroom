@@ -1,0 +1,25 @@
+<div class="col300 Recent">
+  <div class="col300in">
+    <h1 class="col300Title">Recent Event Requested</h1>
+    <div class="col300Cont">
+      <%
+      events_recent = PostEvent.with_school(@school).recent.with_limit
+    %>
+      <% if events_recent.size > 0 %>
+        <%
+        events_recent.each do |event|
+        %>
+          <div class="recentItem">
+            <div class="recentImg"><%= show_image_user_post(event.post.user) %></div>
+            <div class="recentInf">
+              <div class="recentName"><%= show_user_post(event.post.user) %></div>
+              <div class="recentUni"><span>at</span><%= link_to event.post.school.name, :controller => "post_events", :action => "index", :from_school => event.post.school %></div>
+              <div class="recentDes"><%= link_to event.post.title, post_event_path(event) %></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="recentBottom">&nbsp;</div>
+    </div>
+  </div>
+</div>

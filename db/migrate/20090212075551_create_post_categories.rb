@@ -20,7 +20,8 @@ class CreatePostCategories < ActiveRecord::Migration
       ["Team Up", "PostTeamup"],
       ["MyX", "PostMyx"],
       ["Food", "PostFood"],
-      ["Schedules", "PostExamSchedule"]
+      ["Schedules", "PostExamSchedule"],
+      ["Events", "PostEvent"]
     ].each do |s|
       PostCategory.new(:name => s.first, :class_name => s.last).save
     end

@@ -1,0 +1,59 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Events", post_events_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="AsDTop">
+      <h1 class="titleH1">Event details</h1>
+      <div class="AsDsearch">
+        <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_events_path} %>
+      </div>
+    </div>
+    <div class="AsDCont">
+    	<%= display_flash_messages_with_raw %>
+      <div class="AsDContL">
+        <h2 class="titleH2"><%= @post.title %></h2>
+        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_events_path %></span></div>
+        <div class="AsDContLask"><span>Posted by:</span><%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
+        <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
+      </div>
+      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
+      <%= render :partial => "post_actions", :locals => {:post => @post} %>
+    </div>
+
+    <%= show_post_comments(@post) %>
+    <div class="goback" id="go_back"><%= show_go_back %></div>
+    <div class="comPage">
+      <span class="compre"><%= link_to "", post_event_path(@prev) if @prev %> </span>
+      <span class="comnext"><%= link_to "", post_event_path(@next) if @next %></span>
+    </div>
+    <div class="AsDOr">
+      <h1 class="titleH1">Related posts</h1>
+      <% PostEvent.related_posts(@school).each do |p| %>
+        <div class="AsDOrItem"><%= link_to p.title, post_event_path(p.post_event) %></div>
+      <% end %>
+    </div>
+    <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+  </div>
+</div>
+
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by Subject-->
+</div>
+<!--Content-->

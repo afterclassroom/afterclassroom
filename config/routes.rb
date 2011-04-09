@@ -202,6 +202,12 @@ Afterclassroom::Application.routes.draw do
     end
   end
 
+  resources :post_events do
+    collection do
+      get :search, :tag, :rate
+    end
+  end
+  
   resources :post_qas do
     collection do
       get :search, :tag, :interesting, :top_answer, :create_comment, :show_comment, :rate, :require_rate, :prefer, :sendmail

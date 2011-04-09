@@ -1,0 +1,7 @@
+<div class="menuRItem menuRselect"><a href="<%= "#{post_events_path}" %>"><span class="span1"><span class="span2">Just Posted</span></span></a></div>
+
+<% if logged_in? %>
+<div style="margin-left:20px" class="menuRItem">
+    <a href="<%= "#{user_post_managements_url(current_user)}?category=#{@class_name}"  %>"><span class="span1"><span class="span2">Post management</span></span></a>
+</div>
+<% end %>

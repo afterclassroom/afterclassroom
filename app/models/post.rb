@@ -27,6 +27,7 @@ class Post < ActiveRecord::Base
   has_one :post_qa, :dependent => :destroy
   has_one :post_food, :dependent => :destroy
   has_one :post_exam_schedule, :dependent => :destroy
+  has_one :post_event, :dependent => :destroy
   
   # Named scope
   scope :with_user_id, lambda {|usr| {:conditions => ["user_id = ?", usr], :order => "created_at DESC"}}
