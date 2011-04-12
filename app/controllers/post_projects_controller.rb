@@ -107,7 +107,7 @@ class PostProjectsController < ApplicationController
     @post.save
     @post_project = PostProject.new(params[:post_project])
     @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
-    @post.school.tag(@post_assignment, :with => params[:tag], :on => :tags)
+    @post.school.tag(@post_project, :with => params[:tag], :on => :tags)
     @post.school.owned_taggings
     @post.school.owned_tags
     @post_project.post = @post

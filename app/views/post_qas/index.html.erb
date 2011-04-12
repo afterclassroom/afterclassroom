@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Q.As", post_qas_path, :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Q&A", post_qas_path, :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -49,9 +49,9 @@
   <%= render :partial => "interesting" %>
   <!--Browser Interesting questions-->
 
-  <!--Browser Poll Q.As-->
+  <!--Browser Poll Q&A-->
   <%= render :partial => "poll" %>
-  <!--Browser Poll Q.As-->
+  <!--Browser Poll Q&A-->
 </div>
 
 <div class="contMainR">
