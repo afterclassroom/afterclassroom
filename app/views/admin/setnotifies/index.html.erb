@@ -36,17 +36,6 @@
 
 
 
-                              <%#*<tr class="alternate-row">%>
-                                <%#*<td></td>%>
-                                <%#*<td>Take Action Now</td>%>
-                                <%#*<td class="options-width">%>
-                                  <%#*<a></a><a class="icon-5 info-tooltip" href=""></a>%>
-                                  <%#*<a></a><a class="icon-1 info-tooltip" href=""></a>%>
-                                  <%#*<a></a><a rel="nofollow" data-method="delete" data-confirm="Are you sure?" class="icon-2 info-tooltip" href="/awareness_types/1"></a>%>
-                                <%#*</td>%>
-                                <%#*<td></td>%>
-                              <%#*</tr>%>
-
 
   <% @notifications.each do |ntfobj| %>
 
@@ -95,7 +84,24 @@
                               <div id="related-act-inner">
                                 <div class="left"><a href=""><img width="21" height="21" alt="" src="/images/admin/forms/icon_plus.gif"></a></div>
                                 <div class="right">
-                                  <h5><a href="">New Notification</a></h5>
+                                  <h5>
+                                  <%= link_to "New Notification", addnew_admin_setnotifies_path %>
+
+                                  </h5>
+                                </div>
+                                <div class="clear"></div>
+                              </div>
+                              <div id="related-act-inner">
+                                <div class="left"><a href=""><img width="21" height="21" alt="" src="/images/admin/forms/icon_plus.gif"></a></div>
+                                <div class="right">
+                                  <h5><a href="javascript:;" id="edit_noti">Edit Notification</a></h5>
+                                </div>
+                                <div class="clear"></div>
+                              </div>
+                              <div id="related-act-inner">
+                                <div class="left"><a href=""><img width="21" height="21" alt="" src="/images/admin/forms/icon_plus.gif"></a></div>
+                                <div class="right">
+                                  <h5><a href="javascript:;" id="delete_noti">Delete Notification</a></h5>
                                 </div>
                                 <div class="clear"></div>
                               </div>
@@ -211,67 +217,37 @@
 
 
 
-<div style="display: inline;border: 2px solid green;" id="add">Add
-  <%= link_to "Add New", addnew_admin_setnotifies_path %>
-</div>
-<div style="display: inline;border: 2px solid yellow;" id="edit">Edit</div>
-<div style="display: inline;border: 2px solid black;" id="delete">Delete</div>
-
-<table border="1">
-  <tr>
-    <th>Name</th>
-    <th>Notify Type</th>
-    <th>SMS</th>
-    <th>Email</th>
-  </tr>
-  <% @notifications.each do |ntfobj| %>
-
-    <tr id="tr_<%= ntfobj.id %>">
-      <td><%= ntfobj.name %></td>
-      <td><%= ntfobj.notify_type %></td>
-      <td><%= check_box_tag("smsarr[]", ntfobj.id, checked = ntfobj.sms_allow, :disabled => true ) %>  </td>
-      <td><%= check_box_tag("emailarr[]", ntfobj.id, checked = ntfobj.email_allow, :disabled => true  )%> </td>
-    </tr>
-
-
-  <% end %>
-
-</table>
-
 <script type="text/javascript">
-  /*
   var selectedTR;
-  <%#*var deleteURL = '<%= delete_admin_setnotifies_path %>';%>
+  var deleteURL = '<%= delete_admin_setnotifies_path %>';
+
   $(document).ready(function(){
+    $("tr[id*='tr_']").click(function(){
 
-    $('tr:gt(1)').click(function(){
-
-      var selectedID = $(this).find('td:eq(2)>input').attr('value');
-
+      var selectedID = $(this).find('td:eq(3)>input').attr('value');
 
       if (selectedTR!= undefined){
-        selectedTR.css('border','1px solid black');
+        selectedTR.css('background-color','');
       }
-      
       selectedTR = $(this);
-      $(this).css('border','3px solid red');
+      $(this).css('background-color','lightBlue');
 
-      $('#edit').unbind('click');
-      $('#edit').click(function(){
-        <%#*window.location = '<%= edit_admin_setnotifies_url %>?selectedID='+selectedID;%>
+      $('#edit_noti').unbind('click');
+      $('#edit_noti').click(function(){
+        window.location = '<%= edit_admin_setnotifies_url %>?selectedID='+selectedID;
       });
-      $('#delete').unbind('click');
-      $('#delete').click(function(){
+
+      $('#delete_noti').unbind('click');
+      $('#delete_noti').click(function(){
         var answer = confirm ("Are you sure to delete this notification?")
         if (answer){
-          <%#*window.location = '<%= delete_admin_setnotifies_url %>?selectedID='+selectedID;%>
+          window.location = '<%= delete_admin_setnotifies_url %>?selectedID='+selectedID;
         }
 
       });
 
+
     });
-
-
   });
-  */
+
 </script>
