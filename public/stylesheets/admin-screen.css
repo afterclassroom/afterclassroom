@@ -2810,7 +2810,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
   font-size: 13px;
   height: 38px;
   position: relative;
-  width: 600px;
+  width: 750px;
   min-width: 600px;
   z-index: 500;
 }
@@ -2898,7 +2898,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
   list-style: none;
   /* margin: 0 auto; */
   padding: 0;
-  width: 1024px;
+  width: 1124px;
 }
 .nav .sub_active .current_sub a, 
 .nav .sub_active a:hover	{

@@ -232,10 +232,10 @@ h2.titleH2 a:hover{ color:#d00}
 .assItem{ padding:9px 0px; clear:both; overflow:hidden; _height:100%; border-bottom:1px #e4e4e4 solid}
 .assItemL{ width:326px; float:left}
 .assImg{ float:left; overflow:hidden}
-.assImg div{ background:url('/images/bgimg71.png') no-repeat; height:61px; padding-top:5px; text-align:center; width:71px}
+.assImg div{ background:url('/images/bgimg71.png') no-repeat; height:61px; padding:5px 5px; text-align:center; width:71px}
 .assImg img{ border:0px}
-.assContT{ float:right; width:245px}
-.assDes{ clear:both; color:#6f6f63; padding:2px 0px 7px 0px}
+.assContT{ word-wrap:break-word}
+.assDes{ clear:both; color:#6f6f63; padding:2px 0px 7px 0px; word-wrap: break-word}
 .assCate, .assInfL{ font-size:11px; color:#0a81c4}
 .assCate a, .assInfL a, .assCate a:link, .assInfL a:link, .assCate a:visited, .assInfL a:visited{ color:#0a81c4; text-decoration:none}
 .assCate a:hover, .assInfL a:hover{ color:#d00}
@@ -289,11 +289,11 @@ h2.titleH2 a:hover{ color:#d00}
 .AsDsearch input{ border:0px; color:#8f8f8f; width:220px; margin:1px 0px 0px 2px; background-color:transparent; padding:0px; height:20px; text-indent:3px; padding-top:3px}
 .AsDsearch img{ border:0px}
 .AsDCont{ padding:5px 5px 5px 20px}
-.AsDContL{ float:left; width:450px; padding-right:10px}
+.AsDContL{ float:left; width:435px; padding-right:10px; word-wrap: break-word}
 .AsDContLin span, .AsDContLask span{ color:#0b8ccb; padding:0px 4px}
 .AsDContLask a, .AsDContLask a:link, .AsDContLask a:visited{ color:#0b8ccb; padding:0px 4px; text-decoration:none}
 .AsDContLask a:hover{ color:#d00;text-decoration:none}
-.AsDContLdes{ padding:5px 0px}
+.AsDContLdes{ padding:5px 0px; word-wrap: break-word}
 .AsDContLinf{ padding-bottom:3px}
 .AsDContLdes span, .AsDContLinf span{ font-weight:bold; padding-right:5px}
 .AsDContImg{ float:left; width:60px}
@@ -354,8 +354,8 @@ span.btmDown a:hover{ background:url('/images/btmDownH.png') no-repeat}
 .req40{ float:left; width:104px; padding-right:10px}
 .regReload{ height:15px; text-align:right}
 .regRlBt{ background:url('/images/learnFeed.png') no-repeat left top; padding-left:18px}
-.postItemB {background:url(/images/upload_file.png) no-repeat 100% 2px; height:26px; padding:5px 0 1px 0}
-.postItemA {background:url(/images/upload_file.png) no-repeat 60% 2px; height:24px; padding:3px 0 2px 0; margin:3px 0}
+.postItemB {background:url(/images/upload_file.png) no-repeat 100% 4px; height:26px; padding:4px 0 0 0}
+.postItemA {background:url(/images/upload_file.png) no-repeat 59% 2px; height:24px; padding:3px 0 2px 0; margin:3px 0}
 #divinputfile{ height:24px; padding-bottom:2px}
 .postTitt {font-weight:bold; line-height:20px; width:110px; position:absolute; margin-top:5px; margin-left:10px}
 .postUpfile{ margin-top:-21px}
@@ -416,7 +416,7 @@ span.btmDown a:hover{ background:url('/images/btmDownH.png') no-repeat}
 .comPage a, .comPage a:link, .comPage a:visited, .comPage a:hover{ text-decoration:none}
 .AsDOr{ clear:both; margin:0px 20px; border-bottom:1px #e3e3e3 solid; padding:5px 0px}
 .AsDOr .titleH1{ border-bottom:0px}
-.AsDOrItem{ background:url('/images/dotBlack.png') no-repeat left 6px; padding-left:10px; padding-bottom:5px}
+.AsDOrItem{ background:url('/images/dotBlack.png') no-repeat left 6px; padding-left:10px; padding-bottom:5px; word-wrap: break-word}
 .AsDOrItem a, .AsDOrItem a:link{ color:#323232; text-decoration:underline}
 .AsDOrItem a:visited{ color:#757575}
 .AsDOrItem a:hover{ color:#d00}
@@ -457,7 +457,7 @@ span.btmAbuse a:hover{ background:url('/images/btmAbuseH.png') no-repeat}
 .postItem div{ float:left}
 .postItem .postRad div{ clear:both; width:500px}
 .postItem .postInp input{ border:1px #cecece solid; width:250px; height:15px; padding-top:3px}
-.postItem input{ border:1px #cecece solid}
+.postItem input{ border:1px #cecece solid; margin-left: 0px}
 .postItem .postInp span{ margin-left:5px}
 .postItem select{ width:253px}
 .postItem textarea{ border:1px #cecece solid; width:360px; height:160px }
@@ -472,7 +472,7 @@ div.postInf{ color:#be2626; line-height:20px; padding-left:5px; font-style:itali
 .postShare span{ font-weight:bold; padding-right:5px}
 .postShare a, .postShare a:link, .postShare a:visited{ color:#6f6f63; text-decoration:none}
 .postShare a:hover{ color:#d00; text-decoration:none}
-.post .submit{ padding:10px 20px}
+.post .submit{ padding:10px 10px}
 .postDesInf{ padding-bottom:3px}
 .user_ri1 input{ width:300px; margin-bottom:10px; margin-left:40px}
 .user_ri2 input{ width:300px; margin-bottom:10px; margin-left:44px}
