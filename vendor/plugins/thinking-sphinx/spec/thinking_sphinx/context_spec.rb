@@ -51,7 +51,7 @@ describe ThinkingSphinx::Context do
       }.should_not raise_error
     end
 
-    it "should catch database errors with a warning " do
+    it "should catch database errors with a flash[:warning] = " do
       @class_name.should_receive(:constantize).and_raise(Mysql::Error)
       STDERR.stub!(:puts => '')
       STDERR.should_receive(:puts).with('Warning: Error loading a.rb:')

@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110408093344) do
-=======
-ActiveRecord::Schema.define(:version => 20110312152508) do
->>>>>>> 44d08255b1f90cc633a4f3fee7e96d4268e5d92b
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -364,9 +360,9 @@ ActiveRecord::Schema.define(:version => 20110312152508) do
   end
 
   create_table "post_assignments", :force => true do |t|
-    t.integer "post_id"
-    t.string  "professor"
-    t.date    "due_date"
+    t.integer  "post_id"
+    t.string   "professor"
+    t.datetime "due_date"
   end
 
   create_table "post_awarenesses", :force => true do |t|

@@ -103,14 +103,14 @@ class PostExamsController < ApplicationController
     @post_exam.post = @post
     if simple_captcha_valid?
       if @post_exam.save
-        notice "Your post was successfully created."
+        flash[:notice] = "Your post was successfully created."
         redirect_to post_exams_path
       else
-        error "Failed to create a new post."
+        flash[:error] = "Failed to create a new post."
         render :action => "new"
       end
     else
-      warning "Captcha not match."
+      flash[:warning] = "Captcha not match."
       render :action => "new"
     end
   end

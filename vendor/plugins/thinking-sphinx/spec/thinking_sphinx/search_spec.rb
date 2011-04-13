@@ -73,7 +73,7 @@ describe ThinkingSphinx::Search do
       @search = ThinkingSphinx::Search.new
     end
     
-    it "should be false if client requests have not resulted in a warning " do
+    it "should be false if client requests have not resulted in a flash[:warning] = " do
       @search.should_receive(:warning).and_return(nil)
       @search.warning?.should_not be_true
     end

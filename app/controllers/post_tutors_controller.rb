@@ -156,15 +156,15 @@ class PostTutorsController < ApplicationController
     @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
     if simple_captcha_valid?
       if @post_tutor.save
-        notice "Your post was successfully created."
+        flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_tutor_path(@post))
         redirect_to post_tutors_path + "?tutor_type_id=#{@post_tutor.tutor_type_id}"
       else
-        error "Failed to create a new post."
+        flash[:error] = "Failed to create a new post."
         render :action => "new"
       end
     else
-      warning "Captcha not match."
+      flash[:warning] = "Captcha not match."
       render :action => "new"
     end
   end

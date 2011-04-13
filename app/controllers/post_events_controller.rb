@@ -117,7 +117,7 @@ class PostEventsController < ApplicationController
         flash.now[:notice] = "Your post was successfully created."
         redirect_to post_events_path
       else
-        error "Failed to create a new post."
+        flash[:error] = "Failed to create a new post."
         render :action => "new"
       end
     else

@@ -181,10 +181,10 @@ class PostAwarenessesController < ApplicationController
     @post.school.owned_tags
     @post_awareness.post = @post
     if @post_awareness.save
-      notice "Your post was successfully created."
+      flash[:notice] = "Your post was successfully created."
       redirect_to post_awarenesses_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"
     else
-      error "Failed to create a new post."
+      flash[:error] = "Failed to create a new post."
       render :action => "new"
     end
   end

@@ -128,15 +128,15 @@ class PostTeamupsController < ApplicationController
     @post_teamup.teamup_category_id ||= TeamupCategory.first.id
     if simple_captcha_valid?
       if @post_teamup.save
-        notice "Your post was successfully created."
+        flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_teamup_path(@post))
         redirect_to post_teamups_path + "?teamup_category_id=#{@post_teamup.teamup_category_id}"
       else
-        error "Failed to create a new post."
+        flash[:error] = "Failed to create a new post."
         render :action => "new"
       end
     else
-      warning "Captcha not match."
+      flash[:warning] = "Captcha not match."
       render :action => "new"
     end
   end

@@ -103,15 +103,15 @@ class PostTestsController < ApplicationController
     @post_test.post = @post
     if simple_captcha_valid?
       if @post_test.save
-        notice "Your post was successfully created."
+        flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_test_path(@post))
         redirect_to post_tests_path
       else
-        error "Failed to create a new post."
+        flash[:error] = "Failed to create a new post."
         render :action => "new"
       end
     else
-      warning "Captcha not match."
+      flash[:warning] = "Captcha not match."
       render :action => "new"
     end
   end

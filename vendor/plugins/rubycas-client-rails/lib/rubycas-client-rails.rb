@@ -326,7 +326,7 @@ module RubyCAS
               log.warn("Couldn't destroy session with SessionIndex #{si} because no corresponding session id could be looked up.")
             end
           else
-            log.error "Cannot process logout request because this Rails application's session store is "+
+            log.flash[:error] = "Cannot process logout request because this Rails application's session store is "+
               " #{current_sess_store.name.inspect}. Single Sign-Out only works with the "+
               " #{required_sess_store.name.inspect} session store."
           end
