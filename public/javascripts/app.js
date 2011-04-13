@@ -108,6 +108,7 @@ function send_comment(id, type){
                 $('#list_comments').append(data);
                 $('#comment').val('');
                 $('#form_comment').toggle('slow');
+				$('#comment_count').html($('div .AsDcomItem').size());
             }
         });
     }

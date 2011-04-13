@@ -99,6 +99,7 @@ class PostProjectsController < ApplicationController
   # POST /post_projects
   # POST /post_projects.xml
   def create
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

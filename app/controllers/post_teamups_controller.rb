@@ -114,6 +114,7 @@ class PostTeamupsController < ApplicationController
   # POST /post_teamups
   # POST /post_teamups.xml
   def create
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

@@ -110,6 +110,7 @@ class PostExamSchedulesController < ApplicationController
   # POST /post_exam_schedules
   # POST /post_exam_schedules.xml
   def create
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

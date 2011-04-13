@@ -90,6 +90,7 @@ class PostExamsController < ApplicationController
   # POST /post_exams
   # POST /post_exams.xml
   def create
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

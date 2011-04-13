@@ -14,7 +14,7 @@
 </div>
 <div class="AsDcomL" id="list_comments">
   <% if obj.comments.size > 0 %>
-    <h1 class="titleH1"><a href="javascript:;">Comments (<%= obj.comments.size %>)</a></h1>
+    <h1 class="titleH1"><a href="javascript:;">Comments (<span id="comment_count"><%= obj.comments.size %></span>)</a></h1>
     <% obj.comments.each do |c| %>
       <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
     <% end %>

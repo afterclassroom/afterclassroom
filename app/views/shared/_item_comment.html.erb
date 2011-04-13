@@ -1,7 +1,7 @@
 <div class="AsDcomItem" id="item_comment_<%= comnt.id %>">
-  <div class="AsDcomImg"><%= link_to raw("<div>#{image_tag(comnt.user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %></div>
+  <div class="AsDcomImg"><%= show_image_user_post(comnt.user) %></div>
   <div class="AsDcomItemR">
-    <div class="AsDcomName">Comment by<%= link_to comnt.user.full_name, {:controller => "profile", :action => "show_profile", :id => comnt.user.id} %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %></div>
+    <div class="AsDcomName">Comment by<%= show_user_post(comnt.user) %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %></div>
     <div class="AsDcomDes"><%= comnt.comment %></div>
     <div class="AsDcomRe">
       <div id="rate_comment_<%= comnt.id %>">

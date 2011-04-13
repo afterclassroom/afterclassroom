@@ -146,6 +146,7 @@ class PostQasController < ApplicationController
   # POST /post_qas
   # POST /post_qas.xml
   def create
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

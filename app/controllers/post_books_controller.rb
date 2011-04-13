@@ -141,6 +141,7 @@ class PostBooksController < ApplicationController
   # POST /post_books
   # POST /post_books.xml
   def create
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

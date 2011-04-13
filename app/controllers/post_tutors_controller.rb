@@ -142,6 +142,7 @@ class PostTutorsController < ApplicationController
   # POST /post_tutors
   # POST /post_tutors.xml
   def create
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

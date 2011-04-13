@@ -1,4 +1,6 @@
-<div class="menuRItem menuRselect"><a href="<%= "#{post_events_path}" %>"><span class="span1"><span class="span2">Just Posted</span></span></a></div>
+<% EventType.find(:all).each do |tt| %>
+<div class="menuRItem <%= "menuRselect" if @event_type_id && @event_type_id.to_i == tt.id %>"><a href="<%= "#{post_events_path}?event_type_id=#{tt.id}" %>"><span class="span1"><span class="span2"><%= tt.name %></span></span></a></div>
+<% end %>
 
 <% if logged_in? %>
 <div style="margin-left:20px" class="menuRItem">

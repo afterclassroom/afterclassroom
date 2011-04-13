@@ -127,6 +127,7 @@ class PostFoodsController < ApplicationController
   # POST /post_foods
   # POST /post_foods.xml
   def create
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

@@ -11,9 +11,9 @@ class PostEventsController < ApplicationController
   # GET /post_events
   # GET /post_events.xml
   def index  
-    @rating_status = params[:rating_status]
-    @rating_status ||= ""
-    @posts = PostEvent.paginated_post_conditions_with_option(params, @school, @rating_status)
+    @event_type_id = params[:event_type_id]
+    @event_type_id ||= 1
+    @posts = PostEvent.paginated_post_conditions_with_option(params, @school, @event_type_id)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -85,6 +85,7 @@ class PostEventsController < ApplicationController
     @post_event = PostEvent.new
     @post = Post.new
     @post_event.post = @post
+    @post_event.event_type_id = EventType.first.id
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post_event }
@@ -101,6 +102,7 @@ class PostEventsController < ApplicationController
   # POST /post_events
   # POST /post_events.xml
   def create
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school
@@ -115,7 +117,7 @@ class PostEventsController < ApplicationController
     if simple_captcha_valid?
       if @post_event.save
         flash.now[:notice] = "Your post was successfully created."
-        redirect_to post_events_path
+        redirect_to post_events_path + "?event_type_id=#{@post_event.event_type_id}"
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

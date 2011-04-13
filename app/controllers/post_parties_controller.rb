@@ -163,6 +163,7 @@ class PostPartiesController < ApplicationController
   # POST /post_parties.xml
   def create
     params[:post_party][:party_type_ids] = params[:party_type]
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

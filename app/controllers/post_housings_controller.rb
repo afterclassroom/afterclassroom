@@ -107,6 +107,7 @@ class PostHousingsController < ApplicationController
   # POST /post_housings.xml
   def create
     params[:post_housing][:housing_category_ids] = params[:housing_category]
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

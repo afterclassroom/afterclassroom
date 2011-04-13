@@ -100,6 +100,7 @@ class PostAssignmentsController < ApplicationController
   # POST /post_assignments
   # POST /post_assignments.xml
   def create 
+    @tag_list = params[:tag]
     @post = Post.new(params[:post])
     @post.user = current_user
     @post.school_id = @school

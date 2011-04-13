@@ -4,6 +4,7 @@ class PostEvent < ActiveRecord::Base
   
   # Relations
   belongs_to :post
+  belongs_to :event_type
   has_one :rating_statistic
   has_many :ratings
 
@@ -24,7 +25,7 @@ class PostEvent < ActiveRecord::Base
   scope :previous, lambda { |att| {:conditions => ["post_events.id < ?", att]} }
   scope :next, lambda { |att| {:conditions => ["post_events.id > ?", att]} }
 
-  def self.paginated_post_conditions_with_option(params, school, rating_status)
+  def self.paginated_post_conditions_with_option(params, school, event_type_id)
     over = 30 || params[:over].to_i
     year = params[:year]
     department = params[:department]
@@ -32,10 +33,10 @@ class PostEvent < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_events = PostEvent.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_event, post|
+    post_events = PostEvent.ez_find(:all, :include => [:post, :event_type], :order => "posts.created_at DESC") do |post_event, post, event_type|
       post.department_id == department if department
       post.school_year == year if year
-      post_event.rating_status == rating_status
+      event_type.id == event_type_id
       post.school_id == with_school if with_school
       post.created_at > Time.now - over.day
     end

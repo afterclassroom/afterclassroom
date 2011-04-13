@@ -1,6 +1,10 @@
 <%= fields_for @post do |post| %>
   <%= display_flash_messages_with_raw %>
   <div class="postReq">*(asterisk) is required.</div>
+  <div class="postItemDep">
+    <div class="postTit">Type</div>
+    <div class="postDep"><%= f.text_field :event_type_id %></div>
+  </div>
   <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_school" %>
@@ -19,3 +23,18 @@
   	<%= show_simple_captcha(:label => "CAPTCHA Code *") %>
   </div>
 <% end %>
+
+<ul id="event_type_menu" class="mcdropdown_menu">
+  <% EventType.find(:all).each do |t| %>
+    <li rel_event_type="<%= t.id %>">
+      <%= t.name %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  $("#post_event_event_type_id").mcDropdown("#event_type_menu", {
+    width: 350,
+    valueAttr: "rel_event_type"
+  });
+</script>
