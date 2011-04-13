@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Party", post_parties_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Events", post_events_path, :class => "abLink-detail" %><%= link_to "Subject: '#{@tag_name}'", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -13,14 +13,11 @@
 <!--Content-->
 <div class="contMain">
   <div class="contMainL">
-    <div class="col451 Party">
+    <div class="col451 Event">
       <div class="col451in">
         <div class="col451Cont">
           <div class="AsDTop">
-            <h1 class="titleH1">Party</h1>
-            <div class="AsDsearch">
-            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_parties_path} %>
-          </div>
+            <h1 class="titleH1">Event</h1>
           </div>
 		  <%= display_flash_messages_with_raw %>
           <!--List Items-->
@@ -43,17 +40,9 @@
   </div>
 
   <div class="contMainC">
-    <!--Browser Top Club-->
-    <%= render :partial => "top_club" %>
-    <!--Browser Top Club-->
-
-    <!--Browser Top party posters-->
-    <%= render :partial => "top_party_posters" %>
-    <!--Browser Top party posters-->
-    
-    <!--Browser Poll this Tutors-->
-    <%= render :partial => "poll" %>
-    <!--Browser Poll this Tutors-->
+    <!--Browser Top event posters-->
+    <%= render :partial => "top_event_posters" %>
+    <!--Browser Top event posters-->
   </div>
 
   <div class="contMainR">
@@ -65,9 +54,9 @@
     <%= render :partial => "ads/show_vertical_ads" %>
     <!--Ads-->
 
-    <!--Recent Request parties-->
-    <%= render :partial => "recent_request_parties" %>
-    <!--Recent Request parties-->
+    <!--Recent Request events-->
+    <%= render :partial => "recent_request_events" %>
+    <!--Recent Request events-->
   </div>
 </div>
 <!--Content-->

@@ -26,6 +26,9 @@ function getPostSearchType(post_type){
         case "Exams":
             action = "/post_exams/search";
             break;
+        case "Events":
+            action = "/post_events/search";
+            break;
         case "QAs":
             action = "/post_qas/search";
             break;

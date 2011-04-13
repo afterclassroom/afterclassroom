@@ -48,7 +48,7 @@ class PostTestsController < ApplicationController
   
   def tag
     @tag_name = params[:tag_name]
-    @posts = PostText.paginated_post_conditions_with_tag(params, @school, @tag_name)
+    @posts = PostTest.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
   
   # GET /post_tests/1

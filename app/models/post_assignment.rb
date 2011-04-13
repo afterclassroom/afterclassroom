@@ -6,6 +6,9 @@ class PostAssignment < ActiveRecord::Base
   # Relations
   belongs_to :post
 
+  # Tags
+  acts_as_taggable_on :tags
+  
   # Named Scope
   scope :with_limit, :limit => LIMIT
   scope :recent, {:joins => :post, :order => "created_at DESC"}
@@ -15,9 +18,6 @@ class PostAssignment < ActiveRecord::Base
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_assignments.id < ?", att]} }
   scope :next, lambda { |att| {:conditions => ["post_assignments.id > ?", att]} }
-
-  # Tags
-  acts_as_taggable_on :tags
   
   def self.paginated_post_conditions_with_option(params, school)
     over = 30 || params[:over].to_i

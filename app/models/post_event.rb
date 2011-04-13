@@ -1,4 +1,4 @@
-class PostFood < ActiveRecord::Base
+class PostEvent < ActiveRecord::Base
   # Validations
   validates_presence_of :post_id
   
@@ -10,20 +10,19 @@ class PostFood < ActiveRecord::Base
   # Tags
   acts_as_taggable_on :tags
 
-  # Rating for Bad, Cheap but Good, Good
+  # Rating for Bad, Good
   # Bad: 0
-  # Cheap but Good: 1
-  # Good: 2
-  acts_as_rated :rating_range => 0..2, :with_stats_table => true
+  # Good: 1
+  acts_as_rated :rating_range => 0..1, :with_stats_table => true
 
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :with_status, lambda { |st| {:conditions => ["post_foods.rating_status = ?", st]} }
+  scope :with_status, lambda { |st| {:conditions => ["post_events.rating_status = ?", st]} }
   scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  scope :previous, lambda { |att| {:conditions => ["post_foods.id < ?", att]} }
-  scope :next, lambda { |att| {:conditions => ["post_foods.id > ?", att]} }
+  scope :previous, lambda { |att| {:conditions => ["post_events.id < ?", att]} }
+  scope :next, lambda { |att| {:conditions => ["post_events.id > ?", att]} }
 
   def self.paginated_post_conditions_with_option(params, school, rating_status)
     over = 30 || params[:over].to_i
@@ -33,16 +32,16 @@ class PostFood < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_foods = PostFood.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_food, post|
+    post_events = PostEvent.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_event, post|
       post.department_id == department if department
       post.school_year == year if year
-      post_food.rating_status == rating_status
+      post_event.rating_status == rating_status
       post.school_id == with_school if with_school
       post.created_at > Time.now - over.day
     end
 
     posts = []
-    post_foods.select {|p| posts << p.post}
+    post_events.select {|p| posts << p.post}
     posts.paginate :page => params[:page], :per_page => 10
   end
   
@@ -60,8 +59,8 @@ class PostFood < ActiveRecord::Base
     posts
   end
 
-  def self.top_food_posters(school)
-    type_name = "PostFood"
+  def self.top_event_posters(school)
+    type_name = "PostEvent"
     limit = 15
     if school
       objs = Post.find_by_sql("SELECT id, (SELECT COUNT(posts.id) FROM posts WHERE posts.user_id = users.id AND type_name = '#{type_name}' AND posts.school_id = #{school}) AS post_total FROM users ORDER BY post_total DESC LIMIT #{limit}")
@@ -81,10 +80,6 @@ class PostFood < ActiveRecord::Base
   end
 
   def total_good
-    self.ratings.count(:conditions => ["rating = ?", 2])
-  end
-
-  def total_cheap_but_good
     self.ratings.count(:conditions => ["rating = ?", 1])
   end
 
@@ -93,17 +88,12 @@ class PostFood < ActiveRecord::Base
   end
 
   def score_good
-    total = self.total_good + self.total_cheap_but_good + self.total_bad
+    total = self.total_good + self.total_bad
     (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
   end
 
-  def score_cheap_but_good
-    total = self.total_good + self.total_cheap_but_good + self.total_bad
-    (total) == 0 ? 0 : (self.total_cheap_but_good.to_f/(total))*100
-  end
-
   def score_bad
-    total = self.total_good + self.total_cheap_but_good + self.total_bad
+    total = self.total_good + self.total_bad
     (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
   end
 end

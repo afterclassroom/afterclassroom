@@ -1,12 +1,6 @@
 <%= fields_for @post do |post| %>
   <%= display_flash_messages_with_raw %>
   <div class="postReq">*(asterisk) is required.</div>
-  <div class="postItem">
-    <div class="postTit">Type</div>
-    <div>
-      <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }, @post_party.party_types), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:340px" }) %>
-    </div>
-  </div>
   <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_school" %>
@@ -25,8 +19,3 @@
   	<%= show_simple_captcha(:label => "CAPTCHA Code *") %>
   </div>
 <% end %>
-
-<script type="text/javascript">
-    // 'Select All' text changed
-    $("#party_type").multiSelect({ selectAllText: 'Select All' });
-</script>
