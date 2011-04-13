@@ -37,6 +37,9 @@
         setting_submenus = [
           ["General Setting", "index", admin_settings_path]
         ]
+		notify_submenus = [
+          ["View All Notifications", "index", admin_setnotifies_path]
+        ]
         category_menus = [
           "states", "cities",
           "schools", "departments",
@@ -62,7 +65,8 @@
         <%= tab_to_admin("Posts", "posts", admin_posts_path, post_submenus) %>
         <%= tab_to_admin("Members", "users", admin_users_path, member_submenus) %>
         <%= tab_to_admin("Settings", "settings", admin_settings_path, setting_submenus) %>
-        <%= tab_to_admin("Categories", category_menus, "javascript:;", category_submenus) %>
+        <%= tab_to_admin("Notify", "notify", admin_setnotifies_path, notify_submenus) %>
+		<%= tab_to_admin("Categories", category_menus, "javascript:;", category_submenus) %>
         <div class="clear"></div>
       </div>
       <div class="clear"></div>
