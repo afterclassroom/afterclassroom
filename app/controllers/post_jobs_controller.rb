@@ -189,14 +189,14 @@ class PostJobsController < ApplicationController
     
     if simple_captcha_valid?
       if @post_job.save
-        flash.now[:notice] = "Your post was successfully created."
+        notice "Your post was successfully created."
         redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
       else
-        flash.now[:error] =  "Failed to create a new post."
+        error  "Failed to create a new post."
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      warning "Captcha not match."
       render :action => "new"
     end
   end

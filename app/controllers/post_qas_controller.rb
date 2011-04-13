@@ -159,7 +159,7 @@ class PostQasController < ApplicationController
     @post_qa.post = @post
     if simple_captcha_valid?
       if @post_qa.save
-        flash.now[:notice] = "Your post was successfully created."
+        notice "Your post was successfully created."
         post_wall(@post, post_qa_path(@post))
         redirect_to post_qas_path + "?type=asked"
       else
@@ -167,7 +167,7 @@ class PostQasController < ApplicationController
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      warning "Captcha not match."
       render :action => "new"
     end
   end

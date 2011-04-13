@@ -13,7 +13,9 @@
             <div class="dueDTitle"><%= link_to truncate_words(tt.post.title, 4), post_job_path(tt) %></div>
           </div>
         <% end %>
+		<% if bad_bosses.size > LIMIT - 1 %>
         <div class="dueDbutton"><%= link_to "View more Bad bosses", bad_bosses_post_jobs_path %></div>
+		<% end %>
       <% end %>
     </div>
   </div>

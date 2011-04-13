@@ -2,6 +2,8 @@
 <div class="menuRItem <%= "menuRselect" if @awareness_type_id && @awareness_type_id.to_i == tt.id %>"><a href="<%= "#{post_awarenesses_path}?awareness_type_id=#{tt.id}" %>"><span class="span1"><span class="span2"><%= tt.name %></span></span></a></div>
 <% end %>
 
+<div class="menuRItem"><a href="<%= post_exam_schedules_path %>"><span class="span1"><span class="span2">Exam/Test Schedules</span></span></a></div>
+
 <% if logged_in? %>
 <div style="margin-left:20px" class="menuRItem">
     <a href="<%= "#{user_post_managements_url(current_user)}?category=#{@class_name}"  %>"><span class="span1"><span class="span2">Post management</span></span></a>

@@ -12,8 +12,8 @@
           <div class="recentItem">
             <div class="recentImg"><%= show_image_user_post(myx.post.user) %></div>
             <div class="recentInf">
-              <div class="recentName"><%= link_to myx.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => myx.post.user.id} %></div>
-              <div class="recentUni"><span>at</span><%= link_to myx.post.school.name, :controller => "post_assignments", :action => "index", :from_school => myx.post.school %></div>
+              <div class="recentName"><%= show_user_post(myx.post.user) %></div>
+              <div class="recentUni"><span>at</span><%= link_to myx.post.school.name, :controller => "post_myxes", :action => "index", :from_school => myx.post.school %></div>
               <div class="recentDes"><%= link_to myx.post.title, post_myx_path(myx) %></div>
             </div>
           </div>

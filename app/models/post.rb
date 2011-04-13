@@ -47,6 +47,7 @@ class Post < ActiveRecord::Base
     indexes title, :sortable => true
     indexes description
     has user_id, post_category_id, school_id, created_at
+    set_property :delta => :delayed
   end
 
   def self.paginated_post_conditions_with_search(params, school, type)

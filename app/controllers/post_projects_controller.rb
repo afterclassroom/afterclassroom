@@ -113,7 +113,7 @@ class PostProjectsController < ApplicationController
     @post_project.post = @post
     if simple_captcha_valid?
       if @post_project.save
-        flash.now[:notice] = "Your post was successfully created."
+        notice "Your post was successfully created."
         post_wall(@post, post_project_path(@post))
         redirect_to post_projects_path
       else
@@ -121,7 +121,7 @@ class PostProjectsController < ApplicationController
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      warning "Captcha not match."
       render :action => "new"
     end
   end

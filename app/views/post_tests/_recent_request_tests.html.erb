@@ -12,7 +12,7 @@
           <div class="recentItem">
             <div class="recentImg"><%= show_image_user_post(pt.post.user) %></div>
             <div class="recentInf">
-              <div class="recentName"><%= link_to pt.post.user.full_name, {:controller => "ptofile", :action => "show_ptofile", :id => pt.post.user.id} %></div>
+              <div class="recentName"><%= show_user_post(pt.post.user) %></div>
               <div class="recentUni"><span>at</span><%= link_to pt.post.school.name, :controller => "post_tests", :action => "index", :from_school => pt.post.school %></div>
               <div class="recentDes"><%= link_to pt.post.title, post_test_path(pt) %></div>
             </div>

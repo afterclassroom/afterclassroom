@@ -38,6 +38,8 @@ gem "paperclip", "~> 2.3"
 gem 'acts-as-taggable-on'
 gem 'ruby-mp3info'
 gem 'thinking-sphinx'
+gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
+gem 'delayed_job'
 gem 'will_paginate', '~> 3.0.beta'
 gem 'aws-s3'
 gem 'jquery-rails', '>= 0.2.6'

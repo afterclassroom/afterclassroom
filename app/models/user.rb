@@ -81,6 +81,7 @@ class User < ActiveRecord::Base
     indexes name, :sortable => true
     indexes email
     has school_id, created_at
+    set_property :delta => :delayed
   end
   
   # HACK HACK HACK -- how to do attr_accessible from here?

@@ -140,14 +140,14 @@ class PostFoodsController < ApplicationController
     @post_food.post = @post
     if simple_captcha_valid?
       if @post_food.save
-        flash.now[:notice] = "Your post was successfully created."
+        notice "Your post was successfully created."
         redirect_to post_foods_path
       else
         error "Failed to create a new post."
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      warning "Captcha not match."
       render :action => "new"
     end
   end

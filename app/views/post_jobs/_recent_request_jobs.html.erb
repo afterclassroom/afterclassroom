@@ -12,8 +12,8 @@
           <div class="recentItem">
             <div class="recentImg"><%= show_image_user_post(job.post.user) %></div>
             <div class="recentInf">
-              <div class="recentName"><%= link_to job.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => job.post.user.id} %></div>
-              <div class="recentUni"><span>at</span><%= link_to job.post.school.name, :controller => "post_assignments", :action => "index", :from_school => job.post.school %></div>
+              <div class="recentName"><%= show_user_post(job.post.user) %></div>
+              <div class="recentUni"><span>at</span><%= link_to job.post.school.name, :controller => "post_jobs", :action => "index", :from_school => job.post.school %></div>
               <div class="recentDes"><%= link_to job.post.title, post_job_path(job) %></div>
             </div>
           </div>

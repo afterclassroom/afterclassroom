@@ -45,10 +45,12 @@ class PostTutorsController < ApplicationController
   end
   
   def effective
+    @tutor_type_id = TutorType.find_by_label("tutor_provider").id
     @posts = PostTutor.paginated_post_conditions_with_effective_tutors(params, @school)
   end
   
   def dont_hire
+    @tutor_type_id = TutorType.find_by_label("tutor_provider").id
     @posts = PostTutor.paginated_post_conditions_with_dont_hire(params, @school)
   end
   
@@ -154,15 +156,15 @@ class PostTutorsController < ApplicationController
     @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
     if simple_captcha_valid?
       if @post_tutor.save
-        flash.now[:notice] = "Your post was successfully created."
+        notice "Your post was successfully created."
         post_wall(@post, post_tutor_path(@post))
         redirect_to post_tutors_path + "?tutor_type_id=#{@post_tutor.tutor_type_id}"
       else
-        flash.now[:error] = "Failed to create a new post."
+        error "Failed to create a new post."
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      warning "Captcha not match."
       render :action => "new"
     end
   end

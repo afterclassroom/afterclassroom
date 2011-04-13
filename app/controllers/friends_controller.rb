@@ -52,10 +52,10 @@ class FriendsController < ApplicationController
         user_id_by_mails = users.collect(&:id)
         user_id_suggestions = user_id_by_mails - user_id_friends
         session[:user_id_suggestions] = user_id_suggestions if user_id_suggestions.size > 0
-        flash.now[:notice] = "Find successfuly."
+        notice "Find successfuly."
       end
     rescue Contacts::AuthenticationError => oops
-      flash.now[:error] = "Account email incorrect."
+      error "Account email incorrect."
       error oops
     end
     redirect_to find_user_friends_path(@user)
@@ -120,7 +120,7 @@ class FriendsController < ApplicationController
         send_email(email, content)
       end
     end
-    flash.now[:notice] = "Invite Friends Successfully."
+    notice "Invite Friends Successfully."
     redirect_to :action => "invite"
   end
 
@@ -141,7 +141,7 @@ class FriendsController < ApplicationController
     rescue Contacts::AuthenticationError => oops
       error oops
     end
-    flash.now[:notice] = "Invite Friends Successfully."
+    notice "Invite Friends Successfully."
     redirect_to :action => "invite"
   end
   

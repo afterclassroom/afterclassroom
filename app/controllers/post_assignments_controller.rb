@@ -114,7 +114,7 @@ class PostAssignmentsController < ApplicationController
     @post_assignment.post = @post
     if simple_captcha_valid?
       if @post_assignment.save
-        flash.now[:notice] = "Your post was successfully created."
+        notice "Your post was successfully created."
         post_wall(@post, post_assignment_path(@post))
         redirect_to post_assignments_path
       else
@@ -122,7 +122,7 @@ class PostAssignmentsController < ApplicationController
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      warning "Captcha not match."
       render :action => "new"
     end
   end

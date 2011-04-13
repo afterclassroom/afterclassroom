@@ -24,7 +24,7 @@
 		<%= display_flash_messages_with_raw %>
         <!--List Items-->
         <% @posts.each do |post| %>
-         <%= render :partial => "item", :locals => {:post => post, :title => post.excerpts.title, :description => post.excerpts.description} %>
+         <%= render :partial => "item", :locals => {:post => post, :title => raw(post.excerpts.title), :description => raw(post.excerpts.description)} %>
         <% end %>
         <!--List Items-->
 

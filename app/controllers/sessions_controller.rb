@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   end
   
   def login_ajax
-    flash.now[:notice] = "This function is available only to registered users."
+    notice "This function is available only to registered users."
     render :layout => false
   end
   
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    flash.now[:notice] = "You have been logged out."
+    notice "You have been logged out."
     self.current_user.update_attribute("online", false)
     RubyCAS::Filter.logout(self, root_url) and return
   end
@@ -66,11 +66,11 @@ class SessionsController < ApplicationController
     redirect_back_or_default(user_student_lounges_path(current_user))
     #Set session your school
     session[:your_school] = self.current_user.school.id if self.current_user.school
-    flash.now[:notice] = "Logged in successfully"
+    notice "Logged in successfully"
   end
   
   def note_failed_signin
-    flash.now[:error] =  "Couldn't log you in as '#{params[:email]}'"
+    error  "Couldn't log you in as '#{params[:email]}'"
     logger.warn "Failed login for '#{params[:email]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end

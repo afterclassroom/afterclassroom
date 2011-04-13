@@ -10,6 +10,11 @@
   <!--info-link-box-->
   <div class="asslinkdown">
     <div class="moreTutor"><%= post.post_book.address %></div>
+	<div class="down">
+		<% if post.attach_file_name %>
+        <a href="javascript:downloadFile('<%= post.attach.url %>')" >Download</a>
+      <% end %>
+	 </div>
     <!--
     <div class="mySco"><a href="#">Buy now!</a></div>
     -->

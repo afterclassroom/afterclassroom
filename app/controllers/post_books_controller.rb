@@ -155,14 +155,14 @@ class PostBooksController < ApplicationController
     @post_book.book_type_id ||= BookType.first.id
     if simple_captcha_valid?
       if @post_book.save
-        flash.now[:notice] = "Your post was successfully created."
+        notice "Your post was successfully created."
         redirect_to post_books_path + "?book_type_id=#{@post_book.book_type_id}"
       else
         error "Failed to create a new post."
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      warning "Captcha not match."
       render :action => "new"
     end
   end

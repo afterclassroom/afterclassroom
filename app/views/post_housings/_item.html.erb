@@ -9,7 +9,7 @@
   </div>
   <div class="asslinkdown">
     <div class="morehousing"><%= post.school.address %></div>
-    <div class="mySco"><a href="#">View map</a></div>
+    <div class="mySco"><%= show_map(post.post_housing.address, post.title) %></div>
   </div>
   <div class="assItemB">
     <div class="assImg"><div><%= link_to image_post_thumb(controller.controller_name, post), post.post_housing %></div></div>

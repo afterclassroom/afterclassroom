@@ -140,7 +140,7 @@ class PostMyxesController < ApplicationController
     @post_myx.post = @post
     if simple_captcha_valid?
       if @post_myx.save
-        flash.now[:notice] = "Your post was successfully created."
+        notice "Your post was successfully created."
         post_wall(@post, post_myx_path(@post))
         redirect_to post_myxes_path
       else
@@ -148,7 +148,7 @@ class PostMyxesController < ApplicationController
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      warning "Captcha not match."
       render :action => "new"
     end
   end

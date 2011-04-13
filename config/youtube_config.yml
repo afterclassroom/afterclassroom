@@ -1,6 +1,6 @@
 developer_tag: your_developer_tag
 auth_sub:
-  secure: 0
+  secure: 1
   session: 1
-  developer_key: AI39si58PKZSMkLtVnVDmfBbbgAY3gCpSP_XcpIjjjCaH3H3BGWKMbJPkm5_FPfRf3olsbN6Ac0Ub0_mA6Y33Isf-NN9dPZqxA
-  client_key: AfterClassroom
+  developer_key: pfrxb8tFkdLhdZ/aMOAL3QzN
+  client_key: www.afterclassroom.com

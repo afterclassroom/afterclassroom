@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       end
       
       if @user.nil?
-        flash.now[:error] = 'No account was found with that email address.'
+        error 'No account was found with that email address.'
       else
         UserMailer.deliver_forgot_login(@user)
       end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       @user = User.find_by_login_or_email(params[:email_or_login])
 
       if @user.nil?
-        flash.now[:error] = 'No account was found by that login or email address.'
+        error 'No account was found by that login or email address.'
       else
         @user.forgot_password if @user.active?
       end

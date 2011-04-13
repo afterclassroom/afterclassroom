@@ -17,10 +17,6 @@
       <div class="col451Cont">
         <%= display_flash_messages_with_raw %>
 
-        <!--Options-->
-        <%= show_options(@school, params, {"type" => @type}) %>
-        <!--Options-->
-
         <!--List Items-->
         <% @posts.each do |post| %>
           <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description}%>

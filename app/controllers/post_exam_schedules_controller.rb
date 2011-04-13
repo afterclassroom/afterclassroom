@@ -110,27 +110,27 @@ class PostExamSchedulesController < ApplicationController
   # POST /post_exam_schedules
   # POST /post_exam_schedules.xml
   def create
-    post = Post.new(params[:post])
-    post.user = current_user
-    post.school_id = @school
-    post.post_category_id = @type
-    post.type_name = @class_name
-    post.save
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post.save
     @post_exam_schedule = PostExamSchedule.new(params[:post_exam_schedule])
     @post.school.tag(@post_exam_schedule, :with => params[:tag], :on => :tags)
     @post.school.owned_taggings
     @post.school.owned_tags
-    @post_exam_schedule.post = post
+    @post_exam_schedule.post = @post
     if simple_captcha_valid?
       if @post_exam_schedule.save
-        flash.now[:notice] = "Your post was successfully created."
+        notice "Your post was successfully created."
         redirect_to post_exam_schedules_path + "?type=#{@post_exam_schedule.type_name}"
       else
         error "Failed to create a new post."
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      warning "Captcha not match."
       render :action => "new"
     end
   end

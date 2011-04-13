@@ -9,9 +9,9 @@
       books_recent.each do |book|
       %>
         <div class="recentItem">
-          <div class="recentImg"><div><%= link_to image_tag(book.post.user.avatar.url(:thumb)), {:controller => "profile", :action => "show_profile", :id => book.post.user.id} %></div></div>
+          <div class="recentImg"><%= show_image_user_post(book.post.user) %></div>
           <div class="recentInf">
-            <div class="recentName"><%= link_to book.post.user.full_name, {:controller => "profile", :action => "show_profile", :id => book.post.user.id} %></div>
+            <div class="recentName"><%= show_user_post(book.post.user) %></div>
             <div class="recentUni"><span>at</span><%= link_to book.post.school.name, :controller => "post_books", :action => "index", :from_school => book.post.school, :type => @type %></div>
             <div class="recentDes"><%= link_to book.post.title, post_project_path(book) %></div>
           </div>
