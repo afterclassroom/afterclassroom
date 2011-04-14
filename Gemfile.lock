@@ -21,6 +21,7 @@ GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
   specs:
+    aaronh-chronic (0.3.9)
     aasm (2.2.0)
     abstract (1.0.0)
     actionmailer (3.0.3)
@@ -173,6 +174,9 @@ GEM
     tzinfo (0.3.23)
     validates_timeliness (3.0.5)
       timeliness (~> 0.3.2)
+    whenever (0.6.7)
+      aaronh-chronic (>= 0.3.9)
+      activesupport (>= 2.3.4)
     will_paginate (3.0.pre)
     xml-simple (1.0.12)
     yamler (0.1.0)
@@ -224,4 +228,5 @@ DEPENDENCIES
   thinking-sphinx
   ts-delayed-delta
   validates_timeliness (~> 3.0.2)
+  whenever
   will_paginate (~> 3.0.beta)

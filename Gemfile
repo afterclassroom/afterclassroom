@@ -55,4 +55,4 @@ gem "aws-ses", :require => 'aws/ses'
 gem 'backup-task'
 #gem 'redis'
 #gem 'redis-store'
-
+gem 'whenever', :require => false

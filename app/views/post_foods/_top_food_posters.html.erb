@@ -3,7 +3,7 @@
     <h1 class="col195Title">Top food posters</h1>
     <div class="col195Cont">
       <div class="posterItem">
-        <% users = PostFood.top_food_posters %>
+        <% users = PostFood.top_food_posters(@school) %>
         <% users.each do |user| %>
           <div class="posterL"><%= show_image_user_post(user) %></div>
         <% end %>

@@ -29,6 +29,7 @@ namespace :db do
       create_demo_posts_awarenesses
       create_demo_posts_foods
       create_demo_posts_qas
+      create_demo_posts_events
 
       # Exam schedule
       create_demo_posts_exam_schedules
@@ -509,6 +510,29 @@ def create_demo_posts_qas
     end
     
     post.school.tag(post_qa, :with => get_random_list_tags, :on => :tags)
+    
+  end
+end
+
+def create_demo_posts_events
+  type_name = "PostEvent"
+  post_category = PostCategory.find_by_class_name(type_name)
+  
+  20.times do
+    user = User.find(rand(User.count).to_i + 1)
+    school = user.school
+    
+    post = create_post(user, school, post_category)
+    
+    post_event = PostEvent.create do |pe|
+      type = EventType.find(rand(EventType.count).to_i + 1)
+      pe.post = post
+      pe.event_type = type
+      pe.address = Faker::Address.street_address
+      pe.phone = Faker::PhoneNumber.phone_number
+    end
+    
+    post.school.tag(post_event, :with => get_random_list_tags, :on => :tags)
     
   end
 end
