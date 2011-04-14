@@ -1,3 +1,5 @@
+require "whenever/capistrano"
+
 #############################################################
 # Application
 #############################################################
@@ -67,37 +69,37 @@ namespace :deploy do
       password: 9Jke.w9itA
       database: afterclassroom_test
     EOF
-
-    put db_config, "#{release_path}/config/database.yml"
     
-    after "deploy:update_code", "deploy:pack_assets"
-
-    task :start, :roles => :app do
-      # Asset packager
-      run "cd #{release_path} && rake asset:packager:delete_all"
-      run "cd #{release_path} && rake asset:packager:build_all"
-      # Stop Sphinx
-      run "cd #{release_path} && rake ts:stop RAILS_ENV=production"
-      # Reindex
-      run "cd #{release_path} && rake ts:reindex RAILS_ENV=production"
-      # Start Sphinx
-      run "cd #{release_path} && rake ts:start RAILS_ENV=production"
-      # Stop Juggernault
-      run "juggernaut -k -c #{current_release}/config/juggernaut.yml"
-      # Start Juggernault
-      run "juggernaut  -d -c #{current_release}/config/juggernaut.yml"
-      # Start Server
-      run "touch #{current_release}/tmp/restart.txt"
-    end
-
-    task :stop, :roles => :app do
-      # Do nothing.
-    end
-
-    desc "Restart Application"
-    task :restart, :roles => :app do
-      # Start Server
-      run "touch #{current_release}/tmp/restart.txt"
-    end
+    put db_config, "#{release_path}/config/database.yml"
+  end
+  
+  task :start, :roles => :app do
+    # Asset packager
+    run "cd #{release_path} && rake asset:packager:delete_all RAILS_ENV=production"
+    run "cd #{release_path} && rake asset:packager:build_all RAILS_ENV=production"
+    # Stop Sphinx
+    run "cd #{release_path} && rake ts:stop RAILS_ENV=production"
+    # Reindex
+    run "cd #{release_path} && rake ts:reindex RAILS_ENV=production"
+    # Start Sphinx
+    run "cd #{release_path} && rake ts:start RAILS_ENV=production"
+    # Start Server
+    run "touch #{current_release}/tmp/restart.txt"
+  end
+  
+  task :stop, :roles => :app do
+    # Do nothing.
+  end
+  
+  desc "Restart Application"
+  task :restart, :roles => :app do
+    # Start Server
+    run "touch #{current_release}/tmp/restart.txt"
+  end
+  
+  after "deploy:symlink", "deploy:update_crontab"
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{release_path} && whenever --update-crontab #{application}"
   end
 end
