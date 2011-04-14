@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
   has_many :flirting_messages, :dependent => :destroy
   has_many :flirting_sharrings, :dependent => :destroy
   has_many :flirting_user_inchats, :dependent => :destroy
-  has_many :notify_sms_settings
-  has_many :notify_email_settings
+  has_many :notify_sms_settings, :dependent => :destroy
+  has_many :notify_email_settings, :dependent => :destroy
   has_many :user_walls, :dependent => :destroy
   has_many :friend_in_groups, :dependent => :destroy
   has_many :jobs_lists, :dependent => :destroy

@@ -106,7 +106,7 @@ module ApplicationHelper
       path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_test.png"
       when "post_exams"
       path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_exam.png"
-	  when "post_events"
+      when "post_events"
       path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_party.png"
       when "post_qas"
       path = "/images/icons/icon_defaut/icon_qa.png"
@@ -172,7 +172,7 @@ module ApplicationHelper
       when "post_exams"
       type = PostCategory.find_by_class_name("PostExam").id
       search_post_path = search_post_assignments_path
-	  when "post_events"
+      when "post_events"
       type = PostCategory.find_by_class_name("PostEvent").id
       when "post_qas"
       type = PostCategory.find_by_class_name("PostQa").id
@@ -224,7 +224,7 @@ module ApplicationHelper
       link_edit = edit_post_test_url(post.post_test)
       when "PostExam"
       link_edit = edit_post_exam_url(post.post_exam)
-	  when "PostEvent"
+      when "PostEvent"
       link_edit = edit_post_event_url(post.post_event)
       when "PostQa"
       link_edit = edit_post_qa_url(post.post_qa)
@@ -541,36 +541,36 @@ module ApplicationHelper
       share_to = ps.share_to
       case share_to
         when 1 # Friend from school
-          if current_user
-            fg = FriendGroup.where(:label => "friends_from_school").first
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
-            check = true if fng
-          end
+        if current_user
+          fg = FriendGroup.where(:label => "friends_from_school").first
+          fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
+          check = true if fng
+        end
         when 2 # Friend of friends
-          if current_user
-            fof = user.friend_of_friends
-            check = fof.include?(current_user)
-          end
+        if current_user
+          fof = user.friend_of_friends
+          check = fof.include?(current_user)
+        end
         when 3 # My Family
-          if current_user
-            fg = FriendGroup.where(:label => "family_members").first
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
-            check = true if fng
-          end
+        if current_user
+          fg = FriendGroup.where(:label => "family_members").first
+          fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
+          check = true if fng
+        end
         when 4 # General friends
-          if current_user
-            fg = FriendGroup.where(:label => "general_friends").first
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
-            check = true if fng
-          end
+        if current_user
+          fg = FriendGroup.where(:label => "general_friends").first
+          fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
+          check = true if fng
+        end
         when 5 # Friends from work
-          if current_user
-            fg = FriendGroup.where(:label => "friends_from_work").first
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
-            check = true if fng
-          end
+        if current_user
+          fg = FriendGroup.where(:label => "friends_from_work").first
+          fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
+          check = true if fng
+        end
         when 6 # Every one
-          check = true
+        check = true
       end
       return check
     end

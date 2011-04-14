@@ -91,7 +91,7 @@ class PostPartiesController < ApplicationController
   # GET /post_parties/1
   # GET /post_parties/1.xml
   def show
-    @post_party = PostFood.find(params[:id])
+    @post_party = PostParty.find(params[:id])
     @post = @post_party.post
     update_view_count(@post)
     posts_as = PostParty.with_school(@school)

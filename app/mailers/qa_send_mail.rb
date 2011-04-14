@@ -1,5 +1,5 @@
 class QaSendMail < ActionMailer::Base
-  default :from => "from@example.com"
+  default :from => "technical@afterclassroom.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -10,7 +10,6 @@ class QaSendMail < ActionMailer::Base
     
     @post = Post.find_by_id(post_id)
     @introduce = introduce
-
 
     mail :to => receiver_email, :subject => "Please response. Thank you for your support !"
     

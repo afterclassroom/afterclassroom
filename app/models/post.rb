@@ -1,5 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class Post < ActiveRecord::Base
+  
+  
   # Validations
   validates_presence_of :user_id
   validates_presence_of :post_category_id
@@ -69,5 +71,4 @@ class Post < ActiveRecord::Base
     end
     Post.search(:match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
   end
-  
 end

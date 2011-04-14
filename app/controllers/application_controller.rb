@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
   include Viewable
+  include Notify
   include Postwall
   include SimpleCaptcha::ControllerHelpers
   
