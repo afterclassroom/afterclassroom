@@ -61,6 +61,9 @@ class MessagesController < ApplicationController
 
     if @message.save
       flash[:notice] = "Message sent"
+      subject = "#{current_user.name} sended you a message."
+      content = "#{@message.subject}<br/>Click <a href='#{user_message_url(@message.recipient, @message)}' target='blank'>here</a> to view more"
+      send_notification(@message.recipient, subject, content, "sends_me_a_message")
       redirect_to user_messages_path(current_user, :mailbox => "sent")
     else
       render :action => :new

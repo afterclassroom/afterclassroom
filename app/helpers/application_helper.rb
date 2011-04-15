@@ -492,7 +492,7 @@ module ApplicationHelper
   def show_attach(wall)
     if wall.user_wall_photo
       link = wall.user_wall_photo.link
-      image = link_to raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), link, :target => "_blank"
+      image = link_to raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), link, :target => "_blank", :id => "imageLink"
       title = wall.user_wall_photo.title
       sub_content = wall.user_wall_photo.sub_content
     end

@@ -9,6 +9,7 @@
     <%= raw javascript_include_merged :base %>
     <%= feedback_includes %>
     <%= feedback_tab(:position => 'right') %>
+	<script src="http://afterclassroom.com:8080/application.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
     <div class="top" id="top_page">
@@ -43,5 +44,6 @@
     </div>
     <%= render :partial => 'shared/footer' %>
     <%= render :partial => 'shared/footer_menu_out' if logged_in? %>
+	<%= render :partial => 'shared/notification' if logged_in? %>
   </body>
 </html>

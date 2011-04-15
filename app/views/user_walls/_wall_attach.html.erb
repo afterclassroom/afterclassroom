@@ -1,7 +1,7 @@
-<div style="min-height:80px">
+<div>
   <% if image %>
     <div class="AfterImg">
-      <div class="imgDiv" id="imageLink">
+      <div class="imgDiv">
         <%= image %>
       </div>
     </div>
@@ -19,6 +19,6 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function() {
-  $("#imageLink a").fancybox();
+  $("#imageLink").fancybox();
   });
 </script>

@@ -57,8 +57,8 @@
     <!--Ads-->
 </div>
 <script type="text/javascript" charset="utf-8">
-      var jug = new Juggernaut;
-      jug.subscribe("chat_<%= current_user.id %>", function(data){
+      var jug_chat = new Juggernaut;
+      jug_chat.subscribe("chat_<%= current_user.id %>", function(data){
 	  		chanel_name = data.chanel_name
 			message = data.message
 			event = data.event

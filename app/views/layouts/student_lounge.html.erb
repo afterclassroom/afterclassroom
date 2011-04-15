@@ -38,5 +38,6 @@
         </div>
         <%= render :partial => 'shared/footer' %>
         <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
+		<%= render :partial => 'shared/notification' if logged_in? %>
     </body>
 </html>

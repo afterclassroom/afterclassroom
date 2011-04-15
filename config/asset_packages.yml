@@ -24,6 +24,7 @@ javascripts:
   - jquery.fileupload
   - jquery.fileupload-ui
   - ajaxupload
+  - jquery.pnotify
 - student_lounge:
   - jquery
   - rails
@@ -54,6 +55,7 @@ javascripts:
   - jquery.fileupload
   - jquery.fileupload-ui
   - ajaxupload
+  - jquery.pnotify
 - admin:
   - jquery
   - jquery-ui
@@ -96,6 +98,7 @@ stylesheets:
   - footer-menu
   - jquery.fileupload-ui
   - checkboxmenu
+  - jquery.pnotify.default
 - student_lounge:
   - main
   - post
@@ -124,6 +127,7 @@ stylesheets:
   - checkboxmenu
   - jqpageflow
   - jquery.fancybox
+  - jquery.pnotify.default
 - admin:
   - main
   - jquery-multiSelect

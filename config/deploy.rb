@@ -81,6 +81,8 @@ namespace :deploy do
     run "cd #{release_path} && rake ts:reindex RAILS_ENV=production"
     # Start Sphinx
     run "cd #{release_path} && rake ts:start RAILS_ENV=production"
+    # Delay job
+    run "cd #{release_path} && script/delayed_job start RAILS_ENV=production"
     # Start Server
     run "touch #{current_release}/tmp/restart.txt"
   end
