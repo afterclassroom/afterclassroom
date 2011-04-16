@@ -22,9 +22,12 @@
         <%= render :partial => "user_walls/wall_form" %>
         <div class="col451in">
             <div class="proCenCont">
-            	<div id="wall_page_wrap">
-            		<%= render :partial => "stu_lounge_item", :locals => {:walls => @walls} %>
-            	</div>
+                <div id="wall_page_wrap">
+                    <% @walls.each do |w| %>
+                    <%= render :partial => "stu_lounge_item", :locals => {:wall => w} %>
+                    <% end %>
+                </div>
+  				<%= render :partial => "user_walls/alert" %>
                 <div class="goTop">
                     <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
                 </div>

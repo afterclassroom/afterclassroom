@@ -84,6 +84,15 @@ class UserWallsController < ApplicationController
     render :layout => false
   end
   
+  def delete_wall
+    wall_id = params[:wall_id]
+    wall = UserWall.find(wall_id)
+    if wall
+      wall.destroy if wall.user == current_user or wall.user_post == current_user
+    end
+    render :text => "Success"
+  end
+  
   def rate
     rating = params[:rating]
     @wall = UserWall.find(params[:post_id])

@@ -1,87 +1,86 @@
-<div class="col451Cont">
-    <% @walls.each do |w| %>
-    <div class="assItem" id="wall_<%= w.id %>">
-        <div class="assItemL">
-            <div class="assCate">
-                <span><a href="#" style="color: #000000;">&nbsp;&nbsp;<%= raw(w.content) %></a></span>
-            </div>
+<div class="AfterItem" id="wall_<%= wall.id %>">
+	<% if wall.user == current_user or wall.user_post == current_user %>
+    <div class="del_wall" style="float: right; display: none; cursor: pointer;" onclick="DeleteWall(<%= wall.id %>)">
+        <img src="/images/icon-ing.gif">
+    </div>
+	<% end %>
+    <div class="assPic">
+        <%= show_image_user_post(wall.user_post) %>
+    </div>
+    <div class="AfterInfo">
+    	<% if wall.user_post != current_user %>
+    <div class="asslinkdownSt">
+        <div class="morelink">
+            <%= show_invite_chat(wall.user_post) %>
         </div>
-        <%= show_attach(w) if w.has_attach %>
-        <% if w.user_post != current_user %>
-        <div class="asslinkdown">
-            <div class="morelink">
-                <%= show_invite_chat(w.user_post) %>
-            </div>
-            <div class="down">
-                <a title="Match Making" class="thickbox" href="/user_walls/match_making_box?&height=288&width=500&user_id_post=<%= w.user_id_post.to_s %>" id="myaclick">Match Making</a>
-            </div>
-            <div class="like">
-                <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= w.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
-            </div>
-            <div class="love">
-                <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
-            </div>
-            <div class="hate">
-                <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= w.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
-            </div>
+        <div class="down">
+            <a title="Match Making" class="thickbox" href="/user_walls/match_making_box?&height=288&width=500&user_id_post=<%= wall.user_id_post.to_s %>" id="myaclick">Match Making</a>
         </div>
-        <% end %>
-        <div class="assItemB">
-            <div class="assPic">
-                <%= show_image_user_post(w.user_post) %>
-            </div>
-            <div class="assInfT">
-                <div class="assInfT">
-                    <div class="assInfL">
-                        <div>
-                            <span>Posted by:</span>
-                            <%= show_user_post(w.user_post) %>
-                        </div>
-                    </div>
-                </div>
-                <div class="assInfB">
-                    <div class="time">
-                        <%= distance_of_time_in_words_to_now(w.created_at, false) + " ago." %>
-                    </div>
-                    <%
-                    check = UserWall.find_rated_by(current_user).include?(w) if logged_in?
-                    check ||= false %>
-                    <div id="rate_<%= w.id %>">
-                        <div class="qashdU">
-                            <%= show_rating( w.id.to_s, w.total_good, 'user_walls', check, 1) %>
-                        </div>
-                        <div class="qashdD">
-                            <%= show_rating( w.id.to_s, w.total_bad, 'user_walls', check, 0) %>
-                        </div>
-                    </div>
-                    <div class="share">
-                        <a title="Share" class="thickbox" href="/user_walls/share_box?&height=288&width=500&subject=Share&wall_id=<%= w.id.to_s %>" id="myaclick">Share</a>
-                    </div>
-                    <div class="com">
-                        <a href="javascript:;" onclick="showCommentForm('<%= w.id %>');">Comments (<%= w.comments.size %>)</a>
-                    </div>
-                </div>
-                <!--Comments-->
-                <% if w.comments.size > 0 %>
-                <div id="wall_list_comment_<%= w.id %>">
-                    <% if w.comments.size > 2 %>
-                    <div class="proList">
-                        <div class="writeCom">
-                            <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => w.id}, :remote => true %>
-                        </div>
-                    </div>
-                    <% end %>
-                    <% w.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
-                    <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => w, :comment => cm} %>
-                    <% end %>
-                    <%= render :partial => "user_walls/wall_comment", :locals => {:wall => w} %>
-                </div>
-                <% end %>
-                <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => w} %>
-                <!--Comments-->
-                <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => w} %>
-            </div>
+        <div class="like">
+            <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= wall.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
+        </div>
+        <div class="love">
+            <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= wall.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
+        </div>
+        <div class="hate">
+            <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= wall.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
         </div>
     </div>
     <% end %>
+        <div class="AfterCl">
+            <%= show_user_post(wall.user_post) %>- <%= raw(wall.content) %>
+        </div>
+        <!--Attach--><%= show_attach(wall) if wall.has_attach %><!--Attach-->
+        <div class="assInfB">
+            <div class="time">
+                <%= distance_of_time_in_words_to_now(wall.created_at, false) + " ago." %>
+            </div>
+            <div id="rate_<%= wall.id %>">
+                <%
+                check = UserWall.find_rated_by(current_user).include?(wall) if logged_in?
+                check ||= false %>
+                <div class="qashdU">
+                    <%= show_rating(wall.id, wall.total_good, "user_walls", check, 1) %>
+                </div>
+                <div class="qashdD">
+                    <%= show_rating(wall.id, wall.total_bad, "user_walls", check, 0) %>
+                </div>
+            </div>
+            <div class="com">
+                <a href="javascript:;" onclick="showCommentForm('<%= wall.id %>');">Comments (<%= wall.comments.size %>)</a>
+            </div>
+        </div>
+        <!--Comments-->
+        <% if wall.comments.size > 0 %>
+        <div id="wall_list_comment_<%= wall.id %>">
+            <% if wall.comments.size > 2 %>
+            <div class="proList">
+                <div class="writeCom">
+                    <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall.id}, :remote => true %>
+                </div>
+            </div>
+            <% end %>
+            <% wall.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
+            <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :comment => cm} %>
+            <% end %>
+            <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall} %>
+        </div>
+        <% end %>
+        <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall} %>
+        <!--Comments-->
+    </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $(".AfterItem").hover(function(){
+            $(".del_wall", this).show();
+        }, function(){
+            $(".del_wall", this).hide();
+        });
+		$(".AfterInfo").hover(function(){
+            $(".asslinkdownSt", this).show();
+        }, function(){
+            $(".asslinkdownSt", this).hide();
+        });
+    });
+</script>

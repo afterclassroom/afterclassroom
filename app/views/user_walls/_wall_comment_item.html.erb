@@ -1,9 +1,23 @@
 <div class="proList">
+	<% if wall.user == current_user || comment.user == current_user %>
+	<div class="del_wall_com" style="float: right; display: none; cursor: pointer;" onclick="DeleteWallComment('<%= wall.id %>', '<%= comment.id %>');">
+        <img src="/images/icon-ing.gif">
+    </div>
+	<% end %>
   <div class="proListPic"><%= link_to raw("<div>#{image_tag(comment.user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => comment.user.id} %></div>
   <div class="proListR">
     <div class="AfterClCom"><%= link_to comment.user.full_name, {:controller => "profile", :action => "show_profile", :id => comment.user.id} %> - <%= comment.comment %></div>
     <div class="proListCont">
-      <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %> <a href="javascript:;" onclick="DeleteWallComment('<%= wall.id %>', '<%= comment.id %>');">Delete</a>
+      <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %>
     </div>
   </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $(".proList").hover(function(){
+            $(".del_wall_com", this).show();
+        }, function(){
+            $(".del_wall_com", this).hide();
+        });
+    });
+</script>

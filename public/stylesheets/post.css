@@ -283,6 +283,21 @@
   float:right;
   width:100px;
 }
+
+.asslinkdownSt {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid;
+    color: #969696;
+    float: right;
+    font-size: 11px;
+    margin-left: -60px;
+    margin-top: 60px;
+    padding: 10px;
+    position: absolute;
+    width: 100px;
+    z-index: 1000;
+	display: none;
+}
 .assInfB .time{
   margin-right:5px;
 }

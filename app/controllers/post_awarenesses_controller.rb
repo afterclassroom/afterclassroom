@@ -132,7 +132,7 @@ class PostAwarenessesController < ApplicationController
   # GET /post_awarenesses/1
   # GET /post_awarenesses/1.xml
   def show
-    @post_awareness = PostFood.find(params[:id])
+    @post_awareness = PostAwareness.find(params[:id])
     @post = @post_awareness.post
     update_view_count(@post)
     posts_as = PostAwareness.with_school(@school)
@@ -222,8 +222,8 @@ class PostAwarenessesController < ApplicationController
   end
 
   def require_current_user
-    post_food = PostAwareness.find(params[:id])
-    post = post_food.post
+    post_awareness = PostAwareness.find(params[:id])
+    post = post_awareness.post
     @user ||= post.user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
