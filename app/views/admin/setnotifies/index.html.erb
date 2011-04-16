@@ -26,48 +26,28 @@
                     <tbody><tr valign="top">
                         <td>
                           <table cellspacing="0" cellpadding="0" border="0" width="100%" id="product-table-user">
-                            <tbody><tr>
+                            <tbody>
+                              <tr>
                                 <th class="table-header-repeat line-left minwidth-1"><a href="">Name</a></th>
                                 <th class="table-header-repeat line-left minwidth-1"><a href="">Notify Type</a></th>
                                 <th class="table-header-options line-left"><a href="">SMS</a></th>
                                 <th class="table-header-options line-left"><a href="">Email</a></th>
+                                <th class="table-header-options line-left"><a href="">Operation</a></th>
                               </tr>
 
+                              <% @notifications.each do |ntfobj| %>
 
-
-
-
-  <% @notifications.each do |ntfobj| %>
-
-    <tr id="tr_<%= ntfobj.id %>" class="alternate-row">
-      <td><%= ntfobj.name %></td>
-      <td><%= ntfobj.notify_type %></td>
-      <td><%= check_box_tag("smsarr[]", ntfobj.id, checked = ntfobj.sms_allow, :disabled => true ) %>  </td>
-      <td><%= check_box_tag("emailarr[]", ntfobj.id, checked = ntfobj.email_allow, :disabled => true  )%> </td>
-    </tr>
-
-
-  <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                <tr id="tr_<%= ntfobj.id %>" class="alternate-row">
+                                  <td><%= ntfobj.name %></td>
+                                  <td><%= ntfobj.notify_type %></td>
+                                  <td><%= check_box_tag("smsarr[]", ntfobj.id, checked = ntfobj.sms_allow, :disabled => true ) %>  </td>
+                                  <td><%= check_box_tag("emailarr[]", ntfobj.id, checked = ntfobj.email_allow, :disabled => true  )%> </td>
+                                  <td>
+                                    <a id="edit_<%= ntfobj.id.to_s %>" href="javascript:;">Edit</a>
+                                    <a id="del_<%= ntfobj.id.to_s %>" href="javascript:;">Delete</a>
+                                  </td>
+                                </tr>
+                              <% end %>
 
                             </tbody></table>
                         </td>
@@ -85,26 +65,13 @@
                                 <div class="left"><a href=""><img width="21" height="21" alt="" src="/images/admin/forms/icon_plus.gif"></a></div>
                                 <div class="right">
                                   <h5>
-                                  <%= link_to "New Notification", addnew_admin_setnotifies_path %>
+                                    <%= link_to "New Notification", addnew_admin_setnotifies_path %>
 
                                   </h5>
                                 </div>
                                 <div class="clear"></div>
                               </div>
-                              <div id="related-act-inner">
-                                <div class="left"><a href=""><img width="21" height="21" alt="" src="/images/admin/forms/icon_plus.gif"></a></div>
-                                <div class="right">
-                                  <h5><a href="javascript:;" id="edit_noti">Edit Notification</a></h5>
-                                </div>
-                                <div class="clear"></div>
-                              </div>
-                              <div id="related-act-inner">
-                                <div class="left"><a href=""><img width="21" height="21" alt="" src="/images/admin/forms/icon_plus.gif"></a></div>
-                                <div class="right">
-                                  <h5><a href="javascript:;" id="delete_noti">Delete Notification</a></h5>
-                                </div>
-                                <div class="clear"></div>
-                              </div>
+
                               <!-- end related-act-inner -->
                               <div class="clear"></div>
                             </div>
@@ -222,6 +189,21 @@
   var deleteURL = '<%= delete_admin_setnotifies_path %>';
 
   $(document).ready(function(){
+
+    $("a[id*='edit_']").click(function(){
+      var edit_id = $(this).parent().prev().find('input').attr('value');
+      window.location = '<%= edit_admin_setnotifies_url %>?selectedID='+edit_id;
+    });
+
+    $("a[id*='del_']").click(function(){
+      var del_id = $(this).parent().prev().find('input').attr('value');
+      var answer = confirm ("Are you sure to delete this notification?")
+      if (answer){
+        window.location = '<%= delete_admin_setnotifies_url %>?selectedID='+del_id;
+      }
+    });
+
+
     $("tr[id*='tr_']").click(function(){
 
       var selectedID = $(this).find('td:eq(3)>input').attr('value');
@@ -231,21 +213,6 @@
       }
       selectedTR = $(this);
       $(this).css('background-color','lightBlue');
-
-      $('#edit_noti').unbind('click');
-      $('#edit_noti').click(function(){
-        window.location = '<%= edit_admin_setnotifies_url %>?selectedID='+selectedID;
-      });
-
-      $('#delete_noti').unbind('click');
-      $('#delete_noti').click(function(){
-        var answer = confirm ("Are you sure to delete this notification?")
-        if (answer){
-          window.location = '<%= delete_admin_setnotifies_url %>?selectedID='+selectedID;
-        }
-
-      });
-
 
     });
   });
