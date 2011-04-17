@@ -4,6 +4,12 @@
 </div>
 <!--Alert-->
 
+<!--Alert-->
+<div id="delete_wall_alert" title="Alert" style="display:none;">
+  Are you sure?
+</div>
+<!--Alert-->
+
 <script type="text/javascript">
   function DeleteWallComment(wall_id, comment_id){
     $("#delete_comment_alert").dialog({
@@ -18,6 +24,29 @@
             data: 'comment_id=' + comment_id,
             success: function(html){
               $('#wall_' + wall_id).html(html);
+            }
+          });
+        },
+        Cancel: function() {
+          $(this).dialog('close');
+        }
+      }
+    });
+  }
+  
+  function DeleteWall(wall_id){
+    $("#delete_wall_alert").dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $(this).dialog('close');
+          $.ajax({
+            url: '/user_walls/delete_wall',
+            type: 'GET',
+            dataType: 'html',
+            data: 'wall_id=' + wall_id,
+            success: function(html){
+              $('#wall_' + wall_id).toggle();
             }
           });
         },

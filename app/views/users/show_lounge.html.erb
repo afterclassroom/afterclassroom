@@ -14,7 +14,7 @@
             <div class="proCenCont">
                 <div id="wall_page_wrap">
                     <% @walls.each do |w| %>
-                    <%= render :partial => "user_walls/wall_item", :locals => {:wall => w} %>
+                    <%= render :partial => "student_lounges/stu_lounge_item", :locals => {:wall => w} %>
                     <% end %>
                 </div>
                 <%= render :partial => "user_walls/alert" %>

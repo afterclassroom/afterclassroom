@@ -309,7 +309,7 @@ module ApplicationHelper
       link_to_require_login(raw("<span>Add job</span>"))
     else
       job_lists = current_user.jobs_lists
-      link_to(raw("<span>Add job</span>"), {:remote => true, :update => "show_job_button"}, :url => { :action => "add_job", :post_job_id => post.id}) if !job_lists.collect{|j| j.post_job}.include?(post.post_job)
+      link_to(raw("<span>Add job</span>"), { :action => "add_job", :post_job_id => post.id}, :remote => true) if !job_lists.collect{|j| j.post_job}.include?(post.post_job)
     end
   end
   
@@ -336,7 +336,7 @@ module ApplicationHelper
       link_to_require_login(raw("<span>Add party</span>"))
     else
       party_lists = current_user.partys_lists
-      link_to(raw("<span>Add party</span>"), :remote => true, :update => "show_party_button", :url => { :action => "add_party", :post_party_id => post.id}) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
+      link_to(raw("<span>Add party</span>"), { :action => "add_party", :post_party_id => post.id}, :remote => true) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
     end
   end
   
@@ -412,7 +412,7 @@ module ApplicationHelper
       str_supported = "You've selected."
       link_to(str, "javascript:;", :class => "vtip", :title => str_supported)
     else
-      link_to(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :update => "support_action", :remote => true})
+      link_to(str, "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :remote => true)
     end
   end
   
@@ -425,7 +425,7 @@ module ApplicationHelper
       str_supported = "You've selected."
       link_to(str, "javascript:;", :class => "vtip", :title => str_supported)
     else
-      link_to(str, {:url => "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :update => "support_action", :remote => true})
+      link_to(str, "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :remote => true)
     end
   end
   

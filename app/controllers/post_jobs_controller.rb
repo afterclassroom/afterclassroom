@@ -134,9 +134,9 @@ class PostJobsController < ApplicationController
     post = Post.find(post_job_id)
     job_list = JobsList.find_or_create_by_user_id_and_post_job_id(current_user.id, post.post_job.id)
     job_lists = current_user.jobs_lists
-    render :text => %Q'<span class="btmAddJob">
-        <a title="My job list" class="thickbox" href="/post_jobs/my_job_list?height=400&amp;width=470" class = "thickbox" title = "My job list"><span>My job list</span></a>
-      </span>'
+    @text = "<span class='btmAddJob'>"
+    @text << "<a title='My job list' class='thickbox' href='/post_jobs/my_job_list?height=400&amp;width=470' class = 'thickbox' title = 'My job list'><span>My job list</span></a>"
+    @text << "</span>"
   end
 
   def my_job_list
