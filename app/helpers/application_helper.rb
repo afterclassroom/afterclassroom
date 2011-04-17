@@ -582,4 +582,5 @@ module ApplicationHelper
     str_require_login = "This function is available only to registered users."
     link_to(str, "javascript:;", :class => "vtip", :title => str_require_login)
   end
+
 end
