@@ -17,10 +17,28 @@ class PostsController < ApplicationController
       @obj_comment.commentable_type = commentable_type
       @obj_comment.user = current_user
       @obj_comment.save
+      obj = @obj_comment.find_commentable(commentable_type, commentable_id)
+      user = obj.user
+      if ["Photo", "Music", "UserWall"].include?(commentable_type)
+        case commentable_type
+          when "Photo"
+            subject = "#{current_user.name} comment on your Photo."
+            content = "Click <a href='#{show_user_photos_url(user, obj)}' target='blank'>here</a> to view more"
+            send_notification(user, subject, content, "comments_on_my_photo")
+          when "Music"
+            subject = "#{current_user.name} comment on your Music."
+            content = "Click <a href='#{show_user_musics_url(user, obj)}' target='blank'>here</a> to view more"
+            send_notification(user, subject, content, "comments_on_my_music")
+          when "Story"
+            subject = "#{current_user.name} comment on your Story."
+            content = "Click <a href='#{show_user_stories_url(user, obj)}' target='blank'>here</a> to view more"
+            send_notification(user, subject, content, "comments_on_my_story")
+        end
+      end
     end
     render :layout => false
   end
-
+  
   def delete_comment
     comment_id = params[:comment_id]
     if comment_id
@@ -28,7 +46,7 @@ class PostsController < ApplicationController
       comment.destroy if comment
     end
   end
- 
+  
   def rate_comment
     rating = params[:rating]
     @comnt = Comment.find(params[:comment_id])
@@ -36,13 +54,13 @@ class PostsController < ApplicationController
     @text = "<div class='AsDcomRe1'><a href='javascript:;'>#{@comnt.total_good}</a></div>"
     @text << "<div class='AsDcomRe2'><a href='javascript:;'>#{@comnt.total_bad}</a></div>"
   end
-
+  
   def report_abuse
     @reported_id = params[:reported_id]
     @reported_type = params[:reported_type]
     render :layout => false
   end
-
+  
   def create_report_abuse
     reported_id = params[:reported_id]
     reported_type = params[:reported_type]
@@ -55,7 +73,7 @@ class PostsController < ApplicationController
     report_abuse.report_abuse_category_id = abuse_type_id
     report_abuse.content = abuse_content
     report_abuse.reporter_id = current_user.id if current_user
-
+    
     if report_abuse.save
       str = %Q'
         Thank you for your report, we will have someone from our security and ethnic department to look into your report and take action accordingly.<br/>
@@ -64,7 +82,7 @@ class PostsController < ApplicationController
     else
       str = 'Error.'
     end
-
+    
     render :text => str
   end
   

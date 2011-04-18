@@ -5,7 +5,7 @@ class CitiesController < ApplicationController
   # GET /cities
   # GET /cities.xml
   def index
-    @countries = Country.has_cities
+    @countries = Country.find(:all)
     @country = @countries.first
     @states = @country.states
     @state = @states.first

@@ -43,7 +43,7 @@ class UserWallsController < ApplicationController
       if @user != current_user
         subject = "#{current_user.name} post on your lounge."
         content = "Click <a href='#{user_student_lounges_url(@user)}' target='blank'>here</a> to view more"
-        send_notification(@message.recipient, subject, content, "posts_on_my_lounge")
+        send_notification(@user, subject, content, "posts_on_my_lounge")
       end
     end
     @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
@@ -75,6 +75,9 @@ class UserWallsController < ApplicationController
       obj_comment.comment = comment
       obj_comment.user = current_user
       @wall.comments << obj_comment
+      subject = "#{current_user.name} post comment on your lounge."
+      content = "Click <a href='#{user_student_lounges_url(@wall.user)}' target='blank'>here</a> to view more"
+      send_notification(@wall.user, subject, content, "comments_on_my_lounge")
     end
     render :layout => false
   end
@@ -146,7 +149,7 @@ class UserWallsController < ApplicationController
     end
     subject = "#{current_user.name} match making for you."
     content = list_name.join(", ")
-    send_notification(@message.recipient, subject, content, "posts_on_my_lounge")
+    send_notification(usr, subject, content, "posts_on_my_lounge")
     render :text => "Success"
   end
   
