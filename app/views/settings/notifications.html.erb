@@ -43,7 +43,7 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
                         <% if ntfobj.email_allow == true %>
                           <% check = false; %>
                           <% current_user.notify_email_settings.each do |userntfe| %>
-                            <% if userntfe.notification.id == ntfobj.id %>
+                            <% if userntfe.notification and userntfe.notification.id == ntfobj.id %>
                               <% check = true; %>
                             <% end %>
                           <% end #END LOOP CURRENT_USER %>
@@ -57,7 +57,7 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
                         <% if ntfobj.sms_allow == true %>
                           <% check = false; %>
                           <% current_user.notify_sms_settings.each do |userntfs| %>
-                            <% if userntfs.notification.id == ntfobj.id %>
+                            <% if userntfs.notification and userntfs.notification.id == ntfobj.id %>
                               <% check = true; %>
                             <% end %>
                           <% end #END LOOP CURRENT_USER %>
@@ -83,44 +83,17 @@ idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab
           <div class="setNotRItem setNotRItem1">
             <a href="javascript:;" onclick="TabHandler('afterclassroomtab')">AfterClassroom</a>
           </div>
-          <div class="setNotRItem setNotRItem2">
-            <a href="javascript:;" onclick="TabHandler('photostab')">Photos</a>
-          </div>
-          <div class="setNotRItem setNotRItem3">
-            <a href="javascript:;" onclick="TabHandler('groupstab')">Groups</a>
-          </div>
-          <div class="setNotRItem setNotRItem4">
-            <a href="javascript:;" onclick="TabHandler('pagestab')">Pages</a>
-          </div>
-          <div class="setNotRItem setNotRItem5">
-            <a href="javascript:;" onclick="TabHandler('eventstab')">Events</a>
-          </div>
-          <div class="setNotRItem setNotRItem6">
+		  <div class="setNotRItem setNotRItem2">
             <a href="javascript:;" onclick="TabHandler('storytab')">Story</a>
           </div>
-          <div class="setNotRItem setNotRItem7">
-            <a href="javascript:;" onclick="TabHandler('linkstab')">Links</a>
+          <div class="setNotRItem setNotRItem3">
+            <a href="javascript:;" onclick="TabHandler('photostab')">Photos</a>
           </div>
-          <div class="setNotRItem setNotRItem8">
+          <div class="setNotRItem setNotRItem4">
             <a href="javascript:;" onclick="TabHandler('musictab')">Music</a>
           </div>
-          <div class="setNotRItem setNotRItem9">
-            <a href="javascript:;" onclick="TabHandler('videotab')">Video</a>
-          </div>
-          <div class="setNotRItem setNotRItem10">
-            <a href="javascript:;" onclick="TabHandler('giftstab')">Gifts</a>
-          </div>
-          <div class="setNotRItem setNotRItem11">
-            <a href="javascript:;" onclick="TabHandler('helptab')">Help</a>
-          </div>
-          <div class="setNotRItem setNotRItem12">
+          <div class="setNotRItem setNotRItem5">
             <a href="javascript:;" onclick="TabHandler('loungetab')">Lounge</a>
-          </div>
-          <div class="setNotRItem setNotRItem13">
-            <a href="javascript:;" onclick="TabHandler('othertab')">Others</a>
-          </div>
-          <div class="setNotRItem setNotRItem14">
-            <a href="javascript:;" onclick="TabHandler('othertab')">Other Applications</a>
           </div>
         </div>
       </div>

@@ -176,9 +176,15 @@ class UsersController < ApplicationController
     
     if @user && @user.valid?
       @user.register!
+      # User information
       UserInformation.create(:user_id => @user.id)
       UserEducation.create(:user_id => @user.id)
       UserEmployment.create(:user_id => @user.id)
+      # Setting notification
+      notifications = Notification.find(:all)
+      notifications.each do |f|
+        NotifyEmailSetting.create(:user_id => current_user.id, :notification_id => f.id)
+      end
     end
 
     if @user.errors.empty?

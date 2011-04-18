@@ -40,6 +40,11 @@ class UserWallsController < ApplicationController
       
       @user.user_walls << user_wall
       @user.save
+      if @user != current_user
+        subject = "#{current_user.name} post on your lounge."
+        content = "Click <a href='#{user_student_lounges_url(@user)}' target='blank'>here</a> to view more"
+        send_notification(@message.recipient, subject, content, "posts_on_my_lounge")
+      end
     end
     @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     respond_to do |format|
@@ -126,9 +131,11 @@ class UserWallsController < ApplicationController
     user_id_post = params[:user_id_post]
     usr = User.find(user_id_post)
     list_ids = recipient.split(",")
+    list_name = []
     list_ids.each do |id|
       u = User.find(id)
       if u and u != usr
+        list_name << "<a href='#{show_user_url(u)}'>#{u.full_name}</a>"
         message = Message.new
         message.sender = current_user
         message.recipient = u
@@ -137,7 +144,9 @@ class UserWallsController < ApplicationController
         message.save
       end
     end
-    
+    subject = "#{current_user.name} match making for you."
+    content = list_name.join(", ")
+    send_notification(@message.recipient, subject, content, "posts_on_my_lounge")
     render :text => "Success"
   end
   

@@ -32,7 +32,7 @@
                                 <th class="table-header-repeat line-left minwidth-1"><a href="">Notify Type</a></th>
                                 <th class="table-header-options line-left"><a href="">SMS</a></th>
                                 <th class="table-header-options line-left"><a href="">Email</a></th>
-                                <th class="table-header-options line-left"><a href="">Operation</a></th>
+                                <th class="table-header-options line-left"><a href="">Options</a></th>
                               </tr>
 
                               <% @notifications.each do |ntfobj| %>
@@ -43,8 +43,8 @@
                                   <td><%= check_box_tag("smsarr[]", ntfobj.id, checked = ntfobj.sms_allow, :disabled => true ) %>  </td>
                                   <td><%= check_box_tag("emailarr[]", ntfobj.id, checked = ntfobj.email_allow, :disabled => true  )%> </td>
                                   <td>
-                                    <a id="edit_<%= ntfobj.id.to_s %>" href="javascript:;">Edit</a>
-                                    <a id="del_<%= ntfobj.id.to_s %>" href="javascript:;">Delete</a>
+                                    <a id="edit_<%= ntfobj.id.to_s %>" href="javascript:;" class="icon-1 info-tooltip" title="Edit"></a>
+                                    <a id="del_<%= ntfobj.id.to_s %>" href="javascript:;" class="icon-2 info-tooltip" title="Delete"></a>
                                   </td>
                                 </tr>
                               <% end %>

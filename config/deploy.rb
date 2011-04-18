@@ -73,16 +73,16 @@ namespace :deploy do
   
   task :start, :roles => :app do
     # Asset packager
-    run "cd #{release_path} && rake asset:packager:delete_all RAILS_ENV=production"
-    run "cd #{release_path} && rake asset:packager:build_all RAILS_ENV=production"
+    run "cd #{release_path} && RAILS_ENV=production rake asset:packager:delete_all"
+    run "cd #{release_path} && RAILS_ENV=production rake asset:packager:build_all"
     # Stop Sphinx
-    run "cd #{release_path} && rake ts:stop RAILS_ENV=production"
+    run "cd #{release_path} && RAILS_ENV=production rake ts:stop"
     # Reindex
-    run "cd #{release_path} && rake ts:reindex RAILS_ENV=production"
+    run "cd #{release_path} && RAILS_ENV=production rake ts:reindex"
     # Start Sphinx
-    run "cd #{release_path} && rake ts:start RAILS_ENV=production"
+    run "cd #{release_path} && RAILS_ENV=production rake ts:start"
     # Delay job
-    run "cd #{release_path} && script/delayed_job start RAILS_ENV=production"
+    run "cd #{release_path} && RAILS_ENV=production script/delayed_job start"
     # Start Server
     run "touch #{current_release}/tmp/restart.txt"
   end

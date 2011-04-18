@@ -59,7 +59,7 @@ class CitiesController < ApplicationController
   # GET /cities/new
   # GET /cities/new.xml
   def new
-    @countries = Country.has_cities
+    @countries = Country.find(:all)
     @country = @countries.first
     @states = @country.states
     @state = @states.first
