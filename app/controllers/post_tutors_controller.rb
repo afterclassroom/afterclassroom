@@ -165,7 +165,7 @@ class PostTutorsController < ApplicationController
         render :action => "new"
       end
     else
-      flash[:warning] = "Captcha not match."
+      flash[:warning] = "Captcha does not match."
       render :action => "new"
     end
   end
