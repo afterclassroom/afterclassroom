@@ -123,7 +123,7 @@ class PostEventsController < ApplicationController
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha not match."
+      flash.now[:warning] = "Captcha does not match."
       render :action => "new"
     end
   end
