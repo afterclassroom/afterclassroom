@@ -154,6 +154,4 @@ class SettingsController < ApplicationController
       redirect_to :action => "setting"
     end
   end
-  
-  
 end

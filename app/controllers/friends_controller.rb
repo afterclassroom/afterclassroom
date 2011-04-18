@@ -14,7 +14,7 @@ class FriendsController < ApplicationController
   def index
     @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
   end
-
+  
   def search
     @search_name = ""
     if params[:search]
@@ -24,7 +24,7 @@ class FriendsController < ApplicationController
       @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
     end
   end
-
+  
   def find
     @mail_account = MailAccount.new(nil, nil, "gmail")
     user_id_suggestions = session[:user_id_suggestions]
@@ -35,7 +35,7 @@ class FriendsController < ApplicationController
     @user_suggestions = []
     @user_suggestions = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})") if user_id_suggestions.size > 0
   end
-
+  
   def find_email
     login = params[:mail_account][:login]
     password = params[:mail_account][:password]
@@ -60,15 +60,15 @@ class FriendsController < ApplicationController
     end
     redirect_to find_user_friends_path(@user)
   end
-
+  
   def recently_added
     @invites = @user.user_invites_out.find(:all, :conditions => "is_accepted IS NULL")
   end
-
+  
   def recently_updated
     @friends = @user.user_friends.find(:all, :order => "updated_at DESC").paginate :page => params[:page], :per_page => 10 
   end
-
+  
   def friend_request
     @invites = @user.user_invites_in.find(:all, :conditions => "is_accepted IS NULL")
   end
@@ -84,12 +84,16 @@ class FriendsController < ApplicationController
   
   def add_to_group
     if params[:check_status] == ""
-
+      
       fig = FriendInGroup.new
       fig.user_id = current_user.id
       fig.friend_group_id = params[:group_id]
       fig.user_id_friend = params[:friend_id]
+      user = User.find(params[:friend_id])
       if fig.save
+        subject = "#{current_user.name} add you to Family Group."
+        content = "Click <a href='#{list_user_friends_url(user, :group => "family_members")}' target='blank'>here</a> to view more"
+        send_notification(@message.recipient, subject, content, "confirms_a_friendship_request")
         render :text => "Saved selected group successfully"
       else
         render :text => "Failed to save selected group"
@@ -103,11 +107,11 @@ class FriendsController < ApplicationController
       end
     end
   end
-
+  
   def invite
     @mail_account = MailAccount.new(nil, nil, "gmail")
   end
-
+  
   def invite_by_list_email
     if params[:email_list]
       content = params[:content]
@@ -123,7 +127,7 @@ class FriendsController < ApplicationController
     flash[:notice] = "Invite Friends Successfully."
     redirect_to :action => "invite"
   end
-
+  
   def invite_by_import_email
     content = params[:content]
     content = "I found After Classroom as a great place for socialize and study after school, thus I would like to invite you to join" if content == ""
@@ -148,7 +152,7 @@ class FriendsController < ApplicationController
   def send_invite_by_import_email
     
   end
-
+  
   def delete
     user_id_friend = params[:user_id_friend]
     @user.user_invites.find_by_user_id_target(user_id_friend).destroy
@@ -156,7 +160,7 @@ class FriendsController < ApplicationController
     flash[:notice] = "Delete success."
     redirect_to :action => "index"
   end
-
+  
   def display_email
     mail_box = params[:mailbox]
     @mail_account = MailAccount.new(nil, nil, mail_box)
@@ -166,48 +170,57 @@ class FriendsController < ApplicationController
       end
     end
   end
-
+  
   def accept
     @invite_id = params[:invite_id]
     @invite = @user.user_invites_in.find_by_id(@invite_id)
     @invite.is_accepted = true
     @invite.save
+    subject = "#{current_user.name} accepted you is a friend."
+    content = "Click <a href='#{user_friends_url(user)}' target='blank'>here</a> to view more"
+    send_notification(@message.recipient, subject, content, "confirms_a_friendship_request")
     render :layout => false
   end
-
+  
   def de_accept
     @invite_id = params[:invite_id]
     @invite_id = @user.user_invites_in.find_by_id(@invite_id)
     @invite_id.destroy
+    subject = "#{current_user.name} sended a message for you."
+    content = "#{current_user.name} has declined invitations to your friend."
+    send_notification(@message.recipient, subject, content, "confirms_a_friendship_request")
     render :layout => false
   end
-
+  
   def show_invite
     @user_invite = params[:user_invite]
     user = User.find_by_id(@user_invite)
     @full_name = user.full_name
     render :layout => false
   end
-
+  
   def send_invite_message
-
+    
     user_id_friend = params[:user_invite]
     invite_message = params[:invite_message] || "let's be friends!"
-    
-    if (user_id_friend && invite_message)
+    user = User.find(user_id_friend)
+    if (user && invite_message)
       UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
+      subject = "#{current_user.name} want to be friend with you."
+      content = "Click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to view more"
+      send_notification(@message.recipient, subject, content, "adds_me_as_a_friend")
       render :text => "Waiting accept"
     end
   end
-
+  
   def become_a_fan
     @user_id = params[:user_id]
     user_follow = User.find(params[:user_id])
-
+    
     fan = Fan.new
-    fan.user_id = current_user.id 
+    fan.user_id = current_user.id
     user_follow.fans << fan
-
+    
     render :text => "You are a fan"
   end
   
@@ -217,7 +230,7 @@ class FriendsController < ApplicationController
   end
   
   protected
-
+  
   def require_current_user
     @user ||= User.find(params[:user_id] || params[:id])
     unless (@user && (@user.eql?(current_user)))
@@ -225,7 +238,7 @@ class FriendsController < ApplicationController
     end
     return @user
   end
-
+  
   def get_user_id_suggestions(user)
     user_id_friends = user.user_friends.collect(&:id)
     friend_of_friend = []
@@ -237,7 +250,7 @@ class FriendsController < ApplicationController
     friend_of_friend = friend_of_friend.uniq
     user_id_suggestions = friend_of_friend - user_id_friends
   end
-
+  
   def send_email(email, content)
     friend_invitation = FriendInvitation.new
     friend_invitation.user = current_user
@@ -246,5 +259,5 @@ class FriendsController < ApplicationController
     friend_invitation.reload
     UserMailer.deliver_invitation(current_user, email, request.host_with_port, friend_invitation.invitation_code, content)
   end
-
+  
 end
