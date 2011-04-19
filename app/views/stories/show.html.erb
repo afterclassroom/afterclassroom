@@ -25,14 +25,6 @@
         </div>
         <%= render :partial => "story_action" %>
         <%= show_post_comments(@story) %>
-        <div class="AsDcomL" id="list_comments">
-          <% if @story.comments.size > 0 %>
-            <h1 class="titleH1"><a href="javascript:;">Comments (<%= @story.comments.size %>)</a></h1>
-            <% @story.comments.each do |c| %>
-              <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
-            <% end %>
-          <% end %>
-        </div>
         <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
     </div>

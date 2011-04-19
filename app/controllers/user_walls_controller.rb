@@ -138,12 +138,12 @@ class UserWallsController < ApplicationController
     list_ids.each do |id|
       u = User.find(id)
       if u and u != usr
-        list_name << "<a href='#{show_user_url(u)}'>#{u.full_name}</a>"
+        list_name << "<a href='#{user_url(u)}'>#{u.full_name}</a>"
         message = Message.new
         message.sender = current_user
         message.recipient = u
         message.subject = "#{current_user.full_name} introduce #{usr.full_name} with you"
-        message.body = content + "<br />" + "Click #{link_to "here", user_path(usr), :target => "blank"} to view profile of #{usr.full_name}"
+        message.body = content + "<br />" + "Click #{link_to "here", user_url(usr), :target => "blank"} to view profile of #{usr.full_name}"
         message.save
       end
     end

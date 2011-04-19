@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     comment = params[:comment]
     commentable_id = params[:commentable_id]
     commentable_type = params[:commentable_type]
+    
     if comment && commentable_id && commentable_type
       @obj_comment = Comment.new()
       @obj_comment.comment = comment
@@ -17,22 +18,24 @@ class PostsController < ApplicationController
       @obj_comment.commentable_type = commentable_type
       @obj_comment.user = current_user
       @obj_comment.save
-      obj = @obj_comment.find_commentable(commentable_type, commentable_id)
-      user = obj.user
-      if ["Photo", "Music", "UserWall"].include?(commentable_type)
+      obj = eval(commentable_type).find(commentable_id)
+      u = obj.user
+      
+      if ["Photo", "Music", "Story"].include?(commentable_type)
         case commentable_type
           when "Photo"
             subject = "#{current_user.name} comment on your Photo."
-            content = "Click <a href='#{show_user_photos_url(user, obj)}' target='blank'>here</a> to view more"
-            send_notification(user, subject, content, "comments_on_my_photo")
+            content = "Click <a href='#{user_photo_url(u, obj)}' target='blank'>here</a> to view more"
+            send_notification(u, subject, content, "comments_on_my_photo")
           when "Music"
             subject = "#{current_user.name} comment on your Music."
-            content = "Click <a href='#{show_user_musics_url(user, obj)}' target='blank'>here</a> to view more"
-            send_notification(user, subject, content, "comments_on_my_music")
+            content = "Click <a href='#{user_music_url(u, obj)}' target='blank'>here</a> to view more"
+            send_notification(u, subject, content, "comments_on_my_music")
           when "Story"
             subject = "#{current_user.name} comment on your Story."
-            content = "Click <a href='#{show_user_stories_url(user, obj)}' target='blank'>here</a> to view more"
-            send_notification(user, subject, content, "comments_on_my_story")
+            content = "Click <a href='#{user_story_url(u, obj)}' target='blank'>here</a> to view more"
+            send_notification(u, subject, content, "comments_on_my_story")
+            
         end
       end
     end

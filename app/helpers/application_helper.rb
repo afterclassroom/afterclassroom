@@ -494,28 +494,28 @@ module ApplicationHelper
       link = wall.user_wall_photo.link
       image = link_to raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), link, :target => "_blank", :id => "imageLink"
       title = wall.user_wall_photo.title
-      sub_content = wall.user_wall_photo.sub_content
+      sub_content = raw(wall.user_wall_photo.sub_content)
     end
     
     if wall.user_wall_video
       link = wall.user_wall_video.link
       image = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
       title = wall.user_wall_video.title
-      sub_content = wall.user_wall_video.sub_content
+      sub_content = raw(wall.user_wall_video.sub_content)
     end
     
     if wall.user_wall_music
       link = wall.user_wall_music.link
       image = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
       title = wall.user_wall_music.title
-      sub_content = wall.user_wall_music.sub_content
+      sub_content = raw(wall.user_wall_music.sub_content)
     end
     
     if wall.user_wall_link
       link = wall.user_wall_link.link
       image = link_to(raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank") if wall.user_wall_link.image_link
       title = wall.user_wall_link.title
-      sub_content = wall.user_wall_link.sub_content if wall.user_wall_link.sub_content
+      sub_content = raw(wall.user_wall_link.sub_content) if wall.user_wall_link.sub_content
     end
     render :partial => "user_walls/wall_attach", :locals => {:wall_id => wall.id, :image => image, :title => title, :link => link, :sub_content => sub_content}
   end
