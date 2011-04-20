@@ -36,7 +36,7 @@
           <div class="AsDcom" id="form_comment" style="display: none">
             <h1 class="titleH1">Leave your comments</h1>
             <% if logged_in? %>
-              <div class="AsDcomImg"><%= link_to raw("<div>#{image_tag(current_user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => current_user.id} %></div>
+              <div class="AsDcomImg"><%= show_image_user_post(current_user) %></div>
               <div class="AsDcomIn">
                 <form name="form_comment" id="form_comment" action="" method="get">
                   <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>

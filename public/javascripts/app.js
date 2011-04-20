@@ -155,7 +155,6 @@ function sendEmail(current_user_id, user_id){
     });
 }
 
-
 function sendReportAbuse(){
     reported_id = $('#reported_id').val();
     reported_type = $('#reported_type').val();
@@ -219,6 +218,25 @@ function hideCommentForm(wall_id){
     if ($('#comment_' + wall_id).val() == "") {
         $('#wall_comment_' + wall_id).show();
         $('#wall_comment_form_' + wall_id).hide();
+    }
+}
+
+function showListPostComment(post_id){
+	$('#post_comment_' + post_id).hide();
+	$('#post_comment_form_' + post_id).show();
+	$('#post_list_comment_' + post_id).toggle("slow");
+}
+
+function showPostCommentForm(post_id){
+    $('#post_comment_form_' + post_id).show();
+    $('#post_comment_' + post_id).hide();
+    $('#comment_' + post_id).focus();
+}
+
+function hidePostCommentForm(post_id){
+    if ($('#comment_' + post_id).val() == "") {
+        $('#post_comment_' + post_id).show();
+        $('#post_comment_form_' + post_id).hide();
     }
 }
 

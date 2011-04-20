@@ -1,0 +1,16 @@
+<div id="post_list_comment_<%= post.id %>" style="display:none;">
+    <% if post.comments.size > 0 %>
+    <% if post.comments.size > 2 %>
+    <div class="proList">
+        <div class="writeCom">
+            <%= link_to "View all comments", {:controller => "posts", :action => "view_all_comments", :post_id => post.id}, :remote => true %>
+        </div>
+    </div>
+    <% end %>
+    <% post.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
+    <%= render :partial => "shared/post_comments/post_comment_item", :locals => {:post => post, :comment => cm} %>
+    <% end %>
+    <% end %>
+	<%= render :partial => "shared/post_comments/post_comment_form", :locals => {:post => post} %>
+	<%= render :partial => "shared/post_comments/post_comment", :locals => {:post => post} %>
+</div>

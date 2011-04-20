@@ -1,0 +1,10 @@
+<div class="proList" id="post_comment_form_<%= post.id %>" style="display:none;">
+  <% form_tag url_for(:controller => "posts", :action => "create_comment_on_list"), :remote => true, :html => {:id => "post_form_#{post.id}"} do %>
+  <%= hidden_field_tag "post_id", post.id %>
+  <div class="proListPic"><%= show_image_user_post(current_user) %></div>
+  <div class="proListR">
+    <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{post.id}", :onblur => "hidePostCommentForm('#{post.id}')"} %></div>
+  </div>
+  <div class="proAttR"><%= submit_tag 'Comment', :class => "buttonCom" %></div>
+  <% end %>
+</div>

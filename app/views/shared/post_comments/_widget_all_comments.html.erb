@@ -1,0 +1,5 @@
+<% @post.comments.each do |cm| %>
+  <%= render :partial => "shared/post_comments/post_comment_item", :locals => {:post => @post, :comment => cm} %>
+<% end %>
+<%= render :partial => "shared/post_comments/post_comment_form", :locals => {:post => @post} %>
+<%= render :partial => "shared/post_comments/post_comment", :locals => {:post => @post} %>

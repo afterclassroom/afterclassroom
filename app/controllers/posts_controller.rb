@@ -42,12 +42,38 @@ class PostsController < ApplicationController
     render :layout => false
   end
   
-  def delete_comment
-    comment_id = params[:comment_id]
-    if comment_id
-      comment = Comment.find(comment_id)
-      comment.destroy if comment
+  def create_comment_on_list
+    comment = params[:comment]
+    post_id = params[:post_id]
+    @post = Post.find(post_id)
+    
+    if comment && @post
+      @obj_comment = Comment.new()
+      @obj_comment.comment = comment
+      @obj_comment.commentable_id = @post.id
+      @obj_comment.commentable_type = "Post"
+      @obj_comment.user = current_user
+      @obj_comment.save
     end
+    render :layout => false
+  end
+  
+  def view_all_comments
+    post_id = params[:post_id]
+    @post = Post.find(post_id)
+    @comments = @post.comments
+    render :layout => false
+  end
+  
+  def delete_comment
+    post_id = params[:post_id]
+    comment_id = params[:comment_id]
+    post = Post.find(post_id)
+    comment = post.comments.find(comment_id)
+    if post.user == current_user or comment.user == current_user
+      comment.destroy
+    end
+    render :text => post.comments.size
   end
   
   def rate_comment

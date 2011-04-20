@@ -27,7 +27,7 @@
         <div><%= post.created_at.strftime("%I:%M %p %Z") %></div>
         <div class="vie"><%= "View (#{post.count_view})" %></div>
         <div class="fav" id="item_favorite_<%= post.id %>"><%= show_favorite("Post", post) %></div>
-        <div class="com"><%= "Comments (#{post.comments.size})" %></div>
+        <div class="com"><%= link_to raw("Comments (<span id='post_#{post.id}_comments'>#{post.comments.size}</span>)"), "javascript:;", :onclick => "showListPostComment(#{post.id})" %></div>
       </div>
     </div>
   </div>

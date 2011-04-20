@@ -1,0 +1,31 @@
+<!--Alert-->
+<div id="delete_comment_alert" title="Alert" style="display:none;">
+  Are you sure?
+</div>
+<!--Alert-->
+
+<script type="text/javascript">
+  function DeletePostComment(post_id, comment_id){
+    $("#delete_comment_alert").dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $(this).dialog('close');
+          $.ajax({
+            url: '/posts/delete_comment',
+            type: 'GET',
+            dataType: 'html',
+            data: 'comment_id=' + comment_id + '&post_id=' + post_id,
+            success: function(html){
+              $('#post_' + post_id + '_comment_' + comment_id).toggle("slow");
+			  $('#post_' + post_id + '_comments').html(html);
+            }
+          });
+        },
+        Cancel: function() {
+          $(this).dialog('close');
+        }
+      }
+    });
+  }
+</script>

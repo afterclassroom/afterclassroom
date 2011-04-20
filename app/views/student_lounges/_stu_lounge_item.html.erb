@@ -1,32 +1,31 @@
 <div class="AfterItem" id="wall_<%= wall.id %>">
-	<% if wall.user == current_user or wall.user_post == current_user %>
+    <% if wall.user == current_user or wall.user_post == current_user %>
     <div class="del_wall" style="float: right; display: none; cursor: pointer;" onclick="DeleteWall(<%= wall.id %>)">
         <img src="/images/icon-ing.gif">
-    </div>
-	<% end %>
+    </div><% end %>
     <div class="assPic">
         <%= show_image_user_post(wall.user_post) %>
     </div>
     <div class="AfterInfo">
-    	<% if wall.user_post != current_user %>
-    <div class="asslinkdownSt">
-        <div class="morelink">
-            <%= show_invite_chat(wall.user_post) %>
+        <% if wall.user_post != current_user %>
+        <div class="asslinkdownSt">
+            <div class="morelink">
+                <%= show_invite_chat(wall.user_post) %>
+            </div>
+            <div class="down">
+                <a title="Match Making" class="thickbox" href="/user_walls/match_making_box?&height=288&width=500&user_id_post=<%= wall.user_id_post.to_s %>" id="myaclick">Match Making</a>
+            </div>
+            <div class="like">
+                <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= wall.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
+            </div>
+            <div class="love">
+                <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= wall.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
+            </div>
+            <div class="hate">
+                <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= wall.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
+            </div>
         </div>
-        <div class="down">
-            <a title="Match Making" class="thickbox" href="/user_walls/match_making_box?&height=288&width=500&user_id_post=<%= wall.user_id_post.to_s %>" id="myaclick">Match Making</a>
-        </div>
-        <div class="like">
-            <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= wall.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
-        </div>
-        <div class="love">
-            <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= wall.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
-        </div>
-        <div class="hate">
-            <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= wall.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
-        </div>
-    </div>
-    <% end %>
+        <% end %>
         <div class="AfterCl">
             <%= show_user_post(wall.user_post) %>- <%= raw(wall.content) %>
         </div>
@@ -77,7 +76,7 @@
         }, function(){
             $(".del_wall", this).hide();
         });
-		$(".AfterInfo").hover(function(){
+        $(".AfterItem").hover(function(){
             $(".asslinkdownSt", this).show();
         }, function(){
             $(".asslinkdownSt", this).hide();

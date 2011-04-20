@@ -2966,6 +2966,7 @@ div.helpAdv2{
 .proListR{
     float:left;
     width:300px;
+	margin-bottom:5px;
 }
 .proListCont{
     float:left;
@@ -3079,6 +3080,7 @@ div.helpAdv2{
 }
 .proAttR{
     float:right;
+	margin-right:20px;
 }
 .proAttR a{
     background:url('/images/proShare.gif') no-repeat left top;
