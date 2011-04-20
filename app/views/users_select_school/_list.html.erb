@@ -1,3 +1,4 @@
+<div id="sss">
 <ul id="country_menu" class="mcdropdown_menu">
   <% @countries.each do |c| %>
     <li rel_country="<%= c.id %>">
@@ -5,6 +6,7 @@
     </li>
   <% end %>
 </ul>
+
 <ul id="state_menu" class="mcdropdown_menu">
   <% @states.each do |s| %>
     <li rel_state="<%= s.id %>">
@@ -32,3 +34,51 @@
     </li>
   <% end %>
 </ul>
+</div>
+
+<style>
+  #sss{
+    position: fixed;
+    top:50%;
+    border: 1px saddlebrown solid;
+}
+</style>
+<script type="text/javascript">
+        function GetValue(){
+            var dd = $("#country_menu").mcDropdown();
+            var value = dd.getValue();
+            alert(value[0] + "@" + value[1]);
+        }
+        function DisableEnable(flag){
+            var dd = $("#category").mcDropdown();
+            dd.disable(flag);
+        }
+        function OpenMenu(){
+            var dd = $("#category").mcDropdown();
+            dd.openMenu();
+        }
+        function CloseMenu(){
+            var dd = $("#category").mcDropdown();
+            dd.closeMenu();
+        }
+         function anchorTo($anchor, $target,){
+            var dd = $("ul#country_menu").mcDropdown();
+            var pos = position($anchor, bUseOffset);
+
+            dd.css({
+                position: "fixed"
+                ,
+                top: 50%
+                ,
+                left: pos.left
+            });
+
+            /*
+			 * we need to return the top edge of the core drop down menu, because
+			 * the top:0 starts at this point when repositioning items absolutely
+			 * this means we have to offset everything by the offset of the top menu
+			 */
+
+            return pos.bottom;
+        };
+    </script>

@@ -349,6 +349,7 @@
 .AfterInfo{
     float:left;
     width:678px;
+    word-wrap: break-word;
 }
 .AfterCl{
     color:#808075;
