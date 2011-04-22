@@ -11,6 +11,8 @@
     <%= render :partial => "shared/post_comments/post_comment_item", :locals => {:post => post, :comment => cm} %>
     <% end %>
     <% end %>
+	<% if logged_in? %>
 	<%= render :partial => "shared/post_comments/post_comment_form", :locals => {:post => post} %>
 	<%= render :partial => "shared/post_comments/post_comment", :locals => {:post => post} %>
+	<% end %>
 </div>

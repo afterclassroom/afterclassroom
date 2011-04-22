@@ -135,8 +135,7 @@ class PostMyxesController < ApplicationController
     @post.save
     @post_myx = PostMyx.new(params[:post_myx])
     @post.school.tag(@post_myx, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+    
     @post_myx.tag_list = params[:tag]
     @post_myx.post = @post
     if simple_captcha_valid?

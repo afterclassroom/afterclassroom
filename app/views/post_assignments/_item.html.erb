@@ -19,18 +19,6 @@
             </div>
         </div>
     </div>
-    <!--info-link-box-->
-    <div class="asslinkdown">
-        <div class="morelink">
-            <%= link_to "More like this", :controller => "post_assignments", :action => "index", :more_like_this_id => post %>
-        </div>
-        <div class="down">
-            <% if post.attach_file_name %>
-            <a href="javascript:downloadFile('<%= post.attach.url %>')">Download</a>
-            <% end %>
-        </div>
-    </div>
-    <!--info-link-box-->
     <div class="assItemB">
         <div class="assInfT">
             <div class="assInfT">
@@ -52,7 +40,10 @@
                     <%= show_favorite("Post", post) %>
                 </div>
                 <div class="com">
-                    <%= link_to raw("Comments (<span id='post_#{post.id}_comments'>#{post.comments.size}</span>)"), "javascript:;", :onclick => "showListPostComment(#{post.id})" %>
+                    <%= show_comment_button(post.id, post.comments.size) %>
+                </div>
+                <div class="morelink">
+                    <%= link_to "More like this", :controller => "post_assignments", :action => "index", :more_like_this_id => post %>
                 </div>
             </div>
         </div>

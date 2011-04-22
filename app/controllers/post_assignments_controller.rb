@@ -110,8 +110,8 @@ class PostAssignmentsController < ApplicationController
     @post_assignment = PostAssignment.new(params[:post_assignment])
     @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
     @post.school.tag(@post_assignment, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+#    
+#    
     @post_assignment.post = @post
     if simple_captcha_valid?
       if @post_assignment.save

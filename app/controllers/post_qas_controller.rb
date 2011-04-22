@@ -155,8 +155,7 @@ class PostQasController < ApplicationController
     @post.save
     @post_qa = PostQa.new(params[:post_qa])
     @post.school.tag(@post_qa, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+    
     @post_qa.post = @post
     if simple_captcha_valid?
       if @post_qa.save

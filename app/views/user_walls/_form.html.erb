@@ -1,0 +1,37 @@
+<%= hidden_field_tag "user_wall_id", @user.id %>
+  <div class="proMind">
+    <div class="proMindT">
+      <div class="proques"><%= text_field_tag "your_mind", "What’s on your mind?", :onfocus => "if(this.value == this.defaultValue){ this.value = '';};", :onblur => "this.value = this.value || this.defaultValue;", :id => "wall_cotent_txt" %></div>
+    </div>
+    <div class="proAtt">
+      <div class="proAttItem" id="wrap_content_attach">
+        <div class="wrapItem">
+          <div class="suggesC"><a href="javascript:;" onclick="closeAttach();"><img src="/images/suggesC.png"/></a></div>
+          <div class="wrapCont" id="attach">
+          </div>
+        </div>
+      </div>
+      <div class="proAttL" id="attach_icon">
+        <%= render :partial => "user_walls/attach_icons" %>
+      </div>
+      <div class="proAttR"><%= submit_tag 'Share', :class => "button" %></div>
+    </div>
+  </div>
+  <div class="footWall"></div>
+  <script type="text/javascript">
+  function closeAttach(){
+    $('#wrap_content_attach').hide();
+    $('#attach_icon').show();
+  }
+  
+  function checkFormWall(){
+  	if ($('#wall_cotent_txt').val() == "" || $('#wall_cotent_txt').val() == "What’s on your mind?"){
+		$('#wall_cotent_txt').focus();
+		return false;
+	}else{
+		return true;
+	}
+  }
+</script>
+
+<%= render :partial => "user_walls/alert" %>

@@ -119,8 +119,7 @@ class PostExamSchedulesController < ApplicationController
     @post.save
     @post_exam_schedule = PostExamSchedule.new(params[:post_exam_schedule])
     @post.school.tag(@post_exam_schedule, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+
     @post_exam_schedule.post = @post
     if simple_captcha_valid?
       if @post_exam_schedule.save

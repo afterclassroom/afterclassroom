@@ -176,8 +176,7 @@ class PostJobsController < ApplicationController
     @post.save
     @post_job = PostJob.new(params[:post_job])
     @post.school.tag(@post_job, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+        
     @post_job.post = @post
 
     if (@post_job.job_type.label == "i_m_looking_for_job")

@@ -1,0 +1,18 @@
+<!--Comments-->
+<% if @wall.comments.size > 0 %>
+<div id="wall_list_comment_<%= wall.id %>">
+    <% if wall.comments.size > 2 %>
+    <div class="proList">
+        <div class="writeCom">
+            <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall.id}, :remote => true %>
+        </div>
+    </div>
+    <% end %>
+    <% @wall.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
+    <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => @wall, :comment => cm} %>
+    <% end %>
+    <%= render :partial => "user_walls/wall_comment", :locals => {:wall => @wall} %>
+</div>
+<% end %>
+<%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => @wall} %>
+<!--Comments-->

@@ -107,7 +107,7 @@ module ApplicationHelper
       when "post_exams"
       path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_exam.png"
       when "post_events"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_party.png"
+      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_event.png"
       when "post_qas"
       path = "/images/icons/icon_defaut/icon_qa.png"
       when "post_tutors"
@@ -269,6 +269,23 @@ module ApplicationHelper
       link_to_require_login("Student Lounge")
     else
       link_to "Student Lounge", user_student_lounges_path(current_user)
+    end
+  end
+  
+  def show_post(path)
+    if !logged_in?
+      link_to_require_login("Post")
+    else
+      link_to "Post", path
+    end
+  end
+  
+  def show_comment_button(post_id, comments)
+    text = raw("Comments (<span id='post_#{post_id}_comments'>#{comments}</span>)")
+    if !logged_in?
+      link_to_require_login(text)
+    else
+      link_to text, "javascript:;", :onclick => "showListPostComment(#{post_id})"
     end
   end
   
@@ -578,9 +595,10 @@ module ApplicationHelper
   
   private
   def link_to_require_login(str)
+    link_login = "https://afterclassroom.com/login"
     #link_to(str, "/login_ajax?height=300&width=540", :class => "thickbox", :title => "Sign In")
     str_require_login = "This function is available only to registered users."
-    link_to(str, "javascript:;", :class => "vtip", :title => str_require_login)
+    link_to(str, link_login, :class => "vtip", :title => str_require_login)
   end
 
 end

@@ -75,9 +75,11 @@ class UserWallsController < ApplicationController
       obj_comment.comment = comment
       obj_comment.user = current_user
       @wall.comments << obj_comment
-      subject = "#{current_user.name} post comment on your lounge."
-      content = "Click <a href='#{user_student_lounges_url(@wall.user)}' target='blank'>here</a> to view more"
-      send_notification(@wall.user, subject, content, "comments_on_my_lounge")
+      if @wall.user != current_user
+        subject = "#{current_user.name} post comment on your lounge."
+        content = "Click <a href='#{user_student_lounges_url(@wall.user)}' target='blank'>here</a> to view more"
+        send_notification(@wall.user, subject, content, "comments_on_my_lounge")
+      end
     end
     render :layout => false
   end
@@ -94,11 +96,13 @@ class UserWallsController < ApplicationController
   
   def delete_wall
     wall_id = params[:wall_id]
-    wall = UserWall.find(wall_id)
-    if wall
-      wall.destroy if wall.user == current_user or wall.user_post == current_user
+    @wall = UserWall.find(wall_id)
+    @user = @wall.user
+    if @wall
+      @wall.destroy if @wall.user == current_user or @wall.user_post == current_user
     end
-    render :text => "Success"
+    @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    render :layout => false
   end
   
   def rate

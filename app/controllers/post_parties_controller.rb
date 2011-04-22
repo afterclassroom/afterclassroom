@@ -172,8 +172,7 @@ class PostPartiesController < ApplicationController
     @post.save
     @post_party = PostParty.new(params[:post_party])
     @post.school.tag(@post_party, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+ 
     @post_party.tag_list = params[:tag]
     @post_party.post = @post
     if simple_captcha_valid?

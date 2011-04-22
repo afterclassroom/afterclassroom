@@ -285,7 +285,6 @@
   width:100px;
   margin-left: 330px;
   position: absolute;
-  display: none;
   background: none repeat scroll 0 0 white;
   border: 1px solid;
   padding: 10px;
@@ -326,9 +325,9 @@ margin-top: 15px;
 }
 .assInfB .com{
   background:url('/images/icon-comnent.gif') no-repeat left 2px;
-  padding:0px 0px 0px 17px;
+  padding:0px 5px 0px 17px;
 }
-.asslinkdown .morelink{
+.morelink{
   background:url('/images/icon-morelink.gif') no-repeat left 2px;
   padding:0px 0px 4px 15px;
 }
@@ -341,12 +340,13 @@ margin-top: 15px;
   padding:0px 0px 0px 15px;
 }
 .morelink a, .morelink a:link, .morelink a:visited,
+.myMap a, .myMap a:link, .myMap a:visited,
 .comment a, .comment a:link, .comment a:visited,
 .down a, .down a:link, .down a:visited{
   color:#969696;
   text-decoration:none;
 }
-.morelink a:hover, .comment a:hover, .down a:hover{
+.morelink a:hover, .myMap a:hover, .comment a:hover, .down a:hover{
   color:#d00;
 }
 .assPage{
@@ -1451,6 +1451,10 @@ div.postInf{
 .moreTutor{
   text-align:right;
   color:#1e1e1e;
+}
+.myMap{
+  background: url("/images/icon-map.png") no-repeat scroll left 2px transparent;
+    padding: 0 0 4px 15px;
 }
 .mySco{
   font-style:italic;

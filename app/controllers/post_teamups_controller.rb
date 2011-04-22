@@ -123,8 +123,7 @@ class PostTeamupsController < ApplicationController
     @post.save
     @post_teamup = PostTeamup.new(params[:post_teamup])
     @post.school.tag(@post_teamup, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+    
     @post_teamup.post = @post
     @post_teamup.teamup_category_id ||= TeamupCategory.first.id
     if simple_captcha_valid?

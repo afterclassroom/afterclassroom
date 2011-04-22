@@ -111,8 +111,7 @@ class PostEventsController < ApplicationController
     @post.save
     @post_event = PostEvent.new(params[:post_event])
     @post.school.tag(@post_event, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+
     @post_event.post = @post
     if simple_captcha_valid?
       if @post_event.save

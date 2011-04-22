@@ -33,6 +33,22 @@
                 </div>
             </div>
         </div>
+		<script type="text/javascript">
+	var path = "/user_walls/next_page_wall?user_id=<%= current_user.id %>";
+	var total_wall = <%= @walls.total_entries %>;
+    $(document).ready(function(){
+        $("body").flexiPagination({
+            url: path,
+            currentPage: 1,
+            totalResults: total_wall,
+            perPage: 10,
+            container: "#wall_page_wrap",
+            pagerVar: "page",
+            loaderImgPath: "/images/loader.gif",
+            debug: 0
+        });
+    });
+</script>
     </div>
 </div>
 <div class="contMainR">
@@ -109,20 +125,4 @@
       friends_you_invited_chat();
       friends_want_you_chat();
       friends_online();
-</script>
-<script type="text/javascript">
-	var path = "/user_walls/next_page_wall?user_id=<%= current_user.id %>";
-	var total_wall = <%= @walls.total_entries %>;
-    $(document).ready(function(){
-        $("body").flexiPagination({
-            url: path,
-            currentPage: 1,
-            totalResults: total_wall,
-            perPage: 10,
-            container: "#wall_page_wrap",
-            pagerVar: "page",
-            loaderImgPath: "/images/loader.gif",
-            debug: 0
-        });
-    });
 </script>

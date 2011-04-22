@@ -174,8 +174,7 @@ class PostAwarenessesController < ApplicationController
     @post.save
     @post_awareness = PostAwareness.new(params[:post_awareness])
     @post.school.tag(@post_awareness, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+
     @post_awareness.post = @post
     if @post_awareness.save
       flash[:notice] = "Your post was successfully created."

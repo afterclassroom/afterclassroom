@@ -116,8 +116,7 @@ class PostHousingsController < ApplicationController
     @post.save
     @post_housing = PostHousing.new(params[:post_housing])
     @post.school.tag(@post_housing, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+
     @post_housing.post = @post
     
     if simple_captcha_valid?

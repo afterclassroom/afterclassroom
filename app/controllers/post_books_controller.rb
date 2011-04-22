@@ -150,8 +150,7 @@ class PostBooksController < ApplicationController
     @post.save
     @post_book = PostBook.new(params[:post_book])
     @post.school.tag(@post_book, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+
     @post_book.post = @post
     @post_book.book_type_id ||= BookType.first.id
     if simple_captcha_valid?

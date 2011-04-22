@@ -99,8 +99,7 @@ class PostExamsController < ApplicationController
     @post.save
     @post_exam = PostExam.new(params[:post_exam])
     @post.school.tag(@post_exam, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+
     @post_exam.post = @post
     if simple_captcha_valid?
       if @post_exam.save

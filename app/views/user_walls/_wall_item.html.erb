@@ -28,12 +28,13 @@
                 </div>
             </div>
             <div class="com">
-                <a href="javascript:;" onclick="showCommentForm('<%= wall.id %>');">Comments (<%= wall.comments.size %>)</a>
+                <a href="javascript:;" onclick="showCommentForm('<%= wall.id %>');">Comments (<span id="wall_<%= wall.id %>_comments"><%= wall.comments.size %></span>)</a>
             </div>
         </div>
         <!--Comments-->
-        <% if wall.comments.size > 0 %>
+        
         <div id="wall_list_comment_<%= wall.id %>">
+        	<% if wall.comments.size > 0 %>
             <% if wall.comments.size > 2 %>
             <div class="proList">
                 <div class="writeCom">
@@ -45,9 +46,9 @@
             <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :comment => cm} %>
             <% end %>
             <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall} %>
+			<% end %>
+			<%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall} %>
         </div>
-        <% end %>
-        <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall} %>
         <!--Comments-->
     </div>
 </div>

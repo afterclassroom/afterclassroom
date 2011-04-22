@@ -1,18 +1,25 @@
 <%
 case controller.controller_name
-when 'post_qas'
-  text = "Browser by category"
-else
-  text = "Browse by subject "
+	when 'post_qas'
+	text = "Browser by category"
+	else
+	text = "Browse by subject "
 end
-%>
+
+if session[:your_school]
+	tags = School.find(session[:your_school]).owned_tags.where(["taggable_type = ?", @class_name])
+else
+	tags = eval(@class_name).tag_counts
+end %>
 <div class="col300 Br-by-sub">
-  <div class="col300in">
-    <h1 class="col300Title"><%= text %></h1>
-    <div class="col300Cont">
-      <div class="tabClouse">
-        <%= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
-      </div>
+    <div class="col300in">
+        <h1 class="col300Title"><%= text %></h1>
+        <div class="col300Cont">
+        	<% if tags %>
+            <div class="tabClouse">
+                <%= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
+            </div>
+			<% end %>
+        </div>
     </div>
-  </div>
 </div>

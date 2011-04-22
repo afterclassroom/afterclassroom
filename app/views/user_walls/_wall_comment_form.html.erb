@@ -5,6 +5,6 @@
   <div class="proListR">
     <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{wall.id}", :onblur => "hideCommentForm('#{wall.id}')"} %></div>
   </div>
-  <div class="proAttR"><%= submit_tag 'Comment', :class => "buttonCom" %></div>
+  <div class="proAttR"><%= submit_tag 'Send', :class => "buttonCom" %></div>
   <% end %>
 </div>

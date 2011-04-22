@@ -1,34 +1,54 @@
 <div class="assItem">
-  <div class="assItemL">
-    <div class="assPic"><%= show_image_user_post(post.user) %></div>
-    <div class="assContT">
-      <h2 class="titleH2"><%= link_to title, post_exam_path(post.post_exam) %></h2>
-      <div class="assCate"><span>From:</span><%= link_to post.school.name, :controller => "post_exams", :action => "index", :from_school => post.school %></div>
-    </div>
-    <div class="assDes"><%= truncate_words(description) %></div>
-  </div>
-  <!--info-link-box-->
-  <div class="asslinkdown">
-    <div class="morelink"><%= link_to "More like this", :controller => "post_exams", :action => "index", :more_like_this_id => post %></div>
-    <div class="down"><% if post.attach_file_name %>
-        <a href="javascript:downloadFile('<%= post.attach.url %>')" >Download</a>
-      <% end %></div>
-  </div>
-  <!--info-link-box-->
-  <div class="assItemB">
-    <div class="assImg"><div><%= link_to image_post_thumb(controller.controller_name, post), post.post_exam %></div></div>
-    <div class="assInfT">
-      <div class="assInfT">
-        <div class="assInfL">
-          <div><span>Posted by:</span><%= show_user_post(post.user) %></div>  
+    <div class="assItemL">
+        <div class="assPic">
+            <%= show_image_user_post(post.user) %>
         </div>
-      </div>
-      <div class="assInfB">
-        <div><%= post.created_at.strftime("%I:%M %p %Z") %></div>
-        <div class="vie"><%= "View (#{post.count_view})" %></div>
-        <div class="fav" id="item_favorite_<%= post.id %>"><%= show_favorite("Post", post) %></div>
-        <div class="com"><%= link_to raw("Comments (<span id='post_#{post.id}_comments'>#{post.comments.size}</span>)"), "javascript:;", :onclick => "showListPostComment(#{post.id})" %></div>
-      </div>
+        <div class="assContT">
+            <h2 class="titleH2"><%= link_to title, post_project_path(post.post_exam) %></h2>
+            <div class="assCate">
+                <span>From:</span>
+                <%= link_to post.school.name, :controller => "post_exams", :action => "index", :from_school => post.school %>
+            </div>
+            <div class="assDes">
+                <div class="assImg">
+                    <div>
+                        <%= link_to image_post_thumb(controller.controller_name, post), post.post_exam %>
+                    </div>
+                </div>
+                <%= truncate_words(description) %>
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="assItemB">
+        <div class="assInfT">
+            <div class="assInfT">
+                <div class="assInfL">
+                    <div>
+                        <span>Posted by:</span>
+                        <%= show_user_post(post.user) %>
+                    </div>
+                </div>
+            </div>
+            <div class="assInfB">
+                <div>
+                    <%= post.created_at.strftime("%I:%M %p %Z") %>
+                </div>
+                <div class="vie">
+                    <%= "View (#{post.count_view})" %>
+                </div>
+                <div class="fav" id="item_favorite_<%= post.id %>">
+                    <%= show_favorite("Post", post) %>
+                </div>
+                <div class="com">
+                    <%= show_comment_button(post.id, post.comments.size) %>
+                </div>
+                <div class="morelink">
+                    <%= link_to "More like this", :controller => "post_tests", :action => "index", :more_like_this_id => post %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Comments-->
+    <%= render :partial => "shared/post_comments/show_list_comments", :locals => {:post => post} %>
+    <!--Comments-->
 </div>

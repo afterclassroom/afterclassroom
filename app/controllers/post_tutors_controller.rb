@@ -151,8 +151,7 @@ class PostTutorsController < ApplicationController
     @post.save
     @post_tutor = PostTutor.new(params[:post_tutor])
     @post.school.tag(@post_tutor, :with => params[:tag], :on => :tags)
-    @post.school.owned_taggings
-    @post.school.owned_tags
+    
     @post_tutor.post = @post
     @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
     if simple_captcha_valid?

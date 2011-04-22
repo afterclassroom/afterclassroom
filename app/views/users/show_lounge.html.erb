@@ -23,14 +23,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="contMainR">
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
-</div>
-<script type="text/javascript">
+		<script type="text/javascript">
     	var path = "/user_walls/next_page_my_wall?user_id=<%= @user.id %>";
     	var total_wall = <%= @walls.total_entries %>;
         $(document).ready(function(){
@@ -46,3 +39,10 @@
             });
         });
 </script>
+    </div>
+</div>
+<div class="contMainR">
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+</div>
