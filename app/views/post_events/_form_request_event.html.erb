@@ -6,7 +6,7 @@ type ||= 1
   <div class="col300in">
     <h1 class="col300Title">Quick post for Event</h1>
     <div class="col300Cont">
-      <%= form_for :post_party, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+      <%= form_for :post_event, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
 	  <div class="reqLa">
                     <label>
                         Type
@@ -28,7 +28,7 @@ type ||= 1
               <div class="reqTi"><%= f.text_field :address %></div>
             </div>
           </div>
-          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
 		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
           <div class="submit" style="margin-top: 5px;"><%= show_submit_form() %></div>

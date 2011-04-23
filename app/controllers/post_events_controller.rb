@@ -67,6 +67,7 @@ class PostEventsController < ApplicationController
   def show
     @post_event = PostEvent.find(params[:id])
     @post = @post_event.post
+    @event_type_id = @post_event.event_type.id
     update_view_count(@post)
     posts_as = PostEvent.with_school(@school)
     as_next = posts_as.next(@post_event.id).first

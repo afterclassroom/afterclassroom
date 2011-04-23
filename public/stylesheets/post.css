@@ -575,8 +575,15 @@ span.btmShare a{
   background:url('/images/btmShare.png') no-repeat;
   width:70px;
 }
+span.btmMap a{
+  background:url('/images/btmMap.png') no-repeat;
+  width:90px;
+}
 span.btmShare a:hover{
   background:url('/images/btmShareH.png') no-repeat;
+}
+span.btmMap a:hover{
+  background:url('/images/btmMapH.png') no-repeat;
 }
 span.btmFav a{
   background:url('/images/btmFav.png') no-repeat;
@@ -759,7 +766,7 @@ span.btmDown a:hover{
   margin-left:10px;
 }
 .postUpfile{
-  margin-top:-21px;
+  margin-top:-20px;
 }
 #divinputfile .filepc{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";

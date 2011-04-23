@@ -2,7 +2,5 @@
   <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
   <span class="btmMail"><%= show_email(post) %></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
-  <% if post.attach_file_name %>
-    <span class="btmDown"><a href="javascript:downloadFile('<%= post.attach.url %>')" class="downarrow"><span>Download</span></a></span>
-  <% end   %>
+  <span class="btmMap"><%= show_map(post.post_event.address, post.title) %></span>
 </div>

@@ -6,6 +6,6 @@
   <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/email" %>
-  <%= render :partial => "/shared/form_post/file", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>

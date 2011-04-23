@@ -1,42 +1,58 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Events", post_events_path, :class => "abLink-detail" %><%= link_to "New", "#", :class => "abLink-detail" %>
+You are here: <a href="/">Home</a>
+<%= link_to "Events", post_events_path, :class => "abLink-detail" %><%= link_to "New", "#", :class => "abLink-detail" %>
 <% end -%>
-
 <% content_for :post_button do -%>
-  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
-
 <% content_for :menu_sub do -%>
-  <%= render :partial => "submenu" %>
+<%= render :partial => "submenu" %>
 <% end -%>
-
 <!--Content-->
 <div class="contDetL">
-  <div class="contDetLin post">
-    <div class="AsDTop">
-      <h1 class="titleH1">Posting to the world!</h1>
+    <div class="contDetLin post">
+        <div class="AsDTop">
+            <h1 class="titleH1">Posting to the world!</h1>
+        </div>
+        <div class="postCont">
+            <%= display_flash_messages_with_raw %>
+            <%= form_for(@post_event, :html => {:multipart => true, :id => "form_post" }) do |f| %>
+            <%= render :partial => "form", :locals => {:f => f} %>
+            <div class="submit">
+                <a href="javascript:;" onclick="submit();"><%= submit_tag 'Submit' %></a>
+            </div>
+            <% end %>
+        </div>
     </div>
-    <div class="postCont">
-    	<%= display_flash_messages_with_raw %>
-      <%= form_for(@post_event, :html => {:multipart => true, :id => "form_post" }) do |f| %>
-        <%= render :partial => "form", :locals => {:f => f} %>
-        <div class="submit"><a href="javascript:;" onclick="submit();"><%= submit_tag 'Submit' %></a></div>
-      <% end %>
-    </div>
-  </div>
 </div>
-
 <div class="contMainR">
-  <!--Browser by Subject-->
-  <%= render :partial => "shared/browser_by_subject" %>
-  <!--Browser by Subject-->
-
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
-
-  <!--Recent Request Events-->
-  <%= render :partial => "recent_request_events" %>
-  <!--Recent Request Events-->
+    <!--Browser by Subject-->
+    <%= render :partial => "shared/browser_by_subject" %>
+    <!--Browser by Subject-->
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+    <!--Recent Request Events-->
+    <%= render :partial => "recent_request_events" %>
+    <!--Recent Request Events-->
 </div>
 <!--Content-->
+<script type="text/javascript">
+jQuery.validator.setDefaults({
+	debug: true,
+	success: "valid"
+});;
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("#form_post").validate({
+            rules: {
+                file_attach: {
+					required: true,
+                    accept: "png|jpe?g|gif"
+                }
+            }
+        });
+    });
+</script>

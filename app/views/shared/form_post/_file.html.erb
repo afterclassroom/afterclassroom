@@ -1,11 +1,22 @@
-<div class="postTitt">Add/Edit File</div>
+<div class="postTitt">
+    Add/Edit File
+</div>
 <div class="postItemA" style="margin:0px">
-  <div id="divinputfile" style="margin-left:120px">
-    <div class="postItemC">
-    <%= post.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc", :size=> "27", :style => "margin-left:50px" %>
-  </div>
-  <div class="postUpfile">
-    <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-2px"></div>
-  </div>
+    <div id="divinputfile" style="margin-left:120px">
+        <div class="postItemC">
+            <%= post.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "accept filepc", :size=> "27", :style => "margin-left:50px", :id => "file_attach" %>
+        </div>
+        <div class="postUpfile">
+            <div id="fakeinputfile">
+                <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-2px">
+            </div>
+        </div>
+    </div>
+</div><% if only_img %>
+<div class="postItem" id="only_img">
+  <div class="postTit">&nbsp;</div>
+  <div class="postInp">
+    Only support these photo formats: JPG, GIF, PNG.
   </div>
 </div>
+<% end %>
