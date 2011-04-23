@@ -8,4 +8,7 @@ class StaticsController < ApplicationController
 
   def privacy
   end
+
+  def help
+  end
 end
