@@ -15,7 +15,7 @@
               <div class="reqTi"><%= text_field_tag "due_date" %></div>
             </div>
           </div>
-          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
 		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
           <div class="submit" style="margin-top: 5px;"><%= show_submit_form() %></div>

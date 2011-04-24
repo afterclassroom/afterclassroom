@@ -11,11 +11,11 @@
   <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
     <div class="postTit">Teacher name*</div>
-    <div class="postInp"><%= f.text_field :teacher_name, :class => 'required' %></div>
+    <div class="postInp"><%= f.text_field :teacher_name, :class => '{validate:{required:true}}' %></div>
   </div>
   <div class="postItem">
     <div class="postTit">Place*</div>
-    <div class="postInp"><%= f.text_field :place, :class => 'required' %></div>
+    <div class="postInp"><%= f.text_field :place, :class => '{validate:{required:true}}' %></div>
   </div>
   <div class="postItem">
     <div class="postTit">Starts at*</div>

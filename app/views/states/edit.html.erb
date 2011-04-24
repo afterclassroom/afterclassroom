@@ -23,12 +23,12 @@
             </tr>
             <tr>
               <th valign="top">State name*</th>
-              <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
+              <td class="inp-form"><%= f.text_field :name, :class => '{validate:{required:true}}' %></td>
 
             </tr>
             <tr>
               <th valign="top">Alias*</th>
-              <td class="inp-form"><%= f.text_field :alias, :class => "required" %></td>
+              <td class="inp-form"><%= f.text_field :alias, :class => '{validate:{required:true}}' %></td>
             </tr>
           <% end %>
           <tr>

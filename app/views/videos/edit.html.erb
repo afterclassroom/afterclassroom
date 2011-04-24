@@ -11,7 +11,7 @@
   <%= form_for(@video, :html => {:id => "form", :name => "form", :multipart => true }) do |f| %>
     <ul>
       <li><label>Title*</label>
-        <div class="user_ri"><%= f.text_field :title, :class => "required" %>
+        <div class="user_ri"><%= f.text_field :title, :class => '{validate:{required:true}}' %>
       </div></li>
       <li><label>Tag line</label>
         <div class="user_ri"><%= text_field_tag 'tag_list', "#{@tag_list}" %>

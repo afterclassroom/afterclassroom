@@ -1,7 +1,18 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 function submit(){
-    var result = $("#form_post").validate();
+    var result = $("#form_post").validate({
+        meta: "validate"
+    });
+    if (result) {
+        $("#form_post").submit();
+    }
+}
+
+function request_form_submit(){
+    var result = $("#form_post").validate({
+        meta: "validate"
+    });
     if (result) {
         $("#form_post").submit();
     }

@@ -2,7 +2,7 @@
   <div class="error" style="padding: 10px; display:none;"></div>
   <div class="findItem">
     <div class="findText">Your Email*</div>
-    <div class="findIn"><%= f.text_field :login, :style => "width:150px", :class => "required" %><span id="mail_type_span"><%= render :partial => "mail_type" %></span></div>
+    <div class="findIn"><%= f.text_field :login, :style => "width:150px", :class => '{validate:{required:true}}' %><span id="mail_type_span"><%= render :partial => "mail_type" %></span></div>
   </div>
   <div class="findItem">
     <div class="findText">Email Password*</div>

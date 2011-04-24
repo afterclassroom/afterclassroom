@@ -104,6 +104,11 @@ ActiveRecord::Schema.define(:version => 20110408093344) do
     t.integer "department_id", :null => false
   end
 
+  create_table "event_types", :force => true do |t|
+    t.string "name"
+    t.string "label"
+  end
+
   create_table "fans", :force => true do |t|
     t.integer  "fannable_id",   :default => 0,  :null => false
     t.string   "fannable_type", :default => "", :null => false
@@ -360,9 +365,9 @@ ActiveRecord::Schema.define(:version => 20110408093344) do
   end
 
   create_table "post_assignments", :force => true do |t|
-    t.integer "post_id"
-    t.string  "professor"
-    t.date    "due_date"
+    t.integer  "post_id"
+    t.string   "professor"
+    t.datetime "due_date"
   end
 
   create_table "post_awarenesses", :force => true do |t|
@@ -397,6 +402,7 @@ ActiveRecord::Schema.define(:version => 20110408093344) do
 
   create_table "post_events", :force => true do |t|
     t.integer "post_id"
+    t.integer "event_type_id"
     t.string  "address"
     t.string  "phone"
     t.string  "rating_status"
@@ -601,12 +607,10 @@ ActiveRecord::Schema.define(:version => 20110408093344) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id",       :null => false
+    t.string   "session_id", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.string   "last_url_visited"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"

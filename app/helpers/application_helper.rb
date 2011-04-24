@@ -477,7 +477,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login(submit_tag("Submit"))
     else
-      link_to(submit_tag("Submit"), "javascript:;", :onclick => "$('#form_post').submit();")
+      link_to(submit_tag("Submit"), "javascript:;", :onclick => "request_form_submit();")
     end
   end
   

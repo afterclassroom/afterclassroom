@@ -6,7 +6,7 @@
         </div>
         <div class="postInp">
             <% if @music_albums.size > 0 %>
-            <%= f.select :music_album_id, @music_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:360px", :class => "required"} %>
+            <%= f.select :music_album_id, @music_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:360px", :class => '{validate:{required:true}}'} %>
             <% end %>
         </div>
     </div>

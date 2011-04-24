@@ -14,16 +14,16 @@
               <div class="user_ri2"><label>When:</label> <span style="margin-left:45px"><%= @post.post_party.start_time %></span></div>
             </li>
             <li>
-              <div class="user_ri3"><label>First Name*:</label> <%= text_field_tag "first_name_#{@post.id}", "", :class => "required", :width => "330" %></div>
+              <div class="user_ri3"><label>First Name*:</label> <%= text_field_tag "first_name_#{@post.id}", "", :class => '{validate:{required:true}}', :width => "330" %></div>
             </li>
             <li>
-              <div class="user_ri4"><label>Last Name*:</label> <%= text_field_tag "last_name_#{@post.id}", "", :class => "required" %></div>
+              <div class="user_ri4"><label>Last Name*:</label> <%= text_field_tag "last_name_#{@post.id}", "", :class => '{validate:{required:true}}' %></div>
             </li>
             <li>
               <div class="user_ri5"><label>Email*:</label> <%= text_field_tag "email_#{@post.id}", "", :class => "required validate-email" %></div>
             </li>
             <li>
-              <div class="user_ri6"><label>Tel*:</label> <%= text_field_tag "tel_#{@post.id}", "", :class => "required" %></div>
+              <div class="user_ri6"><label>Tel*:</label> <%= text_field_tag "tel_#{@post.id}", "", :class => '{validate:{required:true}}' %></div>
             </li>
             <li>
               <label>Message:</label>

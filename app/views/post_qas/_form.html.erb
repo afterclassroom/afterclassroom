@@ -3,13 +3,13 @@
   <div class="postReq">*(asterisk) is required.</div>
   <div class="postItem">
     <div class="postTit">Your question*</div>
-    <div class="postInp"><%= post.text_field :title, :class => 'required', :style => "width:360px;" %></div>
+    <div class="postInp"><%= post.text_field :title, :class => '{validate:{required:true}}', :style => "width:360px;" %></div>
   </div>
   <div class="postItem">
     <div class="postTit">Content*</div>
     <div class="postInput">
       <div class="postDesInf" id="post_description_counter"><span>0</span> characters (900 max)</div>
-      <div class="postInp"><%= post.text_area :description, :class => 'required' %></div>
+      <div class="postInp"><%= post.text_area :description, :class => '{validate:{required:true}}' %></div>
     </div>
   </div>
   <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>

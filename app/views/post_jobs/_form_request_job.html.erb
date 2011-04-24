@@ -30,7 +30,7 @@ type ||= 1
 
           <%= render :partial => "/shared/form_request_post/select_tag" %>
 		  <div id="one_file_area">
-		  	<%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
+		  	<%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
 		  </div>
 		  <div id="resume_area">
          	<%= render :partial => "/shared/form_request_post/resume_cv" %>

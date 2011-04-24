@@ -19,7 +19,7 @@
           <%= form_for(@party_type, :html => {:id => "form"}) do |f| %>
             <tr>
               <th valign="top">Name*:</th>
-              <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
+              <td class="inp-form"><%= f.text_field :name, :class => '{validate:{required:true}}' %></td>
               <td class="form-buttom"><a href="javascript:;" onclick="submit();">Update</a></td>
               <td>
                 <div class="error-left"></div>

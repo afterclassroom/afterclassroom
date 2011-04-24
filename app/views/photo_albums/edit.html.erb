@@ -2,7 +2,7 @@
   <%= form_for [current_user, @photo_album], :html => {:id => "album_form"} do |f| %>
     <div class="postItem">
       <div style="width: 100px;" class="postItem1">Album name*</div>
-      <div class="postInp"><%= f.text_field :name, :class => "required" %></div>
+      <div class="postInp"><%= f.text_field :name, :class => '{validate:{required:true}}' %></div>
     </div>
     <div style="padding-left: 110px;" class="submit"><a onclick="$('#album_form').submit();" href="javascript:;">Update</a></div>
     <div style="padding: 10px;" class="error-innerr"></div>

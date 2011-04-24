@@ -14,23 +14,23 @@
         <div class="signNode">*(asterisk) is required.</div>
         <div class="signinItem">
           <div class="signinTit">First Name*:</div>
-          <div class="signinInp"><%= text_field_tag :first_name, session[:first_name],  :class => "required" %></div>
+          <div class="signinInp"><%= text_field_tag :first_name, session[:first_name],  :class => '{validate:{required:true}}' %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">Last Name*:</div>
-          <div class="signinInp"><%= text_field_tag :last_name, session[:last_name], :class => "required" %></div>
+          <div class="signinInp"><%= text_field_tag :last_name, session[:last_name], :class => '{validate:{required:true}}' %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">Email*:</div>
-          <div class="signinInp"><%= f.text_field :email, :class => "required email" %></div>
+          <div class="signinInp"><%= f.text_field :email, :class => '{validate:{required:true, email:true}}' %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">New Password*:</div>
-          <div class="signinInp"><%= f.password_field :password, :class => "required password" %></div>
+          <div class="signinInp"><%= f.password_field :password, :class => "{validate:{required:true, password:true}}" %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">Confirm*:</div>
-          <div class="signinInp"><%= f.password_field :password_confirmation, :class => "required password" %></div>
+          <div class="signinInp"><%= f.password_field :password_confirmation, :class => "{validate:{required:true, password:true, equalTo:'#user_password'}}" %></div>
         </div>
         <div class="popup2" id="select_school">
           <%= render :partial => "select_school" %>

@@ -19,7 +19,7 @@
           <table cellspacing="0" cellpadding="0" border="0" id="id-form">
             <tr>
               <th valign="top">School Name:</th>
-              <td class="inp-form"><%= f.text_field :name, :class => "required" %></td>
+              <td class="inp-form"><%= f.text_field :name, :class => '{validate:{required:true}}' %></td>
             </tr>
             <tr>
               <th valign="top">Type:</th>

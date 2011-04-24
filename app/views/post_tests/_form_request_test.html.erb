@@ -9,7 +9,7 @@
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
-          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
 		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
           <div class="submit" style="margin-top: 5px;"><%= show_submit_form() %></div>

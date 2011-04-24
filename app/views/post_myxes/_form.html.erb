@@ -8,7 +8,7 @@
   <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
     <div class="postTit">Professor*</div>
-    <div class="postInp"><%= f.text_field :professor, :class => 'required', :style => "width:208px" %></div>
+    <div class="postInp"><%= f.text_field :professor, :class => '{validate:{required:true}}', :style => "width:208px" %></div>
   </div>
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
   <%= render :partial => "/shared/form_post/select_tag" %>

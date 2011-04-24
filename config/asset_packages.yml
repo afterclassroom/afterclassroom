@@ -8,7 +8,6 @@ javascripts:
   - jquery-ui
   - jquery-mcdropdown
   - jquery-auto-suggest
-  - jquery-validate
   - jquery-counter
   - jquery-multiselect
   - jquery-wysiwyg
@@ -25,6 +24,9 @@ javascripts:
   - jquery.fileupload-ui
   - ajaxupload
   - jquery.pnotify
+  - jquery-validate
+  - jquery.metadata
+  - additional-methods
 - student_lounge:
   - jquery
   - rails
@@ -33,7 +35,6 @@ javascripts:
   - jquery-ui
   - jquery-mcdropdown
   - jquery-auto-suggest
-  - jquery-validate
   - jquery-wysiwyg
   - jquery-jeditable
   - jquery-carrousel
@@ -56,12 +57,14 @@ javascripts:
   - jquery.fileupload-ui
   - ajaxupload
   - jquery.pnotify
+  - jquery-validate
+  - jquery.metadata
+  - additional-methods
 - admin:
   - jquery
   - jquery-ui
   - jquery-mcdropdown
   - thickbox
-  - jquery-validate
   - vtip-min
   - custom-jquery
   - date
@@ -75,6 +78,9 @@ javascripts:
   - jquery-multiselect
   - rails
   - app
+  - jquery-validate
+  - jquery.metadata
+  - additional-methods
 stylesheets:
 - base:
   - main

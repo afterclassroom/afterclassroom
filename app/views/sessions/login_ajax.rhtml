@@ -8,7 +8,7 @@
     </div>
     <div class="signinItem">
       <div class="signinTit">Password*</div>
-      <div class="signinInp"><%= password_field_tag 'password', '', :class => 'required' %></div>
+      <div class="signinInp"><%= password_field_tag 'password', '', :class => '{validate:{required:true}}' %></div>
     </div>
     <div class="signincCheck">
       <div><%= check_box_tag('remember_me') %> </div>
