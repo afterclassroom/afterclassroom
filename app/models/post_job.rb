@@ -21,6 +21,7 @@ class PostJob < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => LIMIT
   scope :with_type, lambda { |tp| {:conditions => ["post_jobs.job_type_id = ?", tp]} }
+  scope :without_type, lambda { |tp| {:conditions => ["post_jobs.job_type_id <> ?", tp]} }
   scope :with_status, lambda { |st| {:conditions => ["post_jobs.rating_status = ?", st]} }
   scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
@@ -83,19 +84,21 @@ class PostJob < ActiveRecord::Base
     posts.paginate :page => params[:page], :per_page => 10
   end
 
-  def self.related_posts(school)
+  def self.related_posts(school, type)
     posts = []
-    post_as = self.random(5).with_school(school)
+    post_as = self.random(5).with_school(school).with_type(type)
     post_as.select {|p| posts << p.post}
     posts
   end
 
   def self.good_companies(school)
-    post_jobs = self.with_school(school).with_status("Good")
+    type = JobType.find_by_label("i_m_looking_for_job")
+    post_jobs = self.with_school(school).without_type(type.id).with_status("Good")
   end
 
   def self.bad_bosses(school)
-    post_jobs = self.with_school(school).with_status("Bad")
+    type = JobType.find_by_label("i_m_looking_for_job")
+    post_jobs = self.with_school(school).without_type(type.id).with_status("Bad")
   end
 
   def self.require_rating(school)

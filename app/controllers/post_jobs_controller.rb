@@ -107,9 +107,9 @@ class PostJobsController < ApplicationController
   def show
     @post_job = PostJob.find(params[:id])
     @post = @post_job.post
-    
+    @job_type_id = @post_job.job_type_id
     update_view_count(@post)
-    posts_as = PostJob.with_school(@school)
+    posts_as = PostJob.with_school(@school).with_type(@job_type_id)
     as_next = posts_as.next(@post_job.id).first
     as_prev = posts_as.previous(@post_job.id).first
     @next = as_next if as_next

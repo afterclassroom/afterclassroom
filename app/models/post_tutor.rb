@@ -88,17 +88,17 @@ class PostTutor < ActiveRecord::Base
   end
 
   def self.effective_tutors(school)   
-    tutor_type = TutorType.find_by_name("Tutor providers")
+    tutor_type = TutorType.find_by_label("tutor_provider")
     self.with_type(tutor_type.id).with_school(school).with_status("Good")
   end
 
   def self.dont_hire(school)
-    tutor_type = TutorType.find_by_name("Tutor providers")
+    tutor_type = TutorType.find_by_label("tutor_provider")
     self.with_type(tutor_type.id).with_school(school).with_status("Bad")
   end
 
   def self.require_rating(school)
-    tutor_type = TutorType.find_by_name("Tutor providers")
+    tutor_type = TutorType.find_by_label("tutor_provider")
     self.with_type(tutor_type.id).with_school(school).with_status("Require Rating").random(1)
   end
 

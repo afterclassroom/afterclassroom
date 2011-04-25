@@ -3,7 +3,8 @@
     <h1 class="col300Title">I need a job</h1>
     <div class="col300Cont">
       <%
-      jobs_recent = PostJob.with_school(@school).recent.with_limit
+      type = JobType.find_by_label("i_m_looking_for_job")
+      jobs_recent = PostJob.with_school(@school).with_type(type.id).recent.with_limit
     %>
       <% if jobs_recent.size > 0 %>
         <%

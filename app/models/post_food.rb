@@ -53,9 +53,9 @@ class PostFood < ActiveRecord::Base
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
   
-  def self.related_posts(school)
+  def self.related_posts(school, status)
     posts = []
-    post_as = self.random(5).with_school(school)
+    post_as = self.random(5).with_school(school).with_status(status)
     post_as.select {|p| posts << p.post}
     posts
   end

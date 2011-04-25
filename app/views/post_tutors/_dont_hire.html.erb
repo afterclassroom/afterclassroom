@@ -3,7 +3,7 @@
         <h1 class="col195Title">Don't hire</h1>
         <div class="col195Cont">
             <%
-            dont_hires = PostTutor.with_limit.dont_hire(@school) %>
+            dont_hires = PostTutor.dont_hire(@school).with_limit %>
             <% if dont_hires.size > 0 %>
             <%
             dont_hires.each do |tt| %>

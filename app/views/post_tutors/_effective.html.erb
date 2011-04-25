@@ -3,7 +3,7 @@
         <h1 class="col195Title">Effective Tutors</h1>
         <div class="col195Cont">
             <%
-            effective_tutors = PostTutor.with_limit.effective_tutors(@school) %>
+            effective_tutors = PostTutor.effective_tutors(@school).with_limit %>
             <% if effective_tutors.size > 0 %>
             <%
             effective_tutors.each do |tt| %>
