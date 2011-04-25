@@ -26,11 +26,11 @@ You are here: <a href="/">Home</a>
                 </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>
-                    <% if @post.attach_file_name %>
+                    <% if @post.attach_file_name and @post.attach_content_type == "image/jpeg" %>
                     <div style="min-height:70px">
                         <div class="assImg">
                             <div>
-                                <a href="/post_events/22"><img alt="Icon_event" src="/images/icons/icon_defaut/icon_event.png?1303460801"></a>
+                                <%= link_to image_tag(@post.attach.url(:thumb)), @post.attach.url, :id => "imageLink", :target => "_blank" %>
                             </div>
                         </div><%= @post.description %>
                     </div><% else %>
@@ -93,3 +93,8 @@ You are here: <a href="/">Home</a>
     <!--Browser by Subject-->
 </div>
 <!--Content-->
+<script type="text/javascript">
+  $(document).ready(function() {
+  $("#imageLink").fancybox();
+  });
+</script>

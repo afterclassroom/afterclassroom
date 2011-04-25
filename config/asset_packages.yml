@@ -20,6 +20,7 @@ javascripts:
   - jquery-gmap
   - checkboxmenu
   - drplayer
+  - jquery.fancybox
   - jquery.fileupload
   - jquery.fileupload-ui
   - ajaxupload
@@ -104,6 +105,7 @@ stylesheets:
   - footer-menu
   - jquery.fileupload-ui
   - checkboxmenu
+  - jquery.fancybox
   - jquery.pnotify.default
 - student_lounge:
   - main

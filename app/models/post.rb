@@ -36,7 +36,8 @@ class Post < ActiveRecord::Base
 
   # Attach file
   has_attached_file :attach, {
-    :bucket => 'afterclassroom_post'
+    :bucket => 'afterclassroom_post',
+    :styles => { :medium => "555x417>", :thumb => "61x51#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
     
   # Comments
