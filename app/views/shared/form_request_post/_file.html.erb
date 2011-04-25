@@ -1,4 +1,4 @@
-<% if only_img %>
+<% if only_img == true %>
 <div class="reqLa" id="only_img">
     <label>
         Only support these photo formats: JPG, GIF, PNG.
@@ -8,7 +8,7 @@
 <div class="postItemB">
     <div id="divinputfile">
         <div class="postItemC">
-            <%= p.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "{validate:{accept:true}} filepc", :size=>"27", :style => "margin-left:50px", :id => "file_attach" %>
+            <%= p.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "#{'{validate:{accept:true}}' if only_img } filepc", :size=>"27", :style => "margin-left:50px", :id => "file_attach" %>
         </div>
         <div id="fakeinputfile" style="margin-top:-20px">
             <input name="fakefilepc" type="text" id="fakefilepc">

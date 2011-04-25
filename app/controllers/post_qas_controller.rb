@@ -112,8 +112,9 @@ class PostQasController < ApplicationController
   def show
     @post_qa = PostQa.find(params[:id])
     @post = @post_qa.post
+    @post.comments.size > 0 ? @type = "answered" : @type = "asked"
     update_view_count(@post)
-    posts_as = PostQa.with_school(@school)
+    posts_as = PostQa.with_school(@school).with_type(@type)
     as_next = posts_as.next(@post_qa.id).first
     as_prev = posts_as.previous(@post_qa.id).first
     @next = as_next if as_next
@@ -238,7 +239,7 @@ class PostQasController < ApplicationController
     @school = session[:your_school]
     @new_post_path = new_post_qa_path
     @class_name = "PostQa"
-    @type = PostCategory.find_by_class_name(@class_name).id
+    #@type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
   

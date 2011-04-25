@@ -80,9 +80,9 @@ class PostTutor < ActiveRecord::Base
     posts.paginate :page => params[:page], :per_page => 10
   end
   
-  def self.related_posts(school)
+  def self.related_posts(school, type)
     posts = []
-    post_as = self.random(5).with_school(school)
+    post_as = self.random(5).with_school(school).with_type(type)
     post_as.select {|p| posts << p.post}
     posts
   end

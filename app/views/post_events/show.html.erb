@@ -73,7 +73,7 @@ You are here: <a href="/">Home</a>
         </div>
         <div class="AsDOr">
             <h1 class="titleH1">Related posts</h1>
-            <% PostEvent.related_posts(@school).each do |p| %>
+            <% PostEvent.related_posts(@school, @event_type_id).each do |p| %>
             <div class="AsDOrItem">
                 <%= link_to p.title, post_event_path(p.post_event) %>
             </div>
@@ -93,8 +93,3 @@ You are here: <a href="/">Home</a>
     <!--Browser by Subject-->
 </div>
 <!--Content-->
-<script type="text/javascript">
-  $(document).ready(function() {
-  $("#imageLink").fancybox();
-  });
-</script>
