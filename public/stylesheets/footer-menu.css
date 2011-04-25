@@ -501,11 +501,6 @@ span.downarr a {
 .contMainLH .helpCR .helpTitle {
     color: #0B8CCB;
 }
-.contMainLH .helpCR .helpTitle a {
-    background: url("/images/icon-next.gif") no-repeat scroll right 4px transparent;
-    margin-right: 5px;
-    padding-right: 13px;
-}
 .contMainLH .helpCR .helpTitle a, .helpCR .helpTitle a:link, .helpCR .helpTitle a:visited {
     color: #0B8CCB;
     text-decoration: none;
@@ -513,10 +508,6 @@ span.downarr a {
 .contMainLH .helpCR .helpTitle a:hover {
     color: #DD0000;
     text-decoration: none;
-}
-.contMainLH .helpTit {
-    font-weight: bold;
-    padding-top: 5px;
 }
 .contMainLH .helpItem {
     overflow: hidden;
