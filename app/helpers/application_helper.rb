@@ -96,40 +96,46 @@ module ApplicationHelper
   def image_post_thumb(ctrl_name, post)
     file = post.attach
     file_path = post.attach_file_name
-    file_ext = File.extname(file_path).delete(".") if file_path
+    if post.attach_content_type == "image/jpeg"
+      path = post.attach.url(:thumb)
+    else
+      file_ext = File.extname(file_path).delete(".") if file_path
+      path = "/images/icons/file_type/#{file_ext}.png"
+    end
+    
     case ctrl_name
       when "post_assignments"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_assignment.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_assignment.png"
       when "post_projects"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_project.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_project.png"
       when "post_tests"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_test.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_test.png"
       when "post_exams"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_exam.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_exam.png"
       when "post_events"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_event.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_event.png"
       when "post_qas"
       path = "/images/icons/icon_defaut/icon_qa.png"
       when "post_tutors"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_tutor.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_tutor.png"
       when "post_books"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_book.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_book.png"
       when "post_jobs"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_job.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_job.png"
       when "post_foods"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_food.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_food.png"
       when "post_parties"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_party.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_party.png"
       when "post_myxes"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_myx.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_myx.png"
       when "post_awarenesses"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_awarenesse.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_awarenesse.png"
       when "post_housings"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_housing.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_housing.png"
       when "post_teamups"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_teamup.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_teamup.png"
       when "post_exam_schedules"
-      path = file_path ? "/images/icons/file_type/#{file_ext}.png" : "/images/icons/icon_defaut/icon_exam.png"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_exam.png"
     else
       path = "/images/noimg.png"
     end
