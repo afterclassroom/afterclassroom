@@ -1,6 +1,6 @@
 <% content_for :you_are_here do -%>
 You are here: <a href="/">Home</a>
-<%= link_to "Q&A", post_qas_path, :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
+<%= link_to "Q&A", session[:go_back_url], :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
 <% end -%>
 <% content_for :post_button do -%>
 <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
@@ -47,7 +47,7 @@ You are here: <a href="/">Home</a>
                         </textarea>
                     </div>
                     <div class="submit">
-                        <a href="javascript:;" onclick="send_answer('<%= @post.id %>', '<%= @post.class.name %>');">Submit</a>
+                        <a href="javascript:;" onclick="send_answer('<%= @post.id %>', '<%= @post.class.name %>');">Send</a>
                     </div>
                 </form>
             </div>
@@ -77,7 +77,7 @@ You are here: <a href="/">Home</a>
         </div>
         <div class="AsDOr">
             <h1 class="titleH1">Related posts</h1>
-            <% PostQa.related_posts(@school).each do |p| %>
+            <% PostQa.related_posts(@school, @type).each do |p| %>
             <div class="AsDOrItem">
                 <%= link_to p.title, post_qa_path(p.post_qa) %>
             </div>

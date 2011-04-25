@@ -19,6 +19,7 @@ class PostEvent < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => LIMIT
   scope :with_status, lambda { |st| {:conditions => ["post_events.rating_status = ?", st]} }
+  scope :with_type, lambda {|tp| {:conditions => ["event_type_id = ?", tp]} }
   scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
@@ -53,9 +54,9 @@ class PostEvent < ActiveRecord::Base
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
   
-  def self.related_posts(school)
+  def self.related_posts(school, type_id)
     posts = []
-    post_as = self.random(5).with_school(school)
+    post_as = self.random(5).with_school(school).with_type(type_id)
     post_as.select {|p| posts << p.post}
     posts
   end

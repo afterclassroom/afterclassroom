@@ -295,6 +295,15 @@ module ApplicationHelper
     end
   end
   
+  def show_answer_button(post_id, comments)
+    text = raw("Answers (<span id='post_#{post_id}_comments'>#{comments}</span>)")
+    if !logged_in?
+      link_to_require_login(text)
+    else
+      link_to text, "javascript:;", :onclick => "showListPostComment(#{post_id})"
+    end
+  end
+  
   def show_favorite(type, item)
     f_size = item.favoriting_users.size
     if !logged_in?
