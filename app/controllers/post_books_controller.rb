@@ -106,8 +106,9 @@ class PostBooksController < ApplicationController
   def show
     @post_book = PostBook.find(params[:id])
     @post = @post_book.post
+    @book_type_id = @post_book.book_type_id
     update_view_count(@post)
-    posts_as = PostBook.with_school(@school)
+    posts_as = PostBook.with_school(@school).with_type(@book_type_id)
     as_next = posts_as.next(@post_book.id).first
     as_prev = posts_as.previous(@post_book.id).first
     @next = as_next if as_next
