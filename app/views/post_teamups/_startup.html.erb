@@ -3,11 +3,12 @@
     <h1 class="col195Title">TeamUp for Start-up</h1>
     <div class="col195Cont">
       <%
-      teamStartup = PostTeamup.with_school(@school).recent.with_limit
+	  team_s = TeamupCategory.find_by_label("teamup_for_start_up")
+      team_startups = PostTeamup.with_school(@school).with_category(team_s.id).recent.with_limit
     %>
-      <% if teamStartup.size > 0 %>
+      <% if team_startups.size > 0 %>
         <%
-        teamStartup.each do |ts|
+        team_startups.each do |ts|
         %>
           <div class="studentItem">
             <div class="studentImg"><%= show_image_user_post(ts.post.user) %></div>

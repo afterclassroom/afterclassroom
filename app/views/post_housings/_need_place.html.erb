@@ -3,7 +3,8 @@
     <h1 class="col300Title">I need a place</h1>
     <div class="col300Cont">
       <%
-      housings_recent = PostHousing.with_school(@school).recent.with_limit
+	  ineed = HousingCategory.find_by_label("i_need_a_place")
+      housings_recent = PostHousing.with_school(@school).with_category(ineed.id).recent.with_limit
     %>
       <% if housings_recent.size > 0 %>
         <%

@@ -23,9 +23,36 @@
     	<%= display_flash_messages_with_raw %>
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_myxes_path %></span></div>
-        <div class="AsDContLask"><span>Posted by:</span><%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
-        <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
+        <div class="AsDContLin">From<span><%= link_to @post.school.name, :controller => "post_myxes", :action => "index", :from_school => @post.school %></span></div>
+        <div class="AsDContLdes">
+          <span>Description:</span>
+          <% if @post.attach_file_name and @post.attach_content_type == "image/jpeg" %>
+            <div style="min-height:70px">
+              <div class="assImg">
+                <div>
+                  <%= link_to image_tag(@post.attach.url(:thumb)), @post.attach.url, :id => "imageLink", :target => "_blank" %>
+                </div>
+              </div><%= @post.description %>
+            </div><% else %>
+            <%= @post.description %>
+          <% end %>
+        </div><% if @post_myx.professor %>
+          <div class="AsDContLinf">
+            <span>Professor:</span>
+            <%= @post_myx.professor %>
+          </div>
+        <% end %>
+        <div class="AsDContLinf">
+          <span>Posted by:</span>
+          <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+        </div>
+        <% if @post_myx.tags_from(@post.school).size > 0 %>
+          <div class="AsDContLinf">
+            <span>Tags:</span>
+            <% @post_myx.tags_from(@post.school).each do |t| %>
+              <a href='/<%= controller.controller_name %>/tag/?tag_name=<%= t %>'><%= t %></a>, <% end %>
+          </div>
+        <% end %>
       </div>
       <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
@@ -39,7 +66,7 @@
     </div>
     <div class="AsDOr">
       <h1 class="titleH1">Related posts</h1>
-      <% PostMyx.related_posts(@school).each do |p| %>
+      <% PostMyx.related_posts(@school, @rating_status).each do |p| %>
         <div class="AsDOrItem"><%= link_to p.title, post_myx_path(p.post_myx) %></div>
       <% end %>
     </div>

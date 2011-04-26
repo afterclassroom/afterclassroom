@@ -17,7 +17,8 @@ class PostHousing < ActiveRecord::Base
   scope :with_limit, :limit => LIMIT
   scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_status, lambda { |st| {:conditions => ["post_housings.rating_status = ?", st]} }
-  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :with_school, lambda { |sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"} }
+  scope :with_category, lambda{ |ct| {:joins => :housing_categories, :conditions => ["housing_categories.id = ?", ct]} }
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_housings.id < ?", att]} }
   scope :next, lambda { |att| {:conditions => ["post_housings.id > ?", att]} }
@@ -69,9 +70,9 @@ class PostHousing < ActiveRecord::Base
     posts.paginate :page => params[:page], :per_page => 10
   end
 
-  def self.related_posts(school)
+  def self.related_posts(school, category_id)
     posts = []
-    post_as = self.random(5).with_school(school)
+    post_as = self.random(5).with_school(school).with_category(category_id)
     post_as.select {|p| posts << p.post}
     posts
   end

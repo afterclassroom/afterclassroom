@@ -23,7 +23,7 @@
       <%= display_flash_messages_with_raw %>
       <div class="AsDContL">
         <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">in<span><%= link_to @rating_status, post_foods_path(:rating_status => @rating_status) %></span></div>
+        <div class="AsDContLin">From<span><%= link_to @post.school.name, :controller => "post_foods", :action => "index", :from_school => @post.school %></span></div>
         <div class="AsDContLdes">
           <span>Description:</span>
           <% if @post.attach_file_name and @post.attach_content_type == "image/jpeg" %>

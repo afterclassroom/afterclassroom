@@ -18,17 +18,18 @@ You are here: <a href="/">Home</a>
             </div>
         </div>
         <div class="AsDCont">
-        	<%= display_flash_messages_with_raw %>
+            <%= display_flash_messages_with_raw %>
             <div class="AsDContL">
                 <h2 class="titleH2"><%= @post.title %></h2>
                 <div class="AsDContLin">
-                    in<span><%= link_to @post.post_category.name, post_qas_path %></span>
-                </div>
-                <div class="AsDContLask">
-                    Asked by <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+                    From<span><%= link_to @post.school.name, :controller => "post_qas", :action => "index", :from_school => @post.school %></span>
                 </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>><%= @post.description %>
+                </div>
+                <div class="AsDContLinf">
+                    <span>Asked by:</span>
+                    <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
                 </div>
                 <% if @post_qa.tags_from(@post.school).size > 0 %>
                 <div class="AsDContLinf">
@@ -108,18 +109,18 @@ You are here: <a href="/">Home</a>
 </div>
 <!--Content-->
 <script>
-            jQuery(function($) {
-              // when the #search field changes
-        	  var path = "<%= url_for(:controller => "post_qas", :action => "show_comment") %>";
-              $("#show").change(function() {
-              	$.ajax({
-        	      type: 'POST',
-        	      url: path,
-        	      data: {"show": $("#show").val(), "post_id": <%=  @post.id %>},
-        	      success: function(data) {
-        	          $("#list_comments").html(data);
-        	        }
-        	    });
-            });
-    		})
+                jQuery(function($) {
+                  // when the #search field changes
+            	  var path = "<%= url_for(:controller => "post_qas", :action => "show_comment") %>";
+                  $("#show").change(function() {
+                  	$.ajax({
+            	      type: 'POST',
+            	      url: path,
+            	      data: {"show": $("#show").val(), "post_id": <%=  @post.id %>},
+            	      success: function(data) {
+            	          $("#list_comments").html(data);
+            	        }
+            	    });
+                });
+        		})
 </script>

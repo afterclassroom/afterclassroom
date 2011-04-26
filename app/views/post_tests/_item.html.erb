@@ -4,7 +4,7 @@
             <%= show_image_user_post(post.user) %>
         </div>
         <div class="assContT">
-            <h2 class="titleH2"><%= link_to title, post_project_path(post.post_test) %></h2>
+            <h2 class="titleH2"><%= link_to title, post_test_path(post.post_test) %></h2>
             <div class="assCate">
                 <span>From:</span>
                 <%= link_to post.school.name, :controller => "post_tests", :action => "index", :from_school => post.school %>

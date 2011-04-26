@@ -54,7 +54,11 @@
     resume_area = $('#resume_area').html();
     one_file_area = $('#one_file_area').html();
 
-    $('#resume_area').html('');
+    if ($('#post_job_job_type_id').val() == "4"){
+		ShowResumeCV();
+	}else{
+		HideResumeCV();
+	}
 
     $('#job_type_menu').children().each(function(){
       /*This one is used to handle event of Mouse click*/

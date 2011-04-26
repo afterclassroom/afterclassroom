@@ -80,9 +80,9 @@ class PostTeamup < ActiveRecord::Base
     posts.paginate :page => params[:page], :per_page => 10
   end
   
-  def self.related_posts(school)
+  def self.related_posts(school, category_id)
     posts = []
-    post_as = self.random(5).with_school(school)
+    post_as = self.random(5).with_school(school).with_category(category_id)
     post_as.select {|p| posts << p.post}
     posts
   end
@@ -96,7 +96,8 @@ class PostTeamup < ActiveRecord::Base
   end
 
   def self.recent_comments
-    comments = Comment.find_by_sql("SELECT * FROM comments WHERE commentable_type = 'PostTeamup' ORDER BY created_at DESC LIMIT 5")
+    post_ids = PostTeamup.all.map(&:post_id)
+    comments = Comment.find_by_sql("SELECT * FROM comments WHERE commentable_type = 'Post' AND commentable_id IN(#{post_ids.join(", ")}) ORDER BY created_at DESC LIMIT 5")
   end
 
   def total_good

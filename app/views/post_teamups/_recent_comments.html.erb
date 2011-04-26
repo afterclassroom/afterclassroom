@@ -1,20 +1,32 @@
 <div class="col300 QAsRecent">
-  <div class="col300in">
-    <h1 class="col300Title">Recent Comments</h1>
-    <div class="col300Cont">
-      <% comments = PostTeamup.recent_comments %>
-      <% comments.each do |c| %>
-      <div class="recentItem">
-        <div class="recentImg"><%= show_image_user_post(c.user) %></div>
-        <div class="recentInf">
-          <div class="recentName"><%= show_user_post(c.user) %></div>
-          <div class="recentUni"><span>at </span><%= link_to truncate_words(c.post.title, 4), post_teamup_path(c.post) %></div>
-          <div class="recentDes"><%= c.comment %></div>
+    <div class="col300in">
+        <h1 class="col300Title">Recent Comments</h1>
+        <div class="col300Cont">
+            <% comments = PostTeamup.recent_comments %>
+            <% comments.each do |c| 
+				post = Post.find(c.commentable_id)
+			%>
+            <div class="recentItem">
+                <div class="recentImg">
+                    <%= show_image_user_post(c.user) %>
+                </div>
+                <div class="recentInf">
+                    <div class="recentName">
+                        <%= show_user_post(c.user) %>
+                    </div>
+                    <div class="recentUni">
+                        <span>at </span>
+                        <%= link_to truncate_words(post.title, 4), post_teamup_path(post.post_teamup) %>
+                    </div>
+                    <div class="recentDes">
+                        <%= c.comment %>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+            <div class="recentBottom">
+                &nbsp;
+            </div>
         </div>
-      </div>
-      <% end %>
-      <div class="recentBottom">&nbsp;</div>
     </div>
-  </div>
 </div>
-

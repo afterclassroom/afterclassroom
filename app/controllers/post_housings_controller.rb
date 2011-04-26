@@ -72,8 +72,9 @@ class PostHousingsController < ApplicationController
   def show
     @post_housing = PostHousing.find(params[:id])
     @post = @post_housing.post
+    @housing_category_id = params[:housing_category_id]
     update_view_count(@post)
-    posts_as = PostHousing.with_school(@school)
+    posts_as = PostHousing.with_school(@school).with_category(@housing_category_id)
     as_next = posts_as.next(@post_housing.id).first
     as_prev = posts_as.previous(@post_housing.id).first
     @next = as_next if as_next

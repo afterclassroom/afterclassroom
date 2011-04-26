@@ -22,11 +22,7 @@ You are here: <a href="/">Home</a>
             <div class="AsDContL">
                 <h2 class="titleH2"><%= @post.title %></h2>
                 <div class="AsDContLin">
-                    in<span><%= link_to @post.post_category.name, post_books_path %></span>
-                </div>
-                <div class="AsDContLask">
-                    <span>Posted by:</span>
-                    <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+                    From<span><%= link_to @post.school.name, :controller => "post_books", :action => "index", :from_school => @post.school %></span>
                 </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>
@@ -43,24 +39,35 @@ You are here: <a href="/">Home</a>
                     <%= @post.description %>
                     <% end %>
                 </div>
-				<% if @post.post_book.price %>
+                <% if @post.post_book.price %>
                 <div class="AsDContLinf">
                     <span>Price:</span>
                     <%= @post.post_book.price %>
                 </div>
-				<% end %>
-				<% if @post.post_book.phone %>
+                <% end %>
+                <% if @post.post_book.phone %>
                 <div class="AsDContLinf">
                     <span>Phone:</span>
                     <%= @post.post_book.phone %>
                 </div>
-				<% end %>
-				<% if @post.post_book.address %>
+                <% end %>
+                <% if @post.post_book.address %>
                 <div class="AsDContLinf">
                     <span>Address:</span>
                     <%= @post.post_book.address %>
                 </div>
-				<% end %>
+                <% end %>
+                <div class="AsDContLinf">
+                    <span>Posted by:</span>
+                    <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+                </div>
+                <% if @post_book.tags_from(@post.school).size > 0 %>
+                <div class="AsDContLinf">
+                    <span>Tags:</span>
+                    <% @post_book.tags_from(@post.school).each do |t| %>
+                    <a href='/<%= controller.controller_name %>/tag/?tag_name=<%= t %>'><%= t %></a>, <% end %>
+                </div>
+                <% end %>
             </div>
             <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
             <%= render :partial => "post_actions", :locals => {:post => @post} %>

@@ -14,6 +14,7 @@ class PostTeamupsController < ApplicationController
     if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
+      @teamup_category_id = post.post_teamup.teamup_category_id
       @posts = PostTeamup.paginated_post_more_like_this(params, post)
     else
       @teamup_category_id = params[:teamup_category_id]
@@ -79,8 +80,9 @@ class PostTeamupsController < ApplicationController
   def show
     @post_teamup = PostTeamup.find(params[:id])
     @post = @post_teamup.post
+    @teamup_category_id = @post_teamup.teamup_category_id
     update_view_count(@post)
-    posts_as = PostTeamup.with_school(@school)
+    posts_as = PostTeamup.with_school(@school).with_category(@teamup_category_id)
     as_next = posts_as.next(@post_teamup.id).first
     as_prev = posts_as.previous(@post_teamup.id).first
     @next = as_next if as_next

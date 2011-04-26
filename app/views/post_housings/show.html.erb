@@ -1,58 +1,98 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Housing", post_housings_path(:housing_category_id => @housing_category_id), :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
+You are here: <a href="/">Home</a>
+<%= link_to "Housing", post_housings_path(:housing_category_id => @housing_category_id), :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
 <% end -%>
-
 <% content_for :post_button do -%>
-  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
-
 <% content_for :menu_sub do -%>
-  <%= render :partial => "submenu" %>
+<%= render :partial => "submenu" %>
 <% end -%>
-
 <!--Content-->
 <div class="contDetL">
-  <div class="contDetLin">
-    <div class="AsDTop">
-      <h1 class="titleH1">Housing detail</h1>
-      <div class="AsDsearch">
-        <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_housings_path} %>
-      </div>
+    <div class="contDetLin">
+        <div class="AsDTop">
+            <h1 class="titleH1">Housing detail</h1>
+            <div class="AsDsearch">
+                <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_housings_path} %>
+            </div>
+        </div>
+        <div class="AsDCont">
+            <%= display_flash_messages_with_raw %>
+            <div class="AsDContL">
+                <h2 class="titleH2"><%= @post.title %></h2>
+                <div class="AsDContLin">
+                    From<span><%= link_to @post.school.name, :controller => "post_housings", :action => "index", :from_school => @post.school %></span>
+                </div>
+                <div class="AsDContLdes">
+                    <span>Description:</span>
+                    <% if @post.attach_file_name and @post.attach_content_type == "image/jpeg" %>
+                    <div style="min-height:70px">
+                        <div class="assImg">
+                            <div>
+                                <%= link_to image_tag(@post.attach.url(:thumb)), @post.attach.url, :id => "imageLink", :target => "_blank" %>
+                            </div>
+                        </div>
+                        <%= @post.description %>
+                    </div>
+                    <% else %>
+                    <%= @post.description %>
+                    <% end %>
+                </div>
+                <% if @post_housing.address %>
+                <div class="AsDContLinf">
+                    <span>Address:</span>
+                    <%= @post_housing.address %>
+                </div>
+                <% end %>
+                <% if @post_housing.phone %>
+                <div class="AsDContLinf">
+                    <span>Phone:</span>
+                    <%=@post_housing.phone %>
+                </div>
+                <% end %>
+                <div class="AsDContLinf">
+                    <span>Posted by:</span>
+                    <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+                </div>
+                <% if @post_housing.tags_from(@post.school).size > 0 %>
+                <div class="AsDContLinf">
+                    <span>Tags:</span>
+                    <% @post_housing.tags_from(@post.school).each do |t| %>
+                    <a href='/<%= controller.controller_name %>/tag/?tag_name=<%= t %>'><%= t %></a>, <% end %>
+                </div>
+                <% end %>
+            </div>
+            <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
+            <%= render :partial => "post_actions", :locals => {:post => @post} %>
+        </div>
+        <%= show_post_comments(@post) %>
+        <div class="goback" id="go_back">
+            <%= show_go_back %>
+        </div>
+        <div class="comPage">
+            <span class="compre"><%= link_to "", post_housing_path(@prev, :housing_category_id => @housing_category_id) if @prev %></span>
+            <span class="comnext"><%= link_to "", post_housing_path(@next, :housing_category_id => @housing_category_id) if @next %></span>
+        </div>
+        <div class="AsDOr">
+            <h1 class="titleH1">Related posts</h1>
+            <% PostHousing.related_posts(@school, @housing_category_id).each do |p| %>
+            <div class="AsDOrItem">
+                <%= link_to p.title, post_housing_path(p.post_housing, :housing_category_id => @housing_category_id) %>
+            </div>
+            <% end %>
+        </div>
+        <div class="goTop">
+            <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+        </div>
     </div>
-    <div class="AsDCont">
-    	<%= display_flash_messages_with_raw %>
-      <div class="AsDContL">
-        <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">in<span><%= link_to @post.post_category.name, post_housings_path %></span></div>
-        <div class="AsDContLask"><span>Posted by:</span><%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %></div>
-        <div class="AsDContLdes"><span>Description:</span><%= @post.description %></div>
-      </div>
-      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
-      <%= render :partial => "post_actions", :locals => {:post => @post} %>
-    </div>
-    <%= show_post_comments(@post) %>
-    <div class="goback" id="go_back"><%= show_go_back %></div>
-    <div class="comPage">
-      <span class="compre"><%= link_to "", post_housing_path(@prev) if @prev %> </span>
-      <span class="comnext"><%= link_to "", post_housing_path(@next) if @next %></span>
-    </div>
-    <div class="AsDOr">
-      <h1 class="titleH1">Related posts</h1>
-      <% PostHousing.related_posts(@school).each do |p| %>
-        <div class="AsDOrItem"><%= link_to p.title, post_housing_path(p.post_housing) %></div>
-      <% end %>
-    </div>
-    <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
-  </div>
 </div>
-
 <div class="contMainR">
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
-
-  <!--Request Housing-->
-  <%= render :partial => "form_request_housing" %>
-  <!--Request Housing-->
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+    <!--Request Housing-->
+    <%= render :partial => "form_request_housing" %>
+    <!--Request Housing-->
 </div>
 <!--Content-->

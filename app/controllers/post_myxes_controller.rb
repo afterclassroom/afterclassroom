@@ -92,8 +92,9 @@ class PostMyxesController < ApplicationController
   def show
     @post_myx = PostMyx.find(params[:id])
     @post = @post_myx.post
+    @rating_status = @post_myx.rating_status
     update_view_count(@post)
-    posts_as = PostMyx.with_school(@school)
+    posts_as = PostMyx.with_school(@school).with_status(@rating_status)
     as_next = posts_as.next(@post_myx.id).first
     as_prev = posts_as.previous(@post_myx.id).first
     @next = as_next if as_next
