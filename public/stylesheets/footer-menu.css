@@ -463,6 +463,7 @@ span.downarr a {
     padding: 5px 0;
 }
 .contMainLH .helpPost a, .helpPost a:link, .helpPost a:visited {
+    cursor: pointer;
     color: #0B8CCB;
     font-weight: bold;
     text-decoration: underline;
