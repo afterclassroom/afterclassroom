@@ -433,9 +433,7 @@ span.downarr a {
     margin: 0 auto;
     overflow: hidden;
     padding-bottom: 10px;
-    width: 962px;
-}
-.contMainLH .col654 {
+    width: 654px;
     float: left;
 }
 .contMainLH .helpL {
@@ -540,6 +538,22 @@ span.downarr a {
     color: #DD0000;
     text-decoration: none;
 }
+.contMainLH .comH {
+    background: url("/images/icon-comnent.gif") no-repeat scroll left 2px transparent;
+    padding: 0 5px 0 17px;
+    padding-top: 2px;
+    margin-left: 100px;
+    margin-top: -14px;
+}
+.contMainLH .comH a, .comH a:link, .comH a:visited {
+    color: #969696;
+    text-decoration: none;
+    cursor: pointer;
+}
+.contMainLH .comH a:hover {
+    color: #DD0000;
+    text-decoration: none;
+}
 .contMainLH .allDis {
     border-top: 1px solid #DBDBDB;
     margin-top: 10px;
@@ -589,4 +603,12 @@ span.downarr a {
 .contMainRH .popuDes {
     color: #505050;
     padding: 10px 0 4px;
+}
+.proListH{
+    background-color: #FAFAFA;
+    border: 1px solid #EBEBEB;
+    float: left;
+    margin: 3px 0 0 60px;
+    padding: 5px 20px;
+    width: 300px;
 }
