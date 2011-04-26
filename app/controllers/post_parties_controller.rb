@@ -93,8 +93,9 @@ class PostPartiesController < ApplicationController
   def show
     @post_party = PostParty.find(params[:id])
     @post = @post_party.post
+    @rating_status = @post_party.rating_status
     update_view_count(@post)
-    posts_as = PostParty.with_school(@school)
+    posts_as = PostParty.with_school(@school).with_status(@rating_status)
     as_next = posts_as.next(@post_party.id).first
     as_prev = posts_as.previous(@post_party.id).first
     @next = as_next if as_next

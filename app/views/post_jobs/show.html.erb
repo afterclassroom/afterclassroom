@@ -1,6 +1,6 @@
 <% content_for :you_are_here do -%>
   You are here: <a href="/">Home</a>
-  <%= link_to "Jobs", session[:go_back_url], :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
+  <%= link_to "Jobs", post_jobs_path(:job_type_id => @job_type_id), :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
 <% end -%>
 <% content_for :post_button do -%>
   <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>

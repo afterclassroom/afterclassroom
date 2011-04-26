@@ -1,6 +1,6 @@
 <% content_for :you_are_here do -%>
 You are here: <a href="/">Home</a>
-<%= link_to "Q&A", session[:go_back_url], :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
+<%= link_to "Q&A", post_qas_path(:type => @type), :class => "abLink-detail" %><%= link_to "Detail", "#", :class => "abLink-detail" %>
 <% end -%>
 <% content_for :post_button do -%>
 <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
@@ -14,7 +14,7 @@ You are here: <a href="/">Home</a>
         <div class="AsDTop">
             <h1 class="titleH1">Q&A details</h1>
             <div class="AsDsearch">
-                <%= render :partial => "shared/search_indetail", :locals => {:url_search => post_qas_path} %>
+                <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_qas_path} %>
             </div>
         </div>
         <div class="AsDCont">
