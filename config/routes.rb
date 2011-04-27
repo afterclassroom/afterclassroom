@@ -51,6 +51,12 @@ Afterclassroom::Application.routes.draw do
       end
     end
 
+    resources :forums do
+      collection do
+        get :index
+      end
+    end
+
     resources :student_lounges do
       collection do
         get :chat, :invite_chat, :add_users_to_chat, :stop_chat, :chanel_chat_content,
