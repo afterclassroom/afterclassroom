@@ -2,16 +2,3 @@
   <div class="postTit">Tag</div>
   <div class="postInp"><%= text_field_tag "tag", @tag_list, :style => "width:280px" %></div>
 </div>
-
-<script type="text/javascript">
-  var path = "<%= show_tags_list_tags_url %>?class_name=<%= @class_name %>";
-  $(function () {
-    $('#tag').tagSuggest ( {
-      tagContainer : 'div',
-      tagWrap : 'div',
-	  //url: path,
-      separator: ', ',
-	  delay: 5
-    });
-  });
-</script>

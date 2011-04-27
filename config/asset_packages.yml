@@ -13,8 +13,7 @@ javascripts:
   - jquery-wysiwyg
   - jquery-swfobject
   - thickbox
-  - vtip-min
-  - tag
+  - vtip
   - json
   - jquery-opacityrollover
   - jquery-gmap
@@ -27,7 +26,6 @@ javascripts:
   - jquery.pnotify
   - jquery-validate
   - jquery.metadata
-  - additional-methods
 - student_lounge:
   - jquery
   - rails
@@ -42,8 +40,7 @@ javascripts:
   - jquery-swfobject
   - jquery-customWindow
   - thickbox
-  - vtip-min
-  - tag
+  - vtip
   - json
   - jquery-galleriffic
   - jquery-opacityrollover
@@ -60,13 +57,12 @@ javascripts:
   - jquery.pnotify
   - jquery-validate
   - jquery.metadata
-  - additional-methods
 - admin:
   - jquery
   - jquery-ui
   - jquery-mcdropdown
   - thickbox
-  - vtip-min
+  - vtip
   - custom-jquery
   - date
   - jquery-bind
@@ -81,7 +77,6 @@ javascripts:
   - app
   - jquery-validate
   - jquery.metadata
-  - additional-methods
 stylesheets:
 - base:
   - main

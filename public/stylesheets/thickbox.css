@@ -1,30 +1,31 @@
 /* ----------------------------------------------------------------------------------------------------------------*/
 /* ---------->>> global settings needed for thickbox <<<-----------------------------------------------------------*/
 /* ----------------------------------------------------------------------------------------------------------------*/
-
 /* ----------------------------------------------------------------------------------------------------------------*/
 /* ---------->>> thickbox settings <<<-----------------------------------------------------------------------------*/
 /* ----------------------------------------------------------------------------------------------------------------*/
 #TB_overlay {
     position: fixed;
-    z-index:100;
+    z-index: 100;
     top: 0px;
     left: 0px;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
-.TB_overlayMacFFBGHack {background: url(macFFBgHack.png) repeat;}
+.TB_overlayMacFFBGHack {
+    background: url(macFFBgHack.png) repeat;
+}
+
 .TB_overlayBG {
-    background-color:#000;
-    filter:alpha(opacity=75);
+    background-color: #000;
+    filter: alpha(opacity = 75);
     -moz-opacity: 0.75;
     opacity: 0.75;
 }
-
 * html #TB_overlay { /* ie6 hack */
-                     position: absolute;
-                     height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+    position: absolute;
+    height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
 }
 
 #TB_window {
