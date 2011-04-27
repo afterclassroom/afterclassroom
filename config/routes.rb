@@ -51,11 +51,7 @@ Afterclassroom::Application.routes.draw do
       end
     end
 
-    resources :forums do
-      collection do
-        get :index
-      end
-    end
+    resources :forums 
 
     resources :student_lounges do
       collection do

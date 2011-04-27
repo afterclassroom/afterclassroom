@@ -7,7 +7,7 @@
           <li><%= link_to raw("<span>Admin</span>"), "/admin" %></li>
         <% end %>
         <li><%= raw link_to raw("<span>Sign out</span>"), logout_url, :method => :delete %></li>
-        <li><a href="#"><span>Help ======</span></a></li>
+        <li><%= link_to content_tag(:span, 'Help'), :controller => 'forums', :action => 'index' %></li>
         <li><a href="#"><span>Suggest improvement</span></a></li>
       </ul>
     <% else %>
