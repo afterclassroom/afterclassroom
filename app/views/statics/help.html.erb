@@ -30,9 +30,9 @@
               <%= render :partial => "search_help" %>
             </div>           
             <div class="helpCom"><a href="#">Community Help Forum</a></div>
-            <div class="helpPost"><a>Post A Question</a></div>
+            <div class="helpPost"><a></a></div>
 
-            <div id="headerDivImg"><a id="imageDivLink" onclick="javascript:toggle5('contentDivImg', 'imageDivLink');"><img src="/images/helpPost.png"></a></div>
+            <div id="headerDivImg"><span class="postAQues"></span><a id="imageDivLink" onclick="javascript:toggle5('contentDivImg', 'imageDivLink');"><img src="/images/helpPostSh08.png"></a></div>
             <div id="contentDivImg" style="display: none;">
               <div class="postHelp">
                 <div class="reqLa"><label>Title</label></div>
@@ -128,11 +128,13 @@
 	var imageEle = document.getElementById(switchImgTag);
 	if(ele.style.display == "block") {
 		ele.style.display = "none";
-		imageEle.innerHTML = '<img src="/images/helpPost.png">';
+		imageEle.innerHTML = '<img src="/images/helpPostSh08.png">';
+               
 	}
 	else {
 		ele.style.display = "block";
-		imageEle.innerHTML = '<img src="/images/helpPostSh.png">';
+		imageEle.innerHTML = '<img src="/images/helpPostSh09.png">';
+               
 	}
   }
 

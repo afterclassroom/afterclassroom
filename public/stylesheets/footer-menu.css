@@ -650,8 +650,8 @@ span.downarr a {
 }
 #headerDivImg {
     cursor: pointer;
-    margin-top: -20px;
-    margin-left: 5px;
+    margin-left: 6px;
+    margin-top: -5px;
 }
 #headerDivImg img {
     float: right;
