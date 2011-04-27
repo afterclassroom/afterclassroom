@@ -30,15 +30,19 @@
               <%= render :partial => "search_help" %>
             </div>           
             <div class="helpCom"><a href="#">Community Help Forum</a></div>
-            <div class="helpPost"><a href="#" onClick="showSlidingDiv(); return false;">Post A Question</a></div>
+            <div class="helpPost"><a>Post A Question</a></div>
 
-            <div class="slidingDiv" style="display:none;">
-              <div class="reqLa"><label>Title</label></div>
-              <div class="reqTi"><input type="text" name="help" size="22"></input></div>
-              <div class="reqLa"><label>Content</label></div>
-              <div style="margin: 3px 0pt;" class="reqEn"><textarea name="help"></textarea></div>
-              <div style="margin-top: 5px;" class="submit"><input type="submit" value="Submit" name="commit" class="buttonCom"></input></div>
+            <div id="headerDivImg"><a id="imageDivLink" onclick="javascript:toggle5('contentDivImg', 'imageDivLink');"><img src="/images/helpPost.png"></a></div>
+            <div id="contentDivImg" style="display: none;">
+              <div class="postHelp">
+                <div class="reqLa"><label>Title</label></div>
+                <div class="reqTi"><input type="text" name="help" size="22"></input></div>
+                <div class="reqLa"><label>Content</label></div>
+                <div style="margin: 3px 0pt;" class="reqEn"><textarea name="help"></textarea></div>
+                <div style="margin-top: 5px;" class="submit"><input type="submit" value="Submit" name="commit" class="buttonCom"></input></div>
+              </div>
             </div>
+
           </div>
         </div>
         <div class="helpCR">
@@ -50,8 +54,9 @@
             <div class="comH"><a href="#" onClick="showSlidingDivH1(); return false;">Answers ()</a></div>
 
             <div class="slidingDivH1" style="display:none;">
-              <div class="proListH">
+              <div class="proListH1">
                 <form>
+                  <div class="proListPic"><a href="/users/2"><div><img title="John" src="/system/avatars/2/thumb/jhedrick.jpg?1303782033" class="vtip"></img></div></a></div>
                   <div class="proListR">
                     <div class="writeCom"><textarea name="comment" id="comment"></textarea></div>
                   </div>
@@ -59,6 +64,7 @@
                 </form>
               </div>
             </div>
+
           </div>
           <div class="helpItem">
             <div class="helpT"><a href="#">Morbi semper ante eu nunc facilisis vel condimentum ligula luctus</a></div>
@@ -69,6 +75,7 @@
             <div class="slidingDivH" style="display:none;">
               <div class="proListH">
                 <form>
+                  <div class="proListPic"><a href="/users/2"><div><img title="John" src="/system/avatars/2/thumb/jhedrick.jpg?1303782033" class="vtip"></img></div></a></div>
                   <div class="proListR">
                     <div class="writeCom"><textarea name="comment" id="comment"></textarea></div>
                   </div>
@@ -98,6 +105,8 @@
     <div class="popuRe"><a href="#">25 replies</a></div>
   </div>
 </div>
+
+
 <!--Comments-->
 
 <!--Comments-->
@@ -108,10 +117,24 @@
   $(".slidingDiv").animate({"height": "toggle"}, { duration: 100 });
   }
   function showSlidingDivH(){
-  $(".slidingDivH").animate({"height": "toggle"}, { duration: 100 });
+  $(".slidingDivH").animate({"height": "toggle"}, { duration: 500 });
   }
   function showSlidingDivH1(){
-  $(".slidingDivH1").animate({"height": "toggle"}, { duration: 100 });
+  $(".slidingDivH1").animate({"height": "toggle"}, { duration: 500 });
+  }
+
+  function toggle5(showHideDiv, switchImgTag) {
+	var ele = document.getElementById(showHideDiv);
+	var imageEle = document.getElementById(switchImgTag);
+	if(ele.style.display == "block") {
+		ele.style.display = "none";
+		imageEle.innerHTML = '<img src="/images/helpPost.png">';
+	}
+	else {
+		ele.style.display = "block";
+		imageEle.innerHTML = '<img src="/images/helpPostSh.png">';
+	}
   }
 
 </script>
+

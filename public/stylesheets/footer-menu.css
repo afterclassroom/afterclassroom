@@ -469,9 +469,25 @@ span.downarr a {
 .contMainLH .helpPost a:hover {
     color: #DD0000;
 }
-.contMainLH .helpPost {
-    background: url("/images/helpPost.png") no-repeat scroll 95px 3px transparent;
+.contMainLH .helpPost img {
+    border: 0 none;
+    margin-left: 100px;
+    margin-top: -15px;
+    position: absolute;
 }
+.contMainLH .helpPost img:hover {
+    color: #DD0000;
+    border: 0 none;
+    margin-left: 100px;
+    margin-top: -15px;
+    position: absolute;
+    cursor: pointer;
+}
+/*.contMainLH .helpPost {
+    background: url("/images/helpPost.png") no-repeat scroll 95px 3px transparent;
+    cursor: pointer;
+    width: 115px;
+}*/
 .contMainLH .helpCom {
     padding: 5px 0;
 }
@@ -608,7 +624,38 @@ span.downarr a {
     background-color: #FAFAFA;
     border: 1px solid #EBEBEB;
     float: left;
-    margin: 3px 0 0 60px;
-    padding: 5px 20px;
-    width: 300px;
+    padding: 5px;
+    width: 358px;
+    margin-left: 45px;
+    margin-top: 5px;
+}
+.proListH1{
+    background-color: #FAFAFA;
+    border: 1px solid #EBEBEB;
+    float: left;
+    padding: 5px;
+    width: 358px;
+    margin-left: 45px;
+    margin-top: 5px;
+}
+#headerDivImg, #contentDivImg, #contentDivImg_ {
+    float: left;
+    width: 110px;
+}
+#titleTextImg {
+    float: left;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 5px 10px;
+}
+#headerDivImg {
+    cursor: pointer;
+    margin-top: -20px;
+    margin-left: 5px;
+}
+#headerDivImg img {
+    float: right;
+}
+.postHelp{
+    width: 190px;
 }
