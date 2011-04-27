@@ -2,7 +2,7 @@
 class ForumsController < ApplicationController
 
   def index  
-    
+    @text = "test from forum"
   end
 
 end
