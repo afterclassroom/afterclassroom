@@ -4,7 +4,6 @@ class PostQa < ActiveRecord::Base
   
   # Relations
   belongs_to :post
-  belongs_to :post_qa_category
   has_one :rating_statistic
   has_many :ratings
 
@@ -16,7 +15,6 @@ class PostQa < ActiveRecord::Base
 
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :with_category, lambda { |c| {:conditions => ["post_qas.post_qa_category_id = ?", c]} }
   scope :with_type, lambda { |tp| tp == "answered" ? {:conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 0]} : {:conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0]} }
   scope :recent, {:joins => :post, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0], :order => "created_at DESC"}
   scope :with_status, lambda { |st| {:conditions => ["post_qas.rating_status = ?", st]} }

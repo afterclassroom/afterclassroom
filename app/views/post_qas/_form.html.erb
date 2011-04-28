@@ -12,26 +12,9 @@
       <div class="postInp"><%= post.text_area :description, :class => '{validate:{required:true}}' %></div>
     </div>
   </div>
+  <%= render :partial => "/shared/form_post/select_school" %>
   <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
   <%= render :partial => "/shared/form_post/email" %>
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
-
-<ul id="qa_cat_menu" class="mcdropdown_menu">
-  <li rel_qa_cat="">
-    Select category
-  </li>
-  <% PostQaCategory.find(:all).each do |p| %>
-    <li rel_qa_cat="<%= p.id %>">
-      <%= p.name %>
-    </li>
-  <% end %>
-</ul>
-
-<script type="text/javascript">
-    $("#post_qa_post_qa_category_id").mcDropdown("#qa_cat_menu", {
-        width: 350,
-        valueAttr: "rel_qa_cat"
-    });
-</script>

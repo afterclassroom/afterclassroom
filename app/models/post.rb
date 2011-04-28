@@ -1,7 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class Post < ActiveRecord::Base
-  
-  
   # Validations
   validates_presence_of :user_id
   validates_presence_of :post_category_id
