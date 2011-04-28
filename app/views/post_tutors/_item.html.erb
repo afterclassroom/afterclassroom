@@ -48,7 +48,7 @@
                     <%= show_favorite("Post", post) %>
                 </div>
                 <div class="com">
-                    <%= link_to raw("Comments (<span id='post_#{post.id}_comments'>#{post.comments.size}</span>)"), "javascript:;", :onclick => "showListPostComment(#{post.id})" %>
+                    <%= show_comment_button(post.id, post.comments.size) %>
                 </div>
             </div>
         </div>

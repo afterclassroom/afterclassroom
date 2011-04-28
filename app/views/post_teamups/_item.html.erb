@@ -29,9 +29,9 @@
       <div class="assInfB">
         <div id="rate_<%= post.id %>">
           <%
-            check = PostTeamup.find_rated_by(current_user).include?(post.post_teamup) if logged_in?
-            check ||= false
-          %>
+          check = PostTeamup.find_rated_by(current_user).include?(post.post_teamup) if logged_in?
+          check ||= false
+        %>
           <div class="qashdU">
             <%= show_rating(post.id, post.post_teamup.total_good, controller.controller_name, check, 1) %>
           </div>
@@ -41,7 +41,9 @@
         </div>
         <div class="vie"><%= "View (#{post.count_view})" %></div>
         <div class="fav" id="item_favorite_<%= post.id %>"><%= show_favorite("Post", post) %></div>
-        <div class="com"><%= link_to raw("Comments (<span id='post_#{post.id}_comments'>#{post.comments.size}</span>)"), "javascript:;", :onclick => "showListPostComment(#{post.id})" %></div>
+        <div class="com">
+          <%= show_comment_button(post.id, post.comments.size) %>
+        </div>
       </div>
     </div>
   </div>

@@ -7,7 +7,7 @@
  *	  http://www.gnu.org/licenses/agpl.html
  */
 
-(function($) {
+;(function($) {
 	var history_handle_top, timer;
 	var body;
 	var jwindow;

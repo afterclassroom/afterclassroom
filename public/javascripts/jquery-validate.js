@@ -11,7 +11,7 @@
  *   http://www.gnu.org/licenses/gpl.html
  */
 
-(function($) {
+;(function($) {
 
     $.extend($.fn, {
         // http://docs.jquery.com/Plugins/Validation/validate

@@ -5,7 +5,7 @@
  * https://github.com/rails/jquery-ujs
  */
 
-(function($) {
+;(function($) {
 	// Triggers an event on an element and returns the event result
 	function fire(obj, name, data) {
 		var event = new $.Event(name);
