@@ -128,18 +128,19 @@ class PostFoodsController < ApplicationController
   # POST /post_foods
   # POST /post_foods.xml
   def create
-    @tag_list = params[:tag]
-    @post = Post.new(params[:post])
-    @post.user = current_user
-    @post.school_id = @school
-    @post.post_category_id = @type
-    @post.type_name = @class_name
-    @post.save
-    @post_food = PostFood.new(params[:post_food])
-    @post.school.tag(@post_food, :with => params[:tag], :on => :tags)
-
-    @post_food.post = @post
+    
     if simple_captcha_valid?
+      @tag_list = params[:tag]
+      @post = Post.new(params[:post])
+      @post.user = current_user
+      @post.school_id = @school
+      @post.post_category_id = @type
+      @post.type_name = @class_name
+      @post.save
+      @post_food = PostFood.new(params[:post_food])
+      @post.school.tag(@post_food, :with => params[:tag], :on => :tags)
+      
+      @post_food.post = @post
       if @post_food.save
         flash[:notice] = "Your post was successfully created."
         redirect_to post_foods_path

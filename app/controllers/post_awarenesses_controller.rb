@@ -21,30 +21,30 @@ class PostAwarenessesController < ApplicationController
       @awareness_type_id ||= AwarenessType.find(:first).id
       @posts = PostAwareness.paginated_post_conditions_with_option(params, @school, @awareness_type_id)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def search
     @query = params[:search][:query] if params[:search]
     if params[:search]
       @posts = Post.paginated_post_conditions_with_search(params, @school, @type)
     end
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
     end
   end
-
+  
   def tag
     @tag_name = params[:tag_name]
     @posts = PostAwareness.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
-
+  
   def rate
     rating = params[:rating]
     @post = Post.find(params[:post_id])
@@ -53,7 +53,7 @@ class PostAwarenessesController < ApplicationController
     # Update rating status
     score_good = @post_a.score_good
     score_bad = @post_a.score_bad
-
+    
     if score_good > score_bad
       status = "Good"
     elsif score_good == score_bad
@@ -61,12 +61,12 @@ class PostAwarenessesController < ApplicationController
     else
       status = "Bad"
     end
-
+    
     @post_a.rating_status = status
-
+    
     @post_a.save
   end
-
+  
   def require_rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
@@ -76,7 +76,7 @@ class PostAwarenessesController < ApplicationController
       # Update rating status
       score_good = @post_a.score_good
       score_bad = @post_a.score_bad
-
+      
       if score_good > score_bad
         status = "Good"
       elsif score_good == score_bad
@@ -84,14 +84,14 @@ class PostAwarenessesController < ApplicationController
       else
         status = "Bad"
       end
-
+      
       @post_a.rating_status = status
-
+      
       @post_a.save
     end
   end
-
-
+  
+  
   def support
     support = params[:support]
     post = Post.find(params[:post_id])
@@ -101,7 +101,7 @@ class PostAwarenessesController < ApplicationController
     @text = "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'>Support</a></div>"
     @text << "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'> Not support</a></div>"
   end
-
+  
   def view_results
     post_awareness_id = params[:post_awareness_id]
     post_awareness = PostAwareness.find(post_awareness_id)
@@ -110,7 +110,7 @@ class PostAwarenessesController < ApplicationController
     chart = GoogleChart.new
     chart.type = :pie
     chart.data = [total_support, total_notsupport]
-
+    
     #reuse and change size, set labels for big chart
     str = "Reliable"
     str_not = "Not Reliable"
@@ -124,7 +124,7 @@ class PostAwarenessesController < ApplicationController
     @chart_url = chart.to_url
     render :layout => false
   end
-
+  
   # GET /post_awarenesses/1
   # GET /post_awarenesses/1.xml
   def show
@@ -141,7 +141,7 @@ class PostAwarenessesController < ApplicationController
       format.xml  { render :xml => @post_awareness }
     end
   end
-
+  
   # GET /post_awarenesses/new
   # GET /post_awarenesses/new.xml
   def new
@@ -154,60 +154,66 @@ class PostAwarenessesController < ApplicationController
       format.xml  { render :xml => @post_awareness }
     end
   end
-
+  
   # GET /post_awarenesses/1/edit
   def edit
     @post_awareness = PostAwareness.find(params[:id])
     @post = @post_awareness.post
     @tag_list = @post_awareness.tags_from(@post.school).join(", ")
   end
-
+  
   # POST /post_awarenesses
   # POST /post_awarenesses.xml
   def create
-    @tag_list = params[:tag]
-    @post = Post.new(params[:post])
-    @post.user = current_user
-    @post.school_id = @school
-    @post.post_category_id = @type
-    @post.type_name = @class_name
-    @post.save
-    @post_awareness = PostAwareness.new(params[:post_awareness])
-    @post.school.tag(@post_awareness, :with => params[:tag], :on => :tags)
-
-    @post_awareness.post = @post
-    if @post_awareness.save
-      flash[:notice] = "Your post was successfully created."
-      redirect_to post_awarenesses_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"
+    if simple_captcha_valid?
+      @tag_list = params[:tag]
+      @post = Post.new(params[:post])
+      @post.user = current_user
+      @post.school_id = @school
+      @post.post_category_id = @type
+      @post.type_name = @class_name
+      @post.save
+      @post_awareness = PostAwareness.new(params[:post_awareness])
+      @post.school.tag(@post_awareness, :with => params[:tag], :on => :tags)
+      
+      @post_awareness.post = @post
+      if @post_awareness.save
+        flash[:notice] = "Your post was successfully created."
+        redirect_to post_awarenesses_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"
+      else
+        flash[:error] = "Failed to create a new post."
+        render :action => "new"
+      end
     else
-      flash[:error] = "Failed to create a new post."
+      flash[:warning] = "Captcha does not match."
       render :action => "new"
     end
+    
   end
-
+  
   # PUT /post_awarenesses/1
   # PUT /post_awarenesses/1.xml
   def update
     @post_awareness = PostAwareness.find(params[:id])
     @post = @post_awareness.post
-
+    
     if (@post_awareness.update_attributes(params[:post_awareness]) && @post_awareness.post.update_attributes(params[:post]))
       @post.school.tag(@post_awareness, :with => params[:tag], :on => :tags)
       redirect_to post_awareness_url(@post_awareness)
     end
   end
-
+  
   # DELETE /post_awarenesses/1
   # DELETE /post_awarenesses/1.xml
   def destroy
     @post_awareness = PostAwareness.find(params[:id])
     @post_awareness.destroy
-
+    
     redirect_to my_post_user_url(current_user)
   end
-
+  
   private
-
+  
   def get_variables
     @school = session[:your_school]
     @new_post_path = new_post_awareness_path
@@ -215,7 +221,7 @@ class PostAwarenessesController < ApplicationController
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
-
+  
   def require_current_user
     post_awareness = PostAwareness.find(params[:id])
     post = post_awareness.post

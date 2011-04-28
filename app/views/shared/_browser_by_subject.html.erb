@@ -15,7 +15,7 @@ end %>
     <div class="col300in">
         <h1 class="col300Title"><%= text %></h1>
         <div class="col300Cont">
-        	<% if tags %>
+        	<% if tags and tags.size > 0 %>
             <div class="tabClouse">
                 <%= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
             </div>

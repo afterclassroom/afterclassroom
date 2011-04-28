@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :school_id
   validates_presence_of :title
   validates_presence_of :description
-
+  
   # Relations
   belongs_to :user
   belongs_to :school
@@ -33,16 +33,16 @@ class Post < ActiveRecord::Base
   
   # Named scope
   scope :with_user_id, lambda {|usr| {:conditions => ["user_id = ?", usr], :order => "created_at DESC"}}
-
+  
   # Attach file
   has_attached_file :attach, {
     :bucket => 'afterclassroom_post',
-    :styles => { :medium => "555x417>", :thumb => "61x51#" }
+    :styles => Proc.new { |a| a.instance.file_styles }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
-    
+  
   # Comments
   acts_as_commentable
-
+  
   # Favorite
   acts_as_favorite
   
@@ -53,7 +53,7 @@ class Post < ActiveRecord::Base
     has user_id, post_category_id, school_id, created_at
     set_property :delta => :delayed
   end
-
+  
   def self.paginated_post_conditions_with_search(params, school, type)
     if params[:search]
       query = params[:search][:query]
@@ -64,12 +64,21 @@ class Post < ActiveRecord::Base
       end
     end
   end
-
+  
   def self.paginated_post_management(params, current_user_id)
     sort = 'DESC'
     if params[:sort]
       sort = params[:sort]
     end
     Post.search(:match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+  end
+  
+  def file_styles
+    { :medium => "555x417>", :thumb => "61x51#" }
+  end
+  
+  before_post_process :image?
+  def image?
+    !(attach.content_type =~ /^image.*/).nil?
   end
 end

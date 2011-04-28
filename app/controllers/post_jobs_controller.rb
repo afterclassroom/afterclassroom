@@ -138,12 +138,12 @@ class PostJobsController < ApplicationController
     @text << "<a title='My job list' class='thickbox' href='/post_jobs/my_job_list?height=400&amp;width=470' class = 'thickbox' title = 'My job list'><span>My job list</span></a>"
     @text << "</span>"
   end
-
+  
   def my_job_list
     @jobs_lists = current_user.jobs_lists
     render :layout => false
   end
-
+  
   # GET /post_jobs/new
   # GET /post_jobs/new.xml
   def new
@@ -156,38 +156,38 @@ class PostJobsController < ApplicationController
       format.xml  { render :xml => @post_job }
     end
   end
-
+  
   # GET /post_jobs/1/edit
   def edit
     @post_job = PostJob.find(params[:id])
     @post = @post_job.post
     @tag_list = @post_job.tags_from(@post.school).join(", ")
   end
-
+  
   # POST /post_jobs
   # POST /post_jobs.xml
   def create
-    @tag_list = params[:tag]
-    @post = Post.new(params[:post])
-    @post.user = current_user
-    @post.school_id = @school
-    @post.post_category_id = @type
-    @post.type_name = @class_name
-    @post.save
-    @post_job = PostJob.new(params[:post_job])
-    @post.school.tag(@post_job, :with => params[:tag], :on => :tags)
-        
-    @post_job.post = @post
-
-    if (@post_job.job_type.label == "i_m_looking_for_job")
-      #If user does not upload file, records for these 3 files are created with empty url
-      #user can upload these files later
-      @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
-      @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
-      @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
-    end
     
     if simple_captcha_valid?
+      @tag_list = params[:tag]
+      @post = Post.new(params[:post])
+      @post.user = current_user
+      @post.school_id = @school
+      @post.post_category_id = @type
+      @post.type_name = @class_name
+      @post.save
+      @post_job = PostJob.new(params[:post_job])
+      @post.school.tag(@post_job, :with => params[:tag], :on => :tags)
+      
+      @post_job.post = @post
+      
+      if (@post_job.job_type.label == "i_m_looking_for_job")
+        #If user does not upload file, records for these 3 files are created with empty url
+        #user can upload these files later
+        @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
+        @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
+        @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
+      end
       if @post_job.save
         flash[:notice] = "Your post was successfully created."
         redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
@@ -200,39 +200,39 @@ class PostJobsController < ApplicationController
       render :action => "new"
     end
   end
-
+  
   # PUT /post_jobs/1
   # PUT /post_jobs/1.xml
   def update
     @post_job = PostJob.find(params[:id])
     @post = @post_job.post
-
+    
     if (@post_job.update_attributes(params[:post_job]) && @post_job.post.update_attributes(params[:post]))
       @post.school.tag(@post_job, :with => params[:tag], :on => :tags)
       redirect_to post_job_url(@post_job)
     end
-
+    
   end
-
+  
   # DELETE /post_jobs/1
   # DELETE /post_jobs/1.xml
   def destroy
     @post_job = PostJob.find(params[:id])
     @post_job.destroy
-
+    
     redirect_to my_post_user_url(current_user)
   end
   
   def apply_job
     @post_job_id = params[:job_id]
-
+    
     @post_job = PostJob.find(params[:job_id])
-
+    
     render :layout => false
   end
   
   def save_letter
-
+    
     cover_letter = JobFile.new
     
     @post_job = PostJob.find(params[:job_id])
@@ -240,49 +240,49 @@ class PostJobsController < ApplicationController
     cover_letter = @post_job.job_files.build(:resume_cv => params[:cover_letter])
     cover_letter.category = "Cover letter"
     cover_letter.user_id = current_user.id
-
-
+    
+    
     @post_job.save
-
+    
     render :text => cover_letter.resume_cv.url
-
+    
   end
-
+  
   def save_script
-
+    
     transcript = JobFile.new
-
+    
     @post_job = PostJob.find(params[:job_id])
-
+    
     transcript = @post_job.job_files.build(:resume_cv => params[:transcript])
     transcript.category = "Transcript"
     transcript.user_id = current_user.id
-
+    
     @post_job.save
-
+    
     render :text => transcript.resume_cv.url
-
+    
   end
-
+  
   def save_resume
-
+    
     resume = JobFile.new
-
+    
     @post_job = PostJob.find(params[:job_id])
-
+    
     resume = @post_job.job_files.build(:resume_cv => params[:resume])
     resume.category = "Resume"
     resume.user_id = current_user.id
-
-
+    
+    
     @post_job.save
-
+    
     render :text => resume.resume_cv.url
-
+    
   end
   
   private
-
+  
   def get_variables
     @school = session[:your_school]
     @new_post_path = new_post_job_path
@@ -290,7 +290,7 @@ class PostJobsController < ApplicationController
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
   end
-
+  
   def require_current_user
     post_job = PostJob.find(params[:id])
     post = post_job.post
@@ -300,5 +300,5 @@ class PostJobsController < ApplicationController
     end
     return @user
   end
-
+  
 end

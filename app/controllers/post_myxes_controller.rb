@@ -127,19 +127,20 @@ class PostMyxesController < ApplicationController
   # POST /post_myxes
   # POST /post_myxes.xml
   def create
-    @tag_list = params[:tag]
-    @post = Post.new(params[:post])
-    @post.user = current_user
-    @post.school_id = @school
-    @post.post_category_id = @type
-    @post.type_name = @class_name
-    @post.save
-    @post_myx = PostMyx.new(params[:post_myx])
-    @post.school.tag(@post_myx, :with => params[:tag], :on => :tags)
     
-    @post_myx.tag_list = params[:tag]
-    @post_myx.post = @post
     if simple_captcha_valid?
+      @tag_list = params[:tag]
+      @post = Post.new(params[:post])
+      @post.user = current_user
+      @post.school_id = @school
+      @post.post_category_id = @type
+      @post.type_name = @class_name
+      @post.save
+      @post_myx = PostMyx.new(params[:post_myx])
+      @post.school.tag(@post_myx, :with => params[:tag], :on => :tags)
+      
+      @post_myx.tag_list = params[:tag]
+      @post_myx.post = @post
       if @post_myx.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_myx_path(@post))

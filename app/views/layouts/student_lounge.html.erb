@@ -5,8 +5,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <title>:: <%= configatron.site_name %>::</title>
-        <%= raw stylesheet_link_merged :student_lounge %>
-        <%= raw javascript_include_merged :student_lounge %>
+        <%= include_stylesheets :student_lounge %>
+        <%= include_javascripts :student_lounge %>
         <%= feedback_includes %>
         <%= feedback_tab(:position => 'right') %>
 		<script src="http://afterclassroom.com:8080/application.js" type="text/javascript" charset="utf-8"></script>
