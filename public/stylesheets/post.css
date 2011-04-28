@@ -1214,11 +1214,12 @@ span.btmDown a:hover {
     float: right;
     padding-right: 20px;
     padding-top: 7px;
+    width: 45px;
 }
 
 .comPage .compre a {
     background: url('/images/icon-pre.gif') no-repeat center top;
-    margin-right: 10px;
+   /* margin-right: 10px;*/
 }
 
 .comPage .comnext a {
@@ -1227,7 +1228,7 @@ span.btmDown a:hover {
 
 .comPage .compre a:hover {
     background: url('/images/icon-preH.gif') no-repeat center top;
-    margin-right: 10px;
+   /* margin-right: 10px;*/
 }
 
 .comPage .comnext a:hover {

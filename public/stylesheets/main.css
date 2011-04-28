@@ -364,8 +364,9 @@ div.menuMain ul li.select a.menuFirst, div.menuMain ul li a.menuFirst:hover span
     background:url('/images/icon-nextH.gif') no-repeat center top;
 }
 .comPage a{
-    padding:0px 4px;
-    margin-left:10px;
+   padding:0px 4px;
+   margin-left:10px;
+   padding-left: 5px;
 }
 .comPage img{
     border:0px;
