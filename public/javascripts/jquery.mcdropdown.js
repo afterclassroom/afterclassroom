@@ -71,7 +71,8 @@
 		, click: null                  // callback that occurs when the user clicks on a menu item
 		, select: null                 // callback that occurs when a value is selected
 		, init: null                   // callback that occurs when the control is fully initialized
-	};
+                , width: 100
+        };
 
 	// check to see if the browser is IE6	
 	var isIE6 = ($.browser.version && $.browser.version <= 6);
