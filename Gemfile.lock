@@ -21,6 +21,10 @@ GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
   specs:
+    POpen4 (0.1.4)
+      Platform (>= 0.4.0)
+      open4
+    Platform (0.4.0)
     aaronh-chronic (0.3.9)
     aasm (2.2.0)
     abstract (1.0.0)
@@ -84,6 +88,7 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
     chronic (0.3.0)
+    closure-compiler (1.1.1)
     configatron (2.6.4)
       yamler (>= 0.1.0)
     contacts (1.2.4)
@@ -109,6 +114,9 @@ GEM
     highline (1.6.1)
     hpricot (0.8.3)
     i18n (0.5.0)
+    jammit (0.6.0)
+      closure-compiler (>= 0.1.0)
+      yui-compressor (>= 0.9.1)
     jquery-rails (0.2.6)
       rails (~> 3.0)
       thor (~> 0.14.4)
@@ -131,6 +139,7 @@ GEM
     net-ssh (2.0.24)
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
+    open4 (1.0.1)
     packet (0.1.15)
     paperclip (2.3.8)
       activerecord
@@ -180,6 +189,8 @@ GEM
     will_paginate (3.0.pre)
     xml-simple (1.0.12)
     yamler (0.1.0)
+    yui-compressor (0.9.6)
+      POpen4 (>= 0.1.4)
 
 PLATFORMS
   ruby
@@ -211,6 +222,7 @@ DEPENDENCIES
   git-deploy
   hpricot
   i18n (= 0.5.0)
+  jammit
   jquery-rails (>= 0.2.6)
   json
   juggernaut

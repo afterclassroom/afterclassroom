@@ -56,3 +56,4 @@ gem 'backup-task'
 #gem 'redis'
 #gem 'redis-store'
 gem 'whenever', :require => false
+gem 'jammit'

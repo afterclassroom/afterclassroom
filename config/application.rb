@@ -47,5 +47,7 @@ module Afterclassroom
     config.rubycas.cas_base_url = 'https://afterclassroom.com'
     
     config.rubycas.logger = Rails.logger
+    
+    config.serve_static_assets = true
   end
 end

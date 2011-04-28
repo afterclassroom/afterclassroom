@@ -4,5 +4,8 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 require 'thinking_sphinx/deltas/delayed_delta/tasks'
+require 'jammit'
+
+Jammit.package!
 
 Afterclassroom::Application.load_tasks

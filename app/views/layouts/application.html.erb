@@ -5,8 +5,8 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>:: <%= configatron.site_name %> ::</title>
     <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= gmap_key %>"></script>
-    <%= raw stylesheet_link_merged :base %>
-    <%= raw javascript_include_merged :base %>
+    <%= include_stylesheets  :base %>
+    <%= include_javascripts  :base %>
     <%= feedback_includes %>
     <%= feedback_tab(:position => 'right') %>
 	<script src="http://afterclassroom.com:8080/application.js" type="text/javascript" charset="utf-8"></script>
