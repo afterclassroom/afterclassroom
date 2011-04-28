@@ -94,9 +94,8 @@ module ApplicationHelper
   end
   
   def image_post_thumb(ctrl_name, post)
-    file = post.attach
     file_path = post.attach_file_name
-    if post.attach_content_type == "image/jpeg"
+    if post.attach_content_type =~ /^image.*/
       path = post.attach.url(:thumb)
     else
       file_ext = File.extname(file_path).delete(".") if file_path
@@ -158,6 +157,12 @@ module ApplicationHelper
   
   def show_image_user_post(user)
     link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip", :title => user.name)}</div>"), user_path(user)
+  end
+  
+  def show_image_teach_of_myx(post_myx)
+    img = "/images/icons/icon_defaut/icon_members.png"
+    img = post_myx.post.attach.url(:thumb) if post_myx.post.attach_file_name and post_myx.post.attach_content_type == "image/jpeg"
+    link_to raw("<div>#{image_tag(img, :class => "vtip", :title => post_myx.professor)}</div>"), post_myx_path(post_myx)
   end
   
   def show_user_post(user)

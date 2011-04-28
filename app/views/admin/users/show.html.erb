@@ -53,7 +53,7 @@
           </tr>
           <tr>
             <th valign="top">Password:</th>
-            <td class="SendPass"><%= "#{"*"*8} <small>#{link_to_if !@user.deleted?, "Send new password", reset_password_admin_user_url(@user), :method => :put}</small>" %></td>
+            <td class="SendPass"><%= raw("#{"*"*8} <small>#{link_to_if !@user.deleted?, "Send new password", reset_password_admin_user_url(@user), :method => :put}</small>") %></td>
           </tr>
 
           <tr>

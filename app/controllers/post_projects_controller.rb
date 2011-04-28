@@ -8,6 +8,7 @@ class PostProjectsController < ApplicationController
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :search, :due_date, :interesting, :tag]
   after_filter :store_go_back_url, :only => [:index, :search, :due_date, :interesting, :tag]
+
   # GET /post_projects
   # GET /post_projects.xml
   def index
@@ -99,19 +100,20 @@ class PostProjectsController < ApplicationController
   # POST /post_projects
   # POST /post_projects.xml
   def create
-    @tag_list = params[:tag]
-    @post = Post.new(params[:post])
-    @post.user = current_user
-    @post.school_id = @school
-    @post.post_category_id = @type
-    @post.type_name = @class_name
-    @post.save
-    @post_project = PostProject.new(params[:post_project])
-    @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
-    @post.school.tag(@post_project, :with => params[:tag], :on => :tags)
     
-    @post_project.post = @post
     if simple_captcha_valid?
+      @tag_list = params[:tag]
+      @post = Post.new(params[:post])
+      @post.user = current_user
+      @post.school_id = @school
+      @post.post_category_id = @type
+      @post.type_name = @class_name
+      @post.save
+      @post_project = PostProject.new(params[:post_project])
+      @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+      @post.school.tag(@post_project, :with => params[:tag], :on => :tags)
+      
+      @post_project.post = @post
       if @post_project.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_project_path(@post))

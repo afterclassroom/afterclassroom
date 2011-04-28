@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>:: <%= configatron.site_name %> ::</title>
-    <%= raw stylesheet_link_merged :admin %>
-    <%= raw javascript_include_merged :admin %>
+    <%= include_stylesheets :admin %>
+    <%= include_javascripts :admin %>
   </head>
   <body>
     <!-- Start: page-top-outer -->

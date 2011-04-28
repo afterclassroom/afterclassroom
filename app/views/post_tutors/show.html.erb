@@ -24,7 +24,7 @@ You are here: <a href="/">Home</a>
                 <div class="AsDContLin">From<span><%= link_to @post.school.name, :controller => "post_tutors", :action => "index", :from_school => @post.school %></span></div>
                 <div class="AsDContLdes">
                     <span>Description:</span>
-                    <% if @post.attach_file_name and @post.attach_content_type == "image/jpeg" %>
+                    <% if @post.attach_file_name and @post.attach_content_type =~ /^image.*/ %>
                     <div style="min-height:70px">
                         <div class="assImg">
                             <div>

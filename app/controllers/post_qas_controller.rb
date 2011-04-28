@@ -147,18 +147,19 @@ class PostQasController < ApplicationController
   # POST /post_qas
   # POST /post_qas.xml
   def create
-    @tag_list = params[:tag]
-    @post = Post.new(params[:post])
-    @post.user = current_user
-    @post.school_id = @school
-    @post.post_category_id = @type
-    @post.type_name = @class_name
-    @post.save
-    @post_qa = PostQa.new(params[:post_qa])
-    @post.school.tag(@post_qa, :with => params[:tag], :on => :tags)
     
-    @post_qa.post = @post
     if simple_captcha_valid?
+      @tag_list = params[:tag]
+      @post = Post.new(params[:post])
+      @post.user = current_user
+      @post.school_id = @school
+      @post.post_category_id = @type
+      @post.type_name = @class_name
+      @post.save
+      @post_qa = PostQa.new(params[:post_qa])
+      @post.school.tag(@post_qa, :with => params[:tag], :on => :tags)
+      
+      @post_qa.post = @post
       if @post_qa.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_qa_path(@post))
@@ -220,19 +221,19 @@ class PostQasController < ApplicationController
   end
   
   def prefer
-
+    
     @post_id = params[:post_id]
     render :layout => false
   end
-
+  
   def sendmail
-
+    
     QaSendMail.refer_to_expert(params[:strContent], params[:emailAddr],params[:post_id]).deliver
     
     # render :layout => false
     render :text => %Q'Mail sent to'
   end
-
+  
   private
   
   def get_variables

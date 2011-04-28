@@ -26,7 +26,7 @@ You are here: <a href="/">Home</a>
                 </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>
-                    <% if @post.attach_file_name and @post.attach_content_type == "image/jpeg" %>
+                    <% if @post.attach_file_name and @post.attach_content_type =~ /^image.*/ %>
                     <div style="min-height:70px">
                         <div class="assImg">
                             <div>

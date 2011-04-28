@@ -119,6 +119,7 @@
 .dueDItem {
     padding: 4px 0px;
     border-bottom: 1px #e4e4e4 solid;
+		min-height: 30px;
 }
 
 .dueDTitle {
@@ -371,7 +372,7 @@
 .assInfB .vie {
     background: url('/images/icon-view.gif') no-repeat;
     padding: 0px 5px 0px 14px;
-    margin-left: 5px;
+    margin-left: 2px;
 }
 
 .assInfB .fav {
