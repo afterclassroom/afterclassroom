@@ -13,7 +13,7 @@ class PostProject < ActiveRecord::Base
   scope :with_limit, :limit => LIMIT
   scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
-  scope :due_date, :conditions => ["post_projects.due_date > ?", Time.now], :order => "due_date DESC"
+  scope :due_date, :conditions => ["post_projects.due_date > ?", Time.now], :order => "due_date ASC"
   scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_projects.post_id And favorable_type = ?) > ?", "Post", 10]
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_projects.id < ?", att]} }
