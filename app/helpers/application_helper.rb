@@ -337,7 +337,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login(raw("<span>Email</span>"))
     else
-      link_to(raw("<span>Email</span>"), "#{show_email_user_messages_path(current_user)}?recipient_id=#{post.user.id}&height=300&width=470", :class => "thickbox", :title => "Send to #{post.user.full_name}")
+      link_to(raw("<span>Email</span>"), "#{show_email_user_messages_path(current_user)}?recipient_id=#{post.user.id}&height=270&width=470", :class => "thickbox", :title => "Send to #{post.user.full_name}")
     end
   end
   
