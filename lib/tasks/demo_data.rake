@@ -621,29 +621,14 @@ def get_random_list_tags
 end
 
 def create_demo_posts_forums
-puts "HELLO WORLD"
-puts "HELLO WORLD"
-puts "HELLO WORLD"
-puts "HELLO WORLD"
-puts "HELLO WORLD"
-puts "HELLO WORLD"
-puts "HELLO WORLD"
-puts "HELLO WORLD"
-#  type_name = "PostQa"
-#  post_category = PostCategory.find_by_class_name(type_name)
-  
-#  20.times do
-#    user = User.find(rand(User.count).to_i + 1)
-#    school = user.school
+  20.times do
+    user = User.find(rand(User.count).to_i + 1)
     
-#    post = create_post(user, school, post_category)
-    
-#    post_qa = PostQa.create do |p|
-#      p.post = post
-#    end
-    
-#    post.school.tag(post_qa, :with => get_random_list_tags, :on => :tags)
-    
-#  end
+    Forums.create do |p|
+      p.user = user
+      p.title = Faker::Lorem.sentence
+      p.content = Faker::Lorem.paragraphs
+    end
+  end    
 end
 
