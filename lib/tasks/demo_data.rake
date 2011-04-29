@@ -502,11 +502,8 @@ def create_demo_posts_qas
     
     post = create_post(user, school, post_category)
     
-    qaCat = PostQaCategory.find(rand(PostQaCategory.count).to_i + 1)
-    
     post_qa = PostQa.create do |p|
       p.post = post
-      p.post_qa_category = qaCat
     end
     
     post.school.tag(post_qa, :with => get_random_list_tags, :on => :tags)
