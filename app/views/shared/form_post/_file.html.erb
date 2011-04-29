@@ -3,12 +3,12 @@
 </div>
 <div class="postItemA" style="margin:0px">
     <div id="divinputfile" style="margin-left:120px">
-        <div class="postItemC">
+      <div class="postItemC">
             <%= post.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "#{'{validate:{accept:true}}' if only_img } filepc", :size=> "27", :style => "margin-left:50px", :id => "file_attach" %>
-        </div>
+      </div>
         <div class="postUpfile">
             <div id="fakeinputfile">
-                <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-2px">
+              <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-2px"></input>
             </div>
         </div>
     </div>
