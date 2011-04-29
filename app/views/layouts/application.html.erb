@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%= csrf_meta_tag %>
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <title>:: <%= configatron.site_name %> ::</title>
-    <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= gmap_key %>"></script>
-    <%= include_stylesheets  :base %>
-    <%= include_javascripts  :base %>
-    <%= feedback_includes %>
-    <%= feedback_tab(:position => 'right') %>
-	<script src="http://afterclassroom.com:8080/application.js" type="text/javascript" charset="utf-8"></script>
-  </head>
-  <body>
-    <div class="top" id="top_page">
-      <div class="banner">
-        <div class="logo"><a href="/"><img alt="classroom" src="/images/logo.png" /></a></div>
-        <%= render :partial => 'shared/login' %>
-      </div>
-    </div>
-    <div class="menu">
-      <div class="menusearch">
-        <%= render :partial => 'shared/menu_main' %>
-        <%= show_search_form( controller.controller_name, @query) %>
-      </div>
-    </div>
-    <div class="abLink">
-      <div class="abLinkL">
-        <%= yield_or_default(yield(:you_are_here)) %>
-      </div>
-      <div class="menuRR">
-        <%= yield_or_default(yield(:post_button)) %>
-      </div>
-    </div>
-    <div class="sponsor">
-      <div class="sponsorLink">
-        <div class="menuRL">
-          <%= yield_or_default(yield(:menu_sub)) %>
+    <head>
+        <%= csrf_meta_tag %>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>:: <%= configatron.site_name %>::</title>
+        <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= gmap_key %>">
+        </script>
+        <%= include_stylesheets  :base %>
+        <%= include_javascripts  :base %>
+        <%= feedback_includes %>
+        <%= feedback_tab(:position => 'right') %>
+        <script src="http://afterclassroom.com:8080/application.js" type="text/javascript" charset="utf-8">
+        </script>
+    </head>
+    <body>
+        <div class="top" id="top_page">
+            <div class="banner">
+                <div class="logo">
+                    <a href="/"><img alt="classroom" src="/images/logo.png" /></a>
+                </div><%= render :partial => 'shared/login' %>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="contMain">
-      <%= yield %>
-    </div>
-	<%= render :partial => 'shared/javascript_load' %>
-    <%= render :partial => 'shared/footer' %>
-    <%= render :partial => 'shared/footer_menu_out' if logged_in? %>
-	<%= render :partial => 'shared/notification' if logged_in? %>
-  </body>
+        <div class="menu">
+            <div class="menusearch">
+                <%= render :partial => 'shared/menu_main' %>
+                <%= show_search_form( controller.controller_name, @query) %>
+            </div>
+        </div>
+        <div class="abLink">
+            <div class="abLinkL">
+                <%= yield_or_default(yield(:you_are_here)) %>
+            </div>
+            <div class="menuRR">
+                <%= yield_or_default(yield(:post_button)) %>
+            </div>
+        </div>
+        <div class="sponsor">
+            <div class="sponsorLink">
+                <div class="menuRL">
+                    <%= yield_or_default(yield(:menu_sub)) %>
+                </div>
+            </div>
+        </div>
+        <div class="contMain">
+            <%= yield %>
+        </div>
+				<%= render :partial => "shared/post_comments/alert" %>
+        <%= render :partial => 'shared/javascript_load' %>
+        <%= render :partial => 'shared/footer' %>
+        <%= render :partial => 'shared/footer_menu_out' if logged_in? %>
+        <%= render :partial => 'shared/notification' if logged_in? %>
+    </body>
 </html>

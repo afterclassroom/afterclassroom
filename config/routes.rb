@@ -1,5 +1,4 @@
 Afterclassroom::Application.routes.draw do
-  resources :help_infos
 
   # RESTful rewrites
   match '/signup' => 'users#new', :as => :signup
