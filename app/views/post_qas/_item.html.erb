@@ -50,9 +50,6 @@
                 <div class="com">
                     <%= show_answer_button(post.id, post.comments.size) %>
                 </div>
-                <div class="morelink">
-                    <%= link_to "More like this", :controller => "post_qas", :action => "index", :more_like_this_id => post %>
-                </div>
             </div>
         </div>
     </div>

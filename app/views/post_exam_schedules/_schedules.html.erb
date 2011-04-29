@@ -4,7 +4,7 @@
     <div class="col195Cont">
       <%
       type = "exam_schedule"
-      items = PostExamSchedule.with_type(type).with_school(@school).with_limit
+      items = PostExamSchedule.with_school(@school).with_type(type).with_limit
     %>
       <% if items.size > 0 %>
         <% items.each do |it| %>

@@ -550,7 +550,7 @@ def create_demo_posts_exam_schedules
       p.place = Faker::Address.street_address
       p.starts_at = DateTime.now + rand(10).to_i
       p.starts_at = DateTime.now + rand(20).to_i
-      p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size).to_i].first
+      p.type_name = SCHEDULE_TYPE[rand(SCHEDULE_TYPE.size).to_i][1]
     end
     
     post.school.tag(post_examschedule, :with => get_random_list_tags, :on => :tags)
