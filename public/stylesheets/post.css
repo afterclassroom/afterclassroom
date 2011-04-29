@@ -113,6 +113,7 @@
 .recentUni span, .recentDes {
     color: #6f6f63;
     font-size: 11px;
+    word-wrap: break-word;
 }
 
 /*** 195 Due date ***/
