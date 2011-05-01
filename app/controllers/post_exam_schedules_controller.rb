@@ -110,18 +110,17 @@ class PostExamSchedulesController < ApplicationController
   # POST /post_exam_schedules
   # POST /post_exam_schedules.xml
   def create
-    
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
-      @post.save
-      @post_exam_schedule = PostExamSchedule.new(params[:post_exam_schedule])
-      @post.school.tag(@post_exam_schedule, :with => params[:tag], :on => :tags)
-  
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_exam_schedule = PostExamSchedule.new(params[:post_exam_schedule])
+
+    if simple_captcha_valid?    
+      @post.save    
+      @post.school.tag(@post_exam_schedule, :with => @tag_list, :on => :tags)
       @post_exam_schedule.post = @post
       if @post_exam_schedule.save
         flash[:notice] = "Your post was successfully created."

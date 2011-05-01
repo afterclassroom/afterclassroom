@@ -165,17 +165,17 @@ class PostAwarenessesController < ApplicationController
   # POST /post_awarenesses
   # POST /post_awarenesses.xml
   def create
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_awareness = PostAwareness.new(params[:post_awareness])
+   
+    if simple_captcha_valid?     
       @post.save
-      @post_awareness = PostAwareness.new(params[:post_awareness])
-      @post.school.tag(@post_awareness, :with => params[:tag], :on => :tags)
-      
+      @post.school.tag(@post_awareness, :with => @tag_list, :on => :tags)
       @post_awareness.post = @post
       if @post_awareness.save
         flash[:notice] = "Your post was successfully created."

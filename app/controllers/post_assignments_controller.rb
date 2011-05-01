@@ -100,19 +100,18 @@ class PostAssignmentsController < ApplicationController
   # POST /post_assignments
   # POST /post_assignments.xml
   def create 
-    
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_assignment = PostAssignment.new(params[:post_assignment])
+    @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+
+    if simple_captcha_valid? 
       @post.save
-      @post_assignment = PostAssignment.new(params[:post_assignment])
-      @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
-      @post.school.tag(@post_assignment, :with => params[:tag], :on => :tags)
-      
+      @post.school.tag(@post_assignment, :with => @tag_list, :on => :tags)
       @post_assignment.post = @post
       if @post_assignment.save
         flash[:notice] = "Your post was successfully created."

@@ -90,17 +90,17 @@ class PostTestsController < ApplicationController
   # POST /post_tests
   # POST /post_tests.xml
   def create
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
-      @post.save
-      @post_test = PostTest.new(params[:post_test])
-      @post.school.tag(@post_test, :with => params[:tag], :on => :tags)
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_test = PostTest.new(params[:post_test])
       
+    if simple_captcha_valid?
+      @post.save  
+      @post.school.tag(@post_test, :with => @tag_list, :on => :tags)
       @post_test.post = @post
       if @post_test.save
         flash[:notice] = "Your post was successfully created."

@@ -147,18 +147,17 @@ class PostQasController < ApplicationController
   # POST /post_qas
   # POST /post_qas.xml
   def create
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_qa = PostQa.new(params[:post_qa])
     
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
-      @post.save
-      @post_qa = PostQa.new(params[:post_qa])
-      @post.school.tag(@post_qa, :with => params[:tag], :on => :tags)
-      
+    if simple_captcha_valid?   
+      @post.save 
+      @post.school.tag(@post_qa, :with => @tag_list, :on => :tags)
       @post_qa.post = @post
       if @post_qa.save
         flash[:notice] = "Your post was successfully created."
@@ -247,13 +246,13 @@ class PostQasController < ApplicationController
   def get_comments(post, show)
     @comments = []
     case show
-      when "0"
+    when "0"
       @comments = post.comments
-      when "1"
+    when "1"
       @comments = post.comments
-      when "2"
+    when "2"
       @comments = post.comments.find(:all, :order => "created_at DESC")
-      when "3"
+    when "3"
       arr_comnt = []
       post.comments.each do |c|
         arr_comnt << {:obj => c, :total_good => c.total_good}

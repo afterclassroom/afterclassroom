@@ -142,20 +142,19 @@ class PostBooksController < ApplicationController
   # POST /post_books
   # POST /post_books.xml
   def create
-    
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
-      @post.save
-      @post_book = PostBook.new(params[:post_book])
-      @post.school.tag(@post_book, :with => params[:tag], :on => :tags)
-      
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_book = PostBook.new(params[:post_book])
+    @post_book.book_type_id ||= BookType.first.id
+
+    if simple_captcha_valid?      
+      @post.save      
+      @post.school.tag(@post_book, :with => @tag_list, :on => :tags)
       @post_book.post = @post
-      @post_book.book_type_id ||= BookType.first.id
       if @post_book.save
         flash[:notice] = "Your post was successfully created."
         redirect_to post_books_path + "?book_type_id=#{@post_book.book_type_id}"

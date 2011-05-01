@@ -167,20 +167,18 @@ class PostJobsController < ApplicationController
   # POST /post_jobs
   # POST /post_jobs.xml
   def create
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_job = PostJob.new(params[:post_job])
     
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
-      @post.save
-      @post_job = PostJob.new(params[:post_job])
+    if simple_captcha_valid?  
+      @post.save  
       @post.school.tag(@post_job, :with => params[:tag], :on => :tags)
-      
-      @post_job.post = @post
-      
+      @post_job.post = @post   
       if (@post_job.job_type.label == "i_m_looking_for_job")
         #If user does not upload file, records for these 3 files are created with empty url
         #user can upload these files later

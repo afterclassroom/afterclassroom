@@ -143,19 +143,20 @@ class PostTutorsController < ApplicationController
   # POST /post_tutors
   # POST /post_tutors.xml
   def create
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
-      @post.save
-      @post_tutor = PostTutor.new(params[:post_tutor])
-      @post.school.tag(@post_tutor, :with => params[:tag], :on => :tags)
-      
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_tutor = PostTutor.new(params[:post_tutor])
+    @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
+    
+    if simple_captcha_valid?     
+      @post.save    
+      @post.school.tag(@post_tutor, :with => @tag_list, :on => :tags)
       @post_tutor.post = @post
-      @post_tutor.tutor_type_id ||= TutorType.find_by_label("requested_for_tutor").id
+      
       if @post_tutor.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_tutor_path(@post))

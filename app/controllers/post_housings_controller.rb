@@ -107,19 +107,18 @@ class PostHousingsController < ApplicationController
   # POST /post_housings
   # POST /post_housings.xml
   def create
+    params[:post_housing][:housing_category_ids] = params[:housing_category]
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_housing = PostHousing.new(params[:post_housing])
     
-    if simple_captcha_valid?
-      params[:post_housing][:housing_category_ids] = params[:housing_category]
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
+    if simple_captcha_valid?    
       @post.save
-      @post_housing = PostHousing.new(params[:post_housing])
-      @post.school.tag(@post_housing, :with => params[:tag], :on => :tags)
-      
+      @post.school.tag(@post_housing, :with => @tag_list, :on => :tags)
       @post_housing.post = @post
       if @post_housing.save
         flash[:notice] = "Your post was successfully created."

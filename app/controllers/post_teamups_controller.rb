@@ -116,20 +116,20 @@ class PostTeamupsController < ApplicationController
   # POST /post_teamups
   # POST /post_teamups.xml
   def create
-    
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
-      @post.save
-      @post_teamup = PostTeamup.new(params[:post_teamup])
-      @post.school.tag(@post_teamup, :with => params[:tag], :on => :tags)
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_teamup = PostTeamup.new(params[:post_teamup])
+    @post_teamup.teamup_category_id ||= TeamupCategory.first.id
       
+    if simple_captcha_valid?   
+      @post.save     
+      @post.school.tag(@post_teamup, :with => @tag_list, :on => :tags)
       @post_teamup.post = @post
-      @post_teamup.teamup_category_id ||= TeamupCategory.first.id
+      
       if @post_teamup.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_teamup_path(@post))

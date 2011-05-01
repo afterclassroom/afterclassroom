@@ -103,18 +103,17 @@ class PostEventsController < ApplicationController
   # POST /post_events
   # POST /post_events.xml
   def create
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_event = PostEvent.new(params[:post_event])
     
     if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
       @post.save
-      @post_event = PostEvent.new(params[:post_event])
-      @post.school.tag(@post_event, :with => params[:tag], :on => :tags)
-      
+      @post.school.tag(@post_event, :with => @tag_list, :on => :tags)
       @post_event.post = @post
       if @post_event.save
         flash.now[:notice] = "Your post was successfully created."

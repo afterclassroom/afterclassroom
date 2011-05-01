@@ -100,19 +100,18 @@ class PostProjectsController < ApplicationController
   # POST /post_projects
   # POST /post_projects.xml
   def create
-    
-    if simple_captcha_valid?
-      @tag_list = params[:tag]
-      @post = Post.new(params[:post])
-      @post.user = current_user
-      @post.school_id = @school
-      @post.post_category_id = @type
-      @post.type_name = @class_name
-      @post.save
-      @post_project = PostProject.new(params[:post_project])
-      @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
-      @post.school.tag(@post_project, :with => params[:tag], :on => :tags)
+    @tag_list = params[:tag]
+    @post = Post.new(params[:post])
+    @post.user = current_user
+    @post.school_id = @school
+    @post.post_category_id = @type
+    @post.type_name = @class_name
+    @post_project = PostProject.new(params[:post_project])
+    @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
       
+    if simple_captcha_valid? 
+      @post.save
+      @post.school.tag(@post_project, :with => @tag_list, :on => :tags)
       @post_project.post = @post
       if @post_project.save
         flash[:notice] = "Your post was successfully created."
