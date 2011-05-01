@@ -1,4 +1,7 @@
 hello world:: <%= @text %><br/>
-value == <%= current_user.id.to_s %>
-name == <%= current_user.name %>
+value == <%# = current_user.id.to_s %>
+name == <%# = current_user.name %>
 
+<% @forums.each do |item| %>
+  <%= item.title %><br/>
+<% end %>

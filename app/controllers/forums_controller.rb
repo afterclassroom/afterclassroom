@@ -3,6 +3,7 @@ class ForumsController < ApplicationController
 
   def index  
     @text = "test from forum"
+    @forums = Forum.find(:all)
   end
 
 end
