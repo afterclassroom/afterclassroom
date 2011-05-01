@@ -5,8 +5,7 @@ class PostExamSchedulesController < ApplicationController
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search]
   #before_filter :login_required, :except => [:index, :show, :search]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search]
-  after_filter :store_go_back_url, :only => [:index, :show, :search]
+  after_filter :store_location, :only => [:index, :show, :new, :edit, :search]
   
   # GET /post_exam_schedules
   # GET /post_exam_schedules.xml

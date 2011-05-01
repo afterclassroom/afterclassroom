@@ -70,6 +70,19 @@ class Post < ActiveRecord::Base
     end
     Post.search(:match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
   end
+
+  def self.paginated_post_management_admin(params)
+    sort = 'DESC'
+    if params[:sort]
+      sort = params[:sort]
+    end
+    category = params[:category]
+    #if category and category != ""
+      #Post.search(:match_mode => :any, :with => {:post_category_id => category}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+    #else
+      Post.search(:match_mode => :any, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+    #end
+  end
   
   def file_styles
     { :medium => "555x417>", :thumb => "61x51#" }

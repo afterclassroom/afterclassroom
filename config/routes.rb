@@ -302,7 +302,11 @@ Afterclassroom::Application.routes.draw do
   namespace :admin do
     resources :dashboards
     resources :settings
-    resources :posts
+    resources :posts do
+      collection do
+        get :with_type
+      end
+    end
     
     resources :setnotifies do
       collection do

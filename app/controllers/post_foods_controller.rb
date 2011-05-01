@@ -6,8 +6,8 @@ class PostFoodsController < ApplicationController
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
   #before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :tag]
-  after_filter :store_go_back_url, :only => [:index, :search, :tag]
+  after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
+  
   # GET /post_foods
   # GET /post_foods.xml
   def index  

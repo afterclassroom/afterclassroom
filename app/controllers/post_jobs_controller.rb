@@ -7,8 +7,8 @@ class PostJobsController < ApplicationController
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_companies, :bad_bosses, :my_job_list, :add_job, :employment_infor, :show_job_infor]
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :employment_infor, :show_job_infor]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
-  after_filter :store_location, :only => [:index, :show, :search, :tag, :good_companies, :bad_bosses]
-  after_filter :store_go_back_url, :only => [:index, :search, :tag, :good_companies, :bad_bosses]
+  after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_companies, :bad_bosses]
+
   # GET /post_jobs
   # GET /post_jobs.xml
   def index

@@ -1,0 +1,154 @@
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+  <tr>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+    <th class="topleft"></th>
+    <td id="tbl-border-top">&nbsp;</td>
+    <th class="topright"></th>
+    <th rowspan="3" class="sized"><img src="/images/admin/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+  </tr>
+  <tr>
+    <td id="tbl-border-left"></td>
+    <td>
+      <!--  start content-table-inner -->
+      <div id="content-table-inner">
+        <!--  start table-content  -->
+        <div id="table-content">
+          <!--  start product-table -->
+          <form id="mainform" action="">
+            <table border="0" width="100%" cellpadding="0" cellspacing="0">
+              <tr valign="top">
+                <td>
+                  <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table-user">
+                    <tr>
+                      <th class="table-header-repeat line-left"><a href="">Date</a></th>
+                      <th class="table-header-repeat line-left">
+                        <select id="category" name="category">
+                          <option>Category</option>
+                          <%  @post_cat.each do |pc| %>
+                            <option value="<%= pc.class_name %>" <%= raw('selected="selected"') if @category == pc.class_name %> ><%= pc.name %></option>
+                          <% end %>
+                        </select></th>
+                      <th class="table-header-repeat line-left"><a href="">Title</a></th>
+                      <th class="table-header-repeat line-left"><a href="">User</a></th>
+                      <th class="table-header-repeat line-left"><a href="">Views</a></th>
+                      <th class="table-header-repeat line-left"><a href="">Comments</a></th>
+                      <th class="table-header-options line-left"><a href="">Options</a></th>
+                    </tr>
+                    <% if @all_posts.size > 0 %>
+                      <%  @all_posts.each do |p| %>
+                        <tr class="alternate-row">
+                          <td><%= p.created_at.strftime("%d %b %y") %></td>
+                          <td><%= link_to p.post_category.name, "#{user_post_managements_url(current_user)}?category=#{p.post_category.class_name}"%></td>
+                          <td><%= link_to p.title, link_to_show_post(p), :target => "_blank" %></td>
+                          <td><%= link_to p.user.full_name, user_path(p.user), :target => "_blank" %></td>
+                          <td><%= p.count_view %></td>
+                          <td><%= p.comments.size %></td>
+                          <td class="options-width">
+                            <a><%= link_to '', link_to_show_post(p), :class => 'icon-5 info-tooltip', :title => 'Show', :target => "_blank" %></a>
+                            <a><%= link_to '', link_to_edit_post(p), :class => 'icon-1 info-tooltip', :title => 'Edit', :target => "_blank"  %></a>
+                            <a><%= link_to '', admin_post_url(p), :confirm => 'Are you sure?', :method => :delete, :class => 'icon-2 info-tooltip', :title => 'Destroy'  %></a>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% else %>
+                      <tr>
+                        <td colspan="7">No result found</td>
+                      </tr>
+                    <% end %>
+                  </table>
+                  <%= will_paginate @all_posts %>
+                </td>
+
+              </tr>
+            </table>
+            <!--  end product-table -->
+          </form>
+        </div>
+        <!--  end content-table  -->
+        <!--  start actions-box -->
+
+        <!-- end actions-box -->
+        <!--  start paging -->
+        <!--  end paging-->
+        <div class="clear"></div>
+      </div>
+      <!--  end content-table-inner END  -->
+    </td>
+    <td id="tbl-border-right"></td>
+  </tr>
+  <tr>
+    <th class="sized bottomleft"></th>
+    <td id="tbl-border-bottom">&nbsp;</td>
+    <th class="sized bottomright"></th>
+  </tr>
+</table>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    var selected = 'Category';/*Default value*/
+    var sortType = 'DESC';/*Default value*/
+    var path = '<%= "#{with_type_admin_posts_url()}?category="%>';
+
+    $("select#category").change(function(){
+
+      selected = $("select#category").children(":selected").val();
+
+      //console.log('value == '+selected);
+
+      $.ajax({
+        url: path + selected,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+          alert('ajax fail:'+msg);
+        },
+        success: function(msg){
+          $('.shopP2').html(msg);
+        }
+      });
+    });
+
+    var currentSort = '<%= @sort %>';
+    if (currentSort == 'DESC'){
+      $('#date a').css("background-image", "url(/images/icon-Date.gif)");
+    }
+    else{
+      $('#date a').css("background-image", "url(/images/icon-DateDesc.gif)");
+    }
+
+    $('.pagination a').each(function(){
+      var page_href = $(this).attr('href');
+
+      $(this).attr('href','#');
+
+      $(this).click(function(){
+        console.log('str =='+page_href);
+
+        if (page_href != undefined){
+          var arr = page_href.split('page=');
+          console.log('len of arr == '+arr[1]);
+        }
+
+        var str_href = "<%= with_type_admin_posts_url %>?category="+selected+'&sort='+sortType+'&page='+arr[1];
+        console.log('sortType=='+sortType+' ||||| category=='+selected);
+
+
+        $.ajax({
+          url: str_href,
+          type: "GET",
+          dataType: "html",
+          failure: function(msg){
+            alert('ajax fail:'+msg);
+          },
+          success: function(msg){
+            $('.shopP2').html(msg);
+          }
+        });
+
+      });
+
+
+    });
+
+  });
+</script>

@@ -89,10 +89,6 @@ module AuthenticatedSystem
       session[:return_to] = request.fullpath
     end
 
-    def store_go_back_url
-      session[:go_back_url] = request.fullpath
-    end
-
     # Redirect to the URI stored by the most recent store_location call or
     # to the passed default.  Set an appropriately modified
     #   after_filter :store_location, :only => [:index, :new, :show, :edit]

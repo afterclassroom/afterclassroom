@@ -258,11 +258,49 @@ module ApplicationHelper
       when "PostTeamup"
       link_edit = edit_post_teamup_url(post.post_teamup)
       when "PostExamSchedule"
-      link_edit = edit_post_exam_schedule_url(post.post_exam)
+      link_edit = edit_post_exam_schedule_url(post.post_exam_schedule)
     end
     return link_edit
   end
-  
+
+  def link_to_show_post(post)
+    case post.type_name
+      when "PostAssignment"
+      link_show = post_assignment_url(post.post_assignment)
+      when "PostProject"
+      link_show = post_project_url(post.post_project)
+      when "PostTest"
+      link_show = post_test_url(post.post_test)
+      when "PostExam"
+      link_show = post_exam_url(post.post_exam)
+      when "PostEvent"
+      link_show = post_event_url(post.post_event)
+      when "PostQa"
+      link_show = post_qa_url(post.post_qa)
+      when "PostTutor"
+      link_show = post_tutor_url(post.post_tutor)
+      when "PostBook"
+      link_show = post_book_url(post.post_book)
+      when "PostJob"
+      link_show = post_job_url(post.post_job)
+      when "PostFood"
+      link_show = post_food_url(post.post_food)
+      when "PostParty"
+      link_show = post_party_url(post.post_party)
+      when "PostMyx"
+      link_show = post_myx_url(post.post_myx)
+      when "PostAwareness"
+      link_show = post_awareness_url(post.post_awareness)
+      when "PostHousing"
+      link_show = post_housing_url(post.post_housing)
+      when "PostTeamup"
+      link_show = post_teamup_url(post.post_teamup)
+      when "PostExamSchedule"
+      link_show = post_exam_schedule_url(post.post_exam_schedule)
+    end
+    return link_show
+  end
+
   def show_options(school, params, options = {})
     department = params[:department] if params[:department]
     year = params[:year] if params[:year]
@@ -467,7 +505,7 @@ module ApplicationHelper
   end
   
   def show_go_back
-    link_to raw("<span>Go back</span>"), session[:go_back_url]
+    link_to raw("<span>Go back</span>"), session[:return_to]
   end
   
   # id : id of post
