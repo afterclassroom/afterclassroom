@@ -76,12 +76,13 @@ class Post < ActiveRecord::Base
     if params[:sort]
       sort = params[:sort]
     end
-    category = params[:category]
-    #if category and category != ""
-      #Post.search(:match_mode => :any, :with => {:post_category_id => category}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
-    #else
+    cat_name = params[:category]
+    category = PostCategory.find_by_class_name(cat_name)
+    if category
+      Post.search(:match_mode => :any, :with => {:post_category_id => category.id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+    else
       Post.search(:match_mode => :any, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
-    #end
+    end
   end
   
   def file_styles

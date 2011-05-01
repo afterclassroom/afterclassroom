@@ -9,6 +9,7 @@ class Admin::PostsController < ApplicationController
   end
 
   def with_type
+    @category = params[:category]
     @post_cat = PostCategory.find(:all)
     @all_posts = Post.paginated_post_management_admin(params)
     render :layout => false
