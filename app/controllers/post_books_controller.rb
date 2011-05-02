@@ -203,7 +203,7 @@ class PostBooksController < ApplicationController
     post_book = PostBook.find(params[:id])
     post = post_book.post
     @user ||= post.user
-    unless (@user && (@user.eql?(current_user)))
+    unless (@user && (@user.eql?(current_user))) || current_user.has_role?(:admin)
       redirect_back_or_default(root_path)and return false
     end
     return @user

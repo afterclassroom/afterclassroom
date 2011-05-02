@@ -188,7 +188,7 @@ class PostFoodsController < ApplicationController
     post_food = PostFood.find(params[:id])
     post = post_food.post
     @user ||= post.user
-    unless (@user && (@user.eql?(current_user)))
+    unless (@user && (@user.eql?(current_user))) || current_user.has_role?(:admin)
       redirect_back_or_default(root_path)and return false
     end
     return @user

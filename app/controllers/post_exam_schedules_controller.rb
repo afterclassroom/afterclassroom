@@ -174,7 +174,8 @@ class PostExamSchedulesController < ApplicationController
   def require_current_user
     post_exam_schedule = PostExamSchedule.find(params[:id])
     post = post_exam_schedule.post
-    unless (@user && (@user.eql?(current_user)))
+    @user ||= post.user
+    unless (@user && (@user.eql?(current_user))) || current_user.has_role?(:admin)
       redirect_back_or_default(root_path)and return false
     end
     return @user

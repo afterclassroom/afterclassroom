@@ -15,7 +15,7 @@ class Admin::PostsController < ApplicationController
     render :layout => false
   end
 
-  def delete
+  def destroy
     post = Post.find(params[:id])
     post.destroy if post
     redirect_to admin_posts_url()
