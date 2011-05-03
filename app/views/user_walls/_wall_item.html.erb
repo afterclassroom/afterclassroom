@@ -1,63 +1,62 @@
 <div class="AfterItem" id="wall_<%= wall.id %>">
-	<% if wall.user == current_user or wall.user_post == current_user %>
+  <% if wall.user == current_user or wall.user_post == current_user %>
     <div class="del_wall" style="float: right; display: none; cursor: pointer;" onclick="DeleteWall(<%= wall.id %>)">
-        <img src="/images/icon-ing.gif">
+      <img src="/images/icon-ing.gif">
     </div>
-	<% end %>
-    <div class="assPic">
-        <%= show_image_user_post(wall.user_post) %>
+  <% end %>
+  <div class="assPic">
+    <%= show_image_user_post(wall.user_post) %>
+  </div>
+  <div class="AfterInfo">
+    <div class="AfterCl">
+      <%= show_user_post(wall.user_post) %>- <%= raw(wall.content) %>
     </div>
-    <div class="AfterInfo">
-        <div class="AfterCl">
-            <%= show_user_post(wall.user_post) %>- <%= raw(wall.content) %>
+    <!--Attach--><%= show_attach(wall) if wall.has_attach %><!--Attach-->
+    <div class="assInfB">
+      <div class="time">
+        <%= distance_of_time_in_words_to_now(wall.created_at, false) + " ago." %>
+      </div>
+      <div id="rate_<%= wall.id %>">
+        <%
+        check = UserWall.find_rated_by(current_user).include?(wall) if logged_in?
+        check ||= false %>
+        <div class="qashdU">
+          <%= show_rating(wall.id, wall.total_good, "user_walls", check, 1) %>
         </div>
-        <!--Attach--><%= show_attach(wall) if wall.has_attach %><!--Attach-->
-        <div class="assInfB">
-            <div class="time">
-                <%= distance_of_time_in_words_to_now(wall.created_at, false) + " ago." %>
-            </div>
-            <div id="rate_<%= wall.id %>">
-                <%
-                check = UserWall.find_rated_by(current_user).include?(wall) if logged_in?
-                check ||= false %>
-                <div class="qashdU">
-                    <%= show_rating(wall.id, wall.total_good, "user_walls", check, 1) %>
-                </div>
-                <div class="qashdD">
-                    <%= show_rating(wall.id, wall.total_bad, "user_walls", check, 0) %>
-                </div>
-            </div>
-            <div class="com">
-                <a href="javascript:;" onclick="showCommentForm('<%= wall.id %>');">Comments (<span id="wall_<%= wall.id %>_comments"><%= wall.comments.size %></span>)</a>
-            </div>
+        <div class="qashdD">
+          <%= show_rating(wall.id, wall.total_bad, "user_walls", check, 0) %>
         </div>
-        <!--Comments-->
-        
-        <div id="wall_list_comment_<%= wall.id %>">
-        	<% if wall.comments.size > 0 %>
-            <% if wall.comments.size > 2 %>
-            <div class="proList">
-                <div class="writeCom">
-                    <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall.id}, :remote => true %>
-                </div>
-            </div>
-            <% end %>
-            <% wall.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
-            <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :comment => cm} %>
-            <% end %>
-            <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall} %>
-			<% end %>
-			<%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall} %>
-        </div>
-        <!--Comments-->
+      </div>
+      <div class="com">
+        <a href="javascript:;" onclick="showCommentForm('<%= wall.id %>');">Comments (<span id="wall_<%= wall.id %>_comments"><%= wall.comments.size %></span>)</a>
+      </div>
     </div>
+    <!--Comments-->
+    <div id="wall_list_comment_<%= wall.id %>">
+      <% if wall.comments.size > 0 %>
+        <% if wall.comments.size > 2 %>
+          <div class="proList">
+            <div class="writeCom">
+              <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall.id}, :remote => true %>
+            </div>
+          </div>
+        <% end %>
+        <% wall.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
+          <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :comment => cm} %>
+        <% end %>
+        <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall} %>
+      <% end %>
+      <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall} %>
+    </div>
+    <!--Comments-->
+  </div>
 </div>
 <script>
-    $(document).ready(function(){
-        $(".AfterItem").hover(function(){
-            $(".del_wall", this).show();
-        }, function(){
-            $(".del_wall", this).hide();
-        });
+  $(document).ready(function(){
+    $(".AfterItem").hover(function(){
+      $(".del_wall", this).show();
+    }, function(){
+      $(".del_wall", this).hide();
     });
+  });
 </script>
