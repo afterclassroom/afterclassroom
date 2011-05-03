@@ -8,7 +8,6 @@
         <% end %>
         <li><%= raw link_to raw("<span>Sign out</span>"), logout_url, :method => :delete %></li>
         <li><%= link_to content_tag(:span, 'Help'), :controller => 'forums', :action => 'index' %></li>
-        <li><a href="#"><span>Suggest improvement</span></a></li>
       </ul>
     <% else %>
       <ul>
@@ -19,15 +18,4 @@
       </ul>
     <% end %>
   </div>
-  <!--
-  <% if !logged_in? %>
-    <div class="log">
-      <%= form_tag session_path, :name => "form_login", :id => "form_login" do -%>
-        <span class="log-user"><%= text_field_tag 'email', 'Email...', :class => 'userlogin-un', :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></span>
-        <span class="log-pass"><%= password_field_tag 'password', 'Password...', :class => 'userlogin-pw', :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></span>
-        <span class="log-btm2"><a href="javascript:;" onclick="$('#form_login').submit();"><%= submit_tag 'Sign in' %></a></span>
-      <% end -%>
-    </div>
-  <% end -%>
-  -->
 </div>

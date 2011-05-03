@@ -49,16 +49,17 @@ class Post < ActiveRecord::Base
     indexes title, :sortable => true
     indexes description
     has user_id, post_category_id, school_id, created_at
-    set_property :delta => :delayed
+    #set_property :delta => :delayed
+    set_property :delta => true
   end
   
   def self.paginated_post_conditions_with_search(params, school, type)
     if params[:search]
       query = params[:search][:query]
       if school
-        Post.search(query, :match_mode => :any, :with => {:post_category_id => type, :school_id => school}, :order => "created_at DESC", :page => params[:page], :per_page => 10)
+        Post.search(query, :match_mode => :any, :retry_stale => true, :with => {:post_category_id => type, :school_id => school}, :order => "created_at DESC", :page => params[:page], :per_page => 10)
       else
-        Post.search(query, :match_mode => :any, :with => {:post_category_id => type}, :order => "created_at DESC", :page => params[:page], :per_page => 10)
+        Post.search(query, :match_mode => :any, :retry_stale => true, :with => {:post_category_id => type}, :order => "created_at DESC", :page => params[:page], :per_page => 10)
       end
     end
   end
@@ -68,7 +69,7 @@ class Post < ActiveRecord::Base
     if params[:sort]
       sort = params[:sort]
     end
-    Post.search(:match_mode => :any, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+    Post.search(:match_mode => :any, :retry_stale => true, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
   end
 
   def self.paginated_post_management_admin(params)
@@ -79,9 +80,9 @@ class Post < ActiveRecord::Base
     cat_name = params[:category]
     category = PostCategory.find_by_class_name(cat_name)
     if category
-      Post.search(:match_mode => :any, :with => {:post_category_id => category.id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+      Post.search(:match_mode => :any, :retry_stale => true, :with => {:post_category_id => category.id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
     else
-      Post.search(:match_mode => :any, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+      Post.search(:match_mode => :any, :retry_stale => true, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
     end
   end
   

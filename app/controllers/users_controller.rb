@@ -183,7 +183,7 @@ class UsersController < ApplicationController
       # Setting notification
       notifications = Notification.find(:all)
       notifications.each do |f|
-        NotifyEmailSetting.create(:user_id => current_user.id, :notification_id => f.id)
+        NotifyEmailSetting.create(:user_id => @user.id, :notification_id => f.id)
       end
     end
 

@@ -156,7 +156,8 @@ module ApplicationHelper
   end
   
   def show_image_user_post(user)
-    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip", :title => user.name)}</div>"), user_path(user)
+    path = logged_in? ? show_lounge_user_path(user) : user_path(user)
+    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip", :title => user.name)}</div>"), path
   end
   
   def show_image_teach_of_myx(post_myx)
@@ -166,7 +167,8 @@ module ApplicationHelper
   end
   
   def show_user_post(user)
-    link_to user.full_name, user_path(user)
+    path = logged_in? ? show_lounge_user_path(user) : user_path(user)
+    link_to user.full_name, path
   end
   
   def show_search_form(ctrl_name, query)

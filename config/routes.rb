@@ -3,8 +3,6 @@ Afterclassroom::Application.routes.draw do
   # RESTful rewrites
   match '/signup' => 'users#new', :as => :signup
   match '/activate/:activation_code' => 'users#activate', :as => :activate
-  match '/login' => 'sessions#new', :as => :login
-  match '/login_ajax' => 'sessions#login_ajax', :as => :login_ajax
   match '/logout' => 'sessions#destroy', :as => :logout, :conditions => {:method => :delete}
 
   match '/users/troubleshooting' => 'users#troubleshooting', :as => :user_troubleshooting

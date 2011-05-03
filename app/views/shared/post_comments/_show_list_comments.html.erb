@@ -3,7 +3,7 @@
     <% if post.comments.size > 2 %>
     <div class="proList">
         <div class="writeCom">
-            <%= link_to "View all comments", {:controller => "posts", :action => "view_all_comments", :post_id => post.id}, :remote => true %>
+            <%= link_to "View all", {:controller => "posts", :action => "view_all_comments", :post_id => post.id}, :remote => true %>
         </div>
     </div>
     <% end %>

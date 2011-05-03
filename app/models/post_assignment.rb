@@ -4,7 +4,7 @@ class PostAssignment < ActiveRecord::Base
   validates_presence_of :post_id
   
   # Relations
-  belongs_to :post
+  belongs_to :post, :dependent => :destroy
   
   # Tags
   acts_as_taggable_on :tags

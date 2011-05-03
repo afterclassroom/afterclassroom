@@ -234,7 +234,7 @@ class FriendsController < ApplicationController
   
   def find_people
     @query = params[:search][:query]
-    @users = User.search(@query, :match_mode => :any, :order => "created_at DESC", :page => params[:page], :per_page => 10)
+    @users = User.search(@query, :match_mode => :any, :retry_stale => true, :order => "created_at DESC", :page => params[:page], :per_page => 10)
   end
   
   protected
