@@ -3904,6 +3904,14 @@ div.helpAdv2{
 .StuLou .down{
     padding-bottom:4px;
 }
+.ichat{
+    background:url('/images/commentAd.gif') no-repeat left 1px;
+    padding:0px 0px 4px 15px;
+}
+.making{
+    background:url('/images/icon-view.gif') no-repeat left 1px;
+    padding:0px 0px 4px 15px;
+}
 .hate{
     background:url('/images/icon-hate.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
@@ -3916,6 +3924,8 @@ div.helpAdv2{
     background:url('/images/icon-love.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
 }
+.ichat a, .ichat a:link, .ichat a:visited,
+.making a, .making a:link, .making a:visited,
 .like a, .like a:link, .like a:visited,
 .love a, .love a:link, .love a:visited,
 .hate a, .hate a:link, .hate a:visited{

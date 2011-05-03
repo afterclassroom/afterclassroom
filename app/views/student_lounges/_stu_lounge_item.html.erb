@@ -9,10 +9,10 @@
   <div class="AfterInfo">
     <% if wall.user_post != current_user %>
       <div class="asslinkdownSt">
-        <div class="morelink">
+        <div class="ichat">
           <%= show_invite_chat(wall.user_post) %>
         </div>
-        <div class="down">
+        <div class="making">
           <a title="Match Making" class="thickbox" href="/user_walls/match_making_box?&height=288&width=500&user_id_post=<%= wall.user_id_post.to_s %>" id="myaclick">Match Making</a>
         </div>
         <div class="like">
