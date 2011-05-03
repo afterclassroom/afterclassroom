@@ -4,7 +4,7 @@ class PostTutor < ActiveRecord::Base
   validates_presence_of :post_id
 
   # Relations
-  belongs_to :post
+  belongs_to :post, :dependent => :destroy
   belongs_to :tutor_type
   has_one :rating_statistic
   has_many :ratings

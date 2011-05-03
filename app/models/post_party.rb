@@ -4,8 +4,8 @@ class PostParty < ActiveRecord::Base
   validates_presence_of :post_id
 
   # Relations
-  belongs_to :post
-  has_many :post_party_rsvps
+  belongs_to :post, :dependent => :destroy
+  has_many :post_party_rsvps, :dependent => :destroy
   has_and_belongs_to_many :party_types
   has_one :rating_statistic
   has_many :ratings

@@ -3,7 +3,7 @@ class PostQa < ActiveRecord::Base
   validates_presence_of :post_id
   
   # Relations
-  belongs_to :post
+  belongs_to :post, :dependent => :destroy
   has_one :rating_statistic
   has_many :ratings
 

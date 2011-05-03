@@ -5,7 +5,7 @@ class PostTeamup < ActiveRecord::Base
   validates_presence_of :teamup_category_id
 
   # Relations
-  belongs_to :post
+  belongs_to :post, :dependent => :destroy
   belongs_to :teamup_category
   has_one :rating_statistic
   has_many :ratings

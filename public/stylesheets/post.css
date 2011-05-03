@@ -372,13 +372,13 @@
 
 .assInfB .vie {
     background: url('/images/icon-view.gif') no-repeat;
-    padding: 0px 5px 0px 14px;
+    padding: 0px 3px 0px 14px;
     margin-left: 2px;
 }
 
 .assInfB .fav {
     background: url('/images/icon-fav.gif') no-repeat;
-    padding: 0px 5px 0px 17px;
+    padding: 0px 3px 0px 17px;
 }
 
 .assInfB .favOn {
@@ -391,7 +391,7 @@
 
 .assInfB .com {
     background: url('/images/icon-comnent.gif') no-repeat left 2px;
-    padding: 0px 5px 0px 17px;
+    padding: 0px 3px 0px 17px;
 }
 
 .morelink {
@@ -1353,7 +1353,7 @@ span.btmDown a:hover {
 
 .qashdU, .qashdD {
     background: url('/images/bor-ad.png') no-repeat left top;
-    padding: 0px 6px;
+    padding: 0px 2px;
 }
 
 .qashdU a {

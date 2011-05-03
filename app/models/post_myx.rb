@@ -5,7 +5,7 @@ class PostMyx < ActiveRecord::Base
   validates_presence_of :professor
 
   # Relations
-  belongs_to :post
+  belongs_to :post, :dependent => :destroy
   has_one :rating_statistic
   has_many :ratings
 
