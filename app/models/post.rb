@@ -69,7 +69,7 @@ class Post < ActiveRecord::Base
     if params[:sort]
       sort = params[:sort]
     end
-    Post.search(:match_mode => :any, :retry_stale => true, :with => {:user_id => current_user_id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+    Post.search(:match_mode => :any, :retry_stale => true, :with => {:user_id => current_user_id}, :order => "created_at #{sort}", :page => params[:page], :per_page => 10)
   end
 
   def self.paginated_post_management_admin(params)
@@ -80,7 +80,7 @@ class Post < ActiveRecord::Base
     cat_name = params[:category]
     category = PostCategory.find_by_class_name(cat_name)
     if category
-      Post.search(:match_mode => :any, :retry_stale => true, :with => {:post_category_id => category.id}, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+      Post.search(:match_mode => :any, :retry_stale => true, :with => {:post_category_id => category.id}, :order => "created_at #{sort}", :page => params[:page], :per_page => 10)
     else
       Post.search(:match_mode => :any, :retry_stale => true, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
     end

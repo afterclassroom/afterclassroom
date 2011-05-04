@@ -60,7 +60,7 @@ You are here: <a href="/">Home</a>
                 </form>
             </div>
             <% else %>
-            You must be <%= link_to "logged in", login_url %>to post an answer.<% end %>
+            You must be <%= link_to raw("Sign in"), RubyCAS::Filter.login_url(controller) %> to post an answer.<% end %>
         </div>
         <div class="AsDcomL">
             <% if @post.comments.size > 0 %>

@@ -69,10 +69,9 @@ class PostEvent < ActiveRecord::Base
     else
       objs = Post.find_by_sql("SELECT id, (SELECT COUNT(posts.id) FROM posts WHERE posts.user_id = users.id AND type_name = '#{type_name}') AS post_total FROM users ORDER BY post_total DESC LIMIT #{limit}")
     end
-    arr_id = objs.collect(&:id)
     users = []
-    arr_id.each do |id|
-      users << User.find(id)
+    objs.each do |ob|
+      users << User.find(ob[:id]) if ob[:post_total].to_i > 0
     end
     users
   end

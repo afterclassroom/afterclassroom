@@ -9,7 +9,7 @@
       </form>
     </div>
   <% else %>
-    You must be <%= link_to "logged in", login_url %> to post a comment.
+    You must be <%= link_to raw("Sign in"), RubyCAS::Filter.login_url(controller) %> to post a comment.
   <% end %>
 </div>
 <div class="AsDcomL" id="list_comments">

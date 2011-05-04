@@ -3,12 +3,19 @@
     <div style="width: 80px;" class="postItem1">Subject*</div>
     <input type="text" value="<%= @subject %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" size="30" class="required" name="subject" id="message_subject" style="width: 330px;"/></div>
   <div class="postItem">
-    <div style="width: 80px;" class="postItem1">Message*</div>
+    <div style="width: 80px;" class="postItem1">Message</div>
     <div class="postInp"><textarea onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" class="required" name="body" id="message_body" style="width: 330px; height: 150px;"></textarea></div>
   </div>
   <div style="padding-left: 90px;" class="submit"><a onclick="submit_passion()" href="javascript:;">Send</a></div>
   <div style="padding: 10px;" class="error"></div>
 </form>
+
+<!--Alert-->
+<div id="dialog-message" title="Alert" style="display:none;">
+  <p id="alert_message">
+  </p>
+</div>
+<!--Alert-->
 
 <script language="javascript">
   /*
@@ -19,17 +26,33 @@
     
     var content  = $('#message_body').attr('value');
     
-
     $.ajax({
       url: '/user_walls/submit_passion?message_subject='+messageSubject+'&content='+content+'&user_id=<%=  @user_id %>&user_id_post=<%=  @user_id_post %>',
       type: "GET",
       dataType: "html",
       failure: function(msg){
-        alert('ajax fail:'+msg);
+        $('#alert_message').html("Ajax fail.");
+        $("#dialog-message").dialog({
+            modal: true,
+            buttons: {
+                Ok: function(){
+                    $('#TB_closeWindowButton').click();
+										$("#dialog-message").dialog('close');
+                }
+            }
+        });
       },
       success: function(msg){
-        alert(msg);
-        $('#TB_closeWindowButton').click();
+				$('#alert_message').html("Success.");
+        $("#dialog-message").dialog({
+            modal: true,
+            buttons: {
+                Ok: function(){
+                    $('#TB_closeWindowButton').click();
+										$("#dialog-message").dialog('close');
+                }
+            }
+        });
       }
     });
     

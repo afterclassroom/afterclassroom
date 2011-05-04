@@ -1,50 +1,62 @@
 <div class="assItem">
-  <div class="assItemL">
-    <div class="assPic">
-      <%= show_image_user_post(post.user) %>
-    </div>
-    <div class="assContT">
-      <h2 class="titleH2"><%= link_to title, post_housing_path(post.post_housing, :housing_category_id => @housing_category_id) %></h2>
-      <div class="assCate">
-        <span>Address:</span>
-        <%= post.post_housing.address %>
-      </div>
-      <div class="assDes">
-        <div class="assImg">
-          <div>
-            <%= link_to image_post_thumb(controller.controller_name, post), post_housing_path(post.post_housing, :housing_category_id => @housing_category_id) %>
-          </div>
+    <div class="assItemL">
+        <div class="assPic">
+            <%= show_image_user_post(post.user) %>
         </div>
-        <%= truncate_words(description) %>
-      </div>
+        <div class="assContT">
+            <h2 class="titleH2"><%= link_to title, post_housing_path(post.post_housing, :housing_category_id => @housing_category_id) %></h2>
+            <div class="assCate">
+                <span>Address:</span>
+                <%= post.post_housing.address %>
+            </div>
+            <div class="assDes">
+                <div class="assImg">
+                    <div>
+                        <%= link_to image_post_thumb(controller.controller_name, post), post_housing_path(post.post_housing, :housing_category_id => @housing_category_id) %>
+                    </div>
+                </div>
+                <%= truncate_words(description) %>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="assInfB">
-    <div id="rate_<%= post.id %>">
-      <%
-      check = PostHousing.find_rated_by(current_user).include?(post.post_housing) if logged_in?
-      check ||= false %>
-      <div class="qashdU">
-        <%= show_rating(post.id, post.post_housing.total_good, controller.controller_name, check, 1) %>
-      </div>
-      <div class="qashdD">
-        <%= show_rating(post.id, post.post_housing.total_bad, controller.controller_name, check, 0) %>
-      </div>
+    <div class="assItemB">
+        <div class="assInfT">
+            <div class="assInfT">
+                <div class="assInfL">
+                    <div>
+                        <span>Posted by:</span>
+                        <%= show_user_post(post.user) %>
+                    </div>
+                </div>
+            </div>
+            <div class="assInfB">
+                <div id="rate_<%= post.id %>">
+                    <%
+                    check = PostHousing.find_rated_by(current_user).include?(post.post_housing) if logged_in?
+                    check ||= false %>
+                    <div class="qashdU">
+                        <%= show_rating(post.id, post.post_housing.total_good, controller.controller_name, check, 1) %>
+                    </div>
+                    <div class="qashdD">
+                        <%= show_rating(post.id, post.post_housing.total_bad, controller.controller_name, check, 0) %>
+                    </div>
+                </div>
+                <div class="vie">
+                    <%= "View (#{post.count_view})" %>
+                </div>
+                <div class="fav" id="item_favorite_<%= post.id %>">
+                    <%= show_favorite("Post", post) %>
+                </div>
+                <div class="com">
+                    <%= show_comment_button(post.id, post.comments.size) %>
+                </div>
+                <div class="myMap">
+                    <%= show_map(post.post_housing.address, post.title) %>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="vie">
-      <%= "View (#{post.count_view})" %>
-    </div>
-    <div class="fav" id="item_favorite_<%= post.id %>">
-      <%= show_favorite("Post", post) %>
-    </div>
-    <div class="com">
-      <%= show_comment_button(post.id, post.comments.size) %>
-    </div>
-    <div class="myMap">
-      <%= show_map(post.post_housing.address, post.title) %>
-    </div>
-  </div>
-  <!--Comments-->
-  <%= render :partial => "shared/post_comments/show_list_comments", :locals => {:post => post} %>
-  <!--Comments-->
+    <!--Comments-->
+    <%= render :partial => "shared/post_comments/show_list_comments", :locals => {:post => post} %>
+    <!--Comments-->
 </div>

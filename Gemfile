@@ -57,3 +57,5 @@ gem 'backup-task'
 #gem 'redis-store'
 gem 'whenever', :require => false
 gem 'jammit'
+gem 'ruby-mysql'
+gem 'truncate_html'

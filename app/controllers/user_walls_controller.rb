@@ -168,8 +168,8 @@ class UserWallsController < ApplicationController
     new_user_wall = UserWall.new
     new_user_wall.user_id_post = params[:user_id_post]
     new_user_wall.user_id = params[:user_id]
-    
-    content_of_wall = params[:content]
+    content_of_wall = params[:message_subject]
+    content_of_wall << ": " + params[:content] if params[:content]
     
     new_user_wall.content = content_of_wall
     

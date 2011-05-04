@@ -16,13 +16,13 @@
           <a title="Match Making" class="thickbox" href="/user_walls/match_making_box?&height=288&width=500&user_id_post=<%= wall.user_id_post.to_s %>" id="myaclick">Match Making</a>
         </div>
         <div class="like">
-          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= wall.user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
+          <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
         </div>
         <div class="love">
-          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= wall.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
+          <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
         </div>
         <div class="hate">
-          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= wall.user_id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
+          <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
         </div>
       </div>
     <% end %>
