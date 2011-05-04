@@ -65,7 +65,7 @@
         <%= render :partial => "post_actions", :locals => {:post => @post} %>
       </div>
       <div class="jobCom">
-        <div class="jobComMenu">
+        <div class="jobComMenu" style="border-width:0;">
           <% pj = @post.post_job %>
           <% if pj.job_type.label == "i_m_looking_for_job" %>
             <% pj.job_files.each do |jf| %>
@@ -84,9 +84,10 @@
           <% end %>
         </div>
       </div>
-      <div class="comjobs">
+      <div class="comjobs1">
         <%= show_post_comments(@post) %>
       </div>
+      <div class="comjobs2">
       <div class="goback" id="go_back">
         <%= show_go_back %>
       </div>
@@ -101,6 +102,7 @@
             <%= link_to p.title, post_job_path(p.post_job) %>
           </div>
         <% end %>
+      </div>
       </div>
       <div class="goTop">
         <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
@@ -121,13 +123,3 @@
   <!--Recent Request Jobs-->
 </div>
 <!--Content-->
-<style>
-  .comjobs .AsDcom{
-    padding: 0;
-    padding-top: 5px;
-  }
-  .comjobs .AsDcomL{
-    margin: 0;
-    margin-top: 5px;
-  }
-</style>
