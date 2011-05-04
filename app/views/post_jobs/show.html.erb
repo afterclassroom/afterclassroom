@@ -9,98 +9,102 @@
   <%= render :partial => "submenu" %>
 <% end -%>
 <!--Content-->
-<div class="contDetL">
-  <div class="contDetLin JobDetail">
-    <div class="AsDTop">
-      <h1 class="titleH1">Job detail</h1>
-      <div class="AsDsearch">
-        <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_jobs_path} %>
-      </div>
-    </div>
-    <div class="AsDCont">
-      <%= display_flash_messages_with_raw %>
-      <div class="AsDContL">
-        <h2 class="titleH2"><%= @post.title %></h2>
-        <div class="AsDContLin">
-          in<span><%= link_to @post_job.job_type.name, "#{post_jobs_path}?job_type_id=#{@post_job.job_type.id}" %></span>
+<div>
+  <div class="contDetL">
+    <div class="contDetLin JobDetail">
+      <div class="AsDTop">
+        <h1 class="titleH1">Job detail</h1>
+        <div class="AsDsearch">
+          <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_jobs_path} %>
         </div>
-        <div class="AsDContLdes">
-          <span>Description:</span>
-          <% if @post.attach_file_name and @post.attach_content_type =~ /^image.*/ %>
-            <div style="min-height:70px">
-              <div class="assImg">
-                <div>
-                  <%= link_to image_tag(@post.attach.url(:thumb)), @post.attach.url, :id => "imageLink", :target => "_blank" %>
-                </div>
-              </div><%= @post.description %>
-            </div><% else %>
-            <%= @post.description %>
+      </div>
+      <div class="AsDCont">
+        <%= display_flash_messages_with_raw %>
+        <div class="AsDContL">
+          <h2 class="titleH2"><%= @post.title %></h2>
+          <div class="AsDContLin">
+            in<span><%= link_to @post_job.job_type.name, "#{post_jobs_path}?job_type_id=#{@post_job.job_type.id}" %></span>
+          </div>
+          <div class="AsDContLdes">
+            <span>Description:</span>
+            <% if @post.attach_file_name and @post.attach_content_type =~ /^image.*/ %>
+              <div style="min-height:70px">
+                <div class="assImg">
+                  <div>
+                    <%= link_to image_tag(@post.attach.url(:thumb)), @post.attach.url, :id => "imageLink", :target => "_blank" %>
+                  </div>
+                </div><%= @post.description %>
+              </div><% else %>
+              <%= @post.description %>
+            <% end %>
+          </div><% if @post_job.address %>
+            <div class="AsDContLinf">
+              <span>Address:</span>
+              <%= @post_job.address %>
+            </div>
           <% end %>
-        </div><% if @post_job.address %>
+          <% if @post_job.phone %>
+            <div class="AsDContLinf">
+              <span>Phone:</span>
+              <%=@post_job.phone %>
+            </div>
+          <% end %>
           <div class="AsDContLinf">
-            <span>Address:</span>
-            <%= @post_job.address %>
+            <span>Posted by:</span>
+            <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
           </div>
-        <% end %>
-        <% if @post_job.phone %>
-          <div class="AsDContLinf">
-            <span>Phone:</span>
-            <%=@post_job.phone %>
-          </div>
-        <% end %>
-        <div class="AsDContLinf">
-          <span>Posted by:</span>
-          <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+          <% if @post_job.tags_from(@post.school).size > 0 %>
+            <div class="AsDContLinf">
+              <span>Tags:</span>
+              <% @post_job.tags_from(@post.school).each do |t| %>
+                <a href='/<%= controller.controller_name %>/tag/?tag_name=<%= t %>'><%= t %></a>, <% end %>
+            </div>
+          <% end %>
         </div>
-        <% if @post_job.tags_from(@post.school).size > 0 %>
-          <div class="AsDContLinf">
-            <span>Tags:</span>
-            <% @post_job.tags_from(@post.school).each do |t| %>
-              <a href='/<%= controller.controller_name %>/tag/?tag_name=<%= t %>'><%= t %></a>, <% end %>
-          </div>
-        <% end %>
+        <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
+        <%= render :partial => "post_actions", :locals => {:post => @post} %>
       </div>
-      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
-      <%= render :partial => "post_actions", :locals => {:post => @post} %>
-    </div>
-    <div class="jobCom">
-      <div class="jobComMenu">
-        <% pj = @post.post_job %>
-        <% if pj.job_type.label == "i_m_looking_for_job" %>
-          <% pj.job_files.each do |jf| %>
-            <% if jf.resume_cv.url != "" %>
-              <% if jf.category != "Add/Edit File" %>
+      <div class="jobCom">
+        <div class="jobComMenu">
+          <% pj = @post.post_job %>
+          <% if pj.job_type.label == "i_m_looking_for_job" %>
+            <% pj.job_files.each do |jf| %>
+              <% if jf.resume_cv.url != "" %>
+                <% if jf.category != "Add/Edit File" %>
+                  <div class="cover">
+                    <a href="javascript:downloadFile('<%= jf.resume_cv.url %>')"><%= jf.category %></a>
+                  </div>
+                <% end %>
+              <% else %>
                 <div class="cover">
-                  <a href="javascript:downloadFile('<%= jf.resume_cv.url %>')"><%= jf.category %></a>
+                  <a href="#">No <%= jf.category %>Available</a>
                 </div>
               <% end %>
-            <% else %>
-              <div class="cover">
-                <a href="#">No <%= jf.category %>Available</a>
-              </div>
             <% end %>
           <% end %>
+        </div>
+      </div>
+      <div class="comjobs">
+        <%= show_post_comments(@post) %>
+      </div>
+      <div class="goback" id="go_back">
+        <%= show_go_back %>
+      </div>
+      <div class="comPage">
+        <span class="compre"><img></img><%= link_to "", post_job_path(@prev) if @prev %></span>
+        <span class="comnext"><%= link_to "", post_job_path(@next) if @next %></span>
+      </div>
+      <div class="AsDOr">
+        <h1 class="titleH1">Related posts</h1>
+        <% PostJob.related_posts(@school, @job_type_id).each do |p| %>
+          <div class="AsDOrItem">
+            <%= link_to p.title, post_job_path(p.post_job) %>
+          </div>
         <% end %>
       </div>
-    </div>
-    <%= show_post_comments(@post) %>
-    <div class="goback" id="go_back">
-      <%= show_go_back %>
-    </div>
-    <div class="comPage">
-      <span class="compre"><img></img><%= link_to "", post_job_path(@prev) if @prev %></span>
-      <span class="comnext"><%= link_to "", post_job_path(@next) if @next %></span>
-    </div>
-    <div class="AsDOr">
-      <h1 class="titleH1">Related posts</h1>
-      <% PostJob.related_posts(@school, @job_type_id).each do |p| %>
-        <div class="AsDOrItem">
-          <%= link_to p.title, post_job_path(p.post_job) %>
-        </div>
-      <% end %>
-    </div>
-    <div class="goTop">
-      <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+      <div class="goTop">
+        <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+      </div>
     </div>
   </div>
 </div>
@@ -117,3 +121,13 @@
   <!--Recent Request Jobs-->
 </div>
 <!--Content-->
+<style>
+  .comjobs .AsDcom{
+    padding: 0;
+    padding-top: 5px;
+  }
+  .comjobs .AsDcomL{
+    margin: 0;
+    margin-top: 5px;
+  }
+</style>
