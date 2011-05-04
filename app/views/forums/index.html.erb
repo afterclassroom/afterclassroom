@@ -47,8 +47,19 @@
         </div>
         <div class="helpCR">
           <div class="helpTitle"><a href="#">Community Help Forum</a></div>
+
+
+
+
+
+
+
+
+<%= will_paginate @forums %>
+
+          <% @forums.each do |fr| %>
           <div class="helpItem">
-            <div class="helpT"><a href="#">Phasellus interdum est mattis purus faucibus pharetra</a></div>
+            <div class="helpT"><a href="#"><%= fr.title %></a></div>
             <div class="helpD">Donec vel ipsum massa. Integer nunc orci, pellentesque et mollis a, fringilla ac elit. Integer elementum nibh ac quam egestas bibendum.</div>
             <div class="helpDis"><a href="#">20956 discussions</a></div>
             <div class="comH"><a href="#" onClick="showSlidingDivH1(); return false;">Answers ()</a></div>
@@ -66,25 +77,27 @@
             </div>
 
           </div>
-          <div class="helpItem">
-            <div class="helpT"><a href="#">Morbi semper ante eu nunc facilisis vel condimentum ligula luctus</a></div>
-            <div class="helpD">Proin egestas accumsan nibh, quis sollicitudin libero sollicitudin id. Cras ligula lacus, bibendum molestie dapibus eget, venenatis sit amet metus.</div>
-            <div class="helpDis"><a href="#">20956 discussions</a></div>
-            <div class="comH"><a href="#" onClick="showSlidingDivH(); return false;">Answers ()</a></div>
+            
+          <% end %>
 
-            <div class="slidingDivH" style="display:none;">
-              <div class="proListH">
-                <form>
-                  <div class="proListPic"><a href="/users/2"><div><img title="John" src="/system/avatars/2/thumb/jhedrick.jpg?1303782033" class="vtip"></img></div></a></div>
-                  <div class="proListR">
-                    <div class="writeCom"><textarea name="comment" id="comment"></textarea></div>
-                  </div>
-                  <div class="proAttR"><input type="submit" value="Send" name="commit" class="buttonCom"></input></div>
-                </form>
-              </div>
-            </div>
 
-          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <div class="allDis"><a href="#">Browse all discussions</a></div>
         </div>
       </div>
