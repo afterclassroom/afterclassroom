@@ -54,24 +54,23 @@
 
 
 
-
-<%= will_paginate @forums %>
+          <%= will_paginate @forums %>
 
           <% @forums.each do |fr| %>
           <div class="helpItem">
             <div class="helpT"><a href="#"><%= fr.title %></a></div>
             <div class="helpD">Donec vel ipsum massa. Integer nunc orci, pellentesque et mollis a, fringilla ac elit. Integer elementum nibh ac quam egestas bibendum.</div>
             <div class="helpDis"><a href="#">20956 discussions</a></div>
-            <div class="comH"><a href="#" onClick="showSlidingDivH1(); return false;">Answers ()</a></div>
+            <div class="comH"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers ()</a></div>
 
             <div class="slidingDivH1" style="display:none;">
               <div class="proListH1">
                 <form>
                   <div class="proListPic"><a href="/users/2"><div><img title="John" src="/system/avatars/2/thumb/jhedrick.jpg?1303782033" class="vtip"></img></div></a></div>
                   <div class="proListR">
-                    <div class="writeCom"><textarea name="comment" id="comment"></textarea></div>
+                    <div class="writeCom"><textarea name="comment" id="comment_<%= fr.id.to_s %>"></textarea></div>
                   </div>
-                  <div class="proAttR"><input type="submit" value="Send" name="commit" class="buttonCom"></input></div>
+                  <div class="proAttR"><input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
                 </form>
               </div>
             </div>
@@ -123,18 +122,57 @@
 <!--Comments-->
 
 <!--Comments-->
+<div visible="false" id="wait_dialog" style="display:none;">Please wait...</div>
 
 <script type="text/javascript">
 
-  function showSlidingDiv(){
-  $(".slidingDiv").animate({"height": "toggle"}, { duration: 100 });
+  function ShowWaitDialog(){
+    $('#wait_dialog').show();
+    $("#wait_dialog").dialog({
+      modal: true
+    });
+    $('.ui-dialog-titlebar').hide();
   }
-  function showSlidingDivH(){
-  $(".slidingDivH").animate({"height": "toggle"}, { duration: 500 });
+  function HideWaitDialog(){
+    $('.ui-dialog-titlebar-close').click();/*Close waiting dialog*/
   }
-  function showSlidingDivH1(){
-  $(".slidingDivH1").animate({"height": "toggle"}, { duration: 500 });
+  function AddCommentWithAjax(content){
+    ShowWaitDialog();
+
+    var savePath = '<%= savecmt_user_forums_path(current_user) %>';
+
+    $.ajax({
+      type: 'GET',
+      url: savePath,
+      data: {content: content},
+      success: function(data) {
+        HideWaitDialog();
+        alert(''+data);
+      },
+      error: function(er){
+        HideWaitDialog();
+        alert('Failed to communicate with server: '+er);
+      }
+    });
   }
+
+  $(document).ready(function() {
+
+    $("a[id*='answ_']").click(function(){
+      $(this).parent().next().toggle();
+    });
+
+    $("input[id*='save_']").click(function(){
+
+      var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
+      if (strContent == '')
+        alert('invalid');
+      else{
+        AddCommentWithAjax(strContent);
+      }
+    });
+
+  });
 
   function toggle5(showHideDiv, switchImgTag) {
 	var ele = document.getElementById(showHideDiv);
