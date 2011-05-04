@@ -495,13 +495,8 @@ ActiveRecord::Schema.define(:version => 20110428071404) do
     t.datetime "due_date"
   end
 
-  create_table "post_qa_categories", :force => true do |t|
-    t.string "name"
-  end
-
   create_table "post_qas", :force => true do |t|
     t.integer "post_id"
-    t.integer "post_qa_category_id"
     t.string  "rating_status"
   end
 

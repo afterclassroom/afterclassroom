@@ -120,7 +120,7 @@
 .dueDItem {
     padding: 4px 0px;
     border-bottom: 1px #e4e4e4 solid;
-		min-height: 30px;
+    min-height: 30px;
 }
 
 .dueDTitle {
@@ -1116,6 +1116,7 @@ span.btmDown a:hover {
 
 .AsDcomDes {
     padding: 4px 0px 6px 0px;
+    word-wrap: break-word;
 }
 
 .AsDcomRe {
@@ -1221,7 +1222,7 @@ span.btmDown a:hover {
 
 .comPage .compre a {
     background: url('/images/icon-pre.gif') no-repeat center top;
-   /* margin-right: 10px;*/
+    /* margin-right: 10px;*/
 }
 
 .comPage .comnext a {
@@ -1230,7 +1231,7 @@ span.btmDown a:hover {
 
 .comPage .compre a:hover {
     background: url('/images/icon-preH.gif') no-repeat center top;
-   /* margin-right: 10px;*/
+    /* margin-right: 10px;*/
 }
 
 .comPage .comnext a:hover {
@@ -2239,6 +2240,21 @@ span.btmCom a:hover {
     padding-left: 28px;
     line-height: 22px;
     background: url('/images/searchJob.png') no-repeat 0px 0px;
+}
+.comjobs1 .AsDcom{
+    padding: 0;
+    padding-top: 5px;
+}
+.comjobs1 .AsDcomL{
+    margin: 0;
+    margin-top: 5px;
+}
+.comjobs1 .AsDcomItem{
+    width: 615px;
+}
+.comjobs2{
+    margin-left: -20px;
+    margin-top: 5px;
 }
 
 /**************************************************/

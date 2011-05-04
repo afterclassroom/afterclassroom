@@ -48,7 +48,11 @@ Afterclassroom::Application.routes.draw do
       end
     end
 
-    resources :forums 
+    resources :forums do 
+      collection do
+        get :savecmt
+      end
+    end
 
     resources :student_lounges do
       collection do

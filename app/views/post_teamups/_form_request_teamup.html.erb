@@ -8,8 +8,12 @@ type ||= 1
     <div class="col300Cont">
       <%= form_for :post_teamup, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%= fields_for :post do |p| %>
-		<div class="postTit">Type</div>
-    	<div class="postDep"><%= text_field_tag "post_teamup[teamup_category_id]", type %></div>
+		<div class="reqLa">
+                    <label>
+                        Type
+                    </label>
+                </div>
+    	<div class="reqTi"><%= text_field_tag "post_teamup[teamup_category_id]", type %></div>
           <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
@@ -34,7 +38,7 @@ type ||= 1
 
 <script type="text/javascript">
   $("#post_teamup_teamup_category_id").mcDropdown("#teamup_category_menu", {
-    width: 350,
+    width: 275,
     valueAttr: "rel_teamup_category"
   });
 </script>

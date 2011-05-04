@@ -27,7 +27,9 @@
         <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
       </div>
     </div>
+    <div>
     <%= show_post_comments(@job_infor) %>
+    </div>
     <div class="goback" id="go_back"><%= show_go_back %></div>
     <div class="comPage">
       <span class="compre"><img></img><%= link_to "", show_job_infor_post_jobs_path(:job_infor_id => @prev.id) if @prev %> </span>
