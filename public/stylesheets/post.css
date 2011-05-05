@@ -1781,8 +1781,9 @@ div.postInf {
 .mySco {
     font-style: italic;
     text-align: right;
-    padding-top: 10px;
+    padding-top: 1px;
     padding-right: 2px;
+    float: right;
 }
 
 .mySco a, .mySco a:link, .mySco a:visited {
