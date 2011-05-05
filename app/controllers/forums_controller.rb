@@ -6,6 +6,28 @@ class ForumsController < ApplicationController
     @forums = Forum.find(:all).paginate(:page => params[:page], :per_page => 8, :order => "created_at")
   end
 
+  def delcmt
+    puts "DEL OPERATION::: comment_id == "+params[:comment_id]
+    puts "DEL OPERATION:::: forum_id == "+params[:forum_id]
+    puts "DEL OPERATION"
+    puts "DEL OPERATION"
+    puts "DEL OPERATION"
+    puts "DEL OPERATION"
+    puts "DEL OPERATION"
+    puts "DEL OPERATION"
+    puts "DEL OPERATION"
+    puts "DEL OPERATION"
+    puts "DEL OPERATION"
+    puts "DEL OPERATION"
+    render :text => "response from delcmt"
+  end
+
+  def view_all_comments
+    forum_id = params[:forum_id]
+    @fr = Forum.find(forum_id)
+    render :layout => false
+  end
+
   def savecmt
 
     puts "heLLO WORLD"
