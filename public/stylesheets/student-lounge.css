@@ -3103,7 +3103,7 @@ div.helpAdv2{
     height:24px;
     color:#969696;
     cursor: pointer;
-    margin-right:6px;
+    width: 49px;
 }
 .button:hover {
     border:none;
@@ -3111,7 +3111,6 @@ div.helpAdv2{
     padding:2px 8px;
     color:#fff;
     cursor: pointer;
-    margin-right:6px;
 }
 .buttonCom {
     border:none;

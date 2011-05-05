@@ -1,0 +1,26 @@
+                 <% @fr.comments.each do |cmt| %>
+                   <div id="" class="proList" style="margin-left: 45px;">
+                     <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
+                       <img src="/images/icon-ing.gif">
+                     </div>
+
+                     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
+
+
+
+
+
+                     <div class="proListR">
+                       <div class="AfterClCom">
+                         <a href="/users/1/show_lounge">James</a><%= cmt.comment %>
+                       </div>
+                       <div class="proListCont">
+                         6 minutes ago.
+                       </div>
+                     </div>
+
+                   </div>
+
+                 <% end %>
+
+
