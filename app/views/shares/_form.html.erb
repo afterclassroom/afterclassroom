@@ -1,14 +1,14 @@
-<%= form_for(@share, :url => user_shares_url(current_user), :multipart => true, :id => "form_post") do |f| %>
+<%= form_for([current_user, @share], :html => {:multipart => true, :id => "form_post"}) do |f| %>
   <%= hidden_field_tag "recipient" %>
   <div class="postItem">
-    <div class="postTit">Share to</div>
+    <div class="postTit">Share to*</div>
     <div class="postInp"><%= text_field_tag "share_to" %></div>
   </div>
   <div class="postTitt">Add File*</div>
   <div class="postItemA">
     <div id="divinputfile" style="margin-left:120px">
       <div class="postItemC">
-        <%= f.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "filepc" %>
+        <%= f.file_field :attach, :onchange => "$('#fakefilepc').val(this.value);", :size => "39", :class => "{validate:{required:true}} filepc" %>
       </div>
       <div class="postUpfile">
         <div id="fakeinputfile"><input name="fakefilepc" type="text" id="fakefilepc"></div>
@@ -27,10 +27,19 @@
   </div>
   <div class="submit"><a href="javascript:;" onclick="Share();">Share</a></div>
 <% end %>
-
+<!--Alert-->
+<div id="dialog-message" title="Alert" style="display:none;">
+    <p>
+        Please enter at least one recipient.
+    </p>
+</div>
+<!--Alert-->
 <style>
 	.postInp ul{
-		width:329px;
+		width:358px;
+	}
+	#fakeinputfile #fakefilepc {
+		margin-top:-1px;
 	}
 </style>
 
@@ -39,7 +48,23 @@
 
   $("#share_to").autoSuggest(path, {asHtmlID: "share_to", selectedItemProp: "name", searchObjProps: "name", selectionLimit:0});
   function Share(){
-    $('#recipient').val($('#as-values-share_to').val());
-    $('#form_post').submit();
+		if ($('#as-values-share_to').val() == ""){
+			$("#dialog-message").dialog({
+                modal: true,
+                buttons: {
+                    Ok: function(){
+                        $("#dialog-message").dialog('close');
+                    }
+                }
+            });
+		}else{
+			$('#recipient').val($('#as-values-share_to').val());
+    	$('#form_post').submit();
+		}
   }
+	$().ready(function() {
+        $("#form_post").validate({
+						meta: "validate"
+        });
+    });
 </script>

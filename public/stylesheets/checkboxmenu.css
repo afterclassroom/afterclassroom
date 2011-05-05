@@ -1,4 +1,4 @@
-/* 
+slsItemRr /* 
     Document   : checkboxmenu
     Created on : Feb 27, 2011, 2:04:21 AM
     Author     : baoviet
@@ -13,7 +13,7 @@
 
 .slsItemRr{
     float: left;
-    width: 460px;
+    width: 455px;
 	margin-left: 10px;
 }
 .actionsBox{
