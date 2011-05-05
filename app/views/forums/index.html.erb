@@ -64,6 +64,57 @@
             <div class="comH"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers ()</a></div>
 
             <div class="slidingDivH1" style="display:none;">
+
+
+
+
+
+
+
+
+
+
+
+<div class="proList" style="margin-left: 45px;">
+        <div class="writeCom">
+            <a data-remote="true" href="/posts/view_all_comments?post_id=7">View all</a>
+        </div>
+</div>
+
+<% if fr.comments.length > 2 %>
+<% count = 0 %>
+<% fr.comments.each do |cmt| %>
+
+<div id="post_7_comment_82" class="proList" style="margin-left: 45px;">
+    <div onclick="DeletePostComment('7', '82');" style="float: right; cursor: pointer; display: none;" class="del_post_com">
+        <img src="/images/icon-ing.gif">
+    </div>
+    <div class="proListPic">
+        <a href="/users/1/show_lounge"><div><img title="James" src="/system/avatars/1/thumb/1670_300.jpg?1302747714" class="vtip" alt="1670_300"></div></a>
+    </div>
+    <div class="proListR">
+        <div class="AfterClCom">
+            <a href="/users/1/show_lounge">James</a>- abc
+        </div>
+        <div class="proListCont">
+            6 minutes ago.
+        </div>
+    </div>
+    
+</div>
+<% count = count + 1 %>
+<% if count > 1 %>
+<% break %>
+<% end %><!-- end if count -->
+<% end %><!-- end fr.comments.each -->
+
+<% end %><!-- end if -->
+
+
+
+
+
+
               <div class="proListH1">
                 <form>
                   <div class="proListPic"><a href="/users/2"><div><img title="John" src="/system/avatars/2/thumb/jhedrick.jpg?1303782033" class="vtip"></img></div></a></div>
@@ -144,7 +195,10 @@
     $.ajax({
       type: 'GET',
       url: savePath,
-      data: {content: content},
+      data: {
+               content: content, 
+               forum_id: forum_id
+            },
       success: function(data) {
         HideWaitDialog();
         alert(''+data);
@@ -168,7 +222,10 @@
       if (strContent == '')
         alert('invalid');
       else{
-        AddCommentWithAjax(strContent);
+        forum_id = $(this).attr('id').split('_')[1];
+        AddCommentWithAjax(strContent,forum_id);
+        /* reset the comment textarea to empty value */
+        $(this).parents().find('form').eq(0).find('textarea').attr('value','');
       }
     });
 
