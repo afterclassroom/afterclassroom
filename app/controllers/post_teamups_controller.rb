@@ -132,7 +132,7 @@ class PostTeamupsController < ApplicationController
       
       if @post_teamup.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_teamup_path(@post))
+        post_wall(@post, post_teamup_path(@post_teamup))
         redirect_to post_teamups_path + "?teamup_category_id=#{@post_teamup.teamup_category_id}"
       else
         flash[:error] = "Failed to create a new post."
