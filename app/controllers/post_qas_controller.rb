@@ -160,7 +160,7 @@ class PostQasController < ApplicationController
       @post_qa.post = @post
       if @post_qa.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_qa_path(@post))
+        post_wall(@post, post_qa_path(@post_qa))
         redirect_to post_qas_path + "?type=asked"
       else
         flash[:error] = "Failed to create a new post."

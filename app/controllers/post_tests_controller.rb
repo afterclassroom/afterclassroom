@@ -103,7 +103,7 @@ class PostTestsController < ApplicationController
       @post_test.post = @post
       if @post_test.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_test_path(@post))
+        post_wall(@post, post_test_path(@post_test))
         redirect_to post_tests_path
       else
         flash[:error] = "Failed to create a new post."

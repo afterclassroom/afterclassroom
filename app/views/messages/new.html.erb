@@ -14,16 +14,16 @@
         </div>
         <div class="compTop2">
           <div class="compTo">
-            <div class="compLabel">To:</div>
+            <div class="compLabel">To*</div>
             <div class="compInput"><%= f.text_field :to %></div>
           </div>
           <div class="compSub">
-            <div class="compLabel">Subject:</div>
-            <div class="compInput"><%= f.text_field :subject %></div>
+            <div class="compLabel">Subject*</div>
+            <div class="compInput"><%= f.text_field :subject, :class => '{validate:{required:true}}' %></div>
           </div>
         </div>
-        <div class="compCont">
-          <%= f.text_area :body %>
+        <div class="compCont" style="width:626px;">
+          <%= f.text_area :body, :style=>"width:622px;" %>
         </div>
       <% end %>
     </div>
@@ -39,7 +39,13 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
-
+<!--Alert-->
+<div id="dialog-message" title="Alert" style="display:none;">
+    <p>
+        Please enter at least one recipient.
+    </p>
+</div>
+<!--Alert-->
 <script type="text/javascript">
   var path = "<%= list_friend_user_messages_path %>";
   (function($)
@@ -65,7 +71,23 @@
   
   $("#message_to").autoSuggest(path, {asHtmlID: "message_to", selectedItemProp: "name", searchObjProps: "name", selectionLimit:1});
   function CreateNew(){
-    $('#recipient').val($('#as-values-message_to').val());
-    $('#msg_form').submit();
+		if ($('#as-values-message_to').val() == ""){
+			$("#dialog-message").dialog({
+                modal: true,
+                buttons: {
+                    Ok: function(){
+                        $("#dialog-message").dialog('close');
+                    }
+                }
+            });
+		}else{
+			$('#recipient').val($('#as-values-message_to').val());
+    	$('#msg_form').submit();
+		}
   }
+	$().ready(function() {
+        $("#msg_form").validate({
+						meta: "validate"
+        });
+    });
 </script>
