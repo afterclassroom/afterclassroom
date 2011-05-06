@@ -84,10 +84,7 @@
           <% end %>
         </div>
       </div>
-      <div class="comjobs1">
         <%= show_post_comments(@post) %>
-      </div>
-      <div class="comjobs2">
       <div class="goback" id="go_back">
         <%= show_go_back %>
       </div>
@@ -102,7 +99,6 @@
             <%= link_to p.title, post_job_path(p.post_job) %>
           </div>
         <% end %>
-      </div>
       </div>
       <div class="goTop">
         <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
