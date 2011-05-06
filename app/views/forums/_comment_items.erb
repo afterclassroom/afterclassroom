@@ -24,3 +24,48 @@
                  <% end %>
 
 
+
+               <div id="current_cmt_<%= @fr.id %>" class="proListH1" style = "display: none;">
+                 <form>
+                   <div class="proListPic"><a href="/users/2"><div><img title="<%= current_user.name %>" src="/system/avatars/2/thumb/jhedrick.jpg?1303782033" class="vtip"></img></div></a></div>
+                   <div class="proListR">
+                     <div class="writeCom"><textarea name="comment" id="comment_<%= @fr.id.to_s %>"></textarea></div>
+                   </div>
+                   <div class="proAttR"><input id="save_<%= @fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
+                 </form>
+               </div>
+
+
+<div class="proList" id="fr_comment_<%= @fr.id %>" style="margin-left:45px;">
+  <div class="writeCom"><div onclick="showForumCmtForm();">Write something...</div></div>
+</div>
+
+<script type="text/javascript">
+function showForumCmtForm(){
+  $('#current_cmt_<%= @fr.id %>').toggle();
+}
+$(document).ready(function() {
+  $('#save_<%= @fr.id.to_s %>').click(function(){
+     var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
+     if (strContent == '')
+       alert('invalid');
+     else{
+       forum_id = $(this).attr('id').split('_')[1];
+       alert('strContent == '+strContent +'    forum_id == '+forum_id);
+       AddCommentWithAjax(strContent,forum_id);
+       /* reset the comment textarea to empty value */
+       $(this).parents().find('form').eq(0).find('textarea').attr('value','');
+     }
+
+
+
+
+
+
+
+
+  });
+});
+
+
+</script>
