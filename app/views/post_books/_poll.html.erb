@@ -7,7 +7,7 @@ post_book = PostBook.require_rating(@school).first
       <h1 class="col195Title">Poll this Book</h1>
       <div class="col195Cont">
         <div class="QAsPCont">
-          <p><%= link_to post_book.post.title, post_book.post %></p>
+          <p><%= link_to post_book.post.title, post_book %></p>
           <p><%= truncate_words(post_book.post.description) %></p>
         </div>
         <div id="require_rating_action">

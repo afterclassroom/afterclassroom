@@ -18,12 +18,17 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+set :output, "/var/log/cron_log.log"
+
 every 2.hours do
   rake "RAILS_ENV=production thinking_sphinx:reindex"
 end
 
 every :reboot do
   rake "RAILS_ENV=production thinking_sphinx:start"
+  runner "cd /home/after/redis-2.2.2"
+  runner "src/redis-server redis.conf"
+  runner "nohup node /var/www/juggernaut/server.js &"
 end
 
 

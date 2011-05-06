@@ -7,7 +7,7 @@ post_party = PostParty.require_rating(@school).first
       <h1 class="col195Title">Poll this Party</h1>
       <div class="col195Cont">
         <div class="QAsPCont">
-          <p><%= link_to post_party.post.title, post_party.post %></p>
+          <p><%= link_to post_party.post.title, post_party %></p>
           <p><%= truncate_words(post_party.post.description) %></p>
         </div>
         <div id="require_rating_action">

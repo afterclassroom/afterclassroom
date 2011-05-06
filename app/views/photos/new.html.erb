@@ -12,7 +12,7 @@
                 </div>
                 <%= display_flash_messages_with_raw %>
                 <div class="postCont">
-                    <%= form_for @photo, :url => user_photos_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
+                    <%= form_for [current_user, @photo], :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
                     <div class="postItem">
                         <div class="postTit">
                             Photo album*
@@ -29,7 +29,7 @@
                     <div class="postItemA">
                         <div id="divinputfile" style="margin-left:120px">
                             <div class="postItemC">
-                                <%= f.file_field :photo_attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc required" %>
+                                <%= f.file_field :photo_attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc {validate:{required:true, accept:true}}" %>
                             </div>
                             <div class="postUpfile">
                                 <div id="fakeinputfile">
@@ -84,12 +84,19 @@
     <%= render :partial => "ads/show_vertical_ads" %>
     <!--Ads-->
 </div>
+<style>
+	#fakeinputfile #fakefilepc {
+		margin-top:-1px;
+	}
+</style>
 <script type="text/javascript">
     function submit(){
         $("#form").submit();
     }
     
     $().ready(function(){
-        $("#form").validate();
+        $("#form").validate({
+						meta: "validate"
+        });
     });
 </script>

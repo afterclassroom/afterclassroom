@@ -4,10 +4,10 @@ post_job = PostJob.require_rating(@school).first
 <% if post_job %>
   <div class="col195 QAsPoll">
     <div class="col195in">
-      <h1 class="col195Title">Poll this Tutor</h1>
+      <h1 class="col195Title">Poll this Job</h1>
       <div class="col195Cont">
         <div class="QAsPCont">
-          <p><%= link_to post_job.post.title, post_job.post %></p>
+          <p><%= link_to post_job.post.title, post_job %></p>
           <p><%= truncate_words(post_job.post.description) %></p>
         </div>
         <div id="require_rating_action">

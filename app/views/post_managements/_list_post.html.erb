@@ -4,7 +4,7 @@
             <tr class="postHead">
                 <th class="post1">
                     <div class="date" id="date">
-                        <a href="#">Date</a>
+                        <a href="javascript:;">Date</a>
                     </div>
                 </th>
                 <th class="post3">
@@ -117,6 +117,7 @@
                     alert('ajax fail:' + msg);
                 },
                 success: function(msg){
+										$('#actionsBox').hide();
                     $('.shopP2').html(msg);
                 }
             });
@@ -151,6 +152,7 @@
                     alert('ajax fail:' + msg);
                 },
                 success: function(msg){
+										$('#actionsBox').hide();
                     $('.shopP2').html(msg);
                 }
             });
@@ -177,6 +179,7 @@
                         alert('ajax fail:' + msg);
                     },
                     success: function(msg){
+												$('#actionsBox').hide();
                         $('.shopP2').html(msg);
                     }
                 });
@@ -187,3 +190,4 @@
         });
     });
 </script>
+<%= render :partial => "action_box_menu" %>

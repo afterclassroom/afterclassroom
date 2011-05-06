@@ -7,7 +7,7 @@ post_tutor = PostTutor.require_rating(@school).first
       <h1 class="col195Title">Poll this Tutor</h1>
       <div class="col195Cont">
         <div class="QAsPCont">
-          <p><%= link_to post_tutor.post.title, post_tutor.post %></p>
+          <p><%= link_to post_tutor.post.title, post_tutor %></p>
           <p><%= truncate_words(post_tutor.post.description) %></p>
         </div>
         <div id="require_rating_action">

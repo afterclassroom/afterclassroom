@@ -1,4 +1,8 @@
 <div class="postItem">
   <div class="postTit">School</div>
-  <div class="postInp">Your are at <strong><%= School.find(@school).name %></strong> - <%= link_to("Click here", "/users_select_school/show?height=170", :class => "thickbox", :title => "Select Schools") %> to choose another school.</div>
+	<% if controller.action_name == "edit" %>
+ 	 	<div class="postInp" style="margin-top:3px;"><strong><%= show_school_address(@post.school) %></strong></div>
+	<% else %>
+		<div class="postInp" style="margin-top:3px;"><strong><%= School.find(@school).name %></strong> - <%= link_to("Click here", "/users_select_school/show?height=170", :class => "thickbox", :title => "Select Schools") %> to choose another school.</div>
+	<% end %>
 </div>

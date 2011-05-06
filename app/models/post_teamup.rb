@@ -95,8 +95,8 @@ class PostTeamup < ActiveRecord::Base
     post_teamups = self.with_school(school).with_status("Good")
   end
 
-  def self.recent_comments
-    post_ids = PostTeamup.all.map(&:post_id)
+  def self.recent_comments(school)
+    post_ids = self.with_school(school).map(&:post_id)
     comments = Comment.find_by_sql("SELECT * FROM comments WHERE commentable_type = 'Post' AND commentable_id IN(#{post_ids.join(", ")}) ORDER BY created_at DESC LIMIT 5")
   end
 

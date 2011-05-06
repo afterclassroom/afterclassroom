@@ -43,7 +43,7 @@ $(function(){
         var $acBox = $('#acBox');
 		if ($("#acBox").length > 0) {
 			if (BoxesChecked > 1) {
-            	$("#acBox").hidden();
+            	$("#acBox").hide();
 	        }
 	        else {
 	            $("#acBox").show();

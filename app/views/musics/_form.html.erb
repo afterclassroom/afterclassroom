@@ -29,7 +29,7 @@
     },
     onSubmit: function(file, ext){
       // Allow only images. You should add security check on the server-side.
-      if (ext == "" || (ext && /^(jpg|JPG|png|jpeg|gif)$/.test(ext))){
+      if (file == "" || (ext && /^(jpg|JPG|png|jpeg|gif)$/.test(ext))){
         // If you want to allow uploading only 1 file at time,
         // you can disable upload button
 

@@ -4698,6 +4698,8 @@ div.navigation a.next:hover {
 .stoExItemR input{
     width:535px;
     border:1px #cecece solid;
+		padding-top: 6px;
+    text-indent: 2px;
 }
 .stoExItemPri{
     float:left;

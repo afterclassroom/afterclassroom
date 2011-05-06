@@ -7,7 +7,7 @@ post_food = PostFood.require_rating(@school).first
       <h1 class="col195Title">Poll this Food</h1>
       <div class="col195Cont">
         <div class="QAsPCont">
-          <p><%= link_to post_food.post.title, post_food.post %></p>
+          <p><%= link_to post_food.post.title, post_food %></p>
           <p><%= truncate_words(post_food.post.description) %></p>
         </div>
         <div id="require_rating_action">

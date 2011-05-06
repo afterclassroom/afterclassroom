@@ -2,7 +2,7 @@
     <div class="col300in">
         <h1 class="col300Title">Recent Comments</h1>
         <div class="col300Cont">
-            <% comments = PostTeamup.recent_comments %>
+            <% comments = PostTeamup.recent_comments(@school) %>
             <% comments.each do |c| 
 				post = Post.find(c.commentable_id)
 			%>

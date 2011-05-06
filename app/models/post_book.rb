@@ -36,7 +36,7 @@ class PostBook < ActiveRecord::Base
     post_books = PostBook.ez_find(:all, :include => [:post, :book_type], :order => "posts.created_at DESC") do |post_book, post, book_type|
       book_type.id == type_id
       post.department_id == department if department
-      post_book.school_year == year if year
+      post.school_year == year if year
       post.school_id == with_school if with_school
       post.created_at > Time.now - over.day
     end
