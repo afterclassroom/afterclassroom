@@ -61,7 +61,7 @@
              <div class="helpT"><a href="#"><%= fr.title %></a></div>
              <div class="helpD">Donec vel ipsum massa. Integer nunc orci, pellentesque et mollis a, fringilla ac elit. Integer elementum nibh ac quam egestas bibendum.</div>
              <div class="helpDis"><a href="#">20956 discussions</a></div>
-             <div class="comH"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers ()</a></div>
+             <div class="comH"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
 
              <div class="slidingDivH1" style="display:none;" id="forum_list_comment_<%= fr.id %>">
 
@@ -75,14 +75,19 @@
 
 
 
+
+
+               <% if fr.comments.length > 2 %>
+
                <div class="proList" style="margin-left: 45px;">
                  <div class="writeCom">
                    <%= link_to "View all", {:controller => "forums", :action => "view_all_comments", :forum_id => fr.id}, :remote => true %>
 
                  </div>
                </div>
+            <% end %><!-- end if -->
 
-               <% if fr.comments.length > 2 %>
+
                  <% count = 0 %>
                  <% fr.comments.each do |cmt| %>
 
@@ -113,7 +118,7 @@
                    <% end %><!-- end if count -->
                  <% end %><!-- end fr.comments.each -->
 
-               <% end %><!-- end if -->
+   
 
 
 
