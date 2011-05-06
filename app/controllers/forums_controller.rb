@@ -29,20 +29,7 @@ class ForumsController < ApplicationController
   end
 
   def savecmt
-
-    puts "heLLO WORLD"
-    puts "heLLO WORLD"
-    puts "heLLO WORLD"
-    puts "heLLO WORLD"
-    puts "heLLO WORLD"
-    puts "heLLO WORLD"
-    puts "heLLO WORLD"
-    puts "heLLO WORLD"
-    puts "heLLO WORLD"
-    puts "heLLO WORLD"
-    puts "heLLO WORLD forum_id == "+params[:forum_id]
-
-    current_fr = Forum.find(params[:forum_id])
+    @fr = Forum.find(params[:forum_id])
 
     comment = params[:comment]
     commentable_id = params[:commentable_id]
@@ -56,12 +43,12 @@ class ForumsController < ApplicationController
     @obj_comment.user = current_user
     @obj_comment.save
 
-    current_fr.comments << @obj_comment
+    @fr.comments << @obj_comment
 
 
-    puts "after save comment :::: "+current_fr.comments.length.to_s
+    puts "after save comment :::: "+@fr.comments.length.to_s
 
-    render :text => "text from save_cmt "+params[:content]
+    # render :text => "text from save_cmt "+params[:content]
   end
 
 end

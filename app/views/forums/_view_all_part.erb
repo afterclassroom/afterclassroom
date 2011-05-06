@@ -15,7 +15,7 @@
                          <a href="/users/1/show_lounge">James</a><%= cmt.comment %>
                        </div>
                        <div class="proListCont">
-                         6 minutes ago.
+                         <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
                        </div>
                      </div>
 
@@ -37,12 +37,13 @@
 
 
 <div class="proList" id="fr_comment_<%= @fr.id %>" style="margin-left:45px;">
-  <div class="writeCom"><div onclick="showForumCmtForm();">Write something...</div></div>
+  <div class="writeCom"><div onclick="showForumCmtForm<%= @fr.id %>();">Write something...</div></div>
 </div>
 
 <script type="text/javascript">
-function showForumCmtForm(){
-  $('#current_cmt_<%= @fr.id %>').toggle();
+function showForumCmtForm<%= @fr.id %>(){
+  $('#current_cmt_<%= @fr.id %>').toggle(); /* show comment box */
+  $('#fr_comment_<%= @fr.id %>').toggle(); /* hide link to box */
 }
 $(document).ready(function() {
   $('#save_<%= @fr.id.to_s %>').click(function(){
@@ -51,19 +52,14 @@ $(document).ready(function() {
        alert('invalid');
      else{
        forum_id = $(this).attr('id').split('_')[1];
-       alert('strContent == '+strContent +'    forum_id == '+forum_id);
        AddCommentWithAjax(strContent,forum_id);
+
+       $('#current_cmt_<%= @fr.id %>').toggle(); /* hide comment box*/
+       $('#fr_comment_<%= @fr.id %>').toggle(); /* show link comment box */
+
        /* reset the comment textarea to empty value */
        $(this).parents().find('form').eq(0).find('textarea').attr('value','');
      }
-
-
-
-
-
-
-
-
   });
 });
 

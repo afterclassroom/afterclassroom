@@ -107,7 +107,7 @@
                          <a href="/users/1/show_lounge">James</a><%= cmt.comment %>
                        </div>
                        <div class="proListCont">
-                         6 minutes ago.
+                         <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
                        </div>
                      </div>
 
@@ -197,7 +197,7 @@
  function HideWaitDialog(){
     $('.ui-dialog-titlebar-close').click();/*Close waiting dialog*/
  }
- function AddCommentWithAjax(content){
+ function AddCommentWithAjax(content,forum_id){
     ShowWaitDialog();
 
     var savePath = '<%= savecmt_user_forums_path(current_user) %>';
@@ -211,7 +211,6 @@
      },
      success: function(data) {
        HideWaitDialog();
-       alert(''+data);
      },
      error: function(er){
        HideWaitDialog();
