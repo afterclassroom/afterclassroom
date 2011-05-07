@@ -26,11 +26,11 @@
         </div>
         <div class="signinItem">
           <div class="signinTit">New Password*:</div>
-          <div class="signinInp"><%= f.password_field :password, :class => "{validate:{required:true, password:true}}" %></div>
+          <div class="signinInp"><%= f.password_field :password, :class => "{validate:{required:true, minlength:6}}" %></div>
         </div>
         <div class="signinItem">
           <div class="signinTit">Confirm*:</div>
-          <div class="signinInp"><%= f.password_field :password_confirmation, :class => "{validate:{required:true, password:true, equalTo:'#user_password'}}" %></div>
+          <div class="signinInp"><%= f.password_field :password_confirmation, :class => "{validate:{equalTo:'#user_password'}}" %></div>
         </div>
         <div class="popup2" id="select_school">
           <%= render :partial => "select_school" %>
@@ -57,16 +57,7 @@
 <script type="text/javascript">
   function submit(){
     var result = $("#form_signup").validate({
-      rules: {
-        user_password_confirmation: {
-          equalTo: "#user_password"
-        }
-      },
-      messages: {
-        user_password_confirmation: {
-          equalTo: "Please enter the same password as above"
-        }
-      }
+			meta: "validate"
     });
     if (result) {
       $("#form_signup").submit();

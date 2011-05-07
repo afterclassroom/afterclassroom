@@ -269,6 +269,10 @@ class User < ActiveRecord::Base
     self.posts.find(:all, :conditions => ["type_name = ?", type], :order => "created_at #{sort}")
   end
   
+  def get_posts_with_type(type)
+    self.posts.find(:all, :conditions => ["type_name = ?", type])
+  end
+  
   def get_total_posts_with_type(type)
     get_posts_with_type(type).size
   end
