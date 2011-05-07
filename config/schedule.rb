@@ -21,14 +21,13 @@
 set :output, "/var/log/cron_log.log"
 
 every 2.hours do
-  rake "RAILS_ENV=production thinking_sphinx:reindex"
+  rake "cd :path && RAILS_ENV=production rake thinking_sphinx:reindex"
 end
 
 every :reboot do
-  rake "RAILS_ENV=production thinking_sphinx:start"
-  runner "cd /home/after/redis-2.2.2"
-  runner "src/redis-server redis.conf"
-  runner "nohup node /var/www/juggernaut/server.js &"
+  rake "cd :path && RAILS_ENV=production rake thinking_sphinx:start"
+  runner "cd /home/after/redis-2.2.2 && src/redis-server redis.conf"
+  runner "cd /var/www/juggernaut && nohup node server.js &"
 end
 
 

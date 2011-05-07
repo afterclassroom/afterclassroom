@@ -6,7 +6,7 @@
   </div>
   <div class="inboxTop2">
     <div class="fromT">
-      <div class="fromTinput"><input type="checkbox" name="msg_all" id="msg_all"/></div>
+      <div class="fromTinput"><%= check_box_tag "msg_all", "", false, {:class => "checkAll"} %></div>
       <div class="fromTtxt">To</div>
     </div>
     <div class="subjectT">Subject</div>

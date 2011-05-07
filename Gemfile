@@ -58,4 +58,3 @@ gem 'backup-task'
 gem 'whenever', :require => false
 gem 'jammit'
 gem 'ruby-mysql'
-gem 'truncate_html'

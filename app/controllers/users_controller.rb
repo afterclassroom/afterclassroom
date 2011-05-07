@@ -74,7 +74,7 @@ class UsersController < ApplicationController
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
       flash[:notice] = "Signup complete! Please sign in to continue."
-      redirect_to login_path
+      redirect_to RubyCAS::Filter.login_url(self)
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.<br/>Please follow the URL from your email."
       redirect_back_or_default(root_path)
@@ -186,7 +186,7 @@ class UsersController < ApplicationController
         NotifyEmailSetting.create(:user_id => @user.id, :notification_id => f.id)
       end
     end
-
+    
     if @user.errors.empty?
       successful_creation()
     else
