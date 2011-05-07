@@ -1,0 +1,21 @@
+                   <div id="" class="proList" style="margin-left: 45px;">
+                     <div onclick="DeleteForumComment(<%= @fr.id %>, <%= @obj_comment.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
+                       <img src="/images/icon-ing.gif">
+                     </div>
+
+                     <div class="proListPic"><%= show_image_user_post(@obj_comment.user) %></div>
+
+
+
+
+
+                     <div class="proListR">
+                       <div class="AfterClCom">
+                         <a href="/users/1/show_lounge">James</a><%= @obj_comment.comment %>
+                       </div>
+                       <div class="proListCont">
+                         <%= distance_of_time_in_words_to_now(@obj_comment.created_at, false) + " ago." %>
+                       </div>
+                     </div>
+
+                   </div>
