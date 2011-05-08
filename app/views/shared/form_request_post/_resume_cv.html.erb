@@ -12,7 +12,7 @@ Resume*
   </div>
   <div class="postItemB">
     <div id="divinputfile">
-      <div class="postItemC" style="margin-left:130px">
+      <div class="postItemC" style="margin-left:50px">
         <%= builder1.file_field :resume_cv, :onchange => "$('#fakefilepc0').val(this.value);", :size => "39", :class => "filepc"  %>
       </div>
       <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc0" /></div>
@@ -27,7 +27,7 @@ Resume*
   </div>
   <div class="postItemB">
     <div id="divinputfile">
-      <div class="postItemC" style="margin-left:130px">
+      <div class="postItemC" style="margin-left:50px">
         <%= builder2.file_field :resume_cv, :onchange => "$('#fakefilepc1').val(this.value);", :size => "39", :class => "filepc"   %>
       </div>
       <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc1" /></div>
@@ -40,9 +40,9 @@ Resume*
     <%= builder3.label :category, "Resume*" %>
     <%= builder3.hidden_field :category, :value => "Resume" %>
   </div>
-  <div class="postItemB">
+  <div class="postItemB" style="margin-bottom:5px;">
     <div id="divinputfile">
-      <div class="postItemC" style="margin-left:130px">
+      <div class="postItemC" style="margin-left:50px">
         <%= builder3.file_field :resume_cv, :onchange => "$('#fakefilepc2').val(this.value);", :size => "39", :class => "filepc"   %>
       </div>
       <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc2"/></div>
@@ -52,9 +52,9 @@ Resume*
 
 <script language="javascript">
     $(document).ready(function(){
-        $('#fakefilepc0').css('width','195px');
-        $('#fakefilepc1').css('width','195px');
-        $('#fakefilepc2').css('width','195px');
+        $('#fakefilepc0').css('width','208px');
+        $('#fakefilepc1').css('width','208px');
+        $('#fakefilepc2').css('width','208px');
 
 
         $("#letter_resume_cv").change(function(){

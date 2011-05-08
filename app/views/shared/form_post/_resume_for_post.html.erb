@@ -1,48 +1,58 @@
-<div class="postItem" style="background:url(/images/upload_file.png) no-repeat 59% 2px;">
-  <%= fields_for :letter do |builder1| %>
-    <div class="postTitCV" style="font-weight: bold;line-height: 20px;width: 110px;">
-      <%= builder1.label :category, "Cover letter" %><%= builder1.hidden_field :category, :value => "Cover letter" %>
-    </div>
-    <div id="divinputfile">
+<div class="postItemReCV" style="margin-top: -3px;">
+<%= fields_for :letter do |builder1| %>
+  <div class="postTitt">
+    <%= builder1.label :category, "Cover letter" %><%= builder1.hidden_field :category, :value => "Cover letter" %>
+  </div>
+  <div class="postItemA">
+    <div id="divinputfile" style="margin-left:120px;">
       <div class="postItemC">
-        <%= builder1.file_field :resume_cv, :size => "39", :class => "filepc" %>
+        <%= builder1.file_field :resume_cv, :size => "39", :class => "filepc", :style => "margin-left:50px" %>
       </div>
-      <div class="postUpfileCV">
+      <div class="postUpfile">
         <div id="fakeinputfile" >
-          <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:1px; margin-left:-300px;"/></div>
+          <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px" /></div>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
 </div>
 
-<div class="postItem" style="background:url(/images/upload_file.png) no-repeat 59% 2px;">
-  <%= fields_for :transcript do |builder2| %>
-    <div class="postTit"><%= builder2.label :category, "Transcript" %><%= builder2.hidden_field :category, :value => "Transcript" %></div>
-    <div id="divinputfile">
+<div class="postItemReCV" style="margin-top: -3px;">
+<%= fields_for :transcript do |builder2| %>
+  <div class="postTitt">
+    <%= builder2.label :category, "Transcript" %><%= builder2.hidden_field :category, :value => "Transcript" %>
+  </div>
+  <div class="postItemA">
+    <div id="divinputfile" style="margin-left:120px;">
       <div class="postItemC">
-        <%= builder2.file_field :resume_cv, :size => "39", :class => "filepc" %>
+        <%= builder2.file_field :resume_cv, :size => "39", :class => "filepc", :style => "margin-left:50px" %>
       </div>
-      <div class="postUpfileCV">
+      <div class="postUpfile">
         <div id="fakeinputfile">
-          <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:1px; margin-left:-300px;" /></div>
+          <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;" /></div>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
 </div>
 
-<div class="postItem" style="background:url(/images/upload_file.png) no-repeat 59% 2px;">
-  <%= fields_for :resume do |builder3| %>
-    <div class="postTit"><%= builder3.label :category, "Resume*" %><%= builder3.hidden_field :category, :value => "Resume" %></div>
-    <div id="divinputfile">
+<div class="postItemReCV" style="margin-top: -3px;">
+<%= fields_for :resume do |builder3| %>
+  <div class="postTitt">
+    <%= builder3.label :category, "Resume*" %><%= builder3.hidden_field :category, :value => "Resume" %>
+  </div>
+  <div class="postItemA">
+    <div id="divinputfile" style="margin-left:120px;">
       <div class="postItemC">
-        <%= builder3.file_field :resume_cv, :size => "39", :class => "filepc" %>
+        <%= builder3.file_field :resume_cv, :size => "39", :class => "filepc", :style => "margin-left:50px" %>
       </div>
-      <div class="postUpfileCV">
+      <div class="postUpfile">
         <div id="fakeinputfile">
-          <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:1px; margin-left:-300px;" /></div>
+          <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;" /></div>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
 </div>
 
 <script language="javascript">
