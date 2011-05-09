@@ -28,7 +28,6 @@ class Post < ActiveRecord::Base
   has_one :post_food, :dependent => :destroy
   has_one :post_exam_schedule, :dependent => :destroy
   has_one :post_event, :dependent => :destroy
-  
   # Named scope
   scope :with_user_id, lambda {|usr| {:conditions => ["user_id = ?", usr], :order => "created_at DESC"}}
   
@@ -44,6 +43,7 @@ class Post < ActiveRecord::Base
   # Favorite
   acts_as_favorite
   
+<<<<<<< HEAD
   # ThinkSphinx
   define_index do
     indexes title, :sortable => true
@@ -51,15 +51,36 @@ class Post < ActiveRecord::Base
     has user_id, post_category_id, school_id, created_at
     set_property :delta => :delayed
     #set_property :delta => true
+=======
+  # Solr search index
+  searchable do
+    text :title, :default_boost => 2, :stored => true
+    text :description, :stored => true
+    integer :user_id, :references => User
+    integer :post_category_id, :references => PostCategory
+    integer :school_id, :references => School
+    time :created_at
+>>>>>>> e24cd5604541da7bf50aa81fbb985d3dc7e43c96
   end
   
   def self.paginated_post_conditions_with_search(params, school, type)
     if params[:search]
       query = params[:search][:query]
       if school
-        Post.search(query, :match_mode => :any, :retry_stale => true, :with => {:post_category_id => type, :school_id => school}, :order => "created_at DESC", :page => params[:page], :per_page => 10)
+        Post.search do
+          fulltext query
+          with :post_category_id, type
+          with :school_id, school
+          order_by :created_at, :desc
+          paginate :page => params[:page], :per_page => 10
+        end
       else
-        Post.search(query, :match_mode => :any, :retry_stale => true, :with => {:post_category_id => type}, :order => "created_at DESC", :page => params[:page], :per_page => 10)
+        Post.search do
+          fulltext query
+          with :post_category_id, type
+          order_by :created_at, :desc
+          paginate :page => params[:page], :per_page => 10
+        end
       end
     end
   end
@@ -67,20 +88,34 @@ class Post < ActiveRecord::Base
   def self.paginated_post_management(params, current_user_id)
     sort = 'DESC'
     sort = params[:sort] if params[:sort]
-    Post.search(:match_mode => :any, :retry_stale => true, :with => {:user_id => current_user_id}, :order => "created_at #{sort}", :page => params[:page], :per_page => 10)
+    query = params[:search][:query] if params[:search]
+    Post.search do
+      fulltext query
+      with :user_id, current_user_id
+      order_by :created_at, sort.downcase.to_sym
+      paginate :page => params[:page], :per_page => 10
+    end
   end
-
+  
   def self.paginated_post_management_admin(params)
     sort = 'DESC'
-    if params[:sort]
-      sort = params[:sort]
-    end
+    sort = params[:sort] if params[:sort]
+    query = params[:search][:query]
     cat_name = params[:category]
     category = PostCategory.find_by_class_name(cat_name)
     if category
-      Post.search(:match_mode => :any, :retry_stale => true, :with => {:post_category_id => category.id}, :order => "created_at #{sort}", :page => params[:page], :per_page => 10)
+      Post.search do
+        fulltext query
+        with :post_category_id, category.id
+        order_by :created_at, sort.downcase.to_sym
+        paginate :page => params[:page], :per_page => 10
+      end
     else
-      Post.search(:match_mode => :any, :retry_stale => true, :order => "created_at "+sort, :page => params[:page], :per_page => 10)
+      Post.search do
+        fulltext query
+        order_by :created_at, sort.downcase.to_sym
+        paginate :page => params[:page], :per_page => 10
+      end
     end
   end
   

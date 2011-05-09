@@ -72,15 +72,14 @@ namespace :deploy do
   end
   
   task :start, :roles => :app do
-    # Asset packager
-    run "cd #{release_path} && RAILS_ENV=production rake asset:packager:delete_all"
-    run "cd #{release_path} && RAILS_ENV=production rake asset:packager:build_all"
-    # Stop Sphinx
-    run "cd #{release_path} && RAILS_ENV=production rake ts:stop"
+    # Bundle
+    run "cd #{release_path} && bundle install"
+    # Stop Solr
+    run "cd #{release_path} && RAILS_ENV=production rake sunspot:solr:stop"
     # Reindex
-    run "cd #{release_path} && RAILS_ENV=production rake ts:reindex"
-    # Start Sphinx
-    run "cd #{release_path} && RAILS_ENV=production rake ts:start"
+    run "cd #{release_path} && RAILS_ENV=production rake rake sunspot:solr:stop"
+    # Start Solr
+    run "cd #{release_path} && RAILS_ENV=production rake sunspot:solr:start"
     # Delay job
     run "cd #{release_path} && RAILS_ENV=production script/delayed_job start"
     # Start Server

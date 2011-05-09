@@ -78,13 +78,12 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/gif', 'image/png']
   
-  # ThinkSphinx
-  define_index do
-    indexes name, :sortable => true
-    indexes email
-    has school_id, created_at
-    #set_property :delta => :delayed
-    set_property :delta => true
+  # Solr search index
+  searchable do
+    text :name, :default_boost => 2
+    text :email, :stored => true
+    string :name, :stored => true
+    time :created_at
   end
   
   # HACK HACK HACK -- how to do attr_accessible from here?
@@ -265,8 +264,12 @@ class User < ActiveRecord::Base
     self.fans.find(:all, :conditions => ["updated_at < ?", Time.now - over.day], :order => "updated_at DESC")
   end
   
-  def get_posts_with_type(type, sort)
-    self.posts.find(:all, :conditions => ["type_name = ?", type], :order => "created_at #{sort}")
+  def get_posts_with_type_and_sort(type, sort)
+    if type != ""
+      self.posts.find(:all, :conditions => ["type_name = ?", type], :order => "created_at #{sort}")
+    else
+      self.posts.find(:all, :order => "created_at #{sort}")
+    end
   end
   
   def get_posts_with_type(type)

@@ -1,40 +1,51 @@
-<div class="reqLa"><label>Program</label></div>
-<div class="reqTi"><%= p.text_field :department_id, :id => "department_id" %></div>
+<div class="reqLa">
+    <label>
+        Program
+    </label>
+</div>
+<div class="reqTi">
+    <%= p.text_field :department_id, :id => "department_id" %>
+</div>
 <ul id="department_menu" class="mcdropdown_menu">
-  <%
-  departments = Department.of_school(@school)
-%>
-  <li rel_department="">
-    Choose program
-  </li>
-  <%
-  category_id = ""
-%>
-  <% departments.each do |dp| %>
+    <%
+    departments = Department.of_school(@school) %>
+    <li rel_department="">
+        Choose program
+    </li>
+    <%
+    category_id = "" %>
+    <% departments.each do |dp| %>
     <% if category_id == "" %>
-      <li rel="category_id_<%= dp.department_category.id %>">
+    <li rel="category_id_<%= dp.department_category.id %>">
         <%= dp.department_category.name %>
         <ul>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% elsif category_id == dp.department_category.id %>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% else %>
+            <li rel_department="<%= dp.id %>">
+                <%= dp.name %>
+            </li>
+            <% elsif category_id == dp.department_category.id %>
+            <li rel_department="<%= dp.id %>">
+                <%= dp.name %>
+            </li>
+            <% else %>
         </ul>
-      </li>
-      <li rel="category_id_<%= dp.department_category.id %>">
+    </li>
+    <li rel="category_id_<%= dp.department_category.id %>">
         <%= dp.department_category.name %>
         <ul>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% end %>
-        <% category_id = dp.department_category.id %>
-      <% end %>
-    </ul>
-  </li>
+            <li rel_department="<%= dp.id %>">
+                <%= dp.name %>
+            </li>
+            <% end %>
+            <% category_id = dp.department_category.id %>
+            <% end %>
+        </ul>
+    </li>
 </ul>
-
 <script type="text/javascript">
-  $("#department_id").mcDropdown("#department_menu", {
-    width: 275,
-    valueAttr: "rel_department"
-  });
+    $(document).ready(function(){
+        $("#department_id").mcDropdown("#department_menu", {
+            width: 275,
+            valueAttr: "rel_department"
+        });
+    });
 </script>

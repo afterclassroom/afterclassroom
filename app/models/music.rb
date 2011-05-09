@@ -30,13 +30,6 @@ class Music < ActiveRecord::Base
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   scope :most_view, :order => "count_view DESC", :group => "music_album_id"
 
-  # ThinkSphinx
-  define_index do
-    indexes title, :sortable => true
-    indexes artist
-    has user_id, music_album_id, created_at
-  end
-
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)
     data.content_type = MIME::Types.type_for(data.original_filename).to_s

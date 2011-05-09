@@ -1,45 +1,50 @@
-<div class="reqLa"><label>Sub Category</label></div>
-<div class="reqTi"><%= text_field_tag "subcategory", @class_name, :id => "subcategory" %></div>
-
+<div class="reqLa">
+    <label>
+        Sub Category
+    </label>
+</div>
+<div class="reqTi">
+    <%= text_field_tag "subcategory", @class_name, :id => "subcategory" %>
+</div>
 <%
-sub = [["Post Assignment", "PostAssignment"], ["Post Project", "PostProject"], ["Post Test", "PostTest"], ["Post Exam", "PostExam"]]
-%>
+sub = [["Post Assignment", "PostAssignment"], ["Post Project", "PostProject"], ["Post Test", "PostTest"], ["Post Exam", "PostExam"]] %>
 <ul id="subcategory_menu" class="mcdropdown_menu">
-  <% sub.each do |s| %>
+    <% sub.each do |s| %>
     <li rel_sub="<%= s[1] %>">
-      <%= s[0] %>
+        <%= s[0] %>
     </li>
-  <% end %>
+    <% end %>
 </ul>
-
 <script type="text/javascript">
-  $("#subcategory").mcDropdown("#subcategory_menu", {
-    width: 275,
-    valueAttr: "rel_sub",
-	select: function(){
-		switch($('#subcategory').val()){
-			case "PostAssignment":
-				path = "/post_assignments/quick_post_form";
-				break;
-			case "PostProject":
-				path = "/post_projects/quick_post_form";
-				break;
-			case "PostTest":
-				path = "/post_tests/quick_post_form";
-				break;
-			case "PostExam":
-				path = "/post_exams/quick_post_form";
-				break;
-		}
-		$.ajax({
-            url: path,
-            type: 'GET',
-            cache: false,
-            dataType: 'html',
-            success: function(data){
-                $('#quick_post_homework').html(data);
+    $(document).ready(function(){
+        $("#subcategory").mcDropdown("#subcategory_menu", {
+            width: 275,
+            valueAttr: "rel_sub",
+            select: function(){
+                switch ($('#subcategory').val()) {
+                    case "PostAssignment":
+                        path = "/post_assignments/quick_post_form";
+                        break;
+                    case "PostProject":
+                        path = "/post_projects/quick_post_form";
+                        break;
+                    case "PostTest":
+                        path = "/post_tests/quick_post_form";
+                        break;
+                    case "PostExam":
+                        path = "/post_exams/quick_post_form";
+                        break;
+                }
+                $.ajax({
+                    url: path,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'html',
+                    success: function(data){
+                        $('#quick_post_homework').html(data);
+                    }
+                });
             }
         });
-	}
-  });
+    });
 </script>

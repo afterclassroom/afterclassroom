@@ -23,15 +23,15 @@
           </div>
         </div>
         <!--List Items-->
-        <% @posts.each do |post| %>
+        <% @posts.results.each do |post| %>
           <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description} %></div>
         <% end %>
         <!--List Items-->
 
         <!--Pagination-->
         <div class="assPage">
-          <span class="numPage"><%= page_entries_info @posts %></span>
-          <%= will_paginate @posts %>
+          <span class="numPage"><%= page_entries_info @posts.results %></span>
+          <%= will_paginate @posts.results %>
         </div>
         <!--Pagination-->
         <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>

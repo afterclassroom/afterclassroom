@@ -187,6 +187,7 @@ class PostTutorsController < ApplicationController
   # DELETE /post_tutors/1.xml
   def destroy
     @post_tutor = PostTutor.find(params[:id])
+    @post_tutor.post.favorites.destroy_all
     @post_tutor.destroy
     
     redirect_to my_post_user_url(current_user)

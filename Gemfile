@@ -57,3 +57,5 @@ gem 'backup-task'
 gem 'whenever', :require => false
 gem 'jammit'
 gem 'ruby-mysql'
+gem 'sunspot_rails', '~> 1.2.1'
+gem 'truncate_html'

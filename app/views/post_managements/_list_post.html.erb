@@ -10,7 +10,7 @@
                 <th class="post3">
                     <div>
                         <select id="category" name="category">
-                            <option>Category</option>
+                            <option value="">Category</option>
                             <% @post_cat.each do |pc| %>
                             <option value="<%= pc.class_name %>"<%= raw('selected="selected"') if @category == pc.class_name %>><%= pc.name %></option>
                             <% end %>
@@ -101,7 +101,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
     
-        var selected = 'Category';/*Default value*/
+        var selected = '';/*Default value*/
         var sortType = 'DESC';/*Default value*/
         var path = '<%= "#{with_type_user_post_managements_url(current_user)}?category="%>';
         

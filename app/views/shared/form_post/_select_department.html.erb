@@ -33,10 +33,11 @@
     </ul>
   </li>
 </ul>
-
 <script type="text/javascript">
-  $("#department").mcDropdown("#department_menu", {
-    width: 350,
-    valueAttr: "rel_department"
-  });
+    $(document).ready(function(){
+        $("#department_id").mcDropdown("#department_menu", {
+            width: 275,
+            valueAttr: "rel_department"
+        });
+    });
 </script>
