@@ -1,105 +1,120 @@
 <%
 type = params[:job_type_id]
-type ||= 1
-%>
+type ||= 1 %>
 <div class="col300 wantJob">
-  <div class="col300in">
-    <h1 class="col300Title">Quick post for Job</h1>
-    <div class="col300Cont">
-      <%= form_for :post_job, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-        <%
-        job_type = JobType.find_by_label("i_m_looking_for_job")
-      %>
-        <%= fields_for :post do |p| %>
-		  <div class="reqLa"><label>Type</label></div>
-		  <div class="reqTi"><%= text_field_tag "post_job[job_type_id]", type %></div>
-          <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
-          <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
-          <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
-          <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
-          <div class="reqSl">
-            <div class="req40">
-              <div class="reqLa"><label>Phone</label></div>
-              <div class="reqTi"><%= f.text_field :phone %></div>
+    <div class="col300in">
+        <h1 class="col300Title">Quick post for Job</h1>
+        <div class="col300Cont">
+            <%= form_for :post_job, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+            <%
+            job_type = JobType.find_by_label("i_m_looking_for_job") %>
+            <%= fields_for :post do |p| %>
+            <div class="reqLa">
+                <label>
+                    Type
+                </label>
             </div>
-            <div class="req60">
-              <div class="reqLa"><label>Address</label></div>
-              <div class="reqTi"><%= f.text_field :address %></div>
+            <div class="reqTi">
+                <%= text_field_tag "post_job[job_type_id]", type %>
             </div>
-          </div>
-
-          <%= render :partial => "/shared/form_request_post/select_tag" %>
-		  <div id="one_file_area" style="margin-bottom:5px;">
-		  	<%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
-		  </div>
-		  <div id="resume_area">
-         	<%= render :partial => "/shared/form_request_post/resume_cv" %>
-		  </div>
-		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-          <div class="submit" style="margin-top: 5px;"><%= show_submit_form() %></div>
-        <% end %>
-      <% end %>
+            <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
+            <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
+            <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
+            <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
+            <div class="reqSl">
+                <div class="req40">
+                    <div class="reqLa">
+                        <label>
+                            Phone
+                        </label>
+                    </div>
+                    <div class="reqTi">
+                        <%= f.text_field :phone %>
+                    </div>
+                </div>
+                <div class="req60">
+                    <div class="reqLa">
+                        <label>
+                            Address
+                        </label>
+                    </div>
+                    <div class="reqTi">
+                        <%= f.text_field :address %>
+                    </div>
+                </div>
+            </div>
+            <%= render :partial => "/shared/form_request_post/select_tag" %>
+            <div id="one_file_area" style="margin-bottom:5px;">
+                <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
+            </div>
+            <div id="resume_area">
+                <%= render :partial => "/shared/form_request_post/resume_cv" %>
+            </div>
+            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+            <div class="submit" style="margin-top: 5px;">
+                <%= show_submit_form() %>
+            </div>
+            <% end %>
+            <% end %>
+        </div>
     </div>
-  </div>
 </div>
-
 <ul id="job_type_menu" class="mcdropdown_menu">
-  <% JobType.find(:all).each do |t| %>
+    <% JobType.find(:all).each do |t| %>
     <li rel_job_type="<%= t.id %>">
-      <%= t.name %>
+        <%= t.name %>
     </li>
-  <% end %>
+    <% end %>
 </ul>
-
 <script type="text/javascript">
-  $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
-    width: 275,
-    valueAttr: "rel_job_type"
-  });
-  var resume_area;
-  var one_file_area;
-  function ShowResumeCV(){
-    $('#resume_area').html(resume_area);
-    $('#one_file_area').html('');
-  }
-  function HideResumeCV(){
-    $('#one_file_area').html(one_file_area);
-    $('#resume_area').html('');
-  }
-
-  $(document).ready(function(){
-    resume_area = $('#resume_area').html();
-    one_file_area = $('#one_file_area').html();
-
-    $('#resume_area').html('');
-
-    $('#job_type_menu').children().each(function(){
-      /*This one is used to handle event of Mouse click*/
-      $(this).click(function(){
-
-        var content = $(this).text();
-        var index = content.indexOf("I'm looking for job", 0);
-
-        if (index != -1){
-          ShowResumeCV();
-        }else{
-          HideResumeCV();
+    $(document).ready(function(){
+        $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
+            width: 275,
+            valueAttr: "rel_job_type"
+        });
+        var resume_area;
+        var one_file_area;
+        function ShowResumeCV(){
+            $('#resume_area').html(resume_area);
+            $('#one_file_area').html('');
         }
-
-      });
-    });/*END $('#job_type_menu')*/
-
-    $('.mcdropdown').find('input').blur(function(){
-      /*This one is used to handle event of Keyboard select*/
-      var selected_value = $(this).parent().find('input').eq(1).attr('value');
-      if (selected_value == '4')/*index == 4 equals to "I'm looking for a job" */
-      {
-        ShowResumeCV();
-      }else{
-        HideResumeCV();
-      }
+        function HideResumeCV(){
+            $('#one_file_area').html(one_file_area);
+            $('#resume_area').html('');
+        }
+        
+        $(document).ready(function(){
+            resume_area = $('#resume_area').html();
+            one_file_area = $('#one_file_area').html();
+            
+            $('#resume_area').html('');
+            
+            $('#job_type_menu').children().each(function(){
+                /*This one is used to handle event of Mouse click*/
+                $(this).click(function(){
+                
+                    var content = $(this).text();
+                    var index = content.indexOf("I'm looking for job", 0);
+                    
+                    if (index != -1) {
+                        ShowResumeCV();
+                    }
+                    else {
+                        HideResumeCV();
+                    }
+                    
+                });
+            });/*END $('#job_type_menu')*/
+            $('.mcdropdown').find('input').blur(function(){
+                /*This one is used to handle event of Keyboard select*/
+                var selected_value = $(this).parent().find('input').eq(1).attr('value');
+                if (selected_value == '4')/*index == 4 equals to "I'm looking for a job" */ {
+                    ShowResumeCV();
+                }
+                else {
+                    HideResumeCV();
+                }
+            });
+        });
     });
-
-
-  });
 </script>

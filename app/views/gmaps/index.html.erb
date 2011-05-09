@@ -2,8 +2,7 @@
 <script type="text/javascript">
   var str_address = "<%= @address %>";
   var str_html = "<%= @html %>";
-  $(function()
-  {
+  $(document).ready(function(){
     $("#map").gMap({ markers: [{address: str_address, html: str_html}], zoom: 10});
   });
 </script>
