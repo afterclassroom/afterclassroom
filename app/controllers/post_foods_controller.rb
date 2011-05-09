@@ -169,6 +169,7 @@ class PostFoodsController < ApplicationController
   # DELETE /post_foods/1.xml
   def destroy
     @post_food = PostFood.find(params[:id])
+    @post_food.post.favorites.destroy_all
     @post_food.destroy
     
     redirect_to my_post_user_url(current_user)

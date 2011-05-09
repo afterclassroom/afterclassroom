@@ -208,6 +208,7 @@ class PostPartiesController < ApplicationController
   # DELETE /post_parties/1.xml
   def destroy
     @post_party = PostParty.find(params[:id])
+    @post_party.post.favorites.destroy_all
     @post_party.destroy
     
     redirect_to my_post_user_url(current_user)

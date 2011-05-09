@@ -169,6 +169,7 @@ class PostMyxesController < ApplicationController
   # DELETE /post_myxes/1.xml
   def destroy
     @post_myx = PostMyx.find(params[:id])
+    @post_myx.post.favorites.destroy_all
     @post_myx.destroy
     
     redirect_to my_post_user_url(current_user)

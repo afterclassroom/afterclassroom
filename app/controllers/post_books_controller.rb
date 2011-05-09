@@ -184,6 +184,7 @@ class PostBooksController < ApplicationController
   # DELETE /post_books/1.xml
   def destroy
     @post_book = PostBook.find(params[:id])
+    @post_book.post.favorites.destroy_all
     @post_book.destroy
     
     redirect_to my_post_user_url(current_user)

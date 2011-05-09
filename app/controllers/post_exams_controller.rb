@@ -131,6 +131,7 @@ class PostExamsController < ApplicationController
   # DELETE /post_exams/1.xml
   def destroy
     @post_exam = PostExam.find(params[:id])
+    @post_exam.post.favorites.destroy_all
     @post_exam.destroy
     
     redirect_to my_post_user_url(current_user)

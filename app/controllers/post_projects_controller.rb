@@ -144,6 +144,7 @@ class PostProjectsController < ApplicationController
   # DELETE /post_projects/1.xml
   def destroy
     @post_project = PostProject.find(params[:id])
+    @post_project.post.favorites.destroy_all
     @post_project.destroy
     
     redirect_to my_post_user_url(current_user)

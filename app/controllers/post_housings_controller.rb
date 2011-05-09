@@ -150,6 +150,7 @@ class PostHousingsController < ApplicationController
   # DELETE /post_housings/1.xml
   def destroy
     @post_housing = PostHousing.find(params[:id])
+    @post_housing.post.favorites.destroy_all
     @post_housing.destroy
     
     redirect_to my_post_user_url(current_user)

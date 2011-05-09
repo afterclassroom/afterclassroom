@@ -160,6 +160,7 @@ class PostTeamupsController < ApplicationController
   # DELETE /post_teamups/1.xml
   def destroy
     @post_teamup = PostTeamup.find(params[:id])
+    @post_teamup.post.favorites.destroy_all
     @post_teamup.destroy
     
     redirect_to my_post_user_url(current_user)

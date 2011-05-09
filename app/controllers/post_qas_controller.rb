@@ -187,6 +187,7 @@ class PostQasController < ApplicationController
   # DELETE /post_qas/1.xml
   def destroy
     @post_qa = PostQa.find(params[:id])
+    @post_qa.post.favorites.destroy_all
     @post_qa.destroy
     
     redirect_to my_post_user_url(current_user)

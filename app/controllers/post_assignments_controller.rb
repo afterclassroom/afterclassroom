@@ -144,6 +144,7 @@ class PostAssignmentsController < ApplicationController
   # DELETE /post_assignments/1.xml
   def destroy
     @post_assignment = PostAssignment.find(params[:id])
+    @post_assignment.post.favorites.destroy_all
     @post_assignment.destroy
     
     redirect_to my_post_user_url(current_user)

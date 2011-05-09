@@ -216,6 +216,7 @@ class PostJobsController < ApplicationController
   # DELETE /post_jobs/1.xml
   def destroy
     @post_job = PostJob.find(params[:id])
+    @post_job.post.favorites.destroy_all
     @post_job.destroy
     
     redirect_to my_post_user_url(current_user)

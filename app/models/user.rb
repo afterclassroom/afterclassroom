@@ -80,8 +80,9 @@ class User < ActiveRecord::Base
   
   # Solr search index
   searchable do
-    text :name, :default_boost => 2, :stored => true
+    text :name, :default_boost => 2
     text :email, :stored => true
+    string :name, :stored => true
     time :created_at
   end
   
