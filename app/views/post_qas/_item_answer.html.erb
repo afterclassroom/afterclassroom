@@ -12,7 +12,7 @@
           <%= link_to comnt.total_bad, {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "0" }, :remote => true %>
         </div>
       </div>
-      <div class="AsDcomRe3"><%=  link_to("Report Abuse", "#{report_abuse_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=200&width=280", :class => "thickbox", :title => "Report Abuse") %></div>
+      <div class="AsDcomRe3"><%=  link_to("Report Abuse", "#{report_abuse_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=320&width=490", :class => "thickbox", :title => "Report Abuse") %></div>
     </div>
   </div>
 </div>
