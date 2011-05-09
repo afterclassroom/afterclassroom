@@ -3,7 +3,7 @@
     <h1 class="col195Title">Deadline bulletin</h1>
     <div class="col195Cont">
       <%
-      type = "general_bulletin"
+      type = "deadline_bulletin"
       items = PostExamSchedule.with_school(@school).with_type(type).with_limit
     %>
       <% if items.size > 0 %>

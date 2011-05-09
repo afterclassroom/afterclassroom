@@ -22,7 +22,7 @@ You are here: <a href="/">Home</a>
             <div class="AsDContL">
                 <h2 class="titleH2"><%= @post.title %></h2>
                 <div class="AsDContLin">
-                    From<span><%= link_to @post.school.name, :controller => "post_books", :action => "index", :from_school => @post.school %></span>
+                    From<span><%= link_to @post.school.name, :controller => "post_awarenesses", :action => "index", :from_school => @post.school %></span>
                 </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>
