@@ -21,13 +21,13 @@
                 </div>
                 <div id="friend_list">
                     <%= display_flash_messages_with_raw %>
-                    <% @users.each do |u| %>
+                    <% @users.results.each do |u| %>
                     <%= render :partial => "item_people", :locals => {:user => u} %>
                     <% end %>
                     <!--Pagination-->
                     <div class="assPage">
-                        <span class="numPage"><%= page_entries_info @users %></span>
-                        <%= will_paginate @users %>
+                        <span class="numPage"><%= page_entries_info @users.results %></span>
+                        <%= will_paginate @users.results %>
                     </div>
                     <!--Pagination-->
                 </div>

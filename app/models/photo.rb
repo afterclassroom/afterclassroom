@@ -29,13 +29,6 @@ class Photo < ActiveRecord::Base
   scope :with_limit, :limit => 6
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   scope :most_view, :order => "count_view DESC", :group => "photo_album_id"
-
-  # ThinkSphinx
-  define_index do
-    indexes title, :sortable => true
-    indexes description
-    has user_id, photo_album_id, created_at
-  end
   
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)

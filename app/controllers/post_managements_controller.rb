@@ -14,7 +14,7 @@ class PostManagementsController < ApplicationController
     if @category == "" or @category == "Category"
       @all_posts = Post.paginated_post_management(params, current_user.id)
     else
-      @all_posts = current_user.get_posts_with_type(@category, @sort).paginate(:page => cur_page, :per_page => 10)
+      @all_posts = current_user.get_posts_with_type_and_sort(@category, @sort).paginate(:page => cur_page, :per_page => 10)
     end
   end
 
@@ -32,11 +32,7 @@ class PostManagementsController < ApplicationController
       cur_page = params[:page]
     end
 
-    if @category == "Category"
-      @all_posts = Post.paginated_post_management(params,current_user.id)
-    else
-      @all_posts = current_user.get_posts_with_type(@category, @sort).paginate(:page => cur_page, :per_page => 10)
-    end
+    @all_posts = current_user.get_posts_with_type_and_sort(@category, @sort).paginate(:page => cur_page, :per_page => 10)
 
     render :layout => false
   end

@@ -184,9 +184,10 @@ module ApplicationHelper
       search_post_path = search_post_tests_path
       when "post_exams"
       type = PostCategory.find_by_class_name("PostExam").id
-      search_post_path = search_post_assignments_path
+      search_post_path = search_post_exams_path
       when "post_events"
       type = PostCategory.find_by_class_name("PostEvent").id
+      search_post_path = search_post_events_path
       when "post_qas"
       type = PostCategory.find_by_class_name("PostQa").id
       search_post_path = search_post_qas_path

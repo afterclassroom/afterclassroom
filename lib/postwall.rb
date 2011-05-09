@@ -1,5 +1,6 @@
 module Postwall
   include ActiveSupport
+  include TruncateHtmlHelper
   protected
   def post_wall(post, path)
     user_wall = UserWall.new
@@ -10,7 +11,7 @@ module Postwall
     user_wall.save
     user_wall_link.link = path
     user_wall_link.title = post.title
-    user_wall_link.sub_content = post.description
+    user_wall_link.sub_content = truncate_html(post.description, :length => 100, :omission => '...')
     user_wall.user_wall_link = user_wall_link
     user_wall.save
   end
@@ -52,7 +53,7 @@ module Postwall
     user_wall.save
     user_wall_link.link = user_story_path(st.user, st)
     user_wall_link.title = st.title
-    user_wall_link.sub_content = st.content
+    user_wall_link.sub_content = truncate_html(st.content, :length => 100, :omission => '...')
     user_wall.user_wall_link = user_wall_link
     user_wall.save
   end 
