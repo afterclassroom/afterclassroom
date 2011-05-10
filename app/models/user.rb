@@ -46,7 +46,6 @@ class User < ActiveRecord::Base
   has_many :post_events, :dependent => :destroy
   has_many :shares
   has_many :private_settings
-  has_many :users, :dependent => :destroy
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]

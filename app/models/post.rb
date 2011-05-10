@@ -43,6 +43,7 @@ class Post < ActiveRecord::Base
   # Favorite
   acts_as_favorite
   
+<<<<<<< HEAD
 
   # ThinkSphinx
   define_index do
@@ -52,6 +53,8 @@ class Post < ActiveRecord::Base
     set_property :delta => :delayed
     #set_property :delta => true
 
+=======
+>>>>>>> 6c4b9039ad362d1f5431d0572431ab4008a46005
   # Solr search index
   searchable do
     text :title, :default_boost => 2, :stored => true
@@ -60,7 +63,10 @@ class Post < ActiveRecord::Base
     integer :post_category_id, :references => PostCategory
     integer :school_id, :references => School
     time :created_at
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6c4b9039ad362d1f5431d0572431ab4008a46005
   end
   
   def self.paginated_post_conditions_with_search(params, school, type)
