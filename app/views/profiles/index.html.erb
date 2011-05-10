@@ -17,12 +17,13 @@
                     <%= render :partial => "user_walls/wall_item", :locals => {:wall => w} %>
                     <% end %>
                 </div>
-  				<%= render :partial => "user_walls/alert" %>
+  							<%= render :partial => "user_walls/alert" %>
                 <div class="goTop">
                     <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
                 </div>
             </div>
         </div>
+				<%= render :partial => "user_walls/next_page_wall_js", :locals => {:user_id => current_user.id} %>
     </div>
 </div>
 <div class="contMainR">
@@ -30,20 +31,3 @@
     <%= render :partial => "ads/show_vertical_ads" %>
     <!--Ads-->
 </div>
-
-<script type="text/javascript">
-    	var path = "/user_walls/next_page_my_wall?user_id=<%= current_user.id %>";
-    	var total_wall = <%= @walls.total_entries %>;
-        $(document).ready(function(){
-            $("body").flexiPagination({
-                url: path,
-                currentPage: 1,
-                totalResults: total_wall,
-                perPage: 10,
-                container: "#wall_page_wrap",
-                pagerVar: "page",
-                loaderImgPath: "/images/loader.gif",
-                debug: 0
-            });
-        });
-</script>

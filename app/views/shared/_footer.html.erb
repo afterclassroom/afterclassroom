@@ -2,29 +2,6 @@
     <div class="footer1">
         <table cellspacing="0" cellpadding="0">
             <tr>
-                <td class="account">
-                    <h2 class="footTitle">Your Account</h2>
-                    <div class="footItem">
-                        <% if logged_in? %>
-                        <%= link_to "Inbox", user_messages_path(current_user) %>
-                        <% else %>
-                        <a href="javascript:;" class="vtip" title="This function is available only to registered users.">Inbox</a>
-                        <% end %>
-                    </div>
-                    <div class="footItem">
-                        <% if logged_in? %>
-                        <%= link_to "Profile", user_profiles_path(current_user) %>
-                        <% else %>
-                        <a href="javascript:;" class="vtip" title="This function is available only to registered users.">Profile</a>
-                        <% end %>
-                    </div>
-                </td>
-                <td class="help">
-                    <h2 class="footTitle">Help & Information</h2>
-                    <div class="footItem">
-                        <a href="#">Community Help Forum</a>
-                    </div>
-                </td>
                 <td class="after">
                     <h2 class="footTitle">After Classroom</h2>
                     <div class="footItem">
@@ -35,6 +12,12 @@
                     </div>
                     <div class="footItem">
                         <%= link_to 'Privacy Policy', :controller => 'statics', :action => 'privacy' %>
+                    </div>
+                </td>
+                <td class="help">
+                    <h2 class="footTitle">Help & Information</h2>
+                    <div class="footItem">
+                        <a href="#">Community Help Forum</a>
                     </div>
                 </td>
             </tr>

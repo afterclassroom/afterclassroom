@@ -10,16 +10,12 @@ class ProfilesController < ApplicationController
   before_filter :require_current_user
   
   def index
+    @type = "profile"
     @walls = current_user.my_walls.paginate :page => params[:page], :per_page => 10
   end
 
   def my_favorite
     @favorites = current_user.favorites.paginate :page => params[:page], :per_page => 10
-  end
-  
-  def show_profile
-    @user = User.find(params[:user_id])
-    @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
   end
 
   def edit_infor

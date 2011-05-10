@@ -7,6 +7,7 @@ class StudentLoungesController < ApplicationController
   #before_filter :login_required
   
   def index
+    @type = "student_lounge"
     @user = current_user
     user_login = params[:user]
     @walls = []
@@ -17,6 +18,7 @@ class StudentLoungesController < ApplicationController
   end
   
   def chat
+    @type = "chat"
     @user = current_user
     user_login = params[:user]
     @walls = []

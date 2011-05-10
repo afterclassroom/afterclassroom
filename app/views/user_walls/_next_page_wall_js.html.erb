@@ -1,0 +1,16 @@
+<script type="text/javascript">
+	var path = "/user_walls/next_page_wall?user_id=<%= user_id %>&type=<%= @type %>";
+	var total_wall = <%= @walls.total_entries %>;
+	$(document).ready(function(){
+		$("body").flexiPagination({
+			url: path,
+			currentPage: 1,
+			totalResults: total_wall,
+			perPage: 10,
+			container: "#wall_page_wrap",
+			pagerVar: "page",
+			loaderImgPath: "/images/loader.gif",
+			debug: 0
+		});
+	});
+</script>

@@ -67,7 +67,7 @@
     <%= show_post_comments(@post) %>
     <div class="goback" id="go_back"><%= show_go_back %></div>
     <div class="comPage">
-      <span class="compre"><img></img><%= link_to "", post_food_path(@prev) if @prev %> </span>
+      <span class="compre"><%= link_to "", post_food_path(@prev) if @prev %> </span>
       <span class="comnext"><%= link_to "", post_food_path(@next) if @next %></span>
     </div>
     <div class="AsDOr">

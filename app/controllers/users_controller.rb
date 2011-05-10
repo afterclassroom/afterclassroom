@@ -147,6 +147,7 @@ class UsersController < ApplicationController
   end
   
   def show_lounge
+    @type = "show_lounge"
     @user = User.find(params[:id])
     @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     render :layout => "student_lounge"
