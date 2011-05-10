@@ -253,11 +253,8 @@ DEPENDENCIES
   rubycas-client
   rubycas-client-rails!
   simple_captcha!
-<<<<<<< HEAD
-=======
   sunspot_rails (~> 1.2.1)
   truncate_html
->>>>>>> e24cd5604541da7bf50aa81fbb985d3dc7e43c96
   ts-delayed-delta
   validates_timeliness (~> 3.0.2)
   whenever
