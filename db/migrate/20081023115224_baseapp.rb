@@ -48,8 +48,6 @@ class Baseapp < ActiveRecord::Migration
     # Drop all BaseApp
     drop_table :settings
     drop_table :users
-    drop_table :open_id_authentication_associations
-    drop_table :open_id_authentication_nonces
     drop_table :roles
     drop_table :roles_users
   end

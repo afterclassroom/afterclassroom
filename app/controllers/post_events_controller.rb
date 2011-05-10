@@ -144,6 +144,7 @@ class PostEventsController < ApplicationController
   # DELETE /post_events/1.xml
   def destroy
     @post_event = PostEvent.find(params[:id])
+    @post_event.post.favorites.destroy_all
     @post_event.destroy
     
     redirect_to my_post_user_url(current_user)

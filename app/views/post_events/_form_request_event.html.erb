@@ -1,54 +1,67 @@
 <%
 type = params[:event_type_id]
-type ||= 1
-%>
+type ||= 1 %>
 <div class="col300 requestEvent">
-  <div class="col300in">
-    <h1 class="col300Title">Quick post for Event</h1>
-    <div class="col300Cont">
-      <%= form_for :post_event, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-	  <div class="reqLa">
-                    <label>
-                        Type
-                    </label>
-                </div>
-                <div class="reqTi">
-                    <%= text_field_tag "post_event[event_type_id]", type %>
-                </div>
-        <%= fields_for :post do |p| %>
-          <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
-          <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
-          <div class="reqSl">
-            <div class="req40">
-              <div class="reqLa"><label>Phone</label></div>
-              <div class="reqTi"><%= f.text_field :phone %></div>
+    <div class="col300in">
+        <h1 class="col300Title">Quick post for Event</h1>
+        <div class="col300Cont">
+            <%= form_for :post_event, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+            <div class="reqLa">
+                <label>
+                    Type
+                </label>
             </div>
-            <div class="req60">
-              <div class="reqLa"><label>Address</label></div>
-              <div class="reqTi"><%= f.text_field :address %></div>
+            <div class="reqTi">
+                <%= text_field_tag "post_event[event_type_id]", type %>
             </div>
-          </div>
-          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
-          <%= render :partial => "/shared/form_request_post/select_tag" %>
-		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-          <div class="submit" style="margin-top: 5px;"><%= show_submit_form() %></div>
-        <% end %>
-      <% end %>
+            <%= fields_for :post do |p| %>
+            <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
+            <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
+            <div class="reqSl">
+                <div class="req40">
+                    <div class="reqLa">
+                        <label>
+                            Phone
+                        </label>
+                    </div>
+                    <div class="reqTi">
+                        <%= f.text_field :phone %>
+                    </div>
+                </div>
+                <div class="req60">
+                    <div class="reqLa">
+                        <label>
+                            Address
+                        </label>
+                    </div>
+                    <div class="reqTi">
+                        <%= f.text_field :address %>
+                    </div>
+                </div>
+            </div>
+            <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
+            <%= render :partial => "/shared/form_request_post/select_tag" %>
+            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+            <div class="submit" style="margin-top: 5px;">
+                <%= show_submit_form() %>
+            </div>
+            <% end %>
+            <% end %>
+        </div>
     </div>
-  </div>
 </div>
-
 <ul id="event_type_menu" class="mcdropdown_menu">
-  <% EventType.find(:all).each do |t| %>
+    <% EventType.find(:all).each do |t| %>
     <li rel_event_type="<%= t.id %>">
-      <%= t.name %>
+        <%= t.name %>
     </li>
-  <% end %>
+    <% end %>
 </ul>
-
 <script type="text/javascript">
-  $("#post_event_event_type_id").mcDropdown("#event_type_menu", {
-    width: 275,
-    valueAttr: "rel_event_type"
-  });
+    $(document).ready(function(){
+        $("#post_event_event_type_id").mcDropdown("#event_type_menu", {
+            width: 275,
+            valueAttr: "rel_event_type"
+        });
+    });
 </script>

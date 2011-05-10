@@ -206,6 +206,7 @@ class PostAwarenessesController < ApplicationController
   # DELETE /post_awarenesses/1.xml
   def destroy
     @post_awareness = PostAwareness.find(params[:id])
+    @post_awareness.post.favorites.destroy_all
     @post_awareness.destroy
     
     redirect_to my_post_user_url(current_user)

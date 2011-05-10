@@ -174,7 +174,6 @@ GEM
     rsolr (0.12.1)
       builder (>= 2.1.2)
     ruby-mp3info (0.6.13)
-    ruby-mysql (2.9.4)
     rubycas-client (2.2.1)
       activesupport
     sunspot (1.2.1)
@@ -249,7 +248,6 @@ DEPENDENCIES
   rest-open-uri
   riddle (>= 1.2.1)
   ruby-mp3info
-  ruby-mysql
   rubycas-client
   rubycas-client-rails!
   simple_captcha!

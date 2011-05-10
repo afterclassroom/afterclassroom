@@ -1,0 +1,22 @@
+production:
+  listen: 127.0.0.1
+  mem_limit: 512M
+  max_children: 300
+  max_matches: 100000
+  seamless_rotate: 1
+  preopen_indexes: 1
+  bin_path: /usr/local/bin
+  searchd_binary_name: searchd
+  indexer_binary_name: indexer
+  query_log_file: /var/www/after/shared/log/searchd.query.log
+  searchd_log_file: /var/www/after/shared/log/searchd.log
+  pid_file: /var/www/after/shared/pids/searchd.production.pid
+  searchd_file_path: /var/www/after/current/db/sphinx/production/
+  morphology: stem_en
+  enable_star: true
+  min_prefix_len: 1
+  min_infix_len: 1
+development:
+  enable_star: true
+  min_prefix_len: 1
+  min_infix_len: 1

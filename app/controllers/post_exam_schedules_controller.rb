@@ -150,6 +150,7 @@ class PostExamSchedulesController < ApplicationController
   # DELETE /post_exam_schedules/1.xml
   def destroy
     @post_exam_schedule = PostExamSchedule.find(params[:id])
+    @post_exam_schedule.post.favorites.destroy_all
     @post_exam_schedule.destroy
 
     respond_to do |format|

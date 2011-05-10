@@ -131,6 +131,7 @@ class PostTestsController < ApplicationController
   # DELETE /post_tests/1.xml
   def destroy
     @post_test = PostTest.find(params[:id])
+    @post_test.post.favorites.destroy_all
     @post_test.destroy
     
     redirect_to my_post_user_url(current_user)
