@@ -50,6 +50,9 @@
                 <div class="com">
                     <%= show_comment_button(post.id, post.comments.size) %>
                 </div>
+								<div class="myMap">
+                    <%= show_map(post.post_book.address, post.title) %>
+                </div>
             </div>
         </div>
     </div>

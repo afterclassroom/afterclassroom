@@ -1,25 +1,30 @@
 <%
 case controller.controller_name
 when 'post_qas'
-  text = "Browser by category"
+text = "Browser by category"
 else
-  text = "Browse by subject "
+text = "Browse by subject "
 end
-
 if session[:your_school]
-  tags = School.find(session[:your_school]).owned_tags.where(["taggable_type = ?", @class_name])
+tags = School.find(session[:your_school]).owned_tags.where(["taggable_type = ?", @class_name])
 else
-  tags = eval(@class_name).tag_counts
+tags = eval(@class_name).tag_counts
 end %>
 <div class="col300 Br-by-sub">
-  <div class="col300in">
-    <h1 class="col300Title"><%= text %></h1>
-    <div class="col300Cont">
-      <% if tags and tags.to_a.size > 0 %>
-        <div class="tabClouse">
-          <%= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
+    <div class="col300in">
+        <h1 class="col300Title"><%= text %></h1>
+        <div class="col300Cont">
+            <% if tags and tags.to_a.size > 0 %>
+            <div class="tabClouse">
+                <% if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
+                <% tag_cloud tags, %w(sub1 sub2 sub3 sub4 sub5 sub6) do |tag, css_class| %>
+                <%= link_to tag.name, { :action => :tag, :tag_name => tag.name }, :class => css_class %>
+                <% end %>
+                <% esle %>
+                <%= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
+                <% end %>
+            </div>
+            <% end %>
         </div>
-      <% end %>
     </div>
-  </div>
 </div>

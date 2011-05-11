@@ -1,27 +1,42 @@
 <div class="col300 requestFood">
-  <div class="col300in">
-    <h1 class="col300Title">Quick post for Food</h1>
-    <div class="col300Cont">
-      <%= form_for :post_food, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-        <%= fields_for :post do |p| %>
-          <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
-          <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
-          <div class="reqSl">
-            <div class="req40">
-              <div class="reqLa"><label>Phone</label></div>
-              <div class="reqTi"><%= f.text_field :phone %></div>
+    <div class="col300in">
+        <h1 class="col300Title">Quick post for Food</h1>
+        <div class="col300Cont">
+            <%= form_for :post_food, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+            <%= fields_for :post do |p| %>
+            <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
+            <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
+            <div class="reqSl">
+                <div class="req40">
+                    <div class="reqLa">
+                        <label>
+                            Phone
+                        </label>
+                    </div>
+                    <div class="reqTi">
+                        <%= f.text_field :phone %>
+                    </div>
+                </div>
+                <div class="req60">
+                    <div class="reqLa">
+                        <label>
+                            Address
+                        </label>
+                    </div>
+                    <div class="reqTi">
+                        <%= f.text_field :address %>
+                    </div>
+                </div>
             </div>
-            <div class="req60">
-              <div class="reqLa"><label>Address</label></div>
-              <div class="reqTi"><%= f.text_field :address %></div>
+						<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_food_address" } %>
+            <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
+            <%= render :partial => "/shared/form_request_post/select_tag" %>
+            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+            <div class="submit" style="margin-top: 5px;">
+                <%= show_submit_form() %>
             </div>
-          </div>
-          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
-          <%= render :partial => "/shared/form_request_post/select_tag" %>
-		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-          <div class="submit" style="margin-top: 5px;"><%= show_submit_form() %></div>
-        <% end %>
-      <% end %>
+            <% end %>
+            <% end %>
+        </div>
     </div>
-  </div>
 </div>
