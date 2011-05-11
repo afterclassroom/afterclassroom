@@ -50,7 +50,7 @@ Afterclassroom::Application.routes.draw do
 
     resources :forums do 
       collection do
-        get :savecmt, :delcmt, :addfr
+        get :savecmt, :delcmt, :addfr, :browse
       end
     end
 

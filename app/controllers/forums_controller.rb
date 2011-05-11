@@ -3,7 +3,13 @@ class ForumsController < ApplicationController
 
   def index  
     @text = "test from forum"
-    @forums = Forum.find(:all).paginate(:page => params[:page], :per_page => 8, :order => "created_at")
+    @forums = Forum.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 8, :order => "created_at")
+  end
+
+  def browse
+    @forums = Forum.find(:all)
+    #render :text => "HELLO WORLD"
+    render :template => 'forums/index' 
   end
 
   def delcmt
@@ -64,7 +70,17 @@ class ForumsController < ApplicationController
     puts "==============================="
     puts "==============================="
     puts "==============================="
-    puts "value == "+params[:txt_help]
+    @new_fr = Forum.new()
+    @new_fr.title = params[:txt_help]
+    @new_fr.content = params[:help_content]
+    @new_fr.user = current_user
+
+    if @new_fr.save
+      @status_message = "Add new question successfully"
+    else
+      @status_message = "Failed to add new question"
+    end 
+
     redirect_to :action => "index"
   end
 
