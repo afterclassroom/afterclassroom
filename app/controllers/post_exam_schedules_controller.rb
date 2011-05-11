@@ -116,7 +116,8 @@ class PostExamSchedulesController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_exam_schedule = PostExamSchedule.new(params[:post_exam_schedule])
-
+    @post_exam_schedule.starts_at = DateTime.strptime(params[:starts_at], "%m/%d/%Y") if params[:starts_at] != ""
+    @post_exam_schedule.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
     if simple_captcha_valid?    
       @post.save    
       @post.school.tag(@post_exam_schedule, :with => @tag_list, :on => :tags)

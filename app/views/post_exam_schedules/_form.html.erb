@@ -1,51 +1,69 @@
 <%= fields_for @post do |post| %>
-  <%= display_flash_messages_with_raw %>
-  <div class="postReq">*(asterisk) is required.</div>
-  <div class="postItemDep">
-    <div class="postTit">Type</div>
-    <div class="postDep"><%= f.text_field :type_name %></div>
-  </div>
-  <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/select_school" %>
-  <%= render :partial => "/shared/form_post/email" %>
-  <div class="postItem">
-    <div class="postTit">Teacher name</div>
-    <div class="postInp"><%= f.text_field :teacher_name %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Place</div>
-    <div class="postInp"><%= f.text_field :place %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Starts at</div>
-    <div class="postInp"><%= text_field_tag "post_exam_schedule[starts_at]", @post_exam_schedule.starts_at != nil ? @post_exam_schedule.starts_at.strftime("%m/%d/%Y") : nil, :id => "post_exam_schedule_starts_at", :class => '{validate:{date:true}}', :style => "width:100px" %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Due date</div>
-    <div class="postInp"><%= text_field_tag "post_exam_schedule[due_date]", @post_exam_schedule.due_date != nil ? @post_exam_schedule.due_date.strftime("%m/%d/%Y") : nil, :id => "post_exam_schedule_due_date", :class => '{validate:{date:true}}', :style => "width:100px" %></div>
-  </div>
-  <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
-  <%= render :partial => "/shared/form_post/select_tag" %>
+<%= display_flash_messages_with_raw %>
+<div class="postReq">
+    *(asterisk) is required.
+</div>
+<div class="postItemDep">
+    <div class="postTit">
+        Type
+    </div>
+    <div class="postDep">
+        <%= f.text_field :type_name %>
+    </div>
+</div>
+<%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school" %>
+<%= render :partial => "/shared/form_post/email" %>
+<div class="postItem">
+    <div class="postTit">
+        Teacher name
+    </div>
+    <div class="postInp">
+        <%= f.text_field :teacher_name %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Place
+    </div>
+    <div class="postInp">
+        <%= f.text_field :place %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Starts at
+    </div>
+    <div class="postInp">
+        <%= text_field_tag "starts_at", @post_exam_schedule.starts_at != nil ? @post_exam_schedule.starts_at.strftime("%m/%d/%Y") : nil, :id => "starts_at", :class => '{validate:{date:true}}', :style => "width:100px" %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Due date
+    </div>
+    <div class="postInp">
+        <%= text_field_tag "due_date", @post_exam_schedule.due_date != nil ? @post_exam_schedule.due_date.strftime("%m/%d/%Y") : nil, :id => "due_date", :class => '{validate:{date:true}}', :style => "width:100px" %>
+    </div>
+</div>
+<%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
+<%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
-
-  <ul id="schedule_type_menu" class="mcdropdown_menu">
-  <% SCHEDULE_TYPE.each do |s| %>
+<ul id="schedule_type_menu" class="mcdropdown_menu">
+    <% SCHEDULE_TYPE.each do |s| %>
     <li rel_schedule_type="<%= s[1] %>">
-      <%= s[0] %>
+        <%= s[0] %>
     </li>
-  <% end %>
+    <% end %>
 </ul>
-
 <script type="text/javascript">
-  $("#post_exam_schedule_type_name").mcDropdown("#schedule_type_menu", {
-    width: 350,
-    valueAttr: "rel_schedule_type"
-  });
-  $(function() {
-    $("#post_exam_schedule_starts_at").datepicker();
-  });
-  $(function() {
-    $("#post_exam_schedule_due_date").datepicker();
-  });
+    $(document).ready(function(){
+        $("#post_exam_schedule_type_name").mcDropdown("#schedule_type_menu", {
+            width: 350,
+            valueAttr: "rel_schedule_type"
+        });
+        $("#starts_at").datepicker();
+        $("#due_date").datepicker();
+    });
 </script>

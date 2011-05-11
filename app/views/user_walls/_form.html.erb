@@ -1,3 +1,4 @@
+<%= hidden_field_tag "type", @type %>
 <%= hidden_field_tag "user_wall_id", @user.id %>
   <div class="proMind">
     <div class="proMindT">
@@ -33,5 +34,3 @@
 	}
   }
 </script>
-
-<%= render :partial => "user_walls/alert" %>

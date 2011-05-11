@@ -10,6 +10,7 @@ class UserWallsController < ApplicationController
   def create_wall
     user_wall_id = params[:user_wall_id]
     your_mind = params[:your_mind]
+    @type = params[:type]
     @user = User.find(user_wall_id)
     unless @user.nil?
       user_wall = UserWall.new
@@ -46,7 +47,14 @@ class UserWallsController < ApplicationController
         send_notification(@user, subject, content, "posts_on_my_lounge")
       end
     end
-    @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    
+    case @type
+      when "profile"
+        @walls = current_user.my_walls.paginate :page => params[:page], :per_page => 10
+      else
+        @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    end
+    
     respond_to do |format|
       format.html { redirect_to user_profiles_path(current_user) }
       format.js { 
@@ -318,17 +326,16 @@ class UserWallsController < ApplicationController
     render :layout => false
   end
   
-  def next_page_my_wall
-    user_id = params[:user_id]
-    user = User.find(user_id)
-    @walls = user.my_walls.paginate :page => params[:page], :per_page => 10
-    render :layout => false
-  end
-  
   def next_page_wall
+    @type = params[:type]
     user_id = params[:user_id]
     user = User.find(user_id)
-    @walls = user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    case @type
+      when "profile"
+        @walls = user.my_walls.paginate :page => params[:page], :per_page => 10
+      else
+        @walls = user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    end
     render :layout => false
   end
   
