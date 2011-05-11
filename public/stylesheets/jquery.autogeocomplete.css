@@ -1,0 +1,26 @@
+#mapblock
+{
+    position: static;
+}
+
+#mapframe {
+    background-color: #e7e7e7;
+    margin-left: 335px;
+    padding: 5px;
+    position: absolute;
+    margin-top: 20px;
+    visibility: hidden;
+    width: 200px;
+    z-index: 99999999;
+}
+
+#mapframe #mapwindow {
+    width: 200px;
+    height: 200px;
+}
+
+.ui-autocomplete {
+    border: #000000 solid 1px;
+    width: 450px;
+    height: 250px;
+}

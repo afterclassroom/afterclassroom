@@ -1,71 +1,64 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Projects", post_projects_path, :class => "abLink-detail" %><%= link_to "Interesting Projects", "#", :class => "abLink-detail" %>
+You are here: <a href="/">Home</a>
+<%= link_to "Projects", post_projects_path, :class => "abLink-detail" %><%= link_to "Interesting Projects", "#", :class => "abLink-detail" %>
 <% end -%>
-
 <% content_for :post_button do -%>
-  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
 <% end -%>
-  
 <% content_for :menu_sub do -%>
-  <%= render :partial => "submenu" %>
+<%= render :partial => "submenu" %>
 <% end -%>
-
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 QAs">
-    <div class="col451in">
-      <div class="col451Cont">
-        <div class="AsDTop">
-          <h1 class="titleH1">Interesting Projects</h1>
-          <div class="AsDsearch">
-            <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_projects_path} %>
-          </div>
+    <div class="col451 QAs">
+        <div class="col451in">
+            <div class="col451Cont">
+                <div class="AsDTop">
+                    <h1 class="titleH1">Interesting Projects</h1>
+                    <div class="AsDsearch">
+                        <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_projects_path} %>
+                    </div>
+                </div>
+                <%= display_flash_messages_with_raw %>
+                <!--List Items--><% @posts.each do |post| %>
+                <div id="post_<%= post.id %>">
+                    <%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description} %>
+                </div>
+                <% end %>
+                <!--List Items--><!--Pagination-->
+                <div class="assPage">
+                    <span class="numPage"><%= page_entries_info @posts %></span>
+                    <%= will_paginate @posts %>
+                </div>
+                <!--Pagination-->
+                <div class="goTop">
+                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+                </div>
+            </div>
         </div>
-		<%= display_flash_messages_with_raw %>
-        <!--List Items-->
-        <% @posts.each do |post| %>
-          <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description} %></div>
-        <% end %>
-        <!--List Items-->
-
-        <!--Pagination-->
-        <div class="assPage">
-          <span class="numPage"><%= page_entries_info @posts %></span>
-          <%= will_paginate @posts %>
-        </div>
-        <!--Pagination-->
-        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
-      </div>
     </div>
-  </div>
-
 </div>
-
 <div class="contMainC">
-  <!--Browser Due Date-->
-  <%= render :partial => "due_date" %>
-  <!--Browser Due Date-->
-
-  <!--Browser Interesting Projest-->
-  <%= render :partial => "shared/browser_by_subject" %>
-  <!--Browser Interesting Projest-->
+    <!--Browser Due Date-->
+    <%= render :partial => "due_date" %>
+    <!--Browser Due Date-->
+		
+    <!--Browser Interesting Projest-->
+    <%= render :partial => "shared/browser_by_subject" %>
+    <!--Browser Interesting Projest-->
 </div>
-
 <div class="contMainR">
-  <!--Browser by Subject-->
-  <%= render :partial => "shared/browser_by_subject" %>
-  <!--Browser by Subject-->
-
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
-
-  <!--Request project-->
-  <%= render :partial => "form_request_project" %>
-  <!--Request project-->
-
-  <!--Recent Request projects-->
-  <%= render :partial => "recent_request_projects" %>
-  <!--Recent Request projects-->
+    <!--Browser by Subject-->
+    <%= render :partial => "shared/browser_by_subject" %>
+    <!--Browser by Subject-->
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+    <!--Request project-->
+    <%= render :partial => "form_request_project" %>
+    <!--Request project-->
+    <!--Recent Request projects-->
+    <%= render :partial => "recent_request_projects" %>
+    <!--Recent Request projects-->
 </div>
 <!--Content-->

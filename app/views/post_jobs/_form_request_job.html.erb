@@ -43,6 +43,7 @@ type ||= 1 %>
                     </div>
                 </div>
             </div>
+						<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_job_address" } %>
             <%= render :partial => "/shared/form_request_post/select_tag" %>
             <div id="one_file_area" style="margin-bottom:5px;">
                 <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
