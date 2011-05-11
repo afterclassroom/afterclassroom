@@ -168,9 +168,9 @@ ActiveRecord::Schema.define(:version => 20110428071404) do
   end
 
   create_table "forums", :force => true do |t|
+    t.integer  "user_id",    :null => false
     t.string   "title"
     t.string   "content"
-    t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -536,7 +536,6 @@ ActiveRecord::Schema.define(:version => 20110428071404) do
     t.integer  "attach_file_size"
     t.datetime "attach_updated_at"
     t.integer  "count_view",          :default => 0
-    t.boolean  "delta",               :default => true,  :null => false
   end
 
   create_table "private_settings", :force => true do |t|
@@ -814,7 +813,6 @@ ActiveRecord::Schema.define(:version => 20110428071404) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "online",                                   :default => false
-    t.boolean  "delta",                                    :default => true,      :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
