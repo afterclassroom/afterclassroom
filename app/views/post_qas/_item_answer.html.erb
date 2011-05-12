@@ -1,4 +1,8 @@
-<div class="AsDcomItem" id="item_comment_<%= comnt.id %>">
+<div class="AsDcomItem" id="post_<%= @post.id %>_comment_<%= comnt.id %>">
+    <% if @post.user == current_user || comnt.user == current_user %>
+    <div class="del_post_com" style="float: right; display: none; cursor: pointer;" onclick="DeletePostComment('<%= @post.id %>', '<%= comnt.id %>');">
+        <img src="/images/icon-ing.gif">
+    </div><% end %>
   <div class="AsDcomImg"><%= show_image_user_post(comnt.user) %></div>
   <div class="AsDcomItemR">
     <div class="AsDcomName">Answer by<%= show_user_post(comnt.user) %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %></div>
@@ -16,3 +20,12 @@
     </div>
   </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $(".AsDcomItem").hover(function(){
+            $(".del_post_com", this).show();
+        }, function(){
+            $(".del_post_com", this).hide();
+        });
+    });
+</script>

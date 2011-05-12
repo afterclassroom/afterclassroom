@@ -59,7 +59,11 @@ class PostParty < ActiveRecord::Base
 
   def self.related_posts(school, status)
     posts = []
-    post_as = self.random(5).with_school(school).with_status(status)
+    if status
+      post_as = self.random(5).with_school(school).with_status(status)
+    else
+      post_as = self.random(5).with_school(school)
+    end
     post_as.select {|p| posts << p.post}
     posts
   end

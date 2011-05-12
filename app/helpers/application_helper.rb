@@ -508,7 +508,7 @@ module ApplicationHelper
   end
   
   def show_go_back
-    link_to raw("<span>Go back</span>"), session[:return_to]
+    link_to raw("<span>Go back</span>"), "javascript:history.back();"
   end
   
   # id : id of post

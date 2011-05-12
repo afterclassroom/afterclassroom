@@ -72,7 +72,11 @@ class PostHousing < ActiveRecord::Base
 
   def self.related_posts(school, category_id)
     posts = []
-    post_as = self.random(5).with_school(school).with_category(category_id)
+    if category_id
+      post_as = self.random(5).with_school(school).with_category(category_id)
+    else
+      post_as = self.random(5).with_school(school)
+    end
     post_as.select {|p| posts << p.post}
     posts
   end

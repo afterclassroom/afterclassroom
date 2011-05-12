@@ -27,9 +27,6 @@ class PostMyx < ActiveRecord::Base
   scope :previous, lambda { |att| {:conditions => ["post_myxes.id < ?", att]} }
   scope :next, lambda { |att| {:conditions => ["post_myxes.id > ?", att]} }
 
-  # Tags
-  
-
   def self.paginated_post_conditions_with_option(params, school, rating_status)
     over = 30 || params[:over].to_i
     year = params[:year]
@@ -60,7 +57,11 @@ class PostMyx < ActiveRecord::Base
 
   def self.related_posts(school, status)
     posts = []
-    post_as = self.random(5).with_school(school).with_status(status)
+    if status
+      post_as = self.random(5).with_school(school).with_status(status)
+    else
+      post_as = self.random(5).with_school(school)
+    end
     post_as.select {|p| posts << p.post}
     posts
   end
