@@ -204,10 +204,6 @@
     </div>
 </div>
 <script>
-    $(document).ready(function(){
-        $(".menuPrivate").custSelectBox();
-    });
-	
 	function share_select(val, tp) { 
 		$.ajax({
 			url: '<%= save_private_setting_user_settings_path(current_user) %>',
