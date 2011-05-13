@@ -32,6 +32,7 @@ javascripts:
     - public/javascripts/jquery-validate.js
     - public/javascripts/jquery.metadata.js
     - public/javascripts/jquery.autogeocomplete.js
+    - public/javascripts/tinysort.js
   student_lounge:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js

@@ -13,14 +13,26 @@ end %>
 <div class="col300 Br-by-sub">
     <div class="col300in">
         <h1 class="col300Title"><%= text %></h1>
+        <% if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
+        <div style="float: right; position: relative; margin-top: -27px; cursor: pointer;" id="open_menu">
+            <img src="/images/open.png">
+        </div><% end %>
         <div class="col300Cont">
             <% if tags and tags.to_a.size > 0 %>
             <div class="tabClouse">
+                <div id="tags_button">
+                </div>
                 <% if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
-                <% tag_cloud tags, %w(sub1 sub2 sub3 sub4 sub5 sub6) do |tag, css_class| %>
-                <%= link_to tag.name, { :action => :tag, :tag_name => tag.name }, :class => css_class %>
-                <% end %>
-                <% esle %>
+                <div id="tags">
+                    <ul>
+                        <% tags.each do |tag| %>
+                        <li class="tag<%= tag.count %>">
+                            <%= link_to tag.name, { :action => :tag, :tag_name => tag.name } %>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <% else %>
                 <%= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
                 <% end %>
             </div>
@@ -28,3 +40,45 @@ end %>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+    
+        // create a style switch button
+        var switcher = $('<a href="javascript:void(0)" class="btn">Change appearance</a>').toggle(function(){
+            $("#tags ul").hide().addClass("alt").fadeIn("fast");
+        }, function(){
+            $("#tags ul").hide().removeClass("alt").fadeIn("fast");
+        });
+        $('#tags_button').append(switcher);
+        
+        // create a sort by alphabet button
+        var sortabc = $('<a href="javascript:void(0)" class="btn">Sort alphabetically</a>').toggle(function(){
+            $("#tags ul li").tsort({
+                order: "asc"
+            });
+        }, function(){
+            $("#tags ul li").tsort({
+                order: "desc"
+            });
+        });
+        $('#tags_button').append(sortabc);
+        
+        // create a sort by alphabet button	
+        var sortstrength = $('<a href="javascript:void(0)" class="btn">Sort by strength</a>').toggle(function(){
+            $("#tags ul li").tsort({
+                order: "desc",
+                attr: "class"
+            });
+        }, function(){
+            $("#tags ul li").tsort({
+                order: "asc",
+                attr: "class"
+            });
+        });
+        $('#tags_button').append(sortstrength);
+        
+        $('#open_menu').click(function(){
+            $('#tags_button').toggle("slow");
+        });
+    });
+</script>

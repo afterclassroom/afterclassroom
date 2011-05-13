@@ -10,8 +10,8 @@ class PostExamSchedule < ActiveRecord::Base
   scope :due_date, :conditions => ["post_exam_schedules.due_date > ?", Time.now], :order => "due_date DESC"
   scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_exam_schedules.post_id And favorable_type = ?) > ?", "Post", 10]
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  scope :previous, lambda { |att| {:conditions => ["post_exam_schedules.id < ?", att]} }
-  scope :next, lambda { |att| {:conditions => ["post_exam_schedules.id > ?", att]} }
+  scope :previous, lambda { |att| {:conditions => ["post_exam_schedules.id < ?", att], :order => "id ASC"} }
+  scope :nexts, lambda { |att| {:conditions => ["post_exam_schedules.id > ?", att], :order => "id ASC"} }
 
   # Tags
   acts_as_taggable_on :tags

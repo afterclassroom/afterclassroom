@@ -22,8 +22,8 @@ class PostQa < ActiveRecord::Base
   scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_qas.post_id And favorable_type = ?) > ?", "Post", 10]
   scope :top_answer, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 10]
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  scope :previous, lambda { |att| {:conditions => ["post_qas.id < ?", att]} }
-  scope :next, lambda { |att| {:conditions => ["post_qas.id > ?", att]} }
+  scope :previous, lambda { |att| {:conditions => ["post_qas.id < ?", att], :order => "id ASC"} }
+  scope :nexts, lambda { |att| {:conditions => ["post_qas.id > ?", att], :order => "id ASC"} }
 
   def self.paginated_post_conditions_with_option(params, school, type)
     if type == "answered"
@@ -105,7 +105,7 @@ class PostQa < ActiveRecord::Base
   def self.paginated_post_conditions_with_top_answer(params, school)
     arr_p = []
     post_qa = self.with_school(school).top_answer
-    post_qa.select {|p| arr_p << p.post if p.post.comments.size == 0}
+    post_qa.select {|p| arr_p << p.post}
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
   

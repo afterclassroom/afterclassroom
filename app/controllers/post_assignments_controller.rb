@@ -67,7 +67,7 @@ class PostAssignmentsController < ApplicationController
     @post = @post_assignment.post
     update_view_count(@post)
     posts_as = PostAssignment.with_school(@school)
-    as_next = posts_as.next(@post_assignment.id).first
+    as_next = posts_as.nexts(@post_assignment.id).last
     as_prev = posts_as.previous(@post_assignment.id).first
     @next = as_next if as_next
     @prev = as_prev if as_prev

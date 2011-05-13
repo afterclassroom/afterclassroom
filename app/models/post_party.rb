@@ -25,8 +25,8 @@ class PostParty < ActiveRecord::Base
   scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  scope :previous, lambda { |att| {:conditions => ["post_parties.id < ?", att]} }
-  scope :next, lambda { |att| {:conditions => ["post_parties.id > ?", att]} }
+  scope :previous, lambda { |att| {:conditions => ["post_parties.id < ?", att], :order => "id ASC"} }
+  scope :nexts, lambda { |att| {:conditions => ["post_parties.id > ?", att], :order => "id ASC"} }
 
   def self.paginated_post_conditions_with_option(params, school, rating_status)
     over = 30 || params[:over].to_i
