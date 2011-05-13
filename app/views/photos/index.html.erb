@@ -100,12 +100,11 @@
   function submit(){
     $("#form_new").submit();
   }
-  $().ready(function() {
+  $(document).ready(function() {
     $("#form_new").validate({
       errorLabelContainer: $("#form_new div.stoError")
     });
+		formatLinkForPaginationURLFriendPhoto();
+  	formatLinkForPaginationURLMyPhoto();
   });
-
-  formatLinkForPaginationURLFriendPhoto();
-  formatLinkForPaginationURLMyPhoto();
 </script>
