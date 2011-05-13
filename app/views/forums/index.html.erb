@@ -1,3 +1,4 @@
+
 <% content_for :you_are_here do -%>
   You are here: <a href="/">Help Information</a>
 <% end -%>
@@ -59,10 +60,12 @@
 
 
 
-
-
-
+<% if @controller.action_name() == "index" %> 
           <%= will_paginate @forums %>
+<% end %>
+
+
+
 
           <% @forums.each do |fr| %>
             <div class="helpItem">
@@ -164,9 +167,7 @@
 
 
 
-
-
-          <div class="allDis"><a href="#">Browse all discussions</a></div>
+          <div class="allDis" id="browse_all"><%= link_to raw("Browse all discussions"), browse_user_forums_path(current_user) %></div>
         </div>
       </div>
     </div>

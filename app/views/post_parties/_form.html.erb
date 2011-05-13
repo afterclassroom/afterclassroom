@@ -19,6 +19,7 @@
     <div class="postTit">Address</div>
     <div class="postInp"><%= f.text_field :address, :style => "width:208px" %></div>
   </div>
+	<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_party_address" } %>
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => true} %>
   <%= render :partial => "/shared/form_post/select_tag" %>
   <div style="margin-left:120px">

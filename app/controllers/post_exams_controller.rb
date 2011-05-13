@@ -58,7 +58,7 @@ class PostExamsController < ApplicationController
     @post = @post_exam.post
     update_view_count(@post)
     posts_as = PostExam.with_school(@school)
-    as_next = posts_as.next(@post_exam.id).first
+    as_next = posts_as.nexts(@post_exam.id).last
     as_prev = posts_as.previous(@post_exam.id).first
     @next = as_next if as_next
     @prev = as_prev if as_prev

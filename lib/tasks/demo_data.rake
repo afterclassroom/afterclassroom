@@ -31,6 +31,10 @@ namespace :db do
       create_demo_posts_qas
       create_demo_posts_events
 
+      # Create forum (Help) data
+#      create_demo_posts_forums
+
+
       # Exam schedule
       create_demo_posts_exam_schedules
       # Messages data
@@ -38,8 +42,11 @@ namespace :db do
       # Story
       create_demo_stories
 
+<<<<<<< HEAD
       #create_demo_posts_forums
 
+=======
+>>>>>>> 4ac936a4af1e0ba95e276a91538fdd43116bd1b7
     end
     
     desc 'Remove demo data'
@@ -620,15 +627,15 @@ def get_random_list_tags
   arr_list_tag[rand(arr_list_tag.size).to_i]
 end
 
-def create_demo_posts_forums
-  20.times do
-    user = User.find(rand(User.count).to_i + 1)
+#def create_demo_posts_forums
+#  20.times do
+#    user = User.find(rand(User.count).to_i + 1)
     
-    Forums.create do |p|
-      p.user = user
-      p.title = Faker::Lorem.sentence
-      p.content = Faker::Lorem.paragraphs
-    end
-  end    
-end
+#    Forums.create do |p|
+#      p.user = user
+#      p.title = Faker::Lorem.sentence
+#      p.content = Faker::Lorem.paragraphs
+#    end
+#  end    
+#end
 

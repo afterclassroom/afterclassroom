@@ -19,7 +19,7 @@
 
         <!--List Items-->
         <% @posts.each do |post| %>
-          <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description} %></div>
+          <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => controller.controller_name} %></div>
         <% end %>
         <!--List Items-->
 

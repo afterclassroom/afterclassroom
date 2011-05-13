@@ -20,8 +20,8 @@ class PostHousing < ActiveRecord::Base
   scope :with_school, lambda { |sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"} }
   scope :with_category, lambda{ |ct| {:joins => :housing_categories, :conditions => ["housing_categories.id = ?", ct]} }
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  scope :previous, lambda { |att| {:conditions => ["post_housings.id < ?", att]} }
-  scope :next, lambda { |att| {:conditions => ["post_housings.id > ?", att]} }
+  scope :previous, lambda { |att| {:conditions => ["post_housings.id < ?", att], :order => "id ASC"} }
+  scope :nexts, lambda { |att| {:conditions => ["post_housings.id > ?", att], :order => "id ASC"} }
 
   def self.paginated_post_conditions_with_option(params, school, category_id)
     over = 30 || params[:over].to_i
@@ -72,7 +72,11 @@ class PostHousing < ActiveRecord::Base
 
   def self.related_posts(school, category_id)
     posts = []
-    post_as = self.random(5).with_school(school).with_category(category_id)
+    if category_id
+      post_as = self.random(5).with_school(school).with_category(category_id)
+    else
+      post_as = self.random(5).with_school(school)
+    end
     post_as.select {|p| posts << p.post}
     posts
   end

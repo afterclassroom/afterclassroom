@@ -83,7 +83,7 @@ class PostTeamupsController < ApplicationController
     @teamup_category_id = @post_teamup.teamup_category_id
     update_view_count(@post)
     posts_as = PostTeamup.with_school(@school).with_category(@teamup_category_id)
-    as_next = posts_as.next(@post_teamup.id).first
+    as_next = posts_as.nexts(@post_teamup.id).last
     as_prev = posts_as.previous(@post_teamup.id).first
     @next = as_next if as_next
     @prev = as_prev if as_prev

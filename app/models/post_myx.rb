@@ -24,11 +24,8 @@ class PostMyx < ActiveRecord::Base
   scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  scope :previous, lambda { |att| {:conditions => ["post_myxes.id < ?", att]} }
-  scope :next, lambda { |att| {:conditions => ["post_myxes.id > ?", att]} }
-
-  # Tags
-  
+  scope :previous, lambda { |att| {:conditions => ["post_myxes.id < ?", att], :order => "id ASC"} }
+  scope :nexts, lambda { |att| {:conditions => ["post_myxes.id > ?", att], :order => "id ASC"} }
 
   def self.paginated_post_conditions_with_option(params, school, rating_status)
     over = 30 || params[:over].to_i
@@ -60,7 +57,11 @@ class PostMyx < ActiveRecord::Base
 
   def self.related_posts(school, status)
     posts = []
-    post_as = self.random(5).with_school(school).with_status(status)
+    if status
+      post_as = self.random(5).with_school(school).with_status(status)
+    else
+      post_as = self.random(5).with_school(school)
+    end
     post_as.select {|p| posts << p.post}
     posts
   end

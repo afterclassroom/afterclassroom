@@ -12,7 +12,7 @@
             <div class="assDes">
                 <div class="assImg">
                     <div>
-                        <%= link_to image_post_thumb(controller.controller_name, post), post.post_book %>
+                        <%= link_to image_post_thumb(controller_name, post), post.post_book %>
                     </div>
                 </div>
                 <%= truncate_words(description) %>
@@ -49,6 +49,9 @@
                 </div>
                 <div class="com">
                     <%= show_comment_button(post.id, post.comments.size) %>
+                </div>
+								<div class="myMap">
+                    <%= show_map(post.post_book.address, post.title) %>
                 </div>
             </div>
         </div>

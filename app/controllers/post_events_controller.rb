@@ -70,7 +70,7 @@ class PostEventsController < ApplicationController
     @event_type_id = @post_event.event_type.id
     update_view_count(@post)
     posts_as = PostEvent.with_school(@school).with_type(@event_type_id)
-    as_next = posts_as.next(@post_event.id).first
+    as_next = posts_as.nexts(@post_event.id).last
     as_prev = posts_as.previous(@post_event.id).first
     @next = as_next if as_next
     @prev = as_prev if as_prev

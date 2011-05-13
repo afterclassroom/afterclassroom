@@ -204,9 +204,12 @@
     </div>
 </div>
 <script>
-    $(document).ready(function(){
-        $(".menuPrivate").custSelectBox();
-    });
+	$(document).ready(function(){
+		$('.menuPrivate').change(function()
+		{
+		   share_select($(this).attr('value'), $(this).attr('id'));
+		});
+	});
 	
 	function share_select(val, tp) { 
 		$.ajax({

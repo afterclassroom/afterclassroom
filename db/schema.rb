@@ -168,9 +168,9 @@ ActiveRecord::Schema.define(:version => 20110428071404) do
   end
 
   create_table "forums", :force => true do |t|
+    t.integer  "user_id",    :null => false
     t.string   "title"
     t.string   "content"
-    t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

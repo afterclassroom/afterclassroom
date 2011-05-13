@@ -14,13 +14,13 @@
             <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-            $(".proList").hover(function(){
-                $(".del_post_com", this).show();
-            }, function(){
-                $(".del_post_com", this).hide();
-            });
-        });
-    </script>
 </div>
+<script>
+    $(document).ready(function(){
+        $(".proList").hover(function(){
+            $(".del_post_com", this).show();
+        }, function(){
+            $(".del_post_com", this).hide();
+        });
+    });
+</script>

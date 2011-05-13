@@ -67,7 +67,7 @@ class PostProjectsController < ApplicationController
     @post = @post_project.post
     update_view_count(@post)
     posts_as = PostProject.with_school(@school)
-    as_next = posts_as.next(@post_project.id).first
+    as_next = posts_as.nexts(@post_project.id).last
     as_prev = posts_as.previous(@post_project.id).first
     @next = as_next if as_next
     @prev = as_prev if as_prev

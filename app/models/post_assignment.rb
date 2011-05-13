@@ -16,8 +16,8 @@ class PostAssignment < ActiveRecord::Base
   scope :due_date, :conditions => ["post_assignments.due_date > ?", Time.now], :order => "due_date ASC"
   scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_assignments.post_id And favorable_type = ?) > ?", "Post", 10]
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  scope :previous, lambda { |att| {:conditions => ["post_assignments.id < ?", att]} }
-  scope :next, lambda { |att| {:conditions => ["post_assignments.id > ?", att]} }
+  scope :previous, lambda { |att| {:conditions => ["post_assignments.id < ?", att], :order => "id ASC"} }
+  scope :nexts, lambda { |att| {:conditions => ["post_assignments.id > ?", att], :order => "id ASC"} }
   
   def self.paginated_post_conditions_with_option(params, school)
     over = 30 || params[:over].to_i

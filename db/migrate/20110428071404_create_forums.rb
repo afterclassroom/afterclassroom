@@ -1,11 +1,9 @@
-# © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class CreateForums < ActiveRecord::Migration
   def self.up
     create_table :forums do |t|
+      t.belongs_to :user, :null => false
       t.string :title
       t.string :content
-      t.belongs_to :user, :null => false
-
       t.timestamps
     end
   end
