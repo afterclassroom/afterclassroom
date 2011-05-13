@@ -41,12 +41,9 @@ namespace :db do
       create_demo_messages
       # Story
       create_demo_stories
-
-<<<<<<< HEAD
+      
       #create_demo_posts_forums
 
-=======
->>>>>>> 4ac936a4af1e0ba95e276a91538fdd43116bd1b7
     end
     
     desc 'Remove demo data'
