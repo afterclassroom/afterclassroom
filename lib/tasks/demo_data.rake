@@ -38,7 +38,7 @@ namespace :db do
       # Story
       create_demo_stories
 
-      create_demo_posts_forums
+      #create_demo_posts_forums
 
     end
     
