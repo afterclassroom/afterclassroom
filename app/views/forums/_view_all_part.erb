@@ -1,5 +1,5 @@
                  <% @fr.comments.each do |cmt| %>
-                   <div id="" class="proList" style="margin-left: 45px;">
+                   <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
                      <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
                        <img src="/images/icon-ing.gif">
                      </div>
@@ -27,7 +27,7 @@
 
                <div id="current_cmt_<%= @fr.id %>" class="proListH1" style = "display: none;">
                  <form>
-                   <div class="proListPic"><a href="/users/2"><div><img title="<%= current_user.name %>" src="/system/avatars/2/thumb/jhedrick.jpg?1303782033" class="vtip"></img></div></a></div>
+                   <div class="proListPic"><%= show_image_user_post(@fr.user) %></div>
                    <div class="proListR">
                      <div class="writeCom"><textarea name="comment" id="comment_<%= @fr.id.to_s %>"></textarea></div>
                    </div>
@@ -46,6 +46,9 @@ function showForumCmtForm<%= @fr.id %>(){
   $('#fr_comment_<%= @fr.id %>').toggle(); /* hide link to box */
 }
 $(document).ready(function() {
+  ShowHideDelIcon();
+
+
   $('#save_<%= @fr.id.to_s %>').click(function(){
      var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
      if (strContent == '')

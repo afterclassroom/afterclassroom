@@ -102,7 +102,7 @@
                 <% count = 0 %>
                 <% fr.comments.each do |cmt| %>
 
-                  <div id="" class="proList" style="margin-left: 45px;">
+                  <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
                     <div onclick="DeleteForumComment(<%= fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
                       <img src="/images/icon-ing.gif">
                     </div>
@@ -138,7 +138,7 @@
 
                 <div class="proListH1">
                   <form>
-                    <div class="proListPic"><a href="/users/2"><div><img title="John" src="/system/avatars/2/thumb/jhedrick.jpg?1303782033" class="vtip"></img></div></a></div>
+                    <div class="proListPic"><%= show_image_user_post(fr.user) %></div>
                     <div class="proListR">
                       <div class="writeCom"><textarea name="comment" id="comment_<%= fr.id.to_s %>"></textarea></div>
                     </div>
@@ -288,17 +288,15 @@
       buttons: {
         Ok: function() {
           $(this).dialog('close');
+
           $.ajax({
             url: delPath,
             type: 'GET',
             dataType: 'html',
             data: 'comment_id=' + comment_id + '&forum_id=' + forum_id,
             success: function(html){
-              alert('success delete comment');
-              /*
-              $('#post_' + post_id + '_comment_' + comment_id).toggle("slow");
-                          $('#post_' + post_id + '_comments').html(html);
-               */
+              $('#cmt_id_'+comment_id).toggle();
+              $('#answ_'+forum_id).html('Answer ('+html+')');
             }
           });
         },
