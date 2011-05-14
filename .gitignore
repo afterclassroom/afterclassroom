@@ -10,6 +10,7 @@ config/database.yml
 db/sphinx/**/*
 doc/api
 doc/app
+public/assets/**/*
 public/system/attaches/**/*
 public/system/avatars/**/*
 public/system/uploaded_files/**/*

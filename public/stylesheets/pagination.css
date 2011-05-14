@@ -1,13 +1,10 @@
 .assPage
 {
     float:left;
-    /*margin-right:15px;*/
-    /*padding:10px 0px 10px 0px;
+    padding:10px 0px 10px 10px;
     color:#6f6f63;
     font-size:11px;
-    }
-    .assPage span {
-  /*padding:0px 4px*/ }
+ }
 .assPage span.disabled
 {
     margin-right: 4px;

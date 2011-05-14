@@ -57,6 +57,7 @@
         <div id="tipfriends" class="tip">
           <ul>
             <li><%= link_to "Friends", user_friends_path(current_user) %></li>
+						<li><%= link_to "| Friend request", friend_request_user_friends_path(current_user) %></li>
           </ul>
         </div>
       </li>
