@@ -30,7 +30,6 @@
             <div class="AsDsearchH">
               <%= render :partial => "search_help" %>
             </div>
-            <div class="helpCom"><a href="#">Community Help Forum</a></div>
             <div class="helpPost"><a></a></div>
 
             <div id="headerDivImg"><span class="postAQues"></span><a id="imageDivLink" onclick="javascript:toggle5('contentDivImg', 'imageDivLink');"><img src="/images/helpPostSh08.png"></a></div>
@@ -71,7 +70,13 @@
             <div class="helpItem">
               <div class="helpT"><a href="#"><%= fr.title %></a></div>
               <div class="helpD">Donec vel ipsum massa. Integer nunc orci, pellentesque et mollis a, fringilla ac elit. Integer elementum nibh ac quam egestas bibendum.</div>
-              <div class="helpDis"><a href="#">20956 discussions</a></div>
+              <div class="helpDis"><a href="javascript:;">
+
+                        <%= distance_of_time_in_words_to_now(fr.created_at, false) + " ago." %>
+
+
+
+</a></div>
               <div class="comH"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
 
               <div class="slidingDivH1" style="display:none;" id="forum_list_comment_<%= fr.id %>">
