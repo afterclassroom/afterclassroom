@@ -8,9 +8,15 @@ class ForumsController < ApplicationController
 
   def browse
     @forums = Forum.find(:all)
-    #render :text => "HELLO WORLD"
     render :template => 'forums/index' 
   end
+
+  def search
+    #@forums = Forum.find(:all)
+    @forums = Forum.paginated_forum_with_search(params).results
+    render :template => 'forums/index' 
+  end
+
 
   def delcmt
     puts "DEL OPERATION::: comment_id == "+params[:comment_id]

@@ -60,7 +60,7 @@
 
 
 
-<% if @controller.action_name() == "index" %> 
+<% if controller.action_name == "index" %> 
           <%= will_paginate @forums %>
 <% end %>
 
