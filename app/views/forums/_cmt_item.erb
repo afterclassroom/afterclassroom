@@ -1,4 +1,4 @@
-                   <div id="" class="proList" style="margin-left: 45px;">
+                   <div id="cmt_id_<%= @obj_comment.id %>" class="proList" style="margin-left: 45px;">
                      <div onclick="DeleteForumComment(<%= @fr.id %>, <%= @obj_comment.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
                        <img src="/images/icon-ing.gif">
                      </div>
@@ -19,3 +19,9 @@
                      </div>
 
                    </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  ShowHideDelIcon();
+});
+</script>

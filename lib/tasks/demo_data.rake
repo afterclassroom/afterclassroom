@@ -41,6 +41,8 @@ namespace :db do
       create_demo_messages
       # Story
       create_demo_stories
+      
+      #create_demo_posts_forums
 
     end
     

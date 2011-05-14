@@ -8,24 +8,27 @@ class ForumsController < ApplicationController
 
   def browse
     @forums = Forum.find(:all)
-    #render :text => "HELLO WORLD"
     render :template => 'forums/index' 
   end
+
+  def search
+    #@forums = Forum.find(:all)
+    @forums = Forum.paginated_forum_with_search(params).results
+    render :template => 'forums/index' 
+  end
+
 
   def delcmt
     puts "DEL OPERATION::: comment_id == "+params[:comment_id]
     puts "DEL OPERATION:::: forum_id == "+params[:forum_id]
-    puts "DEL OPERATION"
-    puts "DEL OPERATION"
-    puts "DEL OPERATION"
-    puts "DEL OPERATION"
-    puts "DEL OPERATION"
-    puts "DEL OPERATION"
-    puts "DEL OPERATION"
-    puts "DEL OPERATION"
-    puts "DEL OPERATION"
-    puts "DEL OPERATION"
-    render :text => "response from delcmt"
+    fr = Forum.find(params[:forum_id])
+    comment = fr.comments.find(params[:comment_id])
+
+    if fr.user == current_user or comment.user == current_user
+      comment.destroy
+    end
+
+    render :text => fr.comments.size
   end
 
   def view_all_comments
@@ -50,11 +53,6 @@ class ForumsController < ApplicationController
     @obj_comment.save
 
     @fr.comments << @obj_comment
-
-
-    puts "after save comment :::: "+@fr.comments.length.to_s
-
-    # render :text => "text from save_cmt "+params[:content]
   end
 
   def addfr

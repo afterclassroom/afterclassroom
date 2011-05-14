@@ -7,7 +7,7 @@ Capfile
 log/*.log
 tmp/**/*
 config/database.yml
-db/sphinx/**/*
+solr/**/*
 doc/api
 doc/app
 public/assets/**/*

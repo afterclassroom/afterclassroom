@@ -1,4 +1,12 @@
-<form id="search_help_query" name="search" action="" method="get">
-  <div class="textSH"><input type="text"  name="search_help[query]" value="<%= @query %>" /></div>
-  <div class="btmSH"><a href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
+<form id="search_help_query" name="search" action="<%= search_user_forums_path(current_user) %>" method="get">
+  <div class="textSH"><input type="text"  name="search_txt" value="" /></div>
+  <div class="btmSH"><a href="javascript:;" id="button_src"><img src="/images/iconSF.png"/></a></div>
 </form>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#button_src').click(function(){
+      $(this).parents().find('form').eq(0).submit();
+    });
+  });
+</script>
