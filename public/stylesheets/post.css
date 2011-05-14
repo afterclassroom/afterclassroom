@@ -1096,7 +1096,7 @@ span.btmDown a:hover {
 
 .AsDcomItemR {
     float: left;
-    width: 545px;
+    width: 530px;
     padding-left: 5px;
 }
 
@@ -2200,8 +2200,9 @@ span.btmCom a:hover {
 .jobCom {
     overflow: hidden;
     padding-bottom: 3px;
-    margin-right: 10px;
+    margin-left: 20px;
     border-top: 1px #e3e3e3 solid;
+    width:620px;
 }
 
 .jobCom .titleH1 {

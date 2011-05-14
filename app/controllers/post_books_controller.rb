@@ -109,7 +109,7 @@ class PostBooksController < ApplicationController
     @book_type_id = @post_book.book_type_id
     update_view_count(@post)
     posts_as = PostBook.with_school(@school).with_type(@book_type_id)
-    as_next = posts_as.next(@post_book.id).first
+    as_next = posts_as.nexts(@post_book.id).last
     as_prev = posts_as.previous(@post_book.id).first
     @next = as_next if as_next
     @prev = as_prev if as_prev

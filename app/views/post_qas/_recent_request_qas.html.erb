@@ -13,7 +13,7 @@
           <div class="recentInf">
             <div class="recentName"><%= show_user_post(qa.post.user) %></div>
             <div class="recentUni"><span>at</span><%= link_to qa.post.school.name, :controller => "post_qas", :action => "index", :from_school => qa.post.school, :type => @type %></div>
-            <div class="recentDes"><%= link_to qa.post.title, post_project_path(qa) %></div>
+            <div class="recentDes"><%= link_to qa.post.title, post_qa_path(qa) %></div>
           </div>
         </div>
       <% end %>

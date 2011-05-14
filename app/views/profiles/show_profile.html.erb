@@ -1,0 +1,31 @@
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'submenu' %>
+<% end -%>
+
+<div class="contMainC">
+  <%= render :partial => "proc" %>
+  <%= render :partial => "infor" %>
+  <%= render :partial => "friends" %>
+  <%#= render :partial => "links" %>
+</div>
+
+<div class="contMainL">
+  <div class="col451 proCen">
+    <div class="col451in">
+      <div class="proCenCont">
+        <div class="proInfTop"><%= show_infor() %></div>
+        <%= render :partial => "basic_infor" %>
+        <%= render :partial => "contact_infor" %>
+        <%= render :partial => "edu_infor" %>
+        <%= render :partial => "work_infor" %>
+        <%#= render :partial => "group" %>
+        <%= render :partial => "my_fans" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>

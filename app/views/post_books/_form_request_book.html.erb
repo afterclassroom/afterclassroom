@@ -55,6 +55,7 @@ type ||= 1 %>
                     <%= f.text_field :address %>
                 </div>
             </div>
+						<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_book_address" } %>
             <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
             <%= render :partial => "/shared/form_request_post/select_tag" %>
             <%= show_simple_captcha(:label => "CAPTCHA Code *") %>

@@ -10,8 +10,8 @@ class PostExamSchedule < ActiveRecord::Base
   scope :due_date, :conditions => ["post_exam_schedules.due_date > ?", Time.now], :order => "due_date DESC"
   scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_exam_schedules.post_id And favorable_type = ?) > ?", "Post", 10]
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  scope :previous, lambda { |att| {:conditions => ["post_exam_schedules.id < ?", att]} }
-  scope :next, lambda { |att| {:conditions => ["post_exam_schedules.id > ?", att]} }
+  scope :previous, lambda { |att| {:conditions => ["post_exam_schedules.id < ?", att], :order => "id ASC"} }
+  scope :nexts, lambda { |att| {:conditions => ["post_exam_schedules.id > ?", att], :order => "id ASC"} }
 
   # Tags
   acts_as_taggable_on :tags
@@ -25,7 +25,7 @@ class PostExamSchedule < ActiveRecord::Base
     with_school = from_school if from_school
 
     post_ts = PostExamSchedule.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_exam, post|
-      post_exam.type_name == type
+      post_exam.type = type
       post.department_id == department if department
       post.school_year == year if year
       post.school_id == with_school if with_school
@@ -39,7 +39,7 @@ class PostExamSchedule < ActiveRecord::Base
 
   def self.paginated_post_more_like_this(params, post_like)
     post_ts = PostExamSchedule.ez_find(:all, :include => [:post]) do |post_exam, post|
-      post_exam.type_name = post_like.post_exam_schedule.type
+      post_exam.type = post_like.post_exam_schedule.type
       post.department_id == post_like.department_id
       post.school_year == post_like.school_year
       post.school_id == post_like.school_id

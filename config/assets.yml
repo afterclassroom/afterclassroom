@@ -21,7 +21,7 @@ javascripts:
     - public/javascripts/vtip.js
     - public/javascripts/json.js
     - public/javascripts/jquery-opacityrollover.js
-    - public/javascripts/jquery-gmap.js
+    - public/javascripts/jquery.gmap.js
     - public/javascripts/checkboxmenu.js
     - public/javascripts/drplayer.js
     - public/javascripts/jquery.fancybox.js
@@ -31,6 +31,8 @@ javascripts:
     - public/javascripts/jquery.pnotify.js
     - public/javascripts/jquery-validate.js
     - public/javascripts/jquery.metadata.js
+    - public/javascripts/jquery.autogeocomplete.js
+    - public/javascripts/tinysort.js
   student_lounge:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
@@ -63,6 +65,7 @@ javascripts:
     - public/javascripts/jquery.pnotify.js
     - public/javascripts/jquery-validate.js
     - public/javascripts/jquery.metadata.js
+    - public/javascripts/jquery.autogeocomplete.js
   admin:
     - public/javascripts/jquery.js
     - public/javascripts/jquery-ui.js
@@ -109,6 +112,7 @@ stylesheets:
     - public/stylesheets/checkboxmenu.css
     - public/stylesheets/jquery.fancybox.css
     - public/stylesheets/jquery.pnotify.default.css
+    - public/stylesheets/jquery.autogeocomplete.css
   student_lounge:
     - public/stylesheets/main.css
     - public/stylesheets/post.css

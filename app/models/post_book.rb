@@ -22,8 +22,8 @@ class PostBook < ActiveRecord::Base
   scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
-  scope :previous, lambda { |att| {:conditions => ["post_books.id < ?", att]} }
-  scope :next, lambda { |att| {:conditions => ["post_books.id > ?", att]} }
+  scope :previous, lambda { |att| {:conditions => ["post_books.id < ?", att], :order => "id ASC"} }
+  scope :nexts, lambda { |att| {:conditions => ["post_books.id > ?", att], :order => "id ASC"} }
 
   def self.paginated_post_conditions_with_option(params, school, type_id)
     over = 30 || params[:over].to_i

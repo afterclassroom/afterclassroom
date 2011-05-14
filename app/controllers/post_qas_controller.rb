@@ -114,7 +114,7 @@ class PostQasController < ApplicationController
     @post.comments.size > 0 ? @type = "answered" : @type = "asked"
     update_view_count(@post)
     posts_as = PostQa.with_school(@school).with_type(@type)
-    as_next = posts_as.next(@post_qa.id).first
+    as_next = posts_as.nexts(@post_qa.id).last
     as_prev = posts_as.previous(@post_qa.id).first
     @next = as_next if as_next
     @prev = as_prev if as_prev
