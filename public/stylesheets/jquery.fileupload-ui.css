@@ -82,4 +82,15 @@
 }
 .file_upload_title {
     position: absolute;
+    width       : 485px;
+    white-space : nowrap;
+    overflow    : hidden;
+}
+.file_upload_title_photo {
+    display    : none;
+    position   : absolute;
+    top        : 0px;
+    right      : 0px;
+    z-index    : 2;
+    background : #FFF;
 }

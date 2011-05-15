@@ -2995,7 +2995,7 @@ div.helpAdv2{
     background:transparent url(/images/proBG1.gif) no-repeat scroll 1px 1px;
     height:27px;
     overflow:hidden;
-    padding:10px 12px 0 35px;
+    padding:7px 12px 0 35px;
 }
 .proques{
     float:left;
@@ -3006,6 +3006,7 @@ div.helpAdv2{
     color:#969696;
     font-weight:bold;
     width:100%;
+    margin-top:2px;
 }
 .proPlus{
     float:right;

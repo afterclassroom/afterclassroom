@@ -65,8 +65,11 @@
           }
         }
         return $('<tr><td class="file_upload_preview"><\/td>' +
-          '<td class="file_upload_title">' +
-          fileNames +
+        '<td class="file_upload_title">' +
+        '<span>'+
+          fileNames + 
+          '<\/span>' +
+          '<div class="file_upload_title_photo">.....<\/div>' +
           '<\/td>' +
           '<td class="file_upload_txt_title"><input type="text" value="Title" title="Title" onclick="this.value = \'\';" onblur="this.value = this.value || this.defaultValue;"><\/td>' +
           '<td class="file_upload_progress"><div><\/div><\/td>' +
@@ -172,5 +175,12 @@
   function getFileNode(key) {
     return $('#file_' + key);
   }
+
+  $('.file_upload_title span').each(function(){
+    var $this = $(this);
+    if($this.width() > $this.parent().width()){
+        $this.parent().find('.file_upload_title_photo').show();
+    }
+});
 
 </script>
