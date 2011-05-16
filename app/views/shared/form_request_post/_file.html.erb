@@ -8,10 +8,10 @@
 <div class="postItemB">
     <div id="divinputfile">
         <div class="postItemC">
-            <%= file_field_tag "post[attach]", :onchange => "$('#fakefilepc').val(this.value);", :class => "#{'{validate:{accept:true}}' if only_img } filepc", :size=>"39", :style => "width: 300px", :id => "file_attach" %>
+            <%= file_field_tag "post[attach]", :onchange => "$('#fakefilepc').val(this.value);", :class => "#{'{validate:{accept:true}}' if only_img } filepc", :size=>"11", :id => "file_attach" %>
         </div>
         <div id="fakeinputfile" style="margin-top:-23px">
-            <input name="fakefilepc" type="text" id="fakefilepc">
+            <input name="fakefilepc" type="text" id="fakefilepc"/>
         </div>
     </div>
 </div>
