@@ -63,7 +63,8 @@ a#feedback_link:hover {
 }
 
 a#feedback_link.left {
-  left: 0;
+  right: 0;
+  margin: 0;
   top: 25%;
   width: 26px;
   height: 96px;

@@ -171,6 +171,8 @@ class PostPartiesController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_party = PostParty.new(params[:post_party])
+    @post_party.start_time = DateTime.strptime(params[:start_time], "%m/%d/%Y %I:%M %p") if params[:start_time] != ""
+    @post_party.end_time = DateTime.strptime(params[:end_time], "%m/%d/%Y %I:%M %p") if params[:end_time] != ""
     
     if simple_captcha_valid?  
       @post.save    
@@ -178,7 +180,7 @@ class PostPartiesController < ApplicationController
       @post_party.post = @post
       if @post_party.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_assignment_path(@post_party))
+        post_wall(@post, post_party_path(@post_party))
         redirect_to post_parties_path
       else
         flash[:error] = "Failed to create a new post."
@@ -199,6 +201,8 @@ class PostPartiesController < ApplicationController
     @post = @post_party.post
     
     if (@post_party.update_attributes(params[:post_party]) && @post_party.post.update_attributes(params[:post]))
+      @post_party.start_time = DateTime.strptime(params[:start_time], "%m/%d/%Y %I:%M %p") if params[:start_time] != ""
+      @post_party.end_time = DateTime.strptime(params[:end_time], "%m/%d/%Y %I:%M %p") if params[:end_time] != ""
       @post.school.tag(@post_party, :with => params[:tag], :on => :tags)
       redirect_to post_party_url(@post_party)
     end

@@ -12,6 +12,32 @@
   <%= render :partial => "/shared/form_post/select_school" %>
   <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
+    <div class="postTit">
+        Start time
+    </div>
+    <div class="postInp">
+         <%= text_field_tag :start_time, @post_party.start_time != nil ? @post_party.start_time.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        End time
+    </div>
+    <div class="postInp">
+        <%= text_field_tag :end_time, @post_party.end_time != nil ? @post_party.end_time.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#start_time").datetimepicker({
+            ampm: true
+        });
+        $("#end_time").datetimepicker({
+            ampm: true
+        });
+    });
+</script>
+	<div class="postItem">
     <div class="postTit">Phone</div>
     <div class="postInp"><%= f.text_field :phone, :style => "width:208px" %></div>
   </div>
@@ -22,9 +48,6 @@
 	<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_party_address" } %>
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => true} %>
   <%= render :partial => "/shared/form_post/select_tag" %>
-  <div style="margin-left:120px">
-  	<%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-  </div>
 <% end %>
 
 <script type="text/javascript">

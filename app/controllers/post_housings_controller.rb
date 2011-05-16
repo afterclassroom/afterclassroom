@@ -122,6 +122,7 @@ class PostHousingsController < ApplicationController
       @post_housing.post = @post
       if @post_housing.save
         flash[:notice] = "Your post was successfully created."
+        post_wall(@post, post_housing_path(@post_housing))
         redirect_to post_housings_path
       else
         flash[:error] = "Failed to create a new post."

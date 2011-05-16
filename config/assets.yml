@@ -33,6 +33,7 @@ javascripts:
     - public/javascripts/jquery.metadata.js
     - public/javascripts/jquery.autogeocomplete.js
     - public/javascripts/tinysort.js
+    - public/javascripts/jquery-ui-timepicker-addon.js
   student_lounge:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
