@@ -432,7 +432,7 @@ module ApplicationHelper
     if !logged_in?
       str = link_to_require_login(raw("<span>Become a Fan</span>"))
     else
-      if user.fans.include?(current_user)
+      if user.fans.map(&:user_id).include?(current_user.id)
         str = "You are a fan"
       else
         str = link_to_function raw("<span>Become a Fan</span>"), "become_a_fan('#{become_a_fan_user_friends_path(current_user)}?user_id=#{user.id}')"
