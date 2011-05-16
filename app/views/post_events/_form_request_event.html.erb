@@ -17,6 +17,32 @@ type ||= 1 %>
             <%= fields_for :post do |p| %>
             <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
             <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
+            <div class="reqLa">
+                <label>
+                    Start time
+                </label>
+            </div>
+            <div class="reqTi">
+                <%= text_field_tag :start_time, "", :style => "width:150px" %>
+            </div>
+            <div class="reqLa">
+                <label>
+                    End time
+                </label>
+            </div>
+            <div class="reqTi">
+                <%= text_field_tag :end_time, "", :style => "width:150px" %>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#start_time").datetimepicker({
+											ampm: true
+										});
+										$("#end_time").datetimepicker({
+											ampm: true
+										});
+                });
+            </script>
             <div class="reqSl">
                 <div class="req40">
                     <div class="reqLa">

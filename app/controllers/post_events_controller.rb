@@ -110,6 +110,8 @@ class PostEventsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_event = PostEvent.new(params[:post_event])
+    @post_event.start_time = DateTime.strptime(params[:start_time], "%m/%d/%Y %I:%M %p") if params[:start_time] != ""
+    @post_event.end_time = DateTime.strptime(params[:end_time], "%m/%d/%Y %I:%M %p") if params[:end_time] != ""
     
     if simple_captcha_valid?
       @post.save
@@ -117,6 +119,7 @@ class PostEventsController < ApplicationController
       @post_event.post = @post
       if @post_event.save
         flash.now[:notice] = "Your post was successfully created."
+        post_wall(@post, post_event_path(@post_event))
         redirect_to post_events_path + "?event_type_id=#{@post_event.event_type_id}"
       else
         flash[:error] = "Failed to create a new post."
@@ -135,6 +138,8 @@ class PostEventsController < ApplicationController
     @post = @post_event.post
     
     if (@post_event.update_attributes(params[:post_event]) && @post_event.post.update_attributes(params[:post]))
+      @post_event.start_time = DateTime.strptime(params[:start_time], "%m/%d/%Y %I:%M %p") if params[:start_time] != ""
+      @post_event.end_time = DateTime.strptime(params[:end_time], "%m/%d/%Y %I:%M %p") if params[:end_time] != ""
       @post.school.tag(@post_event, :with => params[:tag], :on => :tags)
       redirect_to post_event_url(@post_event)
     end
