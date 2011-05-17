@@ -1,83 +1,80 @@
 <div class="postItemReCV" style="margin-top: -3px;">
-<%= fields_for :letter do |builder1| %>
-  <div class="postTitt">
-    <%= builder1.label :category, "Cover letter" %><%= builder1.hidden_field :category, :value => "Cover letter" %>
-  </div>
-  <div class="postItemA">
-    <div id="divinputfile" style="margin-left:120px;">
-      <div class="postItemC">
-        <%= builder1.file_field :resume_cv, :size => "39", :class => "filepc", :style => "width:300px" %>
-      </div>
-      <div class="postUpfile">
-        <div id="fakeinputfile" >
-          <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px" /></div>
-      </div>
+    <%= fields_for :letter do |builder1| %>
+    <div class="postTitt">
+        <%= builder1.label :category, "Cover letter" %><%= builder1.hidden_field :category, :value => "Cover letter" %>
     </div>
-  </div>
-<% end %>
+    <div class="postItemA">
+        <div id="divinputfile" style="margin-left:120px;">
+            <div class="postItemC">
+                <%= builder1.file_field :resume_cv, :size => "39", :class => "filepc", :style => "width:300px" %>
+            </div>
+            <div class="postUpfile">
+                <div id="fakeinputfile">
+                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px"/>
+                </div>
+            </div>
+        </div>
+    </div><% end %>
 </div>
-
 <div class="postItemReCV" style="margin-top: -3px;">
-<%= fields_for :transcript do |builder2| %>
-  <div class="postTitt">
-    <%= builder2.label :category, "Transcript" %><%= builder2.hidden_field :category, :value => "Transcript" %>
-  </div>
-  <div class="postItemA">
-    <div id="divinputfile" style="margin-left:120px;">
-      <div class="postItemC">
-        <%= builder2.file_field :resume_cv, :size => "39", :class => "filepc", :style => "width:300px" %>
-      </div>
-      <div class="postUpfile">
-        <div id="fakeinputfile">
-          <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;" /></div>
-      </div>
+    <%= fields_for :transcript do |builder2| %>
+    <div class="postTitt">
+        <%= builder2.label :category, "Transcript" %><%= builder2.hidden_field :category, :value => "Transcript" %>
     </div>
-  </div>
-<% end %>
+    <div class="postItemA">
+        <div id="divinputfile" style="margin-left:120px;">
+            <div class="postItemC">
+                <%= builder2.file_field :resume_cv, :size => "39", :class => "filepc", :style => "width:300px" %>
+            </div>
+            <div class="postUpfile">
+                <div id="fakeinputfile">
+                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;"/>
+                </div>
+            </div>
+        </div>
+    </div><% end %>
 </div>
-
 <div class="postItemReCV" style="margin-top: -3px;">
-<%= fields_for :resume do |builder3| %>
-  <div class="postTitt">
-    <%= builder3.label :category, "Resume*" %><%= builder3.hidden_field :category, :value => "Resume" %>
-  </div>
-  <div class="postItemA">
-    <div id="divinputfile" style="margin-left:120px;">
-      <div class="postItemC">
-        <%= builder3.file_field :resume_cv, :size => "39", :class => "filepc", :style => "width:300px" %>
-      </div>
-      <div class="postUpfile">
-        <div id="fakeinputfile">
-          <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;" /></div>
-      </div>
+    <%= fields_for :resume do |builder3| %>
+    <div class="postTitt">
+        <%= builder3.label :category, "Resume*" %><%= builder3.hidden_field :category, :value => "Resume" %>
     </div>
-  </div>
-<% end %>
+    <div class="postItemA">
+        <div id="divinputfile" style="margin-left:120px;">
+            <div class="postItemC">
+                <%= builder3.file_field :resume_cv, :size => "39", :class => "filepc", :style => "width:300px" %>
+            </div>
+            <div class="postUpfile">
+                <div id="fakeinputfile">
+                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;"/>
+                </div>
+            </div>
+        </div>
+    </div><% end %>
 </div>
-
 <script language="javascript">
-  $(document).ready(function(){
-  $("#letter_resume_cv").change(function(){
-  var coverletter = this.value;
-  $("#letter_resume_cv").siblings().each(function(){
-
-  $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+coverletter+"'/>");
-  });
-  });
-
-  $("#transcript_resume_cv").change(function(){
-  var transcript = this.value;
-  $("#transcript_resume_cv").siblings().each(function(){
-
-  $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+transcript+"'/>");
-  });
-  });
-  $("#resume_resume_cv").change(function(){
-  var resume = this.value;
-  $("#resume_resume_cv").siblings().each(function(){
-
-  $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+resume+"'/>");
-  });
-  });
-  });
+    $(document).ready(function(){
+        $("#letter_resume_cv").change(function(){
+            var coverletter = this.value;
+            $("#letter_resume_cv").siblings().each(function(){
+            
+                $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='" + coverletter + "'/>");
+            });
+        });
+        
+        $("#transcript_resume_cv").change(function(){
+            var transcript = this.value;
+            $("#transcript_resume_cv").siblings().each(function(){
+            
+                $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='" + transcript + "'/>");
+            });
+        });
+        $("#resume_resume_cv").change(function(){
+            var resume = this.value;
+            $("#resume_resume_cv").siblings().each(function(){
+            
+                $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='" + resume + "'/>");
+            });
+        });
+    });
 </script>

@@ -73,15 +73,14 @@ namespace :deploy do
   
   task :start, :roles => :app do
     # Bundle
-    run "cd #{release_path} && bundle install"
-    # Stop Solr
-    run "cd #{release_path} && RAILS_ENV=production rake sunspot:solr:stop"
-    # Reindex
-    run "cd #{release_path} && RAILS_ENV=production rake rake sunspot:reindex"
-    # Start Solr
-    run "cd #{release_path} && RAILS_ENV=production rake sunspot:solr:start"
+    run "cd #{current_path} && bundle install"
     # Start Server
-    run "touch #{current_release}/tmp/restart.txt"
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+  
+  task :before_update_code do
+    # Stop Solr
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:stop"
   end
   
   task :stop, :roles => :app do
@@ -91,16 +90,18 @@ namespace :deploy do
   desc "Restart Application"
   task :restart, :roles => :app do
     # Start Server
-    run "touch #{current_release}/tmp/restart.txt"
+    run "touch #{current_path}/tmp/restart.txt"
   end
+  after "deploy:symlink", "deploy:solr:symlink"
 end
 
-namespace(:customs) do
-  task :symlink, :roles => :app do
-    run <<-CMD
-      ln -nfs #{shared_path}/system/solr #{release_path}/solr
-    CMD
+namespace :solr do
+  desc <<-DESC
+    Symlink in-progress deployment to a shared Solr index.
+  DESC
+  task :symlink, :except => { :no_release => true } do
+    run "ln -nfs #{shared_path}/solr #{current_path}/solr"
+    run "ls -al #{current_path}/solr/pids/"
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:start"
   end
 end
-
-after "deploy:symlink","customs:symlink"
