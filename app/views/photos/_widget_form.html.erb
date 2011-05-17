@@ -94,7 +94,7 @@
         if (!regexp.test(files[index].name)) {
           handler.uploadRow.find('.file_upload_progress').html('ONLY IMAGES ALLOWED!');
           setTimeout(function(){
-            handler.removeNode(handler.uploadRow);
+            handler.removeNode(handler.uploadRow);file_upload_preview
           }, 10000);
           return;
         }
