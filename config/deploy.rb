@@ -69,41 +69,47 @@ namespace :deploy do
       password: 9Jke.w9itA
       database: afterclassroom_test
     EOF
-    
+
     put db_config, "#{release_path}/config/database.yml"
   end
-  
+
   task :start, :roles => :app do
-    # Bundle
+  # Bundle
     run "cd #{current_path} && bundle install"
     # Start Server
     run "touch #{current_path}/tmp/restart.txt"
   end
-  
+
   task :before_update_code do
-    # Stop Solr
+  # Stop Solr
     run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:stop"
   end
-  
+
   task :stop, :roles => :app do
-    # Do nothing.
+  # Do nothing.
   end
-  
+
   desc "Restart Application"
   task :restart, :roles => :app do
-    # Start Server
+  # Start Server
     run "touch #{current_path}/tmp/restart.txt"
   end
   
-  after "deploy:symlink", "deploy:solr:symlink"
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{current_path} && whenever --update-crontab #{application}"
+  end
   
+  after "deploy:symlink", "deploy:solr:symlink"
+  after "deploy:symlink", "deploy:update_crontab"
+
   namespace :solr do
-  desc <<-DESC
+    desc <<-DESC
     Symlink in-progress deployment to a shared Solr index.
   DESC
-  task :symlink, :except => { :no_release => true } do
-    run "ln -nfs #{shared_path}/solr #{current_path}/solr"
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:start"
+    task :symlink, :except => { :no_release => true } do
+      run "ln -nfs #{shared_path}/solr #{current_path}/solr"
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:start"
+    end
   end
-end
 end
