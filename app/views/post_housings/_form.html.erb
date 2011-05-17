@@ -1,35 +1,50 @@
 <%= fields_for @post do |post| %>
-  <div class="postReq">*(asterisk) is required.</div>
-  <div class="postItemDep">
-    <div class="postTit">Type</div>
-    <div>
-      <%= select_tag("post_housing[housing_category_ids][]", options_for_select(HousingCategory.find(:all).collect {|p| [ p.name, p.id ] }, @post_housing.housing_categories), { :include_blank => "Select Type", :multiple => true, :id => "housing_category", :style => "width:340px" }) %>
+<div class="postReq">
+    *(asterisk) is required.
+</div>
+<div class="postItemDep">
+    <div class="postTit">
+        Type
     </div>
-  </div>
-  <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/select_school" %>
-  <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/email" %>
-  <div class="postItem">
-    <div class="postTit">Phone</div>
-    <div class="postInp"><%= f.text_field :phone, :style => "width:208px" %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Address</div>
-    <div class="postInp"><%= f.text_field :address, :style => "width:208px" %></div>
-  </div>
-	<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_housing_address" } %>
-  <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => true} %>
-  <%= render :partial => "/shared/form_post/select_tag" %>
+    <div>
+        <%= select_tag("post_housing[housing_category_ids][]", options_for_select(HousingCategory.find(:all).collect {|p| [ p.name, p.id ] }, @post_housing.housing_categories), { :include_blank => "Select Type", :multiple => true, :id => "housing_category", :style => "width:340px" }) %>
+    </div>
+</div>
+<%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school" %>
+<%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/email" %>
+<div class="postItem">
+    <div class="postTit">
+        Phone
+    </div>
+    <div class="postInp">
+        <%= f.text_field :phone, :style => "width:208px" %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Address
+    </div>
+    <div class="postInp">
+        <%= f.text_field :address, :style => "width:208px" %>
+    </div>
+</div>
+<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_housing_address" } %>
+<%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => true} %>
+<%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
-
 <script type="text/javascript">
-  // 'Select All' text changed
-  $("#housing_category").multiSelect({ selectAllText: 'Select All' });
-  $("#post_description").counter({
-    count: 'up',
-    goal: 900
-  });
+    $(document).ready(function(){
+        // 'Select All' text changed
+        $("#housing_category").multiSelect({
+            selectAllText: 'Select All'
+        });
+        $("#post_description").counter({
+            count: 'up',
+            goal: 900
+        });
+    });
 </script>

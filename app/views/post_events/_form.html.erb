@@ -20,7 +20,7 @@
         Start time
     </div>
     <div class="postInp">
-         <%= text_field_tag :start_time, @post_event.start_time != nil ? @post_event.start_time.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
+        <%= text_field_tag :start_time, @post_event.start_time != nil ? @post_event.start_time.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
     </div>
 </div>
 <div class="postItem">
@@ -69,8 +69,10 @@
     <% end %>
 </ul>
 <script type="text/javascript">
-    $("#post_event_event_type_id").mcDropdown("#event_type_menu", {
-        width: 350,
-        valueAttr: "rel_event_type"
+    $(document).ready(function(){
+        $("#post_event_event_type_id").mcDropdown("#event_type_menu", {
+            width: 350,
+            valueAttr: "rel_event_type"
+        });
     });
 </script>

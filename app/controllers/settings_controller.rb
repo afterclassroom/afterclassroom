@@ -6,10 +6,10 @@ class SettingsController < ApplicationController
   before_filter RubyCAS::Filter
   before_filter :cas_user
   #before_filter :login_required
+  before_filter :require_current_user
   
   def index
     redirect_to :action => "setting"
-    
   end
   
   def save_setting
@@ -112,15 +112,28 @@ class SettingsController < ApplicationController
   end
   
   def save_psw
-    @user = current_user
-    @user.password = params[:password]
-    if @user.save
-      flash[:notice] = "Updated Successfully"
-      redirect_to :action => "setting"
+    if current_user == @user
+      current_password, new_password, new_password_confirmation = params[:current_password], params[:new_password], params[:new_password_confirmation]
+      if User.password_digest(current_password, @user.salt) == @user.crypted_password
+        if new_password == new_password_confirmation
+          if new_password.blank? || new_password_confirmation.blank?
+            flash[:error] = "You cannot set a blank password."
+          else
+            @user.password = new_password
+            @user.password_confirmation = new_password_confirmation
+            @user.save
+            flash[:notice] = "Your password has been updated."
+          end
+        else
+          flash[:error] = "Your new password and it's confirmation don't match."
+        end
+      else
+        flash[:error] = "Your current password is not correct.<br/>Your password has not been updated."
+      end
     else
-      flash[:error] = "Updated Failed"
-      redirect_to :action => "setting"
+      flash[:error] = "You cannot update another user's password!"
     end
+    redirect_to :action => "setting"
   end
   
   def change_name
@@ -128,15 +141,18 @@ class SettingsController < ApplicationController
   end
   
   def save_name
-    @user = current_user
-    @user.name = params[:changed_value]
-    if @user.save
-      flash[:notice] = "Updated Successfully"
-      redirect_to :action => "setting"
+    if current_user == @user
+      @user = current_user
+      @user.name = params[:changed_value]
+      if @user.save
+        flash[:notice] = "Updated your name successfully"
+      else
+        flash[:error] = "Updated your name failed"
+      end
     else
-      flash[:error] = "Updated Failed"
-      redirect_to :action => "setting"
+      flash[:error] = "You cannot update another user's name!"
     end
+    redirect_to :action => "setting"
   end
   
   def change_email
@@ -144,14 +160,24 @@ class SettingsController < ApplicationController
   end
   
   def save_email
-    @user = current_user
-    @user.email = params[:changed_value]
-    if @user.save
-      flash[:notice] = "Updated Successfully"
-      redirect_to :action => "setting"
+    if current_user == @user
+      if @user.update_attributes(:email => params[:email])
+        flash[:notice] = "Your email address has been updated."
+      else
+        flash[:error] = "Your email address could not be updated."
+      end
     else
-      flash[:error] = "Updated Failed"
-      redirect_to :action => "setting"
+      flash[:error] = "You cannot update another user's email address!"
     end
+    redirect_to :action => "setting"
+  end
+  
+  private
+  def require_current_user
+    @user ||= User.find(params[:user_id] || params[:id])
+    unless (@user && (@user.eql?(current_user)))
+      redirect_back_or_default(root_path)and return false
+    end
+    return @user
   end
 end

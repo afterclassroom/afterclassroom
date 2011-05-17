@@ -1,22 +1,26 @@
 <%= fields_for @post do |post| %>
-  <%= display_flash_messages_with_raw %>
-  <div class="postReq">*(asterisk) is required.</div>
-  <div class="postItem">
-    <div class="postTit">Type</div>
-    <div>
-      <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }, @post_party.party_types), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:340px" }) %>
+<%= display_flash_messages_with_raw %>
+<div class="postReq">
+    *(asterisk) is required.
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Type
     </div>
-  </div>
-  <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/select_school" %>
-  <%= render :partial => "/shared/form_post/email" %>
-  <div class="postItem">
+    <div>
+        <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }, @post_party.party_types), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:340px" }) %>
+    </div>
+</div>
+<%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school" %>
+<%= render :partial => "/shared/form_post/email" %>
+<div class="postItem">
     <div class="postTit">
         Start time
     </div>
     <div class="postInp">
-         <%= text_field_tag :start_time, @post_party.start_time != nil ? @post_party.start_time.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
+        <%= text_field_tag :start_time, @post_party.start_time != nil ? @post_party.start_time.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
     </div>
 </div>
 <div class="postItem">
@@ -35,22 +39,29 @@
         $("#end_time").datetimepicker({
             ampm: true
         });
+        // 'Select All' text changed
+        $("#party_type").multiSelect({
+            selectAllText: 'Select All'
+        });
     });
 </script>
-	<div class="postItem">
-    <div class="postTit">Phone</div>
-    <div class="postInp"><%= f.text_field :phone, :style => "width:208px" %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Address</div>
-    <div class="postInp"><%= f.text_field :address, :style => "width:208px" %></div>
-  </div>
-	<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_party_address" } %>
-  <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => true} %>
-  <%= render :partial => "/shared/form_post/select_tag" %>
+<div class="postItem">
+    <div class="postTit">
+        Phone
+    </div>
+    <div class="postInp">
+        <%= f.text_field :phone, :style => "width:208px" %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Address
+    </div>
+    <div class="postInp">
+        <%= f.text_field :address, :style => "width:208px" %>
+    </div>
+</div>
+<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_party_address" } %>
+<%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => true} %>
+<%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
-
-<script type="text/javascript">
-    // 'Select All' text changed
-    $("#party_type").multiSelect({ selectAllText: 'Select All' });
-</script>

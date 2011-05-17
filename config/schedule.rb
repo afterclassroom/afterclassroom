@@ -20,12 +20,8 @@
 # Learn more: http://github.com/javan/whenever
 set :output, "/var/log/cron_log.log"
 
-every 2.hours do
-  rake "cd :path && RAILS_ENV=production rake thinking_sphinx:reindex"
-end
-
 every :reboot do
-  rake "cd :path && RAILS_ENV=production rake thinking_sphinx:start"
+  rake "cd :path && RAILS_ENV=production rake sunspot:solr:start"
   runner "cd /home/after/redis-2.2.2 && src/redis-server redis.conf"
   runner "cd /var/www/juggernaut && nohup node server.js &"
 end

@@ -77,11 +77,9 @@ namespace :deploy do
     # Stop Solr
     run "cd #{release_path} && RAILS_ENV=production rake sunspot:solr:stop"
     # Reindex
-    run "cd #{release_path} && RAILS_ENV=production rake rake sunspot:solr:stop"
+    run "cd #{release_path} && RAILS_ENV=production rake rake sunspot:reindex"
     # Start Solr
     run "cd #{release_path} && RAILS_ENV=production rake sunspot:solr:start"
-    # Delay job
-    run "cd #{release_path} && RAILS_ENV=production script/delayed_job start"
     # Start Server
     run "touch #{current_release}/tmp/restart.txt"
   end
@@ -96,3 +94,13 @@ namespace :deploy do
     run "touch #{current_release}/tmp/restart.txt"
   end
 end
+
+namespace(:customs) do
+  task :symlink, :roles => :app do
+    run <<-CMD
+      ln -nfs #{shared_path}/system/solr #{release_path}/solr
+    CMD
+  end
+end
+
+after "deploy:symlink","customs:symlink"
