@@ -222,8 +222,7 @@ class FriendsController < ApplicationController
   end
   
   def become_a_fan
-    @user_id = params[:user_id]
-    user_follow = User.find(params[:user_id])
+    user_follow = User.find(params[:fan_id])
     
     fan = Fan.new
     fan.user_id = current_user.id

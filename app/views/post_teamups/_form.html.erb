@@ -1,32 +1,36 @@
 <%= fields_for @post do |post| %>
-  <div class="postReq">*(asterisk) is required.</div>
-  <div class="postItemDep">
-    <div class="postTit">Type</div>
-    <div class="postDep"><%= f.text_field :teamup_category_id %></div>
-  </div>
-  <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/select_school" %>
-  <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/email" %>
-  <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
-  <%= render :partial => "/shared/form_post/select_tag" %>
+<div class="postReq">
+    *(asterisk) is required.
+</div>
+<div class="postItemDep">
+    <div class="postTit">
+        Type
+    </div>
+    <div class="postDep">
+        <%= f.text_field :teamup_category_id %>
+    </div>
+</div>
+<%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school" %>
+<%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/email" %>
+<%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
+<%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
-
 <ul id="teamup_category_menu" class="mcdropdown_menu">
-  <% TeamupCategory.find(:all).each do |t| %>
+    <% TeamupCategory.find(:all).each do |t| %>
     <li rel_teamup_category="<%= t.id %>">
-      <%= t.name %>
+        <%= t.name %>
     </li>
-  <% end %>
+    <% end %>
 </ul>
-
 <script type="text/javascript">
-  $("#post_teamup_teamup_category_id").mcDropdown("#teamup_category_menu", {
-    width: 350,
-    valueAttr: "rel_teamup_category"
-  });
+    $(document).ready(function(){
+        $("#post_teamup_teamup_category_id").mcDropdown("#teamup_category_menu", {
+            width: 350,
+            valueAttr: "rel_teamup_category"
+        });
+    });
 </script>
-
-

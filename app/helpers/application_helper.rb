@@ -434,7 +434,7 @@ module ApplicationHelper
       if user.fans.map(&:user_id).include?(current_user.id)
         str = "You are a fan"
       else
-        str = link_to_function raw("<span>Become a Fan</span>"), "become_a_fan('#{become_a_fan_user_friends_path(current_user)}?user_id=#{user.id}')"
+        str = link_to_function raw("<span>Become a Fan</span>"), "become_a_fan('#{become_a_fan_user_friends_path(current_user)}?fan_id=#{user.id}')"
       end
     end
     return str
