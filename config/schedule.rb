@@ -18,6 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+env :MAILTO, 'dungtqa@gmail.com'
+
 set :output, "/var/log/cron_log.log"
 
 every :reboot do

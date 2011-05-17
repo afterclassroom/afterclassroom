@@ -1,3 +1,5 @@
+require "whenever/capistrano"
+
 #############################################################
 # Application
 #############################################################
@@ -92,16 +94,16 @@ namespace :deploy do
     # Start Server
     run "touch #{current_path}/tmp/restart.txt"
   end
+  
   after "deploy:symlink", "deploy:solr:symlink"
-end
-
-namespace :solr do
+  
+  namespace :solr do
   desc <<-DESC
     Symlink in-progress deployment to a shared Solr index.
   DESC
   task :symlink, :except => { :no_release => true } do
     run "ln -nfs #{shared_path}/solr #{current_path}/solr"
-    run "ls -al #{current_path}/solr/pids/"
     run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:start"
   end
+end
 end

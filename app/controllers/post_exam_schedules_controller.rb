@@ -124,6 +124,7 @@ class PostExamSchedulesController < ApplicationController
       @post_exam_schedule.post = @post
       if @post_exam_schedule.save
         flash[:notice] = "Your post was successfully created."
+				post_wall(@post, post_exam_schedule_path(@post_exam_schedule))
         redirect_to post_exam_schedules_path + "?type=#{@post_exam_schedule.type_name}"
       else
         flash[:error] = "Failed to create a new post."
