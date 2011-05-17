@@ -1,13 +1,22 @@
 <div class="postItem">
-  <div class="postTit">Description*</div>
-  <div class="postInput">
-    <div class="postDesInf" id="post_description_counter"><span>0</span> characters (900 max)</div>
-    <div class="postInp"><%= post.text_area :description, :class => '{validate:{required:true}}' %></div>
-  </div>
+    <div class="postTit">
+        Description*
+    </div>
+    <div class="postInput">
+        <div class="postDesInf" id="post_description_counter">
+            <span>0</span>
+            characters (900 max)
+        </div>
+        <div class="postInp">
+            <%= post.text_area :description, :class => '{validate:{required:true}}' %>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
-  $("#post_description").counter({
-    count: 'up',
-    goal: 900
-  });
+    $(document).ready(function(){
+        $("#post_description").counter({
+            count: 'up',
+            goal: 900
+        });
+    });
 </script>
