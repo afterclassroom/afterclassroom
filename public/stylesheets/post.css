@@ -896,9 +896,9 @@ span.btmDown a:hover {
 }
 
 .postItemB {
-    background: url(/images/upload_file.png) no-repeat 100% 4px;
-    height: 26px;
-    padding: 4px 0 0 0;
+    background: url(/images/upload_file.png) no-repeat 100% 0px;
+    height: 25px;
+    margin-top: 2px;
 }
 
 .postItemA {
