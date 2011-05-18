@@ -192,7 +192,7 @@ function sendReportAbuse(){
 }
 
 function requireRating(post_id, path){
-    rating = $('input[name=rating]:checked').val();
+    var rating = $('input:radio:checked').val();
     
     if (rating != "") {
         $.ajax({

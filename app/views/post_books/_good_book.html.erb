@@ -3,7 +3,7 @@
     <h1 class="col195Title">Good Books</h1>
     <div class="col195Cont">
       <%
-      good_books = PostBook.with_limit.good_books(@school)
+      good_books = PostBook.good_books(@school).with_limit
     %>
       <% if good_books.size > 0 %>
         <%

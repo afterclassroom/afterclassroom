@@ -3,7 +3,7 @@
     <h1 class="col195Title">Don’t buy</h1>
     <div class="col195Cont">
       <%
-      dont_buy_books = PostBook.with_limit.dont_buy(@school)
+      dont_buy_books = PostBook.dont_buy(@school).with_limit
     %>
       <% if dont_buy_books.size > 0 %>
         <%
