@@ -17,7 +17,7 @@
       <h1 class="titleH1">Employment information detail</h1>
     </div>
     <div class="AsDCont">
-    	<%= display_flash_messages_with_raw %>
+      <%= display_flash_messages_with_raw %>
       <div class="AsDContL">
         <h2 class="titleH2"><%= @job_infor.title %></h2>
         <div class="AsDContLdes"><span>Description:</span><%= @job_infor.description %></div>
@@ -28,9 +28,11 @@
       </div>
     </div>
     <div>
-    <%= show_post_comments(@job_infor) %>
+      <%= show_post_comments(@job_infor) %>
     </div>
-    <div class="goback" id="go_back"><%= show_go_back %></div>
+    <div class="goback" id="go_back">
+      <%= show_go_back %>
+    </div>
     <div class="comPage">
       <span></span>
       <span class="compre"><%= link_to "", show_job_infor_post_jobs_path(:job_infor_id => @prev.id) if @prev %> </span>

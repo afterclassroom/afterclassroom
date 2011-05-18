@@ -927,11 +927,11 @@ span.btmDown a:hover {
 }
 
 #divinputfile .filepc {
-   /* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity = 0);
     -khtml-opacity: 0.0;
     -moz-opacity: 0.0;
-    opacity: 0.0;*/
+    opacity: 0.0;
     width: 300px;
 }
 
