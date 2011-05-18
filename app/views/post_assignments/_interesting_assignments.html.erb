@@ -1,6 +1,6 @@
 <div class="col195 intPro">
   <div class="col195in">
-    <h1 class="col195Title">Interesting Assignments</h1>
+    <h1 class="col195Title">Interesting Quizzes</h1>
     <div class="col195Cont">
       <%
       interesting_assignments = PostAssignment.with_school(@school).interesting.with_limit
@@ -13,7 +13,7 @@
           </div>
         <% end %>
         <% if interesting_assignments.size > LIMIT - 1 %>
-          <div class="dueDbutton"><%= link_to "View more Interesting Assignments", interesting_post_assignments_path %></div>
+          <div class="dueDbutton"><%= link_to "View more Interesting Quizzes", interesting_post_assignments_path %></div>
         <% end %>
       <% end %>
     </div>

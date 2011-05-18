@@ -3,6 +3,7 @@
     <div class="menuRItem <%= "menuRselect" if action_name == "index" %>"><a href="<%= "#{user_profiles_path(@user)}" %>"><span class="span1"><span class="span2">My Lounge</span></span></a></div>
     <div class="menuRItem <%= "menuRselect" if action_name == "show_profile" %>"><a href="<%= "#{show_profile_user_profiles_path(@user)}" %>"><span class="span1"><span class="span2">Info</span></span></a></div>
     <div class="menuRItem <%= "menuRselect" if action_name == "my_favorite" %>"><a href="<%= "#{my_favorite_user_profiles_path(@user)}" %>"><span class="span1"><span class="span2">My Favorite</span></span></a></div>
+		<div class="menuRItem <%= "menuRselect" if action_name == "fan" %>"><a href="<%= "#{fan_user_profiles_path(@user)}" %>"><span class="span1"><span class="span2">My Fans</span></span></a></div>
     <div class="menuRItemP"><a href="#"> </a></div>
   </div>
 </div>

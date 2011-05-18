@@ -12,7 +12,7 @@ module ApplicationHelper
   def yield_or_default(message, default_message = "")
     message.nil? ? default_message : message
   end
-  
+
   # Create tab.
   #
   # The tab will link to the first options hash in the all_options array,
@@ -25,27 +25,27 @@ module ApplicationHelper
   # If now options are specified, the tab will point to '#', and will never have the 'active' state.
   def tab_to(name, all_options = nil)
     url = all_options.is_a?(Array) ? all_options[0].merge({:only_path => false}) : "#"
-    
+
     current_url = url_for(:action => @current_action, :only_path => false)
     link_current = ""
-    
+
     if all_options.is_a?(Array)
       all_options.each do |o|
         if url_for(o.merge({:only_path => false})) == current_url
           link_current = "select"
-          break
+        break
         end
       end
     end
-    
+
     raw "<li class='#{link_current}' >" + link_to(raw("<span>" + name + "</span>"), url, {}) + "</li>"
   end
-  
+
   def tab_to_admin(name, ctrl_name, path, sub_menus = nil)
     current_menu = "select"
     current_sub = ""
     current_item = @controller.action_name
-    
+
     if ctrl_name.is_a?(Array)# Multi controllers on one menu
       current_menu = "current" if ctrl_name.include?(controller.controller_name)
       current_sub = "show"
@@ -54,93 +54,93 @@ module ApplicationHelper
       current_menu = "current" if ctrl_name == controller.controller_name
       current_sub = "show"
     end
-    
+
     render :partial => "shared/admin/menu_item", :locals => {:name => name, :current_menu => current_menu, :current_sub => current_sub, :current_item => current_item, :path => path, :sub_menus => sub_menus}
   end
-  
+
   # Return true if the currently logged in user is an admin
   def admin?
     logged_in? && current_user.has_role?(:admin)
   end
-  
+
   # Write a secure email adress
   def secure_mail_to(email)
     mail_to email, nil, :encode => 'javascript'
   end
-  
+
   def action_to_text(activity)
     case activity.action
-      when "updated_profile"
+    when "updated_profile"
       "updated profile"
-      when "updated_avatar"
+    when "updated_avatar"
       "updated avatar"
-      when "post"
+    when "post"
       post_category_name = Post.find(activity.item_id).post_category.name
       "posted " + post_category_name
-      when "story"
+    when "story"
       "shared a story"
-      when "photo"
+    when "photo"
       "post a photo"
-      when "music"
+    when "music"
       "post a music"
-      when "video"
+    when "video"
       "post a video"
     end
   end
-  
+
   def image_user_thumb(user_id)
     user = User.find(user_id)
     image_tag user.avatar.url(:thumb)
   end
-  
+
   def image_post_thumb(ctrl_name, post)
     file_path = post.attach_file_name
     if post.attach_content_type =~ /^image.*/
-      path = post.attach.url(:thumb)
+    path = post.attach.url(:thumb)
     else
       file_ext = File.extname(file_path).delete(".") if file_path
       path = "/images/icons/file_type/#{file_ext}.png"
     end
-    
+
     case ctrl_name
-      when "post_assignments"
+    when "post_assignments"
       path = file_path ? path : "/images/icons/icon_defaut/icon_assignment.png"
-      when "post_projects"
+    when "post_projects"
       path = file_path ? path : "/images/icons/icon_defaut/icon_project.png"
-      when "post_tests"
+    when "post_tests"
       path = file_path ? path : "/images/icons/icon_defaut/icon_test.png"
-      when "post_exams"
+    when "post_exams"
       path = file_path ? path : "/images/icons/icon_defaut/icon_exam.png"
-      when "post_events"
+    when "post_events"
       path = file_path ? path : "/images/icons/icon_defaut/icon_event.png"
-      when "post_qas"
+    when "post_qas"
       path = "/images/icons/icon_defaut/icon_qa.png"
-      when "post_tutors"
+    when "post_tutors"
       path = file_path ? path : "/images/icons/icon_defaut/icon_tutor.png"
-      when "post_books"
+    when "post_books"
       path = file_path ? path : "/images/icons/icon_defaut/icon_book.png"
-      when "post_jobs"
+    when "post_jobs"
       path = file_path ? path : "/images/icons/icon_defaut/icon_job.png"
-      when "post_foods"
+    when "post_foods"
       path = file_path ? path : "/images/icons/icon_defaut/icon_food.png"
-      when "post_parties"
+    when "post_parties"
       path = file_path ? path : "/images/icons/icon_defaut/icon_party.png"
-      when "post_myxes"
+    when "post_myxes"
       path = file_path ? path : "/images/icons/icon_defaut/icon_myx.png"
-      when "post_awarenesses"
+    when "post_awarenesses"
       path = file_path ? path : "/images/icons/icon_defaut/icon_awarenesse.png"
-      when "post_housings"
+    when "post_housings"
       path = file_path ? path : "/images/icons/icon_defaut/icon_housing.png"
-      when "post_teamups"
+    when "post_teamups"
       path = file_path ? path : "/images/icons/icon_defaut/icon_teamup.png"
-      when "post_exam_schedules"
+    when "post_exam_schedules"
       path = file_path ? path : "/images/icons/icon_defaut/icon_exam.png"
     else
-      path = "/images/noimg.png"
+    path = "/images/noimg.png"
     end
     image_tag path
   end
-  
+
   def get_gender(sex)
     if sex
       sex == true ? "Male" : "Female"
@@ -148,119 +148,119 @@ module ApplicationHelper
       "N/A"
     end
   end
-  
+
   def truncate_words(text, length = 30, end_string = '...')
     return if text.blank?
     words = strip_tags(text).split()
     words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
   end
-  
+
   def show_image_user_post(user)
     path = logged_in? ? show_lounge_user_path(user) : user_path(user)
     link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip", :title => user.name)}</div>"), path
   end
-  
+
   def show_image_teach_of_myx(post_myx)
     img = "/images/icons/icon_defaut/icon_members.png"
     img = post_myx.post.attach.url(:thumb) if post_myx.post.attach_file_name and post_myx.post.attach_content_type == "image/jpeg"
     link_to raw("<div>#{image_tag(img, :class => "vtip", :title => post_myx.professor)}</div>"), post_myx_path(post_myx)
   end
-  
+
   def show_user_post(user)
     path = logged_in? ? show_lounge_user_path(user) : user_path(user)
     link_to user.full_name, path
   end
-  
+
   def show_search_form(ctrl_name, query)
     case ctrl_name
-      when "post_assignments"
+    when "post_assignments"
       type = PostCategory.find_by_class_name("PostAssignment").id
       search_post_path = search_post_assignments_path
-      when "post_projects"
+    when "post_projects"
       type = PostCategory.find_by_class_name("PostProject").id
       search_post_path = search_post_projects_path
-      when "post_tests"
+    when "post_tests"
       type = PostCategory.find_by_class_name("PostTest").id
       search_post_path = search_post_tests_path
-      when "post_exams"
+    when "post_exams"
       type = PostCategory.find_by_class_name("PostExam").id
       search_post_path = search_post_exams_path
-      when "post_events"
+    when "post_events"
       type = PostCategory.find_by_class_name("PostEvent").id
       search_post_path = search_post_events_path
-      when "post_qas"
+    when "post_qas"
       type = PostCategory.find_by_class_name("PostQa").id
       search_post_path = search_post_qas_path
-      when "post_tutors"
+    when "post_tutors"
       type = PostCategory.find_by_class_name("PostTutor").id
       search_post_path = search_post_tutors_path
-      when "post_books"
+    when "post_books"
       type = PostCategory.find_by_class_name("PostBook").id
       search_post_path = search_post_books_path
-      when "post_jobs"
+    when "post_jobs"
       type = PostCategory.find_by_class_name("PostJob").id
       search_post_path = search_post_jobs_path
-      when "post_foods"
+    when "post_foods"
       type = PostCategory.find_by_class_name("PostFood").id
       search_post_path = search_post_foods_path
-      when "post_parties"
+    when "post_parties"
       type = PostCategory.find_by_class_name("PostParty").id
       search_post_path = search_post_parties_path
-      when "post_myxes"
+    when "post_myxes"
       type = PostCategory.find_by_class_name("PostMyx").id
       search_post_path = search_post_myxes_path
-      when "post_awarenesses"
+    when "post_awarenesses"
       type = PostCategory.find_by_class_name("PostAwareness").id
       search_post_path = search_post_awarenesses_path
-      when "post_housings"
+    when "post_housings"
       type = PostCategory.find_by_class_name("PostHousing").id
       search_post_path = search_post_housings_path
-      when "post_teamups"
+    when "post_teamups"
       type = PostCategory.find_by_class_name("PostTeamup").id
       search_post_path = search_post_teamups_path
-      when "post_exam_schedules"
+    when "post_exam_schedules"
       type = PostCategory.find_by_class_name("PostExamSchedule").id
       search_post_path = search_post_exam_schedules_path
     else
-      type = PostCategory.find_by_class_name("PostAssignment").id
-      search_post_path = search_post_assignments_path
+    type = PostCategory.find_by_class_name("PostAssignment").id
+    search_post_path = search_post_assignments_path
     end
     render :partial => "shared/search_posts", :locals => {:type => type, :search_post_path => search_post_path, :query => query}
   end
-  
+
   def link_to_edit_post(post)
     case post.type_name
-      when "PostAssignment"
+    when "PostAssignment"
       link_edit = edit_post_assignment_url(post.post_assignment)
-      when "PostProject"
+    when "PostProject"
       link_edit = edit_post_project_url(post.post_project)
-      when "PostTest"
+    when "PostTest"
       link_edit = edit_post_test_url(post.post_test)
-      when "PostExam"
+    when "PostExam"
       link_edit = edit_post_exam_url(post.post_exam)
-      when "PostEvent"
+    when "PostEvent"
       link_edit = edit_post_event_url(post.post_event)
-      when "PostQa"
+    when "PostQa"
       link_edit = edit_post_qa_url(post.post_qa)
-      when "PostTutor"
+    when "PostTutor"
       link_edit = edit_post_tutor_url(post.post_tutor)
-      when "PostBook"
+    when "PostBook"
       link_edit = edit_post_book_url(post.post_book)
-      when "PostJob"
+    when "PostJob"
       link_edit = edit_post_job_url(post.post_job)
-      when "PostFood"
+    when "PostFood"
       link_edit = edit_post_food_url(post.post_food)
-      when "PostParty"
+    when "PostParty"
       link_edit = edit_post_party_url(post.post_party)
-      when "PostMyx"
+    when "PostMyx"
       link_edit = edit_post_myx_url(post.post_myx)
-      when "PostAwareness"
+    when "PostAwareness"
       link_edit = edit_post_awareness_url(post.post_awareness)
-      when "PostHousing"
+    when "PostHousing"
       link_edit = edit_post_housing_url(post.post_housing)
-      when "PostTeamup"
+    when "PostTeamup"
       link_edit = edit_post_teamup_url(post.post_teamup)
-      when "PostExamSchedule"
+    when "PostExamSchedule"
       link_edit = edit_post_exam_schedule_url(post.post_exam_schedule)
     end
     return link_edit
@@ -268,37 +268,37 @@ module ApplicationHelper
 
   def link_to_show_post(post)
     case post.type_name
-      when "PostAssignment"
+    when "PostAssignment"
       link_show = post_assignment_url(post.post_assignment)
-      when "PostProject"
+    when "PostProject"
       link_show = post_project_url(post.post_project)
-      when "PostTest"
+    when "PostTest"
       link_show = post_test_url(post.post_test)
-      when "PostExam"
+    when "PostExam"
       link_show = post_exam_url(post.post_exam)
-      when "PostEvent"
+    when "PostEvent"
       link_show = post_event_url(post.post_event)
-      when "PostQa"
+    when "PostQa"
       link_show = post_qa_url(post.post_qa)
-      when "PostTutor"
+    when "PostTutor"
       link_show = post_tutor_url(post.post_tutor)
-      when "PostBook"
+    when "PostBook"
       link_show = post_book_url(post.post_book)
-      when "PostJob"
+    when "PostJob"
       link_show = post_job_url(post.post_job)
-      when "PostFood"
+    when "PostFood"
       link_show = post_food_url(post.post_food)
-      when "PostParty"
+    when "PostParty"
       link_show = post_party_url(post.post_party)
-      when "PostMyx"
+    when "PostMyx"
       link_show = post_myx_url(post.post_myx)
-      when "PostAwareness"
+    when "PostAwareness"
       link_show = post_awareness_url(post.post_awareness)
-      when "PostHousing"
+    when "PostHousing"
       link_show = post_housing_url(post.post_housing)
-      when "PostTeamup"
+    when "PostTeamup"
       link_show = post_teamup_url(post.post_teamup)
-      when "PostExamSchedule"
+    when "PostExamSchedule"
       link_show = post_exam_schedule_url(post.post_exam_schedule)
     end
     return link_show
@@ -308,14 +308,14 @@ module ApplicationHelper
     department = params[:department] if params[:department]
     year = params[:year] if params[:year]
     over = params[:over] ? params[:over] : "30"
-    
+
     render :partial => "shared/options", :locals => {:school => school, :department => department, :year => year, :over => over, :options => options}
   end
-  
+
   def show_post_comments(obj)
     render :partial => "shared/post_comments", :locals => {:obj => obj}
   end
-  
+
   def show_student_lounge()
     if !logged_in?
       link_to_require_login("Student Lounge")
@@ -323,7 +323,7 @@ module ApplicationHelper
       link_to "Student Lounge", user_student_lounges_path(current_user)
     end
   end
-  
+
   def show_post(path)
     if !logged_in?
       link_to_require_login("Post")
@@ -331,7 +331,7 @@ module ApplicationHelper
       link_to "Post", path
     end
   end
-  
+
   def show_comment_button(post_id, comments)
     text = raw("Comments (<span id='post_#{post_id}_comments'>#{comments}</span>)")
     if !logged_in?
@@ -340,7 +340,7 @@ module ApplicationHelper
       link_to text, "javascript:;", :onclick => "showListPostComment(#{post_id})"
     end
   end
-  
+
   def show_answer_button(post_id, comments)
     text = raw("Answers (<span id='post_#{post_id}_comments'>#{comments}</span>)")
     if !logged_in?
@@ -349,7 +349,7 @@ module ApplicationHelper
       link_to text, "javascript:;", :onclick => "showListPostComment(#{post_id})"
     end
   end
-  
+
   def show_favorite(type, item)
     f_size = item.favoriting_users.size
     if !logged_in?
@@ -361,7 +361,7 @@ module ApplicationHelper
       link_to "Favorite (#{f_size})", {:controller => "favorites", :action => "add_to_favorite", :item_id => item.id, :type => type }, :remote => true, :method => "get"
     end
   end
-  
+
   def show_favorite_in_detail(type, item)
     f_size = item.favoriting_users.size
     if !logged_in?
@@ -373,7 +373,7 @@ module ApplicationHelper
       link_to raw("<span>Favorite (#{f_size})</span>"), {:controller => "favorites", :action => "add_to_favorite_in_detail", :item_id => item.id, :type => type }, :remote => true, :method => "get"
     end
   end
-  
+
   def show_email(post)
     if !logged_in?
       link_to_require_login(raw("<span>Email</span>"))
@@ -381,7 +381,7 @@ module ApplicationHelper
       link_to(raw("<span>Email</span>"), "#{show_email_user_messages_path(current_user)}?recipient_id=#{post.user.id}&height=270&width=470", :class => "thickbox", :title => "Send to #{post.user.full_name}")
     end
   end
-  
+
   def show_add_job(post)
     unless logged_in?
       link_to_require_login(raw("<span>Add job</span>"))
@@ -390,7 +390,7 @@ module ApplicationHelper
       link_to(raw("<span>Add job</span>"), { :action => "add_job", :post_job_id => post.id}, :remote => true) if !job_lists.collect{|j| j.post_job}.include?(post.post_job)
     end
   end
-  
+
   def show_my_job_list(post)
     if !logged_in?
       link_to_require_login(raw("<span>My job list</span>"))
@@ -399,7 +399,7 @@ module ApplicationHelper
       link_to(raw("<span>My job list</span>"), "#{my_job_list_post_jobs_path}?height=400&width=470", :class => "thickbox", :title => "My job list") if job_lists.size > 0
     end
   end
-  
+
   def show_apply_now()
     if !logged_in?
       link_to_require_login(raw("<span style='padding-left:10px'>Apply now</span>"))
@@ -407,8 +407,7 @@ module ApplicationHelper
       return raw("<a title='Apply now' id='apply_now'>Apply now</a>")
     end
   end
-  
-  
+
   def show_add_party(post)
     if !logged_in?
       link_to_require_login(raw("<span>Add party</span>"))
@@ -417,7 +416,7 @@ module ApplicationHelper
       link_to(raw("<span>Add party</span>"), { :action => "add_party", :post_party_id => post.id}, :remote => true) if !party_lists.collect{|j| j.post_party}.include?(post.post_party)
     end
   end
-  
+
   def show_my_party_list(post)
     if !logged_in?
       link_to_require_login(raw("<span>My party list</span>"))
@@ -426,21 +425,21 @@ module ApplicationHelper
       link_to(raw("<span>My party list</span>"), "#{my_party_list_post_parties_path}?height=400&width=470", :class => "thickbox", :title => "My party list") if party_lists.size > 0
     end
   end
-  
+
   def show_become_a_fan(user)
     str = ""
     if !logged_in?
       str = link_to_require_login(raw("<span>Become a Fan</span>"))
     else
-      if user.fans.include?(current_user)
+      if user.fans.map(&:user_id).include?(current_user.id)
         str = "You are a fan"
       else
-        str = link_to_function raw("<span>Become a Fan</span>"), "become_a_fan('#{become_a_fan_user_friends_path(current_user)}?user_id=#{user.id}')"
+        str = link_to_function raw("<span>Become a Fan</span>"), "become_a_fan('#{become_a_fan_user_friends_path(current_user)}?fan_id=#{user.id}')"
       end
     end
     return str
   end
-  
+
   def show_invite_friend(user)
     str = ""
     if !logged_in?
@@ -458,7 +457,7 @@ module ApplicationHelper
     end
     return str
   end
-  
+
   def show_invite_chat(user)
     str = ""
     if !logged_in?
@@ -476,11 +475,11 @@ module ApplicationHelper
     end
     return str
   end
-  
+
   def show_map(address, html)
     link_to(raw("<span>View map</span>"), "/gmaps?address=#{address}&html=#{html}&height=325&width=550", :class => "thickbox", :title => "View map")
   end
-  
+
   def show_support(post)
     str = "Reliable"
     str = "Support" if post.post_awareness.awareness_type.label == "take_action_now"
@@ -493,7 +492,7 @@ module ApplicationHelper
       link_to(str, "#{support_post_awarenesses_path}?post_id=#{post.id}&support=1", :remote => true)
     end
   end
-  
+
   def show_notsupport(post)
     str = "Not Reliable"
     str = "Not Support" if post.post_awareness.awareness_type.label == "take_action_now"
@@ -506,11 +505,11 @@ module ApplicationHelper
       link_to(str, "#{support_post_awarenesses_path}?post_id=#{post.id}&support=0", :remote => true)
     end
   end
-  
+
   def show_go_back
     link_to raw("<span>Go back</span>"), "javascript:history.back();"
   end
-  
+
   # id : id of post
   # numb : number of rating
   # ctrl_name : name of controller
@@ -525,7 +524,7 @@ module ApplicationHelper
       link_to numb, { :controller => ctrl_name, :action => "rate", :post_id => id, :rating => val_rate }, :remote => true
     end
   end
-  
+
   def show_submit_rating(post_id, path)
     if !logged_in?
       link_to_require_login(raw("<span>Submit</span>"))
@@ -533,7 +532,7 @@ module ApplicationHelper
       link_to(raw("<span>Submit</span>"), "javascript:;", :onclick => "requireRating('#{post_id}', '#{path}');")
     end
   end
-  
+
   def show_submit_form
     if !logged_in?
       link_to_require_login(submit_tag("Submit"))
@@ -541,32 +540,32 @@ module ApplicationHelper
       link_to(submit_tag("Submit"), "javascript:;", :onclick => "request_form_submit();")
     end
   end
-  
+
   def show_infor
     link_to("Edit Information", "#{edit_infor_user_profiles_path(current_user)}?height=350&width=470", :class => "thickbox", :title => "Edit Information")
   end
-  
+
   def show_edu_infor
     link_to("Edit My Education", "#{edit_edu_infor_user_profiles_path(current_user)}?height=270&width=470", :class => "thickbox", :title => "Edit My Education")
   end
-  
+
   def show_work_infor
     link_to("Edit My Work", "#{edit_work_infor_user_profiles_path(current_user)}?height=200&width=470", :class => "thickbox", :title => "Edit My Work")
   end
-  
+
   def show_status_setting(user, type)
     pr = user.private_settings.where(:type_setting => type).first
-    
+
     str = pr ? Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}].key(pr.share_to) : "No setting"
     "Share to: " + str
   end
-  
+
   def show_options_setting(user, type)
     pr = user.private_settings.where(:type_setting => type).first
     val = pr ? pr.share_to : 0
     select_tag "#{type}", options_for_select(OPTIONS_SETTING, val), :class => "menuPrivate"
   end
-  
+
   def show_attach(wall)
     if wall.user_wall_photo
       link = wall.user_wall_photo.link
@@ -574,21 +573,21 @@ module ApplicationHelper
       title = wall.user_wall_photo.title
       sub_content = raw(wall.user_wall_photo.sub_content)
     end
-    
+
     if wall.user_wall_video
       link = wall.user_wall_video.link
       image = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
       title = wall.user_wall_video.title
       sub_content = raw(wall.user_wall_video.sub_content)
     end
-    
+
     if wall.user_wall_music
       link = wall.user_wall_music.link
       image = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
       title = wall.user_wall_music.title
       sub_content = raw(wall.user_wall_music.sub_content)
     end
-    
+
     if wall.user_wall_link
       link = wall.user_wall_link.link
       image = link_to(raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank") if wall.user_wall_link.image_link
@@ -597,72 +596,72 @@ module ApplicationHelper
     end
     render :partial => "user_walls/wall_attach", :locals => {:wall_id => wall.id, :image => image, :title => title, :link => link, :sub_content => sub_content}
   end
-  
+
   def show_school_address(school)
     school.name + ", " + school.city.name + ", " + school.city.state.name + ", " + school.city.state.country.name
   end
-  
+
   def gmap_key
     key = GMAP_KEY_SITE if Rails.env == 'production'
     key = GMAP_KEY_LOCAL if Rails.env == 'development'
     return key
   end
-  
+
   def display_flash_messages_with_raw
     raw(display_flash_messages)
   end
-  
+
   def textilize(text)
     Textilizer.new(text).to_html.html_safe unless text.blank?
   end
-  
+
   def check_private_permission(user, type)
     check = false
     ps = PrivateSetting.where(:user_id => user.id, :type_setting => type).first
     if ps
       share_to = ps.share_to
       case share_to
-        when 1 # Friend from school
+      when 1 # Friend from school
         if current_user
           fg = FriendGroup.where(:label => "friends_from_school").first
           fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
-          check = true if fng
+        check = true if fng
         end
-        when 2 # Friend of friends
+      when 2 # Friend of friends
         if current_user
           fof = user.friend_of_friends
           check = fof.include?(current_user)
         end
-        when 3 # My Family
+      when 3 # My Family
         if current_user
           fg = FriendGroup.where(:label => "family_members").first
           fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
-          check = true if fng
+        check = true if fng
         end
-        when 4 # General friends
+      when 4 # General friends
         if current_user
           fg = FriendGroup.where(:label => "general_friends").first
           fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
-          check = true if fng
+        check = true if fng
         end
-        when 5 # Friends from work
+      when 5 # Friends from work
         if current_user
           fg = FriendGroup.where(:label => "friends_from_work").first
           fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
-          check = true if fng
+        check = true if fng
         end
-        when 6 # Every one
+      when 6 # Every one
         check = true
       end
-      return check
+    return check
     end
   end
-  
+
   def users_browser
-    user_agent =  request.env['HTTP_USER_AGENT'].downcase 
+    user_agent =  request.env['HTTP_USER_AGENT'].downcase
     @users_browser ||= begin
       if user_agent.index('msie') && !user_agent.index('opera') && !user_agent.index('webtv')
-                'ie'+user_agent[user_agent.index('msie')+5].chr
+        'ie'+user_agent[user_agent.index('msie')+5].chr
       elsif user_agent.index('gecko/')
         'gecko'
       elsif user_agent.index('opera')
@@ -685,18 +684,30 @@ module ApplicationHelper
         'msnbot'
       elsif user_agent.index('yahoo! slurp')
         'yahoobot'
-        #Everything thinks it's mozilla, so this goes last
+      #Everything thinks it's mozilla, so this goes last
       elsif user_agent.index('mozilla/')
         'gecko'
       else
         'unknown'
       end
     end
-    
+
     return @users_browser
   end
-  
+
+  def get_among_for_tag(num, num_total)
+    num_percent = (num / num_total)*100
+    case num_percent
+    when  0..20  then 1
+    when 21..40  then 2
+    when 41..60  then 3
+    when 61..80  then 4
+    when 81..100 then 5
+    end
+  end
+
   private
+
   def link_to_require_login(str)
     link_login = "https://afterclassroom.com/login"
     str_require_login = "This function is available only to registered users."

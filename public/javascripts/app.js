@@ -199,7 +199,7 @@ function requireRating(post_id, path){
             url: path,
             type: 'GET',
             cache: false,
-            dataType: 'script',
+            dataType: 'html',
             data: ({
                 rating: rating,
                 post_id: post_id

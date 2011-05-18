@@ -19,6 +19,11 @@
                     <div class="reqTi">
                         <%= text_field_tag "due_date", "" %>
                     </div>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $("#due_date").datepicker();
+                        });
+                    </script>
                 </div>
                 <div class="req60">
                     <div class="reqLa">
@@ -42,8 +47,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#due_date").datepicker();
-    });
-</script>

@@ -1,3 +1,5 @@
+require "whenever/capistrano"
+
 #############################################################
 # Application
 #############################################################
@@ -67,32 +69,48 @@ namespace :deploy do
       password: 9Jke.w9itA
       database: afterclassroom_test
     EOF
-    
+
     put db_config, "#{release_path}/config/database.yml"
   end
-  
+
   task :start, :roles => :app do
-    # Bundle
-    run "cd #{release_path} && bundle install"
-    # Stop Solr
-    run "cd #{release_path} && RAILS_ENV=production rake sunspot:solr:stop"
-    # Reindex
-    run "cd #{release_path} && RAILS_ENV=production rake rake sunspot:solr:stop"
-    # Start Solr
-    run "cd #{release_path} && RAILS_ENV=production rake sunspot:solr:start"
-    # Delay job
-    run "cd #{release_path} && RAILS_ENV=production script/delayed_job start"
+  # Bundle
+    run "cd #{current_path} && bundle install"
     # Start Server
-    run "touch #{current_release}/tmp/restart.txt"
+    run "touch #{current_path}/tmp/restart.txt"
   end
-  
+
+  task :before_update_code do
+  # Stop Solr
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:stop"
+  end
+
   task :stop, :roles => :app do
-    # Do nothing.
+  # Do nothing.
   end
-  
+
   desc "Restart Application"
   task :restart, :roles => :app do
-    # Start Server
-    run "touch #{current_release}/tmp/restart.txt"
+  # Start Server
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+  
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{current_path} && whenever --update-crontab #{application}"
+  end
+  
+  after "deploy:symlink", "deploy:solr:symlink"
+  after "deploy:symlink", "deploy:update_crontab"
+
+  namespace :solr do
+    desc <<-DESC
+    Symlink in-progress deployment to a shared Solr index.
+  DESC
+    task :symlink, :except => { :no_release => true } do
+      run "cd #{current_path} && rm -rf solr"
+      run "ln -nfs #{shared_path}/solr #{current_path}/solr"
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:start"
+    end
   end
 end

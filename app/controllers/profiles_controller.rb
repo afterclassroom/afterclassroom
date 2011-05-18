@@ -68,7 +68,7 @@ class ProfilesController < ApplicationController
   end
   
   def fan
-    fan_ids = current_user.fans_recent_update.collect{|f| f.user_id}
+    fan_ids = current_user.fans.collect{|f| f.user_id}
 
     @fans = User.ez_find(:all) do |user|
       user.id === fan_ids

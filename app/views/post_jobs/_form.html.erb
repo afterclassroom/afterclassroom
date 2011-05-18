@@ -1,93 +1,110 @@
 <%= fields_for @post do |post| %>
-  <div class="postReq">*(asterisk) is required.</div>
-  <div class="postItemDep">
-    <div class="postTit">Type</div>
-    <div class="postDep"><%= f.text_field :job_type_id %></div>
-  </div>
-  <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/select_school" %>
-  <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
-  <%= render :partial => "/shared/form_post/email" %>
-  <div class="postItem">
-    <div class="postTit">Phone</div>
-    <div class="postInp"><%= f.text_field :phone, :style => "width:208px" %></div>
-  </div>
-  <div class="postItem">
-    <div class="postTit">Address</div>
-    <div class="postInp"><%= f.text_field :address, :style => "width:208px" %></div>
-  </div>
-	<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_job_address" } %>
-  <div id="one_file_area">
+<div class="postReq">
+    *(asterisk) is required.
+</div>
+<div class="postItemDep">
+    <div class="postTit">
+        Type
+    </div>
+    <div class="postDep">
+        <%= f.text_field :job_type_id %>
+    </div>
+</div>
+<%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school" %>
+<%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/email" %>
+<div class="postItem">
+    <div class="postTit">
+        Phone
+    </div>
+    <div class="postInp">
+        <%= f.text_field :phone, :style => "width:208px" %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Address
+    </div>
+    <div class="postInp">
+        <%= f.text_field :address, :style => "width:208px" %>
+    </div>
+</div>
+<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_job_address" } %>
+<div id="one_file_area">
     <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
-  </div>
-  <div id="resume_area">
+</div>
+<div id="resume_area">
     <%= render :partial => "/shared/form_post/resume_for_post" %>
-  </div>
-
-  <%= render :partial => "/shared/form_post/select_tag" %>
+</div>
+<%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
 <ul id="job_type_menu" class="mcdropdown_menu">
-  <% JobType.find(:all).each do |t| %>
+    <% JobType.find(:all).each do |t| %>
     <li rel_job_type="<%= t.id %>">
-      <%= t.name %>
+        <%= t.name %>
     </li>
-  <% end %>
+    <% end %>
 </ul>
 <script type="text/javascript">
-  $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
-    width: 350,
-    valueAttr: "rel_job_type"
-  });
-  var resume_area;
-  var one_file_area;
-  function ShowResumeCV(){
-    $('#resume_area').html(resume_area);
-    $('#one_file_area').html('');
-  }
-  function HideResumeCV(){
-    $('#one_file_area').html(one_file_area);
-    $('#resume_area').html('');
-  }
-
-  $(document).ready(function(){
-    resume_area = $('#resume_area').html();
-    one_file_area = $('#one_file_area').html();
-
-    if ($('#post_job_job_type_id').val() == "4"){
-		ShowResumeCV();
-	}else{
-		HideResumeCV();
-	}
-
-    $('#job_type_menu').children().each(function(){
-      /*This one is used to handle event of Mouse click*/
-      $(this).click(function(){
-
-        var content = $(this).text();
-        var index = content.indexOf("I'm looking for job", 0);
-
-        if (index != -1){
-          ShowResumeCV();
-        }else{
-          HideResumeCV();
+    
+    var resume_area;
+    var one_file_area;
+    function ShowResumeCV(){
+        $('#resume_area').html(resume_area);
+        $('#one_file_area').html('');
+    }
+    
+    function HideResumeCV(){
+        $('#one_file_area').html(one_file_area);
+        $('#resume_area').html('');
+    }
+    
+    $(document).ready(function(){
+        $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
+            width: 350,
+            valueAttr: "rel_job_type"
+        });
+        
+        resume_area = $('#resume_area').html();
+        one_file_area = $('#one_file_area').html();
+        
+        if ($('#post_job_job_type_id').val() == "4") {
+            ShowResumeCV();
         }
-
-      });
-    });/*END $('#job_type_menu')*/
-
-    $('.mcdropdown').find('input').blur(function(){
-      /*This one is used to handle event of Keyboard select*/
-      var selected_value = $(this).parent().find('input').eq(1).attr('value');
-      if (selected_value == '4')/*index == 4 equals to "I'm looking for a job" */
-      {
-        ShowResumeCV();
-      }else{
-        HideResumeCV();
-      }
+        else {
+            HideResumeCV();
+        }
+        
+        $('#job_type_menu').children().each(function(){
+            /*This one is used to handle event of Mouse click*/
+            $(this).click(function(){
+            
+                var content = $(this).text();
+                var index = content.indexOf("I'm looking for job", 0);
+                
+                if (index != -1) {
+                    ShowResumeCV();
+                }
+                else {
+                    HideResumeCV();
+                }
+                
+            });
+        });/*END $('#job_type_menu')*/
+        $('.mcdropdown').find('input').blur(function(){
+            /*This one is used to handle event of Keyboard select*/
+            var selected_value = $(this).parent().find('input').eq(1).attr('value');
+            if (selected_value == '4')/*index == 4 equals to "I'm looking for a job" */ {
+                ShowResumeCV();
+            }
+            else {
+                HideResumeCV();
+            }
+        });
+        
+        
     });
-
-
-  });
 </script>

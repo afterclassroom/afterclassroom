@@ -99,6 +99,7 @@ class PostBooksController < ApplicationController
       
       @post_b.save
     end
+    render :layout => false
   end
   
   # GET /post_books/1
@@ -157,6 +158,7 @@ class PostBooksController < ApplicationController
       @post_book.post = @post
       if @post_book.save
         flash[:notice] = "Your post was successfully created."
+        post_wall(@post, post_book_path(@post_book))
         redirect_to post_books_path + "?book_type_id=#{@post_book.book_type_id}"
       else
         flash[:error] = "Failed to create a new post."

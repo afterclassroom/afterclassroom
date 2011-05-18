@@ -13,6 +13,9 @@ class Forum < ActiveRecord::Base
     time :created_at
   end
 
+  # Named Scope
+  scope :with_top_answer, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = forums.id) > ?", 10]
+
   def self.paginated_forum_with_search(params)
       if params[:search_txt]
         query = params[:search_txt]
@@ -24,4 +27,9 @@ class Forum < ActiveRecord::Base
       end
   end
 
+  def self.paginated_forum_with_top_answer
+    self.with_top_answer
+  end
+
 end
+

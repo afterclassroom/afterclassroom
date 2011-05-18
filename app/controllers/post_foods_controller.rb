@@ -68,6 +68,7 @@ class PostFoodsController < ApplicationController
       
       @post_f.save
     end
+    render :layout => false
   end
   
   def search
@@ -142,6 +143,7 @@ class PostFoodsController < ApplicationController
       @post_food.post = @post
       if @post_food.save
         flash[:notice] = "Your post was successfully created."
+        post_wall(@post, post_food_path(@post_food))
         redirect_to post_foods_path
       else
         flash[:error] = "Failed to create a new post."

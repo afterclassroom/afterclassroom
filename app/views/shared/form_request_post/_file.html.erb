@@ -7,11 +7,12 @@
 <% end %>
 <div class="postItemB">
     <div id="divinputfile">
-        <div class="postItemC">
-            <%= file_field_tag "post[attach]", :onchange => "$('#fakefilepc').val(this.value);", :class => "#{'{validate:{accept:true}}' if only_img } filepc", :size=>"39", :style => "width: 300px", :id => "file_attach" %>
+        <div class="postItemC"> 
+            <%= file_field_tag "post[attach]", :onchange => "$('#fakefilepc').val(this.value);", :class => "#{'{validate:{accept:true}}' if only_img } filepc", :size=>"11", :style => "width:280px;height:24px;margin-top:2px;", :id => "file_attach" %>
         </div>
-        <div id="fakeinputfile" style="margin-top:-23px">
-            <input name="fakefilepc" type="text" id="fakefilepc">
+        <div id="fakeinputfile" style="margin-top: -26px">
+            <input name="fakefilepc" type="text" id="fakefilepc"/>
         </div>
     </div>
 </div>
+

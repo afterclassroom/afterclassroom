@@ -43,7 +43,7 @@ type ||= 1 %>
                     </div>
                 </div>
             </div>
-						<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_job_address" } %>
+            <%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_job_address" } %>
             <%= render :partial => "/shared/form_request_post/select_tag" %>
             <div id="one_file_area" style="margin-bottom:5px;">
                 <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
@@ -68,54 +68,58 @@ type ||= 1 %>
     <% end %>
 </ul>
 <script type="text/javascript">
+    var resume_area;
+    var one_file_area;
+    function ShowResumeCV(){
+        $('#resume_area').html(resume_area);
+        $('#one_file_area').html('');
+    }
+    
+    function HideResumeCV(){
+        $('#one_file_area').html(one_file_area);
+        $('#resume_area').html('');
+    }
+    
     $(document).ready(function(){
         $("#post_job_job_type_id").mcDropdown("#job_type_menu", {
-            width: 275,
+            width: 350,
             valueAttr: "rel_job_type"
         });
-        var resume_area;
-        var one_file_area;
-        function ShowResumeCV(){
-            $('#resume_area').html(resume_area);
-            $('#one_file_area').html('');
+        
+        resume_area = $('#resume_area').html();
+        one_file_area = $('#one_file_area').html();
+        
+        if ($('#post_job_job_type_id').val() == "4") {
+            ShowResumeCV();
         }
-        function HideResumeCV(){
-            $('#one_file_area').html(one_file_area);
-            $('#resume_area').html('');
+        else {
+            HideResumeCV();
         }
         
-        $(document).ready(function(){
-            resume_area = $('#resume_area').html();
-            one_file_area = $('#one_file_area').html();
+        $('#job_type_menu').children().each(function(){
+            /*This one is used to handle event of Mouse click*/
+            $(this).click(function(){
             
-            $('#resume_area').html('');
-            
-            $('#job_type_menu').children().each(function(){
-                /*This one is used to handle event of Mouse click*/
-                $(this).click(function(){
+                var content = $(this).text();
+                var index = content.indexOf("I'm looking for job", 0);
                 
-                    var content = $(this).text();
-                    var index = content.indexOf("I'm looking for job", 0);
-                    
-                    if (index != -1) {
-                        ShowResumeCV();
-                    }
-                    else {
-                        HideResumeCV();
-                    }
-                    
-                });
-            });/*END $('#job_type_menu')*/
-            $('.mcdropdown').find('input').blur(function(){
-                /*This one is used to handle event of Keyboard select*/
-                var selected_value = $(this).parent().find('input').eq(1).attr('value');
-                if (selected_value == '4')/*index == 4 equals to "I'm looking for a job" */ {
+                if (index != -1) {
                     ShowResumeCV();
                 }
                 else {
                     HideResumeCV();
                 }
             });
+        });/*END $('#job_type_menu')*/
+        $('.mcdropdown').find('input').blur(function(){
+            /*This one is used to handle event of Keyboard select*/
+            var selected_value = $(this).parent().find('input').eq(1).attr('value');
+            if (selected_value == '4')/*index == 4 equals to "I'm looking for a job" */ {
+                ShowResumeCV();
+            }
+            else {
+                HideResumeCV();
+            }
         });
     });
 </script>

@@ -4,6 +4,7 @@ class ForumsController < ApplicationController
   def index  
     @text = "test from forum"
     @forums = Forum.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 8, :order => "created_at")
+    @testfr = Forum.paginated_forum_with_top_answer
   end
 
   def browse

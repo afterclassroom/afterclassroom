@@ -84,38 +84,6 @@ class UsersController < ApplicationController
     end
   end
   
-  def edit_password
-  end
-  
-  def update_password       
-    if current_user == @user
-      current_password, new_password, new_password_confirmation = params[:current_password], params[:new_password], params[:new_password_confirmation]
-      if User.password_digest(current_password, @user.salt) == @user.crypted_password
-        if new_password == new_password_confirmation
-          if new_password.blank? || new_password_confirmation.blank?
-            flash[:error] = "You cannot set a blank password."
-            redirect_to edit_password_user_url(@user)
-          else
-            @user.password = new_password
-            @user.password_confirmation = new_password_confirmation
-            @user.save
-            flash[:notice] = "Your password has been updated."
-            redirect_to user_path(@user)
-          end
-        else
-          flash[:error] = "Your new password and it's confirmation don't match."
-          redirect_to edit_password_user_url(@user)
-        end
-      else
-        flash[:error] = "Your current password is not correct.<br/>Your password has not been updated."
-        redirect_to edit_password_user_url(@user)
-      end
-    else
-      flash[:error] = "You cannot update another user's password!"
-      redirect_to edit_password_user_url(@user)
-    end
-  end
-  
   def edit_email
   end
   

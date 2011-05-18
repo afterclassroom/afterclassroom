@@ -2,10 +2,18 @@
     <form id="editpsw" action="<%= save_psw_user_settings_path(current_user) %>">
         <div class="postItem">
             <div class="postItem1" style="width: 170px">
-                Please enter the password *
+                Please enter the current password*
             </div>
             <div class="postInp">
-                <input id='password' style="width:270px;" value='' type='password' name='password' size='15'/>
+                <input id='current_password' style="width:270px;" value='' type='password' name='current_password' size='15'/>
+            </div>
+        </div>
+				<div class="postItem">
+            <div class="postItem1" style="width: 170px">
+                Please enter the password*
+            </div>
+            <div class="postInp">
+                <input id='new_password' style="width:270px;" value='' type='password' name='new_password' size='15'/>
             </div>
         </div>
         <div class="postItem">
@@ -13,7 +21,7 @@
                 Please re-enter the password*
             </div>
             <div class="postInp">
-                <input type='password' id='password_again' style="width:270px;" name='password_again' size='15'/>
+                <input type='password' id='new_password_confirmation' style="width:270px;" name='new_password_confirmation' size='15'/>
             </div>
         </div>
         <div class="submit" style="padding-left: 180px;">
@@ -31,28 +39,20 @@
     $().ready(function(){
         $("#editpsw").validate({
             rules: {
-                password: {
+								current_password: {
                     required: true,
-                    minlength: 5
+                    minlength: 6
                 },
-                password_again: {
+                new_password: {
                     required: true,
-                    minlength: 5,
-                    equalTo: "#password"
+                    minlength: 6
                 },
-                messages: {
-                    password: {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 5 characters long"
-                    },
-                    password_again: {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 5 characters long",
-                        equalTo: "Please enter the same password as above"
-                    }
+                new_password_confirmation: {
+                    required: true,
+                    minlength: 6,
+                    equalTo: "#new_password"
                 }
             }
-        
         });
     });
 </script>

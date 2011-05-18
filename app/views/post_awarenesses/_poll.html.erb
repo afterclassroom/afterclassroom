@@ -11,7 +11,7 @@ post_aware = PostAwareness.require_rating(@school).first
           <p><%= truncate_words(post_aware.post.description) %></p>
         </div>
         <div id="require_rating_action">
-          <div class="QAsDet"><input type="radio" name="rating" value="1"/>Good <strong rel="rate" style="display:none;">(<%= post_aware.total_good %>)</strong></div>
+          <div class="QAsDet"><input type="radio" name="rating" value="1" checked="true"/>Good <strong rel="rate" style="display:none;">(<%= post_aware.total_good %>)</strong></div>
           <div class="QAsDet"><input type="radio" name="rating" value="0"/>Bad <strong rel="rate" style="display:none;">(<%= post_aware.total_bad %>)</strong></div>
           <div class="submit"><%= show_submit_rating(post_aware.post.id, require_rate_post_awarenesses_path) %></div>
           <div class="PollView" id="view_results">[<a href="javascript:;" onclick="showResult();">View results</a>]</div>

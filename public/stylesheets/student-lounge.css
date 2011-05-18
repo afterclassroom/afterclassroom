@@ -3285,7 +3285,7 @@ div.helpAdv2{
     _height:100%;
 }
 .proInfGRR .fanImg1, .proInfGRR .fanImg2{
-    width:75px;
+    width:60px;
 }
 .proInfGRR .fanName{
     clear:both;
@@ -4361,7 +4361,10 @@ div.helpAdv2{
 .slStoryL .assImg a:hover div{
     background:url('/images/bg71-61H.png') no-repeat;
 }
-.assImg img{
+.assDes .assImg img{
+    border:0px;
+}
+.slsItem .assImg img{
     border:0px;
     width:65px;
     height:55px;

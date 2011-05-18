@@ -18,7 +18,8 @@ end %>
             <img src="/images/open.png">
         </div><% end %>
         <div class="col300Cont">
-            <% if tags and tags.to_a.size > 0 %>
+            <% if tags and tags.to_a.size > 0
+            max_count = tags.sort_by(&:count).last.count.to_f %>
             <div class="tabClouse">
                 <div id="tags_button">
                 </div>
@@ -26,7 +27,7 @@ end %>
                 <div id="tags">
                     <ul>
                         <% tags.each do |tag| %>
-                        <li class="tag<%= tag.count %>">
+                        <li class="tag<%= get_among_for_tag(tag.count, max_count) %>">
                             <%= link_to tag.name, { :action => :tag, :tag_name => tag.name } %>
                         </li>
                         <% end %>
@@ -63,7 +64,7 @@ end %>
         });
         $('#tags_button').append(sortabc);
         
-        // create a sort by alphabet button	
+        // create a sort by alphabet button
         var sortstrength = $('<a href="javascript:void(0)" class="btn">Sort by strength</a>').toggle(function(){
             $("#tags ul li").tsort({
                 order: "desc",
