@@ -4,7 +4,7 @@
     <div class="col195Cont">
       <%
       book_type = BookType.find_by_name("Free books")
-      free_books = PostBook.with_limit.with_type(book_type.id).with_school(@school)
+      free_books = PostBook.with_school(@school).with_type(book_type.id).with_limit
     %>
       <% if free_books.size > 0 %>
         <%

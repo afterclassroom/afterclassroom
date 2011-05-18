@@ -1,4 +1,4 @@
-class QaSendMail < ActionMailer::Base
+class ApplyJob < ActionMailer::Base
   default :from => "technical@afterclassroom.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -6,12 +6,12 @@ class QaSendMail < ActionMailer::Base
   #
   #   en.qa_send_mail.refer_to_expert.subject
   #
-  def refer_to_expert(introduce, receiver_email, post_id)
+  def apply_now(user_apply_id, post_id, file_path)
     
     @post = Post.find(post_id)
-    @introduce = introduce
-
-    mail :to => receiver_email, :subject => "Please response. Thank you for your support !"
+    @user = User.find(user_apply_id)
+    @file_attach = file_path
+    mail :to => @post.user.email, :subject => "Apply job: #{@post.title}"
     
   end
 end

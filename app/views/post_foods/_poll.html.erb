@@ -11,7 +11,7 @@ post_food = PostFood.require_rating(@school).first
           <p><%= truncate_words(post_food.post.description) %></p>
         </div>
         <div id="require_rating_action">
-          <div class="QAsDet"><input type="radio" name="rating" value="2" checked="true"/>Good <strong rel="rate" style="display:none;">(<%= post_food.total_good %>)</strong></div>
+          <div class="QAsDet"><input type="radio" name="rating" value="2" checked="checked"/>Good <strong rel="rate" style="display:none;">(<%= post_food.total_good %>)</strong></div>
           <div class="QAsDet"><input type="radio" name="rating" value="1"/>Cheap but Good <strong rel="rate" style="display:none;">(<%= post_food.total_cheap_but_good %>)</strong></div>
 
           <div class="QAsDet"><input type="radio" name="rating" value="0"/>Bad <strong rel="rate" style="display:none;">(<%= post_food.total_bad %>)</strong></div>

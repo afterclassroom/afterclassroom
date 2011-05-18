@@ -7,7 +7,7 @@
     <%= text_field_tag "subcategory", @class_name, :id => "subcategory" %>
 </div>
 <%
-sub = [["Post Assignment", "PostAssignment"], ["Post Project", "PostProject"], ["Post Test", "PostTest"], ["Post Exam", "PostExam"]] %>
+sub = [["Post Quizz", "PostAssignment"], ["Post Project", "PostProject"], ["Post Test", "PostTest"], ["Post Exam", "PostExam"]] %>
 <ul id="subcategory_menu" class="mcdropdown_menu">
     <% sub.each do |s| %>
     <li rel_sub="<%= s[1] %>">

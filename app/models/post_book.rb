@@ -88,11 +88,11 @@ with_type
   end
 
   def self.good_books(school)
-    post_books = self.with_status("Good").with_school(school)
+    post_books = self.with_school(school).with_status("Good")
   end
 
   def self.dont_buy(school)
-   post_books = self.with_status("Bad").with_school(school)
+   post_books = self.with_school(school).with_status("Bad")
   end
 
   def self.require_rating(school)
