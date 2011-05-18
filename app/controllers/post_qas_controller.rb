@@ -104,6 +104,7 @@ class PostQasController < ApplicationController
       
       @post_q.save
     end
+    render :layout => false
   end
   
   # GET /post_qas/1

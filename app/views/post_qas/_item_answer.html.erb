@@ -1,6 +1,6 @@
-<div class="AsDcomItem" id="post_<%= @post.id %>_comment_<%= comnt.id %>">
-    <% if @post.user == current_user || comnt.user == current_user %>
-    <div class="del_post_com" style="float: right; display: none; cursor: pointer;" onclick="DeletePostComment('<%= @post.id %>', '<%= comnt.id %>');">
+<div class="AsDcomItem" id="post_<%= comnt.commentable_id %>_comment_<%= comnt.id %>">
+    <% if eval(comnt.commentable_type).find(comnt.commentable_id).user == current_user || comnt.user == current_user %>
+    <div class="del_post_com" style="float: right; display: none; cursor: pointer;" onclick="DeletePostComment('<%= comnt.commentable_id %>', '<%= comnt.id %>');">
         <img src="/images/icon-ing.gif">
     </div><% end %>
   <div class="AsDcomImg"><%= show_image_user_post(comnt.user) %></div>

@@ -88,6 +88,7 @@ class PostAwarenessesController < ApplicationController
       
       @post_a.save
     end
+    render :layout => false
   end
   
   

@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "Assignments", post_assignments_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "Quizzes", post_assignments_path, :class => "abLink-detail" %><%= link_to "Search", "#", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -16,7 +16,7 @@
     <div class="col451in">
       <div class="col451Cont">
         <div class="AsDTop">
-          <h1 class="titleH1">Assignments</h1>
+          <h1 class="titleH1">Quizzes</h1>
           <div class="AsDsearch">
             <%= render :partial => "shared/search_indetail", :locals => {:url_search => search_post_assignments_path} %>
           </div>

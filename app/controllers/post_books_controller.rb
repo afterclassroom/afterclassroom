@@ -99,6 +99,7 @@ class PostBooksController < ApplicationController
       
       @post_b.save
     end
+    render :layout => false
   end
   
   # GET /post_books/1

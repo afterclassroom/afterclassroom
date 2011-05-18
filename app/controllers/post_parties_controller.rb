@@ -69,6 +69,7 @@ class PostPartiesController < ApplicationController
       
       @post_p.save
     end
+    render :layout => false
   end
   
   def tag

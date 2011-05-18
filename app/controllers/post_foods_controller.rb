@@ -68,6 +68,7 @@ class PostFoodsController < ApplicationController
       
       @post_f.save
     end
+    render :layout => false
   end
   
   def search

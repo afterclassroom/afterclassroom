@@ -100,6 +100,7 @@ class PostTutorsController < ApplicationController
       
       @post_tt.save
     end
+    render :layout => false
   end
   
   # GET /post_tutors/1

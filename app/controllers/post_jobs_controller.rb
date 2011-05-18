@@ -100,6 +100,7 @@ class PostJobsController < ApplicationController
       
       @post_j.save
     end
+    render :layout => false
   end
   
   # GET /post_jobs/1
