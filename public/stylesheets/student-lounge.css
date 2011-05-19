@@ -4344,6 +4344,11 @@ div.helpAdv2{
 .slsItemDes{
     color:#6f6f6e;
 }
+.slsItemDesYoSt{
+    color:#6f6f6e;
+    width: 600px;
+    word-wrap: break-word;
+}
 .slsItemLN{
     text-align:center;
     font-weight:bold;
