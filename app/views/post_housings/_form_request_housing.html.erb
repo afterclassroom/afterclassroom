@@ -9,8 +9,8 @@
                     Type
                 </label>
             </div>
-            <div class="reqTi">
-                <%= select_tag("post_housing[housing_category_ids][]", options_for_select(HousingCategory.find(:all).collect {|p| [ p.name, p.id ] }, []), { :include_blank => "Select Type", :multiple => true, :id => "housing_category", :style => "width:252px" }) %>
+            <div>
+                <%= select_tag("post_housing[housing_category_ids][]", options_for_select(HousingCategory.find(:all).collect {|p| [ p.name, p.id ] }, []), { :include_blank => "Select Type", :multiple => true, :id => "housing_category", :style => "width:257px" }) %>
             </div>
             <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
             <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>

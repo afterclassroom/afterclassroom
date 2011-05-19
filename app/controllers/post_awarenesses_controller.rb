@@ -105,8 +105,8 @@ class PostAwarenessesController < ApplicationController
   def view_results
     post_awareness_id = params[:post_awareness_id]
     post_awareness = PostAwareness.find(post_awareness_id)
-    total_support = post_awareness.total_support.size
-    total_notsupport = post_awareness.total_notsupport.size
+    total_support = post_awareness.total_support.to_i
+    total_notsupport = post_awareness.total_notsupport.to_i
     chart = GoogleChart.new
     chart.type = :pie
     chart.data = [total_support, total_notsupport]

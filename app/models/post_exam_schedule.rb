@@ -16,7 +16,7 @@ class PostExamSchedule < ActiveRecord::Base
   # Tags
   acts_as_taggable_on :tags
   
-  def self.paginated_post_conditions_with_option(params, school, type)
+  def self.paginated_post_conditions_with_option(params, school, type_sh)
     over = 30 || params[:over].to_i
     year = params[:year]
     department = params[:department]
@@ -24,8 +24,8 @@ class PostExamSchedule < ActiveRecord::Base
     with_school = school
     with_school = from_school if from_school
 
-    post_ts = PostExamSchedule.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_exam, post|
-      post_exam.type = type
+    post_ts = PostExamSchedule.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_exam_schedule, post|
+      post_exam_schedule.type_name == type_sh
       post.department_id == department if department
       post.school_year == year if year
       post.school_id == with_school if with_school
@@ -71,9 +71,9 @@ class PostExamSchedule < ActiveRecord::Base
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end
 
-  def self.related_posts(school)
+  def self.related_posts(school, type)
     posts = []
-    post_as = self.random(5).with_school(school)
+    post_as = self.random(5).with_school(school).with_type(type)
     post_as.select {|p| posts << p.post}
     posts
   end

@@ -70,7 +70,7 @@ You are here: <a href="/">Home</a>
         </div>
         <div class="AsDOr">
             <h1 class="titleH1">Related posts</h1>
-            <% PostExamSchedule.related_posts(@school).each do |p| %>
+            <% PostExamSchedule.related_posts(@school, @post_exam_schedule.type_name).each do |p| %>
             <div class="AsDOrItem">
                 <%= link_to p.title, post_exam_schedule_path(p.post_exam_schedule) %>
             </div>
