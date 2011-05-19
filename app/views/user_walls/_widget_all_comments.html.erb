@@ -1,4 +1,5 @@
 <% @wall.comments.each do |cm| %>
   <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => @wall, :comment => cm} %>
 <% end %>
+<%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => @wall} %>
 <%= render :partial => "user_walls/wall_comment", :locals => {:wall => @wall} %>

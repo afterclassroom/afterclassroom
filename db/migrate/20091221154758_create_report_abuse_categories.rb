@@ -4,10 +4,10 @@ class CreateReportAbuseCategories < ActiveRecord::Migration
       t.string :name
     end
     
-    ["Report Abuse 1",
-    "Report Abuse 2",
-    "Report Abuse 3",
-    "Report Abuse 4"
+    ["Verbal abuse",
+    "Psychological abuse",
+    "Hate crimes",
+    "Racism"
    ].each do |s|
       ReportAbuseCategory.new(:name => s).save
     end
