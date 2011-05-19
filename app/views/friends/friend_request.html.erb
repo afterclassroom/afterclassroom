@@ -18,7 +18,7 @@
                 <div class="flistN"><%= show_user_post(i.user) %></div>
                 <div class="flistS"><span>at</span><%= i.user.school.name %></div>
               </div>
-              <div class="asslinkdown">
+              <div class="asslinkdown" style="padding: 0px; margin-top: 0px;">
                 <div class="support"><%= link_to "Accept", accept_user_friends_path(current_user, :invite_id => i.id), :remote => true %></div>
                 <div class="support"><%= link_to "No Accept", de_accept_user_friends_path(current_user, :invite_id => i.id), :remote => true %></div>
               </div>

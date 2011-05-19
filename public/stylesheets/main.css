@@ -171,8 +171,7 @@ div.signin ul li.select a:hover{
     float:left;
 }
 .selectS{
-    padding-top:7px;
-    /*padding-top:6px;*/
+    padding-top:6px;
     padding-left:3px;
 }
 .selectS select{
@@ -182,7 +181,6 @@ div.signin ul li.select a:hover{
     line-height:16px;
 }
 .textS{
-    padding-top:2px;
     background:url('/images/bor-ad.png') no-repeat right center;
     padding-right:2px;
 }
@@ -191,9 +189,9 @@ div.signin ul li.select a:hover{
     color:#929383;
     width:163px;
     height:21px;
-    padding-top:6px;
     text-indent:3px;
     background-color:transparent;
+    margin-top: 5px;
 }
 .btmS{
     padding-left:5px;
