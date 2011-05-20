@@ -80,9 +80,9 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
 
-  task :before_update_code do
+  task :after_update_code do
   # Stop Solr
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:stop"
+    #run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:stop"
   end
 
   task :stop, :roles => :app do
@@ -110,7 +110,7 @@ namespace :deploy do
     task :symlink, :except => { :no_release => true } do
       run "cd #{current_path} && rm -rf solr"
       run "ln -nfs #{shared_path}/solr #{current_path}/solr"
-      run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:start"
+      #run "cd #{current_path} && RAILS_ENV=#{rails_env} rake sunspot:solr:start"
     end
   end
 end

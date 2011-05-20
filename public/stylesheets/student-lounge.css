@@ -2833,6 +2833,11 @@ div.helpAdv2{
     color:#0a81c4;
     text-decoration:none;
 }
+.proItem a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+
 .proBtm{
     margin-top:-1px;
     padding:5px;
@@ -2857,7 +2862,7 @@ div.helpAdv2{
     display:block;
     border-bottom: 1px #e4e4e4 solid;
 }
-.proBtm a:hover, .proItem a:hover{
+.proBtm a:hover{
     color:#d00;
     text-decoration:none;
 }
@@ -4636,6 +4641,7 @@ div.navigation a.next:hover {
     font-weight:bold;
     font-size:12px;
     padding-bottom:2px;
+    word-wrap: break-word;
 }
 .stoDinf{
     border:1px #cccccc solid;
@@ -4653,6 +4659,7 @@ div.navigation a.next:hover {
 .stoDcont{
     padding:10px 10px 0px 10px;
     color:#646464;
+    word-wrap: break-word;
 }
 .stoDbtm{
     padding:10px;

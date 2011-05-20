@@ -24,7 +24,7 @@ class PostExamSchedulesController < ApplicationController
     @post_exam_schedule = PostExamSchedule.find(params[:id])
     @post = @post_exam_schedule.post
     update_view_count(@post)
-    posts_as = PostExamSchedule.with_school(@school)
+    posts_as = PostExamSchedule.with_school(@school).with_type(@post_exam_schedule.type_name)
     as_next = posts_as.nexts(@post_exam_schedule.id).last
     as_prev = posts_as.previous(@post_exam_schedule.id).first
     @next = as_next if as_next

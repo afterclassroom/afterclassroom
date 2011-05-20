@@ -90,6 +90,8 @@
     color: #0a81c4;
     font-weight: bold;
     font-size: 11px;
+    width: 110px;
+    word-wrap: break-word;
 }
 
 .recentInf a, .recentInf a:link, .recentInf a:visited {
@@ -2464,6 +2466,8 @@ span.btmRSVP a:hover {
 .teacherInf .recentDes {
     font-weight: bold;
     padding-top: 2px;
+    width: 110px;
+    word-wrap: break-word;
 }
 
 /************************** MyX *************************/
