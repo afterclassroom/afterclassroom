@@ -23,6 +23,7 @@ class PostExamSchedulesController < ApplicationController
   def show
     @post_exam_schedule = PostExamSchedule.find(params[:id])
     @post = @post_exam_schedule.post
+    @type_schedule = @post_exam_schedule.type_name
     update_view_count(@post)
     posts_as = PostExamSchedule.with_school(@school).with_type(@post_exam_schedule.type_name)
     as_next = posts_as.nexts(@post_exam_schedule.id).last
@@ -101,7 +102,7 @@ class PostExamSchedulesController < ApplicationController
 
   # GET /post_exam_schedules/1/edit
   def edit
-    @post_exam_schedule = PostExam.find(params[:id])
+    @post_exam_schedule = PostExamSchedule.find(params[:id])
     @post = @post_exam_schedule.post
     @tag_list = @post_exam_schedule.tags_from(@post.school).join(", ")
   end
@@ -125,7 +126,7 @@ class PostExamSchedulesController < ApplicationController
       if @post_exam_schedule.save
         flash[:notice] = "Your post was successfully created."
 				post_wall(@post, post_exam_schedule_path(@post_exam_schedule))
-        redirect_to post_exam_schedules_path + "?type=#{@post_exam_schedule.type_name}"
+        redirect_to post_exam_schedules_path(:type => @post_exam_schedule.type_name)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"
@@ -139,12 +140,12 @@ class PostExamSchedulesController < ApplicationController
   # PUT /post_exam_schedules/1
   # PUT /post_exam_schedules/1.xml
   def update
-    @post_exam_schedule = PostExam.find(params[:id])
+    @post_exam_schedule = PostExamSchedule.find(params[:id])
     @post = @post_exam_schedule.post
     
     if (@post_exam_schedule.update_attributes(params[:post_exam_schedule]) && @post.update_attributes(params[:post]))
       @post.school.tag(@post_exam_schedule, :with => params[:tag], :on => :tags)
-      redirect_to post_exam_url(@post_exam_schedule)
+      redirect_to post_exam_schedules_path(:type => @post_exam_schedule.type_name)
     end
   end
 

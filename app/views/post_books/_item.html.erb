@@ -15,7 +15,7 @@
                         <%= link_to image_post_thumb(controller_name, post), post.post_book %>
                     </div>
                 </div>
-                <%= truncate_words(description) %>
+                <%= truncate_html(description, :length => 100, :omission => '...') %>
             </div>
         </div>
     </div>
