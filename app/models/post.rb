@@ -54,35 +54,30 @@ class Post < ActiveRecord::Base
   end
   
   def self.paginated_post_conditions_with_search(params, school, type)
-    if params[:search]
-      query = params[:search][:query]
-      if school
-        Post.search do
-          keywords(query) do
-            highlight :description
-          end
-          with :post_category_id, type
-          with :school_id, school
-          order_by :created_at, :desc
-          paginate :page => params[:page], :per_page => 10
-        end
-      else
-        Post.search do
-          fulltext query
-          with :post_category_id, type
-          order_by :created_at, :desc
-          paginate :page => params[:page], :per_page => 10
+    Post.search do
+      if params[:search][:query].present?
+        keywords(params[:search][:query]) do
+          highlight :description
         end
       end
+      if school
+        with :school_id, school 
+      end
+      with :post_category_id, type
+      order_by :created_at, :desc
+      paginate :page => params[:page], :per_page => 10
     end
   end
   
   def self.paginated_post_management(params, current_user_id)
     sort = 'DESC'
     sort = params[:sort] if params[:sort]
-    query = params[:search][:query] if params[:search]
     Post.search do
-      fulltext query
+      if params[:search][:query].present?
+        keywords(params[:search][:query]) do
+          highlight :description
+        end
+      end
       with :user_id, current_user_id
       order_by :created_at, sort.downcase.to_sym
       paginate :page => params[:page], :per_page => 10

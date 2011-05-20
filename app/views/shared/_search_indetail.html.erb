@@ -1,4 +1,4 @@
 <form id="search_indetail_query" name="search" action="<%= url_search %>" method="get">
   <div class="AsDST"><input type="text"  name="search[query]" value="<%= @query %>" /></div>
-  <div class="AsDSB"><a href="javascript:;" onclick="document.location.href='<%= url_search %>?search[query]=' + $('#search_indetail_query').val();"><img src="/images/AsD-iconS.png"/></a></div>
+  <div class="AsDSB"><a href="javascript:;" onclick="$('#search_indetail_query').submit();"><img src="/images/AsD-iconS.png"/></a></div>
 </form>

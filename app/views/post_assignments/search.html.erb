@@ -21,9 +21,10 @@ You are here: <a href="/">Home</a>
                 </div>
                 <%= display_flash_messages_with_raw %>
                 <!--List Items--><% @posts.each_hit_with_result do |hit, post| %>
-                <%= render :partial => "item", :locals => {:post => post, :title => raw(post.title), :description => raw(hit.highlight(:description).format { |fragment| content_tag(:em, fragment) })} %>
+                <%= render :partial => "item", :locals => {:post => post, :title => raw(post.title), :description => raw(hit.highlight(:description) ? hit.highlight(:description).format { |fragment| content_tag(:em, fragment) } : post.description)} %>
                 <% end %>
-                <!--List Items--><!--Pagination-->
+                <!--List Items-->
+                <!--Pagination-->
                 <div class="assPage">
                     <span class="numPage"><%= page_entries_info @posts.results %></span>
                     <%= will_paginate @posts.results %>
