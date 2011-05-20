@@ -58,7 +58,9 @@ class Post < ActiveRecord::Base
       query = params[:search][:query]
       if school
         Post.search do
-          fulltext query
+          keywords(query) do
+            highlight :description
+          end
           with :post_category_id, type
           with :school_id, school
           order_by :created_at, :desc

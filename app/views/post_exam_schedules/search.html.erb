@@ -23,8 +23,8 @@
           </div>
         </div>
         <!--List Items-->
-        <% @posts.results.each do |post| %>
-          <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => controller.controller_name} %></div>
+        <% @posts.each_hit_with_result do |hit, post| %>
+          <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => raw(hit.highlight(:description).format { |fragment| content_tag(:em, fragment) }), :controller_name => controller.controller_name} %></div>
         <% end %>
         <!--List Items-->
 

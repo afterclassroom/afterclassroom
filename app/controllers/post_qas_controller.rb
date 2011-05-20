@@ -176,7 +176,7 @@ class PostQasController < ApplicationController
   # PUT /post_qas/1
   # PUT /post_qas/1.xml
   def update
-    @post_qa = Post.find(params[:id])
+    @post_qa = PostQa.find(params[:id])
     @post = @post_qa.post
     if (@post_qa.update_attributes(params[:post_qa]) && @post.update_attributes(params[:post]))
       @post.school.tag(@post_qa, :with => params[:tag], :on => :tags)

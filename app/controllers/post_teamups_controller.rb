@@ -147,7 +147,7 @@ class PostTeamupsController < ApplicationController
   # PUT /post_teamups/1
   # PUT /post_teamups/1.xml
   def update
-    @post_teamup = PostFood.find(params[:id])
+    @post_teamup = PostTeamup.find(params[:id])
     @post = @post_teamup.post
     
     if (@post_teamup.update_attributes(params[:post_teamup]) && @post_teamup.post.update_attributes(params[:post]))
