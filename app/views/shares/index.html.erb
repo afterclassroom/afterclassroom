@@ -14,7 +14,7 @@
               <th class="post1"><div class="date" id="date"><a href="<%= user_shares_url(current_user) %>?sort=<%= @srt == "DESC" ? "ASC" : "DESC" %>">Date</a></div></th>
               <th class="post4"><div>Title</div></th>
               <th class="post6"><div>Recipient</div></th>
-              <th class="post5"><div>Action</div></th>
+              <th class="post5" style="width:11%;"><div style="width:48px;">Action</div></th>
             </tr>
             <% if @shares.size > 0 %>
               <%  @shares.each do |s| %>
