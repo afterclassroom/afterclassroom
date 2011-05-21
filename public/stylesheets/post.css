@@ -1316,6 +1316,10 @@ span.btmDown a:hover {
 .QAsDet input {
     margin-right: 5px;
 }
+.QAsDet span{
+    margin-top: 3px;
+    position: absolute;
+}
 
 .QAsPoll .submit {
     padding-top: 5px;

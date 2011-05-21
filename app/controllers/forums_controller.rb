@@ -4,16 +4,16 @@ class ForumsController < ApplicationController
   def index  
     @text = "test from forum"
     @forums = Forum.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 8, :order => "created_at")
-    @testfr = Forum.paginated_forum_with_top_answer
+    @top_frs = Forum.paginated_forum_with_top_answer('1','4')
   end
 
-  def browse
-    @forums = Forum.find(:all)
+  def see_all_top_fr
+    @top_frs = Forum.paginated_forum_with_top_answer('1','4')
+    @forums = Forum.paginated_forum_with_top_answer('','')
     render :template => 'forums/index' 
   end
 
   def search
-    #@forums = Forum.find(:all)
     @forums = Forum.paginated_forum_with_search(params).results
     render :template => 'forums/index' 
   end
