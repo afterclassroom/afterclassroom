@@ -33,7 +33,7 @@ gem 'acts_as_favorite'
 gem 'ajaxful_rating'
 gem 'juggernaut'
 gem 'activerecord', '>= 3.0.3'
-gem 'riddle',       '>= 1.2.1'
+gem 'riddle', '>= 1.2.1'
 gem "paperclip", "~> 2.3"
 gem 'acts-as-taggable-on'
 gem 'ruby-mp3info'

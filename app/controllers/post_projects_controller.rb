@@ -110,7 +110,8 @@ class PostProjectsController < ApplicationController
       
     if simple_captcha_valid? 
       @post.save
-      @post.school.tag(@post_project, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_project, :with => @tag_list, :on => :tags)
       @post_project.post = @post
       if @post_project.save
         flash[:notice] = "Your post was successfully created."
@@ -134,7 +135,8 @@ class PostProjectsController < ApplicationController
     
     if (@post_project.update_attributes(params[:post_project]) && @post_project.post.update_attributes(params[:post]))
       @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
-      @post.school.tag(@post_project, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_project, :with => params[:tag], :on => :tags)
       @post_project.save
       redirect_to post_project_url(@post_project)
     end

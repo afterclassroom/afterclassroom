@@ -175,7 +175,8 @@ class PostAwarenessesController < ApplicationController
    
     if simple_captcha_valid?     
       @post.save
-      @post.school.tag(@post_awareness, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_awareness, :with => @tag_list, :on => :tags)
       @post_awareness.post = @post
       if @post_awareness.save
         flash[:notice] = "Your post was successfully created."
@@ -199,7 +200,8 @@ class PostAwarenessesController < ApplicationController
     @post = @post_awareness.post
     
     if (@post_awareness.update_attributes(params[:post_awareness]) && @post_awareness.post.update_attributes(params[:post]))
-      @post.school.tag(@post_awareness, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_awareness, :with => params[:tag], :on => :tags)
       redirect_to post_awareness_url(@post_awareness)
     end
   end

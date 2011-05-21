@@ -139,7 +139,8 @@ class PostFoodsController < ApplicationController
       
     if simple_captcha_valid? 
       @post.save
-      @post.school.tag(@post_food, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_food, :with => @tag_list, :on => :tags)
       @post_food.post = @post
       if @post_food.save
         flash[:notice] = "Your post was successfully created."
@@ -162,7 +163,8 @@ class PostFoodsController < ApplicationController
     @post = @post_food.post
     
     if (@post_food.update_attributes(params[:post_food]) && @post_food.post.update_attributes(params[:post]))
-      @post.school.tag(@post_food, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_food, :with => params[:tag], :on => :tags)
       redirect_to post_food_url(@post_food)
     end
   end

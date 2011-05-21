@@ -157,7 +157,8 @@ class PostQasController < ApplicationController
     
     if simple_captcha_valid?   
       @post.save 
-      @post.school.tag(@post_qa, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_qa, :with => @tag_list, :on => :tags)
       @post_qa.post = @post
       if @post_qa.save
         flash[:notice] = "Your post was successfully created."
@@ -179,7 +180,8 @@ class PostQasController < ApplicationController
     @post_qa = PostQa.find(params[:id])
     @post = @post_qa.post
     if (@post_qa.update_attributes(params[:post_qa]) && @post.update_attributes(params[:post]))
-      @post.school.tag(@post_qa, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_qa, :with => params[:tag], :on => :tags)
       redirect_to post_qa_url(@post_qa)
     end
   end

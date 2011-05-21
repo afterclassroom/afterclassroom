@@ -127,7 +127,8 @@ class PostTeamupsController < ApplicationController
       
     if simple_captcha_valid?   
       @post.save     
-      @post.school.tag(@post_teamup, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_teamup, :with => @tag_list, :on => :tags)
       @post_teamup.post = @post
       
       if @post_teamup.save
@@ -151,7 +152,8 @@ class PostTeamupsController < ApplicationController
     @post = @post_teamup.post
     
     if (@post_teamup.update_attributes(params[:post_teamup]) && @post_teamup.post.update_attributes(params[:post]))
-      @post.school.tag(@post_teamup, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_teamup, :with => params[:tag], :on => :tags)
       redirect_to post_food_url(@post_teamup)
     end
   end

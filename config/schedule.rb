@@ -31,5 +31,5 @@ end
 
 # Delete share file expire
 every 1.day, :at => '1:00 am' do 
-  runner "Share.del_share_expire"
+  runner "Share.del_share_expire", :environment => :production
 end

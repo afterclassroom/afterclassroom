@@ -177,7 +177,8 @@ class PostBooksController < ApplicationController
     @post = @post_book.post
     
     if (@post_book.update_attributes(params[:post_book]) && @post_book.post.update_attributes(params[:post]))
-      @post.school.tag(@post_book, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_book, :with => params[:tag], :on => :tags)
       redirect_to post_book_path(@post_book)
     end
   end

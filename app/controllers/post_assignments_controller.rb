@@ -110,7 +110,8 @@ class PostAssignmentsController < ApplicationController
 
     if simple_captcha_valid? 
       @post.save
-      @post.school.tag(@post_assignment, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_assignment, :with => @tag_list, :on => :tags)
       @post_assignment.post = @post
       if @post_assignment.save
         flash[:notice] = "Your post was successfully created."
@@ -134,7 +135,8 @@ class PostAssignmentsController < ApplicationController
     
     if (@post_assignment.update_attributes(params[:post_assignment]) && @post.update_attributes(params[:post]))
       @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
-      @post.school.tag(@post_assignment, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_assignment, :with => params[:tag], :on => :tags)
       @post_assignment.save
       redirect_to post_assignment_url(@post_assignment)
     end

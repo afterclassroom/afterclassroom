@@ -8,11 +8,11 @@ class PostManagementsController < ApplicationController
     @post_cat = PostCategory.find(:all)
     @category = params[:category]
     @sort = "DESC"
-    
+    @query = params[:search][:query] if params[:search].present? and params[:search][:query].present?
     cur_page = 1
     
-    if @category == "" or @category == "Category"
-      @all_posts = Post.paginated_post_management(params, current_user.id)
+    if @category.nil? or @category == "" or @category == "Category"
+      @all_posts = Post.paginated_post_management(params, current_user.id).results
     else
       @all_posts = current_user.get_posts_with_type_and_sort(@category, @sort).paginate(:page => cur_page, :per_page => 10)
     end
