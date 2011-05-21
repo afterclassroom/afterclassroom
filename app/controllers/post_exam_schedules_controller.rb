@@ -121,7 +121,8 @@ class PostExamSchedulesController < ApplicationController
     @post_exam_schedule.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
     if simple_captcha_valid?    
       @post.save    
-      @post.school.tag(@post_exam_schedule, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_exam_schedule, :with => @tag_list, :on => :tags)
       @post_exam_schedule.post = @post
       if @post_exam_schedule.save
         flash[:notice] = "Your post was successfully created."
@@ -144,7 +145,8 @@ class PostExamSchedulesController < ApplicationController
     @post = @post_exam_schedule.post
     
     if (@post_exam_schedule.update_attributes(params[:post_exam_schedule]) && @post.update_attributes(params[:post]))
-      @post.school.tag(@post_exam_schedule, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_exam_schedule, :with => params[:tag], :on => :tags)
       redirect_to post_exam_schedules_path(:type => @post_exam_schedule.type_name)
     end
   end

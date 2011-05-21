@@ -138,7 +138,8 @@ class PostMyxesController < ApplicationController
     
     if simple_captcha_valid?  
       @post.save 
-      @post.school.tag(@post_myx, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_myx, :with => @tag_list, :on => :tags)
       @post_myx.post = @post
       if @post_myx.save
         flash[:notice] = "Your post was successfully created."
@@ -161,7 +162,8 @@ class PostMyxesController < ApplicationController
     @post = @post_myx.post
     
     if (@post_myx.update_attributes(params[:post_myx]) && @post_myx.post.update_attributes(params[:post]))
-      @post.school.tag(@post_myx, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_myx, :with => params[:tag], :on => :tags)
       redirect_to post_myx_url(@post_myx)
     end
   end

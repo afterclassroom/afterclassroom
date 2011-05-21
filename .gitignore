@@ -25,3 +25,4 @@ public/stylesheets/cache/
 vendor/gems/**/ext/**/*
 vendor/**/.git/**/*
 vendor/cache/**/*
+solr/**/.git/**/*

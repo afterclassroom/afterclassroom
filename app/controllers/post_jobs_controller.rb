@@ -178,7 +178,8 @@ class PostJobsController < ApplicationController
     
     if simple_captcha_valid?  
       @post.save  
-      @post.school.tag(@post_job, :with => params[:tag], :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_job, :with => params[:tag], :on => :tags)
       @post_job.post = @post   
       if (@post_job.job_type.label == "i_m_looking_for_job")
         #If user does not upload file, records for these 3 files are created with empty url
@@ -208,7 +209,8 @@ class PostJobsController < ApplicationController
     @post = @post_job.post
     
     if (@post_job.update_attributes(params[:post_job]) && @post_job.post.update_attributes(params[:post]))
-      @post.school.tag(@post_job, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_job, :with => params[:tag], :on => :tags)
       redirect_to post_job_url(@post_job)
     end
     

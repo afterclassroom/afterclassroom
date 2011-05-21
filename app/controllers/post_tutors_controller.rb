@@ -155,7 +155,8 @@ class PostTutorsController < ApplicationController
     
     if simple_captcha_valid?     
       @post.save    
-      @post.school.tag(@post_tutor, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_tutor, :with => @tag_list, :on => :tags)
       @post_tutor.post = @post
       
       if @post_tutor.save
@@ -178,7 +179,8 @@ class PostTutorsController < ApplicationController
     @post_tutor = PostTutor.find(params[:id])
     @post = @post_tutor.post
     if (@post_tutor.update_attributes(params[:post_tutor]) && @post_tutor.post.update_attributes(params[:post]))
-      @post.school.tag(@post_tutor, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_tutor, :with => params[:tag], :on => :tags)
       redirect_to post_tutor_url(@post_tutor)
     end
     

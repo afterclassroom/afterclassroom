@@ -99,7 +99,8 @@ class PostTestsController < ApplicationController
       
     if simple_captcha_valid?
       @post.save  
-      @post.school.tag(@post_test, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_test, :with => @tag_list, :on => :tags)
       @post_test.post = @post
       if @post_test.save
         flash[:notice] = "Your post was successfully created."
@@ -122,7 +123,8 @@ class PostTestsController < ApplicationController
     @post = @post_test.post
     
     if (@post_test.update_attributes(params[:post_test]) && @post.update_attributes(params[:post]))
-      @post.school.tag(@post_test, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_test, :with => params[:tag], :on => :tags)
       redirect_to post_test_url(@post_test)
     end
   end

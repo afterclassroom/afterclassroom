@@ -118,7 +118,8 @@ class PostHousingsController < ApplicationController
     
     if simple_captcha_valid?    
       @post.save
-      @post.school.tag(@post_housing, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_housing, :with => @tag_list, :on => :tags)
       @post_housing.post = @post
       if @post_housing.save
         flash[:notice] = "Your post was successfully created."
@@ -142,7 +143,8 @@ class PostHousingsController < ApplicationController
     @post_housing = PostHousing.find(params[:id])
     @post = @post_housing.post
     if (@post_housing.update_attributes(params[:post_housing]) && @post_housing.post.update_attributes(params[:post]))
-      @post.school.tag(@post_housing, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_housing, :with => params[:tag], :on => :tags)
       redirect_to post_housing_url(@post_housing)
     end
   end

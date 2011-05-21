@@ -177,7 +177,8 @@ class PostPartiesController < ApplicationController
     
     if simple_captcha_valid?  
       @post.save    
-      @post.school.tag(@post_party, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_party, :with => @tag_list, :on => :tags)
       @post_party.post = @post
       if @post_party.save
         flash[:notice] = "Your post was successfully created."
@@ -204,7 +205,8 @@ class PostPartiesController < ApplicationController
     if (@post_party.update_attributes(params[:post_party]) && @post_party.post.update_attributes(params[:post]))
       @post_party.start_time = DateTime.strptime(params[:start_time], "%m/%d/%Y %I:%M %p") if params[:start_time] != ""
       @post_party.end_time = DateTime.strptime(params[:end_time], "%m/%d/%Y %I:%M %p") if params[:end_time] != ""
-      @post.school.tag(@post_party, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_party, :with => params[:tag], :on => :tags)
       redirect_to post_party_url(@post_party)
     end
   end

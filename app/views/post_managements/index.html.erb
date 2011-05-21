@@ -1,4 +1,9 @@
+<% content_for :menu_sub do -%>
+<div class="AsDsearch">
+    <%= render :partial => "shared/search_indetail", :locals => {:url_search => user_post_managements_url(current_user)} %>
+</div>
+<% end -%>
 <div class="shopP2">
-  <%= display_flash_messages_with_raw %>
-  <%= render :partial => "list_post"%>
+    <%= display_flash_messages_with_raw %>
+    <%= render :partial => "list_post" %>
 </div>

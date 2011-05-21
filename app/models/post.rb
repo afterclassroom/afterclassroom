@@ -87,12 +87,15 @@ class Post < ActiveRecord::Base
   def self.paginated_post_management_admin(params)
     sort = 'DESC'
     sort = params[:sort] if params[:sort]
-    query = params[:search][:query]
     cat_name = params[:category]
     category = PostCategory.find_by_class_name(cat_name)
     if category
       Post.search do
-        fulltext query
+        if params[:search][:query].present?
+          keywords(params[:search][:query]) do
+            highlight :description
+          end
+        end
         with :post_category_id, category.id
         order_by :created_at, sort.downcase.to_sym
         paginate :page => params[:page], :per_page => 10

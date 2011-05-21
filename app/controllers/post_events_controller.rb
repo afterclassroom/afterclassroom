@@ -140,7 +140,8 @@ class PostEventsController < ApplicationController
     if (@post_event.update_attributes(params[:post_event]) && @post_event.post.update_attributes(params[:post]))
       @post_event.start_time = DateTime.strptime(params[:start_time], "%m/%d/%Y %I:%M %p") if params[:start_time] != ""
       @post_event.end_time = DateTime.strptime(params[:end_time], "%m/%d/%Y %I:%M %p") if params[:end_time] != ""
-      @post.school.tag(@post_event, :with => params[:tag], :on => :tags)
+      sc = School.find(@post.school.id)
+      sc.tag(@post_event, :with => params[:tag], :on => :tags)
       redirect_to post_event_url(@post_event)
     end
   end

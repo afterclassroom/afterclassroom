@@ -59,12 +59,6 @@
 
 
 
-<% if controller.action_name == "index" %> 
-          <%= will_paginate @forums %>
-<% end %>
-
-
-
 
           <% @forums.each do |fr| %>
             <div class="helpItem">
@@ -172,7 +166,10 @@
 
 
 
-          <div class="allDis" id="browse_all"><%= link_to raw("Browse all discussions"), browse_user_forums_path(current_user) %></div>
+<% if controller.action_name == "index" %> 
+          <%= will_paginate @forums %>
+<% end %>
+
         </div>
       </div>
     </div>
@@ -182,14 +179,15 @@
   <div class="popu">
     <div class="popuTop">
       <div class="popuTitle">Popular Discussions</div>
-      <div class="popuAll"><a href="#">See all</a></div>
+      <div class="popuAll"><a href="<%= see_all_top_fr_user_forums_path(current_user) %>">See all</a></div>
     </div>
-    <div class="popuDes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam consequat, erat sit amet mattis suscipit, enim libero laoreet dolor, non varius metus enim sed lectus...</div>
-    <div class="popuRe"><a href="#">39 replies</a></div>
-    <div class="popuDes">Proin sit amet neque felis, eu aliquam sapien. Sed eget justo quis erat pharetra dapibus. Nam consectetur augue et arcu suscipit tristique !</div>
-    <div class="popuRe"><a href="#">56 replies</a></div>
-    <div class="popuDes">Nunc massa lorem, scelerisque in posuere at, adipiscing in ante. Integer lobortis, sem eu iaculis rutrum, lectus augue viverra leo, vitae luctus libero enim eu nibh..</div>
-    <div class="popuRe"><a href="#">25 replies</a></div>
+
+          <% @top_frs.each do |fr| %>
+    <div class="popuDes"><b><%= fr.title %></b>  <%= fr.content %></div>
+    <div class="popuRe"><a href="javascript:;"><%= fr.comments.length %> replies</a></div>
+
+<% end %>
+
   </div>
 </div>
 
@@ -315,5 +313,4 @@
 
 
 </script>
-
 
