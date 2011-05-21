@@ -6,6 +6,7 @@
       <div class="btmS"><a href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
       <% end %>
     </div>
+    
     <div class="friConnect">
       <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection", user_friends_path(current_user) %></div>
       <div class="friConnect2 <%= "friSelect" if action_name == "find" %>"><%= link_to "Find friends", find_user_friends_path(current_user) %></div>

@@ -29,11 +29,11 @@
                     <div class="postItemA">
                         <div id="divinputfile" style="margin-left:120px">
                             <div class="postItemC">
-                                <%= f.file_field :photo_attach, :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc {validate:{required:true, accept:true}}", :style => "height:24px;" %>
+                                <%= file_field_tag "photo[photo_attach]", :id =>"photo_photo_attach", :onchange => "$('#fakefilepc').val(this.value);", :class => "filepc {validate:{required:true, accept:true}}", :size =>"27", :style => "height:24px;" %>
                             </div>
                             <div class="postUpfile">
                                 <div id="fakeinputfile">
-                                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;">
+                                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;" />
                                 </div>
                             </div>
                         </div>
