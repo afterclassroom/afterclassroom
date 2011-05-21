@@ -19,7 +19,7 @@
         <%= display_flash_messages_with_raw %>
 
         <!--Options-->
-        <%= show_options(@school, params) %>
+        <%= show_options(@school, params, {"type" => @type_schedule}) %>
         <!--Options-->
         
         <!--List Items-->
@@ -62,5 +62,9 @@
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
+	
+	<!--Request ExamSchedule-->
+    <%= render :partial => "form_request_exam_schedule" %>
+  <!--Request ExamSchedule-->
 </div>
 <!--Content-->

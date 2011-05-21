@@ -245,6 +245,11 @@
     word-wrap: break-word;
 }
 
+.assDes em {
+    color: #F6A828;
+		font-weight:bold;
+}
+
 .assCate, .assInfL {
     font-size: 11px;
     color: #0a81c4;
@@ -1310,6 +1315,10 @@ span.btmDown a:hover {
 
 .QAsDet input {
     margin-right: 5px;
+}
+.QAsDet span{
+    margin-top: 3px;
+    position: absolute;
 }
 
 .QAsPoll .submit {

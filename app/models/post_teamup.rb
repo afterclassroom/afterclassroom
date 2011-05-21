@@ -92,7 +92,7 @@ class PostTeamup < ActiveRecord::Base
   end
 
   def self.worse_org(school)
-    post_teamups = self.with_school(school).with_status("Good")
+    post_teamups = self.with_school(school).with_status("Bad")
   end
 
   def self.recent_comments(school)

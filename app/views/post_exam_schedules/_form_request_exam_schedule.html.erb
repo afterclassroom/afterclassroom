@@ -1,0 +1,93 @@
+<div class="col300 Request">
+    <div class="col300in">
+        <h1 class="col300Title">Quick Post</h1>
+        <div class="col300Cont">
+            <%= form_for :post_exam_schedule, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+            <%= fields_for :post do |p| %>
+            <div class="reqSl">
+                <div class="reqLa">
+                    <label>
+                        Type
+                    </label>
+                </div>
+                <div class="reqTi">
+                    <%= text_field_tag "post_exam_schedule[type_name]", @type_schedule, :id => "type_exam_schedule" %>
+                </div>
+            </div>
+            <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
+            <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
+            <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
+            <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
+            <div class="reqLa">
+                <label>
+                    Teacher name
+                </label>
+            </div>
+            <div class="reqTi">
+                <%= f.text_field :teacher_name, :value => "" %>
+            </div>
+            <div class="reqLa">
+                <label>
+                    Place
+                </label>
+            </div>
+            <div class="reqTi">
+                <%= f.text_field :place, :value => "" %>
+            </div>
+            <div class="reqSl">
+                <div class="req40">
+                    <div class="reqLa">
+                        <label>
+                            Starts at
+                        </label>
+                    </div>
+                    <div class="reqTi">
+                        <%= text_field_tag "starts_at", "" %>
+                    </div>
+                </div>
+                <div class="req60">
+                    <div class="reqLa">
+                        <label>
+                            Due date
+                        </label>
+                    </div>
+                    <div class="reqTi">
+                        <%= text_field_tag "due_date", "" %>
+                    </div>
+                </div>
+            </div>
+            <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
+            <%= render :partial => "/shared/form_request_post/select_tag" %>
+            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+            <div class="submit" style="margin-top: 5px;">
+                <%= show_submit_form() %>
+            </div>
+            <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
+<ul id="schedule_type_menu" class="mcdropdown_menu">
+    <% SCHEDULE_TYPE.each do |s| %>
+    <li rel_schedule_type="<%= s[1] %>">
+        <%= s[0] %>
+    </li>
+    <% end %>
+</ul>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#type_exam_schedule").mcDropdown("#schedule_type_menu", {
+            width: 350,
+            valueAttr: "rel_schedule_type"
+        });
+        $("#starts_at").datepicker();
+        $("#due_date").datepicker();
+    });
+    
+    $(document).ready(function(){
+        $("#starts_at").datepicker();
+    });
+		$(document).ready(function(){
+        $("#due_date").datepicker();
+    });
+</script>

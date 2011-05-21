@@ -86,8 +86,12 @@ class PostAwareness < ActiveRecord::Base
     posts
   end
 
-  def self.recent_comments
-    Comment.find_by_sql("SELECT * FROM comments WHERE commentable_type = 'PostAwareness' ORDER BY created_at DESC LIMIT 5")
+  def self.recent_comments(school)
+    if school
+      Comment.find_by_sql("SELECT * FROM comments JOIN posts ON comments.commentable_id = posts.id WHERE comments.commentable_type = 'Post' AND posts.type_name = 'PostAwareness' AND posts.school_id = #{school} ORDER BY comments.created_at DESC LIMIT 5")
+    else
+      Comment.find_by_sql("SELECT * FROM comments JOIN posts ON comments.commentable_id = posts.id WHERE comments.commentable_type = 'Post' AND posts.type_name = 'PostAwareness' ORDER BY comments.created_at DESC LIMIT 5")
+    end
   end
   
   def self.require_rating(school)
@@ -114,10 +118,10 @@ class PostAwareness < ActiveRecord::Base
   end
 
   def total_support
-    self.post_awarenesses_supports.collect{|s| s.support?}
+    self.post_awarenesses_supports.where(:support => true).size
   end
 
   def total_notsupport
-    self.post_awarenesses_supports.collect{|s| !s.support?}
+    self.post_awarenesses_supports.where(:support => false).size
   end
 end

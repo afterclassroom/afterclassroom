@@ -3,7 +3,7 @@
   <span class="btmMail"><%= show_email(post) %></span>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
   <span class="btmMore"><%= link_to raw("<span>More like this</span>"), :controller => "post_awarenesses", :action => "index", :more_like_this_id => post %></span>
-  <span class="btmAbuse"><a href="#"><span>Report Abuse</span></a></span>
+  <span class="btmAbuse"><%= link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=PostAwareness&height=320&width=490", :class => "thickbox", :title => "Report Abuse") %></span>
   <% if post.attach_file_name %>
     <span class="btmDown"><a href="javascript:downloadFile('<%= post.attach.url %>')" class="downarrow"><span>Download</span></a></span>
   <% end %>

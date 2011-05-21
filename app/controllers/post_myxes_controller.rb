@@ -157,7 +157,7 @@ class PostMyxesController < ApplicationController
   # PUT /post_myxes/1
   # PUT /post_myxes/1.xml
   def update
-    @post_myx = PostFood.find(params[:id])
+    @post_myx = PostMyx.find(params[:id])
     @post = @post_myx.post
     
     if (@post_myx.update_attributes(params[:post_myx]) && @post_myx.post.update_attributes(params[:post]))

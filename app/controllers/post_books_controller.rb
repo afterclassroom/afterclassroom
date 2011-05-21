@@ -178,7 +178,7 @@ class PostBooksController < ApplicationController
     
     if (@post_book.update_attributes(params[:post_book]) && @post_book.post.update_attributes(params[:post]))
       @post.school.tag(@post_book, :with => params[:tag], :on => :tags)
-      redirect_to my_post_user_url(current_user)
+      redirect_to post_book_path(@post_book)
     end
   end
   
