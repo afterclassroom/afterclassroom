@@ -53,6 +53,8 @@ class Post < ActiveRecord::Base
     time :created_at
   end
   
+  handle_asynchronously :solr_index
+  
   def self.paginated_post_conditions_with_search(params, school, type)
     Post.search do
       if params[:search][:query].present?

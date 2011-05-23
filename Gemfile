@@ -56,3 +56,6 @@ gem 'whenever', :require => false
 gem 'jammit'
 gem 'sunspot_rails', '~> 1.2.1'
 gem 'truncate_html'
+gem 'sunspot_index_queue'
+gem 'daemons-mikehale'
+gem 'sunspot_plus'
