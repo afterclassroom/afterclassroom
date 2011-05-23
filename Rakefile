@@ -3,6 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+require 'sunspot/rails/tasks'
 require 'jammit'
 
 Jammit.package!
