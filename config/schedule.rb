@@ -23,9 +23,7 @@ env :MAILTO, 'dungtqa@gmail.com'
 set :output, "/var/log/cron_log.log"
 
 every :reboot do
-  rake "cd :path && RAILS_ENV=production rake sunspot:solr:start"
-  runner "cd /home/after/redis-2.2.2 && src/redis-server redis.conf"
-  runner "cd /var/www/juggernaut && nohup node server.js &"
+  rake "cd :path && sunspot-solr start -- -p 8983 -d"
 end
 
 
