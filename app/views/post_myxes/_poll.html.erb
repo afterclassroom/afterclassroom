@@ -11,9 +11,9 @@ post_myx = PostMyx.require_rating(@school).first
           <p><%= truncate_words(post_myx.post.description) %></p>
         </div>
         <div id="require_rating_action">
-          <div class="QAsDet"><input type="radio" name="rating" value="2" checked="checked"/>Good <strong rel="rate" style="display:none;">(<%= post_myx.total_good %>)</strong></div>
-          <div class="QAsDet"><input type="radio" name="rating" value="1"/>Bored <strong rel="rate" style="display:none;">(<%= post_myx.total_bored %>)</strong></div>
-          <div class="QAsDet"><input type="radio" name="rating" value="0"/>Bad <strong rel="rate" style="display:none;">(<%= post_myx.total_bad %>)</strong></div>
+          <div class="QAsDet"><input type="radio" name="rating" value="2" checked="checked"/><span>Good</span><strong rel="rate" style="display:none;">(<%= post_myx.total_good %>)</strong></div>
+          <div class="QAsDet"><input type="radio" name="rating" value="1"/><span>Bored</span><strong rel="rate" style="display:none;">(<%= post_myx.total_bored %>)</strong></div>
+          <div class="QAsDet"><input type="radio" name="rating" value="0"/><span>Bad</span><strong rel="rate" style="display:none;">(<%= post_myx.total_bad %>)</strong></div>
           <div class="submit"><%= show_submit_rating(post_myx.post.id, require_rate_post_myxes_path) %></div>
           <div class="PollView" id="view_results">[<a href="javascript:;" onclick="showResult();">View results</a>]</div>
         </div>
