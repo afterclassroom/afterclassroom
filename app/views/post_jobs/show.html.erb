@@ -122,13 +122,12 @@
 </div>
 <!--Content-->
 <script>
-  jQuery(function($) {
-  var aCache = {};
-  $("blockquote a[href]").each(function(){
-     if ( aCache[$(this).attr("href")] == true ) return;
-     aCache[$(this).attr("href")] = true;
-     $(this).css({fontWeight:"bold"});
-  });
+  $(document).ready(function(){
+	$(".button").hover(function() {
+		$(this).attr("src","button-hover.png");
+			}, function() {
+		$(this).attr("src","button.png");
+	});
 });
 
 </script>
