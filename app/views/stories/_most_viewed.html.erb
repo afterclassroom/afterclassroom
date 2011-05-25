@@ -14,7 +14,7 @@ most_viewed_stories = Story.with_users(u).with_limit.most_view
     <h1 class="col300Title">Most viewed stories</h1>
     <% most_viewed_stories.each do |s| %>
       <div class="stuLFriChat">
-        <div class="stuLFdes"><%= link_to s.title, user_story_path(current_user, s) %><br/><%= truncate_words(s.content, 15) %></div>
+        <div class="stuLFdes"><%= link_to s.title, user_story_path(current_user, s) %><br/><span style="color: #6F6F6E"><%= truncate_words(s.content, 15) %></span></div>
       </div>
     <% end %>
   </div>

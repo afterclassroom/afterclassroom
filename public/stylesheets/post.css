@@ -2252,7 +2252,7 @@ span.btmCom a:hover {
     text-decoration: none;
 }
 
-.jobComMenu a:hover {
+.jobComMenu a:hover, .jobComMenu a.hover {
     color: #d00;
     text-decoration: none;
 }

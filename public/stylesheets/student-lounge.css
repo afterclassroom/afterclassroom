@@ -2833,7 +2833,7 @@ div.helpAdv2{
     color:#0a81c4;
     text-decoration:none;
 }
-.proItem a:hover{
+.proItem a:hover, .proItem a.hover{
     color:#d00;
     text-decoration:none;
 }
@@ -4263,6 +4263,7 @@ div.helpAdv2{
 .stuLFriChat .stuLFdes a, .stuLFriChat .stuLFdes a:link, .stuLFriChat .stuLFdes a:visited{
     color:#1e1e1e;
     text-decoration:none;
+    font-weight: bold;
 }
 .stuLFriChat .stuLFdes a:hover{
     color:#d00;
