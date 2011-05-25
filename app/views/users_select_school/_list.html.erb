@@ -1,14 +1,10 @@
-<div class="nav" style="position: fixed;top:46%;">
-  <ul id="country_menu" class="mcdropdown_menu" style="background-color: #ffffff;padding-top: 0px;margin-top: 2px;">
-    <div class="mcdropdown_menu" style="position: fixed;top:45%;background-color: #E1E0E0;width: 187px;cursor: pointer;">
-      <% @countries.each do |c| %>
-        <li rel_country="<%= c.id %>">
-          <%= c.name %>
-        </li>
-      <% end %>
-    </div>
-  </ul>
-</div>
+<ul id="country_menu" class="mcdropdown_menu">
+  <% @countries.each do |c| %>
+    <li rel_country="<%= c.id %>">
+      <%= c.name %>
+    </li>
+  <% end %>
+</ul>
 <ul id="state_menu" class="mcdropdown_menu">
   <% @states.each do |s| %>
     <li rel_state="<%= s.id %>">
@@ -37,6 +33,14 @@
   <% end %>
 </ul>
 
+<script src="/javascripts/scroll-startstop.js" type="text/javascript"></script>
+<script>
+  $(function() {
 
+  $(window).bind('scrollstart', function(){
+  $('#country_menu,#state_menu,#city_menu,#school_menu').stop().hide();
+  });
 
+  });
+</script>
 
