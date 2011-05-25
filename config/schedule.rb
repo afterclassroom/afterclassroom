@@ -18,12 +18,13 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+env :PATH, '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin'
 env :MAILTO, 'dungtqa@gmail.com'
 
 set :output, "/var/log/cron_log.log"
 
 every :reboot do
-  rake "cd :path && sunspot-solr start -- -p 8983 -d"
+  rake "sunspot:solr:start"
 end
 
 
