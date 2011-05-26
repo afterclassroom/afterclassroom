@@ -622,6 +622,9 @@
     color:#d00;
     text-decoration:none;
 }
+.friSelect{
+    font-weight: bold;
+}
 div.friSelect a:link{
     color:#0a81c4;
     font-weight:bold;
