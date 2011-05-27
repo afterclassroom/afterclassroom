@@ -446,12 +446,30 @@ module ApplicationHelper
       str = link_to_require_login(raw("<span>Invite Friend</span>"))
     else
       if current_user.user_friends.include?(user)
-        str = "My friend"
+        str = link_to(raw("<span>My friend</span>"), "javascript:;")
       else
         if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
-          str = "Waiting accept"
+          str = link_to(raw("<span>Waiting accept</span>"), "javascript:;")
         else
-          str = link_to(raw("<span>Invite Friend</span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+          str = link_to(raw("<span id='friend_#{user.id}'>Invite Friend</span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+        end
+      end
+    end
+    return str
+  end
+  
+  def show_invite_friend_on_user_profile(user)
+    str = ""
+    if !logged_in?
+      str = link_to_require_login(raw("<span class='span1'><span class='span2'>Invite Friend</span></span>"))
+    else
+      if current_user.user_friends.include?(user)
+        str = link_to(raw("<span class='span1'><span class='span2'>My friend</span></span>"), "javascript:;")
+      else
+        if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
+          str = link_to(raw("<span class='span1'><span class='span2'>Waiting accept</span></span>"), "javascript:;")
+        else
+          str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Invite Friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
         end
       end
     end

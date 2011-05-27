@@ -7,3 +7,6 @@
 # (create the session table with "rails generate session_migration")
 
 Afterclassroom::Application.config.session_store :active_record_store
+
+#require 'action_dispatch/middleware/session/dalli_store'
+#Rails.application.config.session_store :dalli_store, :memcache_server => ['localhost:11211'], :namespace => 'sessions', :key => '_foundation_session', :expire_after => 30.minutes

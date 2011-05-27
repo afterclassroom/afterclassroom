@@ -154,7 +154,7 @@ class PostTeamupsController < ApplicationController
     if (@post_teamup.update_attributes(params[:post_teamup]) && @post_teamup.post.update_attributes(params[:post]))
       sc = School.find(@post.school.id)
       sc.tag(@post_teamup, :with => params[:tag], :on => :tags)
-      redirect_to post_food_url(@post_teamup)
+      redirect_to post_teamup_path(@post_teamup)
     end
   end
   

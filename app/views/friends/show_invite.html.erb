@@ -17,6 +17,8 @@
             success: function(msg){
                 $('#TB_closeWindowButton').click();
                 $('#friend_<%= @user_invite %>').html(msg);
+								$('#link_invite').attr('href', 'javascript:;');
+								$('#link_invite').attr('class', '');
             }
         });
 
