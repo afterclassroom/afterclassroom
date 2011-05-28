@@ -2,26 +2,24 @@
 class ForumsController < ApplicationController
 
   def index  
-    @text = "test from forum"
     @forums = Forum.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 8, :order => "created_at")
-    @top_frs = Forum.paginated_forum_with_top_answer('1','4')
+    @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 4)
   end
 
   def see_all_top_fr
-    @top_frs = Forum.paginated_forum_with_top_answer('1','4')
-    @forums = Forum.paginated_forum_with_top_answer('','')
+    @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 4)
+    @forums = Forum.top_answer.paginate(:page => params[:page], :per_page => 8)
     render :template => 'forums/index' 
   end
 
   def search
     @forums = Forum.paginated_forum_with_search(params).results
+    @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 4)
     render :template => 'forums/index' 
   end
 
 
   def delcmt
-    puts "DEL OPERATION::: comment_id == "+params[:comment_id]
-    puts "DEL OPERATION:::: forum_id == "+params[:forum_id]
     fr = Forum.find(params[:forum_id])
     comment = fr.comments.find(params[:comment_id])
 
@@ -57,18 +55,6 @@ class ForumsController < ApplicationController
   end
 
   def addfr
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
-    puts "==============================="
     @new_fr = Forum.new()
     @new_fr.title = params[:txt_help]
     @new_fr.content = params[:help_content]

@@ -4,5 +4,9 @@ require File.expand_path('../application', __FILE__)
 # Initialize the rails application
 Afterclassroom::Application.initialize!
 
-# ThinkingSphinx
-ThinkingSphinx.suppress_delta_output = true
+if defined?(PhusionPassenger)
+  PhusionPassenger.on_event(:starting_worker_process) do |forked|
+    # Only works with DalliStore
+    Rails.cache.reset if forked
+  end
+end

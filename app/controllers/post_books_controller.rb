@@ -7,6 +7,10 @@ class PostBooksController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_books, :dont_buy]
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  
+  # Cache
+  caches_action :show, :index, :layout => false
   
   # GET /post_books
   # GET /post_books.xml

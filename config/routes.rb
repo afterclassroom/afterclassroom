@@ -33,7 +33,7 @@ Afterclassroom::Application.routes.draw do
     resources :settings do
       collection do
         get :networks, :notifications, :language,
-          :payments, :ads, :setting,
+          :payments, :ads, :setting, :private,
           :change_psw, :save_psw, :change_name,
           :save_name, :change_email, :save_email
         post :save_setting, :save_private_setting

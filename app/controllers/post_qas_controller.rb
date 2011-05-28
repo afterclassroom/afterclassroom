@@ -7,6 +7,11 @@ class PostQasController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :asked, :interesting, :top_answer, :prefer]
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  
+  # Cache
+  caches_action :show, :index, :layout => false
+  
   # GET /post_qas
   # GET /post_qas.xml
   

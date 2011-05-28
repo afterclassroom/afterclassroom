@@ -96,6 +96,7 @@ GEM
       json (>= 0.4.1)
     daemons (1.1.2)
     daemons-mikehale (1.0.14)
+    dalli (1.0.4)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
@@ -230,6 +231,7 @@ DEPENDENCIES
   configatron
   contacts
   daemons-mikehale
+  dalli
   delayed_job
   domainatrix
   eventmachine

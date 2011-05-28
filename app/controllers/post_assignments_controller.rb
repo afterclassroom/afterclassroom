@@ -7,7 +7,11 @@ class PostAssignmentsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :due_date, :interesting, :tag]
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
+  # Cache
+  caches_action :show, :index, :layout => false
+
   # GET /post_assignments
   # GET /post_assignments.xml
   def index  
@@ -132,7 +136,6 @@ class PostAssignmentsController < ApplicationController
   def update
     @post_assignment = PostAssignment.find(params[:id])
     @post = @post_assignment.post
-    
     if (@post_assignment.update_attributes(params[:post_assignment]) && @post.update_attributes(params[:post]))
       @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
       sc = School.find(@post.school.id)

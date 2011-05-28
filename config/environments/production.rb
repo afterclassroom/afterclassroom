@@ -25,7 +25,7 @@ Afterclassroom::Application.configure do
   # config.logger = SyslogLogger.new
   
   # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :dalli_store, 'localhost:11211'
   
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -47,6 +47,9 @@ Afterclassroom::Application.configure do
   
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  # Cache
+  config.cache_store = :dalli_store
   
   # Restful Authentication
   REST_AUTH_SITE_KEY = '5a5e73a69a893311f859ccff1ffd0fa2d7ea25fd'

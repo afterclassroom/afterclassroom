@@ -7,6 +7,10 @@ class PostAwarenessesController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :view_results]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  
+  # Cache
+  caches_action :show, :index, :layout => false
   
   # GET /post_awarenesses
   # GET /post_awarenesses.xml
