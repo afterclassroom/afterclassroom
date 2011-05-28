@@ -1,39 +1,34 @@
-                 <% @fr.comments.each do |cmt| %>
-                   <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
-                     <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
-                       <img src="/images/icon-ing.gif">
-                     </div>
+<% @fr.comments.each do |cmt| %>
+  <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
+    <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
+      <img src="/images/icon-ing.gif">
+    </div>
 
-                     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
+    <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
 
+    <div class="proListR">
+      <div class="AfterClCom">
+        <a href="/users/1/show_lounge">James</a><%= cmt.comment %>
+      </div>
+      <div class="proListCont">
+        <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
+      </div>
+    </div>
 
+  </div>
 
-
-
-                     <div class="proListR">
-                       <div class="AfterClCom">
-                         <a href="/users/1/show_lounge">James</a><%= cmt.comment %>
-                       </div>
-                       <div class="proListCont">
-                         <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
-                       </div>
-                     </div>
-
-                   </div>
-
-                 <% end %>
+<% end %>
 
 
-
-               <div id="current_cmt_<%= @fr.id %>" class="proListH1" style = "display: none;">
-                 <form>
-                   <div class="proListPic"><%= show_image_user_post(@fr.user) %></div>
-                   <div class="proListR">
-                     <div class="writeCom"><textarea name="comment" id="comment_<%= @fr.id.to_s %>"></textarea></div>
-                   </div>
-                   <div class="proAttR"><input id="save_<%= @fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
-                 </form>
-               </div>
+<div id="current_cmt_<%= @fr.id %>" class="proListH1" style = "display: none;">
+  <form>
+    <div class="proListPic"><%= show_image_user_post(@fr.user) %></div>
+    <div class="proListR">
+      <div class="writeCom"><textarea name="comment" id="comment_<%= @fr.id.to_s %>"></textarea></div>
+    </div>
+    <div class="proAttR"><input id="save_<%= @fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
+  </form>
+</div>
 
 
 <div class="proList" id="fr_comment_<%= @fr.id %>" style="margin-left:45px;">
@@ -41,30 +36,30 @@
 </div>
 
 <script type="text/javascript">
-function showForumCmtForm<%= @fr.id %>(){
-  $('#current_cmt_<%= @fr.id %>').toggle(); /* show comment box */
-  $('#fr_comment_<%= @fr.id %>').toggle(); /* hide link to box */
-}
-$(document).ready(function() {
-  ShowHideDelIcon();
+  function showForumCmtForm<%= @fr.id %>(){
+    $('#current_cmt_<%= @fr.id %>').toggle(); /* show comment box */
+    $('#fr_comment_<%= @fr.id %>').toggle(); /* hide link to box */
+  }
+  $(document).ready(function() {
+    ShowHideDelIcon();
 
 
-  $('#save_<%= @fr.id.to_s %>').click(function(){
-     var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
-     if (strContent == '')
-       alert('invalid');
-     else{
-       forum_id = $(this).attr('id').split('_')[1];
-       AddCommentWithAjax(strContent,forum_id);
+    $('#save_<%= @fr.id.to_s %>').click(function(){
+      var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
+      if (strContent == '')
+        alert('invalid');
+      else{
+        forum_id = $(this).attr('id').split('_')[1];
+        AddCommentWithAjax(strContent,forum_id);
 
-       $('#current_cmt_<%= @fr.id %>').toggle(); /* hide comment box*/
-       $('#fr_comment_<%= @fr.id %>').toggle(); /* show link comment box */
+        $('#current_cmt_<%= @fr.id %>').toggle(); /* hide comment box*/
+        $('#fr_comment_<%= @fr.id %>').toggle(); /* show link comment box */
 
-       /* reset the comment textarea to empty value */
-       $(this).parents().find('form').eq(0).find('textarea').attr('value','');
-     }
+        /* reset the comment textarea to empty value */
+        $(this).parents().find('form').eq(0).find('textarea').attr('value','');
+      }
+    });
   });
-});
 
 
 </script>
