@@ -8,7 +8,11 @@ class PostJobsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :employment_infor, :show_job_infor]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_companies, :bad_bosses]
-
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  
+  # Cache
+  caches_page :show, :index
+  
   # GET /post_jobs
   # GET /post_jobs.xml
   def index

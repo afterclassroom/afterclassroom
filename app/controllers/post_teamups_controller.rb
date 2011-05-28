@@ -7,6 +7,10 @@ class PostTeamupsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :good_org, :worse_org]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_org, :worse_org]
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  
+  # Cache
+  caches_page :show, :index
   
   # GET /post_teamups
   # GET /post_teamups.xml

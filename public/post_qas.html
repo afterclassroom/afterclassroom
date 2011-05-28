@@ -28,7 +28,7 @@
   <div class="signin">
       <ul>
         <li><a href="/forums"><span>Help</span></a></li>
-        <li><a href="https://afterclassroom.com/login?service=http%3A%2F%2Flocalhost%3A3000%2Fpost_assignments"><span>Sign in</span></a></li>
+        <li><a href="https://afterclassroom.com/login?service=http%3A%2F%2Flocalhost%3A3000%2Fpost_qas"><span>Sign in</span></a></li>
         <li><a href="http://localhost:3000/signup"><span>Simple sign up</span></a></li>
         <li><a href="http://localhost:3000/users/forgot_password"><span>Forget password</span></a></li>
       </ul>
@@ -41,9 +41,9 @@
             <div class="menusearch">
                 <div class="menuMain">
   <ul>
-    <li class='select' ><a href="http://localhost:3000/post_assignments"><span>Past Tests</span></a></li>
+    <li class='' ><a href="http://localhost:3000/post_assignments"><span>Past Tests</span></a></li>
     <li class='' ><a href="http://localhost:3000/post_events"><span>Events</span></a></li>
-    <li class='' ><a href="http://localhost:3000/post_qas"><span>Q&A</span></a></li>
+    <li class='select' ><a href="http://localhost:3000/post_qas"><span>Q&A</span></a></li>
     <li class='' ><a href="http://localhost:3000/post_tutors"><span>Tutors</span></a></li>
     <li class='' ><a href="http://localhost:3000/post_books"><span>Books</span></a></li>
     <li class='' ><a href="http://localhost:3000/post_jobs"><span>Jobs</span></a></li>
@@ -56,16 +56,16 @@
   </ul>
 </div>
 
-                <form id="action_post_search" name="search" action="/post_assignments/search" method="get">
+                <form id="action_post_search" name="search" action="/post_qas/search" method="get">
   <div class="search">
     <div class="textS">
       <input type="text" name="search[query]" value="Enter your search keywords..." onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" />
     </div>
-    <div class="selectS"><select id="search_type" name="search[type]" onchange="getPostSearchType($('#search_type :selected').text());"><option value="1" selected="selected">Quizzes</option>
+    <div class="selectS"><select id="search_type" name="search[type]" onchange="getPostSearchType($('#search_type :selected').text());"><option value="1">Quizzes</option>
 <option value="2">Tests</option>
 <option value="3">Projects</option>
 <option value="4">Exams</option>
-<option value="5">QAs</option>
+<option value="5" selected="selected">QAs</option>
 <option value="6">Tutors</option>
 <option value="7">Books</option>
 <option value="8">Jobs</option>
@@ -85,7 +85,7 @@
         </div>
         <div class="abLink">
             <div class="abLinkL">
-                  You are here: <a href="/">Home</a><a href="/post_assignments" class="abLink-detail">Quizzes</a>
+                  You are here: <a href="/">Home</a><a href="/post_qas" class="abLink-detail">Q&amp;A</a>
 
             </div>
             <div class="menuRR">
@@ -106,18 +106,9 @@
         <div class="sponsor">
             <div class="sponsorLink">
                 <div class="menuRL">
-                      <div class="menuRItem menuRselect">
-    <a href="#"><span class="span1"><span class="span2">Quizzes</span></span></a>
-</div>
-<div class="menuRItem">
-    <a href="/post_projects"><span class="span1"><span class="span2">Projects</span></span></a>
-</div>
-<div class="menuRItem">
-    <a href="/post_tests"><span class="span1"><span class="span2">Past Tests</span></span></a>
-</div>
-<div class="menuRItem">
-    <a href="/post_exams"><span class="span1"><span class="span2">Past Exams</span></span></a>
-</div>
+                      <div class="menuRItem menuRselect"><a href="/post_qas?type=answered"><span class="span1"><span class="span2">Answered Questions</span></span></a></div>
+<div class="menuRItem "><a href="/post_qas?type=asked"><span class="span1"><span class="span2">Asked Questions</span></span></a></div>
+
 
 
                 </div>
@@ -129,19 +120,18 @@
 
 <!--Content-->
 <div class="contMainL">
-  <div class="col451 assignment">
+  <div class="col451 QAs">
     <div class="col451in">
       <div class="col451Cont">
+        
 
-        
-        
         <!--Options-->
         <div class="assDrop">
   <form id="action_option" name="option" action="" method="Get">
     <div class="option_item_1"><input type="text" name="department" id="department" value="" /></div>
     <div class="option_item_2"><input type="text" name="year" id="year" value="" /></div>
     <div class="option_item_3"><input type="text" name="over" id="over" value="30" /></div>
-    
+    <input id="type" name="type" type="hidden" value="answered" />
   </form>
 </div>
 <ul id="department_menu" class="mcdropdown_menu">
@@ -686,192 +676,21 @@
         <!--Options-->
         
         <!--List Items-->
-          <div id="post_539"><div class="assItem">
+          <div id="post_500"><div class="assItem">
     <div class="assItemL">
         <div class="assPic">
             <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
         </div>
         <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/61">test memcach edit</a></h2>
+            <h2 class="titleH2"><a href="/post_qas/26">test attach file test lai</a></h2>
             <div class="assCate">
                 <span>From:</span>
-                <a href="/post_assignments?from_school=3">York University</a>
+                <a href="/post_qas?from_school=8">Harvard University</a>
             </div>
             <div class="assDes">
                 <div class="assImg">
                     <div>
-                        <a href="/post_assignments/61"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
-                    </div>
-                </div>
-                test memcach
-            </div>
-        </div>
-    </div>
-    <div class="assItemB">
-        <div class="assInfT">
-            <div class="assInfT">
-                <div class="assInfL">
-                    <div>
-                        <span>Posted by:</span>
-                        <a href="/users/2">Tran Quoc Anh Dung</a>
-                    </div>
-                </div>
-            </div>
-            <div class="assInfB">
-                <div>
-                    10:20 PM CDT
-                </div>
-                <div class="vie">
-                    View (1)
-                </div>
-                <div class="fav" id="item_favorite_539">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
-                </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_539_comments'>0</span>)</a>
-                </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=539">More like this</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Comments-->
-    <div id="post_list_comment_539" style="display:none;">
-</div>
-
-    <!--Comments-->
-</div>
-</div>
-          <div id="post_538"><div class="assItem">
-    <div class="assItemL">
-        <div class="assPic">
-            <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
-        </div>
-        <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/60">test with cache 1 edit edit</a></h2>
-            <div class="assCate">
-                <span>From:</span>
-                <a href="/post_assignments?from_school=3">York University</a>
-            </div>
-            <div class="assDes">
-                <div class="assImg">
-                    <div>
-                        <a href="/post_assignments/60"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
-                    </div>
-                </div>
-                test with cache 1
-            </div>
-        </div>
-    </div>
-    <div class="assItemB">
-        <div class="assInfT">
-            <div class="assInfT">
-                <div class="assInfL">
-                    <div>
-                        <span>Posted by:</span>
-                        <a href="/users/2">Tran Quoc Anh Dung</a>
-                    </div>
-                </div>
-            </div>
-            <div class="assInfB">
-                <div>
-                    09:41 PM CDT
-                </div>
-                <div class="vie">
-                    View (2)
-                </div>
-                <div class="fav" id="item_favorite_538">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
-                </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_538_comments'>0</span>)</a>
-                </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=538">More like this</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Comments-->
-    <div id="post_list_comment_538" style="display:none;">
-</div>
-
-    <!--Comments-->
-</div>
-</div>
-          <div id="post_537"><div class="assItem">
-    <div class="assItemL">
-        <div class="assPic">
-            <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
-        </div>
-        <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/59">test with cache edit</a></h2>
-            <div class="assCate">
-                <span>From:</span>
-                <a href="/post_assignments?from_school=3">York University</a>
-            </div>
-            <div class="assDes">
-                <div class="assImg">
-                    <div>
-                        <a href="/post_assignments/59"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
-                    </div>
-                </div>
-                test with cache
-            </div>
-        </div>
-    </div>
-    <div class="assItemB">
-        <div class="assInfT">
-            <div class="assInfT">
-                <div class="assInfL">
-                    <div>
-                        <span>Posted by:</span>
-                        <a href="/users/2">Tran Quoc Anh Dung</a>
-                    </div>
-                </div>
-            </div>
-            <div class="assInfB">
-                <div>
-                    09:33 PM CDT
-                </div>
-                <div class="vie">
-                    View (1)
-                </div>
-                <div class="fav" id="item_favorite_537">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
-                </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_537_comments'>0</span>)</a>
-                </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=537">More like this</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Comments-->
-    <div id="post_list_comment_537" style="display:none;">
-</div>
-
-    <!--Comments-->
-</div>
-</div>
-          <div id="post_534"><div class="assItem">
-    <div class="assItemL">
-        <div class="assPic">
-            <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
-        </div>
-        <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/58">test general</a></h2>
-            <div class="assCate">
-                <span>From:</span>
-                <a href="/post_assignments?from_school=3">York University</a>
-            </div>
-            <div class="assDes">
-                <div class="assImg">
-                    <div>
-                        <a href="/post_assignments/58"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
+                        <a href="/post_qas/26"><img alt="Icon_qa" src="/images/icons/icon_defaut/icon_qa.png?1297826808" /></a>
                     </div>
                 </div>
                 test
@@ -889,331 +708,101 @@
                 </div>
             </div>
             <div class="assInfB">
-                <div>
-                    02:48 AM CDT
-                </div>
                 <div class="vie">
                     View (1)
                 </div>
-                <div class="fav" id="item_favorite_534">
+                <div class="fav" id="item_favorite_500">
                     <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
                 </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_534_comments'>0</span>)</a>
+                <div id="rate_500">
+                    <div class="qashdU">
+                        <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">0</a>
+                    </div>
+                    <div class="qashdD">
+                        <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">0</a>
+                    </div>
                 </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=534">More like this</a>
+                <div class="com">
+                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Answers (<span id='post_500_comments'>3</span>)</a>
                 </div>
             </div>
         </div>
     </div>
     <!--Comments-->
-    <div id="post_list_comment_534" style="display:none;">
+    <div id="post_list_comment_500" style="display:none;">
+    <div class="proList">
+        <div class="writeCom">
+            <a href="/posts/view_all_comments?post_id=500" data-remote="true">View all</a>
+        </div>
+    </div>
+    <div class="proList" id="post_500_comment_126">
+
+    <div class="proListPic">
+        <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
+    </div>
+    <div class="proListR">
+        <div class="AfterClCom">
+            <a href="/users/2">Tran Quoc Anh Dung</a>- dddd
+        </div>
+        <div class="proListCont">
+            10 days ago.
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $(".proList").hover(function(){
+            $(".del_post_com", this).show();
+        }, function(){
+            $(".del_post_com", this).hide();
+        });
+    });
+</script>
+
+    <div class="proList" id="post_500_comment_127">
+
+    <div class="proListPic">
+        <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
+    </div>
+    <div class="proListR">
+        <div class="AfterClCom">
+            <a href="/users/2">Tran Quoc Anh Dung</a>- dddddd
+        </div>
+        <div class="proListCont">
+            10 days ago.
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $(".proList").hover(function(){
+            $(".del_post_com", this).show();
+        }, function(){
+            $(".del_post_com", this).hide();
+        });
+    });
+</script>
+
 </div>
 
     <!--Comments-->
 </div>
 </div>
-          <div id="post_531"><div class="assItem">
+          <div id="post_429"><div class="assItem">
     <div class="assItemL">
         <div class="assPic">
             <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
         </div>
         <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/57">test tag</a></h2>
+            <h2 class="titleH2"><a href="/post_qas/23">'Lạm phát cao hơn vì kỳ vọng của người dân'Điều đáng quan tâm là trong dân chúng luôn thường trực tâm lý kỳ vọng giá còn tăng cao hơn nữa, đặc biệt là khi nền kinh tế đối mặt với lạm phát. Trong lĩnh vực tiền tệ, do lo sợ mất giá, những người có tiền đồng</a></h2>
             <div class="assCate">
                 <span>From:</span>
-                <a href="/post_assignments?from_school=3">York University</a>
+                <a href="/post_qas?from_school=3">York University</a>
             </div>
             <div class="assDes">
                 <div class="assImg">
                     <div>
-                        <a href="/post_assignments/57"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
-                    </div>
-                </div>
-                test tag
-            </div>
-        </div>
-    </div>
-    <div class="assItemB">
-        <div class="assInfT">
-            <div class="assInfT">
-                <div class="assInfL">
-                    <div>
-                        <span>Posted by:</span>
-                        <a href="/users/2">Tran Quoc Anh Dung</a>
-                    </div>
-                </div>
-            </div>
-            <div class="assInfB">
-                <div>
-                    10:07 PM CDT
-                </div>
-                <div class="vie">
-                    View (8)
-                </div>
-                <div class="fav" id="item_favorite_531">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
-                </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_531_comments'>0</span>)</a>
-                </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=531">More like this</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Comments-->
-    <div id="post_list_comment_531" style="display:none;">
-</div>
-
-    <!--Comments-->
-</div>
-</div>
-          <div id="post_529"><div class="assItem">
-    <div class="assItemL">
-        <div class="assPic">
-            <a href="/users/1"><div><img alt="1670_300_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/1/1670_300_thumb.jpg?1302747714" title="James" /></div></a>
-        </div>
-        <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/56">'Lạm phát cao hơn vì kỳ vọng của người dân'Điều đáng quan tâm là trong dân chúng luôn thường trực tâm lý kỳ vọng giá còn tăng cao hơn nữa, đặc biệt là khi nền kinh tế đối mặt với lạm phát. Trong lĩnh vực tiền tệ, do lo sợ mất giá, những người có tiền đồng</a></h2>
-            <div class="assCate">
-                <span>From:</span>
-                <a href="/post_assignments?from_school=3">York University</a>
-            </div>
-            <div class="assDes">
-                <div class="assImg">
-                    <div>
-                        <a href="/post_assignments/56"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
-                    </div>
-                </div>
-                bbb
-            </div>
-        </div>
-    </div>
-    <div class="assItemB">
-        <div class="assInfT">
-            <div class="assInfT">
-                <div class="assInfL">
-                    <div>
-                        <span>Posted by:</span>
-                        <a href="/users/1">James</a>
-                    </div>
-                </div>
-            </div>
-            <div class="assInfB">
-                <div>
-                    05:19 AM CDT
-                </div>
-                <div class="vie">
-                    View (1)
-                </div>
-                <div class="fav" id="item_favorite_529">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
-                </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_529_comments'>0</span>)</a>
-                </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=529">More like this</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Comments-->
-    <div id="post_list_comment_529" style="display:none;">
-</div>
-
-    <!--Comments-->
-</div>
-</div>
-          <div id="post_528"><div class="assItem">
-    <div class="assItemL">
-        <div class="assPic">
-            <a href="/users/1"><div><img alt="1670_300_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/1/1670_300_thumb.jpg?1302747714" title="James" /></div></a>
-        </div>
-        <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/55">test with tag chemical</a></h2>
-            <div class="assCate">
-                <span>From:</span>
-                <a href="/post_assignments?from_school=3">York University</a>
-            </div>
-            <div class="assDes">
-                <div class="assImg">
-                    <div>
-                        <a href="/post_assignments/55"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
-                    </div>
-                </div>
-                test with tag chemical
-            </div>
-        </div>
-    </div>
-    <div class="assItemB">
-        <div class="assInfT">
-            <div class="assInfT">
-                <div class="assInfL">
-                    <div>
-                        <span>Posted by:</span>
-                        <a href="/users/1">James</a>
-                    </div>
-                </div>
-            </div>
-            <div class="assInfB">
-                <div>
-                    05:18 AM CDT
-                </div>
-                <div class="vie">
-                    View (1)
-                </div>
-                <div class="fav" id="item_favorite_528">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
-                </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_528_comments'>0</span>)</a>
-                </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=528">More like this</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Comments-->
-    <div id="post_list_comment_528" style="display:none;">
-</div>
-
-    <!--Comments-->
-</div>
-</div>
-          <div id="post_527"><div class="assItem">
-    <div class="assItemL">
-        <div class="assPic">
-            <a href="/users/1"><div><img alt="1670_300_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/1/1670_300_thumb.jpg?1302747714" title="James" /></div></a>
-        </div>
-        <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/54">test with tag chemical</a></h2>
-            <div class="assCate">
-                <span>From:</span>
-                <a href="/post_assignments?from_school=3">York University</a>
-            </div>
-            <div class="assDes">
-                <div class="assImg">
-                    <div>
-                        <a href="/post_assignments/54"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
-                    </div>
-                </div>
-                test with tag chemical
-            </div>
-        </div>
-    </div>
-    <div class="assItemB">
-        <div class="assInfT">
-            <div class="assInfT">
-                <div class="assInfL">
-                    <div>
-                        <span>Posted by:</span>
-                        <a href="/users/1">James</a>
-                    </div>
-                </div>
-            </div>
-            <div class="assInfB">
-                <div>
-                    05:13 AM CDT
-                </div>
-                <div class="vie">
-                    View (0)
-                </div>
-                <div class="fav" id="item_favorite_527">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
-                </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_527_comments'>0</span>)</a>
-                </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=527">More like this</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Comments-->
-    <div id="post_list_comment_527" style="display:none;">
-</div>
-
-    <!--Comments-->
-</div>
-</div>
-          <div id="post_510"><div class="assItem">
-    <div class="assItemL">
-        <div class="assPic">
-            <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
-        </div>
-        <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/53">test attach file test lai</a></h2>
-            <div class="assCate">
-                <span>From:</span>
-                <a href="/post_assignments?from_school=8">Harvard University</a>
-            </div>
-            <div class="assDes">
-                <div class="assImg">
-                    <div>
-                        <a href="/post_assignments/53"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
-                    </div>
-                </div>
-                test attach file test lai
-            </div>
-        </div>
-    </div>
-    <div class="assItemB">
-        <div class="assInfT">
-            <div class="assInfT">
-                <div class="assInfL">
-                    <div>
-                        <span>Posted by:</span>
-                        <a href="/users/2">Tran Quoc Anh Dung</a>
-                    </div>
-                </div>
-            </div>
-            <div class="assInfB">
-                <div>
-                    02:36 AM CDT
-                </div>
-                <div class="vie">
-                    View (2)
-                </div>
-                <div class="fav" id="item_favorite_510">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
-                </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_510_comments'>0</span>)</a>
-                </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=510">More like this</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Comments-->
-    <div id="post_list_comment_510" style="display:none;">
-</div>
-
-    <!--Comments-->
-</div>
-</div>
-          <div id="post_503"><div class="assItem">
-    <div class="assItemL">
-        <div class="assPic">
-            <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
-        </div>
-        <div class="assContT">
-            <h2 class="titleH2"><a href="/post_assignments/52">test</a></h2>
-            <div class="assCate">
-                <span>From:</span>
-                <a href="/post_assignments?from_school=8">Harvard University</a>
-            </div>
-            <div class="assDes">
-                <div class="assImg">
-                    <div>
-                        <a href="/post_assignments/52"><img alt="Icon_assignment" src="/images/icons/icon_defaut/icon_assignment.png?1297826808" /></a>
+                        <a href="/post_qas/23"><img alt="Icon_qa" src="/images/icons/icon_defaut/icon_qa.png?1297826808" /></a>
                     </div>
                 </div>
                 test
@@ -1231,26 +820,81 @@
                 </div>
             </div>
             <div class="assInfB">
-                <div>
-                    10:24 PM CDT
-                </div>
                 <div class="vie">
-                    View (0)
+                    View (4)
                 </div>
-                <div class="fav" id="item_favorite_503">
+                <div class="fav" id="item_favorite_429">
                     <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Favorite (0)</a>
                 </div>
-                <div class="com">
-                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Comments (<span id='post_503_comments'>0</span>)</a>
+                <div id="rate_429">
+                    <div class="qashdU">
+                        <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">0</a>
+                    </div>
+                    <div class="qashdD">
+                        <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">0</a>
+                    </div>
                 </div>
-                <div class="morelink">
-                    <a href="/post_assignments?more_like_this_id=503">More like this</a>
+                <div class="com">
+                    <a href="https://afterclassroom.com/login" class="vtip" title="This function is available only to registered users.">Answers (<span id='post_429_comments'>10</span>)</a>
                 </div>
             </div>
         </div>
     </div>
     <!--Comments-->
-    <div id="post_list_comment_503" style="display:none;">
+    <div id="post_list_comment_429" style="display:none;">
+    <div class="proList">
+        <div class="writeCom">
+            <a href="/posts/view_all_comments?post_id=429" data-remote="true">View all</a>
+        </div>
+    </div>
+    <div class="proList" id="post_429_comment_111">
+
+    <div class="proListPic">
+        <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
+    </div>
+    <div class="proListR">
+        <div class="AfterClCom">
+            <a href="/users/2">Tran Quoc Anh Dung</a>- asfasf
+        </div>
+        <div class="proListCont">
+            15 days ago.
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $(".proList").hover(function(){
+            $(".del_post_com", this).show();
+        }, function(){
+            $(".del_post_com", this).hide();
+        });
+    });
+</script>
+
+    <div class="proList" id="post_429_comment_112">
+
+    <div class="proListPic">
+        <a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a>
+    </div>
+    <div class="proListR">
+        <div class="AfterClCom">
+            <a href="/users/2">Tran Quoc Anh Dung</a>- asfasfsaf
+        </div>
+        <div class="proListCont">
+            15 days ago.
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $(".proList").hover(function(){
+            $(".del_post_com", this).show();
+        }, function(){
+            $(".del_post_com", this).hide();
+        });
+    });
+</script>
+
 </div>
 
     <!--Comments-->
@@ -1260,8 +904,8 @@
 
         <!--Pagination-->
         <div class="assPage">
-          <span class="numPage">Displaying posts <b>1&nbsp;-&nbsp;10</b> of <b>26</b> in total</span>
-          <div class="pagination"><span class="previous_page disabled">Previous</span> <em>1</em> <a rel="next" href="/post_assignments?page=2">2</a> <a href="/post_assignments?page=3">3</a> <a class="next_page" rel="next" href="/post_assignments?page=2">Next</a></div>
+          <span class="numPage">Displaying <b>all 2</b> posts</span>
+          
         </div>
         <!--Pagination-->
         <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
@@ -1270,35 +914,41 @@
   </div>
 
 </div>
+
 <div class="contMainC">
-  <!--Browser Due Date-->
-  <div class="col195 dueDate">
+  <!--Browser Top Answers-->
+  <div class="col195 QAsTopic">
   <div class="col195in">
-    <h1 class="col195Title">Due date</h1>
-    <div class="col195Cont">
-    </div>
+    <h1 class="col195Title">Top answered topics</h1>
+      <div class="col195Cont">
+          <div class="dueDItem">
+            <div class="dueDTitle"><a href="/post_qas/14">Doloremque minima quia non...</a></div>
+          </div>
+      </div>
   </div>
 </div>
 
-  <!--Browser Due Date-->
+  <!--Browser Top Answers-->
 
-  <!--Browser Interesting Assignment-->
-  <div class="col195 intPro">
+  <!--Browser Interesting questions-->
+  <div class="col195 QAsIntQue">
   <div class="col195in">
-    <h1 class="col195Title">Interesting Quizzes</h1>
-    <div class="col195Cont">
-    </div>
+    <h1 class="col195Title">Interesting questions</h1>
   </div>
 </div>
 
-  <!--Browser Interesting Assignment-->
+  <!--Browser Interesting questions-->
+
+  <!--Browser Poll Q&A-->
+  
+  <!--Browser Poll Q&A-->
 </div>
 
 <div class="contMainR">
   <!--Browser by Subject-->
   <div class="col300 Br-by-sub">
     <div class="col300in">
-        <h1 class="col300Title">Browse by subject </h1>
+        <h1 class="col300Title">Browser by category</h1>
 
         <div class="col300Cont">
             <div class="tabClouse">
@@ -1306,7 +956,7 @@
                 </div>
                 <script type="text/javascript">
 //<![CDATA[
-swfobject.embedSWF("/swfs/text_and_image_cloud.swf?1298597854","text_and_image_cloud_div","100%","100%","7","/swfs/expressInstall.swf?1193970052",{"cloud_data":"..%2Ftags%2Fshow_tags%3Fclass_name%3DPostAssignment%26ctrl_name%3Dpost_assignments","id":"text_and_image_cloud"},{"wmode":"transparent"},{"id":"text_and_image_cloud"})
+swfobject.embedSWF("/swfs/text_and_image_cloud.swf?1298597854","text_and_image_cloud_div","100%","100%","7","/swfs/expressInstall.swf?1193970052",{"cloud_data":"..%2Ftags%2Fshow_tags%3Fclass_name%3DPostQa%26ctrl_name%3Dpost_qas","id":"text_and_image_cloud"},{"wmode":"transparent"},{"id":"text_and_image_cloud"})
 //]]>
 </script><div id="text_and_image_cloud_div">
               <a href="http://www.adobe.com/go/getflashplayer">
@@ -1382,70 +1032,13 @@ swfobject.embedSWF("/swfs/text_and_image_cloud.swf?1298597854","text_and_image_c
 -->
   <!--Ads-->
 
-  <!--Request Assignment-->
-  <div id="quick_post_homework">
-  	<div class="col300 Request">
+  <!--Request Question-->
+  <div class="col300 Request">
     <div class="col300in">
-        <h1 class="col300Title">Quick Post</h1>
+        <h1 class="col300Title">Got questions? Ask experts now</h1>
         <div class="col300Cont">
-            <form accept-charset="UTF-8" action="/post_assignments" enctype="multipart/form-data" id="form_post" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="oKC4I+4ibgBkjdWaJZ4qp3ZGRPmvZ1uufN6nzsX9Xts=" /></div>
+            <form accept-charset="UTF-8" action="/post_qas" enctype="multipart/form-data" id="form_post" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="oKC4I+4ibgBkjdWaJZ4qp3ZGRPmvZ1uufN6nzsX9Xts=" /></div>
             
-            <div class="reqLa">
-    <label>
-        Sub Category
-    </label>
-</div>
-<div class="reqTi">
-    <input id="subcategory" name="subcategory" type="text" value="PostAssignment" />
-</div>
-<ul id="subcategory_menu" class="mcdropdown_menu">
-    <li rel_sub="PostAssignment">
-        Post Quizz
-    </li>
-    <li rel_sub="PostProject">
-        Post Project
-    </li>
-    <li rel_sub="PostTest">
-        Post Test
-    </li>
-    <li rel_sub="PostExam">
-        Post Exam
-    </li>
-</ul>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#subcategory").mcDropdown("#subcategory_menu", {
-            width: 275,
-            valueAttr: "rel_sub",
-            select: function(){
-                switch ($('#subcategory').val()) {
-                    case "PostAssignment":
-                        path = "/post_assignments/quick_post_form";
-                        break;
-                    case "PostProject":
-                        path = "/post_projects/quick_post_form";
-                        break;
-                    case "PostTest":
-                        path = "/post_tests/quick_post_form";
-                        break;
-                    case "PostExam":
-                        path = "/post_exams/quick_post_form";
-                        break;
-                }
-                $.ajax({
-                    url: path,
-                    type: 'GET',
-                    cache: false,
-                    dataType: 'html',
-                    success: function(data){
-                        $('#quick_post_homework').html(data);
-                    }
-                });
-            }
-        });
-    });
-</script>
-
             <div class="reqLa">
     <label>
         Program
@@ -2708,51 +2301,22 @@ swfobject.embedSWF("/swfs/text_and_image_cloud.swf?1298597854","text_and_image_c
     });
 </script>
 
-            <div class="reqLa"><label>Title*</label></div>
-<div class="reqTi"><input class="{validate:{required:true}}" id="post_title" name="post[title]" size="30" type="text" value="" /></div>
-
-            <div class="reqLa"><label>Description*</label></div>
-<div class="reqEn" style="margin:3px 0 3px 0"><textarea class="{validate:{required:true}}" id="post_description" name="post[description]"></textarea></div>
-
-            <div class="reqSl">
-                <div class="req40">
-                    <div class="reqLa">
-                        <label>
-                            Due date
-                        </label>
-                    </div>
-                    <div class="reqTi">
-                        <input id="due_date" name="due_date" type="text" value="" />
-                    </div>
-                    <script type="text/javascript">
-                        $(document).ready(function(){
-                            $("#due_date").datepicker();
-                        });
-                    </script>
-                </div>
-                <div class="req60">
-                    <div class="reqLa">
-                        <label>
-                            Professor
-                        </label>
-                    </div>
-                    <div class="reqTi">
-                        <input id="post_assignment_professor" name="post_assignment[professor]" size="30" type="text" />
-                    </div>
-                </div>
+            <div class="reqLa">
+                <label>
+                    Your question*
+                </label>
             </div>
-            <div class="postItemB">
-    <div id="divinputfile">
-        <div class="postItemC"> 
-            <input class=" filepc" id="file_attach" name="post[attach]" onchange="$('#fakefilepc').val(this.value);" size="27" style="width:280px;height:24px;margin-top:2px;" type="file" />
-        </div>
-        <div id="fakeinputfile" style="margin-top: -26px">
-            <input name="fakefilepc" type="text" id="fakefilepc"/>
-        </div>
-    </div>
-</div>
-
-
+            <div class="reqTi">
+                <input id="post_title" name="post[title]" size="30" type="text" />
+            </div>
+            <div class="reqLa">
+                <label>
+                    Content*
+                </label>
+            </div>
+            <div class="reqEn">
+                <textarea id="post_description" name="post[description]"></textarea>
+            </div>
             <div class="reqItem">
   <div class="reqLa"><label>Tags</label></div>
   <div class="reqTi"><input id="tag" name="tag" style="width:280px" type="text" value="" /></div>
@@ -2783,7 +2347,7 @@ swfobject.embedSWF("/swfs/text_and_image_cloud.swf?1298597854","text_and_image_c
 
 <div class='simple_captcha'>
   <div class='simple_captcha_image'>
-    <img src='/simple_captcha/428fd9b8348e79b0c247c67afc9847113cf1b4b8?time=1306554156' alt='captcha' />
+    <img src='/simple_captcha/428fd9b8348e79b0c247c67afc9847113cf1b4b8?time=1306554063' alt='captcha' />
   </div>
   
   <div class='simple_captcha_field'>
@@ -2802,60 +2366,56 @@ swfobject.embedSWF("/swfs/text_and_image_cloud.swf?1298597854","text_and_image_c
     </div>
 </div>
 
-  </div>
-  <!--Request Assignment-->
+  <!--Request Question-->
 
-  <!--Recent Request Assignments-->
+  <!--Recent Request Questions-->
   <div class="col300 Recent">
   <div class="col300in">
-    <h1 class="col300Title">Recent requested Quizzes</h1>
-    <div class="col300Cont">
-          <div class="recentItem">
-            <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
-            <div class="recentInf">
-              <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
-              <div class="recentUni"><span>at</span><a href="/post_assignments?from_school=3">York University</a></div>
-              <div class="recentDes"><a href="/post_assignments/61">test memcach edit</a></div>
-            </div>
+    <h1 class="col300Title">Recent asked Questions</h1>
+        <div class="recentItem">
+          <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
+          <div class="recentInf">
+            <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
+            <div class="recentUni"><span>at</span><a href="/post_qas?from_school=8&amp;type=answered">Harvard University</a></div>
+            <div class="recentDes"><a href="/post_qas/27">test</a></div>
           </div>
-          <div class="recentItem">
-            <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
-            <div class="recentInf">
-              <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
-              <div class="recentUni"><span>at</span><a href="/post_assignments?from_school=3">York University</a></div>
-              <div class="recentDes"><a href="/post_assignments/60">test with cache 1 edit edit</a></div>
-            </div>
+        </div>
+        <div class="recentItem">
+          <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
+          <div class="recentInf">
+            <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
+            <div class="recentUni"><span>at</span><a href="/post_qas?from_school=7&amp;type=answered">Stanford University</a></div>
+            <div class="recentDes"><a href="/post_qas/25">post from qa</a></div>
           </div>
-          <div class="recentItem">
-            <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
-            <div class="recentInf">
-              <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
-              <div class="recentUni"><span>at</span><a href="/post_assignments?from_school=3">York University</a></div>
-              <div class="recentDes"><a href="/post_assignments/59">test with cache edit</a></div>
-            </div>
+        </div>
+        <div class="recentItem">
+          <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
+          <div class="recentInf">
+            <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
+            <div class="recentUni"><span>at</span><a href="/post_qas?from_school=7&amp;type=answered">Stanford University</a></div>
+            <div class="recentDes"><a href="/post_qas/24">test with tag</a></div>
           </div>
-          <div class="recentItem">
-            <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
-            <div class="recentInf">
-              <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
-              <div class="recentUni"><span>at</span><a href="/post_assignments?from_school=3">York University</a></div>
-              <div class="recentDes"><a href="/post_assignments/58">test general</a></div>
-            </div>
+        </div>
+        <div class="recentItem">
+          <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
+          <div class="recentInf">
+            <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
+            <div class="recentUni"><span>at</span><a href="/post_qas?from_school=3&amp;type=answered">York University</a></div>
+            <div class="recentDes"><a href="/post_qas/22">'Lạm phát cao hơn vì kỳ vọng của người dân'Điều đáng quan tâm là trong dân chúng luôn thường trực tâm lý kỳ vọng giá còn tăng cao hơn nữa, đặc biệt là khi nền kinh tế đối mặt với lạm phát. Trong lĩnh vực tiền tệ, do lo sợ mất giá, những người có tiền đồng</a></div>
           </div>
-          <div class="recentItem">
-            <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
-            <div class="recentInf">
-              <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
-              <div class="recentUni"><span>at</span><a href="/post_assignments?from_school=3">York University</a></div>
-              <div class="recentDes"><a href="/post_assignments/57">test tag</a></div>
-            </div>
+        </div>
+        <div class="recentItem">
+          <div class="recentImg"><a href="/users/2"><div><img alt="Images_thumb" class="vtip" src="http://s3.amazonaws.com/afterclassroom_avatar/avatars/2/images_thumb.jpg?1304047339" title="Tran Quoc Anh Dung" /></div></a></div>
+          <div class="recentInf">
+            <div class="recentName"><a href="/users/2">Tran Quoc Anh Dung</a></div>
+            <div class="recentUni"><span>at</span><a href="/post_qas?from_school=2&amp;type=answered">Ryerson University</a></div>
+            <div class="recentDes"><a href="/post_qas/21">asdfasdfasdfasdf</a></div>
           </div>
-      <div class="recentBottom">&nbsp;</div>
-    </div>
+        </div>
   </div>
 </div>
 
-  <!--Recent Request Assignments-->
+  <!--Recent Request Questions-->
 </div>
 <!--Content-->
 

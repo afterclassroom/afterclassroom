@@ -7,7 +7,11 @@ class PostProjectsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :due_date, :interesting, :tag]
-
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  
+  # Cache
+  caches_page :show, :index
+  
   # GET /post_projects
   # GET /post_projects.xml
   def index

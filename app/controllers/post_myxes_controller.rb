@@ -7,7 +7,10 @@ class PostMyxesController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
+  # Cache
+  caches_page :show, :index
   
   # GET /post_myxes
   # GET /post_myxes.xml
