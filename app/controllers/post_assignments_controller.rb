@@ -10,7 +10,7 @@ class PostAssignmentsController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_page :show, :index
+  caches_action :show, :index, :layout => false
 
   # GET /post_assignments
   # GET /post_assignments.xml
