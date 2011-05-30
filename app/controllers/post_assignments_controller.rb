@@ -11,7 +11,7 @@ class PostAssignmentsController < ApplicationController
   
   # Cache
   caches_action :show, :index, :if => Proc.new {|c| c.send(:current_user).nil? }
-
+  
   # GET /post_assignments
   # GET /post_assignments.xml
   def index   
@@ -111,7 +111,7 @@ class PostAssignmentsController < ApplicationController
     @post.type_name = @class_name
     @post_assignment = PostAssignment.new(params[:post_assignment])
     @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
-
+    
     if simple_captcha_valid? 
       @post.save
       sc = School.find(@school)
@@ -168,6 +168,14 @@ class PostAssignmentsController < ApplicationController
     @class_name = "PostAssignment"
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
+    @departments = Department.of_school(@school) if !fragment_exist? :select_department
+    if !fragment_exist? :browser_by_subject
+      if @school
+        @tags = School.find(@school).owned_tags.where(["taggable_type = ?", @class_name])
+      else
+        @tags = eval(@class_name).tag_counts
+      end
+    end
   end
   
   def require_current_user
