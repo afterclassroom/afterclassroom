@@ -10,7 +10,7 @@ class PostMyxesController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_action :show, :index, :layout => false
+  #caches_action :show, :index, :layout => false
   
   # GET /post_myxes
   # GET /post_myxes.xml

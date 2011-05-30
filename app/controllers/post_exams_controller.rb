@@ -10,7 +10,7 @@ class PostExamsController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_action :show, :index, :layout => false
+  #caches_action :show, :index, :layout => false
   
   # GET /post_exams
   # GET /post_exams.xml

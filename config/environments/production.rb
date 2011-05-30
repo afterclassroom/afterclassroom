@@ -48,9 +48,6 @@ Afterclassroom::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  # Cache
-  config.cache_store = :dalli_store
-  
   # Restful Authentication
   REST_AUTH_SITE_KEY = '5a5e73a69a893311f859ccff1ffd0fa2d7ea25fd'
   REST_AUTH_DIGEST_STRETCHES = 15
