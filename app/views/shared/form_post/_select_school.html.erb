@@ -6,3 +6,10 @@
 		<div class="postInp" style="margin-top:3px;"><strong><%= School.find(@school).name %></strong> - <%= link_to("Click here", "/users_select_school/show?height=170", :class => "thickbox", :title => "Select Schools") %> to choose another school.</div>
 	<% end %>
 </div>
+<script>
+  $(document).ready(function(){
+        $("a.thickbox").click(function(){
+        $('#department_menu,#year_menu').hide();
+        });
+  });
+</script>
