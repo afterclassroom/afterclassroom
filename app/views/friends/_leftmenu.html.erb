@@ -5,8 +5,7 @@
         <div class="textS"><%= text_field_tag "search[name]", "#{@search_name}" %></div>
       <div class="btmS"><a href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
       <% end %>
-    </div>
-    
+    </div>    
     <div class="friConnect">
       <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection", user_friends_path(current_user) %></div>
       <div class="friConnect2 <%= "friSelect" if action_name == "find" %>"><%= link_to "Find friends", find_user_friends_path(current_user) %></div>
@@ -15,7 +14,7 @@
       <div class="friConnect11 <%= "friSelect" if action_name == "friend_request" %>"><%= link_to "Friend Requests", friend_request_user_friends_path(current_user) %></div>
     </div>
     <div class="friendL">List</div>
-    <div class="friConnect">
+    <div class="friConnect">     
       <div class="friConnect6 <%= "friSelect" if action_name == "list" && @group == "family_members" %>"><%= link_to "Family members", list_user_friends_path(current_user, :group => "family_members") %></div>
       <div class="friConnect7 <%= "friSelect" if action_name == "list" && @group == "friends_from_school" %>"><%= link_to "Friends from school", list_user_friends_path(current_user, :group => "friends_from_school") %></div>
       <div class="friConnect8 <%= "friSelect" if action_name == "list" && @group == "friends_from_work" %>"><%= link_to "Friends from work", list_user_friends_path(current_user, :group => "friends_from_work") %></div>

@@ -33,7 +33,7 @@ Afterclassroom::Application.routes.draw do
     resources :settings do
       collection do
         get :networks, :notifications, :language,
-          :payments, :ads, :setting,
+          :payments, :ads, :setting, :private,
           :change_psw, :save_psw, :change_name,
           :save_name, :change_email, :save_email
         post :save_setting, :save_private_setting
@@ -189,6 +189,10 @@ Afterclassroom::Application.routes.draw do
       get :search, :due_date, :interesting, :tag, :quick_post_form
     end
   end
+  
+  resources :post_assignments, :except => :index
+  get "post_assignments(/pages/:page)" => "post_assignments#index", :as => :post_assignments
+
 
   resources :post_projects do
     collection do

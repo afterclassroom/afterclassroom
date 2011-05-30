@@ -191,9 +191,9 @@ class FriendsController < ApplicationController
   
   def de_accept
     @invite_id = params[:invite_id]
-    @invite_id = @user.user_invites_in.find_by_id(@invite_id)
-    @invite_id.destroy
+    @invite = @user.user_invites_in.find_by_id(@invite_id)
     user_invite = User.find(@invite.user_id)
+    @invite.destroy
     subject = "#{current_user.name} sended a message for you."
     content = "#{current_user.name} has declined invitations to your friend."
     send_notification(user_invite, subject, content, "confirms_a_friendship_request")

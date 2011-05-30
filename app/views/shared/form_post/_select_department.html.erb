@@ -1,18 +1,16 @@
+<% cache :select_department do %>
 <div class="postItemDep">
   <div class="postTit">Program</div>
   <div class="postDep"><%= post.text_field :department_id, :id => "department" %></div>
 </div>
 <ul id="department_menu" class="mcdropdown_menu">
-  <%
-  departments = Department.of_school(@school)
-%>
   <li rel_department="">
     Choose program
   </li>
   <%
   category_id = ""
 %>
-  <% departments.each do |dp| %>
+  <% @departments.each do |dp| %>
     <% if category_id == "" %>
       <li rel="category_id_<%= dp.department_category.id %>">
         <%= dp.department_category.name %>
@@ -37,7 +35,13 @@
     $(document).ready(function(){
         $("#department").mcDropdown("#department_menu", {
             width: 275,
-            valueAttr: "rel_department"
+            valueAttr: "rel_department"            
         });
     });
+    $(document).ready(function(){
+        $(".mcdropdown a").click(function(){
+        $('#year_menu').hide();
+        });
+  });
 </script>
+<% end %>

@@ -409,11 +409,13 @@ ActiveRecord::Schema.define(:version => 20110428071404) do
   end
 
   create_table "post_events", :force => true do |t|
-    t.integer "post_id"
-    t.integer "event_type_id"
-    t.string  "address"
-    t.string  "phone"
-    t.string  "rating_status"
+    t.integer  "post_id"
+    t.integer  "event_type_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "rating_status"
   end
 
   create_table "post_exam_schedules", :force => true do |t|

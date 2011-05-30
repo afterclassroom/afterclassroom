@@ -71,7 +71,10 @@
     $("#city").mcDropdown("#city_menu", {
       width: 170,
       valueAttr: "rel_city",
-      select: select_city
+      select: select_city,
+      minRows: 8,
+      maxRows: 25,
+      targetColumnSize: 3
     });
     $("#school").mcDropdown("#school_menu", {
       width: 170,

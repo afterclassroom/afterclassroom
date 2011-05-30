@@ -1,3 +1,4 @@
+<% cache :option_select_department do %>
 <div class="assDrop">
   <form id="action_option" name="option" action="" method="Get">
     <div class="option_item_1"><input type="text" name="department" id="department" value="<%= department %>" /></div>
@@ -13,16 +14,13 @@
   </form>
 </div>
 <ul id="department_menu" class="mcdropdown_menu">
-  <%
-  departments = Department.of_school(school)
-%>
   <li rel_department="">
     Choose program
   </li>
   <%
   category_id = ""
 %>
-  <% departments.each do |dp| %>
+  <% @departments.each do |dp| %>
     <% if category_id == "" %>
       <li rel="category_id_<%= dp.department_category.id %>">
         <%= dp.department_category.name %>
@@ -66,3 +64,4 @@ list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months",
 <script type="text/javascript">
   $(document).ready(load_options);
 </script>
+<% end %>

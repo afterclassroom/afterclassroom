@@ -5,11 +5,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <title>:: <%= configatron.site_name %>::</title>
-        <%= include_stylesheets :student_lounge %>
-        <%= include_javascripts :student_lounge %>
+        <%= include_stylesheets :student_lounge, :cache => true %>
+        <%= include_javascripts :student_lounge, :cache => true %>
         <%= feedback_includes %>
         <%= feedback_tab(:position => 'left') %>
-		<script src="http://afterclassroom.com:8080/application.js" type="text/javascript" charset="utf-8"></script>
+        <script src="http://afterclassroom.com:8080/application.js" type="text/javascript" charset="utf-8">
+        </script>
     </head>
     <body>
         <div class="top" id="top_page">
@@ -38,6 +39,6 @@
         </div>
         <%= render :partial => 'shared/footer' %>
         <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
-		<%= render :partial => 'shared/notification' if logged_in? %>
+        <%= render :partial => 'shared/notification' if logged_in? %>
     </body>
 </html>
