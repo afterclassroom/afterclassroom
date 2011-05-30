@@ -10,11 +10,11 @@ class PostAssignmentsController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  #caches_action :show, :index, :layout => false
+  caches_action :show, :index, :if => Proc.new {|c| c.send(:current_user).nil? }
 
   # GET /post_assignments
   # GET /post_assignments.xml
-  def index  
+  def index   
     if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)

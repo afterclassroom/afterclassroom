@@ -10,7 +10,7 @@ class PostAwarenessesController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  #caches_action :show, :index, :layout => false
+  caches_action :show, :index, :if => Proc.new {|c| c.send(:current_user).nil? }
   
   # GET /post_awarenesses
   # GET /post_awarenesses.xml
