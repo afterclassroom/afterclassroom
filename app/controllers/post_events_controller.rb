@@ -168,7 +168,7 @@ class PostEventsController < ApplicationController
     @class_name = "PostEvent"
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
-    @departments = Department.of_school(@school) if !fragment_exist? :select_department
+    @departments = Department.of_school(@school)
     if !fragment_exist? :browser_by_subject
       if @school
         @tags = School.find(@school).owned_tags.where(["taggable_type = ?", @class_name])

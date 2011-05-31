@@ -1,4 +1,4 @@
-<% cache :select_department_post do %>
+<% cache "select_department_post_#{@school}" do %>
 <div class="postItemDep">
   <div class="postTit">Program</div>
   <div class="postDep"><%= post.text_field :department_id, :id => "department" %></div>
