@@ -630,6 +630,14 @@ module ApplicationHelper
       link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=PostQa&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
     end
   end
+  
+  def show_report_abuse_comment(comnt)
+    if !logged_in?
+      link_to_require_login(raw("Report Abuse"))
+    else
+      link_to(raw("Report Abuse"), "#{report_abuse_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
+    end
+  end
 
   def show_school_address(school)
     school.name + ", " + school.city.name + ", " + school.city.state.name + ", " + school.city.state.country.name

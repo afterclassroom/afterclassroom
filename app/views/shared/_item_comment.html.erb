@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="AsDcomRe3">
-                <%= link_to("Report Abuse", "#{report_abuse_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=320&width=490", :class => "thickbox", :title => "Report Abuse") %>
+                <%= show_report_abuse_comment(comnt) %>
             </div>
         </div>
     </div>
