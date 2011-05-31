@@ -10,7 +10,7 @@ class PostTeamupsController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_action :show, :index, :layout => false
+  caches_action :show
   
   # GET /post_teamups
   # GET /post_teamups.xml
@@ -180,6 +180,14 @@ class PostTeamupsController < ApplicationController
     @class_name = "PostTeamup"
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
+    @departments = Department.of_school(@school)
+    if !fragment_exist? :browser_by_subject
+      if @school
+        @tags = School.find(@school).owned_tags.where(["taggable_type = ?", @class_name])
+      else
+        @tags = eval(@class_name).tag_counts
+      end
+    end
   end
   
   def require_current_user
