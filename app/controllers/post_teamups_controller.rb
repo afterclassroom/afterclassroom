@@ -10,7 +10,7 @@ class PostTeamupsController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_action :show, :index, :if => Proc.new {|c| c.send(:current_user).nil? }
+  caches_action :show
   
   # GET /post_teamups
   # GET /post_teamups.xml
