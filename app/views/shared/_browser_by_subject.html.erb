@@ -1,4 +1,4 @@
-<% cache :browser_by_subject do %>
+<% cache "browser_by_subject_#{@class_name}" do %>
 <%
 case controller.controller_name
 when 'post_qas'

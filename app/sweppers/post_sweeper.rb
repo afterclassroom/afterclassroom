@@ -14,7 +14,8 @@ class PostSweeper < ActionController::Caching::Sweeper
   end
   
   def clear_posts_cache(post)
-    case post.class.name
+    class_name = post.class.name
+    case class_name
       when "PostAssignment"
       expire_action :controller => 'post_assignments', :action => 'index'
       expire_action :controller => 'post_assignments', :action => 'show', :id => post
@@ -64,8 +65,9 @@ class PostSweeper < ActionController::Caching::Sweeper
       expire_action :controller => 'post_exam_schedules', :action => 'index'
       expire_action :controller => 'post_exam_schedules', :action => 'show', :id => post
     end
-    expire_fragment :browser_by_subject
-    expire_fragment :select_department
+    expire_fragment "browser_by_subject_#{class_name}"
+    expire_fragment :select_department_post
+    expire_fragment :select_department_quick_post
     expire_fragment :option_select_department
   end
 end
