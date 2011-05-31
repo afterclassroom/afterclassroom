@@ -665,6 +665,9 @@ div.friSelect a:link{
 div.friConnect11{
     border-bottom:0px;
 }
+.friConnect6  a.active-page, .friConnect7  a.active-page, .friConnect8  a.active-page, .friConnect9  a.active-page {
+    font-weight: bold;
+}
 .friendL{
     color:#0a81c4;
     font-weight:bold;
