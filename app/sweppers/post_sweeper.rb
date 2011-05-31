@@ -66,11 +66,11 @@ class PostSweeper < ActionController::Caching::Sweeper
       expire_action :controller => 'post_exam_schedules', :action => 'show', :id => post
     end
     expire_fragment "browser_by_subject_#{class_name}_"
-    expire_fragment "browser_by_subject_#{class_name}_#{post.school.id}"
-    expire_fragment "select_department_post_#{post.school.id}"
+    expire_fragment "browser_by_subject_#{class_name}_#{post.post.school.id}"
+    expire_fragment "select_department_post_#{post.post.school.id}"
     expire_fragment "select_department_quick_post_"
-    expire_fragment "select_department_quick_post_#{post.school.id}"
+    expire_fragment "select_department_quick_post_#{post.post.school.id}"
     expire_fragment "option_select_department_"
-    expire_fragment "option_select_department_#{post.school.id}"
+    expire_fragment "option_select_department_#{post.post.school.id}"
   end
 end
