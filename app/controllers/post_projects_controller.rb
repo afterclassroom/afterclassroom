@@ -10,7 +10,7 @@ class PostProjectsController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_action :show
+  caches_action :show, :layout => false
   
   # GET /post_projects
   # GET /post_projects.xml

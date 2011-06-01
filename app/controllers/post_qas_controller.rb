@@ -10,7 +10,7 @@ class PostQasController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_action :show
+  caches_action :show, :layout => false
   
   # GET /post_qas
   # GET /post_qas.xml

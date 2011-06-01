@@ -11,7 +11,7 @@ class PostJobsController < ApplicationController
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_action :show
+  caches_action :show, :layout => false
   
   # GET /post_jobs
   # GET /post_jobs.xml

@@ -157,7 +157,7 @@ module ApplicationHelper
 
   def show_image_user_post(user)
     path = logged_in? ? show_lounge_user_path(user) : user_path(user)
-    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip", :title => user.name)}</div>"), path
+    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip avatar_#{user.id}", :title => user.name)}</div>"), path
   end
 
   def show_image_teach_of_myx(post_myx)

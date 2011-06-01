@@ -9,17 +9,17 @@ end %>
 <div class="col300 Br-by-sub">
     <div class="col300in">
         <h1 class="col300Title"><%= text %></h1>
-        <% if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
+        <%# if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
         <div style="float: right; position: relative; margin-top: -27px; cursor: pointer;" id="open_menu">
             <img src="/images/open.png">
-        </div><% end %>
+        </div><%# end %>
         <div class="col300Cont">
             <% if @tags and @tags.to_a.size > 0
             max_count = @tags.sort_by(&:count).last.count.to_f %>
             <div class="tabClouse">
                 <div id="tags_button">
                 </div>
-                <% if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
+                <%# if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
                 <div id="tags">
                     <ul>
                         <% @tags.each do |tag| %>
@@ -29,9 +29,9 @@ end %>
                         <% end %>
                     </ul>
                 </div>
-                <% else %>
-                <%= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
-                <% end %>
+                <%# else %>
+                <%#= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
+                <%# end %>
             </div>
             <% end %>
         </div>
