@@ -1,4 +1,8 @@
-<form id="search_help_query" name="search" action="<%= search_user_forums_path(current_user) %>" method="get">
+<% if current_user == nil %>
+  <form id="search_help_query" name="search" action="#" method="get">
+<% else %>
+  <form id="search_help_query" name="search" action="<%= search_user_forums_path(current_user) %>" method="get">
+<% end %>
   <div class="textSH"><input type="text"  name="search_txt" value="" /></div>
   <div class="btmSH"><a href="javascript:;" id="button_src"><img src="/images/iconSF.png"/></a></div>
 </form>
