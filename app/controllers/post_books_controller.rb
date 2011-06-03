@@ -158,7 +158,8 @@ class PostBooksController < ApplicationController
 
     if simple_captcha_valid?      
       @post.save      
-      @post.school.tag(@post_book, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_book, :with => @tag_list, :on => :tags)
       @post_book.post = @post
       if @post_book.save
         flash[:notice] = "Your post was successfully created."
