@@ -1,5 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class ForumsController < ApplicationController
+  before_filter RubyCAS::Filter::GatewayFilter
+  before_filter RubyCAS::Filter, :except => [:index]
 
   def index  
     @forums = Forum.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 8, :order => "created_at")

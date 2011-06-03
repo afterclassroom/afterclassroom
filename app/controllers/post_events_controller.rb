@@ -7,10 +7,10 @@ class PostEventsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
-  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_action :show, :layout => false
+  #caches_action :show, :layout => false
   
   # GET /post_events
   # GET /post_events.xml
@@ -119,7 +119,8 @@ class PostEventsController < ApplicationController
     
     if simple_captcha_valid?
       @post.save
-      @post.school.tag(@post_event, :with => @tag_list, :on => :tags)
+      sc = School.find(@school)
+      sc.tag(@post_event, :with => @tag_list, :on => :tags)
       @post_event.post = @post
       if @post_event.save
         flash.now[:notice] = "Your post was successfully created."

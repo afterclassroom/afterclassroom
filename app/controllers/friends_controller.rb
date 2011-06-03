@@ -162,7 +162,6 @@ class FriendsController < ApplicationController
       end
     end
     @user.user_invites.find(:first, :conditions => cond.to_sql).destroy
-    @user.reload
     flash[:notice] = "Delete success."
     redirect_to :action => "index"
   end
@@ -208,17 +207,16 @@ class FriendsController < ApplicationController
   end
   
   def send_invite_message
-    
     user_id_friend = params[:user_invite]
     invite_message = params[:invite_message] || "let's be friends!"
     user = User.find(user_id_friend)
     if (user && invite_message)
-      UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
-      subject = "#{current_user.name} want to be friend with you."
-      content = "#{invite_message}<br/>Click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to view more"
-      send_notification(user, subject, content, "adds_me_as_a_friend")
-      render :text => "Waiting accept"
+        UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
+        subject = "#{current_user.name} want to be friend with you."
+        content = "#{invite_message}<br/>Click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to view more"
+        send_notification(user, subject, content, "adds_me_as_a_friend")
     end
+    render :text => "Waiting accept"
   end
   
   def become_a_fan
