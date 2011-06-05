@@ -180,6 +180,8 @@ GEM
       escape (= 0.0.4)
       pr_geohash (~> 1.0)
       rsolr (= 0.12.1)
+    sunspot_index_queue (1.1.1)
+      sunspot (>= 1.1.0)
     sunspot_rails (1.2.1)
       nokogiri
       sunspot (= 1.2.1)
@@ -251,6 +253,7 @@ DEPENDENCIES
   rubycas-client
   rubycas-client-rails!
   simple_captcha!
+  sunspot_index_queue
   sunspot_rails (~> 1.2.1)
   truncate_html
   ts-delayed-delta
