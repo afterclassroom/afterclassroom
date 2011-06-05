@@ -1,3 +1,4 @@
+<% cache "select_department_quick_post_#{@school}" do %>
 <div class="reqLa">
     <label>
         Program
@@ -7,14 +8,12 @@
     <%= p.text_field :department_id, :id => "department_id" %>
 </div>
 <ul id="department_menu" class="mcdropdown_menu">
-    <%
-    departments = Department.of_school(@school) %>
     <li rel_department="">
         Choose program
     </li>
     <%
     category_id = "" %>
-    <% departments.each do |dp| %>
+    <% @departments.each do |dp| %>
     <% if category_id == "" %>
     <li rel="category_id_<%= dp.department_category.id %>">
         <%= dp.department_category.name %>
@@ -49,3 +48,4 @@
         });
     });
 </script>
+<% end %>

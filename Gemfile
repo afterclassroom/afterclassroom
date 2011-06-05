@@ -57,3 +57,9 @@ gem 'jammit'
 gem 'sunspot_rails', '~> 1.2.1'
 gem 'truncate_html'
 gem 'sunspot_index_queue'
+<<<<<<< HEAD
+=======
+gem 'daemons-mikehale'
+gem 'sunspot_plus'
+gem 'dalli'
+>>>>>>> 8aab519ba0c4d2ca56ddd93ff4986a9810f74445

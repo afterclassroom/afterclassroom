@@ -75,15 +75,16 @@ class User < ActiveRecord::Base
   
   # process_in_background :avatar
 
-  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/gif', 'image/png']
+  validates_attachment_content_type :avatar, :content_type => ['image/pjpeg', 'image/jpeg', 'image/gif', 'image/png', 'image/x-png']
   
   # Solr search index
   searchable do
-    text :name, :default_boost => 2
+    text :name, :default_boost => 2, :stored => true
     text :email, :stored => true
-    string :name, :stored => true
     time :created_at
   end
+  
+  handle_asynchronously :solr_index
   
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation

@@ -18,16 +18,15 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+env :PATH, '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin'
 env :MAILTO, 'dungtqa@gmail.com'
 
 set :output, "/var/log/cron_log.log"
 
 every :reboot do
-  rake "cd :path && RAILS_ENV=production rake sunspot:solr:start"
-  runner "cd /home/after/redis-2.2.2 && src/redis-server redis.conf"
-  runner "cd /var/www/juggernaut && nohup node server.js &"
+  rake "sunspot:solr:start"
+  command "/usr/local/bin/node /var/www/juggernaut/server.js"
 end
-
 
 # Delete share file expire
 every 1.day, :at => '1:00 am' do 

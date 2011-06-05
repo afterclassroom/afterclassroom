@@ -157,7 +157,7 @@ module ApplicationHelper
 
   def show_image_user_post(user)
     path = logged_in? ? show_lounge_user_path(user) : user_path(user)
-    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip", :title => user.name)}</div>"), path
+    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip avatar_#{user.id}", :title => user.name)}</div>"), path
   end
 
   def show_image_teach_of_myx(post_myx)
@@ -446,12 +446,30 @@ module ApplicationHelper
       str = link_to_require_login(raw("<span>Invite Friend</span>"))
     else
       if current_user.user_friends.include?(user)
-        str = "My friend"
+        str = link_to(raw("<span>My friend</span>"), "javascript:;")
       else
         if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
-          str = "Waiting accept"
+          str = link_to(raw("<span>Waiting accept</span>"), "javascript:;")
         else
-          str = link_to(raw("<span>Invite Friend</span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+          str = link_to(raw("<span id='friend_#{user.id}'>Invite Friend</span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+        end
+      end
+    end
+    return str
+  end
+  
+  def show_invite_friend_on_user_profile(user)
+    str = ""
+    if !logged_in?
+      str = link_to_require_login(raw("<span class='span1'><span class='span2'>Invite Friend</span></span>"))
+    else
+      if current_user.user_friends.include?(user)
+        str = link_to(raw("<span class='span1'><span class='span2'>My friend</span></span>"), "javascript:;")
+      else
+        if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
+          str = link_to(raw("<span class='span1'><span class='span2'>Waiting accept</span></span>"), "javascript:;")
+        else
+          str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Invite Friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
         end
       end
     end
@@ -595,6 +613,30 @@ module ApplicationHelper
       sub_content = raw(wall.user_wall_link.sub_content) if wall.user_wall_link.sub_content
     end
     render :partial => "user_walls/wall_attach", :locals => {:wall_id => wall.id, :image => image, :title => title, :link => link, :sub_content => sub_content}
+  end
+  
+  def show_refer_to_experts(post)
+    if !logged_in?
+      link_to_require_login(raw("<span>Rerfer to experts</span>"))
+    else
+      link_to(raw("<span>Rerfer to experts</span>"), "#{prefer_post_qas_path}?height=320&width=490&post_id="+post.id.to_s, :class => "thickbox", :title => "Rerfer to experts")
+    end
+  end
+  
+  def show_report_abuse(post)
+    if !logged_in?
+      link_to_require_login(raw("<span>Report Abuse</span>"))
+    else
+      link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=PostQa&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
+    end
+  end
+  
+  def show_report_abuse_comment(comnt)
+    if !logged_in?
+      link_to_require_login(raw("Report Abuse"))
+    else
+      link_to(raw("Report Abuse"), "#{report_abuse_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
+    end
   end
 
   def show_school_address(school)

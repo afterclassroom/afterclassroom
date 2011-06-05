@@ -181,17 +181,17 @@ div.signin ul li.select a:hover{
     line-height:16px;
 }
 .textS{
-    background:url('/images/bor-ad.png') no-repeat right center;
-    padding-right:2px;
+    background:url('/images/bor-ad.png') no-repeat right 8px;
+    padding-right:4px;
 }
 .textS input{
     border:0px;
     color:#929383;
     width:163px;
-    height:21px;
+    /*height:21px;*/
     text-indent:3px;
     background-color:transparent;
-    margin-top: 5px;
+    margin-top: 8px;
 }
 .btmS{
     padding-left:5px;

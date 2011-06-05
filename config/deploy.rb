@@ -51,23 +51,18 @@ namespace :deploy do
   task :after_update_code do
     db_config = <<-EOF
     production:
-      adapter: mysql2
-      encoding: utf8
-      username: after
-      password: 9Jke.w9itA
+      adapter: master_slave_adapter
+      real_adapter: mysql2
+    master:
       database: afterclassroom
-    development:
-      adapter: mysql2
-      encoding: utf8
       username: after
       password: 9Jke.w9itA
-      database: afterclassroom_development
-    test:
-      adapter: mysql2
-      encoding: utf8
+      host: 50.17.209.135
+    slave:
+      database: app_production
       username: after
       password: 9Jke.w9itA
-      database: afterclassroom_test
+      host: 50.19.138.30
     EOF
 
     put db_config, "#{release_path}/config/database.yml"

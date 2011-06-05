@@ -7,10 +7,14 @@ class PostAssignmentsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :due_date, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :due_date, :interesting, :tag]
+  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  
+  # Cache
+  #caches_action :show, :layout => false
   
   # GET /post_assignments
   # GET /post_assignments.xml
-  def index  
+  def index   
     if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
@@ -107,7 +111,7 @@ class PostAssignmentsController < ApplicationController
     @post.type_name = @class_name
     @post_assignment = PostAssignment.new(params[:post_assignment])
     @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
-
+    
     if simple_captcha_valid? 
       @post.save
       sc = School.find(@school)
@@ -132,7 +136,6 @@ class PostAssignmentsController < ApplicationController
   def update
     @post_assignment = PostAssignment.find(params[:id])
     @post = @post_assignment.post
-    
     if (@post_assignment.update_attributes(params[:post_assignment]) && @post.update_attributes(params[:post]))
       @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
       sc = School.find(@post.school.id)
@@ -165,6 +168,14 @@ class PostAssignmentsController < ApplicationController
     @class_name = "PostAssignment"
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
+    @departments = Department.of_school(@school)
+    if !fragment_exist? :browser_by_subject
+      if @school
+        @tags = School.find(@school).owned_tags.where(["taggable_type = ?", @class_name])
+      else
+        @tags = eval(@class_name).tag_counts
+      end
+    end
   end
   
   def require_current_user

@@ -7,6 +7,11 @@ class PostQasController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :asked, :interesting, :top_answer, :prefer]
+  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  
+  # Cache
+  #caches_action :show, :layout => false
+  
   # GET /post_qas
   # GET /post_qas.xml
   
@@ -244,6 +249,14 @@ class PostQasController < ApplicationController
     @class_name = "PostQa"
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
+    @departments = Department.of_school(@school)
+    if !fragment_exist? :browser_by_subject
+      if @school
+        @tags = School.find(@school).owned_tags.where(["taggable_type = ?", @class_name])
+      else
+        @tags = eval(@class_name).tag_counts
+      end
+    end
   end
   
   def get_comments(post, show)

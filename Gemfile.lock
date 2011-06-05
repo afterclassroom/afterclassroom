@@ -95,6 +95,8 @@ GEM
       gdata (= 1.1.1)
       json (>= 0.4.1)
     daemons (1.1.2)
+    daemons-mikehale (1.0.14)
+    dalli (1.0.4)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
@@ -182,6 +184,10 @@ GEM
       rsolr (= 0.12.1)
     sunspot_index_queue (1.1.1)
       sunspot (>= 1.1.0)
+<<<<<<< HEAD
+=======
+    sunspot_plus (0.3.2)
+>>>>>>> 8aab519ba0c4d2ca56ddd93ff4986a9810f74445
     sunspot_rails (1.2.1)
       nokogiri
       sunspot (= 1.2.1)
@@ -227,6 +233,8 @@ DEPENDENCIES
   chronic
   configatron
   contacts
+  daemons-mikehale
+  dalli
   delayed_job
   domainatrix
   eventmachine
@@ -254,6 +262,10 @@ DEPENDENCIES
   rubycas-client-rails!
   simple_captcha!
   sunspot_index_queue
+<<<<<<< HEAD
+=======
+  sunspot_plus
+>>>>>>> 8aab519ba0c4d2ca56ddd93ff4986a9810f74445
   sunspot_rails (~> 1.2.1)
   truncate_html
   ts-delayed-delta
