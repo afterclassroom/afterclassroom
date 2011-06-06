@@ -482,7 +482,7 @@
 .photoItem{
     width:107px;
     float:left;
-	margin-bottom:10px;
+    margin-bottom:10px;
 }
 .photoRow{
     /*padding-bottom:10px;*/
@@ -508,6 +508,13 @@
     font-weight:bold;
     font-size:10px;
     padding-right:10px;
+}
+.photoNamePho{
+    font-size: 10px;
+    font-weight: bold;
+    padding-right: 10px;
+    overflow: hidden;
+    height: 45px;
 }
 .photoInf{
     font-size:10px;
@@ -2977,7 +2984,7 @@ div.helpAdv2{
 .proListR{
     float:left;
     width:300px;
-	margin-bottom:5px;
+    margin-bottom:5px;
 }
 .proListCont{
     float:left;
@@ -3092,7 +3099,7 @@ div.helpAdv2{
 }
 .proAttR{
     float:right;
-	margin-right:20px;
+    margin-right:20px;
 }
 .proAttR a{
     background:url('/images/proShare.gif') no-repeat left top;
@@ -4198,7 +4205,7 @@ div.helpAdv2{
     border:1px #e2e2e2 solid;
     width:450px;
     background-color:#f4f5f4;
-	height: 220px;
+    height: 220px;
 }
 .SLchatViewT{
     height:25px;
@@ -4337,7 +4344,7 @@ div.helpAdv2{
 .slsItemR{
     float:left;
     width:450px;
-	margin-left:10px;
+    margin-left:10px;
 }
 .slsItemTitle a, .slsItemTitle a:link, .slsItemTitle a:visited{
     color:#1e1e1e;
@@ -4721,7 +4728,7 @@ div.navigation a.next:hover {
 .stoExItemR input{
     width:535px;
     border:1px #cecece solid;
-		padding-top: 6px;
+    padding-top: 6px;
     text-indent: 2px;
 }
 .stoExItemPri{
@@ -5028,7 +5035,7 @@ span.btmTag a:hover{
 .musicL{
     width:305px;
     float:left;
-	margin-bottom:10px
+    margin-bottom:10px
 }
 .musicR{
     width:310px;
@@ -5045,6 +5052,11 @@ span.btmTag a:hover{
 .musicB{
     clear:both;
     padding-top:2px;
+}
+.musicN{
+    overflow: hidden;
+    white-space: nowrap;
+    width: 280px;
 }
 .musicN a, .musicN a:link, .musicN a:visited{
     color:#1e1e1e;
@@ -5292,7 +5304,7 @@ span.btmTag a:hover{
     /* ie6 height fix */
     font-size: 0;
     line-height: 0;
-     /* ie6 transparent fix */
+    /* ie6 transparent fix */
     _border-right-color: pink;
     _border-left-color: pink;
     _filter: chroma(color=pink);

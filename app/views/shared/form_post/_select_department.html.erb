@@ -38,6 +38,13 @@
             valueAttr: "rel_department"    
         });
     });
+      $(function() {
+	$('#department_menu,#year_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+  });
     $(document).ready(function(){
         $(".mcdropdown a").click(function(){
         $('#year_menu').hide();
