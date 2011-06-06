@@ -7,20 +7,21 @@ class PostTestsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :interesting, :tag]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_tests
   # GET /post_tests.xml
   def index
-    if params[:more_like_this_id]
+    @posts = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = PostTest.paginated_post_more_like_this(params, post)
+      Rails.cache.fetch("more_like_this_#{post.id}") do
+        PostTest.paginated_post_more_like_this(params, post)
+      end
     else
-      @posts = PostTest.paginated_post_conditions_with_option(params, @school)
+      Rails.cache.fetch("index_#{@class_name}_#{@school}") do
+        PostTest.paginated_post_conditions_with_option(params, @school)
+      end
     end
     
     respond_to do |format|
@@ -101,7 +102,7 @@ class PostTestsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_test = PostTest.new(params[:post_test])
-      
+    
     if simple_captcha_valid?
       @post.save  
       sc = School.find(@school)
@@ -110,7 +111,7 @@ class PostTestsController < ApplicationController
       if @post_test.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_test_path(@post_test))
-        redirect_to post_tests_path
+        redirect_to post_test_url(@post_test)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

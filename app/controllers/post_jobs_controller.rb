@@ -8,22 +8,23 @@ class PostJobsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :employment_infor, :show_job_infor]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_companies, :bad_bosses]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_jobs
   # GET /post_jobs.xml
   def index
-    if params[:more_like_this_id]
+    @posts = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
+      Rails.cache.fetch("more_like_this_#{post.id}") do
+        Post.paginated_post_more_like_this(params, post)
+      end
     else
       @job_type_id = params[:job_type_id]
       @job_type_id ||= JobType.find(:first).id
-      @posts = PostJob.paginated_post_conditions_with_option(params, @school, @job_type_id)
+      Rails.cache.fetch("index_#{@class_name}_type#{@job_type_id}_#{@school}") do
+        PostJob.paginated_post_conditions_with_option(params, @school, @job_type_id)
+      end
     end
     
     respond_to do |format|
@@ -195,7 +196,7 @@ class PostJobsController < ApplicationController
       if @post_job.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_job_path(@post_job))
-        redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
+        redirect_to post_job_url(@post_job)
       else
         error  "Failed to create a new post."
         render :action => "new"

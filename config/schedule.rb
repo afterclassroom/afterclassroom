@@ -24,6 +24,7 @@ env :MAILTO, 'dungtqa@gmail.com'
 set :output, "/var/log/cron_log.log"
 
 every :reboot do
+  rake "jobs:work"
   rake "sunspot:solr:start"
   command "/usr/local/bin/node /var/www/juggernaut/server.js"
 end

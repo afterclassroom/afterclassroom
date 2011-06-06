@@ -6,16 +6,14 @@ class PostExamSchedulesController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_exam_schedules
   # GET /post_exam_schedules.xml
   def index
-    @posts = PostExamSchedule.paginated_post_conditions_with_option(params, @school, @type_schedule)
-    
+    Rails.cache.fetch("index_#{@class_name}_type#{@type_schedule}_#{@school}") do
+      @posts = PostExamSchedule.paginated_post_conditions_with_option(params, @school, @type_schedule)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
