@@ -30,15 +30,22 @@
             <div class="helpPost"><a></a></div>
             <div id="headerDivImg"><span class="postAQues"></span><a id="imageDivLink" onclick="javascript:toggle5('contentDivImg', 'imageDivLink');"><img src="/images/helpPostSh08.png"></a></div>
             <div id="contentDivImg" style="display: none;">
-              <form action="<%= addfr_user_forums_path(current_user) %>">
-                <div class="postHelp">
-                  <div class="reqLa"><label>Title</label></div>
-                  <div class="reqTi"><input type="text" name="txt_help" size="22"></input></div>
-                  <div class="reqLa"><label>Content</label></div>
-                  <div style="margin: 3px 0pt;" class="reqEn"><textarea name="help_content"></textarea></div>
-                  <div style="margin-top: 5px;" class="submit"><input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"></input></div>
-                </div>
-              </form>
+
+              <% if current_user == nil %>
+                <form action="#">
+                <% else %>
+                  <form action="<%= addfr_user_forums_path(current_user) %>">
+                  <% end %>
+
+
+                  <div class="postHelp">
+                    <div class="reqLa"><label>Title</label></div>
+                    <div class="reqTi"><input type="text" name="txt_help" size="22"></input></div>
+                    <div class="reqLa"><label>Content</label></div>
+                    <div style="margin: 3px 0pt;" class="reqEn"><textarea name="help_content"></textarea></div>
+                    <div style="margin-top: 5px;" class="submit"><input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"></input></div>
+                  </div>
+                </form>
             </div>
           </div>
         </div>
@@ -120,7 +127,14 @@
   <div class="popu">
     <div class="popuTop">
       <div class="popuTitle">Popular Discussions</div>
-      <div class="popuAll"><a href="<%= see_all_top_fr_user_forums_path(current_user) %>">See all</a></div>
+      <div class="popuAll">
+        <% if current_user == nil %>
+          <a href="#">See all</a>
+        <% else %>
+          <a href="<%= see_all_top_fr_user_forums_path(current_user) %>">See all</a>
+        <% end %>
+
+      </div>
     </div>
 
     <% @top_frs.each do |fr| %>
@@ -153,7 +167,13 @@
   function AddCommentWithAjax(content,forum_id){
     ShowWaitDialog();
 
-    var savePath = '<%= savecmt_user_forums_path(current_user) %>';
+
+    <% if current_user == nil %>
+          var savePath = '#';
+    <% else %>
+          var savePath = '<%= savecmt_user_forums_path(current_user) %>';
+    <% end %>
+
 
     $.ajax({
       type: 'GET',
@@ -225,7 +245,12 @@
   }
 
   function DeleteForumComment(forum_id, comment_id){
-    var delPath = '<%= delcmt_user_forums_path(current_user) %>';
+    <% if current_user == nil %>
+          var delPath = '#';
+    <% else %>
+          var delPath = '<%= delcmt_user_forums_path(current_user) %>';
+    <% end %>
+
 
     $("#delete_comment_alert").dialog({
       modal: true,

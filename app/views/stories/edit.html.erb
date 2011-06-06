@@ -15,12 +15,12 @@
             <%= hidden_field_tag "state", "", :id => "story_state" %>
             <div class="stoExItem">
               <div class="stoExItemL">Title*</div>
-              <div class="stoExItemR"><%= f.text_field :title, :class => '{validate:{required:true}}' %></div>
-            </div>
+              <div class="stoExItemR"><%= f.text_field :title, :class => '{validate:{required:true}}', :style => "width:502px" %></div>
+            </div>     
             <div class="stoExItem">
               <div class="stoExItemL">Your story</div>
-              <div class="stoExItemR"><%= f.text_area :content, :rows => 2, :cols => 63 %></div>
-            </div>
+              <div class="stoExItemR"><%= f.text_area :content, :style => "width:507px;height:150px;"  %></div>
+          </div>
             <div class="stoExBtm">
               <div class="stoExSave"><a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();" >Save as a Draft</a></div>
               <div class="stoExShare"><a href="javascript:;" onclick="$('#story_state').val('share');$('#form_update').submit();" >Update</a></div>
@@ -57,6 +57,7 @@
     (function($)
     {
         $('#story_content').wysiwyg({
+        
             controls: {
                 createLink : { visible : true },
 
@@ -66,13 +67,16 @@
 
                 separator06 : { visible : false },
 
-                h1 : { visible : false },
+                h1mozilla: { visible : false },
+                h2mozilla: { visible : false },
+                h3mozilla: { visible : false },
+                h1: { visible : false },
                 h2 : { visible : false },
                 h3 : { visible : false },
 
                 removeFormat : { visible : true }
             }
+            
         });
     })(jQuery);
 </script>
-

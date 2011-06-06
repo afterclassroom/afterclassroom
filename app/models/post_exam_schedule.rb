@@ -1,6 +1,9 @@
 class PostExamSchedule < ActiveRecord::Base
+  # Validations
+  validates_presence_of :post_id
+  
   # Relations
-  belongs_to :post
+  belongs_to :post, :dependent => :destroy
 
   # Named Scope
   scope :with_limit, :limit => LIMIT

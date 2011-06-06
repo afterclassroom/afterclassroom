@@ -104,7 +104,7 @@ class UsersController < ApplicationController
 
   def update_avatar
     @user.avatar = params[:user][:avatar]
-    @user.save
+    @user.save!
     @user.track_activity(:updated_avatar)
     render :text => @user.avatar.url(:medium)
   end

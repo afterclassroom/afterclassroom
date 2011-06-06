@@ -11,6 +11,7 @@ solr/**/*
 doc/api
 doc/app
 public/assets/**/*
+public/assets/**/.git/**/*
 public/system/attaches/**/*
 public/system/avatars/**/*
 public/system/uploaded_files/**/*

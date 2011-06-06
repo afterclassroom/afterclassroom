@@ -7,10 +7,10 @@ class PostHousingsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :good_house, :worse_house]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_house, :worse_house]
-  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
+  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # Cache
-  caches_action :show, :index, :if => Proc.new {|c| c.send(:current_user).nil? }
+  #caches_action :show, :layout => false
   
   # GET /post_housings
   # GET /post_housings.xml
@@ -171,7 +171,7 @@ class PostHousingsController < ApplicationController
     @class_name = "PostHousing"
     @type = PostCategory.find_by_class_name(@class_name).id
     @query = params[:search][:query] if params[:search]
-    @departments = Department.of_school(@school) if !fragment_exist? :select_department
+    @departments = Department.of_school(@school)
     if !fragment_exist? :browser_by_subject
       if @school
         @tags = School.find(@school).owned_tags.where(["taggable_type = ?", @class_name])

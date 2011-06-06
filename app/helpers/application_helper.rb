@@ -157,7 +157,7 @@ module ApplicationHelper
 
   def show_image_user_post(user)
     path = logged_in? ? show_lounge_user_path(user) : user_path(user)
-    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip", :title => user.name)}</div>"), path
+    link_to raw("<div>#{image_tag(user.avatar.url(:thumb), :class => "vtip avatar_#{user.id}", :title => user.name)}</div>"), path
   end
 
   def show_image_teach_of_myx(post_myx)
@@ -628,6 +628,14 @@ module ApplicationHelper
       link_to_require_login(raw("<span>Report Abuse</span>"))
     else
       link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=PostQa&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
+    end
+  end
+  
+  def show_report_abuse_comment(comnt)
+    if !logged_in?
+      link_to_require_login(raw("Report Abuse"))
+    else
+      link_to(raw("Report Abuse"), "#{report_abuse_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
     end
   end
 

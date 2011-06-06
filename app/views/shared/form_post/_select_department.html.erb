@@ -1,4 +1,4 @@
-<% cache :select_department do %>
+<% cache "select_department_post_#{@school}" do %>
 <div class="postItemDep">
   <div class="postTit">Program</div>
   <div class="postDep"><%= post.text_field :department_id, :id => "department" %></div>
@@ -35,9 +35,16 @@
     $(document).ready(function(){
         $("#department").mcDropdown("#department_menu", {
             width: 275,
-            valueAttr: "rel_department"            
+            valueAttr: "rel_department"    
         });
     });
+      $(function() {
+	$('#department_menu,#year_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+  });
     $(document).ready(function(){
         $(".mcdropdown a").click(function(){
         $('#year_menu').hide();
