@@ -7,10 +7,7 @@ class PostPartiesController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :prefer, :show_rsvp]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_parties
   # GET /post_parties.xml
@@ -18,8 +15,9 @@ class PostPartiesController < ApplicationController
   def index
     @rating_status = params[:rating_status]
     @rating_status ||= ""
-    @posts = PostParty.paginated_post_conditions_with_option(params, @school, @rating_status)
-    
+    @posts = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}") do
+      PostParty.paginated_post_conditions_with_option(params, @school, @rating_status)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -187,7 +185,7 @@ class PostPartiesController < ApplicationController
       if @post_party.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_party_path(@post_party))
-        redirect_to post_parties_path
+        redirect_to post_party_url(@post_party)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

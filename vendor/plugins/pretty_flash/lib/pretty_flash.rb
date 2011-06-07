@@ -6,7 +6,7 @@ module RPH
       TYPES.each do |type|
         define_method(type) { |msg| flash[type] = msg }
         
-        define_method("#{type}_now") { |msg| flash.now[type] = msg }
+        define_method("#{type}_now") { |msg| flash[type] = msg }
       end
     end
   

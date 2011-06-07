@@ -7,17 +7,15 @@ class PostHousingsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :good_house, :worse_house]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_house, :worse_house]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_housings
   # GET /post_housings.xml
   def index
     @housing_category_id = params[:housing_category_id]
-    @posts = PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
-    
+    @posts = Rails.cache.fetch("index_#{@class_name}_category#{@housing_category_id}_#{@school}") do
+      PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -128,7 +126,7 @@ class PostHousingsController < ApplicationController
       if @post_housing.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_housing_path(@post_housing))
-        redirect_to post_housings_path
+        redirect_to post_housing_url(@post_housing)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

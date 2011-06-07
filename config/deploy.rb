@@ -50,18 +50,18 @@ namespace :deploy do
   desc "Create the database yaml file"
   task :after_update_code do
     db_config = <<-EOF
-    production:
-      adapter: master_slave_adapter
-      real_adapter: mysql2
-    master:
-      database: afterclassroom
-      username: after
+    login: &login 
+      adapter: mysql2
+      database: afterclassroom 
+      username: after 
       password: 9Jke.w9itA
-      host: 50.17.209.135
-    slave:
-      database: app_production
-      username: after
-      password: 9Jke.w9itA
+    # default configuration (slave) 
+    production: 
+      <<: *login
+      host: localhost 
+    #setup for masochism (master) 
+    master_database: 
+      <<: *login 
       host: 50.19.138.30
     EOF
 

@@ -7,22 +7,23 @@ class PostAwarenessesController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :view_results]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_awarenesses
   # GET /post_awarenesses.xml
   def index
-    if params[:more_like_this_id]
+    @posts = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = PostAwareness.paginated_post_more_like_this(params, post)
+      Rails.cache.fetch("more_like_this_#{post.id}") do
+        PostAwareness.paginated_post_more_like_this(params, post)
+      end
     else
       @awareness_type_id = params[:awareness_type_id]
       @awareness_type_id ||= AwarenessType.find(:first).id
-      @posts = PostAwareness.paginated_post_conditions_with_option(params, @school, @awareness_type_id)
+      Rails.cache.fetch("index_#{@class_name}_type#{@awareness_type_id}_#{@school}") do
+        PostAwareness.paginated_post_conditions_with_option(params, @school, @awareness_type_id)
+      end
     end
     
     respond_to do |format|
@@ -176,7 +177,7 @@ class PostAwarenessesController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_awareness = PostAwareness.new(params[:post_awareness])
-   
+    
     if simple_captcha_valid?     
       @post.save
       sc = School.find(@school)
@@ -185,7 +186,7 @@ class PostAwarenessesController < ApplicationController
       if @post_awareness.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_awareness_path(@post_awareness))
-        redirect_to post_awarenesses_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"
+        redirect_to post_awareness_url(@post_awareness)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"
