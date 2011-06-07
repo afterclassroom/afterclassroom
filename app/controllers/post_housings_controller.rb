@@ -13,8 +13,8 @@ class PostHousingsController < ApplicationController
   # GET /post_housings.xml
   def index
     @housing_category_id = params[:housing_category_id]
-    Rails.cache.fetch("index_#{@class_name}_category#{@housing_category_id}_#{@school}") do
-      @posts = PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
+    @posts = Rails.cache.fetch("index_#{@class_name}_category#{@housing_category_id}_#{@school}") do
+      PostHousing.paginated_post_conditions_with_option(params, @school, @housing_category_id)
     end
     respond_to do |format|
       format.html # index.html.erb

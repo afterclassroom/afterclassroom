@@ -14,8 +14,8 @@ class PostFoodsController < ApplicationController
   def index  
     @rating_status = params[:rating_status]
     @rating_status ||= ""
-    Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}") do
-      @posts = PostFood.paginated_post_conditions_with_option(params, @school, @rating_status)
+    @posts = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}") do
+      PostFood.paginated_post_conditions_with_option(params, @school, @rating_status)
     end
     respond_to do |format|
       format.html # index.html.erb
