@@ -34,6 +34,7 @@
 </ul>
 
 <script src="/javascripts/scroll-startstop.js" type="text/javascript"></script>
+<script src="/javascripts/jquery-latest..js" type="text/javascript"></script>
 <script>
   $(function() {
         $(window).bind('scrollstart', function(){
@@ -41,7 +42,7 @@
         });
   });
   $(function() {
-	$('#country_menu,#state_menu,#city_menu,#school_menu').hover(function() {
+	$('#country_menu,#state_menu,#city_menu,#school_menu,').hover(function() {
 		$(this).stop().show();
 	}, function() {
 		$(this).stop().hide();
@@ -52,5 +53,6 @@
         $('#country_menu,#state_menu,#city_menu,#school_menu').hide();
         });
   });
+
 </script>
 
