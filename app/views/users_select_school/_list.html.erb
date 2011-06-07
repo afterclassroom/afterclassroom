@@ -47,10 +47,18 @@
 		$(this).stop().hide();
 	});
   });
+  $(function() {
+	$('div.signinItem').hover(function() {
+		
+	}, function() {
+		$('#country_menu,#state_menu,#city_menu,#school_menu').stop().hide();
+	});
+  });
   $(document).ready(function(){
         $("a#TB_closeWindowButton,#TB_overlay").click(function(){
         $('#country_menu,#state_menu,#city_menu,#school_menu').hide();
         });
   });
+
 </script>
 
