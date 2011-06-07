@@ -42,7 +42,7 @@ class PostAwareness < ActiveRecord::Base
 
     posts = []
     post_awarenesss.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
 
   def self.paginated_post_more_like_this(params, post_like)
@@ -55,7 +55,7 @@ class PostAwareness < ActiveRecord::Base
 
     posts = []
     post_as.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
 
   def self.paginated_post_conditions_with_tag(params, school, tag_name)

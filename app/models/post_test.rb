@@ -35,7 +35,7 @@ class PostTest < ActiveRecord::Base
 
     posts = []
     post_ts.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
 
   def self.paginated_post_more_like_this(params, post_like)
@@ -47,14 +47,14 @@ class PostTest < ActiveRecord::Base
 
     posts = []
     post_ts.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
 
   def self.paginated_post_conditions_with_interesting(params, school)
     posts = []
     post_as = self.with_school(school).interesting
     post_as.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
 
   def self.paginated_post_conditions_with_tag(params, school, tag_name)

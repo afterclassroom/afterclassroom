@@ -16,7 +16,7 @@ class PostJobsController < ApplicationController
     @posts = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      Rails.cache.fetch("more_like_this_#{post.id}") do
+      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
         Post.paginated_post_more_like_this(params, post)
       end
     else

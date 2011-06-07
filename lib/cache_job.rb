@@ -3,12 +3,20 @@ class CacheJob < Struct.new(:id, :class_name, :school_id, :params)
   def perform
     case class_name
       when "PostAssignment"
+        post = eval(class_name).find(id).post
+        Rails.cache.write("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})", PostAssignment.paginated_post_more_like_this(params, post))
         Rails.cache.write("index_#{class_name}_#{school_id}", PostAssignment.paginated_post_conditions_with_option(params, school_id))
       when "PostProject"
+        post = eval(class_name).find(id).post
+        Rails.cache.write("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})", PostProject.paginated_post_more_like_this(params, post))
         Rails.cache.write("index_#{class_name}_#{school_id}", PostProject.paginated_post_conditions_with_option(params, school_id))
       when "PostTest"
+        post = eval(class_name).find(id).post
+        Rails.cache.write("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})", PostTest.paginated_post_more_like_this(params, post))
         Rails.cache.write("index_#{class_name}_#{school_id}", PostTest.paginated_post_conditions_with_option(params, school_id))
       when "PostExam"
+        post = eval(class_name).find(id).post
+        Rails.cache.write("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})", PostExam.paginated_post_more_like_this(params, post))
         Rails.cache.write("index_#{class_name}_#{school_id}", PostExam.paginated_post_conditions_with_option(params, school_id))
       when "PostEvent"
         post = eval(class_name).find(id)

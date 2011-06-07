@@ -15,9 +15,10 @@ class PostPartiesController < ApplicationController
   def index
     @rating_status = params[:rating_status]
     @rating_status ||= ""
-    @posts = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}") do
+    @post_results = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}") do
       PostParty.paginated_post_conditions_with_option(params, @school, @rating_status)
     end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

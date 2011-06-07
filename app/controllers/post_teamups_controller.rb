@@ -12,11 +12,11 @@ class PostTeamupsController < ApplicationController
   # GET /post_teamups
   # GET /post_teamups.xml
   def index
-    @posts = if params[:more_like_this_id]
+    @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
       @teamup_category_id = post.post_teamup.teamup_category_id
-      Rails.cache.fetch("more_like_this_#{post.id}") do
+      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
         PostTeamup.paginated_post_more_like_this(params, post)
       end
     else
@@ -26,7 +26,7 @@ class PostTeamupsController < ApplicationController
         PostTeamup.paginated_post_conditions_with_option(params, @school, @teamup_category_id)
       end
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

@@ -43,7 +43,7 @@ class PostFood < ActiveRecord::Base
 
     posts = []
     post_foods.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)

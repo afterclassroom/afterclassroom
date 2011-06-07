@@ -46,7 +46,7 @@ class PostParty < ActiveRecord::Base
 
     posts = []
     post_parties.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)

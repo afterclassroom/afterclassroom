@@ -33,25 +33,6 @@ class PostQa < ActiveRecord::Base
     end
   end
   
-  def self.paginated_post_more_like_this(params, post_like)
-    type = params[:type]
-    type ||= "answered"
-    posts_like = PostQa.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_qa, post|
-      post.department_id == post_like.department_id
-      post.school_year == post_like.school_year
-      post_qa.post_qa_category_id == post_like.post_qa.post_qa_category_id
-      post.school_id == post_like.school_id
-    end
-    arr_p = []
-    if type == "answered"
-      posts_like.select {|p| arr_p << p.post if p.post.comments.size > 0}
-    else
-      posts_like.select {|p| arr_p << p.post if p.post.comments.size == 0}
-    end
-    
-    arr_p.paginate :page => params[:page], :per_page => 10
-  end
-  
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
     post_qa = self.with_school(school).tagged_with(tag_name)
@@ -74,7 +55,7 @@ class PostQa < ActiveRecord::Base
     end
     arr_p = []
     post_qas.select {|p| arr_p << p.post if p.post.comments.size > 0}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    return arr_p
   end
 
   def self.paginated_post_conditions_with_asked(params, school)
@@ -92,14 +73,14 @@ class PostQa < ActiveRecord::Base
     end
     arr_p = []
     post_qas.select {|p| arr_p << p.post if p.post.comments.size == 0}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    return arr_p
   end
 
   def self.paginated_post_conditions_with_interesting(params, school)
     arr_p = []
     post_qa = self.with_school(school).interesting
     post_qa.select {|p| arr_p << p.post if p.post.favorites.size > 10}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    return arr_p
   end
 
   def self.paginated_post_conditions_with_top_answer(params, school)
