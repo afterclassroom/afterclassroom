@@ -1,5 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class UsersController < ApplicationController
+  include ApplicationHelper
   skip_before_filter :verify_authenticity_token, :only => [:create]
   protect_from_forgery :only => [:create]
   
@@ -8,14 +9,14 @@ class UsersController < ApplicationController
   before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
   before_filter :require_current_user,
-    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge]
+    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge, :show_stories, :show_photos, :show_music, :show_videos, :show_friend, :show_fans]
   
   # render new.rhtml
   def new
     @user = User.new
     get_variables()
   end
-
+  
   def forgot_login
     if request.put?
       begin
@@ -34,11 +35,11 @@ class UsersController < ApplicationController
     end
     render :layout => "signin"
   end
-
+  
   def forgot_password
     if request.put?
       @user = User.find_by_login_or_email(params[:email_or_login])
-
+      
       if @user.nil?
         error 'No account was found by that login or email address.'
       else
@@ -59,23 +60,23 @@ class UsersController < ApplicationController
     unless @user.nil? || !@user.active?
       @user.reset_password!
     end
-   
+    
   end
-
+  
   def create
     logout_keeping_session!
     create_new_user(params)
   end
-
+  
   def activate
     logout_keeping_session!
     user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
-    when (!params[:activation_code].blank?) && user && !user.active?
+      when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
       flash[:notice] = "Signup complete! Please sign in to continue."
       redirect_to RubyCAS::Filter.login_url(self)
-    when params[:activation_code].blank?
+      when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.<br/>Please follow the URL from your email."
       redirect_back_or_default(root_path)
     else 
@@ -101,14 +102,14 @@ class UsersController < ApplicationController
       redirect_to edit_email_user_url(@user)
     end
   end
-
+  
   def update_avatar
     @user.avatar = params[:user][:avatar]
     @user.save!
     @user.track_activity(:updated_avatar)
     render :text => @user.avatar.url(:medium)
   end
-
+  
   def show
     @user = User.find(params[:id])
     render :layout => "student_lounge"
@@ -121,8 +122,59 @@ class UsersController < ApplicationController
     render :layout => "student_lounge"
   end
   
+  def show_stories
+    @user = User.find(params[:id])
+    if check_private_permission(@user, "my_stories")
+      @stories = @user.stories.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+      render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
+  end
+  
+  def show_photos
+    @user = User.find(params[:id])
+  end
+  
+  def show_musics
+    @user = User.find(params[:id])
+  end
+  
+  def show_videos
+    @user = User.find(params[:id])
+  end
+  
+  def show_friends
+    @user = User.find(params[:id])
+    if check_private_permission(@user, "my_friends")
+      @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
+      render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
+  end
+  
+  def show_fans
+    @user = User.find(params[:id])
+    if check_private_permission(@user, "my_fans")
+      fan_ids = @user.fans.collect{|f| f.user_id}
+      
+      fan_results = User.ez_find(:all) do |user|
+        user.id === fan_ids
+      end
+      @fans = fan_results.paginate({:page => params[:page], :per_page => 10})
+      render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
+  end
+  
+  def warning
+    @user = User.find(params[:id])
+  end
+  
   protected
-
+  
   def require_current_user
     @user ||= User.find(params[:user_id] || params[:id])
     unless (@user && (@user.eql?(current_user)))
@@ -130,14 +182,14 @@ class UsersController < ApplicationController
     end
     return @user
   end
-
+  
   def create_new_user(attributes)
     first_name = attributes[:first_name]
     last_name = attributes[:last_name]
     session[:first_name] = first_name
     session[:last_name] = last_name
     name = first_name + " " + last_name
-
+    
     @user = User.new(attributes[:user])
     @user.name = name
     @user.login = to_slug(name)
@@ -176,7 +228,7 @@ class UsersController < ApplicationController
     get_variables()
     render :action => :new
   end
-
+  
   def get_variables
     @countries = Country.has_cities
     if session[:your_school]

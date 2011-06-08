@@ -46,13 +46,17 @@ class PostPartiesController < ApplicationController
     @post_p.rating_status = status
     
     @post_p.save
-    
+    # Objects cache
+    class_name = @post_p.class.name
+    school_id = @post.school_id
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
   end
   
   def require_rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    @post_p = post.post_party
+    @post = Post.find(params[:post_id])
+    @post_p = @post.post_party
     if !PostParty.find_rated_by(current_user).include?(@post_p)
       @post_p.rate rating.to_i, current_user
       # Update rating status
@@ -71,6 +75,11 @@ class PostPartiesController < ApplicationController
       @post_p.rating_status = status
       
       @post_p.save
+      # Objects cache
+      class_name = @post_p.class.name
+      school_id = @post.school_id
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
     end
     render :layout => false
   end

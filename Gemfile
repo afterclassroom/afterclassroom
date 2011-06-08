@@ -34,7 +34,7 @@ gem 'ajaxful_rating'
 gem 'juggernaut'
 gem 'activerecord', '>= 3.0.3'
 gem 'riddle', '>= 1.2.1'
-gem "paperclip", "~> 2.3"
+gem 'paperclip', '~> 2.3'
 gem 'acts-as-taggable-on'
 gem 'ruby-mp3info'
 gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'

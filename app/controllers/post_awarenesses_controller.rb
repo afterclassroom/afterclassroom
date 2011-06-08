@@ -135,6 +135,7 @@ class PostAwarenessesController < ApplicationController
   def show
     @post_awareness = PostAwareness.find(params[:id])
     @post = @post_awareness.post
+    @awareness_type_id = @post_awareness.awareness_type_id
     update_view_count(@post)
     posts_as = PostAwareness.with_school(@school)
     as_next = posts_as.nexts(@post_awareness.id).last

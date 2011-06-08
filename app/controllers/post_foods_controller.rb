@@ -45,13 +45,17 @@ class PostFoodsController < ApplicationController
     @post_f.rating_status = status
     
     @post_f.save
-    
+    # Objects cache
+    class_name = @post_f.class.name
+    school_id = @post.school_id
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
   end
   
   def require_rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    @post_f = post.post_food
+    @post = Post.find(params[:post_id])
+    @post_f = @post.post_food
     if !PostFood.find_rated_by(current_user).include?(@post_f)
       @post_f.rate rating.to_i, current_user
       # Update rating status
@@ -70,6 +74,11 @@ class PostFoodsController < ApplicationController
       @post_f.rating_status = status
       
       @post_f.save
+      # Objects cache
+      class_name = @post_f.class.name
+      school_id = @post.school_id
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
     end
     render :layout => false
   end

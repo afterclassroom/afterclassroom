@@ -25,6 +25,7 @@ class PostSweeper < ActionController::Caching::Sweeper
     expire_fragment "browser_by_subject_#{class_name}_"
     expire_fragment "browser_by_subject_#{class_name}_#{school_id}"
     expire_fragment "recents_#{class_name}_#{school_id}"
+    expire_fragment "recents_#{class_name}_"
     expire_fragment "select_department_post_#{school_id}"
     expire_fragment "select_department_quick_post_"
     expire_fragment "select_department_quick_post_#{school_id}"

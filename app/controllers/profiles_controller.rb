@@ -70,9 +70,10 @@ class ProfilesController < ApplicationController
   def fan
     fan_ids = current_user.fans.collect{|f| f.user_id}
 
-    @fans = User.ez_find(:all) do |user|
+    fan_results = User.ez_find(:all) do |user|
       user.id === fan_ids
     end
+    @fans = fan_results.paginate({:page => params[:page], :per_page => 10})
   end
   
   def delete_fans

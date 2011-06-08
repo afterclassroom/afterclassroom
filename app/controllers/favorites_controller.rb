@@ -29,8 +29,8 @@ class FavoritesController < ApplicationController
       school_id = item.school_id
       # Objects cache
       if ["PostAssignment", "PostProject", "PostTest", "PostExam", "PostQa"].include?(class_name)
-        Delayed::Job.enqueue(CacheInterestingJob.new(class_name ""))
-        Delayed::Job.enqueue(CacheInterestingJob.new(class_name, school_id))
+        Delayed::Job.enqueue(CacheInterestingJob.new(class_name nil, params))
+        Delayed::Job.enqueue(CacheInterestingJob.new(class_name, school_id, params))
       end
       # Fragment cache
       expire_fragment "interesting_#{class_name}_#{school_id}"

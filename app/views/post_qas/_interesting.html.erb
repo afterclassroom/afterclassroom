@@ -4,7 +4,7 @@
         <h1 class="col195Title">Interesting questions</h1>
         <%
         interestings = PostQa.with_school(@school).interesting.with_limit %>
-        <% if @interestings.size > 0 %>
+        <% if interestings.size > 0 %>
         <div class="col195Cont">
             <% interestings.each do |qa| %>
             <div class="dueDItem">
