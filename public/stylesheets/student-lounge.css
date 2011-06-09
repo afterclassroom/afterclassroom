@@ -515,6 +515,36 @@
     padding-right: 10px;
     overflow: hidden;
     height: 45px;
+    margin-top: -4px;
+}
+.photoNamePho input{
+    margin-left:0px;
+}
+.photoNamePho span{
+    height: 38px;
+    overflow: hidden;
+    position: absolute;
+    width: 100px;
+    word-wrap: break-word;
+    margin-top: 4px;
+    text-indent: 16px;
+    margin-left: -15px;
+}
+.photoNamePhoto{
+    font-size: 10px;
+    font-weight: bold;
+    padding-right: 10px;
+    overflow: hidden;
+    height: 45px;
+    margin-top: -4px;
+}
+.photoNamePhoto span{
+    height: 38px;
+    overflow: hidden;
+    position: absolute;
+    width: 100px;
+    word-wrap: break-word;
+    margin-top: 3px;
 }
 .photoInf{
     font-size:10px;
@@ -5089,6 +5119,7 @@ span.btmTag a:hover{
 .musicVideo{
     text-align:center;
     padding:10px 0px;
+    word-wrap: break-word;
 }
 .musicNode{
     padding:0px 0px 10px 10px;

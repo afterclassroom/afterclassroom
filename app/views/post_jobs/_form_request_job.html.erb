@@ -122,4 +122,18 @@ type ||= 1 %>
             }
         });
     });
+    $(function() {
+	$('#job_type_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+    });
+    $(function() {
+	$('div.reqLa,div.col300Cont').hover(function() {
+
+	}, function() {
+		$('#job_type_menu').stop().hide();
+	});
+    });
 </script>
