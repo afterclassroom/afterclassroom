@@ -21,21 +21,34 @@ class PostsController < ApplicationController
       obj = eval(commentable_type).find(commentable_id)
       u = obj.user
       
+      if commentable_type == "Post"
+        post = Post.find(commentable_id)
+        if post
+          class_name = post.type_name
+          school_id = post.school_id
+          if class_name == "PostQa"
+            # Objects cache
+            Delayed::Job.enqueue(CacheCommentJob.new(class_name, nil, params))
+            Delayed::Job.enqueue(CacheCommentJob.new(class_name, school_id, params))
+          end
+        end
+      end
+      
       if ["Photo", "Music", "Story"].include?(commentable_type)
         case commentable_type
           when "Photo"
-            subject = "#{current_user.name} comment on your Photo."
-            content = "Click <a href='#{user_photo_url(u, obj)}' target='blank'>here</a> to view more"
-            send_notification(u, subject, content, "comments_on_my_photo")
+          subject = "#{current_user.name} comment on your Photo."
+          content = "Click <a href='#{user_photo_url(u, obj)}' target='blank'>here</a> to view more"
+          send_notification(u, subject, content, "comments_on_my_photo")
           when "Music"
-            subject = "#{current_user.name} comment on your Music."
-            content = "Click <a href='#{user_music_url(u, obj)}' target='blank'>here</a> to view more"
-            send_notification(u, subject, content, "comments_on_my_music")
+          subject = "#{current_user.name} comment on your Music."
+          content = "Click <a href='#{user_music_url(u, obj)}' target='blank'>here</a> to view more"
+          send_notification(u, subject, content, "comments_on_my_music")
           when "Story"
-            subject = "#{current_user.name} comment on your Story."
-            content = "Click <a href='#{user_story_url(u, obj)}' target='blank'>here</a> to view more"
-            send_notification(u, subject, content, "comments_on_my_story")
-            
+          subject = "#{current_user.name} comment on your Story."
+          content = "Click <a href='#{user_story_url(u, obj)}' target='blank'>here</a> to view more"
+          send_notification(u, subject, content, "comments_on_my_story")
+          
         end
       end
     end
@@ -54,6 +67,16 @@ class PostsController < ApplicationController
       @obj_comment.commentable_type = "Post"
       @obj_comment.user = current_user
       @obj_comment.save
+
+      if @post
+        class_name = @post.type_name
+        school_id = @post.school_id
+        if class_name == "PostQa"
+          # Objects cache
+          Delayed::Job.enqueue(CacheCommentJob.new(class_name, nil, params))
+          Delayed::Job.enqueue(CacheCommentJob.new(class_name, school_id, params))
+        end
+      end
     end
     render :layout => false
   end

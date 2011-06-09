@@ -8,25 +8,17 @@ class PostQasController < ApplicationController
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-
+  
   # GET /post_qas
   # GET /post_qas.xml
   
   def index
     @type = params[:type]
     @type ||= "answered"
-    @posts = if params[:more_like_this_id]
-      id = params[:more_like_this_id]
-      post = Post.find_by_id(id)
-      Rails.cache.fetch("more_like_this_#{post.id}") do
-        PostQa.paginated_post_more_like_this(params, post)
-      end
-    else
-      Rails.cache.fetch("index_#{@class_name}_type#{@type}_#{@school}") do
-        PostQa.paginated_post_conditions_with_option(params, @school, @type)
-      end
+    @post_results = Rails.cache.fetch("index_#{@class_name}_type#{@type}_#{@school}") do
+      PostQa.paginated_post_conditions_with_option(params, @school, @type)
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -46,8 +38,10 @@ class PostQasController < ApplicationController
   end
   
   def interesting
-    @posts = PostQa.paginated_post_conditions_with_interesting(params, @school)
-    
+    @post_results = Rails.cache.fetch("interesting_#{@class_name}_#{@school}") do
+      PostQa.paginated_post_conditions_with_interesting(params, @school)
+    end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # interesting.html.erb
       format.xml  { render :xml => @posts }

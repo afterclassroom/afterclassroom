@@ -29,13 +29,13 @@ class StoriesController < ApplicationController
     end
     
     @search_name = ""
-
+    
     if params[:search]
       @search_name = params[:search][:name]
     end
-
+    
     content_search = @search_name
-
+    
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
       if content_search != ""
@@ -45,19 +45,19 @@ class StoriesController < ApplicationController
         end
       end
     end
-
+    
     @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     
     render :layout => false
   end
-
+  
   def my_s
     @search_name = ""
-
+    
     if params[:search]
       @search_name = params[:search][:name]
     end
-
+    
     content_search = @search_name
     id = current_user.id
     cond = Caboose::EZ::Condition.new :stories do
@@ -69,39 +69,44 @@ class StoriesController < ApplicationController
         end
       end
     end
-
+    
     @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     
     render :layout => false
   end
-
+  
   # GET /stories/1
   # GET /stories/1.xml
   def show
     @story = Story.find(params[:id])
-    update_view_count(@story)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @story }
+    user = @story.user
+    if check_private_permission(@user, "my_stories")
+      update_view_count(@story)
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @story }
+      end
+    else
+      redirect_to warning_user_path(user)
     end
   end
-
+  
   # GET /stories/new
   # GET /stories/new.xml
   def new
     @story = Story.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @story }
     end
   end
-
+  
   # GET /stories/1/edit
   def edit
     @story = Story.find(params[:id])
   end
-
+  
   # story /stories
   # story /stories.xml
   def create
@@ -123,13 +128,13 @@ class StoriesController < ApplicationController
       end
     end
   end
-
+  
   # PUT /stories/1
   # PUT /stories/1.xml
   def update
     state = params[:state]
     @story = Story.find(params[:id])
-
+    
     @story.state = state
     respond_to do |format|
       if @story.update_attributes(params[:story])
@@ -142,13 +147,13 @@ class StoriesController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /stories/1
   # DELETE /stories/1.xml
   def destroy
     @story = Story.find(params[:id])
     @story.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to(stories_url) }
       format.xml  { head :ok }
@@ -177,7 +182,7 @@ class StoriesController < ApplicationController
       redirect_to story
     end
   end
-
+  
   def delete_all
     list_ids = params[:list_ids]
     list_ids = list_ids.slice(0..list_ids.length - 2)
@@ -192,7 +197,7 @@ class StoriesController < ApplicationController
   end
   
   protected
-
+  
   def require_current_user
     @user ||= Story.find(params[:story_id] || params[:id]).user
     unless (@user && (@user.eql?(current_user)))

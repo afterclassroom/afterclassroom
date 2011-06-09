@@ -15,9 +15,10 @@ class PostPartiesController < ApplicationController
   def index
     @rating_status = params[:rating_status]
     @rating_status ||= ""
-    @posts = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}") do
+    @post_results = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}") do
       PostParty.paginated_post_conditions_with_option(params, @school, @rating_status)
     end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -45,13 +46,17 @@ class PostPartiesController < ApplicationController
     @post_p.rating_status = status
     
     @post_p.save
-    
+    # Objects cache
+    class_name = @post_p.class.name
+    school_id = @post.school_id
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
   end
   
   def require_rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    @post_p = post.post_party
+    @post = Post.find(params[:post_id])
+    @post_p = @post.post_party
     if !PostParty.find_rated_by(current_user).include?(@post_p)
       @post_p.rate rating.to_i, current_user
       # Update rating status
@@ -70,6 +75,11 @@ class PostPartiesController < ApplicationController
       @post_p.rating_status = status
       
       @post_p.save
+      # Objects cache
+      class_name = @post_p.class.name
+      school_id = @post.school_id
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
     end
     render :layout => false
   end

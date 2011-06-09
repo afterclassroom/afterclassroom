@@ -11,7 +11,6 @@ class PostJob < ActiveRecord::Base
 
   has_many :job_files, :dependent => :destroy
 
-
   # Tags
   acts_as_taggable_on :tags
 
@@ -47,7 +46,7 @@ class PostJob < ActiveRecord::Base
 
     posts = []
     post_jobs.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
 
   def self.paginated_post_more_like_this(params, post_like)
@@ -60,7 +59,7 @@ class PostJob < ActiveRecord::Base
 
     posts = []
     post_ts.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)

@@ -14,9 +14,10 @@ class PostEventsController < ApplicationController
   def index  
     @event_type_id = params[:event_type_id]
     @event_type_id ||= 1
-    @posts = Rails.cache.fetch("index_#{@class_name}_type#{@event_type_id}_#{@school}") do
+    @post_results = Rails.cache.fetch("index_#{@class_name}_type#{@event_type_id}_#{@school}") do
       PostEvent.paginated_post_conditions_with_option(params, @school, @event_type_id)
     end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

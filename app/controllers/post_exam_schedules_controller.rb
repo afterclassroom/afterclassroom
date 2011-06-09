@@ -11,9 +11,10 @@ class PostExamSchedulesController < ApplicationController
   # GET /post_exam_schedules
   # GET /post_exam_schedules.xml
   def index
-    Rails.cache.fetch("index_#{@class_name}_type#{@type_schedule}_#{@school}") do
-      @posts = PostExamSchedule.paginated_post_conditions_with_option(params, @school, @type_schedule)
+    @post_results = Rails.cache.fetch("index_#{@class_name}_type#{@type_schedule}_#{@school}") do
+      PostExamSchedule.paginated_post_conditions_with_option(params, @school, @type_schedule)
     end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -129,7 +130,7 @@ class PostExamSchedulesController < ApplicationController
       if @post_exam_schedule.save
         flash[:notice] = "Your post was successfully created."
 				post_wall(@post, post_exam_schedule_path(@post_exam_schedule))
-        redirect_to post_exam_schedules_path(:type => @post_exam_schedule.type_name)
+        redirect_to post_exam_schedule_path(@post_exam_schedule)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"
@@ -149,7 +150,7 @@ class PostExamSchedulesController < ApplicationController
     if (@post_exam_schedule.update_attributes(params[:post_exam_schedule]) && @post.update_attributes(params[:post]))
       sc = School.find(@post.school.id)
       sc.tag(@post_exam_schedule, :with => params[:tag], :on => :tags)
-      redirect_to post_exam_schedules_path(:type => @post_exam_schedule.type_name)
+      redirect_to post_exam_schedule_path(@post_exam_schedule)
     end
   end
 

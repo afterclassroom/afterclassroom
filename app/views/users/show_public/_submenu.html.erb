@@ -2,6 +2,15 @@
   <div class="menuRL">
     <div class="menuRItem <%= "menuRselect" if action_name == "show_lounge" %>"><a href="<%= "#{show_lounge_user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Lounge</span></span></a></div>
     <div class="menuRItem <%= "menuRselect" if action_name == "show" %>"><a href="<%= "#{user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Info</span></span></a></div>
+		<% if action_name == "show_stories" %>
+			<div class="menuRItem menuRselect"><a href="<%= "#{show_stories_user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Stories</span></span></a></div>
+		<% end %>
+		<% if action_name == "show_friends" %>
+			<div class="menuRItem menuRselect"><a href="<%= "#{show_friends_user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Friends</span></span></a></div>
+		<% end %>
+		<% if action_name == "show_fans" %>
+			<div class="menuRItem menuRselect"><a href="<%= "#{show_fans_user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Fans</span></span></a></div>
+		<% end %>
 		<% if @user != current_user %>
 		<div class="menuRItem"><%= show_invite_friend_on_user_profile(@user)%></div>
 		<% end %>

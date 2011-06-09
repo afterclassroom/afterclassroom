@@ -47,5 +47,24 @@
             valueAttr: "rel_department"
         });
     });
+    $(function() {
+	$('#department_menu,#year_menu,#subcategory_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+  });
+    $(function() {
+	$('div.reqLa,div.col300Cont').hover(function() {
+
+	}, function() {
+		$('#department_menu,#year_menu,#subcategory_menu').stop().hide();
+	});
+  });
+    $(document).ready(function(){
+        $(".mcdropdown a").click(function(){
+        $('#year_menu').hide();
+        });
+  });
 </script>
 <% end %>

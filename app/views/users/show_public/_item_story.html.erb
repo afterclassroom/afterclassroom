@@ -1,0 +1,15 @@
+<div class="slsItem">
+  <div class="slsItemL">
+    <div class="slsItemLN"><%= story.count_view %></div>
+    <div class="slsItemLV">viewed</div>
+  </div>
+  <div class="assImg">
+    <%= link_to raw("<div>#{display_image(story)}</div>"), user_story_path(current_user, story) %></div>
+  <div class="slsItemR" style="width: 255px;">
+    <div class="slsItemTitle"><%= link_to story.title, user_story_path(current_user, story), :target => "_blank" %></div>
+    <div class="slsItemTime"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></div>
+    <div class="slsItemDes">
+      <%= truncate_words(story.content) %>
+    </div>
+  </div>
+</div>

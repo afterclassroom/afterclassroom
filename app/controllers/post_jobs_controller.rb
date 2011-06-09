@@ -13,10 +13,10 @@ class PostJobsController < ApplicationController
   # GET /post_jobs
   # GET /post_jobs.xml
   def index
-    @posts = if params[:more_like_this_id]
+    @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      Rails.cache.fetch("more_like_this_#{post.id}") do
+      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
         Post.paginated_post_more_like_this(params, post)
       end
     else
@@ -26,7 +26,7 @@ class PostJobsController < ApplicationController
         PostJob.paginated_post_conditions_with_option(params, @school, @job_type_id)
       end
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }

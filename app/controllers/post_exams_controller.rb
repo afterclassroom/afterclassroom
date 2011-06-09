@@ -12,18 +12,18 @@ class PostExamsController < ApplicationController
   # GET /post_exams
   # GET /post_exams.xml
   def index
-    if params[:more_like_this_id]
+    @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      Rails.cache.fetch("more_like_this_#{post.id}") do
-        @posts = PostExam.paginated_post_more_like_this(params, post)
+      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
+        PostExam.paginated_post_more_like_this(params, post)
       end
     else
       Rails.cache.fetch("index_#{@class_name}_#{@school}") do
-        @posts = PostExam.paginated_post_conditions_with_option(params, @school)
+        PostExam.paginated_post_conditions_with_option(params, @school)
       end
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -43,8 +43,8 @@ class PostExamsController < ApplicationController
   end
   
   def interesting
-    @posts = PostExam.paginated_post_conditions_with_interesting(params, @school)
-    
+    @post_results = PostExam.paginated_post_conditions_with_interesting(params, @school)
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
