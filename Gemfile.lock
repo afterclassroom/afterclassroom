@@ -142,6 +142,7 @@ GEM
     net-ssh (2.0.24)
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
+    newrelic_rpm (3.0.1)
     nokogiri (1.4.4)
     nokogiri (1.4.4-x86-mingw32)
     open4 (1.0.1)
@@ -173,6 +174,8 @@ GEM
     redis (2.1.1)
     rest-open-uri (1.0.0)
     riddle (1.2.2)
+    rpm_contrib (2.1.2)
+      newrelic_rpm (>= 3.0.0)
     rsolr (0.12.1)
       builder (>= 2.1.2)
     ruby-mp3info (0.6.13)
@@ -248,12 +251,14 @@ DEPENDENCIES
   json
   juggernaut
   mysql2
+  newrelic_rpm
   packet
   paperclip (~> 2.3)
   rack
   rails (= 3.0.3)
   rest-open-uri
   riddle (>= 1.2.1)
+  rpm_contrib
   ruby-mp3info
   rubycas-client
   rubycas-client-rails!
