@@ -44,4 +44,18 @@ type ||= 1 %>
             valueAttr: "rel_teamup_category"
         });
     });
+    $(function() {
+	$('#teamup_category_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+    });
+    $(function() {
+	$('div.reqLa,div.col300Cont').hover(function() {
+
+	}, function() {
+		$('#teamup_category_menu').stop().hide();
+	});
+    });
 </script>
