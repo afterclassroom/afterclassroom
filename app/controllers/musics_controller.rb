@@ -18,16 +18,15 @@ class MusicsController < ApplicationController
   # GET /musics.xml
   def index
     @friend_musics = []
-    @music_albums = current_user.music_albums
+    @my_music_albums = current_user.music_albums.paginate :page => params[:page], :per_page => 5
     arr_user_id = []
     current_user.user_friends.collect {|f| arr_user_id << f.id}
     if arr_user_id.size > 0
-      cond = Caboose::EZ::Condition.new :musics do
+      cond = Caboose::EZ::Condition.new :music_albums do
         user_id === arr_user_id
       end
-      @friend_musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC", :group => "music_album_id").paginate :page => params[:page], :per_page => 5
+      @my_friend_music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     end
-    @my_musics = current_user.musics.find(:all, :order => "created_at DESC", :group => "music_album_id").paginate :page => params[:page], :per_page => 5
   end
   
   def friend_m
@@ -83,7 +82,6 @@ class MusicsController < ApplicationController
   # GET /musics/1
   # GET /musics/1.xml
   def show
-    @music_albums = current_user.music_albums
     @music = Music.find(params[:id])
     
     respond_to do |format|
@@ -194,6 +192,7 @@ class MusicsController < ApplicationController
     @music_album.user = current_user
     @music_album.swfupload_file = params[:music_album_attach]
     @music_album.save
+    music_album_wall(@music_album)
     render :layout => false
   end
   
@@ -201,6 +200,11 @@ class MusicsController < ApplicationController
     music_album_id = params[:music_album_id]
     @music_album = MusicAlbum.find(music_album_id)
     render :layout => false
+  end
+  
+  def play_list
+    @music_album = MusicAlbum.find(params[:music_album_id])
+    @another_music_albums = @music_album.another_music_albums
   end
   
   protected

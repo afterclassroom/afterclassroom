@@ -34,7 +34,7 @@
               <% if current_user == nil %>
                 <form action="#">
                 <% else %>
-                  <form action="<%= addfr_user_forums_path(current_user) %>">
+                  <form action="<%= addfr_forums_path %>">
                   <% end %>
 
 
@@ -131,7 +131,7 @@
         <% if current_user == nil %>
           <a href="#">See all</a>
         <% else %>
-          <a href="<%= see_all_top_fr_user_forums_path(current_user) %>">See all</a>
+          <a href="<%= see_all_top_fr_forums_path %>">See all</a>
         <% end %>
 
       </div>
@@ -171,7 +171,7 @@
     <% if current_user == nil %>
           var savePath = '#';
     <% else %>
-          var savePath = '<%= savecmt_user_forums_path(current_user) %>';
+          var savePath = '<%= savecmt_forums_path %>';
     <% end %>
 
 
@@ -248,7 +248,7 @@
     <% if current_user == nil %>
           var delPath = '#';
     <% else %>
-          var delPath = '<%= delcmt_user_forums_path(current_user) %>';
+          var delPath = '<%= delcmt_forums_path(current_user) %>';
     <% end %>
 
 

@@ -627,7 +627,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login(raw("<span>Report Abuse</span>"))
     else
-      link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=PostQa&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
+      link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=#{post.class.name}&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
     end
   end
   

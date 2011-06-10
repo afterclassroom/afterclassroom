@@ -5,11 +5,11 @@ class UsersController < ApplicationController
   protect_from_forgery :only => [:create]
   
   before_filter RubyCAS::Filter::GatewayFilter, :except => [:create]
-  before_filter RubyCAS::Filter, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
+  before_filter RubyCAS::Filter, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_stories, :show_photos, :show_music, :show_videos, :show_friend, :show_fans, :warning]
   before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
   before_filter :require_current_user,
-    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge, :show_stories, :show_photos, :show_music, :show_videos, :show_friend, :show_fans]
+    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge, :show_stories, :show_photos, :show_music, :show_videos, :show_friend, :show_fans, :warning]
   
   # render new.rhtml
   def new
@@ -171,6 +171,7 @@ class UsersController < ApplicationController
   
   def warning
     @user = User.find(params[:id])
+    render :layout => "student_lounge"
   end
   
   protected

@@ -14,7 +14,7 @@
         </div>
         <%= display_flash_messages_with_raw %>
         <%= render :partial => "expand_create_music_album" %>
-		<% if @friend_musics != [] %>
+		<% if @my_friend_music_albums != [] %>
         <div id="friend_musics_list">
           <div class="slsTop">
             <div class="slsTopL">
@@ -30,15 +30,15 @@
             </div>
           </div>
           <div class="musicRow">
-            <% @friend_musics.each do |f_m| %>
-              <%= render :partial => "item_friend_music", :locals => {:music => f_m}  %>
+            <% @my_friend_music_albums.each do |f_m| %>
+              <%= render :partial => "item_friend_music", :locals => {:music_album => f_m}  %>
             <% end %>
           </div>
           <div class="slsTopR">
             <!--Pagination-->
             <div class="assPage friend_musics">
-              <span class="numPage"><%= page_entries_info @friend_musics %></span>
-              <%= will_paginate @friend_musics %>
+              <span class="numPage"><%= page_entries_info @my_friend_music_albums %></span>
+              <%= will_paginate @my_friend_music_albums %>
             </div>
             <!--Pagination-->
           </div>
@@ -65,15 +65,15 @@
             </div>   
           </div>
           <div class="musicRow">
-            <% @my_musics.each do |m_m| %>
-              <%= render :partial => "item_my_music", :locals => {:music => m_m}  %>
+            <% @my_music_albums.each do |m_m| %>
+              <%= render :partial => "item_my_music", :locals => {:music_album => m_m}  %>
             <% end %>
           </div>
           <div class="slsTopR">
             <!--Pagination-->
             <div class="assPage friend_musics">
-              <span class="numPage"><%= page_entries_info @my_musics %></span>
-              <%= will_paginate @my_musics %>
+              <span class="numPage"><%= page_entries_info @my_music_albums %></span>
+              <%= will_paginate @my_music_albums %>
             </div>
             <!--Pagination-->
           </div>
