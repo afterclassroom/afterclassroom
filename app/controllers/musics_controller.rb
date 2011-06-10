@@ -46,14 +46,14 @@ class MusicsController < ApplicationController
     
     content_search = @search_name
     
-    cond = Caboose::EZ::Condition.new :musics do
+    cond = Caboose::EZ::Condition.new :music_albums do
       user_id === arr_user_id
       if content_search != ""
         title =~ "%#{content_search}%"
       end
     end
     
-    @musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     
     render :layout => false
   end
@@ -67,14 +67,14 @@ class MusicsController < ApplicationController
     
     content_search = @search_name
     id = current_user.id
-    cond = Caboose::EZ::Condition.new :musics do
+    cond = Caboose::EZ::Condition.new :music_albums do
       user_id == id
       if content_search != ""
-        title =~ "%#{content_search}%"
+        name =~ "%#{content_search}%"
       end
     end
     
-    @musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     
     render :layout => false
   end
@@ -83,7 +83,7 @@ class MusicsController < ApplicationController
   # GET /musics/1.xml
   def show
     @music = Music.find(params[:id])
-    
+    update_view_count(@music)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @music }
@@ -190,7 +190,7 @@ class MusicsController < ApplicationController
     @music_album = MusicAlbum.new()
     @music_album.name = params[:album_name]
     @music_album.user = current_user
-    @music_album.swfupload_file = params[:music_album_attach]
+    @music_album.swfupload_file = params[:music_album_attach] if params[:music_album_attach]
     @music_album.save
     music_album_wall(@music_album)
     render :layout => false
@@ -205,6 +205,7 @@ class MusicsController < ApplicationController
   def play_list
     @music_album = MusicAlbum.find(params[:music_album_id])
     @another_music_albums = @music_album.another_music_albums
+    update_view_count(@music_album)
   end
   
   protected

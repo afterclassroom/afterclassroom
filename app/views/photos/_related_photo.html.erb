@@ -7,7 +7,7 @@
     <div class="ad-nav">
       <div class="ad-thumbs">
         <ul class="ad-thumb-list">
-          <% @photo.photo_album.photos.each do |p| %>
+          <% @photo_album.photos.each do |p| %>
             <li>
               <%= link_to raw("#{image_tag(p.photo_attach.url(:thumb), :alt => p.title)}"), p.photo_attach.url %>
             </li>

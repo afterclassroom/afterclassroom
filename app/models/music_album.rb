@@ -14,6 +14,11 @@ class MusicAlbum < ActiveRecord::Base
   # Favorite
   acts_as_favorite
   
+  # Named Scope
+  scope :with_limit, :limit => 6
+  scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
+  scope :most_view, :conditions => "count_view > 0", :order => "count_view DESC"
+  
   # Attach
   has_attached_file :music_album_attach, {
     :bucket => 'afterclassroom_musics',

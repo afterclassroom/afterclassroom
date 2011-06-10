@@ -5063,7 +5063,7 @@ span.btmTag a:hover{
     _height:100%;
 }
 .musicL{
-    width:305px;
+    width:125px;
     float:left;
     margin-bottom:10px
 }
@@ -5076,7 +5076,7 @@ span.btmTag a:hover{
     float:left;
 }
 .musicL .mostMSR, .musicR .mostMSR{
-    width:202px;
+    width:42px;
     float:right;
 }
 .musicB{

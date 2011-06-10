@@ -20,7 +20,6 @@ class Photo < ActiveRecord::Base
 
   # Tags
   acts_as_taggable
-  
 
   # Favorite
   acts_as_favorite
@@ -28,7 +27,9 @@ class Photo < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => 6
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
-  scope :most_view, :order => "count_view DESC", :group => "photo_album_id"
+  scope :most_view, :conditions => "count_view > 0", :order => "count_view DESC", :group => "photo_album_id"
+  scope :previous, lambda { |att| {:conditions => ["photos.id < ?", att], :order => "id DESC"} }
+  scope :nexts, lambda { |att| {:conditions => ["photos.id > ?", att], :order => "id DESC"} }
   
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)

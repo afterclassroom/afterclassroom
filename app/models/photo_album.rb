@@ -7,4 +7,28 @@ class PhotoAlbum < ActiveRecord::Base
   # Relations
   belongs_to :user
   has_many :photos, :dependent => :destroy
+  
+  # Comments
+  acts_as_commentable
+
+  # Tracker
+  acts_as_activity :user
+
+  # Tags
+  acts_as_taggable
+
+  # Favorite
+  acts_as_favorite
+  
+  def get_photo
+    if self.photos.size > 0
+      self.photos.first.photo_attach.url(:thumb)
+    else
+      "/images/noimg2.png"
+    end
+  end
+  
+  def another_photo_albums
+    PhotoAlbum.find(:all, :limit => 5, :conditions => ["id <> ?", self.id], :order => "created_at DESC")
+  end
 end

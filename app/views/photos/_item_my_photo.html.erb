@@ -1,6 +1,6 @@
 <div class="photoItem">
-  <div class="photoImg"><%= link_to raw("<div>#{image_tag photo.photo_attach.url(:thumb)}</div>"), user_photo_path(current_user, photo) %></div>
-  <div class="photoInf" style="margin-top: -5px;"><%= pluralize(photo.photo_album.photos.size, "photo") %></div>
-  <div class="photoNamePhoto"><span><%= photo.photo_album.name %></span></div>
+  <div class="photoImg"><%= link_to get_first_photo(photo_album), show_album_user_photos_path(photo_album.user, :photo_album_id => photo_album) %></div>
+  <div class="photoInf" style="margin-top: -5px;"><%= pluralize(photo_album.photos.size, "photo") %></div>
+  <div class="photoNamePhoto"><span><%= photo_album.name %></span></div>
 </div>
 

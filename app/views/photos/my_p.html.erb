@@ -1,13 +1,13 @@
 <div class="photoRow">
-  <% @photos.each do |m_p| %>
-    <%= render :partial => "item_my_photo", :locals => {:photo => m_p}  %>
+  <% @photo_albums.each do |m_p| %>
+    <%= render :partial => "item_my_photo", :locals => {:photo_album => m_p}  %>
   <% end %>
 </div>
 <div class="slsTopR">
     <!--Pagination-->
     <div class="assPage friend_photos">
-      <span class="numPage"><%= page_entries_info @photos %></span>
-      <%= will_paginate @photos %>
+      <span class="numPage"><%= page_entries_info @photo_albums %></span>
+      <%= will_paginate @photo_albums %>
     </div>
     <!--Pagination-->
   </div>

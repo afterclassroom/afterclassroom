@@ -28,7 +28,7 @@ class Music < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => 6
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
-  scope :most_view, :order => "count_view DESC", :group => "music_album_id"
+  scope :most_view, :conditions => "count_view > 0", :order => "count_view DESC"
   
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)

@@ -71,7 +71,7 @@
           </div>
           <div class="slsTopR">
             <!--Pagination-->
-            <div class="assPage friend_musics">
+            <div class="assPage my_musics">
               <span class="numPage"><%= page_entries_info @my_music_albums %></span>
               <%= will_paginate @my_music_albums %>
             </div>
@@ -83,9 +83,9 @@
   </div>
 </div>
 <div class="contMainR">
-  <!--Most Viewed-->
+<!--Most Viewed-->
 <%= render :partial => "most_viewed" %>
-  <!--Most Viewed-->
+<!--Most Viewed-->
 
   <!--Ads-->
 <%= render :partial => "ads/show_vertical_ads" %>

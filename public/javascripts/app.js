@@ -523,7 +523,7 @@ function formatLinkForPaginationURLFriendPhoto(){
         
         linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
-            searchFriendStories();
+            searchFriendPhotos();
         });
     });
 }
@@ -541,7 +541,7 @@ function formatLinkForPaginationURLMyPhoto(){
         
         linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
-            searchMyStories();
+            searchMyPhotos();
         });
     });
 }
@@ -580,7 +580,7 @@ function formatLinkForPaginationURLFriendMusic(){
         
         linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
-            searchFriendStories();
+            searchFriendMusics();
         });
     });
 }
@@ -598,7 +598,7 @@ function formatLinkForPaginationURLMyMusic(){
         
         linkElement.click(function(){
             form.attr("action", url + "?page=" + $(this).attr('page'));
-            searchMyStories();
+            searchMyMusics();
         });
     });
 }
