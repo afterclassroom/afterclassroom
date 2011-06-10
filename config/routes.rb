@@ -11,6 +11,12 @@ Afterclassroom::Application.routes.draw do
   match '/users/forgot_login' => 'users#forgot_login', :as => :user_forgot_login
   match '/users/clueless' => 'users#clueless', :as => :user_clueless
 
+  resources :forums do 
+    collection do
+      get :savecmt, :delcmt, :addfr, :search, :see_all_top_fr
+    end
+  end
+
   # Users
   resources :users do
     member do
@@ -41,12 +47,6 @@ Afterclassroom::Application.routes.draw do
         get :show_profile, :edit_infor, :edit_edu_infor,
           :edit_work_infor, :my_favorite, :fan, :delete_fans
         post :update_about_yourself, :update_infor, :update_edu_infor, :update_work_infor
-      end
-    end
-
-    resources :forums do 
-      collection do
-        get :savecmt, :delcmt, :addfr, :search, :see_all_top_fr
       end
     end
 
