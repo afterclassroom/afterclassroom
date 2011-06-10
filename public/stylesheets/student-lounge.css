@@ -383,6 +383,8 @@
 }
 .AfterDes{
     color:#6f6f63;
+    word-wrap: break-word;
+    margin-left: 110px;
 }
 .AfterInfo .assInfB{
     clear:both;
@@ -630,12 +632,14 @@
 .friLeft .textS input{
     width:165px;
     padding-top:2px;
+    margin-top: 4px;
 }
 .friLeft .search{
     background:url('/images/bgSearchF.png') no-repeat left top;
     float:right;
     padding-right:0px;
     width:193px;
+    height: 24px;
 }
 .friLeft .btmS{
     padding-top:4px;
@@ -5057,7 +5061,7 @@ span.btmTag a:hover{
     background:url('/images/msaddH.png') no-repeat left top;
 }
 .musicRow{
-    padding:5px 10px;
+    padding:15px 20px;
     overflow:hidden;
     clear:both;
     _height:100%;
