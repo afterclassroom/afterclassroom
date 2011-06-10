@@ -91,7 +91,7 @@ Afterclassroom::Application.routes.draw do
     
     resources :musics do
       collection do
-        get :friend_m, :my_m, :create_playlist, :create_form
+        get :friend_m, :my_m, :create_playlist, :create_form, :play_list
         post :create_album, :upload
       end
     end

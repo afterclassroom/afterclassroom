@@ -1,16 +1,16 @@
 <div>
   <% if image %>
-    <div class="AfterImg">
+    <div class="AfterImg" id="wall_attach_<%= wall_id %>">
       <div class="imgDiv">
         <%= image %>
       </div>
     </div>
   <% end %>
-  <div class="AfterTitle">
+  <div class="AfterTitle" id="wall_attach_<%= wall_id %>">
     <%= link_to title, link, :target => "_blank" %>
   </div>
   <% if sub_content %>
-    <div class="AfterDes">
+    <div class="AfterDes" id="wall_attach_<%= wall_id %>">
       <%= sub_content %>
     </div>
   <% end %>

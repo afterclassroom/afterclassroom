@@ -30,6 +30,21 @@ module Postwall
     user_wall.save
   end
   
+  def music_album_wall(ma)
+    user_wall = UserWall.new
+    user_wall_link = UserWallLink.new()
+    user_wall.user_id = ma.user.id
+    user_wall.user_id_post = ma.user.id
+    user_wall.content = "Add new music album #{ma.name}"
+    user_wall.save
+    user_wall_link.link = play_list_user_musics_url(:music_album_id => ma)
+    user_wall_link.image_link = ma.music_album_attach.url(:thumb)
+    user_wall_link.title = ma.name
+    user_wall_link.sub_content = truncate_html(ma.name, :length => 100, :omission => '...')
+    user_wall.user_wall_link = user_wall_link
+    user_wall.save
+  end
+  
   def music_wall(mc)
     user_wall = UserWall.new
     user_wall_music = UserWallMusic.new()
