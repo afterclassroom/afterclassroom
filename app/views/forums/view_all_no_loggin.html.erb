@@ -18,24 +18,28 @@
   </div>
 
 <% end %>
-
-
-<div id="current_cmt_<%= @fr.id %>" class="proListH1" style = "display: none;">
+                  <div style="margin-left: 45px;" class="proList">
+                    <div class="writeCom">
+                      <%=  link_to_require_login("Write something...") %>
+                    </div>
+                  </div>
+<!--
+<div id="current_cmt_<%# = @fr.id %>" class="proListH1" style = "display: none;">
   <form>
-    <div class="proListPic"><%= show_image_user_post(@fr.user) %></div>
+    <div class="proListPic"><%#= show_image_user_post(@fr.user) %></div>
     <div class="proListR">
-      <div class="writeCom"><textarea name="comment" id="comment_<%= @fr.id.to_s %>"></textarea></div>
+      <div class="writeCom"><textarea name="comment" id="comment_<%#= @fr.id.to_s %>"></textarea></div>
     </div>
-    <div class="proAttR"><input id="save_<%= @fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
+    <div class="proAttR"><input id="save_<%#= @fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
   </form>
-</div>
+</div> 
 
 
-<div class="proList" id="fr_comment_<%= @fr.id %>" style="margin-left:45px;">
+<div class="proList" id="fr_comment_<%#= @fr.id %>" style="margin-left:45px;">
   <div class="writeCom">
-    <div onclick="showForumCmtForm<%= @fr.id %>();">Write something...</div>
+    <div onclick="showForumCmtForm<%#= @fr.id %>();">Write something...</div>
   </div>
-</div>
+</div>-->
 
 <script type="text/javascript">
   function showForumCmtForm<%= @fr.id %>(){

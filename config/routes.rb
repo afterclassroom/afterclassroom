@@ -13,7 +13,7 @@ Afterclassroom::Application.routes.draw do
 
   resources :forums do 
     collection do
-      get :savecmt, :delcmt, :addfr, :search, :see_all_top_fr
+      get :savecmt, :delcmt, :addfr, :search, :see_all_top_fr, :view_all_comments, :view_all_no_loggin
     end
   end
 
