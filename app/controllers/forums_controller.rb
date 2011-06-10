@@ -1,7 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class ForumsController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index]
+  before_filter RubyCAS::Filter, :except => [:index, :view_all_no_loggin]
 
   def index  
     @forums = Forum.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 8, :order => "created_at")
@@ -20,7 +20,6 @@ class ForumsController < ApplicationController
     render :template => 'forums/index' 
   end
 
-
   def delcmt
     fr = Forum.find(params[:forum_id])
     comment = fr.comments.find(params[:comment_id])
@@ -33,6 +32,40 @@ class ForumsController < ApplicationController
   end
 
   def view_all_comments
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    puts "=============="
+    forum_id = params[:forum_id]
+    @fr = Forum.find(forum_id)
+    render :layout => false
+  end
+
+  def view_all_no_loggin
     forum_id = params[:forum_id]
     @fr = Forum.find(forum_id)
     render :layout => false

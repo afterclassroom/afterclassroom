@@ -23,6 +23,18 @@
       <div class="col654Cont">
         <div class="helpL">
           <div class="helpLin">
+
+
+
+
+            <div id="test_id">CLICK HERE TO TEST AJAX</div>
+
+
+
+
+
+
+
             <div class="helpTitle">Community Help Forum</div>
             <div class="AsDsearchH">
               <%= render :partial => "search_help" %>
@@ -65,7 +77,15 @@
 
                   <div class="proList" style="margin-left: 45px;">
                     <div class="writeCom">
-                      <%= link_to "View all", {:controller => "forums", :action => "view_all_comments", :forum_id => fr.id}, :remote => true %>
+
+                      <% if logged_in? %>
+                        <%= link_to "View all", {:controller => "forums", :action => "view_all_comments", :forum_id => fr.id}, :remote => true %>
+                      <% else %>
+                        <a id="view_all_<%= fr.id.to_s %>" href="javascript:;">View all No login</a>
+                      <% end %>
+
+
+
 
                     </div>
                   </div>
@@ -77,13 +97,13 @@
 
                   <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
                     <div onclick="DeleteForumComment(<%= fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
-                      <img src="/images/icon-ing.gif">
+                      <img src="/images/icon-ing.gif"/>
                     </div>
 
                     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
                     <div class="proListR">
                       <div class="AfterClCom">
-                        <a href="/users/1/show_lounge">James</a><%= cmt.comment %>
+                        <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a><%= cmt.comment %>
                       </div>
                       <div class="proListCont">
                         <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
@@ -97,15 +117,28 @@
                   <% end %><!-- end if count -->
                 <% end %><!-- end fr.comments.each -->
 
-                <div class="proListH1">
-                  <form>
-                    <div class="proListPic"><%= show_image_user_post(fr.user) %></div>
-                    <div class="proListR">
-                      <div class="writeCom"><textarea name="comment" id="comment_<%= fr.id.to_s %>"></textarea></div>
+
+                <% if logged_in? %>
+                  <div class="proListH1">
+                    <form>
+                      <div class="proListPic"><%= show_image_user_post(fr.user) %></div>
+                      <div class="proListR">
+                        <div class="writeCom"><textarea name="comment" id="comment_<%= fr.id.to_s %>"></textarea></div>
+                      </div>
+                      <div class="proAttR"><input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
+                    </form>
+                  </div>
+                <% else %>
+                  <div style="margin-left: 45px;" class="proList">
+                    <div class="writeCom">
+                      <%=  link_to_require_login("Write something...") %>
                     </div>
-                    <div class="proAttR"><input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
-                  </form>
-                </div>
+                  </div>
+
+                <% end %>
+
+
+
               </div>
 
             </div>
@@ -168,11 +201,11 @@
     ShowWaitDialog();
 
 
-    <% if current_user == nil %>
-          var savePath = '#';
-    <% else %>
-          var savePath = '<%= savecmt_forums_path %>';
-    <% end %>
+<% if current_user == nil %>
+      var savePath = '#';
+<% else %>
+      var savePath = '<%= savecmt_forums_path %>';
+<% end %>
 
 
     $.ajax({
@@ -219,8 +252,66 @@
     });
 
 
+    /*BEGIN the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
+    $("a[id*='view_all_']").click(function(){
+      forum_id = $(this).attr('id').split('_')[2];
+
+
+      $.ajax({
+        url: '<%= view_all_no_loggin_forums_path %>',
+        type: 'GET',
+        dataType: 'html',
+        data: 'forum_id='+forum_id,
+        success: function(html){
+          alert('val == '+html);
+        },
+        error: function(er){
+          callagain(forum_id);
+          //alert('Failed to communicate with server: '+er);
+        }
+      });
+
+
+    });
+    /*END the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
+
+
+    $('#test_id').click(function(){
+
+      $.ajax({
+        url: '<%= view_all_comments_forums_path %>',
+        type: 'GET',
+        dataType: 'html',
+        data: 'forum_id=24',
+        success: function(html){
+          alert('val == '+html);
+        },
+        error: function(er){
+          callagain();
+          //alert('Failed to communicate with server: '+er);
+        }
+      });
+
+
+    });
+
 
   });
+
+  function callagain(forum_id){
+    $.ajax({
+      url: '<%= view_all_no_loggin_forums_path %>',
+      type: 'GET',
+      dataType: 'html',
+      data: 'forum_id='+forum_id,
+      success: function(str_data){
+        $("#forum_list_comment_"+forum_id).html(str_data);
+      },
+      error: function(er){
+        alert('Failed to communicate with server: '+er);
+      }
+    })
+  }
 
   function toggle5(showHideDiv, switchImgTag) {
     var ele = document.getElementById(showHideDiv);
@@ -245,11 +336,11 @@
   }
 
   function DeleteForumComment(forum_id, comment_id){
-    <% if current_user == nil %>
-          var delPath = '#';
-    <% else %>
-          var delPath = '<%= delcmt_forums_path(current_user) %>';
-    <% end %>
+<% if current_user == nil %>
+      var delPath = '#';
+<% else %>
+      var delPath = '<%= delcmt_forums_path(current_user) %>';
+<% end %>
 
 
     $("#delete_comment_alert").dialog({
@@ -266,6 +357,9 @@
             success: function(html){
               $('#cmt_id_'+comment_id).toggle();
               $('#answ_'+forum_id).html('Answer ('+html+')');
+            },
+            error: function(er){
+              alert('Failed to communicate with server: '+er);
             }
           });
         },
