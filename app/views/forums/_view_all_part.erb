@@ -8,7 +8,7 @@
 
     <div class="proListR">
       <div class="AfterClCom">
-        <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a><%= cmt.comment %>
+        <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a> <%= cmt.comment %>
       </div>
       <div class="proListCont">
         <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>

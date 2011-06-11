@@ -10,7 +10,12 @@
     <div class="sponsorS">
       <div class="sponsorLink">
         <div class="menuRL">
-          <div class="menuRItem <%= "menuRselect" if controller.action_name == "help" %>"><a href="/statics/help"><span class="span1"><span class="span2">Community Help Forum</span></span></a></div>
+          <div class="menuRItem menuRselect">
+            <a href="/forums">
+              <span class="span1">
+                <span class="span2">Community Help Forum</span>
+              </span></a>
+          </div>
         </div>
       </div>
     </div>
@@ -23,41 +28,32 @@
       <div class="col654Cont">
         <div class="helpL">
           <div class="helpLin">
-
-
-
-
-            <div id="test_id">CLICK HERE TO TEST AJAX</div>
-
-
-
-
-
-
-
-            <div class="helpTitle">Community Help Forum</div>
             <div class="AsDsearchH">
               <%= render :partial => "search_help" %>
             </div>
             <div class="helpPost"><a></a></div>
-            <div id="headerDivImg"><span class="postAQues"></span><a id="imageDivLink" onclick="javascript:toggle5('contentDivImg', 'imageDivLink');"><img src="/images/helpPostSh08.png"></a></div>
+            <div id="headerDivImg">
+              <span class="postAQues"></span>
+              <% if logged_in? %>
+                <a id="imageDivLink" onclick="javascript:toggle5('contentDivImg', 'imageDivLink');">
+                  <img src="/images/helpPostSh08.png"/>
+                </a>
+              <% else %>
+                <%=  link_to_require_login("Post A Question...") %>
+              <% end %>
+            </div>
             <div id="contentDivImg" style="display: none;">
-
-              <% if current_user == nil %>
-                <form action="#">
-                <% else %>
-                  <form action="<%= addfr_forums_path %>">
-                  <% end %>
-
-
+              <% if logged_in? %>
+                <form id="new_fr_form" action="<%= addfr_forums_path %>">
                   <div class="postHelp">
                     <div class="reqLa"><label>Title</label></div>
-                    <div class="reqTi"><input type="text" name="txt_help" size="22"></input></div>
+                    <div class="reqTi"><input type="text" id="txt_help" name="txt_help" size="22"></input></div>
                     <div class="reqLa"><label>Content</label></div>
-                    <div style="margin: 3px 0pt;" class="reqEn"><textarea name="help_content"></textarea></div>
+                    <div style="margin: 3px 0pt;" class="reqEn"><textarea id="help_content" name="help_content"></textarea></div>
                     <div style="margin-top: 5px;" class="submit"><input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"></input></div>
                   </div>
                 </form>
+              <% end %>
             </div>
           </div>
         </div>
@@ -70,54 +66,42 @@
               <div class="helpDis"><a href="javascript:;">
                   <%= distance_of_time_in_words_to_now(fr.created_at, false) + " ago." %>
                 </a></div>
-              <div class="comH"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
+              <div class="comH" style="margin-left: 115px;"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
               <div class="slidingDivH1" style="display:none;" id="forum_list_comment_<%= fr.id %>">
-
                 <% if fr.comments.length > 2 %>
-
                   <div class="proList" style="margin-left: 45px;">
                     <div class="writeCom">
-
                       <% if logged_in? %>
                         <%= link_to "View all", {:controller => "forums", :action => "view_all_comments", :forum_id => fr.id}, :remote => true %>
                       <% else %>
-                        <a id="view_all_<%= fr.id.to_s %>" href="javascript:;">View all No login</a>
+                        <a id="view_all_<%= fr.id.to_s %>" href="javascript:;">View all</a>
                       <% end %>
-
-
-
-
                     </div>
                   </div>
                 <% end %><!-- end if -->
-
-
                 <% count = 0 %>
                 <% fr.comments.each do |cmt| %>
-
                   <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
-                    <div onclick="DeleteForumComment(<%= fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
-                      <img src="/images/icon-ing.gif"/>
-                    </div>
-
+                    <% if logged_in? %>
+                      <div onclick="DeleteForumComment(<%= fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
+                        <img src="/images/icon-ing.gif"/>
+                      </div>
+                    <% end %>
                     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
                     <div class="proListR">
                       <div class="AfterClCom">
-                        <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a><%= cmt.comment %>
+                        <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a>  <%= cmt.comment %>
                       </div>
                       <div class="proListCont">
                         <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
                       </div>
                     </div>
-
                   </div>
                   <% count = count + 1 %>
                   <% if count > 1 %>
                     <% break %>
                   <% end %><!-- end if count -->
                 <% end %><!-- end fr.comments.each -->
-
-
                 <% if logged_in? %>
                   <div class="proListH1">
                     <form>
@@ -134,23 +118,15 @@
                       <%=  link_to_require_login("Write something...") %>
                     </div>
                   </div>
-
                 <% end %>
-
-
-
               </div>
-
             </div>
-
           <% end %>
-
           <% if controller.action_name == "index" %>
             <%= will_paginate @forums %>
           <% elsif controller.action_name == "see_all_top_fr" %>
             <%= will_paginate(@forums, :params => { :controller => "forums", :action => "see_all_top_fr" }) %>
           <% end %>
-
         </div>
       </div>
     </div>
@@ -161,28 +137,16 @@
     <div class="popuTop">
       <div class="popuTitle">Popular Discussions</div>
       <div class="popuAll">
-        <% if current_user == nil %>
-          <a href="#">See all</a>
-        <% else %>
-          <a href="<%= see_all_top_fr_forums_path %>">See all</a>
-        <% end %>
-
+        <a href="<%= see_all_top_fr_forums_path %>">See all</a>
       </div>
     </div>
-
     <% @top_frs.each do |fr| %>
       <div class="popuDes"><b><%= fr.title %></b>  <%= fr.content %></div>
       <div class="popuRe"><a href="javascript:;"><%= fr.comments.length %> replies</a></div>
-
     <% end %>
-
   </div>
 </div>
 
-
-<!--Comments-->
-
-<!--Comments-->
 <div visible="false" id="wait_dialog" style="display:none;">Please wait...</div>
 
 <script type="text/javascript">
@@ -248,7 +212,19 @@
 
 
     $('#add_new_fr').click(function(){
-      $(this).parents().find('form').eq(0).submit();
+      $("#new_fr_form").validate({ rules:
+          { txt_help :
+            {
+            required : true,
+            minlength: 10
+          },
+          help_content: {
+            required : true,
+            minlength: 50
+          }
+        }
+      });
+      //(this).parents().find('form').eq(0).submit();
     });
 
 
@@ -270,34 +246,11 @@
           //alert('Failed to communicate with server: '+er);
         }
       });
-
-
     });
     /*END the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
 
-
-    $('#test_id').click(function(){
-
-      $.ajax({
-        url: '<%= view_all_comments_forums_path %>',
-        type: 'GET',
-        dataType: 'html',
-        data: 'forum_id=24',
-        success: function(html){
-          alert('val == '+html);
-        },
-        error: function(er){
-          callagain();
-          //alert('Failed to communicate with server: '+er);
-        }
-      });
-
-
-    });
-
-
   });
-
+  /* this function callagain for fixing the bug related to call ajax being rediected by RubyCAS */
   function callagain(forum_id){
     $.ajax({
       url: '<%= view_all_no_loggin_forums_path %>',
