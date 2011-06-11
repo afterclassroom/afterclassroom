@@ -5,12 +5,12 @@ class UsersController < ApplicationController
   protect_from_forgery :only => [:create]
   
   before_filter RubyCAS::Filter::GatewayFilter, :except => [:create]
-  before_filter RubyCAS::Filter, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_stories, :show_photos, :show_music, :show_videos, :show_friend, :show_fans, :warning]
+  before_filter RubyCAS::Filter, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_stories, :show_story_detail, :show_photos, :show_musics, :show_videos, :show_friend, :show_fans, :warning]
   before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
   before_filter :require_current_user,
-    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge, :show_stories, :show_photos, :show_music, :show_videos, :show_friend, :show_fans, :warning]
-  
+    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_musics, :show_videos, :show_friend, :show_fans, :warning]
+  before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friend, :show_fans, :warning]
   # render new.rhtml
   def new
     @user = User.new
@@ -123,7 +123,6 @@ class UsersController < ApplicationController
   end
   
   def show_stories
-    @user = User.find(params[:id])
     if check_private_permission(@user, "my_stories")
       @stories = @user.stories.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
       render :layout => "student_lounge"
@@ -132,20 +131,53 @@ class UsersController < ApplicationController
     end
   end
   
+  def show_story_detail
+    if check_private_permission(@user, "my_stories")
+      story_id = params[:story_id]
+      @story = Story.find(story_id)
+      render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
+  end
+  
   def show_photos
-    @user = User.find(params[:id])
+    if check_private_permission(@user, "my_stories")
+      story_id = params[:story_id]
+      @story = Story.find(story_id)
+      render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
+  end
+  
+  def show_photo_album
+    if check_private_permission(@user, "my_stories")
+      story_id = params[:story_id]
+      @story = Story.find(story_id)
+      render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
   end
   
   def show_musics
-    @user = User.find(params[:id])
+    if check_private_permission(@user, "my_musics")
+      @music_albums = @user.music_albums.paginate :page => params[:page], :per_page => 10
+      render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
+  end
+  
+  def show_music_album
+    
   end
   
   def show_videos
-    @user = User.find(params[:id])
   end
   
   def show_friends
-    @user = User.find(params[:id])
     if check_private_permission(@user, "my_friends")
       @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
       render :layout => "student_lounge"
@@ -155,7 +187,6 @@ class UsersController < ApplicationController
   end
   
   def show_fans
-    @user = User.find(params[:id])
     if check_private_permission(@user, "my_fans")
       fan_ids = @user.fans.collect{|f| f.user_id}
       
@@ -170,11 +201,14 @@ class UsersController < ApplicationController
   end
   
   def warning
-    @user = User.find(params[:id])
     render :layout => "student_lounge"
   end
   
   protected
+  
+  def get_params
+    @user = User.find(params[:id])
+  end
   
   def require_current_user
     @user ||= User.find(params[:user_id] || params[:id])

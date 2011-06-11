@@ -1,5 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class StoriesController < ApplicationController
+  include ApplicationHelper
   layout 'student_lounge'
   
   before_filter RubyCAS::Filter::GatewayFilter
@@ -24,7 +25,7 @@ class StoriesController < ApplicationController
     
     if current_user.user_friends
       current_user.user_friends.each do |friend|
-        arr_user_id << friend.id
+        arr_user_id << friend.id if check_private_permission(friend, "my_stories")
       end
     end
     
@@ -79,7 +80,7 @@ class StoriesController < ApplicationController
   # GET /stories/1.xml
   def show
     @story = Story.find(params[:id])
-    user = @story.user
+    @user = @story.user
     if check_private_permission(@user, "my_stories")
       update_view_count(@story)
       respond_to do |format|
@@ -87,7 +88,7 @@ class StoriesController < ApplicationController
         format.xml  { render :xml => @story }
       end
     else
-      redirect_to warning_user_path(user)
+      redirect_to warning_user_path(@user)
     end
   end
   

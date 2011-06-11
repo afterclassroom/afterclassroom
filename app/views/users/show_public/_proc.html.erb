@@ -8,10 +8,10 @@
                 <%= link_to "#{@user.full_name}'s Stories (#{@user.stories.size})", show_stories_user_path(@user) %>
             </div>
             <div class="proItem">
-                <%= link_to "#{@user.full_name}'s Photos (#{@user.photos.size})", user_photos_path(@user) %>
+                <%= link_to "#{@user.full_name}'s Photos (#{@user.photos.size})", show_photos_user_path(@user) %>
             </div>
             <div class="proItem">
-                <%= link_to "#{@user.full_name}'s Musics (#{@user.musics.size})", user_musics_path(@user) %>
+                <%= link_to "#{@user.full_name}'s Musics (#{@user.musics.size})", show_musics_user_path(@user) %>
             </div>
             <% if check_private_permission(@user, "about_myself") and @user.user_information and @user.user_information.about_yourself %>
             <div class="proItem">
