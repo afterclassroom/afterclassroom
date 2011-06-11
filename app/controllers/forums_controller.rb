@@ -1,22 +1,22 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class ForumsController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :view_all_no_loggin]
+  before_filter RubyCAS::Filter, :except => [:index, :view_all_no_loggin, :see_all_top_fr, :search]
 
   def index  
-    @forums = Forum.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 8, :order => "created_at")
-    @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 4)
+    @forums = Forum.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 10, :order => "created_at")
+    @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 10)
   end
 
   def see_all_top_fr
-    @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 4)
-    @forums = Forum.top_answer.paginate(:page => params[:page], :per_page => 8)
+    @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 10)
+    @forums = Forum.top_answer.paginate(:page => params[:page], :per_page => 10)
     render :template => 'forums/index' 
   end
 
   def search
     @forums = Forum.paginated_forum_with_search(params).results
-    @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 4)
+    @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 10)
     render :template => 'forums/index' 
   end
 
@@ -32,34 +32,6 @@ class ForumsController < ApplicationController
   end
 
   def view_all_comments
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
-    puts "=============="
     forum_id = params[:forum_id]
     @fr = Forum.find(forum_id)
     render :layout => false
@@ -77,9 +49,6 @@ class ForumsController < ApplicationController
     comment = params[:comment]
     commentable_id = params[:commentable_id]
     commentable_type = params[:commentable_type]
-
-    #can truyen forum id len theo
- 
 
     @obj_comment = Comment.new()
     @obj_comment.comment = params[:content]

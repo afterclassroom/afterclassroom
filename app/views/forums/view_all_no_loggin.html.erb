@@ -1,14 +1,15 @@
 <% @fr.comments.each do |cmt| %>
-  <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
-    <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
-      <img src="/images/icon-ing.gif"/>
-    </div>
-
+    <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
+  <% if logged_in? %>
+      <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
+        <img src="/images/icon-ing.gif"/>
+      </div>
+    <% end %>
     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
 
     <div class="proListR">
       <div class="AfterClCom">
-        <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a><%= cmt.comment %>
+        <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a> <%= cmt.comment %>
       </div>
       <div class="proListCont">
         <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
@@ -18,28 +19,11 @@
   </div>
 
 <% end %>
-                  <div style="margin-left: 45px;" class="proList">
-                    <div class="writeCom">
-                      <%=  link_to_require_login("Write something...") %>
-                    </div>
-                  </div>
-<!--
-<div id="current_cmt_<%# = @fr.id %>" class="proListH1" style = "display: none;">
-  <form>
-    <div class="proListPic"><%#= show_image_user_post(@fr.user) %></div>
-    <div class="proListR">
-      <div class="writeCom"><textarea name="comment" id="comment_<%#= @fr.id.to_s %>"></textarea></div>
-    </div>
-    <div class="proAttR"><input id="save_<%#= @fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
-  </form>
-</div> 
-
-
-<div class="proList" id="fr_comment_<%#= @fr.id %>" style="margin-left:45px;">
+<div style="margin-left: 45px;" class="proList">
   <div class="writeCom">
-    <div onclick="showForumCmtForm<%#= @fr.id %>();">Write something...</div>
+    <%=  link_to_require_login("Write something...") %>
   </div>
-</div>-->
+</div>
 
 <script type="text/javascript">
   function showForumCmtForm<%= @fr.id %>(){

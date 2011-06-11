@@ -1,22 +1,7 @@
-<% if current_user == nil %>
-  <form id="search_help_query" name="search" action="#" method="get">
-<% else %>
-  <form id="search_help_query" name="search" action="<%= search_forums_path %>" method="get">
-<% end %>
+<form id="search_help_query" name="search" action="<%= search_forums_path %>" method="get">
   <div class="textSH"><input type="text"  name="search_txt" value="" /></div>
   <div class="btmSH"><a href="javascript:;" id="button_src"><img src="/images/iconSF.png"/></a></div>
 </form>
-	<% if logged_in? %>
-		Da login <br/>
-		Da login <br/>
-		Da login <br/>
-		Da login <br/>
-	<% else %>
-		CHUA LOGIN<br/>
-		CHUA LOGIN<br/>
-		CHUA LOGIN<br/>
-		CHUA LOGIN<br/>
-	<% end %>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#button_src').click(function(){
