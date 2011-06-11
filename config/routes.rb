@@ -20,7 +20,7 @@ Afterclassroom::Application.routes.draw do
   # Users
   resources :users do
     member do
-      get :edit_password, :edit_email, :show_lounge, :show_stories, :show_photos, :show_music, :show_videos, :show_friends, :show_fans, :warning
+      get :edit_password, :edit_email, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning
       put :update_password, :update_email
       post :update_avatar
     end
