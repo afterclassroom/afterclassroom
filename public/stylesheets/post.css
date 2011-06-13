@@ -3147,8 +3147,7 @@ span.btmFan a:hover {
 }
 
 .contMainLH .allDis {
-    border-top: 1px solid #DBDBDB;
-    margin-top: 10px;
+    margin-top: 2px;
     padding: 5px 0;
 }
 
@@ -3212,8 +3211,7 @@ span.btmFan a:hover {
     border: 1px solid #EBEBEB;
     float: left;
     padding: 5px;
-    width: 358px;
-    margin-left: 45px;
+    width: 338px;
     margin-top: 5px;
 }
 
