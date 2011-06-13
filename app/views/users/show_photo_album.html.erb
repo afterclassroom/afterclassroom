@@ -1,0 +1,11 @@
+<div class="slStoryL">
+    <div class="inboxLeft">
+        <div class="AsDOr RePho">
+            <%= render :partial => "photos/related_photo" %>
+        </div>
+    </div>
+    <%= render :partial => "users/show_public/photo_album_action" %>
+</div>
+<div class="contMainR" style="width:355px;height:560px;overflow:auto;float:left">
+    <%= show_post_comments(@photo_album) %>
+</div>

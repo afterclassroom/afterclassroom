@@ -69,6 +69,12 @@ javascripts:
     - public/javascripts/jquery.metadata.js
     - public/javascripts/jquery.autogeocomplete.js
     - public/javascripts/fileuploader.js
+  photo:
+    - public/javascripts/jquery.js
+    - public/javascripts/rails.js
+    - public/javascripts/jquery-carrousel.js
+    - public/javascripts/vtip.js
+    - public/javascripts/jquery.ad-gallery.js
   admin:
     - public/javascripts/jquery.js
     - public/javascripts/jquery-ui.js
@@ -145,6 +151,13 @@ stylesheets:
     - public/stylesheets/jqpageflow.css
     - public/stylesheets/jquery.fancybox.css
     - public/stylesheets/jquery.pnotify.default.css
+  photo:
+    - public/stylesheets/main.css
+    - public/stylesheets/post.css
+    - public/stylesheets/student-lounge.css
+    - public/stylesheets/vtip.css
+    - public/stylesheets/jquery-carrousel.css
+    - public/stylesheets/jquery.ad-gallery.css
   admin:
     - public/stylesheets/main.css
     - public/stylesheets/jquery-multiSelect.css

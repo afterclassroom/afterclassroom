@@ -36,34 +36,7 @@
                     <%= render :partial => "music_playlist" %>
                 </div>
                 <%= render :partial => "music_album_action" %>
-                <div class="AsDcom" id="form_comment" style="display: none">
-                    <h1 class="titleH1">Leave your comments</h1>
-                    <% if logged_in? %>
-                    <div class="AsDcomImg">
-                        <%= show_image_user_post(current_user) %>
-                    </div>
-                    <div class="AsDcomIn">
-                        <form name="form_comment" id="form_comment" action="" method="get">
-                            <div class="AsDcomTxt">
-                                <textarea name="comment" id="comment">
-                                </textarea>
-                            </div>
-                            <div class="submit">
-                                <a href="javascript:;" onclick="send_comment('<%= @music_album.id %>', 'MusicAlbum');">Send</a>
-                            </div>
-                        </form>
-                    </div>
-                    <% else %>
-                    You must be <%= link_to "logged in", login_url %>to post a comment.<% end %>
-                </div>
-                <div class="AsDcomL" id="list_comments">
-                    <% if @music_album.comments.size > 0 %>
-                    <h1 class="titleH1"><a href="javascript:;">Comments (<%= @music_album.comments.size %>)</a></h1>
-                    <% @music_album.comments.each do |c| %>
-                    <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
-                    <% end %>
-                    <% end %>
-                </div>
+                <%= show_post_comments(@music_album) %>
                 <div class="goback" id="go_back">
                     <%= show_go_back %>
                 </div>

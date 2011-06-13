@@ -17,13 +17,14 @@
 </div>
 <% end %>
 <% if @music_album.musics.size > 0 %>
-<a href="javascript:void(0);" onClick="$('#playlist_list').playlist('prev');">Prev</a>
-<a href="javascript:void(0);" onClick="$('#playlist_list').playlist('next');">Next</a>
-<a href="javascript:void(0);" onClick="$('#playlist_list').playlist('pause');">Pause</a>
-<a href="javascript:void(0);" onClick="$('#playlist_list').playlist('play');">Play</a>
+<div style="text-align: center;">
+    <a href="javascript:void(0);" onClick="$('#playlist_list').playlist('prev');">Prev</a>
+    <a href="javascript:void(0);" onClick="$('#playlist_list').playlist('next');">Next</a>
+    <a href="javascript:void(0);" onClick="$('#playlist_list').playlist('pause');">Pause</a>
+    <a href="javascript:void(0);" onClick="$('#playlist_list').playlist('play');">Play</a>
+</div>
 <% else %>
-	No file
-<% end %>
+No file<% end %>
 <script type="text/javascript">
     $(document).ready(function(){
         $("#playlist_list").playlist({
