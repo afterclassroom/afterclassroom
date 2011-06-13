@@ -317,8 +317,11 @@ div.player.inactive
     margin-right:5px;
     cursor:pointer;
 }
-#playlist_list div div.item{
+.musicVideo div div.item{
     margin-left: 120px;
+}
+.showMusicVideo div div.item{
+    margin-left: 20px;
 }
 #playlist_list img{
     margin-top: 3px;
@@ -326,6 +329,7 @@ div.player.inactive
 #playlist_list .photoImg {
     background: url("/images/bgphoto.png") no-repeat scroll center center transparent;
     margin-bottom: 20px;
+		text-align: center;
 }
 #playlists .player embed{
     width: 310px;
