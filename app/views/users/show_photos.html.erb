@@ -11,13 +11,13 @@
     <div class="col451 proCen">
         <div class="col451in">
             <div class="proCenCont">
-                <% @stories.each do |s| %>
-                <%= render :partial => "users/show_public/item_story", :locals => {:story => s} %>
+                <% @photo_albums.each do |ab| %>
+                <%= render :partial => "users/show_public/item_photo", :locals => {:photo_album => ab} %>
                 <% end %>
                 <!--Pagination-->
                 <div class="assPage">
-                    <span class="numPage"><%= page_entries_info @stories %></span>
-                    <%= will_paginate @stories %>
+                    <span class="numPage"><%= page_entries_info @photo_albums %></span>
+                    <%= will_paginate @photo_albums %>
                 </div>
                 <!--Pagination-->
             </div>
@@ -29,3 +29,13 @@
     <%= render :partial => "ads/show_vertical_ads" %>
     <!--Ads-->
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.iframe').fancybox({
+            'width': '70%',
+            'height': 600,
+            'autoScale': false,
+            'type': 'iframe'
+        });
+    });
+</script>

@@ -4,9 +4,9 @@
     <div class="slsItemLV">viewed</div>
   </div>
   <div class="assImg">
-    <%= link_to raw("<div>#{display_image(story)}</div>"), show_story_detail_user_path(@user, :story_id => story), :target => "_blank" %></div>
+    <%= link_to raw("<div>#{display_image(story)}</div>"), show_story_detail_user_path(@user, :story_id => story) %></div>
   <div class="slsItemR" style="width: 255px;">
-    <div class="slsItemTitle"><%= link_to story.title, show_story_detail_user_path(@user, :story_id => story), :target => "_blank" %></div>
+    <div class="slsItemTitle"><%= link_to story.title, show_story_detail_user_path(@user, :story_id => story) %></div>
     <div class="slsItemTime"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></div>
     <div class="slsItemDes">
       <%= truncate_words(story.content) %>

@@ -46,10 +46,11 @@
                                 </div>
                             </div>
                             <div class="player inactive">
+                            	<%= link_to "Play music album: #{@music.music_album.name}", play_list_user_musics_url(current_user, :music_album_id => @music.music_album) %>
                             </div>
                         </div>
                     </div>
-										<%= link_to "Play music album: #{@music.music_album.name}", play_list_user_musics_url(current_user, :music_album_id => @music.music_album) %>
+										
                     <script type="text/javascript">
                         $(document).ready(function(){
                             $("#playlist_list").playlist({
@@ -59,33 +60,7 @@
                     </script>
                 </div>
                 <%= render :partial => "music_action" %>
-                <div class="AsDcom" id="form_comment" style="display: none">
-                    <h1 class="titleH1">Leave your comments</h1>
-                    <% if logged_in? %>
-                    <div class="AsDcomImg">
-                        <%= show_image_user_post(current_user) %>
-                    </div>
-                    <div class="AsDcomIn">
-                        <form name="form_comment" id="form_comment" action="" method="get">
-                            <div class="AsDcomTxt">
-                                <textarea name="comment" id="comment"></textarea>
-                            </div>
-                            <div class="submit">
-                                <a href="javascript:;" onclick="send_comment('<%= @music.id %>', 'Music');">Send</a>
-                            </div>
-                        </form>
-                    </div>
-                    <% else %>
-                    You must be <%= link_to "logged in", login_url %>to post a comment.<% end %>
-                </div>
-                <div class="AsDcomL" id="list_comments">
-                    <% if @music.comments.size > 0 %>
-                    <h1 class="titleH1"><a href="javascript:;">Comments (<%= @music.comments.size %>)</a></h1>
-                    <% @music.comments.each do |c| %>
-                    <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
-                    <% end %>
-                    <% end %>
-                </div>
+                <%= show_post_comments(@music) %>
 								<div class="goback" id="go_back">
                     <%= show_go_back %>
                 </div>
