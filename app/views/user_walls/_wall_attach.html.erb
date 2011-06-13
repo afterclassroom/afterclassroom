@@ -6,6 +6,7 @@
       </div>
     </div>
   <% end %>
+  
   <div class="AfterTitle" id="wall_attach_<%= wall_id %>">
     <%= link_to title, link, :target => "_blank" %>
   </div>
@@ -14,6 +15,7 @@
       <%= sub_content %>
     </div>
   <% end %>
+
   <div id="show_jplayer_<%= wall_id %>">
   </div>
 </div>
@@ -22,3 +24,8 @@
   $("#imageLink").fancybox();
   });
 </script>
+<style>
+  .img{
+    float: left;
+  }
+</style>

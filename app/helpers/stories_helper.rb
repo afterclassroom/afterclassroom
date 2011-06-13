@@ -6,6 +6,6 @@ module StoriesHelper
     @web_doc.search("img").each{ |e| @arr_img << e.attributes['src'] }
     image_link = ""
     image_link = @arr_img[0] if @arr_img.size > 0
-    image_link == "" ? "" : image_tag(image_link, :style => "margin-left: -9px;")  
+    image_link == "" ? "" : image_tag(image_link, :style => "margin-left: -9px;")
   end
 end
