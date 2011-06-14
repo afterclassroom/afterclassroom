@@ -1,23 +1,19 @@
-<table id="mytable">
-  <tr>
-    <td>
-      <div class="slsItem">
-        <div class="slsItemL">
-          <div class="slsItemLN"><%= story.count_view %></div>
-          <div class="slsItemLV">viewed</div>
-        </div>
-        <div class="assImg"><%= link_to raw("<div>#{display_image(story)}</div>"), user_story_path(current_user, story) %></div>
-        <div class="slsItemRr">
-          <div class="slsItemTitle"><%= link_to story.title, user_story_path(current_user, story) %></div>
-          <div class="slsItemTime"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></div>
-          <div class="slsItemDesYoSt">
-            <%= truncate_words(story.content) %>
-          </div>
-        </div>
-      </div>
-    </td>
-    <td class="check">
-      <%= check_box_tag "story_id", story.id %>
-    </td>
-  </tr>
-</table>
+<div class="slsItem">
+  <div class="slsItemL">
+    <div class="slsItemLN"><%= story.count_view %></div>
+    <div class="slsItemLV">viewed</div>
+  </div>
+  <div class="assImg"><%= link_to raw("<div>#{display_image(story)}</div>"), user_story_path(current_user, story) %></div>
+  <div class="slsItemRr">
+    <div class="slsItemTitle"><%= link_to story.title, user_story_path(current_user, story) %></div>
+    <div class="slsItemTime"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></div>
+    <div class="slsItemDesYoSt">
+      <%= truncate_words(story.content) %>
+    </div>
+  </div>
+</div>
+
+<div class="check">
+  <%= check_box_tag "story_id", story.id %>
+</div>
+
