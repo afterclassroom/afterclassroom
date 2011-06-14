@@ -250,12 +250,13 @@ DEPENDENCIES
   jquery-rails (>= 0.2.6)
   json
   juggernaut
-  mysql2
+  mysql2 (< 0.3)
   newrelic_rpm
   packet
   paperclip (~> 2.3)
   rack
   rails (= 3.0.3)
+  rake (~> 0.8.7)
   rest-open-uri
   riddle (>= 1.2.1)
   rpm_contrib
