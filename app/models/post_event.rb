@@ -21,7 +21,7 @@ class PostEvent < ActiveRecord::Base
   scope :with_status, lambda { |st| {:conditions => ["post_events.rating_status = ?", st]} }
   scope :with_type, lambda {|tp| {:conditions => ["event_type_id = ?", tp]} }
   scope :recent, {:joins => :post, :order => "created_at DESC"}
-  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_events.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_events.id > ?", att], :order => "id ASC"} }

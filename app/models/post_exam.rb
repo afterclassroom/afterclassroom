@@ -12,7 +12,7 @@ class PostExam < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => LIMIT
   scope :recent, {:joins => :post, :order => "created_at DESC"}
-  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_exams.post_id And favorable_type = ?) > ?", "Post", 10]
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_exams.id < ?", att], :order => "id ASC"} }

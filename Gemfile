@@ -60,5 +60,7 @@ gem 'sunspot_index_queue'
 gem 'daemons-mikehale'
 gem 'sunspot_plus'
 gem 'dalli'
-gem 'newrelic_rpm'
-gem 'rpm_contrib'
+group :development
+	gem 'newrelic_rpm'
+	gem 'rpm_contrib'
+end

@@ -20,7 +20,7 @@ class PostTeamup < ActiveRecord::Base
   scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_status, lambda { |st| {:conditions => ["post_teamups.rating_status = ?", st]} }
   scope :with_category, lambda { |c| {:conditions => ["post_teamups.teamup_category_id = ?", c]} }
-  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_teamups.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_teamups.id > ?", att], :order => "id ASC"} }
