@@ -1,6 +1,42 @@
 <div id="detail_window">
   <% @partys_lists.each do |party| %>
-    <%= render :partial => "my_party_item", :locals => {:post => party.post_party.post} %>
+    <%= render :partial => "my_party_item", :locals => {:post => party.post_party.post, :party_list => party} %>
   <% end %>
 </div>
 
+<!--Alert-->
+<div id="delete_party_list_alert" title="Alert" style="display:none;">
+    Are you sure?
+</div>
+<!--Alert-->
+<script type="text/javascript">
+    function DeletePartyList(id){
+        $("#delete_party_list_alert").dialog({
+            modal: true,
+            buttons: {
+                Ok: function(){
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: '/post_parties/delete_party_list',
+                        type: 'GET',
+                        dataType: 'html',
+                        data: 'id=' + id,
+                        success: function(html){
+                            $('#party_list_' + id).toggle("slow");
+                        }
+                    });
+                },
+                Cancel: function(){
+                    $(this).dialog('close');
+                }
+            }
+        });
+    }
+    $(document).ready(function(){
+        $(".homeItem").hover(function(){
+            $(".del_party_list", this).show();
+        }, function(){
+            $(".del_party_list", this).hide();
+        });
+    });
+</script>

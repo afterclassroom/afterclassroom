@@ -134,6 +134,12 @@ class PostPartiesController < ApplicationController
     render :layout => false
   end
   
+  def delete_party_list
+    party_list = PartysList.find(params[:id])
+    current_user.partys_lists.delete(party_list) if party_list
+    render :text => "Success."
+  end
+  
   def show_rsvp
     @post = Post.find(params[:post_id])
     render :layout => false
