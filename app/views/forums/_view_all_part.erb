@@ -1,9 +1,10 @@
 <% @fr.comments.each do |cmt| %>
   <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
-    <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
-      <img src="/images/icon-ing.gif"/>
-    </div>
-
+    <% if logged_in? && cmt.user == current_user %>
+      <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
+        <img src="/images/icon-ing.gif"/>
+      </div>
+    <% end %>
     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
 
     <div class="proListR">
@@ -22,7 +23,7 @@
 
 <div id="current_cmt_<%= @fr.id %>" class="proListH1" style = "display: none;">
   <form>
-    <div class="proListPic"><%= show_image_user_post(@fr.user) %></div>
+    <div class="proListPic"><%= show_image_user_post(current_user) %></div>
     <div class="proListR">
       <div class="writeCom"><textarea name="comment" id="comment_<%= @fr.id.to_s %>"></textarea></div>
     </div>

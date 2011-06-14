@@ -47,3 +47,18 @@
         </div>
     </div>
 </div>
+<script>
+      $(function() {
+	$('#subcategory_menu,#department_menu,#year_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+    });
+    $(function() {
+	$('div.reqLa,div.col300Cont').hover(function() {
+	}, function() {
+		$('#subcategory_menu,#department_menu,#year_menu').stop().hide();
+	});
+    });
+</script>

@@ -45,7 +45,7 @@ type ||= 1 %>
         });
     });
     $(function() {
-	$('#awareness_type_menu').hover(function() {
+	$('#awareness_type_menu,#department_menu,#year_menu').hover(function() {
 		$(this).stop().show();
 	}, function() {
 		$(this).stop().hide();
@@ -53,9 +53,8 @@ type ||= 1 %>
     });
     $(function() {
 	$('div.reqLa,div.col300Cont').hover(function() {
-
 	}, function() {
-		$('#awareness_type_menu').stop().hide();
+		$('#awareness_type_menu,#department_menu,#year_menu').stop().hide();
 	});
     });
 </script>
