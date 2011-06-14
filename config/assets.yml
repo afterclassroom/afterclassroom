@@ -72,7 +72,9 @@ javascripts:
   photo:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
+    - public/javascripts/app.js
     - public/javascripts/jquery-carrousel.js
+    - public/javascripts/thickbox.js
     - public/javascripts/vtip.js
     - public/javascripts/jquery.ad-gallery.js
   admin:
@@ -155,6 +157,7 @@ stylesheets:
     - public/stylesheets/main.css
     - public/stylesheets/post.css
     - public/stylesheets/student-lounge.css
+    - public/stylesheets/thickbox.css
     - public/stylesheets/vtip.css
     - public/stylesheets/jquery-carrousel.css
     - public/stylesheets/jquery.ad-gallery.css

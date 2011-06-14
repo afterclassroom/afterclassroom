@@ -8,7 +8,7 @@
   <% end %>
   
   <div class="AfterTitle" id="wall_attach_<%= wall_id %>">
-    <%= link_to title, link, :target => "_blank" %>
+    <%= link_to title, link, :target => "_blank", :class => "#{'iframe' if link.include?('show_photo_album')}" %>
   </div>
   <% if sub_content %>
     <div class="AfterDes" id="wall_attach_<%= wall_id %>">
@@ -19,13 +19,3 @@
   <div id="show_jplayer_<%= wall_id %>">
   </div>
 </div>
-<script type="text/javascript">
-  $(document).ready(function() {
-  $("#imageLink").fancybox();
-  });
-</script>
-<style>
-  .img{
-    float: left;
-  }
-</style>
