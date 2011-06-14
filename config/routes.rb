@@ -258,7 +258,7 @@ Afterclassroom::Application.routes.draw do
       get :search, :tag, :good_companies, :bad_bosses,
         :rate, :require_rate, :my_job_list, :add_job,
         :employment_infor, :show_job_infor, :apply_job,
-        :save_letter, :save_script, :save_resume
+        :save_letter, :save_script, :save_resume, :delete_job_list
     end
   end
   

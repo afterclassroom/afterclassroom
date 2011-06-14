@@ -1,6 +1,41 @@
 <div id="detail_window">
   <% @jobs_lists.each do |job| %>
-    <%= render :partial => "my_job_item", :locals => {:post => job.post_job.post} %>
+    <%= render :partial => "my_job_item", :locals => {:post => job.post_job.post, :job_list => job} %>
   <% end %>
 </div>
-
+<!--Alert-->
+<div id="delete_job_list_alert" title="Alert" style="display:none;">
+    Are you sure?
+</div>
+<!--Alert-->
+<script type="text/javascript">
+    function DeleteJobList(id){
+        $("#delete_job_list_alert").dialog({
+            modal: true,
+            buttons: {
+                Ok: function(){
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: '/post_jobs/delete_job_list',
+                        type: 'GET',
+                        dataType: 'html',
+                        data: 'id=' + id,
+                        success: function(html){
+                            $('#job_list_' + id).toggle("slow");
+                        }
+                    });
+                },
+                Cancel: function(){
+                    $(this).dialog('close');
+                }
+            }
+        });
+    }
+    $(document).ready(function(){
+        $(".homeItem").hover(function(){
+            $(".del_job_list", this).show();
+        }, function(){
+            $(".del_job_list", this).hide();
+        });
+    });
+</script>

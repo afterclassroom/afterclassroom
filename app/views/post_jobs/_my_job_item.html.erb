@@ -1,6 +1,13 @@
-<div class="homeItem">
-  <div class="assContT" style="float: left">
-    <h2 class="titleH2"><%= link_to post.title, post_job_path(post.post_job), :target => "_blank" %></h2>
-  </div>
-  <div class="assDes"><%= truncate_words(post.description) %></div>
+<div class="homeItem" id="job_list_<%= job_list.id %>">
+    <div style="float: left;width:300px">
+        <div class="assContT">
+            <h2 class="titleH2"><%= link_to post.title, post_job_path(post.post_job), :target => "_blank" %></h2>
+        </div>
+        <div class="assDes">
+            <%= truncate_words(post.description) %>
+        </div>
+    </div>
+    <div class="del_job_list" style="float: right; display: none; cursor: pointer;" onclick="DeleteJobList('<%= job_list.id %>');">
+        <img src="/images/icon-ing.gif">
+    </div>
 </div>

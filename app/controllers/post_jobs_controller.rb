@@ -150,6 +150,12 @@ class PostJobsController < ApplicationController
     render :layout => false
   end
   
+  def delete_job_list
+    job_list = JobsList.find(params[:id])
+    current_user.jobs_lists.delete(job_list) if job_list
+    render :text => "Success."
+  end
+  
   # GET /post_jobs/new
   # GET /post_jobs/new.xml
   def new
