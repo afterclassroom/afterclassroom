@@ -60,9 +60,27 @@
         <div class="helpCR">
           <div class="helpTitle"><a href="#">Community Help Forum <%= "-Popular discussions" if controller.action_name == "see_all_top_fr" %></a></div>
           <% @forums.each do |fr| %>
-            <div class="helpItem">
-              <div class="helpT"><a href="#"><%= fr.title %></a></div>
-              <div class="helpD"><%= fr.content %></div>
+            <div class="helpItem"  style="border-bottom: 1px solid #DBDBDB;">
+
+              <div style="float: left;" class="assPic">
+                <%= show_image_user_post(fr.user) %>
+              </div>
+
+
+              <div class="helpT" style="margin-left:80px;"><a href="#"><%= fr.title %></a></div>
+              <div class="helpD"  style="margin-left:80px; height: 50px;"><%= fr.content %></div>
+
+
+              <div class="assInfT">
+                <div class="assInfL">
+                  <div>
+                    <span>Posted by:</span>
+                    <%= show_user_post(fr.user) %>
+                  </div>
+                </div>
+              </div>
+
+
               <div class="helpDis"><a href="javascript:;">
                   <%= distance_of_time_in_words_to_now(fr.created_at, false) + " ago." %>
                 </a></div>
