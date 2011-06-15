@@ -4804,8 +4804,8 @@ div.navigation a.next:hover {
     background:url('/images/btm87Red.png') no-repeat left top;
 }
 .stoExBtm .stoExShare a{
-    background:url('/images/btm66.png') no-repeat left top;
-    width:66px;
+    background:url('/images/btm87.png') no-repeat left top;
+    width:87px;
     color:#fff;
     text-decoration:none;
     text-align:center;
@@ -4814,7 +4814,7 @@ div.navigation a.next:hover {
     display:block;
 }
 .stoExBtm .stoExShare a:hover{
-    background:url('/images/btm66Red.png') no-repeat left top;
+    background:url('/images/btm87Red.png') no-repeat left top;
 }
 .stoExBtm .stoExCan a{
     background:url('/images/btm48.png') no-repeat left top;
