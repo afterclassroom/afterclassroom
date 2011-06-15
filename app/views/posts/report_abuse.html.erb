@@ -1,5 +1,5 @@
 <div class="postCont" id="div_send_report">
-    <form id="form_send_report">
+		<%= form_tag create_report_abuse_posts_url(), :remote => true, :id => "form_send_report", :name => "form_send_report" do %>
         <%= hidden_field_tag "reported_id", @reported_id %>
         <%= hidden_field_tag "reported_type", @reported_type %>
         <div class="postItem">
@@ -28,18 +28,10 @@
         </div>
         <div class="error" style="padding: 10px 110px;">
         </div>
-    </form>
+    <% end %>
 </div>
 <script language="javascript">
     function sendReportAbuse(){
         $("#form_send_report").submit();
     }
-    
-    $(document).ready(function(){
-        $("#form_send_report").validate();
-        $("#abuse_content").counter({
-            count: 'up',
-            goal: 500
-        });
-    });
 </script>

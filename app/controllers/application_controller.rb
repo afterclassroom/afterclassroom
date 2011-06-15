@@ -36,8 +36,14 @@ class ApplicationController < ActionController::Base
       item = Post.find(id)
       when "Story"
       item = Story.find(id)
+      when "PhotoAlbum"
+      item = PhotoAlbum.find(id)
       when "Photo"
       item = Photo.find(id)
+      when "MusicAlbum"
+      item = MusicAlbum.find(id)
+      when "Music"
+      item = Music.find(id)
     end
     return item
   end

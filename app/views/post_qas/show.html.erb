@@ -68,7 +68,7 @@ You are here: <a href="/">Home</a>
                 <span><%= select_tag "show", options_for_select([["All Answers", "0"], ["Oldest to Newest", "1"], ["Newest to Oldest", "2"], ["Rated Highest to Lowest", "3"]]), :id => "show" %></span>
             </div>
             <div id="list_comments">
-                <h1 class="titleH1"><a href="javascript:;">Answers (<%= @post.comments.size %>)</a></h1>
+                <h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Answers (<%= @post.comments.size %>)</a></h1>
                 <% @post.comments.each do |c| %>
                 <%= render :partial => "item_answer", :locals => {:comnt => c} %>
                 <% end %>
