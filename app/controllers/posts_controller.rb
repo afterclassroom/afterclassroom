@@ -127,15 +127,11 @@ class PostsController < ApplicationController
     report_abuse.reporter_id = current_user.id if current_user
     
     if report_abuse.save
-      str = %Q'
-        Thank you for your report, we will have someone from our security and ethnic department to look into your report and take action accordingly.<br/>
-        You will get notify once we take action.
-      '
+      @str = "Thank you for your report, we will have someone from our security and ethnic department to look into your report and take action accordingly.<br/>"
+      @str << "You will get notify once we take action."
     else
-      str = 'Error.'
+      @str = 'Error.'
     end
-    
-    render :text => str
   end
   
   def download

@@ -12,7 +12,7 @@ class StoriesController < ApplicationController
   # GET /stories.xml
   def index
     arr_user_id = []
-    current_user.user_friends.collect {|f| arr_user_id << f.id}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_stories")}
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
     end
