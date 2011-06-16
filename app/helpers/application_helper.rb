@@ -404,7 +404,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login(raw("<span style='padding-left:10px'>Apply now</span>"))
     else
-      return raw("<a title='Apply now' id='apply_now'>Apply now</a>")
+      return raw("<a title='Save all' id='apply_now'>Apply now</a>")
     end
   end
   
