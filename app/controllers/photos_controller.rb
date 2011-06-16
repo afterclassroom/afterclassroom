@@ -85,13 +85,18 @@ class PhotosController < ApplicationController
   def show
     @photo = Photo.find(params[:id])
     @photo_album = @photo.photo_album
-    as_next = @photo_album.photos.nexts(@photo.id).last
-    as_prev = @photo_album.photos.previous(@photo.id).first
-    @next = as_next if as_next
-    @prev = as_prev if as_prev 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @photo }
+    @user = @photo.user
+    if check_private_permission(@user, "my_photos")
+      as_next = @photo_album.photos.nexts(@photo.id).last
+      as_prev = @photo_album.photos.previous(@photo.id).first
+      @next = as_next if as_next
+      @prev = as_prev if as_prev 
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @photo }
+      end
+    else
+      redirect_to warning_user_path(@user)
     end
   end
   
@@ -188,7 +193,16 @@ class PhotosController < ApplicationController
   def show_album
     photo_album_id = params[:photo_album_id]
     @photo_album = PhotoAlbum.find(photo_album_id)
-    @another_photo_albums = @photo_album.another_photo_albums
+    @user = @photo_album.user
+    if check_private_permission(@user, "my_photos")
+      @another_photo_albums = @photo_album.another_photo_albums
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @photo_album }
+      end
+    else
+      redirect_to warning_user_path(@user)
+    end
   end
   
   protected

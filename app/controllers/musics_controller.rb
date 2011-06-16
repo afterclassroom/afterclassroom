@@ -84,10 +84,16 @@ class MusicsController < ApplicationController
   # GET /musics/1.xml
   def show
     @music = Music.find(params[:id])
-    update_view_count(@music)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @music }
+    @user = @music.user
+    if check_private_permission(@user, "my_musics")
+      update_view_count(@music)
+      
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @music }
+      end
+    else
+      redirect_to warning_user_path(@user)
     end
   end
   
@@ -205,8 +211,18 @@ class MusicsController < ApplicationController
   
   def play_list
     @music_album = MusicAlbum.find(params[:music_album_id])
-    @another_music_albums = @music_album.another_music_albums
-    update_view_count(@music_album)
+    @user = @music_album.user
+    if check_private_permission(@user, "my_musics")
+      @another_music_albums = @music_album.another_music_albums
+      update_view_count(@music_album)
+      
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @music_album }
+      end
+    else
+      redirect_to warning_user_path(@user)
+    end
   end
   
   protected

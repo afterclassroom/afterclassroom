@@ -13,13 +13,10329 @@
  *
  * Date: Thu Mar 31 15:28:23 2011 -0400
  */
-(function(a0,I){var am=a0.document;var b=(function(){var bo=function(bI,bJ){return new bo.fn.init(bI,bJ,bm)},bD=a0.jQuery,bq=a0.$,bm,bH=/^(?:[^<]*(<[\w\W]+>)[^>]*$|#([\w\-]+)$)/,bw=/\S/,bs=/^\s+/,bn=/\s+$/,br=/\d/,bk=/^<(\w+)\s*\/?>(?:<\/\1>)?$/,bx=/^[\],:{}\s]*$/,bF=/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,bz=/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,bt=/(?:^|:|,)(?:\s*\[)+/g,bi=/(webkit)[ \/]([\w.]+)/,bB=/(opera)(?:.*version)?[ \/]([\w.]+)/,bA=/(msie) ([\w.]+)/,bC=/(mozilla)(?:.*? rv:([\w.]+))?/,bG=navigator.userAgent,bE,bl,e,bv=Object.prototype.toString,bp=Object.prototype.hasOwnProperty,bj=Array.prototype.push,bu=Array.prototype.slice,by=String.prototype.trim,bf=Array.prototype.indexOf,bh={};bo.fn=bo.prototype={constructor:bo,init:function(bI,bM,bL){var bK,bN,bJ,bO;if(!bI){return this}if(bI.nodeType){this.context=this[0]=bI;this.length=1;return this}if(bI==="body"&&!bM&&am.body){this.context=am;this[0]=am.body;this.selector="body";this.length=1;return this}if(typeof bI==="string"){bK=bH.exec(bI);if(bK&&(bK[1]||!bM)){if(bK[1]){bM=bM instanceof bo?bM[0]:bM;bO=(bM?bM.ownerDocument||bM:am);bJ=bk.exec(bI);if(bJ){if(bo.isPlainObject(bM)){bI=[am.createElement(bJ[1])];bo.fn.attr.call(bI,bM,true)}else{bI=[bO.createElement(bJ[1])]}}else{bJ=bo.buildFragment([bK[1]],[bO]);bI=(bJ.cacheable?bo.clone(bJ.fragment):bJ.fragment).childNodes}return bo.merge(this,bI)}else{bN=am.getElementById(bK[2]);if(bN&&bN.parentNode){if(bN.id!==bK[2]){return bL.find(bI)}this.length=1;this[0]=bN}this.context=am;this.selector=bI;return this}}else{if(!bM||bM.jquery){return(bM||bL).find(bI)}else{return this.constructor(bM).find(bI)}}}else{if(bo.isFunction(bI)){return bL.ready(bI)}}if(bI.selector!==I){this.selector=bI.selector;this.context=bI.context}return bo.makeArray(bI,this)},selector:"",jquery:"1.5.2",length:0,size:function(){return this.length},toArray:function(){return bu.call(this,0)},get:function(bI){return bI==null?this.toArray():(bI<0?this[this.length+bI]:this[bI])},pushStack:function(bJ,bL,bI){var bK=this.constructor();if(bo.isArray(bJ)){bj.apply(bK,bJ)}else{bo.merge(bK,bJ)}bK.prevObject=this;bK.context=this.context;if(bL==="find"){bK.selector=this.selector+(this.selector?" ":"")+bI}else{if(bL){bK.selector=this.selector+"."+bL+"("+bI+")"}}return bK},each:function(bJ,bI){return bo.each(this,bJ,bI)},ready:function(bI){bo.bindReady();bl.done(bI);return this},eq:function(bI){return bI===-1?this.slice(bI):this.slice(bI,+bI+1)},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},slice:function(){return this.pushStack(bu.apply(this,arguments),"slice",bu.call(arguments).join(","))},map:function(bI){return this.pushStack(bo.map(this,function(bK,bJ){return bI.call(bK,bJ,bK)}))},end:function(){return this.prevObject||this.constructor(null)},push:bj,sort:[].sort,splice:[].splice};bo.fn.init.prototype=bo.fn;bo.extend=bo.fn.extend=function(){var bR,bK,bI,bJ,bO,bP,bN=arguments[0]||{},bM=1,bL=arguments.length,bQ=false;if(typeof bN==="boolean"){bQ=bN;bN=arguments[1]||{};bM=2}if(typeof bN!=="object"&&!bo.isFunction(bN)){bN={}}if(bL===bM){bN=this;--bM}for(;bM<bL;bM++){if((bR=arguments[bM])!=null){for(bK in bR){bI=bN[bK];bJ=bR[bK];if(bN===bJ){continue}if(bQ&&bJ&&(bo.isPlainObject(bJ)||(bO=bo.isArray(bJ)))){if(bO){bO=false;bP=bI&&bo.isArray(bI)?bI:[]}else{bP=bI&&bo.isPlainObject(bI)?bI:{}}bN[bK]=bo.extend(bQ,bP,bJ)}else{if(bJ!==I){bN[bK]=bJ}}}}}return bN};bo.extend({noConflict:function(bI){a0.$=bq;if(bI){a0.jQuery=bD}return bo},isReady:false,readyWait:1,ready:function(bI){if(bI===true){bo.readyWait--}if(!bo.readyWait||(bI!==true&&!bo.isReady)){if(!am.body){return setTimeout(bo.ready,1)}bo.isReady=true;if(bI!==true&&--bo.readyWait>0){return}bl.resolveWith(am,[bo]);if(bo.fn.trigger){bo(am).trigger("ready").unbind("ready")}}},bindReady:function(){if(bl){return}bl=bo._Deferred();if(am.readyState==="complete"){return setTimeout(bo.ready,1)}if(am.addEventListener){am.addEventListener("DOMContentLoaded",e,false);a0.addEventListener("load",bo.ready,false)}else{if(am.attachEvent){am.attachEvent("onreadystatechange",e);a0.attachEvent("onload",bo.ready);var bI=false;try{bI=a0.frameElement==null}catch(bJ){}if(am.documentElement.doScroll&&bI){bg()}}}},isFunction:function(bI){return bo.type(bI)==="function"},isArray:Array.isArray||function(bI){return bo.type(bI)==="array"},isWindow:function(bI){return bI&&typeof bI==="object"&&"setInterval" in bI},isNaN:function(bI){return bI==null||!br.test(bI)||isNaN(bI)},type:function(bI){return bI==null?String(bI):bh[bv.call(bI)]||"object"},isPlainObject:function(bJ){if(!bJ||bo.type(bJ)!=="object"||bJ.nodeType||bo.isWindow(bJ)){return false}if(bJ.constructor&&!bp.call(bJ,"constructor")&&!bp.call(bJ.constructor.prototype,"isPrototypeOf")){return false}var bI;for(bI in bJ){}return bI===I||bp.call(bJ,bI)},isEmptyObject:function(bJ){for(var bI in bJ){return false}return true},error:function(bI){throw bI},parseJSON:function(bI){if(typeof bI!=="string"||!bI){return null}bI=bo.trim(bI);if(bx.test(bI.replace(bF,"@").replace(bz,"]").replace(bt,""))){return a0.JSON&&a0.JSON.parse?a0.JSON.parse(bI):(new Function("return "+bI))()}else{bo.error("Invalid JSON: "+bI)}},parseXML:function(bK,bI,bJ){if(a0.DOMParser){bJ=new DOMParser();bI=bJ.parseFromString(bK,"text/xml")}else{bI=new ActiveXObject("Microsoft.XMLDOM");bI.async="false";bI.loadXML(bK)}bJ=bI.documentElement;if(!bJ||!bJ.nodeName||bJ.nodeName==="parsererror"){bo.error("Invalid XML: "+bK)}return bI},noop:function(){},globalEval:function(bK){if(bK&&bw.test(bK)){var bJ=am.head||am.getElementsByTagName("head")[0]||am.documentElement,bI=am.createElement("script");if(bo.support.scriptEval()){bI.appendChild(am.createTextNode(bK))}else{bI.text=bK}bJ.insertBefore(bI,bJ.firstChild);bJ.removeChild(bI)}},nodeName:function(bJ,bI){return bJ.nodeName&&bJ.nodeName.toUpperCase()===bI.toUpperCase()},each:function(bL,bP,bK){var bJ,bM=0,bN=bL.length,bI=bN===I||bo.isFunction(bL);if(bK){if(bI){for(bJ in bL){if(bP.apply(bL[bJ],bK)===false){break}}}else{for(;bM<bN;){if(bP.apply(bL[bM++],bK)===false){break}}}}else{if(bI){for(bJ in bL){if(bP.call(bL[bJ],bJ,bL[bJ])===false){break}}}else{for(var bO=bL[0];bM<bN&&bP.call(bO,bM,bO)!==false;bO=bL[++bM]){}}}return bL},trim:by?function(bI){return bI==null?"":by.call(bI)}:function(bI){return bI==null?"":bI.toString().replace(bs,"").replace(bn,"")},makeArray:function(bL,bJ){var bI=bJ||[];if(bL!=null){var bK=bo.type(bL);if(bL.length==null||bK==="string"||bK==="function"||bK==="regexp"||bo.isWindow(bL)){bj.call(bI,bL)}else{bo.merge(bI,bL)}}return bI},inArray:function(bK,bL){if(bL.indexOf){return bL.indexOf(bK)}for(var bI=0,bJ=bL.length;bI<bJ;bI++){if(bL[bI]===bK){return bI}}return -1},merge:function(bM,bK){var bL=bM.length,bJ=0;if(typeof bK.length==="number"){for(var bI=bK.length;bJ<bI;bJ++){bM[bL++]=bK[bJ]}}else{while(bK[bJ]!==I){bM[bL++]=bK[bJ++]}}bM.length=bL;return bM},grep:function(bJ,bO,bI){var bK=[],bN;bI=!!bI;for(var bL=0,bM=bJ.length;bL<bM;bL++){bN=!!bO(bJ[bL],bL);if(bI!==bN){bK.push(bJ[bL])}}return bK},map:function(bJ,bO,bI){var bK=[],bN;for(var bL=0,bM=bJ.length;bL<bM;bL++){bN=bO(bJ[bL],bL,bI);if(bN!=null){bK[bK.length]=bN}}return bK.concat.apply([],bK)},guid:1,proxy:function(bK,bJ,bI){if(arguments.length===2){if(typeof bJ==="string"){bI=bK;bK=bI[bJ];bJ=I}else{if(bJ&&!bo.isFunction(bJ)){bI=bJ;bJ=I}}}if(!bJ&&bK){bJ=function(){return bK.apply(bI||this,arguments)}}if(bK){bJ.guid=bK.guid=bK.guid||bJ.guid||bo.guid++}return bJ},access:function(bI,bQ,bO,bK,bN,bP){var bJ=bI.length;if(typeof bQ==="object"){for(var bL in bQ){bo.access(bI,bL,bQ[bL],bK,bN,bO)}return bI}if(bO!==I){bK=!bP&&bK&&bo.isFunction(bO);for(var bM=0;bM<bJ;bM++){bN(bI[bM],bQ,bK?bO.call(bI[bM],bM,bN(bI[bM],bQ)):bO,bP)}return bI}return bJ?bN(bI[0],bQ):I},now:function(){return(new Date()).getTime()},uaMatch:function(bJ){bJ=bJ.toLowerCase();var bI=bi.exec(bJ)||bB.exec(bJ)||bA.exec(bJ)||bJ.indexOf("compatible")<0&&bC.exec(bJ)||[];return{browser:bI[1]||"",version:bI[2]||"0"}},sub:function(){function bJ(bL,bM){return new bJ.fn.init(bL,bM)}bo.extend(true,bJ,this);bJ.superclass=this;bJ.fn=bJ.prototype=this();bJ.fn.constructor=bJ;bJ.subclass=this.subclass;bJ.fn.init=function bK(bL,bM){if(bM&&bM instanceof bo&&!(bM instanceof bJ)){bM=bJ(bM)}return bo.fn.init.call(this,bL,bM,bI)};bJ.fn.init.prototype=bJ.fn;var bI=bJ(am);return bJ},browser:{}});bo.each("Boolean Number String Function Array Date RegExp Object".split(" "),function(bJ,bI){bh["[object "+bI+"]"]=bI.toLowerCase()});bE=bo.uaMatch(bG);if(bE.browser){bo.browser[bE.browser]=true;bo.browser.version=bE.version}if(bo.browser.webkit){bo.browser.safari=true}if(bf){bo.inArray=function(bI,bJ){return bf.call(bJ,bI)}}if(bw.test("\xA0")){bs=/^[\s\xA0]+/;bn=/[\s\xA0]+$/}bm=bo(am);if(am.addEventListener){e=function(){am.removeEventListener("DOMContentLoaded",e,false);bo.ready()}}else{if(am.attachEvent){e=function(){if(am.readyState==="complete"){am.detachEvent("onreadystatechange",e);bo.ready()}}}}function bg(){if(bo.isReady){return}try{am.documentElement.doScroll("left")}catch(bI){setTimeout(bg,1);return}bo.ready()}return bo})();var a="then done fail isResolved isRejected promise".split(" "),aA=[].slice;b.extend({_Deferred:function(){var bh=[],bi,bf,bg,e={done:function(){if(!bg){var bk=arguments,bl,bo,bn,bm,bj;if(bi){bj=bi;bi=0}for(bl=0,bo=bk.length;bl<bo;bl++){bn=bk[bl];bm=b.type(bn);if(bm==="array"){e.done.apply(e,bn)}else{if(bm==="function"){bh.push(bn)}}}if(bj){e.resolveWith(bj[0],bj[1])}}return this},resolveWith:function(bk,bj){if(!bg&&!bi&&!bf){bj=bj||[];bf=1;try{while(bh[0]){bh.shift().apply(bk,bj)}}finally{bi=[bk,bj];bf=0}}return this},resolve:function(){e.resolveWith(this,arguments);return this},isResolved:function(){return !!(bf||bi)},cancel:function(){bg=1;bh=[];return this}};return e},Deferred:function(bf){var e=b._Deferred(),bh=b._Deferred(),bg;b.extend(e,{then:function(bj,bi){e.done(bj).fail(bi);return this},fail:bh.done,rejectWith:bh.resolveWith,reject:bh.resolve,isRejected:bh.isResolved,promise:function(bj){if(bj==null){if(bg){return bg}bg=bj={}}var bi=a.length;while(bi--){bj[a[bi]]=e[a[bi]]}return bj}});e.done(bh.cancel).fail(e.cancel);delete e.cancel;if(bf){bf.call(e,e)}return e},when:function(bk){var bf=arguments,bg=0,bj=bf.length,bi=bj,e=bj<=1&&bk&&b.isFunction(bk.promise)?bk:b.Deferred();function bh(bl){return function(bm){bf[bl]=arguments.length>1?aA.call(arguments,0):bm;if(!(--bi)){e.resolveWith(e,aA.call(bf,0))}}}if(bj>1){for(;bg<bj;bg++){if(bf[bg]&&b.isFunction(bf[bg].promise)){bf[bg].promise().then(bh(bg),e.reject)}else{--bi}}if(!bi){e.resolveWith(e,bf)}}else{if(e!==bk){e.resolveWith(e,bj?[bk]:[])}}return e.promise()}});(function(){b.support={};var bf=am.createElement("div");bf.style.display="none";bf.innerHTML="   <link/><table></table><a href='/a' style='color:red;float:left;opacity:.55;'>a</a><input type='checkbox'/>";var bo=bf.getElementsByTagName("*"),bm=bf.getElementsByTagName("a")[0],bn=am.createElement("select"),bg=bn.appendChild(am.createElement("option")),bl=bf.getElementsByTagName("input")[0];if(!bo||!bo.length||!bm){return}b.support={leadingWhitespace:bf.firstChild.nodeType===3,tbody:!bf.getElementsByTagName("tbody").length,htmlSerialize:!!bf.getElementsByTagName("link").length,style:/red/.test(bm.getAttribute("style")),hrefNormalized:bm.getAttribute("href")==="/a",opacity:/^0.55$/.test(bm.style.opacity),cssFloat:!!bm.style.cssFloat,checkOn:bl.value==="on",optSelected:bg.selected,deleteExpando:true,optDisabled:false,checkClone:false,noCloneEvent:true,noCloneChecked:true,boxModel:null,inlineBlockNeedsLayout:false,shrinkWrapBlocks:false,reliableHiddenOffsets:true,reliableMarginRight:true};bl.checked=true;b.support.noCloneChecked=bl.cloneNode(true).checked;bn.disabled=true;b.support.optDisabled=!bg.disabled;var bh=null;b.support.scriptEval=function(){if(bh===null){var bq=am.documentElement,br=am.createElement("script"),bt="script"+b.now();try{br.appendChild(am.createTextNode("window."+bt+"=1;"))}catch(bs){}bq.insertBefore(br,bq.firstChild);if(a0[bt]){bh=true;delete a0[bt]}else{bh=false}bq.removeChild(br)}return bh};try{delete bf.test}catch(bj){b.support.deleteExpando=false}if(!bf.addEventListener&&bf.attachEvent&&bf.fireEvent){bf.attachEvent("onclick",function bp(){b.support.noCloneEvent=false;bf.detachEvent("onclick",bp)});bf.cloneNode(true).fireEvent("onclick")}bf=am.createElement("div");bf.innerHTML="<input type='radio' name='radiotest' checked='checked'/>";var bi=am.createDocumentFragment();bi.appendChild(bf.firstChild);b.support.checkClone=bi.cloneNode(true).cloneNode(true).lastChild.checked;b(function(){var br=am.createElement("div"),e=am.getElementsByTagName("body")[0];if(!e){return}br.style.width=br.style.paddingLeft="1px";e.appendChild(br);b.boxModel=b.support.boxModel=br.offsetWidth===2;if("zoom" in br.style){br.style.display="inline";br.style.zoom=1;b.support.inlineBlockNeedsLayout=br.offsetWidth===2;br.style.display="";br.innerHTML="<div style='width:4px;'></div>";b.support.shrinkWrapBlocks=br.offsetWidth!==2}br.innerHTML="<table><tr><td style='padding:0;border:0;display:none'></td><td>t</td></tr></table>";var bq=br.getElementsByTagName("td");b.support.reliableHiddenOffsets=bq[0].offsetHeight===0;bq[0].style.display="";bq[1].style.display="none";b.support.reliableHiddenOffsets=b.support.reliableHiddenOffsets&&bq[0].offsetHeight===0;br.innerHTML="";if(am.defaultView&&am.defaultView.getComputedStyle){br.style.width="1px";br.style.marginRight="0";b.support.reliableMarginRight=(parseInt(am.defaultView.getComputedStyle(br,null).marginRight,10)||0)===0}e.removeChild(br).style.display="none";br=bq=null});var bk=function(e){var br=am.createElement("div");e="on"+e;if(!br.attachEvent){return true}var bq=(e in br);if(!bq){br.setAttribute(e,"return;");bq=typeof br[e]==="function"}return bq};b.support.submitBubbles=bk("submit");b.support.changeBubbles=bk("change");bf=bo=bm=null})();var aG=/^(?:\{.*\}|\[.*\])$/;b.extend({cache:{},uuid:0,expando:"jQuery"+(b.fn.jquery+Math.random()).replace(/\D/g,""),noData:{embed:true,object:"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000",applet:true},hasData:function(e){e=e.nodeType?b.cache[e[b.expando]]:e[b.expando];return !!e&&!Q(e)},data:function(bh,bf,bj,bi){if(!b.acceptData(bh)){return}var bm=b.expando,bl=typeof bf==="string",bk,bn=bh.nodeType,e=bn?b.cache:bh,bg=bn?bh[b.expando]:bh[b.expando]&&b.expando;if((!bg||(bi&&bg&&!e[bg][bm]))&&bl&&bj===I){return}if(!bg){if(bn){bh[b.expando]=bg=++b.uuid}else{bg=b.expando}}if(!e[bg]){e[bg]={};if(!bn){e[bg].toJSON=b.noop}}if(typeof bf==="object"||typeof bf==="function"){if(bi){e[bg][bm]=b.extend(e[bg][bm],bf)}else{e[bg]=b.extend(e[bg],bf)}}bk=e[bg];if(bi){if(!bk[bm]){bk[bm]={}}bk=bk[bm]}if(bj!==I){bk[bf]=bj}if(bf==="events"&&!bk[bf]){return bk[bm]&&bk[bm].events}return bl?bk[bf]:bk},removeData:function(bi,bg,bj){if(!b.acceptData(bi)){return}var bl=b.expando,bm=bi.nodeType,bf=bm?b.cache:bi,bh=bm?bi[b.expando]:b.expando;if(!bf[bh]){return}if(bg){var bk=bj?bf[bh][bl]:bf[bh];if(bk){delete bk[bg];if(!Q(bk)){return}}}if(bj){delete bf[bh][bl];if(!Q(bf[bh])){return}}var e=bf[bh][bl];if(b.support.deleteExpando||bf!=a0){delete bf[bh]}else{bf[bh]=null}if(e){bf[bh]={};if(!bm){bf[bh].toJSON=b.noop}bf[bh][bl]=e}else{if(bm){if(b.support.deleteExpando){delete bi[b.expando]}else{if(bi.removeAttribute){bi.removeAttribute(b.expando)}else{bi[b.expando]=null}}}}},_data:function(bf,e,bg){return b.data(bf,e,bg,true)},acceptData:function(bf){if(bf.nodeName){var e=b.noData[bf.nodeName.toLowerCase()];if(e){return !(e===true||bf.getAttribute("classid")!==e)}}return true}});b.fn.extend({data:function(bi,bk){var bj=null;if(typeof bi==="undefined"){if(this.length){bj=b.data(this[0]);if(this[0].nodeType===1){var e=this[0].attributes,bg;for(var bh=0,bf=e.length;bh<bf;bh++){bg=e[bh].name;if(bg.indexOf("data-")===0){bg=bg.substr(5);aV(this[0],bg,bj[bg])}}}}return bj}else{if(typeof bi==="object"){return this.each(function(){b.data(this,bi)})}}var bl=bi.split(".");bl[1]=bl[1]?"."+bl[1]:"";if(bk===I){bj=this.triggerHandler("getData"+bl[1]+"!",[bl[0]]);if(bj===I&&this.length){bj=b.data(this[0],bi);bj=aV(this[0],bi,bj)}return bj===I&&bl[1]?this.data(bl[0]):bj}else{return this.each(function(){var bn=b(this),bm=[bl[0],bk];bn.triggerHandler("setData"+bl[1]+"!",bm);b.data(this,bi,bk);bn.triggerHandler("changeData"+bl[1]+"!",bm)})}},removeData:function(e){return this.each(function(){b.removeData(this,e)})}});function aV(bg,bf,bh){if(bh===I&&bg.nodeType===1){bh=bg.getAttribute("data-"+bf);if(typeof bh==="string"){try{bh=bh==="true"?true:bh==="false"?false:bh==="null"?null:!b.isNaN(bh)?parseFloat(bh):aG.test(bh)?b.parseJSON(bh):bh}catch(bi){}b.data(bg,bf,bh)}else{bh=I}}return bh}function Q(bf){for(var e in bf){if(e!=="toJSON"){return false}}return true}b.extend({queue:function(bf,e,bh){if(!bf){return}e=(e||"fx")+"queue";var bg=b._data(bf,e);if(!bh){return bg||[]}if(!bg||b.isArray(bh)){bg=b._data(bf,e,b.makeArray(bh))}else{bg.push(bh)}return bg},dequeue:function(bh,bg){bg=bg||"fx";var e=b.queue(bh,bg),bf=e.shift();if(bf==="inprogress"){bf=e.shift()}if(bf){if(bg==="fx"){e.unshift("inprogress")}bf.call(bh,function(){b.dequeue(bh,bg)})}if(!e.length){b.removeData(bh,bg+"queue",true)}}});b.fn.extend({queue:function(e,bf){if(typeof e!=="string"){bf=e;e="fx"}if(bf===I){return b.queue(this[0],e)}return this.each(function(bh){var bg=b.queue(this,e,bf);if(e==="fx"&&bg[0]!=="inprogress"){b.dequeue(this,e)}})},dequeue:function(e){return this.each(function(){b.dequeue(this,e)})},delay:function(bf,e){bf=b.fx?b.fx.speeds[bf]||bf:bf;e=e||"fx";return this.queue(e,function(){var bg=this;setTimeout(function(){b.dequeue(bg,e)},bf)})},clearQueue:function(e){return this.queue(e||"fx",[])}});var aE=/[\n\t\r]/g,a5=/\s+/,aI=/\r/g,a4=/^(?:href|src|style)$/,g=/^(?:button|input)$/i,D=/^(?:button|input|object|select|textarea)$/i,l=/^a(?:rea)?$/i,R=/^(?:radio|checkbox)$/i;b.props={"for":"htmlFor","class":"className",readonly:"readOnly",maxlength:"maxLength",cellspacing:"cellSpacing",rowspan:"rowSpan",colspan:"colSpan",tabindex:"tabIndex",usemap:"useMap",frameborder:"frameBorder"};b.fn.extend({attr:function(e,bf){return b.access(this,e,bf,true,b.attr)},removeAttr:function(e,bf){return this.each(function(){b.attr(this,e,"");if(this.nodeType===1){this.removeAttribute(e)}})},addClass:function(bl){if(b.isFunction(bl)){return this.each(function(bo){var bn=b(this);bn.addClass(bl.call(this,bo,bn.attr("class")))})}if(bl&&typeof bl==="string"){var e=(bl||"").split(a5);for(var bh=0,bg=this.length;bh<bg;bh++){var bf=this[bh];if(bf.nodeType===1){if(!bf.className){bf.className=bl}else{var bi=" "+bf.className+" ",bk=bf.className;for(var bj=0,bm=e.length;bj<bm;bj++){if(bi.indexOf(" "+e[bj]+" ")<0){bk+=" "+e[bj]}}bf.className=b.trim(bk)}}}}return this},removeClass:function(bj){if(b.isFunction(bj)){return this.each(function(bn){var bm=b(this);bm.removeClass(bj.call(this,bn,bm.attr("class")))})}if((bj&&typeof bj==="string")||bj===I){var bk=(bj||"").split(a5);for(var bg=0,bf=this.length;bg<bf;bg++){var bi=this[bg];if(bi.nodeType===1&&bi.className){if(bj){var bh=(" "+bi.className+" ").replace(aE," ");for(var bl=0,e=bk.length;bl<e;bl++){bh=bh.replace(" "+bk[bl]+" "," ")}bi.className=b.trim(bh)}else{bi.className=""}}}}return this},toggleClass:function(bh,bf){var bg=typeof bh,e=typeof bf==="boolean";if(b.isFunction(bh)){return this.each(function(bj){var bi=b(this);bi.toggleClass(bh.call(this,bj,bi.attr("class"),bf),bf)})}return this.each(function(){if(bg==="string"){var bk,bj=0,bi=b(this),bl=bf,bm=bh.split(a5);while((bk=bm[bj++])){bl=e?bl:!bi.hasClass(bk);bi[bl?"addClass":"removeClass"](bk)}}else{if(bg==="undefined"||bg==="boolean"){if(this.className){b._data(this,"__className__",this.className)}this.className=this.className||bh===false?"":b._data(this,"__className__")||""}}})},hasClass:function(e){var bh=" "+e+" ";for(var bg=0,bf=this.length;bg<bf;bg++){if((" "+this[bg].className+" ").replace(aE," ").indexOf(bh)>-1){return true}}return false},val:function(bm){if(!arguments.length){var bg=this[0];if(bg){if(b.nodeName(bg,"option")){var bf=bg.attributes.value;return !bf||bf.specified?bg.value:bg.text}if(b.nodeName(bg,"select")){var bk=bg.selectedIndex,bn=[],bo=bg.options,bj=bg.type==="select-one";if(bk<0){return null}for(var bh=bj?bk:0,bl=bj?bk+1:bo.length;bh<bl;bh++){var bi=bo[bh];if(bi.selected&&(b.support.optDisabled?!bi.disabled:bi.getAttribute("disabled")===null)&&(!bi.parentNode.disabled||!b.nodeName(bi.parentNode,"optgroup"))){bm=b(bi).val();if(bj){return bm}bn.push(bm)}}if(bj&&!bn.length&&bo.length){return b(bo[bk]).val()}return bn}if(R.test(bg.type)&&!b.support.checkOn){return bg.getAttribute("value")===null?"on":bg.value}return(bg.value||"").replace(aI,"")}return I}var e=b.isFunction(bm);return this.each(function(br){var bq=b(this),bs=bm;if(this.nodeType!==1){return}if(e){bs=bm.call(this,br,bq.val())}if(bs==null){bs=""}else{if(typeof bs==="number"){bs+=""}else{if(b.isArray(bs)){bs=b.map(bs,function(bt){return bt==null?"":bt+""})}}}if(b.isArray(bs)&&R.test(this.type)){this.checked=b.inArray(bq.val(),bs)>=0}else{if(b.nodeName(this,"select")){var bp=b.makeArray(bs);b("option",this).each(function(){this.selected=b.inArray(b(this).val(),bp)>=0});if(!bp.length){this.selectedIndex=-1}}else{this.value=bs}}})}});b.extend({attrFn:{val:true,css:true,html:true,text:true,data:true,width:true,height:true,offset:true},attr:function(bf,e,bk,bn){if(!bf||bf.nodeType===3||bf.nodeType===8||bf.nodeType===2){return I}if(bn&&e in b.attrFn){return b(bf)[e](bk)}var bg=bf.nodeType!==1||!b.isXMLDoc(bf),bj=bk!==I;e=bg&&b.props[e]||e;if(bf.nodeType===1){var bi=a4.test(e);if(e==="selected"&&!b.support.optSelected){var bl=bf.parentNode;if(bl){bl.selectedIndex;if(bl.parentNode){bl.parentNode.selectedIndex}}}if((e in bf||bf[e]!==I)&&bg&&!bi){if(bj){if(e==="type"&&g.test(bf.nodeName)&&bf.parentNode){b.error("type property can't be changed")}if(bk===null){if(bf.nodeType===1){bf.removeAttribute(e)}}else{bf[e]=bk}}if(b.nodeName(bf,"form")&&bf.getAttributeNode(e)){return bf.getAttributeNode(e).nodeValue}if(e==="tabIndex"){var bm=bf.getAttributeNode("tabIndex");return bm&&bm.specified?bm.value:D.test(bf.nodeName)||l.test(bf.nodeName)&&bf.href?0:I}return bf[e]}if(!b.support.style&&bg&&e==="style"){if(bj){bf.style.cssText=""+bk}return bf.style.cssText}if(bj){bf.setAttribute(e,""+bk)}if(!bf.attributes[e]&&(bf.hasAttribute&&!bf.hasAttribute(e))){return I}var bh=!b.support.hrefNormalized&&bg&&bi?bf.getAttribute(e,2):bf.getAttribute(e);return bh===null?I:bh}if(bj){bf[e]=bk}return bf[e]}});var aR=/\.(.*)$/,a2=/^(?:textarea|input|select)$/i,L=/\./g,ab=/ /g,ax=/[^\w\s.|`]/g,F=function(e){return e.replace(ax,"\\$&")};b.event={add:function(bi,bm,bt,bk){if(bi.nodeType===3||bi.nodeType===8){return}try{if(b.isWindow(bi)&&(bi!==a0&&!bi.frameElement)){bi=a0}}catch(bn){}if(bt===false){bt=a7}else{if(!bt){return}}var bg,br;if(bt.handler){bg=bt;bt=bg.handler}if(!bt.guid){bt.guid=b.guid++}var bo=b._data(bi);if(!bo){return}var bs=bo.events,bl=bo.handle;if(!bs){bo.events=bs={}}if(!bl){bo.handle=bl=function(bu){return typeof b!=="undefined"&&b.event.triggered!==bu.type?b.event.handle.apply(bl.elem,arguments):I}}bl.elem=bi;bm=bm.split(" ");var bq,bj=0,bf;while((bq=bm[bj++])){br=bg?b.extend({},bg):{handler:bt,data:bk};if(bq.indexOf(".")>-1){bf=bq.split(".");bq=bf.shift();br.namespace=bf.slice(0).sort().join(".")}else{bf=[];br.namespace=""}br.type=bq;if(!br.guid){br.guid=bt.guid}var bh=bs[bq],bp=b.event.special[bq]||{};if(!bh){bh=bs[bq]=[];if(!bp.setup||bp.setup.call(bi,bk,bf,bl)===false){if(bi.addEventListener){bi.addEventListener(bq,bl,false)}else{if(bi.attachEvent){bi.attachEvent("on"+bq,bl)}}}}if(bp.add){bp.add.call(bi,br);if(!br.handler.guid){br.handler.guid=bt.guid}}bh.push(br);b.event.global[bq]=true}bi=null},global:{},remove:function(bt,bo,bg,bk){if(bt.nodeType===3||bt.nodeType===8){return}if(bg===false){bg=a7}var bw,bj,bl,bq,br=0,bh,bm,bp,bi,bn,e,bv,bs=b.hasData(bt)&&b._data(bt),bf=bs&&bs.events;if(!bs||!bf){return}if(bo&&bo.type){bg=bo.handler;bo=bo.type}if(!bo||typeof bo==="string"&&bo.charAt(0)==="."){bo=bo||"";for(bj in bf){b.event.remove(bt,bj+bo)}return}bo=bo.split(" ");while((bj=bo[br++])){bv=bj;e=null;bh=bj.indexOf(".")<0;bm=[];if(!bh){bm=bj.split(".");bj=bm.shift();bp=new RegExp("(^|\\.)"+b.map(bm.slice(0).sort(),F).join("\\.(?:.*\\.)?")+"(\\.|$)")}bn=bf[bj];if(!bn){continue}if(!bg){for(bq=0;bq<bn.length;bq++){e=bn[bq];if(bh||bp.test(e.namespace)){b.event.remove(bt,bv,e.handler,bq);bn.splice(bq--,1)}}continue}bi=b.event.special[bj]||{};for(bq=bk||0;bq<bn.length;bq++){e=bn[bq];if(bg.guid===e.guid){if(bh||bp.test(e.namespace)){if(bk==null){bn.splice(bq--,1)}if(bi.remove){bi.remove.call(bt,e)}}if(bk!=null){break}}}if(bn.length===0||bk!=null&&bn.length===1){if(!bi.teardown||bi.teardown.call(bt,bm)===false){b.removeEvent(bt,bj,bs.handle)}bw=null;delete bf[bj]}}if(b.isEmptyObject(bf)){var bu=bs.handle;if(bu){bu.elem=null}delete bs.events;delete bs.handle;if(b.isEmptyObject(bs)){b.removeData(bt,I,true)}}},trigger:function(bf,bk,bh){var bo=bf.type||bf,bj=arguments[3];if(!bj){bf=typeof bf==="object"?bf[b.expando]?bf:b.extend(b.Event(bo),bf):b.Event(bo);if(bo.indexOf("!")>=0){bf.type=bo=bo.slice(0,-1);bf.exclusive=true}if(!bh){bf.stopPropagation();if(b.event.global[bo]){b.each(b.cache,function(){var bt=b.expando,bs=this[bt];if(bs&&bs.events&&bs.events[bo]){b.event.trigger(bf,bk,bs.handle.elem)}})}}if(!bh||bh.nodeType===3||bh.nodeType===8){return I}bf.result=I;bf.target=bh;bk=b.makeArray(bk);bk.unshift(bf)}bf.currentTarget=bh;var bl=b._data(bh,"handle");if(bl){bl.apply(bh,bk)}var bq=bh.parentNode||bh.ownerDocument;try{if(!(bh&&bh.nodeName&&b.noData[bh.nodeName.toLowerCase()])){if(bh["on"+bo]&&bh["on"+bo].apply(bh,bk)===false){bf.result=false;bf.preventDefault()}}}catch(bp){}if(!bf.isPropagationStopped()&&bq){b.event.trigger(bf,bk,bq,true)}else{if(!bf.isDefaultPrevented()){var bg,bm=bf.target,e=bo.replace(aR,""),br=b.nodeName(bm,"a")&&e==="click",bn=b.event.special[e]||{};if((!bn._default||bn._default.call(bh,bf)===false)&&!br&&!(bm&&bm.nodeName&&b.noData[bm.nodeName.toLowerCase()])){try{if(bm[e]){bg=bm["on"+e];if(bg){bm["on"+e]=null}b.event.triggered=bf.type;bm[e]()}}catch(bi){}if(bg){bm["on"+e]=bg}b.event.triggered=I}}}},handle:function(e){var bn,bg,bf,bp,bo,bj=[],bl=b.makeArray(arguments);e=bl[0]=b.event.fix(e||a0.event);e.currentTarget=this;bn=e.type.indexOf(".")<0&&!e.exclusive;if(!bn){bf=e.type.split(".");e.type=bf.shift();bj=bf.slice(0).sort();bp=new RegExp("(^|\\.)"+bj.join("\\.(?:.*\\.)?")+"(\\.|$)")}e.namespace=e.namespace||bj.join(".");bo=b._data(this,"events");bg=(bo||{})[e.type];if(bo&&bg){bg=bg.slice(0);for(var bi=0,bh=bg.length;bi<bh;bi++){var bm=bg[bi];if(bn||bp.test(bm.namespace)){e.handler=bm.handler;e.data=bm.data;e.handleObj=bm;var bk=bm.handler.apply(this,bl);if(bk!==I){e.result=bk;if(bk===false){e.preventDefault();e.stopPropagation()}}if(e.isImmediatePropagationStopped()){break}}}}return e.result},props:"altKey attrChange attrName bubbles button cancelable charCode clientX clientY ctrlKey currentTarget data detail eventPhase fromElement handler keyCode layerX layerY metaKey newValue offsetX offsetY pageX pageY prevValue relatedNode relatedTarget screenX screenY shiftKey srcElement target toElement view wheelDelta which".split(" "),fix:function(bh){if(bh[b.expando]){return bh}var bf=bh;bh=b.Event(bf);for(var bg=this.props.length,bj;bg;){bj=this.props[--bg];bh[bj]=bf[bj]}if(!bh.target){bh.target=bh.srcElement||am}if(bh.target.nodeType===3){bh.target=bh.target.parentNode}if(!bh.relatedTarget&&bh.fromElement){bh.relatedTarget=bh.fromElement===bh.target?bh.toElement:bh.fromElement}if(bh.pageX==null&&bh.clientX!=null){var bi=am.documentElement,e=am.body;bh.pageX=bh.clientX+(bi&&bi.scrollLeft||e&&e.scrollLeft||0)-(bi&&bi.clientLeft||e&&e.clientLeft||0);bh.pageY=bh.clientY+(bi&&bi.scrollTop||e&&e.scrollTop||0)-(bi&&bi.clientTop||e&&e.clientTop||0)}if(bh.which==null&&(bh.charCode!=null||bh.keyCode!=null)){bh.which=bh.charCode!=null?bh.charCode:bh.keyCode}if(!bh.metaKey&&bh.ctrlKey){bh.metaKey=bh.ctrlKey}if(!bh.which&&bh.button!==I){bh.which=(bh.button&1?1:(bh.button&2?3:(bh.button&4?2:0)))}return bh},guid:100000000,proxy:b.proxy,special:{ready:{setup:b.bindReady,teardown:b.noop},live:{add:function(e){b.event.add(this,o(e.origType,e.selector),b.extend({},e,{handler:ag,guid:e.handler.guid}))},remove:function(e){b.event.remove(this,o(e.origType,e.selector),e)}},beforeunload:{setup:function(bg,bf,e){if(b.isWindow(this)){this.onbeforeunload=e}},teardown:function(bf,e){if(this.onbeforeunload===e){this.onbeforeunload=null}}}}};b.removeEvent=am.removeEventListener?function(bf,e,bg){if(bf.removeEventListener){bf.removeEventListener(e,bg,false)}}:function(bf,e,bg){if(bf.detachEvent){bf.detachEvent("on"+e,bg)}};b.Event=function(e){if(!this.preventDefault){return new b.Event(e)}if(e&&e.type){this.originalEvent=e;this.type=e.type;this.isDefaultPrevented=(e.defaultPrevented||e.returnValue===false||e.getPreventDefault&&e.getPreventDefault())?i:a7}else{this.type=e}this.timeStamp=b.now();this[b.expando]=true};function a7(){return false}function i(){return true}b.Event.prototype={preventDefault:function(){this.isDefaultPrevented=i;var bf=this.originalEvent;if(!bf){return}if(bf.preventDefault){bf.preventDefault()}else{bf.returnValue=false}},stopPropagation:function(){this.isPropagationStopped=i;var bf=this.originalEvent;if(!bf){return}if(bf.stopPropagation){bf.stopPropagation()}bf.cancelBubble=true},stopImmediatePropagation:function(){this.isImmediatePropagationStopped=i;this.stopPropagation()},isDefaultPrevented:a7,isPropagationStopped:a7,isImmediatePropagationStopped:a7};var aa=function(bg){var bf=bg.relatedTarget;try{if(bf&&bf!==am&&!bf.parentNode){return}while(bf&&bf!==this){bf=bf.parentNode}if(bf!==this){bg.type=bg.data;b.event.handle.apply(this,arguments)}}catch(bh){}},aM=function(e){e.type=e.data;b.event.handle.apply(this,arguments)};b.each({mouseenter:"mouseover",mouseleave:"mouseout"},function(bf,e){b.event.special[bf]={setup:function(bg){b.event.add(this,e,bg&&bg.selector?aM:aa,bf)},teardown:function(bg){b.event.remove(this,e,bg&&bg.selector?aM:aa)}}});if(!b.support.submitBubbles){b.event.special.submit={setup:function(bf,e){if(this.nodeName&&this.nodeName.toLowerCase()!=="form"){b.event.add(this,"click.specialSubmit",function(bi){var bh=bi.target,bg=bh.type;if((bg==="submit"||bg==="image")&&b(bh).closest("form").length){aP("submit",this,arguments)}});b.event.add(this,"keypress.specialSubmit",function(bi){var bh=bi.target,bg=bh.type;if((bg==="text"||bg==="password")&&b(bh).closest("form").length&&bi.keyCode===13){aP("submit",this,arguments)}})}else{return false}},teardown:function(e){b.event.remove(this,".specialSubmit")}}}if(!b.support.changeBubbles){var a8,k=function(bf){var e=bf.type,bg=bf.value;if(e==="radio"||e==="checkbox"){bg=bf.checked}else{if(e==="select-multiple"){bg=bf.selectedIndex>-1?b.map(bf.options,function(bh){return bh.selected}).join("-"):""}else{if(bf.nodeName.toLowerCase()==="select"){bg=bf.selectedIndex}}}return bg},Y=function Y(bh){var bf=bh.target,bg,bi;if(!a2.test(bf.nodeName)||bf.readOnly){return}bg=b._data(bf,"_change_data");bi=k(bf);if(bh.type!=="focusout"||bf.type!=="radio"){b._data(bf,"_change_data",bi)}if(bg===I||bi===bg){return}if(bg!=null||bi){bh.type="change";bh.liveFired=I;b.event.trigger(bh,arguments[1],bf)}};b.event.special.change={filters:{focusout:Y,beforedeactivate:Y,click:function(bh){var bg=bh.target,bf=bg.type;if(bf==="radio"||bf==="checkbox"||bg.nodeName.toLowerCase()==="select"){Y.call(this,bh)}},keydown:function(bh){var bg=bh.target,bf=bg.type;if((bh.keyCode===13&&bg.nodeName.toLowerCase()!=="textarea")||(bh.keyCode===32&&(bf==="checkbox"||bf==="radio"))||bf==="select-multiple"){Y.call(this,bh)}},beforeactivate:function(bg){var bf=bg.target;b._data(bf,"_change_data",k(bf))}},setup:function(bg,bf){if(this.type==="file"){return false}for(var e in a8){b.event.add(this,e+".specialChange",a8[e])}return a2.test(this.nodeName)},teardown:function(e){b.event.remove(this,".specialChange");return a2.test(this.nodeName)}};a8=b.event.special.change.filters;a8.focus=a8.beforeactivate}function aP(bf,bh,e){var bg=b.extend({},e[0]);bg.type=bf;bg.originalEvent={};bg.liveFired=I;b.event.handle.call(bh,bg);if(bg.isDefaultPrevented()){e[0].preventDefault()}}if(am.addEventListener){b.each({focus:"focusin",blur:"focusout"},function(bh,e){var bf=0;b.event.special[e]={setup:function(){if(bf++===0){am.addEventListener(bh,bg,true)}},teardown:function(){if(--bf===0){am.removeEventListener(bh,bg,true)}}};function bg(bi){var bj=b.event.fix(bi);bj.type=e;bj.originalEvent={};b.event.trigger(bj,null,bj.target);if(bj.isDefaultPrevented()){bi.preventDefault()}}})}b.each(["bind","one"],function(bf,e){b.fn[e]=function(bl,bm,bk){if(typeof bl==="object"){for(var bi in bl){this[e](bi,bm,bl[bi],bk)}return this}if(b.isFunction(bm)||bm===false){bk=bm;bm=I}var bj=e==="one"?b.proxy(bk,function(bn){b(this).unbind(bn,bj);return bk.apply(this,arguments)}):bk;if(bl==="unload"&&e!=="one"){this.one(bl,bm,bk)}else{for(var bh=0,bg=this.length;bh<bg;bh++){b.event.add(this[bh],bl,bj,bm)}}return this}});b.fn.extend({unbind:function(bi,bh){if(typeof bi==="object"&&!bi.preventDefault){for(var bg in bi){this.unbind(bg,bi[bg])}}else{for(var bf=0,e=this.length;bf<e;bf++){b.event.remove(this[bf],bi,bh)}}return this},delegate:function(e,bf,bh,bg){return this.live(bf,bh,bg,e)},undelegate:function(e,bf,bg){if(arguments.length===0){return this.unbind("live")}else{return this.die(bf,null,bg,e)}},trigger:function(e,bf){return this.each(function(){b.event.trigger(e,bf,this)})},triggerHandler:function(e,bg){if(this[0]){var bf=b.Event(e);bf.preventDefault();bf.stopPropagation();b.event.trigger(bf,bg,this[0]);return bf.result}},toggle:function(bg){var e=arguments,bf=1;while(bf<e.length){b.proxy(bg,e[bf++])}return this.click(b.proxy(bg,function(bh){var bi=(b._data(this,"lastToggle"+bg.guid)||0)%bf;b._data(this,"lastToggle"+bg.guid,bi+1);bh.preventDefault();return e[bi].apply(this,arguments)||false}))},hover:function(e,bf){return this.mouseenter(e).mouseleave(bf||e)}});var aJ={focus:"focusin",blur:"focusout",mouseenter:"mouseover",mouseleave:"mouseout"};b.each(["live","die"],function(bf,e){b.fn[e]=function(bp,bm,br,bi){var bq,bn=0,bo,bh,bt,bk=bi||this.selector,bg=bi?this:b(this.context);if(typeof bp==="object"&&!bp.preventDefault){for(var bs in bp){bg[e](bs,bm,bp[bs],bk)}return this}if(b.isFunction(bm)){br=bm;bm=I}bp=(bp||"").split(" ");while((bq=bp[bn++])!=null){bo=aR.exec(bq);bh="";if(bo){bh=bo[0];bq=bq.replace(aR,"")}if(bq==="hover"){bp.push("mouseenter"+bh,"mouseleave"+bh);continue}bt=bq;if(bq==="focus"||bq==="blur"){bp.push(aJ[bq]+bh);bq=bq+bh}else{bq=(aJ[bq]||bq)+bh}if(e==="live"){for(var bl=0,bj=bg.length;bl<bj;bl++){b.event.add(bg[bl],"live."+o(bq,bk),{data:bm,selector:bk,handler:br,origType:bq,origHandler:br,preType:bt})}}else{bg.unbind("live."+o(bq,bk),br)}}return this}});function ag(bp){var bm,bh,bv,bj,e,br,bo,bq,bn,bu,bl,bk,bt,bs=[],bi=[],bf=b._data(this,"events");if(bp.liveFired===this||!bf||!bf.live||bp.target.disabled||bp.button&&bp.type==="click"){return}if(bp.namespace){bk=new RegExp("(^|\\.)"+bp.namespace.split(".").join("\\.(?:.*\\.)?")+"(\\.|$)")}bp.liveFired=this;var bg=bf.live.slice(0);for(bo=0;bo<bg.length;bo++){e=bg[bo];if(e.origType.replace(aR,"")===bp.type){bi.push(e.selector)}else{bg.splice(bo--,1)}}bj=b(bp.target).closest(bi,bp.currentTarget);for(bq=0,bn=bj.length;bq<bn;bq++){bl=bj[bq];for(bo=0;bo<bg.length;bo++){e=bg[bo];if(bl.selector===e.selector&&(!bk||bk.test(e.namespace))&&!bl.elem.disabled){br=bl.elem;bv=null;if(e.preType==="mouseenter"||e.preType==="mouseleave"){bp.type=e.preType;bv=b(bp.relatedTarget).closest(e.selector)[0]}if(!bv||bv!==br){bs.push({elem:br,handleObj:e,level:bl.level})}}}}for(bq=0,bn=bs.length;bq<bn;bq++){bj=bs[bq];if(bh&&bj.level>bh){break}bp.currentTarget=bj.elem;bp.data=bj.handleObj.data;bp.handleObj=bj.handleObj;bt=bj.handleObj.origHandler.apply(bj.elem,arguments);if(bt===false||bp.isPropagationStopped()){bh=bj.level;if(bt===false){bm=false}if(bp.isImmediatePropagationStopped()){break}}}return bm}function o(bf,e){return(bf&&bf!=="*"?bf+".":"")+e.replace(L,"`").replace(ab,"&")}b.each(("blur focus focusin focusout load resize scroll unload click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup error").split(" "),function(bf,e){b.fn[e]=function(bh,bg){if(bg==null){bg=bh;bh=null}return arguments.length>0?this.bind(e,bh,bg):this.trigger(e)};if(b.attrFn){b.attrFn[e]=true}});
+(function( window, undefined ) {
+
+// Use the correct document accordingly with window argument (sandbox)
+var document = window.document;
+var jQuery = (function() {
+
+// Define a local copy of jQuery
+var jQuery = function( selector, context ) {
+		// The jQuery object is actually just the init constructor 'enhanced'
+		return new jQuery.fn.init( selector, context, rootjQuery );
+	},
+
+	// Map over jQuery in case of overwrite
+	_jQuery = window.jQuery,
+
+	// Map over the $ in case of overwrite
+	_$ = window.$,
+
+	// A central reference to the root jQuery(document)
+	rootjQuery,
+
+	// A simple way to check for HTML strings or ID strings
+	// (both of which we optimize for)
+	quickExpr = /^(?:[^<]*(<[\w\W]+>)[^>]*$|#([\w\-]+)$)/,
+
+	// Check if a string has a non-whitespace character in it
+	rnotwhite = /\S/,
+
+	// Used for trimming whitespace
+	trimLeft = /^\s+/,
+	trimRight = /\s+$/,
+
+	// Check for digits
+	rdigit = /\d/,
+
+	// Match a standalone tag
+	rsingleTag = /^<(\w+)\s*\/?>(?:<\/\1>)?$/,
+
+	// JSON RegExp
+	rvalidchars = /^[\],:{}\s]*$/,
+	rvalidescape = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,
+	rvalidtokens = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+	rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g,
+
+	// Useragent RegExp
+	rwebkit = /(webkit)[ \/]([\w.]+)/,
+	ropera = /(opera)(?:.*version)?[ \/]([\w.]+)/,
+	rmsie = /(msie) ([\w.]+)/,
+	rmozilla = /(mozilla)(?:.*? rv:([\w.]+))?/,
+
+	// Keep a UserAgent string for use with jQuery.browser
+	userAgent = navigator.userAgent,
+
+	// For matching the engine and version of the browser
+	browserMatch,
+
+	// The deferred used on DOM ready
+	readyList,
+
+	// The ready event handler
+	DOMContentLoaded,
+
+	// Save a reference to some core methods
+	toString = Object.prototype.toString,
+	hasOwn = Object.prototype.hasOwnProperty,
+	push = Array.prototype.push,
+	slice = Array.prototype.slice,
+	trim = String.prototype.trim,
+	indexOf = Array.prototype.indexOf,
+
+	// [[Class]] -> type pairs
+	class2type = {};
+
+jQuery.fn = jQuery.prototype = {
+	constructor: jQuery,
+	init: function( selector, context, rootjQuery ) {
+		var match, elem, ret, doc;
+
+		// Handle $(""), $(null), or $(undefined)
+		if ( !selector ) {
+			return this;
+		}
+
+		// Handle $(DOMElement)
+		if ( selector.nodeType ) {
+			this.context = this[0] = selector;
+			this.length = 1;
+			return this;
+		}
+
+		// The body element only exists once, optimize finding it
+		if ( selector === "body" && !context && document.body ) {
+			this.context = document;
+			this[0] = document.body;
+			this.selector = "body";
+			this.length = 1;
+			return this;
+		}
+
+		// Handle HTML strings
+		if ( typeof selector === "string" ) {
+			// Are we dealing with HTML string or an ID?
+			match = quickExpr.exec( selector );
+
+			// Verify a match, and that no context was specified for #id
+			if ( match && (match[1] || !context) ) {
+
+				// HANDLE: $(html) -> $(array)
+				if ( match[1] ) {
+					context = context instanceof jQuery ? context[0] : context;
+					doc = (context ? context.ownerDocument || context : document);
+
+					// If a single string is passed in and it's a single tag
+					// just do a createElement and skip the rest
+					ret = rsingleTag.exec( selector );
+
+					if ( ret ) {
+						if ( jQuery.isPlainObject( context ) ) {
+							selector = [ document.createElement( ret[1] ) ];
+							jQuery.fn.attr.call( selector, context, true );
+
+						} else {
+							selector = [ doc.createElement( ret[1] ) ];
+						}
+
+					} else {
+						ret = jQuery.buildFragment( [ match[1] ], [ doc ] );
+						selector = (ret.cacheable ? jQuery.clone(ret.fragment) : ret.fragment).childNodes;
+					}
+
+					return jQuery.merge( this, selector );
+
+				// HANDLE: $("#id")
+				} else {
+					elem = document.getElementById( match[2] );
+
+					// Check parentNode to catch when Blackberry 4.6 returns
+					// nodes that are no longer in the document #6963
+					if ( elem && elem.parentNode ) {
+						// Handle the case where IE and Opera return items
+						// by name instead of ID
+						if ( elem.id !== match[2] ) {
+							return rootjQuery.find( selector );
+						}
+
+						// Otherwise, we inject the element directly into the jQuery object
+						this.length = 1;
+						this[0] = elem;
+					}
+
+					this.context = document;
+					this.selector = selector;
+					return this;
+				}
+
+			// HANDLE: $(expr, $(...))
+			} else if ( !context || context.jquery ) {
+				return (context || rootjQuery).find( selector );
+
+			// HANDLE: $(expr, context)
+			// (which is just equivalent to: $(context).find(expr)
+			} else {
+				return this.constructor( context ).find( selector );
+			}
+
+		// HANDLE: $(function)
+		// Shortcut for document ready
+		} else if ( jQuery.isFunction( selector ) ) {
+			return rootjQuery.ready( selector );
+		}
+
+		if (selector.selector !== undefined) {
+			this.selector = selector.selector;
+			this.context = selector.context;
+		}
+
+		return jQuery.makeArray( selector, this );
+	},
+
+	// Start with an empty selector
+	selector: "",
+
+	// The current version of jQuery being used
+	jquery: "1.5.2",
+
+	// The default length of a jQuery object is 0
+	length: 0,
+
+	// The number of elements contained in the matched element set
+	size: function() {
+		return this.length;
+	},
+
+	toArray: function() {
+		return slice.call( this, 0 );
+	},
+
+	// Get the Nth element in the matched element set OR
+	// Get the whole matched element set as a clean array
+	get: function( num ) {
+		return num == null ?
+
+			// Return a 'clean' array
+			this.toArray() :
+
+			// Return just the object
+			( num < 0 ? this[ this.length + num ] : this[ num ] );
+	},
+
+	// Take an array of elements and push it onto the stack
+	// (returning the new matched element set)
+	pushStack: function( elems, name, selector ) {
+		// Build a new jQuery matched element set
+		var ret = this.constructor();
+
+		if ( jQuery.isArray( elems ) ) {
+			push.apply( ret, elems );
+
+		} else {
+			jQuery.merge( ret, elems );
+		}
+
+		// Add the old object onto the stack (as a reference)
+		ret.prevObject = this;
+
+		ret.context = this.context;
+
+		if ( name === "find" ) {
+			ret.selector = this.selector + (this.selector ? " " : "") + selector;
+		} else if ( name ) {
+			ret.selector = this.selector + "." + name + "(" + selector + ")";
+		}
+
+		// Return the newly-formed element set
+		return ret;
+	},
+
+	// Execute a callback for every element in the matched set.
+	// (You can seed the arguments with an array of args, but this is
+	// only used internally.)
+	each: function( callback, args ) {
+		return jQuery.each( this, callback, args );
+	},
+
+	ready: function( fn ) {
+		// Attach the listeners
+		jQuery.bindReady();
+
+		// Add the callback
+		readyList.done( fn );
+
+		return this;
+	},
+
+	eq: function( i ) {
+		return i === -1 ?
+			this.slice( i ) :
+			this.slice( i, +i + 1 );
+	},
+
+	first: function() {
+		return this.eq( 0 );
+	},
+
+	last: function() {
+		return this.eq( -1 );
+	},
+
+	slice: function() {
+		return this.pushStack( slice.apply( this, arguments ),
+			"slice", slice.call(arguments).join(",") );
+	},
+
+	map: function( callback ) {
+		return this.pushStack( jQuery.map(this, function( elem, i ) {
+			return callback.call( elem, i, elem );
+		}));
+	},
+
+	end: function() {
+		return this.prevObject || this.constructor(null);
+	},
+
+	// For internal use only.
+	// Behaves like an Array's method, not like a jQuery method.
+	push: push,
+	sort: [].sort,
+	splice: [].splice
+};
+
+// Give the init function the jQuery prototype for later instantiation
+jQuery.fn.init.prototype = jQuery.fn;
+
+jQuery.extend = jQuery.fn.extend = function() {
+	var options, name, src, copy, copyIsArray, clone,
+		target = arguments[0] || {},
+		i = 1,
+		length = arguments.length,
+		deep = false;
+
+	// Handle a deep copy situation
+	if ( typeof target === "boolean" ) {
+		deep = target;
+		target = arguments[1] || {};
+		// skip the boolean and the target
+		i = 2;
+	}
+
+	// Handle case when target is a string or something (possible in deep copy)
+	if ( typeof target !== "object" && !jQuery.isFunction(target) ) {
+		target = {};
+	}
+
+	// extend jQuery itself if only one argument is passed
+	if ( length === i ) {
+		target = this;
+		--i;
+	}
+
+	for ( ; i < length; i++ ) {
+		// Only deal with non-null/undefined values
+		if ( (options = arguments[ i ]) != null ) {
+			// Extend the base object
+			for ( name in options ) {
+				src = target[ name ];
+				copy = options[ name ];
+
+				// Prevent never-ending loop
+				if ( target === copy ) {
+					continue;
+				}
+
+				// Recurse if we're merging plain objects or arrays
+				if ( deep && copy && ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) {
+					if ( copyIsArray ) {
+						copyIsArray = false;
+						clone = src && jQuery.isArray(src) ? src : [];
+
+					} else {
+						clone = src && jQuery.isPlainObject(src) ? src : {};
+					}
+
+					// Never move original objects, clone them
+					target[ name ] = jQuery.extend( deep, clone, copy );
+
+				// Don't bring in undefined values
+				} else if ( copy !== undefined ) {
+					target[ name ] = copy;
+				}
+			}
+		}
+	}
+
+	// Return the modified object
+	return target;
+};
+
+jQuery.extend({
+	noConflict: function( deep ) {
+		window.$ = _$;
+
+		if ( deep ) {
+			window.jQuery = _jQuery;
+		}
+
+		return jQuery;
+	},
+
+	// Is the DOM ready to be used? Set to true once it occurs.
+	isReady: false,
+
+	// A counter to track how many items to wait for before
+	// the ready event fires. See #6781
+	readyWait: 1,
+
+	// Handle when the DOM is ready
+	ready: function( wait ) {
+		// A third-party is pushing the ready event forwards
+		if ( wait === true ) {
+			jQuery.readyWait--;
+		}
+
+		// Make sure that the DOM is not already loaded
+		if ( !jQuery.readyWait || (wait !== true && !jQuery.isReady) ) {
+			// Make sure body exists, at least, in case IE gets a little overzealous (ticket #5443).
+			if ( !document.body ) {
+				return setTimeout( jQuery.ready, 1 );
+			}
+
+			// Remember that the DOM is ready
+			jQuery.isReady = true;
+
+			// If a normal DOM Ready event fired, decrement, and wait if need be
+			if ( wait !== true && --jQuery.readyWait > 0 ) {
+				return;
+			}
+
+			// If there are functions bound, to execute
+			readyList.resolveWith( document, [ jQuery ] );
+
+			// Trigger any bound ready events
+			if ( jQuery.fn.trigger ) {
+				jQuery( document ).trigger( "ready" ).unbind( "ready" );
+			}
+		}
+	},
+
+	bindReady: function() {
+		if ( readyList ) {
+			return;
+		}
+
+		readyList = jQuery._Deferred();
+
+		// Catch cases where $(document).ready() is called after the
+		// browser event has already occurred.
+		if ( document.readyState === "complete" ) {
+			// Handle it asynchronously to allow scripts the opportunity to delay ready
+			return setTimeout( jQuery.ready, 1 );
+		}
+
+		// Mozilla, Opera and webkit nightlies currently support this event
+		if ( document.addEventListener ) {
+			// Use the handy event callback
+			document.addEventListener( "DOMContentLoaded", DOMContentLoaded, false );
+
+			// A fallback to window.onload, that will always work
+			window.addEventListener( "load", jQuery.ready, false );
+
+		// If IE event model is used
+		} else if ( document.attachEvent ) {
+			// ensure firing before onload,
+			// maybe late but safe also for iframes
+			document.attachEvent("onreadystatechange", DOMContentLoaded);
+
+			// A fallback to window.onload, that will always work
+			window.attachEvent( "onload", jQuery.ready );
+
+			// If IE and not a frame
+			// continually check to see if the document is ready
+			var toplevel = false;
+
+			try {
+				toplevel = window.frameElement == null;
+			} catch(e) {}
+
+			if ( document.documentElement.doScroll && toplevel ) {
+				doScrollCheck();
+			}
+		}
+	},
+
+	// See test/unit/core.js for details concerning isFunction.
+	// Since version 1.3, DOM methods and functions like alert
+	// aren't supported. They return false on IE (#2968).
+	isFunction: function( obj ) {
+		return jQuery.type(obj) === "function";
+	},
+
+	isArray: Array.isArray || function( obj ) {
+		return jQuery.type(obj) === "array";
+	},
+
+	// A crude way of determining if an object is a window
+	isWindow: function( obj ) {
+		return obj && typeof obj === "object" && "setInterval" in obj;
+	},
+
+	isNaN: function( obj ) {
+		return obj == null || !rdigit.test( obj ) || isNaN( obj );
+	},
+
+	type: function( obj ) {
+		return obj == null ?
+			String( obj ) :
+			class2type[ toString.call(obj) ] || "object";
+	},
+
+	isPlainObject: function( obj ) {
+		// Must be an Object.
+		// Because of IE, we also have to check the presence of the constructor property.
+		// Make sure that DOM nodes and window objects don't pass through, as well
+		if ( !obj || jQuery.type(obj) !== "object" || obj.nodeType || jQuery.isWindow( obj ) ) {
+			return false;
+		}
+
+		// Not own constructor property must be Object
+		if ( obj.constructor &&
+			!hasOwn.call(obj, "constructor") &&
+			!hasOwn.call(obj.constructor.prototype, "isPrototypeOf") ) {
+			return false;
+		}
+
+		// Own properties are enumerated firstly, so to speed up,
+		// if last one is own, then all properties are own.
+
+		var key;
+		for ( key in obj ) {}
+
+		return key === undefined || hasOwn.call( obj, key );
+	},
+
+	isEmptyObject: function( obj ) {
+		for ( var name in obj ) {
+			return false;
+		}
+		return true;
+	},
+
+	error: function( msg ) {
+		throw msg;
+	},
+
+	parseJSON: function( data ) {
+		if ( typeof data !== "string" || !data ) {
+			return null;
+		}
+
+		// Make sure leading/trailing whitespace is removed (IE can't handle it)
+		data = jQuery.trim( data );
+
+		// Make sure the incoming data is actual JSON
+		// Logic borrowed from http://json.org/json2.js
+		if ( rvalidchars.test(data.replace(rvalidescape, "@")
+			.replace(rvalidtokens, "]")
+			.replace(rvalidbraces, "")) ) {
+
+			// Try to use the native JSON parser first
+			return window.JSON && window.JSON.parse ?
+				window.JSON.parse( data ) :
+				(new Function("return " + data))();
+
+		} else {
+			jQuery.error( "Invalid JSON: " + data );
+		}
+	},
+
+	// Cross-browser xml parsing
+	// (xml & tmp used internally)
+	parseXML: function( data , xml , tmp ) {
+
+		if ( window.DOMParser ) { // Standard
+			tmp = new DOMParser();
+			xml = tmp.parseFromString( data , "text/xml" );
+		} else { // IE
+			xml = new ActiveXObject( "Microsoft.XMLDOM" );
+			xml.async = "false";
+			xml.loadXML( data );
+		}
+
+		tmp = xml.documentElement;
+
+		if ( ! tmp || ! tmp.nodeName || tmp.nodeName === "parsererror" ) {
+			jQuery.error( "Invalid XML: " + data );
+		}
+
+		return xml;
+	},
+
+	noop: function() {},
+
+	// Evalulates a script in a global context
+	globalEval: function( data ) {
+		if ( data && rnotwhite.test(data) ) {
+			// Inspired by code by Andrea Giammarchi
+			// http://webreflection.blogspot.com/2007/08/global-scope-evaluation-and-dom.html
+			var head = document.head || document.getElementsByTagName( "head" )[0] || document.documentElement,
+				script = document.createElement( "script" );
+
+			if ( jQuery.support.scriptEval() ) {
+				script.appendChild( document.createTextNode( data ) );
+			} else {
+				script.text = data;
+			}
+
+			// Use insertBefore instead of appendChild to circumvent an IE6 bug.
+			// This arises when a base node is used (#2709).
+			head.insertBefore( script, head.firstChild );
+			head.removeChild( script );
+		}
+	},
+
+	nodeName: function( elem, name ) {
+		return elem.nodeName && elem.nodeName.toUpperCase() === name.toUpperCase();
+	},
+
+	// args is for internal usage only
+	each: function( object, callback, args ) {
+		var name, i = 0,
+			length = object.length,
+			isObj = length === undefined || jQuery.isFunction(object);
+
+		if ( args ) {
+			if ( isObj ) {
+				for ( name in object ) {
+					if ( callback.apply( object[ name ], args ) === false ) {
+						break;
+					}
+				}
+			} else {
+				for ( ; i < length; ) {
+					if ( callback.apply( object[ i++ ], args ) === false ) {
+						break;
+					}
+				}
+			}
+
+		// A special, fast, case for the most common use of each
+		} else {
+			if ( isObj ) {
+				for ( name in object ) {
+					if ( callback.call( object[ name ], name, object[ name ] ) === false ) {
+						break;
+					}
+				}
+			} else {
+				for ( var value = object[0];
+					i < length && callback.call( value, i, value ) !== false; value = object[++i] ) {}
+			}
+		}
+
+		return object;
+	},
+
+	// Use native String.trim function wherever possible
+	trim: trim ?
+		function( text ) {
+			return text == null ?
+				"" :
+				trim.call( text );
+		} :
+
+		// Otherwise use our own trimming functionality
+		function( text ) {
+			return text == null ?
+				"" :
+				text.toString().replace( trimLeft, "" ).replace( trimRight, "" );
+		},
+
+	// results is for internal usage only
+	makeArray: function( array, results ) {
+		var ret = results || [];
+
+		if ( array != null ) {
+			// The window, strings (and functions) also have 'length'
+			// The extra typeof function check is to prevent crashes
+			// in Safari 2 (See: #3039)
+			// Tweaked logic slightly to handle Blackberry 4.7 RegExp issues #6930
+			var type = jQuery.type(array);
+
+			if ( array.length == null || type === "string" || type === "function" || type === "regexp" || jQuery.isWindow( array ) ) {
+				push.call( ret, array );
+			} else {
+				jQuery.merge( ret, array );
+			}
+		}
+
+		return ret;
+	},
+
+	inArray: function( elem, array ) {
+		if ( array.indexOf ) {
+			return array.indexOf( elem );
+		}
+
+		for ( var i = 0, length = array.length; i < length; i++ ) {
+			if ( array[ i ] === elem ) {
+				return i;
+			}
+		}
+
+		return -1;
+	},
+
+	merge: function( first, second ) {
+		var i = first.length,
+			j = 0;
+
+		if ( typeof second.length === "number" ) {
+			for ( var l = second.length; j < l; j++ ) {
+				first[ i++ ] = second[ j ];
+			}
+
+		} else {
+			while ( second[j] !== undefined ) {
+				first[ i++ ] = second[ j++ ];
+			}
+		}
+
+		first.length = i;
+
+		return first;
+	},
+
+	grep: function( elems, callback, inv ) {
+		var ret = [], retVal;
+		inv = !!inv;
+
+		// Go through the array, only saving the items
+		// that pass the validator function
+		for ( var i = 0, length = elems.length; i < length; i++ ) {
+			retVal = !!callback( elems[ i ], i );
+			if ( inv !== retVal ) {
+				ret.push( elems[ i ] );
+			}
+		}
+
+		return ret;
+	},
+
+	// arg is for internal usage only
+	map: function( elems, callback, arg ) {
+		var ret = [], value;
+
+		// Go through the array, translating each of the items to their
+		// new value (or values).
+		for ( var i = 0, length = elems.length; i < length; i++ ) {
+			value = callback( elems[ i ], i, arg );
+
+			if ( value != null ) {
+				ret[ ret.length ] = value;
+			}
+		}
+
+		// Flatten any nested arrays
+		return ret.concat.apply( [], ret );
+	},
+
+	// A global GUID counter for objects
+	guid: 1,
+
+	proxy: function( fn, proxy, thisObject ) {
+		if ( arguments.length === 2 ) {
+			if ( typeof proxy === "string" ) {
+				thisObject = fn;
+				fn = thisObject[ proxy ];
+				proxy = undefined;
+
+			} else if ( proxy && !jQuery.isFunction( proxy ) ) {
+				thisObject = proxy;
+				proxy = undefined;
+			}
+		}
+
+		if ( !proxy && fn ) {
+			proxy = function() {
+				return fn.apply( thisObject || this, arguments );
+			};
+		}
+
+		// Set the guid of unique handler to the same of original handler, so it can be removed
+		if ( fn ) {
+			proxy.guid = fn.guid = fn.guid || proxy.guid || jQuery.guid++;
+		}
+
+		// So proxy can be declared as an argument
+		return proxy;
+	},
+
+	// Mutifunctional method to get and set values to a collection
+	// The value/s can be optionally by executed if its a function
+	access: function( elems, key, value, exec, fn, pass ) {
+		var length = elems.length;
+
+		// Setting many attributes
+		if ( typeof key === "object" ) {
+			for ( var k in key ) {
+				jQuery.access( elems, k, key[k], exec, fn, value );
+			}
+			return elems;
+		}
+
+		// Setting one attribute
+		if ( value !== undefined ) {
+			// Optionally, function values get executed if exec is true
+			exec = !pass && exec && jQuery.isFunction(value);
+
+			for ( var i = 0; i < length; i++ ) {
+				fn( elems[i], key, exec ? value.call( elems[i], i, fn( elems[i], key ) ) : value, pass );
+			}
+
+			return elems;
+		}
+
+		// Getting an attribute
+		return length ? fn( elems[0], key ) : undefined;
+	},
+
+	now: function() {
+		return (new Date()).getTime();
+	},
+
+	// Use of jQuery.browser is frowned upon.
+	// More details: http://docs.jquery.com/Utilities/jQuery.browser
+	uaMatch: function( ua ) {
+		ua = ua.toLowerCase();
+
+		var match = rwebkit.exec( ua ) ||
+			ropera.exec( ua ) ||
+			rmsie.exec( ua ) ||
+			ua.indexOf("compatible") < 0 && rmozilla.exec( ua ) ||
+			[];
+
+		return { browser: match[1] || "", version: match[2] || "0" };
+	},
+
+	sub: function() {
+		function jQuerySubclass( selector, context ) {
+			return new jQuerySubclass.fn.init( selector, context );
+		}
+		jQuery.extend( true, jQuerySubclass, this );
+		jQuerySubclass.superclass = this;
+		jQuerySubclass.fn = jQuerySubclass.prototype = this();
+		jQuerySubclass.fn.constructor = jQuerySubclass;
+		jQuerySubclass.subclass = this.subclass;
+		jQuerySubclass.fn.init = function init( selector, context ) {
+			if ( context && context instanceof jQuery && !(context instanceof jQuerySubclass) ) {
+				context = jQuerySubclass(context);
+			}
+
+			return jQuery.fn.init.call( this, selector, context, rootjQuerySubclass );
+		};
+		jQuerySubclass.fn.init.prototype = jQuerySubclass.fn;
+		var rootjQuerySubclass = jQuerySubclass(document);
+		return jQuerySubclass;
+	},
+
+	browser: {}
+});
+
+// Populate the class2type map
+jQuery.each("Boolean Number String Function Array Date RegExp Object".split(" "), function(i, name) {
+	class2type[ "[object " + name + "]" ] = name.toLowerCase();
+});
+
+browserMatch = jQuery.uaMatch( userAgent );
+if ( browserMatch.browser ) {
+	jQuery.browser[ browserMatch.browser ] = true;
+	jQuery.browser.version = browserMatch.version;
+}
+
+// Deprecated, use jQuery.browser.webkit instead
+if ( jQuery.browser.webkit ) {
+	jQuery.browser.safari = true;
+}
+
+if ( indexOf ) {
+	jQuery.inArray = function( elem, array ) {
+		return indexOf.call( array, elem );
+	};
+}
+
+// IE doesn't match non-breaking spaces with \s
+if ( rnotwhite.test( "\xA0" ) ) {
+	trimLeft = /^[\s\xA0]+/;
+	trimRight = /[\s\xA0]+$/;
+}
+
+// All jQuery objects should point back to these
+rootjQuery = jQuery(document);
+
+// Cleanup functions for the document ready method
+if ( document.addEventListener ) {
+	DOMContentLoaded = function() {
+		document.removeEventListener( "DOMContentLoaded", DOMContentLoaded, false );
+		jQuery.ready();
+	};
+
+} else if ( document.attachEvent ) {
+	DOMContentLoaded = function() {
+		// Make sure body exists, at least, in case IE gets a little overzealous (ticket #5443).
+		if ( document.readyState === "complete" ) {
+			document.detachEvent( "onreadystatechange", DOMContentLoaded );
+			jQuery.ready();
+		}
+	};
+}
+
+// The DOM ready check for Internet Explorer
+function doScrollCheck() {
+	if ( jQuery.isReady ) {
+		return;
+	}
+
+	try {
+		// If IE is used, use the trick by Diego Perini
+		// http://javascript.nwbox.com/IEContentLoaded/
+		document.documentElement.doScroll("left");
+	} catch(e) {
+		setTimeout( doScrollCheck, 1 );
+		return;
+	}
+
+	// and execute any waiting functions
+	jQuery.ready();
+}
+
+// Expose jQuery to the global object
+return jQuery;
+
+})();
+
+
+var // Promise methods
+	promiseMethods = "then done fail isResolved isRejected promise".split( " " ),
+	// Static reference to slice
+	sliceDeferred = [].slice;
+
+jQuery.extend({
+	// Create a simple deferred (one callbacks list)
+	_Deferred: function() {
+		var // callbacks list
+			callbacks = [],
+			// stored [ context , args ]
+			fired,
+			// to avoid firing when already doing so
+			firing,
+			// flag to know if the deferred has been cancelled
+			cancelled,
+			// the deferred itself
+			deferred  = {
+
+				// done( f1, f2, ...)
+				done: function() {
+					if ( !cancelled ) {
+						var args = arguments,
+							i,
+							length,
+							elem,
+							type,
+							_fired;
+						if ( fired ) {
+							_fired = fired;
+							fired = 0;
+						}
+						for ( i = 0, length = args.length; i < length; i++ ) {
+							elem = args[ i ];
+							type = jQuery.type( elem );
+							if ( type === "array" ) {
+								deferred.done.apply( deferred, elem );
+							} else if ( type === "function" ) {
+								callbacks.push( elem );
+							}
+						}
+						if ( _fired ) {
+							deferred.resolveWith( _fired[ 0 ], _fired[ 1 ] );
+						}
+					}
+					return this;
+				},
+
+				// resolve with given context and args
+				resolveWith: function( context, args ) {
+					if ( !cancelled && !fired && !firing ) {
+						// make sure args are available (#8421)
+						args = args || [];
+						firing = 1;
+						try {
+							while( callbacks[ 0 ] ) {
+								callbacks.shift().apply( context, args );
+							}
+						}
+						finally {
+							fired = [ context, args ];
+							firing = 0;
+						}
+					}
+					return this;
+				},
+
+				// resolve with this as context and given arguments
+				resolve: function() {
+					deferred.resolveWith( this, arguments );
+					return this;
+				},
+
+				// Has this deferred been resolved?
+				isResolved: function() {
+					return !!( firing || fired );
+				},
+
+				// Cancel
+				cancel: function() {
+					cancelled = 1;
+					callbacks = [];
+					return this;
+				}
+			};
+
+		return deferred;
+	},
+
+	// Full fledged deferred (two callbacks list)
+	Deferred: function( func ) {
+		var deferred = jQuery._Deferred(),
+			failDeferred = jQuery._Deferred(),
+			promise;
+		// Add errorDeferred methods, then and promise
+		jQuery.extend( deferred, {
+			then: function( doneCallbacks, failCallbacks ) {
+				deferred.done( doneCallbacks ).fail( failCallbacks );
+				return this;
+			},
+			fail: failDeferred.done,
+			rejectWith: failDeferred.resolveWith,
+			reject: failDeferred.resolve,
+			isRejected: failDeferred.isResolved,
+			// Get a promise for this deferred
+			// If obj is provided, the promise aspect is added to the object
+			promise: function( obj ) {
+				if ( obj == null ) {
+					if ( promise ) {
+						return promise;
+					}
+					promise = obj = {};
+				}
+				var i = promiseMethods.length;
+				while( i-- ) {
+					obj[ promiseMethods[i] ] = deferred[ promiseMethods[i] ];
+				}
+				return obj;
+			}
+		} );
+		// Make sure only one callback list will be used
+		deferred.done( failDeferred.cancel ).fail( deferred.cancel );
+		// Unexpose cancel
+		delete deferred.cancel;
+		// Call given func if any
+		if ( func ) {
+			func.call( deferred, deferred );
+		}
+		return deferred;
+	},
+
+	// Deferred helper
+	when: function( firstParam ) {
+		var args = arguments,
+			i = 0,
+			length = args.length,
+			count = length,
+			deferred = length <= 1 && firstParam && jQuery.isFunction( firstParam.promise ) ?
+				firstParam :
+				jQuery.Deferred();
+		function resolveFunc( i ) {
+			return function( value ) {
+				args[ i ] = arguments.length > 1 ? sliceDeferred.call( arguments, 0 ) : value;
+				if ( !( --count ) ) {
+					// Strange bug in FF4:
+					// Values changed onto the arguments object sometimes end up as undefined values
+					// outside the $.when method. Cloning the object into a fresh array solves the issue
+					deferred.resolveWith( deferred, sliceDeferred.call( args, 0 ) );
+				}
+			};
+		}
+		if ( length > 1 ) {
+			for( ; i < length; i++ ) {
+				if ( args[ i ] && jQuery.isFunction( args[ i ].promise ) ) {
+					args[ i ].promise().then( resolveFunc(i), deferred.reject );
+				} else {
+					--count;
+				}
+			}
+			if ( !count ) {
+				deferred.resolveWith( deferred, args );
+			}
+		} else if ( deferred !== firstParam ) {
+			deferred.resolveWith( deferred, length ? [ firstParam ] : [] );
+		}
+		return deferred.promise();
+	}
+});
+
+
+
+
+(function() {
+
+	jQuery.support = {};
+
+	var div = document.createElement("div");
+
+	div.style.display = "none";
+	div.innerHTML = "   <link/><table></table><a href='/a' style='color:red;float:left;opacity:.55;'>a</a><input type='checkbox'/>";
+
+	var all = div.getElementsByTagName("*"),
+		a = div.getElementsByTagName("a")[0],
+		select = document.createElement("select"),
+		opt = select.appendChild( document.createElement("option") ),
+		input = div.getElementsByTagName("input")[0];
+
+	// Can't get basic test support
+	if ( !all || !all.length || !a ) {
+		return;
+	}
+
+	jQuery.support = {
+		// IE strips leading whitespace when .innerHTML is used
+		leadingWhitespace: div.firstChild.nodeType === 3,
+
+		// Make sure that tbody elements aren't automatically inserted
+		// IE will insert them into empty tables
+		tbody: !div.getElementsByTagName("tbody").length,
+
+		// Make sure that link elements get serialized correctly by innerHTML
+		// This requires a wrapper element in IE
+		htmlSerialize: !!div.getElementsByTagName("link").length,
+
+		// Get the style information from getAttribute
+		// (IE uses .cssText insted)
+		style: /red/.test( a.getAttribute("style") ),
+
+		// Make sure that URLs aren't manipulated
+		// (IE normalizes it by default)
+		hrefNormalized: a.getAttribute("href") === "/a",
+
+		// Make sure that element opacity exists
+		// (IE uses filter instead)
+		// Use a regex to work around a WebKit issue. See #5145
+		opacity: /^0.55$/.test( a.style.opacity ),
+
+		// Verify style float existence
+		// (IE uses styleFloat instead of cssFloat)
+		cssFloat: !!a.style.cssFloat,
+
+		// Make sure that if no value is specified for a checkbox
+		// that it defaults to "on".
+		// (WebKit defaults to "" instead)
+		checkOn: input.value === "on",
+
+		// Make sure that a selected-by-default option has a working selected property.
+		// (WebKit defaults to false instead of true, IE too, if it's in an optgroup)
+		optSelected: opt.selected,
+
+		// Will be defined later
+		deleteExpando: true,
+		optDisabled: false,
+		checkClone: false,
+		noCloneEvent: true,
+		noCloneChecked: true,
+		boxModel: null,
+		inlineBlockNeedsLayout: false,
+		shrinkWrapBlocks: false,
+		reliableHiddenOffsets: true,
+		reliableMarginRight: true
+	};
+
+	input.checked = true;
+	jQuery.support.noCloneChecked = input.cloneNode( true ).checked;
+
+	// Make sure that the options inside disabled selects aren't marked as disabled
+	// (WebKit marks them as diabled)
+	select.disabled = true;
+	jQuery.support.optDisabled = !opt.disabled;
+
+	var _scriptEval = null;
+	jQuery.support.scriptEval = function() {
+		if ( _scriptEval === null ) {
+			var root = document.documentElement,
+				script = document.createElement("script"),
+				id = "script" + jQuery.now();
+
+			// Make sure that the execution of code works by injecting a script
+			// tag with appendChild/createTextNode
+			// (IE doesn't support this, fails, and uses .text instead)
+			try {
+				script.appendChild( document.createTextNode( "window." + id + "=1;" ) );
+			} catch(e) {}
+
+			root.insertBefore( script, root.firstChild );
+
+			if ( window[ id ] ) {
+				_scriptEval = true;
+				delete window[ id ];
+			} else {
+				_scriptEval = false;
+			}
+
+			root.removeChild( script );
+		}
+
+		return _scriptEval;
+	};
+
+	// Test to see if it's possible to delete an expando from an element
+	// Fails in Internet Explorer
+	try {
+		delete div.test;
+
+	} catch(e) {
+		jQuery.support.deleteExpando = false;
+	}
+
+	if ( !div.addEventListener && div.attachEvent && div.fireEvent ) {
+		div.attachEvent("onclick", function click() {
+			// Cloning a node shouldn't copy over any
+			// bound event handlers (IE does this)
+			jQuery.support.noCloneEvent = false;
+			div.detachEvent("onclick", click);
+		});
+		div.cloneNode(true).fireEvent("onclick");
+	}
+
+	div = document.createElement("div");
+	div.innerHTML = "<input type='radio' name='radiotest' checked='checked'/>";
+
+	var fragment = document.createDocumentFragment();
+	fragment.appendChild( div.firstChild );
+
+	// WebKit doesn't clone checked state correctly in fragments
+	jQuery.support.checkClone = fragment.cloneNode(true).cloneNode(true).lastChild.checked;
+
+	// Figure out if the W3C box model works as expected
+	// document.body must exist before we can do this
+	jQuery(function() {
+		var div = document.createElement("div"),
+			body = document.getElementsByTagName("body")[0];
+
+		// Frameset documents with no body should not run this code
+		if ( !body ) {
+			return;
+		}
+
+		div.style.width = div.style.paddingLeft = "1px";
+		body.appendChild( div );
+		jQuery.boxModel = jQuery.support.boxModel = div.offsetWidth === 2;
+
+		if ( "zoom" in div.style ) {
+			// Check if natively block-level elements act like inline-block
+			// elements when setting their display to 'inline' and giving
+			// them layout
+			// (IE < 8 does this)
+			div.style.display = "inline";
+			div.style.zoom = 1;
+			jQuery.support.inlineBlockNeedsLayout = div.offsetWidth === 2;
+
+			// Check if elements with layout shrink-wrap their children
+			// (IE 6 does this)
+			div.style.display = "";
+			div.innerHTML = "<div style='width:4px;'></div>";
+			jQuery.support.shrinkWrapBlocks = div.offsetWidth !== 2;
+		}
+
+		div.innerHTML = "<table><tr><td style='padding:0;border:0;display:none'></td><td>t</td></tr></table>";
+		var tds = div.getElementsByTagName("td");
+
+		// Check if table cells still have offsetWidth/Height when they are set
+		// to display:none and there are still other visible table cells in a
+		// table row; if so, offsetWidth/Height are not reliable for use when
+		// determining if an element has been hidden directly using
+		// display:none (it is still safe to use offsets if a parent element is
+		// hidden; don safety goggles and see bug #4512 for more information).
+		// (only IE 8 fails this test)
+		jQuery.support.reliableHiddenOffsets = tds[0].offsetHeight === 0;
+
+		tds[0].style.display = "";
+		tds[1].style.display = "none";
+
+		// Check if empty table cells still have offsetWidth/Height
+		// (IE < 8 fail this test)
+		jQuery.support.reliableHiddenOffsets = jQuery.support.reliableHiddenOffsets && tds[0].offsetHeight === 0;
+		div.innerHTML = "";
+
+		// Check if div with explicit width and no margin-right incorrectly
+		// gets computed margin-right based on width of container. For more
+		// info see bug #3333
+		// Fails in WebKit before Feb 2011 nightlies
+		// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
+		if ( document.defaultView && document.defaultView.getComputedStyle ) {
+			div.style.width = "1px";
+			div.style.marginRight = "0";
+			jQuery.support.reliableMarginRight = ( parseInt(document.defaultView.getComputedStyle(div, null).marginRight, 10) || 0 ) === 0;
+		}
+
+		body.removeChild( div ).style.display = "none";
+		div = tds = null;
+	});
+
+	// Technique from Juriy Zaytsev
+	// http://thinkweb2.com/projects/prototype/detecting-event-support-without-browser-sniffing/
+	var eventSupported = function( eventName ) {
+		var el = document.createElement("div");
+		eventName = "on" + eventName;
+
+		// We only care about the case where non-standard event systems
+		// are used, namely in IE. Short-circuiting here helps us to
+		// avoid an eval call (in setAttribute) which can cause CSP
+		// to go haywire. See: https://developer.mozilla.org/en/Security/CSP
+		if ( !el.attachEvent ) {
+			return true;
+		}
+
+		var isSupported = (eventName in el);
+		if ( !isSupported ) {
+			el.setAttribute(eventName, "return;");
+			isSupported = typeof el[eventName] === "function";
+		}
+		return isSupported;
+	};
+
+	jQuery.support.submitBubbles = eventSupported("submit");
+	jQuery.support.changeBubbles = eventSupported("change");
+
+	// release memory in IE
+	div = all = a = null;
+})();
+
+
+
+var rbrace = /^(?:\{.*\}|\[.*\])$/;
+
+jQuery.extend({
+	cache: {},
+
+	// Please use with caution
+	uuid: 0,
+
+	// Unique for each copy of jQuery on the page
+	// Non-digits removed to match rinlinejQuery
+	expando: "jQuery" + ( jQuery.fn.jquery + Math.random() ).replace( /\D/g, "" ),
+
+	// The following elements throw uncatchable exceptions if you
+	// attempt to add expando properties to them.
+	noData: {
+		"embed": true,
+		// Ban all objects except for Flash (which handle expandos)
+		"object": "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000",
+		"applet": true
+	},
+
+	hasData: function( elem ) {
+		elem = elem.nodeType ? jQuery.cache[ elem[jQuery.expando] ] : elem[ jQuery.expando ];
+
+		return !!elem && !isEmptyDataObject( elem );
+	},
+
+	data: function( elem, name, data, pvt /* Internal Use Only */ ) {
+		if ( !jQuery.acceptData( elem ) ) {
+			return;
+		}
+
+		var internalKey = jQuery.expando, getByName = typeof name === "string", thisCache,
+
+			// We have to handle DOM nodes and JS objects differently because IE6-7
+			// can't GC object references properly across the DOM-JS boundary
+			isNode = elem.nodeType,
+
+			// Only DOM nodes need the global jQuery cache; JS object data is
+			// attached directly to the object so GC can occur automatically
+			cache = isNode ? jQuery.cache : elem,
+
+			// Only defining an ID for JS objects if its cache already exists allows
+			// the code to shortcut on the same path as a DOM node with no cache
+			id = isNode ? elem[ jQuery.expando ] : elem[ jQuery.expando ] && jQuery.expando;
+
+		// Avoid doing any more work than we need to when trying to get data on an
+		// object that has no data at all
+		if ( (!id || (pvt && id && !cache[ id ][ internalKey ])) && getByName && data === undefined ) {
+			return;
+		}
+
+		if ( !id ) {
+			// Only DOM nodes need a new unique ID for each element since their data
+			// ends up in the global cache
+			if ( isNode ) {
+				elem[ jQuery.expando ] = id = ++jQuery.uuid;
+			} else {
+				id = jQuery.expando;
+			}
+		}
+
+		if ( !cache[ id ] ) {
+			cache[ id ] = {};
+
+			// TODO: This is a hack for 1.5 ONLY. Avoids exposing jQuery
+			// metadata on plain JS objects when the object is serialized using
+			// JSON.stringify
+			if ( !isNode ) {
+				cache[ id ].toJSON = jQuery.noop;
+			}
+		}
+
+		// An object can be passed to jQuery.data instead of a key/value pair; this gets
+		// shallow copied over onto the existing cache
+		if ( typeof name === "object" || typeof name === "function" ) {
+			if ( pvt ) {
+				cache[ id ][ internalKey ] = jQuery.extend(cache[ id ][ internalKey ], name);
+			} else {
+				cache[ id ] = jQuery.extend(cache[ id ], name);
+			}
+		}
+
+		thisCache = cache[ id ];
+
+		// Internal jQuery data is stored in a separate object inside the object's data
+		// cache in order to avoid key collisions between internal data and user-defined
+		// data
+		if ( pvt ) {
+			if ( !thisCache[ internalKey ] ) {
+				thisCache[ internalKey ] = {};
+			}
+
+			thisCache = thisCache[ internalKey ];
+		}
+
+		if ( data !== undefined ) {
+			thisCache[ name ] = data;
+		}
+
+		// TODO: This is a hack for 1.5 ONLY. It will be removed in 1.6. Users should
+		// not attempt to inspect the internal events object using jQuery.data, as this
+		// internal data object is undocumented and subject to change.
+		if ( name === "events" && !thisCache[name] ) {
+			return thisCache[ internalKey ] && thisCache[ internalKey ].events;
+		}
+
+		return getByName ? thisCache[ name ] : thisCache;
+	},
+
+	removeData: function( elem, name, pvt /* Internal Use Only */ ) {
+		if ( !jQuery.acceptData( elem ) ) {
+			return;
+		}
+
+		var internalKey = jQuery.expando, isNode = elem.nodeType,
+
+			// See jQuery.data for more information
+			cache = isNode ? jQuery.cache : elem,
+
+			// See jQuery.data for more information
+			id = isNode ? elem[ jQuery.expando ] : jQuery.expando;
+
+		// If there is already no cache entry for this object, there is no
+		// purpose in continuing
+		if ( !cache[ id ] ) {
+			return;
+		}
+
+		if ( name ) {
+			var thisCache = pvt ? cache[ id ][ internalKey ] : cache[ id ];
+
+			if ( thisCache ) {
+				delete thisCache[ name ];
+
+				// If there is no data left in the cache, we want to continue
+				// and let the cache object itself get destroyed
+				if ( !isEmptyDataObject(thisCache) ) {
+					return;
+				}
+			}
+		}
+
+		// See jQuery.data for more information
+		if ( pvt ) {
+			delete cache[ id ][ internalKey ];
+
+			// Don't destroy the parent cache unless the internal data object
+			// had been the only thing left in it
+			if ( !isEmptyDataObject(cache[ id ]) ) {
+				return;
+			}
+		}
+
+		var internalCache = cache[ id ][ internalKey ];
+
+		// Browsers that fail expando deletion also refuse to delete expandos on
+		// the window, but it will allow it on all other JS objects; other browsers
+		// don't care
+		if ( jQuery.support.deleteExpando || cache != window ) {
+			delete cache[ id ];
+		} else {
+			cache[ id ] = null;
+		}
+
+		// We destroyed the entire user cache at once because it's faster than
+		// iterating through each key, but we need to continue to persist internal
+		// data if it existed
+		if ( internalCache ) {
+			cache[ id ] = {};
+			// TODO: This is a hack for 1.5 ONLY. Avoids exposing jQuery
+			// metadata on plain JS objects when the object is serialized using
+			// JSON.stringify
+			if ( !isNode ) {
+				cache[ id ].toJSON = jQuery.noop;
+			}
+
+			cache[ id ][ internalKey ] = internalCache;
+
+		// Otherwise, we need to eliminate the expando on the node to avoid
+		// false lookups in the cache for entries that no longer exist
+		} else if ( isNode ) {
+			// IE does not allow us to delete expando properties from nodes,
+			// nor does it have a removeAttribute function on Document nodes;
+			// we must handle all of these cases
+			if ( jQuery.support.deleteExpando ) {
+				delete elem[ jQuery.expando ];
+			} else if ( elem.removeAttribute ) {
+				elem.removeAttribute( jQuery.expando );
+			} else {
+				elem[ jQuery.expando ] = null;
+			}
+		}
+	},
+
+	// For internal use only.
+	_data: function( elem, name, data ) {
+		return jQuery.data( elem, name, data, true );
+	},
+
+	// A method for determining if a DOM node can handle the data expando
+	acceptData: function( elem ) {
+		if ( elem.nodeName ) {
+			var match = jQuery.noData[ elem.nodeName.toLowerCase() ];
+
+			if ( match ) {
+				return !(match === true || elem.getAttribute("classid") !== match);
+			}
+		}
+
+		return true;
+	}
+});
+
+jQuery.fn.extend({
+	data: function( key, value ) {
+		var data = null;
+
+		if ( typeof key === "undefined" ) {
+			if ( this.length ) {
+				data = jQuery.data( this[0] );
+
+				if ( this[0].nodeType === 1 ) {
+					var attr = this[0].attributes, name;
+					for ( var i = 0, l = attr.length; i < l; i++ ) {
+						name = attr[i].name;
+
+						if ( name.indexOf( "data-" ) === 0 ) {
+							name = name.substr( 5 );
+							dataAttr( this[0], name, data[ name ] );
+						}
+					}
+				}
+			}
+
+			return data;
+
+		} else if ( typeof key === "object" ) {
+			return this.each(function() {
+				jQuery.data( this, key );
+			});
+		}
+
+		var parts = key.split(".");
+		parts[1] = parts[1] ? "." + parts[1] : "";
+
+		if ( value === undefined ) {
+			data = this.triggerHandler("getData" + parts[1] + "!", [parts[0]]);
+
+			// Try to fetch any internally stored data first
+			if ( data === undefined && this.length ) {
+				data = jQuery.data( this[0], key );
+				data = dataAttr( this[0], key, data );
+			}
+
+			return data === undefined && parts[1] ?
+				this.data( parts[0] ) :
+				data;
+
+		} else {
+			return this.each(function() {
+				var $this = jQuery( this ),
+					args = [ parts[0], value ];
+
+				$this.triggerHandler( "setData" + parts[1] + "!", args );
+				jQuery.data( this, key, value );
+				$this.triggerHandler( "changeData" + parts[1] + "!", args );
+			});
+		}
+	},
+
+	removeData: function( key ) {
+		return this.each(function() {
+			jQuery.removeData( this, key );
+		});
+	}
+});
+
+function dataAttr( elem, key, data ) {
+	// If nothing was found internally, try to fetch any
+	// data from the HTML5 data-* attribute
+	if ( data === undefined && elem.nodeType === 1 ) {
+		data = elem.getAttribute( "data-" + key );
+
+		if ( typeof data === "string" ) {
+			try {
+				data = data === "true" ? true :
+				data === "false" ? false :
+				data === "null" ? null :
+				!jQuery.isNaN( data ) ? parseFloat( data ) :
+					rbrace.test( data ) ? jQuery.parseJSON( data ) :
+					data;
+			} catch( e ) {}
+
+			// Make sure we set the data so it isn't changed later
+			jQuery.data( elem, key, data );
+
+		} else {
+			data = undefined;
+		}
+	}
+
+	return data;
+}
+
+// TODO: This is a hack for 1.5 ONLY to allow objects with a single toJSON
+// property to be considered empty objects; this property always exists in
+// order to make sure JSON.stringify does not expose internal metadata
+function isEmptyDataObject( obj ) {
+	for ( var name in obj ) {
+		if ( name !== "toJSON" ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+
+
+
+jQuery.extend({
+	queue: function( elem, type, data ) {
+		if ( !elem ) {
+			return;
+		}
+
+		type = (type || "fx") + "queue";
+		var q = jQuery._data( elem, type );
+
+		// Speed up dequeue by getting out quickly if this is just a lookup
+		if ( !data ) {
+			return q || [];
+		}
+
+		if ( !q || jQuery.isArray(data) ) {
+			q = jQuery._data( elem, type, jQuery.makeArray(data) );
+
+		} else {
+			q.push( data );
+		}
+
+		return q;
+	},
+
+	dequeue: function( elem, type ) {
+		type = type || "fx";
+
+		var queue = jQuery.queue( elem, type ),
+			fn = queue.shift();
+
+		// If the fx queue is dequeued, always remove the progress sentinel
+		if ( fn === "inprogress" ) {
+			fn = queue.shift();
+		}
+
+		if ( fn ) {
+			// Add a progress sentinel to prevent the fx queue from being
+			// automatically dequeued
+			if ( type === "fx" ) {
+				queue.unshift("inprogress");
+			}
+
+			fn.call(elem, function() {
+				jQuery.dequeue(elem, type);
+			});
+		}
+
+		if ( !queue.length ) {
+			jQuery.removeData( elem, type + "queue", true );
+		}
+	}
+});
+
+jQuery.fn.extend({
+	queue: function( type, data ) {
+		if ( typeof type !== "string" ) {
+			data = type;
+			type = "fx";
+		}
+
+		if ( data === undefined ) {
+			return jQuery.queue( this[0], type );
+		}
+		return this.each(function( i ) {
+			var queue = jQuery.queue( this, type, data );
+
+			if ( type === "fx" && queue[0] !== "inprogress" ) {
+				jQuery.dequeue( this, type );
+			}
+		});
+	},
+	dequeue: function( type ) {
+		return this.each(function() {
+			jQuery.dequeue( this, type );
+		});
+	},
+
+	// Based off of the plugin by Clint Helfers, with permission.
+	// http://blindsignals.com/index.php/2009/07/jquery-delay/
+	delay: function( time, type ) {
+		time = jQuery.fx ? jQuery.fx.speeds[time] || time : time;
+		type = type || "fx";
+
+		return this.queue( type, function() {
+			var elem = this;
+			setTimeout(function() {
+				jQuery.dequeue( elem, type );
+			}, time );
+		});
+	},
+
+	clearQueue: function( type ) {
+		return this.queue( type || "fx", [] );
+	}
+});
+
+
+
+
+var rclass = /[\n\t\r]/g,
+	rspaces = /\s+/,
+	rreturn = /\r/g,
+	rspecialurl = /^(?:href|src|style)$/,
+	rtype = /^(?:button|input)$/i,
+	rfocusable = /^(?:button|input|object|select|textarea)$/i,
+	rclickable = /^a(?:rea)?$/i,
+	rradiocheck = /^(?:radio|checkbox)$/i;
+
+jQuery.props = {
+	"for": "htmlFor",
+	"class": "className",
+	readonly: "readOnly",
+	maxlength: "maxLength",
+	cellspacing: "cellSpacing",
+	rowspan: "rowSpan",
+	colspan: "colSpan",
+	tabindex: "tabIndex",
+	usemap: "useMap",
+	frameborder: "frameBorder"
+};
+
+jQuery.fn.extend({
+	attr: function( name, value ) {
+		return jQuery.access( this, name, value, true, jQuery.attr );
+	},
+
+	removeAttr: function( name, fn ) {
+		return this.each(function(){
+			jQuery.attr( this, name, "" );
+			if ( this.nodeType === 1 ) {
+				this.removeAttribute( name );
+			}
+		});
+	},
+
+	addClass: function( value ) {
+		if ( jQuery.isFunction(value) ) {
+			return this.each(function(i) {
+				var self = jQuery(this);
+				self.addClass( value.call(this, i, self.attr("class")) );
+			});
+		}
+
+		if ( value && typeof value === "string" ) {
+			var classNames = (value || "").split( rspaces );
+
+			for ( var i = 0, l = this.length; i < l; i++ ) {
+				var elem = this[i];
+
+				if ( elem.nodeType === 1 ) {
+					if ( !elem.className ) {
+						elem.className = value;
+
+					} else {
+						var className = " " + elem.className + " ",
+							setClass = elem.className;
+
+						for ( var c = 0, cl = classNames.length; c < cl; c++ ) {
+							if ( className.indexOf( " " + classNames[c] + " " ) < 0 ) {
+								setClass += " " + classNames[c];
+							}
+						}
+						elem.className = jQuery.trim( setClass );
+					}
+				}
+			}
+		}
+
+		return this;
+	},
+
+	removeClass: function( value ) {
+		if ( jQuery.isFunction(value) ) {
+			return this.each(function(i) {
+				var self = jQuery(this);
+				self.removeClass( value.call(this, i, self.attr("class")) );
+			});
+		}
+
+		if ( (value && typeof value === "string") || value === undefined ) {
+			var classNames = (value || "").split( rspaces );
+
+			for ( var i = 0, l = this.length; i < l; i++ ) {
+				var elem = this[i];
+
+				if ( elem.nodeType === 1 && elem.className ) {
+					if ( value ) {
+						var className = (" " + elem.className + " ").replace(rclass, " ");
+						for ( var c = 0, cl = classNames.length; c < cl; c++ ) {
+							className = className.replace(" " + classNames[c] + " ", " ");
+						}
+						elem.className = jQuery.trim( className );
+
+					} else {
+						elem.className = "";
+					}
+				}
+			}
+		}
+
+		return this;
+	},
+
+	toggleClass: function( value, stateVal ) {
+		var type = typeof value,
+			isBool = typeof stateVal === "boolean";
+
+		if ( jQuery.isFunction( value ) ) {
+			return this.each(function(i) {
+				var self = jQuery(this);
+				self.toggleClass( value.call(this, i, self.attr("class"), stateVal), stateVal );
+			});
+		}
+
+		return this.each(function() {
+			if ( type === "string" ) {
+				// toggle individual class names
+				var className,
+					i = 0,
+					self = jQuery( this ),
+					state = stateVal,
+					classNames = value.split( rspaces );
+
+				while ( (className = classNames[ i++ ]) ) {
+					// check each className given, space seperated list
+					state = isBool ? state : !self.hasClass( className );
+					self[ state ? "addClass" : "removeClass" ]( className );
+				}
+
+			} else if ( type === "undefined" || type === "boolean" ) {
+				if ( this.className ) {
+					// store className if set
+					jQuery._data( this, "__className__", this.className );
+				}
+
+				// toggle whole className
+				this.className = this.className || value === false ? "" : jQuery._data( this, "__className__" ) || "";
+			}
+		});
+	},
+
+	hasClass: function( selector ) {
+		var className = " " + selector + " ";
+		for ( var i = 0, l = this.length; i < l; i++ ) {
+			if ( (" " + this[i].className + " ").replace(rclass, " ").indexOf( className ) > -1 ) {
+				return true;
+			}
+		}
+
+		return false;
+	},
+
+	val: function( value ) {
+		if ( !arguments.length ) {
+			var elem = this[0];
+
+			if ( elem ) {
+				if ( jQuery.nodeName( elem, "option" ) ) {
+					// attributes.value is undefined in Blackberry 4.7 but
+					// uses .value. See #6932
+					var val = elem.attributes.value;
+					return !val || val.specified ? elem.value : elem.text;
+				}
+
+				// We need to handle select boxes special
+				if ( jQuery.nodeName( elem, "select" ) ) {
+					var index = elem.selectedIndex,
+						values = [],
+						options = elem.options,
+						one = elem.type === "select-one";
+
+					// Nothing was selected
+					if ( index < 0 ) {
+						return null;
+					}
+
+					// Loop through all the selected options
+					for ( var i = one ? index : 0, max = one ? index + 1 : options.length; i < max; i++ ) {
+						var option = options[ i ];
+
+						// Don't return options that are disabled or in a disabled optgroup
+						if ( option.selected && (jQuery.support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null) &&
+								(!option.parentNode.disabled || !jQuery.nodeName( option.parentNode, "optgroup" )) ) {
+
+							// Get the specific value for the option
+							value = jQuery(option).val();
+
+							// We don't need an array for one selects
+							if ( one ) {
+								return value;
+							}
+
+							// Multi-Selects return an array
+							values.push( value );
+						}
+					}
+
+					// Fixes Bug #2551 -- select.val() broken in IE after form.reset()
+					if ( one && !values.length && options.length ) {
+						return jQuery( options[ index ] ).val();
+					}
+
+					return values;
+				}
+
+				// Handle the case where in Webkit "" is returned instead of "on" if a value isn't specified
+				if ( rradiocheck.test( elem.type ) && !jQuery.support.checkOn ) {
+					return elem.getAttribute("value") === null ? "on" : elem.value;
+				}
+
+				// Everything else, we just grab the value
+				return (elem.value || "").replace(rreturn, "");
+
+			}
+
+			return undefined;
+		}
+
+		var isFunction = jQuery.isFunction(value);
+
+		return this.each(function(i) {
+			var self = jQuery(this), val = value;
+
+			if ( this.nodeType !== 1 ) {
+				return;
+			}
+
+			if ( isFunction ) {
+				val = value.call(this, i, self.val());
+			}
+
+			// Treat null/undefined as ""; convert numbers to string
+			if ( val == null ) {
+				val = "";
+			} else if ( typeof val === "number" ) {
+				val += "";
+			} else if ( jQuery.isArray(val) ) {
+				val = jQuery.map(val, function (value) {
+					return value == null ? "" : value + "";
+				});
+			}
+
+			if ( jQuery.isArray(val) && rradiocheck.test( this.type ) ) {
+				this.checked = jQuery.inArray( self.val(), val ) >= 0;
+
+			} else if ( jQuery.nodeName( this, "select" ) ) {
+				var values = jQuery.makeArray(val);
+
+				jQuery( "option", this ).each(function() {
+					this.selected = jQuery.inArray( jQuery(this).val(), values ) >= 0;
+				});
+
+				if ( !values.length ) {
+					this.selectedIndex = -1;
+				}
+
+			} else {
+				this.value = val;
+			}
+		});
+	}
+});
+
+jQuery.extend({
+	attrFn: {
+		val: true,
+		css: true,
+		html: true,
+		text: true,
+		data: true,
+		width: true,
+		height: true,
+		offset: true
+	},
+
+	attr: function( elem, name, value, pass ) {
+		// don't get/set attributes on text, comment and attribute nodes
+		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || elem.nodeType === 2 ) {
+			return undefined;
+		}
+
+		if ( pass && name in jQuery.attrFn ) {
+			return jQuery(elem)[name](value);
+		}
+
+		var notxml = elem.nodeType !== 1 || !jQuery.isXMLDoc( elem ),
+			// Whether we are setting (or getting)
+			set = value !== undefined;
+
+		// Try to normalize/fix the name
+		name = notxml && jQuery.props[ name ] || name;
+
+		// Only do all the following if this is a node (faster for style)
+		if ( elem.nodeType === 1 ) {
+			// These attributes require special treatment
+			var special = rspecialurl.test( name );
+
+			// Safari mis-reports the default selected property of an option
+			// Accessing the parent's selectedIndex property fixes it
+			if ( name === "selected" && !jQuery.support.optSelected ) {
+				var parent = elem.parentNode;
+				if ( parent ) {
+					parent.selectedIndex;
+
+					// Make sure that it also works with optgroups, see #5701
+					if ( parent.parentNode ) {
+						parent.parentNode.selectedIndex;
+					}
+				}
+			}
+
+			// If applicable, access the attribute via the DOM 0 way
+			// 'in' checks fail in Blackberry 4.7 #6931
+			if ( (name in elem || elem[ name ] !== undefined) && notxml && !special ) {
+				if ( set ) {
+					// We can't allow the type property to be changed (since it causes problems in IE)
+					if ( name === "type" && rtype.test( elem.nodeName ) && elem.parentNode ) {
+						jQuery.error( "type property can't be changed" );
+					}
+
+					if ( value === null ) {
+						if ( elem.nodeType === 1 ) {
+							elem.removeAttribute( name );
+						}
+
+					} else {
+						elem[ name ] = value;
+					}
+				}
+
+				// browsers index elements by id/name on forms, give priority to attributes.
+				if ( jQuery.nodeName( elem, "form" ) && elem.getAttributeNode(name) ) {
+					return elem.getAttributeNode( name ).nodeValue;
+				}
+
+				// elem.tabIndex doesn't always return the correct value when it hasn't been explicitly set
+				// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
+				if ( name === "tabIndex" ) {
+					var attributeNode = elem.getAttributeNode( "tabIndex" );
+
+					return attributeNode && attributeNode.specified ?
+						attributeNode.value :
+						rfocusable.test( elem.nodeName ) || rclickable.test( elem.nodeName ) && elem.href ?
+							0 :
+							undefined;
+				}
+
+				return elem[ name ];
+			}
+
+			if ( !jQuery.support.style && notxml && name === "style" ) {
+				if ( set ) {
+					elem.style.cssText = "" + value;
+				}
+
+				return elem.style.cssText;
+			}
+
+			if ( set ) {
+				// convert the value to a string (all browsers do this but IE) see #1070
+				elem.setAttribute( name, "" + value );
+			}
+
+			// Ensure that missing attributes return undefined
+			// Blackberry 4.7 returns "" from getAttribute #6938
+			if ( !elem.attributes[ name ] && (elem.hasAttribute && !elem.hasAttribute( name )) ) {
+				return undefined;
+			}
+
+			var attr = !jQuery.support.hrefNormalized && notxml && special ?
+					// Some attributes require a special call on IE
+					elem.getAttribute( name, 2 ) :
+					elem.getAttribute( name );
+
+			// Non-existent attributes return null, we normalize to undefined
+			return attr === null ? undefined : attr;
+		}
+		// Handle everything which isn't a DOM element node
+		if ( set ) {
+			elem[ name ] = value;
+		}
+		return elem[ name ];
+	}
+});
+
+
+
+
+var rnamespaces = /\.(.*)$/,
+	rformElems = /^(?:textarea|input|select)$/i,
+	rperiod = /\./g,
+	rspace = / /g,
+	rescape = /[^\w\s.|`]/g,
+	fcleanup = function( nm ) {
+		return nm.replace(rescape, "\\$&");
+	};
+
+/*
+ * A number of helper functions used for managing events.
+ * Many of the ideas behind this code originated from
+ * Dean Edwards' addEvent library.
+ */
+jQuery.event = {
+
+	// Bind an event to an element
+	// Original by Dean Edwards
+	add: function( elem, types, handler, data ) {
+		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
+			return;
+		}
+
+		// TODO :: Use a try/catch until it's safe to pull this out (likely 1.6)
+		// Minor release fix for bug #8018
+		try {
+			// For whatever reason, IE has trouble passing the window object
+			// around, causing it to be cloned in the process
+			if ( jQuery.isWindow( elem ) && ( elem !== window && !elem.frameElement ) ) {
+				elem = window;
+			}
+		}
+		catch ( e ) {}
+
+		if ( handler === false ) {
+			handler = returnFalse;
+		} else if ( !handler ) {
+			// Fixes bug #7229. Fix recommended by jdalton
+			return;
+		}
+
+		var handleObjIn, handleObj;
+
+		if ( handler.handler ) {
+			handleObjIn = handler;
+			handler = handleObjIn.handler;
+		}
+
+		// Make sure that the function being executed has a unique ID
+		if ( !handler.guid ) {
+			handler.guid = jQuery.guid++;
+		}
+
+		// Init the element's event structure
+		var elemData = jQuery._data( elem );
+
+		// If no elemData is found then we must be trying to bind to one of the
+		// banned noData elements
+		if ( !elemData ) {
+			return;
+		}
+
+		var events = elemData.events,
+			eventHandle = elemData.handle;
+
+		if ( !events ) {
+			elemData.events = events = {};
+		}
+
+		if ( !eventHandle ) {
+			elemData.handle = eventHandle = function( e ) {
+				// Handle the second event of a trigger and when
+				// an event is called after a page has unloaded
+				return typeof jQuery !== "undefined" && jQuery.event.triggered !== e.type ?
+					jQuery.event.handle.apply( eventHandle.elem, arguments ) :
+					undefined;
+			};
+		}
+
+		// Add elem as a property of the handle function
+		// This is to prevent a memory leak with non-native events in IE.
+		eventHandle.elem = elem;
+
+		// Handle multiple events separated by a space
+		// jQuery(...).bind("mouseover mouseout", fn);
+		types = types.split(" ");
+
+		var type, i = 0, namespaces;
+
+		while ( (type = types[ i++ ]) ) {
+			handleObj = handleObjIn ?
+				jQuery.extend({}, handleObjIn) :
+				{ handler: handler, data: data };
+
+			// Namespaced event handlers
+			if ( type.indexOf(".") > -1 ) {
+				namespaces = type.split(".");
+				type = namespaces.shift();
+				handleObj.namespace = namespaces.slice(0).sort().join(".");
+
+			} else {
+				namespaces = [];
+				handleObj.namespace = "";
+			}
+
+			handleObj.type = type;
+			if ( !handleObj.guid ) {
+				handleObj.guid = handler.guid;
+			}
+
+			// Get the current list of functions bound to this event
+			var handlers = events[ type ],
+				special = jQuery.event.special[ type ] || {};
+
+			// Init the event handler queue
+			if ( !handlers ) {
+				handlers = events[ type ] = [];
+
+				// Check for a special event handler
+				// Only use addEventListener/attachEvent if the special
+				// events handler returns false
+				if ( !special.setup || special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
+					// Bind the global event handler to the element
+					if ( elem.addEventListener ) {
+						elem.addEventListener( type, eventHandle, false );
+
+					} else if ( elem.attachEvent ) {
+						elem.attachEvent( "on" + type, eventHandle );
+					}
+				}
+			}
+
+			if ( special.add ) {
+				special.add.call( elem, handleObj );
+
+				if ( !handleObj.handler.guid ) {
+					handleObj.handler.guid = handler.guid;
+				}
+			}
+
+			// Add the function to the element's handler list
+			handlers.push( handleObj );
+
+			// Keep track of which events have been used, for global triggering
+			jQuery.event.global[ type ] = true;
+		}
+
+		// Nullify elem to prevent memory leaks in IE
+		elem = null;
+	},
+
+	global: {},
+
+	// Detach an event or set of events from an element
+	remove: function( elem, types, handler, pos ) {
+		// don't do events on text and comment nodes
+		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
+			return;
+		}
+
+		if ( handler === false ) {
+			handler = returnFalse;
+		}
+
+		var ret, type, fn, j, i = 0, all, namespaces, namespace, special, eventType, handleObj, origType,
+			elemData = jQuery.hasData( elem ) && jQuery._data( elem ),
+			events = elemData && elemData.events;
+
+		if ( !elemData || !events ) {
+			return;
+		}
+
+		// types is actually an event object here
+		if ( types && types.type ) {
+			handler = types.handler;
+			types = types.type;
+		}
+
+		// Unbind all events for the element
+		if ( !types || typeof types === "string" && types.charAt(0) === "." ) {
+			types = types || "";
+
+			for ( type in events ) {
+				jQuery.event.remove( elem, type + types );
+			}
+
+			return;
+		}
+
+		// Handle multiple events separated by a space
+		// jQuery(...).unbind("mouseover mouseout", fn);
+		types = types.split(" ");
+
+		while ( (type = types[ i++ ]) ) {
+			origType = type;
+			handleObj = null;
+			all = type.indexOf(".") < 0;
+			namespaces = [];
+
+			if ( !all ) {
+				// Namespaced event handlers
+				namespaces = type.split(".");
+				type = namespaces.shift();
+
+				namespace = new RegExp("(^|\\.)" +
+					jQuery.map( namespaces.slice(0).sort(), fcleanup ).join("\\.(?:.*\\.)?") + "(\\.|$)");
+			}
+
+			eventType = events[ type ];
+
+			if ( !eventType ) {
+				continue;
+			}
+
+			if ( !handler ) {
+				for ( j = 0; j < eventType.length; j++ ) {
+					handleObj = eventType[ j ];
+
+					if ( all || namespace.test( handleObj.namespace ) ) {
+						jQuery.event.remove( elem, origType, handleObj.handler, j );
+						eventType.splice( j--, 1 );
+					}
+				}
+
+				continue;
+			}
+
+			special = jQuery.event.special[ type ] || {};
+
+			for ( j = pos || 0; j < eventType.length; j++ ) {
+				handleObj = eventType[ j ];
+
+				if ( handler.guid === handleObj.guid ) {
+					// remove the given handler for the given type
+					if ( all || namespace.test( handleObj.namespace ) ) {
+						if ( pos == null ) {
+							eventType.splice( j--, 1 );
+						}
+
+						if ( special.remove ) {
+							special.remove.call( elem, handleObj );
+						}
+					}
+
+					if ( pos != null ) {
+						break;
+					}
+				}
+			}
+
+			// remove generic event handler if no more handlers exist
+			if ( eventType.length === 0 || pos != null && eventType.length === 1 ) {
+				if ( !special.teardown || special.teardown.call( elem, namespaces ) === false ) {
+					jQuery.removeEvent( elem, type, elemData.handle );
+				}
+
+				ret = null;
+				delete events[ type ];
+			}
+		}
+
+		// Remove the expando if it's no longer used
+		if ( jQuery.isEmptyObject( events ) ) {
+			var handle = elemData.handle;
+			if ( handle ) {
+				handle.elem = null;
+			}
+
+			delete elemData.events;
+			delete elemData.handle;
+
+			if ( jQuery.isEmptyObject( elemData ) ) {
+				jQuery.removeData( elem, undefined, true );
+			}
+		}
+	},
+
+	// bubbling is internal
+	trigger: function( event, data, elem /*, bubbling */ ) {
+		// Event object or event type
+		var type = event.type || event,
+			bubbling = arguments[3];
+
+		if ( !bubbling ) {
+			event = typeof event === "object" ?
+				// jQuery.Event object
+				event[ jQuery.expando ] ? event :
+				// Object literal
+				jQuery.extend( jQuery.Event(type), event ) :
+				// Just the event type (string)
+				jQuery.Event(type);
+
+			if ( type.indexOf("!") >= 0 ) {
+				event.type = type = type.slice(0, -1);
+				event.exclusive = true;
+			}
+
+			// Handle a global trigger
+			if ( !elem ) {
+				// Don't bubble custom events when global (to avoid too much overhead)
+				event.stopPropagation();
+
+				// Only trigger if we've ever bound an event for it
+				if ( jQuery.event.global[ type ] ) {
+					// XXX This code smells terrible. event.js should not be directly
+					// inspecting the data cache
+					jQuery.each( jQuery.cache, function() {
+						// internalKey variable is just used to make it easier to find
+						// and potentially change this stuff later; currently it just
+						// points to jQuery.expando
+						var internalKey = jQuery.expando,
+							internalCache = this[ internalKey ];
+						if ( internalCache && internalCache.events && internalCache.events[ type ] ) {
+							jQuery.event.trigger( event, data, internalCache.handle.elem );
+						}
+					});
+				}
+			}
+
+			// Handle triggering a single element
+
+			// don't do events on text and comment nodes
+			if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 ) {
+				return undefined;
+			}
+
+			// Clean up in case it is reused
+			event.result = undefined;
+			event.target = elem;
+
+			// Clone the incoming data, if any
+			data = jQuery.makeArray( data );
+			data.unshift( event );
+		}
+
+		event.currentTarget = elem;
+
+		// Trigger the event, it is assumed that "handle" is a function
+		var handle = jQuery._data( elem, "handle" );
+
+		if ( handle ) {
+			handle.apply( elem, data );
+		}
+
+		var parent = elem.parentNode || elem.ownerDocument;
+
+		// Trigger an inline bound script
+		try {
+			if ( !(elem && elem.nodeName && jQuery.noData[elem.nodeName.toLowerCase()]) ) {
+				if ( elem[ "on" + type ] && elem[ "on" + type ].apply( elem, data ) === false ) {
+					event.result = false;
+					event.preventDefault();
+				}
+			}
+
+		// prevent IE from throwing an error for some elements with some event types, see #3533
+		} catch (inlineError) {}
+
+		if ( !event.isPropagationStopped() && parent ) {
+			jQuery.event.trigger( event, data, parent, true );
+
+		} else if ( !event.isDefaultPrevented() ) {
+			var old,
+				target = event.target,
+				targetType = type.replace( rnamespaces, "" ),
+				isClick = jQuery.nodeName( target, "a" ) && targetType === "click",
+				special = jQuery.event.special[ targetType ] || {};
+
+			if ( (!special._default || special._default.call( elem, event ) === false) &&
+				!isClick && !(target && target.nodeName && jQuery.noData[target.nodeName.toLowerCase()]) ) {
+
+				try {
+					if ( target[ targetType ] ) {
+						// Make sure that we don't accidentally re-trigger the onFOO events
+						old = target[ "on" + targetType ];
+
+						if ( old ) {
+							target[ "on" + targetType ] = null;
+						}
+
+						jQuery.event.triggered = event.type;
+						target[ targetType ]();
+					}
+
+				// prevent IE from throwing an error for some elements with some event types, see #3533
+				} catch (triggerError) {}
+
+				if ( old ) {
+					target[ "on" + targetType ] = old;
+				}
+
+				jQuery.event.triggered = undefined;
+			}
+		}
+	},
+
+	handle: function( event ) {
+		var all, handlers, namespaces, namespace_re, events,
+			namespace_sort = [],
+			args = jQuery.makeArray( arguments );
+
+		event = args[0] = jQuery.event.fix( event || window.event );
+		event.currentTarget = this;
+
+		// Namespaced event handlers
+		all = event.type.indexOf(".") < 0 && !event.exclusive;
+
+		if ( !all ) {
+			namespaces = event.type.split(".");
+			event.type = namespaces.shift();
+			namespace_sort = namespaces.slice(0).sort();
+			namespace_re = new RegExp("(^|\\.)" + namespace_sort.join("\\.(?:.*\\.)?") + "(\\.|$)");
+		}
+
+		event.namespace = event.namespace || namespace_sort.join(".");
+
+		events = jQuery._data(this, "events");
+
+		handlers = (events || {})[ event.type ];
+
+		if ( events && handlers ) {
+			// Clone the handlers to prevent manipulation
+			handlers = handlers.slice(0);
+
+			for ( var j = 0, l = handlers.length; j < l; j++ ) {
+				var handleObj = handlers[ j ];
+
+				// Filter the functions by class
+				if ( all || namespace_re.test( handleObj.namespace ) ) {
+					// Pass in a reference to the handler function itself
+					// So that we can later remove it
+					event.handler = handleObj.handler;
+					event.data = handleObj.data;
+					event.handleObj = handleObj;
+
+					var ret = handleObj.handler.apply( this, args );
+
+					if ( ret !== undefined ) {
+						event.result = ret;
+						if ( ret === false ) {
+							event.preventDefault();
+							event.stopPropagation();
+						}
+					}
+
+					if ( event.isImmediatePropagationStopped() ) {
+						break;
+					}
+				}
+			}
+		}
+
+		return event.result;
+	},
+
+	props: "altKey attrChange attrName bubbles button cancelable charCode clientX clientY ctrlKey currentTarget data detail eventPhase fromElement handler keyCode layerX layerY metaKey newValue offsetX offsetY pageX pageY prevValue relatedNode relatedTarget screenX screenY shiftKey srcElement target toElement view wheelDelta which".split(" "),
+
+	fix: function( event ) {
+		if ( event[ jQuery.expando ] ) {
+			return event;
+		}
+
+		// store a copy of the original event object
+		// and "clone" to set read-only properties
+		var originalEvent = event;
+		event = jQuery.Event( originalEvent );
+
+		for ( var i = this.props.length, prop; i; ) {
+			prop = this.props[ --i ];
+			event[ prop ] = originalEvent[ prop ];
+		}
+
+		// Fix target property, if necessary
+		if ( !event.target ) {
+			// Fixes #1925 where srcElement might not be defined either
+			event.target = event.srcElement || document;
+		}
+
+		// check if target is a textnode (safari)
+		if ( event.target.nodeType === 3 ) {
+			event.target = event.target.parentNode;
+		}
+
+		// Add relatedTarget, if necessary
+		if ( !event.relatedTarget && event.fromElement ) {
+			event.relatedTarget = event.fromElement === event.target ? event.toElement : event.fromElement;
+		}
+
+		// Calculate pageX/Y if missing and clientX/Y available
+		if ( event.pageX == null && event.clientX != null ) {
+			var doc = document.documentElement,
+				body = document.body;
+
+			event.pageX = event.clientX + (doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc && doc.clientLeft || body && body.clientLeft || 0);
+			event.pageY = event.clientY + (doc && doc.scrollTop  || body && body.scrollTop  || 0) - (doc && doc.clientTop  || body && body.clientTop  || 0);
+		}
+
+		// Add which for key events
+		if ( event.which == null && (event.charCode != null || event.keyCode != null) ) {
+			event.which = event.charCode != null ? event.charCode : event.keyCode;
+		}
+
+		// Add metaKey to non-Mac browsers (use ctrl for PC's and Meta for Macs)
+		if ( !event.metaKey && event.ctrlKey ) {
+			event.metaKey = event.ctrlKey;
+		}
+
+		// Add which for click: 1 === left; 2 === middle; 3 === right
+		// Note: button is not normalized, so don't use it
+		if ( !event.which && event.button !== undefined ) {
+			event.which = (event.button & 1 ? 1 : ( event.button & 2 ? 3 : ( event.button & 4 ? 2 : 0 ) ));
+		}
+
+		return event;
+	},
+
+	// Deprecated, use jQuery.guid instead
+	guid: 1E8,
+
+	// Deprecated, use jQuery.proxy instead
+	proxy: jQuery.proxy,
+
+	special: {
+		ready: {
+			// Make sure the ready event is setup
+			setup: jQuery.bindReady,
+			teardown: jQuery.noop
+		},
+
+		live: {
+			add: function( handleObj ) {
+				jQuery.event.add( this,
+					liveConvert( handleObj.origType, handleObj.selector ),
+					jQuery.extend({}, handleObj, {handler: liveHandler, guid: handleObj.handler.guid}) );
+			},
+
+			remove: function( handleObj ) {
+				jQuery.event.remove( this, liveConvert( handleObj.origType, handleObj.selector ), handleObj );
+			}
+		},
+
+		beforeunload: {
+			setup: function( data, namespaces, eventHandle ) {
+				// We only want to do this special case on windows
+				if ( jQuery.isWindow( this ) ) {
+					this.onbeforeunload = eventHandle;
+				}
+			},
+
+			teardown: function( namespaces, eventHandle ) {
+				if ( this.onbeforeunload === eventHandle ) {
+					this.onbeforeunload = null;
+				}
+			}
+		}
+	}
+};
+
+jQuery.removeEvent = document.removeEventListener ?
+	function( elem, type, handle ) {
+		if ( elem.removeEventListener ) {
+			elem.removeEventListener( type, handle, false );
+		}
+	} :
+	function( elem, type, handle ) {
+		if ( elem.detachEvent ) {
+			elem.detachEvent( "on" + type, handle );
+		}
+	};
+
+jQuery.Event = function( src ) {
+	// Allow instantiation without the 'new' keyword
+	if ( !this.preventDefault ) {
+		return new jQuery.Event( src );
+	}
+
+	// Event object
+	if ( src && src.type ) {
+		this.originalEvent = src;
+		this.type = src.type;
+
+		// Events bubbling up the document may have been marked as prevented
+		// by a handler lower down the tree; reflect the correct value.
+		this.isDefaultPrevented = (src.defaultPrevented || src.returnValue === false ||
+			src.getPreventDefault && src.getPreventDefault()) ? returnTrue : returnFalse;
+
+	// Event type
+	} else {
+		this.type = src;
+	}
+
+	// timeStamp is buggy for some events on Firefox(#3843)
+	// So we won't rely on the native value
+	this.timeStamp = jQuery.now();
+
+	// Mark it as fixed
+	this[ jQuery.expando ] = true;
+};
+
+function returnFalse() {
+	return false;
+}
+function returnTrue() {
+	return true;
+}
+
+// jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
+// http://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
+jQuery.Event.prototype = {
+	preventDefault: function() {
+		this.isDefaultPrevented = returnTrue;
+
+		var e = this.originalEvent;
+		if ( !e ) {
+			return;
+		}
+
+		// if preventDefault exists run it on the original event
+		if ( e.preventDefault ) {
+			e.preventDefault();
+
+		// otherwise set the returnValue property of the original event to false (IE)
+		} else {
+			e.returnValue = false;
+		}
+	},
+	stopPropagation: function() {
+		this.isPropagationStopped = returnTrue;
+
+		var e = this.originalEvent;
+		if ( !e ) {
+			return;
+		}
+		// if stopPropagation exists run it on the original event
+		if ( e.stopPropagation ) {
+			e.stopPropagation();
+		}
+		// otherwise set the cancelBubble property of the original event to true (IE)
+		e.cancelBubble = true;
+	},
+	stopImmediatePropagation: function() {
+		this.isImmediatePropagationStopped = returnTrue;
+		this.stopPropagation();
+	},
+	isDefaultPrevented: returnFalse,
+	isPropagationStopped: returnFalse,
+	isImmediatePropagationStopped: returnFalse
+};
+
+// Checks if an event happened on an element within another element
+// Used in jQuery.event.special.mouseenter and mouseleave handlers
+var withinElement = function( event ) {
+	// Check if mouse(over|out) are still within the same parent element
+	var parent = event.relatedTarget;
+
+	// Firefox sometimes assigns relatedTarget a XUL element
+	// which we cannot access the parentNode property of
+	try {
+
+		// Chrome does something similar, the parentNode property
+		// can be accessed but is null.
+		if ( parent && parent !== document && !parent.parentNode ) {
+			return;
+		}
+		// Traverse up the tree
+		while ( parent && parent !== this ) {
+			parent = parent.parentNode;
+		}
+
+		if ( parent !== this ) {
+			// set the correct event type
+			event.type = event.data;
+
+			// handle event if we actually just moused on to a non sub-element
+			jQuery.event.handle.apply( this, arguments );
+		}
+
+	// assuming we've left the element since we most likely mousedover a xul element
+	} catch(e) { }
+},
+
+// In case of event delegation, we only need to rename the event.type,
+// liveHandler will take care of the rest.
+delegate = function( event ) {
+	event.type = event.data;
+	jQuery.event.handle.apply( this, arguments );
+};
+
+// Create mouseenter and mouseleave events
+jQuery.each({
+	mouseenter: "mouseover",
+	mouseleave: "mouseout"
+}, function( orig, fix ) {
+	jQuery.event.special[ orig ] = {
+		setup: function( data ) {
+			jQuery.event.add( this, fix, data && data.selector ? delegate : withinElement, orig );
+		},
+		teardown: function( data ) {
+			jQuery.event.remove( this, fix, data && data.selector ? delegate : withinElement );
+		}
+	};
+});
+
+// submit delegation
+if ( !jQuery.support.submitBubbles ) {
+
+	jQuery.event.special.submit = {
+		setup: function( data, namespaces ) {
+			if ( this.nodeName && this.nodeName.toLowerCase() !== "form" ) {
+				jQuery.event.add(this, "click.specialSubmit", function( e ) {
+					var elem = e.target,
+						type = elem.type;
+
+					if ( (type === "submit" || type === "image") && jQuery( elem ).closest("form").length ) {
+						trigger( "submit", this, arguments );
+					}
+				});
+
+				jQuery.event.add(this, "keypress.specialSubmit", function( e ) {
+					var elem = e.target,
+						type = elem.type;
+
+					if ( (type === "text" || type === "password") && jQuery( elem ).closest("form").length && e.keyCode === 13 ) {
+						trigger( "submit", this, arguments );
+					}
+				});
+
+			} else {
+				return false;
+			}
+		},
+
+		teardown: function( namespaces ) {
+			jQuery.event.remove( this, ".specialSubmit" );
+		}
+	};
+
+}
+
+// change delegation, happens here so we have bind.
+if ( !jQuery.support.changeBubbles ) {
+
+	var changeFilters,
+
+	getVal = function( elem ) {
+		var type = elem.type, val = elem.value;
+
+		if ( type === "radio" || type === "checkbox" ) {
+			val = elem.checked;
+
+		} else if ( type === "select-multiple" ) {
+			val = elem.selectedIndex > -1 ?
+				jQuery.map( elem.options, function( elem ) {
+					return elem.selected;
+				}).join("-") :
+				"";
+
+		} else if ( elem.nodeName.toLowerCase() === "select" ) {
+			val = elem.selectedIndex;
+		}
+
+		return val;
+	},
+
+	testChange = function testChange( e ) {
+		var elem = e.target, data, val;
+
+		if ( !rformElems.test( elem.nodeName ) || elem.readOnly ) {
+			return;
+		}
+
+		data = jQuery._data( elem, "_change_data" );
+		val = getVal(elem);
+
+		// the current data will be also retrieved by beforeactivate
+		if ( e.type !== "focusout" || elem.type !== "radio" ) {
+			jQuery._data( elem, "_change_data", val );
+		}
+
+		if ( data === undefined || val === data ) {
+			return;
+		}
+
+		if ( data != null || val ) {
+			e.type = "change";
+			e.liveFired = undefined;
+			jQuery.event.trigger( e, arguments[1], elem );
+		}
+	};
+
+	jQuery.event.special.change = {
+		filters: {
+			focusout: testChange,
+
+			beforedeactivate: testChange,
+
+			click: function( e ) {
+				var elem = e.target, type = elem.type;
+
+				if ( type === "radio" || type === "checkbox" || elem.nodeName.toLowerCase() === "select" ) {
+					testChange.call( this, e );
+				}
+			},
+
+			// Change has to be called before submit
+			// Keydown will be called before keypress, which is used in submit-event delegation
+			keydown: function( e ) {
+				var elem = e.target, type = elem.type;
+
+				if ( (e.keyCode === 13 && elem.nodeName.toLowerCase() !== "textarea") ||
+					(e.keyCode === 32 && (type === "checkbox" || type === "radio")) ||
+					type === "select-multiple" ) {
+					testChange.call( this, e );
+				}
+			},
+
+			// Beforeactivate happens also before the previous element is blurred
+			// with this event you can't trigger a change event, but you can store
+			// information
+			beforeactivate: function( e ) {
+				var elem = e.target;
+				jQuery._data( elem, "_change_data", getVal(elem) );
+			}
+		},
+
+		setup: function( data, namespaces ) {
+			if ( this.type === "file" ) {
+				return false;
+			}
+
+			for ( var type in changeFilters ) {
+				jQuery.event.add( this, type + ".specialChange", changeFilters[type] );
+			}
+
+			return rformElems.test( this.nodeName );
+		},
+
+		teardown: function( namespaces ) {
+			jQuery.event.remove( this, ".specialChange" );
+
+			return rformElems.test( this.nodeName );
+		}
+	};
+
+	changeFilters = jQuery.event.special.change.filters;
+
+	// Handle when the input is .focus()'d
+	changeFilters.focus = changeFilters.beforeactivate;
+}
+
+function trigger( type, elem, args ) {
+	// Piggyback on a donor event to simulate a different one.
+	// Fake originalEvent to avoid donor's stopPropagation, but if the
+	// simulated event prevents default then we do the same on the donor.
+	// Don't pass args or remember liveFired; they apply to the donor event.
+	var event = jQuery.extend( {}, args[ 0 ] );
+	event.type = type;
+	event.originalEvent = {};
+	event.liveFired = undefined;
+	jQuery.event.handle.call( elem, event );
+	if ( event.isDefaultPrevented() ) {
+		args[ 0 ].preventDefault();
+	}
+}
+
+// Create "bubbling" focus and blur events
+if ( document.addEventListener ) {
+	jQuery.each({ focus: "focusin", blur: "focusout" }, function( orig, fix ) {
+	
+		// Attach a single capturing handler while someone wants focusin/focusout
+		var attaches = 0;
+		
+		jQuery.event.special[ fix ] = {
+			setup: function() {
+				if ( attaches++ === 0 ) {
+					document.addEventListener( orig, handler, true );
+				}
+			},
+			teardown: function() {
+				if ( --attaches === 0 ) {
+					document.removeEventListener( orig, handler, true );
+				}
+			}
+		};
+
+		function handler( donor ) {
+			// Donor event is always a native one; fix it and switch its type.
+			// Let focusin/out handler cancel the donor focus/blur event.
+			var e = jQuery.event.fix( donor );
+			e.type = fix;
+			e.originalEvent = {};
+			jQuery.event.trigger( e, null, e.target );
+			if ( e.isDefaultPrevented() ) {
+				donor.preventDefault();
+			}
+		}
+	});
+}
+
+jQuery.each(["bind", "one"], function( i, name ) {
+	jQuery.fn[ name ] = function( type, data, fn ) {
+		// Handle object literals
+		if ( typeof type === "object" ) {
+			for ( var key in type ) {
+				this[ name ](key, data, type[key], fn);
+			}
+			return this;
+		}
+
+		if ( jQuery.isFunction( data ) || data === false ) {
+			fn = data;
+			data = undefined;
+		}
+
+		var handler = name === "one" ? jQuery.proxy( fn, function( event ) {
+			jQuery( this ).unbind( event, handler );
+			return fn.apply( this, arguments );
+		}) : fn;
+
+		if ( type === "unload" && name !== "one" ) {
+			this.one( type, data, fn );
+
+		} else {
+			for ( var i = 0, l = this.length; i < l; i++ ) {
+				jQuery.event.add( this[i], type, handler, data );
+			}
+		}
+
+		return this;
+	};
+});
+
+jQuery.fn.extend({
+	unbind: function( type, fn ) {
+		// Handle object literals
+		if ( typeof type === "object" && !type.preventDefault ) {
+			for ( var key in type ) {
+				this.unbind(key, type[key]);
+			}
+
+		} else {
+			for ( var i = 0, l = this.length; i < l; i++ ) {
+				jQuery.event.remove( this[i], type, fn );
+			}
+		}
+
+		return this;
+	},
+
+	delegate: function( selector, types, data, fn ) {
+		return this.live( types, data, fn, selector );
+	},
+
+	undelegate: function( selector, types, fn ) {
+		if ( arguments.length === 0 ) {
+				return this.unbind( "live" );
+
+		} else {
+			return this.die( types, null, fn, selector );
+		}
+	},
+
+	trigger: function( type, data ) {
+		return this.each(function() {
+			jQuery.event.trigger( type, data, this );
+		});
+	},
+
+	triggerHandler: function( type, data ) {
+		if ( this[0] ) {
+			var event = jQuery.Event( type );
+			event.preventDefault();
+			event.stopPropagation();
+			jQuery.event.trigger( event, data, this[0] );
+			return event.result;
+		}
+	},
+
+	toggle: function( fn ) {
+		// Save reference to arguments for access in closure
+		var args = arguments,
+			i = 1;
+
+		// link all the functions, so any of them can unbind this click handler
+		while ( i < args.length ) {
+			jQuery.proxy( fn, args[ i++ ] );
+		}
+
+		return this.click( jQuery.proxy( fn, function( event ) {
+			// Figure out which function to execute
+			var lastToggle = ( jQuery._data( this, "lastToggle" + fn.guid ) || 0 ) % i;
+			jQuery._data( this, "lastToggle" + fn.guid, lastToggle + 1 );
+
+			// Make sure that clicks stop
+			event.preventDefault();
+
+			// and execute the function
+			return args[ lastToggle ].apply( this, arguments ) || false;
+		}));
+	},
+
+	hover: function( fnOver, fnOut ) {
+		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
+	}
+});
+
+var liveMap = {
+	focus: "focusin",
+	blur: "focusout",
+	mouseenter: "mouseover",
+	mouseleave: "mouseout"
+};
+
+jQuery.each(["live", "die"], function( i, name ) {
+	jQuery.fn[ name ] = function( types, data, fn, origSelector /* Internal Use Only */ ) {
+		var type, i = 0, match, namespaces, preType,
+			selector = origSelector || this.selector,
+			context = origSelector ? this : jQuery( this.context );
+
+		if ( typeof types === "object" && !types.preventDefault ) {
+			for ( var key in types ) {
+				context[ name ]( key, data, types[key], selector );
+			}
+
+			return this;
+		}
+
+		if ( jQuery.isFunction( data ) ) {
+			fn = data;
+			data = undefined;
+		}
+
+		types = (types || "").split(" ");
+
+		while ( (type = types[ i++ ]) != null ) {
+			match = rnamespaces.exec( type );
+			namespaces = "";
+
+			if ( match )  {
+				namespaces = match[0];
+				type = type.replace( rnamespaces, "" );
+			}
+
+			if ( type === "hover" ) {
+				types.push( "mouseenter" + namespaces, "mouseleave" + namespaces );
+				continue;
+			}
+
+			preType = type;
+
+			if ( type === "focus" || type === "blur" ) {
+				types.push( liveMap[ type ] + namespaces );
+				type = type + namespaces;
+
+			} else {
+				type = (liveMap[ type ] || type) + namespaces;
+			}
+
+			if ( name === "live" ) {
+				// bind live handler
+				for ( var j = 0, l = context.length; j < l; j++ ) {
+					jQuery.event.add( context[j], "live." + liveConvert( type, selector ),
+						{ data: data, selector: selector, handler: fn, origType: type, origHandler: fn, preType: preType } );
+				}
+
+			} else {
+				// unbind live handler
+				context.unbind( "live." + liveConvert( type, selector ), fn );
+			}
+		}
+
+		return this;
+	};
+});
+
+function liveHandler( event ) {
+	var stop, maxLevel, related, match, handleObj, elem, j, i, l, data, close, namespace, ret,
+		elems = [],
+		selectors = [],
+		events = jQuery._data( this, "events" );
+
+	// Make sure we avoid non-left-click bubbling in Firefox (#3861) and disabled elements in IE (#6911)
+	if ( event.liveFired === this || !events || !events.live || event.target.disabled || event.button && event.type === "click" ) {
+		return;
+	}
+
+	if ( event.namespace ) {
+		namespace = new RegExp("(^|\\.)" + event.namespace.split(".").join("\\.(?:.*\\.)?") + "(\\.|$)");
+	}
+
+	event.liveFired = this;
+
+	var live = events.live.slice(0);
+
+	for ( j = 0; j < live.length; j++ ) {
+		handleObj = live[j];
+
+		if ( handleObj.origType.replace( rnamespaces, "" ) === event.type ) {
+			selectors.push( handleObj.selector );
+
+		} else {
+			live.splice( j--, 1 );
+		}
+	}
+
+	match = jQuery( event.target ).closest( selectors, event.currentTarget );
+
+	for ( i = 0, l = match.length; i < l; i++ ) {
+		close = match[i];
+
+		for ( j = 0; j < live.length; j++ ) {
+			handleObj = live[j];
+
+			if ( close.selector === handleObj.selector && (!namespace || namespace.test( handleObj.namespace )) && !close.elem.disabled ) {
+				elem = close.elem;
+				related = null;
+
+				// Those two events require additional checking
+				if ( handleObj.preType === "mouseenter" || handleObj.preType === "mouseleave" ) {
+					event.type = handleObj.preType;
+					related = jQuery( event.relatedTarget ).closest( handleObj.selector )[0];
+				}
+
+				if ( !related || related !== elem ) {
+					elems.push({ elem: elem, handleObj: handleObj, level: close.level });
+				}
+			}
+		}
+	}
+
+	for ( i = 0, l = elems.length; i < l; i++ ) {
+		match = elems[i];
+
+		if ( maxLevel && match.level > maxLevel ) {
+			break;
+		}
+
+		event.currentTarget = match.elem;
+		event.data = match.handleObj.data;
+		event.handleObj = match.handleObj;
+
+		ret = match.handleObj.origHandler.apply( match.elem, arguments );
+
+		if ( ret === false || event.isPropagationStopped() ) {
+			maxLevel = match.level;
+
+			if ( ret === false ) {
+				stop = false;
+			}
+			if ( event.isImmediatePropagationStopped() ) {
+				break;
+			}
+		}
+	}
+
+	return stop;
+}
+
+function liveConvert( type, selector ) {
+	return (type && type !== "*" ? type + "." : "") + selector.replace(rperiod, "`").replace(rspace, "&");
+}
+
+jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblclick " +
+	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+	"change select submit keydown keypress keyup error").split(" "), function( i, name ) {
+
+	// Handle event binding
+	jQuery.fn[ name ] = function( data, fn ) {
+		if ( fn == null ) {
+			fn = data;
+			data = null;
+		}
+
+		return arguments.length > 0 ?
+			this.bind( name, data, fn ) :
+			this.trigger( name );
+	};
+
+	if ( jQuery.attrFn ) {
+		jQuery.attrFn[ name ] = true;
+	}
+});
+
+
 /*!
  * Sizzle CSS Selector Engine
  *  Copyright 2011, The Dojo Foundation
  *  Released under the MIT, BSD, and GPL Licenses.
  *  More information: http://sizzlejs.com/
  */
-(function(){var bp=/((?:\((?:\([^()]+\)|[^()]+)+\)|\[(?:\[[^\[\]]*\]|['"][^'"]*['"]|[^\[\]'"]+)+\]|\\.|[^ >+~,(\[\\]+)+|[>+~])(\s*,\s*)?((?:.|\r|\n)*)/g,bq=0,bt=Object.prototype.toString,bk=false,bj=true,br=/\\/g,bx=/\W/;[0,0].sort(function(){bj=false;return 0});var bh=function(bC,e,bF,bG){bF=bF||[];e=e||am;var bI=e;if(e.nodeType!==1&&e.nodeType!==9){return[]}if(!bC||typeof bC!=="string"){return bF}var bz,bK,bN,by,bJ,bM,bL,bE,bB=true,bA=bh.isXML(e),bD=[],bH=bC;do{bp.exec("");bz=bp.exec(bH);if(bz){bH=bz[3];bD.push(bz[1]);if(bz[2]){by=bz[3];break}}}while(bz);if(bD.length>1&&bl.exec(bC)){if(bD.length===2&&bm.relative[bD[0]]){bK=bu(bD[0]+bD[1],e)}else{bK=bm.relative[bD[0]]?[e]:bh(bD.shift(),e);while(bD.length){bC=bD.shift();if(bm.relative[bC]){bC+=bD.shift()}bK=bu(bC,bK)}}}else{if(!bG&&bD.length>1&&e.nodeType===9&&!bA&&bm.match.ID.test(bD[0])&&!bm.match.ID.test(bD[bD.length-1])){bJ=bh.find(bD.shift(),e,bA);e=bJ.expr?bh.filter(bJ.expr,bJ.set)[0]:bJ.set[0]}if(e){bJ=bG?{expr:bD.pop(),set:bn(bG)}:bh.find(bD.pop(),bD.length===1&&(bD[0]==="~"||bD[0]==="+")&&e.parentNode?e.parentNode:e,bA);bK=bJ.expr?bh.filter(bJ.expr,bJ.set):bJ.set;if(bD.length>0){bN=bn(bK)}else{bB=false}while(bD.length){bM=bD.pop();bL=bM;if(!bm.relative[bM]){bM=""}else{bL=bD.pop()}if(bL==null){bL=e}bm.relative[bM](bN,bL,bA)}}else{bN=bD=[]}}if(!bN){bN=bK}if(!bN){bh.error(bM||bC)}if(bt.call(bN)==="[object Array]"){if(!bB){bF.push.apply(bF,bN)}else{if(e&&e.nodeType===1){for(bE=0;bN[bE]!=null;bE++){if(bN[bE]&&(bN[bE]===true||bN[bE].nodeType===1&&bh.contains(e,bN[bE]))){bF.push(bK[bE])}}}else{for(bE=0;bN[bE]!=null;bE++){if(bN[bE]&&bN[bE].nodeType===1){bF.push(bK[bE])}}}}}else{bn(bN,bF)}if(by){bh(by,bI,bF,bG);bh.uniqueSort(bF)}return bF};bh.uniqueSort=function(by){if(bs){bk=bj;by.sort(bs);if(bk){for(var e=1;e<by.length;e++){if(by[e]===by[e-1]){by.splice(e--,1)}}}}return by};bh.matches=function(e,by){return bh(e,null,null,by)};bh.matchesSelector=function(e,by){return bh(by,null,null,[e]).length>0};bh.find=function(bE,e,bF){var bD;if(!bE){return[]}for(var bA=0,bz=bm.order.length;bA<bz;bA++){var bB,bC=bm.order[bA];if((bB=bm.leftMatch[bC].exec(bE))){var by=bB[1];bB.splice(1,1);if(by.substr(by.length-1)!=="\\"){bB[1]=(bB[1]||"").replace(br,"");bD=bm.find[bC](bB,e,bF);if(bD!=null){bE=bE.replace(bm.match[bC],"");break}}}}if(!bD){bD=typeof e.getElementsByTagName!=="undefined"?e.getElementsByTagName("*"):[]}return{set:bD,expr:bE}};bh.filter=function(bI,bH,bL,bB){var bD,e,bz=bI,bN=[],bF=bH,bE=bH&&bH[0]&&bh.isXML(bH[0]);while(bI&&bH.length){for(var bG in bm.filter){if((bD=bm.leftMatch[bG].exec(bI))!=null&&bD[2]){var bM,bK,by=bm.filter[bG],bA=bD[1];e=false;bD.splice(1,1);if(bA.substr(bA.length-1)==="\\"){continue}if(bF===bN){bN=[]}if(bm.preFilter[bG]){bD=bm.preFilter[bG](bD,bF,bL,bN,bB,bE);if(!bD){e=bM=true}else{if(bD===true){continue}}}if(bD){for(var bC=0;(bK=bF[bC])!=null;bC++){if(bK){bM=by(bK,bD,bC,bF);var bJ=bB^!!bM;if(bL&&bM!=null){if(bJ){e=true}else{bF[bC]=false}}else{if(bJ){bN.push(bK);e=true}}}}}if(bM!==I){if(!bL){bF=bN}bI=bI.replace(bm.match[bG],"");if(!e){return[]}break}}}if(bI===bz){if(e==null){bh.error(bI)}else{break}}bz=bI}return bF};bh.error=function(e){throw"Syntax error, unrecognized expression: "+e};var bm=bh.selectors={order:["ID","NAME","TAG"],match:{ID:/#((?:[\w\u00c0-\uFFFF\-]|\\.)+)/,CLASS:/\.((?:[\w\u00c0-\uFFFF\-]|\\.)+)/,NAME:/\[name=['"]*((?:[\w\u00c0-\uFFFF\-]|\\.)+)['"]*\]/,ATTR:/\[\s*((?:[\w\u00c0-\uFFFF\-]|\\.)+)\s*(?:(\S?=)\s*(?:(['"])(.*?)\3|(#?(?:[\w\u00c0-\uFFFF\-]|\\.)*)|)|)\s*\]/,TAG:/^((?:[\w\u00c0-\uFFFF\*\-]|\\.)+)/,CHILD:/:(only|nth|last|first)-child(?:\(\s*(even|odd|(?:[+\-]?\d+|(?:[+\-]?\d*)?n\s*(?:[+\-]\s*\d+)?))\s*\))?/,POS:/:(nth|eq|gt|lt|first|last|even|odd)(?:\((\d*)\))?(?=[^\-]|$)/,PSEUDO:/:((?:[\w\u00c0-\uFFFF\-]|\\.)+)(?:\((['"]?)((?:\([^\)]+\)|[^\(\)]*)+)\2\))?/},leftMatch:{},attrMap:{"class":"className","for":"htmlFor"},attrHandle:{href:function(e){return e.getAttribute("href")},type:function(e){return e.getAttribute("type")}},relative:{"+":function(bD,by){var bA=typeof by==="string",bC=bA&&!bx.test(by),bE=bA&&!bC;if(bC){by=by.toLowerCase()}for(var bz=0,e=bD.length,bB;bz<e;bz++){if((bB=bD[bz])){while((bB=bB.previousSibling)&&bB.nodeType!==1){}bD[bz]=bE||bB&&bB.nodeName.toLowerCase()===by?bB||false:bB===by}}if(bE){bh.filter(by,bD,true)}},">":function(bD,by){var bC,bB=typeof by==="string",bz=0,e=bD.length;if(bB&&!bx.test(by)){by=by.toLowerCase();for(;bz<e;bz++){bC=bD[bz];if(bC){var bA=bC.parentNode;bD[bz]=bA.nodeName.toLowerCase()===by?bA:false}}}else{for(;bz<e;bz++){bC=bD[bz];if(bC){bD[bz]=bB?bC.parentNode:bC.parentNode===by}}if(bB){bh.filter(by,bD,true)}}},"":function(bA,by,bC){var bB,bz=bq++,e=bv;if(typeof by==="string"&&!bx.test(by)){by=by.toLowerCase();bB=by;e=bf}e("parentNode",by,bz,bA,bB,bC)},"~":function(bA,by,bC){var bB,bz=bq++,e=bv;if(typeof by==="string"&&!bx.test(by)){by=by.toLowerCase();bB=by;e=bf}e("previousSibling",by,bz,bA,bB,bC)}},find:{ID:function(by,bz,bA){if(typeof bz.getElementById!=="undefined"&&!bA){var e=bz.getElementById(by[1]);return e&&e.parentNode?[e]:[]}},NAME:function(bz,bC){if(typeof bC.getElementsByName!=="undefined"){var by=[],bB=bC.getElementsByName(bz[1]);for(var bA=0,e=bB.length;bA<e;bA++){if(bB[bA].getAttribute("name")===bz[1]){by.push(bB[bA])}}return by.length===0?null:by}},TAG:function(e,by){if(typeof by.getElementsByTagName!=="undefined"){return by.getElementsByTagName(e[1])}}},preFilter:{CLASS:function(bA,by,bz,e,bD,bE){bA=" "+bA[1].replace(br,"")+" ";if(bE){return bA}for(var bB=0,bC;(bC=by[bB])!=null;bB++){if(bC){if(bD^(bC.className&&(" "+bC.className+" ").replace(/[\t\n\r]/g," ").indexOf(bA)>=0)){if(!bz){e.push(bC)}}else{if(bz){by[bB]=false}}}}return false},ID:function(e){return e[1].replace(br,"")},TAG:function(by,e){return by[1].replace(br,"").toLowerCase()},CHILD:function(e){if(e[1]==="nth"){if(!e[2]){bh.error(e[0])}e[2]=e[2].replace(/^\+|\s*/g,"");var by=/(-?)(\d*)(?:n([+\-]?\d*))?/.exec(e[2]==="even"&&"2n"||e[2]==="odd"&&"2n+1"||!/\D/.test(e[2])&&"0n+"+e[2]||e[2]);e[2]=(by[1]+(by[2]||1))-0;e[3]=by[3]-0}else{if(e[2]){bh.error(e[0])}}e[0]=bq++;return e},ATTR:function(bB,by,bz,e,bC,bD){var bA=bB[1]=bB[1].replace(br,"");if(!bD&&bm.attrMap[bA]){bB[1]=bm.attrMap[bA]}bB[4]=(bB[4]||bB[5]||"").replace(br,"");if(bB[2]==="~="){bB[4]=" "+bB[4]+" "}return bB},PSEUDO:function(bB,by,bz,e,bC){if(bB[1]==="not"){if((bp.exec(bB[3])||"").length>1||/^\w/.test(bB[3])){bB[3]=bh(bB[3],null,null,by)}else{var bA=bh.filter(bB[3],by,bz,true^bC);if(!bz){e.push.apply(e,bA)}return false}}else{if(bm.match.POS.test(bB[0])||bm.match.CHILD.test(bB[0])){return true}}return bB},POS:function(e){e.unshift(true);return e}},filters:{enabled:function(e){return e.disabled===false&&e.type!=="hidden"},disabled:function(e){return e.disabled===true},checked:function(e){return e.checked===true},selected:function(e){if(e.parentNode){e.parentNode.selectedIndex}return e.selected===true},parent:function(e){return !!e.firstChild},empty:function(e){return !e.firstChild},has:function(bz,by,e){return !!bh(e[3],bz).length},header:function(e){return(/h\d/i).test(e.nodeName)},text:function(bz){var e=bz.getAttribute("type"),by=bz.type;return"text"===by&&(e===by||e===null)},radio:function(e){return"radio"===e.type},checkbox:function(e){return"checkbox"===e.type},file:function(e){return"file"===e.type},password:function(e){return"password"===e.type},submit:function(e){return"submit"===e.type},image:function(e){return"image"===e.type},reset:function(e){return"reset"===e.type},button:function(e){return"button"===e.type||e.nodeName.toLowerCase()==="button"},input:function(e){return(/input|select|textarea|button/i).test(e.nodeName)}},setFilters:{first:function(by,e){return e===0},last:function(bz,by,e,bA){return by===bA.length-1},even:function(by,e){return e%2===0},odd:function(by,e){return e%2===1},lt:function(bz,by,e){return by<e[3]-0},gt:function(bz,by,e){return by>e[3]-0},nth:function(bz,by,e){return e[3]-0===by},eq:function(bz,by,e){return e[3]-0===by}},filter:{PSEUDO:function(bz,bE,bD,bF){var e=bE[1],by=bm.filters[e];if(by){return by(bz,bD,bE,bF)}else{if(e==="contains"){return(bz.textContent||bz.innerText||bh.getText([bz])||"").indexOf(bE[3])>=0}else{if(e==="not"){var bA=bE[3];for(var bC=0,bB=bA.length;bC<bB;bC++){if(bA[bC]===bz){return false}}return true}else{bh.error(e)}}}},CHILD:function(e,bA){var bD=bA[1],by=e;switch(bD){case"only":case"first":while((by=by.previousSibling)){if(by.nodeType===1){return false}}if(bD==="first"){return true}by=e;case"last":while((by=by.nextSibling)){if(by.nodeType===1){return false}}return true;case"nth":var bz=bA[2],bG=bA[3];if(bz===1&&bG===0){return true}var bC=bA[0],bF=e.parentNode;if(bF&&(bF.sizcache!==bC||!e.nodeIndex)){var bB=0;for(by=bF.firstChild;by;by=by.nextSibling){if(by.nodeType===1){by.nodeIndex=++bB}}bF.sizcache=bC}var bE=e.nodeIndex-bG;if(bz===0){return bE===0}else{return(bE%bz===0&&bE/bz>=0)}}},ID:function(by,e){return by.nodeType===1&&by.getAttribute("id")===e},TAG:function(by,e){return(e==="*"&&by.nodeType===1)||by.nodeName.toLowerCase()===e},CLASS:function(by,e){return(" "+(by.className||by.getAttribute("class"))+" ").indexOf(e)>-1},ATTR:function(bC,bA){var bz=bA[1],e=bm.attrHandle[bz]?bm.attrHandle[bz](bC):bC[bz]!=null?bC[bz]:bC.getAttribute(bz),bD=e+"",bB=bA[2],by=bA[4];return e==null?bB==="!=":bB==="="?bD===by:bB==="*="?bD.indexOf(by)>=0:bB==="~="?(" "+bD+" ").indexOf(by)>=0:!by?bD&&e!==false:bB==="!="?bD!==by:bB==="^="?bD.indexOf(by)===0:bB==="$="?bD.substr(bD.length-by.length)===by:bB==="|="?bD===by||bD.substr(0,by.length+1)===by+"-":false},POS:function(bB,by,bz,bC){var e=by[2],bA=bm.setFilters[e];if(bA){return bA(bB,bz,by,bC)}}}};var bl=bm.match.POS,bg=function(by,e){return"\\"+(e-0+1)};for(var bi in bm.match){bm.match[bi]=new RegExp(bm.match[bi].source+(/(?![^\[]*\])(?![^\(]*\))/.source));bm.leftMatch[bi]=new RegExp(/(^(?:.|\r|\n)*?)/.source+bm.match[bi].source.replace(/\\(\d+)/g,bg))}var bn=function(by,e){by=Array.prototype.slice.call(by,0);if(e){e.push.apply(e,by);return e}return by};try{Array.prototype.slice.call(am.documentElement.childNodes,0)[0].nodeType}catch(bw){bn=function(bB,bA){var bz=0,by=bA||[];if(bt.call(bB)==="[object Array]"){Array.prototype.push.apply(by,bB)}else{if(typeof bB.length==="number"){for(var e=bB.length;bz<e;bz++){by.push(bB[bz])}}else{for(;bB[bz];bz++){by.push(bB[bz])}}}return by}}var bs,bo;if(am.documentElement.compareDocumentPosition){bs=function(by,e){if(by===e){bk=true;return 0}if(!by.compareDocumentPosition||!e.compareDocumentPosition){return by.compareDocumentPosition?-1:1}return by.compareDocumentPosition(e)&4?-1:1}}else{bs=function(bF,bE){var bC,by,bz=[],e=[],bB=bF.parentNode,bD=bE.parentNode,bG=bB;if(bF===bE){bk=true;return 0}else{if(bB===bD){return bo(bF,bE)}else{if(!bB){return -1}else{if(!bD){return 1}}}}while(bG){bz.unshift(bG);bG=bG.parentNode}bG=bD;while(bG){e.unshift(bG);bG=bG.parentNode}bC=bz.length;by=e.length;for(var bA=0;bA<bC&&bA<by;bA++){if(bz[bA]!==e[bA]){return bo(bz[bA],e[bA])}}return bA===bC?bo(bF,e[bA],-1):bo(bz[bA],bE,1)};bo=function(by,e,bz){if(by===e){return bz}var bA=by.nextSibling;while(bA){if(bA===e){return -1}bA=bA.nextSibling}return 1}}bh.getText=function(e){var by="",bA;for(var bz=0;e[bz];bz++){bA=e[bz];if(bA.nodeType===3||bA.nodeType===4){by+=bA.nodeValue}else{if(bA.nodeType!==8){by+=bh.getText(bA.childNodes)}}}return by};(function(){var by=am.createElement("div"),bz="script"+(new Date()).getTime(),e=am.documentElement;by.innerHTML="<a name='"+bz+"'/>";e.insertBefore(by,e.firstChild);if(am.getElementById(bz)){bm.find.ID=function(bB,bC,bD){if(typeof bC.getElementById!=="undefined"&&!bD){var bA=bC.getElementById(bB[1]);return bA?bA.id===bB[1]||typeof bA.getAttributeNode!=="undefined"&&bA.getAttributeNode("id").nodeValue===bB[1]?[bA]:I:[]}};bm.filter.ID=function(bC,bA){var bB=typeof bC.getAttributeNode!=="undefined"&&bC.getAttributeNode("id");return bC.nodeType===1&&bB&&bB.nodeValue===bA}}e.removeChild(by);e=by=null})();(function(){var e=am.createElement("div");e.appendChild(am.createComment(""));if(e.getElementsByTagName("*").length>0){bm.find.TAG=function(by,bC){var bB=bC.getElementsByTagName(by[1]);if(by[1]==="*"){var bA=[];for(var bz=0;bB[bz];bz++){if(bB[bz].nodeType===1){bA.push(bB[bz])}}bB=bA}return bB}}e.innerHTML="<a href='#'></a>";if(e.firstChild&&typeof e.firstChild.getAttribute!=="undefined"&&e.firstChild.getAttribute("href")!=="#"){bm.attrHandle.href=function(by){return by.getAttribute("href",2)}}e=null})();if(am.querySelectorAll){(function(){var e=bh,bA=am.createElement("div"),bz="__sizzle__";bA.innerHTML="<p class='TEST'></p>";if(bA.querySelectorAll&&bA.querySelectorAll(".TEST").length===0){return}bh=function(bL,bC,bG,bK){bC=bC||am;if(!bK&&!bh.isXML(bC)){var bJ=/^(\w+$)|^\.([\w\-]+$)|^#([\w\-]+$)/.exec(bL);if(bJ&&(bC.nodeType===1||bC.nodeType===9)){if(bJ[1]){return bn(bC.getElementsByTagName(bL),bG)}else{if(bJ[2]&&bm.find.CLASS&&bC.getElementsByClassName){return bn(bC.getElementsByClassName(bJ[2]),bG)}}}if(bC.nodeType===9){if(bL==="body"&&bC.body){return bn([bC.body],bG)}else{if(bJ&&bJ[3]){var bF=bC.getElementById(bJ[3]);if(bF&&bF.parentNode){if(bF.id===bJ[3]){return bn([bF],bG)}}else{return bn([],bG)}}}try{return bn(bC.querySelectorAll(bL),bG)}catch(bH){}}else{if(bC.nodeType===1&&bC.nodeName.toLowerCase()!=="object"){var bD=bC,bE=bC.getAttribute("id"),bB=bE||bz,bN=bC.parentNode,bM=/^\s*[+~]/.test(bL);if(!bE){bC.setAttribute("id",bB)}else{bB=bB.replace(/'/g,"\\$&")}if(bM&&bN){bC=bC.parentNode}try{if(!bM||bN){return bn(bC.querySelectorAll("[id='"+bB+"'] "+bL),bG)}}catch(bI){}finally{if(!bE){bD.removeAttribute("id")}}}}}return e(bL,bC,bG,bK)};for(var by in e){bh[by]=e[by]}bA=null})()}(function(){var e=am.documentElement,bz=e.matchesSelector||e.mozMatchesSelector||e.webkitMatchesSelector||e.msMatchesSelector;if(bz){var bB=!bz.call(am.createElement("div"),"div"),by=false;try{bz.call(am.documentElement,"[test!='']:sizzle")}catch(bA){by=true}bh.matchesSelector=function(bD,bF){bF=bF.replace(/\=\s*([^'"\]]*)\s*\]/g,"='$1']");if(!bh.isXML(bD)){try{if(by||!bm.match.PSEUDO.test(bF)&&!/!=/.test(bF)){var bC=bz.call(bD,bF);if(bC||!bB||bD.document&&bD.document.nodeType!==11){return bC}}}catch(bE){}}return bh(bF,null,null,[bD]).length>0}}})();(function(){var e=am.createElement("div");e.innerHTML="<div class='test e'></div><div class='test'></div>";if(!e.getElementsByClassName||e.getElementsByClassName("e").length===0){return}e.lastChild.className="e";if(e.getElementsByClassName("e").length===1){return}bm.order.splice(1,0,"CLASS");bm.find.CLASS=function(by,bz,bA){if(typeof bz.getElementsByClassName!=="undefined"&&!bA){return bz.getElementsByClassName(by[1])}};e=null})();function bf(by,bD,bC,bG,bE,bF){for(var bA=0,bz=bG.length;bA<bz;bA++){var e=bG[bA];if(e){var bB=false;e=e[by];while(e){if(e.sizcache===bC){bB=bG[e.sizset];break}if(e.nodeType===1&&!bF){e.sizcache=bC;e.sizset=bA}if(e.nodeName.toLowerCase()===bD){bB=e;break}e=e[by]}bG[bA]=bB}}}function bv(by,bD,bC,bG,bE,bF){for(var bA=0,bz=bG.length;bA<bz;bA++){var e=bG[bA];if(e){var bB=false;e=e[by];while(e){if(e.sizcache===bC){bB=bG[e.sizset];break}if(e.nodeType===1){if(!bF){e.sizcache=bC;e.sizset=bA}if(typeof bD!=="string"){if(e===bD){bB=true;break}}else{if(bh.filter(bD,[e]).length>0){bB=e;break}}}e=e[by]}bG[bA]=bB}}}if(am.documentElement.contains){bh.contains=function(by,e){return by!==e&&(by.contains?by.contains(e):true)}}else{if(am.documentElement.compareDocumentPosition){bh.contains=function(by,e){return !!(by.compareDocumentPosition(e)&16)}}else{bh.contains=function(){return false}}}bh.isXML=function(e){var by=(e?e.ownerDocument||e:0).documentElement;return by?by.nodeName!=="HTML":false};var bu=function(e,bE){var bC,bA=[],bB="",bz=bE.nodeType?[bE]:bE;while((bC=bm.match.PSEUDO.exec(e))){bB+=bC[0];e=e.replace(bm.match.PSEUDO,"")}e=bm.relative[e]?e+"*":e;for(var bD=0,by=bz.length;bD<by;bD++){bh(e,bz[bD],bA)}return bh.filter(bB,bA)};b.find=bh;b.expr=bh.selectors;b.expr[":"]=b.expr.filters;b.unique=bh.uniqueSort;b.text=bh.getText;b.isXMLDoc=bh.isXML;b.contains=bh.contains})();var X=/Until$/,aj=/^(?:parents|prevUntil|prevAll)/,aY=/,/,bb=/^.[^:#\[\.,]*$/,N=Array.prototype.slice,G=b.expr.match.POS,ap={children:true,contents:true,next:true,prev:true};b.fn.extend({find:function(e){var bg=this.pushStack("","find",e),bj=0;for(var bh=0,bf=this.length;bh<bf;bh++){bj=bg.length;b.find(e,this[bh],bg);if(bh>0){for(var bk=bj;bk<bg.length;bk++){for(var bi=0;bi<bj;bi++){if(bg[bi]===bg[bk]){bg.splice(bk--,1);break}}}}}return bg},has:function(bf){var e=b(bf);return this.filter(function(){for(var bh=0,bg=e.length;bh<bg;bh++){if(b.contains(this,e[bh])){return true}}})},not:function(e){return this.pushStack(aw(this,e,false),"not",e)},filter:function(e){return this.pushStack(aw(this,e,true),"filter",e)},is:function(e){return !!e&&b.filter(e,this).length>0},closest:function(bo,bf){var bl=[],bi,bg,bn=this[0];if(b.isArray(bo)){var bk,bh,bj={},e=1;if(bn&&bo.length){for(bi=0,bg=bo.length;bi<bg;bi++){bh=bo[bi];if(!bj[bh]){bj[bh]=b.expr.match.POS.test(bh)?b(bh,bf||this.context):bh}}while(bn&&bn.ownerDocument&&bn!==bf){for(bh in bj){bk=bj[bh];if(bk.jquery?bk.index(bn)>-1:b(bn).is(bk)){bl.push({selector:bh,elem:bn,level:e})}}bn=bn.parentNode;e++}}return bl}var bm=G.test(bo)?b(bo,bf||this.context):null;for(bi=0,bg=this.length;bi<bg;bi++){bn=this[bi];while(bn){if(bm?bm.index(bn)>-1:b.find.matchesSelector(bn,bo)){bl.push(bn);break}else{bn=bn.parentNode;if(!bn||!bn.ownerDocument||bn===bf){break}}}}bl=bl.length>1?b.unique(bl):bl;return this.pushStack(bl,"closest",bo)},index:function(e){if(!e||typeof e==="string"){return b.inArray(this[0],e?b(e):this.parent().children())}return b.inArray(e.jquery?e[0]:e,this)},add:function(e,bf){var bh=typeof e==="string"?b(e,bf):b.makeArray(e),bg=b.merge(this.get(),bh);return this.pushStack(C(bh[0])||C(bg[0])?bg:b.unique(bg))},andSelf:function(){return this.add(this.prevObject)}});function C(e){return !e||!e.parentNode||e.parentNode.nodeType===11}b.each({parent:function(bf){var e=bf.parentNode;return e&&e.nodeType!==11?e:null},parents:function(e){return b.dir(e,"parentNode")},parentsUntil:function(bf,e,bg){return b.dir(bf,"parentNode",bg)},next:function(e){return b.nth(e,2,"nextSibling")},prev:function(e){return b.nth(e,2,"previousSibling")},nextAll:function(e){return b.dir(e,"nextSibling")},prevAll:function(e){return b.dir(e,"previousSibling")},nextUntil:function(bf,e,bg){return b.dir(bf,"nextSibling",bg)},prevUntil:function(bf,e,bg){return b.dir(bf,"previousSibling",bg)},siblings:function(e){return b.sibling(e.parentNode.firstChild,e)},children:function(e){return b.sibling(e.firstChild)},contents:function(e){return b.nodeName(e,"iframe")?e.contentDocument||e.contentWindow.document:b.makeArray(e.childNodes)}},function(e,bf){b.fn[e]=function(bj,bg){var bi=b.map(this,bf,bj),bh=N.call(arguments);if(!X.test(e)){bg=bj}if(bg&&typeof bg==="string"){bi=b.filter(bg,bi)}bi=this.length>1&&!ap[e]?b.unique(bi):bi;if((this.length>1||aY.test(bg))&&aj.test(e)){bi=bi.reverse()}return this.pushStack(bi,e,bh.join(","))}});b.extend({filter:function(bg,e,bf){if(bf){bg=":not("+bg+")"}return e.length===1?b.find.matchesSelector(e[0],bg)?[e[0]]:[]:b.find.matches(bg,e)},dir:function(bg,bf,bi){var e=[],bh=bg[bf];while(bh&&bh.nodeType!==9&&(bi===I||bh.nodeType!==1||!b(bh).is(bi))){if(bh.nodeType===1){e.push(bh)}bh=bh[bf]}return e},nth:function(bi,e,bg,bh){e=e||1;var bf=0;for(;bi;bi=bi[bg]){if(bi.nodeType===1&&++bf===e){break}}return bi},sibling:function(bg,bf){var e=[];for(;bg;bg=bg.nextSibling){if(bg.nodeType===1&&bg!==bf){e.push(bg)}}return e}});function aw(bh,bg,e){if(b.isFunction(bg)){return b.grep(bh,function(bj,bi){var bk=!!bg.call(bj,bi,bj);return bk===e})}else{if(bg.nodeType){return b.grep(bh,function(bj,bi){return(bj===bg)===e})}else{if(typeof bg==="string"){var bf=b.grep(bh,function(bi){return bi.nodeType===1});if(bb.test(bg)){return b.filter(bg,bf,!e)}else{bg=b.filter(bg,bf)}}}}return b.grep(bh,function(bj,bi){return(b.inArray(bj,bg)>=0)===e})}var ac=/ jQuery\d+="(?:\d+|null)"/g,ak=/^\s+/,P=/<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/ig,d=/<([\w:]+)/,w=/<tbody/i,U=/<|&#?\w+;/,M=/<(?:script|object|embed|option|style)/i,n=/checked\s*(?:[^=]|=\s*.checked.)/i,ao={option:[1,"<select multiple='multiple'>","</select>"],legend:[1,"<fieldset>","</fieldset>"],thead:[1,"<table>","</table>"],tr:[2,"<table><tbody>","</tbody></table>"],td:[3,"<table><tbody><tr>","</tr></tbody></table>"],col:[2,"<table><tbody></tbody><colgroup>","</colgroup></table>"],area:[1,"<map>","</map>"],_default:[0,"",""]};ao.optgroup=ao.option;ao.tbody=ao.tfoot=ao.colgroup=ao.caption=ao.thead;ao.th=ao.td;if(!b.support.htmlSerialize){ao._default=[1,"div<div>","</div>"]}b.fn.extend({text:function(e){if(b.isFunction(e)){return this.each(function(bg){var bf=b(this);bf.text(e.call(this,bg,bf.text()))})}if(typeof e!=="object"&&e!==I){return this.empty().append((this[0]&&this[0].ownerDocument||am).createTextNode(e))}return b.text(this)},wrapAll:function(e){if(b.isFunction(e)){return this.each(function(bg){b(this).wrapAll(e.call(this,bg))})}if(this[0]){var bf=b(e,this[0].ownerDocument).eq(0).clone(true);if(this[0].parentNode){bf.insertBefore(this[0])}bf.map(function(){var bg=this;while(bg.firstChild&&bg.firstChild.nodeType===1){bg=bg.firstChild}return bg}).append(this)}return this},wrapInner:function(e){if(b.isFunction(e)){return this.each(function(bf){b(this).wrapInner(e.call(this,bf))})}return this.each(function(){var bf=b(this),bg=bf.contents();if(bg.length){bg.wrapAll(e)}else{bf.append(e)}})},wrap:function(e){return this.each(function(){b(this).wrapAll(e)})},unwrap:function(){return this.parent().each(function(){if(!b.nodeName(this,"body")){b(this).replaceWith(this.childNodes)}}).end()},append:function(){return this.domManip(arguments,true,function(e){if(this.nodeType===1){this.appendChild(e)}})},prepend:function(){return this.domManip(arguments,true,function(e){if(this.nodeType===1){this.insertBefore(e,this.firstChild)}})},before:function(){if(this[0]&&this[0].parentNode){return this.domManip(arguments,false,function(bf){this.parentNode.insertBefore(bf,this)})}else{if(arguments.length){var e=b(arguments[0]);e.push.apply(e,this.toArray());return this.pushStack(e,"before",arguments)}}},after:function(){if(this[0]&&this[0].parentNode){return this.domManip(arguments,false,function(bf){this.parentNode.insertBefore(bf,this.nextSibling)})}else{if(arguments.length){var e=this.pushStack(this,"after",arguments);e.push.apply(e,b(arguments[0]).toArray());return e}}},remove:function(e,bh){for(var bf=0,bg;(bg=this[bf])!=null;bf++){if(!e||b.filter(e,[bg]).length){if(!bh&&bg.nodeType===1){b.cleanData(bg.getElementsByTagName("*"));b.cleanData([bg])}if(bg.parentNode){bg.parentNode.removeChild(bg)}}}return this},empty:function(){for(var e=0,bf;(bf=this[e])!=null;e++){if(bf.nodeType===1){b.cleanData(bf.getElementsByTagName("*"))}while(bf.firstChild){bf.removeChild(bf.firstChild)}}return this},clone:function(bf,e){bf=bf==null?false:bf;e=e==null?bf:e;return this.map(function(){return b.clone(this,bf,e)})},html:function(bh){if(bh===I){return this[0]&&this[0].nodeType===1?this[0].innerHTML.replace(ac,""):null}else{if(typeof bh==="string"&&!M.test(bh)&&(b.support.leadingWhitespace||!ak.test(bh))&&!ao[(d.exec(bh)||["",""])[1].toLowerCase()]){bh=bh.replace(P,"<$1></$2>");try{for(var bg=0,bf=this.length;bg<bf;bg++){if(this[bg].nodeType===1){b.cleanData(this[bg].getElementsByTagName("*"));this[bg].innerHTML=bh}}}catch(bi){this.empty().append(bh)}}else{if(b.isFunction(bh)){this.each(function(bj){var e=b(this);e.html(bh.call(this,bj,e.html()))})}else{this.empty().append(bh)}}}return this},replaceWith:function(e){if(this[0]&&this[0].parentNode){if(b.isFunction(e)){return this.each(function(bh){var bg=b(this),bf=bg.html();bg.replaceWith(e.call(this,bh,bf))})}if(typeof e!=="string"){e=b(e).detach()}return this.each(function(){var bg=this.nextSibling,bf=this.parentNode;b(this).remove();if(bg){b(bg).before(e)}else{b(bf).append(e)}})}else{return this.length?this.pushStack(b(b.isFunction(e)?e():e),"replaceWith",e):this}},detach:function(e){return this.remove(e,true)},domManip:function(bl,bp,bo){var bh,bi,bk,bn,bm=bl[0],bf=[];if(!b.support.checkClone&&arguments.length===3&&typeof bm==="string"&&n.test(bm)){return this.each(function(){b(this).domManip(bl,bp,bo,true)})}if(b.isFunction(bm)){return this.each(function(br){var bq=b(this);bl[0]=bm.call(this,br,bp?bq.html():I);bq.domManip(bl,bp,bo)})}if(this[0]){bn=bm&&bm.parentNode;if(b.support.parentNode&&bn&&bn.nodeType===11&&bn.childNodes.length===this.length){bh={fragment:bn}}else{bh=b.buildFragment(bl,this,bf)}bk=bh.fragment;if(bk.childNodes.length===1){bi=bk=bk.firstChild}else{bi=bk.firstChild}if(bi){bp=bp&&b.nodeName(bi,"tr");for(var bg=0,e=this.length,bj=e-1;bg<e;bg++){bo.call(bp?aZ(this[bg],bi):this[bg],bh.cacheable||(e>1&&bg<bj)?b.clone(bk,true,true):bk)}}if(bf.length){b.each(bf,ba)}}return this}});function aZ(e,bf){return b.nodeName(e,"table")?(e.getElementsByTagName("tbody")[0]||e.appendChild(e.ownerDocument.createElement("tbody"))):e}function t(e,bl){if(bl.nodeType!==1||!b.hasData(e)){return}var bk=b.expando,bh=b.data(e),bi=b.data(bl,bh);if((bh=bh[bk])){var bm=bh.events;bi=bi[bk]=b.extend({},bh);if(bm){delete bi.handle;bi.events={};for(var bj in bm){for(var bg=0,bf=bm[bj].length;bg<bf;bg++){b.event.add(bl,bj+(bm[bj][bg].namespace?".":"")+bm[bj][bg].namespace,bm[bj][bg],bm[bj][bg].data)}}}}}function ad(bf,e){if(e.nodeType!==1){return}var bg=e.nodeName.toLowerCase();e.clearAttributes();e.mergeAttributes(bf);if(bg==="object"){e.outerHTML=bf.outerHTML}else{if(bg==="input"&&(bf.type==="checkbox"||bf.type==="radio")){if(bf.checked){e.defaultChecked=e.checked=bf.checked}if(e.value!==bf.value){e.value=bf.value}}else{if(bg==="option"){e.selected=bf.defaultSelected}else{if(bg==="input"||bg==="textarea"){e.defaultValue=bf.defaultValue}}}}e.removeAttribute(b.expando)}b.buildFragment=function(bj,bh,bf){var bi,e,bg,bk=(bh&&bh[0]?bh[0].ownerDocument||bh[0]:am);if(bj.length===1&&typeof bj[0]==="string"&&bj[0].length<512&&bk===am&&bj[0].charAt(0)==="<"&&!M.test(bj[0])&&(b.support.checkClone||!n.test(bj[0]))){e=true;bg=b.fragments[bj[0]];if(bg){if(bg!==1){bi=bg}}}if(!bi){bi=bk.createDocumentFragment();b.clean(bj,bk,bi,bf)}if(e){b.fragments[bj[0]]=bg?bi:1}return{fragment:bi,cacheable:e}};b.fragments={};b.each({appendTo:"append",prependTo:"prepend",insertBefore:"before",insertAfter:"after",replaceAll:"replaceWith"},function(e,bf){b.fn[e]=function(bg){var bj=[],bm=b(bg),bl=this.length===1&&this[0].parentNode;if(bl&&bl.nodeType===11&&bl.childNodes.length===1&&bm.length===1){bm[bf](this[0]);return this}else{for(var bk=0,bh=bm.length;bk<bh;bk++){var bi=(bk>0?this.clone(true):this).get();b(bm[bk])[bf](bi);bj=bj.concat(bi)}return this.pushStack(bj,e,bm.selector)}}});function a3(e){if("getElementsByTagName" in e){return e.getElementsByTagName("*")}else{if("querySelectorAll" in e){return e.querySelectorAll("*")}else{return[]}}}b.extend({clone:function(bi,bk,bg){var bj=bi.cloneNode(true),e,bf,bh;if((!b.support.noCloneEvent||!b.support.noCloneChecked)&&(bi.nodeType===1||bi.nodeType===11)&&!b.isXMLDoc(bi)){ad(bi,bj);e=a3(bi);bf=a3(bj);for(bh=0;e[bh];++bh){ad(e[bh],bf[bh])}}if(bk){t(bi,bj);if(bg){e=a3(bi);bf=a3(bj);for(bh=0;e[bh];++bh){t(e[bh],bf[bh])}}}return bj},clean:function(bg,bi,bp,bk){bi=bi||am;if(typeof bi.createElement==="undefined"){bi=bi.ownerDocument||bi[0]&&bi[0].ownerDocument||am}var bq=[];for(var bo=0,bj;(bj=bg[bo])!=null;bo++){if(typeof bj==="number"){bj+=""}if(!bj){continue}if(typeof bj==="string"&&!U.test(bj)){bj=bi.createTextNode(bj)}else{if(typeof bj==="string"){bj=bj.replace(P,"<$1></$2>");var br=(d.exec(bj)||["",""])[1].toLowerCase(),bh=ao[br]||ao._default,bn=bh[0],bf=bi.createElement("div");bf.innerHTML=bh[1]+bj+bh[2];while(bn--){bf=bf.lastChild}if(!b.support.tbody){var e=w.test(bj),bm=br==="table"&&!e?bf.firstChild&&bf.firstChild.childNodes:bh[1]==="<table>"&&!e?bf.childNodes:[];for(var bl=bm.length-1;bl>=0;--bl){if(b.nodeName(bm[bl],"tbody")&&!bm[bl].childNodes.length){bm[bl].parentNode.removeChild(bm[bl])}}}if(!b.support.leadingWhitespace&&ak.test(bj)){bf.insertBefore(bi.createTextNode(ak.exec(bj)[0]),bf.firstChild)}bj=bf.childNodes}}if(bj.nodeType){bq.push(bj)}else{bq=b.merge(bq,bj)}}if(bp){for(bo=0;bq[bo];bo++){if(bk&&b.nodeName(bq[bo],"script")&&(!bq[bo].type||bq[bo].type.toLowerCase()==="text/javascript")){bk.push(bq[bo].parentNode?bq[bo].parentNode.removeChild(bq[bo]):bq[bo])}else{if(bq[bo].nodeType===1){bq.splice.apply(bq,[bo+1,0].concat(b.makeArray(bq[bo].getElementsByTagName("script"))))}bp.appendChild(bq[bo])}}}return bq},cleanData:function(bf){var bi,bg,e=b.cache,bn=b.expando,bl=b.event.special,bk=b.support.deleteExpando;for(var bj=0,bh;(bh=bf[bj])!=null;bj++){if(bh.nodeName&&b.noData[bh.nodeName.toLowerCase()]){continue}bg=bh[b.expando];if(bg){bi=e[bg]&&e[bg][bn];if(bi&&bi.events){for(var bm in bi.events){if(bl[bm]){b.event.remove(bh,bm)}else{b.removeEvent(bh,bm,bi.handle)}}if(bi.handle){bi.handle.elem=null}}if(bk){delete bh[b.expando]}else{if(bh.removeAttribute){bh.removeAttribute(b.expando)}}delete e[bg]}}}});function ba(e,bf){if(bf.src){b.ajax({url:bf.src,async:false,dataType:"script"})}else{b.globalEval(bf.text||bf.textContent||bf.innerHTML||"")}if(bf.parentNode){bf.parentNode.removeChild(bf)}}var af=/alpha\([^)]*\)/i,al=/opacity=([^)]*)/,aO=/-([a-z])/ig,z=/([A-Z]|^ms)/g,a1=/^-?\d+(?:px)?$/i,a9=/^-?\d/,aX={position:"absolute",visibility:"hidden",display:"block"},ah=["Left","Right"],aT=["Top","Bottom"],V,az,aN,m=function(e,bf){return bf.toUpperCase()};b.fn.css=function(e,bf){if(arguments.length===2&&bf===I){return this}return b.access(this,e,bf,true,function(bh,bg,bi){return bi!==I?b.style(bh,bg,bi):b.css(bh,bg)})};b.extend({cssHooks:{opacity:{get:function(bg,bf){if(bf){var e=V(bg,"opacity","opacity");return e===""?"1":e}else{return bg.style.opacity}}}},cssNumber:{zIndex:true,fontWeight:true,opacity:true,zoom:true,lineHeight:true},cssProps:{"float":b.support.cssFloat?"cssFloat":"styleFloat"},style:function(bh,bg,bm,bi){if(!bh||bh.nodeType===3||bh.nodeType===8||!bh.style){return}var bl,bj=b.camelCase(bg),bf=bh.style,bn=b.cssHooks[bj];bg=b.cssProps[bj]||bj;if(bm!==I){if(typeof bm==="number"&&isNaN(bm)||bm==null){return}if(typeof bm==="number"&&!b.cssNumber[bj]){bm+="px"}if(!bn||!("set" in bn)||(bm=bn.set(bh,bm))!==I){try{bf[bg]=bm}catch(bk){}}}else{if(bn&&"get" in bn&&(bl=bn.get(bh,false,bi))!==I){return bl}return bf[bg]}},css:function(bj,bi,bf){var bh,bg=b.camelCase(bi),e=b.cssHooks[bg];bi=b.cssProps[bg]||bg;if(e&&"get" in e&&(bh=e.get(bj,true,bf))!==I){return bh}else{if(V){return V(bj,bi,bg)}}},swap:function(bh,bg,bi){var e={};for(var bf in bg){e[bf]=bh.style[bf];bh.style[bf]=bg[bf]}bi.call(bh);for(bf in bg){bh.style[bf]=e[bf]}},camelCase:function(e){return e.replace(aO,m)}});b.curCSS=b.css;b.each(["height","width"],function(bf,e){b.cssHooks[e]={get:function(bi,bh,bg){var bj;if(bh){if(bi.offsetWidth!==0){bj=p(bi,e,bg)}else{b.swap(bi,aX,function(){bj=p(bi,e,bg)})}if(bj<=0){bj=V(bi,e,e);if(bj==="0px"&&aN){bj=aN(bi,e,e)}if(bj!=null){return bj===""||bj==="auto"?"0px":bj}}if(bj<0||bj==null){bj=bi.style[e];return bj===""||bj==="auto"?"0px":bj}return typeof bj==="string"?bj:bj+"px"}},set:function(bg,bh){if(a1.test(bh)){bh=parseFloat(bh);if(bh>=0){return bh+"px"}}else{return bh}}}});if(!b.support.opacity){b.cssHooks.opacity={get:function(bf,e){return al.test((e&&bf.currentStyle?bf.currentStyle.filter:bf.style.filter)||"")?(parseFloat(RegExp.$1)/100)+"":e?"1":""},set:function(bh,bi){var bg=bh.style;bg.zoom=1;var e=b.isNaN(bi)?"":"alpha(opacity="+bi*100+")",bf=bg.filter||"";bg.filter=af.test(bf)?bf.replace(af,e):bg.filter+" "+e}}}b(function(){if(!b.support.reliableMarginRight){b.cssHooks.marginRight={get:function(bg,bf){var e;b.swap(bg,{display:"inline-block"},function(){if(bf){e=V(bg,"margin-right","marginRight")}else{e=bg.style.marginRight}});return e}}}});if(am.defaultView&&am.defaultView.getComputedStyle){az=function(bj,e,bh){var bg,bi,bf;bh=bh.replace(z,"-$1").toLowerCase();if(!(bi=bj.ownerDocument.defaultView)){return I}if((bf=bi.getComputedStyle(bj,null))){bg=bf.getPropertyValue(bh);if(bg===""&&!b.contains(bj.ownerDocument.documentElement,bj)){bg=b.style(bj,bh)}}return bg}}if(am.documentElement.currentStyle){aN=function(bi,bg){var bj,bf=bi.currentStyle&&bi.currentStyle[bg],e=bi.runtimeStyle&&bi.runtimeStyle[bg],bh=bi.style;if(!a1.test(bf)&&a9.test(bf)){bj=bh.left;if(e){bi.runtimeStyle.left=bi.currentStyle.left}bh.left=bg==="fontSize"?"1em":(bf||0);bf=bh.pixelLeft+"px";bh.left=bj;if(e){bi.runtimeStyle.left=e}}return bf===""?"auto":bf}}V=az||aN;function p(bg,bf,e){var bi=bf==="width"?ah:aT,bh=bf==="width"?bg.offsetWidth:bg.offsetHeight;if(e==="border"){return bh}b.each(bi,function(){if(!e){bh-=parseFloat(b.css(bg,"padding"+this))||0}if(e==="margin"){bh+=parseFloat(b.css(bg,"margin"+this))||0}else{bh-=parseFloat(b.css(bg,"border"+this+"Width"))||0}});return bh}if(b.expr&&b.expr.filters){b.expr.filters.hidden=function(bg){var bf=bg.offsetWidth,e=bg.offsetHeight;return(bf===0&&e===0)||(!b.support.reliableHiddenOffsets&&(bg.style.display||b.css(bg,"display"))==="none")};b.expr.filters.visible=function(e){return !b.expr.filters.hidden(e)}}var j=/%20/g,ai=/\[\]$/,be=/\r?\n/g,bc=/#.*$/,at=/^(.*?):[ \t]*([^\r\n]*)\r?$/mg,aQ=/^(?:color|date|datetime|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i,aD=/^(?:about|app|app\-storage|.+\-extension|file|widget):$/,aF=/^(?:GET|HEAD)$/,c=/^\/\//,J=/\?/,aW=/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,q=/^(?:select|textarea)/i,h=/\s+/,bd=/([?&])_=[^&]*/,S=/(^|\-)([a-z])/g,aL=function(bf,e,bg){return e+bg.toUpperCase()},H=/^([\w\+\.\-]+:)(?:\/\/([^\/?#:]*)(?::(\d+))?)?/,A=b.fn.load,W={},r={},av,s;try{av=am.location.href}catch(an){av=am.createElement("a");av.href="";av=av.href}s=H.exec(av.toLowerCase())||[];function f(e){return function(bi,bk){if(typeof bi!=="string"){bk=bi;bi="*"}if(b.isFunction(bk)){var bh=bi.toLowerCase().split(h),bg=0,bj=bh.length,bf,bl,bm;for(;bg<bj;bg++){bf=bh[bg];bm=/^\+/.test(bf);if(bm){bf=bf.substr(1)||"*"}bl=e[bf]=e[bf]||[];bl[bm?"unshift":"push"](bk)}}}}function aK(bf,bo,bj,bn,bl,bh){bl=bl||bo.dataTypes[0];bh=bh||{};bh[bl]=true;var bk=bf[bl],bg=0,e=bk?bk.length:0,bi=(bf===W),bm;for(;bg<e&&(bi||!bm);bg++){bm=bk[bg](bo,bj,bn);if(typeof bm==="string"){if(!bi||bh[bm]){bm=I}else{bo.dataTypes.unshift(bm);bm=aK(bf,bo,bj,bn,bm,bh)}}}if((bi||!bm)&&!bh["*"]){bm=aK(bf,bo,bj,bn,"*",bh)}return bm}b.fn.extend({load:function(bg,bj,bk){if(typeof bg!=="string"&&A){return A.apply(this,arguments)}else{if(!this.length){return this}}var bi=bg.indexOf(" ");if(bi>=0){var e=bg.slice(bi,bg.length);bg=bg.slice(0,bi)}var bh="GET";if(bj){if(b.isFunction(bj)){bk=bj;bj=I}else{if(typeof bj==="object"){bj=b.param(bj,b.ajaxSettings.traditional);bh="POST"}}}var bf=this;b.ajax({url:bg,type:bh,dataType:"html",data:bj,complete:function(bm,bl,bn){bn=bm.responseText;if(bm.isResolved()){bm.done(function(bo){bn=bo});bf.html(e?b("<div>").append(bn.replace(aW,"")).find(e):bn)}if(bk){bf.each(bk,[bn,bl,bm])}}});return this},serialize:function(){return b.param(this.serializeArray())},serializeArray:function(){return this.map(function(){return this.elements?b.makeArray(this.elements):this}).filter(function(){return this.name&&!this.disabled&&(this.checked||q.test(this.nodeName)||aQ.test(this.type))}).map(function(e,bf){var bg=b(this).val();return bg==null?null:b.isArray(bg)?b.map(bg,function(bi,bh){return{name:bf.name,value:bi.replace(be,"\r\n")}}):{name:bf.name,value:bg.replace(be,"\r\n")}}).get()}});b.each("ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".split(" "),function(e,bf){b.fn[bf]=function(bg){return this.bind(bf,bg)}});b.each(["get","post"],function(e,bf){b[bf]=function(bg,bi,bj,bh){if(b.isFunction(bi)){bh=bh||bj;bj=bi;bi=I}return b.ajax({type:bf,url:bg,data:bi,success:bj,dataType:bh})}});b.extend({getScript:function(e,bf){return b.get(e,I,bf,"script")},getJSON:function(e,bf,bg){return b.get(e,bf,bg,"json")},ajaxSetup:function(bg,e){if(!e){e=bg;bg=b.extend(true,b.ajaxSettings,e)}else{b.extend(true,bg,b.ajaxSettings,e)}for(var bf in {context:1,url:1}){if(bf in e){bg[bf]=e[bf]}else{if(bf in b.ajaxSettings){bg[bf]=b.ajaxSettings[bf]}}}return bg},ajaxSettings:{url:av,isLocal:aD.test(s[1]),global:true,type:"GET",contentType:"application/x-www-form-urlencoded",processData:true,async:true,accepts:{xml:"application/xml, text/xml",html:"text/html",text:"text/plain",json:"application/json, text/javascript","*":"*/*"},contents:{xml:/xml/,html:/html/,json:/json/},responseFields:{xml:"responseXML",text:"responseText"},converters:{"* text":a0.String,"text html":true,"text json":b.parseJSON,"text xml":b.parseXML}},ajaxPrefilter:f(W),ajaxTransport:f(r),ajax:function(bj,bh){if(typeof bj==="object"){bh=bj;bj=I}bh=bh||{};var bn=b.ajaxSetup({},bh),bB=bn.context||bn,bq=bB!==bn&&(bB.nodeType||bB instanceof b)?b(bB):b.event,bA=b.Deferred(),bx=b._Deferred(),bl=bn.statusCode||{},bm,br={},bz,bi,bv,bo,bs,bk=0,bg,bu,bt={readyState:0,setRequestHeader:function(e,bC){if(!bk){br[e.toLowerCase().replace(S,aL)]=bC}return this},getAllResponseHeaders:function(){return bk===2?bz:null},getResponseHeader:function(bC){var e;if(bk===2){if(!bi){bi={};while((e=at.exec(bz))){bi[e[1].toLowerCase()]=e[2]}}e=bi[bC.toLowerCase()]}return e===I?null:e},overrideMimeType:function(e){if(!bk){bn.mimeType=e}return this},abort:function(e){e=e||"abort";if(bv){bv.abort(e)}bp(0,e);return this}};function bp(bH,bF,bI,bE){if(bk===2){return}bk=2;if(bo){clearTimeout(bo)}bv=I;bz=bE||"";bt.readyState=bH?4:0;var bC,bM,bL,bG=bI?a6(bn,bt,bI):I,bD,bK;if(bH>=200&&bH<300||bH===304){if(bn.ifModified){if((bD=bt.getResponseHeader("Last-Modified"))){b.lastModified[bm]=bD}if((bK=bt.getResponseHeader("Etag"))){b.etag[bm]=bK}}if(bH===304){bF="notmodified";bC=true}else{try{bM=E(bn,bG);bF="success";bC=true}catch(bJ){bF="parsererror";bL=bJ}}}else{bL=bF;if(!bF||bH){bF="error";if(bH<0){bH=0}}}bt.status=bH;bt.statusText=bF;if(bC){bA.resolveWith(bB,[bM,bF,bt])}else{bA.rejectWith(bB,[bt,bF,bL])}bt.statusCode(bl);bl=I;if(bg){bq.trigger("ajax"+(bC?"Success":"Error"),[bt,bn,bC?bM:bL])}bx.resolveWith(bB,[bt,bF]);if(bg){bq.trigger("ajaxComplete",[bt,bn]);if(!(--b.active)){b.event.trigger("ajaxStop")}}}bA.promise(bt);bt.success=bt.done;bt.error=bt.fail;bt.complete=bx.done;bt.statusCode=function(bC){if(bC){var e;if(bk<2){for(e in bC){bl[e]=[bl[e],bC[e]]}}else{e=bC[bt.status];bt.then(e,e)}}return this};bn.url=((bj||bn.url)+"").replace(bc,"").replace(c,s[1]+"//");bn.dataTypes=b.trim(bn.dataType||"*").toLowerCase().split(h);if(bn.crossDomain==null){bs=H.exec(bn.url.toLowerCase());bn.crossDomain=!!(bs&&(bs[1]!=s[1]||bs[2]!=s[2]||(bs[3]||(bs[1]==="http:"?80:443))!=(s[3]||(s[1]==="http:"?80:443))))}if(bn.data&&bn.processData&&typeof bn.data!=="string"){bn.data=b.param(bn.data,bn.traditional)}aK(W,bn,bh,bt);if(bk===2){return false}bg=bn.global;bn.type=bn.type.toUpperCase();bn.hasContent=!aF.test(bn.type);if(bg&&b.active++===0){b.event.trigger("ajaxStart")}if(!bn.hasContent){if(bn.data){bn.url+=(J.test(bn.url)?"&":"?")+bn.data}bm=bn.url;if(bn.cache===false){var bf=b.now(),by=bn.url.replace(bd,"$1_="+bf);bn.url=by+((by===bn.url)?(J.test(bn.url)?"&":"?")+"_="+bf:"")}}if(bn.data&&bn.hasContent&&bn.contentType!==false||bh.contentType){br["Content-Type"]=bn.contentType}if(bn.ifModified){bm=bm||bn.url;if(b.lastModified[bm]){br["If-Modified-Since"]=b.lastModified[bm]}if(b.etag[bm]){br["If-None-Match"]=b.etag[bm]}}br.Accept=bn.dataTypes[0]&&bn.accepts[bn.dataTypes[0]]?bn.accepts[bn.dataTypes[0]]+(bn.dataTypes[0]!=="*"?", */*; q=0.01":""):bn.accepts["*"];for(bu in bn.headers){bt.setRequestHeader(bu,bn.headers[bu])}if(bn.beforeSend&&(bn.beforeSend.call(bB,bt,bn)===false||bk===2)){bt.abort();return false}for(bu in {success:1,error:1,complete:1}){bt[bu](bn[bu])}bv=aK(r,bn,bh,bt);if(!bv){bp(-1,"No Transport")}else{bt.readyState=1;if(bg){bq.trigger("ajaxSend",[bt,bn])}if(bn.async&&bn.timeout>0){bo=setTimeout(function(){bt.abort("timeout")},bn.timeout)}try{bk=1;bv.send(br,bp)}catch(bw){if(status<2){bp(-1,bw)}else{b.error(bw)}}}return bt},param:function(e,bg){var bf=[],bi=function(bj,bk){bk=b.isFunction(bk)?bk():bk;bf[bf.length]=encodeURIComponent(bj)+"="+encodeURIComponent(bk)};if(bg===I){bg=b.ajaxSettings.traditional}if(b.isArray(e)||(e.jquery&&!b.isPlainObject(e))){b.each(e,function(){bi(this.name,this.value)})}else{for(var bh in e){v(bh,e[bh],bg,bi)}}return bf.join("&").replace(j,"+")}});function v(bg,bi,bf,bh){if(b.isArray(bi)&&bi.length){b.each(bi,function(bk,bj){if(bf||ai.test(bg)){bh(bg,bj)}else{v(bg+"["+(typeof bj==="object"||b.isArray(bj)?bk:"")+"]",bj,bf,bh)}})}else{if(!bf&&bi!=null&&typeof bi==="object"){if(b.isArray(bi)||b.isEmptyObject(bi)){bh(bg,"")}else{for(var e in bi){v(bg+"["+e+"]",bi[e],bf,bh)}}}else{bh(bg,bi)}}}b.extend({active:0,lastModified:{},etag:{}});function a6(bn,bm,bj){var bf=bn.contents,bl=bn.dataTypes,bg=bn.responseFields,bi,bk,bh,e;for(bk in bg){if(bk in bj){bm[bg[bk]]=bj[bk]}}while(bl[0]==="*"){bl.shift();if(bi===I){bi=bn.mimeType||bm.getResponseHeader("content-type")}}if(bi){for(bk in bf){if(bf[bk]&&bf[bk].test(bi)){bl.unshift(bk);break}}}if(bl[0] in bj){bh=bl[0]}else{for(bk in bj){if(!bl[0]||bn.converters[bk+" "+bl[0]]){bh=bk;break}if(!e){e=bk}}bh=bh||e}if(bh){if(bh!==bl[0]){bl.unshift(bh)}return bj[bh]}}function E(br,bj){if(br.dataFilter){bj=br.dataFilter(bj,br.dataType)}var bn=br.dataTypes,bq={},bk,bo,bg=bn.length,bl,bm=bn[0],bh,bi,bp,bf,e;for(bk=1;bk<bg;bk++){if(bk===1){for(bo in br.converters){if(typeof bo==="string"){bq[bo.toLowerCase()]=br.converters[bo]}}}bh=bm;bm=bn[bk];if(bm==="*"){bm=bh}else{if(bh!=="*"&&bh!==bm){bi=bh+" "+bm;bp=bq[bi]||bq["* "+bm];if(!bp){e=I;for(bf in bq){bl=bf.split(" ");if(bl[0]===bh||bl[0]==="*"){e=bq[bl[1]+" "+bm];if(e){bf=bq[bf];if(bf===true){bp=e}else{if(e===true){bp=bf}}break}}}}if(!(bp||e)){b.error("No conversion from "+bi.replace(" "," to "))}if(bp!==true){bj=bp?bp(bj):e(bf(bj))}}}}return bj}var ar=b.now(),u=/(\=)\?(&|$)|\?\?/i;b.ajaxSetup({jsonp:"callback",jsonpCallback:function(){return b.expando+"_"+(ar++)}});b.ajaxPrefilter("json jsonp",function(bo,bk,bn){var bm=(typeof bo.data==="string");if(bo.dataTypes[0]==="jsonp"||bk.jsonpCallback||bk.jsonp!=null||bo.jsonp!==false&&(u.test(bo.url)||bm&&u.test(bo.data))){var bl,bg=bo.jsonpCallback=b.isFunction(bo.jsonpCallback)?bo.jsonpCallback():bo.jsonpCallback,bj=a0[bg],e=bo.url,bi=bo.data,bf="$1"+bg+"$2",bh=function(){a0[bg]=bj;if(bl&&b.isFunction(bj)){a0[bg](bl[0])}};if(bo.jsonp!==false){e=e.replace(u,bf);if(bo.url===e){if(bm){bi=bi.replace(u,bf)}if(bo.data===bi){e+=(/\?/.test(e)?"&":"?")+bo.jsonp+"="+bg}}}bo.url=e;bo.data=bi;a0[bg]=function(bp){bl=[bp]};bn.then(bh,bh);bo.converters["script json"]=function(){if(!bl){b.error(bg+" was not called")}return bl[0]};bo.dataTypes[0]="json";return"script"}});b.ajaxSetup({accepts:{script:"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"},contents:{script:/javascript|ecmascript/},converters:{"text script":function(e){b.globalEval(e);return e}}});b.ajaxPrefilter("script",function(e){if(e.cache===I){e.cache=false}if(e.crossDomain){e.type="GET";e.global=false}});b.ajaxTransport("script",function(bg){if(bg.crossDomain){var e,bf=am.head||am.getElementsByTagName("head")[0]||am.documentElement;return{send:function(bh,bi){e=am.createElement("script");e.async="async";if(bg.scriptCharset){e.charset=bg.scriptCharset}e.src=bg.url;e.onload=e.onreadystatechange=function(bk,bj){if(!e.readyState||/loaded|complete/.test(e.readyState)){e.onload=e.onreadystatechange=null;if(bf&&e.parentNode){bf.removeChild(e)}e=I;if(!bj){bi(200,"success")}}};bf.insertBefore(e,bf.firstChild)},abort:function(){if(e){e.onload(0,1)}}}}});var y=b.now(),K,au;function B(){b(a0).unload(function(){for(var e in K){K[e](0,1)}})}function aC(){try{return new a0.XMLHttpRequest()}catch(bf){}}function ae(){try{return new a0.ActiveXObject("Microsoft.XMLHTTP")}catch(bf){}}b.ajaxSettings.xhr=a0.ActiveXObject?function(){return !this.isLocal&&aC()||ae()}:aC;au=b.ajaxSettings.xhr();b.support.ajax=!!au;b.support.cors=au&&("withCredentials" in au);au=I;if(b.support.ajax){b.ajaxTransport(function(e){if(!e.crossDomain||b.support.cors){var bf;return{send:function(bl,bg){var bk=e.xhr(),bj,bi;if(e.username){bk.open(e.type,e.url,e.async,e.username,e.password)}else{bk.open(e.type,e.url,e.async)}if(e.xhrFields){for(bi in e.xhrFields){bk[bi]=e.xhrFields[bi]}}if(e.mimeType&&bk.overrideMimeType){bk.overrideMimeType(e.mimeType)}if(!e.crossDomain&&!bl["X-Requested-With"]){bl["X-Requested-With"]="XMLHttpRequest"}try{for(bi in bl){bk.setRequestHeader(bi,bl[bi])}}catch(bh){}bk.send((e.hasContent&&e.data)||null);bf=function(bu,bo){var bp,bn,bm,bs,br;try{if(bf&&(bo||bk.readyState===4)){bf=I;if(bj){bk.onreadystatechange=b.noop;delete K[bj]}if(bo){if(bk.readyState!==4){bk.abort()}}else{bp=bk.status;bm=bk.getAllResponseHeaders();bs={};br=bk.responseXML;if(br&&br.documentElement){bs.xml=br}bs.text=bk.responseText;try{bn=bk.statusText}catch(bt){bn=""}if(!bp&&e.isLocal&&!e.crossDomain){bp=bs.text?200:404}else{if(bp===1223){bp=204}}}}}catch(bq){if(!bo){bg(-1,bq)}}if(bs){bg(bp,bn,bs,bm)}};if(!e.async||bk.readyState===4){bf()}else{if(!K){K={};B()}bj=y++;bk.onreadystatechange=K[bj]=bf}},abort:function(){if(bf){bf(0,1)}}}}})}var O={},aq=/^(?:toggle|show|hide)$/,aH=/^([+\-]=)?([\d+.\-]+)([a-z%]*)$/i,aU,ay=[["height","marginTop","marginBottom","paddingTop","paddingBottom"],["width","marginLeft","marginRight","paddingLeft","paddingRight"],["opacity"]];b.fn.extend({show:function(bh,bk,bj){var bg,bi;if(bh||bh===0){return this.animate(aS("show",3),bh,bk,bj)}else{for(var bf=0,e=this.length;bf<e;bf++){bg=this[bf];bi=bg.style.display;if(!b._data(bg,"olddisplay")&&bi==="none"){bi=bg.style.display=""}if(bi===""&&b.css(bg,"display")==="none"){b._data(bg,"olddisplay",x(bg.nodeName))}}for(bf=0;bf<e;bf++){bg=this[bf];bi=bg.style.display;if(bi===""||bi==="none"){bg.style.display=b._data(bg,"olddisplay")||""}}return this}},hide:function(bg,bj,bi){if(bg||bg===0){return this.animate(aS("hide",3),bg,bj,bi)}else{for(var bf=0,e=this.length;bf<e;bf++){var bh=b.css(this[bf],"display");if(bh!=="none"&&!b._data(this[bf],"olddisplay")){b._data(this[bf],"olddisplay",bh)}}for(bf=0;bf<e;bf++){this[bf].style.display="none"}return this}},_toggle:b.fn.toggle,toggle:function(bg,bf,bh){var e=typeof bg==="boolean";if(b.isFunction(bg)&&b.isFunction(bf)){this._toggle.apply(this,arguments)}else{if(bg==null||e){this.each(function(){var bi=e?bg:b(this).is(":hidden");b(this)[bi?"show":"hide"]()})}else{this.animate(aS("toggle",3),bg,bf,bh)}}return this},fadeTo:function(e,bh,bg,bf){return this.filter(":hidden").css("opacity",0).show().end().animate({opacity:bh},e,bg,bf)},animate:function(bi,bf,bh,bg){var e=b.speed(bf,bh,bg);if(b.isEmptyObject(bi)){return this.each(e.complete)}return this[e.queue===false?"each":"queue"](function(){var bl=b.extend({},e),bp,bm=this.nodeType===1,bn=bm&&b(this).is(":hidden"),bj=this;for(bp in bi){var bk=b.camelCase(bp);if(bp!==bk){bi[bk]=bi[bp];delete bi[bp];bp=bk}if(bi[bp]==="hide"&&bn||bi[bp]==="show"&&!bn){return bl.complete.call(this)}if(bm&&(bp==="height"||bp==="width")){bl.overflow=[this.style.overflow,this.style.overflowX,this.style.overflowY];if(b.css(this,"display")==="inline"&&b.css(this,"float")==="none"){if(!b.support.inlineBlockNeedsLayout){this.style.display="inline-block"}else{var bo=x(this.nodeName);if(bo==="inline"){this.style.display="inline-block"}else{this.style.display="inline";this.style.zoom=1}}}}if(b.isArray(bi[bp])){(bl.specialEasing=bl.specialEasing||{})[bp]=bi[bp][1];bi[bp]=bi[bp][0]}}if(bl.overflow!=null){this.style.overflow="hidden"}bl.curAnim=b.extend({},bi);b.each(bi,function(br,bv){var bu=new b.fx(bj,bl,br);if(aq.test(bv)){bu[bv==="toggle"?bn?"show":"hide":bv](bi)}else{var bt=aH.exec(bv),bw=bu.cur();if(bt){var bq=parseFloat(bt[2]),bs=bt[3]||(b.cssNumber[br]?"":"px");if(bs!=="px"){b.style(bj,br,(bq||1)+bs);bw=((bq||1)/bu.cur())*bw;b.style(bj,br,bw+bs)}if(bt[1]){bq=((bt[1]==="-="?-1:1)*bq)+bw}bu.custom(bw,bq,bs)}else{bu.custom(bw,bv,"")}}});return true})},stop:function(bf,e){var bg=b.timers;if(bf){this.queue([])}this.each(function(){for(var bh=bg.length-1;bh>=0;bh--){if(bg[bh].elem===this){if(e){bg[bh](true)}bg.splice(bh,1)}}});if(!e){this.dequeue()}return this}});function aS(bf,e){var bg={};b.each(ay.concat.apply([],ay.slice(0,e)),function(){bg[this]=bf});return bg}b.each({slideDown:aS("show",1),slideUp:aS("hide",1),slideToggle:aS("toggle",1),fadeIn:{opacity:"show"},fadeOut:{opacity:"hide"},fadeToggle:{opacity:"toggle"}},function(e,bf){b.fn[e]=function(bg,bi,bh){return this.animate(bf,bg,bi,bh)}});b.extend({speed:function(bg,bh,bf){var e=bg&&typeof bg==="object"?b.extend({},bg):{complete:bf||!bf&&bh||b.isFunction(bg)&&bg,duration:bg,easing:bf&&bh||bh&&!b.isFunction(bh)&&bh};e.duration=b.fx.off?0:typeof e.duration==="number"?e.duration:e.duration in b.fx.speeds?b.fx.speeds[e.duration]:b.fx.speeds._default;e.old=e.complete;e.complete=function(){if(e.queue!==false){b(this).dequeue()}if(b.isFunction(e.old)){e.old.call(this)}};return e},easing:{linear:function(bg,bh,e,bf){return e+bf*bg},swing:function(bg,bh,e,bf){return((-Math.cos(bg*Math.PI)/2)+0.5)*bf+e}},timers:[],fx:function(bf,e,bg){this.options=e;this.elem=bf;this.prop=bg;if(!e.orig){e.orig={}}}});b.fx.prototype={update:function(){if(this.options.step){this.options.step.call(this.elem,this.now,this)}(b.fx.step[this.prop]||b.fx.step._default)(this)},cur:function(){if(this.elem[this.prop]!=null&&(!this.elem.style||this.elem.style[this.prop]==null)){return this.elem[this.prop]}var e,bf=b.css(this.elem,this.prop);return isNaN(e=parseFloat(bf))?!bf||bf==="auto"?0:bf:e},custom:function(bj,bi,bh){var e=this,bg=b.fx;this.startTime=b.now();this.start=bj;this.end=bi;this.unit=bh||this.unit||(b.cssNumber[this.prop]?"":"px");this.now=this.start;this.pos=this.state=0;function bf(bk){return e.step(bk)}bf.elem=this.elem;if(bf()&&b.timers.push(bf)&&!aU){aU=setInterval(bg.tick,bg.interval)}},show:function(){this.options.orig[this.prop]=b.style(this.elem,this.prop);this.options.show=true;this.custom(this.prop==="width"||this.prop==="height"?1:0,this.cur());b(this.elem).show()},hide:function(){this.options.orig[this.prop]=b.style(this.elem,this.prop);this.options.hide=true;this.custom(this.cur(),0)},step:function(bh){var bm=b.now(),bi=true;if(bh||bm>=this.options.duration+this.startTime){this.now=this.end;this.pos=this.state=1;this.update();this.options.curAnim[this.prop]=true;for(var bj in this.options.curAnim){if(this.options.curAnim[bj]!==true){bi=false}}if(bi){if(this.options.overflow!=null&&!b.support.shrinkWrapBlocks){var bg=this.elem,bn=this.options;b.each(["","X","Y"],function(bo,bp){bg.style["overflow"+bp]=bn.overflow[bo]})}if(this.options.hide){b(this.elem).hide()}if(this.options.hide||this.options.show){for(var e in this.options.curAnim){b.style(this.elem,e,this.options.orig[e])}}this.options.complete.call(this.elem)}return false}else{var bf=bm-this.startTime;this.state=bf/this.options.duration;var bk=this.options.specialEasing&&this.options.specialEasing[this.prop];var bl=this.options.easing||(b.easing.swing?"swing":"linear");this.pos=b.easing[bk||bl](this.state,bf,0,1,this.options.duration);this.now=this.start+((this.end-this.start)*this.pos);this.update()}return true}};b.extend(b.fx,{tick:function(){var bf=b.timers;for(var e=0;e<bf.length;e++){if(!bf[e]()){bf.splice(e--,1)}}if(!bf.length){b.fx.stop()}},interval:13,stop:function(){clearInterval(aU);aU=null},speeds:{slow:600,fast:200,_default:400},step:{opacity:function(e){b.style(e.elem,"opacity",e.now)},_default:function(e){if(e.elem.style&&e.elem.style[e.prop]!=null){e.elem.style[e.prop]=(e.prop==="width"||e.prop==="height"?Math.max(0,e.now):e.now)+e.unit}else{e.elem[e.prop]=e.now}}}});if(b.expr&&b.expr.filters){b.expr.filters.animated=function(e){return b.grep(b.timers,function(bf){return e===bf.elem}).length}}function x(bg){if(!O[bg]){var e=b("<"+bg+">").appendTo("body"),bf=e.css("display");e.remove();if(bf==="none"||bf===""){bf="block"}O[bg]=bf}return O[bg]}var T=/^t(?:able|d|h)$/i,Z=/^(?:body|html)$/i;if("getBoundingClientRect" in am.documentElement){b.fn.offset=function(bs){var bi=this[0],bl;if(bs){return this.each(function(e){b.offset.setOffset(this,bs,e)})}if(!bi||!bi.ownerDocument){return null}if(bi===bi.ownerDocument.body){return b.offset.bodyOffset(bi)}try{bl=bi.getBoundingClientRect()}catch(bp){}var br=bi.ownerDocument,bg=br.documentElement;if(!bl||!b.contains(bg,bi)){return bl?{top:bl.top,left:bl.left}:{top:0,left:0}}var bm=br.body,bn=aB(br),bk=bg.clientTop||bm.clientTop||0,bo=bg.clientLeft||bm.clientLeft||0,bf=bn.pageYOffset||b.support.boxModel&&bg.scrollTop||bm.scrollTop,bj=bn.pageXOffset||b.support.boxModel&&bg.scrollLeft||bm.scrollLeft,bq=bl.top+bf-bk,bh=bl.left+bj-bo;return{top:bq,left:bh}}}else{b.fn.offset=function(bp){var bj=this[0];if(bp){return this.each(function(bq){b.offset.setOffset(this,bp,bq)})}if(!bj||!bj.ownerDocument){return null}if(bj===bj.ownerDocument.body){return b.offset.bodyOffset(bj)}b.offset.initialize();var bm,bg=bj.offsetParent,bf=bj,bo=bj.ownerDocument,bh=bo.documentElement,bk=bo.body,bl=bo.defaultView,e=bl?bl.getComputedStyle(bj,null):bj.currentStyle,bn=bj.offsetTop,bi=bj.offsetLeft;while((bj=bj.parentNode)&&bj!==bk&&bj!==bh){if(b.offset.supportsFixedPosition&&e.position==="fixed"){break}bm=bl?bl.getComputedStyle(bj,null):bj.currentStyle;bn-=bj.scrollTop;bi-=bj.scrollLeft;if(bj===bg){bn+=bj.offsetTop;bi+=bj.offsetLeft;if(b.offset.doesNotAddBorder&&!(b.offset.doesAddBorderForTableAndCells&&T.test(bj.nodeName))){bn+=parseFloat(bm.borderTopWidth)||0;bi+=parseFloat(bm.borderLeftWidth)||0}bf=bg;bg=bj.offsetParent}if(b.offset.subtractsBorderForOverflowNotVisible&&bm.overflow!=="visible"){bn+=parseFloat(bm.borderTopWidth)||0;bi+=parseFloat(bm.borderLeftWidth)||0}e=bm}if(e.position==="relative"||e.position==="static"){bn+=bk.offsetTop;bi+=bk.offsetLeft}if(b.offset.supportsFixedPosition&&e.position==="fixed"){bn+=Math.max(bh.scrollTop,bk.scrollTop);bi+=Math.max(bh.scrollLeft,bk.scrollLeft)}return{top:bn,left:bi}}}b.offset={initialize:function(){var e=am.body,bf=am.createElement("div"),bi,bk,bj,bl,bg=parseFloat(b.css(e,"marginTop"))||0,bh="<div style='position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;'><div></div></div><table style='position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;' cellpadding='0' cellspacing='0'><tr><td></td></tr></table>";b.extend(bf.style,{position:"absolute",top:0,left:0,margin:0,border:0,width:"1px",height:"1px",visibility:"hidden"});bf.innerHTML=bh;e.insertBefore(bf,e.firstChild);bi=bf.firstChild;bk=bi.firstChild;bl=bi.nextSibling.firstChild.firstChild;this.doesNotAddBorder=(bk.offsetTop!==5);this.doesAddBorderForTableAndCells=(bl.offsetTop===5);bk.style.position="fixed";bk.style.top="20px";this.supportsFixedPosition=(bk.offsetTop===20||bk.offsetTop===15);bk.style.position=bk.style.top="";bi.style.overflow="hidden";bi.style.position="relative";this.subtractsBorderForOverflowNotVisible=(bk.offsetTop===-5);this.doesNotIncludeMarginInBodyOffset=(e.offsetTop!==bg);e.removeChild(bf);b.offset.initialize=b.noop},bodyOffset:function(e){var bg=e.offsetTop,bf=e.offsetLeft;b.offset.initialize();if(b.offset.doesNotIncludeMarginInBodyOffset){bg+=parseFloat(b.css(e,"marginTop"))||0;bf+=parseFloat(b.css(e,"marginLeft"))||0}return{top:bg,left:bf}},setOffset:function(bh,bq,bk){var bl=b.css(bh,"position");if(bl==="static"){bh.style.position="relative"}var bj=b(bh),bf=bj.offset(),e=b.css(bh,"top"),bo=b.css(bh,"left"),bp=(bl==="absolute"||bl==="fixed")&&b.inArray("auto",[e,bo])>-1,bn={},bm={},bg,bi;if(bp){bm=bj.position()}bg=bp?bm.top:parseInt(e,10)||0;bi=bp?bm.left:parseInt(bo,10)||0;if(b.isFunction(bq)){bq=bq.call(bh,bk,bf)}if(bq.top!=null){bn.top=(bq.top-bf.top)+bg}if(bq.left!=null){bn.left=(bq.left-bf.left)+bi}if("using" in bq){bq.using.call(bh,bn)}else{bj.css(bn)}}};b.fn.extend({position:function(){if(!this[0]){return null}var bg=this[0],bf=this.offsetParent(),bh=this.offset(),e=Z.test(bf[0].nodeName)?{top:0,left:0}:bf.offset();bh.top-=parseFloat(b.css(bg,"marginTop"))||0;bh.left-=parseFloat(b.css(bg,"marginLeft"))||0;e.top+=parseFloat(b.css(bf[0],"borderTopWidth"))||0;e.left+=parseFloat(b.css(bf[0],"borderLeftWidth"))||0;return{top:bh.top-e.top,left:bh.left-e.left}},offsetParent:function(){return this.map(function(){var e=this.offsetParent||am.body;while(e&&(!Z.test(e.nodeName)&&b.css(e,"position")==="static")){e=e.offsetParent}return e})}});b.each(["Left","Top"],function(bf,e){var bg="scroll"+e;b.fn[bg]=function(bj){var bh=this[0],bi;if(!bh){return null}if(bj!==I){return this.each(function(){bi=aB(this);if(bi){bi.scrollTo(!bf?bj:b(bi).scrollLeft(),bf?bj:b(bi).scrollTop())}else{this[bg]=bj}})}else{bi=aB(bh);return bi?("pageXOffset" in bi)?bi[bf?"pageYOffset":"pageXOffset"]:b.support.boxModel&&bi.document.documentElement[bg]||bi.document.body[bg]:bh[bg]}}});function aB(e){return b.isWindow(e)?e:e.nodeType===9?e.defaultView||e.parentWindow:false}b.each(["Height","Width"],function(bf,e){var bg=e.toLowerCase();b.fn["inner"+e]=function(){return this[0]?parseFloat(b.css(this[0],bg,"padding")):null};b.fn["outer"+e]=function(bh){return this[0]?parseFloat(b.css(this[0],bg,bh?"margin":"border")):null};b.fn[bg]=function(bi){var bj=this[0];if(!bj){return bi==null?null:this}if(b.isFunction(bi)){return this.each(function(bn){var bm=b(this);bm[bg](bi.call(this,bn,bm[bg]()))})}if(b.isWindow(bj)){var bk=bj.document.documentElement["client"+e];return bj.document.compatMode==="CSS1Compat"&&bk||bj.document.body["client"+e]||bk}else{if(bj.nodeType===9){return Math.max(bj.documentElement["client"+e],bj.body["scroll"+e],bj.documentElement["scroll"+e],bj.body["offset"+e],bj.documentElement["offset"+e])}else{if(bi===I){var bl=b.css(bj,bg),bh=parseFloat(bl);return b.isNaN(bh)?bl:bh}else{return this.css(bg,typeof bi==="string"?bi:bi+"px")}}}}});a0.jQuery=a0.$=b})(window);(function(e){function d(k,h,j){var i=new e.Event(h);k.trigger(i,j);return i.result!==false}function a(k){var m,i,l,h=k.attr("data-type")||(e.ajaxSettings&&e.ajaxSettings.dataType);if(k.is("form")){m=k.attr("method");i=k.attr("action");l=k.serializeArray();var j=k.data("ujs:submit-button");if(j){l.push(j);k.data("ujs:submit-button",null)}}else{m=k.attr("data-method");i=k.attr("href");l=null}e.ajax({url:i,type:m||"GET",data:l,dataType:h,beforeSend:function(o,n){if(n.dataType===undefined){o.setRequestHeader("accept","*/*;q=0.5, "+n.accepts.script)}return d(k,"ajax:beforeSend",[o,n])},success:function(o,n,p){k.trigger("ajax:success",[o,n,p])},complete:function(o,n){k.trigger("ajax:complete",[o,n])},error:function(p,n,o){k.trigger("ajax:error",[p,n,o])}})}function b(l){var i=l.attr("href"),n=l.attr("data-method"),j=e("meta[name=csrf-token]").attr("content"),m=e("meta[name=csrf-param]").attr("content"),k=e('<form method="post" action="'+i+'"></form>'),h='<input name="_method" value="'+n+'" type="hidden" />';if(m!==undefined&&j!==undefined){h+='<input name="'+m+'" value="'+j+'" type="hidden" />'}k.hide().append(h).appendTo("body");k.submit()}function c(h){h.find("input[data-disable-with]").each(function(){var i=e(this);i.data("ujs:enable-with",i.val()).val(i.attr("data-disable-with")).attr("disabled","disabled")})}function g(h){h.find("input[data-disable-with]").each(function(){var i=e(this);i.val(i.data("ujs:enable-with")).removeAttr("disabled")})}function f(h){var i=h.attr("data-confirm");return !i||(d(h,"confirm")&&confirm(i))}e("a[data-confirm], a[data-method], a[data-remote]").live("click.rails",function(i){var h=e(this);if(!f(h)){return false}if(h.attr("data-remote")){a(h);return false}else{if(h.attr("data-method")){b(h);return false}}});e("form").live("submit.rails",function(i){var h=e(this);if(!f(h)){return false}if(h.attr("data-remote")){a(h);return false}else{c(h)}});e("form input[type=submit], form button[type=submit], form button:not([type])").live("click.rails",function(){var i=e(this);if(!f(i)){return false}var h=i.attr("name"),j=h?{name:h,value:i.val()}:null;i.closest("form").data("ujs:submit-button",j)});e("form").live("ajax:beforeSend.rails",function(h){if(this==h.target){c(e(this))}});e("form").live("ajax:complete.rails",function(h){if(this==h.target){g(e(this))}})})(jQuery);function submit(){var a=$("#form_post").validate({meta:"validate"});if(a){$("#form_post").submit()}}function request_form_submit(){var a=$("#form_post").validate({meta:"validate"});if(a){$("#form_post").submit()}}function downloadFile(a){document.location.href=a}function getPostSearchType(a){action="";switch(a){case"Assignments":action="/post_assignments/search";break;case"Tests":action="/post_tests/search";break;case"Projects":action="/post_projects/search";break;case"Exams":action="/post_exams/search";break;case"Events":action="/post_events/search";break;case"QAs":action="/post_qas/search";break;case"Education":action="/post_educations/search";break;case"Tutors":action="/post_tutors/search";break;case"Books":action="/post_books/search";break;case"Jobs":action="/post_jobs/search";break;case"Party":action="/post_parties/search";break;case"Student Awareness":action="/post_awarenesses/search";break;case"Housing":action="/post_housings/search";break;case"Team Up":action="/post_teamups/search";break;case"MyX":action="/post_myxes/search";break;case"Food":action="/post_foods";break;case"Schedules":action="/post_exam_schedules";break}$("#action_post_search").attr("action",action)}function load_options(){$("#department").mcDropdown("#department_menu",{width:170,valueAttr:"rel_department",select:option_submit});$("#year").mcDropdown("#year_menu",{width:75,valueAttr:"rel_year",select:option_submit});$("#over").mcDropdown("#over_menu",{width:80,valueAttr:"rel_over",select:option_submit})}function option_submit(){$("#action_option").submit()}function send_comment(b,a){comment=$("#comment").val();if(comment!=""){$.ajax({url:"/posts/create_comment",type:"GET",cache:false,dataType:"html",data:({commentable_id:b,commentable_type:a,comment:comment}),success:function(c){$("#list_comments").append(c);$("#comment").val("");$("#form_comment").toggle("slow");$("#comment_count").html($("div .AsDcomItem").size())}})}}function send_answer(a){comment=$("#comment").val();if(comment!=""){$.ajax({url:"/post_qas/create_comment",type:"GET",cache:false,dataType:"html",data:({post_id:a,comment:comment,show:$("#show").val()}),success:function(b){$("#list_comments").html(b);$("#comment").val("");$("#form_comment").toggle("slow")}})}}function sendEmail(b,a){subject=$("#message_subject").val();body=$("#message_body").val();$.ajax({url:"/users/"+b+"/messages/send_message",type:"GET",cache:false,dataType:"html",data:({recipient_id:a,subject:subject,body:body}),success:function(c){$("#div_send_message").html(c)}})}function sendReportAbuse(){reported_id=$("#reported_id").val();reported_type=$("#reported_type").val();abuse_type_id=$("#abuse_type_id").val();abuse_content=$("#abuse_content").val();if(reported_id!=""&&reported_type!=""&&content!=""){$.ajax({url:"/posts/create_report_abuse",type:"GET",cache:false,dataType:"html",data:({reported_id:reported_id,reported_type:reported_type,abuse_type_id:abuse_type_id,abuse_content:abuse_content}),success:function(a){$("#div_send_report").html(a)}})}}function requireRating(a,c){var b=$("input:radio:checked").val();if(b!=""){$.ajax({url:c,type:"GET",cache:false,dataType:"html",data:({rating:b,post_id:a}),success:function(d){$("#require_rating_action").html(d)}})}}function showResult(){$("[rel=rate]").each(function(a){$(this).show()});$("#view_results").hide()}function showCommentForm(a){$("#wall_comment_form_"+a).show();$("#wall_comment_"+a).hide();$("#comment_"+a).focus()}function hideCommentForm(a){if($("#comment_"+a).val()==""){$("#wall_comment_"+a).show();$("#wall_comment_form_"+a).hide()}}function showListPostComment(a){$("#post_comment_"+a).hide();$("#post_comment_form_"+a).show();$("#post_list_comment_"+a).toggle("slow")}function showPostCommentForm(a){$("#post_comment_form_"+a).show();$("#post_comment_"+a).hide();$("#comment_"+a).focus()}function hidePostCommentForm(a){if($("#comment_"+a).val()==""){$("#post_comment_"+a).show();$("#post_comment_form_"+a).hide()}}function goToByScroll(a){$("html,body").animate({scrollTop:$("#"+a).offset().top},"slow")}function resetForm(a){$("#"+a).each(function(){this.reset()})}function hideFlashes(){$("#flash_notice, #flash_warning, #flash_error").fadeOut(1500)}function become_a_fan(a){$.ajax({url:a,type:"GET",dataType:"html",failure:function(b){alert("ajax fail:"+b)},success:function(b){$(".AsDContR .fan").html(b)}})}function invite_chat(a){$.ajax({url:"/student_lounges/invite_chat",type:"GET",cache:false,dataType:"html",data:({user_id:a}),success:function(b){$(".AsDContR .chat").text("Chatting...")},error:function(b){alert("Error connecting to server")}})}function add_users_to_chat(a){obj_form=document.forms["form_"+a];len=obj_form.elements.length;val="";var b=0;for(b=0;b<len;b++){if(obj_form.elements[b].type=="checkbox"&&obj_form.elements[b].checked){val+=obj_form.elements[b].value+";"}}$.ajax({url:"/student_lounges/add_users_to_chat",type:"GET",cache:false,dataType:"html",data:({user_id:val,chanel_name:a})})}function stop_chat(a){$.ajax({url:"/student_lounges/stop_chat",type:"GET",cache:false,dataType:"html",data:({chanel_name:a}),success:function(b){}})}function friends_changed_message(){$.ajax({url:"/student_lounges/friends_changed_message",type:"GET",cache:false,dataType:"html",success:function(a){$("#div_friends_changed_their_message").html(a)}})}function friends_you_invited_chat(){$.ajax({url:"/student_lounges/friends_you_invited_chat",type:"GET",cache:false,dataType:"html",success:function(a){$("#div_friends_you_invited_to_chat").html(a)}})}function friends_want_you_chat(){$.ajax({url:"/student_lounges/friends_want_you_chat",type:"GET",cache:false,dataType:"html",success:function(a){$("#div_friends_want_you_chat").html(a)}})}function friends_online(){$.ajax({url:"/student_lounges/friends_online",type:"GET",cache:false,dataType:"html",success:function(a){$("#div_friends_online").html(a)}})}function insert_text_to_chatcontent(a,b){if($("#"+a)){$("#"+a).before(b);scroll_div("#chat_content_"+a)}}function openChat(c,a){if($("#"+a).length==0){var b=$.customWindow({winId:a,title:c,onopen:function(d,e){$.ajax({url:"/student_lounges/chanel_chat_content",type:"GET",cache:false,dataType:"html",data:({chanel_name:a}),success:function(f){d.html(f)}})},onclose:function(){},onresize:function(d){}})}}function scroll_div(a){$(a).animate({scrollTop:$(a).attr("scrollHeight")},3000)}function searchFriendStories(){var b=$("#friend_stories_search");var a=b.attr("action");var c=b.serialize();$.get(a,c,function(d){$("#friend_stories_list").html(d)})}function searchMyStories(){var b=$("#my_stories_search");var a=b.attr("action");var c=b.serialize();$.get(a,c,function(d){$("#my_stories_list").html(d)})}function formatLinkForPaginationURLFriend(){var b=$("#friend_stories_search");var a=b.attr("action");$("div.friend_stories").find("a").each(function(){var c=$(this);var d=c.html();c.attr({page:d,href:"javascript:;"});c.click(function(){b.attr("action",a+"?page="+$(this).attr("page"));searchFriendStories()})})}function formatLinkForPaginationURLMy(){var b=$("#my_stories_search");var a=b.attr("action");$("div.my_stories").find("a").each(function(){var c=$(this);var d=c.html();c.attr({page:d,href:"javascript:;"});c.click(function(){b.attr("action",a+"?page="+$(this).attr("page"));searchMyStories()})})}function searchFriendPhotos(){var b=$("#friend_photos_search");var a=b.attr("action");var c=b.serialize();$.get(a,c,function(d){$("#friend_photos_list").html(d)})}function searchMyPhotos(){var b=$("#my_photos_search");var a=b.attr("action");var c=b.serialize();$.get(a,c,function(d){$("#my_photos_list").html(d)})}function formatLinkForPaginationURLFriendPhoto(){var b=$("#friend_photos_search");var a=b.attr("action");$("div.friend_photos").find("a").each(function(){var c=$(this);var d=c.html();c.attr({page:d,href:"javascript:;"});c.click(function(){b.attr("action",a+"?page="+$(this).attr("page"));searchFriendPhotos()})})}function formatLinkForPaginationURLMyPhoto(){var b=$("#my_photos_search");var a=b.attr("action");$("div.my_photos").find("a").each(function(){var c=$(this);var d=c.html();c.attr({page:d,href:"javascript:;"});c.click(function(){b.attr("action",a+"?page="+$(this).attr("page"));searchMyPhotos()})})}function searchFriendMusics(){var b=$("#friend_musics_search");var a=b.attr("action");var c=b.serialize();$.get(a,c,function(d){$("#friend_musics_list").html(d)})}function searchMyMusics(){var b=$("#my_musics_search");var a=b.attr("action");var c=b.serialize();$.get(a,c,function(d){$("#my_musics_list").html(d)})}function formatLinkForPaginationURLFriendMusic(){var b=$("#friend_musics_search");var a=b.attr("action");$("div.friend_musics").find("a").each(function(){var c=$(this);var d=c.html();c.attr({page:d,href:"javascript:;"});c.click(function(){b.attr("action",a+"?page="+$(this).attr("page"));searchFriendMusics()})})}function formatLinkForPaginationURLMyMusic(){var b=$("#my_musics_search");var a=b.attr("action");$("div.my_musics").find("a").each(function(){var c=$(this);var d=c.html();c.attr({page:d,href:"javascript:;"});c.click(function(){b.attr("action",a+"?page="+$(this).attr("page"));searchMyMusics()})})}jQuery(function(b){b.fn.carrousel=function(d){var e=this.eq(0).data("carrousel");var g=b.extend({},b.fn.carrousel.defaults,d);var c=b.extend({},b.fn.carrousel.controls);var f=b.extend({},b.fn.carrousel.effects);this.each(function(){e=new a(this,g,c,f)});return g.api?e:null};b.carrousel=function(i,h,c,g){this.e=b(i);b(i).css("position","relative").wrap("<div><div></div></div>");if(h.continuous){b(i).html(b(i).html()+b(i).html())}var f=this;var d=new Date();this.id=(b(i).attr("id")!=""?"carrousel_"+d.getTime():b(i).attr("id"));this.container=b(i).parent();this.container.parent().css("overflow","hidden").append("<a href='#' id='"+this.id+"_prev' class='carrousel_button carrousel_prev'>"+h.htmlPrevButton+"</a><a href='#' id='"+this.id+"_next' class='carrousel_button carrousel_next'>"+h.htmlNextButton+"</a><div id='"+this.id+"_legend' class='carrousel_legend'></div>");b("a#"+this.id+"_prev").hide().click(function(){f._animate("prev");return false});b("a#"+this.id+"_next").hide().click(function(){f._animate("next");return false});this.aItems=null;this.nbItems=0;this.current=0;this.locked=false;this.block={width:0,height:0};this.margin={width:0,height:0};this.dep=0;this.timerMoving=null;this.opts=h;this.controls=c;this.effects=g;this.direction=((h.direction=="left")||(h.direction=="top")?"next":"prev");this.pos=((h.direction=="left")||(h.direction=="right")?"left":"top");this.dir=((h.direction=="right")||(h.direction=="top")?-1:1);this.vertical=(this.pos=="left"?false:true);this._init()};var a=b.carrousel;a.fn=a.prototype={carrousel:"1.1.7"};a.fn.extend=a.extend=b.extend;a.fn.extend({_init:function(){var c=this;this.aItems=b("> li",this.e);this.nbItems=this.aItems.length;if(!this.opts.continuous){this.nbItems=this.nbItems*2}var g=this.aItems.eq(0);this.block.width=g.outerWidth(true);this.block.height=g.outerHeight(true);this.margin.width=this.block.width-g.outerWidth();this.margin.height=this.block.height-g.outerHeight();this.container.parent().addClass("carrousel").attr("id",this.id+"_div");var f=(this.vertical?1:parseInt(this.opts.dispNumber))*this.block.width;this.container.addClass("carrousel_carrousel").attr("id",this.id+"_carrousel").css({overflow:"hidden",position:"relative"}).width(f+"px").height((this.vertical?parseInt(this.opts.dispNumber):1)*this.block.height+"px").parent().width(f+"px");b("ul > li > "+this.opts.mode,this.container).each(function(j){b(this).wrap('<div class="carrousel_item" rel="'+j+'"></div>')});this.e.css(this.pos,"0px").width(this.block.width*(this.vertical?1:this.nbItems));if(this.opts.stopOver){this.container.bind("mouseenter",function(i){c.locked=true});this.container.bind("mouseleave",function(i){c.locked=false;if(c.opts.auto){this.timerMoving=setTimeout(function(){c._animate("next")},c.opts.dispTimeout)}})}if(this.legend=="mouseover"){b(".carrousel_item",this.container).css("cursor","pointer");for(var d=0;d<this.nbItems;d++){$eq=this.aItems.eq(d);b(this.opts.mode,$eq).bind("mouseenter",function(i){b("div#"+c.id+"_legend").html(b(this).attr("title"))});b(this.opts.mode,$eq).bind("mouseleave",function(i){b("div#"+c.id+"_legend").html("")})}}if(this.legend=="always"){b("div#"+c.id+"_legend").html(b(c.opts.mode,this.container).eq(this.realpos(this.current)).attr("title"))}var h=this.opts.controls.split(" ");for(var d=0;d<h.length;d++){if(b.isFunction(this.controls[h[d]])){this.controls[h[d]](this)}}if(this.opts.mode=="img"){b(".carrousel_item img",this.container).load(function(){$this=b(this);$this.parent().width($this.width()).height($this.height())})}var e=this.opts.effects.split(" ");for(var d=0;d<e.length;d++){if(b.isFunction(this.effects.init[e[d]])){this.effects.init[e[d]](this)}}if(c.opts.auto){setTimeout(function(){c._animate("next")},c.opts.dispTimeout)}},_animate:function(d){d=(d==undefined?this.direction:d);if(!this.locked){clearTimeout(this.timerMoving);this.locked=true;this.dep=this.dep==0?this.opts.scroll:this.dep;if(this.dir==-1){if(d=="next"){d="prev"}else{if(d=="prev"){d="next"}}}if(d!="next"){this.dep*=-1}var c=true;if(!this.opts.continuous){if(d=="next"){if(this.current==((this.nbItems/2)-this.opts.dispNumber)){c=false;this.locked=false}}else{if(this.current==0){c=false;this.locked=false}}}if(c){this._beforeMoving()}}},_beforeMoving:function(){var d=this.opts.effects.split(" ");for(var c=0;c<d.length;c++){if(b.isFunction(this.effects.before[d[c]])){this.effects.before[d[c]](this,(this.dep<0?-1:1))}}this._move()},_move:function(){var d=this;if(b.isFunction(this.opts.move)){this.opts.move(this,function(){d._afterMoving()})}else{var d=this;var f=this.vertical?this.block.height:this.block.width;if(this.dep>0){while(parseInt(this.e.css(this.pos))<0){var g=b("> li:first",this.e);b("> li:first",this.e).remove();this.e.append(g);this.e.css(this.pos,parseInt(this.e.css(this.pos))+f)}}else{for(var e=0;e<Math.abs(this.dep);e++){var g=b("> li:last",this.e);b("> li:last",this.e).remove();this.e.prepend(g)}this.e.css(this.pos,parseInt(this.e.css(this.pos))+this.dep*f+"px")}var c=parseInt(this.e.css(this.pos));if(this.vertical){this.e.stop(true,true).animate({top:c-this.dep*this.block.height+"px"},this.opts.speed,this.opts.easing,function(){d._afterMoving()})}else{this.e.stop(true,true).animate({left:c-this.dep*this.block.width+"px"},this.opts.speed,this.opts.easing,function(){d._afterMoving()})}}},_afterMoving:function(){var c=this;this.current=this.current+this.dep;if(this.current==-1){this.current=this.nbItems-1}else{if(this.current==this.nbItems){this.current=0}else{this.current=this._realpos(this.current)}}if(this.legend=="always"){b("div#"+this.id+"_legend").html(b(this.opts.mode,this.container).eq(this.realpos(this.current)).attr("title"))}this.dep=0;this.locked=false;var e=this.opts.effects.split(" ");for(var d=0;d<e.length;d++){if(b.isFunction(this.effects.after[e[d]])){this.effects.after[e[d]](this)}}for(var d=0;d<this.opts.callbacks.length;d++){this.opts.callbacks[d](this)}var f=this.opts.controls.split(" ");for(var d=0;d<f.length;d++){if(b.isFunction(this.controls.callback[f[d]])){this.controls.callback[f[d]](this)}}if(this.opts.auto){this.timerMoving=setTimeout(function(){c._animate("next")},this.opts.dispTimeout)}},_realpos:function(c){return(c<(this.nbItems/2)?c:(c-(this.nbItems/2)))},start:function(){if(!this.opts.auto){this.locked=false;this.opts.auto=true;this._animate("next")}return false},stop:function(){clearTimeout(this.timerMoving);this.opts.auto=false;return false},next:function(){this._animate("next");return false},prev:function(){this._animate("prev");return false},getCurrent:function(){return this._realpos(this.current)},moveTo:function(c){if(c>(this.nbItems/2)){c=(this.nbItems/2)-1}this.dep=parseInt(c)-parseInt(this.current);if(this.dep!=0){this._animate("next")}return false}});b.fn.carrousel.defaults={auto:true,infinite:true,controls:"button",effects:"",easing:"",continuous:true,speed:2000,direction:"right",scroll:1,dispTimeout:1000,stopOver:true,dispNumber:3,legend:"",mode:"img",htmlPrevButton:"prev",htmlNextButton:"next",callbacks:[],api:false};b.fn.carrousel.controls={button:function(c){b("a#"+c.id+"_prev").show();b("a#"+c.id+"_next").show()},callback:{}};b.fn.carrousel.effects={init:{},before:{},after:{}}});jQuery(function(b){b.extend(b.fn.carrousel.controls,{keys:function(c){b(document).keydown(function(d){if((d.keyCode==39)||(d.keyCode==40)){c._animate("next")}if((d.keyCode==37)||(d.keyCode==38)){c._animate("prev")}});return false},click:function(c){for(var d=0;d<c.nbItems;d++){b("> "+c.opts.mode,c.aItems.eq(d)).css("cursor","pointer").attr("rel",c._realpos(d)).click(function(){c.locked=false;c.moveTo(b(this).attr("rel"));return false})}},index:function(c){c.container.parent().append('<ul id="'+c.id+'_itemList" class="carrousel_itemList"></ul>');var e="";for(var d=0;d<c.nbItems;d++){if(d<(c.nbItems/2)){e+='<li id="'+c.id+'_itemList_li" class="carrousel_itemList_li" rel="'+c._realpos(d)+'">'+(d+1)+"</li>"}}b("ul#"+c.id+"_itemList").html(e);b("li.carrousel_itemList_li").css("cursor","pointer").click(function(){c.locked=false;c.moveTo(b(this).attr("rel"));return false})},wheel:function(c){c.container.bind("mousewheel",function(e,f){var d=f>0?"Up":"Down";if(d=="Up"){c._animate("next")}else{c._animate("prev")}return false})},mouseover:function(c){c.opts.callbacks[c.opts.callbacks.length]=function(d){if(d.isMouseOver){d._animate(a(d))}};c.container.bind("mousemove",function(d){c.mouseX=d.pageX;c.mouseY=d.pageY});c.container.bind("mouseenter",function(d){c.isMouseOver=true;c.mouseX=d.pageX;c.mouseY=d.pageY;c._animate(a(c));return false});c.container.bind("mouseleave",function(){c.isMouseOver=false;return false})},iPhone:function(c){b(".carrousel_item",c.container).swipe({swipeLeft:function(){c._animate("next");return false},swipeRight:function(){c._animate("prev");return false},swipeUp:function(){c._animate("next");return false},swipeDown:function(){c._animate("prev");return false}})},slider:function(c){c.container.parent().append('<div id="'+c.id+'_slider"></div>');b("#"+c.id+"_slider",c.container.parent()).slider({range:"max",min:0,max:((c.nbItems)/2)-1,value:0,stop:function(d,e){c.moveTo(e.value)}})}});b.extend(b.fn.carrousel.controls.callback,{slider:function(c){b("#"+c.id+"_slider",c.container.parent()).slider("value",c.current)}});function a(c){var d=c.container.offset();if(c.vertical){if((c.mouseY>=parseInt(d.top))&&(c.mouseY<=parseInt((parseInt(d.top)+parseInt(c.container.height()))/2))){return"prev"}else{return"next"}}else{if((c.mouseX>=parseInt(d.left))&&(c.mouseX<=parseInt((parseInt(d.left)+parseInt(c.container.width()))/2))){return"prev"}else{return"next"}}}});jQuery(function(f){f.extend(f.fn.carrousel.effects.init,{corner:function(h){f.fn.corner.defaults.useNative=false;f(".carrousel_item",h.container).corner("10px")},reflection:function(h){if(h.vertical){h.block.height*=1.33;f(".carrousel_item",h.container).parent().height(f(".carrousel_item",h.container).parent().height()*1.33)}h.container.height(parseInt(h.container.height())*1.33);f(".carrousel_item > img").load(function(){c(this)})},relief:function(h){h.incrementPercent=parseInt(50/(parseInt(h.opts.dispNumber)-3));f(".carrousel_item",h.container).each(function(){var i=g(h,f(this).attr("rel"),0);f("> "+h.opts.mode,this).load(function(){f(this).width(parseInt(h.block.width*(i/100))+"px").height(parseInt(h.block.height*(i/100))+"px");f(this).parent().width(parseInt(h.block.width*(i/100))+"px").height(parseInt(h.block.height*(i/100))+"px")})})},align:function(h){if(h.opts.mode=="img"){f(".carrousel_item img",h.container).load(function(){d(f(this).parent(),h)})}else{for(var j=0;j<h.nbItems;j++){d(f(".carrousel_item",h.aItems.eq(j)),h)}}}});f.extend(f.fn.carrousel.effects.before,{fade:function(h){f(".carrousel_item",h.container).fadeTo(parseInt(h.opts.speed/2),0.5)},relief:function(h,j){var i=j*(h.dep==-1?h.opts.scroll:h.dep);f(".carrousel_item",h.container).each(function(){var m=g(h,f(this).attr("rel"),i);var l=parseInt(h.block.width*m/100)+"px";var k=parseInt(h.block.height*m/100)+"px";f(".carrousel_item, .carrousel_item > "+h.opts.mode,f(this).parent()).animate({width:l,height:k,left:h._getAlignWidth(parseInt(l)),top:h._getAlignHeight(parseInt(k))},h.opts.speed)})}});function c(k){var q=f(k);var j=parseInt(q.width());var m=parseInt(q.height());var n;if(f.browser.msie){n=f("<img />").attr("src",q.attr("src")).css({width:j,height:m,"margin-bottom":m-Math.floor(m*0.33),filter:"flipv progid:DXImageTransform.Microsoft.Alpha(opacity=50, style=1, finishOpacity=0, startx=0, starty=0, finishx=0, finishy=33)"})[0]}else{n=f("<canvas />")[0];if(!n.getContext){return}var o=n.getContext("2d");try{f(n).attr({width:j,height:Math.floor(m*0.33)});o.save();o.translate(0,m-1);o.scale(1,-1);o.drawImage(k,0,0,j,m);o.restore();o.globalCompositeOperation="destination-out";var l=o.createLinearGradient(0,0,0,Math.floor(m*0.33));l.addColorStop(0,"rgba(255, 255, 255, 0.5)");l.addColorStop(1,"rgba(255, 255, 255, 1.0)");o.fillStyle=l;o.rect(0,0,j,Math.floor(m*0.33));o.fill()}catch(p){return}}f(n).css("display","block");q.parent().css({width:j,height:m+Math.floor(m*0.33),overflow:"hidden"}).append(f(n));return false}function b(i){var h=i.parent().html();i.parent().parent().html(h);return false}f.extend(f.fn.carrousel.effects.after,{fade:function(h){f(".carrousel_item",h.container).fadeTo(parseInt(h.opts.speed/2),1)}});function g(k,o,q){var n=k.current+q;if(n<0){n+=(k.nbItems/2)}n=k._realpos(n);var h=parseInt(k.opts.dispNumber)+n-1;h=k._realpos(h);var p=parseInt(k.opts.dispNumber/2)+n;p=k._realpos(p);var l=o;o=k._realpos(o);var m=0;if((o==n)||(o==h)){m=50}else{if(o==p){m=100}else{if(n<h){if((o>n)&&(o<h)){m=50+Math.abs(p-o)*k.incrementPercent}else{m=50-k.incrementPercent}}else{if((o<(k.nbItems/2))&&(o>n)){if(p==0){p=(k.nbItems/2)}m=50+Math.abs(p-o)*k.incrementPercent}else{if((o>=0)&&(o<h)){if(p==((k.nbItems/2)-1)){p=1}m=50+Math.abs(p-o)*k.incrementPercent}else{m=50-k.incrementPercent}}}}}k.aItems.eq(l).css("z-index",k.opts.dispNumber-Math.abs(p-o));return m}function d(i,h){i.css({top:e(parseInt(f(h.opts.mode,i).height())+h.margin.height,h),left:a(parseInt(f(h.opts.mode,i).width())+h.margin.width,h),position:"relative"})}function e(i,h){var j=h.block.height-i;if(h.opts.align.indexOf("top")!=-1){return"0px"}if(h.opts.align.indexOf("bottom")!=-1){return j+"px"}if(this.opts.align.indexOf("center")!=-1){return parseInt(j/2)+"px"}return"0px"}function a(i,h){var j=h.block.width-i;if(h.opts.align.indexOf("left")!=-1){return"0px"}if(h.opts.align.indexOf("right")!=-1){return j+"px"}if(h.opts.align.indexOf("center")!=-1){return parseInt(j/2)+"px"}return"0px"}});var tb_pathToImage="/images/loadingAnimation.gif";
+(function(){
+
+var chunker = /((?:\((?:\([^()]+\)|[^()]+)+\)|\[(?:\[[^\[\]]*\]|['"][^'"]*['"]|[^\[\]'"]+)+\]|\\.|[^ >+~,(\[\\]+)+|[>+~])(\s*,\s*)?((?:.|\r|\n)*)/g,
+	done = 0,
+	toString = Object.prototype.toString,
+	hasDuplicate = false,
+	baseHasDuplicate = true,
+	rBackslash = /\\/g,
+	rNonWord = /\W/;
+
+// Here we check if the JavaScript engine is using some sort of
+// optimization where it does not always call our comparision
+// function. If that is the case, discard the hasDuplicate value.
+//   Thus far that includes Google Chrome.
+[0, 0].sort(function() {
+	baseHasDuplicate = false;
+	return 0;
+});
+
+var Sizzle = function( selector, context, results, seed ) {
+	results = results || [];
+	context = context || document;
+
+	var origContext = context;
+
+	if ( context.nodeType !== 1 && context.nodeType !== 9 ) {
+		return [];
+	}
+	
+	if ( !selector || typeof selector !== "string" ) {
+		return results;
+	}
+
+	var m, set, checkSet, extra, ret, cur, pop, i,
+		prune = true,
+		contextXML = Sizzle.isXML( context ),
+		parts = [],
+		soFar = selector;
+	
+	// Reset the position of the chunker regexp (start from head)
+	do {
+		chunker.exec( "" );
+		m = chunker.exec( soFar );
+
+		if ( m ) {
+			soFar = m[3];
+		
+			parts.push( m[1] );
+		
+			if ( m[2] ) {
+				extra = m[3];
+				break;
+			}
+		}
+	} while ( m );
+
+	if ( parts.length > 1 && origPOS.exec( selector ) ) {
+
+		if ( parts.length === 2 && Expr.relative[ parts[0] ] ) {
+			set = posProcess( parts[0] + parts[1], context );
+
+		} else {
+			set = Expr.relative[ parts[0] ] ?
+				[ context ] :
+				Sizzle( parts.shift(), context );
+
+			while ( parts.length ) {
+				selector = parts.shift();
+
+				if ( Expr.relative[ selector ] ) {
+					selector += parts.shift();
+				}
+				
+				set = posProcess( selector, set );
+			}
+		}
+
+	} else {
+		// Take a shortcut and set the context if the root selector is an ID
+		// (but not if it'll be faster if the inner selector is an ID)
+		if ( !seed && parts.length > 1 && context.nodeType === 9 && !contextXML &&
+				Expr.match.ID.test(parts[0]) && !Expr.match.ID.test(parts[parts.length - 1]) ) {
+
+			ret = Sizzle.find( parts.shift(), context, contextXML );
+			context = ret.expr ?
+				Sizzle.filter( ret.expr, ret.set )[0] :
+				ret.set[0];
+		}
+
+		if ( context ) {
+			ret = seed ?
+				{ expr: parts.pop(), set: makeArray(seed) } :
+				Sizzle.find( parts.pop(), parts.length === 1 && (parts[0] === "~" || parts[0] === "+") && context.parentNode ? context.parentNode : context, contextXML );
+
+			set = ret.expr ?
+				Sizzle.filter( ret.expr, ret.set ) :
+				ret.set;
+
+			if ( parts.length > 0 ) {
+				checkSet = makeArray( set );
+
+			} else {
+				prune = false;
+			}
+
+			while ( parts.length ) {
+				cur = parts.pop();
+				pop = cur;
+
+				if ( !Expr.relative[ cur ] ) {
+					cur = "";
+				} else {
+					pop = parts.pop();
+				}
+
+				if ( pop == null ) {
+					pop = context;
+				}
+
+				Expr.relative[ cur ]( checkSet, pop, contextXML );
+			}
+
+		} else {
+			checkSet = parts = [];
+		}
+	}
+
+	if ( !checkSet ) {
+		checkSet = set;
+	}
+
+	if ( !checkSet ) {
+		Sizzle.error( cur || selector );
+	}
+
+	if ( toString.call(checkSet) === "[object Array]" ) {
+		if ( !prune ) {
+			results.push.apply( results, checkSet );
+
+		} else if ( context && context.nodeType === 1 ) {
+			for ( i = 0; checkSet[i] != null; i++ ) {
+				if ( checkSet[i] && (checkSet[i] === true || checkSet[i].nodeType === 1 && Sizzle.contains(context, checkSet[i])) ) {
+					results.push( set[i] );
+				}
+			}
+
+		} else {
+			for ( i = 0; checkSet[i] != null; i++ ) {
+				if ( checkSet[i] && checkSet[i].nodeType === 1 ) {
+					results.push( set[i] );
+				}
+			}
+		}
+
+	} else {
+		makeArray( checkSet, results );
+	}
+
+	if ( extra ) {
+		Sizzle( extra, origContext, results, seed );
+		Sizzle.uniqueSort( results );
+	}
+
+	return results;
+};
+
+Sizzle.uniqueSort = function( results ) {
+	if ( sortOrder ) {
+		hasDuplicate = baseHasDuplicate;
+		results.sort( sortOrder );
+
+		if ( hasDuplicate ) {
+			for ( var i = 1; i < results.length; i++ ) {
+				if ( results[i] === results[ i - 1 ] ) {
+					results.splice( i--, 1 );
+				}
+			}
+		}
+	}
+
+	return results;
+};
+
+Sizzle.matches = function( expr, set ) {
+	return Sizzle( expr, null, null, set );
+};
+
+Sizzle.matchesSelector = function( node, expr ) {
+	return Sizzle( expr, null, null, [node] ).length > 0;
+};
+
+Sizzle.find = function( expr, context, isXML ) {
+	var set;
+
+	if ( !expr ) {
+		return [];
+	}
+
+	for ( var i = 0, l = Expr.order.length; i < l; i++ ) {
+		var match,
+			type = Expr.order[i];
+		
+		if ( (match = Expr.leftMatch[ type ].exec( expr )) ) {
+			var left = match[1];
+			match.splice( 1, 1 );
+
+			if ( left.substr( left.length - 1 ) !== "\\" ) {
+				match[1] = (match[1] || "").replace( rBackslash, "" );
+				set = Expr.find[ type ]( match, context, isXML );
+
+				if ( set != null ) {
+					expr = expr.replace( Expr.match[ type ], "" );
+					break;
+				}
+			}
+		}
+	}
+
+	if ( !set ) {
+		set = typeof context.getElementsByTagName !== "undefined" ?
+			context.getElementsByTagName( "*" ) :
+			[];
+	}
+
+	return { set: set, expr: expr };
+};
+
+Sizzle.filter = function( expr, set, inplace, not ) {
+	var match, anyFound,
+		old = expr,
+		result = [],
+		curLoop = set,
+		isXMLFilter = set && set[0] && Sizzle.isXML( set[0] );
+
+	while ( expr && set.length ) {
+		for ( var type in Expr.filter ) {
+			if ( (match = Expr.leftMatch[ type ].exec( expr )) != null && match[2] ) {
+				var found, item,
+					filter = Expr.filter[ type ],
+					left = match[1];
+
+				anyFound = false;
+
+				match.splice(1,1);
+
+				if ( left.substr( left.length - 1 ) === "\\" ) {
+					continue;
+				}
+
+				if ( curLoop === result ) {
+					result = [];
+				}
+
+				if ( Expr.preFilter[ type ] ) {
+					match = Expr.preFilter[ type ]( match, curLoop, inplace, result, not, isXMLFilter );
+
+					if ( !match ) {
+						anyFound = found = true;
+
+					} else if ( match === true ) {
+						continue;
+					}
+				}
+
+				if ( match ) {
+					for ( var i = 0; (item = curLoop[i]) != null; i++ ) {
+						if ( item ) {
+							found = filter( item, match, i, curLoop );
+							var pass = not ^ !!found;
+
+							if ( inplace && found != null ) {
+								if ( pass ) {
+									anyFound = true;
+
+								} else {
+									curLoop[i] = false;
+								}
+
+							} else if ( pass ) {
+								result.push( item );
+								anyFound = true;
+							}
+						}
+					}
+				}
+
+				if ( found !== undefined ) {
+					if ( !inplace ) {
+						curLoop = result;
+					}
+
+					expr = expr.replace( Expr.match[ type ], "" );
+
+					if ( !anyFound ) {
+						return [];
+					}
+
+					break;
+				}
+			}
+		}
+
+		// Improper expression
+		if ( expr === old ) {
+			if ( anyFound == null ) {
+				Sizzle.error( expr );
+
+			} else {
+				break;
+			}
+		}
+
+		old = expr;
+	}
+
+	return curLoop;
+};
+
+Sizzle.error = function( msg ) {
+	throw "Syntax error, unrecognized expression: " + msg;
+};
+
+var Expr = Sizzle.selectors = {
+	order: [ "ID", "NAME", "TAG" ],
+
+	match: {
+		ID: /#((?:[\w\u00c0-\uFFFF\-]|\\.)+)/,
+		CLASS: /\.((?:[\w\u00c0-\uFFFF\-]|\\.)+)/,
+		NAME: /\[name=['"]*((?:[\w\u00c0-\uFFFF\-]|\\.)+)['"]*\]/,
+		ATTR: /\[\s*((?:[\w\u00c0-\uFFFF\-]|\\.)+)\s*(?:(\S?=)\s*(?:(['"])(.*?)\3|(#?(?:[\w\u00c0-\uFFFF\-]|\\.)*)|)|)\s*\]/,
+		TAG: /^((?:[\w\u00c0-\uFFFF\*\-]|\\.)+)/,
+		CHILD: /:(only|nth|last|first)-child(?:\(\s*(even|odd|(?:[+\-]?\d+|(?:[+\-]?\d*)?n\s*(?:[+\-]\s*\d+)?))\s*\))?/,
+		POS: /:(nth|eq|gt|lt|first|last|even|odd)(?:\((\d*)\))?(?=[^\-]|$)/,
+		PSEUDO: /:((?:[\w\u00c0-\uFFFF\-]|\\.)+)(?:\((['"]?)((?:\([^\)]+\)|[^\(\)]*)+)\2\))?/
+	},
+
+	leftMatch: {},
+
+	attrMap: {
+		"class": "className",
+		"for": "htmlFor"
+	},
+
+	attrHandle: {
+		href: function( elem ) {
+			return elem.getAttribute( "href" );
+		},
+		type: function( elem ) {
+			return elem.getAttribute( "type" );
+		}
+	},
+
+	relative: {
+		"+": function(checkSet, part){
+			var isPartStr = typeof part === "string",
+				isTag = isPartStr && !rNonWord.test( part ),
+				isPartStrNotTag = isPartStr && !isTag;
+
+			if ( isTag ) {
+				part = part.toLowerCase();
+			}
+
+			for ( var i = 0, l = checkSet.length, elem; i < l; i++ ) {
+				if ( (elem = checkSet[i]) ) {
+					while ( (elem = elem.previousSibling) && elem.nodeType !== 1 ) {}
+
+					checkSet[i] = isPartStrNotTag || elem && elem.nodeName.toLowerCase() === part ?
+						elem || false :
+						elem === part;
+				}
+			}
+
+			if ( isPartStrNotTag ) {
+				Sizzle.filter( part, checkSet, true );
+			}
+		},
+
+		">": function( checkSet, part ) {
+			var elem,
+				isPartStr = typeof part === "string",
+				i = 0,
+				l = checkSet.length;
+
+			if ( isPartStr && !rNonWord.test( part ) ) {
+				part = part.toLowerCase();
+
+				for ( ; i < l; i++ ) {
+					elem = checkSet[i];
+
+					if ( elem ) {
+						var parent = elem.parentNode;
+						checkSet[i] = parent.nodeName.toLowerCase() === part ? parent : false;
+					}
+				}
+
+			} else {
+				for ( ; i < l; i++ ) {
+					elem = checkSet[i];
+
+					if ( elem ) {
+						checkSet[i] = isPartStr ?
+							elem.parentNode :
+							elem.parentNode === part;
+					}
+				}
+
+				if ( isPartStr ) {
+					Sizzle.filter( part, checkSet, true );
+				}
+			}
+		},
+
+		"": function(checkSet, part, isXML){
+			var nodeCheck,
+				doneName = done++,
+				checkFn = dirCheck;
+
+			if ( typeof part === "string" && !rNonWord.test( part ) ) {
+				part = part.toLowerCase();
+				nodeCheck = part;
+				checkFn = dirNodeCheck;
+			}
+
+			checkFn( "parentNode", part, doneName, checkSet, nodeCheck, isXML );
+		},
+
+		"~": function( checkSet, part, isXML ) {
+			var nodeCheck,
+				doneName = done++,
+				checkFn = dirCheck;
+
+			if ( typeof part === "string" && !rNonWord.test( part ) ) {
+				part = part.toLowerCase();
+				nodeCheck = part;
+				checkFn = dirNodeCheck;
+			}
+
+			checkFn( "previousSibling", part, doneName, checkSet, nodeCheck, isXML );
+		}
+	},
+
+	find: {
+		ID: function( match, context, isXML ) {
+			if ( typeof context.getElementById !== "undefined" && !isXML ) {
+				var m = context.getElementById(match[1]);
+				// Check parentNode to catch when Blackberry 4.6 returns
+				// nodes that are no longer in the document #6963
+				return m && m.parentNode ? [m] : [];
+			}
+		},
+
+		NAME: function( match, context ) {
+			if ( typeof context.getElementsByName !== "undefined" ) {
+				var ret = [],
+					results = context.getElementsByName( match[1] );
+
+				for ( var i = 0, l = results.length; i < l; i++ ) {
+					if ( results[i].getAttribute("name") === match[1] ) {
+						ret.push( results[i] );
+					}
+				}
+
+				return ret.length === 0 ? null : ret;
+			}
+		},
+
+		TAG: function( match, context ) {
+			if ( typeof context.getElementsByTagName !== "undefined" ) {
+				return context.getElementsByTagName( match[1] );
+			}
+		}
+	},
+	preFilter: {
+		CLASS: function( match, curLoop, inplace, result, not, isXML ) {
+			match = " " + match[1].replace( rBackslash, "" ) + " ";
+
+			if ( isXML ) {
+				return match;
+			}
+
+			for ( var i = 0, elem; (elem = curLoop[i]) != null; i++ ) {
+				if ( elem ) {
+					if ( not ^ (elem.className && (" " + elem.className + " ").replace(/[\t\n\r]/g, " ").indexOf(match) >= 0) ) {
+						if ( !inplace ) {
+							result.push( elem );
+						}
+
+					} else if ( inplace ) {
+						curLoop[i] = false;
+					}
+				}
+			}
+
+			return false;
+		},
+
+		ID: function( match ) {
+			return match[1].replace( rBackslash, "" );
+		},
+
+		TAG: function( match, curLoop ) {
+			return match[1].replace( rBackslash, "" ).toLowerCase();
+		},
+
+		CHILD: function( match ) {
+			if ( match[1] === "nth" ) {
+				if ( !match[2] ) {
+					Sizzle.error( match[0] );
+				}
+
+				match[2] = match[2].replace(/^\+|\s*/g, '');
+
+				// parse equations like 'even', 'odd', '5', '2n', '3n+2', '4n-1', '-n+6'
+				var test = /(-?)(\d*)(?:n([+\-]?\d*))?/.exec(
+					match[2] === "even" && "2n" || match[2] === "odd" && "2n+1" ||
+					!/\D/.test( match[2] ) && "0n+" + match[2] || match[2]);
+
+				// calculate the numbers (first)n+(last) including if they are negative
+				match[2] = (test[1] + (test[2] || 1)) - 0;
+				match[3] = test[3] - 0;
+			}
+			else if ( match[2] ) {
+				Sizzle.error( match[0] );
+			}
+
+			// TODO: Move to normal caching system
+			match[0] = done++;
+
+			return match;
+		},
+
+		ATTR: function( match, curLoop, inplace, result, not, isXML ) {
+			var name = match[1] = match[1].replace( rBackslash, "" );
+			
+			if ( !isXML && Expr.attrMap[name] ) {
+				match[1] = Expr.attrMap[name];
+			}
+
+			// Handle if an un-quoted value was used
+			match[4] = ( match[4] || match[5] || "" ).replace( rBackslash, "" );
+
+			if ( match[2] === "~=" ) {
+				match[4] = " " + match[4] + " ";
+			}
+
+			return match;
+		},
+
+		PSEUDO: function( match, curLoop, inplace, result, not ) {
+			if ( match[1] === "not" ) {
+				// If we're dealing with a complex expression, or a simple one
+				if ( ( chunker.exec(match[3]) || "" ).length > 1 || /^\w/.test(match[3]) ) {
+					match[3] = Sizzle(match[3], null, null, curLoop);
+
+				} else {
+					var ret = Sizzle.filter(match[3], curLoop, inplace, true ^ not);
+
+					if ( !inplace ) {
+						result.push.apply( result, ret );
+					}
+
+					return false;
+				}
+
+			} else if ( Expr.match.POS.test( match[0] ) || Expr.match.CHILD.test( match[0] ) ) {
+				return true;
+			}
+			
+			return match;
+		},
+
+		POS: function( match ) {
+			match.unshift( true );
+
+			return match;
+		}
+	},
+	
+	filters: {
+		enabled: function( elem ) {
+			return elem.disabled === false && elem.type !== "hidden";
+		},
+
+		disabled: function( elem ) {
+			return elem.disabled === true;
+		},
+
+		checked: function( elem ) {
+			return elem.checked === true;
+		},
+		
+		selected: function( elem ) {
+			// Accessing this property makes selected-by-default
+			// options in Safari work properly
+			if ( elem.parentNode ) {
+				elem.parentNode.selectedIndex;
+			}
+			
+			return elem.selected === true;
+		},
+
+		parent: function( elem ) {
+			return !!elem.firstChild;
+		},
+
+		empty: function( elem ) {
+			return !elem.firstChild;
+		},
+
+		has: function( elem, i, match ) {
+			return !!Sizzle( match[3], elem ).length;
+		},
+
+		header: function( elem ) {
+			return (/h\d/i).test( elem.nodeName );
+		},
+
+		text: function( elem ) {
+			var attr = elem.getAttribute( "type" ), type = elem.type;
+			// IE6 and 7 will map elem.type to 'text' for new HTML5 types (search, etc) 
+			// use getAttribute instead to test this case
+			return "text" === type && ( attr === type || attr === null );
+		},
+
+		radio: function( elem ) {
+			return "radio" === elem.type;
+		},
+
+		checkbox: function( elem ) {
+			return "checkbox" === elem.type;
+		},
+
+		file: function( elem ) {
+			return "file" === elem.type;
+		},
+		password: function( elem ) {
+			return "password" === elem.type;
+		},
+
+		submit: function( elem ) {
+			return "submit" === elem.type;
+		},
+
+		image: function( elem ) {
+			return "image" === elem.type;
+		},
+
+		reset: function( elem ) {
+			return "reset" === elem.type;
+		},
+
+		button: function( elem ) {
+			return "button" === elem.type || elem.nodeName.toLowerCase() === "button";
+		},
+
+		input: function( elem ) {
+			return (/input|select|textarea|button/i).test( elem.nodeName );
+		}
+	},
+	setFilters: {
+		first: function( elem, i ) {
+			return i === 0;
+		},
+
+		last: function( elem, i, match, array ) {
+			return i === array.length - 1;
+		},
+
+		even: function( elem, i ) {
+			return i % 2 === 0;
+		},
+
+		odd: function( elem, i ) {
+			return i % 2 === 1;
+		},
+
+		lt: function( elem, i, match ) {
+			return i < match[3] - 0;
+		},
+
+		gt: function( elem, i, match ) {
+			return i > match[3] - 0;
+		},
+
+		nth: function( elem, i, match ) {
+			return match[3] - 0 === i;
+		},
+
+		eq: function( elem, i, match ) {
+			return match[3] - 0 === i;
+		}
+	},
+	filter: {
+		PSEUDO: function( elem, match, i, array ) {
+			var name = match[1],
+				filter = Expr.filters[ name ];
+
+			if ( filter ) {
+				return filter( elem, i, match, array );
+
+			} else if ( name === "contains" ) {
+				return (elem.textContent || elem.innerText || Sizzle.getText([ elem ]) || "").indexOf(match[3]) >= 0;
+
+			} else if ( name === "not" ) {
+				var not = match[3];
+
+				for ( var j = 0, l = not.length; j < l; j++ ) {
+					if ( not[j] === elem ) {
+						return false;
+					}
+				}
+
+				return true;
+
+			} else {
+				Sizzle.error( name );
+			}
+		},
+
+		CHILD: function( elem, match ) {
+			var type = match[1],
+				node = elem;
+
+			switch ( type ) {
+				case "only":
+				case "first":
+					while ( (node = node.previousSibling) )	 {
+						if ( node.nodeType === 1 ) { 
+							return false; 
+						}
+					}
+
+					if ( type === "first" ) { 
+						return true; 
+					}
+
+					node = elem;
+
+				case "last":
+					while ( (node = node.nextSibling) )	 {
+						if ( node.nodeType === 1 ) { 
+							return false; 
+						}
+					}
+
+					return true;
+
+				case "nth":
+					var first = match[2],
+						last = match[3];
+
+					if ( first === 1 && last === 0 ) {
+						return true;
+					}
+					
+					var doneName = match[0],
+						parent = elem.parentNode;
+	
+					if ( parent && (parent.sizcache !== doneName || !elem.nodeIndex) ) {
+						var count = 0;
+						
+						for ( node = parent.firstChild; node; node = node.nextSibling ) {
+							if ( node.nodeType === 1 ) {
+								node.nodeIndex = ++count;
+							}
+						} 
+
+						parent.sizcache = doneName;
+					}
+					
+					var diff = elem.nodeIndex - last;
+
+					if ( first === 0 ) {
+						return diff === 0;
+
+					} else {
+						return ( diff % first === 0 && diff / first >= 0 );
+					}
+			}
+		},
+
+		ID: function( elem, match ) {
+			return elem.nodeType === 1 && elem.getAttribute("id") === match;
+		},
+
+		TAG: function( elem, match ) {
+			return (match === "*" && elem.nodeType === 1) || elem.nodeName.toLowerCase() === match;
+		},
+		
+		CLASS: function( elem, match ) {
+			return (" " + (elem.className || elem.getAttribute("class")) + " ")
+				.indexOf( match ) > -1;
+		},
+
+		ATTR: function( elem, match ) {
+			var name = match[1],
+				result = Expr.attrHandle[ name ] ?
+					Expr.attrHandle[ name ]( elem ) :
+					elem[ name ] != null ?
+						elem[ name ] :
+						elem.getAttribute( name ),
+				value = result + "",
+				type = match[2],
+				check = match[4];
+
+			return result == null ?
+				type === "!=" :
+				type === "=" ?
+				value === check :
+				type === "*=" ?
+				value.indexOf(check) >= 0 :
+				type === "~=" ?
+				(" " + value + " ").indexOf(check) >= 0 :
+				!check ?
+				value && result !== false :
+				type === "!=" ?
+				value !== check :
+				type === "^=" ?
+				value.indexOf(check) === 0 :
+				type === "$=" ?
+				value.substr(value.length - check.length) === check :
+				type === "|=" ?
+				value === check || value.substr(0, check.length + 1) === check + "-" :
+				false;
+		},
+
+		POS: function( elem, match, i, array ) {
+			var name = match[2],
+				filter = Expr.setFilters[ name ];
+
+			if ( filter ) {
+				return filter( elem, i, match, array );
+			}
+		}
+	}
+};
+
+var origPOS = Expr.match.POS,
+	fescape = function(all, num){
+		return "\\" + (num - 0 + 1);
+	};
+
+for ( var type in Expr.match ) {
+	Expr.match[ type ] = new RegExp( Expr.match[ type ].source + (/(?![^\[]*\])(?![^\(]*\))/.source) );
+	Expr.leftMatch[ type ] = new RegExp( /(^(?:.|\r|\n)*?)/.source + Expr.match[ type ].source.replace(/\\(\d+)/g, fescape) );
+}
+
+var makeArray = function( array, results ) {
+	array = Array.prototype.slice.call( array, 0 );
+
+	if ( results ) {
+		results.push.apply( results, array );
+		return results;
+	}
+	
+	return array;
+};
+
+// Perform a simple check to determine if the browser is capable of
+// converting a NodeList to an array using builtin methods.
+// Also verifies that the returned array holds DOM nodes
+// (which is not the case in the Blackberry browser)
+try {
+	Array.prototype.slice.call( document.documentElement.childNodes, 0 )[0].nodeType;
+
+// Provide a fallback method if it does not work
+} catch( e ) {
+	makeArray = function( array, results ) {
+		var i = 0,
+			ret = results || [];
+
+		if ( toString.call(array) === "[object Array]" ) {
+			Array.prototype.push.apply( ret, array );
+
+		} else {
+			if ( typeof array.length === "number" ) {
+				for ( var l = array.length; i < l; i++ ) {
+					ret.push( array[i] );
+				}
+
+			} else {
+				for ( ; array[i]; i++ ) {
+					ret.push( array[i] );
+				}
+			}
+		}
+
+		return ret;
+	};
+}
+
+var sortOrder, siblingCheck;
+
+if ( document.documentElement.compareDocumentPosition ) {
+	sortOrder = function( a, b ) {
+		if ( a === b ) {
+			hasDuplicate = true;
+			return 0;
+		}
+
+		if ( !a.compareDocumentPosition || !b.compareDocumentPosition ) {
+			return a.compareDocumentPosition ? -1 : 1;
+		}
+
+		return a.compareDocumentPosition(b) & 4 ? -1 : 1;
+	};
+
+} else {
+	sortOrder = function( a, b ) {
+		var al, bl,
+			ap = [],
+			bp = [],
+			aup = a.parentNode,
+			bup = b.parentNode,
+			cur = aup;
+
+		// The nodes are identical, we can exit early
+		if ( a === b ) {
+			hasDuplicate = true;
+			return 0;
+
+		// If the nodes are siblings (or identical) we can do a quick check
+		} else if ( aup === bup ) {
+			return siblingCheck( a, b );
+
+		// If no parents were found then the nodes are disconnected
+		} else if ( !aup ) {
+			return -1;
+
+		} else if ( !bup ) {
+			return 1;
+		}
+
+		// Otherwise they're somewhere else in the tree so we need
+		// to build up a full list of the parentNodes for comparison
+		while ( cur ) {
+			ap.unshift( cur );
+			cur = cur.parentNode;
+		}
+
+		cur = bup;
+
+		while ( cur ) {
+			bp.unshift( cur );
+			cur = cur.parentNode;
+		}
+
+		al = ap.length;
+		bl = bp.length;
+
+		// Start walking down the tree looking for a discrepancy
+		for ( var i = 0; i < al && i < bl; i++ ) {
+			if ( ap[i] !== bp[i] ) {
+				return siblingCheck( ap[i], bp[i] );
+			}
+		}
+
+		// We ended someplace up the tree so do a sibling check
+		return i === al ?
+			siblingCheck( a, bp[i], -1 ) :
+			siblingCheck( ap[i], b, 1 );
+	};
+
+	siblingCheck = function( a, b, ret ) {
+		if ( a === b ) {
+			return ret;
+		}
+
+		var cur = a.nextSibling;
+
+		while ( cur ) {
+			if ( cur === b ) {
+				return -1;
+			}
+
+			cur = cur.nextSibling;
+		}
+
+		return 1;
+	};
+}
+
+// Utility function for retreiving the text value of an array of DOM nodes
+Sizzle.getText = function( elems ) {
+	var ret = "", elem;
+
+	for ( var i = 0; elems[i]; i++ ) {
+		elem = elems[i];
+
+		// Get the text from text nodes and CDATA nodes
+		if ( elem.nodeType === 3 || elem.nodeType === 4 ) {
+			ret += elem.nodeValue;
+
+		// Traverse everything else, except comment nodes
+		} else if ( elem.nodeType !== 8 ) {
+			ret += Sizzle.getText( elem.childNodes );
+		}
+	}
+
+	return ret;
+};
+
+// Check to see if the browser returns elements by name when
+// querying by getElementById (and provide a workaround)
+(function(){
+	// We're going to inject a fake input element with a specified name
+	var form = document.createElement("div"),
+		id = "script" + (new Date()).getTime(),
+		root = document.documentElement;
+
+	form.innerHTML = "<a name='" + id + "'/>";
+
+	// Inject it into the root element, check its status, and remove it quickly
+	root.insertBefore( form, root.firstChild );
+
+	// The workaround has to do additional checks after a getElementById
+	// Which slows things down for other browsers (hence the branching)
+	if ( document.getElementById( id ) ) {
+		Expr.find.ID = function( match, context, isXML ) {
+			if ( typeof context.getElementById !== "undefined" && !isXML ) {
+				var m = context.getElementById(match[1]);
+
+				return m ?
+					m.id === match[1] || typeof m.getAttributeNode !== "undefined" && m.getAttributeNode("id").nodeValue === match[1] ?
+						[m] :
+						undefined :
+					[];
+			}
+		};
+
+		Expr.filter.ID = function( elem, match ) {
+			var node = typeof elem.getAttributeNode !== "undefined" && elem.getAttributeNode("id");
+
+			return elem.nodeType === 1 && node && node.nodeValue === match;
+		};
+	}
+
+	root.removeChild( form );
+
+	// release memory in IE
+	root = form = null;
+})();
+
+(function(){
+	// Check to see if the browser returns only elements
+	// when doing getElementsByTagName("*")
+
+	// Create a fake element
+	var div = document.createElement("div");
+	div.appendChild( document.createComment("") );
+
+	// Make sure no comments are found
+	if ( div.getElementsByTagName("*").length > 0 ) {
+		Expr.find.TAG = function( match, context ) {
+			var results = context.getElementsByTagName( match[1] );
+
+			// Filter out possible comments
+			if ( match[1] === "*" ) {
+				var tmp = [];
+
+				for ( var i = 0; results[i]; i++ ) {
+					if ( results[i].nodeType === 1 ) {
+						tmp.push( results[i] );
+					}
+				}
+
+				results = tmp;
+			}
+
+			return results;
+		};
+	}
+
+	// Check to see if an attribute returns normalized href attributes
+	div.innerHTML = "<a href='#'></a>";
+
+	if ( div.firstChild && typeof div.firstChild.getAttribute !== "undefined" &&
+			div.firstChild.getAttribute("href") !== "#" ) {
+
+		Expr.attrHandle.href = function( elem ) {
+			return elem.getAttribute( "href", 2 );
+		};
+	}
+
+	// release memory in IE
+	div = null;
+})();
+
+if ( document.querySelectorAll ) {
+	(function(){
+		var oldSizzle = Sizzle,
+			div = document.createElement("div"),
+			id = "__sizzle__";
+
+		div.innerHTML = "<p class='TEST'></p>";
+
+		// Safari can't handle uppercase or unicode characters when
+		// in quirks mode.
+		if ( div.querySelectorAll && div.querySelectorAll(".TEST").length === 0 ) {
+			return;
+		}
+	
+		Sizzle = function( query, context, extra, seed ) {
+			context = context || document;
+
+			// Only use querySelectorAll on non-XML documents
+			// (ID selectors don't work in non-HTML documents)
+			if ( !seed && !Sizzle.isXML(context) ) {
+				// See if we find a selector to speed up
+				var match = /^(\w+$)|^\.([\w\-]+$)|^#([\w\-]+$)/.exec( query );
+				
+				if ( match && (context.nodeType === 1 || context.nodeType === 9) ) {
+					// Speed-up: Sizzle("TAG")
+					if ( match[1] ) {
+						return makeArray( context.getElementsByTagName( query ), extra );
+					
+					// Speed-up: Sizzle(".CLASS")
+					} else if ( match[2] && Expr.find.CLASS && context.getElementsByClassName ) {
+						return makeArray( context.getElementsByClassName( match[2] ), extra );
+					}
+				}
+				
+				if ( context.nodeType === 9 ) {
+					// Speed-up: Sizzle("body")
+					// The body element only exists once, optimize finding it
+					if ( query === "body" && context.body ) {
+						return makeArray( [ context.body ], extra );
+						
+					// Speed-up: Sizzle("#ID")
+					} else if ( match && match[3] ) {
+						var elem = context.getElementById( match[3] );
+
+						// Check parentNode to catch when Blackberry 4.6 returns
+						// nodes that are no longer in the document #6963
+						if ( elem && elem.parentNode ) {
+							// Handle the case where IE and Opera return items
+							// by name instead of ID
+							if ( elem.id === match[3] ) {
+								return makeArray( [ elem ], extra );
+							}
+							
+						} else {
+							return makeArray( [], extra );
+						}
+					}
+					
+					try {
+						return makeArray( context.querySelectorAll(query), extra );
+					} catch(qsaError) {}
+
+				// qSA works strangely on Element-rooted queries
+				// We can work around this by specifying an extra ID on the root
+				// and working up from there (Thanks to Andrew Dupont for the technique)
+				// IE 8 doesn't work on object elements
+				} else if ( context.nodeType === 1 && context.nodeName.toLowerCase() !== "object" ) {
+					var oldContext = context,
+						old = context.getAttribute( "id" ),
+						nid = old || id,
+						hasParent = context.parentNode,
+						relativeHierarchySelector = /^\s*[+~]/.test( query );
+
+					if ( !old ) {
+						context.setAttribute( "id", nid );
+					} else {
+						nid = nid.replace( /'/g, "\\$&" );
+					}
+					if ( relativeHierarchySelector && hasParent ) {
+						context = context.parentNode;
+					}
+
+					try {
+						if ( !relativeHierarchySelector || hasParent ) {
+							return makeArray( context.querySelectorAll( "[id='" + nid + "'] " + query ), extra );
+						}
+
+					} catch(pseudoError) {
+					} finally {
+						if ( !old ) {
+							oldContext.removeAttribute( "id" );
+						}
+					}
+				}
+			}
+		
+			return oldSizzle(query, context, extra, seed);
+		};
+
+		for ( var prop in oldSizzle ) {
+			Sizzle[ prop ] = oldSizzle[ prop ];
+		}
+
+		// release memory in IE
+		div = null;
+	})();
+}
+
+(function(){
+	var html = document.documentElement,
+		matches = html.matchesSelector || html.mozMatchesSelector || html.webkitMatchesSelector || html.msMatchesSelector;
+
+	if ( matches ) {
+		// Check to see if it's possible to do matchesSelector
+		// on a disconnected node (IE 9 fails this)
+		var disconnectedMatch = !matches.call( document.createElement( "div" ), "div" ),
+			pseudoWorks = false;
+
+		try {
+			// This should fail with an exception
+			// Gecko does not error, returns false instead
+			matches.call( document.documentElement, "[test!='']:sizzle" );
+	
+		} catch( pseudoError ) {
+			pseudoWorks = true;
+		}
+
+		Sizzle.matchesSelector = function( node, expr ) {
+			// Make sure that attribute selectors are quoted
+			expr = expr.replace(/\=\s*([^'"\]]*)\s*\]/g, "='$1']");
+
+			if ( !Sizzle.isXML( node ) ) {
+				try { 
+					if ( pseudoWorks || !Expr.match.PSEUDO.test( expr ) && !/!=/.test( expr ) ) {
+						var ret = matches.call( node, expr );
+
+						// IE 9's matchesSelector returns false on disconnected nodes
+						if ( ret || !disconnectedMatch ||
+								// As well, disconnected nodes are said to be in a document
+								// fragment in IE 9, so check for that
+								node.document && node.document.nodeType !== 11 ) {
+							return ret;
+						}
+					}
+				} catch(e) {}
+			}
+
+			return Sizzle(expr, null, null, [node]).length > 0;
+		};
+	}
+})();
+
+(function(){
+	var div = document.createElement("div");
+
+	div.innerHTML = "<div class='test e'></div><div class='test'></div>";
+
+	// Opera can't find a second classname (in 9.6)
+	// Also, make sure that getElementsByClassName actually exists
+	if ( !div.getElementsByClassName || div.getElementsByClassName("e").length === 0 ) {
+		return;
+	}
+
+	// Safari caches class attributes, doesn't catch changes (in 3.2)
+	div.lastChild.className = "e";
+
+	if ( div.getElementsByClassName("e").length === 1 ) {
+		return;
+	}
+	
+	Expr.order.splice(1, 0, "CLASS");
+	Expr.find.CLASS = function( match, context, isXML ) {
+		if ( typeof context.getElementsByClassName !== "undefined" && !isXML ) {
+			return context.getElementsByClassName(match[1]);
+		}
+	};
+
+	// release memory in IE
+	div = null;
+})();
+
+function dirNodeCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
+	for ( var i = 0, l = checkSet.length; i < l; i++ ) {
+		var elem = checkSet[i];
+
+		if ( elem ) {
+			var match = false;
+
+			elem = elem[dir];
+
+			while ( elem ) {
+				if ( elem.sizcache === doneName ) {
+					match = checkSet[elem.sizset];
+					break;
+				}
+
+				if ( elem.nodeType === 1 && !isXML ){
+					elem.sizcache = doneName;
+					elem.sizset = i;
+				}
+
+				if ( elem.nodeName.toLowerCase() === cur ) {
+					match = elem;
+					break;
+				}
+
+				elem = elem[dir];
+			}
+
+			checkSet[i] = match;
+		}
+	}
+}
+
+function dirCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
+	for ( var i = 0, l = checkSet.length; i < l; i++ ) {
+		var elem = checkSet[i];
+
+		if ( elem ) {
+			var match = false;
+			
+			elem = elem[dir];
+
+			while ( elem ) {
+				if ( elem.sizcache === doneName ) {
+					match = checkSet[elem.sizset];
+					break;
+				}
+
+				if ( elem.nodeType === 1 ) {
+					if ( !isXML ) {
+						elem.sizcache = doneName;
+						elem.sizset = i;
+					}
+
+					if ( typeof cur !== "string" ) {
+						if ( elem === cur ) {
+							match = true;
+							break;
+						}
+
+					} else if ( Sizzle.filter( cur, [elem] ).length > 0 ) {
+						match = elem;
+						break;
+					}
+				}
+
+				elem = elem[dir];
+			}
+
+			checkSet[i] = match;
+		}
+	}
+}
+
+if ( document.documentElement.contains ) {
+	Sizzle.contains = function( a, b ) {
+		return a !== b && (a.contains ? a.contains(b) : true);
+	};
+
+} else if ( document.documentElement.compareDocumentPosition ) {
+	Sizzle.contains = function( a, b ) {
+		return !!(a.compareDocumentPosition(b) & 16);
+	};
+
+} else {
+	Sizzle.contains = function() {
+		return false;
+	};
+}
+
+Sizzle.isXML = function( elem ) {
+	// documentElement is verified for cases where it doesn't yet exist
+	// (such as loading iframes in IE - #4833) 
+	var documentElement = (elem ? elem.ownerDocument || elem : 0).documentElement;
+
+	return documentElement ? documentElement.nodeName !== "HTML" : false;
+};
+
+var posProcess = function( selector, context ) {
+	var match,
+		tmpSet = [],
+		later = "",
+		root = context.nodeType ? [context] : context;
+
+	// Position selectors must be done after the filter
+	// And so must :not(positional) so we move all PSEUDOs to the end
+	while ( (match = Expr.match.PSEUDO.exec( selector )) ) {
+		later += match[0];
+		selector = selector.replace( Expr.match.PSEUDO, "" );
+	}
+
+	selector = Expr.relative[selector] ? selector + "*" : selector;
+
+	for ( var i = 0, l = root.length; i < l; i++ ) {
+		Sizzle( selector, root[i], tmpSet );
+	}
+
+	return Sizzle.filter( later, tmpSet );
+};
+
+// EXPOSE
+jQuery.find = Sizzle;
+jQuery.expr = Sizzle.selectors;
+jQuery.expr[":"] = jQuery.expr.filters;
+jQuery.unique = Sizzle.uniqueSort;
+jQuery.text = Sizzle.getText;
+jQuery.isXMLDoc = Sizzle.isXML;
+jQuery.contains = Sizzle.contains;
+
+
+})();
+
+
+var runtil = /Until$/,
+	rparentsprev = /^(?:parents|prevUntil|prevAll)/,
+	// Note: This RegExp should be improved, or likely pulled from Sizzle
+	rmultiselector = /,/,
+	isSimple = /^.[^:#\[\.,]*$/,
+	slice = Array.prototype.slice,
+	POS = jQuery.expr.match.POS,
+	// methods guaranteed to produce a unique set when starting from a unique set
+	guaranteedUnique = {
+		children: true,
+		contents: true,
+		next: true,
+		prev: true
+	};
+
+jQuery.fn.extend({
+	find: function( selector ) {
+		var ret = this.pushStack( "", "find", selector ),
+			length = 0;
+
+		for ( var i = 0, l = this.length; i < l; i++ ) {
+			length = ret.length;
+			jQuery.find( selector, this[i], ret );
+
+			if ( i > 0 ) {
+				// Make sure that the results are unique
+				for ( var n = length; n < ret.length; n++ ) {
+					for ( var r = 0; r < length; r++ ) {
+						if ( ret[r] === ret[n] ) {
+							ret.splice(n--, 1);
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		return ret;
+	},
+
+	has: function( target ) {
+		var targets = jQuery( target );
+		return this.filter(function() {
+			for ( var i = 0, l = targets.length; i < l; i++ ) {
+				if ( jQuery.contains( this, targets[i] ) ) {
+					return true;
+				}
+			}
+		});
+	},
+
+	not: function( selector ) {
+		return this.pushStack( winnow(this, selector, false), "not", selector);
+	},
+
+	filter: function( selector ) {
+		return this.pushStack( winnow(this, selector, true), "filter", selector );
+	},
+
+	is: function( selector ) {
+		return !!selector && jQuery.filter( selector, this ).length > 0;
+	},
+
+	closest: function( selectors, context ) {
+		var ret = [], i, l, cur = this[0];
+
+		if ( jQuery.isArray( selectors ) ) {
+			var match, selector,
+				matches = {},
+				level = 1;
+
+			if ( cur && selectors.length ) {
+				for ( i = 0, l = selectors.length; i < l; i++ ) {
+					selector = selectors[i];
+
+					if ( !matches[selector] ) {
+						matches[selector] = jQuery.expr.match.POS.test( selector ) ?
+							jQuery( selector, context || this.context ) :
+							selector;
+					}
+				}
+
+				while ( cur && cur.ownerDocument && cur !== context ) {
+					for ( selector in matches ) {
+						match = matches[selector];
+
+						if ( match.jquery ? match.index(cur) > -1 : jQuery(cur).is(match) ) {
+							ret.push({ selector: selector, elem: cur, level: level });
+						}
+					}
+
+					cur = cur.parentNode;
+					level++;
+				}
+			}
+
+			return ret;
+		}
+
+		var pos = POS.test( selectors ) ?
+			jQuery( selectors, context || this.context ) : null;
+
+		for ( i = 0, l = this.length; i < l; i++ ) {
+			cur = this[i];
+
+			while ( cur ) {
+				if ( pos ? pos.index(cur) > -1 : jQuery.find.matchesSelector(cur, selectors) ) {
+					ret.push( cur );
+					break;
+
+				} else {
+					cur = cur.parentNode;
+					if ( !cur || !cur.ownerDocument || cur === context ) {
+						break;
+					}
+				}
+			}
+		}
+
+		ret = ret.length > 1 ? jQuery.unique(ret) : ret;
+
+		return this.pushStack( ret, "closest", selectors );
+	},
+
+	// Determine the position of an element within
+	// the matched set of elements
+	index: function( elem ) {
+		if ( !elem || typeof elem === "string" ) {
+			return jQuery.inArray( this[0],
+				// If it receives a string, the selector is used
+				// If it receives nothing, the siblings are used
+				elem ? jQuery( elem ) : this.parent().children() );
+		}
+		// Locate the position of the desired element
+		return jQuery.inArray(
+			// If it receives a jQuery object, the first element is used
+			elem.jquery ? elem[0] : elem, this );
+	},
+
+	add: function( selector, context ) {
+		var set = typeof selector === "string" ?
+				jQuery( selector, context ) :
+				jQuery.makeArray( selector ),
+			all = jQuery.merge( this.get(), set );
+
+		return this.pushStack( isDisconnected( set[0] ) || isDisconnected( all[0] ) ?
+			all :
+			jQuery.unique( all ) );
+	},
+
+	andSelf: function() {
+		return this.add( this.prevObject );
+	}
+});
+
+// A painfully simple check to see if an element is disconnected
+// from a document (should be improved, where feasible).
+function isDisconnected( node ) {
+	return !node || !node.parentNode || node.parentNode.nodeType === 11;
+}
+
+jQuery.each({
+	parent: function( elem ) {
+		var parent = elem.parentNode;
+		return parent && parent.nodeType !== 11 ? parent : null;
+	},
+	parents: function( elem ) {
+		return jQuery.dir( elem, "parentNode" );
+	},
+	parentsUntil: function( elem, i, until ) {
+		return jQuery.dir( elem, "parentNode", until );
+	},
+	next: function( elem ) {
+		return jQuery.nth( elem, 2, "nextSibling" );
+	},
+	prev: function( elem ) {
+		return jQuery.nth( elem, 2, "previousSibling" );
+	},
+	nextAll: function( elem ) {
+		return jQuery.dir( elem, "nextSibling" );
+	},
+	prevAll: function( elem ) {
+		return jQuery.dir( elem, "previousSibling" );
+	},
+	nextUntil: function( elem, i, until ) {
+		return jQuery.dir( elem, "nextSibling", until );
+	},
+	prevUntil: function( elem, i, until ) {
+		return jQuery.dir( elem, "previousSibling", until );
+	},
+	siblings: function( elem ) {
+		return jQuery.sibling( elem.parentNode.firstChild, elem );
+	},
+	children: function( elem ) {
+		return jQuery.sibling( elem.firstChild );
+	},
+	contents: function( elem ) {
+		return jQuery.nodeName( elem, "iframe" ) ?
+			elem.contentDocument || elem.contentWindow.document :
+			jQuery.makeArray( elem.childNodes );
+	}
+}, function( name, fn ) {
+	jQuery.fn[ name ] = function( until, selector ) {
+		var ret = jQuery.map( this, fn, until ),
+			// The variable 'args' was introduced in
+			// https://github.com/jquery/jquery/commit/52a0238
+			// to work around a bug in Chrome 10 (Dev) and should be removed when the bug is fixed.
+			// http://code.google.com/p/v8/issues/detail?id=1050
+			args = slice.call(arguments);
+
+		if ( !runtil.test( name ) ) {
+			selector = until;
+		}
+
+		if ( selector && typeof selector === "string" ) {
+			ret = jQuery.filter( selector, ret );
+		}
+
+		ret = this.length > 1 && !guaranteedUnique[ name ] ? jQuery.unique( ret ) : ret;
+
+		if ( (this.length > 1 || rmultiselector.test( selector )) && rparentsprev.test( name ) ) {
+			ret = ret.reverse();
+		}
+
+		return this.pushStack( ret, name, args.join(",") );
+	};
+});
+
+jQuery.extend({
+	filter: function( expr, elems, not ) {
+		if ( not ) {
+			expr = ":not(" + expr + ")";
+		}
+
+		return elems.length === 1 ?
+			jQuery.find.matchesSelector(elems[0], expr) ? [ elems[0] ] : [] :
+			jQuery.find.matches(expr, elems);
+	},
+
+	dir: function( elem, dir, until ) {
+		var matched = [],
+			cur = elem[ dir ];
+
+		while ( cur && cur.nodeType !== 9 && (until === undefined || cur.nodeType !== 1 || !jQuery( cur ).is( until )) ) {
+			if ( cur.nodeType === 1 ) {
+				matched.push( cur );
+			}
+			cur = cur[dir];
+		}
+		return matched;
+	},
+
+	nth: function( cur, result, dir, elem ) {
+		result = result || 1;
+		var num = 0;
+
+		for ( ; cur; cur = cur[dir] ) {
+			if ( cur.nodeType === 1 && ++num === result ) {
+				break;
+			}
+		}
+
+		return cur;
+	},
+
+	sibling: function( n, elem ) {
+		var r = [];
+
+		for ( ; n; n = n.nextSibling ) {
+			if ( n.nodeType === 1 && n !== elem ) {
+				r.push( n );
+			}
+		}
+
+		return r;
+	}
+});
+
+// Implement the identical functionality for filter and not
+function winnow( elements, qualifier, keep ) {
+	if ( jQuery.isFunction( qualifier ) ) {
+		return jQuery.grep(elements, function( elem, i ) {
+			var retVal = !!qualifier.call( elem, i, elem );
+			return retVal === keep;
+		});
+
+	} else if ( qualifier.nodeType ) {
+		return jQuery.grep(elements, function( elem, i ) {
+			return (elem === qualifier) === keep;
+		});
+
+	} else if ( typeof qualifier === "string" ) {
+		var filtered = jQuery.grep(elements, function( elem ) {
+			return elem.nodeType === 1;
+		});
+
+		if ( isSimple.test( qualifier ) ) {
+			return jQuery.filter(qualifier, filtered, !keep);
+		} else {
+			qualifier = jQuery.filter( qualifier, filtered );
+		}
+	}
+
+	return jQuery.grep(elements, function( elem, i ) {
+		return (jQuery.inArray( elem, qualifier ) >= 0) === keep;
+	});
+}
+
+
+
+
+var rinlinejQuery = / jQuery\d+="(?:\d+|null)"/g,
+	rleadingWhitespace = /^\s+/,
+	rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/ig,
+	rtagName = /<([\w:]+)/,
+	rtbody = /<tbody/i,
+	rhtml = /<|&#?\w+;/,
+	rnocache = /<(?:script|object|embed|option|style)/i,
+	// checked="checked" or checked
+	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
+	wrapMap = {
+		option: [ 1, "<select multiple='multiple'>", "</select>" ],
+		legend: [ 1, "<fieldset>", "</fieldset>" ],
+		thead: [ 1, "<table>", "</table>" ],
+		tr: [ 2, "<table><tbody>", "</tbody></table>" ],
+		td: [ 3, "<table><tbody><tr>", "</tr></tbody></table>" ],
+		col: [ 2, "<table><tbody></tbody><colgroup>", "</colgroup></table>" ],
+		area: [ 1, "<map>", "</map>" ],
+		_default: [ 0, "", "" ]
+	};
+
+wrapMap.optgroup = wrapMap.option;
+wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
+wrapMap.th = wrapMap.td;
+
+// IE can't serialize <link> and <script> tags normally
+if ( !jQuery.support.htmlSerialize ) {
+	wrapMap._default = [ 1, "div<div>", "</div>" ];
+}
+
+jQuery.fn.extend({
+	text: function( text ) {
+		if ( jQuery.isFunction(text) ) {
+			return this.each(function(i) {
+				var self = jQuery( this );
+
+				self.text( text.call(this, i, self.text()) );
+			});
+		}
+
+		if ( typeof text !== "object" && text !== undefined ) {
+			return this.empty().append( (this[0] && this[0].ownerDocument || document).createTextNode( text ) );
+		}
+
+		return jQuery.text( this );
+	},
+
+	wrapAll: function( html ) {
+		if ( jQuery.isFunction( html ) ) {
+			return this.each(function(i) {
+				jQuery(this).wrapAll( html.call(this, i) );
+			});
+		}
+
+		if ( this[0] ) {
+			// The elements to wrap the target around
+			var wrap = jQuery( html, this[0].ownerDocument ).eq(0).clone(true);
+
+			if ( this[0].parentNode ) {
+				wrap.insertBefore( this[0] );
+			}
+
+			wrap.map(function() {
+				var elem = this;
+
+				while ( elem.firstChild && elem.firstChild.nodeType === 1 ) {
+					elem = elem.firstChild;
+				}
+
+				return elem;
+			}).append(this);
+		}
+
+		return this;
+	},
+
+	wrapInner: function( html ) {
+		if ( jQuery.isFunction( html ) ) {
+			return this.each(function(i) {
+				jQuery(this).wrapInner( html.call(this, i) );
+			});
+		}
+
+		return this.each(function() {
+			var self = jQuery( this ),
+				contents = self.contents();
+
+			if ( contents.length ) {
+				contents.wrapAll( html );
+
+			} else {
+				self.append( html );
+			}
+		});
+	},
+
+	wrap: function( html ) {
+		return this.each(function() {
+			jQuery( this ).wrapAll( html );
+		});
+	},
+
+	unwrap: function() {
+		return this.parent().each(function() {
+			if ( !jQuery.nodeName( this, "body" ) ) {
+				jQuery( this ).replaceWith( this.childNodes );
+			}
+		}).end();
+	},
+
+	append: function() {
+		return this.domManip(arguments, true, function( elem ) {
+			if ( this.nodeType === 1 ) {
+				this.appendChild( elem );
+			}
+		});
+	},
+
+	prepend: function() {
+		return this.domManip(arguments, true, function( elem ) {
+			if ( this.nodeType === 1 ) {
+				this.insertBefore( elem, this.firstChild );
+			}
+		});
+	},
+
+	before: function() {
+		if ( this[0] && this[0].parentNode ) {
+			return this.domManip(arguments, false, function( elem ) {
+				this.parentNode.insertBefore( elem, this );
+			});
+		} else if ( arguments.length ) {
+			var set = jQuery(arguments[0]);
+			set.push.apply( set, this.toArray() );
+			return this.pushStack( set, "before", arguments );
+		}
+	},
+
+	after: function() {
+		if ( this[0] && this[0].parentNode ) {
+			return this.domManip(arguments, false, function( elem ) {
+				this.parentNode.insertBefore( elem, this.nextSibling );
+			});
+		} else if ( arguments.length ) {
+			var set = this.pushStack( this, "after", arguments );
+			set.push.apply( set, jQuery(arguments[0]).toArray() );
+			return set;
+		}
+	},
+
+	// keepData is for internal use only--do not document
+	remove: function( selector, keepData ) {
+		for ( var i = 0, elem; (elem = this[i]) != null; i++ ) {
+			if ( !selector || jQuery.filter( selector, [ elem ] ).length ) {
+				if ( !keepData && elem.nodeType === 1 ) {
+					jQuery.cleanData( elem.getElementsByTagName("*") );
+					jQuery.cleanData( [ elem ] );
+				}
+
+				if ( elem.parentNode ) {
+					elem.parentNode.removeChild( elem );
+				}
+			}
+		}
+
+		return this;
+	},
+
+	empty: function() {
+		for ( var i = 0, elem; (elem = this[i]) != null; i++ ) {
+			// Remove element nodes and prevent memory leaks
+			if ( elem.nodeType === 1 ) {
+				jQuery.cleanData( elem.getElementsByTagName("*") );
+			}
+
+			// Remove any remaining nodes
+			while ( elem.firstChild ) {
+				elem.removeChild( elem.firstChild );
+			}
+		}
+
+		return this;
+	},
+
+	clone: function( dataAndEvents, deepDataAndEvents ) {
+		dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
+		deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
+
+		return this.map( function () {
+			return jQuery.clone( this, dataAndEvents, deepDataAndEvents );
+		});
+	},
+
+	html: function( value ) {
+		if ( value === undefined ) {
+			return this[0] && this[0].nodeType === 1 ?
+				this[0].innerHTML.replace(rinlinejQuery, "") :
+				null;
+
+		// See if we can take a shortcut and just use innerHTML
+		} else if ( typeof value === "string" && !rnocache.test( value ) &&
+			(jQuery.support.leadingWhitespace || !rleadingWhitespace.test( value )) &&
+			!wrapMap[ (rtagName.exec( value ) || ["", ""])[1].toLowerCase() ] ) {
+
+			value = value.replace(rxhtmlTag, "<$1></$2>");
+
+			try {
+				for ( var i = 0, l = this.length; i < l; i++ ) {
+					// Remove element nodes and prevent memory leaks
+					if ( this[i].nodeType === 1 ) {
+						jQuery.cleanData( this[i].getElementsByTagName("*") );
+						this[i].innerHTML = value;
+					}
+				}
+
+			// If using innerHTML throws an exception, use the fallback method
+			} catch(e) {
+				this.empty().append( value );
+			}
+
+		} else if ( jQuery.isFunction( value ) ) {
+			this.each(function(i){
+				var self = jQuery( this );
+
+				self.html( value.call(this, i, self.html()) );
+			});
+
+		} else {
+			this.empty().append( value );
+		}
+
+		return this;
+	},
+
+	replaceWith: function( value ) {
+		if ( this[0] && this[0].parentNode ) {
+			// Make sure that the elements are removed from the DOM before they are inserted
+			// this can help fix replacing a parent with child elements
+			if ( jQuery.isFunction( value ) ) {
+				return this.each(function(i) {
+					var self = jQuery(this), old = self.html();
+					self.replaceWith( value.call( this, i, old ) );
+				});
+			}
+
+			if ( typeof value !== "string" ) {
+				value = jQuery( value ).detach();
+			}
+
+			return this.each(function() {
+				var next = this.nextSibling,
+					parent = this.parentNode;
+
+				jQuery( this ).remove();
+
+				if ( next ) {
+					jQuery(next).before( value );
+				} else {
+					jQuery(parent).append( value );
+				}
+			});
+		} else {
+			return this.length ?
+				this.pushStack( jQuery(jQuery.isFunction(value) ? value() : value), "replaceWith", value ) :
+				this;
+		}
+	},
+
+	detach: function( selector ) {
+		return this.remove( selector, true );
+	},
+
+	domManip: function( args, table, callback ) {
+		var results, first, fragment, parent,
+			value = args[0],
+			scripts = [];
+
+		// We can't cloneNode fragments that contain checked, in WebKit
+		if ( !jQuery.support.checkClone && arguments.length === 3 && typeof value === "string" && rchecked.test( value ) ) {
+			return this.each(function() {
+				jQuery(this).domManip( args, table, callback, true );
+			});
+		}
+
+		if ( jQuery.isFunction(value) ) {
+			return this.each(function(i) {
+				var self = jQuery(this);
+				args[0] = value.call(this, i, table ? self.html() : undefined);
+				self.domManip( args, table, callback );
+			});
+		}
+
+		if ( this[0] ) {
+			parent = value && value.parentNode;
+
+			// If we're in a fragment, just use that instead of building a new one
+			if ( jQuery.support.parentNode && parent && parent.nodeType === 11 && parent.childNodes.length === this.length ) {
+				results = { fragment: parent };
+
+			} else {
+				results = jQuery.buildFragment( args, this, scripts );
+			}
+
+			fragment = results.fragment;
+
+			if ( fragment.childNodes.length === 1 ) {
+				first = fragment = fragment.firstChild;
+			} else {
+				first = fragment.firstChild;
+			}
+
+			if ( first ) {
+				table = table && jQuery.nodeName( first, "tr" );
+
+				for ( var i = 0, l = this.length, lastIndex = l - 1; i < l; i++ ) {
+					callback.call(
+						table ?
+							root(this[i], first) :
+							this[i],
+						// Make sure that we do not leak memory by inadvertently discarding
+						// the original fragment (which might have attached data) instead of
+						// using it; in addition, use the original fragment object for the last
+						// item instead of first because it can end up being emptied incorrectly
+						// in certain situations (Bug #8070).
+						// Fragments from the fragment cache must always be cloned and never used
+						// in place.
+						results.cacheable || (l > 1 && i < lastIndex) ?
+							jQuery.clone( fragment, true, true ) :
+							fragment
+					);
+				}
+			}
+
+			if ( scripts.length ) {
+				jQuery.each( scripts, evalScript );
+			}
+		}
+
+		return this;
+	}
+});
+
+function root( elem, cur ) {
+	return jQuery.nodeName(elem, "table") ?
+		(elem.getElementsByTagName("tbody")[0] ||
+		elem.appendChild(elem.ownerDocument.createElement("tbody"))) :
+		elem;
+}
+
+function cloneCopyEvent( src, dest ) {
+
+	if ( dest.nodeType !== 1 || !jQuery.hasData( src ) ) {
+		return;
+	}
+
+	var internalKey = jQuery.expando,
+		oldData = jQuery.data( src ),
+		curData = jQuery.data( dest, oldData );
+
+	// Switch to use the internal data object, if it exists, for the next
+	// stage of data copying
+	if ( (oldData = oldData[ internalKey ]) ) {
+		var events = oldData.events;
+				curData = curData[ internalKey ] = jQuery.extend({}, oldData);
+
+		if ( events ) {
+			delete curData.handle;
+			curData.events = {};
+
+			for ( var type in events ) {
+				for ( var i = 0, l = events[ type ].length; i < l; i++ ) {
+					jQuery.event.add( dest, type + ( events[ type ][ i ].namespace ? "." : "" ) + events[ type ][ i ].namespace, events[ type ][ i ], events[ type ][ i ].data );
+				}
+			}
+		}
+	}
+}
+
+function cloneFixAttributes(src, dest) {
+	// We do not need to do anything for non-Elements
+	if ( dest.nodeType !== 1 ) {
+		return;
+	}
+
+	var nodeName = dest.nodeName.toLowerCase();
+
+	// clearAttributes removes the attributes, which we don't want,
+	// but also removes the attachEvent events, which we *do* want
+	dest.clearAttributes();
+
+	// mergeAttributes, in contrast, only merges back on the
+	// original attributes, not the events
+	dest.mergeAttributes(src);
+
+	// IE6-8 fail to clone children inside object elements that use
+	// the proprietary classid attribute value (rather than the type
+	// attribute) to identify the type of content to display
+	if ( nodeName === "object" ) {
+		dest.outerHTML = src.outerHTML;
+
+	} else if ( nodeName === "input" && (src.type === "checkbox" || src.type === "radio") ) {
+		// IE6-8 fails to persist the checked state of a cloned checkbox
+		// or radio button. Worse, IE6-7 fail to give the cloned element
+		// a checked appearance if the defaultChecked value isn't also set
+		if ( src.checked ) {
+			dest.defaultChecked = dest.checked = src.checked;
+		}
+
+		// IE6-7 get confused and end up setting the value of a cloned
+		// checkbox/radio button to an empty string instead of "on"
+		if ( dest.value !== src.value ) {
+			dest.value = src.value;
+		}
+
+	// IE6-8 fails to return the selected option to the default selected
+	// state when cloning options
+	} else if ( nodeName === "option" ) {
+		dest.selected = src.defaultSelected;
+
+	// IE6-8 fails to set the defaultValue to the correct value when
+	// cloning other types of input fields
+	} else if ( nodeName === "input" || nodeName === "textarea" ) {
+		dest.defaultValue = src.defaultValue;
+	}
+
+	// Event data gets referenced instead of copied if the expando
+	// gets copied too
+	dest.removeAttribute( jQuery.expando );
+}
+
+jQuery.buildFragment = function( args, nodes, scripts ) {
+	var fragment, cacheable, cacheresults,
+		doc = (nodes && nodes[0] ? nodes[0].ownerDocument || nodes[0] : document);
+
+	// Only cache "small" (1/2 KB) HTML strings that are associated with the main document
+	// Cloning options loses the selected state, so don't cache them
+	// IE 6 doesn't like it when you put <object> or <embed> elements in a fragment
+	// Also, WebKit does not clone 'checked' attributes on cloneNode, so don't cache
+	if ( args.length === 1 && typeof args[0] === "string" && args[0].length < 512 && doc === document &&
+		args[0].charAt(0) === "<" && !rnocache.test( args[0] ) && (jQuery.support.checkClone || !rchecked.test( args[0] )) ) {
+
+		cacheable = true;
+		cacheresults = jQuery.fragments[ args[0] ];
+		if ( cacheresults ) {
+			if ( cacheresults !== 1 ) {
+				fragment = cacheresults;
+			}
+		}
+	}
+
+	if ( !fragment ) {
+		fragment = doc.createDocumentFragment();
+		jQuery.clean( args, doc, fragment, scripts );
+	}
+
+	if ( cacheable ) {
+		jQuery.fragments[ args[0] ] = cacheresults ? fragment : 1;
+	}
+
+	return { fragment: fragment, cacheable: cacheable };
+};
+
+jQuery.fragments = {};
+
+jQuery.each({
+	appendTo: "append",
+	prependTo: "prepend",
+	insertBefore: "before",
+	insertAfter: "after",
+	replaceAll: "replaceWith"
+}, function( name, original ) {
+	jQuery.fn[ name ] = function( selector ) {
+		var ret = [],
+			insert = jQuery( selector ),
+			parent = this.length === 1 && this[0].parentNode;
+
+		if ( parent && parent.nodeType === 11 && parent.childNodes.length === 1 && insert.length === 1 ) {
+			insert[ original ]( this[0] );
+			return this;
+
+		} else {
+			for ( var i = 0, l = insert.length; i < l; i++ ) {
+				var elems = (i > 0 ? this.clone(true) : this).get();
+				jQuery( insert[i] )[ original ]( elems );
+				ret = ret.concat( elems );
+			}
+
+			return this.pushStack( ret, name, insert.selector );
+		}
+	};
+});
+
+function getAll( elem ) {
+	if ( "getElementsByTagName" in elem ) {
+		return elem.getElementsByTagName( "*" );
+	
+	} else if ( "querySelectorAll" in elem ) {
+		return elem.querySelectorAll( "*" );
+
+	} else {
+		return [];
+	}
+}
+
+jQuery.extend({
+	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
+		var clone = elem.cloneNode(true),
+				srcElements,
+				destElements,
+				i;
+
+		if ( (!jQuery.support.noCloneEvent || !jQuery.support.noCloneChecked) &&
+				(elem.nodeType === 1 || elem.nodeType === 11) && !jQuery.isXMLDoc(elem) ) {
+			// IE copies events bound via attachEvent when using cloneNode.
+			// Calling detachEvent on the clone will also remove the events
+			// from the original. In order to get around this, we use some
+			// proprietary methods to clear the events. Thanks to MooTools
+			// guys for this hotness.
+
+			cloneFixAttributes( elem, clone );
+
+			// Using Sizzle here is crazy slow, so we use getElementsByTagName
+			// instead
+			srcElements = getAll( elem );
+			destElements = getAll( clone );
+
+			// Weird iteration because IE will replace the length property
+			// with an element if you are cloning the body and one of the
+			// elements on the page has a name or id of "length"
+			for ( i = 0; srcElements[i]; ++i ) {
+				cloneFixAttributes( srcElements[i], destElements[i] );
+			}
+		}
+
+		// Copy the events from the original to the clone
+		if ( dataAndEvents ) {
+			cloneCopyEvent( elem, clone );
+
+			if ( deepDataAndEvents ) {
+				srcElements = getAll( elem );
+				destElements = getAll( clone );
+
+				for ( i = 0; srcElements[i]; ++i ) {
+					cloneCopyEvent( srcElements[i], destElements[i] );
+				}
+			}
+		}
+
+		// Return the cloned set
+		return clone;
+},
+	clean: function( elems, context, fragment, scripts ) {
+		context = context || document;
+
+		// !context.createElement fails in IE with an error but returns typeof 'object'
+		if ( typeof context.createElement === "undefined" ) {
+			context = context.ownerDocument || context[0] && context[0].ownerDocument || document;
+		}
+
+		var ret = [];
+
+		for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
+			if ( typeof elem === "number" ) {
+				elem += "";
+			}
+
+			if ( !elem ) {
+				continue;
+			}
+
+			// Convert html string into DOM nodes
+			if ( typeof elem === "string" && !rhtml.test( elem ) ) {
+				elem = context.createTextNode( elem );
+
+			} else if ( typeof elem === "string" ) {
+				// Fix "XHTML"-style tags in all browsers
+				elem = elem.replace(rxhtmlTag, "<$1></$2>");
+
+				// Trim whitespace, otherwise indexOf won't work as expected
+				var tag = (rtagName.exec( elem ) || ["", ""])[1].toLowerCase(),
+					wrap = wrapMap[ tag ] || wrapMap._default,
+					depth = wrap[0],
+					div = context.createElement("div");
+
+				// Go to html and back, then peel off extra wrappers
+				div.innerHTML = wrap[1] + elem + wrap[2];
+
+				// Move to the right depth
+				while ( depth-- ) {
+					div = div.lastChild;
+				}
+
+				// Remove IE's autoinserted <tbody> from table fragments
+				if ( !jQuery.support.tbody ) {
+
+					// String was a <table>, *may* have spurious <tbody>
+					var hasBody = rtbody.test(elem),
+						tbody = tag === "table" && !hasBody ?
+							div.firstChild && div.firstChild.childNodes :
+
+							// String was a bare <thead> or <tfoot>
+							wrap[1] === "<table>" && !hasBody ?
+								div.childNodes :
+								[];
+
+					for ( var j = tbody.length - 1; j >= 0 ; --j ) {
+						if ( jQuery.nodeName( tbody[ j ], "tbody" ) && !tbody[ j ].childNodes.length ) {
+							tbody[ j ].parentNode.removeChild( tbody[ j ] );
+						}
+					}
+
+				}
+
+				// IE completely kills leading whitespace when innerHTML is used
+				if ( !jQuery.support.leadingWhitespace && rleadingWhitespace.test( elem ) ) {
+					div.insertBefore( context.createTextNode( rleadingWhitespace.exec(elem)[0] ), div.firstChild );
+				}
+
+				elem = div.childNodes;
+			}
+
+			if ( elem.nodeType ) {
+				ret.push( elem );
+			} else {
+				ret = jQuery.merge( ret, elem );
+			}
+		}
+
+		if ( fragment ) {
+			for ( i = 0; ret[i]; i++ ) {
+				if ( scripts && jQuery.nodeName( ret[i], "script" ) && (!ret[i].type || ret[i].type.toLowerCase() === "text/javascript") ) {
+					scripts.push( ret[i].parentNode ? ret[i].parentNode.removeChild( ret[i] ) : ret[i] );
+
+				} else {
+					if ( ret[i].nodeType === 1 ) {
+						ret.splice.apply( ret, [i + 1, 0].concat(jQuery.makeArray(ret[i].getElementsByTagName("script"))) );
+					}
+					fragment.appendChild( ret[i] );
+				}
+			}
+		}
+
+		return ret;
+	},
+
+	cleanData: function( elems ) {
+		var data, id, cache = jQuery.cache, internalKey = jQuery.expando, special = jQuery.event.special,
+			deleteExpando = jQuery.support.deleteExpando;
+
+		for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
+			if ( elem.nodeName && jQuery.noData[elem.nodeName.toLowerCase()] ) {
+				continue;
+			}
+
+			id = elem[ jQuery.expando ];
+
+			if ( id ) {
+				data = cache[ id ] && cache[ id ][ internalKey ];
+
+				if ( data && data.events ) {
+					for ( var type in data.events ) {
+						if ( special[ type ] ) {
+							jQuery.event.remove( elem, type );
+
+						// This is a shortcut to avoid jQuery.event.remove's overhead
+						} else {
+							jQuery.removeEvent( elem, type, data.handle );
+						}
+					}
+
+					// Null the DOM reference to avoid IE6/7/8 leak (#7054)
+					if ( data.handle ) {
+						data.handle.elem = null;
+					}
+				}
+
+				if ( deleteExpando ) {
+					delete elem[ jQuery.expando ];
+
+				} else if ( elem.removeAttribute ) {
+					elem.removeAttribute( jQuery.expando );
+				}
+
+				delete cache[ id ];
+			}
+		}
+	}
+});
+
+function evalScript( i, elem ) {
+	if ( elem.src ) {
+		jQuery.ajax({
+			url: elem.src,
+			async: false,
+			dataType: "script"
+		});
+	} else {
+		jQuery.globalEval( elem.text || elem.textContent || elem.innerHTML || "" );
+	}
+
+	if ( elem.parentNode ) {
+		elem.parentNode.removeChild( elem );
+	}
+}
+
+
+
+
+var ralpha = /alpha\([^)]*\)/i,
+	ropacity = /opacity=([^)]*)/,
+	rdashAlpha = /-([a-z])/ig,
+	// fixed for IE9, see #8346
+	rupper = /([A-Z]|^ms)/g,
+	rnumpx = /^-?\d+(?:px)?$/i,
+	rnum = /^-?\d/,
+
+	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+	cssWidth = [ "Left", "Right" ],
+	cssHeight = [ "Top", "Bottom" ],
+	curCSS,
+
+	getComputedStyle,
+	currentStyle,
+
+	fcamelCase = function( all, letter ) {
+		return letter.toUpperCase();
+	};
+
+jQuery.fn.css = function( name, value ) {
+	// Setting 'undefined' is a no-op
+	if ( arguments.length === 2 && value === undefined ) {
+		return this;
+	}
+
+	return jQuery.access( this, name, value, true, function( elem, name, value ) {
+		return value !== undefined ?
+			jQuery.style( elem, name, value ) :
+			jQuery.css( elem, name );
+	});
+};
+
+jQuery.extend({
+	// Add in style property hooks for overriding the default
+	// behavior of getting and setting a style property
+	cssHooks: {
+		opacity: {
+			get: function( elem, computed ) {
+				if ( computed ) {
+					// We should always get a number back from opacity
+					var ret = curCSS( elem, "opacity", "opacity" );
+					return ret === "" ? "1" : ret;
+
+				} else {
+					return elem.style.opacity;
+				}
+			}
+		}
+	},
+
+	// Exclude the following css properties to add px
+	cssNumber: {
+		"zIndex": true,
+		"fontWeight": true,
+		"opacity": true,
+		"zoom": true,
+		"lineHeight": true
+	},
+
+	// Add in properties whose names you wish to fix before
+	// setting or getting the value
+	cssProps: {
+		// normalize float css property
+		"float": jQuery.support.cssFloat ? "cssFloat" : "styleFloat"
+	},
+
+	// Get and set the style property on a DOM Node
+	style: function( elem, name, value, extra ) {
+		// Don't set styles on text and comment nodes
+		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style ) {
+			return;
+		}
+
+		// Make sure that we're working with the right name
+		var ret, origName = jQuery.camelCase( name ),
+			style = elem.style, hooks = jQuery.cssHooks[ origName ];
+
+		name = jQuery.cssProps[ origName ] || origName;
+
+		// Check if we're setting a value
+		if ( value !== undefined ) {
+			// Make sure that NaN and null values aren't set. See: #7116
+			if ( typeof value === "number" && isNaN( value ) || value == null ) {
+				return;
+			}
+
+			// If a number was passed in, add 'px' to the (except for certain CSS properties)
+			if ( typeof value === "number" && !jQuery.cssNumber[ origName ] ) {
+				value += "px";
+			}
+
+			// If a hook was provided, use that value, otherwise just set the specified value
+			if ( !hooks || !("set" in hooks) || (value = hooks.set( elem, value )) !== undefined ) {
+				// Wrapped to prevent IE from throwing errors when 'invalid' values are provided
+				// Fixes bug #5509
+				try {
+					style[ name ] = value;
+				} catch(e) {}
+			}
+
+		} else {
+			// If a hook was provided get the non-computed value from there
+			if ( hooks && "get" in hooks && (ret = hooks.get( elem, false, extra )) !== undefined ) {
+				return ret;
+			}
+
+			// Otherwise just get the value from the style object
+			return style[ name ];
+		}
+	},
+
+	css: function( elem, name, extra ) {
+		// Make sure that we're working with the right name
+		var ret, origName = jQuery.camelCase( name ),
+			hooks = jQuery.cssHooks[ origName ];
+
+		name = jQuery.cssProps[ origName ] || origName;
+
+		// If a hook was provided get the computed value from there
+		if ( hooks && "get" in hooks && (ret = hooks.get( elem, true, extra )) !== undefined ) {
+			return ret;
+
+		// Otherwise, if a way to get the computed value exists, use that
+		} else if ( curCSS ) {
+			return curCSS( elem, name, origName );
+		}
+	},
+
+	// A method for quickly swapping in/out CSS properties to get correct calculations
+	swap: function( elem, options, callback ) {
+		var old = {};
+
+		// Remember the old values, and insert the new ones
+		for ( var name in options ) {
+			old[ name ] = elem.style[ name ];
+			elem.style[ name ] = options[ name ];
+		}
+
+		callback.call( elem );
+
+		// Revert the old values
+		for ( name in options ) {
+			elem.style[ name ] = old[ name ];
+		}
+	},
+
+	camelCase: function( string ) {
+		return string.replace( rdashAlpha, fcamelCase );
+	}
+});
+
+// DEPRECATED, Use jQuery.css() instead
+jQuery.curCSS = jQuery.css;
+
+jQuery.each(["height", "width"], function( i, name ) {
+	jQuery.cssHooks[ name ] = {
+		get: function( elem, computed, extra ) {
+			var val;
+
+			if ( computed ) {
+				if ( elem.offsetWidth !== 0 ) {
+					val = getWH( elem, name, extra );
+
+				} else {
+					jQuery.swap( elem, cssShow, function() {
+						val = getWH( elem, name, extra );
+					});
+				}
+
+				if ( val <= 0 ) {
+					val = curCSS( elem, name, name );
+
+					if ( val === "0px" && currentStyle ) {
+						val = currentStyle( elem, name, name );
+					}
+
+					if ( val != null ) {
+						// Should return "auto" instead of 0, use 0 for
+						// temporary backwards-compat
+						return val === "" || val === "auto" ? "0px" : val;
+					}
+				}
+
+				if ( val < 0 || val == null ) {
+					val = elem.style[ name ];
+
+					// Should return "auto" instead of 0, use 0 for
+					// temporary backwards-compat
+					return val === "" || val === "auto" ? "0px" : val;
+				}
+
+				return typeof val === "string" ? val : val + "px";
+			}
+		},
+
+		set: function( elem, value ) {
+			if ( rnumpx.test( value ) ) {
+				// ignore negative width and height values #1599
+				value = parseFloat(value);
+
+				if ( value >= 0 ) {
+					return value + "px";
+				}
+
+			} else {
+				return value;
+			}
+		}
+	};
+});
+
+if ( !jQuery.support.opacity ) {
+	jQuery.cssHooks.opacity = {
+		get: function( elem, computed ) {
+			// IE uses filters for opacity
+			return ropacity.test((computed && elem.currentStyle ? elem.currentStyle.filter : elem.style.filter) || "") ?
+				(parseFloat(RegExp.$1) / 100) + "" :
+				computed ? "1" : "";
+		},
+
+		set: function( elem, value ) {
+			var style = elem.style;
+
+			// IE has trouble with opacity if it does not have layout
+			// Force it by setting the zoom level
+			style.zoom = 1;
+
+			// Set the alpha filter to set the opacity
+			var opacity = jQuery.isNaN(value) ?
+				"" :
+				"alpha(opacity=" + value * 100 + ")",
+				filter = style.filter || "";
+
+			style.filter = ralpha.test(filter) ?
+				filter.replace(ralpha, opacity) :
+				style.filter + ' ' + opacity;
+		}
+	};
+}
+
+jQuery(function() {
+	// This hook cannot be added until DOM ready because the support test
+	// for it is not run until after DOM ready
+	if ( !jQuery.support.reliableMarginRight ) {
+		jQuery.cssHooks.marginRight = {
+			get: function( elem, computed ) {
+				// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
+				// Work around by temporarily setting element display to inline-block
+				var ret;
+				jQuery.swap( elem, { "display": "inline-block" }, function() {
+					if ( computed ) {
+						ret = curCSS( elem, "margin-right", "marginRight" );
+					} else {
+						ret = elem.style.marginRight;
+					}
+				});
+				return ret;
+			}
+		};
+	}
+});
+
+if ( document.defaultView && document.defaultView.getComputedStyle ) {
+	getComputedStyle = function( elem, newName, name ) {
+		var ret, defaultView, computedStyle;
+
+		name = name.replace( rupper, "-$1" ).toLowerCase();
+
+		if ( !(defaultView = elem.ownerDocument.defaultView) ) {
+			return undefined;
+		}
+
+		if ( (computedStyle = defaultView.getComputedStyle( elem, null )) ) {
+			ret = computedStyle.getPropertyValue( name );
+			if ( ret === "" && !jQuery.contains( elem.ownerDocument.documentElement, elem ) ) {
+				ret = jQuery.style( elem, name );
+			}
+		}
+
+		return ret;
+	};
+}
+
+if ( document.documentElement.currentStyle ) {
+	currentStyle = function( elem, name ) {
+		var left,
+			ret = elem.currentStyle && elem.currentStyle[ name ],
+			rsLeft = elem.runtimeStyle && elem.runtimeStyle[ name ],
+			style = elem.style;
+
+		// From the awesome hack by Dean Edwards
+		// http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291
+
+		// If we're not dealing with a regular pixel number
+		// but a number that has a weird ending, we need to convert it to pixels
+		if ( !rnumpx.test( ret ) && rnum.test( ret ) ) {
+			// Remember the original values
+			left = style.left;
+
+			// Put in the new values to get a computed value out
+			if ( rsLeft ) {
+				elem.runtimeStyle.left = elem.currentStyle.left;
+			}
+			style.left = name === "fontSize" ? "1em" : (ret || 0);
+			ret = style.pixelLeft + "px";
+
+			// Revert the changed values
+			style.left = left;
+			if ( rsLeft ) {
+				elem.runtimeStyle.left = rsLeft;
+			}
+		}
+
+		return ret === "" ? "auto" : ret;
+	};
+}
+
+curCSS = getComputedStyle || currentStyle;
+
+function getWH( elem, name, extra ) {
+	var which = name === "width" ? cssWidth : cssHeight,
+		val = name === "width" ? elem.offsetWidth : elem.offsetHeight;
+
+	if ( extra === "border" ) {
+		return val;
+	}
+
+	jQuery.each( which, function() {
+		if ( !extra ) {
+			val -= parseFloat(jQuery.css( elem, "padding" + this )) || 0;
+		}
+
+		if ( extra === "margin" ) {
+			val += parseFloat(jQuery.css( elem, "margin" + this )) || 0;
+
+		} else {
+			val -= parseFloat(jQuery.css( elem, "border" + this + "Width" )) || 0;
+		}
+	});
+
+	return val;
+}
+
+if ( jQuery.expr && jQuery.expr.filters ) {
+	jQuery.expr.filters.hidden = function( elem ) {
+		var width = elem.offsetWidth,
+			height = elem.offsetHeight;
+
+		return (width === 0 && height === 0) || (!jQuery.support.reliableHiddenOffsets && (elem.style.display || jQuery.css( elem, "display" )) === "none");
+	};
+
+	jQuery.expr.filters.visible = function( elem ) {
+		return !jQuery.expr.filters.hidden( elem );
+	};
+}
+
+
+
+
+var r20 = /%20/g,
+	rbracket = /\[\]$/,
+	rCRLF = /\r?\n/g,
+	rhash = /#.*$/,
+	rheaders = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg, // IE leaves an \r character at EOL
+	rinput = /^(?:color|date|datetime|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i,
+	// #7653, #8125, #8152: local protocol detection
+	rlocalProtocol = /^(?:about|app|app\-storage|.+\-extension|file|widget):$/,
+	rnoContent = /^(?:GET|HEAD)$/,
+	rprotocol = /^\/\//,
+	rquery = /\?/,
+	rscript = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+	rselectTextarea = /^(?:select|textarea)/i,
+	rspacesAjax = /\s+/,
+	rts = /([?&])_=[^&]*/,
+	rucHeaders = /(^|\-)([a-z])/g,
+	rucHeadersFunc = function( _, $1, $2 ) {
+		return $1 + $2.toUpperCase();
+	},
+	rurl = /^([\w\+\.\-]+:)(?:\/\/([^\/?#:]*)(?::(\d+))?)?/,
+
+	// Keep a copy of the old load method
+	_load = jQuery.fn.load,
+
+	/* Prefilters
+	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
+	 * 2) These are called:
+	 *    - BEFORE asking for a transport
+	 *    - AFTER param serialization (s.data is a string if s.processData is true)
+	 * 3) key is the dataType
+	 * 4) the catchall symbol "*" can be used
+	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+	 */
+	prefilters = {},
+
+	/* Transports bindings
+	 * 1) key is the dataType
+	 * 2) the catchall symbol "*" can be used
+	 * 3) selection will start with transport dataType and THEN go to "*" if needed
+	 */
+	transports = {},
+
+	// Document location
+	ajaxLocation,
+
+	// Document location segments
+	ajaxLocParts;
+
+// #8138, IE may throw an exception when accessing
+// a field from document.location if document.domain has been set
+try {
+	ajaxLocation = document.location.href;
+} catch( e ) {
+	// Use the href attribute of an A element
+	// since IE will modify it given document.location
+	ajaxLocation = document.createElement( "a" );
+	ajaxLocation.href = "";
+	ajaxLocation = ajaxLocation.href;
+}
+
+// Segment location into parts
+ajaxLocParts = rurl.exec( ajaxLocation.toLowerCase() ) || [];
+
+// Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
+function addToPrefiltersOrTransports( structure ) {
+
+	// dataTypeExpression is optional and defaults to "*"
+	return function( dataTypeExpression, func ) {
+
+		if ( typeof dataTypeExpression !== "string" ) {
+			func = dataTypeExpression;
+			dataTypeExpression = "*";
+		}
+
+		if ( jQuery.isFunction( func ) ) {
+			var dataTypes = dataTypeExpression.toLowerCase().split( rspacesAjax ),
+				i = 0,
+				length = dataTypes.length,
+				dataType,
+				list,
+				placeBefore;
+
+			// For each dataType in the dataTypeExpression
+			for(; i < length; i++ ) {
+				dataType = dataTypes[ i ];
+				// We control if we're asked to add before
+				// any existing element
+				placeBefore = /^\+/.test( dataType );
+				if ( placeBefore ) {
+					dataType = dataType.substr( 1 ) || "*";
+				}
+				list = structure[ dataType ] = structure[ dataType ] || [];
+				// then we add to the structure accordingly
+				list[ placeBefore ? "unshift" : "push" ]( func );
+			}
+		}
+	};
+}
+
+//Base inspection function for prefilters and transports
+function inspectPrefiltersOrTransports( structure, options, originalOptions, jqXHR,
+		dataType /* internal */, inspected /* internal */ ) {
+
+	dataType = dataType || options.dataTypes[ 0 ];
+	inspected = inspected || {};
+
+	inspected[ dataType ] = true;
+
+	var list = structure[ dataType ],
+		i = 0,
+		length = list ? list.length : 0,
+		executeOnly = ( structure === prefilters ),
+		selection;
+
+	for(; i < length && ( executeOnly || !selection ); i++ ) {
+		selection = list[ i ]( options, originalOptions, jqXHR );
+		// If we got redirected to another dataType
+		// we try there if executing only and not done already
+		if ( typeof selection === "string" ) {
+			if ( !executeOnly || inspected[ selection ] ) {
+				selection = undefined;
+			} else {
+				options.dataTypes.unshift( selection );
+				selection = inspectPrefiltersOrTransports(
+						structure, options, originalOptions, jqXHR, selection, inspected );
+			}
+		}
+	}
+	// If we're only executing or nothing was selected
+	// we try the catchall dataType if not done already
+	if ( ( executeOnly || !selection ) && !inspected[ "*" ] ) {
+		selection = inspectPrefiltersOrTransports(
+				structure, options, originalOptions, jqXHR, "*", inspected );
+	}
+	// unnecessary when only executing (prefilters)
+	// but it'll be ignored by the caller in that case
+	return selection;
+}
+
+jQuery.fn.extend({
+	load: function( url, params, callback ) {
+		if ( typeof url !== "string" && _load ) {
+			return _load.apply( this, arguments );
+
+		// Don't do a request if no elements are being requested
+		} else if ( !this.length ) {
+			return this;
+		}
+
+		var off = url.indexOf( " " );
+		if ( off >= 0 ) {
+			var selector = url.slice( off, url.length );
+			url = url.slice( 0, off );
+		}
+
+		// Default to a GET request
+		var type = "GET";
+
+		// If the second parameter was provided
+		if ( params ) {
+			// If it's a function
+			if ( jQuery.isFunction( params ) ) {
+				// We assume that it's the callback
+				callback = params;
+				params = undefined;
+
+			// Otherwise, build a param string
+			} else if ( typeof params === "object" ) {
+				params = jQuery.param( params, jQuery.ajaxSettings.traditional );
+				type = "POST";
+			}
+		}
+
+		var self = this;
+
+		// Request the remote document
+		jQuery.ajax({
+			url: url,
+			type: type,
+			dataType: "html",
+			data: params,
+			// Complete callback (responseText is used internally)
+			complete: function( jqXHR, status, responseText ) {
+				// Store the response as specified by the jqXHR object
+				responseText = jqXHR.responseText;
+				// If successful, inject the HTML into all the matched elements
+				if ( jqXHR.isResolved() ) {
+					// #4825: Get the actual response in case
+					// a dataFilter is present in ajaxSettings
+					jqXHR.done(function( r ) {
+						responseText = r;
+					});
+					// See if a selector was specified
+					self.html( selector ?
+						// Create a dummy div to hold the results
+						jQuery("<div>")
+							// inject the contents of the document in, removing the scripts
+							// to avoid any 'Permission Denied' errors in IE
+							.append(responseText.replace(rscript, ""))
+
+							// Locate the specified elements
+							.find(selector) :
+
+						// If not, just inject the full result
+						responseText );
+				}
+
+				if ( callback ) {
+					self.each( callback, [ responseText, status, jqXHR ] );
+				}
+			}
+		});
+
+		return this;
+	},
+
+	serialize: function() {
+		return jQuery.param( this.serializeArray() );
+	},
+
+	serializeArray: function() {
+		return this.map(function(){
+			return this.elements ? jQuery.makeArray( this.elements ) : this;
+		})
+		.filter(function(){
+			return this.name && !this.disabled &&
+				( this.checked || rselectTextarea.test( this.nodeName ) ||
+					rinput.test( this.type ) );
+		})
+		.map(function( i, elem ){
+			var val = jQuery( this ).val();
+
+			return val == null ?
+				null :
+				jQuery.isArray( val ) ?
+					jQuery.map( val, function( val, i ){
+						return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+					}) :
+					{ name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+		}).get();
+	}
+});
+
+// Attach a bunch of functions for handling common AJAX events
+jQuery.each( "ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".split( " " ), function( i, o ){
+	jQuery.fn[ o ] = function( f ){
+		return this.bind( o, f );
+	};
+} );
+
+jQuery.each( [ "get", "post" ], function( i, method ) {
+	jQuery[ method ] = function( url, data, callback, type ) {
+		// shift arguments if data argument was omitted
+		if ( jQuery.isFunction( data ) ) {
+			type = type || callback;
+			callback = data;
+			data = undefined;
+		}
+
+		return jQuery.ajax({
+			type: method,
+			url: url,
+			data: data,
+			success: callback,
+			dataType: type
+		});
+	};
+} );
+
+jQuery.extend({
+
+	getScript: function( url, callback ) {
+		return jQuery.get( url, undefined, callback, "script" );
+	},
+
+	getJSON: function( url, data, callback ) {
+		return jQuery.get( url, data, callback, "json" );
+	},
+
+	// Creates a full fledged settings object into target
+	// with both ajaxSettings and settings fields.
+	// If target is omitted, writes into ajaxSettings.
+	ajaxSetup: function ( target, settings ) {
+		if ( !settings ) {
+			// Only one parameter, we extend ajaxSettings
+			settings = target;
+			target = jQuery.extend( true, jQuery.ajaxSettings, settings );
+		} else {
+			// target was provided, we extend into it
+			jQuery.extend( true, target, jQuery.ajaxSettings, settings );
+		}
+		// Flatten fields we don't want deep extended
+		for( var field in { context: 1, url: 1 } ) {
+			if ( field in settings ) {
+				target[ field ] = settings[ field ];
+			} else if( field in jQuery.ajaxSettings ) {
+				target[ field ] = jQuery.ajaxSettings[ field ];
+			}
+		}
+		return target;
+	},
+
+	ajaxSettings: {
+		url: ajaxLocation,
+		isLocal: rlocalProtocol.test( ajaxLocParts[ 1 ] ),
+		global: true,
+		type: "GET",
+		contentType: "application/x-www-form-urlencoded",
+		processData: true,
+		async: true,
+		/*
+		timeout: 0,
+		data: null,
+		dataType: null,
+		username: null,
+		password: null,
+		cache: null,
+		traditional: false,
+		headers: {},
+		*/
+
+		accepts: {
+			xml: "application/xml, text/xml",
+			html: "text/html",
+			text: "text/plain",
+			json: "application/json, text/javascript",
+			"*": "*/*"
+		},
+
+		contents: {
+			xml: /xml/,
+			html: /html/,
+			json: /json/
+		},
+
+		responseFields: {
+			xml: "responseXML",
+			text: "responseText"
+		},
+
+		// List of data converters
+		// 1) key format is "source_type destination_type" (a single space in-between)
+		// 2) the catchall symbol "*" can be used for source_type
+		converters: {
+
+			// Convert anything to text
+			"* text": window.String,
+
+			// Text to html (true = no transformation)
+			"text html": true,
+
+			// Evaluate text as a json expression
+			"text json": jQuery.parseJSON,
+
+			// Parse text as xml
+			"text xml": jQuery.parseXML
+		}
+	},
+
+	ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
+	ajaxTransport: addToPrefiltersOrTransports( transports ),
+
+	// Main method
+	ajax: function( url, options ) {
+
+		// If url is an object, simulate pre-1.5 signature
+		if ( typeof url === "object" ) {
+			options = url;
+			url = undefined;
+		}
+
+		// Force options to be an object
+		options = options || {};
+
+		var // Create the final options object
+			s = jQuery.ajaxSetup( {}, options ),
+			// Callbacks context
+			callbackContext = s.context || s,
+			// Context for global events
+			// It's the callbackContext if one was provided in the options
+			// and if it's a DOM node or a jQuery collection
+			globalEventContext = callbackContext !== s &&
+				( callbackContext.nodeType || callbackContext instanceof jQuery ) ?
+						jQuery( callbackContext ) : jQuery.event,
+			// Deferreds
+			deferred = jQuery.Deferred(),
+			completeDeferred = jQuery._Deferred(),
+			// Status-dependent callbacks
+			statusCode = s.statusCode || {},
+			// ifModified key
+			ifModifiedKey,
+			// Headers (they are sent all at once)
+			requestHeaders = {},
+			// Response headers
+			responseHeadersString,
+			responseHeaders,
+			// transport
+			transport,
+			// timeout handle
+			timeoutTimer,
+			// Cross-domain detection vars
+			parts,
+			// The jqXHR state
+			state = 0,
+			// To know if global events are to be dispatched
+			fireGlobals,
+			// Loop variable
+			i,
+			// Fake xhr
+			jqXHR = {
+
+				readyState: 0,
+
+				// Caches the header
+				setRequestHeader: function( name, value ) {
+					if ( !state ) {
+						requestHeaders[ name.toLowerCase().replace( rucHeaders, rucHeadersFunc ) ] = value;
+					}
+					return this;
+				},
+
+				// Raw string
+				getAllResponseHeaders: function() {
+					return state === 2 ? responseHeadersString : null;
+				},
+
+				// Builds headers hashtable if needed
+				getResponseHeader: function( key ) {
+					var match;
+					if ( state === 2 ) {
+						if ( !responseHeaders ) {
+							responseHeaders = {};
+							while( ( match = rheaders.exec( responseHeadersString ) ) ) {
+								responseHeaders[ match[1].toLowerCase() ] = match[ 2 ];
+							}
+						}
+						match = responseHeaders[ key.toLowerCase() ];
+					}
+					return match === undefined ? null : match;
+				},
+
+				// Overrides response content-type header
+				overrideMimeType: function( type ) {
+					if ( !state ) {
+						s.mimeType = type;
+					}
+					return this;
+				},
+
+				// Cancel the request
+				abort: function( statusText ) {
+					statusText = statusText || "abort";
+					if ( transport ) {
+						transport.abort( statusText );
+					}
+					done( 0, statusText );
+					return this;
+				}
+			};
+
+		// Callback for when everything is done
+		// It is defined here because jslint complains if it is declared
+		// at the end of the function (which would be more logical and readable)
+		function done( status, statusText, responses, headers ) {
+
+			// Called once
+			if ( state === 2 ) {
+				return;
+			}
+
+			// State is "done" now
+			state = 2;
+
+			// Clear timeout if it exists
+			if ( timeoutTimer ) {
+				clearTimeout( timeoutTimer );
+			}
+
+			// Dereference transport for early garbage collection
+			// (no matter how long the jqXHR object will be used)
+			transport = undefined;
+
+			// Cache response headers
+			responseHeadersString = headers || "";
+
+			// Set readyState
+			jqXHR.readyState = status ? 4 : 0;
+
+			var isSuccess,
+				success,
+				error,
+				response = responses ? ajaxHandleResponses( s, jqXHR, responses ) : undefined,
+				lastModified,
+				etag;
+
+			// If successful, handle type chaining
+			if ( status >= 200 && status < 300 || status === 304 ) {
+
+				// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+				if ( s.ifModified ) {
+
+					if ( ( lastModified = jqXHR.getResponseHeader( "Last-Modified" ) ) ) {
+						jQuery.lastModified[ ifModifiedKey ] = lastModified;
+					}
+					if ( ( etag = jqXHR.getResponseHeader( "Etag" ) ) ) {
+						jQuery.etag[ ifModifiedKey ] = etag;
+					}
+				}
+
+				// If not modified
+				if ( status === 304 ) {
+
+					statusText = "notmodified";
+					isSuccess = true;
+
+				// If we have data
+				} else {
+
+					try {
+						success = ajaxConvert( s, response );
+						statusText = "success";
+						isSuccess = true;
+					} catch(e) {
+						// We have a parsererror
+						statusText = "parsererror";
+						error = e;
+					}
+				}
+			} else {
+				// We extract error from statusText
+				// then normalize statusText and status for non-aborts
+				error = statusText;
+				if( !statusText || status ) {
+					statusText = "error";
+					if ( status < 0 ) {
+						status = 0;
+					}
+				}
+			}
+
+			// Set data for the fake xhr object
+			jqXHR.status = status;
+			jqXHR.statusText = statusText;
+
+			// Success/Error
+			if ( isSuccess ) {
+				deferred.resolveWith( callbackContext, [ success, statusText, jqXHR ] );
+			} else {
+				deferred.rejectWith( callbackContext, [ jqXHR, statusText, error ] );
+			}
+
+			// Status-dependent callbacks
+			jqXHR.statusCode( statusCode );
+			statusCode = undefined;
+
+			if ( fireGlobals ) {
+				globalEventContext.trigger( "ajax" + ( isSuccess ? "Success" : "Error" ),
+						[ jqXHR, s, isSuccess ? success : error ] );
+			}
+
+			// Complete
+			completeDeferred.resolveWith( callbackContext, [ jqXHR, statusText ] );
+
+			if ( fireGlobals ) {
+				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s] );
+				// Handle the global AJAX counter
+				if ( !( --jQuery.active ) ) {
+					jQuery.event.trigger( "ajaxStop" );
+				}
+			}
+		}
+
+		// Attach deferreds
+		deferred.promise( jqXHR );
+		jqXHR.success = jqXHR.done;
+		jqXHR.error = jqXHR.fail;
+		jqXHR.complete = completeDeferred.done;
+
+		// Status-dependent callbacks
+		jqXHR.statusCode = function( map ) {
+			if ( map ) {
+				var tmp;
+				if ( state < 2 ) {
+					for( tmp in map ) {
+						statusCode[ tmp ] = [ statusCode[tmp], map[tmp] ];
+					}
+				} else {
+					tmp = map[ jqXHR.status ];
+					jqXHR.then( tmp, tmp );
+				}
+			}
+			return this;
+		};
+
+		// Remove hash character (#7531: and string promotion)
+		// Add protocol if not provided (#5866: IE7 issue with protocol-less urls)
+		// We also use the url parameter if available
+		s.url = ( ( url || s.url ) + "" ).replace( rhash, "" ).replace( rprotocol, ajaxLocParts[ 1 ] + "//" );
+
+		// Extract dataTypes list
+		s.dataTypes = jQuery.trim( s.dataType || "*" ).toLowerCase().split( rspacesAjax );
+
+		// Determine if a cross-domain request is in order
+		if ( s.crossDomain == null ) {
+			parts = rurl.exec( s.url.toLowerCase() );
+			s.crossDomain = !!( parts &&
+				( parts[ 1 ] != ajaxLocParts[ 1 ] || parts[ 2 ] != ajaxLocParts[ 2 ] ||
+					( parts[ 3 ] || ( parts[ 1 ] === "http:" ? 80 : 443 ) ) !=
+						( ajaxLocParts[ 3 ] || ( ajaxLocParts[ 1 ] === "http:" ? 80 : 443 ) ) )
+			);
+		}
+
+		// Convert data if not already a string
+		if ( s.data && s.processData && typeof s.data !== "string" ) {
+			s.data = jQuery.param( s.data, s.traditional );
+		}
+
+		// Apply prefilters
+		inspectPrefiltersOrTransports( prefilters, s, options, jqXHR );
+
+		// If request was aborted inside a prefiler, stop there
+		if ( state === 2 ) {
+			return false;
+		}
+
+		// We can fire global events as of now if asked to
+		fireGlobals = s.global;
+
+		// Uppercase the type
+		s.type = s.type.toUpperCase();
+
+		// Determine if request has content
+		s.hasContent = !rnoContent.test( s.type );
+
+		// Watch for a new set of requests
+		if ( fireGlobals && jQuery.active++ === 0 ) {
+			jQuery.event.trigger( "ajaxStart" );
+		}
+
+		// More options handling for requests with no content
+		if ( !s.hasContent ) {
+
+			// If data is available, append data to url
+			if ( s.data ) {
+				s.url += ( rquery.test( s.url ) ? "&" : "?" ) + s.data;
+			}
+
+			// Get ifModifiedKey before adding the anti-cache parameter
+			ifModifiedKey = s.url;
+
+			// Add anti-cache in url if needed
+			if ( s.cache === false ) {
+
+				var ts = jQuery.now(),
+					// try replacing _= if it is there
+					ret = s.url.replace( rts, "$1_=" + ts );
+
+				// if nothing was replaced, add timestamp to the end
+				s.url = ret + ( (ret === s.url ) ? ( rquery.test( s.url ) ? "&" : "?" ) + "_=" + ts : "" );
+			}
+		}
+
+		// Set the correct header, if data is being sent
+		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
+			requestHeaders[ "Content-Type" ] = s.contentType;
+		}
+
+		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
+		if ( s.ifModified ) {
+			ifModifiedKey = ifModifiedKey || s.url;
+			if ( jQuery.lastModified[ ifModifiedKey ] ) {
+				requestHeaders[ "If-Modified-Since" ] = jQuery.lastModified[ ifModifiedKey ];
+			}
+			if ( jQuery.etag[ ifModifiedKey ] ) {
+				requestHeaders[ "If-None-Match" ] = jQuery.etag[ ifModifiedKey ];
+			}
+		}
+
+		// Set the Accepts header for the server, depending on the dataType
+		requestHeaders.Accept = s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[0] ] ?
+			s.accepts[ s.dataTypes[0] ] + ( s.dataTypes[ 0 ] !== "*" ? ", */*; q=0.01" : "" ) :
+			s.accepts[ "*" ];
+
+		// Check for headers option
+		for ( i in s.headers ) {
+			jqXHR.setRequestHeader( i, s.headers[ i ] );
+		}
+
+		// Allow custom headers/mimetypes and early abort
+		if ( s.beforeSend && ( s.beforeSend.call( callbackContext, jqXHR, s ) === false || state === 2 ) ) {
+				// Abort if not done already
+				jqXHR.abort();
+				return false;
+
+		}
+
+		// Install callbacks on deferreds
+		for ( i in { success: 1, error: 1, complete: 1 } ) {
+			jqXHR[ i ]( s[ i ] );
+		}
+
+		// Get transport
+		transport = inspectPrefiltersOrTransports( transports, s, options, jqXHR );
+
+		// If no transport, we auto-abort
+		if ( !transport ) {
+			done( -1, "No Transport" );
+		} else {
+			jqXHR.readyState = 1;
+			// Send global event
+			if ( fireGlobals ) {
+				globalEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
+			}
+			// Timeout
+			if ( s.async && s.timeout > 0 ) {
+				timeoutTimer = setTimeout( function(){
+					jqXHR.abort( "timeout" );
+				}, s.timeout );
+			}
+
+			try {
+				state = 1;
+				transport.send( requestHeaders, done );
+			} catch (e) {
+				// Propagate exception as error if not done
+				if ( status < 2 ) {
+					done( -1, e );
+				// Simply rethrow otherwise
+				} else {
+					jQuery.error( e );
+				}
+			}
+		}
+
+		return jqXHR;
+	},
+
+	// Serialize an array of form elements or a set of
+	// key/values into a query string
+	param: function( a, traditional ) {
+		var s = [],
+			add = function( key, value ) {
+				// If value is a function, invoke it and return its value
+				value = jQuery.isFunction( value ) ? value() : value;
+				s[ s.length ] = encodeURIComponent( key ) + "=" + encodeURIComponent( value );
+			};
+
+		// Set traditional to true for jQuery <= 1.3.2 behavior.
+		if ( traditional === undefined ) {
+			traditional = jQuery.ajaxSettings.traditional;
+		}
+
+		// If an array was passed in, assume that it is an array of form elements.
+		if ( jQuery.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
+			// Serialize the form elements
+			jQuery.each( a, function() {
+				add( this.name, this.value );
+			} );
+
+		} else {
+			// If traditional, encode the "old" way (the way 1.3.2 or older
+			// did it), otherwise encode params recursively.
+			for ( var prefix in a ) {
+				buildParams( prefix, a[ prefix ], traditional, add );
+			}
+		}
+
+		// Return the resulting serialization
+		return s.join( "&" ).replace( r20, "+" );
+	}
+});
+
+function buildParams( prefix, obj, traditional, add ) {
+	if ( jQuery.isArray( obj ) && obj.length ) {
+		// Serialize array item.
+		jQuery.each( obj, function( i, v ) {
+			if ( traditional || rbracket.test( prefix ) ) {
+				// Treat each array item as a scalar.
+				add( prefix, v );
+
+			} else {
+				// If array item is non-scalar (array or object), encode its
+				// numeric index to resolve deserialization ambiguity issues.
+				// Note that rack (as of 1.0.0) can't currently deserialize
+				// nested arrays properly, and attempting to do so may cause
+				// a server error. Possible fixes are to modify rack's
+				// deserialization algorithm or to provide an option or flag
+				// to force array serialization to be shallow.
+				buildParams( prefix + "[" + ( typeof v === "object" || jQuery.isArray(v) ? i : "" ) + "]", v, traditional, add );
+			}
+		});
+
+	} else if ( !traditional && obj != null && typeof obj === "object" ) {
+		// If we see an array here, it is empty and should be treated as an empty
+		// object
+		if ( jQuery.isArray( obj ) || jQuery.isEmptyObject( obj ) ) {
+			add( prefix, "" );
+
+		// Serialize object item.
+		} else {
+			for ( var name in obj ) {
+				buildParams( prefix + "[" + name + "]", obj[ name ], traditional, add );
+			}
+		}
+
+	} else {
+		// Serialize scalar item.
+		add( prefix, obj );
+	}
+}
+
+// This is still on the jQuery object... for now
+// Want to move this to jQuery.ajax some day
+jQuery.extend({
+
+	// Counter for holding the number of active queries
+	active: 0,
+
+	// Last-Modified header cache for next request
+	lastModified: {},
+	etag: {}
+
+});
+
+/* Handles responses to an ajax request:
+ * - sets all responseXXX fields accordingly
+ * - finds the right dataType (mediates between content-type and expected dataType)
+ * - returns the corresponding response
+ */
+function ajaxHandleResponses( s, jqXHR, responses ) {
+
+	var contents = s.contents,
+		dataTypes = s.dataTypes,
+		responseFields = s.responseFields,
+		ct,
+		type,
+		finalDataType,
+		firstDataType;
+
+	// Fill responseXXX fields
+	for( type in responseFields ) {
+		if ( type in responses ) {
+			jqXHR[ responseFields[type] ] = responses[ type ];
+		}
+	}
+
+	// Remove auto dataType and get content-type in the process
+	while( dataTypes[ 0 ] === "*" ) {
+		dataTypes.shift();
+		if ( ct === undefined ) {
+			ct = s.mimeType || jqXHR.getResponseHeader( "content-type" );
+		}
+	}
+
+	// Check if we're dealing with a known content-type
+	if ( ct ) {
+		for ( type in contents ) {
+			if ( contents[ type ] && contents[ type ].test( ct ) ) {
+				dataTypes.unshift( type );
+				break;
+			}
+		}
+	}
+
+	// Check to see if we have a response for the expected dataType
+	if ( dataTypes[ 0 ] in responses ) {
+		finalDataType = dataTypes[ 0 ];
+	} else {
+		// Try convertible dataTypes
+		for ( type in responses ) {
+			if ( !dataTypes[ 0 ] || s.converters[ type + " " + dataTypes[0] ] ) {
+				finalDataType = type;
+				break;
+			}
+			if ( !firstDataType ) {
+				firstDataType = type;
+			}
+		}
+		// Or just use first one
+		finalDataType = finalDataType || firstDataType;
+	}
+
+	// If we found a dataType
+	// We add the dataType to the list if needed
+	// and return the corresponding response
+	if ( finalDataType ) {
+		if ( finalDataType !== dataTypes[ 0 ] ) {
+			dataTypes.unshift( finalDataType );
+		}
+		return responses[ finalDataType ];
+	}
+}
+
+// Chain conversions given the request and the original response
+function ajaxConvert( s, response ) {
+
+	// Apply the dataFilter if provided
+	if ( s.dataFilter ) {
+		response = s.dataFilter( response, s.dataType );
+	}
+
+	var dataTypes = s.dataTypes,
+		converters = {},
+		i,
+		key,
+		length = dataTypes.length,
+		tmp,
+		// Current and previous dataTypes
+		current = dataTypes[ 0 ],
+		prev,
+		// Conversion expression
+		conversion,
+		// Conversion function
+		conv,
+		// Conversion functions (transitive conversion)
+		conv1,
+		conv2;
+
+	// For each dataType in the chain
+	for( i = 1; i < length; i++ ) {
+
+		// Create converters map
+		// with lowercased keys
+		if ( i === 1 ) {
+			for( key in s.converters ) {
+				if( typeof key === "string" ) {
+					converters[ key.toLowerCase() ] = s.converters[ key ];
+				}
+			}
+		}
+
+		// Get the dataTypes
+		prev = current;
+		current = dataTypes[ i ];
+
+		// If current is auto dataType, update it to prev
+		if( current === "*" ) {
+			current = prev;
+		// If no auto and dataTypes are actually different
+		} else if ( prev !== "*" && prev !== current ) {
+
+			// Get the converter
+			conversion = prev + " " + current;
+			conv = converters[ conversion ] || converters[ "* " + current ];
+
+			// If there is no direct converter, search transitively
+			if ( !conv ) {
+				conv2 = undefined;
+				for( conv1 in converters ) {
+					tmp = conv1.split( " " );
+					if ( tmp[ 0 ] === prev || tmp[ 0 ] === "*" ) {
+						conv2 = converters[ tmp[1] + " " + current ];
+						if ( conv2 ) {
+							conv1 = converters[ conv1 ];
+							if ( conv1 === true ) {
+								conv = conv2;
+							} else if ( conv2 === true ) {
+								conv = conv1;
+							}
+							break;
+						}
+					}
+				}
+			}
+			// If we found no converter, dispatch an error
+			if ( !( conv || conv2 ) ) {
+				jQuery.error( "No conversion from " + conversion.replace(" "," to ") );
+			}
+			// If found converter is not an equivalence
+			if ( conv !== true ) {
+				// Convert with 1 or 2 converters accordingly
+				response = conv ? conv( response ) : conv2( conv1(response) );
+			}
+		}
+	}
+	return response;
+}
+
+
+
+
+var jsc = jQuery.now(),
+	jsre = /(\=)\?(&|$)|\?\?/i;
+
+// Default jsonp settings
+jQuery.ajaxSetup({
+	jsonp: "callback",
+	jsonpCallback: function() {
+		return jQuery.expando + "_" + ( jsc++ );
+	}
+});
+
+// Detect, normalize options and install callbacks for jsonp requests
+jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
+
+	var dataIsString = ( typeof s.data === "string" );
+
+	if ( s.dataTypes[ 0 ] === "jsonp" ||
+		originalSettings.jsonpCallback ||
+		originalSettings.jsonp != null ||
+		s.jsonp !== false && ( jsre.test( s.url ) ||
+				dataIsString && jsre.test( s.data ) ) ) {
+
+		var responseContainer,
+			jsonpCallback = s.jsonpCallback =
+				jQuery.isFunction( s.jsonpCallback ) ? s.jsonpCallback() : s.jsonpCallback,
+			previous = window[ jsonpCallback ],
+			url = s.url,
+			data = s.data,
+			replace = "$1" + jsonpCallback + "$2",
+			cleanUp = function() {
+				// Set callback back to previous value
+				window[ jsonpCallback ] = previous;
+				// Call if it was a function and we have a response
+				if ( responseContainer && jQuery.isFunction( previous ) ) {
+					window[ jsonpCallback ]( responseContainer[ 0 ] );
+				}
+			};
+
+		if ( s.jsonp !== false ) {
+			url = url.replace( jsre, replace );
+			if ( s.url === url ) {
+				if ( dataIsString ) {
+					data = data.replace( jsre, replace );
+				}
+				if ( s.data === data ) {
+					// Add callback manually
+					url += (/\?/.test( url ) ? "&" : "?") + s.jsonp + "=" + jsonpCallback;
+				}
+			}
+		}
+
+		s.url = url;
+		s.data = data;
+
+		// Install callback
+		window[ jsonpCallback ] = function( response ) {
+			responseContainer = [ response ];
+		};
+
+		// Install cleanUp function
+		jqXHR.then( cleanUp, cleanUp );
+
+		// Use data converter to retrieve json after script execution
+		s.converters["script json"] = function() {
+			if ( !responseContainer ) {
+				jQuery.error( jsonpCallback + " was not called" );
+			}
+			return responseContainer[ 0 ];
+		};
+
+		// force json dataType
+		s.dataTypes[ 0 ] = "json";
+
+		// Delegate to script
+		return "script";
+	}
+} );
+
+
+
+
+// Install script dataType
+jQuery.ajaxSetup({
+	accepts: {
+		script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
+	},
+	contents: {
+		script: /javascript|ecmascript/
+	},
+	converters: {
+		"text script": function( text ) {
+			jQuery.globalEval( text );
+			return text;
+		}
+	}
+});
+
+// Handle cache's special case and global
+jQuery.ajaxPrefilter( "script", function( s ) {
+	if ( s.cache === undefined ) {
+		s.cache = false;
+	}
+	if ( s.crossDomain ) {
+		s.type = "GET";
+		s.global = false;
+	}
+} );
+
+// Bind script tag hack transport
+jQuery.ajaxTransport( "script", function(s) {
+
+	// This transport only deals with cross domain requests
+	if ( s.crossDomain ) {
+
+		var script,
+			head = document.head || document.getElementsByTagName( "head" )[0] || document.documentElement;
+
+		return {
+
+			send: function( _, callback ) {
+
+				script = document.createElement( "script" );
+
+				script.async = "async";
+
+				if ( s.scriptCharset ) {
+					script.charset = s.scriptCharset;
+				}
+
+				script.src = s.url;
+
+				// Attach handlers for all browsers
+				script.onload = script.onreadystatechange = function( _, isAbort ) {
+
+					if ( !script.readyState || /loaded|complete/.test( script.readyState ) ) {
+
+						// Handle memory leak in IE
+						script.onload = script.onreadystatechange = null;
+
+						// Remove the script
+						if ( head && script.parentNode ) {
+							head.removeChild( script );
+						}
+
+						// Dereference the script
+						script = undefined;
+
+						// Callback if not abort
+						if ( !isAbort ) {
+							callback( 200, "success" );
+						}
+					}
+				};
+				// Use insertBefore instead of appendChild  to circumvent an IE6 bug.
+				// This arises when a base node is used (#2709 and #4378).
+				head.insertBefore( script, head.firstChild );
+			},
+
+			abort: function() {
+				if ( script ) {
+					script.onload( 0, 1 );
+				}
+			}
+		};
+	}
+} );
+
+
+
+
+var // #5280: next active xhr id and list of active xhrs' callbacks
+	xhrId = jQuery.now(),
+	xhrCallbacks,
+
+	// XHR used to determine supports properties
+	testXHR;
+
+// #5280: Internet Explorer will keep connections alive if we don't abort on unload
+function xhrOnUnloadAbort() {
+	jQuery( window ).unload(function() {
+		// Abort all pending requests
+		for ( var key in xhrCallbacks ) {
+			xhrCallbacks[ key ]( 0, 1 );
+		}
+	});
+}
+
+// Functions to create xhrs
+function createStandardXHR() {
+	try {
+		return new window.XMLHttpRequest();
+	} catch( e ) {}
+}
+
+function createActiveXHR() {
+	try {
+		return new window.ActiveXObject( "Microsoft.XMLHTTP" );
+	} catch( e ) {}
+}
+
+// Create the request object
+// (This is still attached to ajaxSettings for backward compatibility)
+jQuery.ajaxSettings.xhr = window.ActiveXObject ?
+	/* Microsoft failed to properly
+	 * implement the XMLHttpRequest in IE7 (can't request local files),
+	 * so we use the ActiveXObject when it is available
+	 * Additionally XMLHttpRequest can be disabled in IE7/IE8 so
+	 * we need a fallback.
+	 */
+	function() {
+		return !this.isLocal && createStandardXHR() || createActiveXHR();
+	} :
+	// For all other browsers, use the standard XMLHttpRequest object
+	createStandardXHR;
+
+// Test if we can create an xhr object
+testXHR = jQuery.ajaxSettings.xhr();
+jQuery.support.ajax = !!testXHR;
+
+// Does this browser support crossDomain XHR requests
+jQuery.support.cors = testXHR && ( "withCredentials" in testXHR );
+
+// No need for the temporary xhr anymore
+testXHR = undefined;
+
+// Create transport if the browser can provide an xhr
+if ( jQuery.support.ajax ) {
+
+	jQuery.ajaxTransport(function( s ) {
+		// Cross domain only allowed if supported through XMLHttpRequest
+		if ( !s.crossDomain || jQuery.support.cors ) {
+
+			var callback;
+
+			return {
+				send: function( headers, complete ) {
+
+					// Get a new xhr
+					var xhr = s.xhr(),
+						handle,
+						i;
+
+					// Open the socket
+					// Passing null username, generates a login popup on Opera (#2865)
+					if ( s.username ) {
+						xhr.open( s.type, s.url, s.async, s.username, s.password );
+					} else {
+						xhr.open( s.type, s.url, s.async );
+					}
+
+					// Apply custom fields if provided
+					if ( s.xhrFields ) {
+						for ( i in s.xhrFields ) {
+							xhr[ i ] = s.xhrFields[ i ];
+						}
+					}
+
+					// Override mime type if needed
+					if ( s.mimeType && xhr.overrideMimeType ) {
+						xhr.overrideMimeType( s.mimeType );
+					}
+
+					// X-Requested-With header
+					// For cross-domain requests, seeing as conditions for a preflight are
+					// akin to a jigsaw puzzle, we simply never set it to be sure.
+					// (it can always be set on a per-request basis or even using ajaxSetup)
+					// For same-domain requests, won't change header if already provided.
+					if ( !s.crossDomain && !headers["X-Requested-With"] ) {
+						headers[ "X-Requested-With" ] = "XMLHttpRequest";
+					}
+
+					// Need an extra try/catch for cross domain requests in Firefox 3
+					try {
+						for ( i in headers ) {
+							xhr.setRequestHeader( i, headers[ i ] );
+						}
+					} catch( _ ) {}
+
+					// Do send the request
+					// This may raise an exception which is actually
+					// handled in jQuery.ajax (so no try/catch here)
+					xhr.send( ( s.hasContent && s.data ) || null );
+
+					// Listener
+					callback = function( _, isAbort ) {
+
+						var status,
+							statusText,
+							responseHeaders,
+							responses,
+							xml;
+
+						// Firefox throws exceptions when accessing properties
+						// of an xhr when a network error occured
+						// http://helpful.knobs-dials.com/index.php/Component_returned_failure_code:_0x80040111_(NS_ERROR_NOT_AVAILABLE)
+						try {
+
+							// Was never called and is aborted or complete
+							if ( callback && ( isAbort || xhr.readyState === 4 ) ) {
+
+								// Only called once
+								callback = undefined;
+
+								// Do not keep as active anymore
+								if ( handle ) {
+									xhr.onreadystatechange = jQuery.noop;
+									delete xhrCallbacks[ handle ];
+								}
+
+								// If it's an abort
+								if ( isAbort ) {
+									// Abort it manually if needed
+									if ( xhr.readyState !== 4 ) {
+										xhr.abort();
+									}
+								} else {
+									status = xhr.status;
+									responseHeaders = xhr.getAllResponseHeaders();
+									responses = {};
+									xml = xhr.responseXML;
+
+									// Construct response list
+									if ( xml && xml.documentElement /* #4958 */ ) {
+										responses.xml = xml;
+									}
+									responses.text = xhr.responseText;
+
+									// Firefox throws an exception when accessing
+									// statusText for faulty cross-domain requests
+									try {
+										statusText = xhr.statusText;
+									} catch( e ) {
+										// We normalize with Webkit giving an empty statusText
+										statusText = "";
+									}
+
+									// Filter status for non standard behaviors
+
+									// If the request is local and we have data: assume a success
+									// (success with no data won't get notified, that's the best we
+									// can do given current implementations)
+									if ( !status && s.isLocal && !s.crossDomain ) {
+										status = responses.text ? 200 : 404;
+									// IE - #1450: sometimes returns 1223 when it should be 204
+									} else if ( status === 1223 ) {
+										status = 204;
+									}
+								}
+							}
+						} catch( firefoxAccessException ) {
+							if ( !isAbort ) {
+								complete( -1, firefoxAccessException );
+							}
+						}
+
+						// Call complete if needed
+						if ( responses ) {
+							complete( status, statusText, responses, responseHeaders );
+						}
+					};
+
+					// if we're in sync mode or it's in cache
+					// and has been retrieved directly (IE6 & IE7)
+					// we need to manually fire the callback
+					if ( !s.async || xhr.readyState === 4 ) {
+						callback();
+					} else {
+						// Create the active xhrs callbacks list if needed
+						// and attach the unload handler
+						if ( !xhrCallbacks ) {
+							xhrCallbacks = {};
+							xhrOnUnloadAbort();
+						}
+						// Add to list of active xhrs callbacks
+						handle = xhrId++;
+						xhr.onreadystatechange = xhrCallbacks[ handle ] = callback;
+					}
+				},
+
+				abort: function() {
+					if ( callback ) {
+						callback(0,1);
+					}
+				}
+			};
+		}
+	});
+}
+
+
+
+
+var elemdisplay = {},
+	rfxtypes = /^(?:toggle|show|hide)$/,
+	rfxnum = /^([+\-]=)?([\d+.\-]+)([a-z%]*)$/i,
+	timerId,
+	fxAttrs = [
+		// height animations
+		[ "height", "marginTop", "marginBottom", "paddingTop", "paddingBottom" ],
+		// width animations
+		[ "width", "marginLeft", "marginRight", "paddingLeft", "paddingRight" ],
+		// opacity animations
+		[ "opacity" ]
+	];
+
+jQuery.fn.extend({
+	show: function( speed, easing, callback ) {
+		var elem, display;
+
+		if ( speed || speed === 0 ) {
+			return this.animate( genFx("show", 3), speed, easing, callback);
+
+		} else {
+			for ( var i = 0, j = this.length; i < j; i++ ) {
+				elem = this[i];
+				display = elem.style.display;
+
+				// Reset the inline display of this element to learn if it is
+				// being hidden by cascaded rules or not
+				if ( !jQuery._data(elem, "olddisplay") && display === "none" ) {
+					display = elem.style.display = "";
+				}
+
+				// Set elements which have been overridden with display: none
+				// in a stylesheet to whatever the default browser style is
+				// for such an element
+				if ( display === "" && jQuery.css( elem, "display" ) === "none" ) {
+					jQuery._data(elem, "olddisplay", defaultDisplay(elem.nodeName));
+				}
+			}
+
+			// Set the display of most of the elements in a second loop
+			// to avoid the constant reflow
+			for ( i = 0; i < j; i++ ) {
+				elem = this[i];
+				display = elem.style.display;
+
+				if ( display === "" || display === "none" ) {
+					elem.style.display = jQuery._data(elem, "olddisplay") || "";
+				}
+			}
+
+			return this;
+		}
+	},
+
+	hide: function( speed, easing, callback ) {
+		if ( speed || speed === 0 ) {
+			return this.animate( genFx("hide", 3), speed, easing, callback);
+
+		} else {
+			for ( var i = 0, j = this.length; i < j; i++ ) {
+				var display = jQuery.css( this[i], "display" );
+
+				if ( display !== "none" && !jQuery._data( this[i], "olddisplay" ) ) {
+					jQuery._data( this[i], "olddisplay", display );
+				}
+			}
+
+			// Set the display of the elements in a second loop
+			// to avoid the constant reflow
+			for ( i = 0; i < j; i++ ) {
+				this[i].style.display = "none";
+			}
+
+			return this;
+		}
+	},
+
+	// Save the old toggle function
+	_toggle: jQuery.fn.toggle,
+
+	toggle: function( fn, fn2, callback ) {
+		var bool = typeof fn === "boolean";
+
+		if ( jQuery.isFunction(fn) && jQuery.isFunction(fn2) ) {
+			this._toggle.apply( this, arguments );
+
+		} else if ( fn == null || bool ) {
+			this.each(function() {
+				var state = bool ? fn : jQuery(this).is(":hidden");
+				jQuery(this)[ state ? "show" : "hide" ]();
+			});
+
+		} else {
+			this.animate(genFx("toggle", 3), fn, fn2, callback);
+		}
+
+		return this;
+	},
+
+	fadeTo: function( speed, to, easing, callback ) {
+		return this.filter(":hidden").css("opacity", 0).show().end()
+					.animate({opacity: to}, speed, easing, callback);
+	},
+
+	animate: function( prop, speed, easing, callback ) {
+		var optall = jQuery.speed(speed, easing, callback);
+
+		if ( jQuery.isEmptyObject( prop ) ) {
+			return this.each( optall.complete );
+		}
+
+		return this[ optall.queue === false ? "each" : "queue" ](function() {
+			// XXX 'this' does not always have a nodeName when running the
+			// test suite
+
+			var opt = jQuery.extend({}, optall), p,
+				isElement = this.nodeType === 1,
+				hidden = isElement && jQuery(this).is(":hidden"),
+				self = this;
+
+			for ( p in prop ) {
+				var name = jQuery.camelCase( p );
+
+				if ( p !== name ) {
+					prop[ name ] = prop[ p ];
+					delete prop[ p ];
+					p = name;
+				}
+
+				if ( prop[p] === "hide" && hidden || prop[p] === "show" && !hidden ) {
+					return opt.complete.call(this);
+				}
+
+				if ( isElement && ( p === "height" || p === "width" ) ) {
+					// Make sure that nothing sneaks out
+					// Record all 3 overflow attributes because IE does not
+					// change the overflow attribute when overflowX and
+					// overflowY are set to the same value
+					opt.overflow = [ this.style.overflow, this.style.overflowX, this.style.overflowY ];
+
+					// Set display property to inline-block for height/width
+					// animations on inline elements that are having width/height
+					// animated
+					if ( jQuery.css( this, "display" ) === "inline" &&
+							jQuery.css( this, "float" ) === "none" ) {
+						if ( !jQuery.support.inlineBlockNeedsLayout ) {
+							this.style.display = "inline-block";
+
+						} else {
+							var display = defaultDisplay(this.nodeName);
+
+							// inline-level elements accept inline-block;
+							// block-level elements need to be inline with layout
+							if ( display === "inline" ) {
+								this.style.display = "inline-block";
+
+							} else {
+								this.style.display = "inline";
+								this.style.zoom = 1;
+							}
+						}
+					}
+				}
+
+				if ( jQuery.isArray( prop[p] ) ) {
+					// Create (if needed) and add to specialEasing
+					(opt.specialEasing = opt.specialEasing || {})[p] = prop[p][1];
+					prop[p] = prop[p][0];
+				}
+			}
+
+			if ( opt.overflow != null ) {
+				this.style.overflow = "hidden";
+			}
+
+			opt.curAnim = jQuery.extend({}, prop);
+
+			jQuery.each( prop, function( name, val ) {
+				var e = new jQuery.fx( self, opt, name );
+
+				if ( rfxtypes.test(val) ) {
+					e[ val === "toggle" ? hidden ? "show" : "hide" : val ]( prop );
+
+				} else {
+					var parts = rfxnum.exec(val),
+						start = e.cur();
+
+					if ( parts ) {
+						var end = parseFloat( parts[2] ),
+							unit = parts[3] || ( jQuery.cssNumber[ name ] ? "" : "px" );
+
+						// We need to compute starting value
+						if ( unit !== "px" ) {
+							jQuery.style( self, name, (end || 1) + unit);
+							start = ((end || 1) / e.cur()) * start;
+							jQuery.style( self, name, start + unit);
+						}
+
+						// If a +=/-= token was provided, we're doing a relative animation
+						if ( parts[1] ) {
+							end = ((parts[1] === "-=" ? -1 : 1) * end) + start;
+						}
+
+						e.custom( start, end, unit );
+
+					} else {
+						e.custom( start, val, "" );
+					}
+				}
+			});
+
+			// For JS strict compliance
+			return true;
+		});
+	},
+
+	stop: function( clearQueue, gotoEnd ) {
+		var timers = jQuery.timers;
+
+		if ( clearQueue ) {
+			this.queue([]);
+		}
+
+		this.each(function() {
+			// go in reverse order so anything added to the queue during the loop is ignored
+			for ( var i = timers.length - 1; i >= 0; i-- ) {
+				if ( timers[i].elem === this ) {
+					if (gotoEnd) {
+						// force the next step to be the last
+						timers[i](true);
+					}
+
+					timers.splice(i, 1);
+				}
+			}
+		});
+
+		// start the next in the queue if the last step wasn't forced
+		if ( !gotoEnd ) {
+			this.dequeue();
+		}
+
+		return this;
+	}
+
+});
+
+function genFx( type, num ) {
+	var obj = {};
+
+	jQuery.each( fxAttrs.concat.apply([], fxAttrs.slice(0,num)), function() {
+		obj[ this ] = type;
+	});
+
+	return obj;
+}
+
+// Generate shortcuts for custom animations
+jQuery.each({
+	slideDown: genFx("show", 1),
+	slideUp: genFx("hide", 1),
+	slideToggle: genFx("toggle", 1),
+	fadeIn: { opacity: "show" },
+	fadeOut: { opacity: "hide" },
+	fadeToggle: { opacity: "toggle" }
+}, function( name, props ) {
+	jQuery.fn[ name ] = function( speed, easing, callback ) {
+		return this.animate( props, speed, easing, callback );
+	};
+});
+
+jQuery.extend({
+	speed: function( speed, easing, fn ) {
+		var opt = speed && typeof speed === "object" ? jQuery.extend({}, speed) : {
+			complete: fn || !fn && easing ||
+				jQuery.isFunction( speed ) && speed,
+			duration: speed,
+			easing: fn && easing || easing && !jQuery.isFunction(easing) && easing
+		};
+
+		opt.duration = jQuery.fx.off ? 0 : typeof opt.duration === "number" ? opt.duration :
+			opt.duration in jQuery.fx.speeds ? jQuery.fx.speeds[opt.duration] : jQuery.fx.speeds._default;
+
+		// Queueing
+		opt.old = opt.complete;
+		opt.complete = function() {
+			if ( opt.queue !== false ) {
+				jQuery(this).dequeue();
+			}
+			if ( jQuery.isFunction( opt.old ) ) {
+				opt.old.call( this );
+			}
+		};
+
+		return opt;
+	},
+
+	easing: {
+		linear: function( p, n, firstNum, diff ) {
+			return firstNum + diff * p;
+		},
+		swing: function( p, n, firstNum, diff ) {
+			return ((-Math.cos(p*Math.PI)/2) + 0.5) * diff + firstNum;
+		}
+	},
+
+	timers: [],
+
+	fx: function( elem, options, prop ) {
+		this.options = options;
+		this.elem = elem;
+		this.prop = prop;
+
+		if ( !options.orig ) {
+			options.orig = {};
+		}
+	}
+
+});
+
+jQuery.fx.prototype = {
+	// Simple function for setting a style value
+	update: function() {
+		if ( this.options.step ) {
+			this.options.step.call( this.elem, this.now, this );
+		}
+
+		(jQuery.fx.step[this.prop] || jQuery.fx.step._default)( this );
+	},
+
+	// Get the current size
+	cur: function() {
+		if ( this.elem[this.prop] != null && (!this.elem.style || this.elem.style[this.prop] == null) ) {
+			return this.elem[ this.prop ];
+		}
+
+		var parsed,
+			r = jQuery.css( this.elem, this.prop );
+		// Empty strings, null, undefined and "auto" are converted to 0,
+		// complex values such as "rotate(1rad)" are returned as is,
+		// simple values such as "10px" are parsed to Float.
+		return isNaN( parsed = parseFloat( r ) ) ? !r || r === "auto" ? 0 : r : parsed;
+	},
+
+	// Start an animation from one number to another
+	custom: function( from, to, unit ) {
+		var self = this,
+			fx = jQuery.fx;
+
+		this.startTime = jQuery.now();
+		this.start = from;
+		this.end = to;
+		this.unit = unit || this.unit || ( jQuery.cssNumber[ this.prop ] ? "" : "px" );
+		this.now = this.start;
+		this.pos = this.state = 0;
+
+		function t( gotoEnd ) {
+			return self.step(gotoEnd);
+		}
+
+		t.elem = this.elem;
+
+		if ( t() && jQuery.timers.push(t) && !timerId ) {
+			timerId = setInterval(fx.tick, fx.interval);
+		}
+	},
+
+	// Simple 'show' function
+	show: function() {
+		// Remember where we started, so that we can go back to it later
+		this.options.orig[this.prop] = jQuery.style( this.elem, this.prop );
+		this.options.show = true;
+
+		// Begin the animation
+		// Make sure that we start at a small width/height to avoid any
+		// flash of content
+		this.custom(this.prop === "width" || this.prop === "height" ? 1 : 0, this.cur());
+
+		// Start by showing the element
+		jQuery( this.elem ).show();
+	},
+
+	// Simple 'hide' function
+	hide: function() {
+		// Remember where we started, so that we can go back to it later
+		this.options.orig[this.prop] = jQuery.style( this.elem, this.prop );
+		this.options.hide = true;
+
+		// Begin the animation
+		this.custom(this.cur(), 0);
+	},
+
+	// Each step of an animation
+	step: function( gotoEnd ) {
+		var t = jQuery.now(), done = true;
+
+		if ( gotoEnd || t >= this.options.duration + this.startTime ) {
+			this.now = this.end;
+			this.pos = this.state = 1;
+			this.update();
+
+			this.options.curAnim[ this.prop ] = true;
+
+			for ( var i in this.options.curAnim ) {
+				if ( this.options.curAnim[i] !== true ) {
+					done = false;
+				}
+			}
+
+			if ( done ) {
+				// Reset the overflow
+				if ( this.options.overflow != null && !jQuery.support.shrinkWrapBlocks ) {
+					var elem = this.elem,
+						options = this.options;
+
+					jQuery.each( [ "", "X", "Y" ], function (index, value) {
+						elem.style[ "overflow" + value ] = options.overflow[index];
+					} );
+				}
+
+				// Hide the element if the "hide" operation was done
+				if ( this.options.hide ) {
+					jQuery(this.elem).hide();
+				}
+
+				// Reset the properties, if the item has been hidden or shown
+				if ( this.options.hide || this.options.show ) {
+					for ( var p in this.options.curAnim ) {
+						jQuery.style( this.elem, p, this.options.orig[p] );
+					}
+				}
+
+				// Execute the complete function
+				this.options.complete.call( this.elem );
+			}
+
+			return false;
+
+		} else {
+			var n = t - this.startTime;
+			this.state = n / this.options.duration;
+
+			// Perform the easing function, defaults to swing
+			var specialEasing = this.options.specialEasing && this.options.specialEasing[this.prop];
+			var defaultEasing = this.options.easing || (jQuery.easing.swing ? "swing" : "linear");
+			this.pos = jQuery.easing[specialEasing || defaultEasing](this.state, n, 0, 1, this.options.duration);
+			this.now = this.start + ((this.end - this.start) * this.pos);
+
+			// Perform the next step of the animation
+			this.update();
+		}
+
+		return true;
+	}
+};
+
+jQuery.extend( jQuery.fx, {
+	tick: function() {
+		var timers = jQuery.timers;
+
+		for ( var i = 0; i < timers.length; i++ ) {
+			if ( !timers[i]() ) {
+				timers.splice(i--, 1);
+			}
+		}
+
+		if ( !timers.length ) {
+			jQuery.fx.stop();
+		}
+	},
+
+	interval: 13,
+
+	stop: function() {
+		clearInterval( timerId );
+		timerId = null;
+	},
+
+	speeds: {
+		slow: 600,
+		fast: 200,
+		// Default speed
+		_default: 400
+	},
+
+	step: {
+		opacity: function( fx ) {
+			jQuery.style( fx.elem, "opacity", fx.now );
+		},
+
+		_default: function( fx ) {
+			if ( fx.elem.style && fx.elem.style[ fx.prop ] != null ) {
+				fx.elem.style[ fx.prop ] = (fx.prop === "width" || fx.prop === "height" ? Math.max(0, fx.now) : fx.now) + fx.unit;
+			} else {
+				fx.elem[ fx.prop ] = fx.now;
+			}
+		}
+	}
+});
+
+if ( jQuery.expr && jQuery.expr.filters ) {
+	jQuery.expr.filters.animated = function( elem ) {
+		return jQuery.grep(jQuery.timers, function( fn ) {
+			return elem === fn.elem;
+		}).length;
+	};
+}
+
+function defaultDisplay( nodeName ) {
+	if ( !elemdisplay[ nodeName ] ) {
+		var elem = jQuery("<" + nodeName + ">").appendTo("body"),
+			display = elem.css("display");
+
+		elem.remove();
+
+		if ( display === "none" || display === "" ) {
+			display = "block";
+		}
+
+		elemdisplay[ nodeName ] = display;
+	}
+
+	return elemdisplay[ nodeName ];
+}
+
+
+
+
+var rtable = /^t(?:able|d|h)$/i,
+	rroot = /^(?:body|html)$/i;
+
+if ( "getBoundingClientRect" in document.documentElement ) {
+	jQuery.fn.offset = function( options ) {
+		var elem = this[0], box;
+
+		if ( options ) {
+			return this.each(function( i ) {
+				jQuery.offset.setOffset( this, options, i );
+			});
+		}
+
+		if ( !elem || !elem.ownerDocument ) {
+			return null;
+		}
+
+		if ( elem === elem.ownerDocument.body ) {
+			return jQuery.offset.bodyOffset( elem );
+		}
+
+		try {
+			box = elem.getBoundingClientRect();
+		} catch(e) {}
+
+		var doc = elem.ownerDocument,
+			docElem = doc.documentElement;
+
+		// Make sure we're not dealing with a disconnected DOM node
+		if ( !box || !jQuery.contains( docElem, elem ) ) {
+			return box ? { top: box.top, left: box.left } : { top: 0, left: 0 };
+		}
+
+		var body = doc.body,
+			win = getWindow(doc),
+			clientTop  = docElem.clientTop  || body.clientTop  || 0,
+			clientLeft = docElem.clientLeft || body.clientLeft || 0,
+			scrollTop  = win.pageYOffset || jQuery.support.boxModel && docElem.scrollTop  || body.scrollTop,
+			scrollLeft = win.pageXOffset || jQuery.support.boxModel && docElem.scrollLeft || body.scrollLeft,
+			top  = box.top  + scrollTop  - clientTop,
+			left = box.left + scrollLeft - clientLeft;
+
+		return { top: top, left: left };
+	};
+
+} else {
+	jQuery.fn.offset = function( options ) {
+		var elem = this[0];
+
+		if ( options ) {
+			return this.each(function( i ) {
+				jQuery.offset.setOffset( this, options, i );
+			});
+		}
+
+		if ( !elem || !elem.ownerDocument ) {
+			return null;
+		}
+
+		if ( elem === elem.ownerDocument.body ) {
+			return jQuery.offset.bodyOffset( elem );
+		}
+
+		jQuery.offset.initialize();
+
+		var computedStyle,
+			offsetParent = elem.offsetParent,
+			prevOffsetParent = elem,
+			doc = elem.ownerDocument,
+			docElem = doc.documentElement,
+			body = doc.body,
+			defaultView = doc.defaultView,
+			prevComputedStyle = defaultView ? defaultView.getComputedStyle( elem, null ) : elem.currentStyle,
+			top = elem.offsetTop,
+			left = elem.offsetLeft;
+
+		while ( (elem = elem.parentNode) && elem !== body && elem !== docElem ) {
+			if ( jQuery.offset.supportsFixedPosition && prevComputedStyle.position === "fixed" ) {
+				break;
+			}
+
+			computedStyle = defaultView ? defaultView.getComputedStyle(elem, null) : elem.currentStyle;
+			top  -= elem.scrollTop;
+			left -= elem.scrollLeft;
+
+			if ( elem === offsetParent ) {
+				top  += elem.offsetTop;
+				left += elem.offsetLeft;
+
+				if ( jQuery.offset.doesNotAddBorder && !(jQuery.offset.doesAddBorderForTableAndCells && rtable.test(elem.nodeName)) ) {
+					top  += parseFloat( computedStyle.borderTopWidth  ) || 0;
+					left += parseFloat( computedStyle.borderLeftWidth ) || 0;
+				}
+
+				prevOffsetParent = offsetParent;
+				offsetParent = elem.offsetParent;
+			}
+
+			if ( jQuery.offset.subtractsBorderForOverflowNotVisible && computedStyle.overflow !== "visible" ) {
+				top  += parseFloat( computedStyle.borderTopWidth  ) || 0;
+				left += parseFloat( computedStyle.borderLeftWidth ) || 0;
+			}
+
+			prevComputedStyle = computedStyle;
+		}
+
+		if ( prevComputedStyle.position === "relative" || prevComputedStyle.position === "static" ) {
+			top  += body.offsetTop;
+			left += body.offsetLeft;
+		}
+
+		if ( jQuery.offset.supportsFixedPosition && prevComputedStyle.position === "fixed" ) {
+			top  += Math.max( docElem.scrollTop, body.scrollTop );
+			left += Math.max( docElem.scrollLeft, body.scrollLeft );
+		}
+
+		return { top: top, left: left };
+	};
+}
+
+jQuery.offset = {
+	initialize: function() {
+		var body = document.body, container = document.createElement("div"), innerDiv, checkDiv, table, td, bodyMarginTop = parseFloat( jQuery.css(body, "marginTop") ) || 0,
+			html = "<div style='position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;'><div></div></div><table style='position:absolute;top:0;left:0;margin:0;border:5px solid #000;padding:0;width:1px;height:1px;' cellpadding='0' cellspacing='0'><tr><td></td></tr></table>";
+
+		jQuery.extend( container.style, { position: "absolute", top: 0, left: 0, margin: 0, border: 0, width: "1px", height: "1px", visibility: "hidden" } );
+
+		container.innerHTML = html;
+		body.insertBefore( container, body.firstChild );
+		innerDiv = container.firstChild;
+		checkDiv = innerDiv.firstChild;
+		td = innerDiv.nextSibling.firstChild.firstChild;
+
+		this.doesNotAddBorder = (checkDiv.offsetTop !== 5);
+		this.doesAddBorderForTableAndCells = (td.offsetTop === 5);
+
+		checkDiv.style.position = "fixed";
+		checkDiv.style.top = "20px";
+
+		// safari subtracts parent border width here which is 5px
+		this.supportsFixedPosition = (checkDiv.offsetTop === 20 || checkDiv.offsetTop === 15);
+		checkDiv.style.position = checkDiv.style.top = "";
+
+		innerDiv.style.overflow = "hidden";
+		innerDiv.style.position = "relative";
+
+		this.subtractsBorderForOverflowNotVisible = (checkDiv.offsetTop === -5);
+
+		this.doesNotIncludeMarginInBodyOffset = (body.offsetTop !== bodyMarginTop);
+
+		body.removeChild( container );
+		jQuery.offset.initialize = jQuery.noop;
+	},
+
+	bodyOffset: function( body ) {
+		var top = body.offsetTop,
+			left = body.offsetLeft;
+
+		jQuery.offset.initialize();
+
+		if ( jQuery.offset.doesNotIncludeMarginInBodyOffset ) {
+			top  += parseFloat( jQuery.css(body, "marginTop") ) || 0;
+			left += parseFloat( jQuery.css(body, "marginLeft") ) || 0;
+		}
+
+		return { top: top, left: left };
+	},
+
+	setOffset: function( elem, options, i ) {
+		var position = jQuery.css( elem, "position" );
+
+		// set position first, in-case top/left are set even on static elem
+		if ( position === "static" ) {
+			elem.style.position = "relative";
+		}
+
+		var curElem = jQuery( elem ),
+			curOffset = curElem.offset(),
+			curCSSTop = jQuery.css( elem, "top" ),
+			curCSSLeft = jQuery.css( elem, "left" ),
+			calculatePosition = (position === "absolute" || position === "fixed") && jQuery.inArray('auto', [curCSSTop, curCSSLeft]) > -1,
+			props = {}, curPosition = {}, curTop, curLeft;
+
+		// need to be able to calculate position if either top or left is auto and position is either absolute or fixed
+		if ( calculatePosition ) {
+			curPosition = curElem.position();
+		}
+
+		curTop  = calculatePosition ? curPosition.top  : parseInt( curCSSTop,  10 ) || 0;
+		curLeft = calculatePosition ? curPosition.left : parseInt( curCSSLeft, 10 ) || 0;
+
+		if ( jQuery.isFunction( options ) ) {
+			options = options.call( elem, i, curOffset );
+		}
+
+		if (options.top != null) {
+			props.top = (options.top - curOffset.top) + curTop;
+		}
+		if (options.left != null) {
+			props.left = (options.left - curOffset.left) + curLeft;
+		}
+
+		if ( "using" in options ) {
+			options.using.call( elem, props );
+		} else {
+			curElem.css( props );
+		}
+	}
+};
+
+
+jQuery.fn.extend({
+	position: function() {
+		if ( !this[0] ) {
+			return null;
+		}
+
+		var elem = this[0],
+
+		// Get *real* offsetParent
+		offsetParent = this.offsetParent(),
+
+		// Get correct offsets
+		offset       = this.offset(),
+		parentOffset = rroot.test(offsetParent[0].nodeName) ? { top: 0, left: 0 } : offsetParent.offset();
+
+		// Subtract element margins
+		// note: when an element has margin: auto the offsetLeft and marginLeft
+		// are the same in Safari causing offset.left to incorrectly be 0
+		offset.top  -= parseFloat( jQuery.css(elem, "marginTop") ) || 0;
+		offset.left -= parseFloat( jQuery.css(elem, "marginLeft") ) || 0;
+
+		// Add offsetParent borders
+		parentOffset.top  += parseFloat( jQuery.css(offsetParent[0], "borderTopWidth") ) || 0;
+		parentOffset.left += parseFloat( jQuery.css(offsetParent[0], "borderLeftWidth") ) || 0;
+
+		// Subtract the two offsets
+		return {
+			top:  offset.top  - parentOffset.top,
+			left: offset.left - parentOffset.left
+		};
+	},
+
+	offsetParent: function() {
+		return this.map(function() {
+			var offsetParent = this.offsetParent || document.body;
+			while ( offsetParent && (!rroot.test(offsetParent.nodeName) && jQuery.css(offsetParent, "position") === "static") ) {
+				offsetParent = offsetParent.offsetParent;
+			}
+			return offsetParent;
+		});
+	}
+});
+
+
+// Create scrollLeft and scrollTop methods
+jQuery.each( ["Left", "Top"], function( i, name ) {
+	var method = "scroll" + name;
+
+	jQuery.fn[ method ] = function(val) {
+		var elem = this[0], win;
+
+		if ( !elem ) {
+			return null;
+		}
+
+		if ( val !== undefined ) {
+			// Set the scroll offset
+			return this.each(function() {
+				win = getWindow( this );
+
+				if ( win ) {
+					win.scrollTo(
+						!i ? val : jQuery(win).scrollLeft(),
+						i ? val : jQuery(win).scrollTop()
+					);
+
+				} else {
+					this[ method ] = val;
+				}
+			});
+		} else {
+			win = getWindow( elem );
+
+			// Return the scroll offset
+			return win ? ("pageXOffset" in win) ? win[ i ? "pageYOffset" : "pageXOffset" ] :
+				jQuery.support.boxModel && win.document.documentElement[ method ] ||
+					win.document.body[ method ] :
+				elem[ method ];
+		}
+	};
+});
+
+function getWindow( elem ) {
+	return jQuery.isWindow( elem ) ?
+		elem :
+		elem.nodeType === 9 ?
+			elem.defaultView || elem.parentWindow :
+			false;
+}
+
+
+
+
+// Create innerHeight, innerWidth, outerHeight and outerWidth methods
+jQuery.each([ "Height", "Width" ], function( i, name ) {
+
+	var type = name.toLowerCase();
+
+	// innerHeight and innerWidth
+	jQuery.fn["inner" + name] = function() {
+		return this[0] ?
+			parseFloat( jQuery.css( this[0], type, "padding" ) ) :
+			null;
+	};
+
+	// outerHeight and outerWidth
+	jQuery.fn["outer" + name] = function( margin ) {
+		return this[0] ?
+			parseFloat( jQuery.css( this[0], type, margin ? "margin" : "border" ) ) :
+			null;
+	};
+
+	jQuery.fn[ type ] = function( size ) {
+		// Get window width or height
+		var elem = this[0];
+		if ( !elem ) {
+			return size == null ? null : this;
+		}
+
+		if ( jQuery.isFunction( size ) ) {
+			return this.each(function( i ) {
+				var self = jQuery( this );
+				self[ type ]( size.call( this, i, self[ type ]() ) );
+			});
+		}
+
+		if ( jQuery.isWindow( elem ) ) {
+			// Everyone else use document.documentElement or document.body depending on Quirks vs Standards mode
+			// 3rd condition allows Nokia support, as it supports the docElem prop but not CSS1Compat
+			var docElemProp = elem.document.documentElement[ "client" + name ];
+			return elem.document.compatMode === "CSS1Compat" && docElemProp ||
+				elem.document.body[ "client" + name ] || docElemProp;
+
+		// Get document width or height
+		} else if ( elem.nodeType === 9 ) {
+			// Either scroll[Width/Height] or offset[Width/Height], whichever is greater
+			return Math.max(
+				elem.documentElement["client" + name],
+				elem.body["scroll" + name], elem.documentElement["scroll" + name],
+				elem.body["offset" + name], elem.documentElement["offset" + name]
+			);
+
+		// Get or set width or height on the element
+		} else if ( size === undefined ) {
+			var orig = jQuery.css( elem, type ),
+				ret = parseFloat( orig );
+
+			return jQuery.isNaN( ret ) ? orig : ret;
+
+		// Set the width or height on the element (default to pixels if value is unitless)
+		} else {
+			return this.css( type, typeof size === "string" ? size : size + "px" );
+		}
+	};
+
+});
+
+
+window.jQuery = window.$ = jQuery;
+})(window);
+
+/**
+ * Unobtrusive scripting adapter for jQuery
+ *
+ * Requires jQuery 1.4.3 or later.
+ * https://github.com/rails/jquery-ujs
+ */
+
+;(function($) {
+	// Triggers an event on an element and returns the event result
+	function fire(obj, name, data) {
+		var event = new $.Event(name);
+		obj.trigger(event, data);
+		return event.result !== false;
+	}
+
+	// Submits "remote" forms and links with ajax
+	function handleRemote(element) {
+		var method, url, data,
+			dataType = element.attr('data-type') || ($.ajaxSettings && $.ajaxSettings.dataType);
+
+		if (element.is('form')) {
+			method = element.attr('method');
+			url = element.attr('action');
+			data = element.serializeArray();
+			// memoized value from clicked submit button
+			var button = element.data('ujs:submit-button');
+			if (button) {
+				data.push(button);
+				element.data('ujs:submit-button', null);
+			}
+		} else {
+			method = element.attr('data-method');
+			url = element.attr('href');
+			data = null;
+		}
+
+		$.ajax({
+			url: url, type: method || 'GET', data: data, dataType: dataType,
+			// stopping the "ajax:beforeSend" event will cancel the ajax request
+			beforeSend: function(xhr, settings) {
+				if (settings.dataType === undefined) {
+					xhr.setRequestHeader('accept', '*/*;q=0.5, ' + settings.accepts.script);
+				}
+				return fire(element, 'ajax:beforeSend', [xhr, settings]);
+			},
+			success: function(data, status, xhr) {
+				element.trigger('ajax:success', [data, status, xhr]);
+			},
+			complete: function(xhr, status) {
+				element.trigger('ajax:complete', [xhr, status]);
+			},
+			error: function(xhr, status, error) {
+				element.trigger('ajax:error', [xhr, status, error]);
+			}
+		});
+	}
+
+	// Handles "data-method" on links such as:
+	// <a href="/users/5" data-method="delete" rel="nofollow" data-confirm="Are you sure?">Delete</a>
+	function handleMethod(link) {
+		var href = link.attr('href'),
+			method = link.attr('data-method'),
+			csrf_token = $('meta[name=csrf-token]').attr('content'),
+			csrf_param = $('meta[name=csrf-param]').attr('content'),
+			form = $('<form method="post" action="' + href + '"></form>'),
+			metadata_input = '<input name="_method" value="' + method + '" type="hidden" />';
+
+		if (csrf_param !== undefined && csrf_token !== undefined) {
+			metadata_input += '<input name="' + csrf_param + '" value="' + csrf_token + '" type="hidden" />';
+		}
+
+		form.hide().append(metadata_input).appendTo('body');
+		form.submit();
+	}
+
+	function disableFormElements(form) {
+		form.find('input[data-disable-with]').each(function() {
+			var input = $(this);
+			input.data('ujs:enable-with', input.val())
+				.val(input.attr('data-disable-with'))
+				.attr('disabled', 'disabled');
+		});
+	}
+
+	function enableFormElements(form) {
+		form.find('input[data-disable-with]').each(function() {
+			var input = $(this);
+			input.val(input.data('ujs:enable-with')).removeAttr('disabled');
+		});
+	}
+
+	function allowAction(element) {
+		var message = element.attr('data-confirm');
+		return !message || (fire(element, 'confirm') && confirm(message));
+	}
+
+	$('a[data-confirm], a[data-method], a[data-remote]').live('click.rails', function(e) {
+		var link = $(this);
+		if (!allowAction(link)) return false;
+
+		if (link.attr('data-remote')) {
+			handleRemote(link);
+			return false;
+		} else if (link.attr('data-method')) {
+			handleMethod(link);
+			return false;
+		}
+	});
+
+	$('form').live('submit.rails', function(e) {
+		var form = $(this);
+		if (!allowAction(form)) return false;
+
+		if (form.attr('data-remote')) {
+			handleRemote(form);
+			return false;
+		} else {
+			disableFormElements(form);
+		}
+	});
+
+	$('form input[type=submit], form button[type=submit], form button:not([type])').live('click.rails', function() {
+		var button = $(this);
+		if (!allowAction(button)) return false;
+		// register the pressed submit button
+		var name = button.attr('name'), data = name ? {name:name, value:button.val()} : null;
+		button.closest('form').data('ujs:submit-button', data);
+	});
+	
+	$('form').live('ajax:beforeSend.rails', function(event) {
+		if (this == event.target) disableFormElements($(this));
+	});
+
+	$('form').live('ajax:complete.rails', function(event) {
+		if (this == event.target) enableFormElements($(this));
+	});
+})( jQuery );
+
+// Place your application-specific JavaScript functions and classes here
+// This file is automatically included by javascript_include_tag :defaults
+function submit(){
+    var result = $("#form_post").validate({
+        meta: "validate"
+    });
+    if (result) {
+        $("#form_post").submit();
+    }
+}
+
+function request_form_submit(){
+    var result = $("#form_post").validate({
+        meta: "validate"
+    });
+    if (result) {
+        $("#form_post").submit();
+    }
+}
+
+function downloadFile(path){
+    document.location.href = path;
+}
+
+function getPostSearchType(post_type){
+    action = "";
+    switch (post_type) {
+        case "Assignments":
+            action = "/post_assignments/search";
+            break;
+        case "Tests":
+            action = "/post_tests/search";
+            break;
+        case "Projects":
+            action = "/post_projects/search";
+            break;
+        case "Exams":
+            action = "/post_exams/search";
+            break;
+        case "Events":
+            action = "/post_events/search";
+            break;
+        case "QAs":
+            action = "/post_qas/search";
+            break;
+        case "Education":
+            action = "/post_educations/search";
+            break;
+        case "Tutors":
+            action = "/post_tutors/search";
+            break;
+        case "Books":
+            action = "/post_books/search";
+            break;
+        case "Jobs":
+            action = "/post_jobs/search";
+            break;
+        case "Party":
+            action = "/post_parties/search";
+            break;
+        case "Student Awareness":
+            action = "/post_awarenesses/search";
+            break;
+        case "Housing":
+            action = "/post_housings/search";
+            break;
+        case "Team Up":
+            action = "/post_teamups/search";
+            break;
+        case "MyX":
+            action = "/post_myxes/search";
+            break;
+        case "Food":
+            action = "/post_foods";
+            break;
+        case "Schedules":
+            action = "/post_exam_schedules";
+            break;
+    }
+    $('#action_post_search').attr("action", action);
+}
+
+function load_options(){
+    $("#department").mcDropdown("#department_menu", {
+        width: 170,
+        valueAttr: "rel_department",
+        select: option_submit
+    });
+    $("#year").mcDropdown("#year_menu", {
+        width: 75,
+        valueAttr: "rel_year",
+        select: option_submit
+    });
+    $("#over").mcDropdown("#over_menu", {
+        width: 80,
+        valueAttr: "rel_over",
+        select: option_submit
+    });
+}
+
+function option_submit(){
+    $("#action_option").submit();
+}
+
+function send_comment(id, type){
+    comment = $('#comment').val();
+    if (comment != "") {
+        $.ajax({
+            url: '/posts/create_comment',
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                commentable_id: id,
+                commentable_type: type,
+                comment: comment
+            }),
+            success: function(data){
+                $('#list_comments').append(data);
+                $('#comment').val('');
+                $('#form_comment').toggle('slow');
+				$('#comment_count').html($('div .AsDcomItem').size());
+            }
+        });
+    }
+}
+
+function send_answer(post_id){
+    comment = $('#comment').val();
+    if (comment != "") {
+        $.ajax({
+            url: '/post_qas/create_comment',
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                post_id: post_id,
+                comment: comment,
+                show: $('#show').val()
+            }),
+            success: function(data){
+                $('#list_comments').html(data);
+                $('#comment').val('');
+                $('#form_comment').toggle('slow');
+            }
+        });
+    }
+}
+
+function sendEmail(current_user_id, user_id){
+    subject = $('#message_subject').val();
+    body = $('#message_body').val();
+    $.ajax({
+        url: '/users/' + current_user_id + '/messages/send_message',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            recipient_id: user_id,
+            subject: subject,
+            body: body
+        }),
+        success: function(data){
+            $('#div_send_message').html(data);
+        }
+    });
+}
+
+function sendReportAbuse(){
+    reported_id = $('#reported_id').val();
+    reported_type = $('#reported_type').val();
+    abuse_type_id = $('#abuse_type_id').val();
+    abuse_content = $('#abuse_content').val();
+    
+    if (reported_id != "" && reported_type != "" && content != "") {
+        $.ajax({
+            url: '/posts/create_report_abuse',
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                reported_id: reported_id,
+                reported_type: reported_type,
+                abuse_type_id: abuse_type_id,
+                abuse_content: abuse_content
+            }),
+            success: function(data){
+                $('#div_send_report').html(data);
+            }
+        });
+    }
+}
+
+function requireRating(post_id, path){
+    var rating = $('input:radio:checked').val();
+    
+    if (rating != "") {
+        $.ajax({
+            url: path,
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                rating: rating,
+                post_id: post_id
+            }),
+            success: function(data){
+                $('#require_rating_action').html(data);
+            }
+        });
+    }
+}
+
+function showResult(){
+    $('[rel=rate]').each(function(index){
+        $(this).show();
+    });
+    
+    $('#view_results').hide();
+}
+
+function showCommentForm(wall_id){
+    $('#wall_comment_form_' + wall_id).show();
+    $('#wall_comment_' + wall_id).hide();
+    $('#comment_' + wall_id).focus();
+}
+
+function hideCommentForm(wall_id){
+    if ($('#comment_' + wall_id).val() == "") {
+        $('#wall_comment_' + wall_id).show();
+        $('#wall_comment_form_' + wall_id).hide();
+    }
+}
+
+function showListPostComment(post_id){
+	$('#post_comment_' + post_id).hide();
+	$('#post_comment_form_' + post_id).show();
+	$('#post_list_comment_' + post_id).toggle("slow");
+}
+
+function showPostCommentForm(post_id){
+    $('#post_comment_form_' + post_id).show();
+    $('#post_comment_' + post_id).hide();
+    $('#comment_' + post_id).focus();
+}
+
+function hidePostCommentForm(post_id){
+    if ($('#comment_' + post_id).val() == "") {
+        $('#post_comment_' + post_id).show();
+        $('#post_comment_form_' + post_id).hide();
+    }
+}
+
+function goToByScroll(id){
+    $('html,body').animate({
+        scrollTop: $("#" + id).offset().top
+    }, 'slow');
+}
+
+function resetForm(id){
+    $('#' + id).each(function(){
+        this.reset();
+    });
+}
+
+// Pretty flash
+function hideFlashes(){
+    $('#flash_notice, #flash_warning, #flash_error').fadeOut(1500);
+}
+
+// Become a fan
+function become_a_fan(path){
+    $.ajax({
+        url: path,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+            alert('ajax fail:' + msg);
+        },
+        success: function(msg){
+            $('.AsDContR .fan').html(msg);
+        }
+    });
+}
+
+//Chat
+
+function invite_chat(id){
+    $.ajax({
+        url: '/student_lounges/invite_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            user_id: id
+        }),
+        success: function(data){
+            $('.AsDContR .chat').text('Chatting...');
+        },
+        error: function(data){
+            alert('Error connecting to server');
+        }
+        
+    });
+}
+
+function add_users_to_chat(chanel_name){
+    obj_form = document.forms['form_' + chanel_name];
+    len = obj_form.elements.length;
+    val = "";
+    var i = 0;
+    for (i = 0; i < len; i++) {
+        if (obj_form.elements[i].type == "checkbox" && obj_form.elements[i].checked) {
+            val += obj_form.elements[i].value + ";";
+        }
+    }
+    
+    $.ajax({
+        url: '/student_lounges/add_users_to_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            user_id: val,
+            chanel_name: chanel_name
+        })
+    });
+}
+
+function stop_chat(chanel_name){
+    $.ajax({
+        url: '/student_lounges/stop_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        data: ({
+            chanel_name: chanel_name
+        }),
+        success: function(data){
+            //Close window chat
+        }
+    });
+}
+
+function friends_changed_message(){
+    $.ajax({
+        url: '/student_lounges/friends_changed_message',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data){
+            $('#div_friends_changed_their_message').html(data);
+        }
+    });
+}
+
+function friends_you_invited_chat(){
+    $.ajax({
+        url: '/student_lounges/friends_you_invited_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data){
+            $("#div_friends_you_invited_to_chat").html(data);
+        }
+    });
+}
+
+function friends_want_you_chat(){
+    $.ajax({
+        url: '/student_lounges/friends_want_you_chat',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data){
+            $("#div_friends_want_you_chat").html(data);
+        }
+    });
+}
+
+function friends_online(){
+    $.ajax({
+        url: '/student_lounges/friends_online',
+        type: 'GET',
+        cache: false,
+        dataType: 'html',
+        success: function(data){
+            $("#div_friends_online").html(data);
+        }
+    });
+}
+
+function insert_text_to_chatcontent(chanel_name, text_chat){
+    if ($('#' + chanel_name)) {
+        $('#' + chanel_name).before(text_chat);
+        scroll_div('#chat_content_' + chanel_name);
+    }
+}
+
+function openChat(title, chanel_name){
+    if ($('#' + chanel_name).length == 0) {
+        var win = $.customWindow({
+			winId: chanel_name,
+            title: title,
+            onopen: function(cont, obj){
+                $.ajax({
+                    url: '/student_lounges/chanel_chat_content',
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'html',
+                    data: ({
+                        chanel_name: chanel_name
+                    }),
+                    success: function(data){
+                        cont.html(data);
+                    }
+                });
+            },
+            onclose: function(){
+                //
+            },
+            onresize: function(obj){
+                //Nothing
+            }
+        });
+    }
+}
+
+function scroll_div(id){
+    $(id).animate({
+        scrollTop: $(id).attr("scrollHeight")
+    }, 3000);
+}
+
+//Chat
+
+//My Stories
+function searchFriendStories(){
+    var form = $("#friend_stories_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#friend_stories_list").html(html);
+    });
+}
+
+function searchMyStories(){
+    var form = $("#my_stories_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#my_stories_list").html(html);
+    });
+}
+
+function formatLinkForPaginationURLFriend(){
+    var form = $("#friend_stories_search");
+    var url = form.attr("action");
+    $("div.friend_stories").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchFriendStories();
+        });
+    });
+}
+
+function formatLinkForPaginationURLMy(){
+    var form = $("#my_stories_search");
+    var url = form.attr("action");
+    $("div.my_stories").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchMyStories();
+        });
+    });
+}
+
+//My Stories
+
+//My Photos
+function searchFriendPhotos(){
+    var form = $("#friend_photos_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#friend_photos_list").html(html);
+    });
+}
+
+function searchMyPhotos(){
+    var form = $("#my_photos_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#my_photos_list").html(html);
+    });
+}
+
+function formatLinkForPaginationURLFriendPhoto(){
+    var form = $("#friend_photos_search");
+    var url = form.attr("action");
+    $("div.friend_photos").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchFriendPhotos();
+        });
+    });
+}
+
+function formatLinkForPaginationURLMyPhoto(){
+    var form = $("#my_photos_search");
+    var url = form.attr("action");
+    $("div.my_photos").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchMyPhotos();
+        });
+    });
+}
+
+//My Photos
+
+//My Musics
+function searchFriendMusics(){
+    var form = $("#friend_musics_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#friend_musics_list").html(html);
+    });
+}
+
+function searchMyMusics(){
+    var form = $("#my_musics_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#my_musics_list").html(html);
+    });
+}
+
+function formatLinkForPaginationURLFriendMusic(){
+    var form = $("#friend_musics_search");
+    var url = form.attr("action");
+    $("div.friend_musics").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchFriendMusics();
+        });
+    });
+}
+
+function formatLinkForPaginationURLMyMusic(){
+    var form = $("#my_musics_search");
+    var url = form.attr("action");
+    $("div.my_musics").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.html();
+        linkElement.attr({
+            "page": page,
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?page=" + $(this).attr('page'));
+            searchMyMusics();
+        });
+    });
+}
+
+//My Musics
+
+/** 
+ * Copyright (c) 2009 Sylvain Gougouzian (sylvain@gougouzian.fr)
+ * MIT (http://www.opensource.org/licenses/mit-license.php) licensed.
+ * GNU GPL (http://www.gnu.org/licenses/gpl.html) licensed.
+ * jQuery carrousel v1.1.7 by Sylvain Gougouzian http://sylvain.gougouzian.fr
+ */
+jQuery(function($){$.fn.carrousel=function(options){var el=this.eq(0).data("carrousel");var opts=$.extend({},$.fn.carrousel.defaults,options);var ctrls=$.extend({},$.fn.carrousel.controls);var effects=$.extend({},$.fn.carrousel.effects);this.each(function(){el=new $carrousel(this,opts,ctrls,effects);});return opts.api?el:null;};$.carrousel=function(e,opts,ctrls,effects){this.e=$(e);$(e).css('position','relative').wrap('<div><div></div></div>');if(opts.continuous)$(e).html($(e).html()+$(e).html());var self=this;var tA=new Date();this.id=($(e).attr('id')!=""?'carrousel_'+tA.getTime():$(e).attr('id'));this.container=$(e).parent();this.container.parent().css('overflow','hidden').append("<a href='#' id='"+this.id+"_prev' class='carrousel_button carrousel_prev'>"+opts.htmlPrevButton+"</a><a href='#' id='"+this.id+"_next' class='carrousel_button carrousel_next'>"+opts.htmlNextButton+"</a><div id='"+this.id+"_legend' class='carrousel_legend'></div>");$('a#'+this.id+'_prev').hide().click(function(){self._animate('prev');return false;});$('a#'+this.id+'_next').hide().click(function(){self._animate('next');return false;});this.aItems=null;this.nbItems=0;this.current=0;this.locked=false;this.block={width:0,height:0};this.margin={width:0,height:0};this.dep=0;this.timerMoving=null;this.opts=opts;this.controls=ctrls;this.effects=effects;this.direction=((opts.direction=='left')||(opts.direction=='top')?'next':'prev');this.pos=((opts.direction=='left')||(opts.direction=='right')?'left':'top');this.dir=((opts.direction=='right')||(opts.direction=='top')?-1:1);this.vertical=(this.pos=='left'?false:true);this._init();};var $carrousel=$.carrousel;$carrousel.fn=$carrousel.prototype={carrousel:'1.1.7'};$carrousel.fn.extend=$carrousel.extend=$.extend;$carrousel.fn.extend({_init:function(){var self=this;this.aItems=$('> li',this.e);this.nbItems=this.aItems.length;if(!this.opts.continuous)this.nbItems=this.nbItems*2;var item=this.aItems.eq(0);this.block.width=item.outerWidth(true);this.block.height=item.outerHeight(true);this.margin.width=this.block.width-item.outerWidth();this.margin.height=this.block.height-item.outerHeight();this.container.parent().addClass('carrousel').attr('id',this.id+'_div');var width=(this.vertical?1:parseInt(this.opts.dispNumber))*this.block.width;this.container.addClass('carrousel_carrousel').attr('id',this.id+'_carrousel').css({'overflow':'hidden','position':'relative'}).width(width+'px').height((this.vertical?parseInt(this.opts.dispNumber):1)*this.block.height+'px').parent().width(width+'px');$('ul > li > '+this.opts.mode,this.container).each(function(i){$(this).wrap('<div class="carrousel_item" rel="'+i+'"></div>');});this.e.css(this.pos,'0px').width(this.block.width*(this.vertical?1:this.nbItems));if(this.opts.stopOver){this.container.bind("mouseenter",function(evt){self.locked=true;});this.container.bind("mouseleave",function(evt){self.locked=false;if(self.opts.auto){this.timerMoving=setTimeout(function(){self._animate('next');},self.opts.dispTimeout);}});}if(this.legend=="mouseover"){$('.carrousel_item',this.container).css('cursor','pointer');for(var i=0;i<this.nbItems;i++){$eq=this.aItems.eq(i);$(this.opts.mode,$eq).bind("mouseenter",function(evt){$('div#'+self.id+'_legend').html($(this).attr('title'));});$(this.opts.mode,$eq).bind("mouseleave",function(evt){$('div#'+self.id+'_legend').html("");});}}if(this.legend=="always"){$('div#'+self.id+'_legend').html($(self.opts.mode,this.container).eq(this.realpos(this.current)).attr('title'));}var control=this.opts.controls.split(' ');for(var i=0;i<control.length;i++){if($.isFunction(this.controls[control[i]]))this.controls[control[i]](this);}if(this.opts.mode=='img'){$('.carrousel_item img',this.container).load(function(){$this=$(this);$this.parent().width($this.width()).height($this.height());});}var effect=this.opts.effects.split(' ');for(var i=0;i<effect.length;i++){if($.isFunction(this.effects.init[effect[i]]))this.effects.init[effect[i]](this);}if(self.opts.auto){setTimeout(function(){self._animate('next');},self.opts.dispTimeout);}},_animate:function(dir){dir=(dir==undefined?this.direction:dir);if(!this.locked){clearTimeout(this.timerMoving);this.locked=true;this.dep=this.dep==0?this.opts.scroll:this.dep;if(this.dir==-1){if(dir=="next"){dir="prev";}else if(dir=="prev"){dir="next";}}if(dir!='next'){this.dep*=-1;}var cont=true;if(!this.opts.continuous){if(dir=='next'){if(this.current==((this.nbItems/2)-this.opts.dispNumber)){cont=false;this.locked=false;}}else{if(this.current==0){cont=false;this.locked=false;}}}if(cont)this._beforeMoving();}},_beforeMoving:function(){var effect=this.opts.effects.split(' ');for(var i=0;i<effect.length;i++){if($.isFunction(this.effects.before[effect[i]]))this.effects.before[effect[i]](this,(this.dep<0?-1:1));}this._move();},_move:function(){var self=this;if($.isFunction(this.opts.move)){this.opts.move(this,function(){self._afterMoving();});}else{var self=this;var size=this.vertical?this.block.height:this.block.width;if(this.dep>0){while(parseInt(this.e.css(this.pos))<0){var item=$('> li:first',this.e);$('> li:first',this.e).remove();this.e.append(item);this.e.css(this.pos,parseInt(this.e.css(this.pos))+size);}}else{for(var i=0;i<Math.abs(this.dep);i++){var item=$('> li:last',this.e);$('> li:last',this.e).remove();this.e.prepend(item);}this.e.css(this.pos,parseInt(this.e.css(this.pos))+this.dep*size+'px');}var b=parseInt(this.e.css(this.pos));if(this.vertical){this.e.stop(true,true).animate({top:b-this.dep*this.block.height+'px'},this.opts.speed,this.opts.easing,function(){self._afterMoving();});}else{this.e.stop(true,true).animate({left:b-this.dep*this.block.width+'px'},this.opts.speed,this.opts.easing,function(){self._afterMoving();});}}},_afterMoving:function(){var self=this;this.current=this.current+this.dep;if(this.current==-1){this.current=this.nbItems-1;}else{if(this.current==this.nbItems){this.current=0;}else{this.current=this._realpos(this.current);}}if(this.legend=="always"){$('div#'+this.id+"_legend").html($(this.opts.mode,this.container).eq(this.realpos(this.current)).attr('title'));}this.dep=0;this.locked=false;var effect=this.opts.effects.split(' ');for(var i=0;i<effect.length;i++){if($.isFunction(this.effects.after[effect[i]]))this.effects.after[effect[i]](this);}for(var i=0;i<this.opts.callbacks.length;i++){this.opts.callbacks[i](this);}var control=this.opts.controls.split(' ');for(var i=0;i<control.length;i++){if($.isFunction(this.controls.callback[control[i]]))this.controls.callback[control[i]](this);}if(this.opts.auto){this.timerMoving=setTimeout(function(){self._animate('next');},this.opts.dispTimeout);}},_realpos:function(i){return(i<(this.nbItems/2)?i:(i-(this.nbItems/2)));},start:function(){if(!this.opts.auto){this.locked=false;this.opts.auto=true;this._animate('next');}return false;},stop:function(){clearTimeout(this.timerMoving);this.opts.auto=false;return false;},next:function(){this._animate('next');return false;},prev:function(){this._animate('prev');return false;},getCurrent:function(){return this._realpos(this.current);},moveTo:function(i){if(i>(this.nbItems/2)){i=(this.nbItems/2)-1;}this.dep=parseInt(i)-parseInt(this.current);if(this.dep!=0){this._animate('next');}return false;}});$.fn.carrousel.defaults={auto:true,infinite:true,controls:'button',effects:'',easing:'',continuous:true,speed:2000,direction:'right',scroll:1,dispTimeout:1000,stopOver:true,dispNumber:3,legend:'',mode:'img',htmlPrevButton:"prev",htmlNextButton:"next",callbacks:[],api:false};$.fn.carrousel.controls={button:function(carrousel){$("a#"+carrousel.id+'_prev').show();$("a#"+carrousel.id+"_next").show();},callback:{}};$.fn.carrousel.effects={init:{},before:{},after:{}};});
+/** 
+ * jQuery carrousel controls v1.1 by Sylvain Gougouzian http://sylvain.gougouzian.fr
+ */
+jQuery(function($){$.extend($.fn.carrousel.controls,{keys:function(carrousel){$(document).keydown(function(event){if((event.keyCode==39)||(event.keyCode==40)){carrousel._animate('next');}if((event.keyCode==37)||(event.keyCode==38)){carrousel._animate('prev');}});return false;},click:function(carrousel){for(var i=0;i<carrousel.nbItems;i++){$('> '+carrousel.opts.mode,carrousel.aItems.eq(i)).css('cursor','pointer').attr('rel',carrousel._realpos(i)).click(function(){carrousel.locked=false;carrousel.moveTo($(this).attr('rel'));return false;});}},index:function(carrousel){carrousel.container.parent().append('<ul id="'+carrousel.id+'_itemList" class="carrousel_itemList"></ul>');var h="";for(var i=0;i<carrousel.nbItems;i++){if(i<(carrousel.nbItems/2)){h+='<li id="'+carrousel.id+'_itemList_li" class="carrousel_itemList_li" rel="'+carrousel._realpos(i)+'">'+(i+1)+'</li>';}}$('ul#'+carrousel.id+'_itemList').html(h);$('li.carrousel_itemList_li').css('cursor','pointer').click(function(){carrousel.locked=false;carrousel.moveTo($(this).attr('rel'));return false;});},wheel:function(carrousel){carrousel.container.bind("mousewheel",function(event,delta){var dir=delta>0?'Up':'Down';if(dir=='Up'){carrousel._animate('next');}else{carrousel._animate('prev');}return false;});},mouseover:function(carrousel){carrousel.opts.callbacks[carrousel.opts.callbacks.length]=function(carrousel){if(carrousel.isMouseOver){carrousel._animate(mouseDirection(carrousel));}};carrousel.container.bind("mousemove",function(evt){carrousel.mouseX=evt.pageX;carrousel.mouseY=evt.pageY;});carrousel.container.bind("mouseenter",function(evt){carrousel.isMouseOver=true;carrousel.mouseX=evt.pageX;carrousel.mouseY=evt.pageY;carrousel._animate(mouseDirection(carrousel));return false;});carrousel.container.bind("mouseleave",function(){carrousel.isMouseOver=false;return false;});},iPhone:function(carrousel){$('.carrousel_item',carrousel.container).swipe({swipeLeft:function(){carrousel._animate('next');return false;},swipeRight:function(){carrousel._animate('prev');return false;},swipeUp:function(){carrousel._animate('next');return false;},swipeDown:function(){carrousel._animate('prev');return false;}});},slider:function(carrousel){carrousel.container.parent().append('<div id="'+carrousel.id+'_slider"></div>');$("#"+carrousel.id+"_slider",carrousel.container.parent()).slider({range:"max",min:0,max:((carrousel.nbItems)/2)-1,value:0,stop:function(event,ui){carrousel.moveTo(ui.value);}});}});$.extend($.fn.carrousel.controls.callback,{slider:function(carrousel){$("#"+carrousel.id+"_slider",carrousel.container.parent()).slider('value',carrousel.current);}});function mouseDirection(carrousel){var offset=carrousel.container.offset();if(carrousel.vertical){if((carrousel.mouseY>=parseInt(offset.top))&&(carrousel.mouseY<=parseInt((parseInt(offset.top)+parseInt(carrousel.container.height()))/2))){return'prev';}else{return'next';}}else{if((carrousel.mouseX>=parseInt(offset.left))&&(carrousel.mouseX<=parseInt((parseInt(offset.left)+parseInt(carrousel.container.width()))/2))){return'prev';}else{return'next';}}}});
+/** 
+ * jQuery carrousel effects v1.1.1 by Sylvain Gougouzian http://sylvain.gougouzian.fr
+ */
+jQuery(function($){$.extend($.fn.carrousel.effects.init,{corner:function(carrousel){$.fn.corner.defaults.useNative=false;$('.carrousel_item',carrousel.container).corner("10px");},reflection:function(carrousel){if(carrousel.vertical){carrousel.block.height*=1.33;$('.carrousel_item',carrousel.container).parent().height($('.carrousel_item',carrousel.container).parent().height()*1.33);}carrousel.container.height(parseInt(carrousel.container.height())*1.33);$('.carrousel_item > img').load(function(){reflect(this);});},relief:function(carrousel){carrousel.incrementPercent=parseInt(50/(parseInt(carrousel.opts.dispNumber)-3));$('.carrousel_item',carrousel.container).each(function(){var size=get3Dsize(carrousel,$(this).attr('rel'),0);$('> '+carrousel.opts.mode,this).load(function(){$(this).width(parseInt(carrousel.block.width*(size/100))+'px').height(parseInt(carrousel.block.height*(size/100))+'px');$(this).parent().width(parseInt(carrousel.block.width*(size/100))+'px').height(parseInt(carrousel.block.height*(size/100))+'px');});});},align:function(carrousel){if(carrousel.opts.mode=='img'){$('.carrousel_item img',carrousel.container).load(function(){alignItem($(this).parent(),carrousel);});}else{for(var i=0;i<carrousel.nbItems;i++){alignItem($('.carrousel_item',carrousel.aItems.eq(i)),carrousel);}}}});$.extend($.fn.carrousel.effects.before,{fade:function(carrousel){$('.carrousel_item',carrousel.container).fadeTo(parseInt(carrousel.opts.speed/2),0.5);},relief:function(carrousel,direction){var move=direction*(carrousel.dep==-1?carrousel.opts.scroll:carrousel.dep);$('.carrousel_item',carrousel.container).each(function(){var size=get3Dsize(carrousel,$(this).attr('rel'),move);var nWidth=parseInt(carrousel.block.width*size/100)+'px';var nHeight=parseInt(carrousel.block.height*size/100)+'px';$('.carrousel_item, .carrousel_item > '+carrousel.opts.mode,$(this).parent()).animate({width:nWidth,height:nHeight,left:carrousel._getAlignWidth(parseInt(nWidth)),top:carrousel._getAlignHeight(parseInt(nHeight))},carrousel.opts.speed);});}});function reflect(img){var $this=$(img);var w=parseInt($this.width());var h=parseInt($this.height());var r;if($.browser.msie){r=$("<img />").attr('src',$this.attr('src')).css({'width':w,'height':h,'margin-bottom':h-Math.floor(h*0.33),'filter':"flipv progid:DXImageTransform.Microsoft.Alpha(opacity=50, style=1, finishOpacity=0, startx=0, starty=0, finishx=0, finishy=33)"})[0];}else{r=$("<canvas />")[0];if(!r.getContext){return;}var f=r.getContext("2d");try{$(r).attr({'width':w,'height':Math.floor(h*0.33)});f.save();f.translate(0,h-1);f.scale(1,-1);f.drawImage(img,0,0,w,h);f.restore();f.globalCompositeOperation="destination-out";var i=f.createLinearGradient(0,0,0,Math.floor(h*0.33));i.addColorStop(0,"rgba(255, 255, 255, 0.5)");i.addColorStop(1,"rgba(255, 255, 255, 1.0)");f.fillStyle=i;f.rect(0,0,w,Math.floor(h*0.33));f.fill();}catch(e){return;}}$(r).css('display','block');$this.parent().css({width:w,height:h+Math.floor(h*0.33),overflow:"hidden"}).append($(r));return false;}function unreflect($this){var html=$this.parent().html();$this.parent().parent().html(html);return false;}$.extend($.fn.carrousel.effects.after,{fade:function(carrousel){$('.carrousel_item',carrousel.container).fadeTo(parseInt(carrousel.opts.speed/2),1.0);}});function get3Dsize(carrousel,i,add){var min=carrousel.current+add;if(min<0)min+=(carrousel.nbItems/2);min=carrousel._realpos(min);var max=parseInt(carrousel.opts.dispNumber)+min-1;max=carrousel._realpos(max);var moy=parseInt(carrousel.opts.dispNumber/2)+min;moy=carrousel._realpos(moy);var j=i;i=carrousel._realpos(i);var res=0;if((i==min)||(i==max)){res=50;}else{if(i==moy){res=100;}else{if(min<max){if((i>min)&&(i<max)){res=50+Math.abs(moy-i)*carrousel.incrementPercent;}else{res=50-carrousel.incrementPercent;}}else{if((i<(carrousel.nbItems/2))&&(i>min)){if(moy==0){moy=(carrousel.nbItems/2);}res=50+Math.abs(moy-i)*carrousel.incrementPercent;}else{if((i>=0)&&(i<max)){if(moy==((carrousel.nbItems/2)-1)){moy=1;}res=50+Math.abs(moy-i)*carrousel.incrementPercent;}else{res=50-carrousel.incrementPercent;}}}}}carrousel.aItems.eq(j).css('z-index',carrousel.opts.dispNumber-Math.abs(moy-i));return res;}function alignItem(item,carrousel){item.css({'top':getAlignHeight(parseInt($(carrousel.opts.mode,item).height())+carrousel.margin.height,carrousel),'left':getAlignWidth(parseInt($(carrousel.opts.mode,item).width())+carrousel.margin.width,carrousel),'position':'relative'});}function getAlignHeight(size,carrousel){var top=carrousel.block.height-size;if(carrousel.opts.align.indexOf('top')!=-1){return'0px';}if(carrousel.opts.align.indexOf('bottom')!=-1){return top+'px';}if(this.opts.align.indexOf('center')!=-1){return parseInt(top/2)+'px';}return'0px';}function getAlignWidth(size,carrousel){var left=carrousel.block.width-size;if(carrousel.opts.align.indexOf('left')!=-1){return'0px';}if(carrousel.opts.align.indexOf('right')!=-1){return left+'px';}if(carrousel.opts.align.indexOf('center')!=-1){return parseInt(left/2)+'px';}return'0px';}});
+
+
+/*
+ * Thickbox 3.1 - One Box To Rule Them All.
+ * By Cody Lindley (http://www.codylindley.com)
+ * Copyright (c) 2007 cody lindley
+ * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
+*/
+		  
+var tb_pathToImage = "/images/loadingAnimation.gif";
+
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
-$(document).ready(function(){tb_init("a.thickbox, area.thickbox, input.thickbox");imgLoader=new Image();imgLoader.src=tb_pathToImage});function tb_init(a){$(a).click(function(){var c=this.title||this.name||null;var b=this.href||this.alt;var d=this.rel||false;tb_show(c,b,d);this.blur();return false})}function tb_show(j,b,h){try{if(typeof document.body.style.maxHeight==="undefined"){$("body","html").css({height:"100%",width:"100%"});$("html").css("overflow","hidden");if(document.getElementById("TB_HideSelect")===null){$("body").append("<iframe id='TB_HideSelect'></iframe><div id='TB_overlay'></div><div id='TB_window'></div>");$("#TB_overlay").click(tb_remove)}}else{if(document.getElementById("TB_overlay")===null){$("body").append("<div id='TB_overlay'></div><div id='TB_window'></div>");$("#TB_overlay").click(tb_remove)}}if(tb_detectMacXFF()){$("#TB_overlay").addClass("TB_overlayMacFFBGHack")}else{$("#TB_overlay").addClass("TB_overlayBG")}if(j===null){j=""}$("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' /></div>");$("#TB_load").show();var c;if(b.indexOf("?")!==-1){c=b.substr(0,b.indexOf("?"))}else{c=b}var f=/\.jpg$|\.jpeg$|\.png$|\.gif$|\.bmp$/;var k=c.toLowerCase().match(f);if(k==".jpg"||k==".jpeg"||k==".png"||k==".gif"||k==".bmp"){TB_PrevCaption="";TB_PrevURL="";TB_PrevHTML="";TB_NextCaption="";TB_NextURL="";TB_NextHTML="";TB_imageCount="";TB_FoundURL=false;if(h){TB_TempArray=$("a[@rel="+h+"]").get();for(TB_Counter=0;((TB_Counter<TB_TempArray.length)&&(TB_NextHTML===""));TB_Counter++){var g=TB_TempArray[TB_Counter].href.toLowerCase().match(f);if(!(TB_TempArray[TB_Counter].href==b)){if(TB_FoundURL){TB_NextCaption=TB_TempArray[TB_Counter].title;TB_NextURL=TB_TempArray[TB_Counter].href;TB_NextHTML="<span id='TB_next'>&nbsp;&nbsp;<a href='#'>Next &gt;</a></span>"}else{TB_PrevCaption=TB_TempArray[TB_Counter].title;TB_PrevURL=TB_TempArray[TB_Counter].href;TB_PrevHTML="<span id='TB_prev'>&nbsp;&nbsp;<a href='#'>&lt; Prev</a></span>"}}else{TB_FoundURL=true;TB_imageCount="Image "+(TB_Counter+1)+" of "+(TB_TempArray.length)}}}imgPreloader=new Image();imgPreloader.onload=function(){imgPreloader.onload=null;var n=tb_getPageSize();var l=n[0]-150;var q=n[1]-150;var m=imgPreloader.width;var e=imgPreloader.height;if(m>l){e=e*(l/m);m=l;if(e>q){m=m*(q/e);e=q}}else{if(e>q){m=m*(q/e);e=q;if(m>l){e=e*(l/m);m=l}}}TB_WIDTH=m+30;TB_HEIGHT=e+60;$("#TB_window").append("<a href='' id='TB_ImageOff' title='Close'><img id='TB_Image' src='"+b+"' width='"+m+"' height='"+e+"' alt='"+j+"'/></a><div id='TB_caption'>"+j+"<div id='TB_secondLine'>"+TB_imageCount+TB_PrevHTML+TB_NextHTML+"</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='Close'></a></div>");$("#TB_closeWindowButton").click(tb_remove);if(!(TB_PrevHTML==="")){function p(){if($(document).unbind("click",p)){$(document).unbind("click",p)}$("#TB_window").remove();$("body").append("<div id='TB_window'></div>");tb_show(TB_PrevCaption,TB_PrevURL,h);return false}$("#TB_prev").click(p)}if(!(TB_NextHTML==="")){function o(){$("#TB_window").remove();$("body").append("<div id='TB_window'></div>");tb_show(TB_NextCaption,TB_NextURL,h);return false}$("#TB_next").click(o)}document.onkeydown=function(r){if(r==null){keycode=event.keyCode}else{keycode=r.which}if(keycode==27){tb_remove()}else{if(keycode==190){if(!(TB_NextHTML=="")){document.onkeydown="";o()}}else{if(keycode==188){if(!(TB_PrevHTML=="")){document.onkeydown="";p()}}}}};tb_position();$("#TB_load").remove();$("#TB_ImageOff").click(tb_remove);$("#TB_window").css({display:"block"})};imgPreloader.src=b}else{var a=b.replace(/^[^\?]+\??/,"");var d=tb_parseQuery(a);TB_WIDTH=(d.width*1)+30||630;TB_HEIGHT=(d.height*1)+40||440;ajaxContentW=TB_WIDTH-30;ajaxContentH=TB_HEIGHT-45;if(b.indexOf("TB_iframe")!=-1){urlNoQuery=b.split("TB_");$("#TB_iframeContent").remove();if(d.modal!="true"){$("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+j+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton' title='Close'></a></div></div><iframe frameborder='0' hspace='0' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent"+Math.round(Math.random()*1000)+"' onload='tb_showIframe()' style='width:"+(ajaxContentW+29)+"px;height:"+(ajaxContentH+17)+"px;' > </iframe>")}else{$("#TB_overlay").unbind();$("#TB_window").append("<iframe frameborder='0' hspace='0' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent"+Math.round(Math.random()*1000)+"' onload='tb_showIframe()' style='width:"+(ajaxContentW+29)+"px;height:"+(ajaxContentH+17)+"px;'> </iframe>")}}else{if($("#TB_window").css("display")!="block"){if(d.modal!="true"){$("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+j+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton'></a></div></div><div id='TB_ajaxContent' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px'></div>")}else{$("#TB_overlay").unbind();$("#TB_window").append("<div id='TB_ajaxContent' class='TB_modal' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px;'></div>")}}else{$("#TB_ajaxContent")[0].style.width=ajaxContentW+"px";$("#TB_ajaxContent")[0].style.height=ajaxContentH+"px";$("#TB_ajaxContent")[0].scrollTop=0;$("#TB_ajaxWindowTitle").html(j)}}$("#TB_closeWindowButton").click(tb_remove);if(b.indexOf("TB_inline")!=-1){$("#TB_ajaxContent").append($("#"+d.inlineId).children());$("#TB_window").unload(function(){$("#"+d.inlineId).append($("#TB_ajaxContent").children())});tb_position();$("#TB_load").remove();$("#TB_window").css({display:"block"})}else{if(b.indexOf("TB_iframe")!=-1){tb_position();if($.browser.safari){$("#TB_load").remove();$("#TB_window").css({display:"block"})}}else{$("#TB_ajaxContent").load(b+="&random="+(new Date().getTime()),function(){tb_position();$("#TB_load").remove();tb_init("#TB_ajaxContent a.thickbox");$("#TB_window").css({display:"block"})})}}}if(!d.modal){document.onkeyup=function(l){if(l==null){keycode=event.keyCode}else{keycode=l.which}if(keycode==27){tb_remove()}}}}catch(i){}}function tb_showIframe(){$("#TB_load").remove();$("#TB_window").css({display:"block"})}function tb_remove(){$("#TB_imageOff").unbind("click");$("#TB_closeWindowButton").unbind("click");$("#TB_window").fadeOut("fast",function(){$("#TB_window,#TB_overlay,#TB_HideSelect").trigger("unload").unbind().remove()});$("#TB_load").remove();if(typeof document.body.style.maxHeight=="undefined"){$("body","html").css({height:"auto",width:"auto"});$("html").css("overflow","")}document.onkeydown="";document.onkeyup="";return false}function tb_position(){$("#TB_window").css({marginLeft:"-"+parseInt((TB_WIDTH/2),10)+"px",width:TB_WIDTH+"px"});if(!(jQuery.browser.msie&&jQuery.browser.version<7)){$("#TB_window").css({marginTop:"-"+parseInt((TB_HEIGHT/2),10)+"px"})}}function tb_parseQuery(d){var e={};if(!d){return e}var a=d.split(/[;&]/);for(var c=0;c<a.length;c++){var g=a[c].split("=");if(!g||g.length!=2){continue}var b=unescape(g[0]);var f=unescape(g[1]);f=f.replace(/\+/g," ");e[b]=f}return e}function tb_getPageSize(){var c=document.documentElement;var a=window.innerWidth||self.innerWidth||(c&&c.clientWidth)||document.body.clientWidth;var b=window.innerHeight||self.innerHeight||(c&&c.clientHeight)||document.body.clientHeight;arrayPageSize=[a,b];return arrayPageSize}function tb_detectMacXFF(){var a=navigator.userAgent.toLowerCase();if(a.indexOf("mac")!=-1&&a.indexOf("firefox")!=-1){return true}}this.vtip=function(){this.xOffset=-10;this.yOffset=10;$(".vtip").unbind().hover(function(a){this.t=this.title;this.title="";this.top=(a.pageY+yOffset);this.left=(a.pageX+xOffset);$("body").append('<p id="vtip"><img id="vtipArrow" />'+this.t+"</p>");$("p#vtip #vtipArrow").attr("src","/images/vtip_arrow.png");$("p#vtip").css("top",this.top+"px").css("left",this.left+"px").fadeIn("slow")},function(){this.title=this.t;$("p#vtip").fadeOut("slow").remove()}).mousemove(function(a){this.top=(a.pageY+yOffset);this.left=(a.pageX+xOffset);$("p#vtip").css("top",this.top+"px").css("left",this.left+"px")})};$(document).ready(function(){vtip()});(function(g){g.fn.adGallery=function(j){var l={loader_image:"/images/Photo/loader.gif",start_at_index:0,description_wrapper:false,thumb_opacity:0.7,animate_first_image:false,animation_speed:400,width:false,height:false,display_next_and_prev:true,display_back_and_forward:true,scroll_jump:0,slideshow:{enable:true,autostart:false,speed:5000,start_label:"Start",stop_label:"Stop",stop_on_scroll:true,countdown_prefix:"(",countdown_sufix:")",onStart:false,onStop:false},effect:"slide-hori",enable_keyboard_move:true,cycle:true,callbacks:{init:false,afterImageVisible:false,beforeImageVisible:false}};var k=g.extend(false,l,j);if(j&&j.slideshow){k.slideshow=g.extend(false,l.slideshow,j.slideshow)}if(!k.slideshow.enable){k.slideshow.autostart=false}var i=[];g(this).each(function(){var m=new c(this,k);i[i.length]=m});return i};function f(j,k,l){var m=parseInt(j.css("top"),10);if(k=="left"){var i="-"+this.image_wrapper_height+"px";j.css("top",this.image_wrapper_height+"px")}else{var i=this.image_wrapper_height+"px";j.css("top","-"+this.image_wrapper_height+"px")}if(l){l.css("bottom","-"+l[0].offsetHeight+"px");l.animate({bottom:0},this.settings.animation_speed*2)}if(this.current_description){this.current_description.animate({bottom:"-"+this.current_description[0].offsetHeight+"px"},this.settings.animation_speed*2)}return{old_image:{top:i},new_image:{top:m}}}function e(j,k,m){var l=parseInt(j.css("left"),10);if(k=="left"){var i="-"+this.image_wrapper_width+"px";j.css("left",this.image_wrapper_width+"px")}else{var i=this.image_wrapper_width+"px";j.css("left","-"+this.image_wrapper_width+"px")}if(m){m.css("bottom","-"+m[0].offsetHeight+"px");m.animate({bottom:0},this.settings.animation_speed*2)}if(this.current_description){this.current_description.animate({bottom:"-"+this.current_description[0].offsetHeight+"px"},this.settings.animation_speed*2)}return{old_image:{left:i},new_image:{left:l}}}function d(k,l,n){var j=k.width();var i=k.height();var m=parseInt(k.css("left"),10);var o=parseInt(k.css("top"),10);k.css({width:0,height:0,top:this.image_wrapper_height/2,left:this.image_wrapper_width/2});return{old_image:{width:0,height:0,top:this.image_wrapper_height/2,left:this.image_wrapper_width/2},new_image:{width:j,height:i,top:o,left:m}}}function b(i,j,k){i.css("opacity",0);return{old_image:{opacity:0},new_image:{opacity:1}}}function h(i,j,k){i.css("opacity",0);return{old_image:{opacity:0},new_image:{opacity:1},speed:0}}function c(j,i){this.init(j,i)}c.prototype={wrapper:false,image_wrapper:false,gallery_info:false,nav:false,loader:false,preloads:false,thumbs_wrapper:false,scroll_back:false,scroll_forward:false,next_link:false,prev_link:false,slideshow:false,image_wrapper_width:0,image_wrapper_height:0,current_index:0,current_image:false,current_description:false,nav_display_width:0,settings:false,images:false,in_transition:false,animations:false,init:function(m,l){var k=this;this.wrapper=g(m);this.settings=l;this.setupElements();this.setupAnimations();if(this.settings.width){this.image_wrapper_width=this.settings.width;this.image_wrapper.width(this.settings.width);this.wrapper.width(this.settings.width)}else{this.image_wrapper_width=this.image_wrapper.width()}if(this.settings.height){this.image_wrapper_height=this.settings.height;this.image_wrapper.height(this.settings.height)}else{this.image_wrapper_height=this.image_wrapper.height()}this.nav_display_width=this.nav.width();this.current_index=0;this.current_image=false;this.current_description=false;this.in_transition=false;this.findImages();if(this.settings.display_next_and_prev){this.initNextAndPrev()}var i=function(n){return k.nextImage(n)};this.slideshow=new a(i,this.settings.slideshow);this.controls.append(this.slideshow.create());if(this.settings.slideshow.enable){this.slideshow.enable()}else{this.slideshow.disable()}if(this.settings.display_back_and_forward){this.initBackAndForward()}if(this.settings.enable_keyboard_move){this.initKeyEvents()}var j=parseInt(this.settings.start_at_index,10);if(window.location.hash&&window.location.hash.indexOf("#ad-image")===0){j=window.location.hash.replace(/[^0-9]+/g,"");if((j*1)!=j){j=this.settings.start_at_index}}this.loading(true);this.showImage(j,function(){if(k.settings.slideshow.autostart){k.preloadImage(j+1);k.slideshow.start()}});this.fireCallback(this.settings.callbacks.init)},setupAnimations:function(){this.animations={"slide-vert":f,"slide-hori":e,resize:d,fade:b,none:h}},setupElements:function(){this.controls=this.wrapper.find(".ad-controls");this.gallery_info=g('<p class="ad-info"></p>');this.controls.append(this.gallery_info);this.image_wrapper=this.wrapper.find(".ad-image-wrapper");this.image_wrapper.empty();this.nav=this.wrapper.find(".ad-nav");this.thumbs_wrapper=this.nav.find(".ad-thumbs");this.preloads=g('<div class="ad-preloads"></div>');this.loader=g('<img class="ad-loader" src="'+this.settings.loader_image+'">');this.image_wrapper.append(this.loader);this.loader.hide();g(document.body).append(this.preloads)},loading:function(i){if(i){this.loader.show()}else{this.loader.hide()}},addAnimation:function(i,j){if(g.isFunction(j)){this.animations[i]=j}},findImages:function(){var n=this;this.images=[];var m=0;var l=0;var k=this.thumbs_wrapper.find("a");var j=k.length;if(this.settings.thumb_opacity<1){k.find("img").css("opacity",this.settings.thumb_opacity)}k.each(function(p){var r=g(this);var q=r.attr("href");var o=r.find("img");if(!n.isImageLoaded(o[0])){o.load(function(){m+=this.parentNode.parentNode.offsetWidth;l++})}else{m+=o[0].parentNode.parentNode.offsetWidth;l++}r.addClass("ad-thumb"+p);r.click(function(){n.showImage(p);n.slideshow.stop();return false}).hover(function(){if(!g(this).is(".ad-active")&&n.settings.thumb_opacity<1){g(this).find("img").fadeTo(300,1)}n.preloadImage(p)},function(){if(!g(this).is(".ad-active")&&n.settings.thumb_opacity<1){g(this).find("img").fadeTo(300,n.settings.thumb_opacity)}});var r=false;if(o.data("ad-link")){r=o.data("ad-link")}else{if(o.attr("longdesc")&&o.attr("longdesc").length){r=o.attr("longdesc")}}var t=false;if(o.data("ad-desc")){t=o.data("ad-desc")}else{if(o.attr("alt")&&o.attr("alt").length){t=o.attr("alt")}}var s=false;if(o.data("ad-title")){s=o.data("ad-title")}else{if(o.attr("title")&&o.attr("title").length){s=o.attr("title")}}n.images[p]={thumb:o.attr("src"),image:q,error:false,preloaded:false,desc:t,title:s,size:false,link:r}});var i=setInterval(function(){if(j==l){m-=100;var q=n.nav.find(".ad-thumb-list");q.css("width",m+"px");var p=1;var o=q.height();while(p<201){q.css("width",(m+p)+"px");if(o!=q.height()){break}o=q.height();p++}clearInterval(i)}},100)},initKeyEvents:function(){var i=this;g(document).keydown(function(j){if(j.keyCode==39){i.nextImage();i.slideshow.stop()}else{if(j.keyCode==37){i.prevImage();i.slideshow.stop()}}})},initNextAndPrev:function(){this.next_link=g('<div class="ad-next"><div class="ad-next-image"></div></div>');this.prev_link=g('<div class="ad-prev"><div class="ad-prev-image"></div></div>');this.image_wrapper.append(this.next_link);this.image_wrapper.append(this.prev_link);var i=this;this.prev_link.add(this.next_link).mouseover(function(j){g(this).css("height",i.image_wrapper_height);g(this).find("div").show()}).mouseout(function(j){g(this).find("div").hide()}).click(function(){if(g(this).is(".ad-next")){i.nextImage();i.slideshow.stop()}else{i.prevImage();i.slideshow.stop()}}).find("div").css("opacity",0.7)},initBackAndForward:function(){var k=this;this.scroll_forward=g('<div class="ad-forward"></div>');this.scroll_back=g('<div class="ad-back"></div>');this.nav.append(this.scroll_forward);this.nav.prepend(this.scroll_back);var j=0;var i=false;g(this.scroll_back).add(this.scroll_forward).click(function(){var l=k.nav_display_width-50;if(k.settings.scroll_jump>0){var l=k.settings.scroll_jump}if(g(this).is(".ad-forward")){var m=k.thumbs_wrapper.scrollLeft()+l}else{var m=k.thumbs_wrapper.scrollLeft()-l}if(k.settings.slideshow.stop_on_scroll){k.slideshow.stop()}k.thumbs_wrapper.animate({scrollLeft:m+"px"});return false}).css("opacity",0.6).hover(function(){var l="left";if(g(this).is(".ad-forward")){l="right"}i=setInterval(function(){j++;if(j>30&&k.settings.slideshow.stop_on_scroll){k.slideshow.stop()}var m=k.thumbs_wrapper.scrollLeft()+1;if(l=="left"){m=k.thumbs_wrapper.scrollLeft()-1}k.thumbs_wrapper.scrollLeft(m)},10);g(this).css("opacity",1)},function(){j=0;clearInterval(i);g(this).css("opacity",0.6)})},_afterShow:function(){this.gallery_info.html((this.current_index+1)+" / "+this.images.length);if(!this.settings.cycle){this.prev_link.show().css("height",this.image_wrapper_height);this.next_link.show().css("height",this.image_wrapper_height);if(this.current_index==(this.images.length-1)){this.next_link.hide()}if(this.current_index==0){this.prev_link.hide()}}this.fireCallback(this.settings.callbacks.afterImageVisible)},_getContainedImageSize:function(j,i){if(i>this.image_wrapper_height){var k=j/i;i=this.image_wrapper_height;j=this.image_wrapper_height*k}if(j>this.image_wrapper_width){var k=i/j;j=this.image_wrapper_width;i=this.image_wrapper_width*k}return{width:j,height:i}},_centerImage:function(l,j,i){l.css("top","0px");if(i<this.image_wrapper_height){var k=this.image_wrapper_height-i;l.css("top",(k/2)+"px")}l.css("left","0px");if(j<this.image_wrapper_width){var k=this.image_wrapper_width-j;l.css("left",(k/2)+"px")}},_getDescription:function(i){var k=false;if(i.desc.length||i.title.length){var j="";if(i.title.length){j='<strong class="ad-description-title">'+i.title+"</strong>"}var k="";if(i.desc.length){k="<span>"+i.desc+"</span>"}k=g('<p class="ad-image-description">'+j+k+"</p>")}return k},showImage:function(i,l){if(this.images[i]&&!this.in_transition){var j=this;var k=this.images[i];this.in_transition=true;if(!k.preloaded){this.loading(true);this.preloadImage(i,function(){j.loading(false);j._showWhenLoaded(i,l)})}else{this._showWhenLoaded(i,l)}}},_showWhenLoaded:function(q,w){if(this.images[q]){var j=this;var l=this.images[q];var m=g(document.createElement("div")).addClass("ad-image");var o=g(new Image()).attr("src",l.image);if(l.link){var t=g('<a href="'+l.link+'" target="_blank"></a>');t.append(o);m.append(t)}else{m.append(o)}this.image_wrapper.prepend(m);var x=this._getContainedImageSize(l.size.width,l.size.height);o.attr("width",x.width);o.attr("height",x.height);m.css({width:x.width+"px",height:x.height+"px"});this._centerImage(m,x.width,x.height);var p=this._getDescription(l,m);if(p){if(!this.settings.description_wrapper){m.append(p);var i=x.width-parseInt(p.css("padding-left"),10)-parseInt(p.css("padding-right"),10);p.css("width",i+"px")}else{this.settings.description_wrapper.append(p)}}this.highLightThumb(this.nav.find(".ad-thumb"+q));var u="right";if(this.current_index<q){u="left"}this.fireCallback(this.settings.callbacks.beforeImageVisible);if(this.current_image||this.settings.animate_first_image){var v=this.settings.animation_speed;var s="swing";var n=this.animations[this.settings.effect].call(this,m,u,p);if(typeof n.speed!="undefined"){v=n.speed}if(typeof n.easing!="undefined"){s=n.easing}if(this.current_image){var k=this.current_image;var r=this.current_description;k.animate(n.old_image,v,s,function(){k.remove();if(r){r.remove()}})}m.animate(n.new_image,v,s,function(){j.current_index=q;j.current_image=m;j.current_description=p;j.in_transition=false;j._afterShow();j.fireCallback(w)})}else{this.current_index=q;this.current_image=m;j.current_description=p;this.in_transition=false;j._afterShow();this.fireCallback(w)}}},nextIndex:function(){if(this.current_index==(this.images.length-1)){if(!this.settings.cycle){return false}var i=0}else{var i=this.current_index+1}return i},nextImage:function(j){var i=this.nextIndex();if(i===false){return false}this.preloadImage(i+1);this.showImage(i,j);return true},prevIndex:function(){if(this.current_index==0){if(!this.settings.cycle){return false}var i=this.images.length-1}else{var i=this.current_index-1}return i},prevImage:function(j){var i=this.prevIndex();if(i===false){return false}this.preloadImage(i-1);this.showImage(i,j);return true},preloadAll:function(){var k=this;var j=0;function l(){if(j<k.images.length){j++;k.preloadImage(j,l)}}k.preloadImage(j,l)},preloadImage:function(j,m){if(this.images[j]){var l=this.images[j];if(!this.images[j].preloaded){var i=g(new Image());i.attr("src",l.image);if(!this.isImageLoaded(i[0])){this.preloads.append(i);var k=this;i.load(function(){l.preloaded=true;l.size={width:this.width,height:this.height};k.fireCallback(m)}).error(function(){l.error=true;l.preloaded=false;l.size=false})}else{l.preloaded=true;l.size={width:i[0].width,height:i[0].height};this.fireCallback(m)}}else{this.fireCallback(m)}}},isImageLoaded:function(i){if(typeof i.complete!="undefined"&&!i.complete){return false}if(typeof i.naturalWidth!="undefined"&&i.naturalWidth==0){return false}return true},highLightThumb:function(i){this.thumbs_wrapper.find(".ad-active").removeClass("ad-active");i.addClass("ad-active");if(this.settings.thumb_opacity<1){this.thumbs_wrapper.find("a:not(.ad-active) img").fadeTo(300,this.settings.thumb_opacity);i.find("img").fadeTo(300,1)}var j=i[0].parentNode.offsetLeft;j-=(this.nav_display_width/2)-(i[0].offsetWidth/2);this.thumbs_wrapper.animate({scrollLeft:j+"px"})},fireCallback:function(i){if(g.isFunction(i)){i.call(this)}}};function a(i,j){this.init(i,j)}a.prototype={start_link:false,stop_link:false,countdown:false,controls:false,settings:false,nextimage_callback:false,enabled:false,running:false,countdown_interval:false,init:function(i,k){var j=this;this.nextimage_callback=i;this.settings=k},create:function(){this.start_link=g('<span class="ad-slideshow-start">'+this.settings.start_label+"</span>");this.stop_link=g('<span class="ad-slideshow-stop">'+this.settings.stop_label+"</span>");this.countdown=g('<span class="ad-slideshow-countdown"></span>');this.controls=g('<div class="ad-slideshow-controls"></div>');this.controls.append(this.start_link).append(this.stop_link).append(this.countdown);this.countdown.hide();var i=this;this.start_link.click(function(){i.start()});this.stop_link.click(function(){i.stop()});g(document).keydown(function(j){if(j.keyCode==83){if(i.running){i.stop()}else{i.start()}}});return this.controls},disable:function(){this.enabled=false;this.stop();this.controls.hide()},enable:function(){this.enabled=true;this.controls.show()},toggle:function(){if(this.enabled){this.disable()}else{this.enable()}},start:function(){if(this.running||!this.enabled){return false}var i=this;this.running=true;this.controls.addClass("ad-slideshow-running");this._next();this.fireCallback(this.settings.onStart);return true},stop:function(){if(!this.running){return false}this.running=false;this.countdown.hide();this.controls.removeClass("ad-slideshow-running");clearInterval(this.countdown_interval);this.fireCallback(this.settings.onStop);return true},_next:function(){var k=this;var l=this.settings.countdown_prefix;var j=this.settings.countdown_sufix;clearInterval(k.countdown_interval);this.countdown.show().html(l+(this.settings.speed/1000)+j);var i=0;this.countdown_interval=setInterval(function(){i+=1000;if(i>=k.settings.speed){var n=function(){if(k.running){k._next()}i=0};if(!k.nextimage_callback(n)){k.stop()}i=0}var m=parseInt(k.countdown.text().replace(/[^0-9]/g,""),10);m--;if(m>0){k.countdown.html(l+m+j)}},1000)},fireCallback:function(i){if(g.isFunction(i)){i.call(this)}}}})(jQuery);
+
+//on page load call tb_init
+$(document).ready(function(){   
+	tb_init('a.thickbox, area.thickbox, input.thickbox');//pass where to apply thickbox
+	imgLoader = new Image();// preload image
+	imgLoader.src = tb_pathToImage;
+});
+
+//add thickbox to href & area elements that have a class of .thickbox
+function tb_init(domChunk){
+	$(domChunk).click(function(){
+	var t = this.title || this.name || null;
+	var a = this.href || this.alt;
+	var g = this.rel || false;
+	tb_show(t,a,g);
+	this.blur();
+	return false;
+	});
+}
+
+function tb_show(caption, url, imageGroup) {//function called when the user clicks on a thickbox link
+
+	try {
+		if (typeof document.body.style.maxHeight === "undefined") {//if IE 6
+			$("body","html").css({height: "100%", width: "100%"});
+			$("html").css("overflow","hidden");
+			if (document.getElementById("TB_HideSelect") === null) {//iframe to hide select elements in ie6
+				$("body").append("<iframe id='TB_HideSelect'></iframe><div id='TB_overlay'></div><div id='TB_window'></div>");
+				$("#TB_overlay").click(tb_remove);
+			}
+		}else{//all others
+			if(document.getElementById("TB_overlay") === null){
+				$("body").append("<div id='TB_overlay'></div><div id='TB_window'></div>");
+				$("#TB_overlay").click(tb_remove);
+			}
+		}
+		
+		if(tb_detectMacXFF()){
+			$("#TB_overlay").addClass("TB_overlayMacFFBGHack");//use png overlay so hide flash
+		}else{
+			$("#TB_overlay").addClass("TB_overlayBG");//use background and opacity
+		}
+		
+		if(caption===null){caption="";}
+		$("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' /></div>");//add loader to the page
+		$('#TB_load').show();//show loader
+		
+		var baseURL;
+	   if(url.indexOf("?")!==-1){ //ff there is a query string involved
+			baseURL = url.substr(0, url.indexOf("?"));
+	   }else{ 
+	   		baseURL = url;
+	   }
+	   
+	   var urlString = /\.jpg$|\.jpeg$|\.png$|\.gif$|\.bmp$/;
+	   var urlType = baseURL.toLowerCase().match(urlString);
+
+		if(urlType == '.jpg' || urlType == '.jpeg' || urlType == '.png' || urlType == '.gif' || urlType == '.bmp'){//code to show images
+				
+			TB_PrevCaption = "";
+			TB_PrevURL = "";
+			TB_PrevHTML = "";
+			TB_NextCaption = "";
+			TB_NextURL = "";
+			TB_NextHTML = "";
+			TB_imageCount = "";
+			TB_FoundURL = false;
+			if(imageGroup){
+				TB_TempArray = $("a[@rel="+imageGroup+"]").get();
+				for (TB_Counter = 0; ((TB_Counter < TB_TempArray.length) && (TB_NextHTML === "")); TB_Counter++) {
+					var urlTypeTemp = TB_TempArray[TB_Counter].href.toLowerCase().match(urlString);
+						if (!(TB_TempArray[TB_Counter].href == url)) {						
+							if (TB_FoundURL) {
+								TB_NextCaption = TB_TempArray[TB_Counter].title;
+								TB_NextURL = TB_TempArray[TB_Counter].href;
+								TB_NextHTML = "<span id='TB_next'>&nbsp;&nbsp;<a href='#'>Next &gt;</a></span>";
+							} else {
+								TB_PrevCaption = TB_TempArray[TB_Counter].title;
+								TB_PrevURL = TB_TempArray[TB_Counter].href;
+								TB_PrevHTML = "<span id='TB_prev'>&nbsp;&nbsp;<a href='#'>&lt; Prev</a></span>";
+							}
+						} else {
+							TB_FoundURL = true;
+							TB_imageCount = "Image " + (TB_Counter + 1) +" of "+ (TB_TempArray.length);											
+						}
+				}
+			}
+
+			imgPreloader = new Image();
+			imgPreloader.onload = function(){		
+			imgPreloader.onload = null;
+				
+			// Resizing large images - orginal by Christian Montoya edited by me.
+			var pagesize = tb_getPageSize();
+			var x = pagesize[0] - 150;
+			var y = pagesize[1] - 150;
+			var imageWidth = imgPreloader.width;
+			var imageHeight = imgPreloader.height;
+			if (imageWidth > x) {
+				imageHeight = imageHeight * (x / imageWidth); 
+				imageWidth = x; 
+				if (imageHeight > y) { 
+					imageWidth = imageWidth * (y / imageHeight); 
+					imageHeight = y; 
+				}
+			} else if (imageHeight > y) { 
+				imageWidth = imageWidth * (y / imageHeight); 
+				imageHeight = y; 
+				if (imageWidth > x) { 
+					imageHeight = imageHeight * (x / imageWidth); 
+					imageWidth = x;
+				}
+			}
+			// End Resizing
+			
+			TB_WIDTH = imageWidth + 30;
+			TB_HEIGHT = imageHeight + 60;
+			$("#TB_window").append("<a href='' id='TB_ImageOff' title='Close'><img id='TB_Image' src='"+url+"' width='"+imageWidth+"' height='"+imageHeight+"' alt='"+caption+"'/></a>" + "<div id='TB_caption'>"+caption+"<div id='TB_secondLine'>" + TB_imageCount + TB_PrevHTML + TB_NextHTML + "</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='Close'></a></div>"); 		
+			
+			$("#TB_closeWindowButton").click(tb_remove);
+			
+			if (!(TB_PrevHTML === "")) {
+				function goPrev(){
+					if($(document).unbind("click",goPrev)){$(document).unbind("click",goPrev);}
+					$("#TB_window").remove();
+					$("body").append("<div id='TB_window'></div>");
+					tb_show(TB_PrevCaption, TB_PrevURL, imageGroup);
+					return false;	
+				}
+				$("#TB_prev").click(goPrev);
+			}
+			
+			if (!(TB_NextHTML === "")) {		
+				function goNext(){
+					$("#TB_window").remove();
+					$("body").append("<div id='TB_window'></div>");
+					tb_show(TB_NextCaption, TB_NextURL, imageGroup);				
+					return false;	
+				}
+				$("#TB_next").click(goNext);
+				
+			}
+
+			document.onkeydown = function(e){ 	
+				if (e == null) { // ie
+					keycode = event.keyCode;
+				} else { // mozilla
+					keycode = e.which;
+				}
+				if(keycode == 27){ // close
+					tb_remove();
+				} else if(keycode == 190){ // display previous image
+					if(!(TB_NextHTML == "")){
+						document.onkeydown = "";
+						goNext();
+					}
+				} else if(keycode == 188){ // display next image
+					if(!(TB_PrevHTML == "")){
+						document.onkeydown = "";
+						goPrev();
+					}
+				}	
+			};
+			
+			tb_position();
+			$("#TB_load").remove();
+			$("#TB_ImageOff").click(tb_remove);
+			$("#TB_window").css({display:"block"}); //for safari using css instead of show
+			};
+			
+			imgPreloader.src = url;
+		}else{//code to show html
+			
+			var queryString = url.replace(/^[^\?]+\??/,'');
+			var params = tb_parseQuery( queryString );
+
+			TB_WIDTH = (params['width']*1) + 30 || 630; //defaults to 630 if no paramaters were added to URL
+			TB_HEIGHT = (params['height']*1) + 40 || 440; //defaults to 440 if no paramaters were added to URL
+			ajaxContentW = TB_WIDTH - 30;
+			ajaxContentH = TB_HEIGHT - 45;
+			
+			if(url.indexOf('TB_iframe') != -1){// either iframe or ajax window		
+					urlNoQuery = url.split('TB_');
+					$("#TB_iframeContent").remove();
+					if(params['modal'] != "true"){//iframe no modal
+						$("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton' title='Close'></a></div></div><iframe frameborder='0' hspace='0' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent"+Math.round(Math.random()*1000)+"' onload='tb_showIframe()' style='width:"+(ajaxContentW + 29)+"px;height:"+(ajaxContentH + 17)+"px;' > </iframe>");
+					}else{//iframe modal
+					$("#TB_overlay").unbind();
+						$("#TB_window").append("<iframe frameborder='0' hspace='0' src='"+urlNoQuery[0]+"' id='TB_iframeContent' name='TB_iframeContent"+Math.round(Math.random()*1000)+"' onload='tb_showIframe()' style='width:"+(ajaxContentW + 29)+"px;height:"+(ajaxContentH + 17)+"px;'> </iframe>");
+					}
+			}else{// not an iframe, ajax
+					if($("#TB_window").css("display") != "block"){
+						if(params['modal'] != "true"){//ajax no modal
+						$("#TB_window").append("<div id='TB_title'><div id='TB_ajaxWindowTitle'>"+caption+"</div><div id='TB_closeAjaxWindow'><a href='#' id='TB_closeWindowButton'></a></div></div><div id='TB_ajaxContent' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px'></div>");
+						}else{//ajax modal
+						$("#TB_overlay").unbind();
+						$("#TB_window").append("<div id='TB_ajaxContent' class='TB_modal' style='width:"+ajaxContentW+"px;height:"+ajaxContentH+"px;'></div>");	
+						}
+					}else{//this means the window is already up, we are just loading new content via ajax
+						$("#TB_ajaxContent")[0].style.width = ajaxContentW +"px";
+						$("#TB_ajaxContent")[0].style.height = ajaxContentH +"px";
+						$("#TB_ajaxContent")[0].scrollTop = 0;
+						$("#TB_ajaxWindowTitle").html(caption);
+					}
+			}
+					
+			$("#TB_closeWindowButton").click(tb_remove);
+			
+				if(url.indexOf('TB_inline') != -1){	
+					$("#TB_ajaxContent").append($('#' + params['inlineId']).children());
+					$("#TB_window").unload(function () {
+						$('#' + params['inlineId']).append( $("#TB_ajaxContent").children() ); // move elements back when you're finished
+					});
+					tb_position();
+					$("#TB_load").remove();
+					$("#TB_window").css({display:"block"}); 
+				}else if(url.indexOf('TB_iframe') != -1){
+					tb_position();
+					if($.browser.safari){//safari needs help because it will not fire iframe onload
+						$("#TB_load").remove();
+						$("#TB_window").css({display:"block"});
+					}
+				}else{
+					$("#TB_ajaxContent").load(url += "&random=" + (new Date().getTime()),function(){//to do a post change this load method
+						tb_position();
+						$("#TB_load").remove();
+						tb_init("#TB_ajaxContent a.thickbox");
+						$("#TB_window").css({display:"block"});
+					});
+				}
+			
+		}
+
+		if(!params['modal']){
+			document.onkeyup = function(e){ 	
+				if (e == null) { // ie
+					keycode = event.keyCode;
+				} else { // mozilla
+					keycode = e.which;
+				}
+				if(keycode == 27){ // close
+					tb_remove();
+				}	
+			};
+		}
+		
+	} catch(e) {
+		//nothing here
+	}
+}
+
+//helper functions below
+function tb_showIframe(){
+	$("#TB_load").remove();
+	$("#TB_window").css({display:"block"});
+}
+
+function tb_remove() {
+ 	$("#TB_imageOff").unbind("click");
+	$("#TB_closeWindowButton").unbind("click");
+	$("#TB_window").fadeOut("fast",function(){$('#TB_window,#TB_overlay,#TB_HideSelect').trigger("unload").unbind().remove();});
+	$("#TB_load").remove();
+	if (typeof document.body.style.maxHeight == "undefined") {//if IE 6
+		$("body","html").css({height: "auto", width: "auto"});
+		$("html").css("overflow","");
+	}
+	document.onkeydown = "";
+	document.onkeyup = "";
+	return false;
+}
+
+function tb_position() {
+$("#TB_window").css({marginLeft: '-' + parseInt((TB_WIDTH / 2),10) + 'px', width: TB_WIDTH + 'px'});
+	if ( !(jQuery.browser.msie && jQuery.browser.version < 7)) { // take away IE6
+		$("#TB_window").css({marginTop: '-' + parseInt((TB_HEIGHT / 2),10) + 'px'});
+	}
+}
+
+function tb_parseQuery ( query ) {
+   var Params = {};
+   if ( ! query ) {return Params;}// return empty object
+   var Pairs = query.split(/[;&]/);
+   for ( var i = 0; i < Pairs.length; i++ ) {
+      var KeyVal = Pairs[i].split('=');
+      if ( ! KeyVal || KeyVal.length != 2 ) {continue;}
+      var key = unescape( KeyVal[0] );
+      var val = unescape( KeyVal[1] );
+      val = val.replace(/\+/g, ' ');
+      Params[key] = val;
+   }
+   return Params;
+}
+
+function tb_getPageSize(){
+	var de = document.documentElement;
+	var w = window.innerWidth || self.innerWidth || (de&&de.clientWidth) || document.body.clientWidth;
+	var h = window.innerHeight || self.innerHeight || (de&&de.clientHeight) || document.body.clientHeight;
+	arrayPageSize = [w,h];
+	return arrayPageSize;
+}
+
+function tb_detectMacXFF() {
+  var userAgent = navigator.userAgent.toLowerCase();
+  if (userAgent.indexOf('mac') != -1 && userAgent.indexOf('firefox')!=-1) {
+    return true;
+  }
+}
+
+
+
+/**
+ Vertigo Tip by www.vertigo-project.com
+ Requires jQuery
+ */
+this.vtip = function(){
+    this.xOffset = -10; // x distance from mouse
+    this.yOffset = 10; // y distance from mouse       
+    $(".vtip").unbind().hover(function(e){
+        this.t = this.title;
+        this.title = '';
+        this.top = (e.pageY + yOffset);
+        this.left = (e.pageX + xOffset);
+        
+        $('body').append('<p id="vtip"><img id="vtipArrow" />' + this.t + '</p>');
+        
+        $('p#vtip #vtipArrow').attr("src", '/images/vtip_arrow.png');
+        $('p#vtip').css("top", this.top + "px").css("left", this.left + "px").fadeIn("slow");
+        
+    }, function(){
+        this.title = this.t;
+        $("p#vtip").fadeOut("slow").remove();
+    }).mousemove(function(e){
+        this.top = (e.pageY + yOffset);
+        this.left = (e.pageX + xOffset);
+        
+        $("p#vtip").css("top", this.top + "px").css("left", this.left + "px");
+    });
+    
+};
+
+$(document).ready(function(){
+    vtip();
+});
+
+/**
+ * Copyright (c) 2010 Anders Ekdahl (http://coffeescripter.com/)
+ * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
+ * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+ *
+ * Version: 1.2.4
+ *
+ * Demo and documentation: http://coffeescripter.com/code/ad-gallery/
+ */
+(function($) {
+  $.fn.adGallery = function(options) {
+    var defaults = { loader_image: '/images/Photo/loader.gif',
+                     start_at_index: 0,
+                     description_wrapper: false,
+                     thumb_opacity: 0.7,
+                     animate_first_image: false,
+                     animation_speed: 400,
+                     width: false,
+                     height: false,
+                     display_next_and_prev: true,
+                     display_back_and_forward: true,
+                     scroll_jump: 0, // If 0, it jumps the width of the container
+                     slideshow: {
+                       enable: true,
+                       autostart: false,
+                       speed: 5000,
+                       start_label: 'Start',
+                       stop_label: 'Stop',
+                       stop_on_scroll: true,
+                       countdown_prefix: '(',
+                       countdown_sufix: ')',
+                       onStart: false,
+                       onStop: false
+                     },
+                     effect: 'slide-hori', // or 'slide-vert', 'fade', or 'resize', 'none'
+                     enable_keyboard_move: true,
+                     cycle: true,
+                     callbacks: {
+                       init: false,
+                       afterImageVisible: false,
+                       beforeImageVisible: false
+                     }
+    };
+    var settings = $.extend(false, defaults, options);
+    if(options && options.slideshow) {
+      settings.slideshow = $.extend(false, defaults.slideshow, options.slideshow);
+    };
+    if(!settings.slideshow.enable) {
+      settings.slideshow.autostart = false;
+    };
+    var galleries = [];
+    $(this).each(function() {
+      var gallery = new AdGallery(this, settings);
+      galleries[galleries.length] = gallery;
+    });
+    // Sorry, breaking the jQuery chain because the gallery instances
+    // are returned so you can fiddle with them
+    return galleries;
+  };
+
+  function VerticalSlideAnimation(img_container, direction, desc) {
+    var current_top = parseInt(img_container.css('top'), 10);
+    if(direction == 'left') {
+      var old_image_top = '-'+ this.image_wrapper_height +'px';
+      img_container.css('top', this.image_wrapper_height +'px');
+    } else {
+      var old_image_top = this.image_wrapper_height +'px';
+      img_container.css('top', '-'+ this.image_wrapper_height +'px');
+    };
+    if(desc) {
+      desc.css('bottom', '-'+ desc[0].offsetHeight +'px');
+      desc.animate({bottom: 0}, this.settings.animation_speed * 2);
+    };
+    if(this.current_description) {
+      this.current_description.animate({bottom: '-'+ this.current_description[0].offsetHeight +'px'}, this.settings.animation_speed * 2);
+    };
+    return {old_image: {top: old_image_top},
+            new_image: {top: current_top}};
+  };
+
+  function HorizontalSlideAnimation(img_container, direction, desc) {
+    var current_left = parseInt(img_container.css('left'), 10);
+    if(direction == 'left') {
+      var old_image_left = '-'+ this.image_wrapper_width +'px';
+      img_container.css('left',this.image_wrapper_width +'px');
+    } else {
+      var old_image_left = this.image_wrapper_width +'px';
+      img_container.css('left','-'+ this.image_wrapper_width +'px');
+    };
+    if(desc) {
+      desc.css('bottom', '-'+ desc[0].offsetHeight +'px');
+      desc.animate({bottom: 0}, this.settings.animation_speed * 2);
+    };
+    if(this.current_description) {
+      this.current_description.animate({bottom: '-'+ this.current_description[0].offsetHeight +'px'}, this.settings.animation_speed * 2);
+    };
+    return {old_image: {left: old_image_left},
+            new_image: {left: current_left}};
+  };
+
+  function ResizeAnimation(img_container, direction, desc) {
+    var image_width = img_container.width();
+    var image_height = img_container.height();
+    var current_left = parseInt(img_container.css('left'), 10);
+    var current_top = parseInt(img_container.css('top'), 10);
+    img_container.css({width: 0, height: 0, top: this.image_wrapper_height / 2, left: this.image_wrapper_width / 2});
+    return {old_image: {width: 0,
+                        height: 0,
+                        top: this.image_wrapper_height / 2,
+                        left: this.image_wrapper_width / 2},
+            new_image: {width: image_width,
+                        height: image_height,
+                        top: current_top,
+                        left: current_left}};
+  };
+
+  function FadeAnimation(img_container, direction, desc) {
+    img_container.css('opacity', 0);
+    return {old_image: {opacity: 0},
+            new_image: {opacity: 1}};
+  };
+
+  // Sort of a hack, will clean this up... eventually
+  function NoneAnimation(img_container, direction, desc) {
+    img_container.css('opacity', 0);
+    return {old_image: {opacity: 0},
+            new_image: {opacity: 1},
+            speed: 0};
+  };
+
+  function AdGallery(wrapper, settings) {
+    this.init(wrapper, settings);
+  };
+  AdGallery.prototype = {
+    // Elements
+    wrapper: false,
+    image_wrapper: false,
+    gallery_info: false,
+    nav: false,
+    loader: false,
+    preloads: false,
+    thumbs_wrapper: false,
+    scroll_back: false,
+    scroll_forward: false,
+    next_link: false,
+    prev_link: false,
+
+    slideshow: false,
+    image_wrapper_width: 0,
+    image_wrapper_height: 0,
+    current_index: 0,
+    current_image: false,
+    current_description: false,
+    nav_display_width: 0,
+    settings: false,
+    images: false,
+    in_transition: false,
+    animations: false,
+    init: function(wrapper, settings) {
+      var context = this;
+      this.wrapper = $(wrapper);
+      this.settings = settings;
+      this.setupElements();
+      this.setupAnimations();
+      if(this.settings.width) {
+        this.image_wrapper_width = this.settings.width;
+        this.image_wrapper.width(this.settings.width);
+        this.wrapper.width(this.settings.width);
+      } else {
+        this.image_wrapper_width = this.image_wrapper.width();
+      };
+      if(this.settings.height) {
+        this.image_wrapper_height = this.settings.height;
+        this.image_wrapper.height(this.settings.height);
+      } else {
+        this.image_wrapper_height = this.image_wrapper.height();
+      };
+      this.nav_display_width = this.nav.width();
+      this.current_index = 0;
+      this.current_image = false;
+      this.current_description = false;
+      this.in_transition = false;
+      this.findImages();
+      if(this.settings.display_next_and_prev) {
+        this.initNextAndPrev();
+      };
+      // The slideshow needs a callback to trigger the next image to be shown
+      // but we don't want to give it access to the whole gallery instance
+      var nextimage_callback = function(callback) {
+        return context.nextImage(callback);
+      };
+      this.slideshow = new AdGallerySlideshow(nextimage_callback, this.settings.slideshow);
+      this.controls.append(this.slideshow.create());
+      if(this.settings.slideshow.enable) {
+        this.slideshow.enable();
+      } else {
+        this.slideshow.disable();
+      };
+      if(this.settings.display_back_and_forward) {
+        this.initBackAndForward();
+      };
+      if(this.settings.enable_keyboard_move) {
+        this.initKeyEvents();
+      };
+      var start_at = parseInt(this.settings.start_at_index, 10);
+      if(window.location.hash && window.location.hash.indexOf('#ad-image') === 0) {
+        start_at = window.location.hash.replace(/[^0-9]+/g, '');
+        // Check if it's a number
+        if((start_at * 1) != start_at) {
+          start_at = this.settings.start_at_index;
+        };
+      };
+
+      this.loading(true);
+      this.showImage(start_at,
+        function() {
+          // We don't want to start the slideshow before the image has been
+          // displayed
+          if(context.settings.slideshow.autostart) {
+            context.preloadImage(start_at + 1);
+            context.slideshow.start();
+          };
+        }
+      );
+      this.fireCallback(this.settings.callbacks.init);
+    },
+    setupAnimations: function() {
+      this.animations = {
+        'slide-vert': VerticalSlideAnimation,
+        'slide-hori': HorizontalSlideAnimation,
+        'resize': ResizeAnimation,
+        'fade': FadeAnimation,
+        'none': NoneAnimation
+      };
+    },
+    setupElements: function() {
+      this.controls = this.wrapper.find('.ad-controls');
+      this.gallery_info = $('<p class="ad-info"></p>');
+      this.controls.append(this.gallery_info);
+      this.image_wrapper = this.wrapper.find('.ad-image-wrapper');
+      this.image_wrapper.empty();
+      this.nav = this.wrapper.find('.ad-nav');
+      this.thumbs_wrapper = this.nav.find('.ad-thumbs');
+      this.preloads = $('<div class="ad-preloads"></div>');
+      this.loader = $('<img class="ad-loader" src="'+ this.settings.loader_image +'">');
+      this.image_wrapper.append(this.loader);
+      this.loader.hide();
+      $(document.body).append(this.preloads);
+    },
+    loading: function(bool) {
+      if(bool) {
+        this.loader.show();
+      } else {
+        this.loader.hide();
+      };
+    },
+    addAnimation: function(name, fn) {
+      if($.isFunction(fn)) {
+        this.animations[name] = fn;
+      };
+    },
+    findImages: function() {
+      var context = this;
+      this.images = [];
+      var thumb_wrapper_width = 0;
+      var thumbs_loaded = 0;
+      var thumbs = this.thumbs_wrapper.find('a');
+      var thumb_count = thumbs.length;
+      if(this.settings.thumb_opacity < 1) {
+        thumbs.find('img').css('opacity', this.settings.thumb_opacity);
+      };
+      thumbs.each(
+        function(i) {
+          var link = $(this);
+          var image_src = link.attr('href');
+          var thumb = link.find('img');
+          // Check if the thumb has already loaded
+          if(!context.isImageLoaded(thumb[0])) {
+            thumb.load(
+              function() {
+                thumb_wrapper_width += this.parentNode.parentNode.offsetWidth;
+                thumbs_loaded++;
+              }
+            );
+          } else{
+            thumb_wrapper_width += thumb[0].parentNode.parentNode.offsetWidth;
+            thumbs_loaded++;
+          };
+          link.addClass('ad-thumb'+ i);
+          link.click(
+            function() {
+              context.showImage(i);
+              context.slideshow.stop();
+              return false;
+            }
+          ).hover(
+            function() {
+              if(!$(this).is('.ad-active') && context.settings.thumb_opacity < 1) {
+                $(this).find('img').fadeTo(300, 1);
+              };
+              context.preloadImage(i);
+            },
+            function() {
+              if(!$(this).is('.ad-active') && context.settings.thumb_opacity < 1) {
+                $(this).find('img').fadeTo(300, context.settings.thumb_opacity);
+              };
+            }
+          );
+          var link = false;
+          if(thumb.data('ad-link')) {
+            link = thumb.data('ad-link');
+          } else if(thumb.attr('longdesc') && thumb.attr('longdesc').length) {
+            link = thumb.attr('longdesc');
+          };
+          var desc = false;
+          if(thumb.data('ad-desc')) {
+            desc = thumb.data('ad-desc');
+          } else if(thumb.attr('alt') && thumb.attr('alt').length) {
+            desc = thumb.attr('alt');
+          };
+          var title = false;
+          if(thumb.data('ad-title')) {
+            title = thumb.data('ad-title');
+          } else if(thumb.attr('title') && thumb.attr('title').length) {
+            title = thumb.attr('title');
+          };
+          context.images[i] = { thumb: thumb.attr('src'), image: image_src, error: false,
+                                preloaded: false, desc: desc, title: title, size: false,
+                                link: link };
+        }
+      );
+      // Wait until all thumbs are loaded, and then set the width of the ul
+      var inter = setInterval(
+        function() {
+          if(thumb_count == thumbs_loaded) {
+            thumb_wrapper_width -= 100;
+            var list = context.nav.find('.ad-thumb-list');
+            list.css('width', thumb_wrapper_width +'px');
+            var i = 1;
+            var last_height = list.height();
+            while(i < 201) {
+              list.css('width', (thumb_wrapper_width + i) +'px');
+              if(last_height != list.height()) {
+                break;
+              }
+              last_height = list.height();
+              i++;
+            }
+            clearInterval(inter);
+          };
+        },
+        100
+      );
+    },
+    initKeyEvents: function() {
+      var context = this;
+      $(document).keydown(
+        function(e) {
+          if(e.keyCode == 39) {
+            // right arrow
+            context.nextImage();
+            context.slideshow.stop();
+          } else if(e.keyCode == 37) {
+            // left arrow
+            context.prevImage();
+            context.slideshow.stop();
+          };
+        }
+      );
+    },
+    initNextAndPrev: function() {
+      this.next_link = $('<div class="ad-next"><div class="ad-next-image"></div></div>');
+      this.prev_link = $('<div class="ad-prev"><div class="ad-prev-image"></div></div>');
+      this.image_wrapper.append(this.next_link);
+      this.image_wrapper.append(this.prev_link);
+      var context = this;
+      this.prev_link.add(this.next_link).mouseover(
+        function(e) {
+          // IE 6 hides the wrapper div, so we have to set it's width
+          $(this).css('height', context.image_wrapper_height);
+          $(this).find('div').show();
+        }
+      ).mouseout(
+        function(e) {
+          $(this).find('div').hide();
+        }
+      ).click(
+        function() {
+          if($(this).is('.ad-next')) {
+            context.nextImage();
+            context.slideshow.stop();
+          } else {
+            context.prevImage();
+            context.slideshow.stop();
+          };
+        }
+      ).find('div').css('opacity', 0.7);
+    },
+    initBackAndForward: function() {
+      var context = this;
+      this.scroll_forward = $('<div class="ad-forward"></div>');
+      this.scroll_back = $('<div class="ad-back"></div>');
+      this.nav.append(this.scroll_forward);
+      this.nav.prepend(this.scroll_back);
+      var has_scrolled = 0;
+      var thumbs_scroll_interval = false;
+      $(this.scroll_back).add(this.scroll_forward).click(
+        function() {
+          // We don't want to jump the whole width, since an image
+          // might be cut at the edge
+          var width = context.nav_display_width - 50;
+          if(context.settings.scroll_jump > 0) {
+            var width = context.settings.scroll_jump;
+          };
+          if($(this).is('.ad-forward')) {
+            var left = context.thumbs_wrapper.scrollLeft() + width;
+          } else {
+            var left = context.thumbs_wrapper.scrollLeft() - width;
+          };
+          if(context.settings.slideshow.stop_on_scroll) {
+            context.slideshow.stop();
+          };
+          context.thumbs_wrapper.animate({scrollLeft: left +'px'});
+          return false;
+        }
+      ).css('opacity', 0.6).hover(
+        function() {
+          var direction = 'left';
+          if($(this).is('.ad-forward')) {
+            direction = 'right';
+          };
+          thumbs_scroll_interval = setInterval(
+            function() {
+              has_scrolled++;
+              // Don't want to stop the slideshow just because we scrolled a pixel or two
+              if(has_scrolled > 30 && context.settings.slideshow.stop_on_scroll) {
+                context.slideshow.stop();
+              };
+              var left = context.thumbs_wrapper.scrollLeft() + 1;
+              if(direction == 'left') {
+                left = context.thumbs_wrapper.scrollLeft() - 1;
+              };
+              context.thumbs_wrapper.scrollLeft(left);
+            },
+            10
+          );
+          $(this).css('opacity', 1);
+        },
+        function() {
+          has_scrolled = 0;
+          clearInterval(thumbs_scroll_interval);
+          $(this).css('opacity', 0.6);
+        }
+      );
+    },
+    _afterShow: function() {
+      this.gallery_info.html((this.current_index + 1) +' / '+ this.images.length);
+      if(!this.settings.cycle) {
+        // Needed for IE
+        this.prev_link.show().css('height', this.image_wrapper_height);
+        this.next_link.show().css('height', this.image_wrapper_height);
+        if(this.current_index == (this.images.length - 1)) {
+          this.next_link.hide();
+        };
+        if(this.current_index == 0) {
+          this.prev_link.hide();
+        };
+      };
+      this.fireCallback(this.settings.callbacks.afterImageVisible);
+    },
+    /**
+     * Checks if the image is small enough to fit inside the container
+     * If it's not, shrink it proportionally
+     */
+    _getContainedImageSize: function(image_width, image_height) {
+      if(image_height > this.image_wrapper_height) {
+        var ratio = image_width / image_height;
+        image_height = this.image_wrapper_height;
+        image_width = this.image_wrapper_height * ratio;
+      };
+      if(image_width > this.image_wrapper_width) {
+  	    var ratio = image_height / image_width;
+  	    image_width = this.image_wrapper_width;
+  	    image_height = this.image_wrapper_width * ratio;
+  	  };
+      return {width: image_width, height: image_height};
+    },
+    /**
+     * If the image dimensions are smaller than the wrapper, we position
+     * it in the middle anyway
+     */
+    _centerImage: function(img_container, image_width, image_height) {
+      img_container.css('top', '0px');
+      if(image_height < this.image_wrapper_height) {
+        var dif = this.image_wrapper_height - image_height;
+        img_container.css('top', (dif / 2) +'px');
+      };
+      img_container.css('left', '0px');
+      if(image_width < this.image_wrapper_width) {
+        var dif = this.image_wrapper_width - image_width;
+        img_container.css('left', (dif / 2) +'px');
+      };
+    },
+    _getDescription: function(image) {
+      var desc = false;
+      if(image.desc.length || image.title.length) {
+        var title = '';
+        if(image.title.length) {
+          title = '<strong class="ad-description-title">'+ image.title +'</strong>';
+        };
+        var desc = '';
+        if(image.desc.length) {
+          desc = '<span>'+ image.desc +'</span>';
+        };
+        desc = $('<p class="ad-image-description">'+ title + desc +'</p>');
+      };
+      return desc;
+    },
+    /**
+     * @param function callback Gets fired when the image has loaded, is displaying
+     *                          and it's animation has finished
+     */
+    showImage: function(index, callback) {
+      if(this.images[index] && !this.in_transition) {
+        var context = this;
+        var image = this.images[index];
+        this.in_transition = true;
+        if(!image.preloaded) {
+          this.loading(true);
+          this.preloadImage(index, function() {
+            context.loading(false);
+            context._showWhenLoaded(index, callback);
+          });
+        } else {
+          this._showWhenLoaded(index, callback);
+        };
+      };
+    },
+    /**
+     * @param function callback Gets fired when the image has loaded, is displaying
+     *                          and it's animation has finished
+     */
+    _showWhenLoaded: function(index, callback) {
+      if(this.images[index]) {
+        var context = this;
+        var image = this.images[index];
+        var img_container = $(document.createElement('div')).addClass('ad-image');
+        var img = $(new Image()).attr('src', image.image);
+        if(image.link) {
+          var link = $('<a href="'+ image.link +'" target="_blank"></a>');
+          link.append(img);
+          img_container.append(link);
+        } else {
+          img_container.append(img);
+        }
+        this.image_wrapper.prepend(img_container);
+        var size = this._getContainedImageSize(image.size.width, image.size.height);
+        img.attr('width', size.width);
+        img.attr('height', size.height);
+        img_container.css({width: size.width +'px', height: size.height +'px'});
+        this._centerImage(img_container, size.width, size.height);
+        var desc = this._getDescription(image, img_container);
+        if(desc) {
+          if(!this.settings.description_wrapper) {
+            img_container.append(desc);
+            var width = size.width - parseInt(desc.css('padding-left'), 10) - parseInt(desc.css('padding-right'), 10);
+            desc.css('width', width +'px');
+          } else {
+            this.settings.description_wrapper.append(desc);
+          }
+        };
+        this.highLightThumb(this.nav.find('.ad-thumb'+ index));
+
+        var direction = 'right';
+        if(this.current_index < index) {
+          direction = 'left';
+        };
+        this.fireCallback(this.settings.callbacks.beforeImageVisible);
+        if(this.current_image || this.settings.animate_first_image) {
+          var animation_speed = this.settings.animation_speed;
+          var easing = 'swing';
+          var animation = this.animations[this.settings.effect].call(this, img_container, direction, desc);
+          if(typeof animation.speed != 'undefined') {
+            animation_speed = animation.speed;
+          };
+          if(typeof animation.easing != 'undefined') {
+            easing = animation.easing;
+          };
+          if(this.current_image) {
+            var old_image = this.current_image;
+            var old_description = this.current_description;
+            old_image.animate(animation.old_image, animation_speed, easing,
+              function() {
+                old_image.remove();
+                if(old_description) old_description.remove();
+              }
+            );
+          };
+          img_container.animate(animation.new_image, animation_speed, easing,
+            function() {
+              context.current_index = index;
+              context.current_image = img_container;
+              context.current_description = desc;
+              context.in_transition = false;
+              context._afterShow();
+              context.fireCallback(callback);
+            }
+          );
+        } else {
+          this.current_index = index;
+          this.current_image = img_container;
+          context.current_description = desc;
+          this.in_transition = false;
+          context._afterShow();
+          this.fireCallback(callback);
+        };
+      };
+    },
+    nextIndex: function() {
+      if(this.current_index == (this.images.length - 1)) {
+        if(!this.settings.cycle) {
+          return false;
+        };
+        var next = 0;
+      } else {
+        var next = this.current_index + 1;
+      };
+      return next;
+    },
+    nextImage: function(callback) {
+      var next = this.nextIndex();
+      if(next === false) return false;
+      this.preloadImage(next + 1);
+      this.showImage(next, callback);
+      return true;
+    },
+    prevIndex: function() {
+      if(this.current_index == 0) {
+        if(!this.settings.cycle) {
+          return false;
+        };
+        var prev = this.images.length - 1;
+      } else {
+        var prev = this.current_index - 1;
+      };
+      return prev;
+    },
+    prevImage: function(callback) {
+      var prev = this.prevIndex();
+      if(prev === false) return false;
+      this.preloadImage(prev - 1);
+      this.showImage(prev, callback);
+      return true;
+    },
+    preloadAll: function() {
+      var context = this;
+      var i = 0;
+      function preloadNext() {
+        if(i < context.images.length) {
+          i++;
+          context.preloadImage(i, preloadNext);
+        };
+      };
+      context.preloadImage(i, preloadNext);
+    },
+    preloadImage: function(index, callback) {
+      if(this.images[index]) {
+        var image = this.images[index];
+        if(!this.images[index].preloaded) {
+          var img = $(new Image());
+          img.attr('src', image.image);
+          if(!this.isImageLoaded(img[0])) {
+            this.preloads.append(img);
+            var context = this;
+            img.load(
+              function() {
+                image.preloaded = true;
+                image.size = { width: this.width, height: this.height };
+                context.fireCallback(callback);
+              }
+            ).error(
+              function() {
+                image.error = true;
+                image.preloaded = false;
+                image.size = false;
+              }
+            );
+          } else {
+            image.preloaded = true;
+            image.size = { width: img[0].width, height: img[0].height };
+            this.fireCallback(callback);
+          };
+        } else {
+          this.fireCallback(callback);
+        };
+      };
+    },
+    isImageLoaded: function(img) {
+      if(typeof img.complete != 'undefined' && !img.complete) {
+        return false;
+      };
+      if(typeof img.naturalWidth != 'undefined' && img.naturalWidth == 0) {
+        return false;
+      };
+      return true;
+    },
+    highLightThumb: function(thumb) {
+      this.thumbs_wrapper.find('.ad-active').removeClass('ad-active');
+      thumb.addClass('ad-active');
+      if(this.settings.thumb_opacity < 1) {
+        this.thumbs_wrapper.find('a:not(.ad-active) img').fadeTo(300, this.settings.thumb_opacity);
+        thumb.find('img').fadeTo(300, 1);
+      };
+      var left = thumb[0].parentNode.offsetLeft;
+      left -= (this.nav_display_width / 2) - (thumb[0].offsetWidth / 2);
+      this.thumbs_wrapper.animate({scrollLeft: left +'px'});
+    },
+    fireCallback: function(fn) {
+      if($.isFunction(fn)) {
+        fn.call(this);
+      };
+    }
+  };
+
+  function AdGallerySlideshow(nextimage_callback, settings) {
+    this.init(nextimage_callback, settings);
+  };
+  AdGallerySlideshow.prototype = {
+    start_link: false,
+    stop_link: false,
+    countdown: false,
+    controls: false,
+
+    settings: false,
+    nextimage_callback: false,
+    enabled: false,
+    running: false,
+    countdown_interval: false,
+    init: function(nextimage_callback, settings) {
+      var context = this;
+      this.nextimage_callback = nextimage_callback;
+      this.settings = settings;
+    },
+    create: function() {
+      this.start_link = $('<span class="ad-slideshow-start">'+ this.settings.start_label +'</span>');
+      this.stop_link = $('<span class="ad-slideshow-stop">'+ this.settings.stop_label +'</span>');
+      this.countdown = $('<span class="ad-slideshow-countdown"></span>');
+      this.controls = $('<div class="ad-slideshow-controls"></div>');
+      this.controls.append(this.start_link).append(this.stop_link).append(this.countdown);
+      this.countdown.hide();
+
+      var context = this;
+      this.start_link.click(
+        function() {
+          context.start();
+        }
+      );
+      this.stop_link.click(
+        function() {
+          context.stop();
+        }
+      );
+      $(document).keydown(
+        function(e) {
+          if(e.keyCode == 83) {
+            // 's'
+            if(context.running) {
+              context.stop();
+            } else {
+              context.start();
+            };
+          };
+        }
+      );
+      return this.controls;
+    },
+    disable: function() {
+      this.enabled = false;
+      this.stop();
+      this.controls.hide();
+    },
+    enable: function() {
+      this.enabled = true;
+      this.controls.show();
+    },
+    toggle: function() {
+      if(this.enabled) {
+        this.disable();
+      } else {
+        this.enable();
+      };
+    },
+    start: function() {
+      if(this.running || !this.enabled) return false;
+      var context = this;
+      this.running = true;
+      this.controls.addClass('ad-slideshow-running');
+      this._next();
+      this.fireCallback(this.settings.onStart);
+      return true;
+    },
+    stop: function() {
+      if(!this.running) return false;
+      this.running = false;
+      this.countdown.hide();
+      this.controls.removeClass('ad-slideshow-running');
+      clearInterval(this.countdown_interval);
+      this.fireCallback(this.settings.onStop);
+      return true;
+    },
+    _next: function() {
+      var context = this;
+      var pre = this.settings.countdown_prefix;
+      var su = this.settings.countdown_sufix;
+      clearInterval(context.countdown_interval);
+      this.countdown.show().html(pre + (this.settings.speed / 1000) + su);
+      var slide_timer = 0;
+      this.countdown_interval = setInterval(
+        function() {
+          slide_timer += 1000;
+          if(slide_timer >= context.settings.speed) {
+            var whenNextIsShown = function() {
+              // A check so the user hasn't stoped the slideshow during the
+              // animation
+              if(context.running) {
+                context._next();
+              };
+              slide_timer = 0;
+            };
+            if(!context.nextimage_callback(whenNextIsShown)) {
+              context.stop();
+            };
+            slide_timer = 0;
+          };
+          var sec = parseInt(context.countdown.text().replace(/[^0-9]/g, ''), 10);
+          sec--;
+          if(sec > 0) {
+            context.countdown.html(pre + sec + su);
+          };
+        },
+        1000
+      );
+    },
+    fireCallback: function(fn) {
+      if($.isFunction(fn)) {
+        fn.call(this);
+      };
+    }
+  };
+})(jQuery);

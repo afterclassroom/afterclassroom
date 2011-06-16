@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   # Relations
   belongs_to :school
   has_and_belongs_to_many :roles
+  has_and_belongs_to_many :friend_shares, :class_name => "Share"
   has_one :user_information, :dependent => :destroy
   has_one :user_education, :dependent => :destroy
   has_one :user_employment, :dependent => :destroy
@@ -44,7 +45,7 @@ class User < ActiveRecord::Base
   has_many :partys_lists, :dependent => :destroy
   has_many :post_awarenesses_supports, :dependent => :destroy
   has_many :post_events, :dependent => :destroy
-  has_many :shares
+  has_many :my_shares, :class_name => "Share", :foreign_key => "sender_id"
   has_many :private_settings
   
   # Acts_as_network

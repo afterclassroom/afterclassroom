@@ -10,10 +10,11 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.xml
   def index
-    @srt = "DESC"
+    @srt, @str_f = "DESC"
     @srt = params[:sort] if params[:sort]
-    
-    @shares = current_user.shares.find(:all, :order => "created_at #{@srt}")
+    @srt_f = params[:sort_f] if params[:sort_f]
+    @friend_shares = current_user.friend_shares.find(:all, :order => "created_at #{@srt_f}")
+    @shares = current_user.my_shares.find(:all, :order => "created_at #{@srt}")
     
     respond_to do |format|
       format.html # index.html.erb
@@ -52,10 +53,9 @@ class SharesController < ApplicationController
   # POST /shares.xml
   def create
     @share = Share.new(params[:share])
-    
+    @share.sender = current_user
     respond_to do |format|
       if @share.save
-        current_user.shares << @share
         recipient = params[:recipient]
         user_ids = recipient.split(",")
         if user_ids.size > 0 
@@ -69,7 +69,7 @@ class SharesController < ApplicationController
               content = "File: <a href=\"javascript:downloadFile('#{@share.attach.url}')\" class=\"downarrow\"><span>#{@share.attach.url}</span></a> <br/> #{@share.description}"
               mess.body = content
               mess.save
-              @share.users << u
+              @share.recipients << u
             end
             
           end

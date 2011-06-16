@@ -1,6 +1,7 @@
 class Share < ActiveRecord::Base
   # Relations
-  has_and_belongs_to_many :users
+  belongs_to :sender, :class_name => "User", :foreign_key => "sender_id"
+  has_and_belongs_to_many :recipients, :class_name => "User"
 
   # Attach file
   has_attached_file :attach, {
