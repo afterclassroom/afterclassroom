@@ -1,0 +1,23 @@
+<% cache "interesting_#{@class_name}_#{@school}" do %>
+<div class="col195 intPro">
+  <div class="col195in">
+    <h1 class="col195Title">Interesting Exams</h1>
+    <div class="col195Cont">
+      <%
+      interesting_exams = PostExam.with_school(@school).interesting.with_limit
+    %>
+      <% if interesting_exams.size > 0 %>
+        <% interesting_exams.each do |p| %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(p.post.title, 4), post_exam_path(p) %></div>
+            <div class="dueDTime"><%= p.post.created_at.strftime("%B %d, %Y")%></div>
+          </div>
+        <% end %>
+        <% if interesting_exams.size > 0 %>
+          <div class="dueDbutton"><%= link_to "View more Interesting Exams", interesting_post_exams_path %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
