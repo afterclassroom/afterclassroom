@@ -22,7 +22,7 @@ You are here: <a href="/">Home</a>
             <div class="AsDContL">
                 <h2 class="titleH2"><%= @post.title %></h2>
                 <div class="AsDContLin">
-                    in<span><%= link_to "Exam/Test Schedules", post_exam_schedules_path(:type => @type_schedule) %></span>
+                    in<span><%= link_to @post_exam_schedule.type_name, post_exam_schedules_path(:type => @type_schedule) %></span>
                 </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>

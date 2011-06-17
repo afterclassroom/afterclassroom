@@ -45,10 +45,11 @@
 		$(this).stop().hide();
 	});
   });
-    $(document).ready(function(){
-        $(".mcdropdown a").click(function(){
-        $('#year_menu').hide();
-        });
-  });
+   $(function() {
+	$('div.postItemDep').hover(function() {
+	}, function() {
+		$('#department_menu,#year_menu').stop().hide();
+	});
+    });
 </script>
 <% end %>

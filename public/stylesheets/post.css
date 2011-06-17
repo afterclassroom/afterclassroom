@@ -2255,9 +2255,13 @@ span.btmCom a:hover {
     text-decoration: none;
 }
 
-.jobComMenu a:hover, .jobComMenu a.hover {
+.jobComMenu a.hover {
     color: #d00;
     text-decoration: none;
+    cursor: pointer;
+}
+.jobComMenu a:hover {
+    cursor: text;
 }
 
 .wantJob h1.col300Title {
