@@ -99,12 +99,18 @@ class PostAwarenessesController < ApplicationController
   
   def support
     support = params[:support]
-    post = Post.find(params[:post_id])
-    post_a = post.post_awareness
-    post_a_s = PostAwarenessesSupport.create(:user_id => current_user.id, :post_awareness_id => post_a.id, :support => support)
-    str_supported = "You've selected."
-    @text = "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'>Support</a></div>"
-    @text << "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'> Not support</a></div>"
+    @post = Post.find(params[:post_id])
+    post_a = @post.post_awareness
+    PostAwarenessesSupport.create(:user_id => current_user.id, :post_awareness_id => post_a.id, :support => support)
+    str_supported = "You`ve selected."
+    str = "Reliable"
+    str_not = "Not reliable"
+    if @post.post_awareness.awareness_type.label == "take_action_now"
+      str = "Support"
+      str_not = "Not support"
+    end
+    @text = "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'>#{str}</a></div>"
+    @text << "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'> #{str_not}</a></div>"
   end
   
   def view_results

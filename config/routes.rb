@@ -70,7 +70,7 @@ Afterclassroom::Application.routes.draw do
 
     resources :stories do
       collection do
-        get :friend_s, :my_s, :create_comment, :delete_comment, :delete_all
+        get :friend_s, :my_s, :my_draft, :draft, :create_comment, :delete_comment, :delete_all
       end
     end
 

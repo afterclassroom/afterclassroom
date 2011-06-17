@@ -5,11 +5,11 @@ class UsersController < ApplicationController
   protect_from_forgery :only => [:create]
   
   before_filter RubyCAS::Filter::GatewayFilter, :except => [:create]
-  before_filter RubyCAS::Filter, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friend, :show_fans, :warning]
+  before_filter RubyCAS::Filter, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning]
   before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password]
   before_filter :require_current_user,
-    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friend, :show_fans, :warning]
+    :except => [:new, :show, :create, :activate, :forgot_login, :forgot_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning]
   before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friend, :show_fans, :warning]
   # render new.rhtml
   def new
@@ -124,7 +124,7 @@ class UsersController < ApplicationController
   
   def show_stories
     if check_private_permission(@user, "my_stories")
-      @stories = @user.stories.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+      @stories = @user.stories.find(:all, :conditions => "state = 'share'", :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)

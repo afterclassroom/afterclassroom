@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
   end
 
   def my_favorite
-    @favorites = current_user.favorites.paginate :page => params[:page], :per_page => 10
+    @favorites = current_user.favorites.order("created_at DESC").paginate :page => params[:page], :per_page => 10
   end
 
   def edit_infor
