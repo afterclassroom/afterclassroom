@@ -458,14 +458,13 @@ function formatLinkForPaginationURLFriend(){
     var url = form.attr("action");
     $("div.friend_stories").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
+            form.attr("action", url + "?" + page);
             searchFriendStories();
         });
     });
@@ -476,14 +475,13 @@ function formatLinkForPaginationURLMy(){
     var url = form.attr("action");
     $("div.my_stories").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
+            form.attr("action", url + "?" + page);
             searchMyStories();
         });
     });
@@ -515,14 +513,13 @@ function formatLinkForPaginationURLFriendPhoto(){
     var url = form.attr("action");
     $("div.friend_photos").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
+            form.attr("action", url + "?" + page);
             searchFriendPhotos();
         });
     });
@@ -533,14 +530,13 @@ function formatLinkForPaginationURLMyPhoto(){
     var url = form.attr("action");
     $("div.my_photos").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
+            form.attr("action", url + "?" + page);
             searchMyPhotos();
         });
     });
@@ -572,14 +568,13 @@ function formatLinkForPaginationURLFriendMusic(){
     var url = form.attr("action");
     $("div.friend_musics").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
+            form.attr("action", url + "?" + page);
             searchFriendMusics();
         });
     });
@@ -590,14 +585,13 @@ function formatLinkForPaginationURLMyMusic(){
     var url = form.attr("action");
     $("div.my_musics").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
+            form.attr("action", url + "?" + page);
             searchMyMusics();
         });
     });

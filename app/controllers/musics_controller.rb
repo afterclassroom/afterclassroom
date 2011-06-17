@@ -19,14 +19,14 @@ class MusicsController < ApplicationController
   # GET /musics.xml
   def index
     @friend_musics = []
-    @my_music_albums = current_user.music_albums.paginate :page => params[:page], :per_page => 5
+    @my_music_albums = current_user.music_albums.paginate :page => params[:page], :per_page => 25
     arr_user_id = []
     current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_musics")}
     @my_friend_music_albums = if arr_user_id.size > 0
       cond = Caboose::EZ::Condition.new :music_albums do
         user_id === arr_user_id
       end
-      MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+      MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
     end
   end
   
@@ -54,7 +54,7 @@ class MusicsController < ApplicationController
       end
     end
     
-    @music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
     
     render :layout => false
   end
@@ -75,7 +75,7 @@ class MusicsController < ApplicationController
       end
     end
     
-    @music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
     
     render :layout => false
   end

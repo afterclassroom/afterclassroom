@@ -11,7 +11,7 @@ gem 'capistrano'
 #gem 'ruby-debug19'
 
 # Bundle the extra gems:
-gem 'rake', '~>0.8.7'
+gem 'rake', '>= 0.8.7'
 gem 'git-deploy'
 gem 'rack'
 gem 'aasm', '2.2.0'

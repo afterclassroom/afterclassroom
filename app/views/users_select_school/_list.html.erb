@@ -48,17 +48,10 @@
 	});
   });
   $(function() {
-	$('div.signinItem,div#contDetLin,#select_school_form').hover(function() {
-		
+	$('div.signinItem,div#contDetLin,#select_school_form').hover(function() {		
 	}, function() {
 		$('#country_menu,#state_menu,#city_menu,#school_menu').stop().hide();
 	});
   });
-  $(document).ready(function(){
-        $("a#TB_closeWindowButton,#TB_overlay").click(function(){
-        $('#country_menu,#state_menu,#city_menu,#school_menu').hide();
-        });
-  });
-
 </script>
 
