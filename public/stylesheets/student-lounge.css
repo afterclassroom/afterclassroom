@@ -5085,12 +5085,29 @@ span.btmTag a:hover{
 .musicB{
     clear:both;
     padding-top:2px;
+    float: left;
 }
-.musicN{
+  .musicS{
+    color: #6E6E6E;
+    font-size: 10px;
+    padding-right: 10px;
+  }
+  .musicN a{
+    height: 38px;
+    margin-top: 4px;
     overflow: hidden;
-    white-space: nowrap;
-    width: 280px;
-}
+    position: absolute;
+    width: 100px;
+    word-wrap: break-word;
+  }
+  .musicN{
+    font-size: 10px;
+    font-weight: bold;
+    height: 45px;
+    margin-top: -4px;
+    overflow: hidden;
+    padding-right: 10px;
+  }
 .musicN a, .musicN a:link, .musicN a:visited{
     color:#1e1e1e;
     text-decoration:none;

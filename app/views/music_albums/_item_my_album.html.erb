@@ -1,7 +1,35 @@
 <div class="musicL">
   <div class="photoImg"><%= link_to raw("<div>#{image_tag album.music_album_attach.url(:thumb)}</div>"), user_music_album_path(current_user, album) %></div>
   <div class="musicB">
-    <div class="musicN"><%= check_box_tag "music_album_id", album.id %><%= link_to album.name, user_music_album_path(current_user, album) %></div>
-    <div class="musicS"><%= pluralize(album.musics.size, "song") %></div>
+    <div class="musicS" style="margin-top: -7px;"><%= pluralize(album.musics.size, "song") %></div>
+    <div class="musicNal"><%= check_box_tag "music_album_id", album.id %><%= link_to album.name, user_music_album_path(current_user, album) %></div>
   </div>
 </div>
+<style>
+  .musicNal input{
+    margin-left: 0px;
+  }
+  .musicNal{
+    font-size: 10px;
+    font-weight: bold;
+    height: 45px;
+    margin-top: -2px;
+    overflow: hidden;
+    padding-right: 10px;
+  }
+  .musicNal a{
+    height: 38px;
+    margin-left: -15px;
+    margin-top: 4px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: 16px;
+    width: 100px;
+    word-wrap: break-word;
+    color: #1E1E1E;
+  }
+  .musicNal a:hover{
+    color: #DD0000;
+    text-decoration: none;
+  }
+</style>
