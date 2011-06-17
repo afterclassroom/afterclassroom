@@ -15,8 +15,9 @@ class StoriesController < ApplicationController
     current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_stories")}
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
+      state == "share"
     end
-    @my_stories = current_user.stories.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @my_stories = current_user.stories.find(:all, :conditions => "state = 'share'", :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     @friend_stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
   end
   
@@ -39,6 +40,7 @@ class StoriesController < ApplicationController
     
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
+      state == "share"
       if content_search != ""
         any do
           title =~ "%#{content_search}%"
@@ -54,7 +56,6 @@ class StoriesController < ApplicationController
   
   def my_s
     @search_name = ""
-    
     if params[:search]
       @search_name = params[:search][:name]
     end
@@ -63,6 +64,7 @@ class StoriesController < ApplicationController
     id = current_user.id
     cond = Caboose::EZ::Condition.new :stories do
       user_id == id
+      state == "share"
       if content_search != ""
         any do
           title =~ "%#{content_search}%"
@@ -72,6 +74,34 @@ class StoriesController < ApplicationController
     end
     
     @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    
+    render :layout => false
+  end
+  
+  def draft
+    @stories = current_user.stories.find(:all, :conditions => "state = 'draft'", :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+  end
+  
+  def my_draft
+    @search_name = ""
+    if params[:search]
+      @search_name = params[:search][:name]
+    end
+    
+    content_search = @search_name
+    id = current_user.id
+    cond = Caboose::EZ::Condition.new :stories do
+      user_id == id
+      state == "draft"
+      if content_search != ""
+        any do
+          title =~ "%#{content_search}%"
+          content =~ "%#{content_search}%"
+        end
+      end
+    end
+    
+    @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     
     render :layout => false
   end
