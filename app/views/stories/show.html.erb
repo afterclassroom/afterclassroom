@@ -14,10 +14,10 @@
           </div>
         </div>
         <div class="stoDet">
-          <div class="AsDcomImg"><%= link_to raw("<div>#{image_tag(@story.user.avatar.url(:thumb))}</div>"), {:controller => "profile", :action => "show_profile", :id => @story.user.id} %></div>
+          <div class="AsDcomImg"><%= show_image_user_post(@story.user) %></div>
           <div class="stoDetR">
             <div class="stoDetRT"><%= @story.user.full_name %>: <%= @story.title %></div>
-            <div class="stoDetRB"><%= link_to "#{@story.user.name}'s Story", user_stories_url(), :class => "stoDetRBN" %><%= link_to "#{@story.user.name}'s Profile", user_url(@story.user) %></div>
+            <div class="stoDetRB"><%= link_to "#{@story.user.name}'s Story", show_stories_user_url(@story.user), :class => "stoDetRBN" %><%= link_to "#{@story.user.name}'s Profile", user_url(@story.user) %></div>
           </div>
         </div>
         <div class="stoDcont">
