@@ -1,58 +1,58 @@
 <% if check_private_permission(@user, "my_fans") %>
-<div class="proInfG">
-  <div class="proInfGL">My Fans(<%= link_to "See all", show_fans_user_path(@user)%>)</div>
-</div>
-<%
-fans_rc = @user.fans_recent_update
-fans_rc_total = fans_rc.size
+  <div class="proInfG">
+    <div class="proInfGL">My Fans(<%= link_to "See all", show_fans_user_path(@user)%>)</div>
+  </div>
+  <%
+  fans_rc = @user.fans_recent_update
+  fans_rc_total = fans_rc.size
 %>
-<% if fans_rc_total > 0 %>
-  <div class="proInfGItem">
-    <div class="proInfGLL">
-      <div class="proInfGlabel">Recently Update Fans:</div>
-    </div>
-    <div class="proInfGRR">
-      <div class="fanImg">
-        <%
-        count_rc = 11
-        count_rc = (fans_rc_total - 1) if fans_rc_total < 12
-      %>
-        <% (0..count_rc).each do |i| %>
-          <% user_rc = User.find(fans_rc[i].user_id) %>
-          <div class="fanImg1">
-            <%= link_to raw("<div>#{image_tag user_rc.avatar.url(:thumb)}</div>"), user_path(user_rc) %>
-            <div class="fanName"><%= link_to user_rc.full_name, user_path(user_rc) %></div>
-          </div>
-        <% end %>
+  <% if fans_rc_total > 0 %>
+    <div class="proInfGItem">
+      <div class="proInfGLL">
+        <div class="proInfGlabel">Recently Update Fans:</div>
+      </div>
+      <div class="proInfGRR">
+        <div class="fanImg">
+          <%
+          count_rc = 11
+          count_rc = (fans_rc_total - 1) if fans_rc_total < 12
+        %>
+          <% (0..count_rc).each do |i| %>
+            <% user_rc = User.find(fans_rc[i].user_id) %>
+            <div class="fanImg1">
+              <%= link_to raw("<div>#{image_tag user_rc.avatar.url(:thumb)}</div>"), user_path(user_rc) %>
+              <div class="fanName"><%= link_to user_rc.full_name, user_path(user_rc) %></div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 
-<%
-fans_nv = @user.fans_not_visit
-fans_nv_total = fans_nv.size
+  <%
+  fans_nv = @user.fans_not_visit
+  fans_nv_total = fans_nv.size
 %>
-<% if fans_nv_total > 0 %>
-  <div class="proInfGItem">
-    <div class="proInfGLL">
-      <div class="proInfGlabel">Have not visited over 30 days:</div>
-    </div>
-    <div class="proInfGRR">
-      <div class="fanImg">
-        <%
-        count_nv = 5
-        count_nv = (fans_nv_total - 1) if fans_nv_total < 6
-      %>
-        <% (0..count_nv).each do |i| %>
-          <% user_nv = User.find(fans_nv[i].user_id) %>
-          <div class="fanImg1">
-            <%= link_to raw("<div>#{image_tag user_nv.avatar.url(:thumb)}</div>"), user_path(user_nv) %>
-            <div class="fanName"><%= link_to user_nv.full_name, user_path(user_nv) %></div>
-          </div>
-        <% end %>
+  <% if fans_nv_total > 0 %>
+    <div class="proInfGItem">
+      <div class="proInfGLL">
+        <div class="proInfGlabel">Have not visited over 30 days:</div>
+      </div>
+      <div class="proInfGRR">
+        <div class="fanImg">
+          <%
+          count_nv = 5
+          count_nv = (fans_nv_total - 1) if fans_nv_total < 6
+        %>
+          <% (0..count_nv).each do |i| %>
+            <% user_nv = User.find(fans_nv[i].user_id) %>
+            <div class="fanImg1">
+              <%= link_to raw("<div>#{image_tag user_nv.avatar.url(:thumb)}</div>"), user_path(user_nv) %>
+              <div class="fanName"><%= link_to user_nv.full_name, user_path(user_nv) %></div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 <% end %>
