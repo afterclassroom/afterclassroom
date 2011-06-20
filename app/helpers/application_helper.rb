@@ -755,7 +755,8 @@ module ApplicationHelper
   private
   
   def link_to_require_login(str)
-    link_login = "https://afterclassroom.com/login"
+    call_back = root_url[0...-1] + request.request_uri
+    link_login = "https://afterclassroom.com/login?service=#{call_back}"
     str_require_login = "This function is available only to registered users."
     link_to(str, link_login, :class => "vtip", :title => str_require_login)
   end

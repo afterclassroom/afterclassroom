@@ -37,6 +37,11 @@ class PostQasController < ApplicationController
     end
   end
   
+  def tag
+    @tag_name = params[:tag_name]
+    @posts = PostQa.paginated_post_conditions_with_tag(params, @school, @tag_name)
+  end
+  
   def interesting
     @post_results = Rails.cache.fetch("interesting_#{@class_name}_#{@school}") do
       PostQa.paginated_post_conditions_with_interesting(params, @school)
