@@ -3342,6 +3342,14 @@ div.helpAdv2{
     clear:both;
     width:51px;
 }
+.fanName{
+    height: 29px;
+    overflow: hidden;
+    width: 51px;
+    word-wrap: break-word;
+    margin-top: -4px;
+    margin-bottom: 4px;
+}
 /*** profile Favorite ****/
 .proFavItem{
     clear:both;
