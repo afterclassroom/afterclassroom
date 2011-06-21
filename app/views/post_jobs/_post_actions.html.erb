@@ -3,7 +3,7 @@
     <span class="btmApp"><%= show_apply_now() %></span>
     <% end %>
     <span class="btmCom"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');"><span>Comment</span></a></span>
-    <span class="btmMail"><%= show_email(post) %></span>
+    <% if !logged_in? or (logged_in? and current_user != post.user ) %><span class="btmMail"><%= show_email(post) %></span><% end %>
     <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
     <div id="show_job_button">
         <span class="btmAddJob"><%= show_add_job(post) %></span>

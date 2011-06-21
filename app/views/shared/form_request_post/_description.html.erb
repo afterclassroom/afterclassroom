@@ -1,2 +1,20 @@
-<div class="reqLa"><label>Description*</label></div>
-<div class="reqEn" style="margin:3px 0 3px 0"><%= text_area_tag "post[description]", "", :class => '{validate:{required:true}}' %></div>
+<div class="reqLa">
+    <label>
+        Description*
+    </label>
+</div>
+<div id="post_description_counter">
+    <span>0</span>
+    characters (900 max)
+</div>
+<div class="reqEn" style="margin:3px 0 10px 0">
+    <%= text_area_tag "post[description]", "", :class => '{validate:{required:true}}' %>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#post_description").counter({
+            count: 'up',
+            goal: 900
+        });
+    });
+</script>
