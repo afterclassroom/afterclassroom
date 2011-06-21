@@ -195,9 +195,41 @@ class PostJobsController < ApplicationController
       if (@post_job.job_type.label == "i_m_looking_for_job")
         #If user does not upload file, records for these 3 files are created with empty url
         #user can upload these files later
-        @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
+        tempfile = @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
         @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
         @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
+
+
+
+        puts "=====================params[:letter] == "+params[:letter][:original_filename]
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "====================="
+        puts "=====================params[:letter] == "+tempfile.to_s
+
+
       end
       if @post_job.save
         flash[:notice] = "Your post was successfully created."
