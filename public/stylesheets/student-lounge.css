@@ -384,6 +384,7 @@
 .AfterDes{
     color:#6f6f63;
     word-wrap: break-word;
+    overflow: hidden;
 }
 .AfterInfo .assInfB{
     clear:both;
