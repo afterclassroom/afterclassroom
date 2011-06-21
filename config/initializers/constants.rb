@@ -5,3 +5,13 @@ PRIVATE_SETTING = ["about_myself", "sex", "relationship_status", "looking_for", 
 OPTIONS_SETTING = [["Option to share", 0], ["Friend from school", 1], ["Friend of friends", 2], ["My Family", 3], ["General friends", 4], ["Friends from work", 5], ["Every one", 6]]
 PER_PAGE = 10
 LIMIT = 5
+# Upload file
+FILE_SIZE_POST = 10.megabytes
+FILE_SIZE_PHOTO = 10.megabytes
+FILE_SIZE_MUSIC = 10.megabytes
+FILE_SIZE_VIDEO = 100.megabytes
+FILE_SIZE_SHARE = 50.megabytes
+LIMIT_SIZE_PHOTO = 2.gigabytes
+LIMIT_SIZE_MUSIC = 2.gigabytes
+LIMIT_SIZE_VIDEO = 10.gigabytes
+LIMIT_SIZE_SHARE = 1.gigabytes

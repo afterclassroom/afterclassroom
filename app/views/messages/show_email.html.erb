@@ -1,13 +1,22 @@
 <div class="postCont" id="div_send_message">
-  <form id="form_send_message" >
-    <div class="postItem">
-      <div class="postItem1" style="width: 80px">Subject*</div>
-    <input style="width:330px" id="message_subject" name="subject" class="required" size="30" type="text" /></div>
-    <div class="postItem">
-      <div class="postItem1" style="width: 80px">Message*</div>
-      <div class="postInp"><textarea style="width:330px; height:165px" id="message_body" name="body" class = "required" > </textarea></div>
+    <%= form_tag send_message_user_messages_url(current_user), :remote => true, :id => "form_send_message", :name => "form_send_message" do %>
+    <%= hidden_field_tag "recipient_id", @recipient_id %>
+		<div class="postItem">
+        <div class="postItem1" style="width: 80px">
+            Subject*
+        </div>
+        <input style="width:330px" id="message_subject" name="subject" class="{validate:{required:true}}" size="30" type="text" />
     </div>
-    <div class="submit" style="padding-left:90px"><a href="javascript:;" onclick="sendEmail(<%= current_user.id %>, <%= @recipient_id %>)">Send</a></div>
-    <div class="error" style="padding: 10px"></div> 
-  </form>
- </div>
+    <div class="postItem">
+        <div class="postItem1" style="width: 80px">
+            Message*
+        </div>
+        <div class="postInp">
+            <textarea style="width:330px; height:165px" id="message_body" name="body" class="{validate:{required:true}}"></textarea>
+        </div>
+    </div>
+    <div class="submit" style="padding-left:90px">
+        <a href="javascript:;" onclick="sendEmail()">Send</a>
+    </div>
+    <% end %>
+</div>

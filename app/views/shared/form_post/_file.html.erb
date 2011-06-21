@@ -12,11 +12,10 @@
             </div>
         </div>
     </div>
-</div><% if only_img %>
+</div>
 <div class="postItem" id="only_img">
   <div class="postTit">&nbsp;</div>
   <div class="postInp">
-    Only support these photo formats: JPG, GIF, PNG.
+    <% if only_img %>Only support these photo formats: JPG, GIF, PNG. <% end %>File size limit <%= number_to_human_size FILE_SIZE_POST %>.
   </div>
 </div>
-<% end %>
