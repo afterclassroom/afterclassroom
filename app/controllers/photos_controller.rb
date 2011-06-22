@@ -183,7 +183,7 @@ class PhotosController < ApplicationController
   end
   
   def create_album
-    @photo_album = PhotoAlbum.find_or_create_by_name(params[:photo_album][:name])
+    @photo_album = PhotoAlbum.new(params[:photo_album])
     @photo_album.user = current_user
     @photo_album.save
     photo_album_wall(@photo_album)
