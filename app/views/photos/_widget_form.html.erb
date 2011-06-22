@@ -112,7 +112,8 @@
           }
           handler.formData = {
             "photo[title]": title,
-            "photo[photo_album_id]": $('#photo_photo_album_id').val()
+            "photo[photo_album_id]": $('#photo_photo_album_id').val(),
+						"authenticity_token": $('[name="authenticity_token"]').val(),
           };
           callBack();
         });

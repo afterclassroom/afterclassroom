@@ -119,7 +119,8 @@
           }
           handler.formData = {
             "music[title]": title,
-            "music[music_album_id]": $('#music_music_album_id').val()
+            "music[music_album_id]": $('#music_music_album_id').val(),
+						"authenticity_token": $('[name="authenticity_token"]').val(),
           };
           callBack();
         });

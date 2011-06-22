@@ -10,7 +10,7 @@ class Photo < ActiveRecord::Base
     :bucket => 'afterclassroom_photos',
     :styles => { :medium => "555x417>", :thumb => "92x68#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
-  validates_attachment_content_type :photo_attach, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
+  validates_attachment_content_type :photo_attach, :content_type => ['image/pjpeg', 'image/jpeg', 'image/gif', 'image/png', 'image/x-png']
 
   # Comments
   acts_as_commentable
