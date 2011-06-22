@@ -201,7 +201,6 @@ class PostJobsController < ApplicationController
 
 
 
-        puts "=====================params[:letter] == "+params[:letter][:original_filename]
         puts "====================="
         puts "====================="
         puts "====================="
@@ -227,7 +226,6 @@ class PostJobsController < ApplicationController
         puts "====================="
         puts "====================="
         puts "====================="
-        puts "=====================params[:letter] == "+tempfile.to_s
 
 
       end
