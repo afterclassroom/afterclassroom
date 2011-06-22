@@ -3409,13 +3409,17 @@ div.helpAdv2{
 .proFavItem .assDes{
     padding-bottom:0px;
 }
+.proFavPageT{
+    border-top:1px #e4e4e4 solid;
+    clear:both;
+    overflow:hidden;
+    margin-top:5px;
+    _height:100%;
+}
 .proFavPage, .proFavPage2{
     clear:both;
     overflow:hidden;
-    padding-top:5px;
     margin-top:5px;
-    padding-bottom:5px;
-    border-top:1px #e4e4e4 solid;
     _height:100%;
 }
 .proFavPage2{
@@ -3428,7 +3432,7 @@ div.helpAdv2{
     color:#0b8ccb;
 }
 .proFavPageR{
-    float:right;
+    float:left;
 }
 .proFavPageR .assPage{
     padding:0px;

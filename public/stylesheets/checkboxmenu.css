@@ -12,8 +12,9 @@
 */
 
 #mytable .check{
-    margin-top: -80px;
-    margin-right: 10px;
+    margin-left: 625px;
+    margin-top: -85px;
+    position: absolute;
   }
 .actionsBox{
     font-size:13px;
