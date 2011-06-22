@@ -5,11 +5,11 @@ class UsersController < ApplicationController
   protect_from_forgery :only => [:create]
   
   before_filter RubyCAS::Filter::GatewayFilter, :except => [:create]
-  before_filter RubyCAS::Filter, :except => [:new, :show, :create, :forgot_password, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning]
+  before_filter RubyCAS::Filter, :except => [:new, :show, :create, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning]
   before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_password]
   before_filter :require_current_user,
-    :except => [:new, :show, :create, :activate, :forgot_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning]
+    :except => [:new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning]
   before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friend, :show_fans, :warning]
   # render new.rhtml
   def new
@@ -25,12 +25,17 @@ class UsersController < ApplicationController
     if logged_in?
       redirect_to root_url
     else
-      @user = User.find_by_login_or_email(params[:email_or_login])
-      
-      if @user.nil?
-        error 'No account was found by that email address.'
+      if params[:email]
+        @email = params[:email]
+        @user = User.find_by_email(@email)
+        
+        if @user.nil?
+          error 'No account was found by that email address.'
+        else
+          @user.forgot_password if @user.active?
+        end
       else
-        @user.forgot_password if @user.active?
+        # Render forgot_password.html.erb
       end
     end
   end
