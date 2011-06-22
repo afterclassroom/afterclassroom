@@ -78,7 +78,7 @@
               <div class="helpDis" style="margin-left: 62px;"><a href="javascript:;">
                   <%= distance_of_time_in_words_to_now(fr.created_at, false) + " ago." %>
                 </a></div>
-              <div class="comH" style="margin-left: 166px;"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
+              <div class="comH" style="margin-left: 177px;"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
               <div class="slidingDivH1" style="display:none;" id="forum_list_comment_<%= fr.id %>">
                 <% if fr.comments.length > 2 %>
                   <div class="proList" style="margin-left: 62px;">
