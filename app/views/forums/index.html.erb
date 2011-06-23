@@ -102,7 +102,7 @@
                     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
                     <div class="proListR">
                       <div class="AfterClCom">
-                        <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a>  <%= cmt.comment %>
+                        <%= show_user_post(cmt.user) %>  <%= cmt.comment %>
                       </div>
                       <div class="proListCont">
                         <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
@@ -125,7 +125,7 @@
                     </form>
                   </div>
                 <% else %>
-                  <div style="margin-left: 45px;" class="proList">
+                  <div style="margin-left: 62px;" class="proList">
                     <div class="writeCom">
                       <%=  link_to_require_login("Write something...") %>
                     </div>
