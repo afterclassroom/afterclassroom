@@ -13,3 +13,11 @@ production:
   username: support@afterclassroom.com
   password: vietnam0101
   tls: true
+staging:
+  server: smtpout.secureserver.net
+  port: 25
+  domain: secureserver.net
+  authentication: login
+  username: support@afterclassroom.com
+  password: vietnam0101
+  tls: true
