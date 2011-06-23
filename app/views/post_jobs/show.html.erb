@@ -69,10 +69,6 @@
           <% pj = @post.post_job %>
           <% if pj.job_type.label == "i_m_looking_for_job" %>
             <% pj.job_files.each do |jf| %>
-
-
-
-
               <% if jf.resume_cv_file_name != nil %>
                 <% if jf.category != "Add/Edit File" %>
                   <div class="cover">
@@ -80,9 +76,13 @@
                   </div>
                 <% end %>
               <% else %>
+                
+
                 <div class="cover">
-                  <a href="#">No <%= jf.category %> Available</a>
+                  <%= link_to(jf.category , "#", :class => "vtip", :title => "Not Available") %>
                 </div>
+
+
               <% end %>
             <% end %>
           <% end %>
