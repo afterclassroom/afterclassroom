@@ -1,5 +1,5 @@
 set :stages, %w(staging production)
-set :default_stage, "staging"
+set :default_stage, "production"
 require 'capistrano/ext/multistage'
 require "whenever/capistrano"
 
@@ -7,6 +7,8 @@ require "whenever/capistrano"
 # Application
 #############################################################
 set :application, "Afterclassroom"
+set :domain, "afterclassroom.com"
+set :deploy_to, "/var/www/after"
 
 #############################################################
 # Settings
@@ -18,7 +20,18 @@ default_run_options[:pty] = true # required for svn+ssh:// andf git:// sometimes
 
 set :use_sudo, true
 set :scm_verbose, true
+set :rails_env, "production"
 set :runner, nil
+
+#############################################################
+# Servers
+#############################################################
+
+set :user, "after"
+set :domain, "afterclassroom.com"
+
+server domain, :app, :web
+role :db, domain, :primary => true
 
 #############################################################
 # Git
@@ -31,7 +44,6 @@ set :repository, "git@github.com:afterclassroom/afterclassroom.git"
 set :remote, "origin"
 set :branch, "master"
 set :deploy_via, :remote_cache
-set :scm_verbose, true
 
 #############################################################
 # Passenger
@@ -54,11 +66,6 @@ namespace :deploy do
     master_database: 
       <<: *login 
       host: 50.19.138.30
-    staging:
-      adapter: mysql2
-      database: afterclassroom 
-      username: after 
-      password: after2011
     EOF
 
     put db_config, "#{release_path}/config/database.yml"
@@ -81,5 +88,21 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
   
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{current_path} && whenever --update-crontab #{application}"
+  end
   
+  after "deploy:symlink", "deploy:solr:symlink"
+  after "deploy:symlink", "deploy:update_crontab"
+
+  namespace :solr do
+    desc <<-DESC
+    Symlink in-progress deployment to a shared Solr index.
+  DESC
+    task :symlink, :except => { :no_release => true } do
+      run "cd #{current_path} && rm -rf solr"
+      run "ln -nfs #{shared_path}/solr #{current_path}/solr"
+    end
+  end
 end
