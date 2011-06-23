@@ -3178,8 +3178,15 @@ span.btmFan a:hover {
     float: right;
     overflow: hidden;
     width: 300px;
+    background: url("/images/top300.png") no-repeat scroll 0 0 white;
+    margin-bottom: 8px;
+    width: 300px;
 }
-
+.popu{
+    background: url("/images/bot300.png") no-repeat scroll left bottom transparent;
+    overflow: hidden;
+    padding: 8px 10px;
+}
 .contMainRH .popuTop {
     border-bottom: 1px solid #DBDBDB;
     overflow: hidden;
@@ -3257,4 +3264,11 @@ span.btmFan a:hover {
 
 .postHelp {
     width: 190px;
+}
+.forumTit a{
+    color:#000000;
+}
+.forumTit a:hover{
+    color: #DD0000;
+    text-decoration: none;
 }

@@ -68,8 +68,9 @@
 
 
               <div class="helpT" style="margin-left:62px;">
-                    <%= show_user_post(fr.user) %> - <a href="#" onMouseOver="this.style.color='#0B8CCB'"><%= fr.title %></a>
-</div>
+                <%= show_user_post(fr.user) %>
+              </div>
+              <div class="forumTit" style='font-weight: bold;margin-left:62px'><a href="#"><%= fr.title %></a></div>
               <div class="helpD"  style="margin-left:62px; height: 100%;"><%= fr.content %></div>
 
 
@@ -164,174 +165,174 @@
 <script type="text/javascript">
 
   function ShowWaitDialog(){
-    $('#wait_dialog').show();
-    $("#wait_dialog").dialog({
-      modal: true
-    });
-    $('.ui-dialog-titlebar').hide();
+  $('#wait_dialog').show();
+  $("#wait_dialog").dialog({
+  modal: true
+  });
+  $('.ui-dialog-titlebar').hide();
   }
   function HideWaitDialog(){
-    $('.ui-dialog-titlebar-close').click();/*Close waiting dialog*/
+  $('.ui-dialog-titlebar-close').click();/*Close waiting dialog*/
   }
   function AddCommentWithAjax(content,forum_id){
-    ShowWaitDialog();
+  ShowWaitDialog();
 
 
-<% if current_user == nil %>
-      var savePath = '#';
-<% else %>
-      var savePath = '<%= savecmt_forums_path %>';
-<% end %>
+  <% if current_user == nil %>
+    var savePath = '#';
+  <% else %>
+    var savePath = '<%= savecmt_forums_path %>';
+  <% end %>
 
 
-    $.ajax({
-      type: 'GET',
-      url: savePath,
-      data: {
-        content: content,
-        forum_id: forum_id
-      },
-      success: function(data) {
-        HideWaitDialog();
-      },
-      error: function(er){
-        HideWaitDialog();
-        alert('Failed to communicate with server: '+er);
-      }
-    });
+  $.ajax({
+  type: 'GET',
+  url: savePath,
+  data: {
+  content: content,
+  forum_id: forum_id
+  },
+  success: function(data) {
+  HideWaitDialog();
+  },
+  error: function(er){
+  HideWaitDialog();
+  alert('Failed to communicate with server: '+er);
+  }
+  });
   }
 
   $(document).ready(function() {
-    ShowHideDelIcon();
+  ShowHideDelIcon();
 
-    $("a[id*='answ_']").click(function(){
-      $(this).parent().next().toggle();
-    });
+  $("a[id*='answ_']").click(function(){
+  $(this).parent().next().toggle();
+  });
 
-    $("input[id*='save_']").click(function(){
+  $("input[id*='save_']").click(function(){
 
-      var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
-      if (strContent == '')
-        alert('invalid');
-      else{
-        forum_id = $(this).attr('id').split('_')[1];
-        AddCommentWithAjax(strContent,forum_id);
-        /* reset the comment textarea to empty value */
-        $(this).parents().find('form').eq(0).find('textarea').attr('value','');
-      }
-    });
-
-
-
-    $('#add_new_fr').click(function(){
-      $("#new_fr_form").validate({ rules:
-          { txt_help :
-            {
-            required : true,
-            minlength: 10
-          },
-          help_content: {
-            required : true,
-            minlength: 10
-          }
-        }
-      });
-      //(this).parents().find('form').eq(0).submit();
-    });
+  var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
+  if (strContent == '')
+  alert('invalid');
+  else{
+  forum_id = $(this).attr('id').split('_')[1];
+  AddCommentWithAjax(strContent,forum_id);
+  /* reset the comment textarea to empty value */
+  $(this).parents().find('form').eq(0).find('textarea').attr('value','');
+  }
+  });
 
 
-    /*BEGIN the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
-    $("a[id*='view_all_']").click(function(){
-      forum_id = $(this).attr('id').split('_')[2];
+
+  $('#add_new_fr').click(function(){
+  $("#new_fr_form").validate({ rules:
+  { txt_help :
+  {
+  required : true,
+  minlength: 10
+  },
+  help_content: {
+  required : true,
+  minlength: 10
+  }
+  }
+  });
+  //(this).parents().find('form').eq(0).submit();
+  });
 
 
-      $.ajax({
-        url: '<%= view_all_no_loggin_forums_path %>',
-        type: 'GET',
-        dataType: 'html',
-        data: 'forum_id='+forum_id,
-        success: function(html){
-          alert('val == '+html);
-        },
-        error: function(er){
-          callagain(forum_id);
-        }
-      });
-    });
-    /*END the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
+  /*BEGIN the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
+  $("a[id*='view_all_']").click(function(){
+  forum_id = $(this).attr('id').split('_')[2];
+
+
+  $.ajax({
+  url: '<%= view_all_no_loggin_forums_path %>',
+  type: 'GET',
+  dataType: 'html',
+  data: 'forum_id='+forum_id,
+  success: function(html){
+  alert('val == '+html);
+  },
+  error: function(er){
+  callagain(forum_id);
+  }
+  });
+  });
+  /*END the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
 
   });
   /* this function callagain for fixing the bug related to call ajax being rediected by RubyCAS */
   function callagain(forum_id){
-    $.ajax({
-      url: '<%= view_all_no_loggin_forums_path %>',
-      type: 'GET',
-      dataType: 'html',
-      data: 'forum_id='+forum_id,
-      success: function(str_data){
-        $("#forum_list_comment_"+forum_id).html(str_data);
-      },
-      error: function(er){
-        alert('Failed to communicate with server: '+er);
-      }
-    })
+  $.ajax({
+  url: '<%= view_all_no_loggin_forums_path %>',
+  type: 'GET',
+  dataType: 'html',
+  data: 'forum_id='+forum_id,
+  success: function(str_data){
+  $("#forum_list_comment_"+forum_id).html(str_data);
+  },
+  error: function(er){
+  alert('Failed to communicate with server: '+er);
+  }
+  })
   }
 
   function toggle5(showHideDiv, switchImgTag) {
-    var ele = document.getElementById(showHideDiv);
-    var imageEle = document.getElementById(switchImgTag);
-    if(ele.style.display == "block") {
-      ele.style.display = "none";
-      imageEle.innerHTML = '<img src="/images/helpPostSh08.png">';
+  var ele = document.getElementById(showHideDiv);
+  var imageEle = document.getElementById(switchImgTag);
+  if(ele.style.display == "block") {
+  ele.style.display = "none";
+  imageEle.innerHTML = '<img src="/images/helpPostSh08.png">';
 
-    }
-    else {
-      ele.style.display = "block";
-      imageEle.innerHTML = '<img src="/images/helpPostSh09.png">';
+  }
+  else {
+  ele.style.display = "block";
+  imageEle.innerHTML = '<img src="/images/helpPostSh09.png">';
 
-    }
+  }
   }
   function ShowHideDelIcon(){
-    $(".proList").hover(function(){
-      $(".del_post_com", this).show();
-    }, function(){
-      $(".del_post_com", this).hide();
-    });
+  $(".proList").hover(function(){
+  $(".del_post_com", this).show();
+  }, function(){
+  $(".del_post_com", this).hide();
+  });
   }
 
   function DeleteForumComment(forum_id, comment_id){
-<% if current_user == nil %>
-      var delPath = '#';
-<% else %>
-      var delPath = '<%= delcmt_forums_path(current_user) %>';
-<% end %>
+  <% if current_user == nil %>
+    var delPath = '#';
+  <% else %>
+    var delPath = '<%= delcmt_forums_path(current_user) %>';
+  <% end %>
 
 
-    $("#delete_comment_alert").dialog({
-      modal: true,
-      buttons: {
-        Ok: function() {
-          $(this).dialog('close');
+  $("#delete_comment_alert").dialog({
+  modal: true,
+  buttons: {
+  Ok: function() {
+  $(this).dialog('close');
 
-          $.ajax({
-            url: delPath,
-            type: 'GET',
-            dataType: 'html',
-            data: 'comment_id=' + comment_id + '&forum_id=' + forum_id,
-            success: function(html){
-              $('#cmt_id_'+comment_id).toggle();
-              $('#answ_'+forum_id).html('Answer ('+html+')');
-            },
-            error: function(er){
-              alert('Failed to communicate with server: '+er);
-            }
-          });
-        },
-        Cancel: function() {
-          $(this).dialog('close');
-        }
-      }
-    });
+  $.ajax({
+  url: delPath,
+  type: 'GET',
+  dataType: 'html',
+  data: 'comment_id=' + comment_id + '&forum_id=' + forum_id,
+  success: function(html){
+  $('#cmt_id_'+comment_id).toggle();
+  $('#answ_'+forum_id).html('Answer ('+html+')');
+  },
+  error: function(er){
+  alert('Failed to communicate with server: '+er);
+  }
+  });
+  },
+  Cancel: function() {
+  $(this).dialog('close');
+  }
+  }
+  });
   }
 
 
