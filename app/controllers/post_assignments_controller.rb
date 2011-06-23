@@ -19,7 +19,7 @@ class PostAssignmentsController < ApplicationController
         PostAssignment.paginated_post_more_like_this(params, post)
       end
     else
-      Rails.cache.fetch("index_#{@class_name}_#{@school}") do
+      Rails.cache.fetch("index_#{@class_name}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
         PostAssignment.paginated_post_conditions_with_option(params, @school)
       end
     end

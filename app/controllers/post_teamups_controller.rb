@@ -22,7 +22,7 @@ class PostTeamupsController < ApplicationController
     else
       @teamup_category_id = params[:teamup_category_id]
       @teamup_category_id ||= TeamupCategory.find(:first).id
-      Rails.cache.fetch("index_#{@class_name}_category#{@teamup_category_id}_#{@school}") do
+      Rails.cache.fetch("index_#{@class_name}_category#{@teamup_category_id}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
         PostTeamup.paginated_post_conditions_with_option(params, @school, @teamup_category_id)
       end
     end

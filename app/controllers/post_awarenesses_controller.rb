@@ -21,7 +21,7 @@ class PostAwarenessesController < ApplicationController
     else
       @awareness_type_id = params[:awareness_type_id]
       @awareness_type_id ||= AwarenessType.find(:first).id
-      Rails.cache.fetch("index_#{@class_name}_type#{@awareness_type_id}_#{@school}") do
+      Rails.cache.fetch("index_#{@class_name}_type#{@awareness_type_id}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
         PostAwareness.paginated_post_conditions_with_option(params, @school, @awareness_type_id)
       end
     end

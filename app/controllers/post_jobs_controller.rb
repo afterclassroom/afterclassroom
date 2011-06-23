@@ -22,7 +22,7 @@ class PostJobsController < ApplicationController
     else
       @job_type_id = params[:job_type_id]
       @job_type_id ||= JobType.find(:first).id
-      Rails.cache.fetch("index_#{@class_name}_type#{@job_type_id}_#{@school}") do
+      Rails.cache.fetch("index_#{@class_name}_type#{@job_type_id}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
         PostJob.paginated_post_conditions_with_option(params, @school, @job_type_id)
       end
     end

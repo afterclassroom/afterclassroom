@@ -21,7 +21,7 @@ class PostBooksController < ApplicationController
     else
       @book_type_id = params[:book_type_id]
       @book_type_id ||= BookType.find(:first).id
-      Rails.cache.fetch("index_#{@class_name}_type#{@book_type_id}_#{@school}") do
+      Rails.cache.fetch("index_#{@class_name}_type#{@book_type_id}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
         PostBook.paginated_post_conditions_with_option(params, @school, @book_type_id)
       end
     end
