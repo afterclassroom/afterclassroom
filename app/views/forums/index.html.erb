@@ -232,7 +232,7 @@
           },
           help_content: {
             required : true,
-            minlength: 50
+            minlength: 10
           }
         }
       });
@@ -255,7 +255,6 @@
         },
         error: function(er){
           callagain(forum_id);
-          //alert('Failed to communicate with server: '+er);
         }
       });
     });
