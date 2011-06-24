@@ -43,6 +43,10 @@
             <div class="inp-formS">
               <%= text_field_tag "name", "", :id => "name", :value => @notification.name %> <br/>
             </div>
+						<div class="reqLa"><strong>Notification label</strong></div>
+            <div class="inp-formS">
+              <%= text_field_tag "label", "", :id => "label", :value => @notification.label %> <br/>
+            </div>
             <br/>
             SMS <%= check_box_tag("sms", @notification.id, checked = @notification.sms_allow  )%>
             Email <%= check_box_tag("email", @notification.id, checked = @notification.email_allow )%>

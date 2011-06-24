@@ -20,7 +20,7 @@
               list_cats = [
                 ["Choose category", ""],
                 ["AfterClassroom", "AfterClassroom"],
-				["Share a Story", "Share a Story"],
+								["Share a Story", "Share a Story"],
                 ["Photos", "Photos"],
                 ["Music", "Music"],
                 ["My Lounge Comments","My Lounge Comments"]
@@ -42,6 +42,10 @@
             <div class="reqLa"><strong>Notification name</strong></div>
             <div class="inp-formS">
               <%= text_field_tag "name", "", :id => "name", :value => @notification.name %> <br/>
+            </div>
+						<div class="reqLa"><strong>Notification label</strong></div>
+            <div class="inp-formS">
+              <%= text_field_tag "label", "", :id => "label", :value => @notification.label %> <br/>
             </div>
             <br/>
 

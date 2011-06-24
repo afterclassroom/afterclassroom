@@ -54,10 +54,7 @@ Afterclassroom::Application.configure do
   REST_AUTH_DIGEST_STRETCHES = 15
   
   # Paperclip
-  PAPERCLIP_STORAGE_OPTIONS = {:storage => :s3,
-    :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :path => ":attachment/:id/:basename_:style.:extension"
-  }
+  PAPERCLIP_STORAGE_OPTIONS = {}
   Paperclip::Railtie.insert
   Paperclip.options[:command_path] = "/usr/bin/"
 end

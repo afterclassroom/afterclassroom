@@ -81,5 +81,21 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
   
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{current_path} && whenever --update-crontab #{application}"
+  end
   
+  after "deploy:symlink", "deploy:solr:symlink"
+  after "deploy:symlink", "deploy:update_crontab"
+
+  namespace :solr do
+    desc <<-DESC
+    Symlink in-progress deployment to a shared Solr index.
+  DESC
+    task :symlink, :except => { :no_release => true } do
+      run "cd #{current_path} && rm -rf solr"
+      run "ln -nfs #{shared_path}/solr #{current_path}/solr"
+    end
+  end
 end
