@@ -198,36 +198,6 @@ class PostJobsController < ApplicationController
         tempfile = @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
         @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
         @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
-
-
-
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-        puts "====================="
-
-
       end
       if @post_job.save
         flash[:notice] = "Your post was successfully created."

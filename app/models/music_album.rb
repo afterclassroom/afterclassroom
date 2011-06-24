@@ -33,6 +33,6 @@ class MusicAlbum < ActiveRecord::Base
   end
   
   def another_music_albums
-    MusicAlbum.find(:all, :limit => 5, :conditions => ["id <> ?", self.id], :order => "created_at DESC")
+    self.user.music_albums.find(:all, :limit => 5, :conditions => ["id <> ?", self.id], :order => "rand()")
   end
 end
