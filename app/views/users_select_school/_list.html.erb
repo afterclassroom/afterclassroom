@@ -33,7 +33,7 @@
   <% end %>
 </ul>
 
-<script src="/javascripts/scroll-startstop.js" type="text/javascript"></script>
+<script src="/javascripts/scroll-startstop..js" type="text/javascript"></script>
 <script>
   $(function() {
         $(window).bind('scrollstart', function(){
@@ -48,10 +48,12 @@
 	});
   });
   $(function() {
-	$('div.signinItem,div#contDetLin,#select_school_form').hover(function() {		
+	$('div.signinItem,div#contDetLin,#select_school_form,div.popupNumb').hover(function() {
 	}, function() {
 		$('#country_menu,#state_menu,#city_menu,#school_menu').stop().hide();
 	});
   });
+  $(window).scroll(function() {
+        $("#country_menu,#state_menu,#city_menu,#school_menu").css("position","fixed");
+  });
 </script>
-
