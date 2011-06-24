@@ -37,6 +37,7 @@
         <div class="contMain">
             <%= yield %>
         </div>
+				<%= render :partial => "shared/post_comments/alert" %>
 				<%= render :partial => 'shared/javascript_load' %>
         <%= render :partial => 'shared/footer' %>
         <%= render :partial => 'shared/footer_menu_in' if logged_in? %>

@@ -31,10 +31,6 @@ namespace :db do
       create_demo_posts_qas
       create_demo_posts_events
 
-      # Create forum (Help) data
-#      create_demo_posts_forums
-
-
       # Exam schedule
       create_demo_posts_exam_schedules
       # Messages data

@@ -39,7 +39,7 @@
           <div><%= f.check_box :allow_search_by_email %></div>
           <div class="signincCheckTxt">Let others find my post on Afterclassroom if they have my email address.</div>
         </div>
-        <div class="btmCreAc" style="padding-left:110px"><a href="javascript:;" onclick="submit();"><%= submit_tag 'Create my account' %></a></div>
+        <div class="btmCreAc" style="padding-left:110px"><a href="javascript:;" onclick="submitt();"><%= submit_tag 'Create my account' %></a></div>
         <div class="signincCheck" style="padding-left:110px">
           By clicking "Create my account", you agree to Afterclassroom <%= link_to 'Terms of use', :controller => 'statics', :action => 'terms' %> and <%= link_to 'Privacy Policy', :controller => 'statics', :action => 'privacy' %>.
         </div>
@@ -55,12 +55,12 @@
 <!--Content-->
 
 <script type="text/javascript">
-  function submit(){
+  function submitt(){
     var result = $("#form_signup").validate({
 			meta: "validate"
     });
     if (result) {
-      $("#form_signup").submit();
+      $("#form_signup").submitt();
     }
   }
 

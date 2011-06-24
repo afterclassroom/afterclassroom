@@ -1,9 +1,17 @@
 <div class="postItem">
     <div class="postTit">
-        Share to
+        Sender
     </div>
     <div class="postInp">
-    	<%= @share.users.collect{|x| x.name}.join(", ") %>
+    	<%= @share.sender.name %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Recipient
+    </div>
+    <div class="postInp">
+    	<%= @share.recipients.collect{|x| x.name}.join(", ") %>
     </div>
 </div>
 <div class="postItem">

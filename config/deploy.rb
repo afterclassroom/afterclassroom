@@ -1,11 +1,12 @@
+set :stages, %w(staging production)
+set :default_stage, "staging"
+require 'capistrano/ext/multistage'
 require "whenever/capistrano"
 
 #############################################################
 # Application
 #############################################################
 set :application, "Afterclassroom"
-set :domain, "afterclassroom.com"
-set :deploy_to, "/var/www/after"
 
 #############################################################
 # Settings
@@ -17,18 +18,7 @@ default_run_options[:pty] = true # required for svn+ssh:// andf git:// sometimes
 
 set :use_sudo, true
 set :scm_verbose, true
-set :rails_env, "production"
 set :runner, nil
-
-#############################################################
-# Servers
-#############################################################
-
-set :user, "after"
-set :domain, "afterclassroom.com"
-
-server domain, :app, :web
-role :db, domain, :primary => true
 
 #############################################################
 # Git
@@ -41,6 +31,7 @@ set :repository, "git@github.com:afterclassroom/afterclassroom.git"
 set :remote, "origin"
 set :branch, "master"
 set :deploy_via, :remote_cache
+set :scm_verbose, true
 
 #############################################################
 # Passenger
@@ -63,6 +54,11 @@ namespace :deploy do
     master_database: 
       <<: *login 
       host: 50.19.138.30
+    staging:
+      adapter: mysql2
+      database: afterclassroom 
+      username: after 
+      password: after2011
     EOF
 
     put db_config, "#{release_path}/config/database.yml"
