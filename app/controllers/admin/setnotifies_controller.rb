@@ -26,7 +26,7 @@ class Admin::SetnotifiesController < ApplicationController
 
     @notification = Notification.find(params[:editing_id])
     @notification.name = params[:name].to_s
-
+    @notification.label = params[:label].to_s
     if params[:email].to_s != ""
       @notification.email_allow = true
     else
@@ -64,7 +64,8 @@ class Admin::SetnotifiesController < ApplicationController
 
     @notification = Notification.new
     @notification.name = params[:name].to_s
-
+    @notification.label = params[:label].to_s
+    
     if params[:email].to_s == "on"
       @notification.email_allow = true
     else

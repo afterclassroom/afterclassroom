@@ -5,7 +5,7 @@
     </div><% end %>
   <div class="AsDcomImg"><%= show_image_user_post(comnt.user) %></div>
   <div class="AsDcomItemR">
-    <div class="AsDcomName">Answer by<%= show_user_post(comnt.user) %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %></div>
+    <div class="AsDcomName"><%= show_user_post(comnt.user) %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %></div>
     <div class="AsDcomDes"><%= comnt.comment %></div>
     <div class="AsDcomRe">
       <div id="rate_comment_<%= comnt.id %>">
