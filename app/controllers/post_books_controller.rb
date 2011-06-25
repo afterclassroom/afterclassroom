@@ -1,7 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostBooksController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag]
+  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :good_books, :dont_buy]
   before_filter :cas_user
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_books, :dont_buy]
   #before_filter :login_required, :except => [:index, :show, :search, :tag]

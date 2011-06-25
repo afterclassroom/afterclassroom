@@ -5,7 +5,7 @@
                 <%= raw("<div>#{image_tag(@user.avatar.url(:medium), {:id => "avatar"})}</div>") %>
             </div>
             <div class="proItem">
-                <%= link_to "#{@user.full_name}'s Stories (#{@user.stories.size})", show_stories_user_path(@user) %>
+                <%= link_to "#{@user.full_name}'s Stories (#{@user.stories.where(:state => "share").size})", show_stories_user_path(@user) %>
             </div>
             <div class="proItem">
                 <%= link_to "#{@user.full_name}'s Photos (#{@user.photos.size})", show_photos_user_path(@user) %>
