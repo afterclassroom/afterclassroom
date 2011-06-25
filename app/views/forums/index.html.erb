@@ -58,7 +58,9 @@
           </div>
         </div>
         <div class="helpCR">
-          <div class="helpTitle"><a href="#">Community Help Forum <%= "-Popular discussions" if controller.action_name == "see_all_top_fr" %></a></div>
+          <div class="helpTitle">
+            <a href="javascript:;" style="color: #6F6F63;" onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">Community Help Forum <%= "-Popular discussions" if controller.action_name == "see_all_top_fr" %></a>
+          </div>
           <% @forums.each do |fr| %>
             <div class="helpItem"  style="border-bottom: 1px solid #DBDBDB;">
 
@@ -70,15 +72,19 @@
               <div class="helpT" style="margin-left:62px;">
                 <%= show_user_post(fr.user) %>
               </div>
-              <div class="forumTit" style='font-weight: bold;margin-left:62px'><a href="#"><%= fr.title %></a></div>
+              <div class="forumTit" style='font-weight: bold;margin-left:62px;'>
+                <a href="javascript:;" style='color: #6F6F63' onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'"><%= fr.title %></a>
+              </div>
               <div class="helpD"  style="margin-left:62px; height: 100%;"><%= fr.content %></div>
 
 
 
 
-              <div class="helpDis" style="margin-left: 62px;"><a href="javascript:;">
+              <div class="helpDis" style="margin-left: 62px;">
+                <a href="javascript:;" style='color: #6F6F63' onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">
                   <%= distance_of_time_in_words_to_now(fr.created_at, false) + " ago." %>
-                </a></div>
+                </a>
+              </div>
               <div class="comH" style="margin-left: 177px;"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
               <div class="slidingDivH1" style="display:none;" id="forum_list_comment_<%= fr.id %>">
                 <% if fr.comments.length > 2 %>
@@ -155,7 +161,9 @@
     </div>
     <% @top_frs.each do |fr| %>
       <div class="popuDes"><b><%= fr.title %></b>  <%= fr.content %></div>
-      <div class="popuRe"><a href="javascript:;"><%= fr.comments.length %> replies</a></div>
+      <div class="popuRe">
+        <a href="javascript:;" style='color: #6F6F63' onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'"><%= fr.comments.length %> replies</a>
+      </div>
     <% end %>
   </div>
 </div>
