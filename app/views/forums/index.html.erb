@@ -218,36 +218,37 @@
   });
 
   $("input[id*='save_']").click(function(){
-
-  var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
-  if (strContent == '')
-  alert('invalid');
-  else{
-  forum_id = $(this).attr('id').split('_')[1];
-  AddCommentWithAjax(strContent,forum_id);
-  /* reset the comment textarea to empty value */
-  $(this).parents().find('form').eq(0).find('textarea').attr('value','');
-  }
+  
+    var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
+    
+    if (strContent == '')
+      alert('Please write something ... ');
+    else{
+      forum_id = $(this).attr('id').split('_')[1];
+      AddCommentWithAjax(strContent,forum_id);
+      /* reset the comment textarea to empty value */
+      $(this).parents().find('form').eq(0).find('textarea').attr('value','');
+    }
   });
+  
 
-
-
+  
   $('#add_new_fr').click(function(){
-  $("#new_fr_form").validate({ rules:
-  { txt_help :
-  {
-  required : true,
-  minlength: 10
-  },
-  help_content: {
-  required : true,
-  minlength: 10
-  }
-  }
+    $("#new_fr_form").validate({ rules:
+        { txt_help :
+          {
+          required : true,
+          minlength: 10
+        },
+        help_content: {
+          required : true,
+          minlength: 10
+        }
+      }
+    });
+    //(this).parents().find('form').eq(0).submit();
   });
-  //(this).parents().find('form').eq(0).submit();
-  });
-
+  
 
   /*BEGIN the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
   $("a[id*='view_all_']").click(function(){
