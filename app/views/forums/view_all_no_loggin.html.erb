@@ -1,5 +1,5 @@
 <% @fr.comments.each do |cmt| %>
-    <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
+    <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 62px; width: 342px;">
   <% if logged_in? %>
       <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
         <img src="/images/icon-ing.gif"/>
@@ -7,7 +7,7 @@
     <% end %>
     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
 
-    <div class="proListR">
+    <div class="proListR" style="width: 285px;">
       <div class="AfterClCom">
         <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a> <%= cmt.comment %>
       </div>
@@ -19,7 +19,7 @@
   </div>
 
 <% end %>
-<div style="margin-left: 45px;" class="proList">
+<div style="margin-left: 62px; width: 342px;" class="proList">
   <div class="writeCom">
     <%=  link_to_require_login("Write something...") %>
   </div>

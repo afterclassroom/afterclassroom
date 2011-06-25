@@ -82,7 +82,7 @@
               <div class="comH" style="margin-left: 177px;"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
               <div class="slidingDivH1" style="display:none;" id="forum_list_comment_<%= fr.id %>">
                 <% if fr.comments.length > 2 %>
-                  <div class="proList" style="margin-left: 62px;">
+                  <div class="proList" style="margin-left: 62px; width: 342px;">
                     <div class="writeCom">
                       <% if logged_in? %>
                         <%= link_to "View all", {:controller => "forums", :action => "view_all_comments", :forum_id => fr.id}, :remote => true %>
@@ -94,14 +94,14 @@
                 <% end %><!-- end if -->
                 <% count = 0 %>
                 <% fr.comments.each do |cmt| %>
-                  <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 62px;">
-                    <% if logged_in? && cmt.user == current_user %>
+                  <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 62px; width: 342px;">
+                    <% if logged_in? && (cmt.user == current_user || fr.user == current_user ) %>
                       <div onclick="DeleteForumComment(<%= fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
                         <img src="/images/icon-ing.gif"/>
                       </div>
                     <% end %>
                     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
-                    <div class="proListR">
+                    <div class="proListR" style="width: 285px;">
                       <div class="AfterClCom">
                         <%= show_user_post(cmt.user) %>  <%= cmt.comment %>
                       </div>
@@ -116,17 +116,17 @@
                   <% end %><!-- end if count -->
                 <% end %><!-- end fr.comments.each -->
                 <% if logged_in? %>
-                  <div class="proListH1" style="margin-left: 62px;">
+                  <div class="proListH1" style="margin-left: 62px; width: 342px;">
                     <form>
                       <div class="proListPic"><%= show_image_user_post(current_user) %></div>
-                      <div class="proListR">
+                      <div class="proListR" style="width: 285px;">
                         <div class="writeCom"><textarea name="comment" id="comment_<%= fr.id.to_s %>"></textarea></div>
                       </div>
                       <div class="proAttR"><input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
                     </form>
                   </div>
                 <% else %>
-                  <div style="margin-left: 62px;" class="proList">
+                  <div style="margin-left: 62px;width: 342px;" class="proList">
                     <div class="writeCom">
                       <%=  link_to_require_login("Write something...") %>
                     </div>
