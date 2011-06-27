@@ -142,7 +142,10 @@
             </div>
           <% end %>
           <% if controller.action_name == "index" %>
+          <div class="assPage">
+            <span class="numPage"></span>
             <%= will_paginate @forums %>
+          </div>
           <% elsif controller.action_name == "see_all_top_fr" %>
             <%= will_paginate(@forums, :params => { :controller => "forums", :action => "see_all_top_fr" }) %>
           <% end %>

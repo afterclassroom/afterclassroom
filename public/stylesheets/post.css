@@ -2269,6 +2269,10 @@ span.btmCom a:hover {
 .jobComMenu a:hover {
     cursor: text;
 }
+.cover a:hover{
+    color: #d00;
+    cursor: pointer;
+}
 
 .wantJob h1.col300Title {
     padding-left: 28px;
