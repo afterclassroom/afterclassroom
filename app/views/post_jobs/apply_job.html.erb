@@ -1,7 +1,7 @@
 <div style="display: inline; padding-top: 1px">
   <%= form_for :apply_letter, :url => {:action => "save_letter"}, :html =>{:multipart => true, :id => "form_letter"} do |f| %>
    
-  <span class="aaaa" style="cursor:pointer"><a id="upload_letter" href="javascript:;">Cover Letter</a></span>
+  <a id="upload_letter" href="javascript:;">Cover Letter</a>
    
   <% end %>
 </div>
@@ -210,8 +210,3 @@
 
   });
 </script>
-<style>
-  .aaaa a{
-    cursor: pointer;
-}
-</style>

@@ -3,17 +3,17 @@
     <div class="slsItemLN"><%= story.count_view %></div>
     <div class="slsItemLV">viewed</div>
   </div>
-  <div class="assImg"><%= link_to raw("<div>#{display_image(story)}</div>"), user_story_path(current_user, story) %></div>
+  <div class="assImg" style="padding-bottom: 16px;"><%= link_to raw("<div>#{display_image(story)}</div>"), user_story_path(current_user, story) %></div>
   <div class="slsItemRr">
+    <div class="check">
+      <%= check_box_tag "story_id", story.id %>
+    </div>
     <div class="slsItemTitle"><%= link_to story.title, user_story_path(current_user, story) %></div>
     <div class="slsItemTime"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></div>
-    <div class="slsItemDesYoSt">
+    <div class="slsItemDesYoSt" style="width:465px">
       <%= truncate_words(story.content) %>
     </div>
   </div>
-</div>
-<div class="check">
-  <%= check_box_tag "story_id", story.id %>
 </div>
 
 
