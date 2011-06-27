@@ -57,7 +57,7 @@
                 <td class="postCate">
                     <%= link_to p.post_category.name, "#{user_post_managements_url(current_user)}?category=#{p.post_category.class_name}" %>
                 </td>
-                <td class="postTitle check">
+                <td class="postTitle">
                     <%= check_box_tag "post_id", p.id %><%= link_to p.title, link_to_show_post(p), :target => "_blank" %>
                     <div>
                         <%= link_to "Click here to edit", link_to_edit_post(p), :id => "edit_post_#{p.id}" %>

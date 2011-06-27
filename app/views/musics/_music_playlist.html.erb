@@ -24,7 +24,10 @@
     <a href="javascript:void(0);" onClick="$('#playlist_list').playlist('play');">Play</a>
 </div>
 <% else %>
-No file<% end %>
+<div style="text-align: center;">
+    No song
+</div>
+<% end %>
 <script type="text/javascript">
     $(document).ready(function(){
         $("#playlist_list").playlist({

@@ -10,7 +10,8 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.xml
   def index
-    @srt, @str_f = "DESC"
+    @srt = "DESC"
+    @str_f = "DESC"
     @srt = params[:sort] if params[:sort]
     @srt_f = params[:sort_f] if params[:sort_f]
     @friend_shares = current_user.friend_shares.find(:all, :order => "created_at #{@srt_f}")

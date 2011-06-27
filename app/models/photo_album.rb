@@ -29,6 +29,6 @@ class PhotoAlbum < ActiveRecord::Base
   end
   
   def another_photo_albums
-    PhotoAlbum.find(:all, :limit => 5, :conditions => ["id <> ?", self.id], :order => "created_at DESC")
+    self.user.photo_albums.find(:all, :limit => 5, :conditions => ["id <> ?", self.id], :order => "rand()")
   end
 end

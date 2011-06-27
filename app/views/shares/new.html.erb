@@ -5,9 +5,12 @@
 <!--Content-->
 <div class="contDetL">
   <div class="contDetLin post">
-    <div class="AsDTop">
-      <h1 class="titleH1">Share file</h1>
-    </div>
+    <div class="slsShare">
+          <div class="slsShareL">Share file</div>
+          <div class="slsShareR">
+            <%= link_to "My Share", user_shares_url(current_user), :class => "slsShareW" %>
+          </div>
+        </div>
     <div class="postCont">
       <%= render 'form' %>
     </div>

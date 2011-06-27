@@ -101,14 +101,13 @@ class PostsController < ApplicationController
   end
   
   def delete_comment
-    post_id = params[:post_id]
-    comment_id = params[:comment_id]
-    post = Post.find(post_id)
-    comment = post.comments.find(comment_id)
-    if post.user == current_user or comment.user == current_user
+    commentable_id = params[:post_id]
+    id = params[:comment_id]
+    comment = Comment.find_by_id_and_commentable_id(id, commentable_id)
+    if comment.commentable.user == current_user or comment.user == current_user
       comment.destroy
     end
-    render :text => post.comments.size
+    render :text => comment.commentable.comments.size
   end
   
   def rate_comment

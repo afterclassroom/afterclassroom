@@ -1,72 +1,134 @@
 <% content_for :menu_top_student_lounge do -%>
-  <%= render :partial => '/shared/submenu' %>
+<%= render :partial => '/shared/submenu' %>
 <% end -%>
-
 <!--Content-->
 <div class="contDetL">
-  <div class="contDetLin post">
-  	<div class="AsDTop">
-      <h1 class="titleH1">Friend Share</h1>
+    <div class="contDetLin post">
+    		<div class="slsShare">
+          <div class="slsShareL">Friend Share</div>
+          <div class="slsShareR">
+            <%= link_to "Share", new_user_share_url(current_user), :class => "slsShareW" %>
+          </div>
+        </div>
+        <div class="postCont">
+            <div class="tablePost">
+                <table cellspacing="0" cellpadding="0" style="width: 100%;">
+                    <tbody>
+                        <tr class="postHead">
+                            <th class="post1">
+                                <div class="date" id="date">
+                                    <a href="<%= user_shares_url(current_user) %>?sort_f=<%= @srt_f == "DESC" ? "ASC" : "DESC" %>">Date</a>
+                                </div>
+                            </th>
+                            <th class="post4">
+                                <div>
+                                    Title
+                                </div>
+                            </th>
+                            <th class="post6">
+                                <div>
+                                    Sender
+                                </div>
+                            </th>
+                            <th class="post5" style="width:11%;">
+                                <div style="width:48px;">
+                                    Action
+                                </div>
+                            </th>
+                        </tr>
+                        <% if @friend_shares.size > 0 %>
+                        <% @friend_shares.each do |s| %>
+                        <tr>
+                            <td>
+                                <%= s.created_at.strftime("%d %b %y") %>
+                            </td>
+                            <td class="postCate">
+                                <a href="javascript:;"><%= link_to(s.title, "#{user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail") %></a>
+                            </td>
+                            <td class="postTitle">
+                                <%= s.sender.name %>
+                            </td>
+                            <td class="postPro">
+                                <a href="javascript:downloadFile('<%= s.attach.url %>')" class="downarrow">Download</a>
+                            </td>
+                        </tr>
+                        <% end %>
+                        <% else %>
+                        <tr>
+                            <td colspan="4">
+                                No result found
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="slsShare">
+          <div class="slsShareL">My Share</div>
+          <div class="slsShareR">
+            <%= link_to "Share", new_user_share_url(current_user), :class => "slsShareW" %>
+          </div>
+        </div>
+        <div class="postCont">
+            <div class="tablePost">
+                <table cellspacing="0" cellpadding="0" style="width: 100%;">
+                    <tbody>
+                        <tr class="postHead">
+                            <th class="post1">
+                                <div class="date" id="date">
+                                    <a href="<%= user_shares_url(current_user) %>?sort=<%= @srt == "DESC" ? "ASC" : "DESC" %>">Date</a>
+                                </div>
+                            </th>
+                            <th class="post4">
+                                <div>
+                                    Title
+                                </div>
+                            </th>
+                            <th class="post6">
+                                <div>
+                                    Recipient
+                                </div>
+                            </th>
+                            <th class="post5" style="width:11%;">
+                                <div style="width:48px;">
+                                    Action
+                                </div>
+                            </th>
+                        </tr>
+                        <% if @shares.size > 0 %>
+                        <% @shares.each do |s| %>
+                        <tr>
+                            <td>
+                                <%= s.created_at.strftime("%d %b %y") %>
+                            </td>
+                            <td class="postCate">
+                                <a href="javascript:;"><%= link_to(s.title, "#{user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail") %></a>
+                            </td>
+                            <td class="postTitle">
+                                <%= s.recipients.collect{|x| x.name}.join(", ") %>
+                            </td>
+                            <td class="postPro">
+                                <%= link_to "Share", "#{edit_user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file" %>| <%= link_to "Del", user_share_path(current_user, s), :confirm => "Are you sure?", :method => :delete %>
+                            </td>
+                        </tr>
+                        <% end %>
+                        <% else %>
+                        <tr>
+                            <td colspan="4">
+                                No result found
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div class="postCont">
-      <div class="tablePost"><table cellspacing="0" cellpadding="0" style="width: 100%;">
-          <tbody><tr class="postHead">
-              <th class="post1"><div class="date" id="date"><a href="<%= user_shares_url(current_user) %>?sort_f=<%= @srt_f == "DESC" ? "ASC" : "DESC" %>">Date</a></div></th>
-              <th class="post4"><div>Title</div></th>
-              <th class="post6"><div>Sender</div></th>
-              <th class="post5" style="width:11%;"><div style="width:48px;">Action</div></th>
-            </tr>
-            <% if @friend_shares.size > 0 %>
-              <%  @friend_shares.each do |s| %>
-                <tr>
-                  <td><%= s.created_at.strftime("%d %b %y") %></td>
-                  <td class="postCate"><a href="javascript:;"><%= link_to(s.title, "#{user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail") %></a></td>
-                  <td class="postTitle"><%= s.sender.name %></td>
-                  <td class="postPro"><a href="javascript:downloadFile('<%= s.attach.url %>')" class="downarrow">Download</a></td>
-                </tr>
-              <% end %>
-            <% else %>
-              <tr>
-                <td colspan="4">No result found</td>
-              </tr>
-            <% end %>
-          </tbody></table>
-      </div>
-    </div>
-    <div class="AsDTop">
-      <h1 class="titleH1">My Share</h1>
-    </div>
-    <div class="postCont">
-      <div class="tablePost"><table cellspacing="0" cellpadding="0" style="width: 100%;">
-          <tbody><tr class="postHead">
-              <th class="post1"><div class="date" id="date"><a href="<%= user_shares_url(current_user) %>?sort=<%= @srt == "DESC" ? "ASC" : "DESC" %>">Date</a></div></th>
-              <th class="post4"><div>Title</div></th>
-              <th class="post6"><div>Recipient</div></th>
-              <th class="post5" style="width:11%;"><div style="width:48px;">Action</div></th>
-            </tr>
-            <% if @shares.size > 0 %>
-              <%  @shares.each do |s| %>
-                <tr>
-                  <td><%= s.created_at.strftime("%d %b %y") %></td>
-                  <td class="postCate"><a href="javascript:;"><%= link_to(s.title, "#{user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file detail") %></a></td>
-                  <td class="postTitle"><%= s.recipients.collect{|x| x.name}.join(", ") %></td>
-                  <td class="postPro"><%= link_to "Share", "#{edit_user_share_url(current_user, s)}?height=300&width=540", :class => "thickbox", :title => "Share file" %> | <%= link_to "Del", user_share_path(current_user, s), :confirm => "Are you sure?", :method => :delete %></td>
-                </tr>
-              <% end %>
-            <% else %>
-              <tr>
-                <td colspan="4">No result found</td>
-              </tr>
-            <% end %>
-          </tbody></table>
-      </div>
-    </div>
-  </div>
 </div>
-
 <div class="contMainR">
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
 </div>
 <!--Content-->

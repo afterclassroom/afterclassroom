@@ -17,7 +17,7 @@
                         data: 'comment_id=' + comment_id + '&post_id=' + post_id,
                         success: function(html){
                             $('#post_' + post_id + '_comment_' + comment_id).toggle("slow");
-                            $('#post_' + post_id + '_comments').html(html);
+                            $('#comment_count').html(html);
                         }
                     });
                 },
