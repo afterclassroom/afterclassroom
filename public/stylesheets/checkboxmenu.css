@@ -11,17 +11,7 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
-.slsItemTitle{
-    width: 465px;
-}
-.slsItemRr{
-    margin-left: 140px;
-}
-#mytable .check{
-    margin-left: 475px;
-    position: absolute;
-    margin-top: -2px;
-}
+
 .actionsBox{
     font-size:13px;
     font-family:Helvetica,Arial,Verdana;
