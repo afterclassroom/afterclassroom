@@ -19,7 +19,7 @@ class MusicsController < ApplicationController
   # GET /musics.xml
   def index
     @friend_musics = []
-    @my_music_albums = current_user.music_albums.paginate :page => params[:page], :per_page => 25
+    @my_music_albums = current_user.music_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 25
     arr_user_id = []
     current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_musics")}
     @my_friend_music_albums = if arr_user_id.size > 0

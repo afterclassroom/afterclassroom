@@ -7,7 +7,7 @@
             <div class="inboxLeft">
                 <div class="slsShare">
                     <div class="slsShareL">
-                        Photo Albums
+                        Update Photo Albums
                     </div>
                     <div class="slsShareR">
                         <%= render :partial => "photos/menu" %>
@@ -19,7 +19,7 @@
                     <div class="slsTop">
                         <div class="photoRow" id="mytable">
                             <% @my_photo_albums.each do |m_p| %>
-                            <%= render :partial => "item_my_album", :locals => {:album => m_p} %>
+                            	<%= render :partial => "item_my_album", :locals => {:album => m_p} %>
                             <% end %>
                         </div>
                     </div>
@@ -39,15 +39,3 @@
 </div>
 
 <%= render :partial => "action_box_menu" %>
-
-<script type="text/javascript">
-    function submit(){
-        $("#form_new").submit();
-    }
-    
-    $().ready(function(){
-        $("#form_new").validate({
-            errorLabelContainer: $("#form_new div.stoError")
-        });
-    });
-</script>

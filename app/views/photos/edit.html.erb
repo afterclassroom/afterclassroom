@@ -43,10 +43,11 @@
 </div>
 <script type="text/javascript">
     function submit(){
-        $("#form").submit();
+        var result = $("#form").validate({
+            meta: "validate"
+        });
+        if (result) {
+            $("#form").submit();
+        }
     }
-    
-    $().ready(function(){
-        $("#form").validate();
-    });
 </script>
