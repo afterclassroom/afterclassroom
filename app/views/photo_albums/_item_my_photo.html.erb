@@ -1,4 +1,4 @@
 <div class="photoItem">
-  <div class="photoImg"><%= link_to raw("<div>#{image_tag photo.photo_attach.url(:thumb)}</div>"), user_photo_url(current_user, photo) %></div>
-  <div class="photoNamePho"><%= check_box_tag "photo_id", photo.id %><span><%= photo.title %></span></div>
+  <div class="photoImg"><%= link_to raw("<div>#{image_tag photo.photo_attach.url(:thumb)}</div>"), user_photo_url(current_user, photo) %><%= check_box_tag "photo_id", photo.id %></div>
+  <div class="photoNamePho"><span><%= truncate_words(photo.title, 5) %></span></div>
 </div>

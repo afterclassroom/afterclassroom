@@ -529,8 +529,6 @@
     width: 100px;
     word-wrap: break-word;
     margin-top: 4px;
-    text-indent: 16px;
-    margin-left: -15px;
 }
 .photoNamePhoto{
     font-size: 10px;
@@ -4796,7 +4794,7 @@ div.navigation a.next:hover {
     width:250px;
 }
 .stoExBtm{
-    padding-left:77px;
+    padding-left:13px;
     padding-top:5px;
 }
 .stoExBtm div{
@@ -4848,7 +4846,7 @@ div.navigation a.next:hover {
 }
 /******* Student Lounges Photo ************/
 .slStoryL .photoRow{
-    padding-left:10px;
+    padding-left:50px;
     clear:both;
     padding-top:3px;
     overflow:hidden;
@@ -5073,13 +5071,13 @@ span.btmTag a:hover{
     background:url('/images/msaddH.png') no-repeat left top;
 }
 .musicRow{
-    padding:15px 20px;
+    padding:15px 58px;
     overflow:hidden;
     clear:both;
     _height:100%;
 }
 .musicL{
-    width:125px;
+    width:107px;
     float:left;
     margin-bottom:10px
 }
@@ -5092,8 +5090,9 @@ span.btmTag a:hover{
     float:left;
 }
 .musicL .mostMSR, .musicR .mostMSR{
-    width:42px;
+    width:25px;
     float:right;
+		margin-top:-80px;
 }
 .musicB{
     clear:both;

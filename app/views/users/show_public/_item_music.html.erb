@@ -4,7 +4,7 @@
     <div class="mostMSA"><%= link_to "", show_music_album_user_url(music_album.user, :music_album_id => music_album), :class => "mostMSPlay" %></div>
   </div>
   <div class="musicB">
-    <div class="musicN"><%= link_to music_album.name, show_music_album_user_url(music_album.user, :music_album_id => music_album) %></div>
-    <div class="musicS"><%= pluralize(music_album.musics.size, "song") %></div>
+  	<div class="musicS"><%= pluralize(music_album.musics.size, "song") %></div>
+    <div class="musicN"><%= link_to truncate_words(music_album.name, 5), show_music_album_user_url(music_album.user, :music_album_id => music_album) %></div>
   </div>
 </div>

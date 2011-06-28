@@ -133,7 +133,7 @@ class UsersController < ApplicationController
   
   def show_photos
     if check_private_permission(@user, "my_photos")
-      @photo_albums = @user.photo_albums.paginate :page => params[:page], :per_page => 10
+      @photo_albums = @user.photo_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 16
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
@@ -152,7 +152,7 @@ class UsersController < ApplicationController
   
   def show_musics
     if check_private_permission(@user, "my_musics")
-      @music_albums = @user.music_albums.paginate :page => params[:page], :per_page => 10
+      @music_albums = @user.music_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 16
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
@@ -175,7 +175,7 @@ class UsersController < ApplicationController
   
   def show_friends
     if check_private_permission(@user, "my_friends")
-      @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
+      @friends = @user.user_friends.order("name ASC").paginate :page => params[:page], :per_page => 10
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
@@ -184,7 +184,7 @@ class UsersController < ApplicationController
   
   def show_fans
     if check_private_permission(@user, "my_fans")
-      fan_ids = @user.fans.collect{|f| f.user_id}
+      fan_ids = @user.fans.order("created_at DESC").collect{|f| f.user_id}
       
       fan_results = User.ez_find(:all) do |user|
         user.id === fan_ids
