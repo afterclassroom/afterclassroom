@@ -77,15 +77,7 @@
               </div>
               <div class="helpD"  style="margin-left:62px; height: 100%;"><%= fr.content %></div>
 
-
-
-
-              <div class="helpDis" style="margin-left: 62px;">
-                <a href="javascript:;" style='color: #6F6F63' onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">
-                  <%= distance_of_time_in_words_to_now(fr.created_at, false) + " ago." %>
-                </a>
-              </div>
-              <div class="comH" style="margin-left: 177px;"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
+              <div class="comH" style="margin-left: 62px;margin-top: 2px;"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
               <div class="slidingDivH1" style="display:none;" id="forum_list_comment_<%= fr.id %>">
                 <% if fr.comments.length > 2 %>
                   <div class="proList" style="margin-left: 62px; width: 342px;">
@@ -139,13 +131,19 @@
                   </div>
                 <% end %>
               </div>
+
+              <div class="helpDis" style="margin-left: 160px; margin-top: -15px; position: absolute;">
+                <a href="javascript:;" style='color: #6F6F63' onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">
+                  <%= distance_of_time_in_words_to_now(fr.created_at, false) + " ago." %>
+                </a>
+              </div>
             </div>
           <% end %>
           <% if controller.action_name == "index" %>
-          <div class="assPage">
-            <span class="numPage"></span>
-            <%= will_paginate @forums %>
-          </div>
+            <div class="assPage">
+              <span class="numPage"></span>
+              <%= will_paginate @forums %>
+            </div>
           <% elsif controller.action_name == "see_all_top_fr" %>
             <%= will_paginate(@forums, :params => { :controller => "forums", :action => "see_all_top_fr" }) %>
           <% end %>
@@ -154,7 +152,28 @@
     </div>
   </div>
 </div>
-<div class="contMainRH">
+
+<div class="contMainRHQ">
+  <div class="popuTopQ">
+    <div class="popuTitleQ">Post A Question</div>
+  </div>
+  <div id="contentDivImg">
+    <% if logged_in? %>
+      <form id="new_fr_form" action="<%= addfr_forums_path %>">
+        <div class="postHelp" style="margin-left:20px;">
+          <div class="reqLa"><label>Title</label></div>
+          <div class="reqTi"><input type="text" id="txt_help" name="txt_help" size="22"></input></div>
+          <div class="reqLa"><label>Desription</label></div>
+          <div style="margin: 3px 0pt;" class="reqEn"><textarea id="help_content" name="help_content"></textarea></div>
+          <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+          <div style="margin-top: 5px;" class="submit"><input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"></input></div>
+        </div>
+      </form>
+    <% end %>
+  </div>
+</div>
+
+<div class="contMainRH" style="margin-top:20px;">
   <div class="popu">
     <div class="popuTop">
       <div class="popuTitle">Popular Discussions</div>
@@ -221,37 +240,37 @@
   });
 
   $("input[id*='save_']").click(function(){
-  
-    var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
-    
-    if (strContent == '')
-      alert('Please write something ... ');
-    else{
-      forum_id = $(this).attr('id').split('_')[1];
-      AddCommentWithAjax(strContent,forum_id);
-      /* reset the comment textarea to empty value */
-      $(this).parents().find('form').eq(0).find('textarea').attr('value','');
-    }
-  });
-  
 
-  
-  $('#add_new_fr').click(function(){
-    $("#new_fr_form").validate({ rules:
-        { txt_help :
-          {
-          required : true,
-          minlength: 10
-        },
-        help_content: {
-          required : true,
-          minlength: 10
-        }
-      }
-    });
-    //(this).parents().find('form').eq(0).submit();
+  var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
+
+  if (strContent == '')
+  alert('Please write something ... ');
+  else{
+  forum_id = $(this).attr('id').split('_')[1];
+  AddCommentWithAjax(strContent,forum_id);
+  /* reset the comment textarea to empty value */
+  $(this).parents().find('form').eq(0).find('textarea').attr('value','');
+  }
   });
-  
+
+
+
+  $('#add_new_fr').click(function(){
+  $("#new_fr_form").validate({ rules:
+  { txt_help :
+  {
+  required : true,
+  minlength: 10
+  },
+  help_content: {
+  required : true,
+  minlength: 10
+  }
+  }
+  });
+  //(this).parents().find('form').eq(0).submit();
+  });
+
 
   /*BEGIN the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
   $("a[id*='view_all_']").click(function(){
@@ -347,6 +366,22 @@
   });
   }
 
-
 </script>
-
+<style>
+  .contMainRHQ{
+    float: left;
+  }
+  .contMainRHQ .popuTopQ{
+    border-bottom: 1px solid #DBDBDB;
+    overflow: hidden;
+    padding-bottom: 8px;
+    padding-top: 5px;
+    width: 250px;
+    margin-left: 20px;
+  }
+  .popuTitleQ{
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+  }
+</style>
