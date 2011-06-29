@@ -65,8 +65,10 @@ namespace :deploy do
   end
 
   task :start, :roles => :app do
-  # Bundle
+    # Bundle
     run "cd #{current_path} && bundle install"
+    # Remove assets
+    run "rm -rf public/assets/*.*"
     # Start Server
     run "touch #{current_path}/tmp/restart.txt"
   end
