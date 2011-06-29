@@ -175,7 +175,7 @@ class UsersController < ApplicationController
   
   def show_friends
     if check_private_permission(@user, "my_friends")
-      @friends = @user.user_friends.order("name ASC").paginate :page => params[:page], :per_page => 10
+      @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
