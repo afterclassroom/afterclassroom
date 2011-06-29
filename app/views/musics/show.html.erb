@@ -9,7 +9,7 @@
                     <div class="slsShareL">
                         <span>You are here:</span>
                         <%= link_to "Musics", user_musics_url(current_user), :class => "slsShareLink" %>
-                        <a href="javascript:;" class="slsShareLinkL"><%= current_user == @music.user ? "My musics" : "Friends shared musics" %></a>
+                        <a href="javascript:;" class="slsShareLinkL"><%= current_user == @music.user ? "Your musics" : "Friends shared musics" %></a>
                     </div>
                     <div class="slsShareR">
                         <%= render :partial => "menu" %>

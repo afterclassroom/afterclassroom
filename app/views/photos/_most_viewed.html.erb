@@ -1,21 +1,13 @@
 <%
-arr_user_id = []
-arr_user_id << current_user.id
-if current_user.user_friends
-  current_user.user_friends.each do |friend|
-    arr_user_id << friend.id
-  end
-end
-u = arr_user_id.join(", ")
-most_viewed_photos = Photo.with_users(u).with_limit.most_view
+most_viewed_photo_albums = current_user.photo_albums.with_limit.most_view
 %>
 <div class="col300 slStory">
   <div class="col300in mostPho">
-    <h1 class="col300Title">Most viewed photos</h1>
+    <h1 class="col300Title">Most viewed photo albums</h1>
     <div class="photoRow">
-      <% most_viewed_photos.each do |p| %>
+      <% most_viewed_photo_albums.each do |pa| %>
         <div class="photoItem">
-          <div class="photoImg"><%= link_to raw("<div>#{image_tag p.photo_attach.url(:thumb)}</div>"), user_photo_path(p.user, p) %></div>
+          <div class="photoImg"><%= link_to get_first_photo(pa), user_photo_album_url(current_user, pa) %></div>
         </div>
       <% end %>
     </div>

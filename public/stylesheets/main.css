@@ -824,6 +824,16 @@ h2.titleH2 a:hover{
     color:#1fa6f3;
     background:url('/images/icon-DateH.gif') no-repeat right 2px;
 }
+.datedesc a, .location a{
+    text-decoration:none;
+    color:#fff;
+    background:url('/images/icon-DateDesc.gif') no-repeat right 2px;
+    padding-right:15px;
+}
+.datedesc a:hover, .location a:hover{
+    color:#1fa6f3;
+    background:url('/images/icon-DateHDesc.gif') no-repeat right 2px;
+}
 .expired{
     color:#b62626;
 }

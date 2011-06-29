@@ -482,7 +482,7 @@
     float:left;
 }
 .photoItem{
-    width:107px;
+    width:120px;
     float:left;
     margin-bottom:10px;
 }
@@ -4660,7 +4660,7 @@ div.navigation a.next:hover {
     overflow:hidden;
 }
 .stoDetR{
-    width:572px;
+    width:100%;
     float:left;
 }
 .slStoryL .AsDcom,.slStoryL .goback{
@@ -4676,7 +4676,7 @@ div.navigation a.next:hover {
 .stoDetRB{
     float:left;
     line-height:20px;
-    width:500px;
+    width:100%;
 }
 .stoDetRB a{
     color:#0b8ccb;
@@ -4846,7 +4846,7 @@ div.navigation a.next:hover {
 }
 /******* Student Lounges Photo ************/
 .slStoryL .photoRow{
-    padding-left:50px;
+    padding-left:29px;
     clear:both;
     padding-top:3px;
     overflow:hidden;
@@ -5071,13 +5071,13 @@ span.btmTag a:hover{
     background:url('/images/msaddH.png') no-repeat left top;
 }
 .musicRow{
-    padding:15px 58px;
+    padding:15px 29px;
     overflow:hidden;
     clear:both;
     _height:100%;
 }
 .musicL{
-    width:107px;
+    width:119px;
     float:left;
     margin-bottom:10px
 }
@@ -5091,8 +5091,6 @@ span.btmTag a:hover{
 }
 .musicL .mostMSR, .musicR .mostMSR{
     width:25px;
-    float:right;
-		margin-top:-80px;
 }
 .musicB{
     clear:both;

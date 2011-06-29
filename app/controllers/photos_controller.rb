@@ -195,6 +195,7 @@ class PhotosController < ApplicationController
   def show_album
     photo_album_id = params[:photo_album_id]
     @photo_album = PhotoAlbum.find(photo_album_id)
+    update_view_count(@photo_album)
     @user = @photo_album.user
     if check_private_permission(@user, "my_photos")
       @another_photo_albums = @photo_album.another_photo_albums

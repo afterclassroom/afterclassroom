@@ -150,8 +150,13 @@ class StoriesController < ApplicationController
         @story.state = state
         @story.save
         flash[:notice] = 'Story was successfully created.'
-        story_wall(@story)
-        format.html { redirect_to(user_stories_path(current_user)) }
+        if state == "share"
+          story_wall(@story) 
+          path = user_stories_path(current_user)
+        else
+          path = draft_user_stories_path(current_user)
+        end
+        format.html { redirect_to(path) }
         format.xml  { render :xml => @story, :status => :created, :location => @story }
       else
         format.html { render :action => "new" }

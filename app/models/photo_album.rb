@@ -20,6 +20,10 @@ class PhotoAlbum < ActiveRecord::Base
   # Favorite
   acts_as_favorite
   
+  # Named Scope
+  scope :with_limit, :limit => 6
+  scope :most_view, :conditions => "count_view > 0", :order => "count_view DESC"
+  
   def get_photo
     if self.photos.size > 0
       self.photos.first.photo_attach.url(:thumb)
