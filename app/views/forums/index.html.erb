@@ -32,7 +32,7 @@
               <%= render :partial => "search_help" %>
             </div>
             <div class="helpPost"><a></a></div>
-            <div id="headerDivImg">
+            <div id="headerDivImg" style="display: none;">
               <span class="postAQues"></span>
               <% if logged_in? %>
                 <a id="imageDivLink" onclick="javascript:toggle5('contentDivImg', 'imageDivLink');">
@@ -140,13 +140,14 @@
             </div>
           <% end %>
           <% if controller.action_name == "index" %>
-            <div class="assPage">
-              <span class="numPage"></span>
+            <div class="assPage" style="padding-left:0">
+              <span class="numPage"><%= page_entries_info @forums %></span>
               <%= will_paginate @forums %>
             </div>
           <% elsif controller.action_name == "see_all_top_fr" %>
             <%= will_paginate(@forums, :params => { :controller => "forums", :action => "see_all_top_fr" }) %>
           <% end %>
+          <div class="goTop" style="padding:0"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
         </div>
       </div>
     </div>
@@ -154,26 +155,31 @@
 </div>
 
 <div class="contMainRHQ">
-  <div class="popuTopQ">
-    <div class="popuTitleQ">Post A Question</div>
-  </div>
-  <div id="contentDivImg">
-    <% if logged_in? %>
-      <form id="new_fr_form" action="<%= addfr_forums_path %>">
-        <div class="postHelp" style="margin-left:20px;">
-          <div class="reqLa"><label>Title</label></div>
-          <div class="reqTi"><input type="text" id="txt_help" name="txt_help" size="22"></input></div>
-          <div class="reqLa"><label>Desription</label></div>
-          <div style="margin: 3px 0pt;" class="reqEn"><textarea id="help_content" name="help_content"></textarea></div>
-          <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-          <div style="margin-top: 5px;" class="submit"><input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"></input></div>
-        </div>
-      </form>
-    <% end %>
+  <div class="popu">
+    <div class="popuTopQ">
+      <div class="popuTitleQ">Post A Question</div>
+    </div>
+    <div id="contentDivImg">
+      <% if logged_in? %>
+        <form id="new_fr_formQ" action="<%= addfr_forums_path %>">
+          <div class="postHelp">
+            <div class="reqLa"><label>Title *</label></div>
+            <div class="reqTi"><input type="text" id="txt_help" class="{validate:{required:true}}" name="txt_help" size="22" style="width:280px"></input></div>
+            <div class="reqLa"><label>Desription *</label></div>
+            <div style="margin: 3px 0pt;" class="reqEn"><textarea id="help_content" class="{validate:{required:true}}" name="help_content" style="width:280px"></textarea></div>
+
+            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+            <div class="submit" style="margin-top: 5px;">
+              <a href="javascript:;" onclick="submitQ();"><%= submit_tag 'Submit' %></a>
+            </div>
+          </div>
+        </form>
+      <% end %>
+    </div>
   </div>
 </div>
 
-<div class="contMainRH" style="margin-top:20px;">
+<div class="contMainRH">
   <div class="popu">
     <div class="popuTop">
       <div class="popuTitle">Popular Discussions</div>
@@ -193,6 +199,15 @@
 <div visible="false" id="wait_dialog" style="display:none;">Please wait...</div>
 
 <script type="text/javascript">
+  function submitQ(){
+  var result = $("#new_fr_formQ").validate({
+  meta: "validate"
+  });
+  if (result) {
+  $("#new_fr_formQ").submitQ();
+  }
+  }
+
 
   function ShowWaitDialog(){
   $('#wait_dialog').show();
@@ -370,14 +385,18 @@
 <style>
   .contMainRHQ{
     float: left;
+    background: url("/images/top300.png") no-repeat scroll 0 0 white;
+    float: right;
+    margin-bottom: 8px;
+    overflow: hidden;
+    width: 300px;
   }
   .contMainRHQ .popuTopQ{
     border-bottom: 1px solid #DBDBDB;
     overflow: hidden;
-    padding-bottom: 8px;
-    padding-top: 5px;
-    width: 250px;
-    margin-left: 20px;
+    padding-bottom: 4px;
+    padding-top: 2px;
+    width: 280px;
   }
   .popuTitleQ{
     float: left;
