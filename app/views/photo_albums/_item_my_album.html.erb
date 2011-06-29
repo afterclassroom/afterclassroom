@@ -1,5 +1,5 @@
 <div class="photoItem">
   <div class="photoImg"><%= link_to get_first_photo(album), user_photo_album_url(current_user, album) %></div>
-  <div class="photoInf" style="margin-top: -5px;"><%= check_box_tag "photo_album_id", album.id %><%= pluralize(album.photos.size, "photo") %></div>
+  <div class="photoInf" style="margin-top: -5px;margin-left: 0px"><%= check_box_tag "photo_album_id", album.id %><%= pluralize(album.photos.size, "photo") %></div>
   <div class="photoNamePho" style="margin-top: -2px;"><span><%= truncate_words(album.name, 5) %></span></div>
 </div>
