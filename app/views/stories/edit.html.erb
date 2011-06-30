@@ -15,14 +15,14 @@
             <%= hidden_field_tag "state", "", :id => "story_state" %>
             <div class="stoExItem">
               <div class="stoExItemL">Title*</div>
-              <div class="stoExItemR"><%= f.text_field :title, :class => '{validate:{required:true}}', :style => "width:517px" %></div>
+              <div class="stoExItemR"><%= f.text_field :title, :class => '{validate:{required:true}}' %></div>
             </div>     
             <div class="stoExItem">
               <div class="stoExItemL">Your story</div>
-              <div class="stoExItemR"><%= f.text_area :content, :style => "width:507px;height:150px;"  %></div>
+              <div class="stoExItemR"><%= f.text_area :content, :style => "width:545px" %></div>
           </div>
             <div class="stoExBtm">
-              <div class="stoExSave"><a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();" >Save as a Draft</a></div>
+              <div class="stoExSave" style="margin-left:62px"><a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();" >Save as a Draft</a></div>
               <div class="stoExShare"><a href="javascript:;" onclick="$('#story_state').val('share');$('#form_update').submit();" >Update</a></div>
               <div class="stoExCan"><%= link_to "Cancel", user_stories_path(current_user) %></div>
             </div>
@@ -79,4 +79,8 @@
             
         });
     })(jQuery);
+
+  $(document).ready(function() {
+  $('.wysiwyg').css({width:'525px'});
+});
 </script>

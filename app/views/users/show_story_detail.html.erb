@@ -11,7 +11,7 @@
     <div class="col451 proCen">
         <div class="col451in">
             <div class="proCenCont">
-                <div class="stoDet">
+                <div class="stoDet" style="padding:0px;">
                     <div class="stoDetR">
                         <div class="stoDetRT">
                             <%= @story.title %>
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="stoDcont">
+                <div class="stoDcont" style="padding:0px">
                     <%= raw(@story.content) %>
                 </div>
                 <%= render :partial => "users/show_public/story_action" %>
@@ -38,3 +38,8 @@
     <%= render :partial => "ads/show_vertical_ads" %>
     <!--Ads-->
 </div>
+<script>
+  $(document).ready(function() {
+  $('.content').css({width:'430px'});
+});
+</script>
