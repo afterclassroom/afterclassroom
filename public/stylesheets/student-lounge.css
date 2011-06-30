@@ -4275,7 +4275,6 @@ div.helpAdv2{
     height:100px;
     clear:both;
     border-top:1px #e4e4e4 solid;
-    background-color:#fff;
 }
 .SLchatSend{
     clear:both;
@@ -4796,6 +4795,7 @@ div.navigation a.next:hover {
 .stoExBtm{
     padding-left:13px;
     padding-top:5px;
+		min-height:20px;
 }
 .stoExBtm div{
     float:left;

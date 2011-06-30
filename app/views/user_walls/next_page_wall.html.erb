@@ -1,3 +1,12 @@
 <% @walls.each do |wall| %>
 	<%= render :partial => "user_walls/wall_item", :locals => {:wall => wall} %>
 <% end %>
+<%= render :partial => 'shared/javascript_load' %>
+<script type="text/javascript">
+    $(document).ready(function(){
+				//on page load call tb_init  
+        tb_init('div.wall_page_<%= @page %> a.thickbox');//pass where to apply thickbox
+        imgLoader = new Image();// preload image
+        imgLoader.src = tb_pathToImage;
+    });
+</script>

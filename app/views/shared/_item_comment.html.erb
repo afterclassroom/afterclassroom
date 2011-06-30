@@ -16,10 +16,10 @@
         <div class="AsDcomRe">
             <div id="rate_comment_<%= comnt.id %>">
                 <div class="AsDcomRe1">
-                    <%= link_to comnt.total_good, {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "1" }, :remote => true %>
+                    <%= link_to comnt.total_good, {:controller => "ajax_not_login", :action => "rate_comment", :comment_id => comnt.id, :rating => "1" }, :remote => true %>
                 </div>
                 <div class="AsDcomRe2">
-                    <%= link_to comnt.total_bad, {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "0" }, :remote => true %>
+                    <%= link_to comnt.total_bad, {:controller => "ajax_not_login", :action => "rate_comment", :comment_id => comnt.id, :rating => "0" }, :remote => true %>
                 </div>
             </div>
             <div class="AsDcomRe3">

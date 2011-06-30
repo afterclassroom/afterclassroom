@@ -426,6 +426,14 @@ module ApplicationHelper
     end
   end
   
+  def show_rsvp(post)
+    if !logged_in?
+      link_to_require_login(raw("<span>RSVP</span>"))
+    else
+      link_to(raw("<span>RSVP</span>")  , "#{show_rsvp_post_parties_path}?post_id=#{post.id}&height=380&width=490", :class => "thickbox", :title => "RSVP")
+    end
+  end
+  
   def show_become_a_fan(user)
     str = ""
     if !logged_in?
@@ -587,7 +595,7 @@ module ApplicationHelper
   def show_attach(wall)
     if wall.user_wall_photo
       link = wall.user_wall_photo.link
-      image = link_to raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), link, :target => "_blank", :id => "imageLink"
+      image = link_to raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), link, :target => "_blank", :class => "imageLink"
       title = wall.user_wall_photo.title
       sub_content = raw(wall.user_wall_photo.sub_content)
     end

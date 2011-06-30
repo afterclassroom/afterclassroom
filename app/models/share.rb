@@ -9,7 +9,6 @@ class Share < ActiveRecord::Base
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   def self.del_share_expire
-    share_files = ShareFile.find(:all, :conditions => ["created_at < ?", Time.now - 1.week])
-    share_files.delete_all
+    share_files = Share.destroy_all(["created_at < ?", Time.now - 1.week])
   end
 end

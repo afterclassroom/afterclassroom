@@ -1,13 +1,5 @@
 <%
-arr_user_id = []
-arr_user_id << current_user.id
-if current_user.user_friends
-  current_user.user_friends.each do |friend|
-    arr_user_id << friend.id
-  end
-end
-u = arr_user_id.join(", ")
-most_viewed_stories = Story.with_users(u).with_limit.most_view
+most_viewed_stories = current_user.stories.where(:state => "share").with_limit.most_view
 %>
 <div class="col300 slStory">
   <div class="col300in">

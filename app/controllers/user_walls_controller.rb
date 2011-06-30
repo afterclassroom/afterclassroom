@@ -330,6 +330,7 @@ class UserWallsController < ApplicationController
     @type = params[:type]
     user_id = params[:user_id]
     user = User.find(user_id)
+    @page = params[:page]
     case @type
       when "profile"
         @walls = user.my_walls.paginate :page => params[:page], :per_page => 10

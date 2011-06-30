@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   include ApplicationHelper
   
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:rate_comment, :report_abuse, :create_report_abuse, :download]
+  before_filter RubyCAS::Filter, :except => [:report_abuse, :create_report_abuse, :download]
   before_filter :cas_user
   #before_filter :login_required, :except => [:rate_comment, :report_abuse, :create_report_abuse, :download]
   
@@ -108,14 +108,6 @@ class PostsController < ApplicationController
       comment.destroy
     end
     render :text => comment.commentable.comments.size
-  end
-  
-  def rate_comment
-    rating = params[:rating]
-    @comnt = Comment.find(params[:comment_id])
-    @comnt.rate rating.to_i
-    @text = "<div class='AsDcomRe1'><a href='javascript:;'>#{@comnt.total_good}</a></div>"
-    @text << "<div class='AsDcomRe2'><a href='javascript:;'>#{@comnt.total_bad}</a></div>"
   end
   
   def report_abuse

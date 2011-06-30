@@ -1,7 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostQasController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
+  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   before_filter :cas_user
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
@@ -217,16 +217,6 @@ class PostQasController < ApplicationController
     render :layout => false
   end
   
-  def show_comment
-    show = params[:show]
-    show ||= "0"
-    post_id = params[:post_id]
-    post = Post.find(post_id)
-    get_comments(post, show)
-    
-    render :layout => false
-  end
-  
   def prefer
     
     @post_id = params[:post_id]
@@ -259,26 +249,6 @@ class PostQasController < ApplicationController
     end
   end
   
-  def get_comments(post, show)
-    @comments = []
-    case show
-      when "0"
-      @comments = post.comments
-      when "1"
-      @comments = post.comments
-      when "2"
-      @comments = post.comments.find(:all, :order => "created_at DESC")
-      when "3"
-      arr_comnt = []
-      post.comments.each do |c|
-        arr_comnt << {:obj => c, :total_good => c.total_good}
-      end
-      arr_comnt.sort_by { |c| -c[:total_good] }.each do |d|
-        @comments << d[:obj]
-      end
-    end
-  end
-  
   def require_current_user
     post_qa = PostQa.find(params[:id])
     post = post_qa.post
@@ -288,5 +258,4 @@ class PostQasController < ApplicationController
     end
     return @user
   end
-  
 end

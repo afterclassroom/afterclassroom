@@ -175,7 +175,7 @@ Afterclassroom::Application.routes.draw do
   # Posts
   resources :posts do
     collection do
-      get :rate_comment, :create_comment, :report_abuse, :create_report_abuse, :delete_comment, :download, :view_all_comments
+      get :create_comment, :report_abuse, :create_report_abuse, :delete_comment, :download, :view_all_comments
       post :create_comment_on_list
     end
   end
@@ -212,7 +212,7 @@ Afterclassroom::Application.routes.draw do
 
   resources :post_qas do
     collection do
-      get :search, :tag, :interesting, :top_answer, :create_comment, :show_comment, :rate, :require_rate, :prefer, :sendmail
+      get :search, :tag, :interesting, :top_answer, :create_comment, :rate, :require_rate, :prefer, :sendmail
     end
   end
 
@@ -279,6 +279,12 @@ Afterclassroom::Application.routes.draw do
   resources :post_exam_schedules do
     collection do
       get :search, :tag, :rate
+    end
+  end
+  
+  resources :ajax_not_login do
+    collection do
+      get :show_comment, :rate_comment
     end
   end
   

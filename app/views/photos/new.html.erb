@@ -13,6 +13,7 @@
                 <%= display_flash_messages_with_raw %>
                 <div class="postCont">
                     <%= form_for [current_user, @photo], :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
+										<span style="margin-left:5px">Only support these photo formats: JPG, GIF, PNG. File size limit <%= number_to_human_size FILE_SIZE_PHOTO %>.</span>
                     <div class="postItem">
                         <div class="postTit">
                             Photo album*
@@ -24,7 +25,7 @@
                         </div>
                     </div>
                     <div class="postTitt">
-                        Location
+                        Location*
                     </div>
                     <div class="postItemA">
                         <div id="divinputfile" style="margin-left:120px">
@@ -63,7 +64,7 @@
                         </div>
                     </div>
                     <div class="stoExBtm">
-                        <div class="stoExCre" style="margin-left:43px;margin-bottom: 15px;">
+                        <div class="stoExCre" style="margin-left:108px;margin-bottom: 15px;">
                             <a href="javascript:;" onclick="submit();">Add photo</a>
                         </div>
                         <div class="stoExCan">
