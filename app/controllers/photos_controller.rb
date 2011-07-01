@@ -133,7 +133,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo.save
         flash[:notice] = 'Photo was successfully created.'
-        image_wall(@photo)
+        image_wall(@photo) if check_private_permission(current_user, "my_photos")
         format.html { redirect_to user_photo_path(current_user, @photo) }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
       else
@@ -188,7 +188,7 @@ class PhotosController < ApplicationController
     @photo_album = PhotoAlbum.new(params[:photo_album])
     @photo_album.user = current_user
     @photo_album.save
-    photo_album_wall(@photo_album)
+    photo_album_wall(@photo_album) if check_private_permission(current_user, "my_photos")
     render :layout => false
   end
   

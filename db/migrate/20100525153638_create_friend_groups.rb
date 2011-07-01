@@ -8,8 +8,7 @@ class CreateFriendGroups < ActiveRecord::Migration
     [
       ["Family members", "family_members"],
       ["Friends from school", "friends_from_school"],
-      ["Friends from work", "friends_from_work"],
-      ["General Friends", "general_friends"]
+      ["Friends from work", "friends_from_work"]
     ].each do |s|
       FriendGroup.new(:name => s.first, :label => s.last).save
     end

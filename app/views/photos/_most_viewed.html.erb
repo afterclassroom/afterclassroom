@@ -1,5 +1,13 @@
 <%
-most_viewed_photo_albums = current_user.photo_albums.with_limit.most_view
+arr_user_id = []
+arr_user_id << current_user.id
+if current_user.user_friends
+  current_user.user_friends.each do |friend|
+    arr_user_id << friend.id if check_private_permission(friend, "my_photos")
+  end
+end
+u = arr_user_id.join(", ")
+most_viewed_photo_albums = PhotoAlbum.with_users(u).with_limit.most_view
 %>
 <div class="col300 slStory">
   <div class="col300in mostPho">

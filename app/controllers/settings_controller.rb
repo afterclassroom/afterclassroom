@@ -22,18 +22,9 @@ class SettingsController < ApplicationController
         current_user.notify_sms_settings.destroy_all
         
         smsarrs.each do |eachsms|
-          puts "each == " + eachsms.to_s
           @nfst = NotifySmsSetting.new
           @nfst.notification = Notification.find(eachsms)
           @nfst.user = current_user
-          
-          if @nfst.save
-            puts "save setting successfully"
-          else
-            puts "failed to save setting"
-          end
-          
-          puts "selected notification == "+@nfst.notification.name
         end
       end
     else
@@ -51,14 +42,6 @@ class SettingsController < ApplicationController
           @nfse = NotifyEmailSetting.new
           @nfse.notification = Notification.find(eachemail)
           @nfse.user = current_user
-          
-          if @nfse.save
-            puts "save setting successfully"
-          else
-            puts "failed to save setting"
-          end
-          
-          puts "selected notification == "+@nfse.notification.name
         end
       end
     else
@@ -95,8 +78,6 @@ class SettingsController < ApplicationController
     @notifications = Notification.find(:all)
     @types = Notification.find( :all, :select => 'DISTINCT notify_type' )
   end
-  
-  
   
   def language
   end

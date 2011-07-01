@@ -40,8 +40,12 @@ module ProfileHelper
         when "PostFood"
         render :partial => "/post_foods/item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => "post_foods"}
       end
+      when "Story"
+      story = Story.find(favorite.favorable_id)
+      render :partial => "/stories/item", :locals => {:story => story}
       when "Photo"
       when "Music"
+      when "video"
     end
   end
 end

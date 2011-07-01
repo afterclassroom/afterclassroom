@@ -27,7 +27,7 @@ Afterclassroom::Application.routes.draw do
 
     resources :messages do
       collection do
-        get :show_email, :list_friend
+        get :show_email, :list_friend, :delete_message
         post :message_action, :send_message
       end
     end

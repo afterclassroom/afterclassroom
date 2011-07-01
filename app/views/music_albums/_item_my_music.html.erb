@@ -1,6 +1,6 @@
 <div class="musicL">
   <div class="musicB">
-    <div class="musicN"><%= check_box_tag "music_id", music.id %><%= link_to music.title, user_music_path(current_user, music) %></div>
+    <div class="musicN"><%= check_box_tag "music_id", music.id %><%= link_to (music.title || music.music_attach_file_name), user_music_path(current_user, music) %></div>
     <div class="musicS">Comments</div>
   </div>
 </div>

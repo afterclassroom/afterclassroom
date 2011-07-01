@@ -1,40 +1,87 @@
 <% content_for :menu_top_student_lounge do -%>
-  <%= render :partial => 'submenu' %>
+<%= render :partial => 'submenu' %>
 <% end -%>
-
 <div class="contDetL">
-  <div class="contDetLin">
-    <div class="inboxLeft inboxDetails">
-      <div class="inboxTitle"><%= link_to "Inbox", user_messages_path(current_user) %><span>Message Details</span></div>
-      <div class="inboxTop">
-        <div class="inbDelete"><a href="#">Delete</a></div>
-        <div class="inbReply"><%= link_to "Reply", new_user_message_path(current_user, :reply_to => @message) %></div>
-        <div class="inbForward"><%= link_to "Forward", new_user_message_path(current_user, :forward_to => @message) %></div>
-      </div>
-      <div class="inboxDeT">
-        <div class="mTitle"><a href="#"> </a><%= @message.subject %></div>
-        <div class="inboxInfo">
-          <div class="inboxInItem">
-            <div class="inboxIn1">From:</div>
-            <div class="inboxIn2"><%= @message.sender == current_user ? link_to("You", user_path(current_user)) : link_to(h(@message.sender.full_name), {:controller => "profile", :action => "show_profile", :id => @message.sender.id}) %></div>
-          </div>
-          <div class="inboxInItem">
-            <div class="inboxIn1">To:</div>
-            <div class="inboxIn2"><%= @message.recipient == current_user ? link_to("You", user_path(current_user)) : link_to(h(@message.recipient.full_name), {:controller => "profile", :action => "show_profile", :id => @message.recipient.id}) %></div>
-          </div>
+    <div class="contDetLin">
+        <div class="inboxLeft inboxDetails">
+            <div class="inboxTitle">
+                <% if @message.sender == current_user %>
+                <%= link_to "Sent", "#{user_messages_path(current_user)}?mailbox=sent" %>
+                <% else %>
+                <%= link_to "Inbox", user_messages_path(current_user) %>
+                <% end %>
+                <span>Message Details</span>
+            </div>
+            <div class="inboxTop">
+                <div class="inbDelete">
+                	<%= link_to_function "Delete", "DeleteMessage()"%>
+                </div>
+                <% if @message.sender != current_user %>
+                <div class="inbReply">
+                    <%= link_to "Reply", new_user_message_path(current_user, :reply_to => @message) %>
+                </div>
+                <% end %>
+                <div class="inbForward">
+                    <%= link_to "Forward", new_user_message_path(current_user, :forward_to => @message) %>
+                </div>
+            </div>
+            <div class="inboxDeT">
+                <div class="mTitle">
+                    <a href="#"></a>
+                    <%= @message.subject %>
+                </div>
+                <div class="inboxInfo">
+                    <div class="inboxInItem">
+                        <div class="inboxIn1">
+                            From:
+                        </div>
+                        <div class="inboxIn2">
+                            <%= @message.sender == current_user ? link_to("You", user_path(current_user)) : show_user_post(@message.sender) %>
+                        </div>
+                    </div>
+                    <div class="inboxInItem">
+                        <div class="inboxIn1">
+                            To:
+                        </div>
+                        <div class="inboxIn2">
+                            <%= @message.recipient == current_user ? link_to("You", user_path(current_user)) : show_user_post(@message.recipient) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="inboxCont">
+                <%=h raw(@message.body) %>
+            </div>
         </div>
-      </div>
-      <div class="inboxCont"><%=h raw(@message.body) %></div>
     </div>
-  </div>
 </div>
-
 <div class="contMainR">
-  <!--Menu-->
-  <%= render :partial => "menu_right" %>
-  <!--Menu-->
-
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
+    <!--Menu-->
+    <%= render :partial => "menu_right" %>
+    <!--Menu-->
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
 </div>
+<!--Alert-->
+<div id="dialog-delete-message" title="Confirm delete" style="display:none;">
+    <p>
+        Are you sure?.
+    </p>
+</div>
+<!--Alert-->
+<script type="text/javascript">
+    function DeleteMessage(){
+        $("#dialog-delete-message").dialog({
+            modal: true,
+            buttons: {
+                Ok: function(){
+                    document.location.href = "<%= delete_message_user_messages_url(current_user, :id => @message) %>";
+                },
+                Cancel: function(){
+                    $(this).dialog('close');
+                }
+            }
+        });
+    }
+</script>

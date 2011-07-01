@@ -22,6 +22,7 @@ class PhotoAlbum < ActiveRecord::Base
   
   # Named Scope
   scope :with_limit, :limit => 6
+  scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   scope :most_view, :conditions => "count_view > 0", :order => "count_view DESC"
   
   def get_photo

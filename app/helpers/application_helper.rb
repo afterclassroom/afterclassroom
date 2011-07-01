@@ -582,7 +582,7 @@ module ApplicationHelper
   def show_status_setting(user, type)
     pr = user.private_settings.where(:type_setting => type).first
     
-    str = pr ? Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}].key(pr.share_to) : "No setting"
+    str = pr ? Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}].key(pr.share_to) : "Private"
     "Share to: " + str
   end
   
@@ -697,11 +697,9 @@ module ApplicationHelper
             fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
             check = true if fng
           end
-          when 4 # General friends
+          when 4 # My friends
           if current_user
-            fg = FriendGroup.where(:label => "general_friends").first
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
-            check = true if fng
+            check = true if user.friends.include?(current_user)
           end
           when 5 # Friends from work
           if current_user

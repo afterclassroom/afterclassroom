@@ -86,6 +86,26 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def get_comments(post, show)
+    @comments = []
+    case show
+      when "0"
+      @comments = post.comments
+      when "1"
+      @comments = post.comments
+      when "2"
+      @comments = post.comments.find(:all, :order => "created_at DESC")
+      when "3"
+      arr_comnt = []
+      post.comments.each do |c|
+        arr_comnt << {:obj => c, :total_good => c.total_good}
+      end
+      arr_comnt.sort_by { |c| -c[:total_good] }.each do |d|
+        @comments << d[:obj]
+      end
+    end
+  end
+  
   private
   
   def authenticate

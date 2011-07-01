@@ -21,4 +21,5 @@ class Story < ActiveRecord::Base
   scope :with_limit, :limit => LIMIT
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   scope :most_view, :order => "count_view DESC"
+  scope :with_state, :conditions => "state = 'share'"
 end

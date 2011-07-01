@@ -113,7 +113,7 @@ class MusicsController < ApplicationController
   
   # GET /musics/1/edit
   def edit
-    @music_albums = MusicAlbum.find(:all)
+    @music_albums = @user.music_albums
     @music = Music.find(params[:id])
     @tag_list = @music.tag_list.join(", ")
     render :layout => false
@@ -133,7 +133,7 @@ class MusicsController < ApplicationController
         @music.length_in_seconds = mp3_info.length.to_i
         @music.save
         flash[:notice] = 'Music was successfully created.'
-        music_wall(@music)
+        music_wall(@music) if check_private_permission(current_user, "my_musics")
         format.html { redirect_to user_music_album_path(current_user, @music.music_album) }
         format.xml  { render :xml => @music, :status => :created, :location => @music }
       else
@@ -199,7 +199,7 @@ class MusicsController < ApplicationController
     @music_album.user = current_user
     @music_album.swfupload_file = params[:music_album_attach] if params[:music_album_attach]
     @music_album.save
-    music_album_wall(@music_album)
+    music_album_wall(@music_album) if check_private_permission(current_user, "my_musics")
     render :layout => false
   end
   
