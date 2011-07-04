@@ -4660,7 +4660,6 @@ div.navigation a.next:hover {
 }
 .stoDetR{
     width:100%;
-    float:left;
 }
 .slStoryL .AsDcom,.slStoryL .goback{
     padding-left:10px;
@@ -4673,7 +4672,6 @@ div.navigation a.next:hover {
     margin-right:10px;
 }
 .stoDetRB{
-    float:left;
     line-height:20px;
     width:100%;
 }
@@ -4717,6 +4715,7 @@ div.navigation a.next:hover {
     padding:10px 10px 0px 10px;
     color:#646464;
     word-wrap: break-word;
+    overflow: hidden;
 }
 .stoDbtm{
     padding:10px;
