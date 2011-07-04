@@ -1,4 +1,4 @@
-<div id="cmt_id_<%= @obj_comment.id %>" class="proList" style="margin-left: 62px; width: 342px;">
+<div id="cmt_id_<%= @obj_comment.id %>" class="proList" style="margin-left: 62px; width: 545px;">
   <div onclick="DeleteForumComment(<%= @fr.id %>, <%= @obj_comment.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
     <img src="/images/icon-ing.gif"/>
   </div>
@@ -6,7 +6,7 @@
   <div class="proListPic"><%= show_image_user_post(current_user) %></div>
 
 
-  <div class="proListR" style="width: 285px;">
+  <div class="proListR" style="width: 505px;">
     <div class="AfterClCom">
       <a href="/users/1/show_lounge"><%= current_user.name %></a> <%= @obj_comment.comment %>
     </div>
