@@ -59,6 +59,44 @@ class ForumsController < ApplicationController
   end
 
   def addfr
+    
+    
+    if simple_captcha_valid?   
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+      puts "HELLO WORLD"
+#    else
+#      flash[:warning] = "Captcha does not match."
+#      render :action => "index"
+    end    
+    
     @new_fr = Forum.new()
     @new_fr.title = params[:txt_help]
     @new_fr.content = params[:help_content]
