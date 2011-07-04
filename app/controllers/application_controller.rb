@@ -106,6 +106,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def delete_favorite(type, id)
+    Favorite.destroy_all(["favorable_type = ? AND favorable_id = ?", type, id])
+  end
+  
   private
   
   def authenticate

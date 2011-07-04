@@ -166,6 +166,7 @@ class MusicsController < ApplicationController
   # DELETE /musics/1.xml
   def destroy
     @music = Music.find(params[:id])
+    @music.favorites.destroy_all
     @music.destroy
     
     respond_to do |format|

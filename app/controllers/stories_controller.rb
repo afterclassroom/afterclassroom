@@ -188,6 +188,7 @@ class StoriesController < ApplicationController
   # DELETE /stories/1.xml
   def destroy
     @story = Story.find(params[:id])
+    @story.favorites.destroy_all
     @story.destroy
     
     respond_to do |format|

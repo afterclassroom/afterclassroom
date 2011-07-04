@@ -535,11 +535,11 @@
     font-weight: bold;
     padding-right: 10px;
     overflow: hidden;
-    height: 45px;
+    min-height: 15px;
     margin-top: -4px;
 }
 .photoNamePhoto span{
-    height: 38px;
+    min-height: 15px;
     overflow: hidden;
     position: absolute;
     width: 100px;
@@ -4373,7 +4373,7 @@ div.helpAdv2{
     margin:0px 10px;
     overflow:hidden;
     clear:both;
-    border-top:1px #e4e4e4 solid;
+    border-bottom:1px #e4e4e4 solid;
     _height:100%;
 }
 .slsItemL{
@@ -4385,8 +4385,7 @@ div.helpAdv2{
     background-color:#f5f5f5;
 }
 .slsItemR{
-    float:left;
-    width:450px;
+    width:100%;
     margin-left:10px;
 }
 .slsItemTitle a, .slsItemTitle a:link, .slsItemTitle a:visited{
@@ -5228,7 +5227,7 @@ span.btmTag a:hover{
 .stuItemL a:hover{
     color:#d00;
 }
-.inbox, .homew, .tutor, .jobs{
+.inbox, .homew, .projects, .tests, .exams, .tutors, .jobs, .qas, .books, .foods, .parties, .myxes, .awareness, .housings, .teamups{
     border-bottom:1px #e4e4e4 solid;
 }
 .inbox .stuItemL{
@@ -5240,7 +5239,7 @@ span.btmTag a:hover{
 .homew .stuItemL{
     background:url('/images/iconHomew.png') no-repeat;
 }
-.tutor .stuItemL{
+.tutors .stuItemL{
     background:url('/images/iconTuto.png') no-repeat;
 }
 .jobs .stuItemL{

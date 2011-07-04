@@ -43,8 +43,18 @@ module ProfileHelper
       when "Story"
       story = Story.find(favorite.favorable_id)
       render :partial => "/stories/item", :locals => {:story => story}
+      when "PhotoAlbum"
+      photo_album = PhotoAlbum.find(favorite.favorable_id)
+      render :partial => "/photo_albums/item_favorite", :locals => {:photo_album => photo_album}
       when "Photo"
+      photo = Photo.find(favorite.favorable_id)
+      render :partial => "/photos/item_favorite", :locals => {:photo => photo}
+      when "MusicAlbum"
+      music_album = MusicAlbum.find(favorite.favorable_id)
+      render :partial => "/music_albums/item_favorite", :locals => {:music_album => music_album}
       when "Music"
+      music = Music.find(favorite.favorable_id)
+      render :partial => "/musics/item_favorite", :locals => {:music => music}
       when "video"
     end
   end

@@ -166,6 +166,7 @@ class PhotosController < ApplicationController
   # DELETE /photos/1.xml
   def destroy
     @photo = Photo.find(params[:id])
+    @photo.favorites.destroy_all
     @photo.destroy
     
     render :nothing => true

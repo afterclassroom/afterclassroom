@@ -594,10 +594,10 @@ module ApplicationHelper
   
   def show_attach(wall)
     if wall.user_wall_photo
-      link = wall.user_wall_photo.link
-      image = link_to raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), link, :target => "_blank", :class => "imageLink"
+      link = wall.user_wall_photo.sub_content
+      image = link_to raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), wall.user_wall_photo.link, :target => "_blank", :class => "imageLink"
       title = wall.user_wall_photo.title
-      sub_content = raw(wall.user_wall_photo.sub_content)
+      sub_content = ""
     end
     
     if wall.user_wall_video
@@ -608,10 +608,10 @@ module ApplicationHelper
     end
     
     if wall.user_wall_music
-      link = wall.user_wall_music.link
+      link = wall.user_wall_music.sub_content
       image = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
       title = wall.user_wall_music.title
-      sub_content = raw(wall.user_wall_music.sub_content)
+      sub_content = ""
     end
     
     if wall.user_wall_link

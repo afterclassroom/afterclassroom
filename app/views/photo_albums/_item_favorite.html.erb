@@ -1,0 +1,6 @@
+<div class="slsItem">
+  <div class="photoImg"><%= link_to get_first_photo(photo_album), show_album_user_photos_path(photo_album.user, :photo_album_id => photo_album) %></div>
+  <div class="photoInf" style="margin-top: -5px;"><%= pluralize(photo_album.photos.size, "photo") %></div>
+  <div class="photoNamePhoto"><span><%= truncate_words(photo_album.name, 5) %></span></div>
+</div>
+

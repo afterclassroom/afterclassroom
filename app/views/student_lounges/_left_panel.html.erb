@@ -18,19 +18,19 @@
         <div class="stuItemL"><%= link_to "Quizzes", "#{user_post_managements_url(current_user)}?category=PostAssignment" %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostAssignment") %></div>
       </div>
-			<div class="stuItem project">
+			<div class="stuItem projects">
         <div class="stuItemL" style="background:url('/images/footer_menu/projects-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Projects", "#{user_post_managements_url(current_user)}?category=PostProject" %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostProject") %></div>
       </div>
-			<div class="stuItem test" style="background:url('/images/footer_menu/past_tests-1.png') no-repeat scroll -3px 55% transparent;">
+			<div class="stuItem tests" style="background:url('/images/footer_menu/past_tests-1.png') no-repeat scroll -3px 55% transparent;">
         <div class="stuItemL"><%= link_to "Tests", "#{user_post_managements_url(current_user)}?category=PostTest" %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostTest") %></div>
       </div>
-			<div class="stuItem exam" style="background:url('/images/footer_menu/past_exams-1.png') no-repeat scroll -3px 55% transparent;">
+			<div class="stuItem exams" style="background:url('/images/footer_menu/past_exams-1.png') no-repeat scroll -3px 55% transparent;">
         <div class="stuItemL"><%= link_to "Exams", "#{user_post_managements_url(current_user)}?category=PostExam" %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostExam") %></div>
       </div>
-      <div class="stuItem tutor">
+      <div class="stuItem tutors">
         <div class="stuItemL"><%= link_to "Tutors", "#{user_post_managements_url(current_user)}?category=PostTutor" %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostTutor") %></div>
       </div>
@@ -41,36 +41,36 @@
       <div class="cmore">
         <a id="choosemore" href="#">Choose More...</a>
       </div>
-      <div id="moreinner">
-        <div class="stuItem jobs">
+      <div id="moreinner" style="display:none;">
+        <div class="stuItem qas">
           <div class="stuItemL" style="background:url('/images/footer_menu/qas-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Q.As", "#{user_post_managements_url(current_user)}?category=PostQa", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostQa") %></div>
         </div>
-        <div class="stuItem jobs">
+        <div class="stuItem books">
           <div class="stuItemL" style="background:url('/images/footer_menu/books-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Books", "#{user_post_managements_url(current_user)}?category=PostBook", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostBook") %></div>
         </div>
-        <div class="stuItem jobs">
+        <div class="stuItem foods">
           <div class="stuItemL" style="background:url('/images/footer_menu/foods-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Food", "#{user_post_managements_url(current_user)}?category=PostFood", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostFood") %></div>
         </div>
-        <div class="stuItem jobs">
+        <div class="stuItem parties">
           <div class="stuItemL" style="background:url('/images/footer_menu/party-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Party", "#{user_post_managements_url(current_user)}?category=PostParty", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostParty") %></div>
         </div>
-        <div class="stuItem jobs">
+        <div class="stuItem myxes">
           <div class="stuItemL" style="background:url('/images/footer_menu/myx-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Myx", "#{user_post_managements_url(current_user)}?category=PostMyx", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostMyx") %></div>
         </div>
-        <div class="stuItem jobs">
+        <div class="stuItem awareness">
           <div class="stuItemL" style="background:url('/images/footer_menu/student_awareness-1.png') no-repeat scroll -3px 65% transparent;"><%= link_to "Awareness", "#{user_post_managements_url(current_user)}?category=PostAwareness", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostAwareness") %></div>
         </div>
-        <div class="stuItem jobs">
+        <div class="stuItem housings">
           <div class="stuItemL" style="background:url('/images/footer_menu/housing-1.png') no-repeat scroll -3px 50% transparent;"><%= link_to "Housing", "#{user_post_managements_url(current_user)}?category=PostHousing", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostHousing") %></div>
         </div>
-        <div class="stuItem jobs">
+        <div class="stuItem teamups">
           <div class="stuItemL" style="background:url('/images/footer_menu/teamUp-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Teamup", "#{user_post_managements_url(current_user)}?category=PostTeamup", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostTeamup") %></div>
         </div>
@@ -80,7 +80,6 @@
 </div>
 <script>
   $(document).ready(function(){
-    $('#moreinner').toggle('slow');
     $('#choosemore').click(function(){
       $('#moreinner').toggle('slow');
       $('.cmore').html('');

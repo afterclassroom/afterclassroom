@@ -57,6 +57,7 @@ class PhotoAlbumsController < ApplicationController
   # DELETE /photo_albums/1.xml
   def destroy
     @photo_album = PhotoAlbum.find(params[:id])
+    @photo_album.favorites.destroy_all
     @photo_album.destroy
 
     respond_to do |format|
@@ -72,6 +73,7 @@ class PhotoAlbumsController < ApplicationController
     photo_albums = current_user.photo_albums.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
     if photo_albums.size > 0
       photo_albums.each do |abl|
+        abl.favorites.destroy_all
         abl.destroy
       end
     end
@@ -86,6 +88,7 @@ class PhotoAlbumsController < ApplicationController
     photos = current_user.photos.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
     if photos.size > 0
       photos.each do |abl|
+        abl.favorites.destroy_all
         abl.destroy
       end
     end
