@@ -15,6 +15,6 @@ label.error{
     font-family: tahoma;
     font-size: 11px;
     padding: 4px 10px;
-    width: 150px;
+    /*width: 150px;*/
     z-index: 5001;
 }
