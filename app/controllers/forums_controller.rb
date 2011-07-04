@@ -59,54 +59,20 @@ class ForumsController < ApplicationController
   end
 
   def addfr
-    
-    
     if simple_captcha_valid?   
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-      puts "HELLO WORLD"
-#    else
-#      flash[:warning] = "Captcha does not match."
-#      render :action => "index"
-    end    
-    
-    @new_fr = Forum.new()
-    @new_fr.title = params[:txt_help]
-    @new_fr.content = params[:help_content]
-    @new_fr.user = current_user
+      @new_fr = Forum.new()
+      @new_fr.title = params[:txt_help]
+      @new_fr.content = params[:help_content]
+      @new_fr.user = current_user
 
-    if @new_fr.save
-      @status_message = "Add new question successfully"
+      if @new_fr.save
+        @status_message = "Add new question successfully"
+      else
+        @status_message = "Failed to add new question"
+      end 
     else
-      @status_message = "Failed to add new question"
-    end 
+      flash[:warning] = "Captcha does not match."
+    end    
 
     redirect_to :action => "index"
   end

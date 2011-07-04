@@ -128,26 +128,14 @@
 
 
 
+<%= display_flash_messages_with_raw %>
 
 <div class="contMainRHQ">
-
-
-
-
   <div style="margin-left: 6px; margin-right: 8px; margin-top: 10px;">
-
       <a id="imageDivLink" onclick="javascript:toggle5('form_new_fr', 'imageDivLink');">
         <img src="/images/helpPostSh08.png"/>
       </a>
-
-
-
   </div>  
-
-
-
-
-
   <div class="popu">
     <div id="form_new_fr" style="display: none;">
       <div id="contentDivImg">
@@ -161,20 +149,13 @@
 
               <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
               
-              
-              
-              
-              
-              <% if logged_in? %>              
-              <div style="margin-top: 5px;" class="submit">
-                <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"/>
-              </div>
-              <% else %>
-              <%= link_to_require_login(raw("<div style='margin-top: 5px;' class='submit'><input id='add_new_fr' type='submit' value='Submit' name='commit' class='buttonCom'/></div>")) %>
-              <% end %>
-              
-              
-              
+                <% if logged_in? %>              
+                  <div style="margin-top: 5px;" class="submit">
+                    <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"/>
+                  </div>
+                <% else %>
+                  <%= link_to_require_login(raw("<div style='margin-top: 5px;' class='submit'><input id='add_new_fr' type='submit' value='Submit' name='commit' class='buttonCom'/></div>")) %>
+                <% end %>
               
             </div>
           <% end -%>
@@ -254,9 +235,14 @@
       }
     });
   }
+  
+  function modifyNotice(){
+    $('#flash_warning').css('float','left');
+  }
 
   $(document).ready(function() {
     ShowHideDelIcon();
+    modifyNotice();
 
     $("a[id*='answ_']").click(function(){
       $(this).parent().next().toggle();
