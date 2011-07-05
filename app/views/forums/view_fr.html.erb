@@ -1,10 +1,7 @@
-
-
-
-
-
-
 <%= form_tag save_edit_forums_path, :id => "" do -%>
+
+   <%= hidden_field_tag "forum_id", @fr.id %>
+
   <div class="postHelp">
     <div class="reqLa"><label>Title *</label></div>
     <div class="reqTi" style="background-color: #FFFFFF; width: 280px;" >
