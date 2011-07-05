@@ -7,7 +7,7 @@
     <% end %>
     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
 
-    <div class="proListR" style="width: 505px;">
+    <div class="proListR" style="width: 490px;">
       <div class="AfterClCom">
         <a href="<%= "#{show_lounge_user_path(cmt.user)}" %>"><%= cmt.user.name %></a> <%= cmt.comment %>
       </div>
@@ -24,7 +24,7 @@
 <div id="current_cmt_<%= @fr.id %>" class="proListH1" style = "display: none; margin-left: 62px; width: 545px;">
   <form>
     <div class="proListPic"><%= show_image_user_post(current_user) %></div>
-    <div class="proListR" style="width: 505px;">
+    <div class="proListR" style="width: 490px;">
       <div class="writeCom"><textarea name="comment" id="comment_<%= @fr.id.to_s %>"></textarea></div>
     </div>
     <div class="proAttR"><input id="save_<%= @fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>

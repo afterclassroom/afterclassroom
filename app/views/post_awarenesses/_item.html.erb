@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="mySco">
-            <%= link_to "View results", "#{view_results_post_awarenesses_path}?post_awareness_id=#{post.post_awareness.id}&height=325&width=550", :class => "thickbox", :title => "View results" %>
+            <%= link_to "View results", "#{url_for(:controller => "ajax_not_login", :action => "view_results")}?post_awareness_id=#{post.post_awareness.id}&height=325&width=550", :class => "thickbox", :title => "View results" %>
         </div>
     </div>
     <!--info-link-box-->

@@ -260,7 +260,7 @@ Afterclassroom::Application.routes.draw do
 
   resources :post_awarenesses do
     collection do
-      get :search, :tag, :rate, :support, :view_results, :require_rate
+      get :search, :tag, :rate, :support, :require_rate
     end
   end
 
@@ -285,7 +285,7 @@ Afterclassroom::Application.routes.draw do
   
   resources :ajax_not_login do
     collection do
-      get :show_comment, :rate_comment
+      get :show_comment, :rate_comment, :view_results
     end
   end
   
