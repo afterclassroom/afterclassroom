@@ -32,8 +32,37 @@
             <a href="javascript:;" style="color: #6F6F63;" onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">Community Help Forum <%= "-Popular discussions" if controller.action_name == "see_all_top_fr" %></a>
           </div>
           <% @forums.each do |fr| %>
-            <div class="helpItem"  style="border-bottom: 1px solid #DBDBDB;">
-
+            <div class="helpItem"  style="border-bottom: 1px solid #DBDBDB;" id='frm_<%= fr.id.to_s %>'>
+              
+              
+              
+              
+              <% if logged_in? && (fr.user == current_user ) %>
+                <div class="del_post_com" style="float: right; cursor: pointer; display: none;" onclick="DeleteForumItem('<%= fr.id.to_s %>');">
+                  
+                  <img src="/images/icon-ing.gif">
+                    
+                </div>     
+              
+              
+                <div class="del_post_com" style="float: right; cursor: pointer; display: none; margin-right: 6px;">
+                  <a href="javascript:;">
+                    <%= link_to(content_tag(:div, image_tag("/images/flistREdit.png", :alt => '')), "#{view_fr_forums_path(current_user)}?height=310&width=310&forum_id=#{fr.id.to_s}", :class => "thickbox", :title => "Edit Post") %>
+                  </a>
+                </div>     
+              <% end %>              
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
               <div style="float: left;" class="assPic">
                 <%= show_image_user_post(fr.user) %>
               </div>
@@ -90,7 +119,7 @@
                       <div class="proListR" style="width: 505px;">
                         <div class="writeCom"><textarea name="comment" id="comment_<%= fr.id.to_s %>"></textarea></div>
                       </div>
-                      <div class="proAttR"><input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
+                      <div class="proAttR"><input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"/></div>
                     </form>
                   </div>
                 <% else %>
@@ -144,7 +173,7 @@
             <div class="postHelp">
               <div class="reqLa"><label>Title *</label></div>
               <div class="reqTi"><input type="text" id="txt_help" class="{validate:{required:true}}" name="txt_help" size="22" style="width:280px"></input></div>
-              <div class="reqLa"><label>Desription *</label></div>
+              <div class="reqLa"><label>Description *</label></div>
               <div style="margin: 3px 0pt;" class="reqEn"><textarea id="help_content" class="{validate:{required:true}}" name="help_content" style="width:280px"></textarea></div>
 
               <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
@@ -177,7 +206,7 @@
       </div>
     </div>
     <% @top_frs.each do |fr| %>
-      <div class="popuDes"><b><%= fr.title %></b>  <%= fr.content %></div>
+      <div class="popuDes"><b><%= fr.title %></b>  <%= truncate_html(fr.content, :length => 100, :omission => '...') %> </div>
       <div class="popuRe">
         <a href="javascript:;" style='color: #6F6F63' onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'"><%= fr.comments.length %> replies</a>
       </div>
@@ -315,11 +344,58 @@
     }
   }
   function ShowHideDelIcon(){
+    /*Show hide delete X icon for each comment*/
     $(".proList").hover(function(){
       $(".del_post_com", this).show();
     }, function(){
       $(".del_post_com", this).hide();
     });
+    /*Show hide delete X icon for each forum post*/
+    $(".helpItem").hover(function(){
+      $(".del_post_com", this).show();
+    }, function(){
+      $(".del_post_com", this).hide();
+    });    
+    
+    
+  }
+  
+  function EditForumItem(forum_id){
+    alert('id == '+forum_id);
+  }
+  
+  function DeleteForumItem(forum_id){
+    var delPath = '<%= delfrm_forums_path(current_user) %>';
+
+    $("#delete_comment_alert").dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $(this).dialog('close');
+          $('#frm_'+forum_id).toggle();
+          $.ajax({
+            url: delPath,
+            type: 'GET',
+            dataType: 'html',
+            data: '&forum_id=' + forum_id,
+            success: function(html){
+              //Do nothing
+            },
+            error: function(er){
+              alert('Failed to communicate with server: '+er);
+            }
+          });
+        },
+        Cancel: function() {
+          $(this).dialog('close');
+        }
+      }
+    });
+
+
+
+
+
   }
 
   function DeleteForumComment(forum_id, comment_id){

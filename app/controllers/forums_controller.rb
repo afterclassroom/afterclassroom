@@ -30,6 +30,34 @@ class ForumsController < ApplicationController
 
     render :text => fr.comments.size
   end
+  
+  def view_fr
+    puts "HELLO WORLD"
+    puts "HELLO WORLD"
+    puts "HELLO WORLD"
+    puts "HELLO WORLD"
+    puts "HELLO WORLD"
+    puts "HELLO WORLD"
+    puts "HELLO WORLD params[:forum_id]"+params[:forum_id]
+
+    @fr = Forum.find(params[:forum_id])
+
+    
+    render :layout => false
+  end
+  
+  def save_edit
+    pust "save edit"
+  end
+  
+  def delfrm
+    
+    fr = Forum.find(params[:forum_id])
+    fr.destroy
+    
+    render :text => 'Delete successfully'
+
+  end
 
   def view_all_comments
     forum_id = params[:forum_id]
