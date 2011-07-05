@@ -304,6 +304,44 @@ module ApplicationHelper
     return link_show
   end
   
+  def get_controler_name_from_class_name(class_name)
+    case class_name
+      when "PostAssignment"
+      controler_name = "post_assignments"
+      when "PostProject"
+      controler_name = "post_projects"
+      when "PostTest"
+      controler_name = "post_tests"
+      when "PostExam"
+      controler_name = "post_exams"
+      when "PostEvent"
+      controler_name = "post_events"
+      when "PostQa"
+      controler_name = "post_qas"
+      when "PostTutor"
+      controler_name = "post_tutors"
+      when "PostBook"
+      controler_name = "post_books"
+      when "PostJob"
+      controler_name = "post_jobs"
+      when "PostFood"
+      controler_name = "post_foods"
+      when "PostParty"
+      controler_name = "post_parties"
+      when "PostMyx"
+      controler_name = "post_myxes"
+      when "PostAwareness"
+      controler_name = "post_awarenesses"
+      when "PostHousing"
+      controler_name = "post_housings"
+      when "PostTeamup"
+      controler_name = "post_teamups"
+      when "PostExamSchedule"
+      controler_name = "post_exam_schedules"
+    end
+    return controler_name
+  end
+  
   def show_options(school, params, options = {})
     department = params[:department] if params[:department]
     year = params[:year] if params[:year]
