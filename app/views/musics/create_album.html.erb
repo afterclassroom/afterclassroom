@@ -104,7 +104,7 @@
           return;
         }
                     
-        if (files[index].size > 5000000) {
+        if (files[index].size > 10000000) {
           handler.uploadRow.find('.file_upload_progress').html('FILE TOO BIG!');
           setTimeout(function(){
             handler.removeNode(handler.uploadRow);

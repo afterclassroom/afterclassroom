@@ -1,5 +1,5 @@
 <%
-  friends = @user.user_friends
+  friends = @user.user_friends.shuffle
   f_total = friends.size
 %>
 <div class="col195 Fans">

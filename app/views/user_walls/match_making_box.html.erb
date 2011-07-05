@@ -12,8 +12,7 @@
             Message
         </div>
         <div class="postInp">
-            <textarea class="required" name="body" id="message_body" style="width: 330px; height: 150px;">
-            </textarea>
+        	<%= text_area_tag "body", "", :id => "message_body", :style => "width: 330px; height: 150px;" %>
         </div>
     </div>
     <div style="padding-left: 90px;" class="submit">

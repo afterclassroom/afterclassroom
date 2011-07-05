@@ -8,6 +8,8 @@ class Share < ActiveRecord::Base
     :bucket => 'afterclassroom_post'
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
+  validates_attachment_size :attach, :less_than => FILE_SIZE_SHARE
+  
   def self.del_share_expire
     share_files = Share.destroy_all(["created_at < ?", Time.now - 1.week])
   end

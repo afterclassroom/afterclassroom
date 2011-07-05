@@ -5075,7 +5075,7 @@ span.btmTag a:hover{
     _height:100%;
 }
 .musicL{
-    width:119px;
+    width:115px;
     float:left;
     margin-bottom:10px
 }
@@ -5129,11 +5129,9 @@ span.btmTag a:hover{
 }
 .musicNal a{
     height: 38px;
-    margin-left: -15px;
     margin-top: 4px;
     overflow: hidden;
     position: absolute;
-    text-indent: 16px;
     width: 100px;
     word-wrap: break-word;
     color: #1E1E1E;
@@ -5226,7 +5224,7 @@ span.btmTag a:hover{
 .stuItemL a:hover{
     color:#d00;
 }
-.inbox, .homew, .projects, .tests, .exams, .tutors, .jobs, .qas, .books, .foods, .parties, .myxes, .awareness, .housings, .teamups{
+.inbox, .homew, .projects, .tests, .exams, .events, .tutor, .job, .qa, .book, .food, .parties, .myxes, .awareness, .housings, .teamups{
     border-bottom:1px #e4e4e4 solid;
 }
 .inbox .stuItemL{
@@ -5238,10 +5236,10 @@ span.btmTag a:hover{
 .homew .stuItemL{
     background:url('/images/iconHomew.png') no-repeat;
 }
-.tutors .stuItemL{
+.tutor .stuItemL{
     background:url('/images/iconTuto.png') no-repeat;
 }
-.jobs .stuItemL{
+.job .stuItemL{
     background:url('/images/iconJobs.png') no-repeat;
 }
 .cmore{

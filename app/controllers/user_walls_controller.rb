@@ -50,9 +50,9 @@ class UserWallsController < ApplicationController
     
     case @type
       when "profile"
-        @walls = current_user.my_walls.paginate :page => params[:page], :per_page => 10
-      else
-        @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+      @walls = current_user.my_walls.paginate :page => params[:page], :per_page => 10
+    else
+      @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     end
     
     respond_to do |format|
@@ -151,17 +151,23 @@ class UserWallsController < ApplicationController
       u = User.find(id)
       if u and u != usr
         list_name << "<a href='#{user_url(u)}'>#{u.full_name}</a>"
+        # Internal message
         message = Message.new
         message.sender = current_user
         message.recipient = u
         message.subject = "#{current_user.full_name} introduce #{usr.full_name} with you"
         message.body = content + "<br />" + "Click #{link_to "here", user_url(usr), :target => "blank"} to view profile of #{usr.full_name}"
         message.save
+        
+        # Email, notification
+        subject = "#{current_user.name} suggests a friend for you."
+        content = "Click #{link_to "here", user_url(usr), :target => "blank"} to view profile of #{usr.full_name}"
+        send_notification(u, subject, content, "suggests_a_friend_to_me")
       end
     end
     subject = "#{current_user.name} match making for you."
     content = list_name.join(", ")
-    send_notification(usr, subject, content, "posts_on_my_lounge")
+    send_notification(usr, subject, content, "match_making")
     render :text => "Success"
   end
   
@@ -293,7 +299,7 @@ class UserWallsController < ApplicationController
       open(link, hdrs).each {|s| my_html << s}
       @web_doc= Hpricot(my_html)
       @arr_img = []
-      @web_doc.search("img").each{ |e| @arr_img << "http://" + domain + e.attributes['src'] if e.attributes['width'].to_i > 200 }
+      @web_doc.search("img").each{ |e| @arr_img << get_img_url(e.attributes['src'], domain) if e.attributes['width'].to_i > 90 }
       image_link = ""
       image_link = @arr_img[0] if @arr_img.size > 0
       arr_p = []
@@ -333,9 +339,9 @@ class UserWallsController < ApplicationController
     @page = params[:page]
     case @type
       when "profile"
-        @walls = user.my_walls.paginate :page => params[:page], :per_page => 10
-      else
-        @walls = user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+      @walls = user.my_walls.paginate :page => params[:page], :per_page => 10
+    else
+      @walls = user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
     end
     render :layout => false
   end
@@ -348,5 +354,13 @@ class UserWallsController < ApplicationController
     domain = ""
     domain << url.subdomain + "." if url.subdomain != ""
     domain << url.domain + "." + url.public_suffix
+  end
+  
+  def get_img_url(url, domain)
+    if url.include?("http")
+      url
+    else
+      "http://" + domain + url
+    end
   end
 end

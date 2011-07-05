@@ -30,11 +30,15 @@
         <div class="stuItemL"><%= link_to "Exams", "#{user_post_managements_url(current_user)}?category=PostExam" %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostExam") %></div>
       </div>
-      <div class="stuItem tutors">
+			<div class="stuItem events" style="background:url('/images/footer_menu/event-1.png') no-repeat scroll -2px 55% transparent;">
+        <div class="stuItemL"><%= link_to "Events", "#{user_post_managements_url(current_user)}?category=PostEvent" %></div>
+        <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostEvent") %></div>
+      </div>
+      <div class="stuItem tutor">
         <div class="stuItemL"><%= link_to "Tutors", "#{user_post_managements_url(current_user)}?category=PostTutor" %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostTutor") %></div>
       </div>
-      <div class="stuItem jobs">
+      <div class="stuItem job">
         <div class="stuItemL"><%= link_to "Jobs", "#{user_post_managements_url(current_user)}?category=PostJob" %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostJob") %></div>
       </div>
@@ -42,15 +46,15 @@
         <a id="choosemore" href="#">Choose More...</a>
       </div>
       <div id="moreinner" style="display:none;">
-        <div class="stuItem qas">
+        <div class="stuItem qa">
           <div class="stuItemL" style="background:url('/images/footer_menu/qas-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Q.As", "#{user_post_managements_url(current_user)}?category=PostQa", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostQa") %></div>
         </div>
-        <div class="stuItem books">
+        <div class="stuItem book">
           <div class="stuItemL" style="background:url('/images/footer_menu/books-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Books", "#{user_post_managements_url(current_user)}?category=PostBook", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostBook") %></div>
         </div>
-        <div class="stuItem foods">
+        <div class="stuItem food">
           <div class="stuItemL" style="background:url('/images/footer_menu/foods-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Food", "#{user_post_managements_url(current_user)}?category=PostFood", :style => "margin:1px" %></div>
           <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostFood") %></div>
         </div>

@@ -1,57 +1,69 @@
 <% if @err %>
-  <div class="wrapTitle">
+<div class="wrapTitle">
     Link error.
-  </div>
+</div>
 <% else %>
-  <div style="min-height:100px">
-    <div class="AfterImg"><div class="imgDiv">
-        <ul id="carrousel" class="myCarousel">
-          <% @arr_img.each do |img| %>
-            <li><%= image_tag img, :width => "92px", :height => "68px" %></li>
-          <% end %>
-        </ul>
-      </div>
-      <div id="api">
-        <div class="learnPageP"><a id="prev" href="#"> </a></div>
-        <div class="learnPageN"><a id="next" href="#"> </a></div>
-      </div>
+<div style="min-height:100px">
+	<% if @arr_img.size > 0 %>
+    <div class="AfterImg">
+        <div class="imgDiv">
+            <ul id="carrousel" class="myCarousel">
+                <% @arr_img.each do |img| %>
+                <li>
+                    <%= image_tag img, :width => "92px", :height => "68px" %>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+        <div id="api">
+            <div class="learnPageP">
+                <a id="prev" href="#"></a>
+            </div>
+            <div class="learnPageN">
+                <a id="next" href="#"></a>
+            </div>
+        </div>
     </div>
-    <div class="AfterTitle"><%= link_to @user_wall_link.title, @user_wall_link.link, :target => "_blank" %></div>
-    <div class="AfterDes"><%= @user_wall_link.sub_content %></div>
-  </div>
-  <%= fields_for @user_wall_link do |p| %>
-    <%= p.hidden_field :link %>
-    <%= p.hidden_field :image_link %>
-    <%= p.hidden_field :title %>
-    <%= p.hidden_field :sub_content %>
-  <% end %>
-
-  <script type="text/javascript">
-    jQuery(document).ready(function () {
-
-      var carrousel = jQuery("#carrousel").carrousel({
-        controls	: 'keys',
-        direction	: 'left',
-        speed 		: 50,
-        dispTimeout 	: 1000,
-        dispNumber	: 1,
-        auto		: false,
-        callbacks	: [giveCurrent],
-        api		: true
-      });
-
-      function giveCurrent() {
-        $('#user_wall_link_image_link').val($("div[rel='" + carrousel.getCurrent() + "'] img").attr("src"));
-      }
-
-      jQuery('#next').click(function () {
-        carrousel.next();
-        return false;
-      });
-      jQuery('#prev').click(function () {
-        carrousel.prev();
-        return false;
-      });
+		<% end %>
+    <div class="AfterTitle">
+        <%= link_to @user_wall_link.title, @user_wall_link.link, :target => "_blank" %>
+    </div>
+    <div class="AfterDes">
+        <%= @user_wall_link.sub_content %>
+    </div>
+</div>
+<%= fields_for @user_wall_link do |p| %>
+<%= p.hidden_field :link %>
+<%= p.hidden_field :image_link %>
+<%= p.hidden_field :title %>
+<%= p.hidden_field :sub_content %>
+<% end %>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+    
+        var carrousel = jQuery("#carrousel").carrousel({
+            controls: 'keys',
+            direction: 'left',
+            speed: 50,
+            dispTimeout: 1000,
+            dispNumber: 1,
+            auto: false,
+            callbacks: [giveCurrent],
+            api: true
+        });
+        
+        function giveCurrent(){
+            $('#user_wall_link_image_link').val($("div[rel='" + carrousel.getCurrent() + "'] img").attr("src"));
+        }
+        
+        jQuery('#next').click(function(){
+            carrousel.next();
+            return false;
+        });
+        jQuery('#prev').click(function(){
+            carrousel.prev();
+            return false;
+        });
     });
-  </script>
+</script>
 <% end %>
