@@ -40,12 +40,12 @@
               
               
               <% if logged_in? && (fr.user == current_user ) %>
-                <div class="del_post_com" style="float: right; cursor: pointer; display: none;" onclick="DeleteForumItem('<%= fr.id.to_s %>');">
+                <div id="fr_handler" class="del_post_com" style="float: right; cursor: pointer; display: none;" onclick="DeleteForumItem('<%= fr.id.to_s %>');">
                   <a href='javascript:;' class='vtip' title='Delete this question'><img src="/images/icon-ing.gif"></a>
                 </div>     
               
               
-                <div class="del_post_com" style="float: right; cursor: pointer; display: none; margin-right: 6px;">
+                <div id="fr_handler" class="del_post_com" style="float: right; cursor: pointer; display: none; margin-right: 6px;">
                   <a href="javascript:;">
                     <%= link_to(content_tag(:div, image_tag("/images/flistREdit.png", :alt => '')), "#{view_fr_forums_path(current_user)}?height=210&width=310&forum_id=#{fr.id.to_s}", :class => "thickbox", :title => "Edit Post") %>
                   </a>
@@ -366,20 +366,18 @@
   }
   function ShowHideDelIcon(){
     /*Show hide delete X icon for each comment*/
-    /*
+    
     $(".proList").hover(function(){
       $(".del_post_com", this).show();
     }, function(){
       $(".del_post_com", this).hide();
     });
-    */
+    
     /*Show hide delete X icon for each forum post*/
     $(".helpItem").hover(function(){
-      $(".helpItem").first().children().find('.del_post_com').show();
-    }
-      //$(".del_post_com", this).show();
+      $("#fr_handler", this).show();
     }, function(){
-      $(".del_post_com", this).hide();
+      $("#fr_handler", this).hide();
     });    
     
     
