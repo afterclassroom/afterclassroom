@@ -1,7 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostAwarenessesController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :view_results]
+  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag]
   before_filter :cas_user
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :view_results]
@@ -111,29 +111,6 @@ class PostAwarenessesController < ApplicationController
     end
     @text = "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'>#{str}</a></div>"
     @text << "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'> #{str_not}</a></div>"
-  end
-  
-  def view_results
-    post_awareness_id = params[:post_awareness_id]
-    post_awareness = PostAwareness.find(post_awareness_id)
-    total_support = post_awareness.total_support.to_i
-    total_notsupport = post_awareness.total_notsupport.to_i
-    chart = GoogleChart.new
-    chart.type = :pie
-    chart.data = [total_support, total_notsupport]
-    
-    #reuse and change size, set labels for big chart
-    str = "Reliable"
-    str_not = "Not Reliable"
-    if post_awareness.awareness_type.label == "take_action_now"
-      str = "Support"
-      str_not = "Not Support"
-    end
-    chart.labels = [str,str_not]
-    chart.height = 300
-    chart.width = 550
-    @chart_url = chart.to_url
-    render :layout => false
   end
   
   # GET /post_awarenesses/1

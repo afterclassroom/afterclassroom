@@ -737,7 +737,7 @@ module ApplicationHelper
           end
           when 4 # My friends
           if current_user
-            check = true if user.friends.include?(current_user)
+            check = true if user.user_friends.include?(current_user)
           end
           when 5 # Friends from work
           if current_user
