@@ -112,6 +112,7 @@ GEM
     gdata (1.1.1)
     gemcutter (0.6.1)
     geokit (1.5.0)
+    geonames (0.2.2)
     git-deploy (0.4.1)
       capistrano (~> 2.5.9)
     highline (1.6.1)
@@ -237,6 +238,7 @@ DEPENDENCIES
   fastercsv
   gemcutter
   geokit
+  geonames
   git-deploy
   hpricot
   i18n (= 0.5.0)

@@ -1,5 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 require 'digest/sha1'
+require 'open-uri'
 
 class User < ActiveRecord::Base
   include Authentication
@@ -285,6 +286,15 @@ class User < ActiveRecord::Base
     fof = UserInvite.find_by_sql("SELECT DISTINCT tb.user_id_target FROM user_invites AS tl JOIN user_invites AS tb ON tl.user_id_target = tb.user_id WHERE tl.user_id = #{self.id}")
     ids = fof.collect {|f| f.user_id_target}
     User.find(:all, :conditions => ["id IN(#{ids.join(',')})"])
+  end
+  
+  def set_time_zone_from_ip(ip)
+    location = open("http://api.hostip.info/get_html.php?ip=#{ip}&position=true")
+    if location.string =~ /Latitude: (.+?)\nLongitude: (.+?)\n/
+      timezone = Geonames::WebService.timezone($1, $2)
+      
+      self.time_zone = ActiveSupport::TimeZone::MAPPING.index(timezone.timezone_id) unless timezone.nil?
+    end
   end
   
   protected

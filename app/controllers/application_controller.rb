@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   USER_NAME, PASSWORD = "afterclassroom", "teamwork"
   
   before_filter :authenticate
+  before_filter :set_user_time_zone
   
   def help
     Helper.instance
@@ -81,6 +82,7 @@ class ApplicationController < ActionController::Base
     if session[:cas_user] and self.current_user == nil
       self.current_user = User.find_by_email(session[:cas_user])
       self.current_user.update_attribute("online", true)
+      self.current_user.set_time_zone_from_ip(request.remote_ip)
       # Set session your school
       session[:your_school] = self.current_user.school.id
     end
@@ -122,4 +124,7 @@ class ApplicationController < ActionController::Base
     
   end
   
+  def set_user_time_zone
+    Time.zone = current_user.time_zone if logged_in?
+  end
 end
