@@ -47,7 +47,7 @@
 
                 <div id="fr_handler" class="del_post_com" style="border: 0px; float: right; cursor: pointer; display: none; margin-right: 6px;">
 
-                    <%= link_to(content_tag(:span, image_tag("/images/flistREdit.png", :alt => '', :style => 'border: 0px;')), "#{view_fr_forums_path(current_user)}?height=370&width=700&forum_id=#{fr.id.to_s}", :class => "thickbox", :title => "Edit Question") %>
+                  <%= link_to(content_tag(:span, image_tag("/images/flistREdit.png", :alt => '', :style => 'border: 0px;')), "#{view_fr_forums_path(current_user)}?height=370&width=700&forum_id=#{fr.id.to_s}", :class => "thickbox", :title => "Edit Question") %>
 
                 </div>
               <% end %>
@@ -114,12 +114,18 @@
                 <% end %><!-- end fr.comments.each -->
                 <% if logged_in? %>
                   <div class="proListH1" style="margin-left: 62px; width: 545px;">
-                    <form>
+                    <form id="cmt_form_<%= fr.id.to_s %>" method="post" action="/forums/savecmt">
                       <div class="proListPic"><%= show_image_user_post(current_user) %></div>
                       <div class="proListR" style="width: 490px;">
-                        <div class="writeCom"><textarea name="comment" id="comment_<%= fr.id.to_s %>"></textarea></div>
+                        <div class="writeCom">
+                          <!-- textarea name="comment" id="comment_<%= fr.id.to_s %>" class="{validate:{required:true, minlength: 6, maxlength: 10}}" -->
+                          <!-- /textarea -->
+                          <%= text_area_tag "comment", "", :id => "commnt_"+fr.id.to_s, :class => "{validate:{required:true}}" %>
+                        </div>
                       </div>
-                      <div class="proAttR"><input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"/></div>
+                      <div class="proAttR">
+                        <input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"/>
+                      </div>
                     </form>
                   </div>
                 <% else %>
@@ -161,51 +167,51 @@
 
 <div class="contMainRHQ">
   <div style="margin-left: 6px; margin-right: 8px; margin-top: 10px; cursor: pointer;">
-      <a id="imageDivLink" onclick="javascript:ToggleForm('form_new_fr', 'imageDivLink');">
-        <img src="/images/helpPostSh08.png"/>
-      </a>
+    <a id="imageDivLink" onclick="javascript:ToggleForm('form_new_fr', 'imageDivLink');">
+      <img src="/images/helpPostSh08.png"/>
+    </a>
   </div>
   <div class="popu">
     <div id="form_new_fr" style="display: none;">
       <div id="contentDivImg">
 
-          <%= form_tag addfr_forums_path, :id => "new_fr_formQ" do -%>
-            <div class="postHelp">
-              <div class="reqLa"><label>Title *</label></div>
+        <%= form_tag addfr_forums_path, :id => "new_fr_formQ" do -%>
+          <div class="postHelp">
+            <div class="reqLa"><label>Title *</label></div>
 
 
-                <div class="reqTi">
-                  <% if session["open_form"] == "open" %>
-                    <% str_title = session["new_fr_title"] %>
-                    <% str_cnt = session["new_fr_cnt"] %>
-                    <% session.delete(:new_fr_title) %>
-                    <% session.delete(:new_fr_cnt) %>
-                  <% else %>
-                    <% str_title = "" %>
-                  <% end %>
-                  <input value="<%= str_title %>" type="text" id="txt_help" class="{validate:{required:true}}" name="txt_help" size="22" style="width:280px"/>
-                </div>
-
-
-              <div class="reqLa"><label>Description *</label></div>
-
-
-              <div style="margin: 3px 0pt;" class="reqEn">
-                <%= text_area_tag "help_content", str_cnt, :id => "help_content", :style => "width:280px", :class => "{validate:{required:true}}" %>
-              </div>
-
-              <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-
-                <% if logged_in? %>
-                  <div style="margin-top: 5px;" class="submit">
-                    <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom" onclick="submitQ();"/>
-                  </div>
-                <% else %>
-                  <%= link_to_require_login(raw("<div style='margin-top: 5px;' class='submit'><input id='add_new_fr' type='submit' value='Submit' name='commit' class='buttonCom'/></div>")) %>
-                <% end %>
-
+            <div class="reqTi">
+              <% if session["open_form"] == "open" %>
+                <% str_title = session["new_fr_title"] %>
+                <% str_cnt = session["new_fr_cnt"] %>
+                <% session.delete(:new_fr_title) %>
+                <% session.delete(:new_fr_cnt) %>
+              <% else %>
+                <% str_title = "" %>
+              <% end %>
+              <input value="<%= str_title %>" type="text" id="txt_help" class="{validate:{required:true}}" name="txt_help" size="22" style="width:280px"/>
             </div>
-          <% end -%>
+
+
+            <div class="reqLa"><label>Description *</label></div>
+
+
+            <div style="margin: 3px 0pt;" class="reqEn">
+              <%= text_area_tag "help_content", str_cnt, :id => "help_content", :style => "width:280px", :class => "{validate:{required:true}}" %>
+            </div>
+
+            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+
+            <% if logged_in? %>
+              <div style="margin-top: 5px;" class="submit">
+                <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom" onclick="submitQ();"/>
+              </div>
+            <% else %>
+              <%= link_to_require_login(raw("<div style='margin-top: 5px;' class='submit'><input id='add_new_fr' type='submit' value='Submit' name='commit' class='buttonCom'/></div>")) %>
+            <% end %>
+
+          </div>
+        <% end -%>
 
       </div>
     </div>
@@ -265,7 +271,13 @@
       var savePath = '<%= savecmt_forums_path %>';
 <% end %>
 
+    $.post( savePath, { forum_id: forum_id, content: content },
+    function( data ) {
+      HideWaitDialog();
+    }
+  );
 
+    /*
     $.ajax({
       type: 'GET',
       url: savePath,
@@ -281,6 +293,8 @@
         alert('Failed to communicate with server: '+er);
       }
     });
+     */
+    
   }
 
 
@@ -301,6 +315,13 @@
 
       var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
 
+
+
+
+
+
+
+
       if (strContent == '')
         alert('Please write something ... ');
       else{
@@ -309,6 +330,8 @@
         /* reset the comment textarea to empty value */
         $(this).parents().find('form').eq(0).find('textarea').attr('value','');
       }
+
+
     });
 
 
