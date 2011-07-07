@@ -226,9 +226,9 @@ class PostQasController < ApplicationController
   def sendmail
     
     QaSendMail.refer_to_expert(params[:strContent], params[:emailAddr],params[:post_id], current_user).deliver
-    
-    # render :layout => false
-    render :text => %Q'Mail sent to'
+
+    @receiver = params[:emailAddr]
+    render :layout => false
   end
   
   private

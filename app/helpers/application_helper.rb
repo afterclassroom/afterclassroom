@@ -665,7 +665,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login(raw("<span>Refer to experts</span>"))
     else
-      link_to(raw("<span>Refer to experts</span>"), "#{prefer_post_qas_path}?height=320&width=490&post_id="+post.id.to_s, :class => "thickbox", :title => "Rerfer to experts")
+      link_to(raw("<span>Refer to experts</span>"), "#{prefer_post_qas_path}?height=300&width=490&post_id="+post.id.to_s, :class => "thickbox", :title => "Rerfer to experts")
     end
   end
   
