@@ -31,7 +31,7 @@
         <div class="helpCR" style="width: 632px;">
           <%= display_flash_messages_with_raw %>
           <div class="helpTitle">
-            <a href="javascript:;" style="color: #6F6F63;" onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">Community Help Forum <%= "-Popular discussions" if controller.action_name == "see_all_top_fr" %></a>
+            <a href="javascript:;" style="color: #6F6F63;" onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">Community Help Forum <%= "- Popular discussions" if controller.action_name == "see_all_top_fr" %></a>
           </div>
           <% @forums.each do |fr| %>
             <div class="helpItem"  style="border-bottom: 1px solid #DBDBDB;" id='frm_<%= fr.id.to_s %>'>
@@ -94,7 +94,7 @@
                   <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 62px; width: 545px;">
                     <% if logged_in? && (cmt.user == current_user || fr.user == current_user ) %>
                       <div onclick="DeleteForumComment(<%= fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
-                        <a href='javascript:;' class='vtip' title='Delete this response'><img src="/images/icon-ing.gif"></a>
+                        <a href='javascript:;' class='vtip' title='Delete this response'><img src="/images/icon-ing.gif" style="border: 0px;"/></a>
                       </div>
                     <% end %>
                     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
@@ -118,8 +118,6 @@
                       <div class="proListPic"><%= show_image_user_post(current_user) %></div>
                       <div class="proListR" style="width: 490px;">
                         <div class="writeCom">
-                          <!-- textarea name="comment" id="comment_<%= fr.id.to_s %>" class="{validate:{required:true, minlength: 6, maxlength: 10}}" -->
-                          <!-- /textarea -->
                           <%= text_area_tag "comment", "", :id => "commnt_"+fr.id.to_s, :class => "{validate:{required:true}}" %>
                         </div>
                       </div>
@@ -150,7 +148,10 @@
               <%= will_paginate @forums %>
             </div>
           <% elsif controller.action_name == "see_all_top_fr" %>
-            <%= will_paginate(@forums, :params => { :controller => "forums", :action => "see_all_top_fr" }) %>
+            <div class="assPage" style="padding-left:0">
+              <span class="numPage"><%= page_entries_info @forums %></span>
+              <%= will_paginate(@forums, :params => { :controller => "forums", :action => "see_all_top_fr" }) %>
+            </div>
           <% end %>
           <div class="goTop" style="padding:0"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
         </div>
@@ -277,24 +278,6 @@
     }
   );
 
-    /*
-    $.ajax({
-      type: 'GET',
-      url: savePath,
-      data: {
-        content: content,
-        forum_id: forum_id
-      },
-      success: function(data) {
-        HideWaitDialog();
-      },
-      error: function(er){
-        HideWaitDialog();
-        alert('Failed to communicate with server: '+er);
-      }
-    });
-     */
-    
   }
 
 
@@ -314,13 +297,6 @@
     $("input[id*='save_']").click(function(){
 
       var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
-
-
-
-
-
-
-
 
       if (strContent == '')
         alert('Please write something ... ');

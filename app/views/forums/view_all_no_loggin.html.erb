@@ -26,6 +26,9 @@
 </div>
 
 <script type="text/javascript">
+  /* call vtip(); again to ensure tooltip display OK for link_to_require_login */
+  vtip();
+
   function showForumCmtForm<%= @fr.id %>(){
     $('#current_cmt_<%= @fr.id %>').toggle(); /* show comment box */
     $('#fr_comment_<%= @fr.id %>').toggle(); /* hide link to box */
