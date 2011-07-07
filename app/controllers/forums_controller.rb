@@ -107,6 +107,7 @@ class ForumsController < ApplicationController
     if simple_captcha_valid?   
       if @new_fr.save
         @status_message = "Add new question successfully"
+        flash[:warning] = "Add new question successfully"
       else
         @status_message = "Failed to add new question"
       end 

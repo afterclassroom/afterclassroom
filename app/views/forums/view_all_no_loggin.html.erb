@@ -1,6 +1,6 @@
 <% @fr.comments.each do |cmt| %>
-    <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 62px; width: 545px;">
-  <% if logged_in? %>
+  <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 62px; width: 545px;">
+    <% if logged_in? %>
       <div onclick="DeleteForumComment(<%= @fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
         <img src="/images/icon-ing.gif"/>
       </div>
@@ -26,6 +26,9 @@
 </div>
 
 <script type="text/javascript">
+  /* call vtip(); again to ensure tooltip display OK for link_to_require_login */
+  vtip();
+
   function showForumCmtForm<%= @fr.id %>(){
     $('#current_cmt_<%= @fr.id %>').toggle(); /* show comment box */
     $('#fr_comment_<%= @fr.id %>').toggle(); /* hide link to box */
