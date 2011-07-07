@@ -1,47 +1,32 @@
 <div class="postCont" id="div_send_report">
-  <form id="form_send_report" >
+  <% form_tag url_for(:controller => "post_qas", :action => "sendmail"), :remote => true, :id => "form_send_report" do %>
+    <%= hidden_field_tag "post_id", @post_id %>
     <div class="postItem">
       <div class="postItem1" style="width: 100px">Email*</div>
-      <div class="postInp"><input type="text" style="width:330px;" value="" id="changedValue" name="changedValue" class="required email"/></div>
+      <div class="postInp">
+        <input type="text" style="width:330px;" value="" id="emailAddr" name="emailAddr" class="required email"/>
+      </div>
     </div>
     <div class="postItem">
       <div class="postItem1" style="width: 100px">Content*</div>
-      <div class="postInp"><textarea style="width:330px; height:200px" id="abuse_content" name="content" class="required" > </textarea></div>
+      <div class="postInp">
+        <!-- textarea style="width:330px; height:200px" id="abuse_content" name="content" class="required" > </textarea -->
+        <textarea class="required" name="strContent" style="width:330px; height:200px"></textarea>
+      </div>
     </div>
-    <div class="submit" style="padding-left: 110px"><a href="javascript:;" onclick="sendPrefer()">Send</a></div>
+    <!-- div class="submit" style="padding-left: 110px"><a href="javascript:;" onclick="sendPrefer()">Send</a></div -->
+    <div class="submit" style="padding-left: 393px; padding-top: 5px;">
+      <a href="javascript:;" onclick="sendChange()">Send</a>
+    </div>
     <div class="error" style="padding-left: 110px;margin-top: 10px"></div>
-  </form>
+  <% end %>
 </div>
 <script language="javascript">
-  function sendPrefer(){
-    var url = '/post_qas/sendmail';
-    /*$("#form_send_report").submit();*/
-
-
-    var emailAddr = $('#changedValue').val();
-    var strContent = $('#abuse_content').val();
-
-    var dataString = '?emailAddr='+ emailAddr + '&strContent=' + strContent+ '&post_id='+<%= @post_id %>;
-    url = url + dataString;
-    //alert (dataString);return false;
-    $.ajax({
-      type: "POST",
-      url: url,
-      success: function(content) {
-        $('#TB_closeWindowButton').click();
-        alert('Mail sent to '+emailAddr);
-      },
-      error: function(xhr, textStatus, errorThrown){
-        alert('request failed');
-      }
-
-    });
-    return false;
-  
+  function sendChange(){
+    $("#form_send_report").submit();
   }
+
   $().ready(function() {
-    $("#form_send_report").validate({
-      errorLabelContainer: $("#form_send_report div.error")
-    });
+    $("#form_send_report").validate({});
   });
 </script>
