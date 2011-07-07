@@ -1,0 +1,22 @@
+<div class="postCont" id="div_send_report">
+    <form id="editTimezone" action="<%= save_time_zone_user_settings_path(current_user) %>">
+        <div class="postItem">
+            <div class="postItem1" style="width: 205px">
+                Please select time zone
+            </div>
+            <div class="postInp">
+                <%= time_zone_select :time_zone, "" %>
+            </div>
+        </div>
+        <div class="submit" style="padding-left: 215px ;">
+            <a href="javascript:;" onclick="sendChange()">Send</a>
+        </div>
+        <div class="error" style="padding: 10px">
+        </div>
+    </form>
+</div>
+<script language="javascript">
+    function sendChange(){
+        $("#editTimezone").submit();
+    }
+</script>

@@ -93,7 +93,7 @@
           '<\/tr>');
       },
       beforeSend: function(event, files, index, xhr, handler, callBack){
-        var regexp = /\.(mp3)$/i;
+        var regexp = /\.(mp3)|(wav)|(mpeg3)$/i;
         // Using the filename extension for our test,
         // as legacy browsers don't report the mime type
         if (!regexp.test(files[index].name)) {
@@ -113,7 +113,7 @@
         }
                     
         handler.uploadRow.find('.file_upload_start button').click(function(){
-          title = handler.uploadRow.find('.file_upload_title input').val();
+          title = handler.uploadRow.find('.file_upload_txt_title input').val();
           if (title == "Title"){
             title = "";
           }

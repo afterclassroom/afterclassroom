@@ -52,6 +52,7 @@ class PostExamSchedulesController < ApplicationController
   end
   
   def tag
+    @type_schedule = ""
     @tag_name = params[:tag_name]
     @posts = PostExamSchedule.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end

@@ -153,6 +153,23 @@ class SettingsController < ApplicationController
     redirect_to :action => "setting"
   end
   
+  def change_time_zone
+    render :layout => false
+  end
+  
+  def save_time_zone
+    if current_user == @user
+      if @user.update_attributes(:time_zone => params[:time_zone][0])
+        flash[:notice] = "Time zone has been updated."
+      else
+        flash[:error] = "Time zone could not be updated."
+      end
+    else
+      flash[:error] = "You cannot update another user's Time zone!"
+    end
+    redirect_to :action => "setting"
+  end
+  
   private
   def require_current_user
     @user ||= User.find(params[:user_id] || params[:id])

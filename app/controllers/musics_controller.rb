@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 require 'mp3info'
 
@@ -7,11 +8,9 @@ class MusicsController < ApplicationController
   
   session :cookie_only => false, :only => :upload
   skip_before_filter :verify_authenticity_token, :only => :upload
-  #skip_before_filter :login_required
   before_filter RubyCAS::Filter::GatewayFilter
   before_filter RubyCAS::Filter
   before_filter :cas_user
-  #before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
   
@@ -124,22 +123,22 @@ class MusicsController < ApplicationController
   def create
     @music = Music.new(params[:music])
     @music.user = current_user
-    respond_to do |format|
-      if @music.save
+    if @music.save
+      begin
         mp3_info = Mp3Info.open(@music.music_attach.path)
         @music.length_in_seconds = mp3_info.length.to_i
         @music.artist = mp3_info.tag.artist
-        @music.title = mp3_info.tag.title
+        @music.title ||= mp3_info.tag.title if mp3_info.tag.title
         @music.length_in_seconds = mp3_info.length.to_i
-        @music.save
-        flash[:notice] = 'Music was successfully created.'
-        music_wall(@music) if check_private_permission(current_user, "my_musics")
-        format.html { redirect_to user_music_album_path(current_user, @music.music_album) }
-        format.xml  { render :xml => @music, :status => :created, :location => @music }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @music.errors, :status => :unprocessable_entity }
+        @music.save!
+      rescue
+        # Nothing
       end
+      flash[:notice] = 'Music was successfully created.'
+      music_wall(@music) if check_private_permission(current_user, "my_musics")
+      redirect_to user_music_album_path(current_user, @music.music_album)
+    else
+      render :action => "new"
     end
   end
   
@@ -182,7 +181,7 @@ class MusicsController < ApplicationController
       mp3_info = Mp3Info.open(@music.music_attach.path)
       @music.length_in_seconds = mp3_info.length.to_i
       @music.artist = mp3_info.tag.artist
-      @music.title = mp3_info.tag.title
+      @music.title ||= mp3_info.tag.title if mp3_info.tag.title
       @music.length_in_seconds = mp3_info.length.to_i
       @music.save
       render :json => { :id => @music.id, :pic_path => @music.music_attach.url.to_s , :name => @music.music_attach.instance.attributes["music_attach_file_name"] }, :content_type => 'text/html'

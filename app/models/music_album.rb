@@ -26,9 +26,12 @@ class MusicAlbum < ActiveRecord::Base
     :styles => { :medium => "555x417>", :thumb => "92x68#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
+  validates_attachment_size :music_album_attach, :less_than => FILE_SIZE_PHOTO
+  
+  validates_attachment_content_type :music_album_attach, :content_type => ['image/pjpeg', 'image/jpeg', 'image/gif', 'image/png', 'image/x-png']
+  
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)
-    data.content_type = MIME::Types.type_for(data.original_filename).to_s
     self.music_album_attach = data
   end
   

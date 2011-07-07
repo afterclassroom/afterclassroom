@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 require 'mime/types'
 class Music < ActiveRecord::Base
@@ -9,8 +10,10 @@ class Music < ActiveRecord::Base
   has_attached_file :music_attach, {
     :bucket => 'afterclassroom_musics'
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
-  #  validates_attachment_size :music_attach, :less_than => 100.megabytes
-  #  validates_attachment_content_type :music_attach, :content_type => ['audio/mp3', 'audio/wav', 'audio/mpeg3']
+  
+  validates_attachment_size :music_attach, :less_than => FILE_SIZE_MUSIC
+  
+  validates_attachment_content_type :music_attach, :content_type => ['audio/mp3', 'audio/wav', 'audio/mpeg']
   
   # Comments
   acts_as_commentable
@@ -32,7 +35,6 @@ class Music < ActiveRecord::Base
   
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)
-    data.content_type = MIME::Types.type_for(data.original_filename).to_s
     self.music_attach = data
   end
   

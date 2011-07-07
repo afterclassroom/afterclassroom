@@ -1069,7 +1069,7 @@ span.btmDown a:hover {
 
 .AsDcomTxt textarea {
     border: 0px;
-    width: 544px;
+    width: 100%;
     font-family: Arial;
     height: 96px;
     margin: 0px 0px 0px 11px;

@@ -1,6 +1,6 @@
 <% if check_private_permission(@user, "my_fans") %>
   <div class="proInfG">
-    <div class="proInfGL">My Fans(<%= link_to "See all", show_fans_user_path(@user)%>)</div>
+    <div class="proInfGL"><%= @user.full_name %>'s Fans(<%= link_to "See all", show_fans_user_path(@user)%>)</div>
   </div>
   <%
   fans_rc = @user.fans_recent_update

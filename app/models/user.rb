@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :school_id, :allow_search_by_email
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :school_id, :allow_search_by_email, :time_zone
   
   # has_role? simply needs to return true or false whether a user has a role or not.  
   # It may be a good idea to have "admin" roles return true always
