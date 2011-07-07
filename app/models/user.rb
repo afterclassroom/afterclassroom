@@ -48,6 +48,8 @@ class User < ActiveRecord::Base
   has_many :post_events, :dependent => :destroy
   has_many :my_shares, :class_name => "Share", :foreign_key => "sender_id"
   has_many :private_settings
+  has_many :forums, :dependent => :destroy
+  has_many :press_infos, :dependent => :destroy
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]

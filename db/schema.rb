@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110706022710) do
+ActiveRecord::Schema.define(:version => 20110707090630) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -542,6 +542,14 @@ ActiveRecord::Schema.define(:version => 20110706022710) do
     t.datetime "attach_updated_at"
     t.integer  "count_view",          :default => 0
     t.boolean  "delta",               :default => true,  :null => false
+  end
+
+  create_table "press_infos", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "private_settings", :force => true do |t|
