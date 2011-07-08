@@ -2878,7 +2878,11 @@ div.helpAdv2{
     color:#0a81c4;
     text-decoration:none;
 }
-.proItem a:hover, .proItem a.hover{
+.proItem a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.proItem a.hover{
     color:#d00;
     text-decoration:none;
 }
