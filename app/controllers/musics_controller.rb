@@ -178,12 +178,16 @@ class MusicsController < ApplicationController
     @music = Music.new(params[:music])
     @music.user = current_user
     if @music.save
-      mp3_info = Mp3Info.open(@music.music_attach.path)
-      @music.length_in_seconds = mp3_info.length.to_i
-      @music.artist = mp3_info.tag.artist
-      @music.title ||= mp3_info.tag.title if mp3_info.tag.title
-      @music.length_in_seconds = mp3_info.length.to_i
-      @music.save
+      begin
+        mp3_info = Mp3Info.open(@music.music_attach.path)
+        @music.length_in_seconds = mp3_info.length.to_i
+        @music.artist = mp3_info.tag.artist
+        @music.title ||= mp3_info.tag.title if mp3_info.tag.title
+        @music.length_in_seconds = mp3_info.length.to_i
+        @music.save
+      rescue
+        # Nothing
+      end
       render :json => { :id => @music.id, :pic_path => @music.music_attach.url.to_s , :name => @music.music_attach.instance.attributes["music_attach_file_name"] }, :content_type => 'text/html'
     else
       render :json => { :result => 'error'}, :content_type => 'text/html'

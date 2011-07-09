@@ -258,12 +258,12 @@ class User < ActiveRecord::Base
   
   def fans_recent_update
     over = 30
-    self.fans.find(:all, :conditions => ["updated_at > ?", Time.now - over.day], :order => "updated_at DESC")
+    self.fans.find(:all, :conditions => ["updated_at > ?", over.business_days.before(Time.now)], :order => "updated_at DESC")
   end
   
   def fans_not_visit
     over = 30
-    self.fans.find(:all, :conditions => ["updated_at < ?", Time.now - over.day], :order => "updated_at DESC")
+    self.fans.find(:all, :conditions => ["updated_at < ?", over.business_days.before(Time.now)], :order => "updated_at DESC")
   end
   
   def get_posts_with_type_and_sort(type, sort)

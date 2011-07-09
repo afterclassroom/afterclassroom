@@ -38,7 +38,7 @@ class PostBook < ActiveRecord::Base
       post.department_id == department if department
       post.school_year == year if year
       post.school_id == with_school if with_school
-      post.created_at > Time.now - over.day
+      post.created_at > over.business_days.before(Time.now)
     end
     
     posts = []

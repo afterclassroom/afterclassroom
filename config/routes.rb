@@ -76,14 +76,6 @@ Afterclassroom::Application.routes.draw do
       end
     end
 
-    # Video Album
-    resources :video_albums
-    resources :videos do
-      collection do
-        get :create_album
-      end
-    end
-
     # Music Album
     resources :music_albums do
       collection do
@@ -102,6 +94,13 @@ Afterclassroom::Application.routes.draw do
     resources :photo_albums do
       collection do
         get :delete_all, :delete_photos
+      end
+    end
+    
+    # Videos
+    resources :videos do
+      collection do
+        get :friend_p, :my_p, :create_form, :destroy_all
       end
     end
     

@@ -81,6 +81,8 @@ GEM
     backup-task (0.2.0)
       backup (~> 3.0.9)
     builder (2.1.2)
+    business_time (0.3.1)
+      activesupport (>= 2.0.0)
     capistrano (2.5.19)
       highline
       net-scp (>= 1.0.0)
@@ -224,6 +226,7 @@ DEPENDENCIES
   aws-ses
   backgroundrb-rails3
   backup-task
+  business_time
   capistrano
   chronic
   configatron
