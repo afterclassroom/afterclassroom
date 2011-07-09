@@ -15,12 +15,14 @@ class PostAssignmentsController < ApplicationController
   # GET /post_assignments
   # GET /post_assignments.xml
   def index   
-    if params[:more_like_this_id]
+    @posts = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = PostAssignment.paginated_post_more_like_this(params, post)
+      PostAssignment.paginated_post_more_like_this(params, post)
     else
-      @posts = PostAssignment.paginated_post_conditions_with_option(params, @school)
+      Rails.cache.fetch("index_#{@class_name}_#{@school}") do
+        PostAssignment.paginated_post_conditions_with_option(params, @school)
+      end
     end
     
     respond_to do |format|
@@ -151,6 +153,12 @@ class PostAssignmentsController < ApplicationController
     @post_assignment = PostAssignment.find(params[:id])
     @post_assignment.post.favorites.destroy_all
     @post_assignment.destroy
+    else
+      @posts = PostAssignment.paginated_post_conditions_with_option(params, @school)
+    end
+    
+    respond_to do |format|
+      format.
     
     redirect_to my_post_user_url(current_user)
   end
