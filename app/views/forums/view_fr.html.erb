@@ -1,24 +1,29 @@
-<%= form_tag save_edit_forums_path, :id => "" do -%>
-
+<%= form_tag save_edit_forums_path, :id => "form_edit" do -%>
    <%= hidden_field_tag "forum_id", @fr.id %>
-
   <div class="postHelp">
     <div class="reqLa"><label>Title *</label></div>
     <div class="reqTi" style="background-color: #FFFFFF; width: 688px;" >
       <input type="text" id="txt_help" class="{validate:{required:true}}" name="txt_help" size="22" style="width:688px" value="<%= @fr.title %>"/>
-
-
-
     </div>
     <div class="reqLa"><label>Description *</label></div>
     <div style="margin: 3px 0pt;background-color: #FFFFFF; width: 688px; height:250px;" class="reqEn">
-      <textarea id="help_content" class="{validate:{required:true}}" name="help_content" style="width:688px; height: 250px;"><%= @fr.content %>
-      </textarea>
+      <!-- textarea id="help_content" class="{validate:{required:true}}" name="help_content" style="width:688px; height: 250px;"><%# = @fr.content %>
+      </textarea -->
+      <%= text_area_tag "help_content", @fr.content, :id => "help_content", :class => "{validate:{required:true}}", :style => "width:688px; height: 250px;" %>
     </div>
-
     <div style="margin-top: 5px;" class="submit">
-      <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"/>
-    </div>
-
+        <!-- input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"/ -->
+        <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom" onclick="submitEdit();"/>
+      </div >
   </div>
 <% end -%>
+<script language="javascript">
+  function submitEdit(){
+    var result = $("#form_edit").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("#form_edit").submit();
+    }
+  }
+</script>

@@ -15,7 +15,7 @@
                         <%= link_to image_post_thumb(controller_name, post), post_housing_path(post.post_housing, :housing_category_id => @housing_category_id) %>
                     </div>
                 </div>
-                <%= truncate_html(description, :length => 100, :omission => '...') %>
+                <%= truncate_html(description, :length => 250, :omission => '...') %>
             </div>
         </div>
     </div>

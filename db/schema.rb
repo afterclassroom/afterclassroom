@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110706022710) do
+ActiveRecord::Schema.define(:version => 20110707090630) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -168,9 +168,9 @@ ActiveRecord::Schema.define(:version => 20110706022710) do
   end
 
   create_table "forums", :force => true do |t|
-    t.string   "title"
-    t.text     "content"
     t.integer  "user_id",    :null => false
+    t.string   "title"
+    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -261,14 +261,15 @@ ActiveRecord::Schema.define(:version => 20110706022710) do
   end
 
   create_table "music_albums", :force => true do |t|
-    t.integer  "user_id",                         :null => false
-    t.string   "name",                            :null => false
+    t.integer  "user_id",                                        :null => false
+    t.string   "name",                                           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "music_album_attach_file_name"
     t.string   "music_album_attach_content_type"
     t.integer  "music_album_attach_file_size"
     t.datetime "music_album_attach_updated_at"
+    t.integer  "count_view",                      :default => 0
   end
 
   create_table "musics", :force => true do |t|
@@ -409,11 +410,13 @@ ActiveRecord::Schema.define(:version => 20110706022710) do
   end
 
   create_table "post_events", :force => true do |t|
-    t.integer "post_id"
-    t.integer "event_type_id"
-    t.string  "address"
-    t.string  "phone"
-    t.string  "rating_status"
+    t.integer  "post_id"
+    t.integer  "event_type_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "rating_status"
   end
 
   create_table "post_exam_schedules", :force => true do |t|
@@ -495,13 +498,8 @@ ActiveRecord::Schema.define(:version => 20110706022710) do
     t.datetime "due_date"
   end
 
-  create_table "post_qa_categories", :force => true do |t|
-    t.string "name"
-  end
-
   create_table "post_qas", :force => true do |t|
     t.integer "post_id"
-    t.integer "post_qa_category_id"
     t.string  "rating_status"
   end
 
@@ -541,7 +539,14 @@ ActiveRecord::Schema.define(:version => 20110706022710) do
     t.integer  "attach_file_size"
     t.datetime "attach_updated_at"
     t.integer  "count_view",          :default => 0
-    t.boolean  "delta",               :default => true,  :null => false
+  end
+
+  create_table "press_infos", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "private_settings", :force => true do |t|
@@ -819,7 +824,6 @@ ActiveRecord::Schema.define(:version => 20110706022710) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "online",                                   :default => false
-    t.boolean  "delta",                                    :default => true,      :null => false
     t.string   "time_zone"
   end
 

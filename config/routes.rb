@@ -17,7 +17,11 @@ Afterclassroom::Application.routes.draw do
       post :addfr, :save_edit, :savecmt
     end
   end
-
+  resources :press_infos do
+    collection do
+      post :save
+    end
+  end
   # Users
   resources :users do
     member do
