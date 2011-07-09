@@ -2,12 +2,10 @@
   <div id="gallery" class="ad-gallery">
     <div class="ad-image-wrapper">
     </div>
-    <div class="ad-controls">
-    </div>
     <div class="ad-nav">
       <div class="ad-thumbs">
         <ul class="ad-thumb-list">
-          <% @photo.photo_album.photos.each do |p| %>
+          <% @photo_album.photos.each do |p| %>
             <li>
               <%= link_to raw("#{image_tag(p.photo_attach.url(:thumb), :alt => p.title)}"), p.photo_attach.url %>
             </li>
@@ -16,14 +14,6 @@
       </div>
     </div>
   </div>
-  <p><select id="switch-effect">
-      <option value="slide-hori">Slide horizontal</option>
-      <option value="slide-vert">Slide vertical</option>
-      <option value="resize">Shrink/grow</option>
-      <option value="fade">Fade</option>
-      <option value="">None</option>
-    </select><br>
-  </p>
 </div>
 <script type="text/javascript">
     $(function() {

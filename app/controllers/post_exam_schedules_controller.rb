@@ -1,21 +1,20 @@
 class PostExamSchedulesController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :show, :search]
+  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag]
   before_filter :cas_user
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
   #before_filter :login_required, :except => [:index, :show, :search]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_exam_schedules
   # GET /post_exam_schedules.xml
   def index
-    @posts = PostExamSchedule.paginated_post_conditions_with_option(params, @school, @type_schedule)
-    
+    @post_results = Rails.cache.fetch("index_#{@class_name}_type#{@type_schedule}_#{@school}") do
+      PostExamSchedule.paginated_post_conditions_with_option(params, @school, @type_schedule)
+    end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -53,6 +52,7 @@ class PostExamSchedulesController < ApplicationController
   end
   
   def tag
+    @type_schedule = ""
     @tag_name = params[:tag_name]
     @posts = PostExamSchedule.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
@@ -131,7 +131,7 @@ class PostExamSchedulesController < ApplicationController
       if @post_exam_schedule.save
         flash[:notice] = "Your post was successfully created."
 				post_wall(@post, post_exam_schedule_path(@post_exam_schedule))
-        redirect_to post_exam_schedules_path(:type => @post_exam_schedule.type_name)
+        redirect_to post_exam_schedule_path(@post_exam_schedule)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"
@@ -151,7 +151,7 @@ class PostExamSchedulesController < ApplicationController
     if (@post_exam_schedule.update_attributes(params[:post_exam_schedule]) && @post.update_attributes(params[:post]))
       sc = School.find(@post.school.id)
       sc.tag(@post_exam_schedule, :with => params[:tag], :on => :tags)
-      redirect_to post_exam_schedules_path(:type => @post_exam_schedule.type_name)
+      redirect_to post_exam_schedule_path(@post_exam_schedule)
     end
   end
 

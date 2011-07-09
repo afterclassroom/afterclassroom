@@ -1,5 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 require 'digest/sha1'
+require 'open-uri'
 
 class User < ActiveRecord::Base
   include Authentication
@@ -20,6 +21,7 @@ class User < ActiveRecord::Base
   # Relations
   belongs_to :school
   has_and_belongs_to_many :roles
+  has_and_belongs_to_many :friend_shares, :class_name => "Share"
   has_one :user_information, :dependent => :destroy
   has_one :user_education, :dependent => :destroy
   has_one :user_employment, :dependent => :destroy
@@ -44,8 +46,10 @@ class User < ActiveRecord::Base
   has_many :partys_lists, :dependent => :destroy
   has_many :post_awarenesses_supports, :dependent => :destroy
   has_many :post_events, :dependent => :destroy
-  has_many :shares
+  has_many :my_shares, :class_name => "Share", :foreign_key => "sender_id"
   has_many :private_settings
+  has_many :forums, :dependent => :destroy
+  has_many :press_infos, :dependent => :destroy
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]
@@ -89,7 +93,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :school_id, :allow_search_by_email
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :school_id, :allow_search_by_email, :time_zone
   
   # has_role? simply needs to return true or false whether a user has a role or not.  
   # It may be a good idea to have "admin" roles return true always
@@ -256,12 +260,12 @@ class User < ActiveRecord::Base
   
   def fans_recent_update
     over = 30
-    self.fans.find(:all, :conditions => ["updated_at > ?", Time.now - over.day], :order => "updated_at DESC")
+    self.fans.find(:all, :conditions => ["updated_at > ?", over.business_days.before(Time.now)], :order => "updated_at DESC")
   end
   
   def fans_not_visit
     over = 30
-    self.fans.find(:all, :conditions => ["updated_at < ?", Time.now - over.day], :order => "updated_at DESC")
+    self.fans.find(:all, :conditions => ["updated_at < ?", over.business_days.before(Time.now)], :order => "updated_at DESC")
   end
   
   def get_posts_with_type_and_sort(type, sort)
@@ -284,6 +288,15 @@ class User < ActiveRecord::Base
     fof = UserInvite.find_by_sql("SELECT DISTINCT tb.user_id_target FROM user_invites AS tl JOIN user_invites AS tb ON tl.user_id_target = tb.user_id WHERE tl.user_id = #{self.id}")
     ids = fof.collect {|f| f.user_id_target}
     User.find(:all, :conditions => ["id IN(#{ids.join(',')})"])
+  end
+  
+  def set_time_zone_from_ip(ip)
+    location = open("http://api.hostip.info/get_html.php?ip=#{ip}&position=true")
+    if location.string =~ /Latitude: (.+?)\nLongitude: (.+?)\n/
+      timezone = Geonames::WebService.timezone($1, $2)
+      
+      self.time_zone = ActiveSupport::TimeZone::MAPPING.index(timezone.timezone_id) unless timezone.nil?
+    end
   end
   
   protected

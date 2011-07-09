@@ -1,8 +1,13 @@
 <div class="AsDContBtm">
-  <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Reply</a></span>
-  <span class="btmMail"><%= show_email(post) %></span>
+  <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
+  <% if !logged_in? or (logged_in? and current_user != post.user ) %><span class="btmMail"><%= show_email(post) %></span><% end %>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
   <span class="btmFav" id="item_favorite_<%=  post.id %>"><%= show_favorite_in_detail("Post", post) %></span>
   <span class="btmMore"><%= link_to raw(raw("<span>More like this</span>")), :controller => "post_teamups", :action => "index", :more_like_this_id => post %></span>
-  <span class="btmFan"><a href="#"><span>Become Fan</span></a></span>
+	<% if post.attach_file_name %>
+    <span class="btmDown"><a href="javascript:downloadFile('<%= post.attach.url %>')" class="downarrow"><span>Download</span></a></span>
+  <% end %>
+  <!--
+	<span class="btmFan"><a href="#"><span>Become Fan</span></a></span>
+	-->
 </div>

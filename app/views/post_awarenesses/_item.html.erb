@@ -12,13 +12,13 @@
                         <%= link_to image_post_thumb(controller_name, post), post.post_awareness %>
                     </div>
                 </div>
-                <%= truncate_html(description, :length => 100, :omission => '...') %>
+                <%= truncate_html(description, :length => 250, :omission => '...') %>
             </div>
         </div>
     </div>
     <!--info-link-box-->
-    <div class="asslinkdown">
-        <div id="support_action">
+    <div class="asslinkdown" style="margin-top:-8px;">
+        <div id="support_action_<%= post.id%>">
             <div class="support">
                 <%= show_support(post) %>
             </div>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="mySco">
-            <%= link_to "View results", "#{view_results_post_awarenesses_path}?post_awareness_id=#{post.post_awareness.id}&height=325&width=550", :class => "thickbox", :title => "View results" %>
+            <%= link_to "View results", "#{url_for(:controller => "ajax_not_login", :action => "view_results")}?post_awareness_id=#{post.post_awareness.id}&height=325&width=550", :class => "thickbox", :title => "View results" %>
         </div>
     </div>
     <!--info-link-box-->

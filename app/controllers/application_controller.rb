@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   USER_NAME, PASSWORD = "afterclassroom", "teamwork"
   
   before_filter :authenticate
+  before_filter :set_user_time_zone
   
   def help
     Helper.instance
@@ -36,8 +37,14 @@ class ApplicationController < ActionController::Base
       item = Post.find(id)
       when "Story"
       item = Story.find(id)
+      when "PhotoAlbum"
+      item = PhotoAlbum.find(id)
       when "Photo"
       item = Photo.find(id)
+      when "MusicAlbum"
+      item = MusicAlbum.find(id)
+      when "Music"
+      item = Music.find(id)
     end
     return item
   end
@@ -75,9 +82,34 @@ class ApplicationController < ActionController::Base
     if session[:cas_user] and self.current_user == nil
       self.current_user = User.find_by_email(session[:cas_user])
       self.current_user.update_attribute("online", true)
+      self.current_user.set_time_zone_from_ip(request.remote_ip)
       # Set session your school
       session[:your_school] = self.current_user.school.id
     end
+  end
+  
+  def get_comments(post, show)
+    @comments = []
+    case show
+      when "0"
+      @comments = post.comments
+      when "1"
+      @comments = post.comments
+      when "2"
+      @comments = post.comments.find(:all, :order => "created_at DESC")
+      when "3"
+      arr_comnt = []
+      post.comments.each do |c|
+        arr_comnt << {:obj => c, :total_good => c.total_good}
+      end
+      arr_comnt.sort_by { |c| -c[:total_good] }.each do |d|
+        @comments << d[:obj]
+      end
+    end
+  end
+  
+  def delete_favorite(type, id)
+    Favorite.destroy_all(["favorable_type = ? AND favorable_id = ?", type, id])
   end
   
   private
@@ -92,4 +124,7 @@ class ApplicationController < ActionController::Base
     
   end
   
+  def set_user_time_zone
+    Time.zone = current_user.time_zone if logged_in?
+  end
 end

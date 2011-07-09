@@ -1,30 +1,31 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostAwarenessesController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :view_results]
+  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag]
   before_filter :cas_user
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag]
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :view_results]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_awarenesses
   # GET /post_awarenesses.xml
   def index
-    if params[:more_like_this_id]
+    @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = PostAwareness.paginated_post_more_like_this(params, post)
+      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
+        PostAwareness.paginated_post_more_like_this(params, post)
+      end
     else
       @awareness_type_id = params[:awareness_type_id]
       @awareness_type_id ||= AwarenessType.find(:first).id
-      @posts = PostAwareness.paginated_post_conditions_with_option(params, @school, @awareness_type_id)
+      Rails.cache.fetch("index_#{@class_name}_type#{@awareness_type_id}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+        PostAwareness.paginated_post_conditions_with_option(params, @school, @awareness_type_id)
+      end
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -98,35 +99,18 @@ class PostAwarenessesController < ApplicationController
   
   def support
     support = params[:support]
-    post = Post.find(params[:post_id])
-    post_a = post.post_awareness
-    post_a_s = PostAwarenessesSupport.create(:user_id => current_user.id, :post_awareness_id => post_a.id, :support => support)
-    str_supported = "You've selected."
-    @text = "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'>Support</a></div>"
-    @text << "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'> Not support</a></div>"
-  end
-  
-  def view_results
-    post_awareness_id = params[:post_awareness_id]
-    post_awareness = PostAwareness.find(post_awareness_id)
-    total_support = post_awareness.total_support.to_i
-    total_notsupport = post_awareness.total_notsupport.to_i
-    chart = GoogleChart.new
-    chart.type = :pie
-    chart.data = [total_support, total_notsupport]
-    
-    #reuse and change size, set labels for big chart
+    @post = Post.find(params[:post_id])
+    post_a = @post.post_awareness
+    PostAwarenessesSupport.create(:user_id => current_user.id, :post_awareness_id => post_a.id, :support => support)
+    str_supported = "You`ve selected."
     str = "Reliable"
-    str_not = "Not Reliable"
-    if post_awareness.awareness_type.label == "take_action_now"
+    str_not = "Not reliable"
+    if @post.post_awareness.awareness_type.label == "take_action_now"
       str = "Support"
-      str_not = "Not Support"
+      str_not = "Not support"
     end
-    chart.labels = [str,str_not]
-    chart.height = 300
-    chart.width = 550
-    @chart_url = chart.to_url
-    render :layout => false
+    @text = "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'>#{str}</a></div>"
+    @text << "<div class='support'><a href='javascript:;' class='vtip' title='#{str_supported}'> #{str_not}</a></div>"
   end
   
   # GET /post_awarenesses/1
@@ -134,6 +118,7 @@ class PostAwarenessesController < ApplicationController
   def show
     @post_awareness = PostAwareness.find(params[:id])
     @post = @post_awareness.post
+    @awareness_type_id = @post_awareness.awareness_type_id
     update_view_count(@post)
     posts_as = PostAwareness.with_school(@school)
     as_next = posts_as.nexts(@post_awareness.id).last
@@ -176,7 +161,7 @@ class PostAwarenessesController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_awareness = PostAwareness.new(params[:post_awareness])
-   
+    
     if simple_captcha_valid?     
       @post.save
       sc = School.find(@school)
@@ -185,7 +170,7 @@ class PostAwarenessesController < ApplicationController
       if @post_awareness.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_awareness_path(@post_awareness))
-        redirect_to post_awarenesses_path + "?awareness_type_id=#{@post_awareness.awareness_type_id}"
+        redirect_to post_awareness_url(@post_awareness)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

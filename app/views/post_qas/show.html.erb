@@ -25,7 +25,7 @@ You are here: <a href="/">Home</a>
                     From<span><%= link_to @post.school.name, :controller => "post_qas", :action => "index", :from_school => @post.school %></span>
                 </div>
                 <div class="AsDContLdes">
-                    <span>Description:</span>><%= @post.description %>
+                    <span>Description:</span><%= @post.description %>
                 </div>
                 <div class="AsDContLinf">
                     <span>Asked by:</span>
@@ -51,8 +51,7 @@ You are here: <a href="/">Home</a>
             <div class="AsDcomIn">
                 <form name="form_comment" id="form_comment" action="" method="get">
                     <div class="AsDcomTxt">
-                        <textarea name="comment" id="comment">
-                        </textarea>
+                    	<%= text_area_tag :comment, "" %>
                     </div>
                     <div class="submit">
                         <a href="javascript:;" onclick="send_answer('<%= @post.id %>', '<%= @post.class.name %>');">Send</a>
@@ -60,21 +59,21 @@ You are here: <a href="/">Home</a>
                 </form>
             </div>
             <% else %>
-            You must be <%= link_to raw("Sign in"), RubyCAS::Filter.login_url(controller) %> to post an answer.<% end %>
+            You must be <%= link_to raw("Sign in"), RubyCAS::Filter.login_url(controller) %>to post an answer.<% end %>
         </div>
         <div class="AsDcomL">
-            <% if @post.comments.size > 0 %>
             <div class="AsDcomLW">
                 <span>View</span>
                 <span><%= select_tag "show", options_for_select([["All Answers", "0"], ["Oldest to Newest", "1"], ["Newest to Oldest", "2"], ["Rated Highest to Lowest", "3"]]), :id => "show" %></span>
             </div>
             <div id="list_comments">
-                <h1 class="titleH1"><a href="javascript:;">Answers (<%= @post.comments.size %>)</a></h1>
+                <h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Answers (<%= @post.comments.size %>)</a></h1>
+                <% if @post.comments.size > 0 %>
                 <% @post.comments.each do |c| %>
                 <%= render :partial => "item_answer", :locals => {:comnt => c} %>
                 <% end %>
+                <% end %>
             </div>
-            <% end %>
         </div>
         <div class="goback" id="go_back">
             <%= show_go_back %>
@@ -110,18 +109,18 @@ You are here: <a href="/">Home</a>
 </div>
 <!--Content-->
 <script>
-                jQuery(function($) {
-                  // when the #search field changes
-            	  var path = "<%= url_for(:controller => "post_qas", :action => "show_comment") %>";
-                  $("#show").change(function() {
-                  	$.ajax({
-            	      type: 'POST',
-            	      url: path,
-            	      data: {"show": $("#show").val(), "post_id": <%=  @post.id %>},
-            	      success: function(data) {
-            	          $("#list_comments").html(data);
-            	        }
-            	    });
-                });
-        		})
+                    jQuery(function($) {
+                      // when the #search field changes
+                	  var path = "<%= url_for(:controller => "ajax_not_login", :action => "show_comment") %>";
+                      $("#show").change(function() {
+                      	$.ajax({
+                	      type: 'POST',
+                	      url: path,
+                	      data: {"show": $("#show").val(), "post_id": <%=  @post.id %>},
+                	      success: function(data) {
+                	          $("#list_comments").html(data);
+                	        }
+                	    });
+                    });
+            		})
 </script>

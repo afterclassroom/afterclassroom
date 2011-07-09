@@ -10,7 +10,10 @@ class Photo < ActiveRecord::Base
     :bucket => 'afterclassroom_photos',
     :styles => { :medium => "555x417>", :thumb => "92x68#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
-  validates_attachment_content_type :photo_attach, :content_type => ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
+  
+  validates_attachment_size :photo_attach, :less_than => FILE_SIZE_PHOTO
+  
+  validates_attachment_content_type :photo_attach, :content_type => ['image/pjpeg', 'image/jpeg', 'image/gif', 'image/png', 'image/x-png']
 
   # Comments
   acts_as_commentable
@@ -20,7 +23,6 @@ class Photo < ActiveRecord::Base
 
   # Tags
   acts_as_taggable
-  
 
   # Favorite
   acts_as_favorite
@@ -28,11 +30,12 @@ class Photo < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => 6
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
-  scope :most_view, :order => "count_view DESC", :group => "photo_album_id"
+  scope :most_view, :conditions => "count_view > 0", :order => "count_view DESC", :group => "photo_album_id"
+  scope :previous, lambda { |att| {:conditions => ["photos.id < ?", att], :order => "id DESC"} }
+  scope :nexts, lambda { |att| {:conditions => ["photos.id > ?", att], :order => "id DESC"} }
   
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)
-    data.content_type = MIME::Types.type_for(data.original_filename).to_s
     self.photo_attach = data
   end
 end

@@ -18,7 +18,7 @@ class PostQa < ActiveRecord::Base
   scope :with_type, lambda { |tp| tp == "answered" ? {:conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 0]} : {:conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0]} }
   scope :recent, {:joins => :post, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0], :order => "created_at DESC"}
   scope :with_status, lambda { |st| {:conditions => ["post_qas.rating_status = ?", st]} }
-  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_qas.post_id And favorable_type = ?) > ?", "Post", 10]
   scope :top_answer, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 10]
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
@@ -31,25 +31,6 @@ class PostQa < ActiveRecord::Base
     else
       self.paginated_post_conditions_with_asked(params, school)
     end
-  end
-  
-  def self.paginated_post_more_like_this(params, post_like)
-    type = params[:type]
-    type ||= "answered"
-    posts_like = PostQa.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_qa, post|
-      post.department_id == post_like.department_id
-      post.school_year == post_like.school_year
-      post_qa.post_qa_category_id == post_like.post_qa.post_qa_category_id
-      post.school_id == post_like.school_id
-    end
-    arr_p = []
-    if type == "answered"
-      posts_like.select {|p| arr_p << p.post if p.post.comments.size > 0}
-    else
-      posts_like.select {|p| arr_p << p.post if p.post.comments.size == 0}
-    end
-    
-    arr_p.paginate :page => params[:page], :per_page => 10
   end
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
@@ -70,11 +51,11 @@ class PostQa < ActiveRecord::Base
       post.department_id == department if department
       post.school_year == year if year
       post.school_id == with_school if with_school
-      post.created_at > Time.now - over.day
+      post.created_at > over.business_days.before(Time.now)
     end
     arr_p = []
     post_qas.select {|p| arr_p << p.post if p.post.comments.size > 0}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    return arr_p
   end
 
   def self.paginated_post_conditions_with_asked(params, school)
@@ -88,18 +69,18 @@ class PostQa < ActiveRecord::Base
       post.department_id == department if department
       post.school_year == year if year
       post.school_id == with_school if with_school
-      post.created_at > Time.now - over.day
+      post.created_at > over.business_days.before(Time.now)
     end
     arr_p = []
     post_qas.select {|p| arr_p << p.post if p.post.comments.size == 0}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    return arr_p
   end
 
   def self.paginated_post_conditions_with_interesting(params, school)
     arr_p = []
     post_qa = self.with_school(school).interesting
     post_qa.select {|p| arr_p << p.post if p.post.favorites.size > 10}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    return arr_p
   end
 
   def self.paginated_post_conditions_with_top_answer(params, school)

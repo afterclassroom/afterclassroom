@@ -1,7 +1,10 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PhotosController < ApplicationController
+  include ApplicationHelper
   layout "student_lounge"
   
+  session :cookie_only => false, :only => :upload
+  skip_before_filter :verify_authenticity_token, :only => :upload
   before_filter RubyCAS::Filter::GatewayFilter
   before_filter RubyCAS::Filter
   before_filter :cas_user
@@ -15,14 +18,14 @@ class PhotosController < ApplicationController
     @friend_photos = []
     arr_user_id = []
     @photo_albums = current_user.photo_albums
-    current_user.user_friends.collect {|f| arr_user_id << f.id}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_photos")}
     if arr_user_id.size > 0
-      cond = Caboose::EZ::Condition.new :photos do
+      cond = Caboose::EZ::Condition.new :photo_albums do
         user_id === arr_user_id
       end
-      @friend_photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC", :group => "photo_album_id").paginate :page => params[:page], :per_page => 5
+      @friend_photos = PhotoAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
     end
-    @my_photos = current_user.photos.find(:all, :order => "created_at DESC", :group => "photo_album_id").paginate :page => params[:page], :per_page => 5
+    @my_photos = current_user.photo_albums.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
   end
   
   def friend_p
@@ -42,17 +45,16 @@ class PhotosController < ApplicationController
     
     content_search = @search_name
     
-    cond = Caboose::EZ::Condition.new :photos do
+    cond = Caboose::EZ::Condition.new :photo_albums do
       user_id === arr_user_id
       if content_search != ""
         any do
-          title =~ "%#{content_search}%"
-          description =~ "%#{content_search}%"
+          name =~ "%#{content_search}%"
         end
       end
     end
     
-    @photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @photo_albums = PhotoAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
     
     render :layout => false
   end
@@ -66,17 +68,16 @@ class PhotosController < ApplicationController
     
     content_search = @search_name
     id = current_user.id
-    cond = Caboose::EZ::Condition.new :photos do
+    cond = Caboose::EZ::Condition.new :photo_albums do
       if content_search != ""
         any do
-          title =~ "%#{content_search}%"
-          description =~ "%#{content_search}%"
+          name =~ "%#{content_search}%"
         end
       end
       user_id == id
     end
     
-    @photos = Photo.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @photo_albums = PhotoAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
     
     render :layout => false
   end
@@ -84,12 +85,20 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.xml
   def show
-    @photo_albums = current_user.photo_albums
     @photo = Photo.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @photo }
+    @photo_album = @photo.photo_album
+    @user = @photo.user
+    if check_private_permission(@user, "my_photos")
+      as_next = @photo_album.photos.nexts(@photo.id).last
+      as_prev = @photo_album.photos.previous(@photo.id).first
+      @next = as_next if as_next
+      @prev = as_prev if as_prev 
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @photo }
+      end
+    else
+      redirect_to warning_user_path(@user)
     end
   end
   
@@ -124,7 +133,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo.save
         flash[:notice] = 'Photo was successfully created.'
-        image_wall(@photo)
+        image_wall(@photo) if check_private_permission(current_user, "my_photos")
         format.html { redirect_to user_photo_path(current_user, @photo) }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
       else
@@ -157,6 +166,7 @@ class PhotosController < ApplicationController
   # DELETE /photos/1.xml
   def destroy
     @photo = Photo.find(params[:id])
+    @photo.favorites.destroy_all
     @photo.destroy
     
     render :nothing => true
@@ -176,10 +186,27 @@ class PhotosController < ApplicationController
   end
   
   def create_album
-    @photo_album = PhotoAlbum.find_or_create_by_name(params[:photo_album][:name])
+    @photo_album = PhotoAlbum.new(params[:photo_album])
     @photo_album.user = current_user
     @photo_album.save
+    photo_album_wall(@photo_album) if check_private_permission(current_user, "my_photos")
     render :layout => false
+  end
+  
+  def show_album
+    photo_album_id = params[:photo_album_id]
+    @photo_album = PhotoAlbum.find(photo_album_id)
+    update_view_count(@photo_album)
+    @user = @photo_album.user
+    if check_private_permission(@user, "my_photos")
+      @another_photo_albums = @photo_album.another_photo_albums
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @photo_album }
+      end
+    else
+      redirect_to warning_user_path(@user)
+    end
   end
   
   protected

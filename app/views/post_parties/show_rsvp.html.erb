@@ -1,57 +1,91 @@
 <div id="detail_window">
-  <div class="detail-info"><!-- detail-info-->
-    <div id="rsvp_alert_<%= @post.id %>" style="display:none">
-      You sended RSVP.
+    <div class="detail-info">
+        <!-- detail-info-->
+        <div id="rsvp_alert_<%= @post.id %>" style="display:none">
+            You sended RSVP.
+        </div>
+        <div id="rsvp_wraper_<%= @post.id %>">
+            <div id="posting-section">
+                <form id="form_rsvp_<%= @post.id %>" name="form_rsvp_<%= @post.id %>">
+                    <ul>
+                        <li>
+                            <div class="user_ri1">
+                                <label>
+                                    Where:
+                                </label>
+                                <span style="margin-left:45px"><%= @post.post_party.address %></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user_ri2">
+                                <label>
+                                    When:
+                                </label>
+                                <span style="margin-left:45px"><%= @post.post_party.start_time %></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user_ri3">
+                                <label>
+                                    First Name*:
+                                </label>
+                                <%= text_field_tag "first_name_#{@post.id}", "", :class => '{validate:{required:true}}', :width => "330" %>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user_ri4">
+                                <label>
+                                    Last Name*:
+                                </label>
+                                <%= text_field_tag "last_name_#{@post.id}", "", :class => '{validate:{required:true}}' %>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user_ri5">
+                                <label>
+                                    Email*:
+                                </label>
+                                <%= text_field_tag "email_#{@post.id}", "", :class => "{validate:{required:true, email:true}}" %>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user_ri6">
+                                <label>
+                                    Tel*:
+                                </label>
+                                <%= text_field_tag "tel_#{@post.id}", "", :class => '{validate:{required:true}}' %>
+                            </div>
+                        </li>
+                        <li>
+                            <label>
+                                Message:
+                            </label>
+                            <div class="user_ri7">
+                                <%= text_area_tag "message_#{@post.id}", nil, :rows => 5, :cols => 60 %>
+                            </div>
+                        </li>
+                        <li>
+                            <!-- post  button -->
+                            <div>
+                                <span class="submitRSVP"><a href="javascript:submit_rsvp(<%= @post.id %>);" onclick="sendPSVP()"><%= submit_tag 'Send' %></a></span>
+                                <span class="error" style="padding: 0px;"></span>
+                            </div>
+                            <!-- end post button -->
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
     </div>
-    <div id="rsvp_wraper_<%= @post.id %>">
-      <div id="posting-section">
-        <form id="form_rsvp_<%= @post.id %>" name="form_rsvp_<%= @post.id %>">
-          <ul>
-            <li>
-              <div class="user_ri1"><label>Where:</label> <span style="margin-left:45px"><%= @post.post_party.address %></span></div>
-            </li>
-            <li>
-              <div class="user_ri2"><label>When:</label> <span style="margin-left:45px"><%= @post.post_party.start_time %></span></div>
-            </li>
-            <li>
-              <div class="user_ri3"><label>First Name*:</label> <%= text_field_tag "first_name_#{@post.id}", "", :class => '{validate:{required:true}}', :width => "330" %></div>
-            </li>
-            <li>
-              <div class="user_ri4"><label>Last Name*:</label> <%= text_field_tag "last_name_#{@post.id}", "", :class => '{validate:{required:true}}' %></div>
-            </li>
-            <li>
-              <div class="user_ri5"><label>Email*:</label> <%= text_field_tag "email_#{@post.id}", "", :class => "required validate-email" %></div>
-            </li>
-            <li>
-              <div class="user_ri6"><label>Tel*:</label> <%= text_field_tag "tel_#{@post.id}", "", :class => '{validate:{required:true}}' %></div>
-            </li>
-            <li>
-              <label>Message:</label>
-              <div class="user_ri7"> <%= text_area_tag "message_#{@post.id}", nil, :rows => 5, :cols => 60 %></div>
-            </li>
-            <li>
-             
-                <!-- post  button -->
-                <div>
-                  <span class="submitRSVP"><a href="javascript:submit_rsvp(<%= @post.id %>);" onclick="sendPSVP()"><%= submit_tag 'Send' %></a></span>
-                  <span class="error" style="padding: 0px;"></span>
-               </div>
-                <!-- end post button -->
-            
-            </li>
-          </ul>
-        </form>
-      </div>
-    </div>
-  </div><!-- end detail-info-->
+    <!-- end detail-info-->
 </div>
 <script language="javascript">
     function sendPSVP(){
-        $("#form_rsvp_<%= @post.id %>").submit();
+        var result = $("#form_rsvp_<%= @post.id %>").validate({
+            meta: "validate"
+        });
+        if (result) {
+            $("#form_rsvp_<%= @post.id %>").submitt();
+        }
     }
-    $().ready(function() {
-        $("#form_rsvp_<%= @post.id %>").validate({
-        errorLabelContainer: $("#form_rsvp_<%= @post.id %> .error")
-    });
-});
 </script>

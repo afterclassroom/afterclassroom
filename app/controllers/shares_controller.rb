@@ -10,10 +10,12 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.xml
   def index
+    @str_fr = "DESC"
     @srt = "DESC"
     @srt = params[:sort] if params[:sort]
-    
-    @shares = current_user.shares.find(:all, :order => "created_at #{@srt}")
+    @srt_fr = params[:sort_fr] if params[:sort_fr]
+    @friend_shares = current_user.friend_shares.find(:all, :order => "created_at #{@srt_fr}")
+    @shares = current_user.my_shares.find(:all, :order => "created_at #{@srt}")
     
     respond_to do |format|
       format.html # index.html.erb
@@ -52,10 +54,9 @@ class SharesController < ApplicationController
   # POST /shares.xml
   def create
     @share = Share.new(params[:share])
-    
+    @share.sender = current_user
     respond_to do |format|
       if @share.save
-        current_user.shares << @share
         recipient = params[:recipient]
         user_ids = recipient.split(",")
         if user_ids.size > 0 
@@ -69,7 +70,7 @@ class SharesController < ApplicationController
               content = "File: <a href=\"javascript:downloadFile('#{@share.attach.url}')\" class=\"downarrow\"><span>#{@share.attach.url}</span></a> <br/> #{@share.description}"
               mess.body = content
               mess.save
-              @share.users << u
+              @share.recipients << u
             end
             
           end
@@ -86,13 +87,13 @@ class SharesController < ApplicationController
   # PUT /shares
   # PUT /shares.xml
   def update
-    @share = Share.find(params[:id])
+    share = Share.find(params[:id])
     recipient = params[:recipient]
     user_ids = recipient.split(",")
     if user_ids.size > 0 
       user_ids.each do |i|
         u = User.find(i)
-        @share.users << u if u and !@share.users.include?(u)
+        share.users << u if u and !@share.users.include?(u)
       end
     end
     respond_to do |format|
@@ -103,8 +104,8 @@ class SharesController < ApplicationController
   # DELETE /shares/1
   # DELETE /shares/1.xml
   def destroy
-    @share = Share.find(params[:id])
-    @share.destroy
+    share = Share.find(params[:id])
+    share.destroy
     
     respond_to do |format|
       format.html { redirect_to(user_shares_url(current_user)) }
@@ -116,7 +117,7 @@ class SharesController < ApplicationController
   
   def require_current_user
     share = Share.find(params[:id])
-    @user ||= User.find(share.user_id)
+    @user ||= share.sender
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

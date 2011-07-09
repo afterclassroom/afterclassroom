@@ -9,6 +9,15 @@ function submit(){
     }
 }
 
+function forget_password(){
+    var result = $("#form_forget").validate({
+        meta: "validate"
+    });
+    if (result) {
+        $("#form_forget").submit();
+    }
+}
+
 function request_form_submit(){
     var result = $("#form_post").validate({
         meta: "validate"
@@ -113,13 +122,13 @@ function send_comment(id, type){
             data: ({
                 commentable_id: id,
                 commentable_type: type,
-                comment: comment
+                comment: comment.substring(0, 500)
             }),
             success: function(data){
                 $('#list_comments').append(data);
                 $('#comment').val('');
                 $('#form_comment').toggle('slow');
-				$('#comment_count').html($('div .AsDcomItem').size());
+                $('#comment_count').html($('div .AsDcomItem').size());
             }
         });
     }
@@ -135,7 +144,7 @@ function send_answer(post_id){
             dataType: 'html',
             data: ({
                 post_id: post_id,
-                comment: comment,
+                comment: comment.substring(0, 500),
                 show: $('#show').val()
             }),
             success: function(data){
@@ -148,46 +157,20 @@ function send_answer(post_id){
 }
 
 function sendEmail(current_user_id, user_id){
-    subject = $('#message_subject').val();
-    body = $('#message_body').val();
-    $.ajax({
-        url: '/users/' + current_user_id + '/messages/send_message',
-        type: 'GET',
-        cache: false,
-        dataType: 'html',
-        data: ({
-            recipient_id: user_id,
-            subject: subject,
-            body: body
-        }),
-        success: function(data){
-            $('#div_send_message').html(data);
-        }
+	var result = $("#form_send_message").validate({
+        meta: "validate"
     });
+    if (result) {
+        $("#form_send_message").submit();
+    }
 }
 
 function sendReportAbuse(){
-    reported_id = $('#reported_id').val();
-    reported_type = $('#reported_type').val();
-    abuse_type_id = $('#abuse_type_id').val();
-    abuse_content = $('#abuse_content').val();
-    
-    if (reported_id != "" && reported_type != "" && content != "") {
-        $.ajax({
-            url: '/posts/create_report_abuse',
-            type: 'GET',
-            cache: false,
-            dataType: 'html',
-            data: ({
-                reported_id: reported_id,
-                reported_type: reported_type,
-                abuse_type_id: abuse_type_id,
-                abuse_content: abuse_content
-            }),
-            success: function(data){
-                $('#div_send_report').html(data);
-            }
-        });
+    var result = $("#form_send_report").validate({
+        meta: "validate"
+    });
+    if (result) {
+        $("#form_send_report").submit();
     }
 }
 
@@ -233,9 +216,9 @@ function hideCommentForm(wall_id){
 }
 
 function showListPostComment(post_id){
-	$('#post_comment_' + post_id).hide();
-	$('#post_comment_form_' + post_id).show();
-	$('#post_list_comment_' + post_id).toggle("slow");
+    $('#post_comment_' + post_id).hide();
+    $('#post_comment_form_' + post_id).show();
+    $('#post_list_comment_' + post_id).toggle("slow");
 }
 
 function showPostCommentForm(post_id){
@@ -400,7 +383,7 @@ function insert_text_to_chatcontent(chanel_name, text_chat){
 function openChat(title, chanel_name){
     if ($('#' + chanel_name).length == 0) {
         var win = $.customWindow({
-			winId: chanel_name,
+            winId: chanel_name,
             title: title,
             onopen: function(cont, obj){
                 $.ajax({
@@ -458,14 +441,13 @@ function formatLinkForPaginationURLFriend(){
     var url = form.attr("action");
     $("div.friend_stories").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
+            form.attr("action", url + "?" + page);
             searchFriendStories();
         });
     });
@@ -476,14 +458,13 @@ function formatLinkForPaginationURLMy(){
     var url = form.attr("action");
     $("div.my_stories").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
+            form.attr("action", url + "?" + page);
             searchMyStories();
         });
     });
@@ -515,15 +496,14 @@ function formatLinkForPaginationURLFriendPhoto(){
     var url = form.attr("action");
     $("div.friend_photos").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
-            searchFriendStories();
+            form.attr("action", url + "?" + page);
+            searchFriendPhotos();
         });
     });
 }
@@ -533,15 +513,14 @@ function formatLinkForPaginationURLMyPhoto(){
     var url = form.attr("action");
     $("div.my_photos").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
-            searchMyStories();
+            form.attr("action", url + "?" + page);
+            searchMyPhotos();
         });
     });
 }
@@ -572,15 +551,14 @@ function formatLinkForPaginationURLFriendMusic(){
     var url = form.attr("action");
     $("div.friend_musics").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
-            searchFriendStories();
+            form.attr("action", url + "?" + page);
+            searchFriendMusics();
         });
     });
 }
@@ -590,17 +568,72 @@ function formatLinkForPaginationURLMyMusic(){
     var url = form.attr("action");
     $("div.my_musics").find("a").each(function(){
         var linkElement = $(this);
-        var page = linkElement.html();
+        var page = linkElement.attr('href').split("?")[1];
         linkElement.attr({
-            "page": page,
             "href": "javascript:;"
         });
         
         linkElement.click(function(){
-            form.attr("action", url + "?page=" + $(this).attr('page'));
-            searchMyStories();
+            form.attr("action", url + "?" + page);
+            searchMyMusics();
         });
     });
 }
 
 //My Musics
+
+
+//My Videos
+function searchFriendVideos(){
+    var form = $("#friend_videos_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#friend_musics_list").html(html);
+    });
+}
+
+function searchMyVideos(){
+    var form = $("#my_videos_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#my_videos_list").html(html);
+    });
+}
+
+function formatLinkForPaginationURLFriendVideo(){
+    var form = $("#friend_videos_search");
+    var url = form.attr("action");
+    $("div.friend_videos").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.attr('href').split("?")[1];
+        linkElement.attr({
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?" + page);
+            searchFriendVideos();
+        });
+    });
+}
+
+function formatLinkForPaginationURLMyVideo(){
+    var form = $("#my_videos_search");
+    var url = form.attr("action");
+    $("div.my_videos").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.attr('href').split("?")[1];
+        linkElement.attr({
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?" + page);
+            searchMyVideos();
+        });
+    });
+}
+
+//My Videos

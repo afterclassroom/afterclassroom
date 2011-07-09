@@ -1,24 +1,20 @@
 <div>
   <% if image %>
-    <div class="AfterImg">
+    <div class="AfterImg" id="wall_attach_<%= wall_id %>">
       <div class="imgDiv">
         <%= image %>
       </div>
     </div>
   <% end %>
-  <div class="AfterTitle">
-    <%= link_to title, link, :target => "_blank" %>
+  
+  <div class="AfterTitle" id="wall_attach_<%= wall_id %>">
+    <%= link_to title, link, :target => "_blank", :class => "#{'iframe' if link and link.include?('show_photo_album')}" %>
   </div>
   <% if sub_content %>
-    <div class="AfterDes">
+    <div class="AfterDes" id="wall_attach_<%= wall_id %>">
       <%= sub_content %>
     </div>
   <% end %>
   <div id="show_jplayer_<%= wall_id %>">
   </div>
 </div>
-<script type="text/javascript">
-  $(document).ready(function() {
-  $("#imageLink").fancybox();
-  });
-</script>

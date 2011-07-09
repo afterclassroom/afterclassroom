@@ -18,6 +18,13 @@
           <% @fans.each do |f| %>
             <%= render :partial => "item_fan", :locals => {:fan => f} %>
           <% end %>
+					
+					<!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @fans %></span>
+            <%= will_paginate @fans %>
+          </div>
+          <!--Pagination-->
         </div>
     </div>
   </div>

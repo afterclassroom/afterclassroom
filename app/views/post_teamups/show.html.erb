@@ -21,16 +21,13 @@ You are here: <a href="/">Home</a>
             <%= display_flash_messages_with_raw %>
             <div class="AsDContL">
                 <h2 class="titleH2"><%= @post.title %></h2>
-                <div class="AsDContLin">
-                    in<span><%= link_to @post.post_category.name, post_teamups_path %></span>
-                </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>
                     <% if @post.attach_file_name and @post.attach_content_type =~ /^image.*/ %>
                     <div style="min-height:70px">
                         <div class="assImg">
                             <div>
-                                <%= link_to image_tag(@post.attach.url(:thumb)), @post.attach.url, :id => "imageLink", :target => "_blank" %>
+                                <%= link_to image_tag(@post.attach.url(:thumb)), @post.attach.url, :class => "imageLink", :target => "_blank" %>
                             </div>
                         </div>
                         <%= @post.description %>

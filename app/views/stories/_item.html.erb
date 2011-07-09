@@ -1,14 +1,14 @@
-<div class="slsItem">
+<div class="slsItem" style="border-bottom: 1px solid #E4E4E4;margin: 0;border-top: none">
   <div class="slsItemL">
     <div class="slsItemLN"><%= story.count_view %></div>
     <div class="slsItemLV">viewed</div>
   </div>
   <div class="assImg">
     <%= link_to raw("<div>#{display_image(story)}</div>"), user_story_path(current_user, story) %></div>
-  <div class="slsItemR">
+  <div class="slsItemR" style="float: none;margin-left: 0px;width: 100%">
     <div class="slsItemTitle"><%= link_to story.title, user_story_path(current_user, story) %></div>
     <div class="slsItemTime"><%= distance_of_time_in_words_to_now(story.created_at, false) + " ago." %></div>
-    <div class="slsItemDes">
+    <div class="slsItemDes" style="overflow: hidden">
       <%= truncate_words(story.content) %>
     </div>
   </div>

@@ -7,18 +7,17 @@ class PostEventsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_events
   # GET /post_events.xml
   def index  
     @event_type_id = params[:event_type_id]
     @event_type_id ||= 1
-    @posts = PostEvent.paginated_post_conditions_with_option(params, @school, @event_type_id)
-    
+    @post_results = Rails.cache.fetch("index_#{@class_name}_type#{@event_type_id}_#{@school}") do
+      PostEvent.paginated_post_conditions_with_option(params, @school, @event_type_id)
+    end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -123,15 +122,15 @@ class PostEventsController < ApplicationController
       sc.tag(@post_event, :with => @tag_list, :on => :tags)
       @post_event.post = @post
       if @post_event.save
-        flash.now[:notice] = "Your post was successfully created."
+        flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_event_path(@post_event))
-        redirect_to post_events_path + "?event_type_id=#{@post_event.event_type_id}"
+        redirect_to post_event_url(@post_event)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"
       end
     else
-      flash.now[:warning] = "Captcha does not match."
+      flash[:warning] = "Captcha does not match."
       render :action => "new"
     end
   end

@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Home</a><%= link_to "TeamUp", post_teamups_path, :class => "abLink-detail" %><%= link_to "New", "#", :class => "abLink-detail" %>
+  You are here: <a href="/">Home</a><%= link_to "TeamUp", post_teamups_path, :class => "abLink-detail" %><%= link_to "New", "javascript:;", :class => "abLink-detail" %>
 <% end -%>
 
 <% content_for :post_button do -%>
@@ -23,7 +23,7 @@
 		<div style="margin-left:120px">
 		  	<%= show_simple_captcha(:label => "CAPTCHA Code *") %>
 		</div>
-        <div class="submit"><a href="javascript:;" onclick="submit();"><%= submit_tag 'Submit' %></a></div>
+        <div class="submit"><a href="javascript:;" onclick="submitt();"><%= submit_tag 'Submit' %></a></div>
       <% end %>
     </div>
   </div>
@@ -39,3 +39,13 @@
   <!--Ads-->
 </div>
 <!--Content-->
+<script>
+  function submitt(){
+    var result = $("#form_post").validate({
+        meta: "validate"
+    });
+    if (result) {
+        $("#form_post").submitt();
+    }
+}
+</script>

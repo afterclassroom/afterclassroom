@@ -1,0 +1,343 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="javascript:;">Help Information</a>
+<% end -%>
+<div class="mainSignUpS">
+  <div class="AsDContImg"><a href="/"><div><img src="/images/pic11.png"></img></div></a></div>
+  <div class="txtsignup topHelp">
+    <div class="AftBe">
+      <div class="txtsignup1">AfterClassroom</div>
+    </div>
+    <div class="sponsorS">
+      <div class="sponsorLink">
+        <div class="menuRL">
+          <div class="menuRItem">
+            <a href="/forums">
+              <span class="span1">
+                <span class="span2">Community Help Forum</span>
+              </span></a>
+          </div>
+
+          <div class="menuRItem menuRselect">
+            <a href="/press_infos">
+              <span class="span1">
+                <span class="span2">PressRelease</span>
+              </span></a>
+          </div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Content-->
+
+
+
+<div class="contMainLH">
+
+
+  <div class="col654 QAs">
+    <div class="col654in">
+      <div class="col654Cont">
+
+        <div style="width: 632px;" class="helpCR">
+
+          <div class="helpTitle">
+            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px;" href="javascript:;">Press Release</a>
+
+
+
+
+            <% if admin? %>
+              <div style="height: 28px; display: inline; float: right; border: 1px solid rgb(219, 219, 219); margin-top: 3px;" class="slsShareR">
+                <a id="form_handler" style="height: 9px; display: block; padding: 10px; background-color: rgb(245, 246, 245);" class="slsShareW" href="javascript:;" onclick="$('#story_form_new').toggle('slow');">Write it</a>
+              </div>
+            <% end %>
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <% if admin? %>
+            <div style="padding-left: 0pt;" class="assPage">
+              <div class="stoEx" style=" display: none;" id="story_form_new">
+                <%= form_for :story, :url => save_press_infos_path, :html => {:id => "form_new"} do |f| %>
+                  <%= hidden_field_tag "state", "", :id => "story_state" %>
+                  <div style="overflow: hidden; padding: 7px 0pt; margin-left: 12px;" class="stoExItem">
+                    <div style="display: inline; color: rgb(111, 111, 99); float: left; font-weight: bold; line-height: 21px; width: 75px;" class="stoExItemL">Title*</div>
+                    <div class="stoExItemR" style="display: inline;">
+                      <!-- input style="border: 1px solid #CECECE;  padding-top: 6px;  text-indent: 2px;  width: 535px;" type="text" class="{validate:{required:true}}" id="story_title" name="story_title" size="30"/ -->
+                      <%= f.text_field :title, :class => '{validate:{required:true}}', :style => "border: 1px solid #CECECE;  padding-top: 6px;  text-indent: 2px;  width: 535px;" %>
+                    </div>
+                  </div>
+                  <div class="stoExItem" style="overflow: hidden;">
+                    <div class="stoExItemL" style="display: inline; color: rgb(111, 111, 99); float: left; font-weight: bold; line-height: 21px; width: 75px; margin-left: 13px;">Your story</div>
+                    <div class="stoExItemR" style="display: inline; float: right; width: 525px; margin-right: 19px;">
+                      <%= f.text_area :content, :rows => 2, :style => "width:525px" %>
+                    </div>
+                  </div>
+                  <div class="stoExBtm">
+                    <div style="margin-left: 87px; margin-top: 10px;">
+                      <a id="save_new" href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Save</a>
+                    </div>
+                    <div style="margin-left: 142px; margin-top: -31px;">
+                      <a href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Cancel</a>
+                    </div>
+                  </div>
+                  <div class="stoError" style="padding: 10px;"></div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <div style="border-bottom: 1px solid #DBDBDB; clear: both; display: block">
+            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px;" href="javascript:;">Archives</a>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div style="margin-top: -28px; ; color: rgb(110, 110, 110); background: url('/images/bgSearchF.png') no-repeat scroll left top transparent;  float: right;  height: 24px;  padding-right: 0;  width: 193px;">
+            <%= form_tag save_press_infos_path, {:id => "info_search", :method => "GET"} do %>
+              <div class="textS"><%= text_field_tag "abc", "123", :style => "height: 12px" %></div>
+              <div style="margin-top: -18px; margin-right: 3px; float: right;" >
+                <a href="javascript:;" onclick=""><img src="/images/iconSF.png" style="border: 0px;"/></a>
+              </div>
+            <% end %>
+          </div>
+
+
+
+
+
+
+
+
+          <% @presses.each do |pr| %>
+            <div id="" style="border-bottom: 1px solid rgb(219, 219, 219);" class="helpItem">
+
+
+              <div style="float: right; padding-top: 1px;">
+                <a href="javascript:;" class="vtip" title='Delete'><img style="border: 0px none;" src="/images/icon-ing.gif"/></a>
+              </div>
+
+              <div style="float: right;">
+                <a href="javascript:;" class="vtip" title='Edit' ><img style="border: 0px none;" src="/images/flistREdit.png"/></a>
+              </div>
+
+
+
+
+              <div class="assPic" style="float: left;">
+                <a href="#">
+                  <div style="background-image: url('/images/prs_rls_icon.png'); height: 55px;">
+                    <div style="background: transparent; color:#FFFFFF; font-size: 11px; margin-left: -6px; text-align: center; margin-top: -3px;"><%= pr.created_at.strftime('%b').upcase %></div>
+                    <div style="background: transparent; color:#6F6F63;font-size: 20px; text-align: center; margin-left: -4px;"><%= pr.created_at.strftime('%d').upcase %></div>
+                    <div style="background: transparent; color:#6F6F63;font-size: 11px; margin-top: -9px; margin-left: 10px;"><%= pr.created_at.strftime('%Y').upcase %></div>
+                  </div>
+                </a>
+              </div>
+
+
+              <div style="margin-left: 62px;" class="helpT">
+                
+              </div>
+              <div style="font-weight: bold; margin-left: 62px;" class="forumTit">
+                <a onmouseout="this.style.color = '#1E1E1E'" onmouseover="this.style.color = '#DD0000'; this.style.cursor='pointer'" style="font-size: 12px; font-weight: bold; text-decoration: none; color: #1E1E1E;" href="javascript:;"><%= pr.title %></a>
+              </div>
+              <div style="margin-left: 62px; height: 100%;" class="helpD"><%= truncate_html(raw(pr.content), :length => 100, :omission => '...') %></div>
+            </div>
+          <% end %>
+
+
+
+
+          <div class="assPage" style="padding-left:0">
+            <span class="numPage"><%= page_entries_info @presses %></span>
+            <%= will_paginate @presses %>
+          </div>
+
+
+
+
+          <div style="padding: 0pt;" class="goTop"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="contMainRH">
+  <div class="popu">
+    <div class="popuTop">
+      <div class="popuTitle">   </div>
+      <div class="popuAll">
+        <a href="#">A Link</a>
+      </div>
+    </div>
+    <div class="popuDes"><b>   </b>   </div>
+  </div>
+</div>
+
+<script type="text/javascript" >
+  $(document).ready(function(){
+    $('.wysiwyg').css('width','525px');
+    $('#story_contentIFrame').css('width','525px');
+
+    $('#save_new').click(function(){
+      $('#form_new').submit();
+    });
+
+
+  });
+  (function($)
+  {
+    $('#story_content').wysiwyg({
+      controls: {
+        createLink : { visible : true },
+
+        insertImage : { visible : true },
+
+        separator05 : { visible : false },
+
+        separator06 : { visible : false },
+
+        h1 : { visible : false },
+        h2 : { visible : false },
+        h3 : { visible : false },
+
+        removeFormat : { visible : true }
+      }
+    });
+  })(jQuery)
+
+</script>
+<style>
+  .prButton{
+    padding-left: 1px;
+    padding-top: 5px;
+    color: #FFFFFF;
+    display: block;
+    height: 25px;
+    width: 87px;
+    text-align: center;
+    text-decoration: none;
+    background: url('/images/btm87.png') no-repeat scroll left top transparent;
+  }
+
+</style>

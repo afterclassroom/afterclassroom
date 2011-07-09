@@ -1,16 +1,13 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostQasController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
+  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   before_filter :cas_user
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :asked, :interesting, :top_answer, :prefer]
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :asked, :interesting, :top_answer, :create_comment, :prefer]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :asked, :interesting, :top_answer, :prefer]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_qas
   # GET /post_qas.xml
@@ -18,14 +15,10 @@ class PostQasController < ApplicationController
   def index
     @type = params[:type]
     @type ||= "answered"
-    if params[:more_like_this_id]
-      id = params[:more_like_this_id]
-      post = Post.find_by_id(id)
-      @posts = PostQa.paginated_post_more_like_this(params, post)
-    else
-      @posts = PostQa.paginated_post_conditions_with_option(params, @school, @type)
+    @post_results = Rails.cache.fetch("index_#{@class_name}_type#{@type}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+      PostQa.paginated_post_conditions_with_option(params, @school, @type)
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -44,9 +37,16 @@ class PostQasController < ApplicationController
     end
   end
   
+  def tag
+    @tag_name = params[:tag_name]
+    @posts = PostQa.paginated_post_conditions_with_tag(params, @school, @tag_name)
+  end
+  
   def interesting
-    @posts = PostQa.paginated_post_conditions_with_interesting(params, @school)
-    
+    @post_results = Rails.cache.fetch("interesting_#{@class_name}_#{@school}") do
+      PostQa.paginated_post_conditions_with_interesting(params, @school)
+    end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # interesting.html.erb
       format.xml  { render :xml => @posts }
@@ -168,7 +168,7 @@ class PostQasController < ApplicationController
       if @post_qa.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_qa_path(@post_qa))
-        redirect_to post_qas_path + "?type=asked"
+        redirect_to post_qa_url(@post_qa)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"
@@ -217,16 +217,6 @@ class PostQasController < ApplicationController
     render :layout => false
   end
   
-  def show_comment
-    show = params[:show]
-    show ||= "0"
-    post_id = params[:post_id]
-    post = Post.find(post_id)
-    get_comments(post, show)
-    
-    render :layout => false
-  end
-  
   def prefer
     
     @post_id = params[:post_id]
@@ -235,10 +225,10 @@ class PostQasController < ApplicationController
   
   def sendmail
     
-    QaSendMail.refer_to_expert(params[:strContent], params[:emailAddr],params[:post_id]).deliver
-    
-    # render :layout => false
-    render :text => %Q'Mail sent to'
+    QaSendMail.refer_to_expert(params[:strContent], params[:emailAddr],params[:post_id], current_user).deliver
+
+    @receiver = params[:emailAddr]
+    render :layout => false
   end
   
   private
@@ -259,26 +249,6 @@ class PostQasController < ApplicationController
     end
   end
   
-  def get_comments(post, show)
-    @comments = []
-    case show
-    when "0"
-      @comments = post.comments
-    when "1"
-      @comments = post.comments
-    when "2"
-      @comments = post.comments.find(:all, :order => "created_at DESC")
-    when "3"
-      arr_comnt = []
-      post.comments.each do |c|
-        arr_comnt << {:obj => c, :total_good => c.total_good}
-      end
-      arr_comnt.sort_by { |c| -c[:total_good] }.each do |d|
-        @comments << d[:obj]
-      end
-    end
-  end
-  
   def require_current_user
     post_qa = PostQa.find(params[:id])
     post = post_qa.post
@@ -288,5 +258,4 @@ class PostQasController < ApplicationController
     end
     return @user
   end
-  
 end

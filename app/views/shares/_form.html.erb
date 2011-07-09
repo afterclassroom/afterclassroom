@@ -1,5 +1,6 @@
 <%= form_for([current_user, @share], :html => {:multipart => true, :id => "form_post"}) do |f| %>
   <%= hidden_field_tag "recipient" %>
+	<%= display_flash_messages_with_raw %>
   <div class="postItem">
     <div class="postTit">Share to*</div>
     <div class="postInp"><%= text_field_tag "share_to" %></div>
@@ -15,6 +16,12 @@
       </div>
     </div>
   </div>
+	<div class="postItem" id="only_img">
+  <div class="postTit">&nbsp;</div>
+  <div class="postInp">
+    File size limit <%= number_to_human_size FILE_SIZE_SHARE %>.
+  </div>
+</div>
   <div class="postItem">
     <div class="postTit">Title*</div>
     <div class="postInp"><%= f.text_field :title, :class => '{validate:{required:true}}', :style => "width:360px;" %></div>

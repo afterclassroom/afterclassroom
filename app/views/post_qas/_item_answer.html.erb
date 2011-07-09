@@ -5,27 +5,18 @@
     </div><% end %>
   <div class="AsDcomImg"><%= show_image_user_post(comnt.user) %></div>
   <div class="AsDcomItemR">
-    <div class="AsDcomName">Answer by<%= show_user_post(comnt.user) %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %></div>
+    <div class="AsDcomName"><%= show_user_post(comnt.user) %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %></div>
     <div class="AsDcomDes"><%= comnt.comment %></div>
     <div class="AsDcomRe">
       <div id="rate_comment_<%= comnt.id %>">
         <div class="AsDcomRe1">
-          <%= link_to comnt.total_good, {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "1" }, :remote => true %>
+          <%= link_to comnt.total_good, {:controller => "ajax_not_login", :action => "rate_comment", :comment_id => comnt.id, :rating => "1" }, :remote => true %>
         </div>
         <div class="AsDcomRe2">
-          <%= link_to comnt.total_bad, {:controller => "posts", :action => "rate_comment", :comment_id => comnt.id, :rating => "0" }, :remote => true %>
+          <%= link_to comnt.total_bad, {:controller => "ajax_not_login", :action => "rate_comment", :comment_id => comnt.id, :rating => "0" }, :remote => true %>
         </div>
       </div>
-      <div class="AsDcomRe3"><%=  link_to("Report Abuse", "#{report_abuse_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=320&width=490", :class => "thickbox", :title => "Report Abuse") %></div>
+      <div class="AsDcomRe3"><%=  show_report_abuse_comment(comnt) %></div>
     </div>
   </div>
 </div>
-<script>
-    $(document).ready(function(){
-        $(".AsDcomItem").hover(function(){
-            $(".del_post_com", this).show();
-        }, function(){
-            $(".del_post_com", this).hide();
-        });
-    });
-</script>

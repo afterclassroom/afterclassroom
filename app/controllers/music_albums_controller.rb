@@ -57,6 +57,7 @@ class MusicAlbumsController < ApplicationController
   # DELETE /music_albums/1.xml
   def destroy
     @music_album = MusicAlbum.find(params[:id])
+    @music_album.favorites.destroy_all
     @music_album.destroy
 
     respond_to do |format|
@@ -72,6 +73,7 @@ class MusicAlbumsController < ApplicationController
     music_albums = current_user.music_albums.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
     if music_albums.size > 0
       music_albums.each do |abl|
+        abl.favorites.destroy_all
         abl.destroy
       end
     end
@@ -86,6 +88,7 @@ class MusicAlbumsController < ApplicationController
     musics = current_user.musics.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
     if musics.size > 0
       musics.each do |abl|
+        abl.favorites.destroy_all
         abl.destroy
       end
     end

@@ -1,7 +1,7 @@
 <div style="display: inline; padding-top: 1px">
   <%= form_for :apply_letter, :url => {:action => "save_letter"}, :html =>{:multipart => true, :id => "form_letter"} do |f| %>
    
-  <a id="upload_letter" href="javascript:;"><span>Cover Letter</span></a>
+  <a id="upload_letter" href="javascript:;">Cover Letter</a>
    
   <% end %>
 </div>
@@ -55,6 +55,7 @@
 
         onChange: function(file, extension){
           coverName = ''+file;
+          $("#upload_letter").css('cursor', 'pointer');
           $('#upload_letter').html("Cover letter<br/><span style='color: black'>"+file+"</span>");
           $('#apply_now').html('Save All');
         },
@@ -208,6 +209,4 @@
     /*============================================================================*/
 
   });
-
-
 </script>

@@ -188,13 +188,13 @@ div.signin ul li.select a:hover{
     border:0px;
     color:#929383;
     width:163px;
-    /*height:21px;*/
+    height:15px;
     text-indent:3px;
     background-color:transparent;
     margin-top: 8px;
 }
 .btmS{
-    padding-left:5px;
+    padding-left:2px;
     padding-top:9px;
 }
 .btmS img{
@@ -761,7 +761,7 @@ h2.titleH2 a:hover{
     width:116px;
 }
 .post4{
-    width:147px;
+    width:320px;
 }
 .post6{
     width:126px;
@@ -823,6 +823,16 @@ h2.titleH2 a:hover{
 .date a:hover, .location a:hover{
     color:#1fa6f3;
     background:url('/images/icon-DateH.gif') no-repeat right 2px;
+}
+.datedesc a, .location a{
+    text-decoration:none;
+    color:#fff;
+    background:url('/images/icon-DateDesc.gif') no-repeat right 2px;
+    padding-right:15px;
+}
+.datedesc a:hover, .location a:hover{
+    color:#1fa6f3;
+    background:url('/images/icon-DateHDesc.gif') no-repeat right 2px;
 }
 .expired{
     color:#b62626;

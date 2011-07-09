@@ -1,0 +1,31 @@
+<% content_for :menu_top_student_lounge do -%>
+<%= render :partial => 'users/show_public/submenu' %>
+<% end -%>
+<div class="contMainC">
+    <%= render :partial => "users/show_public/proc" %>
+    <%= render :partial => "users/show_public/infor" %>
+    <%= render :partial => "users/show_public/friends" %>
+    <%#= render :partial => "/users/show_public/links" %>
+</div>
+<div class="contMainL">
+    <div class="col451 proCen">
+        <div class="col451in">
+            <div class="proCenCont">
+                <% @fans.each do |f| %>
+                <%= render :partial => "users/show_public/item_fan", :locals => {:fan => f} %>
+                <% end %>
+                <!--Pagination-->
+                <div class="assPage">
+                    <span class="numPage"><%= page_entries_info @fans %></span>
+                    <%= will_paginate @fans %>
+                </div>
+                <!--Pagination-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contMainR">
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+</div>

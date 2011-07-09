@@ -1,30 +1,31 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostBooksController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag]
+  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :tag, :good_books, :dont_buy]
   before_filter :cas_user
   before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :tag, :good_books, :dont_buy]
   #before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_books, :dont_buy]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_books
   # GET /post_books.xml
   def index
-    if params[:more_like_this_id]
+    @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
+      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
+        Post.paginated_post_more_like_this(params, post)
+      end
     else
       @book_type_id = params[:book_type_id]
       @book_type_id ||= BookType.find(:first).id
-      @posts = PostBook.paginated_post_conditions_with_option(params, @school, @book_type_id)
+      Rails.cache.fetch("index_#{@class_name}_type#{@book_type_id}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+        PostBook.paginated_post_conditions_with_option(params, @school, @book_type_id)
+      end
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -155,7 +156,7 @@ class PostBooksController < ApplicationController
     @post.type_name = @class_name
     @post_book = PostBook.new(params[:post_book])
     @post_book.book_type_id ||= BookType.first.id
-
+    
     if simple_captcha_valid?      
       @post.save      
       sc = School.find(@school)
@@ -164,7 +165,7 @@ class PostBooksController < ApplicationController
       if @post_book.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_book_path(@post_book))
-        redirect_to post_books_path + "?book_type_id=#{@post_book.book_type_id}"
+        redirect_to post_book_path(@post_book)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

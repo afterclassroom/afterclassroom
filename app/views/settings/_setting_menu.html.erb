@@ -1,16 +1,7 @@
 <input  type="hidden" id="straction" value="<%= controller.action_name %>" name="<%= controller.action_name %>" />
-
 <li><%= link_to raw("<span>Setting</span>"), setting_user_settings_path(current_user) %></li>
 <li><%= link_to raw("<span>Private</span>"), private_user_settings_path(current_user) %></li>
-<!--
-<li><%= link_to raw("<span>Networks</span>"), :controller => "settings", :action => "networks"%></li>
--->
 <li><%= link_to raw("<span>Notifications</span>"), notifications_user_settings_path(current_user) %></li>
-<!--
-<li><%= link_to raw("<span>Language</span>"), :controller => "settings", :action => "language"%></li>
-<li><%= link_to raw("<span>Payments</span>"), :controller => "settings", :action => "payments"%></li>
-<li><%= link_to raw("<span>AfterClassroom Ads</span>"), :controller => "settings", :action => "ads"%></li>
--->
 <script language="javascript">
 
   $('document').ready(function(){

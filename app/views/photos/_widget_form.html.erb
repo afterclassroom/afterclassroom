@@ -21,9 +21,7 @@
       <div class="stoExSave" id="start_uploads">
         <a onclick="$('#story_state').val('draft');$('#form_new').submit();" href="javascript:;">Start Uploads</a>
       </div>
-      <div class="stoExShare" id="cancel_uploads">
-        <a onclick="$('#story_state').val('share');$('#form_new').submit();" href="javascript:;">Cancel uploads</a>
-      </div>
+      <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').hide();">Cancel</a></div>
     </div>
     <br/>
     <table class="download_files" width="100%">
@@ -71,15 +69,15 @@
           '<\/span>' +
           '<div class="file_upload_title_photo">.....<\/div>' +
           '<\/td>' +
-          '<td class="file_upload_txt_title"><input type="text" value="Title" title="Title" onclick="this.value = \'\';" onblur="this.value = this.value || this.defaultValue;"><\/td>' +
+          '<td class="file_upload_txt_title">Title: <input type="text" title="Title" class="vtip"><\/td>' +
           '<td class="file_upload_progress"><div><\/div><\/td>' +
           '<td class="file_upload_start">' +
           '<button class="ui-state-default ui-corner-all" title="Start Upload">' +
           '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' +
           '<\/button><\/td>' +
           '<td class="file_upload_cancel">' +
-          '<button class="ui-state-default ui-corner-all" title="Cancel">' +
-          '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+          '<button class="ui-state-default ui-corner-all" title="Cancel Upload">' +
+          '<span class="ui-icon ui-icon-cancel">Cancel Upload<\/span>' +
           '<\/button><\/td><\/tr>');
       },
       buildDownloadRow: function(file){
@@ -99,7 +97,7 @@
           return;
         }
                     
-        if (files[index].size > 5000000) {
+        if (files[index].size > 10000000) {
           handler.uploadRow.find('.file_upload_progress').html('FILE TOO BIG!');
           setTimeout(function(){
             handler.removeNode(handler.uploadRow);
@@ -114,7 +112,8 @@
           }
           handler.formData = {
             "photo[title]": title,
-            "photo[photo_album_id]": $('#photo_photo_album_id').val()
+            "photo[photo_album_id]": $('#photo_photo_album_id').val(),
+						"authenticity_token": $('[name="authenticity_token"]').val(),
           };
           callBack();
         });

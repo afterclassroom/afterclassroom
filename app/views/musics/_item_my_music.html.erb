@@ -1,13 +1,10 @@
 <div class="musicL">
-  <div class="photoImg"><%= link_to raw("<div>#{image_tag music.music_album.music_album_attach.url(:thumb)}</div>"), user_music_path(current_user, music) %></div>
+  <div class="photoImg"><%= link_to raw("<div>#{image_tag music_album.music_album_attach.url(:thumb)}</div>"), play_list_user_musics_url(current_user, :music_album_id => music_album) %></div>
   <div class="mostMSR">
-    <div class="mostMStitle"><%= link_to music.title, user_music_path(current_user, music) %></div>
-    <div class="mostMStime"><%= music.convert_seconds_to_time %></div>
-    <div class="mostMSA"><%= link_to "", user_music_path(current_user, music), :class => "mostMSPlay" %><a href="#" class="mostMSadd"> </a></div>
+    <div class="mostMSA"><%= link_to "", play_list_user_musics_url(current_user, :music_album_id => music_album), :class => "mostMSPlay" %><%= link_to "", new_user_music_url(current_user, :music_album_id => music_album), :class => "mostMSadd" %></div>
   </div>
   <div class="musicB">
-    <div class="musicN"><%= link_to music.music_album.name, user_music_path(current_user, music) %></div>
-    <div class="musicS"><%= pluralize(music.music_album.musics.size, "song") %></div>
+    <div class="musicS" style="margin-top: -6px;"><%= pluralize(music_album.musics.size, "song") %></div>
+    <div class="musicN"><%= link_to music_album.name, play_list_user_musics_url(current_user, :music_album_id => music_album) %></div>
   </div>
 </div>
-

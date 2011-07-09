@@ -7,18 +7,17 @@ class PostMyxesController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_myxes
   # GET /post_myxes.xml
   def index
     @rating_status = params[:rating_status]
     @rating_status ||= ""
-    @posts = PostMyx.paginated_post_conditions_with_option(params, @school, @rating_status)
-    
+    @post_results = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+      PostMyx.paginated_post_conditions_with_option(params, @school, @rating_status)
+    end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -46,6 +45,11 @@ class PostMyxesController < ApplicationController
     @post_p.rating_status = status
     
     @post_p.save
+    # Objects cache
+    class_name = @post_p.class.name
+    school_id = @post.school_id
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
   end
   
   def require_rate
@@ -70,6 +74,11 @@ class PostMyxesController < ApplicationController
       @post_p.rating_status = status
       
       @post_p.save
+      # Objects cache
+      class_name = @post_p.class.name
+      school_id = @post.school_id
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
     end
     render :layout => false
   end
@@ -147,7 +156,7 @@ class PostMyxesController < ApplicationController
       if @post_myx.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_myx_path(@post_myx))
-        redirect_to post_myxes_path
+        redirect_to post_myx_url(@post_myx)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

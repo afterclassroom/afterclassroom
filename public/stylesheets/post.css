@@ -229,7 +229,7 @@
 
 .assImg img {
     border: 0px;
-    margin-left: -8px;
+    margin-left: -9px;
 }
 
 .assContT {
@@ -872,6 +872,11 @@ span.btmDown a:hover {
     padding-top: 5px;
 }
 
+.reqLa label {
+    font-weight: bold;
+		color: #6F6F63;
+}
+
 .reqSl {
     min-height: 50px;
 }
@@ -1051,23 +1056,24 @@ span.btmDown a:hover {
 }
 
 .AsDcomIn {
-    float: left;
+    overflow: hidden;
 }
 
 .AsDcomTxt {
-    background: url('/images/bgTextarea.png') no-repeat;
+    background: url("/images/bgTextareaL.png") no-repeat scroll left top transparent;
     height: 96px;
-    width: 554px;
+    width: auto;
     padding-bottom: 5px;
+    width: 554px;
 }
 
 .AsDcomTxt textarea {
     border: 0px;
-    width: 539px;
+    width: 98%;
     font-family: Arial;
-    height: 91px;
-    margin: 1px 0px 0px 11px;
-    background-color: transparent;
+    height: 96px;
+    margin: 0px 0px 0px 11px;
+    background: url("/images/bgTextareaR.png") no-repeat scroll right top transparent;
 }
 
 .AsDcomIn .submit {
@@ -1105,8 +1111,6 @@ span.btmDown a:hover {
 }
 
 .AsDcomItemR {
-    float: left;
-    width: 530px;
     padding-left: 5px;
 }
 
@@ -1489,6 +1493,7 @@ span.btmAbuse a:hover {
 .postItem input {
     border: 1px #cecece solid;
     margin-left: 0px;
+		height:18px;
 }
 
 .postItem .postInp span {
@@ -1653,9 +1658,9 @@ div.postInf {
 
 /** Post detail **/
 .AsDContBtm span.btmReply a {
-    background: url('/images/btm48.png') no-repeat;
+    background: url('/images/btm71.png') no-repeat;
     text-align: center;
-    width: 48px;
+    width: 71px;
     color: #fff !important;
     padding-left: 0px;
 }
@@ -2257,9 +2262,17 @@ span.btmCom a:hover {
     text-decoration: none;
 }
 
-.jobComMenu a:hover, .jobComMenu a.hover {
+.jobComMenu a.hover {
     color: #d00;
     text-decoration: none;
+    cursor: pointer;
+}
+.jobComMenu a:hover {
+    cursor: text;
+}
+.cover a:hover{
+    color: #d00;
+    cursor: pointer;
 }
 
 .wantJob h1.col300Title {
@@ -3131,8 +3144,6 @@ span.btmFan a:hover {
     background: url("/images/icon-comnent.gif") no-repeat scroll left 2px transparent;
     padding: 0 5px 0 17px;
     padding-top: 2px;
-    margin-left: 150px;
-    margin-top: -14px;
 }
 
 .contMainLH .comH a, .comH a:link, .comH a:visited {
@@ -3147,8 +3158,7 @@ span.btmFan a:hover {
 }
 
 .contMainLH .allDis {
-    border-top: 1px solid #DBDBDB;
-    margin-top: 10px;
+    margin-top: 2px;
     padding: 5px 0;
 }
 
@@ -3171,8 +3181,15 @@ span.btmFan a:hover {
     float: right;
     overflow: hidden;
     width: 300px;
+    background: url("/images/top300.png") no-repeat scroll 0 0 white;
+    margin-bottom: 8px;
+    width: 300px;
 }
-
+.popu{
+    background: url("/images/bot300.png") no-repeat scroll left bottom transparent;
+    overflow: hidden;
+    padding: 8px 10px;
+}
 .contMainRH .popuTop {
     border-bottom: 1px solid #DBDBDB;
     overflow: hidden;
@@ -3212,8 +3229,7 @@ span.btmFan a:hover {
     border: 1px solid #EBEBEB;
     float: left;
     padding: 5px;
-    width: 358px;
-    margin-left: 45px;
+    width: 338px;
     margin-top: 5px;
 }
 
@@ -3251,4 +3267,11 @@ span.btmFan a:hover {
 
 .postHelp {
     width: 190px;
+}
+.forumTit a{
+    color:#000000;
+}
+.forumTit a:hover{
+    color: #DD0000;
+    text-decoration: none;
 }

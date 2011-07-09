@@ -25,7 +25,7 @@
               <div class="stoExItemR"><%= f.text_area :content, :rows => 2, :cols => 63 %></div>
             </div>
             <div class="stoExBtm">
-              <div class="stoExSave"><a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();" >Save as a Draft</a></div>
+              <div class="stoExSave" style="margin-left:62px"><a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();" >Save as a Draft</a></div>
               <div class="stoExShare"><a href="javascript:;" onclick="$('#story_state').val('share');$('#form_new').submit();" >Share now</a></div>
               <div class="stoExCan"><a href="javascript:;" onclick="resetForm('form_new');$('#story_form_new').toggle('slow');">Cancel</a></div>
             </div>
@@ -37,7 +37,7 @@
             <div class="slsTopL">
               <div class="slsTopLT">Friends shared stories</div>
               <div class="slsTopLB friLeft">
-                <div class="search" style="height:24px;">
+                <div class="search" style="margin-top: -15px;">
                   <%= form_for :search_friend_story, :url => friend_s_user_stories_path(current_user), :html => {:id => "friend_stories_search", :method => "GET", :onsubmit => "return false;"} do %>
                     <div class="textS"><%= text_field_tag "search[name]", "", :style => "height:13px;margin-top:4px;" %></div>
                     <div class="btmS"><a href="javascript:;" onclick="searchFriendStories();"><img src="/images/iconSF.png"/></a></div>
@@ -55,7 +55,7 @@
             </div>
           </div>
           <% @friend_stories.each do |f_s| %>
-            <%= render :partial => "item", :locals => {:story => f_s} %>
+            <%= render :partial => "itemFr", :locals => {:story => f_s} %>
           <% end %>
         </div>
       </div>
@@ -69,7 +69,7 @@
             <div class="slsTopL">
               <div class="slsTopLT">Your stories</div>
               <div class="slsTopLB friLeft">
-                <div class="search">
+                <div class="search" style="margin-top: -15px;">
                   <%= form_for :search_my_story, :url => my_s_user_stories_path(current_user), :html => {:id => "my_stories_search", :method => "GET", :onsubmit => "return false;"} do %>
                     <div class="textS"><%= text_field_tag "search[name]", "" %></div>
                     <div class="btmS"><a href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a></div>
@@ -86,9 +86,11 @@
               <!--Pagination-->
             </div>
           </div>
+          <div id="mytable">
           <% @my_stories.each do |m_s| %>
             <%= render :partial => "item_mystory", :locals => {:story => m_s} %>
           <% end %>
+          </div>
         </div>
         <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
@@ -140,8 +142,3 @@
     })(jQuery)
 
 </script>
-<style>
-  .stoError{
-    padding-top:40px;
-  }
-</style>

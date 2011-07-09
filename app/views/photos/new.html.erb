@@ -13,6 +13,7 @@
                 <%= display_flash_messages_with_raw %>
                 <div class="postCont">
                     <%= form_for [current_user, @photo], :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
+                    <span style="margin-left:5px">Only support these photo formats: JPG, GIF, PNG. File size limit <%= number_to_human_size FILE_SIZE_PHOTO %>.</span>
                     <div class="postItem">
                         <div class="postTit">
                             Photo album*
@@ -24,7 +25,7 @@
                         </div>
                     </div>
                     <div class="postTitt">
-                        Location
+                        Location*
                     </div>
                     <div class="postItemA">
                         <div id="divinputfile" style="margin-left:120px">
@@ -33,12 +34,12 @@
                             </div>
                             <div class="postUpfile">
                                 <div id="fakeinputfile">
-                                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;" />
+                                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;"/>
                                 </div>
                             </div>
                         </div>
                     </div>
-					<div class="postItem">
+                    <div class="postItem">
                         <div class="postTit">
                             Title
                         </div>
@@ -54,7 +55,7 @@
                             <%= f.text_area :description %>
                         </div>
                     </div>
-					<div class="postItem">
+                    <div class="postItem">
                         <div class="postTit">
                             Tag line
                         </div>
@@ -63,7 +64,7 @@
                         </div>
                     </div>
                     <div class="stoExBtm">
-                        <div class="stoExCre">
+                        <div class="stoExCre" style="margin-left:108px;margin-bottom: 15px;">
                             <a href="javascript:;" onclick="submit();">Add photo</a>
                         </div>
                         <div class="stoExCan">
@@ -85,9 +86,9 @@
     <!--Ads-->
 </div>
 <style>
-	#fakeinputfile #fakefilepc {
-		margin-top:-1px;
-	}
+    #fakeinputfile #fakefilepc {
+        margin-top: -1px;
+    }
 </style>
 <script type="text/javascript">
     function submit(){
@@ -96,7 +97,7 @@
     
     $().ready(function(){
         $("#form").validate({
-						meta: "validate"
+            meta: "validate"
         });
     });
 </script>

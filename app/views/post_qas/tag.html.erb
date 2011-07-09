@@ -1,0 +1,68 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Q&A", post_qas_path, :class => "abLink-detail" %><%= link_to "Subject: '#{@tag_name}'", "#", :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contMainL">
+  <div class="col451 QAs">
+    <div class="col451in">
+      <div class="col451Cont">
+        <%= display_flash_messages_with_raw %>
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => controller.controller_name} %></div>
+        <% end %>
+        <!--List Items-->
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contMainC">
+  <!--Browser Top Answers-->
+  <%= render :partial => "top_answers" %>
+  <!--Browser Top Answers-->
+
+  <!--Browser Interesting questions-->
+  <%= render :partial => "interesting" %>
+  <!--Browser Interesting questions-->
+
+  <!--Browser Poll Q&A-->
+  <%= render :partial => "poll" %>
+  <!--Browser Poll Q&A-->
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Request Question-->
+  <%= render :partial => "form_request_qa" %>
+  <!--Request Question-->
+
+  <!--Recent Request Questions-->
+  <%= render :partial => "recent_request_qas" %>
+  <!--Recent Request Questions-->
+</div>
+<!--Content-->

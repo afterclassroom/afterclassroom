@@ -21,7 +21,7 @@ class PostEvent < ActiveRecord::Base
   scope :with_status, lambda { |st| {:conditions => ["post_events.rating_status = ?", st]} }
   scope :with_type, lambda {|tp| {:conditions => ["event_type_id = ?", tp]} }
   scope :recent, {:joins => :post, :order => "created_at DESC"}
-  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_events.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_events.id > ?", att], :order => "id ASC"} }
@@ -39,17 +39,17 @@ class PostEvent < ActiveRecord::Base
       post.school_year == year if year
       event_type.id == event_type_id
       post.school_id == with_school if with_school
-      post.created_at > Time.now - over.day
+      post.created_at > over.business_days.before(Time.now)
     end
 
     posts = []
     post_events.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
-    post_as = self.with_school(@school).tagged_with(tag_name)
+    post_as = self.with_school(school).tagged_with(tag_name)
     post_as.select {|p| arr_p << p.post}
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end

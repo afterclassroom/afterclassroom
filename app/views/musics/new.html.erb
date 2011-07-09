@@ -13,6 +13,7 @@
                 <%= display_flash_messages_with_raw %>
                 <div class="postCont">
                     <%= form_for @music, :url => user_musics_path(current_user), :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
+                    <span style="margin-left:5px">Only support these music formats: MP3. File size limit <%= number_to_human_size FILE_SIZE_MUSIC %>.</span>
                     <div class="postItem">
                         <div class="postTit">
                             Music album*
@@ -24,25 +25,25 @@
                         </div>
                     </div>
                     <div class="postTitt">
-                        Location
+                        Location*
                     </div>
                     <div class="postItemA">
                         <div id="divinputfile" style="margin-left:120px">
                             <div class="postItemC">
-                                <%= file_field_tag "music[music_attach]", :id => "music_music_attach", :onchange => "$('#fakefilepc').val(this.value);", :size => "27", :style => "height:24px;", :class => "filepc" %>
+                                <%= file_field_tag "music[music_attach]", :id => "music_music_attach", :onchange => "$('#fakefilepc').val(this.value);", :size => "27", :style => "height:24px;", :class => "filepc {validate:{required:true, accept:'mp3'}}" %>
                             </div>
                             <div class="postUpfile">
                                 <div id="fakeinputfile">
-                                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;" />
+                                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;"/>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="stoExBtm">
-                        <div class="stoExCre">
+                        <div class="stoExCre" style="margin-left:107px;margin-bottom: 15px;margin-top: -2px;">
                             <a href="javascript:;" onclick="submit();">Add music</a>
                         </div>
-                        <div class="stoExCan">
+                        <div class="stoExCan" style="margin-top: -2px;">
                             <%= link_to "Cancel", user_musics_path(current_user) %>
                         </div>
                     </div>
@@ -62,12 +63,11 @@
 </div>
 <script type="text/javascript">
     function submit(){
-        $("#form").submit();
-    }
-    
-    $().ready(function(){
-        $("#form").validate({
-            errorLabelContainer: $("#form div.stoError")
+        var result = $("#form").validate({
+            meta: "validate"
         });
-    });
+        if (result) {
+            $("#form").submit();
+        }
+    }
 </script>

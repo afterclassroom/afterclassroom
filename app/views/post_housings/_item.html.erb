@@ -15,7 +15,7 @@
                         <%= link_to image_post_thumb(controller_name, post), post_housing_path(post.post_housing, :housing_category_id => @housing_category_id) %>
                     </div>
                 </div>
-                <%= truncate_html(description, :length => 100, :omission => '...') %>
+                <%= truncate_html(description, :length => 250, :omission => '...') %>
             </div>
         </div>
     </div>
@@ -35,10 +35,10 @@
                     check = PostHousing.find_rated_by(current_user).include?(post.post_housing) if logged_in?
                     check ||= false %>
                     <div class="qashdU">
-                        <%= show_rating(post.id, post.post_housing.total_good, controller.controller_name, check, 1) %>
+                        <%= show_rating(post.id, post.post_housing.total_good, get_controler_name_from_class_name(post.post_housing.class.name), check, 1) %>
                     </div>
                     <div class="qashdD">
-                        <%= show_rating(post.id, post.post_housing.total_bad, controller.controller_name, check, 0) %>
+                        <%= show_rating(post.id, post.post_housing.total_bad, get_controler_name_from_class_name(post.post_housing.class.name), check, 0) %>
                     </div>
                 </div>
                 <div class="vie">

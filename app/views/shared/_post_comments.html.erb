@@ -4,7 +4,7 @@
     <div class="AsDcomImg"><%= show_image_user_post(current_user) %></div>
     <div class="AsDcomIn">
       <form name="form_comment" id="form_comment" action="" method="get">
-        <div class="AsDcomTxt"><textarea name="comment" id="comment"></textarea></div>
+        <div class="AsDcomTxt"><%= text_area_tag :comment, "" %></div>
         <div class="submit"><a href="javascript:;" onclick="send_comment('<%= obj.id %>', '<%= obj.class.name %>');" >Send</a></div>
       </form>
     </div>
@@ -13,10 +13,19 @@
   <% end %>
 </div>
 <div class="AsDcomL" id="list_comments">
+	<h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comments (<span id="comment_count"><%= obj.comments.size %></span>)</a></h1>
   <% if obj.comments.size > 0 %>
-    <h1 class="titleH1"><a href="javascript:;">Comments (<span id="comment_count"><%= obj.comments.size %></span>)</a></h1>
     <% obj.comments.each do |c| %>
       <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
     <% end %>
   <% end %>
 </div>
+<script>
+    $(document).ready(function(){
+        $(".AsDcomItem").hover(function(){
+            $(".del_post_com", this).show();
+        }, function(){
+            $(".del_post_com", this).hide();
+        });
+    });
+</script>

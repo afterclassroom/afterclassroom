@@ -13,9 +13,13 @@
   <div class="col451 proCen">
     <div class="col451in">
       <div class="proCenCont">
-        <div class="proInfTop"><a href="#">Edit Information</a></div>
+        <div class="proInfTop"></div>
+        <div class="proFavPageT"></div>
+        <% @favorites.each do |f| %>
+          <%= item_favorite(f) %>
+        <% end %>
         <div class="proFavPage">
-          <div class="proFavPageR">
+         <div class="proFavPageR">
             <!--Pagination-->
             <div class="assPage">
               <%= will_paginate @favorites %>
@@ -23,9 +27,6 @@
             <!--Pagination-->
           </div>
         </div>
-        <% @favorites.each do |f| %>
-          <%= item_favorite(f) %>
-        <% end %>
         <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
     </div>

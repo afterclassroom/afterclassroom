@@ -33,4 +33,17 @@
             valueAttr: "rel_awareness_type"
         });
     });
+    $(function() {
+	$('#awareness_type_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+    });
+    $(function() {
+	$('div.postItemDep').hover(function() {
+	}, function() {
+		$('#awareness_type_menu').stop().hide();
+	});
+    });
 </script>

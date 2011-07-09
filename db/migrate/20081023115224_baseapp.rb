@@ -27,6 +27,7 @@ class Baseapp < ActiveRecord::Migration
       t.string :password_reset_code, :default => nil
       t.datetime :activated_at
       t.datetime :deleted_at
+      t.string :time_zone
       t.timestamps
     end
     

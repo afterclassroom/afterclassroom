@@ -1,16 +1,14 @@
 <html>
-<body>
-<p>
-One of your friends, thinks you like an article we have written.
+  <body>
+    <p>
+    <h3>This email is sent to you by <%= @current_user.name %> - an user at <a href="http://afterclassroom.com">afterclassroom.com</a> </h3>
 
-<%= @introduce %>
-
-</p>
-<p>
-Title: <%= @post.title %>
-
-<%= post_qa_url @post.post_qa %>
-
-</p>
+    Below is the information that <%= @current_user.name %> wants to let you know: <br/>
+    <ul>
+      <%= @introduce %> <br/>
+      Please response at: <a href="<%= post_qa_url @post.post_qa %>"><%= @post.title %></a>
+    </ul>
+    <h3>Thank you very much for your concern !</h3>
+  </p>
 </body>
 </html>

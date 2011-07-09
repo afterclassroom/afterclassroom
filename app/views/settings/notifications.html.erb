@@ -1,112 +1,140 @@
 <% content_for :menu_top_student_lounge do -%>
-  <%= render :partial => 'submenu' %>
+<%= render :partial => 'submenu' %>
 <% end -%>
 <%
-idfortoggle = ["afterclassroomtab","photostab","groupstab","pagestab","eventstab","storytab","linkstab","musictab","videotab","giftstab","helptab","loungetab","othertab"]
-%>
+idfortoggle = ["afterclassroomtab","photostab","storytab","musictab","loungetab"] %>
 <div class="contMain">
-  <div class="settCont">
-    <div class="settCont1">
-      <div class="settMenu">
-        <ul>
-          <%= render :partial => "setting_menu" %>
-        </ul>
-      </div>
-      <div class="settC">
-        <div class="settNotL">
-          <div class="setNotLtitle">Notifications</div>
-          <div class="setNotCont">AfterClassroom notifies you whenever actions are taken on AfterClassroom that involve you.
-            <br/>
-            Each AfterClassroom application has its own notification settings. Click the checkbox to change the settings for that application.
-            Send email notifications to: <span><%= current_user.email %></span></div>
-          <div class="setNotSend"><a href="#">Send notifications my phone via SMS</a></div>
-          <div class="setItemT">
-            <div class="setItemTL">&nbsp;</div>
-            <div class="setItemTC">Email</div>
-            <div class="setItemTR">SMS</div>
-          </div>
-          <%= form_tag(save_setting_user_settings_path(current_user), :method => :post, :id => "setting_form") do %>
-            <% if @types != nil %>
-              <% count = 1 %>
-              <% @types.each do |tp| %>
-                <div id="<%= idfortoggle[count-1] %>">
-                  <div class="setItemT1">
-                    <div class="setItemTL"><div class="setItemTL<%= count %>"><%=h tp.notify_type %></div></div>
-                    <% count = count + 1 %>
-                    <div class="setItemTC"><img src="/images/email.png"/></div>
-                    <div class="setItemTR"><img src="/images/mobile.png"/></div>
-                  </div>
-                  <% @notifications.each do |ntfobj| %>
-                    <% if ntfobj.notify_type == tp.notify_type %>
-                      <div class="setItemT2">
-                        <div class="setItemTL"><div><%= ntfobj.name %></div></div>
-                        <% if ntfobj.email_allow == true %>
-                          <% check = false; %>
-                          <% current_user.notify_email_settings.each do |userntfe| %>
+    <div class="settCont">
+        <div class="settCont1">
+            <div class="settMenu">
+                <ul>
+                    <%= render :partial => "setting_menu" %>
+                </ul>
+            </div>
+            <div class="settC">
+                <div class="settNotL">
+                    <div class="setNotLtitle">
+                        Notifications
+                    </div>
+                    <div class="setNotCont">
+                        AfterClassroom notifies you whenever actions are taken on AfterClassroom that involve you.
+                        <br/>
+                        Each AfterClassroom application has its own notification settings. Click the checkbox to change the settings for that application. 
+                        Send email notifications to: <span><%= current_user.email %></span>
+                    </div>
+                    <div class="setNotSend">
+                        <a href="#">Send notifications my phone via SMS</a>
+                    </div>
+                    <div class="setItemT">
+                        <div class="setItemTL">
+                            &nbsp;
+                        </div>
+                        <div class="setItemTC">
+                            Email
+                        </div>
+                        <div class="setItemTR">
+                            SMS
+                        </div>
+                    </div>
+                    <%= form_tag(save_setting_user_settings_path(current_user), :method => :post, :id => "setting_form") do %>
+                    <% if @types != nil %>
+                    <% count = 1 %>
+                    <% @types.each do |tp| %>
+                    <div id="<%= idfortoggle[count-1] %>">
+                        <div class="setItemT1">
+                            <div class="setItemTL">
+                                <div class="setItemTL<%= count %>">
+                                    <%=h tp.notify_type %>
+                                </div>
+                            </div>
+                            <% count = count + 1 %>
+                            <div class="setItemTC">
+                                <img src="/images/email.png"/>
+                            </div>
+                            <div class="setItemTR">
+                                <img src="/images/mobile.png"/>
+                            </div>
+                        </div><% @notifications.each do |ntfobj| %>
+                        <% if ntfobj.notify_type == tp.notify_type %>
+                        <div class="setItemT2">
+                            <div class="setItemTL">
+                                <div>
+                                    <%= ntfobj.name %>
+                                </div>
+                            </div>
+                            <% if ntfobj.email_allow == true %>
+                            <% check = false; %>
+                            <% current_user.notify_email_settings.each do |userntfe| %>
                             <% if userntfe.notification and userntfe.notification.id == ntfobj.id %>
-                              <% check = true; %>
+                            <% check = true; %>
                             <% end %>
-                          <% end #END LOOP CURRENT_USER %>
-                          <div class="setItemTC">
-                            <%= check_box_tag("emailarr[]", ntfobj.id, checked = check )%>
-                          </div>
-                        <% else %>
-                          <div class="setItemTC">
-                          </div>
-                        <% end #END IF EMAIL ALLOW %>
-                        <% if ntfobj.sms_allow == true %>
-                          <% check = false; %>
-                          <% current_user.notify_sms_settings.each do |userntfs| %>
+                            <% end #END LOOP CURRENT_USER %>
+                            <div class="setItemTC">
+                                <%= check_box_tag("emailarr[]", ntfobj.id, checked = check ) %>
+                            </div>
+                            <% else %>
+                            <div class="setItemTC">
+                            </div>
+                            <% end #END IF EMAIL ALLOW %>
+                            <% if ntfobj.sms_allow == true %>
+                            <% check = false; %>
+                            <% current_user.notify_sms_settings.each do |userntfs| %>
                             <% if userntfs.notification and userntfs.notification.id == ntfobj.id %>
-                              <% check = true; %>
+                            <% check = true; %>
                             <% end %>
-                          <% end #END LOOP CURRENT_USER %>
-                          <div class="setItemTR">
-                            <%= check_box_tag("smsarr[]", ntfobj.id, checked = check )%>
-                          </div>
-                        <% else %>
-                          <div class="setItemTR">
-                          </div>
-                        <% end #END IF SMS_ALLOW %>
-                      </div>
-                    <% end #END IF NOTIFY_TYPE %>
-                  <% end #END LOOP NOTIFICATIONS %>
+                            <% end #END LOOP CURRENT_USER %>
+                            <div class="setItemTR">
+                                <%= check_box_tag("smsarr[]", ntfobj.id, checked = check ) %>
+                            </div>
+                            <% else %>
+                            <div class="setItemTR">
+                            </div>
+                            <% end #END IF SMS_ALLOW %>
+                        </div>
+                        <% end #END IF NOTIFY_TYPE %>
+                        <% end #END LOOP NOTIFICATIONS %>
+                    </div>
+                    <% end #END LOOP TYPE %>
+                    <% end #END IF TYPE!=NIL %>
+                    <div class="Showmore">
+                    </div>
+                    <div class="Savechanges">
+                        <a href="javascript:;" onclick="sendChange()">Save Changes</a>
+                    </div>
+                    <% end #END FORM %>
                 </div>
-              <% end #END LOOP TYPE %>
-            <% end #END IF TYPE!=NIL %>
-            <div class="Showmore"></div>
-            <div class="Savechanges"><a href="javascript:;" onclick="sendChange()">Save Changes</a></div>
-          <% end #END FORM %>
+                <div class="settNotR">
+                    <div class="settNotRTitle">
+                        View settings for:
+                    </div>
+                    <div class="setNotRItem setNotRItem1">
+                        <a href="javascript:;" onclick="TabHandler('afterclassroomtab')">AfterClassroom</a>
+                    </div>
+                    <div class="setNotRItem setNotRItem2">
+                        <a href="javascript:;" onclick="TabHandler('storytab')">Story</a>
+                    </div>
+                    <div class="setNotRItem setNotRItem3">
+                        <a href="javascript:;" onclick="TabHandler('photostab')">Photos</a>
+                    </div>
+                    <div class="setNotRItem setNotRItem4">
+                        <a href="javascript:;" onclick="TabHandler('musictab')">Music</a>
+                    </div>
+                    <div class="setNotRItem setNotRItem5">
+                        <a href="javascript:;" onclick="TabHandler('loungetab')">Lounge</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="settNotR">
-          <div class="settNotRTitle">View settings for:</div>
-          <div class="setNotRItem setNotRItem1">
-            <a href="javascript:;" onclick="TabHandler('afterclassroomtab')">AfterClassroom</a>
-          </div>
-		  <div class="setNotRItem setNotRItem2">
-            <a href="javascript:;" onclick="TabHandler('storytab')">Story</a>
-          </div>
-          <div class="setNotRItem setNotRItem3">
-            <a href="javascript:;" onclick="TabHandler('photostab')">Photos</a>
-          </div>
-          <div class="setNotRItem setNotRItem4">
-            <a href="javascript:;" onclick="TabHandler('musictab')">Music</a>
-          </div>
-          <div class="setNotRItem setNotRItem5">
-            <a href="javascript:;" onclick="TabHandler('loungetab')">Lounge</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 <script type="text/javascript">
-  function TabHandler(tabid){
-		goToByScroll(tabid);
-    return false;
-  }
-  function sendChange(){
-    $("form:first").submit();
-  }
-
+    function TabHandler(tabid){
+        goToByScroll(tabid);
+        return false;
+    }
+    
+    function sendChange(){
+        $("form:first").submit();
+    }
+    
 </script>

@@ -1,7 +1,7 @@
 class CreateShares < ActiveRecord::Migration
   def self.up
     create_table :shares do |t|
-      t.belongs_to :user
+      t.integer :sender_id
       t.string :title
       t.text :description
 

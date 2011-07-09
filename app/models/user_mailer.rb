@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   def reset_password(user)
     setup_email(user)
     @subject += "Your password has been reset"
-    @body[:url]  = "http://#{Setting.get(:site_url)}/login"
+    @body[:url]  = "https://#{Setting.get(:site_url)}/login"
   end
   
   def forgot_password(user)
@@ -21,7 +21,7 @@ class UserMailer < ActionMailer::Base
   def forgot_login(user)
     setup_email(user)
     @subject += "Forgotten account login"
-    @body[:url]  = "http://#{Setting.get(:site_url)}/login"
+    @body[:url]  = "https://#{Setting.get(:site_url)}/login"
   end
   
   def activation(user)

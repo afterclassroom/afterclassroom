@@ -1,4 +1,4 @@
-<% if check_private_permission(@user, "sex") and check_private_permission(@user, "relationship_status") and check_private_permission(@user, "looking_for") and check_private_permission(@user, "political_views") %>
+<% if check_private_permission(@user, "sex") or check_private_permission(@user, "relationship_status") or check_private_permission(@user, "looking_for") or check_private_permission(@user, "political_views") %>
 <div class="proInfItem">
   <div class="proInfTit">Basic Information</div>
   <% if check_private_permission(@user, "sex") %>

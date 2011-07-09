@@ -1,16 +1,16 @@
+# encoding: UTF-8
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 require 'mp3info'
 
 class MusicsController < ApplicationController
+  include ApplicationHelper
   layout "student_lounge"
   
   session :cookie_only => false, :only => :upload
   skip_before_filter :verify_authenticity_token, :only => :upload
-  #skip_before_filter :login_required
   before_filter RubyCAS::Filter::GatewayFilter
   before_filter RubyCAS::Filter
   before_filter :cas_user
-  #before_filter :login_required
   before_filter :require_current_user,
     :only => [:edit, :update, :destroy, :delete_comment]
   
@@ -18,16 +18,15 @@ class MusicsController < ApplicationController
   # GET /musics.xml
   def index
     @friend_musics = []
-    @music_albums = current_user.music_albums
+    @my_music_albums = current_user.music_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 25
     arr_user_id = []
-    current_user.user_friends.collect {|f| arr_user_id << f.id}
-    if arr_user_id.size > 0
-      cond = Caboose::EZ::Condition.new :musics do
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_musics")}
+    @my_friend_music_albums = if arr_user_id.size > 0
+      cond = Caboose::EZ::Condition.new :music_albums do
         user_id === arr_user_id
       end
-      @friend_musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC", :group => "music_album_id").paginate :page => params[:page], :per_page => 5
+      MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
     end
-    @my_musics = current_user.musics.find(:all, :order => "created_at DESC", :group => "music_album_id").paginate :page => params[:page], :per_page => 5
   end
   
   def friend_m
@@ -47,14 +46,14 @@ class MusicsController < ApplicationController
     
     content_search = @search_name
     
-    cond = Caboose::EZ::Condition.new :musics do
+    cond = Caboose::EZ::Condition.new :music_albums do
       user_id === arr_user_id
       if content_search != ""
         title =~ "%#{content_search}%"
       end
     end
     
-    @musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
     
     render :layout => false
   end
@@ -68,14 +67,14 @@ class MusicsController < ApplicationController
     
     content_search = @search_name
     id = current_user.id
-    cond = Caboose::EZ::Condition.new :musics do
+    cond = Caboose::EZ::Condition.new :music_albums do
       user_id == id
       if content_search != ""
-        title =~ "%#{content_search}%"
+        name =~ "%#{content_search}%"
       end
     end
     
-    @musics = Music.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @music_albums = MusicAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
     
     render :layout => false
   end
@@ -83,12 +82,17 @@ class MusicsController < ApplicationController
   # GET /musics/1
   # GET /musics/1.xml
   def show
-    @music_albums = current_user.music_albums
     @music = Music.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @music }
+    @user = @music.user
+    if check_private_permission(@user, "my_musics")
+      update_view_count(@music)
+      
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @music }
+      end
+    else
+      redirect_to warning_user_path(@user)
     end
   end
   
@@ -108,7 +112,7 @@ class MusicsController < ApplicationController
   
   # GET /musics/1/edit
   def edit
-    @music_albums = MusicAlbum.find(:all)
+    @music_albums = @user.music_albums
     @music = Music.find(params[:id])
     @tag_list = @music.tag_list.join(", ")
     render :layout => false
@@ -119,22 +123,22 @@ class MusicsController < ApplicationController
   def create
     @music = Music.new(params[:music])
     @music.user = current_user
-    respond_to do |format|
-      if @music.save
+    if @music.save
+      begin
         mp3_info = Mp3Info.open(@music.music_attach.path)
         @music.length_in_seconds = mp3_info.length.to_i
         @music.artist = mp3_info.tag.artist
-        @music.title = mp3_info.tag.title
+        @music.title ||= mp3_info.tag.title if mp3_info.tag.title
         @music.length_in_seconds = mp3_info.length.to_i
-        @music.save
-        flash[:notice] = 'Music was successfully created.'
-        music_wall(@music)
-        format.html { redirect_to user_music_album_path(current_user, @music.music_album) }
-        format.xml  { render :xml => @music, :status => :created, :location => @music }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @music.errors, :status => :unprocessable_entity }
+        @music.save!
+      rescue
+        # Nothing
       end
+      flash[:notice] = 'Music was successfully created.'
+      music_wall(@music) if check_private_permission(current_user, "my_musics")
+      redirect_to user_music_album_path(current_user, @music.music_album)
+    else
+      render :action => "new"
     end
   end
   
@@ -161,6 +165,7 @@ class MusicsController < ApplicationController
   # DELETE /musics/1.xml
   def destroy
     @music = Music.find(params[:id])
+    @music.favorites.destroy_all
     @music.destroy
     
     respond_to do |format|
@@ -173,12 +178,16 @@ class MusicsController < ApplicationController
     @music = Music.new(params[:music])
     @music.user = current_user
     if @music.save
-      mp3_info = Mp3Info.open(@music.music_attach.path)
-      @music.length_in_seconds = mp3_info.length.to_i
-      @music.artist = mp3_info.tag.artist
-      @music.title = mp3_info.tag.title
-      @music.length_in_seconds = mp3_info.length.to_i
-      @music.save
+      begin
+        mp3_info = Mp3Info.open(@music.music_attach.path)
+        @music.length_in_seconds = mp3_info.length.to_i
+        @music.artist = mp3_info.tag.artist
+        @music.title ||= mp3_info.tag.title if mp3_info.tag.title
+        @music.length_in_seconds = mp3_info.length.to_i
+        @music.save
+      rescue
+        # Nothing
+      end
       render :json => { :id => @music.id, :pic_path => @music.music_attach.url.to_s , :name => @music.music_attach.instance.attributes["music_attach_file_name"] }, :content_type => 'text/html'
     else
       render :json => { :result => 'error'}, :content_type => 'text/html'
@@ -192,8 +201,9 @@ class MusicsController < ApplicationController
     @music_album = MusicAlbum.new()
     @music_album.name = params[:album_name]
     @music_album.user = current_user
-    @music_album.swfupload_file = params[:music_album_attach]
+    @music_album.swfupload_file = params[:music_album_attach] if params[:music_album_attach]
     @music_album.save
+    music_album_wall(@music_album) if check_private_permission(current_user, "my_musics")
     render :layout => false
   end
   
@@ -201,6 +211,22 @@ class MusicsController < ApplicationController
     music_album_id = params[:music_album_id]
     @music_album = MusicAlbum.find(music_album_id)
     render :layout => false
+  end
+  
+  def play_list
+    @music_album = MusicAlbum.find(params[:music_album_id])
+    @user = @music_album.user
+    if check_private_permission(@user, "my_musics")
+      @another_music_albums = @music_album.another_music_albums
+      update_view_count(@music_album)
+      
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @music_album }
+      end
+    else
+      redirect_to warning_user_path(@user)
+    end
   end
   
   protected

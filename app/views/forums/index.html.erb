@@ -1,5 +1,5 @@
 <% content_for :you_are_here do -%>
-  You are here: <a href="/">Help Information</a>
+  You are here: <a href="javascript:;">Help Information</a>
 <% end -%>
 <div class="mainSignUpS">
   <div class="AsDContImg"><a href="/"><div><img src="/images/pic11.png"></img></div></a></div>
@@ -10,149 +10,247 @@
     <div class="sponsorS">
       <div class="sponsorLink">
         <div class="menuRL">
-          <div class="menuRItem <%= "menuRselect" if controller.action_name == "help" %>"><a href="/statics/help"><span class="span1"><span class="span2">Community Help Forum</span></span></a></div>
+          <div class="menuRItem menuRselect">
+            <a href="/forums">
+              <span class="span1">
+                <span class="span2">Community Help Forum</span>
+              </span></a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <!--Content-->
+
 <div class="contMainLH">
   <div class="col654 QAs">
     <div class="col654in">
       <div class="col654Cont">
-        <div class="helpL">
-          <div class="helpLin">
-            <div class="helpTitle">Community Help Forum</div>
-            <div class="AsDsearchH">
-              <%= render :partial => "search_help" %>
-            </div>
-            <div class="helpPost"><a></a></div>
-            <div id="headerDivImg"><span class="postAQues"></span><a id="imageDivLink" onclick="javascript:toggle5('contentDivImg', 'imageDivLink');"><img src="/images/helpPostSh08.png"></a></div>
-            <div id="contentDivImg" style="display: none;">
 
-              <% if current_user == nil %>
-                <form action="#">
-                <% else %>
-                  <form action="<%= addfr_user_forums_path(current_user) %>">
-                  <% end %>
-
-
-                  <div class="postHelp">
-                    <div class="reqLa"><label>Title</label></div>
-                    <div class="reqTi"><input type="text" name="txt_help" size="22"></input></div>
-                    <div class="reqLa"><label>Content</label></div>
-                    <div style="margin: 3px 0pt;" class="reqEn"><textarea name="help_content"></textarea></div>
-                    <div style="margin-top: 5px;" class="submit"><input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"></input></div>
-                  </div>
-                </form>
-            </div>
+        <div class="helpCR" style="width: 632px;">
+          <%= display_flash_messages_with_raw %>
+          <div class="helpTitle">
+            <a href="javascript:;" style="color: #6F6F63;" onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">Community Help Forum <%= "- Popular discussions" if controller.action_name == "see_all_top_fr" %></a>
           </div>
-        </div>
-        <div class="helpCR">
-          <div class="helpTitle"><a href="#">Community Help Forum</a></div>
           <% @forums.each do |fr| %>
-            <div class="helpItem">
-              <div class="helpT"><a href="#"><%= fr.title %></a></div>
-              <div class="helpD"><%= fr.content %></div>
-              <div class="helpDis"><a href="javascript:;">
-                  <%= distance_of_time_in_words_to_now(fr.created_at, false) + " ago." %>
-                </a></div>
-              <div class="comH"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
+            <div class="helpItem"  style="border-bottom: 1px solid #DBDBDB;" id='frm_<%= fr.id.to_s %>'>
+
+
+
+
+              <% if logged_in? && (fr.user == current_user ) %>
+                <div id="fr_handler" class="del_post_com" style="float: right; cursor: pointer; display: none;" onclick="DeleteForumItem('<%= fr.id.to_s %>');">
+                  <a href='javascript:;' class='vtip' title='Delete this question'><img style="border: 0px;" src="/images/icon-ing.gif"/></a>
+                </div>
+
+
+                <div id="fr_handler" class="del_post_com" style="border: 0px; float: right; cursor: pointer; display: none; margin-right: 6px;">
+
+                  <%= link_to(content_tag(:span, image_tag("/images/flistREdit.png", :alt => '', :style => 'border: 0px;')), "#{view_fr_forums_path(current_user)}?height=370&width=700&forum_id=#{fr.id.to_s}", :class => "thickbox", :title => "Edit Question") %>
+
+                </div>
+              <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+              <div style="float: left;" class="assPic">
+                <%= show_image_user_post(fr.user) %>
+              </div>
+
+
+              <div class="helpT" style="margin-left:62px;">
+                <%= show_user_post(fr.user) %>
+              </div>
+              <div class="forumTit" style='font-weight: bold;margin-left:62px;'>
+                <a href="javascript:;" style='color: #6F6F63' onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'"><%= fr.title %></a>
+              </div>
+              <div class="helpD"  style="margin-left:62px; height: 100%;"><%= fr.content %></div>
+
+              <div class="comH" style="margin-left: 62px;margin-top: 2px;"><a id="answ_<%= fr.id.to_s %>" href="javascript:;">Answers (<%= fr.comments.length %>)</a></div>
               <div class="slidingDivH1" style="display:none;" id="forum_list_comment_<%= fr.id %>">
-
                 <% if fr.comments.length > 2 %>
-
-                  <div class="proList" style="margin-left: 45px;">
+                  <div class="proList" style="margin-left: 62px; width: 545px;">
                     <div class="writeCom">
-                      <%= link_to "View all", {:controller => "forums", :action => "view_all_comments", :forum_id => fr.id}, :remote => true %>
-
+                      <% if logged_in? %>
+                        <%= link_to "View all", {:controller => "forums", :action => "view_all_comments", :forum_id => fr.id}, :remote => true %>
+                      <% else %>
+                        <a id="view_all_<%= fr.id.to_s %>" href="javascript:;">View all</a>
+                      <% end %>
                     </div>
                   </div>
                 <% end %><!-- end if -->
-
-
                 <% count = 0 %>
                 <% fr.comments.each do |cmt| %>
-
-                  <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 45px;">
-                    <div onclick="DeleteForumComment(<%= fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
-                      <img src="/images/icon-ing.gif">
-                    </div>
-
+                  <div id="cmt_id_<%= cmt.id %>" class="proList" style="margin-left: 62px; width: 545px;">
+                    <% if logged_in? && (cmt.user == current_user || fr.user == current_user ) %>
+                      <div onclick="DeleteForumComment(<%= fr.id %>, <%= cmt.id %>);" style="float: right; cursor: pointer; display: none;" class="del_post_com">
+                        <a href='javascript:;' class='vtip' title='Delete this response'><img src="/images/icon-ing.gif" style="border: 0px;"/></a>
+                      </div>
+                    <% end %>
                     <div class="proListPic"><%= show_image_user_post(cmt.user) %></div>
-                    <div class="proListR">
+                    <div class="proListR" style="width: 490px;">
                       <div class="AfterClCom">
-                        <a href="/users/1/show_lounge">James</a><%= cmt.comment %>
+                        <%= show_user_post(cmt.user) %>  <%= cmt.comment %>
                       </div>
                       <div class="proListCont">
                         <%= distance_of_time_in_words_to_now(cmt.created_at, false) + " ago." %>
                       </div>
                     </div>
-
                   </div>
                   <% count = count + 1 %>
                   <% if count > 1 %>
                     <% break %>
                   <% end %><!-- end if count -->
                 <% end %><!-- end fr.comments.each -->
-
-                <div class="proListH1">
-                  <form>
-                    <div class="proListPic"><%= show_image_user_post(fr.user) %></div>
-                    <div class="proListR">
-                      <div class="writeCom"><textarea name="comment" id="comment_<%= fr.id.to_s %>"></textarea></div>
+                <% if logged_in? %>
+                  <div class="proListH1" style="margin-left: 62px; width: 545px;">
+                    <form id="cmt_form_<%= fr.id.to_s %>" method="post" action="/forums/savecmt">
+                      <div class="proListPic"><%= show_image_user_post(current_user) %></div>
+                      <div class="proListR" style="width: 490px;">
+                        <div class="writeCom">
+                          <%= text_area_tag "comment", "", :id => "commnt_"+fr.id.to_s, :class => "{validate:{required:true}}" %>
+                        </div>
+                      </div>
+                      <div class="proAttR">
+                        <input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"/>
+                      </div>
+                    </form>
+                  </div>
+                <% else %>
+                  <div style="margin-left: 62px;width: 545px;" class="proList">
+                    <div class="writeCom">
+                      <%=  link_to_require_login("Write something...") %>
                     </div>
-                    <div class="proAttR"><input id="save_<%= fr.id.to_s %>" type="button" value="Send" name="send" class="buttonCom"></input></div>
-                  </form>
-                </div>
+                  </div>
+                <% end %>
               </div>
 
+              <div class="helpDis" style="margin-left: 160px; margin-top: -15px; position: absolute;">
+                <a href="javascript:;" style='color: #6F6F63' onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">
+                  <%= distance_of_time_in_words_to_now(fr.created_at, false) + " ago." %>
+                </a>
+              </div>
             </div>
-
           <% end %>
-
           <% if controller.action_name == "index" %>
-            <%= will_paginate @forums %>
+            <div class="assPage" style="padding-left:0">
+              <span class="numPage"><%= page_entries_info @forums %></span>
+              <%= will_paginate @forums %>
+            </div>
           <% elsif controller.action_name == "see_all_top_fr" %>
-            <%= will_paginate(@forums, :params => { :controller => "forums", :action => "see_all_top_fr" }) %>
+            <div class="assPage" style="padding-left:0">
+              <span class="numPage"><%= page_entries_info @forums %></span>
+              <%= will_paginate(@forums, :params => { :controller => "forums", :action => "see_all_top_fr" }) %>
+            </div>
           <% end %>
-
+          <div class="goTop" style="padding:0"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+<div class="contMainRHQ">
+  <div style="margin-left: 6px; margin-right: 8px; margin-top: 10px; cursor: pointer;">
+    <a id="imageDivLink" onclick="javascript:ToggleForm('form_new_fr', 'imageDivLink');">
+      <img src="/images/helpPostSh08.png"/>
+    </a>
+  </div>
+  <div class="popu">
+    <div id="form_new_fr" style="display: none;">
+      <div id="contentDivImg">
+
+        <%= form_tag addfr_forums_path, :id => "new_fr_formQ" do -%>
+          <div class="postHelp">
+            <div class="reqLa"><label>Title *</label></div>
+
+
+            <div class="reqTi">
+              <% if session["open_form"] == "open" %>
+                <% str_title = session["new_fr_title"] %>
+                <% str_cnt = session["new_fr_cnt"] %>
+                <% session.delete(:new_fr_title) %>
+                <% session.delete(:new_fr_cnt) %>
+              <% else %>
+                <% str_title = "" %>
+              <% end %>
+              <input value="<%= str_title %>" type="text" id="txt_help" class="{validate:{required:true}}" name="txt_help" size="22" style="width:280px"/>
+            </div>
+
+
+            <div class="reqLa"><label>Description *</label></div>
+
+
+            <div style="margin: 3px 0pt;" class="reqEn">
+              <%= text_area_tag "help_content", str_cnt, :id => "help_content", :style => "width:280px", :class => "{validate:{required:true}}" %>
+            </div>
+
+            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+
+            <% if logged_in? %>
+              <div style="margin-top: 5px;" class="submit">
+                <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom" onclick="submitQ();"/>
+              </div>
+            <% else %>
+              <%= link_to_require_login(raw("<div style='margin-top: 5px;' class='submit'><input id='add_new_fr' type='submit' value='Submit' name='commit' class='buttonCom'/></div>")) %>
+            <% end %>
+
+          </div>
+        <% end -%>
+
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
 <div class="contMainRH">
   <div class="popu">
     <div class="popuTop">
       <div class="popuTitle">Popular Discussions</div>
       <div class="popuAll">
-        <% if current_user == nil %>
-          <a href="#">See all</a>
-        <% else %>
-          <a href="<%= see_all_top_fr_user_forums_path(current_user) %>">See all</a>
-        <% end %>
-
+        <a href="<%= see_all_top_fr_forums_path %>">See all</a>
       </div>
     </div>
-
     <% @top_frs.each do |fr| %>
-      <div class="popuDes"><b><%= fr.title %></b>  <%= fr.content %></div>
-      <div class="popuRe"><a href="javascript:;"><%= fr.comments.length %> replies</a></div>
-
+      <div class="popuDes"><b><%= fr.title %></b>  <%= truncate_html(fr.content, :length => 100, :omission => '...') %> </div>
+      <div class="popuRe">
+        <a href="javascript:;" style='color: #6F6F63' onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'"><%= fr.comments.length %> replies</a>
+      </div>
     <% end %>
-
   </div>
 </div>
 
-
-<!--Comments-->
-
-<!--Comments-->
 <div visible="false" id="wait_dialog" style="display:none;">Please wait...</div>
 
 <script type="text/javascript">
+  function submitQ(){
+    var result = $("#new_fr_formQ").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("#new_fr_formQ").submit();
+    }
+  }
+
 
   function ShowWaitDialog(){
     $('#wait_dialog').show();
@@ -168,33 +266,30 @@
     ShowWaitDialog();
 
 
-    <% if current_user == nil %>
-          var savePath = '#';
-    <% else %>
-          var savePath = '<%= savecmt_user_forums_path(current_user) %>';
-    <% end %>
+<% if current_user == nil %>
+      var savePath = '#';
+<% else %>
+      var savePath = '<%= savecmt_forums_path %>';
+<% end %>
 
+    $.post( savePath, { forum_id: forum_id, content: content },
+    function( data ) {
+      HideWaitDialog();
+    }
+  );
 
-    $.ajax({
-      type: 'GET',
-      url: savePath,
-      data: {
-        content: content,
-        forum_id: forum_id
-      },
-      success: function(data) {
-        HideWaitDialog();
-      },
-      error: function(er){
-        HideWaitDialog();
-        alert('Failed to communicate with server: '+er);
-      }
-    });
   }
+
 
   $(document).ready(function() {
     ShowHideDelIcon();
 
+    /*re-open the form in the case captcha of ADDNEW INVALID*/
+    if ('<%= session["open_form"] %>'=='open'){
+      ToggleForm('form_new_fr', 'imageDivLink');
+    }
+
+    /*open-close the answer form for each forum-item*/
     $("a[id*='answ_']").click(function(){
       $(this).parent().next().toggle();
     });
@@ -202,33 +297,63 @@
     $("input[id*='save_']").click(function(){
 
       var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
+
       if (strContent == '')
-        alert('invalid');
+        alert('Please write something ... ');
       else{
         forum_id = $(this).attr('id').split('_')[1];
         AddCommentWithAjax(strContent,forum_id);
         /* reset the comment textarea to empty value */
         $(this).parents().find('form').eq(0).find('textarea').attr('value','');
       }
+
+
     });
 
 
+    /*BEGIN the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
+    $("a[id*='view_all_']").click(function(){
+      forum_id = $(this).attr('id').split('_')[2];
 
-    $('#add_new_fr').click(function(){
-      $(this).parents().find('form').eq(0).submit();
+
+      $.ajax({
+        url: '<%= view_all_no_loggin_forums_path %>',
+        type: 'GET',
+        dataType: 'html',
+        data: 'forum_id='+forum_id,
+        success: function(html){
+          alert('val == '+html);
+        },
+        error: function(er){
+          callagain(forum_id);
+        }
+      });
     });
-
-
+    /*END the code to handle ajax call before user-login for View All function to walk around rubyCAS issue*/
 
   });
+  /* this function callagain for fixing the bug related to call ajax being rediected by RubyCAS */
+  function callagain(forum_id){
+    $.ajax({
+      url: '<%= view_all_no_loggin_forums_path %>',
+      type: 'GET',
+      dataType: 'html',
+      data: 'forum_id='+forum_id,
+      success: function(str_data){
+        $("#forum_list_comment_"+forum_id).html(str_data);
+      },
+      error: function(er){
+        alert('Failed to communicate with server: '+er);
+      }
+    })
+  }
 
-  function toggle5(showHideDiv, switchImgTag) {
+  function ToggleForm(showHideDiv, switchImgTag) {
     var ele = document.getElementById(showHideDiv);
     var imageEle = document.getElementById(switchImgTag);
     if(ele.style.display == "block") {
       ele.style.display = "none";
       imageEle.innerHTML = '<img src="/images/helpPostSh08.png">';
-
     }
     else {
       ele.style.display = "block";
@@ -237,19 +362,68 @@
     }
   }
   function ShowHideDelIcon(){
+    /*Show hide delete X icon for each comment*/
+
     $(".proList").hover(function(){
       $(".del_post_com", this).show();
     }, function(){
       $(".del_post_com", this).hide();
     });
+
+    /*Show hide delete X icon for each forum post*/
+    $(".helpItem").hover(function(){
+      $("#fr_handler", this).show();
+    }, function(){
+      $("#fr_handler", this).hide();
+    });
+
+
+  }
+
+  function EditForumItem(forum_id){
+    alert('id == '+forum_id);
+  }
+
+  function DeleteForumItem(forum_id){
+    var delPath = '<%= delfrm_forums_path(current_user) %>';
+
+    $("#delete_comment_alert").dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $(this).dialog('close');
+          $('#frm_'+forum_id).toggle();
+          $.ajax({
+            url: delPath,
+            type: 'GET',
+            dataType: 'html',
+            data: '&forum_id=' + forum_id,
+            success: function(html){
+              //Do nothing
+            },
+            error: function(er){
+              alert('Failed to communicate with server: '+er);
+            }
+          });
+        },
+        Cancel: function() {
+          $(this).dialog('close');
+        }
+      }
+    });
+
+
+
+
+
   }
 
   function DeleteForumComment(forum_id, comment_id){
-    <% if current_user == nil %>
-          var delPath = '#';
-    <% else %>
-          var delPath = '<%= delcmt_user_forums_path(current_user) %>';
-    <% end %>
+<% if current_user == nil %>
+      var delPath = '#';
+<% else %>
+      var delPath = '<%= delcmt_forums_path(current_user) %>';
+<% end %>
 
 
     $("#delete_comment_alert").dialog({
@@ -266,17 +440,39 @@
             success: function(html){
               $('#cmt_id_'+comment_id).toggle();
               $('#answ_'+forum_id).html('Answer ('+html+')');
+            },
+            error: function(er){
+              alert('Failed to communicate with server: '+er);
             }
           });
         },
         Cancel: function() {
-          alert('Failed to connect to server');
           $(this).dialog('close');
         }
       }
     });
   }
 
-
 </script>
-
+<style>
+  .contMainRHQ{
+    float: left;
+    background: url("/images/top300.png") no-repeat scroll 0 0 white;
+    float: right;
+    margin-bottom: 8px;
+    overflow: hidden;
+    width: 300px;
+  }
+  .contMainRHQ .popuTopQ{
+    border-bottom: 1px solid #DBDBDB;
+    overflow: hidden;
+    padding-bottom: 4px;
+    padding-top: 2px;
+    width: 280px;
+  }
+  .popuTitleQ{
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+  }
+</style>

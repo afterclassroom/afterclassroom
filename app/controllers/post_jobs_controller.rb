@@ -8,24 +8,25 @@ class PostJobsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :good_companies, :bad_bosses, :employment_infor, :show_job_infor]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_companies, :bad_bosses]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_jobs
   # GET /post_jobs.xml
   def index
-    if params[:more_like_this_id]
+    @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = Post.paginated_post_more_like_this(params, post)
+      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
+        Post.paginated_post_more_like_this(params, post)
+      end
     else
       @job_type_id = params[:job_type_id]
       @job_type_id ||= JobType.find(:first).id
-      @posts = PostJob.paginated_post_conditions_with_option(params, @school, @job_type_id)
+      Rails.cache.fetch("index_#{@class_name}_type#{@job_type_id}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+        PostJob.paginated_post_conditions_with_option(params, @school, @job_type_id)
+      end
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -149,6 +150,12 @@ class PostJobsController < ApplicationController
     render :layout => false
   end
   
+  def delete_job_list
+    job_list = JobsList.find(params[:id])
+    current_user.jobs_lists.delete(job_list) if job_list
+    render :text => "Success."
+  end
+  
   # GET /post_jobs/new
   # GET /post_jobs/new.xml
   def new
@@ -188,14 +195,14 @@ class PostJobsController < ApplicationController
       if (@post_job.job_type.label == "i_m_looking_for_job")
         #If user does not upload file, records for these 3 files are created with empty url
         #user can upload these files later
-        @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
+        tempfile = @post_job.job_files.build(params[:letter].merge({:user_id => current_user.id}))
         @post_job.job_files.build(params[:transcript].merge({:user_id => current_user.id}))
         @post_job.job_files.build(params[:resume].merge({:user_id => current_user.id}))
       end
       if @post_job.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_job_path(@post_job))
-        redirect_to post_jobs_path + "?job_type_id=#{@post_job.job_type_id}"
+        redirect_to post_job_url(@post_job)
       else
         error  "Failed to create a new post."
         render :action => "new"

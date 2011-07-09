@@ -8,5 +8,4 @@ class Notifi < ActionMailer::Base
     mail :to => recipient, :subject => subject
     
   end
-  handle_asynchronously :send_notifi
 end

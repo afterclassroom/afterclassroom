@@ -51,6 +51,18 @@
           <div class="settItemBR">******</div>
         </div>
       </div>
+			<div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Time zone</div>
+          <div class="settItemTR">
+            <%=  link_to(raw("<span>change</span>"), "#{change_time_zone_user_settings_path(current_user)}?height=170&width=500&typeOfChange=psw", :class => "thickbox", :title => "Change time zone") %>
+          </div>
+        </div>
+        <div class="settItemB">
+          <div class="settItemBL"></div>
+          <div class="settItemBR"><%= current_user.time_zone %></div>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

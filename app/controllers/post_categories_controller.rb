@@ -1,7 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostCategoriesController < ApplicationController
-  
-
   require_role :admin
   layout 'admin'
   # GET /post_categories

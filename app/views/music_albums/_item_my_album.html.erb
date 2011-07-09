@@ -1,7 +1,7 @@
 <div class="musicL">
   <div class="photoImg"><%= link_to raw("<div>#{image_tag album.music_album_attach.url(:thumb)}</div>"), user_music_album_path(current_user, album) %></div>
   <div class="musicB">
-    <div class="musicN"><%= check_box_tag "music_album_id", album.id %><%= link_to album.name, user_music_album_path(current_user, album) %></div>
-    <div class="musicS"><%= pluralize(album.musics.size, "song") %></div>
+    <div class="musicS" style="margin-top: -7px;"><%= check_box_tag "music_album_id", album.id %><%= pluralize(album.musics.size, "song") %></div>
+    <div class="musicNal"><%= link_to album.name, user_music_album_path(current_user, album) %></div>
   </div>
 </div>

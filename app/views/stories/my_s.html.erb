@@ -1,29 +1,34 @@
 <div class="slsTop">
-  <div class="slsTopL">
-    <div class="slsTopLT">Your stories</div>
-    <div class="slsTopLB friLeft">
-      <div class="search">
-        <%= form_tag my_s_user_stories_path(current_user), {:id => "my_stories_search", :method => "GET"} do %>
-          <div class="textS"><%= text_field_tag "search[name]", "#{@search_name}" %></div>
-          <div class="btmS"><a href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a></div>
-        <% end %>
-      </div>
+    <div class="slsTopL">
+        <div class="slsTopLT">
+            Your stories
+        </div>
+        <div class="slsTopLB friLeft">
+            <div class="search">
+                <%= form_tag my_s_user_stories_path(current_user), {:id => "my_stories_search", :method => "GET"} do %>
+                <div class="textS">
+                    <%= text_field_tag "search[name]", "#{@search_name}" %>
+                </div>
+                <div class="btmS">
+                    <a href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a>
+                </div><% end %>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="slsTopR" style="float:left;">
-    <!--Pagination-->
-    <div class="assPage my_stories">
-      <span class="numPage"><%= page_entries_info @stories %></span>
-      <%= will_paginate @stories %>
+    <div class="slsTopR" style="float:left;">
+        <!--Pagination-->
+        <div class="assPage my_stories">
+            <span class="numPage"><%= page_entries_info @stories %></span>
+            <%= will_paginate @stories %>
+        </div>
+        <!--Pagination-->
     </div>
-    <!--Pagination-->
-  </div>
 </div>
-
-<% @stories.each do |s| %>
-  <%= render :partial => "item_mystory", :locals => {:story => s} %>
-<% end %>
-
-<script type="text/javascript" >
-  formatLinkForPaginationURLMy();
+<div id="mytable">
+    <% @stories.each do |s| %>
+    <%= render :partial => "item_mystory", :locals => {:story => s} %>
+    <% end %>
+</div>
+<script type="text/javascript">
+    formatLinkForPaginationURLMy();
 </script>

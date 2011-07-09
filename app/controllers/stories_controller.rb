@@ -1,5 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class StoriesController < ApplicationController
+  include ApplicationHelper
   layout 'student_lounge'
   
   before_filter RubyCAS::Filter::GatewayFilter
@@ -11,11 +12,12 @@ class StoriesController < ApplicationController
   # GET /stories.xml
   def index
     arr_user_id = []
-    current_user.user_friends.collect {|f| arr_user_id << f.id}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_stories")}
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
+      state == "share"
     end
-    @my_stories = current_user.stories.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
+    @my_stories = current_user.stories.find(:all, :conditions => "state = 'share'", :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     @friend_stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
   end
   
@@ -24,20 +26,21 @@ class StoriesController < ApplicationController
     
     if current_user.user_friends
       current_user.user_friends.each do |friend|
-        arr_user_id << friend.id
+        arr_user_id << friend.id if check_private_permission(friend, "my_stories")
       end
     end
     
     @search_name = ""
-
+    
     if params[:search]
       @search_name = params[:search][:name]
     end
-
+    
     content_search = @search_name
-
+    
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
+      state == "share"
       if content_search != ""
         any do
           title =~ "%#{content_search}%"
@@ -45,23 +48,23 @@ class StoriesController < ApplicationController
         end
       end
     end
-
+    
     @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     
     render :layout => false
   end
-
+  
   def my_s
     @search_name = ""
-
     if params[:search]
       @search_name = params[:search][:name]
     end
-
+    
     content_search = @search_name
     id = current_user.id
     cond = Caboose::EZ::Condition.new :stories do
       user_id == id
+      state == "share"
       if content_search != ""
         any do
           title =~ "%#{content_search}%"
@@ -69,39 +72,72 @@ class StoriesController < ApplicationController
         end
       end
     end
-
+    
     @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
     
     render :layout => false
   end
-
+  
+  def draft
+    @stories = current_user.stories.find(:all, :conditions => "state = 'draft'", :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+  end
+  
+  def my_draft
+    @search_name = ""
+    if params[:search]
+      @search_name = params[:search][:name]
+    end
+    
+    content_search = @search_name
+    id = current_user.id
+    cond = Caboose::EZ::Condition.new :stories do
+      user_id == id
+      state == "draft"
+      if content_search != ""
+        any do
+          title =~ "%#{content_search}%"
+          content =~ "%#{content_search}%"
+        end
+      end
+    end
+    
+    @stories = Story.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+    
+    render :layout => false
+  end
+  
   # GET /stories/1
   # GET /stories/1.xml
   def show
     @story = Story.find(params[:id])
-    update_view_count(@story)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @story }
+    @user = @story.user
+    if check_private_permission(@user, "my_stories")
+      update_view_count(@story)
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @story }
+      end
+    else
+      redirect_to warning_user_path(@user)
     end
   end
-
+  
   # GET /stories/new
   # GET /stories/new.xml
   def new
     @story = Story.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @story }
     end
   end
-
+  
   # GET /stories/1/edit
   def edit
     @story = Story.find(params[:id])
   end
-
+  
   # story /stories
   # story /stories.xml
   def create
@@ -114,8 +150,13 @@ class StoriesController < ApplicationController
         @story.state = state
         @story.save
         flash[:notice] = 'Story was successfully created.'
-        story_wall(@story)
-        format.html { redirect_to(user_stories_path(current_user)) }
+        if state == "share"
+          story_wall(@story) if check_private_permission(current_user, "my_stories")
+          path = user_stories_path(current_user)
+        else
+          path = draft_user_stories_path(current_user)
+        end
+        format.html { redirect_to(path) }
         format.xml  { render :xml => @story, :status => :created, :location => @story }
       else
         format.html { render :action => "new" }
@@ -123,13 +164,13 @@ class StoriesController < ApplicationController
       end
     end
   end
-
+  
   # PUT /stories/1
   # PUT /stories/1.xml
   def update
     state = params[:state]
     @story = Story.find(params[:id])
-
+    
     @story.state = state
     respond_to do |format|
       if @story.update_attributes(params[:story])
@@ -142,13 +183,14 @@ class StoriesController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /stories/1
   # DELETE /stories/1.xml
   def destroy
     @story = Story.find(params[:id])
+    @story.favorites.destroy_all
     @story.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to(stories_url) }
       format.xml  { head :ok }
@@ -177,7 +219,7 @@ class StoriesController < ApplicationController
       redirect_to story
     end
   end
-
+  
   def delete_all
     list_ids = params[:list_ids]
     list_ids = list_ids.slice(0..list_ids.length - 2)
@@ -192,7 +234,7 @@ class StoriesController < ApplicationController
   end
   
   protected
-
+  
   def require_current_user
     @user ||= Story.find(params[:story_id] || params[:id]).user
     unless (@user && (@user.eql?(current_user)))

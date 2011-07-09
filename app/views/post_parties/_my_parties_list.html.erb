@@ -1,0 +1,24 @@
+<% if logged_in? %>
+<div class="col195 clubBar">
+  <div class="col195in">
+    <h1 class="col195Title">My party list</h1>
+    <div class="col195Cont">
+      <%
+      partys_lists = current_user.partys_lists.limit(LIMIT)
+    %>
+      <% if partys_lists.size > 0 %>
+        <%
+        partys_lists.each do |pl|
+        %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(pl.post_party.post.title, 4), post_party_path(pl.post_party) %></div>
+          </div>
+        <% end %>
+        <% if partys_lists.size > LIMIT - 1 %>
+          <div class="dueDbutton"><%= link_to "View more my party list", "#{my_party_list_post_parties_path}?height=400&width=470", :class => "thickbox", :title => "My party list" %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -7,18 +7,17 @@ class PostFoodsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_foods
   # GET /post_foods.xml
   def index  
     @rating_status = params[:rating_status]
     @rating_status ||= ""
-    @posts = PostFood.paginated_post_conditions_with_option(params, @school, @rating_status)
-    
+    @post_results = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}") do
+      PostFood.paginated_post_conditions_with_option(params, @school, @rating_status)
+    end
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -46,13 +45,17 @@ class PostFoodsController < ApplicationController
     @post_f.rating_status = status
     
     @post_f.save
-    
+    # Objects cache
+    class_name = @post_f.class.name
+    school_id = @post.school_id
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+    Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
   end
   
   def require_rate
     rating = params[:rating]
-    post = Post.find(params[:post_id])
-    @post_f = post.post_food
+    @post = Post.find(params[:post_id])
+    @post_f = @post.post_food
     if !PostFood.find_rated_by(current_user).include?(@post_f)
       @post_f.rate rating.to_i, current_user
       # Update rating status
@@ -71,6 +74,11 @@ class PostFoodsController < ApplicationController
       @post_f.rating_status = status
       
       @post_f.save
+      # Objects cache
+      class_name = @post_f.class.name
+      school_id = @post.school_id
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
+      Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
     end
     render :layout => false
   end
@@ -140,7 +148,7 @@ class PostFoodsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_food = PostFood.new(params[:post_food])
-      
+    
     if simple_captcha_valid? 
       @post.save
       sc = School.find(@school)
@@ -149,7 +157,7 @@ class PostFoodsController < ApplicationController
       if @post_food.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_food_path(@post_food))
-        redirect_to post_foods_path
+        redirect_to post_food_url(@post_food)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

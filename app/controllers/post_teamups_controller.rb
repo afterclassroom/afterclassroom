@@ -7,25 +7,26 @@ class PostTeamupsController < ApplicationController
   #before_filter :login_required, :except => [:index, :show, :search, :tag, :good_org, :worse_org]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :tag, :good_org, :worse_org]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_teamups
   # GET /post_teamups.xml
   def index
-    if params[:more_like_this_id]
+    @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
       @teamup_category_id = post.post_teamup.teamup_category_id
-      @posts = PostTeamup.paginated_post_more_like_this(params, post)
+      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
+        PostTeamup.paginated_post_more_like_this(params, post)
+      end
     else
       @teamup_category_id = params[:teamup_category_id]
       @teamup_category_id ||= TeamupCategory.find(:first).id
-      @posts = PostTeamup.paginated_post_conditions_with_option(params, @school, @teamup_category_id)
+      Rails.cache.fetch("index_#{@class_name}_category#{@teamup_category_id}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+        PostTeamup.paginated_post_conditions_with_option(params, @school, @teamup_category_id)
+      end
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -128,7 +129,7 @@ class PostTeamupsController < ApplicationController
     @post.type_name = @class_name
     @post_teamup = PostTeamup.new(params[:post_teamup])
     @post_teamup.teamup_category_id ||= TeamupCategory.first.id
-      
+    
     if simple_captcha_valid?   
       @post.save     
       sc = School.find(@school)
@@ -138,7 +139,7 @@ class PostTeamupsController < ApplicationController
       if @post_teamup.save
         flash[:notice] = "Your post was successfully created."
         post_wall(@post, post_teamup_path(@post_teamup))
-        redirect_to post_teamups_path + "?teamup_category_id=#{@post_teamup.teamup_category_id}"
+        redirect_to post_teamup_path(@post_teamup)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

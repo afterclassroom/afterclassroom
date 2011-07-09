@@ -12,7 +12,7 @@
             <%= link_to image_post_thumb(controller_name, post), post.post_teamup %>
           </div>
         </div>
-        <%= truncate_html(description, :length => 100, :omission => '...') %>
+        <%= truncate_html(description, :length => 250, :omission => '...') %>
       </div>
     </div>
   </div>
@@ -33,10 +33,10 @@
           check ||= false
         %>
           <div class="qashdU">
-            <%= show_rating(post.id, post.post_teamup.total_good, controller.controller_name, check, 1) %>
+            <%= show_rating(post.id, post.post_teamup.total_good, get_controler_name_from_class_name(post.post_teamup.class.name), check, 1) %>
           </div>
           <div class="qashdD">
-            <%= show_rating(post.id, post.post_teamup.total_bad, controller.controller_name, check, 0) %>
+            <%= show_rating(post.id, post.post_teamup.total_bad, get_controler_name_from_class_name(post.post_teamup.class.name), check, 0) %>
           </div>
         </div>
         <div class="vie"><%= "View (#{post.count_view})" %></div>

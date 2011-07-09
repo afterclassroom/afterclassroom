@@ -93,7 +93,7 @@
           '<\/tr>');
       },
       beforeSend: function(event, files, index, xhr, handler, callBack){
-        var regexp = /\.(mp3)$/i;
+        var regexp = /\.(mp3)|(wav)|(mpeg3)$/i;
         // Using the filename extension for our test,
         // as legacy browsers don't report the mime type
         if (!regexp.test(files[index].name)) {
@@ -104,7 +104,7 @@
           return;
         }
                     
-        if (files[index].size > 5000000) {
+        if (files[index].size > 10000000) {
           handler.uploadRow.find('.file_upload_progress').html('FILE TOO BIG!');
           setTimeout(function(){
             handler.removeNode(handler.uploadRow);

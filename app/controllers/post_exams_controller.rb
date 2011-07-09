@@ -1,28 +1,29 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostExamsController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :interesting, :tag]
+  before_filter RubyCAS::Filter, :except => [:index, :show, :search, :interesting, :tag, :quick_post_form]
   before_filter :cas_user
-  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :interesting, :tag]
+  before_filter :get_variables, :only => [:index, :show, :new, :create, :edit, :update, :search, :interesting, :tag, :quick_post_form]
   #before_filter :login_required, :except => [:index, :show, :search, :interesting, :tag]
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
   after_filter :store_location, :only => [:index, :show, :new, :edit, :search, :interesting, :tag]
-  #cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
-  
-  # Cache
-  #caches_action :show, :layout => false
+  cache_sweeper :post_sweeper, :only => [:create, :update, :detroy]
   
   # GET /post_exams
   # GET /post_exams.xml
   def index
-    if params[:more_like_this_id]
+    @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      @posts = PostExam.paginated_post_more_like_this(params, post)
+      Rails.cache.fetch("index_#{@class_name}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+        PostExam.paginated_post_more_like_this(params, post)
+      end
     else
-      @posts = PostExam.paginated_post_conditions_with_option(params, @school)
+      Rails.cache.fetch("index_#{@class_name}_#{@school}") do
+        PostExam.paginated_post_conditions_with_option(params, @school)
+      end
     end
-    
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -42,8 +43,8 @@ class PostExamsController < ApplicationController
   end
   
   def interesting
-    @posts = PostExam.paginated_post_conditions_with_interesting(params, @school)
-    
+    @post_results = PostExam.paginated_post_conditions_with_interesting(params, @school)
+    @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @posts }
@@ -101,7 +102,7 @@ class PostExamsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_exam = PostExam.new(params[:post_exam])
-
+    
     if simple_captcha_valid?
       @post.save
       sc = School.find(@school)
@@ -109,8 +110,8 @@ class PostExamsController < ApplicationController
       @post_exam.post = @post
       if @post_exam.save
         flash[:notice] = "Your post was successfully created."
-				post_wall(@post, post_exam_path(@post_exam))
-        redirect_to post_exams_path
+        post_wall(@post, post_exam_path(@post_exam))
+        redirect_to post_exam_url(@post_exam)
       else
         flash[:error] = "Failed to create a new post."
         render :action => "new"

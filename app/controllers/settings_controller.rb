@@ -22,18 +22,9 @@ class SettingsController < ApplicationController
         current_user.notify_sms_settings.destroy_all
         
         smsarrs.each do |eachsms|
-          puts "each == " + eachsms.to_s
           @nfst = NotifySmsSetting.new
           @nfst.notification = Notification.find(eachsms)
           @nfst.user = current_user
-          
-          if @nfst.save
-            puts "save setting successfully"
-          else
-            puts "failed to save setting"
-          end
-          
-          puts "selected notification == "+@nfst.notification.name
         end
       end
     else
@@ -51,14 +42,6 @@ class SettingsController < ApplicationController
           @nfse = NotifyEmailSetting.new
           @nfse.notification = Notification.find(eachemail)
           @nfse.user = current_user
-          
-          if @nfse.save
-            puts "save setting successfully"
-          else
-            puts "failed to save setting"
-          end
-          
-          puts "selected notification == "+@nfse.notification.name
         end
       end
     else
@@ -95,8 +78,6 @@ class SettingsController < ApplicationController
     @notifications = Notification.find(:all)
     @types = Notification.find( :all, :select => 'DISTINCT notify_type' )
   end
-  
-  
   
   def language
   end
@@ -168,6 +149,23 @@ class SettingsController < ApplicationController
       end
     else
       flash[:error] = "You cannot update another user's email address!"
+    end
+    redirect_to :action => "setting"
+  end
+  
+  def change_time_zone
+    render :layout => false
+  end
+  
+  def save_time_zone
+    if current_user == @user
+      if @user.update_attributes(:time_zone => params[:time_zone][0])
+        flash[:notice] = "Time zone has been updated."
+      else
+        flash[:error] = "Time zone could not be updated."
+      end
+    else
+      flash[:error] = "You cannot update another user's Time zone!"
     end
     redirect_to :action => "setting"
   end

@@ -10,9 +10,9 @@ class MessagesController < ApplicationController
   def index
     act = params[:mailbox]
     case act
-    when "sent"
+      when "sent"
       @messages = current_user.sent_messages.paginate :page => params[:page], :per_page => 10
-    when "trash"
+      when "trash"
       @messages = Message.find(:all, :conditions => ["(sender_id = ? AND sender_deleted = ?) OR (recipient_id = ? AND recipient_deleted = ?)", current_user, true, current_user, true]).paginate :page => params[:page], :per_page => 10
     else
       @messages = current_user.received_messages.paginate :page => params[:page], :per_page => 10
@@ -27,19 +27,23 @@ class MessagesController < ApplicationController
     @message = Message.new
     @friends = current_user.user_friends
     if params[:reply_to]
-      @reply_to = current_user.received_messages.find(params[:reply_to])
+      @reply_to = Message.find(params[:reply_to])
       unless @reply_to.nil?
-        @message.to = @reply_to.sender.login
-        @message.subject = "Re: #{@reply_to.subject}"
-        @message.body = "\n\n*Original message*\n\n #{@reply_to.body}"
+        if @reply_to.recipient == current_user
+          @message.to = @reply_to.sender.login
+          @message.subject = "Re: #{@reply_to.subject}"
+          @message.body = "\n\n*Original message*\n\n #{@reply_to.body}"
+        end
       end
     end
-
+    
     if params[:forward_to]
-      @forward_to = current_user.received_messages.find(params[:forward_to])
+      @forward_to = Message.find(params[:forward_to])
       unless @forward_to.nil?
-        @message.subject = "Forward: #{@forward_to.subject}"
-        @message.body = "\n\n*Original message*\n\n #{@forward_to.body}"
+        if @forward_to.recipient == current_user or @forward_to.sender == current_user
+          @message.subject = "Forward: #{@forward_to.subject}"
+          @message.body = "\n\n*Original message*\n\n #{@forward_to.body}"
+        end
       end
     end
     
@@ -58,7 +62,7 @@ class MessagesController < ApplicationController
     @message = Message.new(params[:message])
     @message.sender = current_user
     @message.recipient = User.find(params[:recipient])
-
+    
     if @message.save
       flash[:notice] = "Message sent"
       subject = "#{current_user.name} sended you a message."
@@ -69,15 +73,29 @@ class MessagesController < ApplicationController
       render :action => :new
     end
   end
-
+  
+  def delete_message
+    @message = Message.find(params[:id])
+    if @message and (@message.recipient == current_user or @message.sender == current_user)
+      if @message.recipient == current_user
+        path = user_messages_path(current_user)
+      elsif @message.sender == current_user
+        path = user_messages_path(current_user, :mailbox => "sent")
+      end
+      @message.destroy
+    end
+    
+    redirect_to path
+  end
+  
   def message_action
     act = params[:act]
     case act
-    when "delete"
+      when "delete"
       delete_selected
-    when "mark_as_read"
+      when "mark_as_read"
       mark_read_selected
-    when "mark_as_unread"
+      when "mark_as_unread"
       mark_unread_selected
     else
       redirect_to user_messages_path(current_user)
@@ -88,7 +106,7 @@ class MessagesController < ApplicationController
     @recipient_id = params[:recipient_id]
     render :layout => false
   end
-
+  
   def send_message
     @message = Message.new()
     @message.sender = current_user
@@ -96,16 +114,16 @@ class MessagesController < ApplicationController
     @message.recipient = recipient
     @message.subject = params[:subject]
     @message.body = params[:body]
-
+    
     if @message.save
-      str = "You sent an email to #{recipient.full_name}."
+      @str = "You sent an email to #{recipient.full_name}."
     else
-      str = "Error."
+      @str = "Error."
     end
-
-    render :text => str
+    
+    return @str
   end
-
+  
   def list_friend
     q = params[:q]
     friends = current_user.user_friends.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
@@ -119,7 +137,7 @@ class MessagesController < ApplicationController
   end
   
   private
-
+  
   def delete_selected
     if params[:msg]
       params[:msg].each { |id|
@@ -130,7 +148,7 @@ class MessagesController < ApplicationController
     end
     redirect_to user_messages_path(current_user)
   end
-
+  
   def mark_read_selected
     if params[:msg]
       params[:msg].each { |id|
@@ -140,7 +158,7 @@ class MessagesController < ApplicationController
     end
     redirect_to user_messages_path(current_user)
   end
-
+  
   def mark_unread_selected
     if params[:msg]
       params[:msg].each { |id|

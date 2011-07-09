@@ -12,7 +12,7 @@ class PostTest < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => LIMIT
   scope :recent, {:joins => :post, :order => "created_at DESC"}
-  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_tests.post_id And favorable_type = ?) > ?", "Post", 10]
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_tests.id < ?", att], :order => "id ASC"} }
@@ -30,12 +30,12 @@ class PostTest < ActiveRecord::Base
       post.department_id == department if department
       post.school_year == year if year
       post.school_id == with_school if with_school
-      post.created_at > Time.now - over.day
+      post.created_at > over.business_days.before(Time.now)
     end
 
     posts = []
     post_ts.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
 
   def self.paginated_post_more_like_this(params, post_like)
@@ -47,19 +47,19 @@ class PostTest < ActiveRecord::Base
 
     posts = []
     post_ts.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
 
   def self.paginated_post_conditions_with_interesting(params, school)
     posts = []
     post_as = self.with_school(school).interesting
     post_as.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
 
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
     arr_p = []
-    post_as = self.with_school(@school).tagged_with(tag_name)
+    post_as = self.with_school(school).tagged_with(tag_name)
     post_as.select {|p| arr_p << p.post}
     @posts = arr_p.paginate :page => params[:page], :per_page => 10
   end

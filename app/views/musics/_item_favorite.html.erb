@@ -1,0 +1,28 @@
+<div class="slsItem">
+    <% if music.music_album.music_album_attach %>
+    <div class="photoImg">
+        <%= link_to image_tag(music.music_album.music_album_attach.url(:thumb)), user_music_url(music.user, music), :target => "_blank" %>
+    </div>
+    <% end %>
+    <div id="playlist_list">
+        <div href="<%= music.music_attach.url %>" style="width: 400px;" class="item">
+            <div>
+                <div class="fr duration">
+                    <%= music.length_in_seconds %>
+                </div>
+                <div class="btn play">
+                </div>
+                <div class="title">
+                    <b><%= music.music_attach_file_name %></b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#playlist_list").playlist({
+                playerurl: "/swfs/drplayer.swf"
+            });
+        });
+    </script>
+</div>

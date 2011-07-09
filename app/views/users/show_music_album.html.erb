@@ -1,0 +1,58 @@
+<% content_for :menu_top_student_lounge do -%>
+<%= render :partial => 'users/show_public/submenu' %>
+<% end -%>
+<div class="contMainC">
+    <%= render :partial => "users/show_public/proc" %>
+    <%= render :partial => "users/show_public/infor" %>
+    <%= render :partial => "users/show_public/friends" %>
+    <%#= render :partial => "/users/show_public/links" %>
+</div>
+<div class="contMainL">
+    <div class="col451 proCen">
+        <div class="col451in">
+            <div class="proCenCont">
+                <div class="stoDet phoD">
+                    <div class="stoDetR">
+                        <div class="stoDetRT">
+                            <%= @music_album.name %>
+                        </div>
+                    </div>
+                </div>
+                <div class="showMusicVideo" id="playlist_list">
+                    <% if @music_album.music_album_attach %>
+                    <div class="photoImg">
+                        <%= image_tag @music_album.music_album_attach.url(:thumb) %>
+                    </div>
+                    <% end %>
+                    <%= render :partial => "musics/music_playlist" %>
+                </div>
+                <%= render :partial => "users/show_public/music_album_action" %>
+                <%= show_post_comments(@music_album) %>
+                <div class="goback" id="go_back">
+                    <%= show_go_back %>
+                </div>
+                <div class="AsDOr">
+                    <h1 class="titleH1">Another music albums</h1>
+                    <% @another_music_albums.each do |mb| %>
+                    <div class="AsDOrItem">
+                        <%= link_to mb.name, show_music_album_user_url(@user, :music_album_id => mb) %>
+                    </div>
+                    <% end %>
+                </div>
+                <div class="goTop">
+                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contMainR">
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+</div>
+<script>
+  $(document).ready(function() {
+  $('#comment').css({width:'57%'});
+});
+</script>

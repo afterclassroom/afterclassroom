@@ -23,7 +23,7 @@ class PostParty < ActiveRecord::Base
   scope :with_limit, :limit => LIMIT
   scope :with_status, lambda { |st| {:conditions => ["post_parties.rating_status = ?", st]} }
   scope :recent, {:joins => :post, :order => "created_at DESC"}
-  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "created_at DESC"}}
+  scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_parties.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_parties.id > ?", att], :order => "id ASC"} }
@@ -41,12 +41,12 @@ class PostParty < ActiveRecord::Base
       post.school_year == year if year
       post_party.rating_status == rating_status
       post.school_id == with_school if with_school
-      post.created_at > Time.now - over.day
+      post.created_at > over.business_days.before(Time.now)
     end
 
     posts = []
     post_parties.select {|p| posts << p.post}
-    posts.paginate :page => params[:page], :per_page => 10
+    return posts
   end
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)

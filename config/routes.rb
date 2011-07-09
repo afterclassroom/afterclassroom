@@ -11,22 +11,29 @@ Afterclassroom::Application.routes.draw do
   match '/users/forgot_login' => 'users#forgot_login', :as => :user_forgot_login
   match '/users/clueless' => 'users#clueless', :as => :user_clueless
 
+  resources :forums do 
+    collection do
+      get :delcmt, :search, :see_all_top_fr, :view_all_comments, :view_all_no_loggin, :delfrm, :view_fr
+      post :addfr, :save_edit, :savecmt
+    end
+  end
+  resources :press_infos do
+    collection do
+      post :save
+    end
+  end
   # Users
   resources :users do
     member do
-      get :edit_password, :edit_email, :show_lounge
+      get :edit_password, :edit_email, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning
       put :update_password, :update_email
       post :update_avatar
-    end
-    
-    collection do
-      get :show_lounge
     end
 
     resources :messages do
       collection do
-        get :show_email, :send_message, :list_friend
-        post :message_action
+        get :show_email, :list_friend, :delete_message
+        post :message_action, :send_message
       end
     end
 
@@ -35,7 +42,8 @@ Afterclassroom::Application.routes.draw do
         get :networks, :notifications, :language,
           :payments, :ads, :setting, :private,
           :change_psw, :save_psw, :change_name,
-          :save_name, :change_email, :save_email
+          :save_name, :change_email, :save_email,
+          :change_time_zone, :save_time_zone
         post :save_setting, :save_private_setting
       end
     end
@@ -45,12 +53,6 @@ Afterclassroom::Application.routes.draw do
         get :show_profile, :edit_infor, :edit_edu_infor,
           :edit_work_infor, :my_favorite, :fan, :delete_fans
         post :update_about_yourself, :update_infor, :update_edu_infor, :update_work_infor
-      end
-    end
-
-    resources :forums do 
-      collection do
-        get :savecmt, :delcmt, :addfr, :search, :see_all_top_fr
       end
     end
 
@@ -74,15 +76,7 @@ Afterclassroom::Application.routes.draw do
 
     resources :stories do
       collection do
-        get :friend_s, :my_s, :create_comment, :delete_comment, :delete_all
-      end
-    end
-
-    # Video Album
-    resources :video_albums
-    resources :videos do
-      collection do
-        get :create_album
+        get :friend_s, :my_s, :my_draft, :draft, :create_comment, :delete_comment, :delete_all
       end
     end
 
@@ -95,7 +89,7 @@ Afterclassroom::Application.routes.draw do
     
     resources :musics do
       collection do
-        get :friend_m, :my_m, :create_playlist, :create_form
+        get :friend_m, :my_m, :create_playlist, :create_form, :play_list
         post :create_album, :upload
       end
     end
@@ -107,9 +101,16 @@ Afterclassroom::Application.routes.draw do
       end
     end
     
-    resources :photos do
+    # Videos
+    resources :videos do
       collection do
         get :friend_p, :my_p, :create_form, :destroy_all
+      end
+    end
+    
+    resources :photos do
+      collection do
+        get :friend_p, :my_p, :create_form, :destroy_all, :show_album
         post :create_album, :upload
       end
     end
@@ -179,7 +180,7 @@ Afterclassroom::Application.routes.draw do
   # Posts
   resources :posts do
     collection do
-      get :rate_comment, :create_comment, :report_abuse, :create_report_abuse, :delete_comment, :download, :view_all_comments
+      get :create_comment, :report_abuse, :create_report_abuse, :delete_comment, :download, :view_all_comments
       post :create_comment_on_list
     end
   end
@@ -189,19 +190,12 @@ Afterclassroom::Application.routes.draw do
       get :search, :due_date, :interesting, :tag, :quick_post_form
     end
   end
-  
-  resources :post_assignments, :except => :index
-  get "post_assignments(/pages/:page)" => "post_assignments#index", :as => :post_assignments
 
   resources :post_projects do
     collection do
       get :search, :due_date, :interesting, :tag, :quick_post_form
     end
   end
-  
-  resources :post_projects, :except => :index
-  get "post_projects(/pages/:page)" => "post_projects#index", :as => :projects
-
 
   resources :post_tests do
     collection do
@@ -209,126 +203,93 @@ Afterclassroom::Application.routes.draw do
     end
   end
   
-  resources :post_tests, :except => :index
-  get "post_tests(/pages/:page)" => "post_tests#index", :as => :post_tests
-
   resources :post_exams do
     collection do
       get :search, :interesting, :tag, :quick_post_form
     end
   end
-  
-  resources :post_exams, :except => :index
-  get "post_exams(/pages/:page)" => "post_exams#index", :as => :post_exams
 
   resources :post_events do
     collection do
       get :search, :tag, :rate
     end
   end
-  
-  resources :post_events, :except => :index
-  get "post_events(/pages/:page)" => "post_events#index", :as => :post_events
-  
+
   resources :post_qas do
     collection do
-      get :search, :tag, :interesting, :top_answer, :create_comment, :show_comment, :rate, :require_rate, :prefer, :sendmail
+      get :search, :tag, :interesting, :top_answer, :create_comment, :rate, :require_rate, :prefer, :sendmail
     end
   end
-  
-  resources :post_qas, :except => :index
-  get "post_qas(/pages/:page)" => "post_qas#index", :as => :post_qas
 
   resources :post_tutors do
     collection do
       get :search, :tag, :effective, :dont_hire, :rate, :require_rate
     end
   end
-  
-  resources :post_tutors, :except => :index
-  get "post_tutors(/pages/:page)" => "post_tutors#index", :as => :post_tutors
 
   resources :post_books do
     collection do
       get :search, :tag, :good_books, :dont_buy, :rate, :require_rate
     end
   end
-  
-  resources :post_books, :except => :index
-  get "post_books(/pages/:page)" => "post_books#index", :as => :post_books
 
   resources :post_jobs do
     collection do
       get :search, :tag, :good_companies, :bad_bosses,
         :rate, :require_rate, :my_job_list, :add_job,
         :employment_infor, :show_job_infor, :apply_job,
-        :save_letter, :save_script, :save_resume
+        :save_letter, :save_script, :save_resume, :delete_job_list
     end
   end
-  
-  resources :post_jobs, :except => :index
-  get "post_jobs(/pages/:page)" => "post_jobs#index", :as => :post_jobs
 
   resources :post_foods do
     collection do
       get :search, :tag, :rate, :require_rate
     end
   end
-  
-  resources :post_foods, :except => :index
-  get "post_foods(/pages/:page)" => "post_foods#index", :as => :post_foods
 
   resources :post_parties do
     collection do
       get :search, :show_rsvp, :create_rsvp,
         :tag, :rate, :require_rate,
-        :prefer, :my_party_list, :add_party
+        :prefer, :my_party_list, :add_party, :delete_party_list
     end
   end
-  
-  resources :post_parties, :except => :index
-  get "post_parties(/pages/:page)" => "post_parties#index", :as => :post_parties
 
   resources :post_myxes do
     collection do
       get :search, :tag, :rate, :require_rate
     end
   end
-  
-  resources :post_myxes, :except => :index
-  get "post_myxes(/pages/:page)" => "post_myxes#index", :as => :post_myxes
 
   resources :post_awarenesses do
     collection do
-      get :search, :tag, :rate, :support, :view_results, :require_rate
+      get :search, :tag, :rate, :support, :require_rate
     end
   end
-  
-  resources :post_awarenesses, :except => :index
-  get "post_awarenesses(/pages/:page)" => "post_awarenesses#index", :as => :post_awarenesses
-  
+
   resources :post_housings do
     collection do
       get :search, :tag, :good_house, :worse_house, :rate
     end
   end
-  
-  resources :post_housings, :except => :index
-  get "post_housings(/pages/:page)" => "post_housings#index", :as => :post_housings
 
   resources :post_teamups do
     collection do
       get :search, :tag, :good_org, :worse_org, :more_startup, :rate
     end
   end
-  
-  resources :post_teamups, :except => :index
-  get "post_teamups(/pages/:page)" => "post_teamups#index", :as => :post_teamups
 
   # Exam/Test Schedules, Deadline bulletin, General bulletin
   resources :post_exam_schedules do
     collection do
       get :search, :tag, :rate
+    end
+  end
+  
+  resources :ajax_not_login do
+    collection do
+      get :show_comment, :rate_comment, :view_results
     end
   end
   

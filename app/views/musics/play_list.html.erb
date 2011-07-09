@@ -1,0 +1,65 @@
+<% content_for :menu_top_student_lounge do -%>
+<%= render :partial => '/shared/submenu' %>
+<% end -%>
+<div class="slStoryL">
+    <div class="contDetL">
+        <div class="contDetLin">
+            <div class="inboxLeft">
+                <div class="slsShare">
+                    <div class="slsShareL">
+                        <span>You are here:</span>
+                        <%= link_to "Musics", user_musics_url(current_user), :class => "slsShareLink" %>
+                        <a href="javascript:;" class="slsShareLinkL"><%= current_user == @music_album.user ? "Your musics" : "Friends shared musics" %></a>
+                    </div>
+                    <div class="slsShareR">
+                        <%= render :partial => "menu" %>
+                    </div>
+                </div>
+                <%= display_flash_messages_with_raw %>
+                <%= render :partial => "expand_create_music_album" %>
+                <div class="stoDet phoD">
+                    <div class="AsDcomImg">
+                        <%= link_to raw(raw("<div>#{image_tag(@music_album.user.avatar.url(:thumb))}</div>")), {:controller => "profile", :action => "show_profile", :id => @music_album.user.id} %>
+                    </div>
+                    <div class="stoDetR">
+                        <div class="stoDetRT">
+                            <%= @music_album.user.full_name %>: <%= @music_album.name %>
+                        </div>
+                    </div>
+                </div>
+                <div class="musicVideo" id="playlist_list">
+                    <% if @music_album.music_album_attach %>
+                    <div class="photoImg">
+                        <%= image_tag @music_album.music_album_attach.url(:thumb) %>
+                    </div>
+                    <% end %>
+                    <%= render :partial => "music_playlist" %>
+                </div>
+                <%= render :partial => "music_album_action" %>
+                <%= show_post_comments(@music_album) %>
+                <div class="goback" id="go_back">
+                    <%= show_go_back %>
+                </div>
+                <div class="AsDOr">
+                    <h1 class="titleH1">Another music albums</h1>
+                    <% @another_music_albums.each do |mb| %>
+                    <div class="AsDOrItem">
+                        <%= link_to mb.name, play_list_user_musics_url(current_user, :music_album_id => mb) %>
+                    </div>
+                    <% end %>
+                </div>
+                <div class="goTop">
+                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contMainR">
+    <!--Most Viewed-->
+    <%= render :partial => "most_viewed" %>
+    <!--Most Viewed-->
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+</div>

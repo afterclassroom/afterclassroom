@@ -1,7 +1,7 @@
 <form id="form_send_message">
     <div class="postItem">
         <div class="postItem1" style="width: 80px; margin-top: 5px;">
-            Send to
+            Send to*
         </div>
         <div class="postInp">
             <%= text_field_tag "share_to" %>
@@ -12,8 +12,7 @@
             Message
         </div>
         <div class="postInp">
-            <textarea class="required" name="body" id="message_body" style="width: 330px; height: 150px;">
-            </textarea>
+        	<%= text_area_tag "body", "", :id => "message_body", :style => "width: 330px; height: 150px;" %>
         </div>
     </div>
     <div style="padding-left: 90px;" class="submit">
@@ -22,13 +21,18 @@
     <div style="padding: 10px;" class="error">
     </div>
 </form>
-
 <style>
-	.postInp ul{
-		width:330px;
-	}
+    .postInp ul {
+        width: 330px;
+    }
 </style>
-
+<!--Alert-->
+<div id="dialog-message" title="Alert" style="display:none;">
+    <p>
+        Please enter at least one recipient.
+    </p>
+</div>
+<!--Alert-->
 <script type="text/javascript">
     var path = "<%= list_friend_user_messages_path(current_user) %>";
     
@@ -38,22 +42,33 @@
         searchObjProps: "name",
         selectionLimit: 0
     });
-	
-    function submit_match_making(){  
-    var content  = $('#message_body').attr('value');
-	var recipient = $('#as-values-share_to').val();
-    $.ajax({
-      url: '/user_walls/match_making_send?content='+content+'&user_id_post=<%=  @user_id_post %>&recipient=' + recipient,
-      type: "GET",
-      dataType: "html",
-      failure: function(msg){
-        alert('ajax fail:'+msg);
-      },
-      success: function(msg){
-        alert(msg);
-        $('#TB_closeWindowButton').click();
-      }
-    });
     
-  }
+    function submit_match_making(){
+        var content = $('#message_body').attr('value');
+        var recipient = $('#as-values-share_to').val();
+        if (recipient == "") {
+            $("#dialog-message").dialog({
+                modal: true,
+                buttons: {
+                    Ok: function(){
+                        $("#dialog-message").dialog('close');
+                    }
+                }
+            });
+        }
+        else {
+            $.ajax({
+                url: '/user_walls/match_making_send?content=' + content + '&user_id_post=<%=  @user_id_post %>&recipient=' + recipient,
+                type: "GET",
+                dataType: "html",
+                failure: function(msg){
+                    alert('ajax fail:' + msg);
+                },
+                success: function(msg){
+                    alert(msg);
+                    $('#TB_closeWindowButton').click();
+                }
+            });
+        }
+    }
 </script>

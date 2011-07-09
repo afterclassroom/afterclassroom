@@ -12,7 +12,7 @@
                 </label>
             </div>
             <div class="reqTi">
-                <%= p.text_field :title %>
+                <%= p.text_field :title, :class => '{validate:{required:true}}' %>
             </div>
             <div class="reqLa">
                 <label>
@@ -20,7 +20,7 @@
                 </label>
             </div>
             <div class="reqEn">
-                <%= text_area_tag "post[description]" %>
+                <%= text_area_tag "post[description]", "", :class => '{validate:{required:true}}' %>
             </div>
             <%= render :partial => "/shared/form_request_post/select_tag" %>
             <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
@@ -32,3 +32,18 @@
         </div>
     </div>
 </div>
+<script>
+      $(function() {
+	$('#department_menu,#year_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+    });
+    $(function() {
+	$('div.reqLa,div.col300Cont').hover(function() {
+	}, function() {
+		$('#department_menu,#year_menu').stop().hide();
+	});
+    });
+</script>

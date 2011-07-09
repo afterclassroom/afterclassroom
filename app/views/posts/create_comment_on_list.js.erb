@@ -1,4 +1,5 @@
 $("<%= escape_javascript( render :partial => "shared/post_comments/post_comment_item", :locals => {:post => @post, :comment => @obj_comment} ) %>").insertBefore("#post_comment_form_<%= @post.id %>");
+$('#post_<%= @post.id %>_comments').html('<%= @post.comments.size %>');
 $('#comment_<%= @post.id %>').val("");
 $('#post_comment_<%= @post.id %>').show();
 $('#post_comment_form_<%= @post.id %>').hide();

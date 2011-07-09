@@ -1,11 +1,11 @@
 <div class="AsDContBtm">
-  <span class="btmReply"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Reply</a></span>
-  <span class="btmMail"><%= show_email(post) %></span>
+  <span class="btmReply"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
+  <% if !logged_in? or (logged_in? and current_user != post.user ) %><span class="btmMail"><%= show_email(post) %></span><% end %>
   <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
    <div  id="show_party_button">
     <span class="btmFoodList"><%= show_add_party(post) %></span>
     <span class="btmPartyList"><%= show_my_party_list(post) %></span>
   </div>
-  <span class="btmRSVP"><%= link_to(raw("<span>RSVP</span>")  , "#{show_rsvp_post_parties_path}?post_id=#{post.id}&height=380&width=490", :class => "thickbox", :title => "RSVP") %></span>
+  <span class="btmRSVP"><%= show_rsvp(post) %></span>
   <span class="btmMap"><%= show_map(post.post_party.address, post.title) %></span>
 </div>

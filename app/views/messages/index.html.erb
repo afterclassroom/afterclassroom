@@ -33,7 +33,11 @@
     There is no email selected.
   </p>
 </div>
-
+<div id="dialog-delete-message" title="Confirm delete" style="display:none;">
+  <p>
+    Are you sure?.
+  </p>
+</div>
 <!--Alert-->
 
 <script type="text/javascript">
@@ -66,8 +70,18 @@
       });
 
     }else{
-      $('#act').val(act);
-      $('#msg_form').submit();
+			$("#dialog-delete-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function() {
+            $('#act').val(act);
+      			$('#msg_form').submit();
+          },
+					Cancel: function() {
+            $(this).dialog('close');
+          }
+        }
+      });
     }
   }
 

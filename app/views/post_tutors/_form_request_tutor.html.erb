@@ -67,4 +67,18 @@ type ||= 1 %>
             valueAttr: "rel_tutor_type"
         });
     });
+    $(function() {
+	$('#tutor_type_menu,#department_menu,#year_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+    });
+    $(function() {
+	$('div.reqLa,div.col300Cont').hover(function() {
+
+	}, function() {
+		$('#tutor_type_menu,#department_menu,#year_menu').stop().hide();
+	});
+    });
 </script>

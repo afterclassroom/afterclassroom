@@ -1,0 +1,48 @@
+<% content_for :menu_top_student_lounge do -%>
+<%= render :partial => 'users/show_public/submenu' %>
+<% end -%>
+<div class="contMainC">
+    <%= render :partial => "users/show_public/proc" %>
+    <%= render :partial => "users/show_public/infor" %>
+    <%= render :partial => "users/show_public/friends" %>
+    <%#= render :partial => "/users/show_public/links" %>
+</div>
+<div class="contMainL">
+    <div class="col451 proCen">
+        <div class="col451in">
+            <div class="proCenCont">
+                <div class="stoDet" style="padding:0px;">
+                    <div class="stoDetR">
+                        <div class="stoDetRT">
+                            <%= @story.title %>
+                        </div>
+                        <div class="stoDetRB">
+                            <%= link_to "#{@story.user.name}'s Story", show_stories_user_url(@story.user), :class => "stoDetRBN" %><%= link_to "#{@story.user.name}'s Profile", user_url(@story.user) %>
+                        </div>
+                    </div>
+                </div>
+                <div class="stoDcont" style="padding:0px">
+                    <%= raw(@story.content) %>
+                </div>
+                <%= render :partial => "users/show_public/story_action" %>
+                <%= show_post_comments(@story) %>
+                <div class="goTop">
+                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contMainR">
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+</div>
+<script>
+  $(document).ready(function() {
+  $('.content').css({width:'425px'});
+});
+    $(document).ready(function() {
+  $('#comment').css({width:'57%'});
+});
+</script>

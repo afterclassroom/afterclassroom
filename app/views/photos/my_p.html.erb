@@ -1,16 +1,30 @@
+<div class="slsTopLT">
+    Your photos
+</div>
+<div class="slsTopLB friLeft">
+    <div class="search" style="margin-top:-19px; margin-bottom:20px">
+        <%= form_for :search_my_photo, :url => my_p_user_photos_path(current_user), :html => {:id => "my_photos_search", :method => "GET", :onsubmit => "return false"} do %>
+        <div class="textS">
+            <%= text_field_tag "search[name]", "" %>
+        </div>
+        <div class="btmS">
+            <a href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a>
+        </div><% end %>
+    </div>
+</div>
 <div class="photoRow">
-  <% @photos.each do |m_p| %>
-    <%= render :partial => "item_my_photo", :locals => {:photo => m_p}  %>
-  <% end %>
+    <% @photo_albums.each do |m_p| %>
+    <%= render :partial => "item_my_photo", :locals => {:photo_album => m_p} %>
+    <% end %>
 </div>
 <div class="slsTopR">
     <!--Pagination-->
-    <div class="assPage friend_photos">
-      <span class="numPage"><%= page_entries_info @photos %></span>
-      <%= will_paginate @photos %>
+    <div class="assPage my_photos">
+        <span class="numPage"><%= page_entries_info @photo_albums %></span>
+        <%= will_paginate @photo_albums %>
     </div>
     <!--Pagination-->
-  </div>
-<script type="text/javascript" >
-  formatLinkForPaginationURLMyPhoto();
+</div>
+<script type="text/javascript">
+    formatLinkForPaginationURLMyPhoto();
 </script>
