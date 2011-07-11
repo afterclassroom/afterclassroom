@@ -7,7 +7,7 @@ class VideosController < ApplicationController
   before_filter :cas_user
   #before_filter :login_required
   before_filter :require_current_user,
-                :only => [:edit, :update, :destroy, :delete_comment]
+                :only => [:edit, :update, :destroy]
   # GET /videos
   # GET /videos.xml
   def index
@@ -81,10 +81,19 @@ class VideosController < ApplicationController
   # GET /videos/1.xml
   def show
     @video = Video.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @video }
+    @user = @video.user
+    if check_private_permission(@user, "my_videos")
+      update_view_count(@video)
+      as_next = @user.videos.nexts(@video.id).last
+      as_prev = @user.videos.previous(@video.id).first
+      @next = as_next if as_next
+      @prev = as_prev if as_prev
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @video }
+      end
+    else
+      redirect_to warning_user_path(@user)
     end
   end
   
@@ -107,7 +116,7 @@ class VideosController < ApplicationController
     @video.tag_list = params[:tag_list]
     respond_to do |format|
       if @video.save
-        #@video.convert
+        @video.convert
         flash[:notice] = 'Video was successfully created.'
         format.html { redirect_to(user_video_url(current_user, @video)) }
       else

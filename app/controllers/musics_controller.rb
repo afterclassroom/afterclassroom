@@ -12,7 +12,7 @@ class MusicsController < ApplicationController
   before_filter RubyCAS::Filter
   before_filter :cas_user
   before_filter :require_current_user,
-    :only => [:edit, :update, :destroy, :delete_comment]
+    :only => [:edit, :update, :destroy]
   
   # GET /musics
   # GET /musics.xml
@@ -86,7 +86,10 @@ class MusicsController < ApplicationController
     @user = @music.user
     if check_private_permission(@user, "my_musics")
       update_view_count(@music)
-      
+      as_next = @music.music_album.musics.nexts(@music.id).last
+      as_prev = @music.music_album.musics.previous(@music.id).first
+      @next = as_next if as_next
+      @prev = as_prev if as_prev
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @music }

@@ -6,9 +6,8 @@ class Video < ActiveRecord::Base
   # Attach
   has_attached_file :video_attach, {
     :bucket => 'afterclassroom_videos',
-    #:styles => { :small => '36x36#', :medium => '72x72#', :large => '115x115#' },
-    #:url => '/:class/:id/:style.:content_type_extension',
-    #:path => ':rails_root/public/system/video_attaches/:id_partition/:style.:content_type_extension',
+    :styles => { :medium => "555x417>", :thumb => "92x68#" },
+    :url => '/:class/:id/:style.:content_type_extension',
     :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
@@ -59,7 +58,7 @@ class Video < ActiveRecord::Base
     if success && $?.exitstatus == 0
       self.converted!
     else
-      self.failure!
+      self.failed!
     end
   end
   
@@ -106,12 +105,11 @@ class Video < ActiveRecord::Base
   
   # This method creates the ffmpeg command that we'll be using
   def convert_command
-    flv = File.join(File.dirname(video_attach.url), "#{id}.flv")
-    File.open(flv, 'w')
-    
+    t = File.join(File.dirname(video_attach.path), "#{id}.flv")
+    s = video_attach.path.split("?")[0]
     command = <<-end_command
-    ffmpeg -i #{ video_attach.url } -ar 22050 -ab 32 -acodec mp3 
-  -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ flv }
+    ffmpeg -i #{ s } -ar 22050 -ab 32 -acodec libmp3lame 
+  -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ t }
   end_command
     command.gsub!(/\s+/, " ")
   end

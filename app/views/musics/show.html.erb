@@ -27,36 +27,46 @@
                         </div>
                     </div>
                 </div>
-                <div class="musicVideo" id="playlist_list">
-                    <% if @music.music_album.music_album_attach %>
-                    <div class="photoImg">
-                        <%= image_tag @music.music_album.music_album_attach.url(:thumb) %>
+                <div class="onThisBtm">
+                    <div class="stoPre">
+                        <%= link_to "", user_music_path(current_user, @prev) if @prev %>
                     </div>
-                    <% end %>
-                    <div id="playlist_<%= @music.id %>">
-                        <div href="<%= @music.music_attach.url %>" style="width: 400px;" class="item">
-                            <div>
-                                <div class="fr duration">
-                                    <%= @music.length_in_seconds %>
-                                </div>
-                                <div class="btn play">
-                                </div>
-                                <div class="title">
-                                    <b><%= @music.music_attach_file_name %></b>
+                    <div class="stoNext">
+                        <%= link_to "", user_music_path(current_user, @next) if @next %>
+                    </div>
+                </div>
+                <div class="AsDOr RePho">
+                    <div class="musicVideo" id="playlist_list">
+                        <% if @music.music_album.music_album_attach %>
+                        <div class="photoImg">
+                            <%= image_tag @music.music_album.music_album_attach.url(:thumb) %>
+                        </div>
+                        <% end %>
+                        <div id="playlist_<%= @music.id %>">
+                            <div href="<%= @music.music_attach.url %>" style="width: 400px;" class="item">
+                                <div>
+                                    <div class="fr duration">
+                                        <%= @music.length_in_seconds %>
+                                    </div>
+                                    <div class="btn play">
+                                    </div>
+                                    <div class="title">
+                                        <b><%= @music.music_attach_file_name %></b>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <script type="text/javascript">
+                            $(document).ready(function(){
+                                $("#playlist_list").playlist({
+                                    playerurl: "/swfs/drplayer.swf"
+                                });
+                            });
+                        </script>
                     </div>
                     <div style="text-align: center;">
                         <%= link_to "View music album: #{@music.music_album.name}", play_list_user_musics_url(current_user, :music_album_id => @music.music_album) %>
                     </div>
-                    <script type="text/javascript">
-                        $(document).ready(function(){
-                            $("#playlist_list").playlist({
-                                playerurl: "/swfs/drplayer.swf"
-                            });
-                        });
-                    </script>
                 </div>
                 <%= render :partial => "music_action" %>
                 <%= show_post_comments(@music) %>
