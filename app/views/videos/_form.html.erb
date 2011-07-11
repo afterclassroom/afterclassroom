@@ -1,0 +1,69 @@
+<div class="photoEx">
+    <%= form_for 'video', :url => user_videos_path(current_user), :html => {:id => "form", :multipart => true} do |f| %>
+    <div class="stoExItem">
+        <div class="stoExItemL">
+            Title*
+        </div>
+        <div class="stoExItemR">
+            <%= f.text_field :title, :class => "{validate:{required:true}}" %>
+        </div>
+    </div>
+		<div class="stoExItem">
+        <div class="stoExItemL">
+            Location*
+        </div>
+        <div class="stoExItemR">
+            <div id="fakeinputfile" style="margin-top:-8px">
+                <input type="text" id="fakefilepc" name="fakefilepc" style="width:180px"/>
+								<%= file_field_tag "video[video_attach]", :id => "video_video_attach", :onchange => "$('#fakefilepc').val(this.value);", :size => "27", :style => "height:24px;margin-left: -190px;opacity: 0;", :class => "filepc {validate:{required:true}}" %>
+            </div>
+            <div id="divinputfile" style="width: 252px; margin-top: -24px; background: url(/images/upload_file.png) no-repeat scroll 60% 2px transparent; padding-left: 124px; padding-top: 5px;" id="divinputfile">
+            </div>
+						<span>Only support these video formats. File size limit <%= number_to_human_size FILE_SIZE_VIDEO %>.</span>
+        </div>
+    </div>
+    <div class="stoExItem">
+        <div class="stoExItemL">
+            Description
+        </div>
+        <div class="stoExItemR">
+            <%= f.text_area :description, :rows => 10 %>
+        </div>
+    </div>
+    <div class="stoExItem">
+        <div class="stoExItemL">
+            Category
+        </div>
+        <div class="stoExItemR">
+            <%= f.select :category, @categories %>
+        </div>
+    </div>
+    <div class="stoExItem">
+        <div class="stoExItemL">
+            Tag line
+        </div>
+        <div class="stoExItemR">
+            <%= text_field_tag 'tag_list', "", :style => "width:250px" %>
+        </div>
+    </div>
+    <div class="stoExBtm">
+        <div class="stoExCre">
+            <a href="javascript:;" onclick="submit();">Send</a>
+        </div>
+        <div class="stoExCan">
+            <%= link_to "Cancel", "javascript:;", :onclick => "$('#create_video').toggle('slow');" %>
+        </div>
+    </div>
+    <% end %>
+</div>
+
+<script type="text/javascript">
+    function submit(){
+        var result = $("#form").validate({
+            meta: "validate"
+        });
+        if (result) {
+            $("#form").submit();
+        }
+    }
+</script>

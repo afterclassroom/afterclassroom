@@ -581,3 +581,59 @@ function formatLinkForPaginationURLMyMusic(){
 }
 
 //My Musics
+
+
+//My Videos
+function searchFriendVideos(){
+    var form = $("#friend_videos_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#friend_musics_list").html(html);
+    });
+}
+
+function searchMyVideos(){
+    var form = $("#my_videos_search");
+    var url = form.attr("action");
+    var formData = form.serialize();
+    $.get(url, formData, function(html){
+        $("#my_videos_list").html(html);
+    });
+}
+
+function formatLinkForPaginationURLFriendVideo(){
+    var form = $("#friend_videos_search");
+    var url = form.attr("action");
+    $("div.friend_videos").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.attr('href').split("?")[1];
+        linkElement.attr({
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?" + page);
+            searchFriendVideos();
+        });
+    });
+}
+
+function formatLinkForPaginationURLMyVideo(){
+    var form = $("#my_videos_search");
+    var url = form.attr("action");
+    $("div.my_videos").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.attr('href').split("?")[1];
+        linkElement.attr({
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            form.attr("action", url + "?" + page);
+            searchMyVideos();
+        });
+    });
+}
+
+//My Videos

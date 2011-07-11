@@ -1,6 +1,6 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
+include ApplicationHelper
 class UsersController < ApplicationController
-  include ApplicationHelper
   skip_before_filter :verify_authenticity_token, :only => [:create]
   protect_from_forgery :only => [:create]
   

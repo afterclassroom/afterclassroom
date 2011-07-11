@@ -1,0 +1,27 @@
+<div id="create_video">
+</div>
+
+<!--Alert-->
+<div id="dialog-message" title="Alert" style="display:none;">
+  <p>
+    Please input photo album name.
+  </p>
+</div>
+<!--Alert-->
+
+<script type="text/javascript" >
+  function check_form_photo_album(){
+    if ($('#album_name').val() == ""){
+      $("#dialog-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function() {
+            $(this).dialog('close');
+          }
+        }
+      });
+    }else{
+	  $("#form_album").submit();
+    }
+  }
+</script>

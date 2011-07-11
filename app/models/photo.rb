@@ -36,7 +36,6 @@ class Photo < ActiveRecord::Base
   
   # Fix the mime types. Make sure to require the mime-types gem
   def swfupload_file=(data)
-    data.content_type = MIME::Types.type_for(data.original_filename).to_s
     self.photo_attach = data
   end
 end

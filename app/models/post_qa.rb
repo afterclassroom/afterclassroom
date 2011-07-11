@@ -51,7 +51,7 @@ class PostQa < ActiveRecord::Base
       post.department_id == department if department
       post.school_year == year if year
       post.school_id == with_school if with_school
-      post.created_at > Time.now - over.day
+      post.created_at > over.business_days.before(Time.now)
     end
     arr_p = []
     post_qas.select {|p| arr_p << p.post if p.post.comments.size > 0}
@@ -69,7 +69,7 @@ class PostQa < ActiveRecord::Base
       post.department_id == department if department
       post.school_year == year if year
       post.school_id == with_school if with_school
-      post.created_at > Time.now - over.day
+      post.created_at > over.business_days.before(Time.now)
     end
     arr_p = []
     post_qas.select {|p| arr_p << p.post if p.post.comments.size == 0}
