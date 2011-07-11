@@ -60,11 +60,7 @@ gem 'sunspot_index_queue'
 gem 'daemons-mikehale'
 gem 'sunspot_plus'
 gem 'dalli'
-<<<<<<< HEAD
-gem 'business_time'
-=======
 gem 'rpm_contrib'
 gem 'newrelic_rpm'
 gem 'geonames'
 gem 'business_time'
->>>>>>> 9ee18348d1e971cc21da82a0ea51a70270f7e2c7
