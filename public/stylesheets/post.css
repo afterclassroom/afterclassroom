@@ -1131,6 +1131,7 @@ span.btmDown a:hover {
 .AsDcomDes {
     padding: 4px 0px 6px 0px;
     word-wrap: break-word;
+    overflow: hidden;
 }
 
 .AsDcomRe {

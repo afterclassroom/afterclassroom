@@ -232,8 +232,8 @@
 
             separator04 : { visible : true, separator : true },
 
-            insertOrderedList    : { visible : true, tags : ['ol'], tooltip : "Insert Ordered List" },
-            insertUnorderedList  : { visible : true, tags : ['ul'], tooltip : "Insert Unordered List" },
+            insertOrderedList    : { visible : true, tags : ['ol'], tooltip : "Insert Number List" },
+            insertUnorderedList  : { visible : true, tags : ['ul'], tooltip : "Insert Bullet List" },
             insertHorizontalRule : { visible : true, tags : ['hr'], tooltip : "Insert Horizontal Rule" },
 
             separator05 : { separator : true },
