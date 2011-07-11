@@ -1,3 +1,49 @@
+/*** column 165 public ***/
+.contMainC{
+    width:173px;
+    float:left;
+}
+.col165{
+    background:white url('/images/top165.png') no-repeat;
+    width:165px;
+    margin-bottom:8px;
+}
+.col165in{
+    background:url('/images/bot165.png') no-repeat left bottom;
+    overflow:hidden;
+    padding:10px;
+    _height:100%;
+}
+/*** column 571 public ***/
+.col571{
+    background:white url('/images/top571.png') no-repeat;
+    width:571px;
+    margin-bottom:8px;
+}
+.col571in{
+    background:url('/images/bot571.png') no-repeat left bottom;
+    overflow:hidden;
+    padding:10px;
+    _height:100%;
+    /* margin-top:50px;*/
+}
+/*** column 210 public ***/
+.contMainR210{
+    width:210px;
+    float:right;
+    overflow:hidden;
+}
+.col210{
+    background:white url('/images/top210.png') no-repeat;
+    width:210px;
+    margin-bottom:8px;
+}
+.col210in{
+    background:url('/images/bot210.png') no-repeat left bottom;
+    overflow:hidden;
+    padding:8px 10px;
+    _height:100%;
+}
 /**************** Home ***************************/
 .contHomeL{
     width:485px;
@@ -2974,7 +3020,7 @@ div.helpAdv2{
 }
 .proCen .AfterInfo{
     float:left;
-    width:355px;
+    width:85%;
 }
 .proCen .AfterC a, .proCen .AfterCl a:link, .proCen .AfterCl a:visited{
     color:#0a81c4;
@@ -3046,7 +3092,7 @@ div.helpAdv2{
     /*height:82px;*/
 }
 .proMindT{
-    background:transparent url(/images/proBG1.gif) no-repeat scroll 1px 1px;
+    background:transparent url(/images/proBGnew.png) no-repeat scroll 1px 1px;
     height:27px;
     overflow:hidden;
     padding:7px 12px 0 35px;
@@ -3195,7 +3241,7 @@ div.helpAdv2{
     min-height:50px;
 }
 .footWall{
-    background:transparent url(/images/shareAttach.gif) no-repeat scroll 0 0;
+    background:transparent url(/images/shareAttach.png) no-repeat scroll 0 0;
     height:35px;
     margin-left:1px;
 }

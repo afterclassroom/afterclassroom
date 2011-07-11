@@ -1,6 +1,6 @@
 <div class="contMainC">
-  <div class="col195">
-    <div class="col195in">
+  <div class="col165">
+    <div class="col165in">
       <div class="stuItem inbox">
         <div class="stuItemL"><%= link_to "Inbox", user_messages_path(current_user) %></div>
         <div class="stuItemR"><%= current_user.received_messages.size %></div>
@@ -12,8 +12,8 @@
     </div>
   </div>
 
-  <div class="col195">
-    <div class="col195in">
+  <div class="col165">
+    <div class="col165in">
       <div class="stuItem homew">
         <div class="stuItemL"><%= link_to "Quizzes", "#{user_post_managements_url(current_user)}?category=PostAssignment" %></div>
         <div class="stuItemR"><%= current_user.get_total_posts_with_type("PostAssignment") %></div>
