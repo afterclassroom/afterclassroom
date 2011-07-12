@@ -6,7 +6,7 @@
     Below is the information that <%= @current_user.name %> wants to let you know: <br/>
     <ul>
       <%= @introduce %> <br/>
-      Please response at: <a href="<%#= post_qa_url @post.post_qa %>"><%#= @post.title %></a>
+      Please response at: <a href="<%= post_qa_url @post.post_qa %>"><%= @post.title %></a>
     </ul>
     <h3>Thank you very much for your concern !</h3>
   </p>

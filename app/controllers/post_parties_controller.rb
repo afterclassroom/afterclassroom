@@ -146,8 +146,7 @@ class PostPartiesController < ApplicationController
   end
   
   def sendmail
-    #QaSendMail.send_rsvp(params[:emailAddr],current_user).deliver
-    QaSendMail.refer_to_expert("params[:strContent]", params[:email_addr],"params[:post_id]", current_user).deliver
+    QaSendMail.send_rsvp(params[:email_addr],current_user).deliver
 
     @receiver = params[:email_addr]
     render :layout => false

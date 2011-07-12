@@ -8,7 +8,7 @@ class QaSendMail < ActionMailer::Base
   #
   def refer_to_expert(introduce, receiver_email, post_id, current_user)
     
-    #@post = Post.find(post_id)
+    @post = Post.find(post_id)
     @introduce = introduce
     @current_user = current_user
 
