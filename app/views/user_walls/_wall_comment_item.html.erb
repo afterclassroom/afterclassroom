@@ -1,4 +1,4 @@
-<div class="proList">
+<div class="proList" style="width:440px">
 	<% if wall.user == current_user || comment.user == current_user %>
 	<div class="del_wall_com" style="float: right; display: none; cursor: pointer;" onclick="DeleteWallComment('<%= wall.id %>', '<%= comment.id %>');">
         <img src="/images/icon-ing.gif">

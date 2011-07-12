@@ -25,6 +25,7 @@ class SettingsController < ApplicationController
           @nfst = NotifySmsSetting.new
           @nfst.notification = Notification.find(eachsms)
           @nfst.user = current_user
+          @nfst.save!
         end
       end
     else
@@ -42,6 +43,7 @@ class SettingsController < ApplicationController
           @nfse = NotifyEmailSetting.new
           @nfse.notification = Notification.find(eachemail)
           @nfse.user = current_user
+          @nfse.save!
         end
       end
     else

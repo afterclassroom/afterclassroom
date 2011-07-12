@@ -10,8 +10,8 @@
 </div>
 
 <div class="contMainL">
-  <div class="col451 proCen">
-    <div class="col451in">
+  <div class="col571 proCen">
+    <div class="col571in">
       <div class="proCenCont">
         <div class="proInfTop"><%= show_infor() %></div>
         <%= render :partial => "basic_infor" %>
@@ -29,3 +29,8 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
+<script>
+  $(document).ready(function(){
+    $('.proInfCont,.proInfGRR').css('width','400px');
+  });
+</script>

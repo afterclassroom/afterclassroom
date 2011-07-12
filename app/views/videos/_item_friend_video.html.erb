@@ -1,5 +1,9 @@
-<div class="photoItem">
-  <div class="photoImg"><%= link_to get_first_photo(photo_album), show_album_user_photos_path(photo_album.user, :photo_album_id => photo_album) %></div>
-	<div class="photoInf" style="margin-top: -5px;"><%= pluralize(photo_album.photos.size, "photo") %></div>
-  <div class="photoNamePhoto"><span><%= truncate_words(photo_album.name, 5) %></span></div>
+<div class="musicL">
+  <div class="photoImg"><%= link_to raw("<div>#{image_tag video.video_attach.url(:thumb)}</div>"), user_videos_url(current_user, video) %></div>
+  <div class="mostMSR">
+    <div class="mostMSA"><%= link_to "", user_videos_url(current_user, video), :class => "mostMSPlay" %></div>
+  </div>
+  <div class="musicB">
+    <div class="musicN"><%= link_to video.title, user_videos_url(current_user, video) %></div>
+  </div>
 </div>

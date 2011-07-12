@@ -45,6 +45,8 @@ class ApplicationController < ActionController::Base
       item = MusicAlbum.find(id)
       when "Music"
       item = Music.find(id)
+      when "Video"
+      item = Video.find(id)
     end
     return item
   end

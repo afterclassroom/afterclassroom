@@ -11,15 +11,6 @@ class PostAssignmentsController < ApplicationController
   
   # GET /post_assignments
   # GET /post_assignments.xml
-<<<<<<< HEAD
-  def index   
-    @posts = if params[:more_like_this_id]
-      id = params[:more_like_this_id]
-      post = Post.find_by_id(id)
-      PostAssignment.paginated_post_more_like_this(params, post)
-    else
-      Rails.cache.fetch("index_#{@class_name}_#{@school}") do
-=======
   def index
     @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
@@ -29,7 +20,6 @@ class PostAssignmentsController < ApplicationController
       end
     else
       Rails.cache.fetch("index_#{@class_name}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
->>>>>>> 9ee18348d1e971cc21da82a0ea51a70270f7e2c7
         PostAssignment.paginated_post_conditions_with_option(params, @school)
       end
     end

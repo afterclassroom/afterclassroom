@@ -27,11 +27,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="comPage">
-                    <span></span>
-                    <span class="compre"><%= link_to "", user_photo_path(current_user, @prev) if @prev %></span>
-                    <span class="comnext"><%= link_to "", user_photo_path(current_user, @next) if @next %></span>
-                </div>
+								<div class="onThisBtm">
+									<div class="stoPre"><%= link_to "", user_photo_path(current_user, @prev) if @prev %></div>
+									<div class="stoNext"><%= link_to "", user_photo_path(current_user, @next) if @next %></div>
+								</div>
                 <div class="AsDOr RePho">
                     <div id="container" style="text-align:center;">
                         <div id="gallery" class="ad-gallery">
