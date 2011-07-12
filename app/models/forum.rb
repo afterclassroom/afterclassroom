@@ -18,8 +18,13 @@ class Forum < ActiveRecord::Base
   def self.paginated_forum_with_search(params)
     if params[:search_content]
       query = params[:search_content]
+
       Forum.search do
-        fulltext query
+
+        keywords(params[:search_content]) do
+          highlight :content
+        end
+
         order_by :created_at, :desc
         paginate :page =>  params[:page], :per_page => 10
       end
