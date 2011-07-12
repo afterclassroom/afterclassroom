@@ -145,6 +145,13 @@ class PostPartiesController < ApplicationController
     render :layout => false
   end
   
+  def sendmail
+    QaSendMail.send_rsvp(params[:email_addr],current_user).deliver
+
+    @receiver = params[:email_addr]
+    render :layout => false
+  end
+  
   def create_rsvp
     post = Post.find(params[:post_id])
     post_party_rsvp = PostPartyRsvp.new

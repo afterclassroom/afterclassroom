@@ -15,9 +15,11 @@ class PressInfo < ActiveRecord::Base
     if params[:search_content]
       query = params[:search_content]
       PressInfo.search do
-        fulltext query
+        keywords(params[:search_content]) do
+          highlight :content
+        end
         order_by :created_at, :desc
-        paginate :page => params[:page], :per_page => 1
+        paginate :page => params[:page], :per_page => 10
       end
     end
   end
