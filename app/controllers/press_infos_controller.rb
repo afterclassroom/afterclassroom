@@ -9,12 +9,6 @@ class PressInfosController < ApplicationController
     @press.user = current_user
     @press.save
     
-#    PressInfo.create do |p|
-#      p.user = current_user
-#      p.title = params[:story_title]
-#      p.content = params[:content]
-#    end
-    
     redirect_to :action => "index"
   end
   
@@ -46,6 +40,12 @@ class PressInfosController < ApplicationController
   def delpr
     pr = PressInfo.find(params[:pr_id])
     pr.destroy
+  end
+  
+  def searchpr
+    @presses  = PressInfo.paginated_press_with_search(params)
+    
+    render :template => 'press_infos/index' 
   end
   
 end

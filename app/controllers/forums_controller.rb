@@ -22,7 +22,7 @@ class ForumsController < ApplicationController
   end
 
   def search
-    @forums = Forum.paginated_forum_with_search(params).results
+    @forums = Forum.paginated_forum_with_search(params)
     @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 10)
     render :template => 'forums/index' 
   end
