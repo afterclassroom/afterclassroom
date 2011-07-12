@@ -5,7 +5,7 @@
     <div class="search" style="margin-top:-19px; margin-bottom:20px">
         <%= form_for :search_my_photo, :url => my_p_user_photos_path(current_user), :html => {:id => "my_photos_search", :method => "GET", :onsubmit => "return false"} do %>
         <div class="textS">
-            <%= text_field_tag "search[name]", "" %>
+            <%= text_field_tag "search[name]", @search_name %>
         </div>
         <div class="btmS">
             <a href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a>

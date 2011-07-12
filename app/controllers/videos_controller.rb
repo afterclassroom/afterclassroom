@@ -18,9 +18,9 @@ class VideosController < ApplicationController
       cond = Caboose::EZ::Condition.new :videos do
         user_id === arr_user_id
       end
-      @friend_videos = Video.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
+      @friend_videos = Video.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
     end
-    @my_videos = current_user.videos.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
+    @my_videos = current_user.videos.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
   end
   
   def friend_p
@@ -44,12 +44,13 @@ class VideosController < ApplicationController
       user_id === arr_user_id
       if content_search != ""
         any do
-          name =~ "%#{content_search}%"
+          title =~ "%#{content_search}%"
+          description =~ "%#{content_search}%"
         end
       end
     end
     
-    @videos = Video.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
+    @videos = Video.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
     
     render :layout => false
   end
@@ -66,13 +67,14 @@ class VideosController < ApplicationController
     cond = Caboose::EZ::Condition.new :videos do
       if content_search != ""
         any do
-          name =~ "%#{content_search}%"
+          title =~ "%#{content_search}%"
+          description =~ "%#{content_search}%"
         end
       end
       user_id == id
     end
     
-    @videos = Video.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
+    @videos = Video.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
     
     render :layout => false
   end
@@ -97,15 +99,12 @@ class VideosController < ApplicationController
     end
   end
   
-  # GET /videos/new
-  # GET /videos/new.xml
-  def new
-  end
-  
   # GET /videos/1/edit
   def edit
+    @categories ||= Youtube.video_categories
     @video = Video.find(params[:id])
     @tag_list = @video.tag_list.join(", ")
+    render :layout => false
   end
   
   # POST /videos
@@ -135,7 +134,7 @@ class VideosController < ApplicationController
         @video.tag_list = params[:tag_list]
         @video.save
         flash[:notice] = 'Video was successfully updated.'
-        format.html { redirect_to(@video) }
+        format.html { redirect_to(update_video_user_videos_url(@video.user)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -160,10 +159,28 @@ class VideosController < ApplicationController
     @categories ||= Youtube.video_categories
   end
   
+  def update_video
+    @videos = current_user.videos.find(:all, :order => "created_at DESC")
+  end
+  
+  def delete_videos
+    list_ids = params[:list_ids]
+    list_ids = list_ids.slice(0..list_ids.length - 2)
+    ids = list_ids.split(", ")
+    videos = current_user.videos.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
+    if videos.size > 0
+      videos.each do |abl|
+        abl.favorites.destroy_all
+        abl.destroy
+      end
+    end
+    redirect_to(update_video_user_videos_album_url(current_user))
+  end
+  
   protected
   
   def require_current_user
-    @user ||= Video.find(params[:video_album_id] || params[:id]).user
+    @user ||= Video.find(params[:video_id] || params[:id]).user
     unless (@user && (@user.eql?(current_user)))
       redirect_back_or_default(root_path)and return false
     end

@@ -75,6 +75,21 @@ module Postwall
     user_wall.save
   end
   
+  def video_wall(vc)
+    user_wall = UserWall.new
+    user_wall_video = UserWallVideo.new()
+    user_wall.user_id = vc.user.id
+    user_wall.user_id_post = vc.user.id
+    user_wall.content = "Add new video: <a href='#{user_video_path(vc.user, vc)}' target='_blank'>#{vc.title}</a>"
+    user_wall.save
+    user_wall_video.link = vc.video_attach.url
+    user_wall_video.title = mc.title
+    user_wall_video.sub_content = user_music_url(mc.user, mc)
+    user_wall_video.thumb = user_music_url(mc.user, mc)
+    user_wall.user_wall_video = user_wall_video
+    user_wall.save
+  end
+  
   def story_wall(st)
     user_wall = UserWall.new
     user_wall_link = UserWallLink.new()

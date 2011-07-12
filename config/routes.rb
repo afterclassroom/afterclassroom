@@ -105,7 +105,7 @@ Afterclassroom::Application.routes.draw do
     # Videos
     resources :videos do
       collection do
-        get :friend_p, :my_p, :create_form, :destroy_all
+        get :friend_p, :my_p, :create_form, :delete_videos, :update_video
       end
     end
     
