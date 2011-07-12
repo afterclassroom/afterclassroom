@@ -54,7 +54,7 @@
     <div id="wall_list_comment_<%= wall.id %>">
       <% if wall.comments.size > 0 %>
         <% if wall.comments.size > 2 %>
-          <div class="proList">
+          <div class="proList" style="width:440px">
             <div class="writeCom">
               <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall.id}, :remote => true %>
             </div>
@@ -71,7 +71,7 @@
   </div>
 </div>
 <script>
-	 $(document).ready(function(){
+    $(document).ready(function(){
     $(".AfterItem").hover(function(){
       $(".del_wall", this).show();
     }, function(){

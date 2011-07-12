@@ -104,12 +104,12 @@
                   <div class="stoExItem" style="overflow: hidden;">
                     <div class="stoExItemL" style="display: inline; color: rgb(111, 111, 99); float: left; font-weight: bold; line-height: 21px; width: 75px; margin-left: 13px;">Your story</div>
                     <div class="stoExItemR" style="display: inline; float: right; width: 525px; margin-right: 19px;">
-                      <%= f.text_area :content, :rows => 2, :style => "width:525px" %>
+                      <%= f.text_area :content, :rows => 2, :style => "width:525px", :class => '{validate:{required:true}}' %>
                     </div>
                   </div>
                   <div class="stoExBtm">
                     <div style="margin-left: 87px; margin-top: 10px;">
-                      <a id="save_new" href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Save</a>
+                      <a onclick="submitNewPress();" id="save_new" href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Save</a>
                     </div>
                     <div style="margin-left: 142px; margin-top: -31px;">
                       <a href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Cancel</a>
@@ -124,18 +124,18 @@
           <div style="border-bottom: 1px solid #DBDBDB; clear: both; display: block">
             <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px;" href="javascript:;">Archives</a>
           </div>
-          <div style="margin-top: -28px; ; color: rgb(110, 110, 110); background: url('/images/bgSearchF.png') no-repeat scroll left top transparent;  float: right;  height: 24px;  padding-right: 0;  width: 193px;">
-            <%= form_tag save_press_infos_path, {:id => "info_search", :method => "GET"} do %>
-              <div class="textS"><%= text_field_tag "abc", "", :style => "height: 12px" %></div>
+          <div style="margin-top: -28px; ; color: rgb(110, 110, 110); background: url('/images/bgSearchF.png') no-repeat scroll left top transparent;  float: right;  height: 24px;  padding-right: 0;  width: 194px;">
+            <%= form_tag url_for(:controller => "press_infos", :action => "searchpr"), {:id => "info_search", :method => "GET"},  do %>
+              <div class="textS"><%= text_field_tag "search_content", "", :style => "height: 12px" %></div>
               <div style="margin-top: -18px; margin-right: 3px; float: right;" >
-                <a href="javascript:;" onclick=""><img src="/images/iconSF.png" style="border: 0px;"/></a>
+                <a href="javascript:;" onclick="searchPress();"><img src="/images/iconSF.png" style="border: 0px;"/></a>
               </div>
             <% end %>
           </div>
           <% @presses.each do |pr| %>
             <div id="" style="border-bottom: 1px solid rgb(219, 219, 219);" class="helpItem">
-              <div style="float: right; padding-top: 1px;">
-                <a href="javascript:;" class="vtip" title='Delete'><img style="border: 0px none;" src="/images/icon-ing.gif"/></a>
+              <div id="pr_id_<%= pr.id.to_s %>" style="float: right; padding-top: 1px;">
+                <%= link_to(content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => 'border: 0px;')), "#{delpr_press_infos_path(current_user)}?pr_id=#{pr.id.to_s}", :class => "vtip", :title => "Delete", :remote => true) %>
               </div>
               <div style="float: right;">
                 <a href="<%= view_pr_press_infos_path(current_user) %>?press_id=<%= pr.id.to_s %>" class="vtip" title='Edit' ><img style="border: 0px none;" src="/images/flistREdit.png"/></a>
@@ -153,15 +153,27 @@
               </div>
               <div style="font-weight: bold; margin-left: 62px;" class="forumTit" id="<%= pr.id.to_s  %>">
                 <!-- a onmouseout="this.style.color = '#1E1E1E'" onmouseover="this.style.color = '#DD0000'; this.style.cursor='pointer'" style="font-size: 12px; font-weight: bold; text-decoration: none; color: #1E1E1E;" href="javascript:;"><%= pr.title %></a -->
-                 <%= link_to pr.title, {:controller => "press_infos", :action => "view_detail", :pr_id => pr.id}, :remote => true %>
+                <%= link_to pr.title, {:controller => "press_infos", :action => "view_detail", :pr_id => pr.id}, :remote => true %>
               </div>
               <div id="press_<%= pr.id.to_s %>" style="margin-left: 62px; height: 100%;" class="helpD"><%= truncate_html(raw(pr.content), :length => 100, :omission => '...') %></div>
             </div>
           <% end %>
-          <div class="assPage" style="padding-left:0">
-            <span class="numPage"><%= page_entries_info @presses %></span>
-            <%= will_paginate @presses %>
-          </div>
+          <% if controller.action_name == "searchpr" %> 
+
+            <div class="assPage" style="padding-left:0">
+              <span class="numPage"><%= page_entries_info @presses.results %></span>
+              <%= will_paginate(@presses.results, :params => { :controller => "press_infos", :action => "searchpr"}) %>
+            </div>
+
+
+          <% else %>
+            <div class="assPage" style="padding-left:0">
+              <span class="numPage"><%= page_entries_info @presses %></span>
+              <%= will_paginate @presses %>
+            </div>
+
+
+          <% end %>
           <div style="padding: 0pt;" class="goTop"></div>
         </div>
       </div>
@@ -180,6 +192,20 @@
   </div>
 </div>
 <script type="text/javascript" >
+  
+  function submitNewPress(){
+    var result = $("#form_new").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("#form_new").submit();
+    }
+  }  
+  function searchPress(){
+    $("#info_search").submit();
+  }
+  
+  
   $(document).ready(function(){
     $('.wysiwyg').css('width','525px');
     $('#story_contentIFrame').css('width','525px');
@@ -187,6 +213,13 @@
     $('#save_new').click(function(){
       $('#form_new').submit();
     });
+    
+    
+    
+    $("div[id*='pr_id_']").click(function(){
+      $(this).parent().toggle();
+    });
+
     
   });
   (function($)

@@ -16,12 +16,12 @@ class Forum < ActiveRecord::Base
   # Named Scope
   
   def self.paginated_forum_with_search(params)
-    if params[:search_txt]
-      query = params[:search_txt]
+    if params[:search_content]
+      query = params[:search_content]
       Forum.search do
         fulltext query
         order_by :created_at, :desc
-        paginate :page => 10, :per_page => 10
+        paginate :page =>  params[:page], :per_page => 10
       end
     end
   end
