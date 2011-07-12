@@ -9,12 +9,6 @@ class PressInfosController < ApplicationController
     @press.user = current_user
     @press.save
     
-#    PressInfo.create do |p|
-#      p.user = current_user
-#      p.title = params[:story_title]
-#      p.content = params[:content]
-#    end
-    
     redirect_to :action => "index"
   end
   
