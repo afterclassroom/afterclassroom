@@ -49,7 +49,6 @@
           <% if controller.action_name == "search" %>
             <% @forums.each_hit_with_result do |hit,fr| %>
 
-    <%# txt_content = raw( hit.highlight(:content) ? hit.highlight(:content).format { |fragment| content_tag(:em, fragment) } : fr.content) %>
               <% txt_content = raw( hit.highlight(:content).format { |fragment| content_tag(:em, fragment) } ) %>
 
               <% txt_content =  raw("<div style='' id='res_handler_#{fr.id}'>")+txt_content+raw('</div><br/>')+raw("<div style='display:none;'>")+fr.content+raw("</div>") %>
