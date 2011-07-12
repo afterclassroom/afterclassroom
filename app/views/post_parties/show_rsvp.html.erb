@@ -6,7 +6,7 @@
         </div>
         <div id="rsvp_wraper_<%= @post.id %>">
             <div id="posting-section">
-                <form id="form_rsvp_<%= @post.id %>" name="form_rsvp_<%= @post.id %>">
+                <% form_tag url_for(:controller => "post_parties", :action => "sendmail"), :remote => true, :html => {:id => "post_rsvp_#{@post.id}"} do %>
                     <ul>
                         <li>
                             <div class="user_ri1">
@@ -45,7 +45,7 @@
                                 <label>
                                     Email*:
                                 </label>
-                                <%= text_field_tag "email_#{@post.id}", "", :class => "{validate:{required:true, email:true}}" %>
+                                <%= text_field_tag "email_addr", "", :class => "{validate:{required:true, email:true}}" %>
                             </div>
                         </li>
                         <li>
@@ -73,7 +73,7 @@
                             <!-- end post button -->
                         </li>
                     </ul>
-                </form>
+                <% end %>
             </div>
         </div>
     </div>
@@ -81,11 +81,14 @@
 </div>
 <script language="javascript">
     function sendPSVP(){
-        var result = $("#form_rsvp_<%= @post.id %>").validate({
+       $("#form_rsvp_<%# = @post.id %>").submit();
+      /*
+        var result = $("#form_rsvp_<%# = @post.id %>").validate({
             meta: "validate"
         });
         if (result) {
-            $("#form_rsvp_<%= @post.id %>").submitt();
+            $("#form_rsvp_<%# = @post.id %>").submitt();
         }
+     */
     }
 </script>

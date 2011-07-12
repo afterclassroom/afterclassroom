@@ -1,0 +1,29 @@
+<div class="slsTopLT">
+    Friends shared videos
+</div>
+<div class="slsTopLB friLeft">
+    <div class="search" style="margin-top:-19px; margin-bottom:20px">
+        <%= form_for :search_friend_video, :url => friend_p_user_videos_path(current_user), :html => {:id => "friend_videos_search", :method => "GET", :onsubmit => "return false"} do %>
+        <div class="textS">
+            <%= text_field_tag "search[name]", @search_name %>
+        </div>
+        <div class="btmS">
+            <a href="javascript:;" onclick="searchFriendPhotos();"><img src="/images/iconSF.png"/></a>
+        </div><% end %>
+    </div>
+</div>
+<div class="musicRow">
+    <% @videos.each do |f_p| %>
+    <%= render :partial => "item_friend_video", :locals => {:video => f_p} %>
+    <% end %>
+</div>
+<div class="slsTopR">
+    <!--Pagination-->
+    <div class="assPage friend_videos">
+        <span class="numPage"><%= page_entries_info @friend_videos %></span>
+    </div>
+    <!--Pagination-->
+</div>
+<script type="text/javascript">
+    formatLinkForPaginationURLFriendVideo();
+</script>

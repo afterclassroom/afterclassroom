@@ -15,4 +15,10 @@ class QaSendMail < ActionMailer::Base
     mail :to => receiver_email, :subject => "Please response. Thank you for your support !"
     
   end
+  
+  def send_rsvp(receiver_email, current_user)
+    @current_user = current_user
+    mail :to => receiver_email, :subject => "Please response. Thank you for your support !"
+  end
+  
 end

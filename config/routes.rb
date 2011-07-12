@@ -105,7 +105,7 @@ Afterclassroom::Application.routes.draw do
     # Videos
     resources :videos do
       collection do
-        get :friend_p, :my_p, :create_form, :destroy_all
+        get :friend_p, :my_p, :create_form, :delete_videos, :update_video
       end
     end
     
@@ -253,7 +253,7 @@ Afterclassroom::Application.routes.draw do
     collection do
       get :search, :show_rsvp, :create_rsvp,
         :tag, :rate, :require_rate,
-        :prefer, :my_party_list, :add_party, :delete_party_list
+        :prefer, :my_party_list, :add_party, :delete_party_list, :sendmail
     end
   end
 
