@@ -43,7 +43,6 @@ class PressInfosController < ApplicationController
   end
   
   def searchpr
-    #@presses = PressInfo.find(:all, :order => "created_at DESC").paginate(:page => params[:page], :per_page => 10, :order => "created_at")
     @presses  = PressInfo.paginated_press_with_search(params)
     
     render :template => 'press_infos/index' 
