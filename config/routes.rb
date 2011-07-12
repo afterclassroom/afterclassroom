@@ -19,6 +19,7 @@ Afterclassroom::Application.routes.draw do
   end
   resources :press_infos do
     collection do
+      get :view_pr, :view_detail
       post :save
     end
   end

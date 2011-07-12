@@ -27,9 +27,9 @@
                 </div>
               </div>
 
-                <div class="videoRow">
+                <div class="musicRow">
                   <% @friend_videos.each do |f_p| %>
-                    <%= render :partial => "item_friend_video", :locals => {:video_album => f_p}  %>
+                    <%= render :partial => "item_friend_video", :locals => {:video => f_p}  %>
                   <% end %>
                 </div>
                 <div class="slsTopR">
@@ -61,9 +61,9 @@
               </div>
             </div>
 
-              <div class="videoRow">
+              <div class="musicRow">
                 <% @my_videos.each do |m_p| %>
-                  <%= render :partial => "item_my_video", :locals => {:video_album => m_p}  %>
+                  <%= render :partial => "item_my_video", :locals => {:video => m_p}  %>
                 <% end %>
               </div>
               <div class="slsTopR">

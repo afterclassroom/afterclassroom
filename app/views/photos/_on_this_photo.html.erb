@@ -9,8 +9,7 @@
             <% @photo.favoriting_users.each do |u| %>
               <li>
                 <div class="onThisL">
-                  <div class="AsDcomImg"><%= link_to "<div>#{image_tag(u.avatar.url(:thumb))}</div>", {:controller => "profile", :action => "show_profile", :id => u.id} %></div>
-                  <div class="onThisN"><%= link_to u.full_name, {:controller => "profile", :action => "show_profile", :id => u.id} %></div>
+                  <div class="AsDcomImg"><%= show_image_user_post(@photo.user) %></div>
                 </div>
               </li>
             <% end %>

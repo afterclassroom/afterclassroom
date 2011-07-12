@@ -70,6 +70,7 @@ javascripts:
     - public/javascripts/jquery.metadata.js
     - public/javascripts/jquery.autogeocomplete.js
     - public/javascripts/fileuploader.js
+    - public/javascripts/video.js
   photo:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
@@ -154,6 +155,7 @@ stylesheets:
     - public/stylesheets/jqpageflow.css
     - public/stylesheets/jquery.fancybox.css
     - public/stylesheets/jquery.pnotify.default.css
+    - public/javascripts/video-js.css
   photo:
     - public/stylesheets/main.css
     - public/stylesheets/post.css

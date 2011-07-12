@@ -92,10 +92,10 @@
             </div>
             <div class="flistItem" style="border-bottom: none">
                 <div class="flistInf">
-                	<div class="flistNPa">
+                    <div class="flistNPa">
                         <span>Current city</span>
                     </div>
-					<div class="flistS" id="current_city_share_status">
+                    <div class="flistS" id="current_city_share_status">
                         <%= show_status_setting(current_user, "current_city") %>
                     </div>
                 </div>
@@ -133,11 +133,11 @@
                     </div>
                 </div>
                 <div class="select_wrap">
-        			<%= show_options_setting(current_user, "my_fans") %>
+                    <%= show_options_setting(current_user, "my_fans") %>
                 </div>
             </div>
         </div>
-		<div class="settNetLPaT">
+        <div class="settNetLPaT">
         </div>
         <div class="settNetLPa">
             Photos and Musics
@@ -170,9 +170,29 @@
                 </div>
             </div>
         </div>
-      <div class="settNetLPaT">
+        <div class="settNetLPaT">
         </div>
-		<div class="settNetLPa">
+				<div class="settNetLPa">
+            Videos
+        </div>
+        <div class="settC">
+            <div class="flistItem">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>My Videos</span>
+                    </div>
+                    <div class="flistS" id="my_videos_share_status">
+                        <%= show_status_setting(current_user, "my_videos") %>
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <%= show_options_setting(current_user, "my_videos") %>
+                </div>
+            </div>
+        </div>
+        <div class="settNetLPaT">
+        </div>
+        <div class="settNetLPa">
             Stories and Links
         </div>
         <div class="settC">
@@ -206,26 +226,25 @@
     </div>
 </div>
 <script>
-	$(document).ready(function(){
-		$('.menuPrivate').change(function()
-		{
-		   share_select($(this).attr('value'), $(this).attr('id'));
-		});
-	});
-	
-	function share_select(val, tp) { 
-		$.ajax({
-			url: '<%= save_private_setting_user_settings_path(current_user) %>',
+    $(document).ready(function(){
+        $('.menuPrivate').change(function(){
+            share_select($(this).attr('value'), $(this).attr('id'));
+        });
+    });
+    
+    function share_select(val, tp){
+        $.ajax({
+            url: '<%= save_private_setting_user_settings_path(current_user) %>',
             type: 'POST',
             cache: false,
             dataType: 'html',
             data: ({
-                type : tp,
-                value : val
+                type: tp,
+                value: val
             }),
             success: function(data){
                 $('#' + tp + '_share_status').html(data);
             }
         });
-	};
+    };
 </script>

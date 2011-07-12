@@ -4604,9 +4604,8 @@ div.helpAdv2{
     width:57px;
 }
 .onThisBtm{
-    margin-left:230px;
-    clear:both;
-    padding-top:7px;
+    float: right;
+    padding-right: 18px;
 }
 .stoPre, .stoNext{
     float:left;
@@ -5219,8 +5218,8 @@ span.btmTag a:hover{
     padding-top:5px;
 }
 .musicVideo{
-    padding:10px 0px;
-    word-wrap: break-word;
+		margin-left: 48px;
+		margin-top: 30px;
 }
 .musicNode{
     padding:0px 0px 10px 10px;
