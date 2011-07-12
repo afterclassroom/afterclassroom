@@ -59,7 +59,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: 20px;
+	padding-top: 20px;
 	z-index: 1101;
 	outline: none;
 	display: none;
@@ -67,7 +67,7 @@
 
 #fancybox-outer {
 	position: relative;
-	width: 100%;
+	width: 105%;
 	height: 100%;
 	background: #fff;
 }
@@ -78,7 +78,7 @@
 	padding: 0;
 	outline: none;
 	position: relative;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	z-index: 1102;
 	border: 0px solid #fff;
 }
@@ -124,7 +124,7 @@
 }
 
 #fancybox-frame {
-	width: 100%;
+	width: 105%;
 	height: 100%;
 	border: none;
 	display: block;

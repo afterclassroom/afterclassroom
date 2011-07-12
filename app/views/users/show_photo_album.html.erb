@@ -1,11 +1,19 @@
-<div class="slStoryL" style="margin-left: 160px">
-    <div class="inboxLeft">
-        <div class="AsDOr RePho">
-            <%= render :partial => "photos/related_photo" %>
-        </div>
+<div class="slStoryL">
+  <div class="inboxLeft">
+    <div class="AsDOr RePho">
+      <%= render :partial => "photos/related_photo" %>
     </div>
-    <%= render :partial => "users/show_public/photo_album_action" %>
+  </div>
 </div>
-<div class="contMainR" style="width:655px;height:560px;overflow:auto;float:left;margin-left: 160px">
+<div class="slStoryR" style="padding-top:10px">
+  <%= render :partial => "users/show_public/photo_album_action" %>
+  <div class="contMainR" style="float:left;width: 400px" >
     <%= show_post_comments(@photo_album) %>
+  </div>
 </div>
+<script>
+    $(document).ready(function(){
+    $('#comment').css({width:'280px'});
+    $('.btmShare').css('margin-left','0px');
+  });
+</script>
