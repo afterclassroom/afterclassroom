@@ -8,11 +8,17 @@ class QaSendMail < ActionMailer::Base
   #
   def refer_to_expert(introduce, receiver_email, post_id, current_user)
     
-    @post = Post.find(post_id)
+    #@post = Post.find(post_id)
     @introduce = introduce
     @current_user = current_user
 
     mail :to => receiver_email, :subject => "Please response. Thank you for your support !"
     
   end
+  
+  def send_rsvp(receiver_email, current_user)
+    @current_user = current_user
+    mail :to => receiver_email, :subject => "Please response. Thank you for your support !"
+  end
+  
 end

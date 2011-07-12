@@ -146,29 +146,9 @@ class PostPartiesController < ApplicationController
   end
   
   def sendmail
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
-    puts "========================="
+    #QaSendMail.send_rsvp(params[:emailAddr],current_user).deliver
+    QaSendMail.refer_to_expert("params[:strContent]", params[:email_addr],"params[:post_id]", current_user).deliver
+
     @receiver = params[:email_addr]
     render :layout => false
   end
