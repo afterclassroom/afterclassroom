@@ -43,4 +43,9 @@ class PressInfosController < ApplicationController
     @pr = PressInfo.find(params[:pr_id])
   end
   
+  def delpr
+    pr = PressInfo.find(params[:pr_id])
+    pr.destroy
+  end
+  
 end
