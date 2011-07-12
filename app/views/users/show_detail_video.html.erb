@@ -1,0 +1,64 @@
+<% content_for :menu_top_student_lounge do -%>
+<%= render :partial => 'users/show_public/submenu' %>
+<% end -%>
+<div class="contMainC">
+    <%= render :partial => "users/show_public/proc" %>
+    <%= render :partial => "users/show_public/infor" %>
+    <%= render :partial => "users/show_public/friends" %>
+    <%#= render :partial => "/users/show_public/links" %>
+</div>
+<div class="contMainL">
+    <div class="col571 proCen">
+        <div class="col571in">
+            <div class="proCenCont">
+                <div class="stoDet phoD">
+                    <div class="stoDetR">
+                        <div class="stoDetRT">
+                            <%= @video.title %>
+                        </div>
+                    </div>
+                </div>
+                <div class="onThisBtm">
+                    <div class="stoPre">
+                        <%= link_to "", show_detail_video_user_url(@video.user, :video_id => @prev.id) if @prev %>
+                    </div>
+                    <div class="stoNext">
+                        <%= link_to "", show_detail_video_user_url(@video.user, :video_id => @next.id) if @next %>
+                    </div>
+                </div>
+                <div class="musicVideo" style="margin-left:0px">
+                    <!-- Begin VideoJS -->
+                    <div class="video-js-box">
+                        <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
+                        <video id="example_video_1" class="video-js" width="554" height="416" poster="<%= @video.video_attach.url(:medium) %>" controls preload>
+                            <source src="<%= @video.video_attach.url %>" />
+														<!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
+                            <object id="flash_fallback_1" class="vjs-flash-fallback" width="554" height="416" type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+                                <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+																<param name="allowfullscreen" value="true" /><param name="flashvars" value='config={"playlist":["<%= @video.video_attach.url(:medium) %>", {"url": "<%= request.protocol + request.host_with_port + File.join(File.dirname(@video.video_attach.url), @video.video_attach_file_name) %>","autoPlay":false,"autoBuffering":true}]}' />
+																<!-- Image Fallback. Typically the same as the poster image. -->
+																<%= image_tag @video.video_attach.url(:medium), :width => "554", :height => "416", :title => "No video playback capabilities." %>
+                            </object>
+                        </video>
+                    </div>
+                    <!-- End VideoJS -->
+                </div>
+                <%= render :partial => "videos/video_action" %>
+                <%= show_post_comments(@video) %>
+                <div class="goTop">
+                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contMainR">
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+</div>
+<script type="text/javascript" charset="utf-8">
+    
+    // Add VideoJS to all video tags on the page when the DOM is ready
+    VideoJS.setupAllWhenReady();
+</script>

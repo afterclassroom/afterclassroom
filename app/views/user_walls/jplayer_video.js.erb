@@ -1,6 +1,6 @@
 $("#wall_attach_<%= @user_wall_video.user_wall.id %>").toggle("slow");
 $("#show_jplayer_<%= @user_wall_video.user_wall.id %>").html('<div id="player_<%= @user_wall_video.user_wall.id %>"></div>');
- var so_<%= @user_wall_video.user_wall.id %> = new SWFObject('/javascripts/playerSWF.swf','player_<%= @user_wall_video.user_wall.id %>','320','240','9','#000000');
+ var so_<%= @user_wall_video.user_wall.id %> = new SWFObject('/javascripts/playerSWF.swf','player_<%= @user_wall_video.user_wall.id %>','425','300','9','#000000');
   so_<%= @user_wall_video.user_wall.id %>.addParam('allowfullscreen','true');
   so_<%= @user_wall_video.user_wall.id %>.addParam('allowscriptaccess','always');
   so_<%= @user_wall_video.user_wall.id %>.addParam('wmode','opaque');

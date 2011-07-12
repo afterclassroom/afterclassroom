@@ -82,10 +82,10 @@ module Postwall
     user_wall.user_id_post = vc.user.id
     user_wall.content = "Add new video: <a href='#{user_video_path(vc.user, vc)}' target='_blank'>#{vc.title}</a>"
     user_wall.save
-    user_wall_video.link = vc.video_attach.url
-    user_wall_video.title = mc.title
-    user_wall_video.sub_content = user_music_url(mc.user, mc)
-    user_wall_video.thumb = user_music_url(mc.user, mc)
+    user_wall_video.link = request.protocol + request.host_with_port + File.join(File.dirname(vc.video_attach.url), vc.video_attach_file_name)
+    user_wall_video.title = vc.title
+    user_wall_video.sub_content = ""
+    user_wall_video.thumb = vc.video_attach.url(:medium)
     user_wall.user_wall_video = user_wall_video
     user_wall.save
   end
