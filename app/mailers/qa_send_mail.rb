@@ -24,7 +24,7 @@ class QaSendMail < ActionMailer::Base
     @email = params[:email_addr]
     @tel = params[:tel_no]
     @message = params[:message_str]
-    mail :to => @email, :subject => "You've got mail from "+@first_name+"!"
+    mail :to => @current_user.email, :subject => "You've got mail from "+@first_name+"!"
   end
   
 end
