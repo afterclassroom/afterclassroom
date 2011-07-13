@@ -6,7 +6,9 @@
         </div>
         <div id="rsvp_wraper_<%= @post.id %>">
             <div id="posting-section">
-                <% form_tag url_for(:controller => "post_parties", :action => "sendmail"), :remote => true, :html => {:id => "post_rsvp_#{@post.id}"} do %>
+                <% form_tag url_for(:controller => "post_parties", :action => "sendmail"), :remote => true, :id => "post_rsvp" do %>
+                    <%= hidden_field_tag "post_id", @post.id %>
+
                     <ul>
                         <li>
                             <div class="user_ri1">
@@ -29,7 +31,7 @@
                                 <label>
                                     First Name*:
                                 </label>
-                                <%= text_field_tag "first_name_#{@post.id}", "", :class => '{validate:{required:true}}', :width => "330" %>
+                                <%= text_field_tag "first_name", "", :class => '{validate:{required:true}}', :width => "330" %>
                             </div>
                         </li>
                         <li>
@@ -37,7 +39,7 @@
                                 <label>
                                     Last Name*:
                                 </label>
-                                <%= text_field_tag "last_name_#{@post.id}", "", :class => '{validate:{required:true}}' %>
+                                <%= text_field_tag "last_name", "", :class => '{validate:{required:true}}' %>
                             </div>
                         </li>
                         <li>
@@ -53,7 +55,7 @@
                                 <label>
                                     Tel*:
                                 </label>
-                                <%= text_field_tag "tel_#{@post.id}", "", :class => '{validate:{required:true}}' %>
+                                <%= text_field_tag "tel_no", "", :class => '{validate:{required:true, number: true}}' %>
                             </div>
                         </li>
                         <li>
@@ -61,7 +63,7 @@
                                 Message:
                             </label>
                             <div class="user_ri7">
-                                <%= text_area_tag "message_#{@post.id}", nil, :rows => 5, :cols => 60 %>
+                                <%= text_area_tag "message_str", nil, :rows => 5, :cols => 60 %>
                             </div>
                         </li>
                         <li>
@@ -81,14 +83,13 @@
 </div>
 <script language="javascript">
     function sendPSVP(){
-       $("#form_rsvp_<%# = @post.id %>").submit();
-      /*
-        var result = $("#form_rsvp_<%# = @post.id %>").validate({
+      
+        var result = $("#post_rsvp").validate({
             meta: "validate"
         });
         if (result) {
-            $("#form_rsvp_<%# = @post.id %>").submitt();
+            $("#post_rsvp").submit();
         }
-     */
+     
     }
 </script>
