@@ -67,9 +67,10 @@
 
 #fancybox-outer {
 	position: relative;
-	width: 105%;
+	width: 110%;
 	height: 100%;
 	background: #fff;
+        margin-left: -20px;
 }
 
 #fancybox-content {
@@ -124,7 +125,7 @@
 }
 
 #fancybox-frame {
-	width: 105%;
+	width: 110%;
 	height: 100%;
 	border: none;
 	display: block;

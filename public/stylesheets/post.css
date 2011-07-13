@@ -1064,16 +1064,22 @@ span.btmDown a:hover {
     height: 96px;
     width: auto;
     padding-bottom: 5px;
-    width: 554px;
 }
+
+.AsDcomTexta{
+    background: url("/images/bgTextareaR.png") no-repeat scroll right top transparent;
+    height: 96px;
+    margin: 0 0 0 11px;
+    width: 98%;
+  }
 
 .AsDcomTxt textarea {
     border: 0px;
-    width: 98%;
+    width: 99%;
     font-family: Arial;
-    height: 96px;
-    margin: 0px 0px 0px 11px;
-    background: url("/images/bgTextareaR.png") no-repeat scroll right top transparent;
+    height: 90px;
+    margin-top: 1px;
+    padding: 2px;
 }
 
 .AsDcomIn .submit {
