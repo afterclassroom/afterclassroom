@@ -11,6 +11,8 @@ class Music < ActiveRecord::Base
     :bucket => 'afterclassroom_musics'
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
+  validates_attachment_presence :music_attach
+  
   validates_attachment_size :music_attach, :less_than => FILE_SIZE_MUSIC
   
   validates_attachment_content_type :music_attach, :content_type => ['audio/mp3', 'audio/wav', 'audio/mpeg']

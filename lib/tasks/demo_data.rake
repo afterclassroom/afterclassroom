@@ -48,7 +48,6 @@ namespace :db do
     task :remove => :environment do |t|
       Rake::Task["db:migrate:reset"].invoke
       #Remove images to avoid accumulation.
-      system("rm -rf index/developments")
       system("rm -rf public/attaches")
       system("rm -rf public/avatars")
       system("rm -rf public/music_album_attaches")

@@ -7,7 +7,7 @@ class VideosController < ApplicationController
   before_filter :cas_user
   #before_filter :login_required
   before_filter :require_current_user,
-                :only => [:edit, :update, :destroy]
+                :only => [:edit, :update]
   # GET /videos
   # GET /videos.xml
   def index
@@ -17,10 +17,11 @@ class VideosController < ApplicationController
     if arr_user_id.size > 0
       cond = Caboose::EZ::Condition.new :videos do
         user_id === arr_user_id
+        state == "converted"
       end
       @friend_videos = Video.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
     end
-    @my_videos = current_user.videos.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
+    @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
   end
   
   def friend_p
@@ -72,6 +73,7 @@ class VideosController < ApplicationController
         end
       end
       user_id == id
+      state == "converted"
     end
     
     @videos = Video.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
@@ -115,12 +117,12 @@ class VideosController < ApplicationController
     @video.tag_list = params[:tag_list]
     respond_to do |format|
       if @video.save
-        @video.convert
+        #@video.convert
         video_wall(@video)
         flash[:notice] = 'Video was successfully created.'
         format.html { redirect_to(user_video_url(current_user, @video)) }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to(user_videos_url(current_user)) }
       end
     end
   end
@@ -144,18 +146,6 @@ class VideosController < ApplicationController
     end
   end
   
-  # DELETE /videos/1
-  # DELETE /videos/1.xml
-  def destroy
-    @video = Video.find(params[:id])
-    @video.destroy
-    
-    respond_to do |format|
-      format.html { redirect_to(videos_url) }
-      format.xml  { head :ok }
-    end
-  end
-  
   def create_form
     @categories ||= Youtube.video_categories
   end
@@ -175,7 +165,7 @@ class VideosController < ApplicationController
         abl.destroy
       end
     end
-    redirect_to(update_video_user_videos_album_url(current_user))
+    redirect_to(update_video_user_videos_url(current_user))
   end
   
   protected

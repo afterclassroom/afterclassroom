@@ -802,6 +802,15 @@ module ApplicationHelper
     end
   end
   
+  def get_video_path(link)
+    begin
+      Domainatrix.parse(link)
+      return link
+    rescue
+      return request.protocol + request.host_with_port + link
+    end
+  end
+  
   private
   
   def link_to_require_login(str)

@@ -154,13 +154,7 @@ class PostAssignmentsController < ApplicationController
     @post_assignment = PostAssignment.find(params[:id])
     @post_assignment.post.favorites.destroy_all
     @post_assignment.destroy
-    else
-      @posts = PostAssignment.paginated_post_conditions_with_option(params, @school)
-    end
-    
-    respond_to do |format|
-      format.
-    
+
     redirect_to my_post_user_url(current_user)
   end
   
