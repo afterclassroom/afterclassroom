@@ -2,10 +2,10 @@
   <div class="col300in">
     <h1 class="col300Title"> Messages</h1>
     <div class="col300Cont">
-      <div class="inboxL"><%= link_to "Inbox", user_messages_path(current_user) %></div>
+      <div class="inboxL"><%= link_to "Inbox", user_messages_path(current_user) %> (<%= current_user.received_messages.length %>) </div>
       <div class="composeL"><%= link_to "Compose", new_user_message_path(current_user) %></div>
-      <div class="sentL"><%= link_to "Sent", "#{user_messages_path(current_user)}?mailbox=sent" %></div>
-      <div class="trashL"><%= link_to "Trash", "#{user_messages_path(current_user)}?mailbox=trash" %></div>
+      <div class="sentL"><%= link_to "Sent", "#{user_messages_path(current_user)}?mailbox=sent" %> (<%= current_user.sent_messages.length %>) </div>
+      <div class="trashL"><%= link_to "Trash", "#{user_messages_path(current_user)}?mailbox=trash" %> (<%= Message.no_of_trash(current_user).to_s %>) </div>
     </div>
   </div>
 </div>

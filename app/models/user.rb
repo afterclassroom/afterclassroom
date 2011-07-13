@@ -139,7 +139,7 @@ class User < ActiveRecord::Base
     user_name = params[:search][:name] if params[:search]
     cond = Caboose::EZ::Condition.new :users do
       state == "active"
-      any{login =~ "%#{user_name}%"; name =~ "%#{user_name}%"} if user_name
+      any{name =~ "%#{user_name}%"; email =~ "%#{user_name}%"} if user_name
       login! === ['admin']
     end
     User.find :all, :conditions => cond.to_sql(), :order => "activated_at DESC"
@@ -259,13 +259,7 @@ class User < ActiveRecord::Base
   end
   
   def fans_recent_update
-    over = 30
-    self.fans.find(:all, :conditions => ["updated_at > ?", over.business_days.before(Time.now)], :order => "updated_at DESC")
-  end
-  
-  def fans_not_visit
-    over = 30
-    self.fans.find(:all, :conditions => ["updated_at < ?", over.business_days.before(Time.now)], :order => "updated_at DESC")
+    self.fans.find(:all, :order => "updated_at DESC")
   end
   
   def get_posts_with_type_and_sort(type, sort)

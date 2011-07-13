@@ -16,9 +16,15 @@ class QaSendMail < ActionMailer::Base
     
   end
   
-  def send_rsvp(receiver_email, current_user)
+  def send_rsvp(current_user, params)
+    @post = Post.find(params[:post_id])
     @current_user = current_user
-    mail :to => receiver_email, :subject => "Please response. Thank you for your support !"
+    @first_name = params[:first_name]
+    @last_name = params[:last_name]
+    @email = params[:email_addr]
+    @tel = params[:tel_no]
+    @message = params[:message_str]
+    mail :to => @current_user.email, :subject => "You've got mail from "+@first_name+"!"
   end
   
 end

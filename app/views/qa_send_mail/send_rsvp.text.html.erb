@@ -1,24 +1,73 @@
 <html>
   <body>
-    <p>
-    <h3>This email is sent to you by <%= @current_user.name %> - an user at <a href="http://afterclassroom.com">afterclassroom.com</a> </h3>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-HHHHHHHHHHHHHHHHHHHHHHHHHHH<br/>
-    Below is the information that <%= @current_user.name %> wants to let you know: <br/>
-    <ul>
-      <%# = @introduce %> <br/>
-      Please response at: <a href="<%# = post_qa_url @post.post_qa %>"><%# = @post.title %></a>
-    </ul>
-    <h3>Thank you very much for your concern !</h3>
-  </p>
-</body>
+    <div id="detail_window">
+      <div class="detail-info">
+        <div id="">
+          <div id="posting-section">
+            <ul>
+              <li>
+                <h1>Party! <%= @post.title %></h1>
+                <div class="user_ri1">
+                  <label>
+                    Where:
+                  </label>
+                  <span style="margin-left:45px"><%= @post.post_party.address %></span>
+                </div>
+              </li>
+              <li>
+                <div class="user_ri2">
+                  <label>
+                    When:
+                  </label>
+                  <span style="margin-left:45px"><%= @post.post_party.start_time %></span>
+                </div>
+              </li>
+              <li>
+                <div class="user_ri3">
+                  <label>
+                    First Name*:
+                  </label>
+                  <span style="margin-left:45px"><%=  @first_name %></span>
+
+
+                </div>
+              </li>
+              <li>
+                <div class="user_ri4">
+                  <label>
+                    Last Name*:
+                  </label>
+                  <span style="margin-left:45px"><%=  @last_name %></span>
+                </div>
+              </li>
+              <li>
+                <div class="user_ri5">
+                  <label>
+                    Email*:
+                  </label>
+                  <span style="margin-left:45px"><%=  @email %></span>
+                </div>
+              </li>
+              <li>
+                <div class="user_ri6">
+                  <label>
+                    Tel*:
+                  </label>
+                  <span style="margin-left:45px"><%=  @tel %></span>
+                </div>
+              </li>
+              <li>
+                <label>
+                  Message:
+                </label>
+                <div class="user_ri7">
+                  <span style="margin-left:45px"><%=  @message %></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </body>
 </html>

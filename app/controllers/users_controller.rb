@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_password]
   before_filter :require_current_user,
     :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning]
-  before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_friends, :show_fans, :warning]
+  before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
   # render new.rhtml
   def index
     redirect_to root_url
@@ -132,6 +132,7 @@ class UsersController < ApplicationController
     if check_private_permission(@user, "my_stories")
       story_id = params[:story_id]
       @story = Story.find(story_id)
+      update_view_count(@story)
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
@@ -151,6 +152,7 @@ class UsersController < ApplicationController
     if check_private_permission(@user, "my_photos")
       photo_album_id = params[:photo_album_id]
       @photo_album = PhotoAlbum.find(photo_album_id)
+      update_view_count(@photo_album)
       render :layout => "photo"
     else
       redirect_to warning_user_path(@user)
@@ -171,6 +173,7 @@ class UsersController < ApplicationController
       music_album_id = params[:music_album_id]
       @music_album = MusicAlbum.find(music_album_id)
       @another_music_albums = @music_album.another_music_albums
+      update_view_count(@music_album)
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
@@ -178,6 +181,27 @@ class UsersController < ApplicationController
   end
   
   def show_videos
+    if check_private_permission(@user, "my_videos")
+      @videos = @user.videos.order("created_at DESC").paginate :page => params[:page], :per_page => 16
+      render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
+  end
+  
+  def show_detail_video
+    if check_private_permission(@user, "my_videos")
+      video_id = params[:video_id]
+      @video = Video.find(video_id)
+      update_view_count(@video)
+      as_next = @user.videos.nexts(@video.id).last
+      as_prev = @user.videos.previous(@video.id).first
+      @next = as_next if as_next
+      @prev = as_prev if as_prev
+      render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
   end
   
   def show_friends

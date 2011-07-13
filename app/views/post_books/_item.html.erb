@@ -7,7 +7,7 @@
             <h2 class="titleH2"><%= link_to title, post_book_path(post.post_book) %></h2>
             <div class="assCate">
                 <span>From:</span>
-                <%= link_to post.school.name, :controller => "post_books", :action => "index", :from_school => post.school %>
+                <%= link_to post.school.name, :controller => "post_books", :action => "index", :from_school => post.school, :book_type_id => @book_type_id %>
             </div>
             <div class="assDes">
                 <div class="assImg">

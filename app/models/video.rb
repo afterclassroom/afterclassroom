@@ -11,6 +11,8 @@ class Video < ActiveRecord::Base
     :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
+  validates_attachment_presence :video_attach
+  
   validates_attachment_size :video_attach, :less_than => FILE_SIZE_VIDEO
   
   # Comments
@@ -47,9 +49,9 @@ class Video < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => 6
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
-  scope :most_view, :conditions => "count_view > 0", :order => "count_view DESC"
-  scope :previous, lambda { |att| {:conditions => ["videos.id < ?", att], :order => "id DESC"} }
-  scope :nexts, lambda { |att| {:conditions => ["videos.id > ?", att], :order => "id DESC"} }
+  scope :most_view, :conditions => ["count_view > 0 AND state = ?", "converted"], :order => "count_view DESC"
+  scope :previous, lambda { |att| {:conditions => ["videos.id < ? AND state = ?", att, "converted"], :order => "id DESC"} }
+  scope :nexts, lambda { |att| {:conditions => ["videos.id > ? AND state = ?", att, "converted"], :order => "id DESC"} }
   
   # This method is called from the controller and takes care of the converting
   def convert

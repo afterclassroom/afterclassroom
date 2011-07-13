@@ -12,9 +12,12 @@ class MessagesController < ApplicationController
     case act
       when "sent"
       @messages = current_user.sent_messages.paginate :page => params[:page], :per_page => 10
+      @operation_ = "Sent"
       when "trash"
       @messages = Message.find(:all, :conditions => ["(sender_id = ? AND sender_deleted = ?) OR (recipient_id = ? AND recipient_deleted = ?)", current_user, true, current_user, true]).paginate :page => params[:page], :per_page => 10
+      @operation_ = "Trash"
     else
+      @operation_ = "Inbox"
       @messages = current_user.received_messages.paginate :page => params[:page], :per_page => 10
     end
   end
@@ -24,6 +27,7 @@ class MessagesController < ApplicationController
   end
   
   def new
+    @operation_ = "Compose"
     @message = Message.new
     @friends = current_user.user_friends
     if params[:reply_to]

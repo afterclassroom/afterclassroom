@@ -11,6 +11,9 @@
 		<% if action_name == "show_musics" || action_name == "show_music_album" %>
 			<div class="menuRItem menuRselect"><a href="<%= "#{show_musics_user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Musics</span></span></a></div>
 		<% end %>
+		<% if action_name == "show_videos" || action_name == "show_detail_video" %>
+			<div class="menuRItem menuRselect"><a href="<%= "#{show_videos_user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Videos</span></span></a></div>
+		<% end %>
 		<% if action_name == "show_friends" %>
 			<div class="menuRItem menuRselect"><a href="<%= "#{show_friends_user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Friends</span></span></a></div>
 		<% end %>

@@ -2,22 +2,28 @@
 arr_user_id = []
 arr_user_id << current_user.id
 if current_user.user_friends
-  current_user.user_friends.each do |friend|
-    arr_user_id << friend.id if check_private_permission(friend, "my_videos")
-  end
+current_user.user_friends.each do |friend|
+arr_user_id << friend.id if check_private_permission(friend, "my_videos")
+end
 end
 u = arr_user_id.join(", ")
-most_viewed_videos = Video.with_users(u).with_limit.most_view
-%>
+most_viewed_videos = Video.with_users(u).with_limit.most_view %>
 <div class="col300 slStory">
-  <div class="col300in mostPho">
-    <h1 class="col300Title">Most viewed videos</h1>
-    <div class="photoRow">
-      <% most_viewed_videos.each do |pa| %>
-        <div class="photoItem">
-          <div class="photoImg"><%#= %></div>
+    <div class="col300in mostPho">
+        <h1 class="col300Title">Most viewed videos</h1>
+        <div class="musicRow">
+            <% most_viewed_videos.each do |vc| %>
+            <div class="musicL">
+                <div class="photoImg">
+                    <%= link_to raw("<div>#{image_tag vc.video_attach.url(:thumb)}</div>"), user_video_url(current_user, vc) %>
+                </div>
+                <div class="musicB">
+                    <div class="musicN">
+                        <%= link_to vc.title, user_video_url(current_user, vc) %>
+                    </div>
+                </div>
+            </div>
+            <% end %>
         </div>
-      <% end %>
     </div>
-  </div>
 </div>

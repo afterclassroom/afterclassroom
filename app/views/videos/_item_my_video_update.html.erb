@@ -4,6 +4,7 @@
     <div class="mostMSA"><%= link_to "", user_videos_url(current_user, video), :class => "mostMSPlay" %></div>
   </div>
   <div class="musicB">
+  	<div style="margin-top: -6px;" class="musicS">State: <%= video.state %></div>
     <div class="musicN"><%= check_box_tag "video_id", video.id %><%= link_to video.title, user_videos_url(current_user, video) %></div>
   </div>
 </div>

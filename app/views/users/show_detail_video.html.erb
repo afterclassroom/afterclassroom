@@ -1,0 +1,50 @@
+<% content_for :menu_top_student_lounge do -%>
+<%= render :partial => 'users/show_public/submenu' %>
+<% end -%>
+<div class="contMainC">
+    <%= render :partial => "users/show_public/proc" %>
+    <%= render :partial => "users/show_public/infor" %>
+    <%= render :partial => "users/show_public/friends" %>
+    <%#= render :partial => "/users/show_public/links" %>
+</div>
+<div class="contMainL">
+    <div class="col571 proCen">
+        <div class="col571in">
+            <div class="proCenCont">
+                <div class="stoDet phoD">
+                    <div class="stoDetR">
+                        <div class="stoDetRT">
+                            <%= @video.title %>
+                        </div>
+                    </div>
+                </div>
+                <div class="onThisBtm">
+                    <div class="stoPre">
+                        <%= link_to "", show_detail_video_user_url(@video.user, :video_id => @prev.id) if @prev %>
+                    </div>
+                    <div class="stoNext">
+                        <%= link_to "", show_detail_video_user_url(@video.user, :video_id => @next.id) if @next %>
+                    </div>
+                </div>
+                <div class="musicVideo" style="margin-left:0px">
+                    <%= render :partial => "videos/video_js" %>
+                </div>
+                <%= render :partial => "videos/video_action" %>
+                <%= show_post_comments(@video) %>
+                <div class="goTop">
+                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contMainR">
+    <!--Ads-->
+    <%= render :partial => "ads/show_vertical_ads" %>
+    <!--Ads-->
+</div>
+<script type="text/javascript" charset="utf-8">
+    
+    // Add VideoJS to all video tags on the page when the DOM is ready
+    VideoJS.setupAllWhenReady();
+</script>
