@@ -19,7 +19,7 @@ public/system/music_album_attaches/**/*
 public/system/photos/**/*
 public/system/photo_attaches/**/*
 public/system/music_attaches/**/*
-public/videos/**/*
+public/system/video_attaches/**/*
 public/system/resume_cvs/**/*
 public/javascripts/cache/
 public/stylesheets/cache/
