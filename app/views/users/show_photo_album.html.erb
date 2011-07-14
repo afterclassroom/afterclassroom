@@ -7,13 +7,14 @@
 </div>
 <div class="slStoryR" style="padding-top:10px">
   <%= render :partial => "users/show_public/photo_album_action" %>
-  <div class="contMainR" style="float:left;width: 400px" >
+  <div class="contMainR" style="float:left;width: 400px;margin-left: 30px;" >
     <%= show_post_comments(@photo_album) %>
   </div>
 </div>
 <script>
     $(document).ready(function(){
-    $('#comment').css({width:'280px'});
+    $('#comment').css({width:'275px'});
+    $('.AsDcomTexta').css({width:'280px'});
     $('.btmShare').css('margin-left','0px');
   });
 </script>

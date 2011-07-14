@@ -2,7 +2,7 @@
   <% form_tag url_for(:controller => "user_walls", :action => "create_comment"), :remote => true, :html => {:id => "wall_form_#{wall.id}"} do %>
   <%= hidden_field_tag "wall_id", wall.id %>
   <div class="proListPic"><%= show_image_user_post(current_user) %></div>
-  <div class="proListR">
+  <div class="proListR" style="width:380px">
     <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{wall.id}", :onblur => "hideCommentForm('#{wall.id}')"} %></div>
   </div>
   <div class="proAttR"><%= submit_tag 'Send', :class => "buttonCom" %></div>

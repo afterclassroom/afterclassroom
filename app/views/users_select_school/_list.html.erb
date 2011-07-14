@@ -54,6 +54,7 @@
 	});
   });
   $(window).scroll(function() {
-        $("#country_menu,#state_menu,#city_menu,#school_menu").css("position","fixed");
+        $("#country_menu,#state_menu").css({position:"fixed"});
+        $("#city_menu,#school_menu").css({position:"fixed",top:'39%'});
   });
 </script>
