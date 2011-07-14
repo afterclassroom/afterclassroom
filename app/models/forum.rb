@@ -13,6 +13,8 @@ class Forum < ActiveRecord::Base
     time :created_at
   end
   
+  handle_asynchronously :solr_index
+  
   # Named Scope
   
   def self.paginated_forum_with_search(params)

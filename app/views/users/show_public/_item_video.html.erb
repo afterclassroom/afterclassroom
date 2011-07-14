@@ -1,5 +1,5 @@
 <div class="musicL">
-  <div class="photoImg"><%= link_to raw("<div>#{image_tag video.video_attach.url(:thumb)}</div>"), show_detail_video_user_url(video.user, :video_id => video.id) %></div>
+  <div class="photoImg"><%= link_to raw("<div>#{image_tag video.video_file.video_attach.url(:thumb)}</div>"), show_detail_video_user_url(video.user, :video_id => video.id) %></div>
   <div class="mostMSR">
     <div class="mostMSA"><%= link_to "", show_detail_video_user_url(video.user, :video_id => video.id), :class => "mostMSPlay" %></div>
   </div>

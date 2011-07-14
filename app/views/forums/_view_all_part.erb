@@ -39,6 +39,7 @@
 </div>
 
 <script type="text/javascript">
+  vtip();
   function showForumCmtForm<%= @fr.id %>(){
     $('#current_cmt_<%= @fr.id %>').toggle(); /* show comment box */
     $('#fr_comment_<%= @fr.id %>').toggle(); /* hide link to box */
@@ -50,7 +51,7 @@
     $('#save_<%= @fr.id.to_s %>').click(function(){
       var strContent = $(this).parents().find('form').eq(0).find('textarea').attr('value');
       if (strContent == '')
-        alert('invalid');
+        alert('Please write something ... ');
       else{
         forum_id = $(this).attr('id').split('_')[1];
         AddCommentWithAjax(strContent,forum_id);

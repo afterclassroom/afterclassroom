@@ -1,41 +1,9 @@
 <% content_for :you_are_here do -%>
   You are here: <a href="javascript:;">Help Information</a>
 <% end -%>
-<div class="mainSignUpS">
-  <div class="AsDContImg"><a href="/"><div><img src="/images/pic11.png"></img></div></a></div>
-  <div class="txtsignup topHelp">
-    <div class="AftBe">
-      <div class="txtsignup1">AfterClassroom</div>
-    </div>
-    <div class="sponsorS">
-      <div class="sponsorLink">
-        <div class="menuRL">
-          <div class="menuRItem">
-            <a href="/forums">
-              <span class="span1">
-                <span class="span2">Community Help Forum</span>
-              </span></a>
-          </div>
-
-          <div class="menuRItem menuRselect">
-            <a href="/press_infos">
-              <span class="span1">
-                <span class="span2">PressRelease</span>
-              </span></a>
-          </div>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <% content_for :menu_sub do -%>
+  <%= render :partial => "/statics/submenu" %>
+<% end -%>
 <!--Content-->
 
 
@@ -51,7 +19,7 @@
           <%= display_flash_messages_with_raw %>
 
           <div class="helpTitle">
-            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px;" href="javascript:;">Press Release</a>
+            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px; cursor: default;" href="javascript:;">Press Release</a>
 
 
 
@@ -122,11 +90,11 @@
           <% end %>
 
           <div style="border-bottom: 1px solid #DBDBDB; clear: both; display: block">
-            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px;" href="javascript:;">Archives</a>
+            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px; cursor: default;" href="javascript:;">Archives</a>
           </div>
           <div style="margin-top: -28px; ; color: rgb(110, 110, 110); background: url('/images/bgSearchF.png') no-repeat scroll left top transparent;  float: right;  height: 24px;  padding-right: 0;  width: 194px;">
             <%= form_tag url_for(:controller => "press_infos", :action => "searchpr"), {:id => "info_search", :method => "GET"},  do %>
-              <div class="textS"><%= text_field_tag "search_content", "", :style => "height: 12px" %></div>
+              <div class="textS"><%= text_field_tag "search_content", "#{@str_search}", :style => "height: 12px" %></div>
               <div style="margin-top: -18px; margin-right: 3px; float: right;" >
                 <a href="javascript:;" onclick="searchPress();"><img src="/images/iconSF.png" style="border: 0px;"/></a>
               </div>
@@ -207,11 +175,15 @@
       $('#form_new').submit();
     });
     
-    
-    
     $("div[id*='pr_id_']").click(function(){
       $(this).parent().toggle();
     });
+    
+
+    $("a[id*='cal_id_']").click(function(){
+      $(this).parent().next().next().find('a').click();
+    });
+
 
     
   });
@@ -238,6 +210,18 @@
 
 </script>
 <style>
+  .sponsorS{
+    margin-top: -39px;
+    margin-left: 60px;
+  }
+  
+   .contMain{
+     margin-top:-7px;
+   }
+   .menuRL{
+    margin-top: 7px; 
+   }
+
   .prButton{
     padding-left: 1px;
     padding-top: 5px;

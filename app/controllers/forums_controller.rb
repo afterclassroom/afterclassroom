@@ -24,6 +24,7 @@ class ForumsController < ApplicationController
   def search
     @forums = Forum.paginated_forum_with_search(params)
     @top_frs = Forum.top_answer.paginate(:page => 1, :per_page => 10)
+    @str_search = params[:search_content]
     render :template => 'forums/index' 
   end
 

@@ -6,7 +6,7 @@
                 <a href="<%= view_pr_press_infos_path(current_user) %>?press_id=<%= pr.id.to_s %>" class="vtip" title='Edit' ><img style="border: 0px none;" src="/images/flistREdit.png"/></a>
               </div>
               <div class="assPic" style="float: left;">
-                <a href="#">
+                <a id="cal_id_<%= pr.id.to_s %>" href="javascript:;">
                   <div style="background-image: url('/images/prs_rls_icon.png'); height: 55px;">
                     <div style="background: transparent; color:#FFFFFF; font-size: 11px; margin-left: -6px; text-align: center; margin-top: -3px;"><%= pr.created_at.strftime('%b').upcase %></div>
                     <div style="background: transparent; color:#6F6F63;font-size: 20px; text-align: center; margin-left: -4px;"><%= pr.created_at.strftime('%d').upcase %></div>
