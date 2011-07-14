@@ -1,7 +1,10 @@
 <% content_for :you_are_here do -%>
   You are here: <a href="javascript:;">Help Information</a>
 <% end -%>
-<div class="mainSignUpS">
+  <% content_for :menu_sub do -%>
+  <%= render :partial => "/statics/submenu" %>
+<% end -%>
+<!-- div class="mainSignUpS">
   <div class="AsDContImg"><a href="/"><div><img src="/images/pic11.png"></img></div></a></div>
   <div class="txtsignup topHelp">
     <div class="AftBe">
@@ -20,22 +23,14 @@
           <div class="menuRItem menuRselect">
             <a href="/press_infos">
               <span class="span1">
-                <span class="span2">PressRelease</span>
+                <span class="span2">Press Release</span>
               </span></a>
           </div>
-
-
-
-
-
-
-
-
         </div>
       </div>
     </div>
   </div>
-</div>
+</div -->
 <!--Content-->
 
 
@@ -200,6 +195,15 @@
   
   
   $(document).ready(function(){
+    
+    <%#*$('.sponsorS').css('margin-top','-43px');%>
+    <%#*$('.sponsorS').css('margin-left', '60px');%>
+    <%#*$('.contMain').css('margin-top', '-7px');%>
+    <%#*$('.menuRL').css('margin-top', '7px');%>
+    
+     
+    
+    
     $('.wysiwyg').css('width','525px');
     $('#story_contentIFrame').css('width','525px');
 
@@ -238,6 +242,18 @@
 
 </script>
 <style>
+  .sponsorS{
+    margin-top: -39px;
+    margin-left: 60px;
+  }
+  
+   .contMain{
+     margin-top:-7px;
+   }
+   .menuRL{
+    margin-top: 7px; 
+   }
+
   .prButton{
     padding-left: 1px;
     padding-top: 5px;
