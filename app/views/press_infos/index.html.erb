@@ -168,15 +168,6 @@
   
   
   $(document).ready(function(){
-    
-    <%#*$('.sponsorS').css('margin-top','-43px');%>
-    <%#*$('.sponsorS').css('margin-left', '60px');%>
-    <%#*$('.contMain').css('margin-top', '-7px');%>
-    <%#*$('.menuRL').css('margin-top', '7px');%>
-    
-     
-    
-    
     $('.wysiwyg').css('width','525px');
     $('#story_contentIFrame').css('width','525px');
 
@@ -184,11 +175,15 @@
       $('#form_new').submit();
     });
     
-    
-    
     $("div[id*='pr_id_']").click(function(){
       $(this).parent().toggle();
     });
+    
+
+    $("a[id*='cal_id_']").click(function(){
+      $(this).parent().next().next().find('a').click();
+    });
+
 
     
   });
