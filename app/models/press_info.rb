@@ -10,6 +10,9 @@ class PressInfo < ActiveRecord::Base
     time :created_at
   end
   
+  handle_asynchronously :solr_index
+  
+  
   
   def self.paginated_press_with_search(params)
     if params[:search_content]
