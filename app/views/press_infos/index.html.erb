@@ -4,33 +4,6 @@
   <% content_for :menu_sub do -%>
   <%= render :partial => "/statics/submenu" %>
 <% end -%>
-<!-- div class="mainSignUpS">
-  <div class="AsDContImg"><a href="/"><div><img src="/images/pic11.png"></img></div></a></div>
-  <div class="txtsignup topHelp">
-    <div class="AftBe">
-      <div class="txtsignup1">AfterClassroom</div>
-    </div>
-    <div class="sponsorS">
-      <div class="sponsorLink">
-        <div class="menuRL">
-          <div class="menuRItem">
-            <a href="/forums">
-              <span class="span1">
-                <span class="span2">Community Help Forum</span>
-              </span></a>
-          </div>
-
-          <div class="menuRItem menuRselect">
-            <a href="/press_infos">
-              <span class="span1">
-                <span class="span2">Press Release</span>
-              </span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div -->
 <!--Content-->
 
 
@@ -46,7 +19,7 @@
           <%= display_flash_messages_with_raw %>
 
           <div class="helpTitle">
-            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px;" href="javascript:;">Press Release</a>
+            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px; cursor: default;" href="javascript:;">Press Release</a>
 
 
 
@@ -117,7 +90,7 @@
           <% end %>
 
           <div style="border-bottom: 1px solid #DBDBDB; clear: both; display: block">
-            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px;" href="javascript:;">Archives</a>
+            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px; cursor: default;" href="javascript:;">Archives</a>
           </div>
           <div style="margin-top: -28px; ; color: rgb(110, 110, 110); background: url('/images/bgSearchF.png') no-repeat scroll left top transparent;  float: right;  height: 24px;  padding-right: 0;  width: 194px;">
             <%= form_tag url_for(:controller => "press_infos", :action => "searchpr"), {:id => "info_search", :method => "GET"},  do %>
