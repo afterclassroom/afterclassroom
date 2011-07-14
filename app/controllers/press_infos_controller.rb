@@ -44,6 +44,7 @@ class PressInfosController < ApplicationController
   
   def searchpr
     @presses  = PressInfo.paginated_press_with_search(params)
+    @str_search = params[:search_content]
     
     render :template => 'press_infos/index' 
   end

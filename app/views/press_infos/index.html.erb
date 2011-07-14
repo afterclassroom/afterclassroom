@@ -94,7 +94,7 @@
           </div>
           <div style="margin-top: -28px; ; color: rgb(110, 110, 110); background: url('/images/bgSearchF.png') no-repeat scroll left top transparent;  float: right;  height: 24px;  padding-right: 0;  width: 194px;">
             <%= form_tag url_for(:controller => "press_infos", :action => "searchpr"), {:id => "info_search", :method => "GET"},  do %>
-              <div class="textS"><%= text_field_tag "search_content", "", :style => "height: 12px" %></div>
+              <div class="textS"><%= text_field_tag "search_content", "#{@str_search}", :style => "height: 12px" %></div>
               <div style="margin-top: -18px; margin-right: 3px; float: right;" >
                 <a href="javascript:;" onclick="searchPress();"><img src="/images/iconSF.png" style="border: 0px;"/></a>
               </div>
