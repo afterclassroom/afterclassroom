@@ -116,7 +116,7 @@ class VideosController < ApplicationController
     @video.user = current_user
     @video.tag_list = params[:tag_list]
     respond_to do |format|
-      if @video.save
+      if @video.save!
         @video.convert
         video_wall(@video)
         flash[:notice] = 'Video was successfully created.'

@@ -107,7 +107,7 @@ class Video < ActiveRecord::Base
     video_file = VideoFile.new()
     video_file.video = self
     video_file.video_attach = File.new(@t)
-    if video_file.save
+    if video_file.save!
       system("rm -rf #{File.dirname(video_attach.path)}")
     end
   end
