@@ -90,7 +90,7 @@
     });
     $('#post_rsvp').bind('ajax:beforeSend',function(){
       $('#btn_submit').unbind();
-      $('#btn_submit').append("<img id='img_loader' style='display: block; position: absolute; float: right; height: 19px; margin-top: -21px; margin-left: 53px;' src='/images/ajax-loader-a.gif'> ");
+      $('#btn_submit').append('<%= show_ajax_loader("display: block; position: absolute; float: right; height: 19px; margin-top: -21px; margin-left: 53px;") %>');
     })
     
     $('#post_rsvp').bind('ajax:success',function(){
