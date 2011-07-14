@@ -1,10 +1,10 @@
 <!-- Begin VideoJS -->
 <div class="video-js-box">
     <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
-    <video id="example_video_1" class="video-js" width="554" height="416" poster="<%= @video.video_attach.url(:medium) %>" controls preload>
-        <source src="<%= @video.video_attach.url %>" /><!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
+    <video id="example_video_1" class="video-js" width="554" height="416" poster="<%= @video.video_file.video_attach.url(:medium) %>" controls preload>
+        <source src="<%= get_video_path(@video.video_file.video_attach.url) %>" /><!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
         <object id="flash_fallback_1" class="vjs-flash-fallback" width="554" height="416" type="application/x-shockwave-flash" data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
-            <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" /><param name="allowfullscreen" value="true" /><param name="flashvars" value='config={"playlist":["<%= @video.video_attach.url(:medium) %>", {"url": "<%= get_video_path(@video.video_attach.url) %>","autoPlay":false,"autoBuffering":true}]}' /><!-- Image Fallback. Typically the same as the poster image. -->
+            <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" /><param name="allowfullscreen" value="true" /><param name="flashvars" value='config={"playlist":["<%= @video.video_file.video_attach.url(:medium) %>", {"url": "<%= get_video_path(@video.video_file.video_attach.url) %>","autoPlay":false,"autoBuffering":true}]}' /><!-- Image Fallback. Typically the same as the poster image. -->
             <%= image_tag @video.video_attach.url(:medium), :width => "554", :height => "416", :title => "No video playback capabilities." %>
         </object>
     </video>

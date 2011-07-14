@@ -117,7 +117,7 @@ class VideosController < ApplicationController
     @video.tag_list = params[:tag_list]
     respond_to do |format|
       if @video.save
-        #@video.convert
+        @video.convert
         video_wall(@video)
         flash[:notice] = 'Video was successfully created.'
         format.html { redirect_to(user_video_url(current_user, @video)) }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110707090630) do
+ActiveRecord::Schema.define(:version => 20110714020915) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -836,6 +836,14 @@ ActiveRecord::Schema.define(:version => 20110707090630) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "video_files", :force => true do |t|
+    t.integer  "video_id",                  :null => false
+    t.string   "video_attach_file_name"
+    t.string   "video_attach_content_type"
+    t.integer  "video_attach_file_size"
+    t.datetime "video_attach_updated_at"
+  end
 
   create_table "videos", :force => true do |t|
     t.integer  "user_id",                                   :null => false
