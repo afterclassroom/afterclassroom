@@ -69,7 +69,9 @@
                         <li>
                             <!-- post  button -->
                             <div>
-                                <span class="submitRSVP"><a href="javascript:submit_rsvp(<%= @post.id %>);" onclick="sendPSVP()"><%= submit_tag 'Send' %></a></span>
+                              <span class="submitRSVP"><a id="btn_submit" href="javascript:;">
+                                    <input type="button" value="Send" name="foo"/>
+                                  </a></span>
                                 <span class="error" style="padding: 0px;"></span>
                             </div>
                             <!-- end post button -->
@@ -82,6 +84,20 @@
     <!-- end detail-info-->
 </div>
 <script language="javascript">
+  $(document).ready(function(){
+    $('#btn_submit').click(function(){
+      sendPSVP();
+    });
+    $('#post_rsvp').bind('ajax:beforeSend',function(){
+      $('#btn_submit').unbind();
+      $('#btn_submit').append("<img id='img_loader' style='display: block; position: absolute; float: right; height: 19px; margin-top: -21px; margin-left: 53px;' src='/images/ajax-loader-a.gif'> ");
+    })
+    
+    $('#post_rsvp').bind('ajax:success',function(){
+      $('#img_loader').remove();
+    });
+    
+  });
     function sendPSVP(){
       
         var result = $("#post_rsvp").validate({
