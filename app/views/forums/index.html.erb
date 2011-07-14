@@ -224,8 +224,20 @@
     /*perform toggle for view detail after display search result */
     $("div[id*='res_handler_']").click(function(){
       $(this).next().next().toggle('slow');
-      $(this).toggle();
+      //$(this).toggle();
+      $(this).remove();
     });
+    $("div[id*='res_handler_']").hover(function(){
+      $(this).css('cursor','pointer');
+      $(this).css('color','#DD0000');
+    }, function(){
+      $(this).css('cursor','default');
+      $(this).css('color','#6F6F63');
+    });
+
+
+
+
 
     ShowHideDelIcon();
 
