@@ -1939,7 +1939,7 @@ div.helpAdv2{
 .fromTtxt{
     line-height:20px;
     padding-left:3px;
-    float:left;
+    overflow: hidden;
 }
 .fromT{
     width:190px;
@@ -3255,7 +3255,7 @@ div.helpAdv2{
     height:18px;
     padding-top:4px;
     text-indent:2px;
-    width:300px;
+    width:450px;
 }
 .wrapTitle{
     color:#969696;

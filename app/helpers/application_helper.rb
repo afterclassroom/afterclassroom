@@ -370,6 +370,14 @@ module ApplicationHelper
     end
   end
   
+  def show_submit_form()
+    if !logged_in?
+      link_to_require_login(submit_tag("Submit"))
+    else
+      link_to(submit_tag("Submit"), "javascript:;", :onclick => "request_form_submit();")
+    end
+  end
+  
   def show_comment_button(post_id, comments)
     text = raw("Comments (<span id='post_#{post_id}_comments'>#{comments}</span>)")
     if !logged_in?
@@ -594,14 +602,6 @@ module ApplicationHelper
       link_to_require_login(raw("<span>Submit</span>"))
     else
       link_to(raw("<span>Submit</span>"), "javascript:;", :onclick => "requireRating('#{post_id}', '#{path}');")
-    end
-  end
-  
-  def show_submit_form
-    if !logged_in?
-      link_to_require_login(submit_tag("Submit"))
-    else
-      link_to(submit_tag("Submit"), "javascript:;", :onclick => "request_form_submit();")
     end
   end
   

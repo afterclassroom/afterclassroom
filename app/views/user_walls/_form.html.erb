@@ -33,4 +33,12 @@
 		return true;
 	}
   }
+  $(document).ready(function() {  
+            $('#wall_cotent_txt').keyup(function() {  
+                var len = this.value.length;  
+                if (len >= 500) {  
+                    this.value = this.value.substring(0, 500);  
+                }  
+            });  
+        });  
 </script>

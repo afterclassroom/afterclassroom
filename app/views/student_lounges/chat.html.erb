@@ -1,16 +1,16 @@
 <% content_for :menu_top_student_lounge do -%>
 <%= render :partial => '/shared/submenu' %>
 <% end -%>
-<div class="contMainC">
-    <div class="col195 stuLLeft">
-        <div class="col195in">
+<div class="contMainC165">
+    <div class="col165 stuLLeft">
+        <div class="col165in">
             <h1 class="col300Title">Friends wanted to chat with you</h1>
             <div id="div_friends_want_you_chat">
             </div>
         </div>
     </div>
-    <div class="col195 stuLLeft">
-        <div class="col195in">
+    <div class="col165 stuLLeft">
+        <div class="col165in">
             <h1 class="col300Title">Friends changed their message</h1>
             <div id="div_friends_changed_their_message">
             </div>
@@ -18,9 +18,9 @@
     </div>
 </div>
 <div class="contMainL">
-    <div class="col451 proCen" id="user_wall">
+    <div class="col571 proCen" id="user_wall">
         <%= render :partial => "user_walls/wall_form_ajax" %>
-        <div class="col451in">
+        <div class="col571in">
             <div class="proCenCont">
                 <div id="wall_page_wrap">
                     <% @walls.each do |w| %>
@@ -36,10 +36,10 @@
 				<%= render :partial => "user_walls/next_page_wall_js", :locals => {:user_id => current_user.id} %>
     </div>
 </div>
-<div class="contMainR">
+<div class="contMainR210">
     <%= render :partial => "friends_in_chatting" %>
-    <div class="col300 stuL300">
-        <div class="col300in">
+    <div class="col210 stuL210">
+        <div class="col210in">
             <h1 class="col300Title">Friends you invited to chat chit</h1>
             <div class="col300Cont">
                 <div id="div_friends_you_invited_to_chat">
@@ -47,8 +47,8 @@
             </div>
         </div>
     </div>
-  <div class="col300 stuL300">
-        <div class="col300in">
+  <div class="col210 stuL210">
+        <div class="col210in">
             <h1 class="col300Title">Friends online</h1>
             <div class="col300Cont">
                 <div id="div_friends_online">
