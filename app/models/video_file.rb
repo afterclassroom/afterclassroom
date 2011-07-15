@@ -46,6 +46,8 @@ class VideoFile < ActiveRecord::Base
       'video/parityfec',
       'video/pointer',
       'video/raw',
-      'video/rtx' ].include?(video_attach.content_type)
+      'video/rtx',
+      'video/ogg',
+      'video/webm' ].include?(video_attach.content_type)
   end
 end

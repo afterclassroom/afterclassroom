@@ -39,7 +39,7 @@
                     document.location.href = "<%= delete_photos_user_photo_albums_url(current_user) %>?id=<%= @photo_album.id %>&list_ids=" + ids;
                 },
                 Cancel: function(){
-                    $("#delete-dialog-message").dialog('close');
+                    $("#delete-photo-dialog-message").dialog('close');
                 }
             }
         });

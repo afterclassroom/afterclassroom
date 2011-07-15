@@ -181,8 +181,8 @@ Afterclassroom::Application.routes.draw do
   # Posts
   resources :posts do
     collection do
-      get :create_comment, :report_abuse, :create_report_abuse, :delete_comment, :download, :view_all_comments
-      post :create_comment_on_list
+      get :report_abuse, :create_report_abuse, :delete_comment, :download, :view_all_comments
+      post :create_comment, :create_comment_on_list
     end
   end
 

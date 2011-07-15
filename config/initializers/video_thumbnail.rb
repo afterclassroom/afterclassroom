@@ -18,16 +18,16 @@ module Paperclip
     def make
       dst = Tempfile.new([ @basename, 'jpg' ].compact.join("."))
       dst.binmode
-
+      
       cmd = %Q[-itsoffset #{time_offset} -i "#{File.expand_path(file.path)}" -y -vcodec mjpeg -vframes 1 -an -f rawvideo ]
       cmd << "-s #{geometry.to_s} " unless geometry.nil?
       cmd << %Q["#{File.expand_path(dst.path)}"]
       
-      begin
-        success = Paperclip.run('ffmpeg', cmd)
-      rescue PaperclipCommandLineError
-        raise PaperclipError, "There was an error processing the thumbnail for #{@basename}" if whiny
-      end
+      cmd = %Q[ffmpeg -itsoffset #{time_offset} -i "#{File.expand_path(file.path)}" -y -vcodec mjpeg -vframes 1 -an -f rawvideo ]
+      cmd << "-s #{geometry.to_s} " unless geometry.nil?
+      cmd << %Q["#{File.expand_path(dst.path)}"]
+      ss = system(cmd)
+      
       dst
     end
   end

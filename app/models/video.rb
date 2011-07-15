@@ -7,7 +7,6 @@ class Video < ActiveRecord::Base
   
   # Attach
   has_attached_file :video_attach, {
-    :bucket => 'afterclassroom_videos',
     :path => ":rails_root/tmp/:class/:id/:style.:extension"
   }
   
@@ -51,7 +50,9 @@ class Video < ActiveRecord::Base
       'video/parityfec',
       'video/pointer',
       'video/raw',
-      'video/rtx' ]
+      'video/rtx',
+      'video/ogg',
+      'video/webm' ]
   
   # Comments
   acts_as_commentable
@@ -70,7 +71,6 @@ class Video < ActiveRecord::Base
   state :pending
   state :converting
   state :converted, :enter => :add_file_to_s3
-  state :success
   state :error
   
   event :convert do
@@ -107,7 +107,7 @@ class Video < ActiveRecord::Base
     video_file = VideoFile.new()
     video_file.video = self
     video_file.video_attach = File.new(@t)
-    if video_file.save!
+    if video_file.save
       system("rm -rf #{File.dirname(video_attach.path)}")
     end
   end
@@ -119,9 +119,8 @@ class Video < ActiveRecord::Base
     @t = File.join(File.dirname(video_attach.path), "#{ActiveSupport::SecureRandom.hex(16)}.flv")
     s = video_attach.path.split("?")[0]
     command = <<-end_command
-    ffmpeg -i #{ s } -ar 22050 -ab 32 -acodec libmp3lame 
-  -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ @t }
-  end_command
+      ffmpeg -i #{ s } -ar 22050 -ab 32 -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ @t }
+    end_command
     command.gsub!(/\s+/, " ")
   end
 end
