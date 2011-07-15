@@ -124,13 +124,13 @@ function send_comment(id, type){
     if (comment != "") {
         $.ajax({
             url: '/posts/create_comment',
-            type: 'GET',
+            type: 'POST',
             cache: false,
             dataType: 'html',
             data: ({
                 commentable_id: id,
                 commentable_type: type,
-                comment: comment.substring(0, 500)
+                comment: comment
             }),
             success: function(data){
                 $('#list_comments').append(data);
