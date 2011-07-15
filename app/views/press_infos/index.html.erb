@@ -165,10 +165,28 @@
   function searchPress(){
     $("#info_search").submit();
   }
+  function ShowHideDelEditIcon(){
+    /*Show hide delete X icon for each comment*/
+
+    $(".helpItem").hover(function(){
+      $("div[id*='pr_id_']", this).show();
+    }, function(){
+      $("div[id*='pr_id_']", this).hide();
+    });
+
+    /*Show hide delete X icon for each forum post*/
+    $(".helpItem").hover(function(){
+       $("div[id*='edpr_id_']", this).show();
+    }, function(){
+      $("div[id*='edpr_id_']", this).hide();
+    });
+
+
+  }
   
   
   $(document).ready(function(){
-    
+    ShowHideDelEditIcon();
     $('#cancel_btn').click(function(){
       document.getElementById('form_new').reset();
     });
