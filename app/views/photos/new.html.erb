@@ -65,7 +65,7 @@
                     </div>
                     <div class="stoExBtm">
                         <div class="stoExCre" style="margin-left:108px;margin-bottom: 15px;">
-                            <a href="javascript:;" onclick="submit();">Add photo</a>
+                            <a href="javascript:;" id="submit_btn">Add photo</a>
                         </div>
                         <div class="stoExCan">
                             <%= link_to "Cancel", user_photos_path(current_user) %>
@@ -91,13 +91,30 @@
     }
 </style>
 <script type="text/javascript">
-    function submit(){
-        $("#form").submit();
-    }
-    
-    $().ready(function(){
-        $("#form").validate({
-            meta: "validate"
-        });
+
+$(document).ready(function(){
+  $('#submit_btn').click(function(){
+    submitForm();
+  });
+});
+
+  function submitForm(){
+    var result = $("#form").validate({
+      meta: "validate"
     });
+    if (result) {
+      $("#form").submit();
+    }
+  }
+
+
+<%#*function submit(){%>
+        <%#*$("#form").submit();%>
+    <%#*}%>
+    
+    <%#*$().ready(function(){%>
+        <%#*$("#form").validate({%>
+            <%#*meta: "validate"%>
+        <%#*});%>
+    <%#*});%>
 </script>
