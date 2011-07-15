@@ -39,7 +39,7 @@
                     document.location.href = "<%= delete_musics_user_music_albums_url(current_user) %>?id=<%= @music_album.id %>&list_ids=" + ids;
                 },
                 Cancel: function(){
-                    $("#delete-dialog-message").dialog('close');
+                    $('.ui-dialog-titlebar-close').click();
                 }
             }
         });
