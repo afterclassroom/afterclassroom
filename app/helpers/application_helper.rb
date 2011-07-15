@@ -372,7 +372,7 @@ module ApplicationHelper
   
   def show_submit_form()
     if !logged_in?
-      link_to_require_login(submit_tag("Submit"))
+      link_to_require_login('Submit')
     else
       link_to(submit_tag("Submit"), "javascript:;", :onclick => "request_form_submit();")
     end
