@@ -80,7 +80,7 @@
                       <a onclick="submitNewPress();" id="save_new" href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Save</a>
                     </div>
                     <div style="margin-left: 142px; margin-top: -31px;">
-                      <a href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Cancel</a>
+                      <a id="cancel_btn" href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Cancel</a>
                     </div>
                   </div>
                   <div class="stoError" style="padding: 10px;"></div>
@@ -168,6 +168,12 @@
   
   
   $(document).ready(function(){
+    
+    $('#cancel_btn').click(function(){
+      document.getElementById('form_new').reset();
+    });
+    
+    
     $('.wysiwyg').css('width','525px');
     $('#story_contentIFrame').css('width','525px');
 
