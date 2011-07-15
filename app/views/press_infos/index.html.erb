@@ -1,7 +1,7 @@
 <% content_for :you_are_here do -%>
   You are here: <a href="javascript:;">Help Information</a>
 <% end -%>
-  <% content_for :menu_sub do -%>
+<% content_for :menu_sub do -%>
   <%= render :partial => "/statics/submenu" %>
 <% end -%>
 <!--Content-->
@@ -18,9 +18,9 @@
         <div style="width: 632px;" class="helpCR">
           <%= display_flash_messages_with_raw %>
 
-            <% if admin? %>
-          <div class="helpTitle">
-            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px; cursor: default;" href="javascript:;">Press Release</a>
+          <% if admin? %>
+            <div class="helpTitle">
+              <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px; cursor: default;" href="javascript:;">Press Release</a>
 
 
 
@@ -29,8 +29,8 @@
                 <a id="form_handler" style="height: 9px; display: block; padding: 10px; background-color: rgb(245, 246, 245);" class="slsShareW" href="javascript:;" onclick="$('#story_form_new').toggle('slow');">Write it</a>
               </div>
 
-          </div>
-            <% end %>
+            </div>
+          <% end %>
 
 
 
@@ -107,7 +107,14 @@
 
           <% if controller.action_name == "searchpr" %>
             <% @presses.each_hit_with_result do |hit,pr| %>
-              <% txt_content = raw( hit.highlight(:content).format { |fragment| content_tag(:em, fragment) } ) %>
+
+              <% if hit.highlight(:content) %>
+                <% txt_content = raw( hit.highlight(:content).format { |fragment| content_tag(:em, fragment) } ) %>
+              <% else %>
+                <% txt_content = pr.content %>
+              <% end %>
+
+
               <%= render :partial => "item", :locals => {:pr => pr, :content => txt_content } %>
             <% end %>
           <% else %>
@@ -117,8 +124,8 @@
           <% end %>
 
 
-          
-          
+
+
           <% if controller.action_name == "searchpr" %> 
 
             <div class="assPage" style="padding-left:0">
@@ -176,7 +183,7 @@
 
     /*Show hide delete X icon for each forum post*/
     $(".helpItem").hover(function(){
-       $("div[id*='edpr_id_']", this).show();
+      $("div[id*='edpr_id_']", this).show();
     }, function(){
       $("div[id*='edpr_id_']", this).hide();
     });
@@ -199,11 +206,6 @@
       $('#form_new').submit();
     });
     
-    <%#*$("div[id*='pr_id_']").click(function(){%>
-      <%#*$(this).parent().toggle();%>
-    <%#*});%>
-    
-
     $("a[id*='cal_id_']").click(function(){
       $(this).parent().next().next().find('a').click();
     });
@@ -238,13 +240,13 @@
     margin-top: -39px;
     margin-left: 60px;
   }
-  
-   .contMain{
-     margin-top:-7px;
-   }
-   .menuRL{
+
+  .contMain{
+    margin-top:-7px;
+  }
+  .menuRL{
     margin-top: 7px; 
-   }
+  }
 
   .prButton{
     padding-left: 1px;
