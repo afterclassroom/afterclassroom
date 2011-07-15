@@ -1,64 +1,64 @@
 <div class="col300 Request">
-    <div class="col300in">
-        <h1 class="col300Title">Quick Post</h1>
-        <div class="col300Cont">
-            <%= form_for :post_assignment, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-            <%= fields_for :post do |p| %>
-            <%= render :partial => "/shared/form_request_post/sub_categories_for_homework" %>
-            <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
-            <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
-            <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
-            <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
-            <div class="reqSl">
-                <div class="req40">
-                    <div class="reqLa">
-                        <label>
-                            Due date
-                        </label>
-                    </div>
-                    <div class="reqTi">
-                        <%= text_field_tag "due_date", "" %>
-                    </div>
-                    <script type="text/javascript">
-                        $(document).ready(function(){
-                            $("#due_date").datepicker();
-                        });
-                    </script>
-                </div>
-                <div class="req60">
-                    <div class="reqLa">
-                        <label>
-                            Professor
-                        </label>
-                    </div>
-                    <div class="reqTi">
-                        <%= f.text_field :professor %>
-                    </div>
-                </div>
+  <div class="col300in">
+    <h1 class="col300Title">Quick Post</h1>
+    <div class="col300Cont">
+      <%= form_for :post_assignment, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+        <%= fields_for :post do |p| %>
+          <%= render :partial => "/shared/form_request_post/sub_categories_for_homework" %>
+          <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
+          <div class="reqSl">
+            <div class="req40">
+              <div class="reqLa">
+                <label>
+                  Due date
+                </label>
+              </div>
+              <div class="reqTi">
+                <%= text_field_tag "due_date", "" %>
+              </div>
+              <script type="text/javascript">
+                $(document).ready(function(){
+                  $("#due_date").datepicker();
+                });
+              </script>
             </div>
-            <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
-            <%= render :partial => "/shared/form_request_post/select_tag" %>
-            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-            <div class="submit" style="margin-top: 5px;">
-                <%= show_submit_form() %>
+            <div class="req60">
+              <div class="reqLa">
+                <label>
+                  Professor
+                </label>
+              </div>
+              <div class="reqTi">
+                <%= f.text_field :professor %>
+              </div>
             </div>
-            <% end %>
-            <% end %>
-        </div>
+          </div>
+          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
+          <%= render :partial => "/shared/form_request_post/select_tag" %>
+          <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+          <div class="submit" style="margin-top: 5px;">
+            <%= show_submit_form() %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
+  </div>
 </div>
 <script>
-    $(function() {
-	$('#subcategory_menu,#department_menu,#year_menu').hover(function() {
-		$(this).stop().show();
-	}, function() {
-		$(this).stop().hide();
-	});
+  $(function() {
+    $('#subcategory_menu,#department_menu,#year_menu').hover(function() {
+      $(this).stop().show();
+    }, function() {
+      $(this).stop().hide();
     });
-    $(function() {
-	$('div.reqLa,div.col300Cont').hover(function() {
-	}, function() {
-		$('#subcategory_menu,#department_menu,#year_menu').stop().hide();
-	});
+  });
+  $(function() {
+    $('div.reqLa,div.col300Cont').hover(function() {
+    }, function() {
+      $('#subcategory_menu,#department_menu,#year_menu').stop().hide();
     });
+  });
 </script>
