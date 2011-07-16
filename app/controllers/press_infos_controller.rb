@@ -40,6 +40,7 @@ class PressInfosController < ApplicationController
   def delpr
     pr = PressInfo.find(params[:pr_id])
     pr.destroy
+    @press_id = params[:pr_id]
   end
   
   def searchpr

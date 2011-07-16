@@ -811,8 +811,13 @@ module ApplicationHelper
     end
   end
   
+<<<<<<< HEAD
   def show_ajax_loader(str_style)
       content_tag(:span, image_tag("/images/ajax-loader-a.gif", :alt => '', :style => str_style))
+=======
+  def show_ajax_loader(str_id, str_style)
+      content_tag(:span, image_tag("/images/ajax-loader-a.gif", :alt => '', :style => str_style, :id => str_id))
+>>>>>>> 28351971629abe8b7d7e5c123f4cfebf136c2479
   end  
   
   

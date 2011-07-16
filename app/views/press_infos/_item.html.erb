@@ -1,7 +1,7 @@
             <div id="" style="border-bottom: 1px solid rgb(219, 219, 219);" class="helpItem">
 <% if admin? %>
               <div id="pr_id_<%= pr.id.to_s %>" style="display: none; float: right; padding-top: 1px;">
-                <%= link_to(content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => 'border: 0px;')), "#{delpr_press_infos_path(current_user)}?pr_id=#{pr.id.to_s}", :class => "vtip", :title => "Delete", :remote => true) %>
+                <%= link_to(content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => 'border: 0px;')), "#{delpr_press_infos_path(current_user)}?pr_id=#{pr.id.to_s}", :class => "vtip", :title => "Delete", :remote => true, :confirm => "Are you sure?" ) %>
               </div>
 
               <div id="edpr_id_<%= pr.id.to_s %>" style="display: none; float: right;">

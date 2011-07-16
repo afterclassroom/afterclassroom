@@ -146,8 +146,9 @@ class PostPartiesController < ApplicationController
   end
   
   def sendmail
-    QaSendMail.send_rsvp(current_user,params).deliver
-    @receiver = current_user.email
+    @post = Post.find(params[:post_id])
+    QaSendMail.send_rsvp(current_user,params,@post).deliver
+    @receiver = @post.user.email
     render :layout => false
   end
   
