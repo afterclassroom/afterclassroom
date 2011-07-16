@@ -127,19 +127,24 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.xml
   def create
-    @photo = Photo.new(params[:photo])
-    @photo.user = current_user
-    @photo.tag_list = params[:tag_list]
-    respond_to do |format|
-      if @photo.save
-        flash[:notice] = 'Photo was successfully created.'
-        image_wall(@photo) if check_private_permission(current_user, "my_photos")
-        format.html { redirect_to user_photo_path(current_user, @photo) }
-        format.xml  { render :xml => @photo, :status => :created, :location => @photo }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @photo.errors, :status => :unprocessable_entity }
+    begin
+      @photo = Photo.new(params[:photo])
+      @photo.user = current_user
+      @photo.tag_list = params[:tag_list]
+      respond_to do |format|
+        if @photo.save
+          flash[:notice] = 'Photo was successfully created.'
+          image_wall(@photo) if check_private_permission(current_user, "my_photos")
+          format.html { redirect_to user_photo_path(current_user, @photo) }
+          format.xml  { render :xml => @photo, :status => :created, :location => @photo }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @photo.errors, :status => :unprocessable_entity }
+        end
       end
+    rescue
+      flash[:error] = 'Error.'
+      render :action => "new"
     end
   end
   

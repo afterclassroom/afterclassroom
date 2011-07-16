@@ -812,7 +812,6 @@ module ApplicationHelper
   end
   
   def show_ajax_loader(str_style)
-      #link_to(raw("<img id='img_loader' src='/images/ajax-loader-a.gif'/> "))
       content_tag(:span, image_tag("/images/ajax-loader-a.gif", :alt => '', :style => str_style))
   end  
   

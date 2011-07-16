@@ -112,18 +112,21 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.xml
   def create
-    @video = Video.new(params[:video])
-    @video.user = current_user
-    @video.tag_list = params[:tag_list]
-    respond_to do |format|
+    begin
+      @video = Video.new(params[:video])
+      @video.user = current_user
+      @video.tag_list = params[:tag_list]
       if @video.save!
         @video.convert
         video_wall(@video)
         flash[:notice] = 'Video was successfully created.'
-        format.html { redirect_to(user_video_url(current_user, @video)) }
+        redirect_to(user_video_url(current_user, @video))
       else
-        format.html { redirect_to(user_videos_url(current_user)) }
+        redirect_to(user_videos_url(current_user))
       end
+    rescue
+      flash[:error] = 'Error.'
+      redirect_to(user_videos_url(current_user))
     end
   end
   
