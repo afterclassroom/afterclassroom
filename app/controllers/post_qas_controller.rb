@@ -15,7 +15,7 @@ class PostQasController < ApplicationController
   def index
     @type = params[:type]
     @type ||= "answered"
-    @post_results = Rails.cache.fetch("index_#{@class_name}_type#{@type}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+    @post_results = Rails.cache.fetch("index_#{@class_name}_type#{@type}_#{@school}_year#{params[:year]}_department#{params[:department]}_over#{params[:over]}") do
       PostQa.paginated_post_conditions_with_option(params, @school, @type)
     end
     @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
