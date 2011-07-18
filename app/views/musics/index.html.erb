@@ -23,7 +23,7 @@
                                 Friends shared musics
                             </div>
                             <div class="slsTopLB friLeft">
-                                <div class="search">
+                                <div class="search" style="margin-top: -19px; margin-bottom: 10px;">
                                     <%= form_for :search_friend_music, :url => friend_m_user_musics_path(current_user), :html => {:id => "friend_musics_search", :method => "GET", :onsubmit => "return false"} do %>
                                     <div class="textS">
                                         <%= text_field_tag "search[name]", "" %>

@@ -163,7 +163,8 @@ a.assignments {
     background: url(/images/footer_menu/assignments-1.png) no-repeat;
 }
 a.projects {
-    background: url(/images/footer_menu/projects-1.png) no-repeat;
+    background: url(/images/footer_menu/projects-1.png) no-repeat scroll 3px 1px transparent;
+    border-bottom: none;
 }
 a.past_tests {
     background: url(/images/footer_menu/past_tests-1.png) no-repeat;
@@ -172,7 +173,8 @@ a.past_exams {
     background: url(/images/footer_menu/past_exams-1.png) no-repeat;
 }
 a.events {
-    background: url(/images/footer_menu/event-1.png) no-repeat;
+    background: url("/images/footer_menu/event-1.png") no-repeat scroll 3px 1px transparent;
+    border-bottom: none;
 }
 a.qas {
     background: url(/images/footer_menu/qas-1.png) no-repeat;

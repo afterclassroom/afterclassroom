@@ -1,44 +1,59 @@
 <%= hidden_field_tag "type", @type %>
 <%= hidden_field_tag "user_wall_id", @user.id %>
-  <div class="proMind">
-    <div class="proMindT">
-      <div class="proques"><%= text_field_tag "your_mind", "What’s on your mind?", :onfocus => "if(this.value == this.defaultValue){ this.value = '';};", :onblur => "this.value = this.value || this.defaultValue;", :id => "wall_cotent_txt" %></div>
-    </div>
-    <div class="proAtt">
-      <div class="proAttItem" id="wrap_content_attach">
-        <div class="wrapItem">
-          <div class="suggesC"><a href="javascript:;" onclick="closeAttach();"><img src="/images/suggesC.png"/></a></div>
-          <div class="wrapCont" id="attach">
-          </div>
+<label class="vtip" title="Not valid!"></label>
+<div class="proMind">
+  <div class="proMindT">
+    <div class="proques"><%= text_field_tag "your_mind", "What’s on your mind?", :id => "wall_cotent_txt" %></div>
+  </div>
+  <div class="proAtt">
+    <div class="proAttItem" id="wrap_content_attach">
+      <div class="wrapItem">
+        <div class="suggesC"><a href="javascript:;" onclick="closeAttach();"><img src="/images/suggesC.png"/></a></div>
+        <div class="wrapCont" id="attach">
         </div>
       </div>
-      <div class="proAttL" id="attach_icon">
-        <%= render :partial => "user_walls/attach_icons" %>
-      </div>
-      <div class="proAttR" style="margin-right: 0px;"><%= submit_tag 'Share', :class => "button" %></div>
     </div>
+    <div class="proAttL" id="attach_icon">
+      <%= render :partial => "user_walls/attach_icons" %>
+    </div>
+    <div class="proAttR" style="margin-right: 0px;"><%= submit_tag 'Share', :class => "button", :id => "submit_btn" %></div>
   </div>
-  <div class="footWall"></div>
-  <script type="text/javascript">
+</div>
+<div class="footWall"></div>
+<script type="text/javascript">
   function closeAttach(){
     $('#wrap_content_attach').hide();
     $('#attach_icon').show();
   }
-  
-  function checkFormWall(){
-  	if ($('#wall_cotent_txt').val() == "" || $('#wall_cotent_txt').val() == "What’s on your mind?"){
-		$('#wall_cotent_txt').focus();
-		return false;
-	}else{
-		return true;
-	}
-  }
+
   $(document).ready(function() {  
-            $('#wall_cotent_txt').keyup(function() {  
-                var len = this.value.length;  
-                if (len >= 500) {  
-                    this.value = this.value.substring(0, 500);  
-                }  
-            });  
-        });  
+    $('#wall_cotent_txt').focus(function(){
+      $(this).val('');
+
+    });
+                
+    $('#submit_btn').click(function(event){
+      var str_content = $('#wall_cotent_txt').val();
+      if (str_content == 'What’s on your mind?'){
+        event.preventDefault();
+                            
+        $('#wall_cotent_txt').focus().select();
+        $("label").text("Not valid!").hide();
+        return false;                  
+      }
+      if (str_content == ''){
+        event.preventDefault();
+                     
+        $('#wall_cotent_txt').focus().select();
+        $("label").text("Not valid!").hide();
+        return false;                 
+      }
+    });
+    $('#wall_cotent_txt').keyup(function() {  
+      var len = this.value.length;  
+      if (len >= 500) {  
+        this.value = this.value.substring(0, 500);  
+      }  
+    });  
+  });  
 </script>
