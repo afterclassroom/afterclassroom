@@ -15,11 +15,11 @@ class PostExamsController < ApplicationController
     @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
-      Rails.cache.fetch("index_#{@class_name}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+      Rails.cache.fetch("more_like_this_department#{post.department_id}_school_year#{post.school_year}") do
         PostExam.paginated_post_more_like_this(params, post)
       end
     else
-      Rails.cache.fetch("index_#{@class_name}_#{@school}") do
+      Rails.cache.fetch("index_#{@class_name}_#{@school}_year#{params[:year]}_department#{params[:department]}_over#{params[:over]}") do
         PostExam.paginated_post_conditions_with_option(params, @school)
       end
     end
