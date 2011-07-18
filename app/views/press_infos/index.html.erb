@@ -5,58 +5,20 @@
   <%= render :partial => "/statics/submenu" %>
 <% end -%>
 <!--Content-->
-
-
-
 <div class="contMainLH">
-
-
   <div class="col654 QAs">
     <div class="col654in">
       <div class="col654Cont">
-
         <div style="width: 632px;" class="helpCR">
           <%= display_flash_messages_with_raw %>
-
           <% if admin? %>
             <div class="helpTitle">
               <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px; cursor: default;" href="javascript:;">Press Release</a>
-
-
-
-
               <div style="height: 28px; display: inline; float: right; border: 1px solid rgb(219, 219, 219); margin-top: 3px;" class="slsShareR">
                 <a id="form_handler" style="height: 9px; display: block; padding: 10px; background-color: rgb(245, 246, 245);" class="slsShareW" href="javascript:;" onclick="$('#story_form_new').toggle('slow');">Write it</a>
               </div>
-
             </div>
           <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           <% if admin? %>
             <div style="padding-left: 0pt;" class="assPage">
@@ -101,10 +63,6 @@
             <% end %>
           </div>
 
-
-
-
-
           <% if controller.action_name == "searchpr" %>
             <% @presses.each_hit_with_result do |hit,pr| %>
 
@@ -122,8 +80,6 @@
               <%= render :partial => "item", :locals => {:pr => pr, :content => pr.content } %>
             <% end %>
           <% end %>
-
-
 
 
           <% if controller.action_name == "searchpr" %> 
@@ -234,6 +190,10 @@
     });
   })(jQuery)
 
+  $(document).ready(function(){  
+    $('.contMain').css('min-height','310px')
+  });
+        
 </script>
 <style>
   .sponsorS{

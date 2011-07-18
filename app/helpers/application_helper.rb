@@ -549,7 +549,7 @@ module ApplicationHelper
   end
   
   def show_map(address, html)
-    link_to(raw("<span>View map</span>"), "/gmaps?address=#{address}&html=#{html}&height=325&width=550", :class => "thickbox", :id=>"fff", :title => "View map")
+    link_to(raw("<span>View map</span>"), "/gmaps?address=#{address}&html=#{html}?height=375&amp;width=450&amp;inlineId=gmap", :class => "thickbox", :title => "View map")
   end
   
   def show_support(post)

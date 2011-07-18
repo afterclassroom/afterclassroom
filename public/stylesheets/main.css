@@ -13,6 +13,7 @@ body input, body textarea, body select{
     width:962px;
     margin:0px auto;
     padding-bottom:10px;
+    min-height: 365px;
 }
 .contMainL{
     width:459px;float:left;
