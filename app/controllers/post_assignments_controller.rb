@@ -17,11 +17,11 @@ class PostAssignmentsController < ApplicationController
       post = Post.find_by_id(id)
       @str_department = post.department_id
       @str_year = post.school_year
-      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
+      Rails.cache.fetch("more_like_this_department#{post.department_id}_school_year#{post.school_year}") do
         PostAssignment.paginated_post_more_like_this(params, post)
       end
     else
-      Rails.cache.fetch("index_#{@class_name}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+      Rails.cache.fetch("index_#{@class_name}_#{@school}_year#{params[:year]}_department#{params[:department]}_over#{params[:over]}") do
         PostAssignment.paginated_post_conditions_with_option(params, @school)
       end
     end

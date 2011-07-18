@@ -20,6 +20,31 @@ class PostAssignment < ActiveRecord::Base
   scope :nexts, lambda { |att| {:conditions => ["post_assignments.id > ?", att], :order => "id ASC"} }
   
   def self.paginated_post_conditions_with_option(params, school)
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888888888888888888"
+    puts "88888888888params[:department]params[:department]888888888888888=="+params[:department].to_s
     over = 30 || params[:over].to_i
     year = params[:year]
     department = params[:department]
@@ -28,6 +53,65 @@ class PostAssignment < ActiveRecord::Base
     with_school = from_school if from_school
     
     post_as = PostAssignment.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_assignment, post|
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "================="
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
+      puts "department == "+department.to_s
       post.department_id == department if department
       post.school_year == year if year
       post.school_id == with_school if with_school
