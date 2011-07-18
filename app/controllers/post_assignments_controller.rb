@@ -15,6 +15,8 @@ class PostAssignmentsController < ApplicationController
     @post_results = if params[:more_like_this_id]
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
+      @str_department = post.department_id
+      @str_year = post.school_year
       Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
         PostAssignment.paginated_post_more_like_this(params, post)
       end
