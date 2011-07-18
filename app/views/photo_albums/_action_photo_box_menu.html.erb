@@ -22,7 +22,7 @@
 <script>
     $('#acBox').click(function(){
         var $this = $('#mytable input:checked').first();
-        var path = "/users/<%= current_user.id %>/photos/" + $this.val() + "/edit?height=450&width=400";
+        var path = "/users/<%= current_user.id %>/photos/" + $this.val() + "/edit?height=135&width=400";
         tb_show("Edit Photo", path);
     });
     

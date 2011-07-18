@@ -36,7 +36,11 @@
                     </div>
                 </div>
                 <div class="musicVideo">
-                    <%= render :partial => "video_js" %>
+                    <% if @video.video_file %>
+                    	<%= render :partial => "video_js" %>
+                    <% else %>
+											<%= display_image_video(@video) %>
+                    <% end %>
                 </div>
                 <%= render :partial => "video_action" %>
                 <%= show_post_comments(@video) %>

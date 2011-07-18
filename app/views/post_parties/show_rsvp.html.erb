@@ -11,22 +11,6 @@
 
                     <ul>
                         <li>
-                            <div class="user_ri1">
-                                <label>
-                                    Where:
-                                </label>
-                                <span style="margin-left:45px"><%= @post.post_party.address %></span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="user_ri2">
-                                <label>
-                                    When:
-                                </label>
-                                <span style="margin-left:45px"><%= @post.post_party.start_time %></span>
-                            </div>
-                        </li>
-                        <li>
                             <div class="user_ri3">
                                 <label>
                                     First Name*:
@@ -90,7 +74,7 @@
     });
     $('#post_rsvp').bind('ajax:beforeSend',function(){
       $('#btn_submit').unbind();
-      $('#btn_submit').append('<%= show_ajax_loader("display: block; position: absolute; float: right; height: 19px; margin-top: -21px; margin-left: 53px;") %>');
+      $('#btn_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -21px; margin-left: 53px;") %>');
     })
     
     $('#post_rsvp').bind('ajax:success',function(){

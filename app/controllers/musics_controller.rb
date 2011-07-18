@@ -124,23 +124,28 @@ class MusicsController < ApplicationController
   # POST /musics
   # POST /musics.xml
   def create
-    @music = Music.new(params[:music])
-    @music.user = current_user
-    if @music.save
-      begin
-        mp3_info = Mp3Info.open(@music.music_attach.path)
-        @music.length_in_seconds = mp3_info.length.to_i
-        @music.artist = mp3_info.tag.artist
-        @music.title ||= mp3_info.tag.title if mp3_info.tag.title
-        @music.length_in_seconds = mp3_info.length.to_i
-        @music.save!
-      rescue
-        # Nothing
+    begin
+      @music = Music.new(params[:music])
+      @music.user = current_user
+      if @music.save
+        begin
+          mp3_info = Mp3Info.open(@music.music_attach.path)
+          @music.length_in_seconds = mp3_info.length.to_i
+          @music.artist = mp3_info.tag.artist
+          @music.title ||= mp3_info.tag.title if mp3_info.tag.title
+          @music.length_in_seconds = mp3_info.length.to_i
+          @music.save!
+        rescue
+          # Nothing
+        end
+        flash[:notice] = 'Music was successfully created.'
+        music_wall(@music) if check_private_permission(current_user, "my_musics")
+        redirect_to user_music_album_path(current_user, @music.music_album)
+      else
+        render :action => "new"
       end
-      flash[:notice] = 'Music was successfully created.'
-      music_wall(@music) if check_private_permission(current_user, "my_musics")
-      redirect_to user_music_album_path(current_user, @music.music_album)
-    else
+    rescue
+      flash[:error] = 'Music was successfully created.'
       render :action => "new"
     end
   end
