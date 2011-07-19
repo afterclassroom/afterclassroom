@@ -13,6 +13,7 @@ class FriendsController < ApplicationController
   
   def index
     @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
+    get_variables()
   end
   
   def search
@@ -239,6 +240,11 @@ class FriendsController < ApplicationController
   end
   
   protected
+  
+  def get_variables
+    @count_recentadded = @user.user_invites_out.count(:all, :conditions => "is_accepted IS NULL")
+    @count_recentupdate = @user.user_friends.count(:all)
+  end
   
   def require_current_user
     @user ||= User.find(params[:user_id] || params[:id])
