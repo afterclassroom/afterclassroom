@@ -36,11 +36,11 @@ type ||= 1 %>
             <script type="text/javascript">
                 $(document).ready(function(){
                     $("#start_time").datetimepicker({
-											ampm: true
-										});
-										$("#end_time").datetimepicker({
-											ampm: true
-										});
+                        ampm: true
+                    });
+                    $("#end_time").datetimepicker({
+                        ampm: true
+                    });
                 });
             </script>
             <div class="reqSl">
@@ -91,18 +91,18 @@ type ||= 1 %>
             valueAttr: "rel_event_type"
         });
     });
-    $(function() {
-	$('#event_type_menu').hover(function() {
-		$(this).stop().show();
-	}, function() {
-		$(this).stop().hide();
-	});
-  });
-    $(function() {
-	$('div.reqLa,div.col300Cont').hover(function() {
-
-	}, function() {
-		$('#event_type_menu').stop().hide();
-	});
-  });
+    $(function(){
+        $('#event_type_menu').hover(function(){
+            $(this).stop().show();
+        }, function(){
+            $(this).stop().hide();
+        });
+    });
+    $(function(){
+        $('div.reqLa,div.col300Cont').hover(function(){
+        
+        }, function(){
+            $('#event_type_menu').stop().hide();
+        });
+    });
 </script>

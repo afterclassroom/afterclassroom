@@ -42,12 +42,12 @@ You are here: <a href="/">Home</a>
                 <% if @post_event.start_time %>
                 <div class="AsDContLinf">
                     <span>Start time:</span>
-                    <%= @post_event.start_time.strftime("%I:%M %p %B %d, %Y") %>
+                    <%= @post_event.start_time.getutc.strftime("%I:%M %p %B %d, %Y") %>
                 </div>
                 <% if @post_event.end_time %>
                 <div class="AsDContLinf">
                     <span>End time:</span>
-                    <%= @post_event.end_time.strftime("%I:%M %p %B %d, %Y") %>
+                    <%= @post_event.end_time.getutc.strftime("%I:%M %p %B %d, %Y") %>
                 </div>
                 <% end %>
                 <% end %>

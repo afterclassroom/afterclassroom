@@ -8,9 +8,15 @@ function submitForm(){
         $("#form_post").submit();
     }
 }
+
 function submit(){
     var result = $("#form_post").validate({
-        meta: "validate"
+        meta: "validate",
+        rules: {
+            end_time: {
+                greaterThan: "#start_time"
+            }
+        }
     });
     if (result) {
         $("#form_post").submit();
@@ -165,7 +171,7 @@ function send_answer(post_id){
 }
 
 function sendEmail(current_user_id, user_id){
-	var result = $("#form_send_message").validate({
+    var result = $("#form_send_message").validate({
         meta: "validate"
     });
     if (result) {

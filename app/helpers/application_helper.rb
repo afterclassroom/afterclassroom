@@ -811,21 +811,15 @@ module ApplicationHelper
     end
   end
   
-<<<<<<< HEAD
-  def show_ajax_loader(str_style)
-      content_tag(:span, image_tag("/images/ajax-loader-a.gif", :alt => '', :style => str_style))
-=======
   def show_ajax_loader(str_id, str_style)
       content_tag(:span, image_tag("/images/ajax-loader-a.gif", :alt => '', :style => str_style, :id => str_id))
->>>>>>> 28351971629abe8b7d7e5c123f4cfebf136c2479
-  end  
-  
+  end
   
   private
   
   def link_to_require_login(str)
     call_back = root_url[0...-1] + request.request_uri
-    link_login = "https://afterclassroom.com/login?service=#{call_back}"
+    link_login = "https://login.afterclassroom.com/login?service=#{call_back}"
     str_require_login = "This function is available only to registered users."
     link_to(str, link_login, :class => "vtip", :title => str_require_login)
   end
