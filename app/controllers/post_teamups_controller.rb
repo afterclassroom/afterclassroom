@@ -16,13 +16,13 @@ class PostTeamupsController < ApplicationController
       id = params[:more_like_this_id]
       post = Post.find_by_id(id)
       @teamup_category_id = post.post_teamup.teamup_category_id
-      Rails.cache.fetch("more_like_this_department(#{post.department_id})_school_year(#{post.school_year})") do
+      Rails.cache.fetch("more_like_this_department#{post.department_id}_school_year#{post.school_year}") do
         PostTeamup.paginated_post_more_like_this(params, post)
       end
     else
       @teamup_category_id = params[:teamup_category_id]
       @teamup_category_id ||= TeamupCategory.find(:first).id
-      Rails.cache.fetch("index_#{@class_name}_category#{@teamup_category_id}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+      Rails.cache.fetch("index_#{@class_name}_category#{@teamup_category_id}_#{@school}_year#{params[:year]}_department#{params[:department]}_over#{params[:over]}") do
         PostTeamup.paginated_post_conditions_with_option(params, @school, @teamup_category_id)
       end
     end

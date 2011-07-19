@@ -14,7 +14,7 @@ class PostMyxesController < ApplicationController
   def index
     @rating_status = params[:rating_status]
     @rating_status ||= ""
-    @post_results = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}_year(#{params[:year]})_department(#{params[:department]})_over(#{params[:over]})") do
+    @post_results = Rails.cache.fetch("index_#{@class_name}_status#{@rating_status}_#{@school}_year#{params[:year]}_department#{params[:department]}_over#{params[:over]}") do
       PostMyx.paginated_post_conditions_with_option(params, @school, @rating_status)
     end
     @posts = @post_results.paginate({:page => params[:page], :per_page => 10})

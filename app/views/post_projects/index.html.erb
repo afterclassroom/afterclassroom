@@ -17,6 +17,15 @@
       <div class="col451Cont">
 
         <%= display_flash_messages_with_raw %>
+
+        <% if params[:department] == nil %>
+          <% params[:department] = @str_department %>
+        <% end %>
+  
+        <% if params[:year] == nil %>
+          <% params[:year] = @str_year %>
+        <% end %>
+
         
         <!--Options-->
         <%= show_options(@school, params) %>

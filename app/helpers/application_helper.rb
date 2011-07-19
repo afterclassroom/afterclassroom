@@ -549,7 +549,7 @@ module ApplicationHelper
   end
   
   def show_map(address, html)
-    link_to(raw("<span>View map</span>"), "/gmaps?address=#{address}&html=#{html}&height=325&width=550", :class => "thickbox", :title => "View map")
+    link_to(raw("<span>View map</span>"), "/gmaps?address=#{address}&html=#{html}?height=375&amp;width=450&amp;inlineId=gmap", :class => "thickbox", :title => "View map")
   end
   
   def show_support(post)
@@ -813,7 +813,12 @@ module ApplicationHelper
   
   def show_ajax_loader(str_id, str_style)
       content_tag(:span, image_tag("/images/ajax-loader-a.gif", :alt => '', :style => str_style, :id => str_id))
+<<<<<<< HEAD
   end
+=======
+  end  
+  
+>>>>>>> f0d767d7b8fe70eae25242746b503fb8c778d01f
   
   private
   
