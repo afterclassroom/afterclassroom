@@ -43,7 +43,7 @@ Resume*
   <div class="postItemB" style="margin-bottom:5px;">
     <div id="divinputfile">
       <div class="postItemC" style="width:300px">
-        <%= builder3.file_field :resume_cv, :onchange => "$('#fakefilepc2').val(this.value);", :size => "39", :style => "height:24px;width:280px;", :class => "filepc"   %>
+        <%= builder3.file_field :resume_cv, :onchange => "$('#fakefilepc2').val(this.value);", :size => "39", :style => "height:24px;width:280px;", :class => "filepc {validate:{required:true}}"   %>
       </div>
       <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc2"/></div>
     </div>
