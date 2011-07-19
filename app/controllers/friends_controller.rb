@@ -9,10 +9,11 @@ class FriendsController < ApplicationController
   before_filter RubyCAS::Filter
   before_filter :cas_user
   #before_filter :login_required
-  before_filter :require_current_user
+  before_filter :require_current_user, :get_variables
   
   def index
     @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
+    get_variables()
   end
   
   def search
@@ -239,6 +240,25 @@ class FriendsController < ApplicationController
   end
   
   protected
+  
+  def get_variables
+    @count_recentadded = @user.user_invites_out.count(:all, :conditions => "is_accepted IS NULL")
+    @count_recentupdate = @user.user_friends.count(:all)
+    @count_request = @user.user_invites_in.count(:all)
+    
+    
+    fam_group = FriendGroup.find_by_label("family_members")
+    @count_faminly = @user.friend_in_groups.count(:all, :conditions => ["friend_group_id = ?", fam_group])
+    
+    
+    school_group = FriendGroup.find_by_label("friends_from_school")
+    @count_sch = @user.friend_in_groups.count(:all, :conditions => ["friend_group_id = ?", school_group])
+    
+    
+    work_group = FriendGroup.find_by_label("friends_from_work")
+    @count_work = @user.friend_in_groups.count(:all, :conditions => ["friend_group_id = ?", work_group])
+    
+  end
   
   def require_current_user
     @user ||= User.find(params[:user_id] || params[:id])

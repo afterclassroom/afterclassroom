@@ -7,17 +7,17 @@
       <% end %>
     </div>    
     <div class="friConnect">
-      <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection", user_friends_path(current_user) %></div>
+      <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection (#{@user.user_friends.length.to_s})", user_friends_path(current_user) %></div>
       <div class="friConnect2 <%= "friSelect" if action_name == "find" %>"><%= link_to "Find friends", find_user_friends_path(current_user) %></div>
-      <div class="friConnect4 <%= "friSelect" if action_name == "recently_added" %>"><%= link_to "Recently Added", recently_added_user_friends_path(current_user) %></div>
-      <div class="friConnect5 <%= "friSelect" if action_name == "recently_updated" %>"><%= link_to "Recently Updated", recently_updated_user_friends_path(current_user) %></div>
-      <div class="friConnect11 <%= "friSelect" if action_name == "friend_request" %>"><%= link_to "Friend Requests", friend_request_user_friends_path(current_user) %></div>
+      <div class="friConnect4 <%= "friSelect" if action_name == "recently_added" %>"><%= link_to "Recently Added (#{@count_recentadded.to_s})", recently_added_user_friends_path(current_user) %></div>
+      <div class="friConnect5 <%= "friSelect" if action_name == "recently_updated" %>"><%= link_to "Recently Updated (#{@count_recentupdate.to_s})", recently_updated_user_friends_path(current_user) %></div>
+      <div class="friConnect11 <%= "friSelect" if action_name == "friend_request" %>"><%= link_to "Friend Requests (#{@count_request.to_s})", friend_request_user_friends_path(current_user) %></div>
     </div>
     <div class="friendL">List</div>
     <div class="friConnect">   
-      <div class="friConnect6 <%= "friSelect" if action_name == "list" && @group == "family_members" %>"><%= link_to "Family members", list_user_friends_path(current_user, :group => "family_members") %></div>
-      <div class="friConnect7 <%= "friSelect" if action_name == "list" && @group == "friends_from_school" %>"><%= link_to "Friends from school", list_user_friends_path(current_user, :group => "friends_from_school") %></div>
-      <div class="friConnect8 <%= "friSelect" if action_name == "list" && @group == "friends_from_work" %>"><%= link_to "Friends from work", list_user_friends_path(current_user, :group => "friends_from_work") %></div>
+      <div class="friConnect6 <%= "friSelect" if action_name == "list" && @group == "family_members" %>"><%= link_to "Family members (#{@count_faminly.to_s})", list_user_friends_path(current_user, :group => "family_members") %></div>
+      <div class="friConnect7 <%= "friSelect" if action_name == "list" && @group == "friends_from_school" %>"><%= link_to "Friends from school (#{@count_sch})", list_user_friends_path(current_user, :group => "friends_from_school") %></div>
+      <div class="friConnect8 <%= "friSelect" if action_name == "list" && @group == "friends_from_work" %>"><%= link_to "Friends from work (#{@count_work.to_s})", list_user_friends_path(current_user, :group => "friends_from_work") %></div>
       <div class="friConnect11 <%= "friSelect" if action_name == "invite" %>"><%= link_to "Invite Friends to join AfterClassroom", invite_user_friends_path(current_user) %></div>
     </div>
   </div>
