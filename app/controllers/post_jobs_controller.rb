@@ -204,7 +204,7 @@ class PostJobsController < ApplicationController
         post_wall(@post, post_job_path(@post_job))
         redirect_to post_job_url(@post_job)
       else
-        error  "Failed to create a new post."
+        error  "Failed to create a new post. Possibly due to your file size is too large!"
         render :action => "new"
       end
     else
