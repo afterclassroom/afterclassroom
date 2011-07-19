@@ -6,11 +6,11 @@
     <div class="postItemA">
         <div id="divinputfile" style="margin-left:120px;">
             <div class="postItemC">
-                <%= builder1.file_field :resume_cv, :size => "39", :class => "filepc", :style => "height:24px;width:282px;" %>
+                <%= builder1.file_field :resume_cv, :onchange => "$('#fakefilepc0').val(this.value);", :size => "39", :class => "filepc", :style => "height:24px;width:282px;" %>
             </div>
             <div class="postUpfile">
                 <div id="fakeinputfile">
-                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px"/>
+                    <input name="fakefilepc" type="text" id="fakefilepc0" style="margin-top:-3px"/>
                 </div>
             </div>
         </div>
@@ -24,11 +24,11 @@
     <div class="postItemA">
         <div id="divinputfile" style="margin-left:120px;">
             <div class="postItemC">
-                <%= builder2.file_field :resume_cv, :size => "39", :class => "filepc", :style => "height:24px;width:282px;" %>
+                <%= builder2.file_field :resume_cv, :onchange => "$('#fakefilepc1').val(this.value);", :size => "39", :class => "filepc", :style => "height:24px;width:282px;" %>
             </div>
             <div class="postUpfile">
                 <div id="fakeinputfile">
-                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;"/>
+                    <input name="fakefilepc" type="text" id="fakefilepc1" style="margin-top:-3px;"/>
                 </div>
             </div>
         </div>
@@ -42,39 +42,13 @@
     <div class="postItemA">
         <div id="divinputfile" style="margin-left:120px;">
             <div class="postItemC">
-                <%= builder3.file_field :resume_cv, :size => "39", :class => "filepc {validate:{required:true}}", :style => "height:24px;width:282px;" %>
+                <%= builder3.file_field :resume_cv, :onchange => "$('#fakefilepc2').val(this.value);", :size => "39", :class => "filepc {validate:{required:true}}", :style => "height:24px;width:282px;" %>
             </div>
             <div class="postUpfile">
                 <div id="fakeinputfile">
-                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-3px;"/>
+                    <input name="fakefilepc" type="text" id="fakefilepc2" style="margin-top:-3px;"/>
                 </div>
             </div>
         </div>
     </div><% end %>
 </div>
-<script language="javascript">
-    $(document).ready(function(){
-        $("#letter_resume_cv").change(function(){
-            var coverletter = this.value;
-            $("#letter_resume_cv").siblings().each(function(){
-            
-                $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='" + coverletter + "'/>");
-            });
-        });
-        
-        $("#transcript_resume_cv").change(function(){
-            var transcript = this.value;
-            $("#transcript_resume_cv").siblings().each(function(){
-            
-                $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='" + transcript + "'/>");
-            });
-        });
-        $("#resume_resume_cv").change(function(){
-            var resume = this.value;
-            $("#resume_resume_cv").siblings().each(function(){
-            
-                $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='" + resume + "'/>");
-            });
-        });
-    });
-</script>

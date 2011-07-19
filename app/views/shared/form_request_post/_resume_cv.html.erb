@@ -43,7 +43,7 @@ Resume*
   <div class="postItemB" style="margin-bottom:5px;">
     <div id="divinputfile">
       <div class="postItemC" style="width:300px">
-        <%= builder3.file_field :resume_cv, :onchange => "$('#fakefilepc2').val(this.value);", :size => "39", :style => "height:24px;width:280px;", :class => "filepc"   %>
+        <%= builder3.file_field :resume_cv, :onchange => "$('#fakefilepc2').val(this.value);", :size => "39", :style => "height:24px;width:280px;", :class => "filepc {validate:{required:true}}"   %>
       </div>
       <div id="fakeinputfile" style="margin-top:-23px"><input name="fakefilepc" type="text" id="fakefilepc2"/></div>
     </div>
@@ -57,25 +57,5 @@ Resume*
         $('#fakefilepc2').css('width','208px');
 
 
-        $("#letter_resume_cv").change(function(){
-            var coverletter = this.value;
-            $("#letter_resume_cv").siblings().each(function(){
-
-                $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+coverletter+"'/>");
-            });
-        });
-        $("#transcript_resume_cv").change(function(){
-            $(this).css('border','red solid 3px');
-            var transcript = this.value;
-            $("#transcript_resume_cv").siblings().each(function(){
-                $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+transcript+"'/>");
-            });
-        });
-        $("#resume_resume_cv").change(function(){
-            var resume = this.value;
-            $("#resume_resume_cv").siblings().each(function(){
-                $(this).html("<input name='fakefilepc' id='fakefilepc' type='text' value='"+resume+"'/>");
-            });
-        });
     });
 </script>

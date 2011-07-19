@@ -1,15 +1,9 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 function submitForm(){
-    var result = $("#form_post").validate({
-        meta: "validate"
-    });
-    if (result) {
-        $("#form_post").submit();
-    }
-}
-
-function submit(){
+    $.validator.addMethod('greaterThan', function(value, element, param){
+        return compare($(param).val(), value);
+    }, 'Must be greater than start time.');
     var result = $("#form_post").validate({
         meta: "validate",
         rules: {
@@ -33,11 +27,28 @@ function forget_password(){
 }
 
 function request_form_submit(){
+    $.validator.addMethod('greaterThan', function(value, element, param){
+        return compare($(param).val(), value);
+    }, 'Must be greater than start time.');
     var result = $("#form_post").validate({
-        meta: "validate"
+        meta: "validate",
+        rules: {
+            end_time: {
+                greaterThan: "#start_time"
+            }
+        }
     });
     if (result) {
         $("#form_post").submit();
+    }
+}
+
+function compare(start, end){
+    if (start != "" && end != "") {
+        return (new Date(end) > new Date(start));
+    }
+    else {
+        return true;
     }
 }
 

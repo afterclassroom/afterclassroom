@@ -8,7 +8,7 @@
         Type
     </div>
     <div>
-        <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }, @post_party.party_types), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:340px" }) %>
+        <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }, @post_party.party_types.map(&:id)), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:340px" }) %>
     </div>
 </div>
 <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
