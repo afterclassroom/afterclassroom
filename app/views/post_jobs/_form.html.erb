@@ -7,7 +7,7 @@
         Type
     </div>
     <div class="postDep">
-        <%= f.text_field :job_type_id %>
+        <%= f.text_field :job_type_id, :value => session["cur_job_type_id"] ? session["cur_job_type_id"] : "1" %>
     </div>
 </div>
 <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
