@@ -144,7 +144,9 @@
                 <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom" onclick="submitQ();"/>
               </div>
             <% else %>
-              <%= link_to_require_login(raw("<div style='margin-top: 5px;' class='submit'><input id='add_new_fr' type='submit' value='Submit' name='commit' class='buttonCom'/></div>")) %>
+            <div style="margin-top: 5px;" class="submit">
+              <%= link_to_require_login('Submit') %>
+            </div>
             <% end %>
 
           </div>
