@@ -2,6 +2,7 @@
 <%= form_for :message, :url => message_action_user_messages_path(current_user), :html => {:name => "msg_form", :id => "msg_form"} do %>
   <%= hidden_field_tag "act" %>
   <div class="inboxTop">
+    <div class="inboxDelete"><%= link_to_function "Delete", "MsgAction('destroy')" %></div>
   </div>
   <div class="inboxTop2">
     <div class="fromT">

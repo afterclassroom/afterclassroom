@@ -70,14 +70,14 @@
       });
 
     }else{
-			$("#dialog-delete-message").dialog({
+      $("#dialog-delete-message").dialog({
         modal: true,
         buttons: {
           Ok: function() {
             $('#act').val(act);
-      			$('#msg_form').submit();
+            $('#msg_form').submit();
           },
-					Cancel: function() {
+          Cancel: function() {
             $(this).dialog('close');
           }
         }
