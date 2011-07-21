@@ -13,7 +13,7 @@
           <div class="compCancel"><%= link_to "Cancel", user_messages_path(current_user) %></div>
         </div>
         <div class="compTop2">
-          <div class="compTo">=============ddd <%= @reply_to.sender.email %>==================<%= @message.recipient_id %>
+          <div class="compTo">
             <div class="compLabel">To*</div>
             <div class="compInput"><%= f.text_field :to %></div>
           </div>
@@ -74,11 +74,15 @@
     selectedItemProp: "name", 
     searchObjProps: "name", 
     selectedValuesProp: "value",
-    selectionLimit:1,
-    preFill: [{
-        "value":"<%= @reply_to.sender.id %>",
-        "name":"<%= @reply_to.sender.name %>"
-      }]
+    selectionLimit:1
+<% if @reply_to != nil %>/* This part is enabled for action replyTo only */
+      ,
+      preFill: [{
+          "value":"<%= @reply_to.sender.id %>",
+          "name":"<%= @reply_to.sender.name %>"
+        }]
+
+<% end %>
     
   });
   function CreateNew(){
