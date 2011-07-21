@@ -938,6 +938,14 @@ span.btmDown a:hover {
     margin-top: -20px;
 }
 
+#video_video_attach{
+    opacity: 0.0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    -khtml-opacity: 0.0;
+    -moz-opacity: 0.0;
+  }
+
 #divinputfile .filepc {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity = 0);
