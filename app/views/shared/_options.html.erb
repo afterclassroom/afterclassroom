@@ -70,17 +70,17 @@ list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months",
 </ul>
 <script type="text/javascript">
     $(document).ready(load_options);
-    $(function() {
-	$('#over_menu,#year_menu').hover(function() {
-		$(this).stop().show();
-	}, function() {
-		$(this).stop().hide();
-	});
+    $(function(){
+        $('#over_menu,#year_menu').hover(function(){
+            $(this).stop().show();
+        }, function(){
+            $(this).stop().hide();
+        });
     });
-    $(function() {
-	$('div.col451in').hover(function() {
-	}, function() {
-		$('#department_menu,#over_menu,#year_menu').stop().hide();
-	});
+    $(function(){
+        $('div.col451in').hover(function(){
+        }, function(){
+            $('#department_menu,#over_menu,#year_menu').stop().hide();
+        });
     });
 </script>

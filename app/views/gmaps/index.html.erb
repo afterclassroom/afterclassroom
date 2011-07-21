@@ -1,8 +1,1 @@
-<div id="map" style="height:295px"></div>
-<script type="text/javascript">
-  var str_address = "<%= @address %>";
-  var str_html = "<%= @html %>";
-  $(document).ready(function(){
-    $("#map").gMap({ markers: [{address: str_address, html: str_html}], zoom: 4});
-  });
-</script>
+<iframe width="445" height="390" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q=<%= @address %>&z=15&output=embed"></iframe>
