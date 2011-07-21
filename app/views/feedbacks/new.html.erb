@@ -15,11 +15,11 @@
         </div>
         <div class="popItem">
           <div class="label"><%= f.label 'email' %></div>
-          <%= f.text_field 'email' %>
+          <%= f.text_field 'email', :class => "{email: true}" %>
         </div>
         <div class="popItem">
           <div class="label"><%= f.label 'comment' %><br /></div>
-          <%= f.text_area 'comment', :rows => 10, :cols => 50 %>
+          <%= f.text_area 'comment', :rows => 10, :cols => 50, :class => "{required:true}" %>
         </div>
         <div class="popItem">
           <%= f.submit 'Send' %>
@@ -28,3 +28,9 @@
     </div>
   </div>
 </div>
+<div class="error" style="display: none;"></div>
+<style>
+  label.error {
+    background-color: rgb(127,127,127);
+  }
+</style>
