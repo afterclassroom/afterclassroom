@@ -35,7 +35,7 @@
 </div>
 <div class="postItem">
     <div class="postTit">
-        Starts at
+        Start time
     </div>
     <div class="postInp">
         <%= text_field_tag "starts_at", @post_exam_schedule.starts_at != nil ? @post_exam_schedule.starts_at.strftime("%m/%d/%Y") : nil, :id => "starts_at", :class => '{validate:{date:true}}', :style => "width:100px" %>
@@ -43,7 +43,7 @@
 </div>
 <div class="postItem">
     <div class="postTit">
-        Due date
+        End time
     </div>
     <div class="postInp">
         <%= text_field_tag "due_date", @post_exam_schedule.due_date != nil ? @post_exam_schedule.due_date.strftime("%m/%d/%Y") : nil, :id => "due_date", :class => '{validate:{date:true}}', :style => "width:100px" %>

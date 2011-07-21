@@ -1,4 +1,4 @@
-GMAP_KEY_SITE = "ABQIAAAARTB7SbZKQtVQTkplozNrQxQV43bEeS45YYpXglw-5HPhE23ZaBQpOlIqP40ce0Zmbwjc8mVEmvtWxg"
+GMAP_KEY_SITE = "ABQIAAAARTB7SbZKQtVQTkplozNrQxShkmdt5k_TdY9P4-lHa1j-kX1LABROWU4KUDID2RgovL_X8bQSCvwgQw"
 GMAP_KEY_LOCAL = "ABQIAAAATMG0VaqoYTOZpXe2ccPW3RT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSWrLnyyCFcK03AKgafjvgIjPignQ"
 GMAP_KEY_STAGING = "ABQIAAAA_RyCxA_oz3OgurlWeBSqgxQmv8DbFmpLNYoo4rGUHXB1WXLmJhTUJHwgu77a-WBtcCqTUTFuRUBxUA"
 SCHEDULE_TYPE = [["Exam/Test Schedules", "exam_schedule"], ["Deadline bulletin", "deadline_bulletin"], ["General bulletin", "general_bulletin"]]

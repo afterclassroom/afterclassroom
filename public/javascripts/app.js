@@ -9,6 +9,9 @@ function submitForm(){
         rules: {
             end_time: {
                 greaterThan: "#start_time"
+            },
+						due_date: {
+                greaterThan: "#starts_at"
             }
         }
     });
@@ -35,6 +38,9 @@ function request_form_submit(){
         rules: {
             end_time: {
                 greaterThan: "#start_time"
+            },
+						due_date: {
+                greaterThan: "#starts_at"
             }
         }
     });
