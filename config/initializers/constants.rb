@@ -7,7 +7,7 @@ OPTIONS_SETTING = [["Private", 0], ["Friend from school", 1], ["Friend of friend
 PER_PAGE = 10
 LIMIT = 5
 # Upload file
-FILE_SIZE_POST = 10.megabytes
+FILE_SIZE_POST = 1.megabytes
 FILE_SIZE_PHOTO = 10.megabytes
 FILE_SIZE_MUSIC = 10.megabytes
 FILE_SIZE_VIDEO = 100.megabytes

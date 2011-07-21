@@ -20,6 +20,8 @@ class PostJobsController < ApplicationController
         Post.paginated_post_more_like_this(params, post)
       end
     else
+
+      session["cur_job_type_id"]=params[:job_type_id]
       @job_type_id = params[:job_type_id]
       @job_type_id ||= JobType.find(:first).id
       Rails.cache.fetch("index_#{@class_name}_type#{@job_type_id}_#{@school}_year#{params[:year]}_department#{params[:department]}_over#{params[:over]}") do
@@ -204,7 +206,7 @@ class PostJobsController < ApplicationController
         post_wall(@post, post_job_path(@post_job))
         redirect_to post_job_url(@post_job)
       else
-        error  "Failed to create a new post."
+        error  "Failed to create a new post. Possibly due to your file size is too large!"
         render :action => "new"
       end
     else

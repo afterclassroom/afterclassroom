@@ -113,11 +113,11 @@
           handler.formData = {
             "photo[title]": title,
             "photo[photo_album_id]": $('#photo_photo_album_id').val(),
-						"authenticity_token": $('[name="authenticity_token"]').val(),
+						"authenticity_token": $('[name="authenticity_token"]').val()
           };
           callBack();
         });
-      },
+      }
     });
   });
         
@@ -161,7 +161,7 @@
     var node = getFileNode(key);
     deleteItem(node, path, function (data) {
       node.fadeOut(function () {
-        $(this).dialog('close');
+        $("#delete-dialog-message").dialog('close');
         $(this).remove();
       });
     });

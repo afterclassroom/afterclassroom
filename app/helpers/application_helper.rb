@@ -549,9 +549,8 @@ module ApplicationHelper
   end
   
   def show_map(address, html)
-    link_to(raw("<span>View map</span>"), "/gmaps?address=#{address}&html=#{html}?height=375&amp;width=450&amp;inlineId=gmap", :class => "thickbox", :title => "View map")
-  end
-  
+    link_to(raw("<span>View map</span>"), "/gmaps?address=#{address}&html=#{html}?height=375&amp;width=450&amp;inlineId=gmap", :class => "thickbox", :title => "View map")  end
+     
   def show_support(post)
     str = "Reliable"
     str = "Support" if post.post_awareness.awareness_type.label == "take_action_now"

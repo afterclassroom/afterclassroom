@@ -22,7 +22,13 @@ You are here: <a href="/">Home</a>
             <div class="AsDContL">
                 <h2 class="titleH2"><%= @post.title %></h2>
                 <div class="AsDContLin">
-                    From<span><%= link_to @post.school.name, :controller => "post_housings", :action => "index", :from_school => @post.school %></span>
+                    From<span>
+                      <% if @housing_category_id == nil %>
+                        <%= link_to @post.school.name, :controller => "post_housings", :action => "index", :from_school => @post.school %>
+                      <% else %>
+                        <a href="<%= "#{post_housings_path}?housing_category_id=#{@housing_category_id}" %>"><%= @post.school.name %></a>
+                      <% end %>
+                    </span>
                 </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>
