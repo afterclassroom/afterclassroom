@@ -98,15 +98,17 @@
     </span>
   </div>
 </div>
-
+<script type="text/javascript" language="javascript" src="/javascripts/jquery.cookie.js"></script> 
 <script type="text/javascript">
 
   $(document).ready(function(){
 
     //hide toolbar and make visible the 'show' button
     $("span.downarr a").click(function() {
+      
       $("#toolbar").slideToggle("fast");
       $("#toolbarbut").fadeIn("slow");
+      $.cookie('toolbar', 'collapsed');
     });
 
     //show toolbar and hide the 'show' button
@@ -114,6 +116,14 @@
       $("#toolbar").slideToggle("fast");
       $("#toolbarbut").fadeOut();
     });
+    
+    var toolbar = $.cookie('toolbar');
+	// Set the user's selection for the toolbar
+	if (toolbar == 'collapsed') {
+		$('#toolbar').css("display","none");
+		$("#toolbarbut").css("display","block")
+		
+	};
 
     //show tooltip when the mouse is moved over a list element
     $("ul#social li").hover(function() {

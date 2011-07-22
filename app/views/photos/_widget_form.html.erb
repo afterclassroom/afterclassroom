@@ -44,8 +44,8 @@
       // https://github.com/blueimp/jQuery-File-Upload/issues#issue/36
       if (typeof File === 'undefined') {
         $(this).find('input:file').each(function(){
-          $(this).removeAttr('multiple') // Fix for Opera, which ignores just removing the multiple attribute:
-          .replaceWith($(this).clone(true));
+          // Fix for Opera, which ignores just removing the multiple attribute:
+          
         });
       }
     }).fileUploadUI({
