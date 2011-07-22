@@ -12,18 +12,10 @@ class PostBooksController < ApplicationController
   # GET /post_books
   # GET /post_books.xml
   def index
-    @post_results = if params[:more_like_this_id]
-      id = params[:more_like_this_id]
-      post = Post.find_by_id(id)
-      Rails.cache.fetch("more_like_this_department#{post.department_id}_school_year#{post.school_year}") do
-        Post.paginated_post_more_like_this(params, post)
-      end
-    else
-      @book_type_id = params[:book_type_id]
-      @book_type_id ||= BookType.find(:first).id
-      Rails.cache.fetch("index_#{@class_name}_type#{@book_type_id}_#{@school}_year#{params[:year]}_department#{params[:department]}_over#{params[:over]}") do
-        PostBook.paginated_post_conditions_with_option(params, @school, @book_type_id)
-      end
+    @book_type_id = params[:book_type_id]
+    @book_type_id ||= BookType.find(:first).id
+    @post_results = Rails.cache.fetch("index_#{@class_name}_type#{@book_type_id}_#{@school}_year#{params[:year]}_department#{params[:department]}_over#{params[:over]}") do
+      PostBook.paginated_post_conditions_with_option(params, @school, @book_type_id)
     end
     @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|

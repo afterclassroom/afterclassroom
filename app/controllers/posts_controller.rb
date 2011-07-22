@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
   before_filter RubyCAS::Filter, :except => [:report_abuse, :create_report_abuse, :download]
   before_filter :cas_user
-  #before_filter :login_required, :except => [:rate_comment, :report_abuse, :create_report_abuse, :download]
   
   def create_comment
     comment = params[:comment]
@@ -22,45 +21,46 @@ class PostsController < ApplicationController
       obj = eval(commentable_type).find(commentable_id)
       u = obj.user
       
-      if commentable_type == "Post"
-        post = Post.find(commentable_id)
-        if post
-          class_name = post.type_name
-          school_id = post.school_id
-          if class_name == "PostQa"
-            # Objects cache
-            Delayed::Job.enqueue(CacheCommentJob.new(class_name, nil, params))
-            Delayed::Job.enqueue(CacheCommentJob.new(class_name, school_id, params))
+      if u != current_user
+        if commentable_type == "Post"
+          post = Post.find(commentable_id)
+          if post
+            class_name = post.type_name
+            school_id = post.school_id
+            if class_name == "PostQa"
+              # Objects cache
+              Delayed::Job.enqueue(CacheCommentJob.new(class_name, nil, params))
+              Delayed::Job.enqueue(CacheCommentJob.new(class_name, school_id, params))
+            end
           end
+          subject = "#{current_user.name} comment on your Post."
+          content = "Click <a href='#{link_to_show_post(obj)}' target='blank'>here</a> to view more"
+          send_notification(u, subject, content, "comments_on_my_posts")
         end
-        subject = "#{current_user.name} comment on your Post."
-        content = "Click <a href='#{link_to_show_post(obj)}' target='blank'>here</a> to view more"
-        send_notification(u, subject, content, "comments_on_my_posts")
-      end
-      
-      if ["Photo", "PhotoAlbum", "Music", "Music Album", "Story"].include?(commentable_type)
-        case commentable_type
-          when "Photo"
-          subject = "#{current_user.name} comment on your Photo."
-          content = "Click <a href='#{user_photo_url(u, obj)}' target='blank'>here</a> to view more"
-          send_notification(u, subject, content, "comments_on_my_photos")
-          when "PhotoAlbum"
-          subject = "#{current_user.name} comment on your Photo Album."
-          content = "Click <a href='#{show_album_user_photos_url(u, :photo_album_id => obj)}' target='blank'>here</a> to view more"
-          send_notification(u, subject, content, "comments_on_my_photo_albums")
-          when "Music"
-          subject = "#{current_user.name} comment on your Music."
-          content = "Click <a href='#{user_music_url(u, obj)}' target='blank'>here</a> to view more"
-          send_notification(u, subject, content, "comments_on_my_musics")
-          when "MusicAlbum"
-          subject = "#{current_user.name} comment on your Music Album."
-          content = "Click <a href='#{show_playlist_user_musics_url(u, :music_album_id => obj)}' target='blank'>here</a> to view more"
-          send_notification(u, subject, content, "comments_on_my_music_albums")
-          when "Story"
-          subject = "#{current_user.name} comment on your Story."
-          content = "Click <a href='#{user_story_url(u, obj)}' target='blank'>here</a> to view more"
-          send_notification(u, subject, content, "comments_on_my_share_a_story")
-          
+        
+        if ["Photo", "PhotoAlbum", "Music", "Music Album", "Story"].include?(commentable_type)
+          case commentable_type
+            when "Photo"
+            subject = "#{current_user.name} comment on your Photo."
+            content = "Click <a href='#{user_photo_url(u, obj)}' target='blank'>here</a> to view more"
+            send_notification(u, subject, content, "comments_on_my_photos")
+            when "PhotoAlbum"
+            subject = "#{current_user.name} comment on your Photo Album."
+            content = "Click <a href='#{show_album_user_photos_url(u, :photo_album_id => obj)}' target='blank'>here</a> to view more"
+            send_notification(u, subject, content, "comments_on_my_photo_albums")
+            when "Music"
+            subject = "#{current_user.name} comment on your Music."
+            content = "Click <a href='#{user_music_url(u, obj)}' target='blank'>here</a> to view more"
+            send_notification(u, subject, content, "comments_on_my_musics")
+            when "MusicAlbum"
+            subject = "#{current_user.name} comment on your Music Album."
+            content = "Click <a href='#{show_playlist_user_musics_url(u, :music_album_id => obj)}' target='blank'>here</a> to view more"
+            send_notification(u, subject, content, "comments_on_my_music_albums")
+            when "Story"
+            subject = "#{current_user.name} comment on your Story."
+            content = "Click <a href='#{user_story_url(u, obj)}' target='blank'>here</a> to view more"
+            send_notification(u, subject, content, "comments_on_my_share_a_story")
+          end
         end
       end
     end
@@ -79,7 +79,7 @@ class PostsController < ApplicationController
       @obj_comment.commentable_type = "Post"
       @obj_comment.user = current_user
       @obj_comment.save
-
+      
       if @post
         class_name = @post.type_name
         school_id = @post.school_id

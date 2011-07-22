@@ -20,7 +20,7 @@
         Start time
     </div>
     <div class="postInp">
-        <%= text_field_tag :start_time, @post_party.start_time != nil ? @post_party.start_time.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
+        <%= text_field_tag :start_time, @post_party.start_time != nil ? @post_party.start_time.getutc.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
     </div>
 </div>
 <div class="postItem">
@@ -28,7 +28,7 @@
         End time
     </div>
     <div class="postInp">
-        <%= text_field_tag :end_time, @post_party.end_time != nil ? @post_party.end_time.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
+        <%= text_field_tag :end_time, @post_party.end_time != nil ? @post_party.end_time.getutc.strftime("%m/%d/%Y %I:%M %p") : "", :style => "width:150px" %>
     </div>
 </div>
 <script type="text/javascript">

@@ -143,10 +143,10 @@ class FriendsController < ApplicationController
       for email in arr_mails
         send_email(email, content)
       end
+      flash[:notice] = "Invite Friends Successfully."
     rescue Contacts::AuthenticationError => oops
       error oops
     end
-    flash[:notice] = "Invite Friends Successfully."
     redirect_to :action => "invite"
   end
   

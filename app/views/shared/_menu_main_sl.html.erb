@@ -6,12 +6,9 @@
     <%= tab_to "Profile", [{:controller => user_profiles_path(current_user)}] %>
     <%= tab_to "Setting", [{:controller => user_settings_path(current_user)}] %>
     <li class="menuSpace1">&nbsp;</li>
-	<!--
-    <%= tab_to "Phone Apps", "" %>
-
-    <%= tab_to "Play Games", "" %>
-    -->
     <li class="menuSpace2">&nbsp;</li>
-    <li class=""><a href="http://shopping.afterclassroom.com<%= "?ticket=#{session[:ticket]}" if session[:ticket] %>"><span>Shopping</span></a></li>
+    <li class=""><a href="https://wheretolist.com"><span>Shopping</span></a></li>
+		<li class="menuSpace2">&nbsp;</li>
+		<li><a href="#"><span>Learning Tools</span></a></li>
   </ul>
 </div>

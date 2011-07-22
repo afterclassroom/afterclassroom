@@ -142,11 +142,20 @@ module ApplicationHelper
   end
   
   def get_gender(sex)
-    if sex
-      sex == true ? "Male" : "Female"
+    if sex != nil
+      if sex == true
+        "Male"
+      else
+        "Female"
+      end
     else
       "N/A"
     end
+#    if sex
+#      sex == true ? "Male" : "Female"
+#    else
+#      "N/A"
+#    end
   end
   
   def truncate_words(text, length = 30, end_string = '...')

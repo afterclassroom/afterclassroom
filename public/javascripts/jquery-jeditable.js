@@ -200,7 +200,15 @@
 
                 /* add main input element to form and store it in input */
                 var input = element.apply(form, [settings, self]);
-
+                /*BEGIN COMMENT - DATNT - the following code is added to support function at ViewProfile*/
+                /*refer to file _proc.html.erb for more information about_yourself */
+                if (settings.name == 'about_yourself'){
+                    $(input).attr('maxlength','500');
+                    $('#about_yourself').prepend('<div>Please limit to 500 characters</div>');
+                    
+                }
+                /*END COMMENT - DATNT*/
+                
                 /* set input content via POST, GET, given data or existing value */
                 var input_content;
                 

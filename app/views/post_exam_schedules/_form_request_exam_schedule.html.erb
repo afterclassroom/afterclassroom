@@ -56,6 +56,16 @@
                     </div>
                 </div>
             </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#starts_at").datetimepicker({
+                        ampm: true
+                    });
+                    $("#due_date").datetimepicker({
+                        ampm: true
+                    });
+                });
+            </script>
             <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => false} %>
             <%= render :partial => "/shared/form_request_post/select_tag" %>
             <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
@@ -87,20 +97,20 @@
     $(document).ready(function(){
         $("#starts_at").datepicker();
     });
-		$(document).ready(function(){
+    $(document).ready(function(){
         $("#due_date").datepicker();
     });
-    $(function() {
-	$('#schedule_type_menu,#department_menu,#year_menu').hover(function() {
-		$(this).stop().show();
-	}, function() {
-		$(this).stop().hide();
-	});
+    $(function(){
+        $('#schedule_type_menu,#department_menu,#year_menu').hover(function(){
+            $(this).stop().show();
+        }, function(){
+            $(this).stop().hide();
+        });
     });
-    $(function() {
-	$('div.reqLa,div.col300Cont').hover(function() {
-	}, function() {
-		$('#schedule_type_menu,#department_menu,#year_menu').stop().hide();
-	});
+    $(function(){
+        $('div.reqLa,div.col300Cont').hover(function(){
+        }, function(){
+            $('#schedule_type_menu,#department_menu,#year_menu').stop().hide();
+        });
     });
 </script>

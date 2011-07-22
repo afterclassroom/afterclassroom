@@ -22,7 +22,6 @@ javascripts:
     - public/javascripts/vtip.js
     - public/javascripts/json.js
     - public/javascripts/jquery-opacityrollover.js
-    - public/javascripts/jquery.gmap.js
     - public/javascripts/checkboxmenu.js
     - public/javascripts/drplayer.js
     - public/javascripts/jquery.fancybox.js
@@ -57,7 +56,6 @@ javascripts:
     - public/javascripts/swfupload.js
     - public/javascripts/swfupload-handlers.js
     - public/javascripts/jquery.ad-gallery.js
-    - public/javascripts/jquery.gmap.js
     - public/javascripts/checkboxmenu.js
     - public/javascripts/drplayer.js
     - public/javascripts/jquery.jqpageflow.js
