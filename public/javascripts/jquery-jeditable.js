@@ -200,7 +200,11 @@
 
                 /* add main input element to form and store it in input */
                 var input = element.apply(form, [settings, self]);
-
+                if (settings.name == 'about_yourself'){
+                    $(input).attr('maxlength','500');
+                    $('#about_yourself').prepend('<div>Please limit to 500 characters</div>');
+                    
+                }
                 /* set input content via POST, GET, given data or existing value */
                 var input_content;
                 
