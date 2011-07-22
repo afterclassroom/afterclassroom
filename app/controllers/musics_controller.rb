@@ -49,7 +49,7 @@ class MusicsController < ApplicationController
     cond = Caboose::EZ::Condition.new :music_albums do
       user_id === arr_user_id
       if content_search != ""
-        title =~ "%#{content_search}%"
+        name =~ "%#{content_search}%"
       end
     end
     
@@ -176,10 +176,7 @@ class MusicsController < ApplicationController
     @music.favorites.destroy_all
     @music.destroy
     
-    respond_to do |format|
-      format.html { redirect_to(musics_url) }
-      format.xml  { head :ok }
-    end
+    render :nothing => true
   end
   
   def upload

@@ -151,6 +151,7 @@
             type: 'DELETE',
             success: function (data) {
               callBack(data);
+							$("#delete-dialog-message").dialog('close');
             }
           });
         },

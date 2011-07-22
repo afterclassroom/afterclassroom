@@ -48,8 +48,8 @@ class PostMyxesController < ApplicationController
     # Objects cache
     class_name = @post_p.class.name
     school_id = @post.school_id
-    Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
-    Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
+    Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, nil, status, params))
+    Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, school_id, status, params))
   end
   
   def require_rate
@@ -77,8 +77,8 @@ class PostMyxesController < ApplicationController
       # Objects cache
       class_name = @post_p.class.name
       school_id = @post.school_id
-      Delayed::Job.enqueue(CacheRattingJob.new(class_name, nil, status, params))
-      Delayed::Job.enqueue(CacheRattingJob.new(class_name, school_id, status, params))
+      Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, nil, status, params))
+      Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, school_id, status, params))
     end
     render :layout => false
   end

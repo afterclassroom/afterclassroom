@@ -121,8 +121,8 @@ class PostExamSchedulesController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_exam_schedule = PostExamSchedule.new(params[:post_exam_schedule])
-    @post_exam_schedule.starts_at = DateTime.strptime(params[:starts_at], "%m/%d/%Y") if params[:starts_at] != ""
-    @post_exam_schedule.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+    @post_exam_schedule.starts_at = DateTime.strptime(params[:starts_at], "%m/%d/%Y %I:%M %p") if params[:starts_at] != ""
+    @post_exam_schedule.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y %I:%M %p") if params[:due_date] != ""
     if simple_captcha_valid?    
       @post.save    
       sc = School.find(@school)
@@ -149,6 +149,8 @@ class PostExamSchedulesController < ApplicationController
     @post = @post_exam_schedule.post
     
     if (@post_exam_schedule.update_attributes(params[:post_exam_schedule]) && @post.update_attributes(params[:post]))
+      @post_exam_schedule.starts_at = DateTime.strptime(params[:starts_at], "%m/%d/%Y %I:%M %p") if params[:starts_at] != ""
+      @post_exam_schedule.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y %I:%M %p") if params[:due_date] != ""
       sc = School.find(@post.school.id)
       sc.tag(@post_exam_schedule, :with => params[:tag], :on => :tags)
       redirect_to post_exam_schedule_path(@post_exam_schedule)

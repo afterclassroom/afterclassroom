@@ -51,7 +51,7 @@
           <% end %>
           <div class="AsDContLinf">
             <span>Posted by:</span>
-            <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+            <%= show_user_post(@post.user) %> - <%= time_ago_in_words(@post.created_at, true) + " ago." %>
           </div>
           <% if @post_job.tags_from(@post.school).size > 0 %>
             <div class="AsDContLinf">
