@@ -2,10 +2,14 @@
   <% for friend_want in @friends_want %>
     <div class="stuLFriT">
       <div class="studentImg"><%= link_to raw("<div>#{image_tag(friend_want.user_invite.avatar.url(:thumb))}</div>"), "javascript:;", :onclick => "openChat('#{friend_want.user_invite.full_name}', '#{friend_want.flirting_chanel.chanel_name}')" %></div>
-      <div class="stuLFname"><%= link_to friend_want.user_invite.full_name, "javascript:;", :onclick => "openChat('#{friend_want.user_invite.full_name}', '#{friend_want.flirting_chanel.chanel_name}')" %></div>
-      <div class="stuLFtime"><%= distance_of_time_in_words_to_now(friend_want.flirting_chanel.created_at, false) + " ago." %></div>
+      <div class="stuLFname" style="overflow: hidden">
+        <%= link_to friend_want.user_invite.full_name, "javascript:;", :onclick => "openChat('#{friend_want.user_invite.full_name}', '#{friend_want.flirting_chanel.chanel_name}')" %>
+        <div class="stuLFtime">
+          <%= distance_of_time_in_words_to_now(friend_want.flirting_chanel.created_at, false) + " ago." %>
+        </div>
+      </div>
     </div>
-    <div class="assInfB">
+    <div class="assInfB" style="overflow: hidden;margin-bottom:5px;border-bottom: 1px solid #E4E4E4;">
       <div class="acc"><%= link_to "Accept", "javascript:;", :onclick => "openChat('#{friend_want.user_invite.full_name}', '#{friend_want.flirting_chanel.chanel_name}')" %></div>
       <div class="ing"><%= link_to "Ingore", "javascript:;", :onclick => "stop_chat('#{friend_want.flirting_chanel.chanel_name}')" %></div>
     </div>

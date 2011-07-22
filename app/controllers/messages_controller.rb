@@ -152,7 +152,11 @@ class MessagesController < ApplicationController
       }
       flash[:notice] = "Messages deleted"
     end
-    redirect_to user_messages_path(current_user)
+#    redirect_to user_messages_path(current_user)
+    params[:mailbox] = "sent"
+    redirect_to params.merge!(:action => :index)
+
+
   end
   
   def mark_read_selected
