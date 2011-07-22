@@ -248,7 +248,7 @@ class FriendsController < ApplicationController
   def get_variables
     @count_recentadded = @user.user_invites_out.count(:all, :conditions => "is_accepted IS NULL")
     @count_recentupdate = @user.user_friends.count(:all)
-    @count_request = @user.user_invites_in.count(:all)
+    @count_request = @user.user_invites_in.count(:all, :conditions => "is_accepted IS NULL")
     
     
     fam_group = FriendGroup.find_by_label("family_members")
