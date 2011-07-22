@@ -10,10 +10,10 @@ class MessagesController < ApplicationController
   def index
     act = params[:mailbox]
     case act
-      when "sent"
+    when "sent"
       @messages = current_user.sent_messages.paginate :page => params[:page], :per_page => 10
       @operation_ = "Sent"
-      when "trash"
+    when "trash"
       @messages = Message.find(:all, :conditions => ["(sender_id = ? AND sender_deleted = ?) OR (recipient_id = ? AND recipient_deleted = ?)", current_user, true, current_user, true]).paginate :page => params[:page], :per_page => 10
       @operation_ = "Trash"
     else
@@ -95,12 +95,14 @@ class MessagesController < ApplicationController
   def message_action
     act = params[:act]
     case act
-      when "delete"
+    when "delete"
       delete_selected
-      when "mark_as_read"
+    when "mark_as_read"
       mark_read_selected
-      when "mark_as_unread"
+    when "mark_as_unread"
       mark_unread_selected
+    when "destroy"
+      msg_destroy
     else
       redirect_to user_messages_path(current_user)
     end
@@ -175,5 +177,17 @@ class MessagesController < ApplicationController
       flash[:notice] = "Messages unread"
     end
     redirect_to user_messages_path(current_user)
+  end
+  
+  def msg_destroy
+        if params[:msg]
+          params[:msg].each { |id|
+            Message.destroy(id)
+          }
+          flash[:notice] = "Messages deleted"
+        end
+    
+    params[:mailbox] = "trash"
+    redirect_to params.merge!(:action => :index)
   end
 end

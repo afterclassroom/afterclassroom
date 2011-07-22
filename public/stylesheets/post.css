@@ -938,6 +938,14 @@ span.btmDown a:hover {
     margin-top: -20px;
 }
 
+#video_video_attach{
+    opacity: 0.0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    -khtml-opacity: 0.0;
+    -moz-opacity: 0.0;
+  }
+
 #divinputfile .filepc {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity = 0);
@@ -2934,10 +2942,10 @@ span.btmFan a:hover {
 
 .buttonCom {
     border: none;
-    background: url('/images/btm66.png') no-repeat top left;
-    padding: 2px 11px;
+    background: url('/images/btm48.png') no-repeat top left;
+    text-align: center;
     height: 25px;
-    width: 66px;
+    width: 48px;
     color: white;
     cursor: pointer;
     /*margin-top:5px;*/
@@ -2945,8 +2953,7 @@ span.btmFan a:hover {
 
 .buttonCom:hover {
     border: none;
-    background: url('/images/btm66Red.png') no-repeat top left;
-    padding: 2px 11px;
+    background: url('/images/btm48Red.png') no-repeat top left;
     color: #fff;
     cursor: pointer;
 }

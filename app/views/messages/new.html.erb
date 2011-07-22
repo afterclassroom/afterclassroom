@@ -41,9 +41,9 @@
 </div>
 <!--Alert-->
 <div id="dialog-message" title="Alert" style="display:none;">
-    <p>
-        Please enter at least one recipient.
-    </p>
+  <p>
+    Please enter at least one recipient.
+  </p>
 </div>
 <!--Alert-->
 <script type="text/javascript">
@@ -69,25 +69,40 @@
     });
   })(jQuery);
   
-  $("#message_to").autoSuggest(path, {asHtmlID: "message_to", selectedItemProp: "name", searchObjProps: "name", selectionLimit:1});
+  var strobj = $("#message_to").autoSuggest(path, {
+    asHtmlID: "message_to", 
+    selectedItemProp: "name", 
+    searchObjProps: "name", 
+    selectedValuesProp: "value",
+    selectionLimit:1
+<% if @reply_to != nil %>/* This part is enabled for action replyTo only */
+      ,
+      preFill: [{
+          "value":"<%= @reply_to.sender.id %>",
+          "name":"<%= @reply_to.sender.name %>"
+        }]
+
+<% end %>
+    
+  });
   function CreateNew(){
-		if ($('#as-values-message_to').val() == ""){
-			$("#dialog-message").dialog({
-                modal: true,
-                buttons: {
-                    Ok: function(){
-                        $("#dialog-message").dialog('close');
-                    }
-                }
-            });
-		}else{
-			$('#recipient').val($('#as-values-message_to').val());
-    	$('#msg_form').submit();
-		}
+    if ($('#as-values-message_to').val() == ""){
+      $("#dialog-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $("#dialog-message").dialog('close');
+          }
+        }
+      });
+    }else{
+      $('#recipient').val($('#as-values-message_to').val());
+      $('#msg_form').submit();
+    }
   }
-	$().ready(function() {
-        $("#msg_form").validate({
-						meta: "validate"
-        });
+  $().ready(function() {
+    $("#msg_form").validate({
+      meta: "validate"
     });
+  });
 </script>
