@@ -1,10 +1,39 @@
 <div class="proList" id="post_comment_form_<%= post.id %>" style="display:none;">
-  <% form_tag url_for(:controller => "posts", :action => "create_comment_on_list"), :remote => true, :html => {:id => "post_form_#{post.id}"} do %>
-  <%= hidden_field_tag "post_id", post.id %>
-  <div class="proListPic"><%= show_image_user_post(current_user) %></div>
-  <div class="proListR">
-    <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{post.id}", :onblur => "hidePostCommentForm('#{post.id}')"} %></div>
-  </div>
-  <div class="proAttR"><%= submit_tag 'Send', :class => "buttonCom" %></div>
+  <% form_tag url_for(:controller => "posts", :action => "create_comment_on_list"), :remote => true, :id => "post_form_#{post.id}" do %>
+    <%= hidden_field_tag "post_id", post.id %>
+
+    <div class="proListPic"><%= show_image_user_post(current_user) %></div>
+    <div class="proListR">
+      <div class="writeCom">
+        <%= text_area_tag "comment", nil, {:id => "comment_#{post.id}", :onblur => "hidePostCommentForm('#{post.id}')", :class => "required"} %>
+      </div>
+    </div>
+    <div class="proAttR">
+      <div id="containererreurtotal<%=  post.id.to_s %>" style="float: left; margin-right: 254px;"></div>
+      <%= submit_tag 'Send', :class => "buttonCom", :style => "float: right;", :id=>"submitBtn#{post.id}" %>
+
+
+    </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+    
+    
+    $('#post_form_<%=  post.id.to_s %>').validate({
+      errorLabelContainer: "#containererreurtotal<%=  post.id.to_s %>"
+    });
+    
+    $('#post_form_<%=  post.id.to_s %>').bind('ajax:beforeSend',function(){
+      $('#submitBtn<%=  post.id.to_s %>').attr('disabled', 'disabled');
+      $('#submitBtn<%=  post.id.to_s %>').before('<%= show_ajax_loader("loader_id#{post.id}","display: block; position: absolute; float: right; height: 19px; margin-top: 4px; margin-left: -22px;") %>');    
+    })
+
+    $('#post_form_<%=  post.id.to_s %>').bind('ajax:complete',function(){
+      $('#submitBtn<%=  post.id.to_s %>').attr('disabled', '');
+      $('#loader_id<%=  post.id.to_s %>').remove();
+    })
+
+});
+</script>
