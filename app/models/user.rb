@@ -255,7 +255,7 @@ class User < ActiveRecord::Base
   end
   
   def my_walls
-    UserWall.find(:all, :conditions => ["user_id_post = ?", self.id], :order => "created_at DESC")
+    UserWall.find(:all, :conditions => ["user_id_post = ?", self.id], :order => "updated_at DESC")
   end
   
   def fans_recent_update

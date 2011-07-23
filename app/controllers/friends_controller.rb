@@ -120,12 +120,16 @@ class FriendsController < ApplicationController
       contacts = params[:email_list].split(",")
       contacts = contacts.collect {|c| c.strip}
       mail_list = []
-      contacts.collect {|c| mail_list << c if !c.nil? && c != "" && EmailVeracity::Address.new(c).valid? }
-      for email in mail_list
-        send_email(email, content)
+      begin
+        flash[:notice] = "Invite Friends Successfully."
+        contacts.collect {|c| mail_list << c if !c.nil? && c != "" && EmailVeracity::Address.new(c).valid? }
+        for email in mail_list
+          send_email(email, content)
+        end
+      rescue
+        # Nothing
       end
     end
-    flash[:notice] = "Invite Friends Successfully."
     redirect_to :action => "invite"
   end
   
