@@ -10,21 +10,25 @@
     </div>
     <div class="proAttR">
       <div id="containererreurtotal<%=  post.id.to_s %>" style="float: left; margin-right: 254px;"></div>
-      <%= submit_tag 'Send', :class => "buttonCom", :style => "float: right;" %>
+      <%= submit_tag 'Send', :class => "buttonCom", :style => "float: right;", :id=>"submitBtn#{post.id}" %>
 
 
     </div>
   <% end %>
 </div>
 <script type="text/javascript">
-  //hidePostCommentForm('#{post.id}')
-  function sendThisForm<%= post.id.to_s %>(){
-    alert('a '+'#post_form_<%=  post.id.to_s %>');
-    $('#post_form_<%=  post.id.to_s %>').submit();
-  }
   $(document).ready(function(){
     $('#post_form_<%=  post.id.to_s %>').validate({
       errorLabelContainer: "#containererreurtotal<%=  post.id.to_s %>"
     });
-  });
+    
+    $('#post_form_<%=  post.id.to_s %>').bind('ajax:beforeSend',function(){
+      $('#submitBtn<%=  post.id.to_s %>').attr('disabled', 'disabled');
+    })
+
+    $('#post_form_<%=  post.id.to_s %>').bind('ajax:complete',function(){
+      $('#submitBtn<%=  post.id.to_s %>').attr('disabled', '');
+    })
+
+});
 </script>
