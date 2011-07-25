@@ -279,6 +279,7 @@
                 var t;
                 if ('cancel' == settings.onblur) {
                     input.blur(function(e) {
+                        alert('cancel');
                         /* prevent canceling if submit was clicked */
                         t = setTimeout(function() {
                             reset.apply(form, [settings, self]);
@@ -286,6 +287,7 @@
                     });
                 } else if ('submit' == settings.onblur) {
                     input.blur(function(e) {
+                        alert('submit');
                         /* prevent double submit if submit was clicked */
                         t = setTimeout(function() {
                             form.submit();
@@ -293,6 +295,7 @@
                     });
                 } else if ($.isFunction(settings.onblur)) {
                     input.blur(function(e) {
+                        alert('other');
                         settings.onblur.apply(self, [input.val(), settings]);
                     });
                 } else {

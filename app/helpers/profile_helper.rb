@@ -55,7 +55,9 @@ module ProfileHelper
       when "Music"
       music = Music.find(favorite.favorable_id)
       render :partial => "/musics/item_favorite", :locals => {:music => music}
-      when "video"
+      when "Video"
+      video = Video.find(favorite.favorable_id)
+      render :partial => "/videos/item_favorite", :locals => {:video => video}
     end
   end
 end

@@ -92,9 +92,12 @@ class FriendsController < ApplicationController
       fig.user_id_friend = params[:friend_id]
       user = User.find(params[:friend_id])
       if fig.save
-        subject = "#{current_user.name} add you to Family Group."
-        content = "Click <a href='#{list_user_friends_url(user, :group => "family_members")}' target='blank'>here</a> to view more"
-        send_notification(user, subject, content, "confirms_a_friendship_request")
+        subject = "#{current_user.name} adds you to Family Group."
+        content = "Please click <a href='#{user_profiles_path(current_user)}' target='blank'>here</a> to view #{current_user.name}'s profile"
+        if params[:group_id] == "1"
+          send_notification(user, subject, content, "confirms_a_friendship_request")
+        end
+        
         render :text => "Saved selected group successfully"
       else
         render :text => "Failed to save selected group"

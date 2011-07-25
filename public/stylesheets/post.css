@@ -1070,7 +1070,7 @@ span.btmDown a:hover {
 .AsDcomTxt {
     background: url("/images/bgTextareaL.png") no-repeat scroll left top transparent;
     height: 96px;
-    width: auto;
+    width: 98%;
     padding-bottom: 5px;
 }
 

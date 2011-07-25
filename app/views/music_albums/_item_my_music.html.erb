@@ -1,5 +1,9 @@
 <div class="musicL">
   <div class="musicB">
+<<<<<<< HEAD
     <div class="musicN"><%= check_box_tag "music_id", music.id %><%= link_to (music.title == "" ? music.music_attach_file_name : music.title), user_music_path(current_user, music) %></div>
+=======
+    <div class="musicN"><%= check_box_tag "music_id", music.id %><span><%= link_to (music.title || music.music_attach_file_name), user_music_path(current_user, music), :style => "width:95px" %></span></div>
+>>>>>>> 3acfc21919dacb24305bbe34ec10d1308482612a
   </div>
 </div>
