@@ -21,8 +21,8 @@
                 </div>
                 <div id="friend_list">
                     <%= display_flash_messages_with_raw %>
-                    <% @users.results.each do |u| %>
-                    <%= render :partial => "item_people", :locals => {:user => u} %>
+                    <% @users.each_hit_with_result do |hit, u| %>
+                    <%= render :partial => "item_people", :locals => {:user => u, :name => raw(hit.highlight(:name) ? hit.highlight(:name).format { |fragment| content_tag(:em, fragment) } : u.name) } %>
                     <% end %>
                     <!--Pagination-->
                     <div class="assPage">

@@ -82,6 +82,7 @@ class UserWallsController < ApplicationController
       obj_comment.comment = comment
       obj_comment.user = current_user
       @wall.comments << obj_comment
+      @wall.update_attribute(:updated_at, Time.now)
       if @wall.user != current_user
         subject = "#{current_user.name} post comment on your lounge."
         content = "Click <a href='#{user_student_lounges_url(@wall.user)}' target='blank'>here</a> to view more"

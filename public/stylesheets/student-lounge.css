@@ -1103,6 +1103,9 @@ div.findIMitem a:hover{
     color:#d00;
     text-decoration:none;
 }
+.flistN em{
+    color:#F6A828;
+}
 .flistS span{
     color:#6f6f63;
     padding-right:4px;

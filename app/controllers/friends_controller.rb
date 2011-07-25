@@ -92,9 +92,12 @@ class FriendsController < ApplicationController
       fig.user_id_friend = params[:friend_id]
       user = User.find(params[:friend_id])
       if fig.save
-        subject = "#{current_user.name} add you to Family Group."
-        content = "Click <a href='#{list_user_friends_url(user, :group => "family_members")}' target='blank'>here</a> to view more"
-        send_notification(user, subject, content, "confirms_a_friendship_request")
+        subject = "#{current_user.name} adds you to Family Group."
+        content = "Please click <a href='#{user_profiles_path(current_user)}' target='blank'>here</a> to view #{current_user.name}'s profile"
+        if params[:group_id] == "1"
+          send_notification(user, subject, content, "confirms_a_friendship_request")
+        end
+        
         render :text => "Saved selected group successfully"
       else
         render :text => "Failed to save selected group"
@@ -120,12 +123,16 @@ class FriendsController < ApplicationController
       contacts = params[:email_list].split(",")
       contacts = contacts.collect {|c| c.strip}
       mail_list = []
-      contacts.collect {|c| mail_list << c if !c.nil? && c != "" && EmailVeracity::Address.new(c).valid? }
-      for email in mail_list
-        send_email(email, content)
+      begin
+        flash[:notice] = "Invite Friends Successfully."
+        contacts.collect {|c| mail_list << c if !c.nil? && c != "" && EmailVeracity::Address.new(c).valid? }
+        for email in mail_list
+          send_email(email, content)
+        end
+      rescue
+        # Nothing
       end
     end
-    flash[:notice] = "Invite Friends Successfully."
     redirect_to :action => "invite"
   end
   
@@ -233,7 +240,11 @@ class FriendsController < ApplicationController
   def find_people
     @query = params[:search][:query]
     @users = User.search do
-      fulltext @query
+      if params[:search][:query].present?
+        keywords(params[:search][:query]) do
+          highlight :name
+        end
+      end
       order_by :created_at, :desc
       paginate :page => params[:page], :per_page => 10
     end
@@ -244,7 +255,7 @@ class FriendsController < ApplicationController
   def get_variables
     @count_recentadded = @user.user_invites_out.count(:all, :conditions => "is_accepted IS NULL")
     @count_recentupdate = @user.user_friends.count(:all)
-    @count_request = @user.user_invites_in.count(:all)
+    @count_request = @user.user_invites_in.count(:all, :conditions => "is_accepted IS NULL")
     
     
     fam_group = FriendGroup.find_by_label("family_members")
