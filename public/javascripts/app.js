@@ -253,7 +253,7 @@ function showListPostComment(post_id){
 }
 
 function showPostCommentForm(post_id){
-    $('#post_comment_form_' + post_id).show();
+    $('#post_comment_form_' + post_id).toggle("slow");//.show();
     $('#post_comment_' + post_id).hide();
     $('#comment_' + post_id).focus();
 }

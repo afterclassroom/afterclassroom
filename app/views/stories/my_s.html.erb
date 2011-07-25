@@ -4,7 +4,7 @@
             Your stories
         </div>
         <div class="slsTopLB friLeft">
-            <div class="search">
+            <div class="search" style="margin-top: -15px;">
                 <%= form_tag my_s_user_stories_path(current_user), {:id => "my_stories_search", :method => "GET", :onsubmit => "return false;"} do %>
                 <div class="textS">
                     <%= text_field_tag "search[name]", "#{@search_name}" %>

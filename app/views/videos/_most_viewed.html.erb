@@ -11,9 +11,9 @@ most_viewed_videos = Video.with_users(u).with_limit.most_view %>
 <div class="col300 slStory">
     <div class="col300in mostPho">
         <h1 class="col300Title">Most viewed videos</h1>
-        <div class="musicRow">
+        <div class="musicRow" style="padding: 0px">
             <% most_viewed_videos.each do |vc| %>
-            <div class="musicL">
+            <div class="musicL" style="width: 90px;">
                 <div class="photoImg">
                     <%= link_to display_image_video(vc), user_video_url(current_user, vc) %>
                 </div>
@@ -27,3 +27,8 @@ most_viewed_videos = Video.with_users(u).with_limit.most_view %>
         </div>
     </div>
 </div>
+<style>
+  .photoImg div{
+    height: auto;
+  }
+</style>

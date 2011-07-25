@@ -87,9 +87,9 @@
             </div>
           </div>
           <div id="mytable">
-          <% @my_stories.each do |m_s| %>
-            <%= render :partial => "item_mystory", :locals => {:story => m_s} %>
-          <% end %>
+            <% @my_stories.each do |m_s| %>
+              <%= render :partial => "item_mystory", :locals => {:story => m_s} %>
+            <% end %>
           </div>
         </div>
         <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
@@ -99,46 +99,58 @@
 </div>
 <div class="contMainR">
   <!--Most Viewed-->
-<%= render :partial => "most_viewed" %>
+  <%= render :partial => "most_viewed" %>
   <!--Most Viewed-->
 
   <!--Ads-->
-<%= render :partial => "ads/show_vertical_ads" %>
+  <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
 
 <%= render :partial => "action_box_menu" %>
 
 <script type="text/javascript" >
-    function submit(){
-        $("#form_new").submit();
-    }
-    $().ready(function() {
-        $("#form_new").validate({
-						meta: "validate"
-        });
+  function submit(){
+    $("#form_new").submit();
+  }
+  $().ready(function() {
+    $("#form_new").validate({
+      meta: "validate"
+    }); 
+    $("#friend_stories_list").bind("keypress", function(e) {
+      if (e.keyCode == 13) {
+        searchFriendStories();
+        return false;
+      }    
+    });   
+  });
+  formatLinkForPaginationURLFriend();
+  formatLinkForPaginationURLMy();
+  (function($)
+  {
+    $('#story_content').wysiwyg({
+      controls: {
+        createLink : { visible : true },
+
+        insertImage : { visible : true },
+
+        separator05 : { visible : false },
+
+        separator06 : { visible : false },
+
+        h1 : { visible : false },
+        h2 : { visible : false },
+        h3 : { visible : false },
+
+        removeFormat : { visible : true }
+      }
     });
-    formatLinkForPaginationURLFriend();
-    formatLinkForPaginationURLMy();
-    (function($)
-    {
-        $('#story_content').wysiwyg({
-            controls: {
-                createLink : { visible : true },
-
-                insertImage : { visible : true },
-
-                separator05 : { visible : false },
-
-                separator06 : { visible : false },
-
-                h1 : { visible : false },
-                h2 : { visible : false },
-                h3 : { visible : false },
-
-                removeFormat : { visible : true }
-            }
-        });
-    })(jQuery)
+  })(jQuery)
+    
+  $(document).ready(function(){   
+    $("#my_stories_list").keypress(function(e){
+      if(e.which==13) searchMyStories();
+    });
+  });
 
 </script>
