@@ -5,11 +5,11 @@
     <div class="proListPic"><%= show_image_user_post(current_user) %></div>
     <div class="proListR">
       <div class="writeCom">
-        <%= text_area_tag "comment", nil, {:id => "comment_#{post.id}", :onblur => "hidePostCommentForm('#{post.id}')", :class => "required"} %>
+        <%= text_area_tag "comment", nil, {:id => "comment_#{post.id}", :onblur => "", :class => "required"} %>
       </div>
     </div>
     <div class="proAttR">
-      <div id="containererreurtotal<%=  post.id.to_s %>" style="float: left; margin-right: 254px;"></div>
+      <div id="containererreurtotal<%=  post.id.to_s %>" style="float: left; margin-right: 254px;">HHHHHHHHHHH</div>
       <%= submit_tag 'Send', :class => "buttonCom", :style => "float: right;", :id=>"submitBtn#{post.id}" %>
 
 
@@ -17,10 +17,8 @@
   <% end %>
 </div>
 <script type="text/javascript">
+  //hidePostCommentForm('#{post.id}')
   $(document).ready(function(){
-    
-    
-    
     $('#post_form_<%=  post.id.to_s %>').validate({
       errorLabelContainer: "#containererreurtotal<%=  post.id.to_s %>"
     });
