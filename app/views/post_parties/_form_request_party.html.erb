@@ -1,97 +1,93 @@
-                  
 <div class="col300 requestParty">
   <div class="col300in">
     <h1 class="col300Title">Quick post for Party</h1>
     <div class="col300Cont">
       <%= form_for :post_party, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-        <div class="postItem" style="padding-left: 0px;">
-          <div class="postTit">
+        <div class="postItem" style="padding: 0px;">
+          <div class="reqLa">
+            <label>
             Type
+            </label>
           </div>
-          <div>
-            <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:259px" }) %>
+          <div class="reqTi">
+            <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:257px" }) %>
           </div>
         </div>
-        
-  
-  
-  
-  
-  <%= fields_for :post do |p| %>
-            <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
-            <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
-            <div class="reqLa">
+        <%= fields_for :post do |p| %>
+          <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
+          <div class="reqLa">
+            <label>
+              Start time
+            </label>
+          </div>
+          <div class="reqTi">
+            <%= text_field_tag :start_time, "", :style => "width:150px" %>
+          </div>
+          <div class="reqLa">
+            <label>
+              End time
+            </label>
+          </div>
+          <div class="reqTi">
+            <%= text_field_tag :end_time, "", :style => "width:150px" %>
+          </div>
+          <script type="text/javascript">
+            $(document).ready(function(){
+              $("#start_time").datetimepicker({
+                ampm: true
+              });
+              $("#end_time").datetimepicker({
+                ampm: true
+              });
+            });
+          </script>
+          <div class="reqSl">
+            <div class="req40">
+              <div class="reqLa">
                 <label>
-                    Start time
+                  Phone
                 </label>
-            </div>
-            <div class="reqTi">
-                <%= text_field_tag :start_time, "", :style => "width:150px" %>
-            </div>
-            <div class="reqLa">
-                <label>
-                    End time
-                </label>
-            </div>
-            <div class="reqTi">
-                <%= text_field_tag :end_time, "", :style => "width:150px" %>
               </div>
-                <script type="text/javascript">
-                  $(document).ready(function(){
-                    $("#start_time").datetimepicker({
-                      ampm: true
-                    });
-                    $("#end_time").datetimepicker({
-                      ampm: true
-                    });
-                  });
-                </script>
-                <div class="reqSl">
-                  <div class="req40">
-                    <div class="reqLa">
-                        <label>
-                            Phone
-                        </label>
-                    </div>
-                    <div class="reqTi">
-                        <%= f.text_field :phone %>
-                    </div>
-                </div>
-                <div class="req60">
-                    <div class="reqLa">
-                        <label>
-                            Address
-                        </label>
-                    </div>
-                    <div class="reqTi">
-                        <%= f.text_field :address %>
-                    </div>
-                </div>
+              <div class="reqTi">
+                <%= f.text_field :phone %>
+              </div>
             </div>
-            <%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_party_address" } %>
-            <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
-            <%= render :partial => "/shared/form_request_post/select_tag" %>
-            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-            <div class="submit" style="margin-top: 5px;">
-                <%= show_submit_form() %>
+            <div class="req60">
+              <div class="reqLa">
+                <label>
+                  Address
+                </label>
+              </div>
+              <div class="reqTi">
+                <%= f.text_field :address %>
+              </div>
             </div>
-            <% end %>
-            <% end %>
-        </div>
+          </div>
+          <%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_party_address" } %>
+          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
+          <%= render :partial => "/shared/form_request_post/select_tag" %>
+          <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+          <div class="submit" style="margin-top: 5px;">
+            <%= show_submit_form() %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
+  </div>
 </div>
 <ul id="event_type_menu" class="mcdropdown_menu">
-    <% PartyType.find(:all).each do |t| %>
+  <% PartyType.find(:all).each do |t| %>
     <li rel_event_type="<%= t.id %>">
-        <%= t.name %>
+      <%= t.name %>
     </li>
-    <% end %>
+  <% end %>
 </ul>
 <script type="text/javascript">
-    $(document).ready(function(){
-        // 'Select All' text changed
-        $("#party_type").multiSelect({
-            selectAllText: 'Select All'
-        });
+  $(document).ready(function(){
+    // 'Select All' text changed
+    $("#party_type").multiSelect({
+      selectAllText: 'Select All'
     });
+  });
 </script>

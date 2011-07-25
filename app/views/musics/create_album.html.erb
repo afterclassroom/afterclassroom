@@ -168,7 +168,7 @@
     var node = getFileNode(key);
     deleteItem(node, path, function (data) {
       node.fadeOut(function () {
-        $(this).dialog('close');
+        $("#delete-dialog-message").dialog('close');
         $(this).remove();
       });
     });

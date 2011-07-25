@@ -4,7 +4,7 @@
     <div class="mostMSA"><%= link_to "", play_list_user_musics_url(current_user, :music_album_id => music_album), :class => "mostMSPlay" %></div>
   </div>
   <div class="musicB">
-    <div class="musicS"><%= pluralize(music_album.musics.size, "song") %></div>
+    <div class="musicS" style="margin-top: -6px;"><%= pluralize(music_album.musics.size, "song") %></div>
     <div class="musicN"><%= link_to music_album.name, play_list_user_musics_url(current_user, :music_album_id => music_album) %></div>
   </div>
 </div>
