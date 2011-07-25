@@ -2,12 +2,13 @@
   <% for friend_change in @friends_change %>
   <%
   user = (current_user == friend_change.user) ? friend_change.user_invite : friend_change.user
+  last_message = friend_change.flirting_chanel.flirting_messages.where(:user_id => user.id).last
   %>
     <div class="stuLFriT">
       <div class="studentImg"><%= link_to raw("<div>#{image_tag(user.avatar.url(:thumb))}</div>"), "javascript:;", :onclick => "openChat('#{user.full_name}', '#{friend_change.flirting_chanel.chanel_name}')" %></div>
       <div class="stuLFname"><%= link_to user.full_name, "javascript:;", :onclick => "openChat('#{user.full_name}', '#{friend_change.flirting_chanel.chanel_name}')" %></div>
-      <div class="stuLFtime"><%= distance_of_time_in_words_to_now(friend_change.flirting_chanel.flirting_messages.last.created_at, false) + " ago." %></div>
+      <div class="stuLFtime"><%= distance_of_time_in_words_to_now(last_message.created_at, false) + " ago." %></div>
     </div>
-    <div class="stuLFdes">"<%= link_to truncate_words(friend_change.flirting_chanel.flirting_messages.last.message, 8), "javascript:;", :onclick => "openChat('#{user.full_name}', '#{friend_change.flirting_chanel.chanel_name}')" %>"</div>
+    <div class="stuLFdes">"<%= link_to truncate_words(last_message.message, 8), "javascript:;", :onclick => "openChat('#{user.full_name}', '#{friend_change.flirting_chanel.chanel_name}')" %>"</div>
   <% end %>
 </div>

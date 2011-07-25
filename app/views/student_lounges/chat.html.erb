@@ -27,13 +27,13 @@
                     <%= render :partial => "user_walls/wall_item", :locals => {:wall => w} %>
                     <% end %>
                 </div>
-  							<%= render :partial => "user_walls/alert" %>
+                <%= render :partial => "user_walls/alert" %>
                 <div class="goTop">
                     <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
                 </div>
             </div>
         </div>
-				<%= render :partial => "user_walls/next_page_wall_js", :locals => {:user_id => current_user.id} %>
+        <%= render :partial => "user_walls/next_page_wall_js", :locals => {:user_id => current_user.id} %>
     </div>
 </div>
 <div class="contMainR210">
@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-  <div class="col210 stuL210">
+    <div class="col210 stuL210">
         <div class="col210in">
             <h1 class="col300Title">Friends online</h1>
             <div class="col300Cont">
@@ -61,53 +61,54 @@
     <!--Ads-->
 </div>
 <script type="text/javascript" charset="utf-8">
-      var jug_chat = new Juggernaut;
-      jug_chat.subscribe("chat_<%= current_user.id %>", function(data){
-	  		chanel_name = data.chanel_name
-			message = data.message
-			event = data.event
-			
-			switch(event)
-			{
-			case 'invite_chat':
-			  	//Refressh
-            	friends_you_invited_chat();
-            	friends_want_you_chat();
-            	//Push message
-            	insert_text_to_chatcontent(chanel_name, message);
-			  break;
-			case 'add_users_to_chat':
-			  //Refressh
-            	friends_you_invited_chat();
-            	friends_want_you_chat();
-            	//Push message
-            	insert_text_to_chatcontent(chanel_name, message);
-			  break;
-			  case 'send_data':
-			  //Refressh
-			    friends_changed_message();
-            	friends_you_invited_chat();
-            	friends_want_you_chat();
-            	//Push message
-            	insert_text_to_chatcontent(chanel_name, message);
-			  break;
-			  case 'stop_chat':
-			  //Refressh
-			    friends_changed_message();
-            	friends_you_invited_chat();
-            	friends_want_you_chat();
-            	//Push message
-            	insert_text_to_chatcontent(chanel_name, message);
-			  break;
-			}
-      });
+    var jug_chat = new Juggernaut({
+        secure: ('https:' == document.location.protocol)
+    });
+    jug_chat.subscribe("chat_<%= current_user.id %>", function(data){
+        chanel_name = data.chanel_name
+        message = data.message
+        event = data.event
+        
+        switch (event) {
+            case 'invite_chat':
+                //Refressh
+                friends_you_invited_chat();
+                friends_want_you_chat();
+                //Push message
+                insert_text_to_chatcontent(chanel_name, message);
+                break;
+            case 'add_users_to_chat':
+                //Refressh
+                friends_you_invited_chat();
+                friends_want_you_chat();
+                //Push message
+                insert_text_to_chatcontent(chanel_name, message);
+                break;
+            case 'send_data':
+                //Refressh
+                friends_changed_message();
+                friends_you_invited_chat();
+                friends_want_you_chat();
+                //Push message
+                insert_text_to_chatcontent(chanel_name, message);
+                break;
+            case 'stop_chat':
+                //Refressh
+                friends_changed_message();
+                friends_you_invited_chat();
+                friends_want_you_chat();
+                //Push message
+                insert_text_to_chatcontent(chanel_name, message);
+                break;
+        }
+    });
 </script>
 <script>
-    <% if @user_invite_chat %>
-        window.onload(invite_chat('<%= @user_invite_chat.id %>'));
-    <% end %>
-      friends_changed_message();
-      friends_you_invited_chat();
-      friends_want_you_chat();
-      friends_online();
+        <% if @user_invite_chat %>
+            window.onload(invite_chat('<%= @user_invite_chat.id %>'));
+        <% end %>
+          friends_changed_message();
+          friends_you_invited_chat();
+          friends_want_you_chat();
+          friends_online();
 </script>

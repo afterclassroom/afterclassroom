@@ -29,7 +29,6 @@ class StudentLoungesController < ApplicationController
   end
   
   def invite_chat
-    
     user_id = params[:user_id]
     user_invite_chat = User.find(user_id)
     
@@ -49,7 +48,12 @@ class StudentLoungesController < ApplicationController
       end
       Juggernaut.publish(client_ids, {:chanel_name => flirting_chanel.chanel_name, :message => "<li>" + message + "</li>", :event => "invite_chat"})
     end
-    render :nothing => true
+    respond_to do |format|
+      format.html { redirect_to chat_user_student_lounges_path(current_user) }
+      format.js { 
+        render :nothing => true
+      }
+    end
   end
   
   def add_users_to_chat

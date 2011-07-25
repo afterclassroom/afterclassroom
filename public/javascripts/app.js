@@ -304,12 +304,12 @@ function invite_chat(id){
         url: '/student_lounges/invite_chat',
         type: 'GET',
         cache: false,
-        dataType: 'html',
+        dataType: 'json',
         data: ({
             user_id: id
         }),
         success: function(data){
-            $('.AsDContR .chat').text('Chatting...');
+            $('#friend_online_' + id).html('Chatting...');
         },
         error: function(data){
             alert('Error connecting to server');

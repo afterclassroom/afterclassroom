@@ -1,13 +1,15 @@
 <script type="text/javascript" charset="utf-8">
-       $(document).ready(function(){
-        var jug_notification = new Juggernaut;
-            jug_notification.subscribe("notification_<%= current_user.id %>", function(data){
-                subject = data.subject;
-                content = data.content;
-                $.pnotify({
-                    pnotify_title: subject,
-                    pnotify_text: content
-                });
+    $(document).ready(function(){
+        var jug_notification = new Juggernaut({
+            secure: ('https:' == document.location.protocol)
+        });
+        jug_notification.subscribe("notification_<%= current_user.id %>", function(data){
+            subject = data.subject;
+            content = data.content;
+            $.pnotify({
+                pnotify_title: subject,
+                pnotify_text: content
             });
-        }); 
+        });
+    });
 </script>

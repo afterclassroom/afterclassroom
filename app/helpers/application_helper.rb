@@ -553,6 +553,24 @@ module ApplicationHelper
         if user.check_user_in_chatting_session(current_user.id)
           str = "Chatting..."
         else
+          str = link_to "Invite Chat", "/student_lounges/invite_chat?user_id=#{user.id}"
+        end
+      else
+        str = "Offline"
+      end
+    end
+    return str
+  end
+  
+  def show_invite_chat_from_chat_page(user)
+    str = ""
+    if !logged_in?
+      str = link_to_require_login(raw("<span>Invite Chat</span>"))
+    else
+      if user.check_user_online
+        if user.check_user_in_chatting_session(current_user.id)
+          str = "Chatting..."
+        else
           str = link_to_function "Invite Chat", "invite_chat('#{user.id}')"
         end
       else

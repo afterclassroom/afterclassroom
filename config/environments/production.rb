@@ -54,6 +54,8 @@ Afterclassroom::Application.configure do
   
   # Paperclip
   PAPERCLIP_STORAGE_OPTIONS = {:storage => :s3,
+    :use_ssl => true,
+    :s3_protocol => "https",
     :s3_credentials => "#{Rails.root}/config/s3.yml",
     :path => ":attachment/:id/:basename_:style.:extension"
   }
