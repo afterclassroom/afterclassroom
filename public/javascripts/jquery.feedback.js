@@ -65,7 +65,10 @@
             $(settings.modalContent).load(settings.formUrl, null, function() {
                 /*Begin Comment: DatNt has added the following code to validate on form post*/
                 $(settings.form).validate({
+                    errorLabelContainer: "#containererreurtotal",
+                    errorClass: "myerror",
                     submitHandler: function(form) { 
+                        
                         submitFeedback();
                     }
                 });
