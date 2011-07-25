@@ -27,19 +27,19 @@
                 </div>
               </div>
 
-                <div class="photoRow">
-                  <% @friend_photos.each do |f_p| %>
-                    <%= render :partial => "item_friend_photo", :locals => {:photo_album => f_p}  %>
-                  <% end %>
+              <div class="photoRow">
+                <% @friend_photos.each do |f_p| %>
+                  <%= render :partial => "item_friend_photo", :locals => {:photo_album => f_p}  %>
+                <% end %>
+              </div>
+              <div class="slsTopR">
+                <!--Pagination-->
+                <div class="assPage friend_photos">
+                  <span class="numPage"><%= page_entries_info @friend_photos %></span>
+                  <%= will_paginate @friend_photos %>
                 </div>
-                <div class="slsTopR">
-                  <!--Pagination-->
-                  <div class="assPage friend_photos">
-                    <span class="numPage"><%= page_entries_info @friend_photos %></span>
-                    <%= will_paginate @friend_photos %>
-                  </div>
-                  <!--Pagination-->
-                </div>
+                <!--Pagination-->
+              </div>
             </div>
           </div>
         <% end %>
@@ -62,19 +62,19 @@
               </div>
             </div>
 
-              <div class="photoRow">
-                <% @my_photos.each do |m_p| %>
-                  <%= render :partial => "item_my_photo", :locals => {:photo_album => m_p}  %>
-                <% end %>
+            <div class="photoRow">
+              <% @my_photos.each do |m_p| %>
+                <%= render :partial => "item_my_photo", :locals => {:photo_album => m_p}  %>
+              <% end %>
+            </div>
+            <div class="slsTopR">
+              <!--Pagination-->
+              <div class="assPage my_photos">
+                <span class="numPage"><%= page_entries_info @my_photos %></span>
+                <%= will_paginate @my_photos %>
               </div>
-              <div class="slsTopR">
-                <!--Pagination-->
-                <div class="assPage my_photos">
-                  <span class="numPage"><%= page_entries_info @my_photos %></span>
-                  <%= will_paginate @my_photos %>
-                </div>
-                <!--Pagination-->
-              </div>
+              <!--Pagination-->
+            </div>
           </div>
 
         </div>
@@ -100,7 +100,19 @@
     $("#form_new").validate({
       errorLabelContainer: $("#form_new div.stoError")
     });
-		formatLinkForPaginationURLFriendPhoto();
-  	formatLinkForPaginationURLMyPhoto();
+    formatLinkForPaginationURLFriendPhoto();
+    formatLinkForPaginationURLMyPhoto();
+ 
+    $("#friend_photos_list").bind("keypress", function(e) {
+      if (e.keyCode == 13) {
+        searchFriendPhotos();
+        return false;
+      }    
+    });   
+  });
+  $(document).ready(function(){   
+    $("#my_photos_list").keypress(function(e){
+      if(e.which==13) searchMyPhotos();
+    });
   });
 </script>
