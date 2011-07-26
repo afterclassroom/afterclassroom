@@ -8,7 +8,7 @@
     <li class="menuSpace1">&nbsp;</li>
     <li class="menuSpace2">&nbsp;</li>
     <li class=""><a href="https://wheretolist.com"><span>Shopping</span></a></li>
-		<li class="menuSpace2">&nbsp;</li>
-		<li><a href="#"><span>Learning Tools</span></a></li>
+    <li class="menuSpace2">&nbsp;</li>
+    <%= tab_to "Learning Tools", [{:controller => user_learn_tools_path(current_user)}] %>
   </ul>
 </div>
