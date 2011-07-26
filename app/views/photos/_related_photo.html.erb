@@ -1,44 +1,43 @@
 <div id="container">
-  <div id="gallery" class="ad-gallery">
-    <div class="ad-image-wrapper">
+    <div id="gallery" class="ad-gallery">
+        <div class="ad-image-wrapper">
+        </div>
+        <div class="ad-nav">
+            <div class="ad-thumbs">
+                <% if @photo_album.photos.size > 0 %>
+                <ul class="ad-thumb-list">
+                    <% @photo_album.photos.each do |p| %>
+                    <li>
+                        <%= link_to raw("#{image_tag(p.photo_attach.url(:thumb), :alt => p.title)}"), p.photo_attach.url %>
+                    </li>
+                    <% end %>
+                </ul>
+                <% else %>
+                No Image
+								<% end %>
+            </div>
+        </div>
     </div>
-    <div class="ad-nav">
-      <div class="ad-thumbs">
-        <ul class="ad-thumb-list">
-          <% @photo_album.photos.each do |p| %>
-            <li>
-              <%= link_to raw("#{image_tag(p.photo_attach.url(:thumb), :alt => p.title)}"), p.photo_attach.url %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
 </div>
 <script type="text/javascript">
-    $(function() {
+    $(function(){
         var galleries = $('.ad-gallery').adGallery();
-        $('#switch-effect').change(
-        function() {
+        $('#switch-effect').change(function(){
             galleries[0].settings.effect = $(this).val();
             return false;
-        }
-    );
-        $('#toggle-slideshow').click(
-        function() {
+        });
+        $('#toggle-slideshow').click(function(){
             galleries[0].slideshow.toggle();
             return false;
-        }
-    );
-        $('#toggle-description').click(
-        function() {
-            if(!galleries[0].settings.description_wrapper) {
+        });
+        $('#toggle-description').click(function(){
+            if (!galleries[0].settings.description_wrapper) {
                 galleries[0].settings.description_wrapper = $('#descriptions');
-            } else {
+            }
+            else {
                 galleries[0].settings.description_wrapper = false;
             }
             return false;
-        }
-    );
+        });
     });
 </script>

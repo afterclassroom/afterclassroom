@@ -12,6 +12,11 @@ class VideoFile < ActiveRecord::Base
   
   def video?
     [ 'application/x-mp4',
+      'video/wm',
+      'video/wmd',
+      'video/wmmp',
+      'video/wmv',
+      'video/wmx',
       'video/mpeg',
       'video/quicktime',
       'video/x-la-asf',

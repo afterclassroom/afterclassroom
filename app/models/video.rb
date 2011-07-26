@@ -16,6 +16,11 @@ class Video < ActiveRecord::Base
   
   validates_attachment_content_type :video_attach, 
     :content_type => [ 'application/x-mp4',
+      'video/wm',
+      'video/wmd',
+      'video/wmmp',
+      'video/wmv',
+      'video/wmx',
       'video/mpeg',
       'video/quicktime',
       'video/x-la-asf',
