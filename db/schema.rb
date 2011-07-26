@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714020915) do
+ActiveRecord::Schema.define(:version => 20110726084557) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -244,6 +244,18 @@ ActiveRecord::Schema.define(:version => 20110714020915) do
   create_table "jobs_lists", :force => true do |t|
     t.integer  "user_id"
     t.integer  "post_job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "learntools", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "verify"
+    t.boolean  "authorize"
+    t.text     "href"
+    t.integer  "acc_play_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
   has_many :private_settings
   has_many :forums, :dependent => :destroy
   has_many :press_infos, :dependent => :destroy
+  has_many :learntools, :dependent => :destroy
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]
