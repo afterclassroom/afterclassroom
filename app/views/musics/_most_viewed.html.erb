@@ -14,7 +14,11 @@ most_viewed_music_albums = MusicAlbum.with_users(u).with_limit.most_view
   <div class="col300in mostMS">
     <h1 class="col300Title">Most viewed music albums</h1>
     <% most_viewed_music_albums.each do |music_album| %>
-      <div class="photoImg"><%= link_to raw("<div>#{image_tag music_album.music_album_attach.url(:thumb)}</div>"), play_list_user_musics_url(current_user, :music_album_id => music_album) %></div>
+      <div class="photoImg">
+<%= link_to raw("<div>#{image_tag music_album.music_album_attach.url(:thumb)}</div>"), play_list_user_musics_url(current_user, :music_album_id => music_album) %>
+              <span style="height: 25px; width: 85px; overflow: hidden; margin-top: -17px; position: absolute;"><%= music_album.name %></span>
+      </div>
+
     <% end %>
   </div>
 </div>
