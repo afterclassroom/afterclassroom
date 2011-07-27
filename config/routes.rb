@@ -51,6 +51,12 @@ Afterclassroom::Application.routes.draw do
         post :message_action, :send_message
       end
     end
+    
+    resources :learn_tools do
+      collection do
+        get :index
+      end
+    end    
 
     resources :settings do
       collection do

@@ -166,4 +166,5 @@ class StudentLoungesController < ApplicationController
     @friends_online = current_user.friends_online
     render :layout => false
   end
+  
 end

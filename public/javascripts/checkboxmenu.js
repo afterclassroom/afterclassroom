@@ -111,12 +111,12 @@ $(function(){
      meaning that it will no longer appear
      */
     $('#closeBoxMenu').bind('click', function(e){
+        $('#mytable input:checked').attr('checked', false);
         $('#actionsBox').animate({
             'top': '-50px',
             'opacity': '0'
         }, 1000, function(){
-            if (BoxesChecked > 0) 
-                ;
+          
         });
     });
 });

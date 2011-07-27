@@ -1,34 +1,37 @@
 <div class="slsTop">
-    <div class="slsTopL">
-        <div class="slsTopLT">
-            Your musics
-        </div>
-        <div class="slsTopLB friLeft">
-            <div class="search" style="margin-top:-19px; margin-bottom:10px">
-                <%= form_for :search_my_music, :url => my_m_user_musics_path(current_user), :html => {:id => "my_musics_search", :method => "GET", :onsubmit => "return false"} do %>
-                <div class="textS">
-                    <%= text_field_tag "search[name]", @search_name %>
-                </div>
-                <div class="btmS">
-                    <a href="javascript:;" onclick="searchMyMusics();"><img src="/images/iconSF.png"/></a>
-                </div><% end %>
-            </div>
-        </div>
+  <div class="slsTopL">
+    <div class="slsTopLT">
+      Your musics
     </div>
+    <div class="slsTopLB friLeft">
+      <div class="search" style="margin-top:-19px; margin-bottom:10px">
+        <%= form_for :search_my_music, :url => my_m_user_musics_path(current_user), :html => {:id => "my_musics_search", :method => "GET", :onsubmit => "return false"} do %>
+          <div id="btnM_submit" class="textS">
+            <%= text_field_tag "search[name]", @search_name %>
+          </div>
+          <div class="btmS">
+            <a id="btnSM_submit" href="javascript:;" onclick="searchMyMusics();"><img src="/images/iconSF.png"/></a>
+          </div><% end %>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="musicRow">
-    <% @music_albums.each do |m_m| %>
+  <% @music_albums.each do |m_m| %>
     <%= render :partial => "item_my_music", :locals => {:music_album => m_m} %>
-    <% end %>
+  <% end %>
 </div>
 <div class="slsTopR">
-    <!--Pagination-->
-    <div class="assPage my_musics">
-        <span class="numPage"><%= page_entries_info @music_albums %></span>
-        <%= will_paginate @music_albums %>
-    </div>
-    <!--Pagination-->
+  <!--Pagination-->
+  <div class="assPage my_musics">
+    <span class="numPage"><%= page_entries_info @music_albums %></span>
+    <%= will_paginate @music_albums %>
+  </div>
+  <!--Pagination-->
 </div>
 <script type="text/javascript">
-    formatLinkForPaginationURLMyMusic();
+  $("#btnSM_submit").click(function(){
+    $('#btnM_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
+  });
+  formatLinkForPaginationURLMyMusic();
 </script>
