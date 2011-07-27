@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<<<<<<< HEAD
     <head>
         <%= csrf_meta_tag %>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,63 +9,43 @@
         <%= include_javascripts :student_lounge %>
         <%= feedback_includes %>
         <%= feedback_tab(:position => 'left') %>
-				<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false">
+        </script>
     </head>
     <body>
-        <div class="top" id="top_page">
-            <div class="banner">
-                <div class="logo">
-                    <a href="/"><img alt="classroom" src="/images/logo.png" /></a>
-                </div><% if logged_in? %>
-                <%= render :partial => 'shared/login_sl' %>
-                <% else %>
-                <%= render :partial => 'shared/login' %>
-                <% end %>
-            </div>
-=======
-  <head>
-    <%= csrf_meta_tag %>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <title>:: <%= configatron.site_name %>::</title>
-    <%= include_stylesheets :student_lounge %>
-    <%= include_javascripts :student_lounge %>
-    <%= feedback_includes %>
-    <%= feedback_tab(:position => 'left') %>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="http://afterclassroom.com:8080/application.js" type="text/javascript" charset="utf-8"></script>
-  </head>
-  <body>
     <div class="top" id="top_page">
-      <div class="banner">
-        <div class="logo">
-          <a href="/"><img alt="classroom" src="/images/logo.png" /></a>
->>>>>>> 1831a98300739be438d904edbe4fc73f08277301
-        </div>
-        <% if logged_in? %>
-          <%= render :partial => 'shared/login_sl' %>
+        <div class="banner">
+            <div class="logo">
+                <a href="/"><img alt="classroom" src="/images/logo.png" /></a>
+            </div><% if logged_in? %>
+            <%= render :partial => 'shared/login_sl' %>
+            <% else %>
+            <%= render :partial => 'shared/login' %>
+            <% end %>
+        </div><% if logged_in? %>
+        <%= render :partial => 'shared/login_sl' %>
         <% else %>
-          <%= render :partial => 'shared/login' %>
+        <%= render :partial => 'shared/login' %>
         <% end %>
-      </div>
+    </div>
     </div>
     <div class="menu">
-      <div class="menuFriend">
-        <% if logged_in? %>
-          <%= render :partial => 'shared/menu_main_sl' %>
-        <% else %>
-          <%= render :partial => 'shared/menu_main' %>
-        <% end %>
-      </div>
+        <div class="menuFriend">
+            <% if logged_in? %>
+            <%= render :partial => 'shared/menu_main_sl' %>
+            <% else %>
+            <%= render :partial => 'shared/menu_main' %>
+            <% end %>
+        </div>
     </div>
     <%= yield_or_default(yield(:menu_top_student_lounge)) %>
     <div class="contMain">
-      <%= yield %>
+        <%= yield %>
     </div>
     <%= render :partial => "shared/post_comments/alert" %>
     <%= render :partial => 'shared/javascript_load' %>
     <%= render :partial => 'shared/footer' %>
     <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
     <%= render :partial => 'shared/notification' if logged_in? %>
-  </body>
+</body>
 </html>
