@@ -8,6 +8,14 @@
     <div class="learnPageP"><a href="#">&nbsp;</a></div>
     <div class="learnPageN"><a href="#">&nbsp;</a></div>
     <%= will_paginate(@features) %>
+    
+            <div class="assPage" style="padding-left:0">
+              <span class="numPage"><%= page_entries_info @features %></span>
+              <%#= will_paginate(@features) %>
+              <%= will_paginate @features, :page_links=>false,:previous_label=> "OLDER POSTS",:next_label=>"NEWER POSTS"  %> 
+            </div>    
+    
+    
   </div>
 </div>
 
