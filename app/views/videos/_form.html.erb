@@ -1,5 +1,5 @@
 <div class="photoEx">
-    <%= form_for 'video', :url => user_videos_path(current_user), :html => {:id => "form", :multipart => true} do |f| %>
+    <%= form_for @video, :url => user_videos_path(current_user), :html => {:id => "form", :multipart => true} do |f| %>
     <div class="stoExItem">
         <div class="stoExItemL">
             Title*

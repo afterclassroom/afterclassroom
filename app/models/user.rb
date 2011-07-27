@@ -50,6 +50,8 @@ class User < ActiveRecord::Base
   has_many :private_settings
   has_many :forums, :dependent => :destroy
   has_many :press_infos, :dependent => :destroy
+  has_many :client_applications
+  has_many :tokens, :class_name=>"OauthToken", :order=>"authorized_at desc", :include=>[:client_application]
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]

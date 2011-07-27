@@ -1,8 +1,7 @@
+<script src="http://afterclassroom.com:8080/application.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
-        var jug_notification = new Juggernaut({
-            secure: ('https:' == document.location.protocol)
-        });
+        var jug_notification = new Juggernaut();
         jug_notification.subscribe("notification_<%= current_user.id %>", function(data){
             subject = data.subject;
             content = data.content;

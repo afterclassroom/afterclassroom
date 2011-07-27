@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714020915) do
+ActiveRecord::Schema.define(:version => 20110727035254) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -55,6 +55,20 @@ ActiveRecord::Schema.define(:version => 20110714020915) do
     t.integer "state_id",                  :null => false
     t.integer "country_id",                :null => false
   end
+
+  create_table "client_applications", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "support_url"
+    t.string   "callback_url"
+    t.string   "key",          :limit => 40
+    t.string   "secret",       :limit => 40
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "client_applications", ["key"], :name => "index_client_applications_on_key", :unique => true
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -169,7 +183,7 @@ ActiveRecord::Schema.define(:version => 20110714020915) do
 
   create_table "forums", :force => true do |t|
     t.string   "title"
-    t.text     "content"
+    t.string   "content"
     t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -334,6 +348,33 @@ ActiveRecord::Schema.define(:version => 20110714020915) do
     t.integer "user_id"
     t.integer "notification_id"
   end
+
+  create_table "oauth_nonces", :force => true do |t|
+    t.string   "nonce"
+    t.integer  "timestamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "oauth_nonces", ["nonce", "timestamp"], :name => "index_oauth_nonces_on_nonce_and_timestamp", :unique => true
+
+  create_table "oauth_tokens", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "type",                  :limit => 20
+    t.integer  "client_application_id"
+    t.string   "token",                 :limit => 40
+    t.string   "secret",                :limit => 40
+    t.string   "callback_url"
+    t.string   "verifier",              :limit => 20
+    t.string   "scope"
+    t.datetime "authorized_at"
+    t.datetime "invalidated_at"
+    t.datetime "valid_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "oauth_tokens", ["token"], :name => "index_oauth_tokens_on_token", :unique => true
 
   create_table "party_types", :force => true do |t|
     t.string "name"
@@ -837,13 +878,6 @@ ActiveRecord::Schema.define(:version => 20110714020915) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
-  create_table "video_albums", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "name",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "video_files", :force => true do |t|
     t.integer  "video_id",                  :null => false
     t.string   "video_attach_file_name"
@@ -853,17 +887,18 @@ ActiveRecord::Schema.define(:version => 20110714020915) do
   end
 
   create_table "videos", :force => true do |t|
-    t.integer  "user_id",                                  :null => false
-    t.integer  "video_album_id",                           :null => false
+    t.integer  "user_id",                                   :null => false
     t.string   "title"
     t.text     "description"
-    t.integer  "who_can_see",               :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "video_attach_file_name"
     t.string   "video_attach_content_type"
     t.integer  "video_attach_file_size"
     t.datetime "video_attach_updated_at"
+    t.string   "category",                  :default => "", :null => false
+    t.integer  "count_view",                :default => 0,  :null => false
+    t.string   "state",                                     :null => false
   end
 
 end

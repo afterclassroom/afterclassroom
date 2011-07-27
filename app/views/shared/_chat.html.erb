@@ -1,0 +1,51 @@
+<script src="http://afterclassroom:8080/application.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+        var jug_chat = new Juggernaut();
+        jug_chat.subscribe("chat_<%= current_user.id %>", function(data){
+            chanel_name = data.chanel_name
+            message = data.message
+            event = data.event
+            
+            switch (event) {
+                case 'invite_chat':
+                    //Refressh
+                    friends_you_invited_chat();
+                    friends_want_you_chat();
+                    //Push message
+                    insert_text_to_chatcontent(chanel_name, message);
+                    break;
+                case 'add_users_to_chat':
+                    //Refressh
+                    friends_you_invited_chat();
+                    friends_want_you_chat();
+                    //Push message
+                    insert_text_to_chatcontent(chanel_name, message);
+                    break;
+                case 'send_data':
+                    //Refressh
+                    friends_changed_message();
+                    friends_you_invited_chat();
+                    friends_want_you_chat();
+                    //Push message
+                    insert_text_to_chatcontent(chanel_name, message);
+                    break;
+                case 'stop_chat':
+                    //Refressh
+                    friends_changed_message();
+                    friends_you_invited_chat();
+                    friends_want_you_chat();
+                    //Push message
+                    insert_text_to_chatcontent(chanel_name, message);
+                    break;
+            }
+        });
+        friends_changed_message();
+        friends_you_invited_chat();
+        friends_want_you_chat();
+        friends_online();
+    });
+		<% if @user_invite_chat %>
+         window.onload(invite_chat('<%= @user_invite_chat.id %>'));
+    <% end %>
+</script>

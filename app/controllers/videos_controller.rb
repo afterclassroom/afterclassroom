@@ -101,6 +101,12 @@ class VideosController < ApplicationController
     end
   end
   
+  # GET /videos/new
+  def new
+    @categories ||= Youtube.video_categories
+    @video = Video.new()
+  end
+  
   # GET /videos/1/edit
   def edit
     @categories ||= Youtube.video_categories
@@ -122,11 +128,14 @@ class VideosController < ApplicationController
         flash[:notice] = 'Video was successfully created.'
         redirect_to(user_video_url(current_user, @video))
       else
-        redirect_to(user_videos_url(current_user))
+        flash[:error] = 'Error.'
+        @categories ||= Youtube.video_categories
+        render :action => "new"
       end
     rescue
       flash[:error] = 'Error.'
-      redirect_to(user_videos_url(current_user))
+      @categories ||= Youtube.video_categories
+      render :action => "new"
     end
   end
   
@@ -151,6 +160,7 @@ class VideosController < ApplicationController
   
   def create_form
     @categories ||= Youtube.video_categories
+    @video = Video.new()
   end
   
   def update_video
