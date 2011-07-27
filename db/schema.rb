@@ -256,7 +256,8 @@ ActiveRecord::Schema.define(:version => 20110727034410) do
   end
 
   create_table "learntools", :force => true do |t|
-    t.integer  "user_id",     :null => false
+    t.integer  "user_id",            :null => false
+    t.integer  "learn_tool_cate_id", :null => false
     t.string   "name"
     t.text     "description"
     t.boolean  "verify"
