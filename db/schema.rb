@@ -262,6 +262,7 @@ ActiveRecord::Schema.define(:version => 20110727034410) do
     t.text     "description"
     t.boolean  "verify"
     t.boolean  "authorize"
+    t.boolean  "ac_api"
     t.text     "href"
     t.integer  "acc_play_no"
     t.datetime "created_at"
@@ -873,19 +874,17 @@ ActiveRecord::Schema.define(:version => 20110727034410) do
   end
 
   create_table "videos", :force => true do |t|
-    t.integer  "user_id",                                                 :null => false
-    t.integer  "video_album_id",                                          :null => false
+    t.integer  "user_id",                                  :null => false
+    t.integer  "video_album_id",                           :null => false
     t.string   "title"
     t.text     "description"
-    t.integer  "who_can_see",                              :default => 0
+    t.integer  "who_can_see",               :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "video_attach_file_name"
     t.string   "video_attach_content_type"
     t.integer  "video_attach_file_size"
     t.datetime "video_attach_updated_at"
-    t.integer  "count_view",                               :default => 0, :null => false
-    t.string   "state",                     :limit => 225
   end
 
 end

@@ -661,8 +661,7 @@ end
 
 def create_demo_learn_tool
   
-  verify = [true, false]
-  authorize = [true, false]
+  bool_array = [true, false]
   href = ["mail.google.com","calendar.google.com"]
   
   200.times do
@@ -672,11 +671,11 @@ def create_demo_learn_tool
       l.user = user
       l.name = Faker::Lorem.sentence
       l.description = Faker::Lorem.paragraphs
-      l.verify = verify[rand(verify.size).to_i]
-      l.authorize = authorize[rand(authorize.size).to_i]
+      l.verify = bool_array[rand(bool_array.size).to_i]
+      l.authorize = bool_array[rand(bool_array.size).to_i]
       l.href = href[rand(href.size).to_i]
       l.learn_tool_cate = cate
-      
+      l.ac_api = bool_array[rand(bool_array.size).to_i]
       l.acc_play_no = rand(10)
       
     end
