@@ -41,7 +41,7 @@ namespace :db do
       #create_demo_posts_forums
 
       #create_demo_press_release
-      create_demo_learn_tool
+      #create_demo_learn_tool
 
     end
     
@@ -644,6 +644,10 @@ def create_demo_press_release
       p.content = Faker::Lorem.paragraphs
     end
   end
+end
+
+def create_demo_learn_tool_category
+  
 end
 
 def create_demo_learn_tool
