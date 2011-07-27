@@ -1,34 +1,40 @@
+<style>
+  .previous_page{
+    background: url("/images/btmPagePre.png") no-repeat scroll left center transparent;
+    display: block;
+    height: 19px;
+    text-decoration: none;
+    width: 19px;
+    margin-right: 28px;
+  }
+  .next_page {
+    background: url("/images/btmPageNext.png") no-repeat scroll left center transparent;
+    display: block;
+    height: 19px;
+    text-decoration: none;
+    width: 19px;
+    float: right;
+    margin-top: -19px;
+  }
+</style>
 <div class="learnTop">
   <div class="inboxTitle">Featured by AfterClassroom</div>
-
-  
-
   <div class="learnPage">
-    <div class="learnPageL">Page 1 of 12</div>
-    <div class="learnPageP"><a href="#">&nbsp;</a></div>
-    <div class="learnPageN"><a href="#">&nbsp;</a></div>
-    <%= will_paginate(@features) %>
-    
-            <div class="assPage" style="padding-left:0">
-              <span class="numPage"><%= page_entries_info @features %></span>
-              <%#= will_paginate(@features) %>
-              <%= will_paginate @features, :page_links=>false,:previous_label=> "OLDER POSTS",:next_label=>"NEWER POSTS"  %> 
-            </div>    
-    
-    
+    <div class="learnPageL" style="margin-left: 150px;"><%= @str_feature_page %></div>
+    <div style="float: right;"> 
+      <%= will_paginate @features, :page_links=>false,:previous_label=> "",:next_label=>"", :param_name => "feature_page"  %>     
+    </div>
   </div>
 </div>
-
-
 <div class="learnNewT">
   <div class="learnNewTL">
     <div class="learnNewTLtitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
     <div class="learnNewTLdes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae risus lorem. Pellentesque ac aliquet diam. Vivamus eget felis vitae libero lobortis fringilla...</div>
-    <div class="learnNewTLimg"><a href="#"><div><img src="pictures/learn1.png"></div></a></div>
+    <div class="learnNewTLimg"><a href="#"><div><img src="/images/pictures/learnT1.png"></div></a></div>
   </div>
   <div class="learnNewTR">
     <div class="learnNewTLtitle"><a href="#">Lorem ipsum dolor sit amet</a></div>
     <div class="learnNewTLdes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae risus lorem. Pellentesque ac aliquet diam. Vivamus eget felis vitae libero lobortis fringilla...</div>
-    <div class="learnNewTLimg"><a href="#"><div><img src="pictures/learn2.png"></div></a></div>
+    <div class="learnNewTLimg"><a href="#"><div><img src="/images/pictures/learnT1.png"></div></a></div>
   </div>
 </div>
