@@ -32,9 +32,36 @@
     <div class="<%=  str_class[index % 2] %>">
       <div class="learnNewTLtitle"><a href="#"><%= truncate_html(f.name, :length => 30, :omission => '...') %></a></div>
       <div class="learnNewTLdes">
-         <%= truncate_html(f.description, :length => 180, :omission => '...') %> 
+        <%= truncate_html(f.description, :length => 180, :omission => '...') %> 
       </div>
       <div class="learnNewTLimg"><a href="#"><div><img src="/images/pictures/learnT1.png"></div></a></div>
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  function ShowFeaturedOverlay(){
+    $('.learnTop').append('<div id="overlay"></div>');
+    var position = $('.learnTop').offset();
+
+    $("#overlay")
+    .height(143)
+    .css({
+      'opacity' : 0.4,
+      'position': 'absolute',
+      'top': position.top -10,
+      'left': position.left - 10,
+      'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+      'width': '653px',
+      'z-index': 5000
+    });
+  }
+  $(document).ready(function(){
+    var previousPage = $('.learnPage').find('.previous_page');
+    var nextPage = $('.learnPage').find('.next_page');
+    
+    $(previousPage).click(function(){
+      ShowFeaturedOverlay();
+    });
+    
+  });//end document.ready
+</script>
