@@ -4,11 +4,11 @@
 <div class="slsTopLB friLeft">
     <div class="search" style="margin-top:-19px; margin-bottom:20px">
         <%= form_for :search_my_photo, :url => my_p_user_photos_path(current_user), :html => {:id => "my_photos_search", :method => "GET", :onsubmit => "return false"} do %>
-        <div class="textS">
+        <div id="btnM_submit" class="textS">
             <%= text_field_tag "search[name]", @search_name %>
         </div>
         <div class="btmS">
-            <a href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a>
+            <a id="btnSM_submit" href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a>
         </div><% end %>
     </div>
 </div>
@@ -26,5 +26,8 @@
     <!--Pagination-->
 </div>
 <script type="text/javascript">
+    $("#btnSM_submit").click(function(){
+    $('#btnM_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
+  });
     formatLinkForPaginationURLMyPhoto();
 </script>

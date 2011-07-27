@@ -25,11 +25,11 @@
                 <div class="slsTopLB friLeft">
                   <div class="search" style="margin-top: -19px; margin-bottom: 10px;">
                     <%= form_for :search_friend_music, :url => friend_m_user_musics_path(current_user), :html => {:id => "friend_musics_search", :method => "GET", :onsubmit => "return false"} do %>
-                      <div class="textS">
+                      <div id="btnF_submit" class="textS">
                         <%= text_field_tag "search[name]", "" %>
                       </div>
                       <div class="btmS">
-                        <a href="javascript:;" onclick="searchFriendMusics();"><img src="/images/iconSF.png"/></a>
+                        <a id="btnSF_submit" href="javascript:;" onclick="searchFriendMusics();"><img src="/images/iconSF.png"/></a>
                       </div><% end %>
                   </div>
                 </div>
@@ -65,11 +65,11 @@
               <div class="slsTopLB friLeft">
                 <div class="search" style="margin-top:-19px; margin-bottom:10px">
                   <%= form_for :search_my_music, :url => my_m_user_musics_path(current_user), :html => {:id => "my_musics_search", :method => "GET", :onsubmit => "return false"} do %>
-                    <div class="textS">
+                    <div id="btnM_submit" class="textS">
                       <%= text_field_tag "search[name]", "" %>
                     </div>
                     <div class="btmS">
-                      <a href="javascript:;" onclick="searchMyMusics();"><img src="/images/iconSF.png"/></a>
+                      <a id="btnSM_submit" href="javascript:;" onclick="searchMyMusics();"><img src="/images/iconSF.png"/></a>
                     </div><% end %>
                 </div>
               </div>
@@ -114,18 +114,29 @@
     $("#friend_musics_list").bind("keypress", function(e) {
       if (e.keyCode == 13) {
         searchFriendMusics();
+        $('#btnF_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
         return false;
       }    
-    });   
+    });
+    $("#btnSF_submit").click(function(){
+      $('#btnF_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
+    });
   });
     
   formatLinkForPaginationURLFriendMusic();
   formatLinkForPaginationURLMyMusic();
     
-    
   $(document).ready(function(){   
-    $("#my_musics_list").keypress(function(e){
-      if(e.which==13) searchMyMusics();
+    $("#my_musics_list").bind("keypress", function(e) {
+      if (e.keyCode == 13) {
+        searchMyMusics();
+        $('#btnM_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
+        return false;
+      }
+      });
+    $("#btnSM_submit").click(function(){
+      $('#btnM_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
     });
   });
+
 </script>

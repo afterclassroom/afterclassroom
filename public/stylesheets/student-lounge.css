@@ -2839,21 +2839,38 @@ div.helpAdv2{
     float:right;
 }
 .learnFavTR a{
-    background:url('/images/btmWrite.png') no-repeat;
-    width:102px;
-    height:25px;
-    line-height:25px;
+    background:url('/images/icon-morelink.gif') no-repeat;
+    width:90px;
+    height:13px;
+    line-height:13px;
     text-decoration:none;
     color:#8b8b8b;
     display:block;
     text-align:center;
 }
 .learnFavTR a:hover{
-    background:url('/images/btmWriteH.png') no-repeat;
+    background:url('/images/icon-morelink.gif') no-repeat;
+    color:#d00;
+}
+.learnFavTRv{
+    float:right;
+}
+.learnFavTRv a{
+    background:url('/images/icon-view.gif') no-repeat;
+    width:90px;
+    height:13px;
+    line-height:13px;
+    text-decoration:none;
+    color:#8b8b8b;
+    display:block;
+    text-align:center;
+}
+.learnFavTRv a:hover{
+    background:url('/images/icon-view.gif') no-repeat;
     color:#d00;
 }
 .learnFavTR a span{
-    padding-left:10px;
+    padding-left:0px;
 }
 /*********************** Phone Apps ****************************/
 .phoneTop, .blackBTop, .googleTop{

@@ -6,6 +6,9 @@ class LearnToolsController < ApplicationController
   end
   
   def mylearn
-    
   end
+  
+  def infolearn   
+  end
+  
 end

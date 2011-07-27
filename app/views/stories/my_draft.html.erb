@@ -6,11 +6,11 @@
         <div class="slsTopLB friLeft">
             <div class="search" style="margin-top: -15px;">
                 <%= form_tag my_draft_user_stories_path(current_user), {:id => "my_stories_search", :method => "GET"} do %>
-                <div class="textS">
+                <div id="btnF_submit" class="textS">
                     <%= text_field_tag "search[name]", "#{@search_name}" %>
                 </div>
                 <div class="btmS">
-                    <a href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a>
+                    <a id="btnSF_submit" href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a>
                 </div><% end %>
             </div>
         </div>
@@ -30,5 +30,8 @@
     <% end %>
 </div>
 <script type="text/javascript">
+  $("#btnSF_submit").click(function(){
+      $('#btnF_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
+    });
     formatLinkForPaginationURLMy();
 </script>

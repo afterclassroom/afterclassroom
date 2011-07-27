@@ -21,8 +21,8 @@
               <div class="slsTopLB friLeft">
                 <div class="search" style="margin-top:-19px; margin-bottom:20px">
                   <%= form_for :search_friend_photo, :url => friend_p_user_photos_path(current_user), :html => {:id => "friend_photos_search", :method => "GET", :onsubmit => "return false"} do %>
-                    <div class="textS"><%= text_field_tag "search[name]", "" %></div>
-                    <div class="btmS"><a href="javascript:;" onclick="searchFriendPhotos();"><img src="/images/iconSF.png"/></a></div>
+                    <div id="btnF_submit" class="textS"><%= text_field_tag "search[name]", "" %></div>
+                    <div class="btmS"><a id="btnSF_submit" href="javascript:;" onclick="searchFriendPhotos();"><img src="/images/iconSF.png"/></a></div>
                   <% end %>
                 </div>
               </div>
@@ -56,8 +56,8 @@
             <div class="slsTopLB friLeft">
               <div class="search" style="margin-top:-19px; margin-bottom:20px">
                 <%= form_for :search_my_photo, :url => my_p_user_photos_path(current_user), :html => {:id => "my_photos_search", :method => "GET", :onsubmit => "return false"} do %>
-                  <div class="textS"><%= text_field_tag "search[name]", "" %></div>
-                  <div class="btmS"><a href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a></div>
+                  <div id="btnM_submit" class="textS"><%= text_field_tag "search[name]", "" %></div>
+                  <div class="btmS"><a id="btnSM_submit" href="javascript:;" onclick="searchMyPhotos();"><img src="/images/iconSF.png"/></a></div>
                 <% end %>
               </div>
             </div>
@@ -106,13 +106,24 @@
     $("#friend_photos_list").bind("keypress", function(e) {
       if (e.keyCode == 13) {
         searchFriendPhotos();
+        $('#btnF_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
         return false;
       }    
-    });   
+    });
+    $("#btnSF_submit").click(function(){
+      $('#btnF_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
+    });
   });
   $(document).ready(function(){   
-    $("#my_photos_list").keypress(function(e){
-      if(e.which==13) searchMyPhotos();
+    $("#my_photos_list").bind("keypress", function(e) {
+      if (e.keyCode == 13) {
+        searchMyPhotos();
+        $('#btnM_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
+        return false;
+      }
+      });
+    $("#btnSM_submit").click(function(){
+      $('#btnM_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
     });
   });
 </script>
