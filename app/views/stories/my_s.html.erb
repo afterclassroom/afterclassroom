@@ -1,36 +1,41 @@
-<div class="slsTop">
+<div id="my_stories_list">
+  <div class="slsTop">
     <div class="slsTopL">
-        <div class="slsTopLT">
-            Your stories
-        </div>
-        <div class="slsTopLB friLeft">
-            <div class="search" style="margin-top: -15px;">
-                <%= form_tag my_s_user_stories_path(current_user), {:id => "my_stories_search", :method => "GET", :onsubmit => "return false;"} do %>
-                <div class="textS">
-                    <%= text_field_tag "search[name]", "#{@search_name}" %>
-                </div>
-                <div class="btmS">
-                    <a href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a>
-                </div><% end %>
+      <div class="slsTopLT">
+        Your stories
+      </div>
+      <div class="slsTopLB friLeft">
+        <div class="search" style="margin-top: -15px;">
+          <%= form_tag my_s_user_stories_path(current_user), {:id => "my_stories_search", :method => "GET", :onsubmit => "return false;"} do %>               
+            <div id="btnM_submit" class="textS">
+              <%= text_field_tag "search[name]", "#{@search_name}" %>
             </div>
+            <div class="btmS">
+              <a id="btnSM_submit" href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a>
+            </div><% end %>
         </div>
+      </div>
     </div>
     <div class="slsTopR" style="float:left;">
-        <!--Pagination-->
-        <div class="assPage my_stories">
-            <span class="numPage"><%= page_entries_info @stories %></span>
-            <%= will_paginate @stories %>
-        </div>
-        <!--Pagination-->
+      <!--Pagination-->
+      <div class="assPage my_stories">
+        <span class="numPage"><%= page_entries_info @stories %></span>
+        <%= will_paginate @stories %>
+      </div>
+      <!--Pagination-->
     </div>
-</div>
-<div id="mytable">
+  </div>
+  <div id="mytable">
     <% @stories.each do |s| %>
-    <%= render :partial => "item_mystory", :locals => {:story => s} %>
+      <%= render :partial => "item_mystory", :locals => {:story => s} %>
     <% end %>
+  </div>
 </div>
 
 <%= render :partial => "action_box_menu" %>
 <script type="text/javascript">
-    formatLinkForPaginationURLMy();
+  $("#btnSM_submit").click(function(){
+    $('#btnM_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
+  });
+  formatLinkForPaginationURLMy();
 </script>
