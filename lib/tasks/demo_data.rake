@@ -9,38 +9,39 @@ namespace :db do
     desc 'Load demo data'
     task :load => :environment do |t|
       # Users
-#      departments_for_schools
-#      create_demo_people
-#      create_demo_friendship
-#      create_demo_fan
-#      create_demo_wall
+      #      departments_for_schools
+      #      create_demo_people
+      #      create_demo_friendship
+      #      create_demo_fan
+      #      create_demo_wall
       # Begin creating Posts data
-#      create_demo_posts_assignments
-#      create_demo_posts_tests
-#      create_demo_posts_projects
-#      create_demo_posts_exams
-#      create_demo_posts_myx
-#      create_demo_posts_books
-#      create_demo_posts_tutors
-#      create_demo_posts_jobs
-#      create_demo_posts_housings
-#      create_demo_posts_parties
-#      create_demo_posts_teamups
-#      create_demo_posts_awarenesses
-#      create_demo_posts_foods
-#      create_demo_posts_qas
-#      create_demo_posts_events
+      #      create_demo_posts_assignments
+      #      create_demo_posts_tests
+      #      create_demo_posts_projects
+      #      create_demo_posts_exams
+      #      create_demo_posts_myx
+      #      create_demo_posts_books
+      #      create_demo_posts_tutors
+      #      create_demo_posts_jobs
+      #      create_demo_posts_housings
+      #      create_demo_posts_parties
+      #      create_demo_posts_teamups
+      #      create_demo_posts_awarenesses
+      #      create_demo_posts_foods
+      #      create_demo_posts_qas
+      #      create_demo_posts_events
 
       # Exam schedule
-#      create_demo_posts_exam_schedules
+      #      create_demo_posts_exam_schedules
       # Messages data
-#      create_demo_messages
+      #      create_demo_messages
       # Story
-#      create_demo_stories
+      #      create_demo_stories
       
       #create_demo_posts_forums
 
-      create_demo_press_release
+      #create_demo_press_release
+      create_demo_learn_tool
 
     end
     
@@ -643,4 +644,27 @@ def create_demo_press_release
       p.content = Faker::Lorem.paragraphs
     end
   end
+end
+
+def create_demo_learn_tool
+  
+  verify = [true, false]
+  authorize = [true, false]
+  href = ["mail.google.com","calendar.google.com"]
+  
+  200.times do
+    user = User.find(rand(User.count).to_i + 1)
+    Learntool.create do |l|
+      l.user = user
+      l.name = Faker::Lorem.sentence
+      l.description = Faker::Lorem.paragraphs
+      l.verify = verify[rand(verify.size).to_i]
+      l.authorize = authorize[rand(authorize.size).to_i]
+      l.href = href[rand(href.size).to_i]
+      
+      l.acc_play_no = rand(10000)
+      
+    end
+  end
+  
 end

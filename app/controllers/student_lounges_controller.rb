@@ -167,8 +167,4 @@ class StudentLoungesController < ApplicationController
     render :layout => false
   end
   
-  def learningtools  
-   
-  end
-  
 end

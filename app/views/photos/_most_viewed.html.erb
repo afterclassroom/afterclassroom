@@ -16,6 +16,7 @@ most_viewed_photo_albums = PhotoAlbum.with_users(u).with_limit.most_view
       <% most_viewed_photo_albums.each do |pa| %>
         <div class="photoItem">
           <div class="photoImg"><%= link_to get_first_photo(pa), user_photo_album_url(current_user, pa) %></div>
+          <span style="margin-top: -16px; position: absolute; width: 85px; overflow: hidden; height: 25px;"><%= truncate_words(pa.name, 5) %></span>
         </div>
       <% end %>
     </div>
