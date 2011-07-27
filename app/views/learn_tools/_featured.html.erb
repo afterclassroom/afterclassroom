@@ -17,6 +17,8 @@
     margin-top: -19px;
   }
 </style>
+<% form_tag url_for(:controller => "learn_tools", :action => "featured_tool_paging"), :id => "form_featured", :method => :get, :remote => true do %>
+
 <div class="learnTop">
   <div class="inboxTitle">Featured by AfterClassroom</div>
   <div class="learnPage">
@@ -38,9 +40,11 @@
     </div>
   <% end %>
 </div>
+
+<% end %> <!-- end form for -->
 <script type="text/javascript">
   function ShowFeaturedOverlay(){
-    $('.learnTop').append('<div id="overlay"></div>');
+    $('.learnTop').first().next().append('<div id="overlay"></div>');
     var position = $('.learnTop').offset();
 
     $("#overlay")
@@ -58,9 +62,9 @@
   $(document).ready(function(){
     var previousPage = $('.learnPage').find('.previous_page');
     var nextPage = $('.learnPage').find('.next_page');
-    
     $(previousPage).click(function(){
-      ShowFeaturedOverlay();
+      //ShowFeaturedOverlay();
+      $("#form_featured").submit();
     });
     
   });//end document.ready

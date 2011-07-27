@@ -54,7 +54,7 @@ Afterclassroom::Application.routes.draw do
     
     resources :learn_tools do
       collection do
-        get :index
+        get :index, :featured_tool_paging
       end
     end    
 

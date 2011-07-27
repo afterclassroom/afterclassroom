@@ -1,0 +1,3 @@
+var abc = $('.learnTop').first();
+$('.learnTop').first().remove();
+$(abc).prev().html("<%= escape_javascript( render :partial => "featured") %>");
