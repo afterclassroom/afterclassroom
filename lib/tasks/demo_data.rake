@@ -41,7 +41,8 @@ namespace :db do
       #create_demo_posts_forums
 
       #create_demo_press_release
-      #create_demo_learn_tool
+      create_demo_learn_tool
+      #create_demo_learn_tool_category
 
     end
     
@@ -647,7 +648,15 @@ def create_demo_press_release
 end
 
 def create_demo_learn_tool_category
+  cate = ["Physics","Biology","Mathematics"]
   
+  cate.size.times do
+    
+    LearnToolCate.create do |l|
+      l.title = cate[rand(cate.size).to_i]
+      l.description = Faker::Lorem.paragraphs
+    end
+  end
 end
 
 def create_demo_learn_tool
@@ -658,6 +667,7 @@ def create_demo_learn_tool
   
   200.times do
     user = User.find(rand(User.count).to_i + 1)
+    cate = LearnToolCate.find(rand(LearnToolCate.count).to_i + 1)
     Learntool.create do |l|
       l.user = user
       l.name = Faker::Lorem.sentence
@@ -665,8 +675,9 @@ def create_demo_learn_tool
       l.verify = verify[rand(verify.size).to_i]
       l.authorize = authorize[rand(authorize.size).to_i]
       l.href = href[rand(href.size).to_i]
+      l.learn_tool_cate = cate
       
-      l.acc_play_no = rand(10000)
+      l.acc_play_no = rand(10)
       
     end
   end
