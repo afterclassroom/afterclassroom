@@ -19,7 +19,7 @@ You are here: <a href="/">Home</a>
             <%= form_for(@post_exam_schedule, :html => {:multipart => true, :id => "form_post" }) do |f| %>
             <%= render :partial => "form", :locals => {:f => f} %>
             <div class="submit">
-                <a href="javascript:;" onclick="submit();"><%= submit_tag 'Update' %></a>
+                <a href="javascript:;" id="submit_form"><%= submit_tag 'Update' %></a>
             </div>
             <% end %>
         </div>
@@ -31,3 +31,10 @@ You are here: <a href="/">Home</a>
     <!--Ads-->
 </div>
 <!--Content-->
+<script>
+  $(document).ready(function(){
+    $('#submit_form').click(function(){
+      submitForm();
+    });
+  });
+</script>

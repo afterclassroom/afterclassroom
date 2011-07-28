@@ -20,7 +20,7 @@
     	<%= display_flash_messages_with_raw %>
       <%= form_for(@post_teamup, :html => {:multipart => true, :id => "form_post" }) do |f| %>
         <%= render :partial => "form", :locals => {:f => f} %>
-        <div class="submit"><a href="javascript:;" onclick="submit();">Send</a></div>
+        <div class="submit"><a href="javascript:;" id="submit_form">Send</a></div>
       <% end %>
     </div>
   </div>
@@ -36,3 +36,10 @@
   <!--Ads-->
 </div>
 <!--Content-->
+<script>
+  $(document).ready(function(){
+    $('#submit_form').click(function(){
+      submitForm();
+    });
+  });
+</script>
