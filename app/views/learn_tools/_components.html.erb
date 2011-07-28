@@ -1,13 +1,15 @@
 <div style="border-bottom: 1px solid #DBDBDB; overflow: hidden;margin-bottom: 10px;" class="learnCoSe">
 
-  <select style="width: 200px; height: 23px;padding-top: 3px;">
-    <option>Please select ... </option>
+  <% form_tag url_for(:controller => "learn_tools", :action => "index"), :id => "form_select_cate", :method => :get, :remote => false do %>
+  <select id="tool_cate" name="tool_cate" style="width: 200px; height: 23px;padding-top: 3px;">
+      <option>Please select ... </option>
 
-    <% @tool_cats.each do |tc| %>
-      <option><%= tc.title %></option>
-    <% end %>
+      <% @tool_cats.each do |tc| %>
+        <option><%= tc.title %></option>
+      <% end %>
 
-  </select>
+    </select>
+  <% end %>
 
 
 
@@ -21,3 +23,11 @@
   </div>
 
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#tool_cate').change(function(){
+      $('form#form_select_cate').submit();
+    });
+  });
+  
+</script>
