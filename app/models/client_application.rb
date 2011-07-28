@@ -1,6 +1,7 @@
 require 'oauth'
 class ClientApplication < ActiveRecord::Base
   belongs_to :user
+  has_one :learntool #datnt: configure this in order for learntool to refer to token
   has_many :tokens, :class_name => "OauthToken"
   has_many :access_tokens
   has_many :oauth2_verifiers

@@ -9,7 +9,7 @@ class CreateLearntools < ActiveRecord::Migration
       t.boolean :authorize
       t.text :href
       t.integer :acc_play_no
-
+      t.integer :client_application_id
       t.timestamps
     end
   end

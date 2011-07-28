@@ -1,6 +1,7 @@
 class Learntool < ActiveRecord::Base
   belongs_to :user
   belongs_to :learn_tool_cate
+  belongs_to :client_application
   
   
   #with_featured is those tools use AfterclassroomAPI
