@@ -5,7 +5,7 @@ class Learntool < ActiveRecord::Base
   
   
   #with_featured is those tools use AfterclassroomAPI
-  scope :with_featured, :conditions => "ac_api != false", :order => "learntools.acc_play_no DESC"
+  scope :with_featured, :conditions => "client_application_id > 0", :order => "learntools.acc_play_no DESC"
   
   #with_payable is those tools that third-party pay money to AfterClassroom
   scope :with_payable, :conditions =>  "acc_play_no > 0", :order => "learntools.acc_play_no DESC"
