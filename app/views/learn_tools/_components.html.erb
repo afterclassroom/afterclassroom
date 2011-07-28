@@ -1,16 +1,12 @@
 <div style="border-bottom: 1px solid #DBDBDB; overflow: hidden;margin-bottom: 10px;" class="learnCoSe">
 
-  <select style="width: 200px;">
-    <option>option01</option>
-    <option>option02</option>
-    <option>option03</option>
-    <option>option04</option>
-    <option>option05</option>
-    <option>option06</option>
-    <option>option07</option>
-    <option>option08</option>
-    <option>option09</option>
-    <option>option10</option>
+  <select style="width: 200px; height: 23px;padding-top: 3px;">
+    <option>Please select ... </option>
+
+    <% @tool_cats.each do |tc| %>
+      <option><%= tc.title %></option>
+    <% end %>
+
   </select>
 
 
