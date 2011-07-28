@@ -664,9 +664,10 @@ def create_demo_learn_tool
   bool_array = [true, false]
   href = ["mail.google.com","calendar.google.com"]
   
-  200.times do
+  300.times do |index|
     user = User.find(rand(User.count).to_i + 1)
     cate = LearnToolCate.find(rand(LearnToolCate.count).to_i + 1)
+
     Learntool.create do |l|
       l.user = user
       l.name = Faker::Lorem.sentence
@@ -675,8 +676,18 @@ def create_demo_learn_tool
       l.authorize = bool_array[rand(bool_array.size).to_i]
       l.href = href[rand(href.size).to_i]
       l.learn_tool_cate = cate
-      l.ac_api = bool_array[rand(bool_array.size).to_i]
       l.acc_play_no = rand(10)
+      
+      if (index % 7 == 0 ) #this condition is to limit amount of learnTool with API
+        client_application = ClientApplication.create! do |ca|
+          ca.name = "test"
+          ca.url = "http://google.com"
+          ca.callback_url = "http://gmail.com"
+          ca.support_url = "http://ymail.com"
+          ca.user = user
+        end
+        l.client_application = client_application
+      end
       
     end
   end
