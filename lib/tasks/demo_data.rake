@@ -675,7 +675,13 @@ def create_demo_learn_tool
       l.authorize = bool_array[rand(bool_array.size).to_i]
       l.href = href[rand(href.size).to_i]
       l.learn_tool_cate = cate
-      l.ac_api = bool_array[rand(bool_array.size).to_i]
+      #l.ac_api = bool_array[rand(bool_array.size).to_i]
+
+      #tham khao code sau de them du lieu client_application vao
+      #    @client_application = current_user.client_applications.build(params[:client_application])
+      #    if @client_application.save
+
+      
       l.acc_play_no = rand(10)
       
     end
