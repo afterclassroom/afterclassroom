@@ -27,6 +27,11 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def maylike_tool_paging
+    params[:maylike_to_load] = params[:page_to_load]
+    render :layout => false
+  end
+  
   def search_tool
     #BEGIN temporary code for developing purpose only
     @features = Learntool.paging_featured(params)
