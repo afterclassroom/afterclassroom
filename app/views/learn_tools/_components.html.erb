@@ -16,21 +16,29 @@
   <% end %>
 
 
+  <% form_tag url_for(:controller => "learn_tools", :action => "search_tool"), :id => "form_search_tool", :method => :post, :remote => false do %>
+    <div style="margin-bottom: 10px; color: rgb(110, 110, 110); background: url(&quot;/images/bgSearchF.png&quot;) no-repeat scroll left top transparent; float: right; height: 24px; padding-right: 0pt; width: 194px;">
 
-  <div style="margin-bottom: 10px; color: rgb(110, 110, 110); background: url(&quot;/images/bgSearchF.png&quot;) no-repeat scroll left top transparent; float: right; height: 24px; padding-right: 0pt; width: 194px;">
-    <form accept-charset="UTF-8" action="/press_infos/searchpr" id="info_search" method="get"><div style="margin: 0pt; padding: 0pt; display: inline;"><input type="hidden" name="utf8" value="✓"></div>
+      <div style="margin: 0pt; padding: 0pt; display: inline;">
+        <input type="hidden" name="utf8" value="✓"></div>
       <div class="textS"><input type="text" id="search_content" name="search_content" style="height: 12px;" value=""></div>
       <div style="margin-top: -18px; margin-right: 3px; float: right;">
-        <a href="javascript:;" onclick="searchPress();"><img src="/images/iconSF.png" style="border: 0px none;"></a>
+        <a id="btn_search_tool" href="javascript:;"><img src="/images/iconSF.png" style="border: 0px none;"></a>
       </div>
-    </form>          
-  </div>
+
+    </div>
+
+  <% end %>
 
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
     $('#tool_cate').change(function(){
       $('form#form_select_cate').submit();
+    });
+    
+    $('#btn_search_tool').click(function(){
+      $('form#form_search_tool').submit();
     });
   });
   
