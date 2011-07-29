@@ -12,6 +12,8 @@ class LearnToolsController < ApplicationController
       params[:may_like_page] = params[:may_like_page] ? params[:may_like_page]  : "1"
       @maylikes = Learntool.paging_may_like(params)
       @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_may_like.size / 10.0 ).round.to_s
+      
+      @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:all_tool_page], :per_page => 5)
     else #when user filter tool by category
       #with_cate
       @features = Learntool.with_cate(params[:tool_cate]).paging_featured(params)
