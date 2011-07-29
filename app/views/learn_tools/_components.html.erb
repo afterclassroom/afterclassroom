@@ -2,14 +2,14 @@
 
   <% form_tag url_for(:controller => "learn_tools", :action => "index"), :id => "form_select_cate", :method => :get, :remote => false do %>
     <select id="tool_cate" name="tool_cate" style="width: 200px; height: 23px;padding-top: 3px;">
-      <option><%= params[:tool_cate] %></option>
+      <option value="<%= params[:tool_cate] %>"><%= params[:tool_cate] != "-1" ? LearnToolCate.find(params[:tool_cate]).title : "Please select..." %></option>
 
-      <% if params[:tool_cate] != "Please select..." %>
-        <option>Please select...</option>
+      <% if params[:tool_cate] != "-1" %>
+        <option value="-1">Please select...</option>
       <% end %>
 
       <% @tool_cats.each do |tc| %>
-        <option><%= tc.title %></option>
+        <option value="<%= tc.id %>"><%= tc.title %></option>
       <% end %>
 
     </select>

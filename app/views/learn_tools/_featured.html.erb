@@ -1,5 +1,6 @@
 <% form_tag url_for(:controller => "learn_tools", :action => "featured_tool_paging"), :id => "form_featured", :method => :get, :remote => true do %>
   <%= hidden_field_tag "page_to_load", params[:feature_page] %>
+  <%= hidden_field_tag "cur_cate_at_feature", params[:tool_cate] ? params[:tool_cate] : @cur_cate_at_feat %>
 
   <div class="learnTop">
     <div class="inboxTitle">Featured by AfterClassroom</div>
