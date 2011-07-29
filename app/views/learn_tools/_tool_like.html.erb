@@ -13,20 +13,39 @@
   <% @maylikes.each_with_index do |m,index| %>
     <%= (index == 0 || index == 5) ? raw("<div class='learnTrow'>") : raw("") %>
     <%= render :partial => "may_like_item", :locals => {:index => index, :m => m} %>
-    <%= (index == 4 || index == 9) ? raw("</div>") : raw("") %>
+    <%= (index == 4 || index == 9 || index == @maylikes.size ) ? raw("</div>") : raw("") %>
   <% end %>
 </div>
-<a id="testbtn" href="javascript:;">click here </a>
 <% end %><!-- end form_tag -->
 <script type="text/javascript">
+  function ShowMayLikeOverlay(){
+    $('.learnTop').eq(1).next().append('<div id="maylikeoverlay"></div>');
+    var position = $('.learnTop').eq(1).offset();
+
+    $("#maylikeoverlay")
+    .height(301)
+    .css({
+      'opacity' : 0.4,
+      'position': 'absolute',
+      'top': position.top -10,
+      'left': position.left - 10,
+      'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+      'width': '654px',
+      'background-color': 'black',
+      'z-index': 5000
+    });
+  }  
+  
   function SetPreviousMayLikeVariable(){
     var strPage = ''+ (parseInt( $('#maylike_to_load').val() ) - 1);
     $('#maylike_to_load').val(strPage);
   }  
+  function SetNextMayLikeVariable(){
+    var strPage = ''+ (parseInt( $('#maylike_to_load').val() ) + 1);
+    $('#maylike_to_load').val(strPage);
+  }
+  
   $(document).ready(function(){
-    $('#testbtn').click(function(){
-      $('form#form_maylike').submit();
-    });
 
     var previousPage = $('.learnPage').eq(1).find('.previous_page');
     
@@ -34,11 +53,20 @@
       $('.learnPage').eq(1).find('.previous_page').attr('href','javascript:;');
       $(previousPage).click(function(){
         SetPreviousMayLikeVariable();
-        //ShowMayLikeOverlay();
+        ShowMayLikeOverlay();
         $('form#form_maylike').submit();
       });
     }
-    
+
+    var nextPage = $('.learnPage').eq(1).find('.next_page');
+    if ( $('.learnPage').eq(1).find('.next_page')[0].nodeName == 'A' ){
+      $('.learnPage').eq(1).find('.next_page').attr('href','javascript:;');
+      $(nextPage).click(function(){
+        SetNextMayLikeVariable();
+        ShowMayLikeOverlay();
+        $("form#form_maylike").submit();
+      });
+    }    
     
     
   });
