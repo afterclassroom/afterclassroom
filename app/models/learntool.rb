@@ -4,7 +4,6 @@ class Learntool < ActiveRecord::Base
   belongs_to :client_application
 
   has_many :my_tools, :dependent => :destroy
-  has_many :players, :class_name=>"User", :through => :my_tools
 
   
   
