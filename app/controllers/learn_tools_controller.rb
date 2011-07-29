@@ -13,6 +13,10 @@ class LearnToolsController < ApplicationController
     
   end
   
+  def newlearn
+    
+  end
+  
   def featured_tool_paging
     params[:feature_page] = params[:page_to_load]
     #params[:feature_page] = "3"

@@ -593,6 +593,7 @@
     width: 100px;
     word-wrap: break-word;
     margin-top: 3px;
+    padding: 0px;
 }
 .photoInf{
     font-size:10px;
@@ -5176,7 +5177,7 @@ span.btmTag a:hover{
     margin-top: 4px;
     overflow: hidden;
     position: absolute;
-    width: 100px;
+    width: 95px;
     word-wrap: break-word;
 }
 .musicN{

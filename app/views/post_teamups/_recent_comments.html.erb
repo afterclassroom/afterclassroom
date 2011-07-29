@@ -16,10 +16,10 @@
                     </div>
                     <div class="recentUni">
                         <span>at </span>
-                        <%= link_to truncate_words(post.title, 4), post_teamup_path(post.post_teamup) %>
+                        <%= link_to truncate(post.title, :length => 60, :omission => "..."), post_teamup_path(post.post_teamup) %>
                     </div>
                     <div class="recentDes">
-                        <%= c.comment %>
+                        <%= truncate(c.comment, :length => 150, :omission => '...') %>
                     </div>
                 </div>
             </div>

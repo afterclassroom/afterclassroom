@@ -8,8 +8,8 @@
         <div class="recentImg"><%= show_image_user_post(c.user) %></div>
         <div class="recentInf">
           <div class="recentName"><%= show_user_post(c.user) %></div>
-          <div class="recentUni"><span>at </span><%= link_to truncate_words(c.commentable.title, 4), post_awareness_path(c.commentable.post_awareness) %></div>
-          <div class="recentDes"><%= c.comment %></div>
+          <div class="recentUni"><span>at </span><%= link_to truncate(c.commentable.title, :length => 60, :omission => '...'), post_awareness_path(c.commentable.post_awareness) %></div>
+          <div class="recentDes"><%= truncate(c.comment, :length => 150, :omission => '...') %></div>
         </div>
       </div>
       <% end %>
