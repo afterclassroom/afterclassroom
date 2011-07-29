@@ -1,5 +1,5 @@
 <% form_tag url_for(:controller => "learn_tools", :action => "maylike_tool_paging"), :id => "form_maylike", :method => :get, :remote => true do %>
-<%= hidden_field_tag "maylike_to_load", params[:feature_page] %>
+<%= hidden_field_tag "maylike_to_load", params[:may_like_page] %>
 <div class="learnTop learnTool">
   <div class="inboxTitle">Learning Tools You May Like</div>
   <div class="learnPage">
@@ -12,26 +12,30 @@
 <div class="learnTools">
   <% @maylikes.each_with_index do |m,index| %>
     <%= (index == 0 || index == 5) ? raw("<div class='learnTrow'>") : raw("") %>
-    <%= render :partial => "may_like_item", :locals => {:index => index} %>
+    <%= render :partial => "may_like_item", :locals => {:index => index, :m => m} %>
     <%= (index == 4 || index == 9) ? raw("</div>") : raw("") %>
   <% end %>
 </div>
 <a id="testbtn" href="javascript:;">click here </a>
 <% end %><!-- end form_tag -->
 <script type="text/javascript">
+  function SetPreviousMayLikeVariable(){
+    var strPage = ''+ (parseInt( $('#maylike_to_load').val() ) - 1);
+    $('#maylike_to_load').val(strPage);
+  }  
   $(document).ready(function(){
     $('#testbtn').click(function(){
       $('form#form_maylike').submit();
     });
 
-    var previousPage = $('.learnPage').first().find('.previous_page');
+    var previousPage = $('.learnPage').eq(1).find('.previous_page');
     
-    if ( $('.learnPage').first().find('.previous_page')[0].nodeName == 'A' ){
-      $('.learnPage').first().find('.previous_page').attr('href','javascript:;');
+    if ( $('.learnPage').eq(1).find('.previous_page')[0].nodeName == 'A' ){
+      $('.learnPage').eq(1).find('.previous_page').attr('href','javascript:;');
       $(previousPage).click(function(){
-        SetPreviousPageVariable();
-        ShowFeaturedOverlay();
-        $("#form_featured").submit();
+        SetPreviousMayLikeVariable();
+        //ShowMayLikeOverlay();
+        $('form#form_maylike').submit();
       });
     }
     
