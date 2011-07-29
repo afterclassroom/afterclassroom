@@ -8,7 +8,7 @@ class Learntool < ActiveRecord::Base
   scope :with_featured, :conditions => "client_application_id > 0", :order => "learntools.acc_play_no DESC"
   
   #with_payable is those tools that third-party pay money to AfterClassroom
-  scope :with_payable, :conditions =>  "acc_play_no > 0", :order => "learntools.acc_play_no DESC"
+  scope :with_may_like, :conditions =>  "acc_play_no > 0", :order => "learntools.acc_play_no DESC"
   
   scope :with_cate, lambda {|cate_id| {:conditions => ["learn_tool_cate_id = ?", cate_id]}}
   
@@ -16,4 +16,8 @@ class Learntool < ActiveRecord::Base
       Learntool.with_featured.paginate(:page => params[:feature_page], :per_page => 2)
   end
   
+  def self.paging_may_like(params)
+      Learntool.with_may_like.paginate(:page => params[:may_like_page], :per_page => 10)
+  end
+
 end
