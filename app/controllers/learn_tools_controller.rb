@@ -29,12 +29,12 @@ class LearnToolsController < ApplicationController
   
   def featured_tool_paging
     if params[:cur_cate_at_feature] == "-1"#there is no category selected
-      params[:feature_page] = params[:page_to_load]
+      params[:feature_page] = params[:page_to_load]#page of will_paginate
     
       @features = Learntool.paging_featured(params)
       @str_feature_page = "Page #{params[:feature_page]} of "+ ( Learntool.with_featured.size / 2.0 ).round.to_s
     else
-      params[:feature_page] = params[:page_to_load]
+      params[:feature_page] = params[:page_to_load]#page of will_paginate
     
       @features = Learntool.with_cate(params[:cur_cate_at_feature]).paging_featured(params)
       @str_feature_page = "Page #{params[:feature_page]} of "+ ( Learntool.with_cate(params[:cur_cate_at_feature]).with_featured.size / 2.0 ).round.to_s
@@ -45,9 +45,17 @@ class LearnToolsController < ApplicationController
   end
   
   def maylike_tool_paging
-    params[:may_like_page] = params[:maylike_to_load]
-    @maylikes = Learntool.paging_may_like(params)
-    @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_may_like.size / 10.0 ).round.to_s
+    #cur_cate_at_maylike
+    if params[:cur_cate_at_maylike] == "-1"
+      params[:may_like_page] = params[:maylike_to_load]#page of will_paginate
+      @maylikes = Learntool.paging_may_like(params)
+      @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_may_like.size / 10.0 ).round.to_s
+    else
+      params[:may_like_page] = params[:maylike_to_load]#page of will_paginate
+      @maylikes = Learntool.with_cate(params[:cur_cate_at_maylike]).paging_may_like(params)
+      @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_cate(params[:cur_cate_at_maylike]).with_may_like.size / 10.0 ).round.to_s
+      @cur_cate_at_like = params[:cur_cate_at_maylike]
+    end
     render :layout => false
   end
   

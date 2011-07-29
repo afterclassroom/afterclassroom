@@ -1,6 +1,6 @@
 <% form_tag url_for(:controller => "learn_tools", :action => "maylike_tool_paging"), :id => "form_maylike", :method => :get, :remote => true do %>
 <%= hidden_field_tag "maylike_to_load", params[:may_like_page] %>
-<%= hidden_field_tag "cur_cate_at_maylike", params[:tool_cate] %>
+<%= hidden_field_tag "cur_cate_at_maylike", params[:tool_cate] ? params[:tool_cate] : @cur_cate_at_like %>
 <div class="learnTop learnTool">
   <div class="inboxTitle">Learning Tools You May Like</div>
   <div class="learnPage">

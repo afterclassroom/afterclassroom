@@ -653,7 +653,7 @@ def create_demo_learn_tool_category
   cate.size.times do
     
     LearnToolCate.create do |l|
-      l.title = cate[rand(cate.size).to_i]
+      l.title = cate[rand(cate.size)]
       l.description = Faker::Lorem.paragraphs
     end
   end
