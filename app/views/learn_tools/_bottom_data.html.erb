@@ -1,13 +1,15 @@
 <div class="learnN">
   <div class="learnNM">
-    <div class="learnNMtitle">Learning Tools</div>
-    <div class="learnNMP">Popular</div>
+    <div class="learnNMtitle" style="background-color: #F9F9F8; color: #3E3E3E; font-weight: normal;border-left: 1px solid #DBDBDB;">Learning Tools</div>
+    <div class="learnNMP" style="color: #0A81C4; background: url('/images/bor1.gif') repeat-x scroll right bottom transparent">Popular</div>
     <div class="learnNML"><a href="#">Verified</a></div>
     <div class="learnNML"><a href="#">Recently Added</a></div>
     <div class="learnNMR"><a href="#">See All</a></div>
   </div>
 </div>
 
-<% 5.times do %>
-  <%= render :partial => "bottom_item" %>
+<% @all_tools.each do |ait|%>
+  <%= render :partial => "bottom_item", :locals => {:mit => ait} %>
 <% end %>
+
+<%= will_paginate @all_tools, :param_name => "all_tool_page"  %> 

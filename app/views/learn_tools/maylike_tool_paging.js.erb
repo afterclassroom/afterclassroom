@@ -1,0 +1,4 @@
+//var prevLearnTop = $('.learnTop').eq(1).prev();
+$('form#form_maylike').html("<%= params[:page_to_load] %>");
+$('form#form_maylike').before("<%= escape_javascript ( raw(render :partial => "tool_like")) %>");
+$('form#form_maylike').eq(1).remove();

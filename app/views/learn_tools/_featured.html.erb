@@ -1,24 +1,6 @@
-<style>
-  .previous_page{
-    background: url("/images/btmPagePre.png") no-repeat scroll left center transparent;
-    display: block;
-    height: 19px;
-    text-decoration: none;
-    width: 19px;
-    margin-right: 28px;
-  }
-  .next_page {
-    background: url("/images/btmPageNext.png") no-repeat scroll left center transparent;
-    display: block;
-    height: 19px;
-    text-decoration: none;
-    width: 19px;
-    float: right;
-    margin-top: -19px;
-  }
-</style>
 <% form_tag url_for(:controller => "learn_tools", :action => "featured_tool_paging"), :id => "form_featured", :method => :get, :remote => true do %>
   <%= hidden_field_tag "page_to_load", params[:feature_page] %>
+  <%= hidden_field_tag "cur_cate_at_feature", params[:tool_cate] ? params[:tool_cate] : @cur_cate_at_feat %>
 
   <div class="learnTop">
     <div class="inboxTitle">Featured by AfterClassroom</div>
@@ -57,7 +39,6 @@
       'left': position.left - 10,
       'background':'url("/images/ajax-loader-a.gif") no-repeat center',
       'width': '653px',
-      'background-color': 'black',
       'z-index': 5000
     });
   }
@@ -74,8 +55,8 @@
   $(document).ready(function(){
     var previousPage = $('.learnPage').first().find('.previous_page');
     
-    if ( $('.pagination').find('.previous_page')[0].nodeName == 'A' ){
-      $('.pagination').find('.previous_page').attr('href','javascript:;');
+    if ( $('.learnPage').first().find('.previous_page')[0].nodeName == 'A' ){
+      $('.learnPage').first().find('.previous_page').attr('href','javascript:;');
       $(previousPage).click(function(){
         SetPreviousPageVariable();
         ShowFeaturedOverlay();
@@ -85,7 +66,7 @@
     
     var nextPage = $('.learnPage').first().find('.next_page');
     if ( $('.learnPage').first().find('.next_page')[0].nodeName == 'A' ){
-      $('.pagination').find('.next_page').attr('href','javascript:;');
+      $('.learnPage').first().find('.next_page').attr('href','javascript:;');
       $(nextPage).click(function(){
         SetNextPageVariable();
         ShowFeaturedOverlay();

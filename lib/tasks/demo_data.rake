@@ -41,8 +41,9 @@ namespace :db do
       #create_demo_posts_forums
 
       #create_demo_press_release
-      create_demo_learn_tool
+      #create_demo_learn_tool
       #create_demo_learn_tool_category
+      create_demo_my_learn_tool_lounge
 
     end
     
@@ -653,7 +654,7 @@ def create_demo_learn_tool_category
   cate.size.times do
     
     LearnToolCate.create do |l|
-      l.title = cate[rand(cate.size).to_i]
+      l.title = cate[rand(cate.size)]
       l.description = Faker::Lorem.paragraphs
     end
   end
@@ -691,5 +692,18 @@ def create_demo_learn_tool
       
     end
   end
-  
+end
+
+def create_demo_my_learn_tool_lounge
+  User.count.times do
+    user = User.find(rand(User.count).to_i + 1)
+    no_of_tool = rand(50)#random amount of tool that each user had used
+    no_of_tool.times do
+      ltool = Learntool.find(rand(Learntool.count).to_i + 1)
+      MyTool.create do |mt|
+        mt.user = user
+        mt.learntool = ltool
+      end 
+    end
+  end
 end
