@@ -1,5 +1,5 @@
 <style>
-  .previous_page{
+  .pagination .previous_page{
     background: url("/images/btmPagePre.png") no-repeat scroll left center transparent;
     display: block;
     height: 19px;
@@ -7,7 +7,7 @@
     width: 19px;
     margin-right: 28px;
   }
-  .next_page {
+  .pagination .next_page {
     background: url("/images/btmPageNext.png") no-repeat scroll left center transparent;
     display: block;
     height: 19px;
@@ -42,20 +42,7 @@
 
         <%= render :partial => "bottom_data" %>
 
-        <div class="assPage">
-          <span class="numPage">Page 1 of 22</span>
-          <span class="firstPage"><a href="#">First Page</a></span>
-          <span class="prevPage"><a href="#">Prev</a></span>
-          <span class="currentPage">
-            <a class="selected" href="#"><span>6</span></a>
-            <a href="#"><span>7</span></a>
-            <a href="#"><span>8</span></a>
-            <a href="#"><span>9</span></a>
-            <a href="#"><span>10</span></a>
-          </span>
-          <span class="nextPage"><a href="#">Next</a></span>
-          <span class="lastPage"><a href="#">Last Page</a></span>
-        </div>
+
         <div class="goTop"><a href="#">Top</a></div>
       </div>
     </div>
