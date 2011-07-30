@@ -13,7 +13,6 @@ class LearnToolsController < ApplicationController
       @maylikes = Learntool.paging_may_like(params)
       @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_may_like.size / 10.0 ).round.to_s
       
-      @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:all_tool_page], :per_page => 5)
     else #when user filter tool by category
       #with_cate
       @features = Learntool.with_cate(params[:tool_cate]).paging_featured(params)
@@ -22,6 +21,7 @@ class LearnToolsController < ApplicationController
       params[:may_like_page]= "1"
       @str_feature_page = "Page #{params[:feature_page]} of "+ ( Learntool.with_cate(params[:tool_cate]).with_featured.size / 2.0 ).round.to_s
       @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_cate(params[:tool_cate]).with_may_like.size / 10.0 ).round.to_s
+      @all_tools = Learntool.with_cate(params[:tool_cate]).find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:all_tool_page], :per_page => 5)
     end
   end
   
@@ -36,12 +36,11 @@ class LearnToolsController < ApplicationController
   def featured_tool_paging
     if params[:cur_cate_at_feature] == "-1"#there is no category selected
       params[:feature_page] = params[:page_to_load]#page of will_paginate
-    
       @features = Learntool.paging_featured(params)
       @str_feature_page = "Page #{params[:feature_page]} of "+ ( Learntool.with_featured.size / 2.0 ).round.to_s
+      @cur_cate_at_feat = params[:cur_cate_at_feature]
     else
       params[:feature_page] = params[:page_to_load]#page of will_paginate
-    
       @features = Learntool.with_cate(params[:cur_cate_at_feature]).paging_featured(params)
       @str_feature_page = "Page #{params[:feature_page]} of "+ ( Learntool.with_cate(params[:cur_cate_at_feature]).with_featured.size / 2.0 ).round.to_s
       @cur_cate_at_feat = params[:cur_cate_at_feature]
@@ -56,6 +55,7 @@ class LearnToolsController < ApplicationController
       params[:may_like_page] = params[:maylike_to_load]#page of will_paginate
       @maylikes = Learntool.paging_may_like(params)
       @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_may_like.size / 10.0 ).round.to_s
+      @cur_cate_at_like = params[:cur_cate_at_maylike]
     else
       params[:may_like_page] = params[:maylike_to_load]#page of will_paginate
       @maylikes = Learntool.with_cate(params[:cur_cate_at_maylike]).paging_may_like(params)

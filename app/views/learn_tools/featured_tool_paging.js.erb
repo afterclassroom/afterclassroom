@@ -1,5 +1,2 @@
-var oldLearnTop = $('.learnTop').first();
-var oldLearnlearnNewT = $('.learnNewT').first();
-var prevLearnTop = $('.learnTop').first().prev();
-$('form#form_featured').before("<%= escape_javascript ( raw(render :partial => "featured")) %>");
+$('form#form_featured').before("<%= escape_javascript ( raw(render :partial => "featured")) %>");  
 $('form#form_featured').eq(1).remove();
