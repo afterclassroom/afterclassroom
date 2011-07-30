@@ -23,8 +23,8 @@
   </div>
 </div>
 
-<% @all_tools.each do |ait|%>
-  <%= render :partial => "bottom_item", :locals => {:mit => ait} %>
+<% @all_tools.each do |at|%>
+  <%= render :partial => "bottom_item", :locals => {:item => at} %>
 <% end %>
 
 
