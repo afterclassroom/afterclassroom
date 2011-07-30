@@ -41,8 +41,8 @@ class FriendsController < ApplicationController
     login = params[:mail_account][:login]
     password = params[:mail_account][:password]
     mail_type = params[:mail_type]
-    mail_account = MailAccount.new(login, password, mail_type)
     begin
+      mail_account = MailAccount.new(login, password, mail_type)
       contacts = mail_account.contacts
       arr_mails = []
       contacts.collect {|m| arr_mails << m[1]}
@@ -142,8 +142,8 @@ class FriendsController < ApplicationController
     login = params[:mail_account][:login]
     password = params[:mail_account][:password]
     mail_type = params[:mail_type]
-    mail_account = MailAccount.new(login, password, mail_type)
     begin
+      mail_account = MailAccount.new(login, password, mail_type)
       contacts = mail_account.contacts
       arr_mails = []
       contacts.collect {|m| arr_mails << m[1]}
