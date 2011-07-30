@@ -1,3 +1,2 @@
-var abc = $('.learnTop').first();
-$('.learnTop').first().remove();
-$(abc).prev().html("<%= escape_javascript( render :partial => "featured") %>");
+$('form#form_featured').before("<%= escape_javascript ( raw(render :partial => "featured")) %>");  
+$('form#form_featured').eq(1).remove();

@@ -1,45 +1,28 @@
-<style>
-  .previous_page{
-    background: url("/images/btmPagePre.png") no-repeat scroll left center transparent;
-    display: block;
-    height: 19px;
-    text-decoration: none;
-    width: 19px;
-    margin-right: 28px;
-  }
-  .next_page {
-    background: url("/images/btmPageNext.png") no-repeat scroll left center transparent;
-    display: block;
-    height: 19px;
-    text-decoration: none;
-    width: 19px;
-    float: right;
-    margin-top: -19px;
-  }
-</style>
 <% form_tag url_for(:controller => "learn_tools", :action => "featured_tool_paging"), :id => "form_featured", :method => :get, :remote => true do %>
+  <%= hidden_field_tag "page_to_load", params[:feature_page] %>
+  <%= hidden_field_tag "cur_cate_at_feature", params[:tool_cate] ? params[:tool_cate] : @cur_cate_at_feat %>
 
-<div class="learnTop">
-  <div class="inboxTitle">Featured by AfterClassroom</div>
-  <div class="learnPage">
-    <div class="learnPageL" style="margin-left: 150px;"><%= @str_feature_page %></div>
-    <div style="float: right;"> 
-      <%= will_paginate @features, :page_links=>false,:previous_label=> "",:next_label=>"", :param_name => "feature_page"  %>     
+  <div class="learnTop">
+    <div class="inboxTitle">Featured by AfterClassroom</div>
+    <div class="learnPage">
+      <div class="learnPageL" style="margin-left: 150px;"><%= @str_feature_page %></div>
+      <div style="float: right;"> 
+        <%= will_paginate @features, :page_links=>false,:previous_label=> "",:next_label=>"", :param_name => "feature_page"  %>     
+      </div>
     </div>
   </div>
-</div>
-<div class="learnNewT">
-  <% str_class =["learnNewTL","learnNewTR"] %>
-  <% @features.each_with_index do |f, index| %>
-    <div class="<%=  str_class[index % 2] %>">
-      <div class="learnNewTLtitle"><a href="#"><%= truncate_html(f.name, :length => 30, :omission => '...') %></a></div>
-      <div class="learnNewTLdes">
-        <%= truncate_html(f.description, :length => 180, :omission => '...') %> 
+  <div class="learnNewT">
+    <% str_class =["learnNewTL","learnNewTR"] %>
+    <% @features.each_with_index do |f, index| %>
+      <div class="<%=  str_class[index % 2] %>">
+        <div class="learnNewTLtitle"><a href="#"><%= truncate_html(f.name, :length => 30, :omission => '...') %></a></div>
+        <div class="learnNewTLdes">
+          <%= truncate_html(f.description, :length => 180, :omission => '...') %> 
+        </div>
+        <div class="learnNewTLimg"><a href="#"><div><img src="/images/pictures/learnT1.png"></div></a></div>
       </div>
-      <div class="learnNewTLimg"><a href="#"><div><img src="/images/pictures/learnT1.png"></div></a></div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
 <% end %> <!-- end form for -->
 <script type="text/javascript">
@@ -59,13 +42,38 @@
       'z-index': 5000
     });
   }
+  
+  function SetNextPageVariable(){
+    var strPage = ''+ (parseInt( $('#page_to_load').val() ) + 1);
+    $('#page_to_load').val(strPage);
+  }
+  function SetPreviousPageVariable(){
+    var strPage = ''+ (parseInt( $('#page_to_load').val() ) - 1);
+    $('#page_to_load').val(strPage);
+  }
+  
   $(document).ready(function(){
-    var previousPage = $('.learnPage').find('.previous_page');
-    var nextPage = $('.learnPage').find('.next_page');
-    $(previousPage).click(function(){
-      //ShowFeaturedOverlay();
-      $("#form_featured").submit();
-    });
+    var previousPage = $('.learnPage').first().find('.previous_page');
+    
+    if ( $('.learnPage').first().find('.previous_page')[0].nodeName == 'A' ){
+      $('.learnPage').first().find('.previous_page').attr('href','javascript:;');
+      $(previousPage).click(function(){
+        SetPreviousPageVariable();
+        ShowFeaturedOverlay();
+        $("#form_featured").submit();
+      });
+    }
+    
+    var nextPage = $('.learnPage').first().find('.next_page');
+    if ( $('.learnPage').first().find('.next_page')[0].nodeName == 'A' ){
+      $('.learnPage').first().find('.next_page').attr('href','javascript:;');
+      $(nextPage).click(function(){
+        SetNextPageVariable();
+        ShowFeaturedOverlay();
+        $("#form_featured").submit();
+      });
+    }    
+
     
   });//end document.ready
 </script>

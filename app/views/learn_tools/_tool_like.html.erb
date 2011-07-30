@@ -1,84 +1,73 @@
+<% form_tag url_for(:controller => "learn_tools", :action => "maylike_tool_paging"), :id => "form_maylike", :method => :get, :remote => true do %>
+<%= hidden_field_tag "maylike_to_load", params[:may_like_page] %>
+<%= hidden_field_tag "cur_cate_at_maylike", params[:tool_cate] ? params[:tool_cate] : @cur_cate_at_like %>
 <div class="learnTop learnTool">
   <div class="inboxTitle">Learning Tools You May Like</div>
   <div class="learnPage">
-    <div class="learnPageL">Page 1 of 12</div>
-    <div class="learnPageP"><a href="#">&nbsp;</a></div>
-    <div class="learnPageN"><a href="#">&nbsp;</a></div>
+    <div class="learnPageL" style="margin-left: 150px;"><%= @str_maylike_page %></div>
+    <div style="float: right;">
+      <%= will_paginate @maylikes, :page_links=>false,:previous_label=> "",:next_label=>"", :param_name => "may_like_page"  %>     
+    </div>
   </div>
 </div>
 <div class="learnTools">
-  <div class="learnTrow">
-    <div class="learnTitem">
-      <div class="learnTtitle"><a href="">Lorem ipsum dolor sit amet</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT1.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-    <div class="learnTitem">
-      <div class="learnTtitle"><a href="#">Curabitur vitae risus lorem</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT2.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-    <div class="learnTitem">
-      <div class="learnTtitle"><a href="#">Pellentesque ac aliquet diam</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT3.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-    <div class="learnTitem">
-      <div class="learnTtitle"><a href="#">Duis interdum tellus nisi</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT4.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-    <div class="learnTitem learnLast">
-      <div class="learnTtitle"><a href="#">Vivamus eget felis vitae</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT5.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-  </div>
-  <div class="learnTrow">
-    <div class="learnTitem">
-      <div class="learnTtitle"><a href="">Lorem ipsum dolor sit amet</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT1.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-    <div class="learnTitem">
-      <div class="learnTtitle"><a href="#">Curabitur vitae risus lorem</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT2.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-    <div class="learnTitem">
-      <div class="learnTtitle"><a href="#">Pellentesque ac aliquet diam</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT3.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-    <div class="learnTitem">
-      <div class="learnTtitle"><a href="#">Duis interdum tellus nisi</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT4.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-    <div class="learnTitem learnLast">
-      <div class="learnTtitle"><a href="#">Vivamus eget felis vitae</a></div>
-      <div class="learnTimg"><a href="#"><div><img src="/images/pictures/learnT5.png"></div></a></div>
-      <div class="learnTst">
-        <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-      </div>
-    </div>
-  </div>
+  <% @maylikes.each_with_index do |m,index| %>
+    <%= (index == 0 || index == 5) ? raw("<div class='learnTrow'>") : raw("") %>
+    <%= render :partial => "may_like_item", :locals => {:index => index, :m => m} %>
+    <%= (index == 4 || index == 9 || index == @maylikes.size ) ? raw("</div>") : raw("") %>
+  <% end %>
 </div>
+<% end %><!-- end form_tag -->
+<script type="text/javascript">
+  function ShowMayLikeOverlay(){
+    $('.learnTop').eq(1).next().append('<div id="maylikeoverlay"></div>');
+    var position = $('.learnTop').eq(1).offset();
+
+    $("#maylikeoverlay")
+    .height(301)
+    .css({
+      'opacity' : 0.4,
+      'position': 'absolute',
+      'top': position.top -10,
+      'left': position.left - 10,
+      'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+      'width': '654px',
+      'z-index': 5000
+    });
+  }  
+  
+  function SetPreviousMayLikeVariable(){
+    var strPage = ''+ (parseInt( $('#maylike_to_load').val() ) - 1);
+    $('#maylike_to_load').val(strPage);
+  }  
+  function SetNextMayLikeVariable(){
+    var strPage = ''+ (parseInt( $('#maylike_to_load').val() ) + 1);
+    $('#maylike_to_load').val(strPage);
+  }
+  
+  $(document).ready(function(){
+
+    var previousPage = $('.learnPage').eq(1).find('.previous_page');
+    
+    if ( $('.learnPage').eq(1).find('.previous_page')[0].nodeName == 'A' ){
+      $('.learnPage').eq(1).find('.previous_page').attr('href','javascript:;');
+      $(previousPage).click(function(){
+        SetPreviousMayLikeVariable();
+        ShowMayLikeOverlay();
+        $('form#form_maylike').submit();
+      });
+    }
+
+    var nextPage = $('.learnPage').eq(1).find('.next_page');
+    if ( $('.learnPage').eq(1).find('.next_page')[0].nodeName == 'A' ){
+      $('.learnPage').eq(1).find('.next_page').attr('href','javascript:;');
+      $(nextPage).click(function(){
+        SetNextMayLikeVariable();
+        ShowMayLikeOverlay();
+        $("form#form_maylike").submit();
+      });
+    }    
+    
+    
+  });
+</script>

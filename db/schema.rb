@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20110727035254) do
-=======
-ActiveRecord::Schema.define(:version => 20110727034410) do
->>>>>>> 1831a98300739be438d904edbe4fc73f08277301
+ActiveRecord::Schema.define(:version => 20110729080924) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -187,7 +183,7 @@ ActiveRecord::Schema.define(:version => 20110727034410) do
 
   create_table "forums", :force => true do |t|
     t.string   "title"
-    t.string   "content"
+    t.text     "content"
     t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -274,15 +270,15 @@ ActiveRecord::Schema.define(:version => 20110727034410) do
   end
 
   create_table "learntools", :force => true do |t|
-    t.integer  "user_id",            :null => false
-    t.integer  "learn_tool_cate_id", :null => false
+    t.integer  "user_id",               :null => false
+    t.integer  "learn_tool_cate_id",    :null => false
     t.string   "name"
     t.text     "description"
     t.boolean  "verify"
     t.boolean  "authorize"
-    t.boolean  "ac_api"
     t.text     "href"
     t.integer  "acc_play_no"
+    t.integer  "client_application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -345,6 +341,13 @@ ActiveRecord::Schema.define(:version => 20110727034410) do
 
   add_index "my_stats_ratings", ["rated_type", "rated_id"], :name => "index_my_stats_ratings_on_rated_type_and_rated_id"
   add_index "my_stats_ratings", ["rater_id"], :name => "index_my_stats_ratings_on_rater_id"
+
+  create_table "my_tools", :force => true do |t|
+    t.integer  "user_id",      :null => false
+    t.integer  "learntool_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "no_rater_ratings", :force => true do |t|
     t.integer "rated_id"
@@ -903,6 +906,13 @@ ActiveRecord::Schema.define(:version => 20110727034410) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
+  create_table "video_albums", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "video_files", :force => true do |t|
     t.integer  "video_id",                  :null => false
     t.string   "video_attach_file_name"
@@ -912,18 +922,17 @@ ActiveRecord::Schema.define(:version => 20110727034410) do
   end
 
   create_table "videos", :force => true do |t|
-    t.integer  "user_id",                                   :null => false
+    t.integer  "user_id",                                  :null => false
+    t.integer  "video_album_id",                           :null => false
     t.string   "title"
     t.text     "description"
+    t.integer  "who_can_see",               :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "video_attach_file_name"
     t.string   "video_attach_content_type"
     t.integer  "video_attach_file_size"
     t.datetime "video_attach_updated_at"
-    t.string   "category",                  :default => "", :null => false
-    t.integer  "count_view",                :default => 0,  :null => false
-    t.string   "state",                                     :null => false
   end
 
 end

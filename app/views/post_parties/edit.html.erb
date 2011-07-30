@@ -19,7 +19,7 @@
     <div class="postCont">
       <%= form_for(@post_party, :html => {:multipart => true, :id => "form_post" }) do |f| %>
         <%= render :partial => "form", :locals => {:f => f} %>
-        <div class="submit"><a href="javascript:;" onclick="submit();">Send</a></div>
+        <div class="submit"><a href="javascript:;" id="submit_form">Send</a></div>
       <% end %>
     </div>
   </div>
@@ -39,3 +39,10 @@
   <!--Recent Request Partys-->
 </div>
 <!--Content-->
+<script>
+  $(document).ready(function(){
+    $('#submit_form').click(function(){
+      submitForm();
+    });
+  });
+</script>
