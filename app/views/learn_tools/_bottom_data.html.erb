@@ -1,38 +1,60 @@
-<style>
-  .assPage .pagination .previous_page a:hover {
-    background: none repeat scroll 0 0 #2E6AB1;
-    border-radius: 2px 2px 2px 2px;
-    color: #FFFFFF!important;
-    cursor: pointer;
-    height: 14px;
-  }
-  .assPage .pagination .previous_page a {
-    color: red;
-    padding: 1px 4px;
-    text-decoration: none;
-    background: url("") no-repeat scroll left center transparent;
-  }
-</style>
-<div class="learnN">
-  <div class="learnNM">
-    <div class="learnNMtitle" style="background-color: #F9F9F8; color: #3E3E3E; font-weight: normal;border-left: 1px solid #DBDBDB;">Learning Tools</div>
-    <div class="learnNMP" style="color: #0A81C4; background: url('/images/bor1.gif') repeat-x scroll right bottom transparent">Popular</div>
-    <div class="learnNML"><a href="#">Verified</a></div>
-    <div class="learnNML"><a href="#">Recently Added</a></div>
-    <div class="learnNMR"><a href="#">See All</a></div>
+<% form_tag url_for(:controller => "learn_tools", :action => "first_tab_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
+  <%= hidden_field_tag "bottom_page_to_load", @cur_bottom_page ? @cur_bottom_page : "1" %>
+  <style>
+    .assPage .pagination .previous_page a:hover {
+      background: none repeat scroll 0 0 #2E6AB1;
+      border-radius: 2px 2px 2px 2px;
+      color: #FFFFFF!important;
+      cursor: pointer;
+      height: 14px;
+    }
+    .assPage .pagination .previous_page a {
+      color: red;
+      padding: 1px 4px;
+      text-decoration: none;
+      background: url("") no-repeat scroll left center transparent;
+    }
+  </style>
+  <div class="learnN">
+    <div class="learnNM">
+      <div class="learnNMtitle" style="background-color: #F9F9F8; color: #3E3E3E; font-weight: normal;border-left: 1px solid #DBDBDB;">Learning Tools</div>
+      <div class="learnNMP" style="color: #0A81C4; background: url('/images/bor1.gif') repeat-x scroll right bottom transparent">Popular</div>
+      <div class="learnNML"><a href="#">Verified</a></div>
+      <div class="learnNML"><a href="#">Recently Added</a></div>
+      <div class="learnNMR"><a href="#">See All</a></div>
+    </div>
   </div>
-</div>
 
-<% @all_tools.each do |at|%>
-  <%= render :partial => "bottom_item", :locals => {:item => at} %>
-<% end %>
-
+  <% @all_tools.each do |at|%>
+    <%= render :partial => "bottom_item", :locals => {:item => at} %>
+  <% end %>
 
 
-<div class="assPage" style="padding-left:0">
-  <span class="numPage"><%= page_entries_info @all_tools %></span>
-  <%= will_paginate @all_tools, :param_name => "all_tool_page", :class => "bot_paging"   %> 
-</div>
+
+  <div class="assPage" style="padding-left:0">
+    <span class="numPage"><%= page_entries_info @all_tools %></span>
+    <%= will_paginate @all_tools, :param_name => "all_tool_page", :class => "bot_paging"   %> 
+  </div>
+<% end %><!-- end form_tag -->
 <script type="text/javascript">
-
+  $(document).ready(function(){
+    $('.bot_paging a').each(function(){
+      $(this).attr('href','javascript:;');
+    });
+    $('.bot_paging a').each(function(){
+      $(this).click(function(){
+        if ($(this).text() == 'Next'){
+          var str_page = parseInt("<%= @cur_bottom_page ? @cur_bottom_page : "1" %>")+1;
+          $('#bottom_page_to_load').val(""+str_page);
+        }else if ($(this).text() == 'Previous'){
+          var str_page = parseInt("<%= @cur_bottom_page %>")-1;
+          $('#bottom_page_to_load').val(""+str_page);
+        }
+        else {
+          $('#bottom_page_to_load').val($(this).text());
+        }
+        //$('form#form_first_tab').submit();
+      });
+    });
+  });
 </script>
