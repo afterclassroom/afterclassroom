@@ -75,8 +75,25 @@ class LearnToolsController < ApplicationController
   end
   
   def first_tab_paging
-    @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:bottom_page_to_load], :per_page => 5)
-    @cur_bottom_page = params[:bottom_page_to_load]
+    case params[:bottom_page_tab_parm]
+    when "first"#all tool
+      @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      @cur_bottom_page = params[:bottom_page_to_load]
+      @cur_bottom_tab = "first"
+    when "second" #most popular tool
+      @all_tools = Learntool.most_popular.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      @cur_bottom_page = params[:bottom_page_to_load]
+      @cur_bottom_tab = "second"
+    when "third" #verified tools
+      @all_tools = Learntool.with_verify.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      @cur_bottom_page = params[:bottom_page_to_load]
+      @cur_bottom_tab = "third"
+    else #fourth
+      @all_tools = Learntool.with_recently.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      @cur_bottom_page = params[:bottom_page_to_load]
+      @cur_bottom_tab = "fourth"
+    end
+
     render :layout => false
   end
   
