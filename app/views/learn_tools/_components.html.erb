@@ -16,12 +16,13 @@
   <% end %>
 
 
-  <% form_tag url_for(:controller => "learn_tools", :action => "search_tool"), :id => "form_search_tool", :method => :post, :remote => false do %>
+  <% form_tag url_for(:controller => "learn_tools", :action => "search_tool"), :id => "form_search_tool", :method => :get, :remote => false do %>
+    <%= hidden_field_tag "search_content" %>
     <div style="margin-bottom: 10px; color: rgb(110, 110, 110); background: url(&quot;/images/bgSearchF.png&quot;) no-repeat scroll left top transparent; float: right; height: 24px; padding-right: 0pt; width: 194px;">
 
       <div style="margin: 0pt; padding: 0pt; display: inline;">
         <input type="hidden" name="utf8" value="✓"></div>
-      <div class="textS"><input type="text" id="search_content" name="search_content" style="height: 12px;" value=""></div>
+      <div class="textS"><input type="text" id="str_search_content" name="str_search_content" style="height: 12px;" value="<%= @str_search_val %>"/></div>
       <div style="margin-top: -18px; margin-right: 3px; float: right;">
         <a id="btn_search_tool" href="javascript:;"><img src="/images/iconSF.png" style="border: 0px none;"></a>
       </div>
@@ -38,6 +39,7 @@
     });
     
     $('#btn_search_tool').click(function(){
+      $('#search_content').val($('#str_search_content').val());
       $('form#form_search_tool').submit();
     });
   });

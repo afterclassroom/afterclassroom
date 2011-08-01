@@ -53,7 +53,9 @@ class Video < ActiveRecord::Base
       'video/raw',
       'video/rtx',
       'video/ogg',
-      'video/webm' ]
+      'video/webm',
+      'application/vnd.rn-realmedia',
+      'application/x-shockwave-flash']
   
   # Comments
   acts_as_commentable

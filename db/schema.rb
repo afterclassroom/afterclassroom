@@ -281,6 +281,9 @@ ActiveRecord::Schema.define(:version => 20110729080924) do
     t.integer  "client_application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tool_img_file_name"
+    t.string   "tool_img_content_type"
+    t.integer  "tool_img_file_size"
   end
 
   create_table "messages", :force => true do |t|

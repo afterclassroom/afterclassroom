@@ -132,10 +132,10 @@ class MessagesController < ApplicationController
   
   def list_friend
     q = params[:q]
-    friends = current_user.user_friends.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
+    friends = current_user.user_friends#.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
     arr = []
     friends.each do |f|
-      arr << {:value => f.id, :name => f.full_name, :image => f.avatar.url(:thumb)}
+      arr << [f.id, f.full_name, nil, "<div class='list_friend_suggest'><img src='#{f.avatar.url(:thumb)}' />#{f.full_name}</div>"]
     end
     respond_to do |format|
       format.js { render :json => arr.to_json()}

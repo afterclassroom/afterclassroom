@@ -48,7 +48,28 @@
 <script type="text/javascript">
   var path = "<%= list_friend_user_messages_path(current_user) %>";
 
-  $("#share_to").autoSuggest(path, {asHtmlID: "share_to", selectedItemProp: "name", searchObjProps: "name", selectionLimit:0});
+  $(function(){
+    
+        // Autocomplete initialization
+        var tb = new $.TextboxList('#share_to', {
+            max: 1,
+            unique: true,
+            plugins: {
+                autocomplete: {}
+            }
+        });
+        tb.getContainer().addClass('textboxlist-loading');
+        $.ajax({
+            url: path,
+            dataType: 'json',
+            success: function(r){
+                tb.plugins['autocomplete'].setValues(r);
+                tb.getContainer().removeClass('textboxlist-loading');
+            }
+        });
+        
+    });
+		
   function Share(){
 		if ($('#as-values-share_to').val() == ""){
 			$("#dialog-message").dialog({

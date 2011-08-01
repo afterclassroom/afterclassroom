@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
@@ -127,6 +128,6 @@ class ApplicationController < ActionController::Base
   end
   
   def set_user_time_zone
-    Time.zone = current_user.time_zone if logged_in?
+    #Time.zone = current_user.time_zone if logged_in?
   end
 end

@@ -12,7 +12,7 @@
             Message
         </div>
         <div class="postInp">
-        	<%= text_area_tag "body", "", :id => "message_body", :style => "width: 330px; height: 150px;" %>
+            <%= text_area_tag "body", "", :id => "message_body", :style => "width: 330px; height: 150px;" %>
         </div>
     </div>
     <div style="padding-left: 90px;" class="submit">
@@ -36,16 +36,31 @@
 <script type="text/javascript">
     var path = "<%= list_friend_user_messages_path(current_user) %>";
     
-    $("#share_to").autoSuggest(path, {
-        asHtmlID: "share_to",
-        selectedItemProp: "name",
-        searchObjProps: "name",
-        selectionLimit: 0
+    $(function(){
+    
+        // Autocomplete initialization
+        var tb = new $.TextboxList('#share_to', {
+            max: 1,
+            unique: true,
+            plugins: {
+                autocomplete: {}
+            }
+        });
+        tb.getContainer().addClass('textboxlist-loading');
+        $.ajax({
+            url: path,
+            dataType: 'json',
+            success: function(r){
+                tb.plugins['autocomplete'].setValues(r);
+                tb.getContainer().removeClass('textboxlist-loading');
+            }
+        });
+        
     });
     
     function submit_match_making(){
         var content = $('#message_body').attr('value');
-        var recipient = $('#as-values-share_to').val();
+        var recipient = $('#share_to').val();
         if (recipient == "") {
             $("#dialog-message").dialog({
                 modal: true,
