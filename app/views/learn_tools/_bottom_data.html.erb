@@ -38,12 +38,30 @@
   </div>
 <% end %><!-- end form_tag -->
 <script type="text/javascript">
+  function ShowBottomOverlay(){
+    $('.learnN').append('<div id="bottomoverlay"></div>');
+    var position = $('.learnN').offset();
+
+    $("#bottomoverlay")
+    .height(585)
+    .css({
+      'opacity' : 0.4,
+      'position': 'absolute',
+      'top': position.top -10,
+      'left': position.left - 10,
+      'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+      'width': '654px',
+      'z-index': 5000
+    });
+  }
+
   $(document).ready(function(){
     $('.bot_paging a').each(function(){
       $(this).attr('href','javascript:;');
     });
     $('.bot_paging a').each(function(){
       $(this).click(function(){
+        ShowBottomOverlay();
         if ($(this).text() == 'Next'){
           var str_page = parseInt("<%= @cur_bottom_page ? @cur_bottom_page : "1" %>")+1;
           $('#bottom_page_to_load').val(""+str_page);
@@ -60,21 +78,25 @@
     
     /*BEGIN code for tab navigation*/
     $('#all_tool').click(function(){
+    ShowBottomOverlay();
       $('#bottom_page_tab_parm').val('first');
       $('#bottom_page_to_load').val('1');
       $('form#form_first_tab').submit();
     });
     $('#pop_id').click(function(){
+      ShowBottomOverlay();
       $('#bottom_page_tab_parm').val('second');
       $('#bottom_page_to_load').val('1');
       $('form#form_first_tab').submit();
     });
     $('#verified_tb').click(function(){
+      ShowBottomOverlay();
       $('#bottom_page_tab_parm').val('third');
       $('#bottom_page_to_load').val('1');
       $('form#form_first_tab').submit();
     });
     $('#recent_tab').click(function(){
+      ShowBottomOverlay();
       $('#bottom_page_tab_parm').val('fourth');
       $('#bottom_page_to_load').val('1');
       $('form#form_first_tab').submit();
