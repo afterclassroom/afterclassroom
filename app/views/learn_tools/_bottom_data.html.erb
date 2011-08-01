@@ -28,7 +28,7 @@
   </div>
 
   <% @all_tools.each do |at|%>
-    <%= render :partial => "bottom_item", :locals => {:item => at} %>
+    <%= render :partial => "bottom_item", :locals => {:item => at, :description => at.description} %>
   <% end %>
 
 

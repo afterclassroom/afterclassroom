@@ -65,8 +65,8 @@ class LearnToolsController < ApplicationController
   end
   
   def search_tool
-    @search_content = params[:search_content]
-    @result = Learntool.paginated_learn_tool_with_search(params)
+    @str_search_val = params[:search_content]
+    @obj_result = Learntool.paginated_learn_tool_with_search(params)
   end
   
   def first_tab_paging
