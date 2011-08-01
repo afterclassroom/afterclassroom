@@ -15,6 +15,8 @@ class Learntool < ActiveRecord::Base
   
   scope :with_cate, lambda {|cate_id| {:conditions => ["learn_tool_cate_id = ?", cate_id]}}
   
+  scope :with_verify, :conditions => "verify != false"
+  
   def self.paging_featured(params)
     Learntool.with_featured.paginate(:page => params[:feature_page], :per_page => 2)
   end
@@ -28,8 +30,6 @@ class Learntool < ActiveRecord::Base
 (select learntool_id, count(learntool_id) as total from my_tools group by learntool_id order by total DESC) as a
 on learntools.id = a.learntool_id
       ")
-
-    
   end
 
 end

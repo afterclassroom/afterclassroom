@@ -20,8 +20,8 @@
     <div class="learnNM">
       <div id="all_tool" class="learnNMtitle" style="background-color: #F9F9F8; color: #3E3E3E; font-weight: normal;border-left: 1px solid #DBDBDB;">Learning Tools</div>
       <div id="pop_id" class="learnNMP" style="color: #0A81C4; background: url('/images/bor1.gif') repeat-x scroll right bottom transparent">Popular</div>
-      <div id="verified_tb" class="learnNML"><a href="#">Verified</a></div>
-      <div id="recent_tab" class="learnNML"><a href="#">Recently Added</a></div>
+      <div id="verified_tb" class="learnNML"><a href="javascript:;">Verified</a></div>
+      <div id="recent_tab" class="learnNML"><a href="javascript:;">Recently Added</a></div>
       <div class="learnNMR"><a href="#">See All</a></div>
     </div>
   </div>
@@ -61,15 +61,18 @@
     /*BEGIN code for tab navigation*/
     $('#all_tool').click(function(){
       $('#bottom_page_tab_parm').val('first');
+      $('#bottom_page_to_load').val('1');
       $('form#form_first_tab').submit();
     });
     $('#pop_id').click(function(){
       $('#bottom_page_tab_parm').val('second');
+      $('#bottom_page_to_load').val('1');
       $('form#form_first_tab').submit();
     });
     $('#verified_tb').click(function(){
       $('#bottom_page_tab_parm').val('third');
-      //$('form#form_first_tab').submit();
+      $('#bottom_page_to_load').val('1');
+      $('form#form_first_tab').submit();
     });
     $('#recent_tab').click(function(){
       $('#bottom_page_tab_parm').val('fourth');
