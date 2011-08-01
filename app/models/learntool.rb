@@ -5,6 +5,19 @@ class Learntool < ActiveRecord::Base
 
   has_many :my_tools, :dependent => :destroy
 
+  # Attach
+  has_attached_file :tool_img, {
+    :bucket => 'afterclassroom_photos',
+    :styles => { :medium => "161x191>", :thumb => "90x66#" }
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
+  
+  validates_attachment_presence :tool_img
+  
+  validates_attachment_size :tool_img, :less_than => FILE_SIZE_PHOTO
+  
+  validates_attachment_content_type :tool_img, :content_type => ['image/pjpeg', 'image/jpeg', 'image/gif', 'image/png', 'image/x-png']
+
+  
 
   # Solr search index
   searchable do

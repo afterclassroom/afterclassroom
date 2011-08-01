@@ -41,9 +41,9 @@ namespace :db do
       #create_demo_posts_forums
 
       #create_demo_press_release
-      #create_demo_learn_tool
+      create_demo_learn_tool
       #create_demo_learn_tool_category
-      create_demo_my_learn_tool_lounge
+      #create_demo_my_learn_tool_lounge
 
     end
     
@@ -678,6 +678,15 @@ def create_demo_learn_tool
       l.href = href[rand(href.size).to_i]
       l.learn_tool_cate = cate
       l.acc_play_no = rand(10)
+      
+      #BEGIN generate image attach
+      avatars = nil
+      %w[male female].each do |gender|
+        avatars = Dir.glob("lib/tasks/sample_data/#{gender}_photos/*.jpg").shuffle
+      end
+      
+      l.tool_img = uploaded_file(avatars[0])
+      #END generate image attach
       
       if (index % 7 == 0 ) #this condition is to limit amount of learnTool with API
         client_application = ClientApplication.create! do |ca|
