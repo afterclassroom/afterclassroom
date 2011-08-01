@@ -19,7 +19,7 @@
                 <%= render :partial => "expand_create_music_album" %>
                 <div class="stoDet phoD">
                     <div class="AsDcomImg">
-                        <%= link_to raw(raw("<div>#{image_tag(@music_album.user.avatar.url(:thumb))}</div>")), {:controller => "profile", :action => "show_profile", :id => @music_album.user.id} %>
+                        <%= show_image_user_post(@music.user) %>
                     </div>
                     <div class="stoDetR">
                         <div class="stoDetRT">
