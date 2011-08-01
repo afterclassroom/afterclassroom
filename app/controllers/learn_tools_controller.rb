@@ -80,8 +80,9 @@ class LearnToolsController < ApplicationController
       @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:bottom_page_to_load], :per_page => 5)
       @cur_bottom_page = params[:bottom_page_to_load]
       @cur_bottom_tab = "first"
+      
     when "second"
-      @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:bottom_page_to_load], :per_page => 1)
+      @all_tools = Learntool.most_popular.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
       @cur_bottom_page = params[:bottom_page_to_load]
       @cur_bottom_tab = "second"
     when "third"
