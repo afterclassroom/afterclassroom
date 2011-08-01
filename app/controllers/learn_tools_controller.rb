@@ -65,12 +65,8 @@ class LearnToolsController < ApplicationController
   end
   
   def search_tool
-    #BEGIN temporary code for developing purpose only
-    @features = Learntool.paging_featured(params)
-    params[:feature_page] = params[:feature_page] ? params[:feature_page]  : "1"
-    @str_feature_page = "Page #{params[:feature_page]} of "+ ( Learntool.with_featured.size / 2.0 ).round.to_s
-    #END temporary code for developing purpose only
-    render :template => 'learn_tools/index' 
+    @search_content = params[:search_content]
+    @result = Learntool.paginated_learn_tool_with_search(params)
   end
   
   def first_tab_paging

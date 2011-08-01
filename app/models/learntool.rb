@@ -5,7 +5,16 @@ class Learntool < ActiveRecord::Base
 
   has_many :my_tools, :dependent => :destroy
 
+
+  # Solr search index
+  searchable do
+    text :name, :default_boost => 2, :stored => true
+    text :description, :stored => true
+    integer :user_id, :references => User
+    time :created_at
+  end
   
+  handle_asynchronously :solr_index  
   
   #with_featured is those tools use AfterclassroomAPI
   scope :with_featured, :conditions => "client_application_id > 0", :order => "learntools.acc_play_no DESC"
@@ -39,4 +48,21 @@ on learntools.id = a.learntool_id where learn_tool_cate_id=#{cate_id}")
     end
   end
 
+  def self.paginated_learn_tool_with_search(params)
+    if params[:search_content]
+      query = params[:search_content]
+
+      Learntool.search do
+
+        keywords(params[:search_content]) do
+          highlight :description
+        end
+
+        order_by :created_at, :desc
+        paginate :page =>  params[:page], :per_page => 10
+      end
+    end
+  end
+  
+  
 end
