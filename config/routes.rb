@@ -39,8 +39,7 @@ Afterclassroom::Application.routes.draw do
     
     resources :learn_tools do
       collection do
-        get :index, :featured_tool_paging, :maylike_tool_paging, :first_tab_paging
-        post :search_tool
+        get :index, :featured_tool_paging, :maylike_tool_paging, :first_tab_paging, :search_tool
       end
     end    
 

@@ -1,0 +1,47 @@
+<div class="topLearning">
+  <div class="menuRL">
+    <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Recommend Learning Tools</span></span></a></div>
+    <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Submit Learning Tools</span></span></a></div>
+  </div>
+  <div class="postdiv">
+    <span class="RmenuRbtm2"><a href="#">Post</a></span>
+  </div>
+</div>
+
+<div class="contMain">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="learnLeft">
+
+        <%= render :partial => "components" %>
+
+
+        <% @obj_result.each_hit_with_result do |hit,at| %>
+
+
+          <% if (hit.highlight(:description)) %>
+            <% txt_description = raw(hit.highlight(:description).format { |fragment| content_tag(:em, fragment) } ) %>
+          <% else %>
+            <% txt_description = raw(at.description) %>
+          <% end %>
+
+
+          <%= render :partial => "bottom_item", :locals => {:item => at, :description => txt_description} %>
+        <% end %>
+
+        <div class="assPage" style="padding-left:0">
+          <span class="numPage"><%= page_entries_info @obj_result.results %></span>
+          <%= will_paginate(@obj_result.results, :params => { :controller => "learn_tools", :action => "search_tool"},:method => :post) %>
+        </div>        
+
+        <div class="goTop"><a href="#">Top</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .learnNdes em{
+    color: #F6A828;
+    font-weight: bold;
+  }  
+</style>

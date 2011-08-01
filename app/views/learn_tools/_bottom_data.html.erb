@@ -1,6 +1,7 @@
 <% form_tag url_for(:controller => "learn_tools", :action => "first_tab_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
   <%= hidden_field_tag "bottom_page_to_load", @cur_bottom_page ? @cur_bottom_page : "1" %>
   <%= hidden_field_tag "bottom_page_tab_parm", @cur_bottom_tab ? @cur_bottom_tab : "first" %>
+  <%= hidden_field_tag "bottom_cur_cate", params[:tool_cate] ? params[:tool_cate] : @cur_cate_at_bottom %>
   <style>
     .assPage .pagination .previous_page a:hover {
       background: none repeat scroll 0 0 #2E6AB1;
@@ -27,7 +28,7 @@
   </div>
 
   <% @all_tools.each do |at|%>
-    <%= render :partial => "bottom_item", :locals => {:item => at} %>
+    <%= render :partial => "bottom_item", :locals => {:item => at, :description => at.description} %>
   <% end %>
 
 
