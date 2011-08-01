@@ -14,7 +14,6 @@ class LearnToolsController < ApplicationController
       @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_may_like.size / 10.0 ).round.to_s
       @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:all_tool_page], :per_page => 5)
     else #when user filter tool by category
-      #with_cate
       @features = Learntool.with_cate(params[:tool_cate]).paging_featured(params)
       @maylikes = Learntool.with_cate(params[:tool_cate]).paging_may_like(params)
       params[:feature_page] = "1"
@@ -75,24 +74,45 @@ class LearnToolsController < ApplicationController
   end
   
   def first_tab_paging
+    #bay gio cai phan nay Learntool.with_cate(params[:bottom_cur_cate])
+    @cur_cate_at_bottom = params[:bottom_cur_cate]
+    
     case params[:bottom_page_tab_parm]
     when "first"#all tool
-      @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:bottom_page_to_load], :per_page => 5)
       @cur_bottom_page = params[:bottom_page_to_load]
       @cur_bottom_tab = "first"
+      if params[:bottom_cur_cate] != "-1" #this condition support for filter tool after selected CATEGORY
+        @all_tools = Learntool.with_cate(params[:bottom_cur_cate]).find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      else
+        @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      end
     when "second" #most popular tool
-      @all_tools = Learntool.most_popular.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
       @cur_bottom_page = params[:bottom_page_to_load]
       @cur_bottom_tab = "second"
+      if params[:bottom_cur_cate] != "-1" #this condition support for filter tool after selected CATEGORY
+        @all_tools = Learntool.most_popular(params[:bottom_cur_cate]).paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      else
+        @all_tools = Learntool.most_popular("-1").paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      end
     when "third" #verified tools
-      @all_tools = Learntool.with_verify.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
       @cur_bottom_page = params[:bottom_page_to_load]
       @cur_bottom_tab = "third"
+      if params[:bottom_cur_cate] != "-1" #this condition support for filter tool after selected CATEGORY
+        @all_tools = Learntool.with_cate(params[:bottom_cur_cate]).with_verify.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      else
+        @all_tools = Learntool.with_verify.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      end
     else #fourth
-      @all_tools = Learntool.with_recently.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
       @cur_bottom_page = params[:bottom_page_to_load]
       @cur_bottom_tab = "fourth"
+      if params[:bottom_cur_cate] != "-1" #this condition support for filter tool after selected CATEGORY
+        @all_tools = Learntool.with_cate(params[:bottom_cur_cate]).with_recently.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      else
+        @all_tools = Learntool.with_recently.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      end
+
     end
+    
 
     render :layout => false
   end

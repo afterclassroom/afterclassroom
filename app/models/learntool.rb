@@ -27,11 +27,16 @@ class Learntool < ActiveRecord::Base
     Learntool.with_may_like.paginate(:page => params[:may_like_page], :per_page => 10)
   end
   
-  def self.most_popular()
-    objs = Learntool.find_by_sql("select * from learntools right join
+  def self.most_popular(cate_id)
+    if cate_id == "-1"
+      objs = Learntool.find_by_sql("select * from learntools right join
 (select learntool_id, count(learntool_id) as total from my_tools group by learntool_id order by total DESC) as a
-on learntools.id = a.learntool_id
-      ")
+on learntools.id = a.learntool_id")
+    else
+      objs = Learntool.find_by_sql("select * from learntools right join
+(select learntool_id, count(learntool_id) as total from my_tools group by learntool_id order by total DESC) as a
+on learntools.id = a.learntool_id where learn_tool_cate_id=#{cate_id}")
+    end
   end
 
 end
