@@ -3,6 +3,18 @@
 class SessionsController < ApplicationController
   include AuthenticatedSystem
   
+  before_filter RubyCAS::Filter::GatewayFilter
+  before_filter RubyCAS::Filter, :except => [:new]
+  before_filter :cas_user
+  
+  def new
+    if logged_in?
+      redirect_back_or_default(root_path)
+    else
+      redirect_to RubyCAS::Filter.login_url(self)
+    end
+  end
+  
   def destroy
     flash[:notice] = "You have been logged out."
     self.current_user.update_attribute("online", false)
