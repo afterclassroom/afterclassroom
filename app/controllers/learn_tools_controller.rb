@@ -33,7 +33,7 @@ class LearnToolsController < ApplicationController
   end
   
   def show
-    
+    @tool = Learntool.find(params[:id])
   end
   
   def featured_tool_paging

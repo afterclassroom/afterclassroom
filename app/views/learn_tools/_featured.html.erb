@@ -15,7 +15,7 @@
     <% str_class =["learnNewTL","learnNewTR"] %>
     <% @features.each_with_index do |f, index| %>
       <div class="<%=  str_class[index % 2] %>">
-        <div class="learnNewTLtitle"><a href="#"><%= truncate_html(f.name, :length => 30, :omission => '...') %></a></div>
+        <div class="learnNewTLtitle"><a href="<%= user_learn_tool_path(current_user,f) %>"><%= truncate_html(f.name, :length => 30, :omission => '...') %></a></div>
         <div class="learnNewTLdes">
           <%= truncate_html(f.description, :length => 180, :omission => '...') %> 
         </div>

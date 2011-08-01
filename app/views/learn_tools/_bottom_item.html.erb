@@ -1,6 +1,6 @@
 <div class="learnNItem">
-  <div class="learnNImg"><a href="#"><div><%= image_tag item.tool_img.url(:thumb) %></div></a></div>
-  <div class="learnNtitle"><a href="#"><%= item.name %></a> by Vestibulum</div>
+  <div class="learnNImg"><a href="<%= user_learn_tool_path(current_user,item) %>"><div><%= image_tag item.tool_img.url(:thumb) %></div></a></div>
+  <div class="learnNtitle"><a href="<%= user_learn_tool_path(current_user,item) %>"><%= item.name %></a> by Vestibulum</div>
   <div class="learnNdes"><%= truncate_html(description, :length => 400, :omission => '...') %></div>
   <div class="learnNinf">Authorized (<span>deauthorize</span>) - <%= item.my_tools.size %> active users - <%= show_friend_player(item) %> friends </div>
 </div>
