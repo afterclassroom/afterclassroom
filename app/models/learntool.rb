@@ -17,6 +17,8 @@ class Learntool < ActiveRecord::Base
   
   scope :with_verify, :conditions => "verify != false"
   
+  scope :with_recently, :conditions => "verify != true"
+  
   def self.paging_featured(params)
     Learntool.with_featured.paginate(:page => params[:feature_page], :per_page => 2)
   end

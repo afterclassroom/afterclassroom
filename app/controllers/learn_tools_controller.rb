@@ -75,34 +75,6 @@ class LearnToolsController < ApplicationController
   end
   
   def first_tab_paging
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "====="
-    puts "===== params[:bottom_page_tab_parm]=="  + params[:bottom_page_tab_parm]
-    
-    
     case params[:bottom_page_tab_parm]
     when "first"#all tool
       @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:bottom_page_to_load], :per_page => 5)
@@ -117,7 +89,9 @@ class LearnToolsController < ApplicationController
       @cur_bottom_page = params[:bottom_page_to_load]
       @cur_bottom_tab = "third"
     else #fourth
-      puts "Foo is equal to 4th"
+      @all_tools = Learntool.with_recently.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
+      @cur_bottom_page = params[:bottom_page_to_load]
+      @cur_bottom_tab = "fourth"
     end
 
     render :layout => false
