@@ -10,6 +10,10 @@ Afterclassroom::Application.routes.draw do
   match '/users/forgot_login' => 'users#forgot_login', :as => :user_forgot_login
   match '/users/clueless' => 'users#clueless', :as => :user_clueless
 
+  resources :developers do 
+    
+  end
+  
   resources :forums do 
     collection do
       get :delcmt, :search, :see_all_top_fr, :view_all_comments, :view_all_no_loggin, :delfrm, :view_fr

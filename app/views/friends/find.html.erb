@@ -59,10 +59,10 @@
                             Search for People
                         </div>
                         <div class="searchPInput">
-                            <div class="search">
+                            <div class="search" style="height:27px;width: 193px">
                                 <form id="action_people_search" name="search" action="<%= find_people_user_friends_path(current_user) %>" method="get">
                                     <div class="textS">
-                                        <input type="text" name="search[query]" value="Enter your search keywords..." onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';"/>
+                                        <input type="text" name="search[query]" value="Enter your search keywords..." onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" style="height: 14px;margin-top: 3px;width: 167px;"/>
                                     </div>
                                     <div class="btmS">
                                         <a href="javascript:;" onclick="$('#action_people_search').submit();"><img src="/images/iconSF.png"/></a>
