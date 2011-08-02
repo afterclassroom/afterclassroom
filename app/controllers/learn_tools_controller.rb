@@ -1,4 +1,6 @@
 class LearnToolsController < ApplicationController
+  include LearnToolsHelper
+  
   layout 'student_lounge'
   
   before_filter :get_variables, :only => [:index, :search_tool]
@@ -114,6 +116,13 @@ class LearnToolsController < ApplicationController
     end
     
 
+    render :layout => false
+  end
+  
+  
+  def see_all_tool_fan
+    tool = Learntool.find(params[:current_tool_id])
+    @obj_fans = display_fan(tool)
     render :layout => false
   end
   
