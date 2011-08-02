@@ -90,12 +90,8 @@
     <div class="col451 learnDet">
       <div class="col451in">
         <div class="learnDetCont">
-          <h1 class="titleH1">About Morbi ultrices congue aliquet</h1>
-          <div class="learnDetDes">Duis fringilla feugiat bibendum. Duis sed erat in libero mollis facilisis. Pellentesque sit amet tempor mauris. Vestibulum nec lorem massa, ac ullamcorper magna. Sed blandit odio eu felis bibendum accumsan.
-					Ut ac justo at nulla malesuada dapibus. Ut suscipit nunc quis urna auctor id porta sapien facilisis. Nam vestibulum justo euismod nisl euismod eget consequat justo interdum. 
-					Mauris ut dignissim odio
-					Fusce vehicula ante sit amet turpis dictum venenatis. Cras mattis nisi in libero rhoncus vitae fermentum ligula hendrerit. 
-          </div>
+          <h1 class="titleH1"><%= @tool.name  %></h1>
+          <div class="learnDetDes"><%= @tool.description %></div>
           <div class="learnDis">
             <div class="learnDis1">
               <div class="learnDis2">
@@ -104,36 +100,7 @@
               </div>
             </div>
           </div>
-          <div class="friUse">
-            <div class="friUsetit">Friends using this Learning Tools</div>
-            <div class="friUseAll"><a href="#">See all</a></div>
-          </div>
-          <div class="friImg">
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic10.png"></div></a>
-              <div class="friName"><a href="#">Rita Uyên</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic1.png"></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic2.png"></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/noimg.png"></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic11.png"></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImgLast">
-              <a href="#"><div><img src="/images/pictures/pic12.png"></div></a>
-              <div class="friName"><a href="#">Emily Huynh</a></div>
-            </div>
-          </div>
+          <%= render :partial => "friend_player" %>
         </div>
       </div>
     </div>
