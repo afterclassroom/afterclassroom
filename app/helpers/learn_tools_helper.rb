@@ -17,4 +17,15 @@ module LearnToolsHelper
     end
     fr_users #return this array
   end
+  
+  def display_fan (tool)
+    fan_users = []
+    tool.my_tools.each do |mt|
+      if mt.favorite
+        fan_users << mt.user
+      end
+    end
+    fan_users #return this array
+  end
+  
 end
