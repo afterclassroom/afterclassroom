@@ -112,10 +112,15 @@ class LearnToolsController < ApplicationController
       else
         @all_tools = Learntool.with_recently.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
       end
-
     end
-    
-
+    render :layout => false
+  end
+  
+  def contact_dev_form
+    render :layout => false
+  end
+  
+  def report_app_form
     render :layout => false
   end
   
