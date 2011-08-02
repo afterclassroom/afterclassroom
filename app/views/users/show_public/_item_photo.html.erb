@@ -1,5 +1,5 @@
-<div class="photoItem">
+<div class="photoItem" style="padding-left: 19px;">
   <div class="photoImg"><%= link_to get_first_photo(photo_album), show_photo_album_user_path(photo_album.user, :photo_album_id => photo_album), :class => "iframe" %></div>
   <div class="photoInf" style="margin-top: -5px;"><%= pluralize(photo_album.photos.size, "photo") %></div>
-  <div class="photoNamePhoto"><span><%= truncate_words(photo_album.name, 5) %></span></div>
+  <div class="photoNamePhoto"><span><%= truncate(photo_album.name, :length => 45, :omission => '...') %></span></div>
 </div>

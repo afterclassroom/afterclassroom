@@ -1,127 +1,127 @@
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => 'submenu' %>
+  <%= render :partial => 'submenu' %>
 <% end -%>
 <div class="contDetL">
-    <div class="contDetLin">
-        <div class="inboxLeft">
-            <%= form_for @message, :url => user_messages_path(current_user), :html => {:id => "msg_form"} do |f| %>
-            <%= hidden_field_tag "recipient", @message.recipient_id %>
-            <div class="inboxTitle">
-                Compose message
-            </div>
-            <div class="inboxTop">
-                <div class="compSent">
-                    <%= link_to_function "Send", "CreateNew()" %>
-                </div>
-                <div class="compCancel">
-                    <%= link_to "Cancel", user_messages_path(current_user) %>
-                </div>
-            </div>
-            <div class="compTop2">
-                <div class="compTo">
-                    <div class="compLabel">
-                        To*
-                    </div>
-                    <div class="compInput">
-                        <div class="form_friends"><%= text_field_tag "message_to", "" %></div>
-                    </div>
-                </div>
-                <div class="compSub">
-                    <div class="compLabel">
-                        Subject*
-                    </div>
-                    <div class="compInput">
-                        <%= f.text_field :subject, :class => '{validate:{required:true}}' %>
-                    </div>
-                </div>
-            </div>
-            <div class="compCont" style="width:626px;">
-                <%= f.text_area :body, :style=>"width:622px;" %>
-            </div>
-            <% end %>
+  <div class="contDetLin">
+    <div class="inboxLeft">
+      <%= form_for @message, :url => user_messages_path(current_user), :html => {:id => "msg_form"} do |f| %>
+        <%= hidden_field_tag "recipient", @message.recipient_id %>
+        <div class="inboxTitle">
+          Compose message
         </div>
+        <div class="inboxTop">
+          <div class="compSent">
+            <%= link_to_function "Send", "CreateNew()" %>
+          </div>
+          <div class="compCancel">
+            <%= link_to "Cancel", user_messages_path(current_user) %>
+          </div>
+        </div>
+        <div class="compTop2">
+          <div class="compTo">
+            <div class="compLabel">
+              To*
+            </div>
+            <div class="compInput">
+              <div class="form_friends"><%= text_field_tag "message_to", "", :style=>"width:542px;height:24px" %></div>
+            </div>
+          </div>
+          <div class="compSub">
+            <div class="compLabel">
+              Subject*
+            </div>
+            <div class="compInput">
+              <%= f.text_field :subject, :class => '{validate:{required:true}}' %>
+            </div>
+          </div>
+        </div>
+        <div class="compCont" style="width:626px;">
+          <%= f.text_area :body, :style=>"width:622px;" %>
+        </div>
+      <% end %>
     </div>
+  </div>
 </div>
 <div class="contMainR">
-    <!--Menu-->
-    <%= render :partial => "menu_right" %>
-    <!--Menu-->
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
+  <!--Menu-->
+  <%= render :partial => "menu_right" %>
+  <!--Menu-->
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>
 <!--Alert-->
 <div id="dialog-message" title="Alert" style="display:none;">
-    <p>
-        Please enter at least one recipient.
-    </p>
+  <p>
+    Please enter at least one recipient.
+  </p>
 </div>
 <!--Alert-->
 <script type="text/javascript">
-          var path = "<%= list_friend_user_messages_path(current_user) %>";
-          (function($)
-          {
-            $('#message_body').wysiwyg({
-              controls: {
-                createLink : { visible : false },
+  var path = "<%= list_friend_user_messages_path(current_user) %>";
+  (function($)
+  {
+    $('#message_body').wysiwyg({
+      controls: {
+        createLink : { visible : false },
         
-                insertImage : { visible : false },
+        insertImage : { visible : false },
         
-                separator05 : { visible : false },
+        separator05 : { visible : false },
                 
-                separator06 : { visible : false },
+        separator06 : { visible : false },
         
-                h1 : { visible : false },
-                h2 : { visible : false },
-                h3 : { visible : false },
+        h1 : { visible : false },
+        h2 : { visible : false },
+        h3 : { visible : false },
         
-                removeFormat : { visible : true }
-              }
-            });
-          })(jQuery);
+        removeFormat : { visible : true }
+      }
+    });
+  })(jQuery);
           
-          function CreateNew(){
-            if ($('#message_to').val() == ""){
-              $("#dialog-message").dialog({
-                modal: true,
-                buttons: {
-                  Ok: function(){
-                    $("#dialog-message").dialog('close');
-                  }
-                }
-              });
-            }else{
-              $('#recipient').val($('#message_to').val());
-              $('#msg_form').submit();
-            }
+  function CreateNew(){
+    if ($('#message_to').val() == ""){
+      $("#dialog-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $("#dialog-message").dialog('close');
           }
-          $().ready(function() {
-            $("#msg_form").validate({
-              meta: "validate"
-            });
-          });
-        $(function(){
+        }
+      });
+    }else{
+      $('#recipient').val($('#message_to').val());
+      $('#msg_form').submit();
+    }
+  }
+  $().ready(function() {
+    $("#msg_form").validate({
+      meta: "validate"
+    });
+  });
+  $(function(){
         
-            // Autocomplete initialization
-            var tb = new $.TextboxList('#message_to', {
-								max: 1,
-                unique: true,
-                plugins: {
-                    autocomplete: {}
-                }
-            });
-						<% if @reply_to != nil %>/* This part is enabled for action replyTo only */
-              tb.add('<%= @reply_to.sender.name %>', <%= @reply_to.sender.id %>);
-        <% end %>
-            tb.getContainer().addClass('textboxlist-loading');
-            $.ajax({
-                url: path,
-                dataType: 'json',
-                success: function(r){
-                    tb.plugins['autocomplete'].setValues(r);
-                    tb.getContainer().removeClass('textboxlist-loading');
-                }
-            });
+    // Autocomplete initialization
+    var tb = new $.TextboxList('#message_to', {
+      max: 1,
+      unique: true,
+      plugins: {
+        autocomplete: {}
+      }
+    });
+<% if @reply_to != nil %>/* This part is enabled for action replyTo only */
+      tb.add('<%= @reply_to.sender.name %>', <%= @reply_to.sender.id %>);
+<% end %>
+    tb.getContainer().addClass('textboxlist-loading');
+    $.ajax({
+      url: path,
+      dataType: 'json',
+      success: function(r){
+        tb.plugins['autocomplete'].setValues(r);
+        tb.getContainer().removeClass('textboxlist-loading');
+      }
+    });
             
-        });
+  });
 </script>
