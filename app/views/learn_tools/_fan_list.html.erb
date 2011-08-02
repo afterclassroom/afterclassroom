@@ -5,6 +5,12 @@
       <div style="padding-top: 0px; border-bottom: 1px solid rgb(219, 219, 219);" class="helpItem">
         <%= show_image_user_post(fan_user) %>
         <a href="<%= "#{show_lounge_user_path(fan_user)}" %>"><%= fan_user.name %></a> at <%= fan_user.school.name %>
+        <div style="float:right">
+          <% if fan_user != current_user %>
+            <%= show_invite_friend(fan_user) %>
+          <% end %>
+        </div>
+
       </div>
     </div>
 
