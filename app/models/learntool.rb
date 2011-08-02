@@ -4,6 +4,7 @@ class Learntool < ActiveRecord::Base
   belongs_to :client_application
 
   has_many :my_tools, :dependent => :destroy
+  has_many :tool_reviews, :dependent => :destroy
 
   # Attach
   has_attached_file :tool_img, {
