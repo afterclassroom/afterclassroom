@@ -34,48 +34,16 @@
         </div>
         <div class="basedOn">Based on <a href="#">2552 review</a></div>
         <div class="learnUser">user</div>
-        <div class="learnUser">67,541, 274 monthly active users</div>
-        <div class="learnFri"><a href="#">54 friends</a></div>
+        <div class="learnUser"><%= @tool.my_tools.size %> active users</div>
+        <div class="learnFri"><a href="#"><%= show_friend_player(@tool) %> friends</a></div>
         <div class="learnCa">Category</div>
-        <div class="learnFri"><a href="#">Learning Tools</a></div>
+        <div class="learnFri"><a href="javascript:;"><%= @tool.learn_tool_cate.title  %></a></div>
         <div class="thisLearn">*This learning tools was <strong>not</strong> developed by AfterClassroom.</div>
       </div>
     </div>
     <div class="col195 Fans">
       <div class="col195in">
-        <h1 class="col195Title">Fans</h1>
-        <div class="infoFans">
-          <div class="infoFan">6 of <span>3,200,156 fans</span></div>
-          <div class="seeAll"><a href="#">see all</a></div>
-        </div>
-        <div class="fanImg">
-          <div class="fanImg1">
-            <a href="#"><div><img src="/images/pictures/pic10.png"></div></a>
-            <div class="fanName"><a href="#">Rita Uyên</a></div>
-          </div>
-          <div class="fanImg2">
-            <a href="#"><div><img src="/images/pictures/pic11.png"></div></a>
-            <div class="fanName"><a href="#">Tawny Joey Penuela</a></div>
-          </div>
-          <div class="fanImg3">
-            <a href="#"><div><img src="/images/pictures/pic12.png"></div></a>
-            <div class="fanName"><a href="#">Emily Huynh</a></div>
-          </div>
-        </div>
-        <div class="fanImg">
-          <div class="fanImg1">
-            <a href="#"><div><img src="/images/pictures/noimg.png"></div></a>
-            <div class="fanName"><a href="#">Rita Uyên</a></div>
-          </div>
-          <div class="fanImg2">
-            <a href="#"><div><img src="/images/pictures/pic12.png"></div></a>
-            <div class="fanName"><a href="#">DinhThanh</a></div>
-          </div>
-          <div class="fanImg3">
-            <a href="#"><div><img src="/images/pictures/pic10.png"></div></a>
-            <div class="fanName"><a href="#">Emily Huynh</a></div>
-          </div>
-        </div>
+        <%= render :partial => "fan_part" %>
         <div class="fanEx">
           <div class="fanEx1"><a href="#">Contact Developer</a></div>
           <div class="fanEx2"><a href="#">Report Application</a></div>
@@ -86,16 +54,12 @@
   </div>
 
   
-  <div class="contMainL">
+  <div class="contMainL" id="middle_panel">
     <div class="col451 learnDet">
       <div class="col451in">
         <div class="learnDetCont">
-          <h1 class="titleH1">About Morbi ultrices congue aliquet</h1>
-          <div class="learnDetDes">Duis fringilla feugiat bibendum. Duis sed erat in libero mollis facilisis. Pellentesque sit amet tempor mauris. Vestibulum nec lorem massa, ac ullamcorper magna. Sed blandit odio eu felis bibendum accumsan.
-					Ut ac justo at nulla malesuada dapibus. Ut suscipit nunc quis urna auctor id porta sapien facilisis. Nam vestibulum justo euismod nisl euismod eget consequat justo interdum. 
-					Mauris ut dignissim odio
-					Fusce vehicula ante sit amet turpis dictum venenatis. Cras mattis nisi in libero rhoncus vitae fermentum ligula hendrerit. 
-          </div>
+          <h1 class="titleH1"><%= @tool.name  %></h1>
+          <div class="learnDetDes"><%= @tool.description %></div>
           <div class="learnDis">
             <div class="learnDis1">
               <div class="learnDis2">
@@ -104,36 +68,7 @@
               </div>
             </div>
           </div>
-          <div class="friUse">
-            <div class="friUsetit">Friends using this Learning Tools</div>
-            <div class="friUseAll"><a href="#">See all</a></div>
-          </div>
-          <div class="friImg">
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic10.png"></div></a>
-              <div class="friName"><a href="#">Rita Uyên</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic1.png"></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic2.png"></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/noimg.png"></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImg1">
-              <a href="#"><div><img src="/images/pictures/pic11.png"></div></a>
-              <div class="friName"><a href="#">Tawny Joey Penuela</a></div>
-            </div>
-            <div class="friImgLast">
-              <a href="#"><div><img src="/images/pictures/pic12.png"></div></a>
-              <div class="friName"><a href="#">Emily Huynh</a></div>
-            </div>
-          </div>
+          <%= render :partial => "friend_player" %>
         </div>
       </div>
     </div>

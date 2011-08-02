@@ -8,4 +8,24 @@ module LearnToolsHelper
     end
     @count
   end
+  def display_friend_player (tool)
+    fr_users = []
+    tool.my_tools.each do |mt|
+      if current_user.user_friends.include?(mt.user)
+        fr_users << mt.user
+      end
+    end
+    fr_users #return this array
+  end
+  
+  def display_fan (tool)
+    fan_users = []
+    tool.my_tools.each do |mt|
+      if mt.favorite
+        fan_users << mt.user
+      end
+    end
+    fan_users #return this array
+  end
+  
 end
