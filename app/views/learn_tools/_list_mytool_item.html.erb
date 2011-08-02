@@ -1,0 +1,19 @@
+<div class="learnNItem">
+  <div class="assPic">
+    <a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>"><div><%= image_tag my_tool.learntool.tool_img.url(:thumb) %></div></a>
+  </div>
+  <div class="learnFavtitle"><a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>"><%= my_tool.learntool.name %></a>
+    <span class="learnFavS">
+      <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="images/starWhite.png">
+    </span>
+  </div>
+  <div class="learnNdes">
+    <%= truncate_html(my_tool.learntool.description, :length => 200, :omission => '...') %>
+  </div>
+  <div class="learnDetDate"><%= my_tool.learntool.created_at.strftime('%B %d, %Y at %I:%M%p') %>  
+    <div class="learnFavTR"><a href="#"><span>Write a Review</span></a></div>
+    <div class="learnFavTRv"><a href="#"><span>View all Review</span></a></div>
+    <div class="learnFavTRf" style="float: right; margin-right: 50px; margin-top: -4px;"><input type="checkbox" value="checkbox" name="checkbox" id="checkbox" <%= my_tool.favorite == true ? "checked disabled='disabled'" : "" %>/><span style=" margin-top: 4px; position: absolute;">Favorite</span></div>
+  </div>
+
+</div>

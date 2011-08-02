@@ -1,0 +1,22 @@
+<div class="topLearning">
+  <div class="AftBe">
+    <div class="txtsignup1">Morbi ultrices congue aliquet</div>
+    <div class="btmBe"><a href="#">Become a Fan</a></div>
+  </div>
+  <div class="postdiv">
+    <span class="RmenuRbtm2"><a href="#">Post</a></span>
+  </div>
+  <div class="menuRL">
+    <div class="menuRItem <%= controller.action_name == "mylearn" ? 'menuRselect' : '' %>">
+      <a href="<%= mylearn_user_learn_tools_path(current_user) %>">
+        <span class="span1"><span class="span2">My Learning Tools</span></span>
+      </a>
+    </div>
+    <div class="menuRItem <%= controller.action_name != "mylearn" ? 'menuRselect' : '' %>">
+      <a href="javascript:;">
+        <span class="span1"><span class="span2">Info</span></span>
+      </a>
+    </div>
+
+  </div>
+</div>

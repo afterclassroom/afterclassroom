@@ -27,7 +27,7 @@ class LearnToolsController < ApplicationController
   end
   
   def mylearn
-    
+    @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
   end
   
   def newlearn

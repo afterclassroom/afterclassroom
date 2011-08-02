@@ -1,0 +1,26 @@
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="learnLeft">
+
+
+      <div class="learnFavT">
+        <div class="learnFavTL">Displaying review 1-10 out of 4289</div>
+        <div class="learnFavTC"><a href="#">See All</a></div>
+
+      </div>
+
+      <% @my_tools.each do |mtool| %>
+        <%= render :partial => "list_mytool_item", :locals => {:my_tool => mtool} %>
+      <% end %>
+
+
+      <div class="assPage" style="padding-left:0">
+        <span class="numPage"><%= page_entries_info @my_tools %></span>
+        <%= will_paginate @my_tools %> 
+      </div>
+
+
+      <div class="goTop"><a href="#">Top</a></div>
+    </div>
+  </div>
+</div>
