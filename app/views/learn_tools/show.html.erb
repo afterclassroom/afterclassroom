@@ -5,10 +5,25 @@
     <div class="col195 QAsTopic">
       <div class="col195in">
         <div class="demo">
-          <div class="demoImg"><a href="#"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a></div>
-          <div class="demoBtm"><a href="#">Play a Demo</a></div>
+          <div class="demoImg">
+            <a href="#"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a>
+          </div>
+          <div class="demoBtm">
+            <% if current_user.my_tools.map(&:learntool_id).include?(@tool.id) == true %>
+              <a href="javascript:;">Play now</a>
+            <% else %>
+              <a href="javascript:;">Play a Demo</a>
+            <% end %>
+            
+          </div>
         </div>
-        <div class="demoBtm" style="margin-top: 10px"><a href="#">Favorite</a></div>
+        <div class="demoBtm" style="margin-top: 10px">
+          <% if is_tool_favorite(@tool, current_user) == true %>
+            <a href="javascript:;">Your Favorite Tool</a>
+          <% else %>
+            <a href="javascript:;">Favorite</a>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="col195 learnInf">
