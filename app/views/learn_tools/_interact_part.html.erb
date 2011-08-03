@@ -6,5 +6,7 @@
   <div class="fanEx2">
     <%= link_to "Report Application", "#{url_for(:controller => "learn_tools", :action => "report_app_form")}?tool_id=#{@tool.id.to_s}&height=325&width=550", :class => "thickbox", :title => "Report Application" %>
   </div>
-  <div class="fanEx3"><a href="#">Share +</a></div>
+  <div class="fanEx3">
+    <%= addthis_bookmark_button { "Share +" } %>
+  </div>
 </div>

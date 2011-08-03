@@ -43,7 +43,8 @@ namespace :db do
       #create_demo_press_release
       #create_demo_learn_tool
       #create_demo_learn_tool_category
-      create_demo_my_learn_tool_lounge
+      #create_demo_my_learn_tool_lounge
+      create_demo_review_tool
 
     end
     
@@ -714,6 +715,22 @@ def create_demo_my_learn_tool_lounge
         mt.user = user
         mt.learntool = ltool
         mt.favorite = bool_array[rand(bool_array.size).to_i]
+      end 
+    end
+  end
+end
+
+def create_demo_review_tool
+  User.count.times do
+    user = User.find(rand(User.count).to_i + 1)
+    no_of_tool = rand(300)#random amount of tool that each user had used
+    no_of_tool.times do
+      ltool = Learntool.find(rand(Learntool.count).to_i + 1)
+      ToolReview.create do |mt|
+        mt.user = user
+        mt.learntool = ltool
+        mt.title = Faker::Lorem.sentence
+        mt.content = Faker::Lorem.paragraphs
       end 
     end
   end

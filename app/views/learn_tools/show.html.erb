@@ -1,28 +1,29 @@
-<div class="topLearning">
-  <div class="AftBe">
-    <div class="txtsignup1">Morbi ultrices congue aliquet</div>
-    <div class="btmBe"><a href="#">Become a Fan</a></div>
-  </div>
-  <div class="postdiv">
-    <span class="RmenuRbtm2"><a href="#">Post</a></span>
-  </div>
-  <div class="menuRL">
-    <div class="menuRItem"><%= link_to (raw('<span class="span1"><span class="span2">My Learning Tools</span></span>')) , :controller => 'learn_tools', :action => 'mylearn' %></div>
-    <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Info</span></span></a></div>
-
-  </div>
-</div>
-
+<%= render :partial => "top_part" %>
 
 <div class="contMain">
   <div class="contMainC">
     <div class="col195 QAsTopic">
       <div class="col195in">
         <div class="demo">
-          <div class="demoImg"><a href="#"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a></div>
-          <div class="demoBtm"><a href="#">Play a Demo</a></div>
+          <div class="demoImg">
+            <a href="#"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a>
+          </div>
+          <div class="demoBtm">
+            <% if current_user.my_tools.map(&:learntool_id).include?(@tool.id) == true %>
+              <a href="javascript:;">Play now</a>
+            <% else %>
+              <a href="javascript:;">Play a Demo</a>
+            <% end %>
+            
+          </div>
         </div>
-        <div class="demoBtm" style="margin-top: 10px"><a href="#">Favorite</a></div>
+        <div class="demoBtm" style="margin-top: 10px">
+          <% if is_tool_favorite(@tool, current_user) == true %>
+            <a href="javascript:;">Your Favorite Tool</a>
+          <% else %>
+            <a href="javascript:;">Favorite</a>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="col195 learnInf">
@@ -69,54 +70,8 @@
       </div>
     </div>
 
-
-    <div class="col451 learnDet">
-      <div class="col451in">
-
-        <div class="helpItem" style="border-bottom: 1px solid rgb(219, 219, 219);">
-          <div style="float: right; padding-top: 1px; display: none;" id="pr_id_1">
-            <a title="Delete" data-remote="true" data-confirm="Are you sure?" class="vtip" href="#"><span><img style="border: 0px none;" src="/images/icon-ing.gif?1309150842" alt=""></span></a>
-          </div>
-
-          <div style="float: right; display: none;" id="edpr_id_1">
-            <a title="Edit" class="vtip" href="#"><img src="/images/flistREdit.png" style="border: 0px none;"></a>
-          </div>
-          <div style="float: left;" class="assPic">
-            <a href="javascript:;" id="cal_id_1">   
-              <a href="#"><div><img src="/images/pictures/pic10.png"></div></a>         
-            </a>
-          </div>
-          <div class="helpT" style="margin-left: 62px;">
-          </div>
-          <div id="1" class="forumTit" style="font-weight: bold; margin-left: 62px;width: 330px">
-            <a data-remote="true" href="#">Visit the discussion forum for questions, updates, and bugs/help.</a>
-          </div>
-          <div class="helpD" style="margin-left: 62px; height: 100%;" id="press_1">Duis fringilla feugiat bibendum. Duis sed erat in libero mollis facilisis. Pellentesque sit amet tempor mauris.</div>
-        </div>
-
-        <div class="helpItem" style="border-bottom: 1px solid rgb(219, 219, 219);">
-          <div style="float: right; padding-top: 1px; display: none;" id="pr_id_1">
-            <a title="Delete" data-remote="true" data-confirm="Are you sure?" class="vtip" href="#"><span><img style="border: 0px none;" src="/images/icon-ing.gif?1309150842" alt=""></span></a>
-          </div>
-
-          <div style="float: right; display: none;" id="edpr_id_1">
-            <a title="Edit" class="vtip" href="#"><img src="/images/flistREdit.png" style="border: 0px none;"></a>
-          </div>
-          <div style="float: left;" class="assPic">
-            <a href="javascript:;" id="cal_id_1">   
-              <a href="#"><div><img src="/images/pictures/pic12.png"></div></a>         
-            </a>
-          </div>
-          <div class="helpT" style="margin-left: 62px;">
-          </div>
-          <div id="1" class="forumTit" style="font-weight: bold; margin-left: 62px;width: 330px">
-            <a data-remote="true" href="#">Visit the discussion forum for questions, updates, and bugs/help.</a>
-          </div>
-          <div class="helpD" style="margin-left: 62px; height: 100%;" id="press_1">Duis fringilla feugiat bibendum. Duis sed erat in libero mollis facilisis. Pellentesque sit amet tempor mauris.</div>
-        </div>
-
-      </div>
-    </div>
+    <%= render :partial => "tool_review_part" %>
+    
   </div>
 
   

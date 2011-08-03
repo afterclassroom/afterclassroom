@@ -27,7 +27,7 @@ class LearnToolsController < ApplicationController
   end
   
   def mylearn
-    
+    @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
   end
   
   def newlearn
@@ -36,6 +36,69 @@ class LearnToolsController < ApplicationController
   
   def show
     @tool = Learntool.find(params[:id])
+    @tool_reviews = @tool.tool_reviews.paginate(:page => params[:page], :per_page => 5)
+  end
+  
+  def tool_rev_paging
+    @tool = Learntool.find(params[:tool_id])
+    @tool_reviews = @tool.tool_reviews.paginate(:page => params[:review_page_to_load], :per_page => 5)
+    @cur_rev_page = params[:review_page_to_load]
+    render :layout => false
+  end
+  
+  def write_review_form
+    @tool_id = params[:tool_id]
+    @toolreview = ToolReview.new
+    render :layout => false
+  end
+  
+  def submit_review
+    @toolreview = ToolReview.new(params[:tool_review])
+    @tool = Learntool.find(params[:tool_id])
+    @toolreview.learntool = @tool
+    @toolreview.user = current_user
+    
+    if @toolreview.save
+      flash[:notice] = "Your review was successfully created."
+    end
+    render :layout => false
+  end
+  
+  def add_favorite
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    
+    mt = MyTool.find(params[:str_mytool_id]);
+    mt.favorite = true
+    mt.save
+    render :text => "Successful"
   end
   
   def featured_tool_paging

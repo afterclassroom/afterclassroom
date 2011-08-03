@@ -1,0 +1,28 @@
+<% @tool_reviews.each do |rv| %>
+<div class="helpItem" style="border-bottom: 1px solid rgb(219, 219, 219);">
+  <div style="float: right; padding-top: 1px; display: none;" id="pr_id_1">
+    <a title="Delete" data-remote="true" data-confirm="Are you sure?" class="vtip" href="#">
+      <span>
+        <img style="border: 0px none;" src="/images/icon-ing.gif?1309150842" alt=""/>
+      </span>
+    </a>
+  </div>
+
+  <div style="float: right; display: none;" id="edpr_id_1">
+    <a title="Edit" class="vtip" href="#">
+      <img src="/images/flistREdit.png" style="border: 0px none;"/>
+    </a>
+  </div>
+  <div style="float: left;" class="assPic">
+    <a href="javascript:;" id="cal_id_1">   
+      <a href="#"><%= show_image_user_post(rv.user) %></a>         
+    </a>
+  </div>
+  <div class="helpT" style="margin-left: 62px;">
+  </div>
+  <div id="1" class="forumTit" style="font-weight: bold; margin-left: 62px;width: 330px">
+    <a data-remote="true" href="#"><%= rv.title %></a>
+  </div>
+  <div class="helpD" style="margin-left: 62px; height: 100%;" id="press_1"><%= truncate_html(rv.content, :length => 180, :omission => '...') %></div>
+</div>
+<% end %>
