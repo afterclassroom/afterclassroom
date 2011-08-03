@@ -28,7 +28,7 @@
     /* only allow those NOT YET favorite to be clicked */
     if (  $(current_box).is(":checked") != true  ){
       $(current_box).click(function(){
-        AddToFavorite('<%= my_tool.learntool.id %>');
+        AddToFavorite('<%= my_tool.id %>','<%= my_tool.learntool.id %>');
         $(current_box).attr('disabled','disabled');
       });
     }

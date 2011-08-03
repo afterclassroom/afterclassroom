@@ -29,22 +29,22 @@
     $(place_holder).before('<%= show_ajax_loader("holder_place", "background: white;  position: absolute;  width: 18px;") %>');
   }
   
-  function AddToFavorite(tool_id){
-    ShowFavoriteAjaxLoader('#checkbox_'+tool_id);
+  function AddToFavorite(mytool_id,place_of_ajax_loader){
+    ShowFavoriteAjaxLoader('#checkbox_'+place_of_ajax_loader);
     var add_url = "<%= add_favorite_user_learn_tools_path(current_user) %>";
     $.ajax({
       url: add_url,
       data: {
-        str_tool_id: tool_id
+        str_mytool_id: mytool_id
       },
       type: "GET",
       dataType: "html",
       failure: function(msg){
-        alert('ajax fail:' + msg);
+        $('#holder_place').remove();
+        alert('Failed to communicate with server:' + msg);
       },
       success: function(msg){
         $('#holder_place').remove();
-        //alert('add xong :: '+msg);
       }
     });
   }  

@@ -65,7 +65,39 @@ class LearnToolsController < ApplicationController
   end
   
   def add_favorite
-    puts "========= str_tool_id == "+params[:str_tool_id] ? params[:str_tool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
+    
+    mt = MyTool.find(params[:str_mytool_id]);
+    mt.favorite = true
+    mt.save
     render :text => "Successful"
   end
   
