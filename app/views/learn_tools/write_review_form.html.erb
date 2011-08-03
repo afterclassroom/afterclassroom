@@ -1,0 +1,10 @@
+<%= form_for(@toolreview, :id => "form_post", :remote => true, :url => url_for(:controller => "learn_tools", :action => "submit_review") ) do |f| %>
+<%= hidden_field_tag "tool_id", @tool_id %>
+  <div>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.text_area :content %>
+  </div>
+  <%= f.submit %>
+<% end %>

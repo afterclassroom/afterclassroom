@@ -11,9 +11,10 @@
     <%= truncate_html(my_tool.learntool.description, :length => 200, :omission => '...') %>
   </div>
   <div class="learnDetDate"><%= my_tool.learntool.created_at.strftime('%B %d, %Y at %I:%M%p') %>  
-    <div class="learnFavTR"><a href="#"><span>Write a Review</span></a></div>
-    <div class="learnFavTRv"><a href="#"><span>View all Review</span></a></div>
+    <div class="learnFavTR">
+      <%= link_to "Write a Review", "#{url_for(:controller => "learn_tools", :action => "write_review_form")}?tool_id=#{my_tool.learntool.id.to_s}&height=325&width=550", :class => "thickbox", :title => "Write A Review" %>
+    </div>
+    <div class="learnFavTRv"><a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>"><span>View all Review</span></a></div>
     <div class="learnFavTRf" style="float: right; margin-right: 50px; margin-top: -4px;"><input type="checkbox" value="checkbox" name="checkbox" id="checkbox" <%= my_tool.favorite == true ? "checked disabled='disabled'" : "" %>/><span style=" margin-top: 4px; position: absolute;">Favorite</span></div>
   </div>
-
 </div>

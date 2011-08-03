@@ -46,6 +46,16 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def write_review_form
+    @tool_id = params[:tool_id]
+    @toolreview = ToolReview.new
+    render :layout => false
+  end
+  
+  def submit_review
+    render :layout => false
+  end
+  
   def featured_tool_paging
     if params[:cur_cate_at_feature] == "-1"#there is no category selected
       params[:feature_page] = params[:page_to_load]#page of will_paginate
