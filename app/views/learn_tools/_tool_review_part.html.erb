@@ -15,14 +15,28 @@
   </div>
 <% end %> <!-- end form -->
 <script type="text/javascript">
+  function ShowReviewOverlay(){
+    $('form#form_tool_review').append('<div id="reviewoverlay"></div>');
+    var position = $('form#form_tool_review').offset();
+    $("#reviewoverlay")
+    .height(415)
+    .css({
+      'opacity' : 0.4,
+      'position': 'absolute',
+      'top': position.top -10,
+      'left': position.left - 10,
+      'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+      'width': '455px',
+      'z-index': 5000
+    });
+  }
   $(document).ready(function(){
-    //$('.pagination a').length
     $('.pagination a').each(function(){
       $(this).attr('href','javascript:;');
     });
     $('.pagination a').each(function(){
       $(this).click(function(){
-        //ShowReviewOverlay();
+        ShowReviewOverlay();
         if ($(this).text() == 'Next'){
           var str_page = parseInt("<%= @cur_rev_page ? @cur_rev_page : "1" %>")+1;
           $('#review_page_to_load').val(""+str_page);
