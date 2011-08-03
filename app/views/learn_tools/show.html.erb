@@ -14,14 +14,14 @@
             <% else %>
               <a href="javascript:;">Play a Demo</a>
             <% end %>
-            
+
           </div>
         </div>
         <div class="demoBtm" style="margin-top: 10px">
           <% if is_tool_favorite(@tool, current_user) == true %>
             <a href="javascript:;">Your Favorite Tool</a>
           <% else %>
-            <a href="javascript:;">Favorite</a>
+            <a id="add_tool_to_favorite" href="javascript:;">Favorite</a>
           <% end %>
         </div>
       </div>
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  
+
   <div class="contMainL" id="middle_panel">
     <div class="col451 learnDet">
       <div class="col451in">
@@ -71,10 +71,10 @@
     </div>
 
     <%= render :partial => "tool_review_part" %>
-    
+
   </div>
 
-  
+
   <div class="contMainR">
     <div class="creAdv"><a href="#">Create an Ad</a></div>
     <div class="advert">
@@ -123,7 +123,6 @@
    
   function ShowHideDelEditIcon(){
     /*Show hide delete X icon for each comment*/
-
     $(".helpItem").hover(function(){
       $("div[id*='pr_id_']", this).show();
     }, function(){
@@ -140,6 +139,49 @@
   
   $(document).ready(function(){
     ShowHideDelEditIcon();
+    $('#add_tool_to_favorite').click(function(){
+      AddToFavoriteWithCheck('<%= @tool.id %>');
+      $('#add_tool_to_favorite').unbind();
+    });
   });
+
+  function ShowFavorOverlay(){
+    $('.demoBtm').eq(1).append('<div id="favoroverlay"></div>');
+    var position = $('.demoBtm').eq(1).offset();
+
+    $("#favoroverlay")
+    .height(47)
+    .css({
+      'opacity' : 0.4,
+      'position': 'absolute',
+      'top': position.top -10,
+      'left': position.left - 10,
+      'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+      'width': '200px',
+      'z-index': 5000
+    });
+  }
+
+  function AddToFavoriteWithCheck(tool_id){
+    ShowFavorOverlay();
+    var add_url = "<%= add_favorite_with_check_user_learn_tools_path(current_user) %>";
+    $.ajax({
+      url: add_url,
+      data: {
+        str_mytool_id: tool_id
+      },
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        $('#favoroverlay').remove();
+        alert('Failed to communicate with server:' + msg);
+      },
+      success: function(msg){
+        $('#add_tool_to_favorite').text("Your Favorite Tool");
+        $('#favoroverlay').remove();
+      }
+    });  
+  }
+ 
           
 </script>

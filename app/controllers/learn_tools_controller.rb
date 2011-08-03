@@ -65,40 +65,18 @@ class LearnToolsController < ApplicationController
   end
   
   def add_favorite
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
-    puts "========= str_tool_id == "+params[:str_mytool_id] ? params[:str_mytool_id] : "EMPTY"
     
     mt = MyTool.find(params[:str_mytool_id]);
     mt.favorite = true
     mt.save
     render :text => "Successful"
+  end
+  
+  def add_favorite_with_check
+    #this one differ from above
+    #we need to check whether myleartool for this current user has contained
+    #this tool or not, if yes then add favorite=true, if not, then create and
+    #add favorite = true
   end
   
   def featured_tool_paging
