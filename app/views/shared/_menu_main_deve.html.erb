@@ -1,14 +1,11 @@
 <div class="menuMain">
-  <ul>
-    <%= tab_to "Student Lounge", [{:controller => user_student_lounges_path(current_user)}] %>
-    <%= tab_to "Inbox", [{:controller => user_messages_path(current_user)}] %>
-    <%= tab_to "Friends", [{:controller => user_friends_path(current_user)}] %>
-    <%= tab_to "Profile", [{:controller => user_profiles_path(current_user)}] %>
-    <%= tab_to "Setting", [{:controller => user_settings_path(current_user)}] %>
+  <ul>    
+    <li class="<%= "menuSelectDe" if action_name == "index" %>"><%= link_to raw("<span>My App</span>"),:controller=>'oauth_clients' %></li>
+    <li class="<%= "menuSelectDe" if action_name == "new" %>"><%= link_to raw("<span>Register App</span>"), :controller=>'oauth_clients', :action=>'new' %></li>
+    
+ 
     <li class="menuSpace1">&nbsp;</li>
     <li class="menuSpace2">&nbsp;</li>
-    <li class=""><a href="https://wheretolist.com"><span>Shopping</span></a></li>
     <li class="menuSpace2">&nbsp;</li>
-    <%= tab_to "Learning Tools", [{:controller => user_learn_tools_path(current_user)}] %>
   </ul>
 </div>

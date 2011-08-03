@@ -1,25 +1,26 @@
+<% content_for :you_are_here do -%>
+  You are here: <%= link_to 'Developers', oauth_clients_path %>
+<% end -%>
 <div class="flash"><%= flash[:notice] %></div>
-<h1>OAuth Client Applications</h1>
 <% unless @tokens.empty? %>
-<p>The following tokens have been issued to applications in your name</p>
-<table>
-  <tr><th>Application</th><th>Issued</th><th>&nbsp;</th></tr>
-  <% @tokens.each do |token|%>
-    <% content_tag_for :tr, token do %>
-      <td><%= link_to token.client_application.name, token.client_application.url %></td>
-      <td><%= token.authorized_at %></td>
-      <td>
-        <% form_tag :controller => 'oauth', :action => 'revoke' do %>
-        <%= hidden_field_tag 'token', token.token %>
-        <%= submit_tag "Revoke!" %>
-        <% end %>
-      </td>
+  <p>The following tokens have been issued to applications in your name</p>
+  <table>
+    <tr><th>Application</th><th>Issued</th><th>&nbsp;</th></tr>
+    <% @tokens.each do |token|%>
+      <% content_tag_for :tr, token do %>
+        <td><%= link_to token.client_application.name, token.client_application.url %></td>
+        <td><%= token.authorized_at %></td>
+        <td>
+          <% form_tag :controller => 'oauth', :action => 'revoke' do %>
+            <%= hidden_field_tag 'token', token.token %>
+            <%= submit_tag "Revoke!" %>
+          <% end %>
+        </td>
+      <% end %>
     <% end %>
-  <% end %>
-
-</table>
+  </table>
 <% end %>
-<h3>Application Developers</h3>
+
 <% if @client_applications.empty? %>
   <p>
     Do you have an application you would like to register for use with us using the <a href="http://oauth.net">OAuth</a> standard?
@@ -27,17 +28,96 @@
   <p>
     You must register your web application before it can make OAuth requests to this service
   </p>
-<% else %>
-  <p>
-    You have the following client applications registered:
-  </p>
-  <% @client_applications.each do |client|%>
-    <% div_for client do %>
-      <%= link_to client.name, oauth_client_path(client) %>-
-        <%= link_to 'Edit', edit_oauth_client_path(client) %>
-        <%= link_to 'Delete', oauth_client_path(client), :confirm => "Are you sure?", :method => :delete %>
-    <% end %>
-  <% end %>
+<% else %> 
 <% end %>
-<br />
-<h3><%= link_to "Register your application", :action => :new %></h3>
+
+<div class="contMain">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="learnLeft">
+        <div class="learnFavT">
+          <div class="learnFavTL">Displaying review 1-10 out of 4289</div>
+          <div class="learnFavTC"><a href="#">See All</a></div>
+        </div>
+        <% @client_applications.each do |client|%>
+          <% div_for client do %>
+            <div class="learnNItem">
+              <div class="assPic"><a href="#"><div><img src="/images/pictures/noimg.png"></div></a></div>
+              <div class="learnFavtitle"><%= link_to client.name, oauth_client_path(client) %>
+                <span class="learnFavS">
+                  <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="images/starWhite.png">
+                </span>
+              </div>
+              <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
+              <div class="learnDetDate">January 03, 2010 at 4:02 PM      
+                <div class="learnFa" style="float: right"> 
+                  <%= link_to 'Edit', edit_oauth_client_path(client) %>
+                  <%= link_to 'Delete', oauth_client_path(client), :confirm => "Are you sure?", :method => :delete %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+        <div class="assPage">
+          <span class="numPage">Page 1 of 22</span>
+          <span class="firstPage"><a href="#">First Page</a></span>
+          <span class="prevPage"><a href="#">Prev</a></span>
+          <span class="currentPage">
+            <a href="#" class="selected"><span>6</span></a>
+            <a href="#"><span>7</span></a>
+            <a href="#"><span>8</span></a>
+            <a href="#"><span>9</span></a>
+            <a href="#"><span>10</span></a>
+          </span>
+          <span class="nextPage"><a href="#">Next</a></span>
+          <span class="lastPage"><a href="#">Last Page</a></span>
+        </div>
+        <div class="goTop"><a href="#">Top</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="contMainR">
+    <div class="creAdv"><a href="#">Create an Ad</a></div>
+    <div class="advert">
+      <div class="advertTitle">Advertisement</div>
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/pic6.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/adv.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
+      <div class="advertImg"><img src="/images/pictures/adv1.png"></div>
+      <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+  </div>
+</div>

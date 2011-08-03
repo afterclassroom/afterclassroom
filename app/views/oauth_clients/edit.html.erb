@@ -1,7 +1,68 @@
-<h1>Edit your application</h1>
-<% form_for :client_application, @client_application, :url => oauth_client_path(@client_application), :html => {:method => :put}  do |f| %>
-       <%= render :partial => "form", :locals => { :f => f } %>
-       <%= submit_tag "Edit" %>
-<% end %>
-<%= link_to 'Show', oauth_client_path(@client_application) %> |
-<%= link_to 'Back', oauth_clients_path %>
+<% content_for :you_are_here do -%>
+  You are here: <%= link_to 'Developers', oauth_clients_path %><%= link_to 'Edit', edit_oauth_client_path(@client_application), :class => "abLink-detail" %>
+<% end -%>
+
+<div class="contMain" style="margin-top: 10px">
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="learnLeft">
+        <div class="learnFavT"></div>
+        <div class="learnNItem">
+          <h1>Edit your application</h1>
+          <% form_for :client_application, @client_application, :url => oauth_client_path(@client_application), :html => {:method => :put}  do |f| %>
+            <%= render :partial => "form", :locals => { :f => f } %>
+            <div style="margin-left: 170px; float: left; padding-top: 10px;" class="submitDe"><%= submit_tag "Edit" %></div>
+            <div style="margin-left: 10px; float: left; padding-top: 10px;" class="submit"><%= link_to 'Show', oauth_client_path(@client_application) %></div>
+            <div style="margin-left: 10px; float: left; padding-top: 10px;" class="submit"><%= link_to 'Back', oauth_clients_path %></div>
+          <% end %>
+        </div>
+        <div class="assPage">
+        </div>
+        <div class="goTop"><a href="#">Top</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="contMainR">
+    <div class="creAdv"><a href="#">Create an Ad</a></div>
+    <div class="advert">
+      <div class="advertTitle">Advertisement</div>
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/pic6.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/adv.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
+      <div class="advertImg"><img src="/images/pictures/adv1.png"></div>
+      <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+  </div>
+</div>
