@@ -1,4 +1,4 @@
-<%= form_for(@toolreview, :id => "form_post", :remote => true, :url => url_for(:controller => "learn_tools", :action => "submit_review") ) do |f| %>
+<%= form_for(@toolreview, :remote => true, :url => url_for(:controller => "learn_tools", :action => "submit_review") ) do |f| %>
 <%= hidden_field_tag "tool_id", @tool_id %>
   <div>
     <%= f.text_field :title %>

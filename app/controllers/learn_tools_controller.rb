@@ -53,6 +53,14 @@ class LearnToolsController < ApplicationController
   end
   
   def submit_review
+    @toolreview = ToolReview.new(params[:tool_review])
+    @tool = Learntool.find(params[:tool_id])
+    @toolreview.learntool = @tool
+    @toolreview.user = current_user
+    
+    if @toolreview.save
+      flash[:notice] = "Your review was successfully created."
+    end
     render :layout => false
   end
   
