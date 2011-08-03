@@ -24,3 +24,28 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  function ShowFavoriteAjaxLoader(place_holder){
+    $(place_holder).before('<%= show_ajax_loader("holder_place", "background: white;  position: absolute;  width: 18px;") %>');
+  }
+  
+  function AddToFavorite(tool_id){
+    ShowFavoriteAjaxLoader('#checkbox_'+tool_id);
+    var add_url = "<%= add_favorite_user_learn_tools_path(current_user) %>";
+    $.ajax({
+      url: add_url,
+      data: {
+        str_tool_id: tool_id
+      },
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:' + msg);
+      },
+      success: function(msg){
+        $('#holder_place').remove();
+        //alert('add xong :: '+msg);
+      }
+    });
+  }  
+</script>

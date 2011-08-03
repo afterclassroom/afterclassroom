@@ -64,6 +64,11 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def add_favorite
+    puts "========= str_tool_id == "+params[:str_tool_id] ? params[:str_tool_id] : "EMPTY"
+    render :text => "Successful"
+  end
+  
   def featured_tool_paging
     if params[:cur_cate_at_feature] == "-1"#there is no category selected
       params[:feature_page] = params[:page_to_load]#page of will_paginate

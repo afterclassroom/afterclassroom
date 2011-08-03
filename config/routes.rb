@@ -45,7 +45,10 @@ Afterclassroom::Application.routes.draw do
     
     resources :learn_tools do
       collection do
-        get :index, :featured_tool_paging, :maylike_tool_paging, :first_tab_paging, :search_tool, :see_all_tool_fan, :contact_dev_form, :report_app_form, :mylearn, :tool_rev_paging, :write_review_form
+        get :index, :featured_tool_paging, :maylike_tool_paging, 
+          :first_tab_paging, :search_tool, :see_all_tool_fan, :contact_dev_form, 
+          :report_app_form, :mylearn, :tool_rev_paging, :write_review_form,
+          :add_favorite
         post :submit_review
       end
     end    
