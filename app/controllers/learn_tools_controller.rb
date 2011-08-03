@@ -69,7 +69,7 @@ class LearnToolsController < ApplicationController
     mt = MyTool.find(params[:str_mytool_id]);
     mt.favorite = true
     mt.save
-    render :text => "Successful"
+    render :text => "Add Complete"
   end
   
   def add_favorite_with_check
@@ -77,6 +77,7 @@ class LearnToolsController < ApplicationController
     #we need to check whether myleartool for this current user has contained
     #this tool or not, if yes then add favorite=true, if not, then create and
     #add favorite = true
+    render :text => "Add Complete"
   end
   
   def featured_tool_paging
