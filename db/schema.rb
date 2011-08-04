@@ -349,6 +349,7 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
     t.integer  "user_id",      :null => false
     t.integer  "learntool_id", :null => false
     t.boolean  "favorite"
+    t.boolean  "play_demo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -65,8 +65,7 @@ class LearnToolsController < ApplicationController
   end
   
   def add_favorite
-    
-    mt = MyTool.find(params[:str_mytool_id]);
+    mt = MyTool.find(:first, :conditions => { :learntool_id => params[:str_mytool_id], :user_id => current_user.id })
     mt.favorite = true
     mt.save
     render :text => "Add Complete"
@@ -77,6 +76,21 @@ class LearnToolsController < ApplicationController
     #we need to check whether myleartool for this current user has contained
     #this tool or not, if yes then add favorite=true, if not, then create and
     #add favorite = true
+    #
+    mtobj = MyTool.find(:first, :conditions => { :learntool_id => params[:current_tool_id], :user_id => current_user.id })
+    tool = Learntool.find(params[:current_tool_id])
+    
+    if mtobj != nil
+      mtobj.favorite = true
+    else
+      mtobj = MyTool.new
+      mtobj.user = current_user
+      mtobj.learntool =  tool
+      mtobj.favorite = true
+    end
+    
+    mtobj.save
+    
     render :text => "Add Complete"
   end
   
