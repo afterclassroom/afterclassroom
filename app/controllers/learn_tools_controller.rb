@@ -93,6 +93,10 @@ class LearnToolsController < ApplicationController
     render :text => "Add Complete"
   end
   
+  def update_play_demo
+    render :text => "Update Status Complete"
+  end
+  
   def featured_tool_paging
     if params[:cur_cate_at_feature] == "-1"#there is no category selected
       params[:feature_page] = params[:page_to_load]#page of will_paginate

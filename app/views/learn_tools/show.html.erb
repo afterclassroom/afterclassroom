@@ -10,9 +10,18 @@
           </div>
           <div class="demoBtm">
             <% if current_user.my_tools.map(&:learntool_id).include?(@tool.id) == true %>
-              <a href="javascript:;">Play now</a>
+              Value of play demo == <%= current_user.my_tools.where("learntool_id = ?", @tool.id).first.play_demo %>
+              <% if current_user.my_tools.where("learntool_id = ?", @tool.id).first.play_demo == false %>
+                <!-- user has favorite this tool but has not played a demo -->
+                <a id="play_a_demo" href="javascript:;">Play a Demo</a>
+              <% else %>
+                <!-- user has favorite And has played a demo -->
+                <a href="javascript:;">Play now</a>
+              <% end %>
+
             <% else %>
-              <a href="javascript:;">Play a Demo</a>
+                <!-- this case is: user has not played or Favorite this tool -->
+              <a id="play_a_demo" href="javascript:;">Play a Demo</a>
             <% end %>
 
           </div>
@@ -143,7 +152,16 @@
       AddToFavoriteWithCheck('<%= @tool.id %>');
       $('#add_tool_to_favorite').unbind();
     });
+    
+    $('#play_a_demo').click(function(){
+      UpdatePlayDemoStatus('<%= @tool.id %>');
+    });
+    
   });
+  
+  function ShowPlayDemoOverlay(){
+  
+  }
 
   function ShowFavorOverlay(){
     $('.demoBtm').eq(1).append('<div id="favoroverlay"></div>');
@@ -179,6 +197,26 @@
       success: function(msg){
         $('#add_tool_to_favorite').text("Your Favorite Tool");
         $('#favoroverlay').remove();
+      }
+    });  
+  }
+  function UpdatePlayDemoStatus(tool_id){
+    ShowPlayDemoOverlay();
+    var add_url = "<%= update_play_demo_user_learn_tools_path(current_user) %>";
+    $.ajax({
+      url: add_url,
+      data: {
+        current_tool_id: tool_id
+      },
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        $('#demooverlay').remove();
+        alert('Failed to communicate with server:' + msg);
+      },
+      success: function(msg){
+        $('#play_a_demo').text("Play Now");
+        $('#demooverlay').remove();
       }
     });  
   }
