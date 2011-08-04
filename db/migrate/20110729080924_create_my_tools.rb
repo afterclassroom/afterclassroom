@@ -4,6 +4,7 @@ class CreateMyTools < ActiveRecord::Migration
       
       t.belongs_to :user, :null => false
       t.belongs_to :learntool, :null => false
+      t.boolean :favorite #this attribute is for detecting fans of this tool
       
 
       t.timestamps

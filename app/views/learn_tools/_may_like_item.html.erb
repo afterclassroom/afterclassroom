@@ -1,6 +1,6 @@
 <div class="learnTitem <%= ( index == 4 || index == 9 ) ? "learnLast" : ""%>">
-  <div class="learnTtitle"><a href=""><%= truncate_html(m.name, :length => 18, :omission => '...') %></a></div>
-  <div class="learnTimg"><a href="#"><div><%= image_tag m.tool_img.url(:thumb) %></div></a></div>
+  <div class="learnTtitle"><a href="<%= user_learn_tool_path(current_user,m) %>"><%= truncate_html(m.name, :length => 18, :omission => '...') %></a></div>
+  <div class="learnTimg"><a href="<%= user_learn_tool_path(current_user,m) %>"><div><%= image_tag m.tool_img.url(:thumb) %></div></a></div>
   <div class="learnTst">
     <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
   </div>

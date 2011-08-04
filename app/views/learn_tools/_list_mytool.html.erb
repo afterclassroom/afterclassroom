@@ -1,0 +1,51 @@
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="learnLeft">
+
+
+      <div class="learnFavT">
+        <div class="learnFavTL">Displaying review 1-10 out of 4289</div>
+        <div class="learnFavTC"><a href="#">See All</a></div>
+
+      </div>
+
+      <% @my_tools.each do |mtool| %>
+        <%= render :partial => "list_mytool_item", :locals => {:my_tool => mtool} %>
+      <% end %>
+
+
+      <div class="assPage" style="padding-left:0">
+        <span class="numPage"><%= page_entries_info @my_tools %></span>
+        <%= will_paginate @my_tools %> 
+      </div>
+
+
+      <div class="goTop"><a href="#">Top</a></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  function ShowFavoriteAjaxLoader(place_holder){
+    $(place_holder).before('<%= show_ajax_loader("holder_place", "background: white;  position: absolute;  width: 18px;") %>');
+  }
+  
+  function AddToFavorite(mytool_id,place_of_ajax_loader){
+    ShowFavoriteAjaxLoader('#checkbox_'+place_of_ajax_loader);
+    var add_url = "<%= add_favorite_user_learn_tools_path(current_user) %>";
+    $.ajax({
+      url: add_url,
+      data: {
+        str_mytool_id: mytool_id
+      },
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        $('#holder_place').remove();
+        alert('Failed to communicate with server:' + msg);
+      },
+      success: function(msg){
+        $('#holder_place').remove();
+      }
+    });
+  }  
+</script>

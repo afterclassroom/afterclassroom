@@ -5468,3 +5468,23 @@ span.btmTag a:hover{
 .border-callout { border: 1px solid #c5d9e8; margin-right: 15px;}
 
 .border-callout .border-notch { border-bottom-color: #c5d9e8; top: -11px; }
+
+/*------------------- Developers -------------*/
+.submitDe input {
+    background: url('/images/btm48.png') no-repeat;
+    width: 48px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    display: block;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.submitDe input:hover {
+    background: url('/images/btm48Red.png') no-repeat;
+}
+.menuSelectDe{
+    background: url("/images/menuOnR.png") no-repeat scroll right top transparent;
+  }

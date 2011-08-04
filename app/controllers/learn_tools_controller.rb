@@ -1,4 +1,6 @@
 class LearnToolsController < ApplicationController
+  include LearnToolsHelper
+  
   layout 'student_lounge'
   
   before_filter :get_variables, :only => [:index, :search_tool]
@@ -25,11 +27,57 @@ class LearnToolsController < ApplicationController
   end
   
   def mylearn
-    
+    @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
   end
   
   def newlearn
     
+  end
+  
+  def show
+    @tool = Learntool.find(params[:id])
+    @tool_reviews = @tool.tool_reviews.paginate(:page => params[:page], :per_page => 5)
+  end
+  
+  def tool_rev_paging
+    @tool = Learntool.find(params[:tool_id])
+    @tool_reviews = @tool.tool_reviews.paginate(:page => params[:review_page_to_load], :per_page => 5)
+    @cur_rev_page = params[:review_page_to_load]
+    render :layout => false
+  end
+  
+  def write_review_form
+    @tool_id = params[:tool_id]
+    @toolreview = ToolReview.new
+    render :layout => false
+  end
+  
+  def submit_review
+    @toolreview = ToolReview.new(params[:tool_review])
+    @tool = Learntool.find(params[:tool_id])
+    @toolreview.learntool = @tool
+    @toolreview.user = current_user
+    
+    if @toolreview.save
+      flash[:notice] = "Your review was successfully created."
+    end
+    render :layout => false
+  end
+  
+  def add_favorite
+    
+    mt = MyTool.find(params[:str_mytool_id]);
+    mt.favorite = true
+    mt.save
+    render :text => "Add Complete"
+  end
+  
+  def add_favorite_with_check
+    #this one differ from above
+    #we need to check whether myleartool for this current user has contained
+    #this tool or not, if yes then add favorite=true, if not, then create and
+    #add favorite = true
+    render :text => "Add Complete"
   end
   
   def featured_tool_paging
@@ -106,10 +154,22 @@ class LearnToolsController < ApplicationController
       else
         @all_tools = Learntool.with_recently.paginate(:page => params[:bottom_page_to_load], :per_page => 5)
       end
-
     end
-    
-
+    render :layout => false
+  end
+  
+  def contact_dev_form
+    render :layout => false
+  end
+  
+  def report_app_form
+    render :layout => false
+  end
+  
+  
+  def see_all_tool_fan
+    tool = Learntool.find(params[:current_tool_id])
+    @obj_fans = display_fan(tool)
     render :layout => false
   end
   

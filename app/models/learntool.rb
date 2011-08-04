@@ -4,11 +4,12 @@ class Learntool < ActiveRecord::Base
   belongs_to :client_application
 
   has_many :my_tools, :dependent => :destroy
+  has_many :tool_reviews, :dependent => :destroy
 
   # Attach
   has_attached_file :tool_img, {
     :bucket => 'afterclassroom_photos',
-    :styles => { :medium => "161x191>", :thumb => "90x66#" }
+    :styles => { :medium => "161x191#", :thumb => "90x66#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   validates_attachment_presence :tool_img

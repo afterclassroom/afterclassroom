@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110729080924) do
+ActiveRecord::Schema.define(:version => 20110802100636) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -348,6 +348,7 @@ ActiveRecord::Schema.define(:version => 20110729080924) do
   create_table "my_tools", :force => true do |t|
     t.integer  "user_id",      :null => false
     t.integer  "learntool_id", :null => false
+    t.boolean  "favorite"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -790,6 +791,15 @@ ActiveRecord::Schema.define(:version => 20110729080924) do
   create_table "teamup_categories", :force => true do |t|
     t.string "name"
     t.string "label"
+  end
+
+  create_table "tool_reviews", :force => true do |t|
+    t.integer  "user_id",      :null => false
+    t.integer  "learntool_id", :null => false
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tutor_types", :force => true do |t|

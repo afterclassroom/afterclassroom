@@ -1,6 +1,6 @@
 <div style="border-bottom: 1px solid #DBDBDB; overflow: hidden;margin-bottom: 10px;" class="learnCoSe">
 
-  <% form_tag url_for(:controller => "learn_tools", :action => "index"), :id => "form_select_cate", :method => :get, :remote => false do %>
+  <% form_tag url_for(:controller => "learn_tools", :action => "index"), :id => "form_select_cate", :style => "float:left", :method => :get, :remote => false do %>
     <select id="tool_cate" name="tool_cate" style="width: 200px; height: 23px;padding-top: 3px;">
       <option value="<%= params[:tool_cate] %>"><%= params[:tool_cate] != "-1" ? LearnToolCate.find(params[:tool_cate]).title : "Please select..." %></option>
 

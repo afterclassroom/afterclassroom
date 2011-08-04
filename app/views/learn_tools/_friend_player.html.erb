@@ -1,0 +1,30 @@
+<% form_tag url_for(:controller => "learn_tools", :action => "see_all_friend_player"), :id => "form_friend_player", :method => :get, :remote => true do %>
+
+  <% fr_user = display_friend_player(@tool) %>
+  <div class="friUse">
+    <div class="friUsetit">Friends using this Learning Tools</div>
+    <div class="friUseAll"><a id="btn_see_all" href="javascript:;"><%= fr_user.size <= 6 ? "" : "See all" %></a></div>
+  </div>
+  <div class="friImg">
+
+    <div id="view_first_6">
+      <% fr_user.first(6).each_with_index do |f_user,index| %>
+        <%= render :partial => "friend_item", :locals => {:index => index, :f_user => f_user} %>
+      <% end %>
+    </div>
+    <div id="val_for_see_all" style="display: none;">
+      <% fr_user.each_with_index do |f_user,index| %>
+        <%= render :partial => "friend_item", :locals => {:index => index, :f_user => f_user} %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#btn_see_all').click(function(){
+      $('#view_first_6').hide();
+      $('#val_for_see_all').show('slow');
+      $('#btn_see_all').remove();
+    });
+  });
+</script>

@@ -341,3 +341,173 @@ div.player.inactive
     position: absolute;
     margin-left: -20px;
 }
+
+/*---------TextboxList.Autocomplete Style guidelines-------------*/
+
+.form_tags { margin-bottom: 10px; }
+
+/* Setting widget width example */
+.textboxlist { width: 544px; }
+
+/* Preloader for autocomplete */
+.textboxlist-loading { background: url('images/spinner.gif') no-repeat 380px center; }
+
+/* Autocomplete results styling */
+.form_friends .textboxlist-autocomplete-result { overflow: hidden; zoom: 1; }
+.form_friends .textboxlist-autocomplete-result img { float: left; padding-right: 10px; }
+
+.note { color: #666; font-size: 90%; }
+
+.textboxlist {
+    cursor: text;
+    font: 11px "Lucida Grande",Verdana;
+}
+.textboxlist-bits {
+    border: 1px solid #CECECE;
+    margin: 0;
+    overflow: hidden;
+    padding: 3px 4px 0;
+    background: #FFFFFF;
+}
+.textboxlist-bit {
+    cursor: default;
+    display: block;
+    float: left;
+    list-style-type: none;
+    margin: 0 5px 3px 0;
+    padding: 0;
+}
+.textboxlist-bit-editable {
+    border: 1px solid #FFFFFF;
+}
+.textboxlist-bit-editable-input {
+    border: 0 none;
+    font: 11px "Lucida Grande",Verdana;
+    height: 14px;
+    padding: 2px 0;
+}
+.textboxlist-bit-editable-input:focus {
+    outline: 0 none;
+}
+.textboxlist-bit-box {
+    -moz-border-radius: 9px 9px 9px 9px;
+    background: none repeat scroll 0 0 #DEE7F8;
+    border: 1px solid #CAD8F3;
+    cursor: default;
+    line-height: 18px;
+    padding: 0 5px;
+    position: relative;
+}
+.textboxlist-bit-box-deletable {
+    padding-right: 15px;
+}
+.textboxlist-bit-box-deletebutton {
+    background: url("/images/close.gif") repeat scroll 0 0 transparent;
+    display: block;
+    font-size: 1px;
+    height: 7px;
+    position: absolute;
+    right: 4px;
+    top: 6px;
+    width: 7px;
+}
+.textboxlist-bit-box-deletebutton:hover {
+    background-position: 7px 50%;
+    border: medium none;
+    text-decoration: none;
+}
+.textboxlist-bit-box-hover {
+    background: none repeat scroll 0 0 #BBCEF1;
+    border: 1px solid #6D95E0;
+}
+.textboxlist-bit-box-focus {
+    background: none repeat scroll 0 0 #598BEC;
+    border-color: #598BEC;
+    color: #FFFFFF;
+}
+.textboxlist-bit-box-focus .textboxlist-bit-box-deletebutton {
+    background-position: center bottom;
+}
+
+.textboxlist input{
+    border: 0 none;
+}
+
+.textboxlist-autocomplete {
+    position: absolute;
+    z-index: 50000;
+}
+
+.textboxlist-autocomplete-placeholder, .textboxlist-autocomplete-results {
+    opacity: 70.9;
+    filter: alpha(opacity = 190);
+    background: #eee;
+    -webkit-box-shadow: 0 3px 3px #ccc;
+    -moz-box-shadow: 0 3px 3px #ccc;
+    box-shadow: 0 3px 3px #ccc;
+    border: 1px solid #999;
+    border-top: none;
+    display: none;
+}
+
+.textboxlist-autocomplete-placeholder {
+    padding: 5px 7px;
+}
+
+.textboxlist-autocomplete-results {
+    margin: 0;
+    padding: 0;
+}
+
+.textboxlist-autocomplete-result {
+    margin: 0;
+    padding: 5px;
+    list-style-type: none;
+    background: #eee;
+}
+
+.textboxlist-autocomplete-result-focus {
+    background: #C6D9E4;
+}
+
+.textboxlist-autocomplete-highlight {
+    background: #EEF0C4;
+    font-weight: bold;
+}
+
+.textboxlist-bit-editable {
+    height: 18px;
+    position: relative;
+}
+
+.textboxlist-bit-editable-input {
+    background-color: transparent;
+    position: absolute;
+    z-index: 3;
+}
+
+.textboxlist-autocomplete-suggest {
+    color: silver;
+    z-index: 1;
+}
+
+/*  TextboxList.Autocomplete Style guidelines
+ Try to keep .textboxlist-autocomplete {} as it is now
+ If you apply custom styles to placeholder, also apply them to results, like it is now.
+ .textboxlist-autocomplete-result {} needs a background for IE.
+*/
+/* Preloader for autocomplete */
+.textboxlist-loading {
+    background: url('/images/spinner.gif') no-repeat 380px center;
+}
+
+/* Autocomplete results styling */
+.form_friends .textboxlist-autocomplete-result {
+    overflow: hidden;
+    zoom: 1;
+}
+
+.form_friends .textboxlist-autocomplete-result img {
+    float: left;
+    padding-right: 10px;
+}
