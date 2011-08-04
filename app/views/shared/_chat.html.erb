@@ -1,7 +1,10 @@
-<script src="http://afterclassroom:8080/application.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
-        var jug_chat = new Juggernaut();
+        var jug_chat = new Juggernaut({
+            secure: true,
+            host: chat.afterclassroom.com,
+            port: 443
+        });
         jug_chat.subscribe("chat_<%= current_user.id %>", function(data){
             chanel_name = data.chanel_name
             message = data.message
