@@ -3,7 +3,7 @@ class LearnToolsController < ApplicationController
   
   layout 'student_lounge'
   
-  before_filter :get_variables, :only => [:index, :search_tool]
+  before_filter :get_variables, :only => [:index, :search_tool, :new_tool]
   
   def index
     if params[:tool_cate] == "-1"
@@ -203,6 +203,10 @@ class LearnToolsController < ApplicationController
   end
   
   def new_tool
+    @tool = Learntool.new
+  end
+  
+  def newlearn
     
   end
   

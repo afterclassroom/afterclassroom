@@ -7,6 +7,7 @@ class CreateLearntools < ActiveRecord::Migration
       t.text :description
       t.boolean :verify
       t.boolean :authorize
+      t.boolean :ac_api
       t.text :href
       t.integer :acc_play_no
       t.integer :client_application_id
