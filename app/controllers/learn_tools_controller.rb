@@ -202,6 +202,10 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def new_tool
+    
+  end
+  
   private
   
   def get_variables
