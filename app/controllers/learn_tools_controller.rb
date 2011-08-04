@@ -30,10 +30,6 @@ class LearnToolsController < ApplicationController
     @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
   end
   
-  def newlearn
-    
-  end
-  
   def show
     @tool = Learntool.find(params[:id])
     @tool_reviews = @tool.tool_reviews.paginate(:page => params[:page], :per_page => 5)
@@ -65,7 +61,10 @@ class LearnToolsController < ApplicationController
   end
   
   def add_favorite
-    mt = MyTool.find(:first, :conditions => { :learntool_id => params[:str_mytool_id], :user_id => current_user.id })
+    #this action is applied for page My Learning Tool
+    #hence, we do not need to check whether this id of MyTool exist or NOT
+    mt = MyTool.find(:first, :conditions => { :id => params[:str_mytool_id], :user_id => current_user.id })
+    
     mt.favorite = true
     mt.save
     render :text => "Add Complete"
