@@ -26,7 +26,7 @@ set :output, "/var/log/cron_log.log"
 every :reboot do
   rake "jobs:work"
   rake "sunspot:solr:start"
-  command "cd /var/www/juggernaut && nohup node server.js &"
+  #command "cd /var/www/juggernaut && nohup node server.js &"
 end
 
 # Delete share file expire

@@ -9,7 +9,7 @@ class Learntool < ActiveRecord::Base
   # Attach
   has_attached_file :tool_img, {
     :bucket => 'afterclassroom_photos',
-    :styles => { :medium => "161x191#", :thumb => "90x66#" }
+    :styles => { :medium => "161x191#", :thumb => "90x66#", :small => "45x45#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   validates_attachment_presence :tool_img
