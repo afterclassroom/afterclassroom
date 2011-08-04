@@ -2618,6 +2618,32 @@ span.btmRSVP a:hover {
     background: url('/images/supportH.png') no-repeat;
 }
 
+.support85 {
+    float: right;
+    padding-right: 3px;
+    padding-bottom: 5px;
+}
+
+.support85 a {
+    background: url('/images/support85.png') no-repeat;
+    width: 85px;
+    height: 19px;
+    text-align: center;
+    display: block;
+    line-height: 19px;
+}
+
+.support85 a, .support85 a:link, .support85 a:visited {
+    text-decoration: none;
+    color: #8c8c8c;
+}
+
+.support85 a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: url('/images/support85H.png') no-repeat;
+}
+
 .student .mySco {
     clear: both;
     padding-top: 0px;
