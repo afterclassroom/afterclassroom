@@ -94,6 +94,18 @@ class LearnToolsController < ApplicationController
   end
   
   def update_play_demo
+    mtobj = current_user.my_tools.where("learntool_id = ?", params[:current_tool_id]).first
+    if mtobj != nil
+      mtobj.play_demo = true
+    else
+      mtobj = MyTool.new
+      mtobj.user = current_user
+      mtobj.learntool =  tool
+      mtobj.play_demo = true
+    end
+    
+    mtobj.save
+    
     render :text => "Update Status Complete"
   end
   

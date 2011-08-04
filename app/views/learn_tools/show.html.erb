@@ -10,7 +10,6 @@
           </div>
           <div class="demoBtm">
             <% if current_user.my_tools.map(&:learntool_id).include?(@tool.id) == true %>
-              Value of play demo == <%= current_user.my_tools.where("learntool_id = ?", @tool.id).first.play_demo %>
               <% if current_user.my_tools.where("learntool_id = ?", @tool.id).first.play_demo == false %>
                 <!-- user has favorite this tool but has not played a demo -->
                 <a id="play_a_demo" href="javascript:;">Play a Demo</a>
@@ -20,7 +19,7 @@
               <% end %>
 
             <% else %>
-                <!-- this case is: user has not played or Favorite this tool -->
+              <!-- this case is: user has not played or Favorite this tool -->
               <a id="play_a_demo" href="javascript:;">Play a Demo</a>
             <% end %>
 
@@ -155,12 +154,26 @@
     
     $('#play_a_demo').click(function(){
       UpdatePlayDemoStatus('<%= @tool.id %>');
+      $('#play_a_demo').unbind();
     });
     
   });
   
   function ShowPlayDemoOverlay(){
-  
+    $('.demoBtm').eq(0).append('<div id="demooverlay"></div>');
+    var position = $('.demoBtm').eq(0).offset();
+
+    $("#demooverlay")
+    .height(47)
+    .css({
+      'opacity' : 0.4,
+      'position': 'absolute',
+      'top': position.top -10,
+      'left': position.left - 10,
+      'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+      'width': '200px',
+      'z-index': 5000
+    });
   }
 
   function ShowFavorOverlay(){
