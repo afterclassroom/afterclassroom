@@ -3,7 +3,7 @@ class LearnToolsController < ApplicationController
   
   layout 'student_lounge'
   
-  before_filter :get_variables, :only => [:index, :search_tool, :new_tool]
+  before_filter :get_variables, :only => [:index, :search_tool, :new_tool, :submit_new_tool]
   
   def index
     if params[:tool_cate] == "-1"
@@ -204,6 +204,23 @@ class LearnToolsController < ApplicationController
   
   def new_tool
     @tool = Learntool.new
+  end
+  
+  def submit_new_tool
+    @tool = Learntool.new(params[:learntool])
+    @tool.user = current_user
+    if simple_captcha_valid?
+      if @tool.save!
+        flash[:notice] = "Your tool was successfully submitted."
+        redirect_to :controller=>'learn_tools', :action => 'new_tool'
+      else
+        flash[:notice] = "Error !"
+        render :action => "new_tool"
+      end
+    else
+      flash[:warning] = "Captcha does not match."
+      render :action => "new_tool"
+    end
   end
   
   def newlearn

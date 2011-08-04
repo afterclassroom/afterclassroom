@@ -516,7 +516,7 @@ module ApplicationHelper
             str = link_to(raw("<span>Waiting accept</span>"), "javascript:;")
           else
             i = current_user.user_invites_in.find_by_user_id(user.id)
-            str = raw("<span id='friend_request_#{i.id}'>" + link_to("Accept", accept_user_friends_path(current_user, :invite_id => i.id), :remote => true) + " | " + link_to("No Accept", de_accept_user_friends_path(current_user, :invite_id => i.id), :remote => true) + "</span>")
+            str = raw("<span id='friend_request_#{i.id}'>" + link_to("Accept", accept_user_friends_path(current_user, :invite_id => i.id), :remote => true, :style=>"margin-bottom:5px") + " " + link_to("No Accept", de_accept_user_friends_path(current_user, :invite_id => i.id), :remote => true) + "</span>")
           end
         else
           str = link_to(raw("<span id='friend_#{user.id}'>Invite Friend</span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")

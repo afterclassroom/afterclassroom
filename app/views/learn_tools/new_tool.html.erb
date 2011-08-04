@@ -7,42 +7,19 @@
   <div class="contDetL">
     <div class="contDetLin post">
       <div class="AsDTop">
-        <h1 class="titleH1">Posting</h1>
+        <h1 class="titleH1">Submit new tool</h1>
       </div>
+      <%= display_flash_messages_with_raw %>
       <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "submit_new_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
         <div class="postCont">
           <div class="postErr">
             <div class="postItem">
               <div class="postTit">Submit new tool</div>
               <div class="postInp">
-
-
-                <select id="learntool_learn_tool_cate" name="learntool_learn_tool_cate" style="width: 200px; height: 23px;padding-top: 3px;">
-
-                  <option value="-1">Please select...</option>
-
-                  <% @tool_cats.each do |tc| %>
-                    <option value="<%= tc.id %>"><%= tc.title %></option>
-                  <% end %>
-
-                </select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <%#= f.select :learn_tool_cate, @tool_cats %>
+                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
+                <%#= f.select("learntool", "learn_tool_cate", LearnToolCate.all.collect {|p| [ p.title, p.id ] }, {:prompt => 'Select Category'}) %>
+ 
               </div>
             </div>
             <div class="postItem">
@@ -57,12 +34,8 @@
               </div>
             </div>
             <div class="postItem">
-              <%= fields_for :tool_img do |builder1| %>
-                <div class="postTit"><%= builder1.label :tool_img, "Tool Image" %></div>
-                <div class="postInp"><%= builder1.hidden_field :tool_img, :value => "Tool Image" %></div>
-                <%= builder1.file_field :image_of_tool %>
-              <% end %>            
-
+               <div class="postTit">Images</div>
+               <div class="postInp"><%= f.file_field :tool_img %></div>
               <!-- div class="postTit">Images</div>
               <div class="postInp"><input type="file" name="Text1" style="height: 25px;" size='23'></div -->
             </div>
@@ -73,7 +46,7 @@
             <div class="postItem">
               <div class="postTit">AC-API</div>
               <div class="postRad">
-                <div><input type="checkbox" name="checkbox"></div>
+                <div><%= f.check_box :ac_api %></div>
               </div>
             </div>
             <div style="margin-left:120px">
@@ -81,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div class="submit" style="margin-left: 10px;float:left;padding-right: 0px"><a href="#">Submit</a></div>
+        <div class="submit" style="margin-left: 10px;float:left;padding-right: 0px"><%= f.submit %></div>
         <div class="submit" style="margin-left: 10px;float: left;padding-left: 0px"><a href="#">Reset</a></div>
 
       <% end %>
