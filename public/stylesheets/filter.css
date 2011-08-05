@@ -1,0 +1,71 @@
+/* Styles that make it work */
+.filtered ul {
+    margin: 0;
+    padding: 0;
+}
+.filtered li {
+    list-style: none;
+    margin: 0;
+    padding: 0 .5em .2em;
+    display: inline;
+    float: left;
+}
+.filtered div {
+    display: block;
+    width: 20em;
+    overflow: hidden;
+    line-height: 4.5em;
+    white-space: nowrap;
+    position: relative;
+}
+.filtered .caption {
+    position: absolute;
+    left: 5em;
+    top: 0;
+}
+.filtered img {
+    max-height: 4em;
+    max-width: 4em;
+    vertical-align: middle;
+}
+.filtered .hidden {
+    display: none;
+}
+.count {
+    padding: 0 1em;
+    font-size: 90%;
+    color: #999;
+}
+
+/* Styles that make it look nicer */
+body {
+    font-family: "Myriad Pro", Helvetica, "Segoe UI", sans-serif;
+    font-size: 14px;
+}
+h1 {
+    font-weight: normal;
+}
+img {
+    border: none;
+}
+a, a:link, a:visited {
+    color: #46a;
+}
+.loading {
+    font-size: 1.4em;
+    color: #aaa;
+    display: block;
+    width: 15em;
+    margin: 2em auto;
+}
+.loading img {
+    padding: 0 10px;
+}
+#flickr-photos {
+    float: left;
+}
+.footer {
+    clear: left;
+    padding-top: 40px;
+    font-size: .9em;
+}
