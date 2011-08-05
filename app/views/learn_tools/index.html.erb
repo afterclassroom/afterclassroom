@@ -21,7 +21,11 @@
 <div class="topLearning">
   <div class="menuRL">
     <div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Recommend Learning Tools</span></span></a></div>
-    <div class="menuRItem"><a href="#"><span class="span1"><span class="span2">Submit Learning Tools</span></span></a></div>
+    <div class="menuRItem">
+      <a href="<%= new_tool_user_learn_tools_path(current_user) %>">
+        <span class="span1"><span class="span2">Submit Learning Tools</span></span>
+      </a>
+    </div>
   </div>
   <div class="postdiv">
     <span class="RmenuRbtm2"><a href="#">Post</a></span>
@@ -33,7 +37,6 @@
   <div class="contDetL">
     <div class="contDetLin">
       <div class="learnLeft">
-
         <%= render :partial => "components" %>
         
         <%= render :partial => "featured" %>

@@ -3,7 +3,7 @@ class LearnToolsController < ApplicationController
   
   layout 'student_lounge'
   
-  before_filter :get_variables, :only => [:index, :search_tool]
+  before_filter :get_variables, :only => [:index, :search_tool, :new_tool, :submit_new_tool]
   
   def index
     if params[:tool_cate] == "-1"
@@ -28,10 +28,6 @@ class LearnToolsController < ApplicationController
   
   def mylearn
     @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
-  end
-  
-  def newlearn
-    
   end
   
   def show
@@ -65,8 +61,10 @@ class LearnToolsController < ApplicationController
   end
   
   def add_favorite
+    #this action is applied for page My Learning Tool
+    #hence, we do not need to check whether this id of MyTool exist or NOT
+    mt = MyTool.find(:first, :conditions => { :id => params[:str_mytool_id], :user_id => current_user.id })
     
-    mt = MyTool.find(params[:str_mytool_id]);
     mt.favorite = true
     mt.save
     render :text => "Add Complete"
@@ -77,7 +75,38 @@ class LearnToolsController < ApplicationController
     #we need to check whether myleartool for this current user has contained
     #this tool or not, if yes then add favorite=true, if not, then create and
     #add favorite = true
+    #
+    mtobj = MyTool.find(:first, :conditions => { :learntool_id => params[:current_tool_id], :user_id => current_user.id })
+    tool = Learntool.find(params[:current_tool_id])
+    
+    if mtobj != nil
+      mtobj.favorite = true
+    else
+      mtobj = MyTool.new
+      mtobj.user = current_user
+      mtobj.learntool =  tool
+      mtobj.favorite = true
+    end
+    
+    mtobj.save
+    
     render :text => "Add Complete"
+  end
+  
+  def update_play_demo
+    mtobj = current_user.my_tools.where("learntool_id = ?", params[:current_tool_id]).first
+    if mtobj != nil
+      mtobj.play_demo = true
+    else
+      mtobj = MyTool.new
+      mtobj.user = current_user
+      mtobj.learntool =  tool
+      mtobj.play_demo = true
+    end
+    
+    mtobj.save
+    
+    render :text => "Update Status Complete"
   end
   
   def featured_tool_paging
@@ -171,6 +200,31 @@ class LearnToolsController < ApplicationController
     tool = Learntool.find(params[:current_tool_id])
     @obj_fans = display_fan(tool)
     render :layout => false
+  end
+  
+  def new_tool
+    @tool = Learntool.new
+  end
+  
+  def submit_new_tool
+    @tool = Learntool.new(params[:learntool])
+    @tool.user = current_user
+    if simple_captcha_valid?
+      if @tool.save!
+        flash[:notice] = "Your tool was successfully submitted."
+        redirect_to :controller=>'learn_tools', :action => 'new_tool'
+      else
+        flash[:notice] = "Error !"
+        render :action => "new_tool"
+      end
+    else
+      flash[:warning] = "Captcha does not match."
+      render :action => "new_tool"
+    end
+  end
+  
+  def newlearn
+    
   end
   
   private
