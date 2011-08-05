@@ -2,26 +2,26 @@ module Jaap3
   module Addthis
     CONFIG = {:publisher => ""}
     DEFAULT_OPTIONS = {
-      :script_src => "http://s7.addthis.com/js/200/addthis_widget.js",
+      :script_src => "https://s7.addthis.com/js/200/addthis_widget.js",
       :brand => nil, :header_color => nil, :header_background => nil,
       :offset_top => nil, :offset_left => nil, :hover_delay => nil,
       :options => nil, :language => nil, :secure => false
     }
     BOOKMARK_BUTTON_DEFAULTS = {
       :title => "",
-      :button_html => '<img src="http://s7.addthis.com/static/btn/lg-bookmark-en.gif" width="125" height="16" border="0" alt="Bookmark and Share" />'
+      :button_html => '<img src="https://s7.addthis.com/static/btn/lg-bookmark-en.gif" width="125" height="16" border="0" alt="Bookmark and Share" />'
     }
     SHARE_BUTTON_DEFAULTS = {
       :title => "",
-      :button_html => '<img src="http://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Bookmark and Share" />'
+      :button_html => '<img src="https://s7.addthis.com/static/btn/lg-share-en.gif" width="125" height="16" border="0" alt="Bookmark and Share" />'
     }
     FEED_BUTTON_DEFAULTS = {
       :title => "Subscribe using any feed reader!",
-      :button_html => '<img src="http://s7.addthis.com/static/btn/lg-feed-en.gif" width="125" height="16" border="0" alt="Subscribe" />'
+      :button_html => '<img src="https://s7.addthis.com/static/btn/lg-feed-en.gif" width="125" height="16" border="0" alt="Subscribe" />'
     }
     EMAIL_BUTTON_DEFAULTS = {
       :title => "",
-      :button_html => '<img src="http://s7.addthis.com/button1-email.gif" width="54" height="16" border="0" alt="Email" />'
+      :button_html => '<img src="https://s7.addthis.com/button1-email.gif" width="54" height="16" border="0" alt="Email" />'
     }
 
     module Helper
@@ -31,7 +31,7 @@ module Jaap3
             url, options = extract_addthis_url_and_options(args)
             options[:button_html] = yield if block_given?
             options = Jaap3::Addthis::#{func.upcase}_BUTTON_DEFAULTS.merge(options)
-            s = %Q(<a href="http://www.addthis.com/bookmark.php?v=20" onmouseover="\#{addthis_open("", url, options[:page_title])}" onmouseout="addthis_close()" onclick="return addthis_sendto()" title="\#{options[:title]}">)
+            s = %Q(<a href="https://www.addthis.com/bookmark.php?v=20" onmouseover="\#{addthis_open("", url, options[:page_title])}" onmouseout="addthis_close()" onclick="return addthis_sendto()" title="\#{options[:title]}">)
             addthis_tag(s, options)
           end
         EOS
@@ -41,14 +41,14 @@ module Jaap3
         url, options = extract_addthis_url_and_options(args)
         options[:button_html] = yield if block_given?
         options = EMAIL_BUTTON_DEFAULTS.merge(options)
-        s = %Q{<a href="http://www.addthis.com/bookmark.php" onclick="#{addthis_open("email", url, options[:page_title])}" title="#{options[:title]}">}
+        s = %Q{<a href="https://www.addthis.com/bookmark.php" onclick="#{addthis_open("email", url, options[:page_title])}" title="#{options[:title]}">}
         addthis_tag(s, options)
       end
 
       def addthis_feed_button(url, *args)
         options = FEED_BUTTON_DEFAULTS.merge(extract_addthis_options(args))
         options[:button_html] = yield if block_given?
-        s = %Q{<a href="http://www.addthis.com/feed.php?pub=#{options[:publisher]}&h1=#{url.gsub(/[^a-zA-Z0-9_\.\-]/n) {|c| sprintf('%%%02x', c[0]) }}&t1=" onclick="#{addthis_open("feed", url)}" title="#{options[:title]}" target="_blank">}
+        s = %Q{<a href="https://www.addthis.com/feed.php?pub=#{options[:publisher]}&h1=#{url.gsub(/[^a-zA-Z0-9_\.\-]/n) {|c| sprintf('%%%02x', c[0]) }}&t1=" onclick="#{addthis_open("feed", url)}" title="#{options[:title]}" target="_blank">}
         addthis_tag(s, options)
       end
 
@@ -59,7 +59,7 @@ module Jaap3
         s << "#{str}#{options[:button_html]}</a><script type=\"text/javascript\" src=\"#{options[:script_src]}\"></script>"
         s << "<!-- AddThis Button END -->"
         s = s * "\n"
-        raw(options[:secure] ? s.gsub(/http:\/\/s[57]\.addthis\.com/, "https://secure.addthis.com") : s)
+        raw(options[:secure] ? s.gsub(/https:\/\/s[57]\.addthis\.com/, "https://secure.addthis.com") : s)
       end
 
       def addthis_custom_script(options = {})
