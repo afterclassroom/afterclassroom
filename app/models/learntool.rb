@@ -5,7 +5,7 @@ class Learntool < ActiveRecord::Base
 
   has_many :my_tools, :dependent => :destroy
   has_many :tool_reviews, :dependent => :destroy
-
+  
   # Attach
   has_attached_file :tool_img, {
     :bucket => 'afterclassroom_photos',

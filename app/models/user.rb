@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
   # Favorite
   acts_as_favorite_user
   
+  
   # Message
   has_private_messages
   

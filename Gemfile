@@ -68,4 +68,5 @@ gem 'active_reload'
 gem 'oauth'
 gem 'oauth-plugin', '>= 0.4.0.pre6'
 gem 'rabl'
-gem 'ajaxful_rating', :git => 'git://github.com/edgarjs/ajaxful-rating.git', :branch => "rails3"
+#gem 'ajaxful_rating', :git => 'git://github.com/edgarjs/ajaxful-rating.git', :branch => "rails3"
+

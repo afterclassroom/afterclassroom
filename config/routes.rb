@@ -46,7 +46,8 @@ Afterclassroom::Application.routes.draw do
         post :submit_review, :submit_new_tool
       end
     end    
-
+    
+    
     resources :settings do
       collection do
         get :networks, :notifications, :language,

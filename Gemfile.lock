@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/edgarjs/ajaxful-rating.git
-  revision: 81b563ef4e4f7937b769ea64b589d990dc833b43
-  branch: rails3
-  specs:
-    ajaxful_rating (3.0.0.beta3)
-
-GIT
   remote: git://github.com/galetahub/simple-captcha.git
   revision: b8493942e9a9bb58c58712fa21d41963330da6aa
   specs:
@@ -244,7 +237,6 @@ DEPENDENCIES
   acts-as-taggable-on
   acts_as_commentable
   acts_as_favorite
-  ajaxful_rating!
   aws-s3
   aws-ses
   backgroundrb-rails3
