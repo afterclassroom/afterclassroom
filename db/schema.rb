@@ -270,8 +270,8 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
   end
 
   create_table "learntools", :force => true do |t|
-    t.integer  "user_id",               :null => false
-    t.integer  "learn_tool_cate_id",    :null => false
+    t.integer  "user_id",                            :null => false
+    t.integer  "learn_tool_cate_id",                 :null => false
     t.string   "name"
     t.text     "description"
     t.boolean  "verify"
@@ -284,6 +284,7 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
     t.string   "tool_img_file_name"
     t.string   "tool_img_content_type"
     t.integer  "tool_img_file_size"
+    t.binary   "ac_api",                :limit => 1
   end
 
   create_table "messages", :force => true do |t|
@@ -637,18 +638,6 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "rates", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.integer  "stars"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rates", ["post_id"], :name => "index_rates_on_post_id"
-  add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
 
   create_table "rating_statistics", :force => true do |t|
     t.integer "rated_id"

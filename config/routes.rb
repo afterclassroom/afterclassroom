@@ -42,11 +42,13 @@ Afterclassroom::Application.routes.draw do
         get :index, :featured_tool_paging, :maylike_tool_paging, 
           :first_tab_paging, :search_tool, :see_all_tool_fan, :contact_dev_form, 
           :report_app_form, :mylearn, :tool_rev_paging, :write_review_form,
-          :add_favorite, :add_favorite_with_check, :update_play_demo, :new_tool
+          :add_favorite, :add_favorite_with_check, :update_play_demo, :new_tool,
+          :rate
         post :submit_review, :submit_new_tool
       end
     end    
-
+    
+    
     resources :settings do
       collection do
         get :networks, :notifications, :language,

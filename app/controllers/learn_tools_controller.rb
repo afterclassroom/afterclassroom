@@ -223,9 +223,47 @@ class LearnToolsController < ApplicationController
     end
   end
   
-  def newlearn
-    
+  def rate
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    render :layout => false
   end
+  
   
   private
   
