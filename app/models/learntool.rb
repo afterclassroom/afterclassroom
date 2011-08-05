@@ -17,6 +17,9 @@ class Learntool < ActiveRecord::Base
   validates_attachment_size :tool_img, :less_than => FILE_SIZE_PHOTO
   
   validates_attachment_content_type :tool_img, :content_type => ['image/pjpeg', 'image/jpeg', 'image/gif', 'image/png', 'image/x-png']
+  
+  #0..4 represent for 5 stars
+  acts_as_rated :rating_range => 0..4, :with_stats_table => true
 
   
 
