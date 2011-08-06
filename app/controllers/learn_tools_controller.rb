@@ -224,6 +224,11 @@ class LearnToolsController < ApplicationController
   end
   
   def rate
+    rating = params[:rating]
+    @tool = Learntool.find(params[:tool_id])
+    @tool.rate rating.to_i, current_user    
+    @tool.save
+    
     render :layout => false
   end
   

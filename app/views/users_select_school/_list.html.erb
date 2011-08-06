@@ -57,4 +57,48 @@
         $("#country_menu,#state_menu").css({position:"fixed"});
         $("#city_menu,#school_menu").css({position:"fixed"});
   });
+  
+  $("TB_windowa").scroll(function() {
+    var y = $("TB_windowa").scrollTop();
+    $("#country_menua").css('top', y);
+
+
+   
+  });
+  
+
+  
+  $(document).ready(function() {
+    // Box to fixed at 0,0
+    $('#fixed').click(function() { $('#box').css({position:'fixed',top:0,left:0}); return false; });
+		
+    // Box to fixed at 5,5
+    $('#fixed10').click(function() { $('#box').css({position:'fixed',top:10,left:10}); return false; });
+		
+    // Box to static
+    $('#static').click(function() { $('#box').css('position','static'); return false; });
+
+    // Container to relative
+    $('#container_relative').click(function() { $('#container').css('position','relative'); return false; });
+
+    // Container to static
+    $('#container_static').click(function() { $('#container').css('position','static'); return false; });
+		
+    // When clicking any link
+    $('a').click(function() { 
+      $(this).addClass('active').siblings().removeClass('active'); // highlight current option
+			
+      // Recalculate the offsets and positions after 15ms
+      setTimeout(function() {
+        $('#offset_top').html($('#box,#country_menu').offset().top.toString());
+        $('#offset_left').html($('#box,#country_menu').offset().left.toString());
+        $('#position').html($('#box').css('position'));
+        $('#container_position').html($('#container').css('position'));
+      },5);
+    });
+
+    // initialize
+    $('#container_relative').click();
+    $('#static').click();
+  });
 </script>
