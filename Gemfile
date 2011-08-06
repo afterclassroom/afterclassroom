@@ -32,7 +32,7 @@ gem 'configatron'
 gem 'acts_as_commentable'
 gem 'acts_as_favorite'
 #gem 'ajaxful_rating'
-gem 'juggernaut'
+gem 'juggernaut', '~> 2.0.3'
 gem 'activerecord', '>= 3.0.3'
 gem 'riddle', '>= 1.2.1'
 gem 'paperclip', '~> 2.3'
@@ -68,4 +68,5 @@ gem 'active_reload'
 gem 'oauth'
 gem 'oauth-plugin', '>= 0.4.0.pre6'
 gem 'rabl'
-gem 'ajaxful_rating', :git => 'git://github.com/edgarjs/ajaxful-rating.git', :branch => "rails3"
+#gem 'ajaxful_rating', :git => 'git://github.com/edgarjs/ajaxful-rating.git', :branch => "rails3"
+

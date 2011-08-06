@@ -223,9 +223,10 @@ class LearnToolsController < ApplicationController
     end
   end
   
-  def newlearn
-    
+  def rate
+    render :layout => false
   end
+  
   
   private
   

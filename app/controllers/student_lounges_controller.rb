@@ -46,6 +46,7 @@ class StudentLoungesController < ApplicationController
       for user_inchat in flirting_chanel.flirting_user_inchats
         client_ids << "chat_" + user_inchat.user.id.to_s if user_inchat.user.login != current_user.login
       end
+      Juggernaut.options = {:host => "107.20.238.0", :port => 6379}
       Juggernaut.publish(client_ids, {:chanel_name => flirting_chanel.chanel_name, :message => "<li>" + message + "</li>", :event => "invite_chat"})
     end
     respond_to do |format|
@@ -80,6 +81,7 @@ class StudentLoungesController < ApplicationController
     for user_inchat in chanel.flirting_user_inchats
       client_ids << "chat_" + user_inchat.user.id.to_s 
     end
+    Juggernaut.options = {:host => "107.20.238.0", :port => 6379}
     Juggernaut.publish(client_ids, {:chanel_name => chanel.chanel_name, :message => arr_msg, :event => "add_users_to_chat"})
     render :nothing => true
   end
@@ -104,6 +106,7 @@ class StudentLoungesController < ApplicationController
       chanel.flirting_messages << msg
       chanel.save
       content = help.raw(render_to_string(:partial => "item_chat", :locals => {:message => msg}))
+      Juggernaut.options = {:host => "107.20.238.0", :port => 6379}
       Juggernaut.publish(client_ids, {:chanel_name => chanel.chanel_name, :message => "<li>#{content}</li>", :event => "send_data"})
     end
     render :nothing => true
@@ -130,6 +133,7 @@ class StudentLoungesController < ApplicationController
       message = "#{current_user.full_name} stoped chatting."
       msg = FlirtingMessage.new({:user_id => current_user.id, :message => message, :notify_msg => true})
       chanel.flirting_messages << msg
+      Juggernaut.options = {:host => "107.20.238.0", :port => 6379}
       Juggernaut.publish(client_ids, {:chanel_name => chanel.chanel_name, :message => "<li>#{h message}</li>", :event => "stop_chat"})
     end
     
