@@ -18,8 +18,9 @@ class Learntool < ActiveRecord::Base
   
   validates_attachment_content_type :tool_img, :content_type => ['image/pjpeg', 'image/jpeg', 'image/gif', 'image/png', 'image/x-png']
   
-  #0..4 represent for 5 stars
-  acts_as_rated :rating_range => 0..4, :with_stats_table => true
+  #1..5 represent for 5 stars
+  #with_stats_table=true to limit user to rate for 1 time only
+  acts_as_rated :rating_range => 1..5#, :with_stats_table => true
 
   
 
@@ -79,6 +80,24 @@ on learntools.id = a.learntool_id where learn_tool_cate_id=#{cate_id}")
         paginate :page =>  params[:page], :per_page => 10
       end
     end
+  end
+  
+  def rate_result
+    
+    
+    if self.ratings.count > 0
+      x1 = self.ratings.count(:conditions => ["rating = ?", 1])
+      x2 = self.ratings.count(:conditions => ["rating = ?", 2])
+      x3 = self.ratings.count(:conditions => ["rating = ?", 3])
+      x4 = self.ratings.count(:conditions => ["rating = ?", 4])
+      x5 = self.ratings.count(:conditions => ["rating = ?", 5])
+    
+      count_no_of_rated = x1+x2+x3+x4+x5 #number of user has perform rated on this tool
+      value_of_rated = x1 + x2*2 + x3*3 + x4*4 + x5*5 #sum of result that user has rated
+      percent = (value_of_rated  * 100) / (5*count_no_of_rated) 
+    end
+    
+    
   end
   
   
