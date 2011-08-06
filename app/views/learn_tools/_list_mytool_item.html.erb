@@ -3,8 +3,9 @@
     <a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>"><div><%= image_tag my_tool.learntool.tool_img.url(:small) %></div></a>
   </div>
   <div class="learnFavtitle"><a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>"><%= my_tool.learntool.name %></a>
-    <span class="learnFavS">
-      <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="images/starWhite.png">
+    <span class="learnFavS" style="position: absolute; margin-top: -7px;">
+      <!-- img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="images/starWhite.png" -->
+      <%= render :partial => "rating_star", :locals => {:tool => my_tool.learntool, :nocheck => "no_check"} %>
     </span>
   </div>
   <div class="learnNdes">
