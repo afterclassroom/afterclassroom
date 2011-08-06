@@ -2,24 +2,36 @@
   <%
   check = Learntool.find_rated_by(current_user).include?(tool) if logged_in?
   check ||= false %>
-
-  <% rating_value = 1 %>
-
   <% percent = tool.rate_result ? tool.rate_result : 0 %>
-  <% n = percent/20 %>
-  <% k = percent % 20 %>
-  <% n.times do %>
-    <img src="/images/starRed.png"/>
-    <% rating_value = rating_value + 1 %>
-  <% end %>
-  <% if k > 0 %>
-    <% n = n + 1 %>
-    <% rating_value = rating_value + 1 %>
-    <img src="/images/starRW.png"/>
-  <% end %>
-  <% (5-n).times do |index| %>
-    <!-- img src="/images/starWhite.png"/ -->
-    <%= link_to image_tag("/images/starWhite.png"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
-    <% rating_value = rating_value + 1 %>
+  <% if check == false %>
+    <% rating_value = 1 %>
+    <% n = percent/20 %>
+    <% k = percent % 20 %>
+    <% n.times do %>
+      <%= link_to image_tag("/images/starRed.png"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
+      <% rating_value = rating_value + 1 %>
+    <% end %>
+    <% if k > 0 %>
+      <% n = n + 1 %>
+      <% rating_value = rating_value + 1 %>
+      <%= link_to image_tag("/images/starRW.png"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
+    <% end %>
+    <% (5-n).times do |index| %>
+      <%= link_to image_tag("/images/starWhite.png"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
+      <% rating_value = rating_value + 1 %>
+    <% end %>
+  <% else %>
+    <% n = percent/20 %>
+    <% k = percent % 20 %>
+    <% n.times do %>
+      <img src="/images/starRed.png"/>
+    <% end %>
+    <% if k > 0 %>
+      <% n = n + 1 %>
+      <img src="/images/starRW.png"/>
+    <% end %>
+    <% (5-n).times do |index| %>
+      <img src="/images/starWhite.png"/>
+    <% end %>
   <% end %>
 </div>

@@ -224,47 +224,10 @@ class LearnToolsController < ApplicationController
   end
   
   def rate
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    #puts "=== :strresult=="+params[:strresult]
-    puts "=== params[:rating]"+params[:rating]
     rating = params[:rating]
     @tool = Learntool.find(params[:tool_id])
     @tool.rate rating.to_i, current_user    
-    #@tool.save
+    @tool.save
     
     render :layout => false
   end
