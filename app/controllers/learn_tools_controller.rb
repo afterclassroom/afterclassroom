@@ -3,7 +3,7 @@ class LearnToolsController < ApplicationController
   
   layout 'student_lounge'
   
-  before_filter :get_variables, :only => [:index, :search_tool, :new_tool, :submit_new_tool]
+  before_filter :get_variables, :only => [:index, :search_tool, :new_tool, :submit_new_tool, :new_tool_with_api, :create_tool_with_api]
   
   def index
     if params[:tool_cate] == "-1"
@@ -95,6 +95,7 @@ class LearnToolsController < ApplicationController
   
   def update_play_demo
     mtobj = current_user.my_tools.where("learntool_id = ?", params[:current_tool_id]).first
+    tool = Learntool.find(params[:current_tool_id])
     if mtobj != nil
       mtobj.play_demo = true
     else
@@ -212,7 +213,12 @@ class LearnToolsController < ApplicationController
     if simple_captcha_valid?
       if @tool.save!
         flash[:notice] = "Your tool was successfully submitted."
-        redirect_to :controller=>'learn_tools', :action => 'new_tool'
+        if @tool.ac_api == true
+          redirect_to :controller=>'oauth_clients', :action => 'new_from_tool', :tool_id => @tool.id
+        else
+          redirect_to :controller=>'learn_tools', :action => 'new_tool'
+        end
+        
       else
         flash[:notice] = "Error !"
         render :action => "new_tool"
@@ -230,6 +236,36 @@ class LearnToolsController < ApplicationController
     @tool.save
     
     render :layout => false
+  end
+  
+  def new_tool_with_api
+    @tool = Learntool.new
+    @client_application = ClientApplication.new
+  end
+  
+  def create_tool_with_api
+    str_error = ""
+    @client_application = current_user.client_applications.build(params[:client_application])
+    @tool = Learntool.new(params[:learntool])
+    @tool.user = current_user
+    @tool.client_application = @client_application
+    @tool.name = @client_application.name
+    @tool.href = @client_application.url
+    @tool.ac_api = true
+    
+    if simple_captcha_valid?
+      if @client_application.save && @tool.save
+          flash[:notice] = "Your tool has been submitted"
+          render :action => "new_tool_with_api"
+      else
+        str_error = "Failed to create API !"
+        flash[:notice] = str_error
+        render :action => "new_tool_with_api"
+      end
+    else
+      flash[:warning] = "Captcha does not match."
+      render :action => "new_tool_with_api"
+    end
   end
   
   

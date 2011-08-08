@@ -10,10 +10,7 @@
         </div>
         <div class="learnNItem">
           <h1>Register a new application</h1>
-          <% form_for :client_application, :url => { :action => :create } do |f| %>
-            <%= render :partial => "form", :locals => { :f => f } %>
-            <div style="margin-left: 170px; float: left; padding-top: 10px;" class="submitDe"><%= submit_tag "Register" %></div>
-          <% end %>
+          <%= render :partial => "form" %>
         </div>
         <div class="assPage">
         </div>
