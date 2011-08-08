@@ -1,4 +1,4 @@
-<div id="rate_id_<%= tool.id %>" class="learnTst">  
+<div id="rate_id_<%= tool.id %>" class="learnTst" style="<%= ( nocheck != nil && nocheck == "no_check") ? "background: url('')" : "" %>">
   <%
   check = Learntool.find_rated_by(current_user).include?(tool) if logged_in?
   check ||= false %>
@@ -20,18 +20,18 @@
       <%= link_to image_tag("/images/starWhite.png"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
       <% rating_value = rating_value + 1 %>
     <% end %>
-  <% else %>
+  <% else %><!-- user has rated, so that disable this function-->
     <% n = percent/20 %>
     <% k = percent % 20 %>
     <% n.times do %>
-      <img src="/images/starRed.png"/>
+      <%= link_to(image_tag("/images/starRed.png"), "javascript:;", :class => "vtip", :title => "#{configatron.str_rated}") %>
     <% end %>
     <% if k > 0 %>
       <% n = n + 1 %>
-      <img src="/images/starRW.png"/>
+      <%= link_to(image_tag("/images/starRW.png"), "javascript:;", :class => "vtip", :title => "#{configatron.str_rated}") %>
     <% end %>
     <% (5-n).times do |index| %>
-      <img src="/images/starWhite.png"/>
+      <%= link_to(image_tag("/images/starWhite.png"), "javascript:;", :class => "vtip", :title => "#{configatron.str_rated}") %>
     <% end %>
   <% end %>
 </div>
