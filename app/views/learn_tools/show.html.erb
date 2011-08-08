@@ -38,8 +38,10 @@
       <div class="col195in">
         <h1 class="col195Title">Information</h1>
         <div class="StarInf">
-          <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png">
-          <span>(4 out of 5)</span>
+          <!-- img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png" -->
+          <%= render :partial => "rating_star", :locals => {:tool => @tool, :nocheck => "no_check" } %>
+          <% percent = @tool.rate_result ? @tool.rate_result : 0 %>
+          <span>(<%= percent/20 %> out of 5)</span>
         </div>
         <div class="basedOn">Based on <a href="#">2552 review</a></div>
         <div class="learnUser">user</div>

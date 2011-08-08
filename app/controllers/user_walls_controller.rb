@@ -141,6 +141,7 @@ class UserWallsController < ApplicationController
   
   def match_making_box
     @user_id_post = params[:user_id_post]
+    @user_post = User.find(@user_id_post)
     render :layout => false
   end
   

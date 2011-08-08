@@ -2,8 +2,9 @@
     $(document).ready(function(){
         var jug_notification = new Juggernaut({
             secure: true,
-            host: chat.afterclassroom.com,
-            port: 443
+            host: "chat.afterclassroom.com",
+						port: 443,
+            transports: ['xhr-polling', 'jsonp-polling']
         });
         jug_notification.subscribe("notification_<%= current_user.id %>", function(data){
             subject = data.subject;
