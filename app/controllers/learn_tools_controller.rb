@@ -95,6 +95,7 @@ class LearnToolsController < ApplicationController
   
   def update_play_demo
     mtobj = current_user.my_tools.where("learntool_id = ?", params[:current_tool_id]).first
+    tool = Learntool.find(params[:current_tool_id])
     if mtobj != nil
       mtobj.play_demo = true
     else

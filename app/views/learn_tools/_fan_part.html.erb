@@ -2,19 +2,43 @@
   <%= hidden_field_tag "current_tool_id", @tool.id %>
   <% div_class = ["fanImg1","fanImg2","fanImg3"] %>
 
+  
   <% obj_fans = display_fan(@tool) %>
   <h1 class="col195Title">Fans</h1>
   <div class="infoFans">
-    <div class="infoFan">6 of <span><%= obj_fans.size %> fans</span></div>
+    <div class="infoFan"><%= obj_fans.size < 6 ? obj_fans.size : 6 %> of <span><%= obj_fans.size %> fans</span></div>
     <div class="seeAll"><a id="btn_see_all_fan" href="javascript:;">see all</a></div>
   </div>
-  <% obj_fans.first(6).each_with_index do |f_user, index| %>
-    <%= (index % 3 == 0 ) ? raw("<div class='fanImg'>")  : ''%>
-    <div class="<%= div_class[index%3] %>">
-      <%= show_image_user_post(f_user) %>
-    </div>
-    <%= (index > 0 && (index + 1) % 3 == 0 ) ? raw("</div>")  : ''%>
-  <% end %><!-- end of loop -->
+  <% if obj_fans.size >= 6 %>
+    <% obj_fans.first(6).each_with_index do |f_user, index| %>
+      <%= (index % 3 == 0 ) ? raw("<div class='fanImg'>")  : ''%>
+      <div class="<%= div_class[index%3] %>">
+        <%= show_image_user_post(f_user) %>
+      </div>
+      <%= (index > 0 && (index + 1) % 3 == 0 ) ? raw("</div>")  : ''%>
+    <% end %><!-- end of loop -->
+  <% else %> <!-- this case, we have 2 sub cases, <=3, OR 3 < size < 6 -->
+    <% if obj_fans.size <= 3 %>
+      <div class='fanImg'>
+        <% obj_fans.first(3).each_with_index do |f_user, index| %>
+          <div class="<%= div_class[index%3] %>">
+            <%= show_image_user_post(f_user) %>
+          </div>
+        <% end %>
+      </div>
+    <% elsif obj_fans.size > 3 %>
+      <% obj_fans.first(6).each_with_index do |f_user, index| %>
+        <%= (index % 3 == 0 ) ? raw("<div class='fanImg'>")  : ''%>
+        <div class="<%= div_class[index%3] %>">
+          <%= show_image_user_post(f_user) %>
+        </div>
+        <%= (  ((index > 0 && (index + 1) % 3 == 0 )) | (index + 1 ==  obj_fans.size) )  ? raw("</div>")  : ''%>
+      <% end %><!-- end of loop -->
+    <% end %><!-- end if obj_fans.size <= 3   -->
+  <% end %>
+
+
+
 <% end %><!-- end of form -->
 
 
