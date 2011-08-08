@@ -24,7 +24,7 @@ class OauthClientsController < ApplicationController
 
   def create
     @client_application = current_user.client_applications.build(params[:client_application])
-    if @client_application.save!
+    if @client_application.save
       @tool = Learntool.find(params[:current_tool_id])
       @tool.client_application_id = @client_application.id
       @tool.save
