@@ -1,9 +1,9 @@
 <%= form_for([current_user, @share], :html => {:multipart => true, :id => "form_post"}) do |f| %>
   <%= hidden_field_tag "recipient" %>
 	<%= display_flash_messages_with_raw %>
-  <div class="postItem">
-    <div class="postTit">Share to*</div>
-    <div class="postInp"><%= text_field_tag "share_to" %></div>
+  <div class="postItem1" style="margin-top:10px">
+    <div class="postTit" style="margin-left: 10px;float: left">Share to*</div>
+     <div class="form_friends" style="margin-left:120px"><%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %></div>
   </div>
   <div class="postTitt">Add File*</div>
   <div class="postItemA">
@@ -57,7 +57,6 @@
     
         // Autocomplete initialization
         var tb = new $.TextboxList('#share_to', {
-            max: 1,
             unique: true,
             plugins: {
                 autocomplete: {}
