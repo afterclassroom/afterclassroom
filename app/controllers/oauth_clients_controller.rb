@@ -13,31 +13,6 @@ class OauthClientsController < ApplicationController
   end
   
   def new_from_tool
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------"
-    puts "--------@tool == "+params[:tool_id].to_s
     @tool = Learntool.find(params[:tool_id])
     
     @client_application = ClientApplication.new
@@ -50,6 +25,9 @@ class OauthClientsController < ApplicationController
   def create
     @client_application = current_user.client_applications.build(params[:client_application])
     if @client_application.save!
+      @tool = Learntool.find(params[:current_tool_id])
+      @tool.client_application_id = @client_application.id
+      @tool.save
       flash[:notice] = "Registered the information successfully"
       redirect_to :action => "show", :id => @client_application.id
     else

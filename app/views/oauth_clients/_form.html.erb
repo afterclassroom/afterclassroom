@@ -2,9 +2,10 @@
   <div class="postItem">
     <div for="client_application_name" class="postTit" style="width: 160px;">Name*</div>
     <% if @tool != nil %>
-    <% strdisabled = true %>
+      <% strdisabled = true %>
+      <%= hidden_field_tag "current_tool_id",  @tool.id %>
     <% else %>
-    <% strdisabled = false %>
+      <% strdisabled = false %>
     <% end %>
     <div class="postInp"><%= f.text_field :name, :readonly => strdisabled %></div>
   </div>
