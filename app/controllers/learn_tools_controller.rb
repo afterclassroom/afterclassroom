@@ -250,9 +250,10 @@ class LearnToolsController < ApplicationController
     @tool.client_application = @client_application
     @tool.name = @client_application.name
     @tool.href = @client_application.url
+    @tool.ac_api = true
     
     if simple_captcha_valid?
-      if @client_application.save! && @tool.save!
+      if @client_application.save && @tool.save
           flash[:notice] = "Your tool has been submitted"
           render :action => "new_tool_with_api"
       else

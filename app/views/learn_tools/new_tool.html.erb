@@ -33,9 +33,7 @@
             </div>
             <div class="postItem">
                <div class="postTit">Images</div>
-               <div class="postInp"><%= f.file_field :tool_img %></div>
-              <!-- div class="postTit">Images</div>
-              <div class="postInp"><input type="file" name="Text1" style="height: 25px;" size='23'></div -->
+               <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23" %></div>
             </div>
             <div class="postItem">
               <div class="postTit">URL</div>
@@ -52,8 +50,8 @@
             </div>
           </div>
         </div>
-        <div class="submit" style="margin-left: 10px;float:left;padding-right: 0px"><%= f.submit %></div>
-        <div class="submit" style="margin-left: 10px;float: left;padding-left: 0px"><a href="#">Reset</a></div>
+        <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px"><a href="javascript:;"><%= f.submit "Submit" %></a></div>
+        <div class="submit" style="margin-left: -106px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
 
       <% end %>
     </div>
@@ -103,3 +101,10 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#reset_form').click(function(){
+      document.getElementById('form_new_tool').reset();
+    });
+  });
+</script>
