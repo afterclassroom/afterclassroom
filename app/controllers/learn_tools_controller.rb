@@ -212,7 +212,12 @@ class LearnToolsController < ApplicationController
     if simple_captcha_valid?
       if @tool.save!
         flash[:notice] = "Your tool was successfully submitted."
-        redirect_to :controller=>'learn_tools', :action => 'new_tool'
+        if @tool.ac_api
+          redirect_to :controller=>'oauth_clients', :action => 'new_from_tool', :tool_id => @tool.id
+        else
+          redirect_to :controller=>'learn_tools', :action => 'new_tool'
+        end
+        
       else
         flash[:notice] = "Error !"
         render :action => "new_tool"

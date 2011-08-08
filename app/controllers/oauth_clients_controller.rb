@@ -11,13 +11,49 @@ class OauthClientsController < ApplicationController
   def new
     @client_application = ClientApplication.new
   end
+  
+  def new_from_tool
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------"
+    puts "--------@tool == "+params[:tool_id].to_s
+    @tool = Learntool.find(params[:tool_id])
+    
+    @client_application = ClientApplication.new
+    @client_application.name = @tool.name
+    @client_application.url = @tool.href
+    
+    render :template => 'oauth_clients/new' 
+  end
 
   def create
     @client_application = current_user.client_applications.build(params[:client_application])
-    if @client_application.save
+    if @client_application.save!
       flash[:notice] = "Registered the information successfully"
       redirect_to :action => "show", :id => @client_application.id
     else
+      flash[:notice] = "Failed"
       render :action => "new"
     end
   end

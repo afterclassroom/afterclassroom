@@ -1,19 +1,26 @@
-<%= error_messages_for :client_application %>
+<% form_for :client_application, :url => { :action => :create } do |f| %>
+  <div class="postItem">
+    <div for="client_application_name" class="postTit" style="width: 160px;">Name*</div>
+    <% if @tool != nil %>
+    <% strdisabled = true %>
+    <% else %>
+    <% strdisabled = false %>
+    <% end %>
+    <div class="postInp"><%= f.text_field :name, :readonly => strdisabled %></div>
+  </div>
+  <div class="postItem">
+    <div for="client_application_url" class="postTit" style="width: 160px;">Main Application URL*</div>
+    <div class="postInp"><%= f.text_field :url, :readonly => strdisabled %></div>
+  </div>
+  <div class="postItem">
+    <div for="client_application_callback_url" class="postTit" style="width: 160px;">Callback URL*</div>
+    <div class="postInp"><%= f.text_field :callback_url %></div>
+  </div>
+  <div class="postItem">
+    <div for="client_application_support_url" class="postTit" style="width: 160px;">Support URL</div>
+    <div class="postInp"><%= f.text_field :support_url %></div>
+  </div>
 
+  <div style="margin-left: 170px; float: left; padding-top: 10px;" class="submitDe"><%= submit_tag "Register" %></div>
+<% end %>
 
-<div class="postItem">
-  <div for="client_application_name" class="postTit" style="width: 160px;">Name*</div>
-  <div class="postInp"><%= f.text_field :name %></div>
-</div>
-<div class="postItem">
-  <div for="client_application_url" class="postTit" style="width: 160px;">Main Application URL*</div>
-  <div class="postInp"><%= f.text_field :url %></div>
-</div>
-<div class="postItem">
-  <div for="client_application_callback_url" class="postTit" style="width: 160px;">Callback URL*</div>
-  <div class="postInp"><%= f.text_field :callback_url %></div>
-</div>
-<div class="postItem">
-  <div for="client_application_support_url" class="postTit" style="width: 160px;">Support URL</div>
-  <div class="postInp"><%= f.text_field :support_url %></div>
-</div>

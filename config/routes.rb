@@ -353,8 +353,12 @@ Afterclassroom::Application.routes.draw do
   end
   
   # OAuth
-  resources :oauth_clients
-
+  resources :oauth_clients do
+    collection do
+      get :new_from_tool
+    end
+  end
+  
   match '/oauth/test_request',  :to => 'oauth#test_request',  :as => :test_request
 
   match '/oauth/token',         :to => 'oauth#token',         :as => :token
@@ -366,6 +370,7 @@ Afterclassroom::Application.routes.draw do
   match '/oauth/authorize',     :to => 'oauth#authorize',     :as => :authorize
 
   match '/oauth',               :to => 'oauth#index',         :as => :oauth
+  
 
   # Dashboard as the default location
   root :to => 'dashboards#index'
