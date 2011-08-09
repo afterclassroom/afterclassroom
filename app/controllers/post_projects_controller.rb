@@ -122,7 +122,7 @@ class PostProjectsController < ApplicationController
       @post_project.post = @post
       if @post_project.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_project_path(@post_project))
+        post_wall(@post_project)
         redirect_to post_project_url(@post_project)
       else
         flash[:error] = "Failed to create a new post."

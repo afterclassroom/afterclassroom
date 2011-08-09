@@ -665,32 +665,103 @@ module ApplicationHelper
   def show_attach(wall)
     if wall.user_wall_photo
       link = wall.user_wall_photo.sub_content
-      image = link_to raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), wall.user_wall_photo.link, :target => "_blank", :class => "imageLink"
+      img_link = link_to(raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), wall.user_wall_photo.link, :target => "_blank", :class => "imageLink")
+      image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_photo.title
       sub_content = ""
     end
     
     if wall.user_wall_video
       link = wall.user_wall_video.link
-      image = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
+      img_link = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
+      image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_video.title
       sub_content = raw(wall.user_wall_video.sub_content)
     end
     
     if wall.user_wall_music
       link = wall.user_wall_music.sub_content
-      image = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+      img_link = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+      image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_music.title
       sub_content = ""
     end
     
     if wall.user_wall_link
       link = wall.user_wall_link.link
-      image = link_to(raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank") if wall.user_wall_link.image_link
+      if wall.user_wall_link.image_link
+        img_link = link_to(raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank")
+        image = get_image_wall(wall.id, img_link)
+      end
       title = wall.user_wall_link.title
       sub_content = raw(wall.user_wall_link.sub_content) if wall.user_wall_link.sub_content
     end
+    
+    if wall.user_wall_post
+      post_type = wall.user_wall_post.post_type
+      post_id = wall.user_wall_post.post_id
+      obj = eval(post_type).find(post_id)
+      case post_type
+        when "PhotoAlbum"
+          if obj.photos.size > 0
+            s = obj.photos.size < 4 ? obj.photos.size : 4
+            i = 0 
+            image = ""
+            obj.photos.each do |p|
+              img_link = link_to(raw(image_tag(p.photo_attach.url(:thumb), :style => "width:92px;height:68px")), show_photo_album_user_url(obj.user, :photo_album_id => obj), :class => "iframe")
+              image << get_image_wall(wall.id, img_link)
+              i = i + 1
+              break if i == s
+            end
+          end
+        when "Photo"
+        when "MusicAlbum"
+        when "Music"
+        when "Video"
+        when "PostAssignment"
+        link_edit = edit_post_assignment_url(post.post_assignment)
+        when "PostProject"
+        link_edit = edit_post_project_url(post.post_project)
+        when "PostTest"
+        link_edit = edit_post_test_url(post.post_test)
+        when "PostExam"
+        link_edit = edit_post_exam_url(post.post_exam)
+        when "PostEvent"
+        link_edit = edit_post_event_url(post.post_event)
+        when "PostQa"
+        link_edit = edit_post_qa_url(post.post_qa)
+        when "PostTutor"
+        link_edit = edit_post_tutor_url(post.post_tutor)
+        when "PostBook"
+        link_edit = edit_post_book_url(post.post_book)
+        when "PostJob"
+        link_edit = edit_post_job_url(post.post_job)
+        when "PostFood"
+        link_edit = edit_post_food_url(post.post_food)
+        when "PostParty"
+        link_edit = edit_post_party_url(post.post_party)
+        when "PostMyx"
+        link_edit = edit_post_myx_url(post.post_myx)
+        when "PostAwareness"
+        link_edit = edit_post_awareness_url(post.post_awareness)
+        when "PostHousing"
+        link_edit = edit_post_housing_url(post.post_housing)
+        when "PostTeamup"
+        link_edit = edit_post_teamup_url(post.post_teamup)
+        when "PostExamSchedule"
+        link_edit = edit_post_exam_schedule_url(post.post_exam_schedule)
+      end
+    end
+    
     render :partial => "user_walls/wall_attach", :locals => {:wall_id => wall.id, :image => image, :title => title, :link => link, :sub_content => sub_content}
+  end
+  
+  def get_image_wall(wall_id, link)
+    "<div class='AfterImg' id='wall_attach_#{wall_id}'><div class='imgDiv'>#{link}</div></div>"
+  end
+  
+  def get_object_by_class_name_and_id(class_name, id)
+    eval(class_name).find(id)
   end
   
   def show_refer_to_experts(post)

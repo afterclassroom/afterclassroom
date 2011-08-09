@@ -54,7 +54,7 @@ class PostExamSchedulesController < ApplicationController
   def tag
     @type_schedule = ""
     @tag_name = params[:tag_name]
-    @posts = PostExamSchedule.paginated_post_conditions_with_tag(params, @school, @tag_name)
+    @posts = Pos@post, post_exam_path(@post_exam)tExamSchedule.paginated_post_conditions_with_tag(params, @school, @tag_name)
   end
   
   def rate
@@ -130,7 +130,7 @@ class PostExamSchedulesController < ApplicationController
       @post_exam_schedule.post = @post
       if @post_exam_schedule.save
         flash[:notice] = "Your post was successfully created."
-				post_wall(@post, post_exam_schedule_path(@post_exam_schedule))
+				post_wall(@post_exam_schedule)
         redirect_to post_exam_schedule_path(@post_exam_schedule)
       else
         flash[:error] = "Failed to create a new post."

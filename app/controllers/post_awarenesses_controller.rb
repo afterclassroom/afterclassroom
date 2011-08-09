@@ -169,7 +169,7 @@ class PostAwarenessesController < ApplicationController
       @post_awareness.post = @post
       if @post_awareness.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_awareness_path(@post_awareness))
+        post_wall(@post_awareness)
         redirect_to post_awareness_url(@post_awareness)
       else
         flash[:error] = "Failed to create a new post."

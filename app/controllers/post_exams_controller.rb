@@ -110,7 +110,7 @@ class PostExamsController < ApplicationController
       @post_exam.post = @post
       if @post_exam.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_exam_path(@post_exam))
+        post_wall(@post_exam)
         redirect_to post_exam_url(@post_exam)
       else
         flash[:error] = "Failed to create a new post."

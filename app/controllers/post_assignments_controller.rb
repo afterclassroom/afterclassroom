@@ -124,7 +124,7 @@ class PostAssignmentsController < ApplicationController
       @post_assignment.post = @post
       if @post_assignment.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_assignment_path(@post_assignment))
+        post_wall(@post_assignment)
         redirect_to post_assignment_url(@post_assignment)
       else
         flash[:error] = "Failed to create a new post."

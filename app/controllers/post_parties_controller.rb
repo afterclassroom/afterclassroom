@@ -207,7 +207,7 @@ class PostPartiesController < ApplicationController
       @post_party.post = @post
       if @post_party.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_party_path(@post_party))
+        post_wall(@post_party)
         redirect_to post_party_url(@post_party)
       else
         flash[:error] = "Failed to create a new post."

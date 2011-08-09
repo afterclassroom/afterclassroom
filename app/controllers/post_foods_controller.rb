@@ -156,7 +156,7 @@ class PostFoodsController < ApplicationController
       @post_food.post = @post
       if @post_food.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_food_path(@post_food))
+        post_wall(@post_food)
         redirect_to post_food_url(@post_food)
       else
         flash[:error] = "Failed to create a new post."

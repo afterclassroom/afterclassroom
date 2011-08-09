@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110802100636) do
+ActiveRecord::Schema.define(:version => 20110808102658) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -61,11 +61,12 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
     t.string   "url"
     t.string   "support_url"
     t.string   "callback_url"
-    t.string   "key",          :limit => 40
-    t.string   "secret",       :limit => 40
+    t.string   "key",           :limit => 40
+    t.string   "secret",        :limit => 40
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "xauth_enabled", :limit => 1,  :default => 0
   end
 
   add_index "client_applications", ["key"], :name => "index_client_applications_on_key", :unique => true
@@ -183,7 +184,7 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
 
   create_table "forums", :force => true do |t|
     t.string   "title"
-    t.text     "content"
+    t.string   "content"
     t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -270,12 +271,13 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
   end
 
   create_table "learntools", :force => true do |t|
-    t.integer  "user_id",                            :null => false
-    t.integer  "learn_tool_cate_id",                 :null => false
+    t.integer  "user_id",               :null => false
+    t.integer  "learn_tool_cate_id",    :null => false
     t.string   "name"
     t.text     "description"
     t.boolean  "verify"
     t.boolean  "authorize"
+    t.boolean  "ac_api"
     t.text     "href"
     t.integer  "acc_play_no"
     t.integer  "client_application_id"
@@ -284,7 +286,6 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
     t.string   "tool_img_file_name"
     t.string   "tool_img_content_type"
     t.integer  "tool_img_file_size"
-    t.binary   "ac_api",                :limit => 1
   end
 
   create_table "messages", :force => true do |t|
@@ -639,6 +640,18 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
     t.datetime "updated_at"
   end
 
+  create_table "rates", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "stars"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["post_id"], :name => "index_rates_on_post_id"
+  add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
+
   create_table "rating_statistics", :force => true do |t|
     t.integer "rated_id"
     t.string  "rated_type"
@@ -864,6 +877,12 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
     t.text    "sub_content"
   end
 
+  create_table "user_wall_posts", :force => true do |t|
+    t.integer "user_wall_id"
+    t.string  "post_type"
+    t.integer "post_id"
+  end
+
   create_table "user_wall_videos", :force => true do |t|
     t.integer "user_wall_id"
     t.string  "link"
@@ -909,13 +928,6 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
-  create_table "video_albums", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "name",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "video_files", :force => true do |t|
     t.integer  "video_id",                  :null => false
     t.string   "video_attach_file_name"
@@ -925,17 +937,18 @@ ActiveRecord::Schema.define(:version => 20110802100636) do
   end
 
   create_table "videos", :force => true do |t|
-    t.integer  "user_id",                                  :null => false
-    t.integer  "video_album_id",                           :null => false
+    t.integer  "user_id",                                   :null => false
     t.string   "title"
     t.text     "description"
-    t.integer  "who_can_see",               :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "video_attach_file_name"
     t.string   "video_attach_content_type"
     t.integer  "video_attach_file_size"
     t.datetime "video_attach_updated_at"
+    t.string   "category",                  :default => "", :null => false
+    t.integer  "count_view",                :default => 0,  :null => false
+    t.string   "state",                                     :null => false
   end
 
 end

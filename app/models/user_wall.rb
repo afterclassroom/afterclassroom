@@ -6,6 +6,7 @@ class UserWall < ActiveRecord::Base
   has_one :user_wall_video
   has_one :user_wall_music
   has_one :user_wall_link
+  has_one :user_wall_post
 
   # Comments
   acts_as_commentable
@@ -22,6 +23,6 @@ class UserWall < ActiveRecord::Base
   end
 
   def has_attach
-    !self.user_wall_photo.nil? || !self.user_wall_video.nil? || !self.user_wall_music.nil? || !self.user_wall_link.nil?
+    !self.user_wall_photo.nil? || !self.user_wall_video.nil? || !self.user_wall_music.nil? || !self.user_wall_link.nil? || !self.user_wall_post.nil?
   end
 end

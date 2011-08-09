@@ -194,7 +194,7 @@ class PostJobsController < ApplicationController
       end
       if @post_job.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_job_path(@post_job))
+        post_wall(@post_job)
         redirect_to post_job_url(@post_job)
       else
         error  "Failed to create a new post. Possibly due to your file size is too large!"

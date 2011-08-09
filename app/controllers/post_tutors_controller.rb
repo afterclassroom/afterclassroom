@@ -159,7 +159,7 @@ class PostTutorsController < ApplicationController
       
       if @post_tutor.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_tutor_path(@post_tutor))
+        post_wall(@post_tutor)
         redirect_to post_tutor_url(@post_tutor)
       else
         flash[:error] = "Failed to create a new post."

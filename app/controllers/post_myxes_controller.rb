@@ -155,7 +155,7 @@ class PostMyxesController < ApplicationController
       @post_myx.post = @post
       if @post_myx.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_myx_path(@post_myx))
+        post_wall(@post_myx)
         redirect_to post_myx_url(@post_myx)
       else
         flash[:error] = "Failed to create a new post."

@@ -156,7 +156,7 @@ class PostBooksController < ApplicationController
       @post_book.post = @post
       if @post_book.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post, post_book_path(@post_book))
+        post_wall(@post_book)
         redirect_to post_book_path(@post_book)
       else
         flash[:error] = "Failed to create a new post."

@@ -139,7 +139,7 @@ class MusicsController < ApplicationController
           # Nothing
         end
         flash[:notice] = 'Music was successfully created.'
-        music_wall(@music) if check_private_permission(current_user, "my_musics")
+        post_wall(@music) if check_private_permission(current_user, "my_musics")
         redirect_to user_music_album_path(current_user, @music.music_album)
       else
         render :action => "new"
@@ -208,7 +208,7 @@ class MusicsController < ApplicationController
     @music_album.user = current_user
     @music_album.swfupload_file = params[:music_album_attach] if params[:music_album_attach]
     @music_album.save
-    music_album_wall(@music_album) if check_private_permission(current_user, "my_musics")
+    post_wall(@music_album) if check_private_permission(current_user, "my_musics")
     render :layout => false
   end
   

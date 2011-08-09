@@ -124,7 +124,7 @@ class VideosController < ApplicationController
       @video.tag_list = params[:tag_list]
       if @video.save!
         @video.convert
-        video_wall(@video)
+        post_wall(@video)
         flash[:notice] = 'Video was successfully created.'
         redirect_to(user_video_url(current_user, @video))
       else
