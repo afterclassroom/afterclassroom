@@ -215,11 +215,6 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
-  def report_app_form
-    render :layout => false
-  end
-  
-  
   def see_all_tool_fan
     tool = Learntool.find(params[:current_tool_id])
     @obj_fans = display_fan(tool)
