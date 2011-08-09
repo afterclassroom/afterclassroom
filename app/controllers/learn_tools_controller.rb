@@ -194,21 +194,6 @@ class LearnToolsController < ApplicationController
   end
   
   def send_to_dev
-#    @post = Post.find(params[:post_id])
-#    QaSendMail.send_rsvp(current_user,params,@post).deliver
-#    @receiver = @post.user.email
-#    render :layout => false
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @tool = Learntool.find(params[:tool_id])
     QaSendMail.learntool_to_dev(current_user,@tool).deliver
     flash[:notice] = "Sent to developer: #{@tool.user.email}"
@@ -219,6 +204,10 @@ class LearnToolsController < ApplicationController
     tool = Learntool.find(params[:current_tool_id])
     @obj_fans = display_fan(tool)
     render :layout => false
+  end
+  
+  def become_a_fan
+    render :text => "You are a fan"
   end
   
   def new_tool
