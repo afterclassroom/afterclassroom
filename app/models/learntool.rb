@@ -21,6 +21,8 @@ class Learntool < ActiveRecord::Base
   #1..5 represent for 5 stars
   #with_stats_table=true to limit user to rate for 1 time only
   acts_as_rated :rating_range => 1..5#, :with_stats_table => true
+  
+  acts_as_fannable
 
   
 

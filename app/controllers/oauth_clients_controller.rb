@@ -3,6 +3,7 @@ class OauthClientsController < ApplicationController
   
   before_filter :login_required
   before_filter :get_client_application, :only => [:show, :edit, :update, :destroy]
+  before_filter :get_variables, :only => [:new, :create]
 
   def index
     @client_applications = current_user.client_applications
@@ -11,30 +12,43 @@ class OauthClientsController < ApplicationController
 
   def new
     @client_application = ClientApplication.new
+    @tool_cats = LearnToolCate.find(:all)
+    @tool = Learntool.new
   end
   
   def new_from_tool
     @tool = Learntool.find(params[:tool_id])
     
-    @client_application = ClientApplication.new
     @client_application.name = @tool.name
     @client_application.url = @tool.href
     
-    render :template => 'oauth_clients/new' 
+    render :template => 'oauth_clients/new_tool_with_api' 
   end
 
   def create
+
+    str_error = ""
     @client_application = current_user.client_applications.build(params[:client_application])
-    if @client_application.save
-      @tool = Learntool.find(params[:current_tool_id])
-      @tool.client_application_id = @client_application.id
-      @tool.save
-      flash[:notice] = "Registered the information successfully"
-      redirect_to :action => "show", :id => @client_application.id
+    @tool = Learntool.new(params[:learntool])
+    @tool.user = current_user
+    @tool.client_application = @client_application
+    @tool.name = @client_application.name
+    @tool.href = @client_application.url
+    @tool.ac_api = true
+    
+    if simple_captcha_valid?
+      if @client_application.save && @tool.save
+        flash[:notice] = "Your tool has been submitted"
+        redirect_to :action => "show", :id => @client_application.id
+      else
+        str_error = "Failed to create API !"
+        flash[:notice] = str_error
+        render :action => "new"
+      end
     else
-      flash[:notice] = "Failed"
+      flash[:warning] = "Captcha does not match."
       render :action => "new"
-    end
+    end    
   end
 
   def show
@@ -65,4 +79,11 @@ class OauthClientsController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
   end
+  
+  def get_variables
+    @tool_cats = LearnToolCate.find(:all)
+    params[:tool_cate] = params[:tool_cate] ? params[:tool_cate] : "-1"
+  end
+
+
 end

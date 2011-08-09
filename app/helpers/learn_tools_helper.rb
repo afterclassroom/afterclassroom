@@ -32,4 +32,19 @@ module LearnToolsHelper
     item = MyTool.find(:first, :conditions => [ "learntool_id = #{tool.id} AND user_id = #{user.id}"] )
     item ? item.favorite : false
   end
+  
+  def show_tool_fan_register(tool)
+    str = ""
+    if !logged_in?
+      str = link_to_require_login(raw("<span>Become a Fan</span>"))
+    else
+      if tool.fans.map(&:user_id).include?(current_user.id)
+        str = "You are a fan"
+      else
+        str = link_to_function raw("<span>Become a Fan</span>"), "become_a_fan('#{become_a_fan_user_learn_tools_path(current_user)}?fan_id=#{tool.id}')"
+      end
+    end
+    return str
+  end  
+  
 end

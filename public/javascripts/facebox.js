@@ -115,7 +115,7 @@
 
       $('#facebox').css({
         top:	getPageScroll()[1] + (getPageHeight() / 10),
-        left:	385.5
+        left:	'33.8%'
       }).show()
 
       $(document).bind('keydown.facebox', function(e) {

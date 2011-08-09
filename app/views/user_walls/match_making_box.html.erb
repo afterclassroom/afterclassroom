@@ -25,34 +25,36 @@
           <% current_user.user_friends.each do |f| 
             isfriend =  @user_post.user_friends.include?(f)
           %>
-            <div class="<%= "disable" if isfriend %>" <% if isfriend %>onclick="return false;" <% end%> >
-              <span>
-                <li class="friends_area" id="<%= f.id %>" title="<%= f.name %>">
-                  <div class="assPic">
-                    <div style="height:51px;">
-                  <%= image_tag(f.avatar.url(:thumb), :class => "pic", :style=>'float:left') %>
+            <div class="<%= "div_disable" if isfriend %>" <% if isfriend %>onclick="return false;" <% end %>>
+              <div id="select">
+                <span>
+                  <li class="friends_area" id="<%= isfriend ? "" : f.id %>" title="<%= f.name %>">
+                    <div class="assPic">
+                      <div style="height:51px;">
+                        <%= image_tag(f.avatar.url(:thumb), :class => "pic", :style=>'float:left') %>
+                      </div>
                     </div>
-                  </div>
-                  <a class="name"><%= f.name %></a>
-                  <br/>
-                  <% if isfriend %>
-                    <div class="nameF" style="color:#0A81C4">
-                      Friend
-                    </div>
-                  <% end %>
-                </li>
-              </span>
+                    <a class="name"><%= f.name %></a>
+                    <br/>
+                    <% if isfriend %>
+                      <div class="nameF" style="color:#0A81C4">
+                        Friend
+                      </div>
+                    <% end %>
+                  </li>
+                </span>
+              </div>
             </div>
           <% end %>
         </ul>
       </div>
     </div>
-    <div class="postItem" style="background:none repeat scroll 0 0 #EBEBEB">
-      <div style="width: 80px; margin-top: 5px;" class="postItem1">
+    <div class="postItem" style="background:none repeat scroll 0 0 #EBEBEB;padding: 0px">
+      <div style="width: 80px; margin-top: 5px;float: none" class="postItem1">
         Message:
       </div>
       <div class="postInp">
-        <%= text_area_tag "body", "", :id => "message_body", :style => "height: 50px;" %>
+        <%= text_area_tag "body", "", :id => "message_body", :style => "height: 50px;width:497px" %>
       </div>
     </div>
     <input type="hidden" value="" id="frend_ids" name="frend_ids">
@@ -72,7 +74,9 @@
 <!--Alert-->
 <script>
   $(document).ready(function(){
+   
     $('span').addClass('selected01');
+   
     function include(arr, obj) // this function will check if a box is already selected and if it is selected the make it unslected and clear the id of that box from array.
     {
       for (var i = 0; i < arr.length; i++) {
@@ -92,24 +96,28 @@
             
       return false;
     }
-        
+    
+    
     $('.friends_area').click(function(){
-        
+      
       var fid = $(this).attr('id');
       var ids = $('#frend_ids').val();
             
       var exploded_ids = ids.split(',');
             
       if (include(exploded_ids, fid)) {
+        
         $(this).css('color', '#000000'); // if box is already selected then, make it unselected 
         $(this).css('background-color', '#fff');
-        $(this).parents('div:first').removeClass('selected');
+        $(this).parents('div#select:first').removeClass('selected');
         $('span').addClass('selected01');
+        
       }
       else {
+        
         $(this).css('color', '#ffffff'); // if box is not selected , make it selected
         $(this).css('background-color', '#627AAD');
-        $(this).parents('div:first').addClass('selected');
+        $(this).parents('div#select:first').addClass('selected');
         $(this).parents('span:first').removeClass('selected01');
         $('#frend_ids').val(fid + ',' + ids);
         showActionsBox();
@@ -135,6 +143,10 @@
       }
             
     });
+    
+      
+    
+    
     $('#BoxMenu01').click(function(e){
       $('.selected01').show();
       $('.product-head').show();
@@ -142,21 +154,7 @@
     });
         
     $('.uiButtonConfirm').click(function(){
-        
-<<<<<<< HEAD
-            var content = $('#message_body').attr('value');
-            var recipient = $('#frend_ids').val();
-            if (recipient == "") {
-                $("#dialog-message").dialog({
-                    modal: true,
-                    buttons: {
-                        Ok: function(){
-                            //Close facebox
-                            $("#dialog-message").dialog('close');
-                        }
-                    }
-                });
-=======
+
       var content = $('#message_body').attr('value');
       var recipient = $('#frend_ids').val();
       if (recipient == "") {
@@ -165,8 +163,7 @@
           buttons: {
             Ok: function(){
               //Close facebox
-              $.facebox.close
->>>>>>> 83f6f68f24ceb9f7b2fe8f9e2e3138a4f0b1c3ac
+              $("#dialog-message").dialog('close');
             }
           }
         });
@@ -207,7 +204,9 @@
         "action": "#"
       }), input = $("<input>").attr({
         "class": "filterinput",
-        "type": "text"
+        "type": "text",
+        "onfocus":"if (this.value=='Search') this.value = ''",     
+        "value":"Search"
       });
       $(form).append(input).appendTo(header);
             
@@ -313,9 +312,8 @@
     width:100%;
   }
   .filterform input{
-
+    margin-left: -4px;
     font-size:15px;
-    padding:3px;
     border:1px solid #999;
   }
 </style>

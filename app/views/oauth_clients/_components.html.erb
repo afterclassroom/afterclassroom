@@ -1,0 +1,47 @@
+<div style="border-bottom: 1px solid #DBDBDB; overflow: hidden;margin-bottom: 10px;" class="learnCoSe">
+
+  <% form_tag url_for(:controller => "learn_tools", :action => "index"), :id => "form_select_cate", :style => "float:left", :method => :get, :remote => false do %>
+    <select id="tool_cate" name="tool_cate" style="width: 200px; height: 23px;padding-top: 3px;">
+      <option value="<%= params[:tool_cate] %>"><%= params[:tool_cate] != "-1" ? LearnToolCate.find(params[:tool_cate]).title : "Please select..." %></option>
+
+      <% if params[:tool_cate] != "-1" %>
+        <option value="-1">Please select...</option>
+      <% end %>
+
+      <% @tool_cats.each do |tc| %>
+        <option value="<%= tc.id %>"><%= tc.title %></option>
+      <% end %>
+
+    </select>
+  <% end %>
+
+
+  <% form_tag url_for(:controller => "learn_tools", :action => "search_tool"), :id => "form_search_tool", :method => :get, :remote => false do %>
+    <%= hidden_field_tag "search_content" %>
+    <div style="margin-bottom: 10px; color: rgb(110, 110, 110); background: url(&quot;/images/bgSearchF.png&quot;) no-repeat scroll left top transparent; float: right; height: 24px; padding-right: 0pt; width: 194px;">
+
+      <div style="margin: 0pt; padding: 0pt; display: inline;">
+        <input type="hidden" name="utf8" value="✓"></div>
+      <div class="textS"><input type="text" id="str_search_content" name="str_search_content" style="height: 12px;" value="<%= @str_search_val %>"/></div>
+      <div style="margin-top: -18px; margin-right: 3px; float: right;">
+        <a id="btn_search_tool" href="javascript:;"><img src="/images/iconSF.png" style="border: 0px none;"></a>
+      </div>
+
+    </div>
+
+  <% end %>
+
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#tool_cate').change(function(){
+      $('form#form_select_cate').submit();
+    });
+    
+    $('#btn_search_tool').click(function(){
+      $('#search_content').val($('#str_search_content').val());
+      $('form#form_search_tool').submit();
+    });
+  });
+  
+</script>
