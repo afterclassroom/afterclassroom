@@ -279,7 +279,6 @@
                 var t;
                 if ('cancel' == settings.onblur) {
                     input.blur(function(e) {
-                        alert('cancel');
                         /* prevent canceling if submit was clicked */
                         t = setTimeout(function() {
                             reset.apply(form, [settings, self]);

@@ -1,7 +1,8 @@
 class OauthClientsController < ApplicationController
+  layout 'developer'
+  
   before_filter :login_required
   before_filter :get_client_application, :only => [:show, :edit, :update, :destroy]
-  layout 'developer'
 
   def index
     @client_applications = current_user.client_applications

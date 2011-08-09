@@ -8,6 +8,7 @@ class CreateOauthTables < ActiveRecord::Migration
       t.string :key, :limit => 40
       t.string :secret, :limit => 40
       t.integer :user_id
+      t.boolean :xauth_enabled, :default => false
 
       t.timestamps
     end

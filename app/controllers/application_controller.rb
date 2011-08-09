@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   # Temp
   USER_NAME, PASSWORD = "afterclassroom", "teamwork"
   
-  before_filter :authenticate
+  #before_filter :authenticate
   before_filter :set_user_time_zone
   
   def help
