@@ -17,7 +17,6 @@ class QaSendMail < ActionMailer::Base
   end
   
   def send_rsvp(current_user, params,post)
-    
     @post = post
     @current_user = current_user
     @first_name = params[:first_name]
@@ -26,6 +25,11 @@ class QaSendMail < ActionMailer::Base
     @tel = params[:tel_no]
     @message = params[:message_str]
     mail :to => post.user.email, :subject => "You've got mail from "+@first_name+"!"
+  end
+  
+  def learntool_to_dev(current_user, tool)
+    @tool = tool
+    mail :to => tool.user.email, :subject => "You've got mail from #{current_user.name}"
   end
   
 end

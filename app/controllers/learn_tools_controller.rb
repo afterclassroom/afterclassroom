@@ -189,6 +189,29 @@ class LearnToolsController < ApplicationController
   end
   
   def contact_dev_form
+    @tool = Learntool.find(params[:tool_id])
+    render :layout => false
+  end
+  
+  def send_to_dev
+#    @post = Post.find(params[:post_id])
+#    QaSendMail.send_rsvp(current_user,params,@post).deliver
+#    @receiver = @post.user.email
+#    render :layout => false
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @tool = Learntool.find(params[:tool_id])
+    QaSendMail.learntool_to_dev(current_user,@tool).deliver
+    flash[:notice] = "Sent to developer: #{@tool.user.email}"
     render :layout => false
   end
   
