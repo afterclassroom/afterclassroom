@@ -15,7 +15,7 @@
                 <a id="play_a_demo" href="javascript:;">Play a Demo</a>
               <% else %>
                 <!-- user has favorite And has played a demo -->
-                <a href="javascript:;">Play now</a>
+                <a id="play_tool_now" href="javascript:;">Play now</a>
               <% end %>
 
             <% else %>
@@ -159,6 +159,10 @@
       $('#play_a_demo').unbind();
     });
     
+    $('#play_tool_now').click(function(){
+      window.location.replace("<%= @tool.href %>");
+    });
+    
   });
   
   function ShowPlayDemoOverlay(){
@@ -232,6 +236,7 @@
       success: function(msg){
         $('#play_a_demo').text("Play Now");
         $('#demooverlay').remove();
+        window.location.replace("<%= @tool.href %>");
       }
     });  
   }

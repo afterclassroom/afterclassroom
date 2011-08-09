@@ -4,7 +4,8 @@
     <%= link_to "Contact Developer", "#{url_for(:controller => "learn_tools", :action => "contact_dev_form")}?tool_id=#{@tool.id.to_s}&height=325&width=550", :class => "thickbox", :title => "Contact Developer" %>
   </div>
   <div class="fanEx2">
-    <%= link_to "Report Application", "#{url_for(:controller => "learn_tools", :action => "report_app_form")}?tool_id=#{@tool.id.to_s}&height=325&width=550", :class => "thickbox", :title => "Report Application" %>
+    <%#= link_to "Report Application", "#{url_for(:controller => "learn_tools", :action => "report_app_form")}?tool_id=#{@tool.id.to_s}&height=325&width=550", :class => "thickbox", :title => "Report Application" %>
+    <%= show_report_abuse(@tool) %>
   </div>
   <div class="fanEx3">
     <%= addthis_bookmark_button { "Share +" } %>

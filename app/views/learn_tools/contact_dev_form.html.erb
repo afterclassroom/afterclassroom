@@ -1,1 +1,56 @@
-hello contact developer
+<div id="detail_window">
+  <div class="detail-info">
+    <div id="rsvp_wraper_<%= @tool.id %>">
+      <div id="posting-section">
+        <% form_tag url_for(:controller => "learn_tools", :action => "send_to_dev"), :remote => true, :id => "form_to_dev" do %>
+          <%= hidden_field_tag "tool_id", @tool.id %>
+
+          <ul>
+            <li>
+              <div class="user_ri6">
+                <label style="float:left;">
+                  Title*:
+                </label>
+                <%= text_field_tag "tel_no", "", :class => '{validate:{required:true}}' %>
+              </div>
+            </li>
+            <li>
+              <label style="float:left;">
+                Message*:
+              </label>
+              <div class="user_ri7" style="margin-left: 29px; margin-top: 0px;">
+                <%= text_area_tag "message_str", nil, :rows => 5, :cols => 60, :class => '{validate:{required:true}}'  %>
+              </div>
+            </li>
+            <li>
+              <!-- post  button -->
+              <div>
+                <span class="submitRSVP"><a id="btn_submit_dev" href="javascript:;">
+                    <input type="button" value="Send" name="foo"/>
+                  </a></span>
+                <span class="error" style="padding: 0px;"></span>
+              </div>
+              <!-- end post button -->
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- end detail-info-->
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#btn_submit_dev').click(function(){
+      SendToDev();
+    });
+  });
+  function SendToDev(){
+    var result = $("#form_to_dev").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("#form_to_dev").submit();
+    }
+  }
+</script>
