@@ -43,7 +43,7 @@ Afterclassroom::Application.routes.draw do
           :first_tab_paging, :search_tool, :see_all_tool_fan, :contact_dev_form, 
           :report_app_form, :mylearn, :tool_rev_paging, :write_review_form,
           :add_favorite, :add_favorite_with_check, :update_play_demo, :new_tool,
-          :rate, :new_tool_with_api
+          :rate, :new_tool_with_api, :choose_to_add
         post :submit_review, :submit_new_tool, :create_tool_with_api
       end
     end    

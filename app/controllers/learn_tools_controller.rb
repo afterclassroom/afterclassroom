@@ -211,14 +211,9 @@ class LearnToolsController < ApplicationController
     @tool = Learntool.new(params[:learntool])
     @tool.user = current_user
     if simple_captcha_valid?
-      if @tool.save!
+      if @tool.save
         flash[:notice] = "Your tool was successfully submitted."
-        if @tool.ac_api == true
-          redirect_to :controller=>'oauth_clients', :action => 'new_from_tool', :tool_id => @tool.id
-        else
-          redirect_to :controller=>'learn_tools', :action => 'new_tool'
-        end
-        
+        redirect_to :controller=>'learn_tools', :action => 'new_tool'
       else
         flash[:notice] = "Error !"
         render :action => "new_tool"
@@ -255,8 +250,8 @@ class LearnToolsController < ApplicationController
     
     if simple_captcha_valid?
       if @client_application.save && @tool.save
-          flash[:notice] = "Your tool has been submitted"
-          render :action => "new_tool_with_api"
+        flash[:notice] = "Your tool has been submitted"
+        render :action => "new_tool_with_api"
       else
         str_error = "Failed to create API !"
         flash[:notice] = str_error
@@ -266,6 +261,10 @@ class LearnToolsController < ApplicationController
       flash[:warning] = "Captcha does not match."
       render :action => "new_tool_with_api"
     end
+  end
+  
+  def choose_to_add
+    render :layout => false
   end
   
   
