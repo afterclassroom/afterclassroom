@@ -43,8 +43,8 @@ Afterclassroom::Application.routes.draw do
           :first_tab_paging, :search_tool, :see_all_tool_fan, :contact_dev_form, 
           :report_app_form, :mylearn, :tool_rev_paging, :write_review_form,
           :add_favorite, :add_favorite_with_check, :update_play_demo, :new_tool,
-          :rate
-        post :submit_review, :submit_new_tool
+          :rate, :new_tool_with_api
+        post :submit_review, :submit_new_tool, :create_tool_with_api
       end
     end    
     
@@ -353,8 +353,12 @@ Afterclassroom::Application.routes.draw do
   end
   
   # OAuth
-  resources :oauth_clients
-
+  resources :oauth_clients do
+    collection do
+      get :new_from_tool
+    end
+  end
+  
   match '/oauth/test_request',  :to => 'oauth#test_request',  :as => :test_request
 
   match '/oauth/token',         :to => 'oauth#token',         :as => :token
@@ -366,6 +370,7 @@ Afterclassroom::Application.routes.draw do
   match '/oauth/authorize',     :to => 'oauth#authorize',     :as => :authorize
 
   match '/oauth',               :to => 'oauth#index',         :as => :oauth
+  
 
   # Dashboard as the default location
   root :to => 'dashboards#index'
