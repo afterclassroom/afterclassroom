@@ -1,7 +1,6 @@
 <% content_for :you_are_here do -%>
   You are here: <%= link_to 'Developers', oauth_clients_path %>
 <% end -%>
-<div class="flash"><%#= flash[:notice] %></div>
 
 <% if @tools.empty? %>
   <p>

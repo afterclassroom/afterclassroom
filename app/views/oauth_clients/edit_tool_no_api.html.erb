@@ -12,15 +12,13 @@
       <%= display_flash_messages_with_raw %>
 
       <% form_for(@tool, :url => url_for(:controller => "oauth_clients", :action => "save_edit_no_api") , :html => {:method=>"post",:multipart => true, :id => "form_new_tool" }) do |f| %>
-  <%# form_for :oauth_client, :url => save_edit_no_api_oauth_clients_url, :multipart => true do |f| %>
-  <%# form_for [:oauth_client, @tool] do |f| %>
         <%= hidden_field_tag "tool_id", @tool.id %>
         <div class="postCont">
           <div class="postErr">
             <div class="postItem">
-              <div class="postTit">Submit new tool</div>
+              <div class="postTit">Edit tool (<%=  @tool.learn_tool_cate.id %>) </div>
               <div class="postInp">
-                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
+                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] }, :selected => @tool.learn_tool_cate.id ) )%>
 
               </div>
             </div>
@@ -46,9 +44,6 @@
             <div class="postItem">
               <div class="postTit">URL</div>
               <div class="postInp"><%= f.text_field :href %></div>
-            </div>
-            <div style="margin-left:120px">
-              <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
             </div>
           </div>
         </div>
