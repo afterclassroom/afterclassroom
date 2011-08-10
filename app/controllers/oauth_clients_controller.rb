@@ -6,10 +6,9 @@ class OauthClientsController < ApplicationController
   before_filter :get_variables, :only => [:new, :create]
 
   def index
-    @client_applications = current_user.client_applications.paginate(:page => params[:page], :per_page => 5)
     @tokens = current_user.tokens.find :all, :conditions => 'oauth_tokens.invalidated_at is null and oauth_tokens.authorized_at is not null'
     
-    @api_tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
+    @tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
     
   end
   
@@ -18,11 +17,14 @@ class OauthClientsController < ApplicationController
     when "first"#all tool
       @cur_page = params[:page_to_load]
       @cur_tab = "first"
-      @client_applications = current_user.client_applications.paginate(:page => params[:page_to_load], :per_page => 5)
+      @tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
     else #second
       @cur_page = params[:page_to_load]
       @cur_tab = "second"
-      @client_applications = current_user.learn_tools.paginate(:page => params[:page_to_load], :per_page => 5)
+      #@client_applications = current_user.learn_tools.paginate(:page => params[:page_to_load], :per_page => 5)
+      
+      #@api_tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
+      @tools = Learntool.tool_no_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
     end
     
     render :layout => false
@@ -33,6 +35,10 @@ class OauthClientsController < ApplicationController
   end
   
   def delete_tool
+    
+  end
+  
+  def show_tool
     
   end
 
