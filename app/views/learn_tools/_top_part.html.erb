@@ -3,7 +3,7 @@
     <div class="txtsignup1">Morbi ultrices congue aliquet</div>
     <div class="btmBe">
       <!-- a href="#">Become a Fan</a -->
-      <%= show_tool_fan_register(@tool) %>
+      <%= controller.action_name =="show" ? show_tool_fan_register(@tool) : "" %>
     </div>
   </div>
   <div class="postdiv">

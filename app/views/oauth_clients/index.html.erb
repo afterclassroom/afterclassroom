@@ -32,51 +32,7 @@
 <% end %>
 
 <div class="contMain">
-  <div class="contDetL">
-    <div class="contDetLin">
-      <div class="learnLeft">
-        <div class="learnFavT">
-          <div class="learnFavTL">Displaying review 1-10 out of 4289</div>
-          <div class="learnFavTC"><a href="#">See All</a></div>
-        </div>
-        <% @client_applications.each do |client|%>
-          <% div_for client do %>
-            <div class="learnNItem">
-              <div class="assPic"><a href="#"><div><img src="/images/pictures/noimg.png"></div></a></div>
-              <div class="learnFavtitle"><%= link_to client.name, oauth_client_path(client) %>
-                <span class="learnFavS">
-                  <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="images/starWhite.png">
-                </span>
-              </div>
-              <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
-              <div class="learnDetDate">January 03, 2010 at 4:02 PM      
-                <div class="learnFa" style="float: right"> 
-                  <%= link_to 'Edit', edit_oauth_client_path(client) %>
-                  <%= link_to 'Delete', oauth_client_path(client), :confirm => "Are you sure?", :method => :delete %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-
-        <div class="assPage">
-          <span class="numPage">Page 1 of 22</span>
-          <span class="firstPage"><a href="#">First Page</a></span>
-          <span class="prevPage"><a href="#">Prev</a></span>
-          <span class="currentPage">
-            <a href="#" class="selected"><span>6</span></a>
-            <a href="#"><span>7</span></a>
-            <a href="#"><span>8</span></a>
-            <a href="#"><span>9</span></a>
-            <a href="#"><span>10</span></a>
-          </span>
-          <span class="nextPage"><a href="#">Next</a></span>
-          <span class="lastPage"><a href="#">Last Page</a></span>
-        </div>
-        <div class="goTop"><a href="#">Top</a></div>
-      </div>
-    </div>
-  </div>
+  <%= render :partial => "central_page" %>
   <div class="contMainR">
     <div class="creAdv"><a href="#">Create an Ad</a></div>
     <div class="advert">

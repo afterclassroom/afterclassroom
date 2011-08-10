@@ -19,27 +19,13 @@ module LearnToolsHelper
   end
   
   def display_fan (tool)
-#    fan_users = []
-#    tool.my_tools.each do |mt|
-#      if mt.favorite
-#        fan_users << mt.user
-#      end
-#    end
-#    fan_users return this array
-
-
-
-    
     fan_ids = tool.fans.collect{|f| f.user_id}
 
     fan_results = User.ez_find(:all) do |user|
       user.id === fan_ids
     end
-#    @fans = fan_results.paginate({:page => params[:page], :per_page => 10})
     
     fan_results #return this array
-
-
   end
   
   def is_tool_favorite(tool,user)

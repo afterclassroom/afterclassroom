@@ -1,0 +1,24 @@
+<% @client_applications.each do |client|%>
+  <% div_for client do %>
+    <div class="learnNItem">
+      <div class="assPic"><a href="#"><div><img src="/images/pictures/noimg.png"></div></a></div>
+      <div class="learnFavtitle"><%= link_to client.name, oauth_client_path(client) %>
+        <span class="learnFavS">
+          <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="images/starWhite.png">
+        </span>
+      </div>
+      <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
+      <div class="learnDetDate">January 03, 2010 at 4:02 PM      
+        <div class="learnFa" style="float: right"> 
+          <%= link_to 'Edit', edit_oauth_client_path(client) %>
+          <%= link_to 'Delete', oauth_client_path(client), :confirm => "Are you sure?", :method => :delete %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="assPage" style="padding-left:0">
+  <span class="numPage"><%= page_entries_info @client_applications %></span>
+  <%= will_paginate @client_applications %> 
+</div>
