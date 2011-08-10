@@ -1,0 +1,74 @@
+<% form_tag url_for(:controller => "oauth_clients", :action => "tab_paging"), :id => "form_tab", :method => :get, :remote => true do %>
+  <%= hidden_field_tag "page_to_load", @cur_page ? @cur_page : "1" %>
+  <%= hidden_field_tag "tab_parm", @cur_tab ? @cur_tab : "first" %>
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="learnLeft">
+
+        <div class="learnN">
+          <div class="learnNM">
+            <div id="tool_with_api" class="learnNMtitle" style="background-color: #F9F9F8; color: #3E3E3E; font-weight: normal;border-left: 1px solid #DBDBDB;">Tools with API</div>
+            <div id="common_tool" class="learnNMP" style="color: #0A81C4; background: url('/images/bor1.gif') repeat-x scroll right bottom transparent">Common Tools</div>
+          </div>
+        </div>
+
+        <%= render :partial => "api_tool" %>
+
+
+        <div class="goTop"><a href="#">Top</a></div>
+      </div>
+    </div>
+  </div>
+<% end %> <!-- end form -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.pagination a').each(function(){
+      $(this).attr('href','javascript:;');
+    });
+    $('.pagination a').each(function(){
+      $(this).click(function(){
+        //ShowOverlay();
+        if ($(this).text() == 'Next'){
+          var str_page = parseInt("<%= @cur_page ? @cur_page : "1" %>")+1;
+          $('#page_to_load').val(""+str_page);
+        }else if ($(this).text() == 'Previous'){
+          var str_page = parseInt("<%= @cur_page %>")-1;
+          $('#page_to_load').val(""+str_page);
+        }
+        else {
+          $('#page_to_load').val($(this).text());
+        }
+        $('form#form_tab').submit();
+      });
+    });
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $('#tool_with_api').click(function(){
+      //ShowOverlay();
+      $('#page_to_load').val('1');
+      $('#tab_parm').val('first');
+      $('form#form_tab').submit();
+    });
+    $('#common_tool').click(function(){
+      //ShowOverlay();
+      $('#page_to_load').val('1');
+      $('#tab_parm').val('second');
+      $('form#form_tab').submit();
+    });
+
+
+  });  
+</script>
