@@ -3,7 +3,7 @@ class OauthClientsController < ApplicationController
   
   before_filter :login_required
   before_filter :get_client_application, :only => [:show, :edit, :update, :destroy]
-  before_filter :get_variables, :only => [:new, :create]
+  before_filter :get_variables, :only => [:new, :create, :edit_tool, :edit_tool_no_api]
 
   def index
     @tokens = current_user.tokens.find :all, :conditions => 'oauth_tokens.invalidated_at is null and oauth_tokens.authorized_at is not null'
@@ -21,9 +21,6 @@ class OauthClientsController < ApplicationController
     else #second
       @cur_page = params[:page_to_load]
       @cur_tab = "second"
-      #@client_applications = current_user.learn_tools.paginate(:page => params[:page_to_load], :per_page => 5)
-      
-      #@api_tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
       @tools = Learntool.tool_no_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
     end
     
@@ -31,7 +28,28 @@ class OauthClientsController < ApplicationController
   end
   
   def edit_tool
+    @tool = Learntool.find(params[:tool_id])
+  end
+  
+  def save_edit_tool
+    render :action => "index"
+  end
+  
+  def edit_tool_no_api
+    @tool = Learntool.find(params[:tool_id])
+  end
+  
+  def save_edit_no_api
+#    tool = Learntool.find(params[:tool_id])
+#    tool.update_attributes(params[:learntool])
+#    if tool.save
+#      flash[:warning] = "Update tool successfully"
+#    else
+#      flash[:warning] = "Failed to update tool"
+#    end 
     
+    flash[:warning] = "Failed to update tool"
+    redirect_to :action => "index"
   end
   
   def delete_tool

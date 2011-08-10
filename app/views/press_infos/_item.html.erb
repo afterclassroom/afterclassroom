@@ -1,26 +1,26 @@
-            <div id="" style="border-bottom: 1px solid rgb(219, 219, 219);" class="helpItem">
-<% if admin? %>
-              <div id="pr_id_<%= pr.id.to_s %>" style="display: none; float: right; padding-top: 1px;">
-                <%= link_to(content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => 'border: 0px;')), "#{delpr_press_infos_path(current_user)}?pr_id=#{pr.id.to_s}", :class => "vtip", :title => "Delete", :remote => true, :confirm => "Are you sure?" ) %>
-              </div>
+<div id="" style="border-bottom: 1px solid rgb(219, 219, 219);" class="helpItem">
+  <% if admin? %>
+    <div id="pr_id_<%= pr.id.to_s %>" style="display: none; float: right; padding-top: 1px;">
+      <%= link_to(content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => 'border: 0px;')), "#{delpr_press_infos_path(current_user)}?pr_id=#{pr.id.to_s}", :class => "vtip", :title => "Delete", :remote => true, :confirm => "Are you sure?" ) %>
+    </div>
 
-              <div id="edpr_id_<%= pr.id.to_s %>" style="display: none; float: right;">
-                <a href="<%= view_pr_press_infos_path(current_user) %>?press_id=<%= pr.id.to_s %>" class="vtip" title='Edit' ><img style="border: 0px none;" src="/images/flistREdit.png"/></a>
-              </div>
-<% end %>
-              <div class="assPic" style="float: left;">
-                <a id="cal_id_<%= pr.id.to_s %>" href="javascript:;">
-                  <div style="background-image: url('/images/prs_rls_icon.png'); height: 55px;">
-                    <div style="background: transparent; color:#FFFFFF; font-size: 11px; margin-left: -6px; text-align: center; margin-top: -3px;"><%= pr.created_at.strftime('%b').upcase %></div>
-                    <div style="background: transparent; color:#6F6F63;font-size: 20px; text-align: center; margin-left: -4px;"><%= pr.created_at.strftime('%d').upcase %></div>
-                    <div style="background: transparent; color:#6F6F63;font-size: 11px; margin-top: -9px; margin-left: 10px;"><%= pr.created_at.strftime('%Y').upcase %></div>
-                  </div>
-                </a>
-              </div>
-              <div style="margin-left: 62px;" class="helpT">
-              </div>
-              <div style="font-weight: bold; margin-left: 62px;" class="forumTit" id="<%= pr.id.to_s  %>">
-                <%= link_to pr.title, {:controller => "press_infos", :action => "view_detail", :pr_id => pr.id}, :remote => true %>
-              </div>
-              <div id="press_<%= pr.id.to_s %>" style="margin-left: 62px; height: 100%;" class="helpD"><%= truncate_html(raw(content), :length => 100, :omission => '...') %></div>
-            </div>
+    <div id="edpr_id_<%= pr.id.to_s %>" style="display: none; float: right;">
+      <a href="<%= view_pr_press_infos_path(current_user) %>?press_id=<%= pr.id.to_s %>" class="vtip" title='Edit' ><img style="border: 0px none;" src="/images/flistREdit.png"/></a>
+    </div>
+  <% end %>
+  <div class="assPic" style="float: left;">
+    <a id="cal_id_<%= pr.id.to_s %>" href="javascript:;">
+      <div style="background-image: url('/images/prs_rls_icon.png'); height: 55px;">
+        <div style="background: transparent; color:#FFFFFF; font-size: 11px; margin-left: -6px; text-align: center; margin-top: -3px;"><%= pr.created_at.strftime('%b').upcase %></div>
+        <div style="background: transparent; color:#6F6F63;font-size: 20px; text-align: center; margin-left: -4px;"><%= pr.created_at.strftime('%d').upcase %></div>
+        <div style="background: transparent; color:#6F6F63;font-size: 11px; margin-top: -9px; margin-left: 10px;"><%= pr.created_at.strftime('%Y').upcase %></div>
+      </div>
+    </a>
+  </div>
+  <div style="margin-left: 62px;" class="helpT">
+  </div>
+  <div style="font-weight: bold; margin-left: 62px;" class="forumTit" id="<%= pr.id.to_s  %>">
+    <%= link_to pr.title, {:controller => "press_infos", :action => "view_detail", :pr_id => pr.id}, :remote => true %>
+  </div>
+  <div id="press_<%= pr.id.to_s %>" style="margin-left: 62px; height: 100%;" class="helpD"><%= truncate_html(raw(content), :length => 100, :omission => '...') %></div>
+</div>

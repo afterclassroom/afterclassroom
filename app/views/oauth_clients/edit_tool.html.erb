@@ -1,0 +1,136 @@
+<div class="abLink postLink">
+  <div class="abLinkL">You are here: <a href="#">Learning Tools</a><a class="abLink-detail" href="#">Post</a></div>
+
+</div>
+
+<div class="contMain">
+  <div class="contDetL">
+    <div class="contDetLin post">
+      <div class="AsDTop">
+        <h1 class="titleH1">Submit new tool</h1>
+      </div>
+      <%= display_flash_messages_with_raw %>
+      
+      <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
+        <div class="postCont">
+          <div class="postErr">
+            <div class="postItem">
+              <div class="postTit">Submit new tool</div>
+              <div class="postInp">
+                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
+              </div>
+            </div>
+
+
+            <%= fields_for @tool.client_application do |ca| %>
+
+            <div class="postItem">
+              <div class="postTit">Name*</div>
+              <div class="postInp"><%= ca.text_field :name %></div>
+            </div>
+            
+            
+             <div class="postItem">
+              <div class="postTit">Main Application URL*</div>
+              <div class="postInp"><%= ca.text_field :url %></div>
+            </div>           
+            
+
+            
+            
+            
+             <div class="postItem">
+              <div class="postTit">Callback URL*</div>
+              <div class="postInp"><%= ca.text_field :callback_url %></div>
+            </div>                
+
+            
+            
+             <div class="postItem">
+              <div class="postTit">Support URL</div>
+              <div class="postInp"><%= ca.text_field :support_url %></div>
+            </div>               
+
+
+            <% end %><!-- end field for -->
+
+            <div class="postItem">
+              <div class="postTit">Description*</div>
+              <div class="postInput">
+                <div class="postDesInf">900 characters max - Current: 0 character</div>
+                <div class="postInp"><%= f.text_area :description %></div>
+              </div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Current Image</div>
+              <div class="postInp"><%= image_tag @tool.tool_img.url(:medium) %></div>
+            </div>
+
+
+            <div class="postItem">
+              <div class="postTit">New Images*</div>
+              <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23"  %></div>
+            </div>
+            <div style="margin-left:120px">
+              <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+            </div>
+          </div>
+        </div>
+        <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px"><a href="javascript:;"><%= f.submit "Submit" %></a></div>
+        <div class="submit" style="margin-left: -106px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
+
+      <% end %>
+    </div>
+  </div>
+
+  <div class="contMainR">
+    <div class="creAdv"><a href="#">Create an Ad</a></div>
+    <div class="advert">
+      <div class="advertTitle">Advertisement</div>
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/pic6.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/adv.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
+      <div class="advertImg"><img src="/images/pictures/adv1.png"></div>
+      <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#reset_form').click(function(){
+      document.getElementById('form_new_tool').reset();
+    });
+  });
+</script>
