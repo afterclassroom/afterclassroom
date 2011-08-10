@@ -29,7 +29,16 @@ class OauthClientsController < ApplicationController
   end
   
   def save_edit_tool
-    render :action => "index"
+    tool = Learntool.find(params[:tool_id])
+    tool.update_attributes(params[:learntool])
+    client = tool.client_application
+    client.update_attributes(params[:client_application])
+    if tool.save && client.save
+      flash[:warning] = "Update tool successfully"
+    else
+      flash[:warning] = "Failed to update tool"
+    end 
+    redirect_to :action => "index"
   end
   
   def edit_tool_no_api
@@ -49,7 +58,17 @@ class OauthClientsController < ApplicationController
   end
   
   def delete_tool
+    del_tool = Learntool.find(params[:tool_id])
+    @tool = del_tool
+    client = @tool.client_application
     
+    if (client != nil)
+      client.destroy
+    end
+    
+    del_tool.destroy
+    @tool
+    flash[:warning] = "1 tool has been deleted"
   end
   
   def show_tool

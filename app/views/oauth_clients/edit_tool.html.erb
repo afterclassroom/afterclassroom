@@ -11,13 +11,14 @@
       </div>
       <%= display_flash_messages_with_raw %>
       
-      <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
+      <%= form_for(@tool, :url => url_for(:controller => "oauth_clients", :action => "save_edit_tool"), :html => {:method => "post", :multipart => true, :id => "form_new_tool" }) do |f| %>
+        <%= hidden_field_tag "tool_id", @tool.id %>
         <div class="postCont">
           <div class="postErr">
             <div class="postItem">
               <div class="postTit">Submit new tool</div>
               <div class="postInp">
-                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
+                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] }, :selected => @tool.learn_tool_cate.id ) )%>
               </div>
             </div>
 
@@ -70,9 +71,6 @@
             <div class="postItem">
               <div class="postTit">New Images*</div>
               <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23"  %></div>
-            </div>
-            <div style="margin-left:120px">
-              <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
             </div>
           </div>
         </div>
