@@ -11,7 +11,7 @@
       <div class="learnNdes"><%= truncate_html(tool.description, :length => 400, :omission => '...') %></div>
       <div class="learnDetDate">January 03, 2010 at 4:02 PM      
         <div class="learnFa" style="float: right"> 
-          <%= link_to "Edit", :controller => 'oauth_clients', :action => 'edit_tool', :tool_id => tool.id %>
+          <%= link_to "Edit", :controller => 'oauth_clients', :action => 'edit_tool_no_api', :tool_id => tool.id %>
           <%= link_to( "Delete", {:controller => "oauth_clients", :action => "delete_tool", :tool_id => tool.id  }, :remote => true ,:method => :get, :confirm => 'Are you sure you want to delete it?') %>
         </div>
       </div>

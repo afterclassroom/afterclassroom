@@ -1,0 +1,2 @@
+$('.learnN').after("<%= escape_javascript ( raw( render :partial => "flash_msg"  ) )  %>");  
+$('div#learntool_<%= @tool.id %>').remove();

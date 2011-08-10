@@ -247,7 +247,7 @@
 
 .assDes em {
     color: #F6A828;
-		font-weight:bold;
+    font-weight:bold;
 }
 
 .assCate, .assInfL {
@@ -1151,6 +1151,7 @@ span.btmDown a:hover {
 .AsDcomRe {
     height: 22px;
     line-height: 22px;
+    margin-left: 55px;
 }
 
 .AsDcomRe div {

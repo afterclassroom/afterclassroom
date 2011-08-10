@@ -109,15 +109,15 @@
         
         $(this).css('color', '#000000'); // if box is already selected then, make it unselected 
         $(this).css('background-color', '#fff');
-        $(this).parents('div#select:first').removeClass('selected');
-        $('span').addClass('selected01');
+        $(this).parents('#select:first').removeClass('selected');
+        
         
       }
       else {
         
         $(this).css('color', '#ffffff'); // if box is not selected , make it selected
         $(this).css('background-color', '#627AAD');
-        $(this).parents('div#select:first').addClass('selected');
+        $(this).parents('#select:first').addClass('selected');
         $(this).parents('span:first').removeClass('selected01');
         $('#frend_ids').val(fid + ',' + ids);
         showActionsBox();
@@ -205,8 +205,10 @@
       }), input = $("<input>").attr({
         "class": "filterinput",
         "type": "text",
-        "onfocus":"if (this.value=='Search') this.value = ''",     
-        "value":"Search"
+        "value":"Search",
+        "onfocus":"if(this.value=='Search'){this.value=''};",
+        "onblur":"if(this.value==''){this.value='Search'};"    
+        
       });
       $(form).append(input).appendTo(header);
             

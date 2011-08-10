@@ -66,7 +66,7 @@
 
 #facebox .footer {
     background:#EBEBEB none repeat scroll 0 0;
-    padding: 8px 10px 8px 8px;
+    padding: 8px 10px 8px 0px;
     text-align: left;
 }
 .uiButtonConfirm a{
@@ -119,3 +119,4 @@
 .div_disable{
     opacity:0.5;
 }
+

@@ -104,5 +104,12 @@ on learntools.id = a.learntool_id where learn_tool_cate_id=#{cate_id}")
     end    
   end
   
+  def self.tool_no_api(user)
+    Learntool.ez_find(:all) do |t|
+      t.user_id == user.id
+      t.ac_api == false
+    end    
+  end  
+  
   
 end

@@ -1,2 +1,2 @@
-$('form#form_tab').before("<%= escape_javascript ( raw(render :partial => "central_page")) %>");  
+$('form#form_tab').before("<%= escape_javascript ( raw(render :partial => ( @cur_tab == "first"? "central_page" : "central_page_no_api" ) )) %>");  
 $('form#form_tab').eq(1).remove();

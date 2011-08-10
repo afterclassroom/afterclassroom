@@ -355,7 +355,8 @@ Afterclassroom::Application.routes.draw do
   # OAuth
   resources :oauth_clients do
     collection do
-      get :new_from_tool, :tab_paging, :edit_tool, :delete_tool
+      get :new_from_tool, :tab_paging, :edit_tool, :delete_tool, :show_tool, :edit_tool_no_api
+      post :save_edit_tool, :save_edit_no_api
     end
   end
   
