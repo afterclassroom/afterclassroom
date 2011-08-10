@@ -64,24 +64,31 @@ class UserWallsController < ApplicationController
   
   def view_all_comments
     wall_id = params[:wall_id]
-    @wall = UserWall.find_by_id(params[:wall_id])
-    if @wall
-      @comments = @wall.comments
+    post_id = params[:post_id]
+    class_name = params[:class_name]
+    @wall = UserWall.find(wall_id)
+    @obj = eval(class_name).find(post_id)
+    if @obj and @wall
+      @comments = @obj.comments
     end
     render :layout => false
   end
   
   def create_comment
     wall_id = params[:wall_id]
-    comment = params[:comment]
-    
     @wall = UserWall.find_by_id(params[:wall_id])
     
-    if @wall
+    comment = params[:comment]
+    commentable_id = params[:commentable_id]
+    commentable_type = params[:commentable_type]
+    
+    @obj = eval(commentable_type).find(commentable_id)
+    
+    if @obj and @wall
       obj_comment = Comment.new()
       obj_comment.comment = comment
       obj_comment.user = current_user
-      @wall.comments << obj_comment
+      @obj.comments << obj_comment
       @wall.update_attribute(:updated_at, Time.now)
       if @wall.user != current_user
         subject = "#{current_user.name} post comment on your lounge."
@@ -93,11 +100,14 @@ class UserWallsController < ApplicationController
   end
   
   def delete_comment
+    wall_id = params[:wall_id]
+    @wall = UserWall.find(wall_id)
     comment_id = params[:comment_id]
     comment = Comment.find(comment_id)
-    @wall = UserWall.find(comment.commentable_id)
-    if comment && @wall
-      comment.destroy if comment.user == current_user || @wall.user == current_user
+    comment_type = comment.commentable_type
+    @obj = eval(comment_type).find(comment.commentable_id)
+    if comment && @obj
+      comment.destroy if comment.user == current_user || @obj.user == current_user
     end
     render :layout => false
   end

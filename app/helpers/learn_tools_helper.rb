@@ -19,13 +19,13 @@ module LearnToolsHelper
   end
   
   def display_fan (tool)
-    fan_users = []
-    tool.my_tools.each do |mt|
-      if mt.favorite
-        fan_users << mt.user
-      end
+    fan_ids = tool.fans.collect{|f| f.user_id}
+
+    fan_results = User.ez_find(:all) do |user|
+      user.id === fan_ids
     end
-    fan_users #return this array
+    
+    fan_results #return this array
   end
   
   def is_tool_favorite(tool,user)
@@ -41,7 +41,7 @@ module LearnToolsHelper
       if tool.fans.map(&:user_id).include?(current_user.id)
         str = "You are a fan"
       else
-        str = link_to_function raw("<span>Become a Fan</span>"), "become_a_fan('#{become_a_fan_user_learn_tools_path(current_user)}?fan_id=#{tool.id}')"
+        str = link_to_function raw("<span>Become a Fan</span>"), "become_tool_fan('#{become_a_fan_user_learn_tools_path(current_user)}?tool_id=#{tool.id}')"
       end
     end
     return str

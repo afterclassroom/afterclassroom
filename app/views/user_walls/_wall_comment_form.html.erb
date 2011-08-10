@@ -1,9 +1,11 @@
-<div class="proList" id="wall_comment_form_<%= wall.id %>" style="display:none;width:440px">
-  <% form_tag url_for(:controller => "user_walls", :action => "create_comment"), :remote => true, :html => {:id => "wall_form_#{wall.id}"} do %>
+<div class="proList" id="wall_comment_form_<%= obj.class.name %>_<%= obj.id %>" style="display:none;width:440px">
+  <% form_tag url_for(:controller => "user_walls", :action => "create_comment"), :remote => true, :html => {:id => "wall_form_#{obj.class.name}_#{obj.id}"} do %>
   <%= hidden_field_tag "wall_id", wall.id %>
+	<%= hidden_field_tag "commentable_id", obj.id %>
+	<%= hidden_field_tag "commentable_type", obj.class.name %>
   <div class="proListPic"><%= show_image_user_post(current_user) %></div>
   <div class="proListR" style="width:380px">
-    <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{wall.id}", :onblur => "hideCommentForm('#{wall.id}')"} %></div>
+    <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{obj.class.name}_#{obj.id}", :onblur => "hideCommentForm('#{obj.class.name}', '#{obj.id}')"} %></div>
   </div>
   <div class="proAttR"><%= submit_tag 'Send', :class => "buttonCom" %></div>
   <% end %>

@@ -1,4 +1,4 @@
-<%= render :partial => "widget_comments", :locals => {:wall => @wall} %>
+<%= render :partial => "widget_comments", :locals => {:wall => @wall, :obj => @obj} %>
 <script>
-	$("#wall_<%= @wall.id %>_comments").html(<%= @wall.comments.size %>);
+	$("#wall_<%= @obj.class.name %>_<%= @obj.id %>_comments").html(<%= @obj.comments.size %>);
 </script>

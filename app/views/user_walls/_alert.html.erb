@@ -11,7 +11,7 @@
 <!--Alert-->
 
 <script type="text/javascript">
-  function DeleteWallComment(wall_id, comment_id){
+  function DeleteWallComment(wall_id, class_name, post_id, comment_id){
     $("#delete_comment_alert").dialog({
       modal: true,
       buttons: {
@@ -21,9 +21,9 @@
             url: '/user_walls/delete_comment',
             type: 'GET',
             dataType: 'html',
-            data: 'comment_id=' + comment_id,
+            data: 'comment_id=' + comment_id + '&wall_id=' + wall_id,
             success: function(html){
-              $('#wall_list_comment_' + wall_id).html(html);
+              $('#wall_list_comment_' + class_name + '_' + post_id).html(html);
             }
           });
         },

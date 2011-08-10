@@ -52,29 +52,29 @@
 						if !["PhotoAlbum", "Photo", "MusicAlbum", "Music", "Video", "Story"].include?(obj.class.name)
 							obj = obj.post
 						end
+					else
+						obj = wall
+					end
 				%>
-      		<%= show_comment_button(obj.id, obj.comments.size) %>
-				<% else %>
-        	<a href="javascript:;" onclick="showCommentForm('<%= wall.id %>');">Comments (<span id="wall_<%= wall.id %>_comments"><%= wall.comments.size %></span>)</a>
-				<% end %>
+        <a href="javascript:;" onclick="showCommentForm('<%= obj.class.name %>', '<%= obj.id %>');">Comments (<span id="wall_<%= obj.class.name %>_<%= obj.id %>_comments"><%= obj.comments.size %></span>)</a>
       </div>
     </div>
     <!--Comments-->
-    <div id="wall_list_comment_<%= wall.id %>">
-      <% if wall.comments.size > 0 %>
-        <% if wall.comments.size > 2 %>
+    <div id="wall_list_comment_<%= obj.class.name %>_<%= obj.id %>">
+      <% if obj.comments.size > 0 %>
+        <% if obj.comments.size > 2 %>
           <div class="proList" style="width:440px">
             <div class="writeCom">
-              <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall.id}, :remote => true %>
+              <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall, :post_id => obj.id, :class_name => obj.class.name}, :remote => true %>
             </div>
           </div>
         <% end %>
-        <% wall.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
-          <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :comment => cm} %>
+        <% obj.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
+          <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :obj => obj, :comment => cm} %>
         <% end %>
-        <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall} %>
+        <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall, :obj => obj} %>
       <% end %>
-      <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall} %>
+      <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall, :obj => obj} %>
     </div>
     <!--Comments-->
   </div>

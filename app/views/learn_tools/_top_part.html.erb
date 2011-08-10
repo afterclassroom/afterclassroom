@@ -3,7 +3,7 @@
     <div class="txtsignup1">Morbi ultrices congue aliquet</div>
     <div class="btmBe">
       <!-- a href="#">Become a Fan</a -->
-      <%= show_tool_fan_register(@tool) %>
+      <%= controller.action_name =="show" ? show_tool_fan_register(@tool) : "" %>
     </div>
   </div>
   <div class="postdiv">
@@ -23,3 +23,20 @@
 
   </div>
 </div>
+<script type="text/javascript">
+// Become a fan
+function become_tool_fan(path){
+    $.ajax({
+        url: path,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+            alert('ajax fail:' + msg);
+        },
+        success: function(msg){
+            //$('.AsDContR .fan').html(msg);
+            $('.btmBe a').text(msg);
+        }
+    });
+}  
+</script>
