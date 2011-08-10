@@ -1,8 +1,8 @@
-<% @client_applications.each do |client|%>
-  <% div_for client do %>
+<% @api_tools.each do |tool|%>
+  <% div_for tool do %>
     <div class="learnNItem">
       <div class="assPic"><a href="#"><div><img src="/images/pictures/noimg.png"></div></a></div>
-      <div class="learnFavtitle"><%= link_to client.name, oauth_client_path(client) %>
+      <div class="learnFavtitle"><%= link_to tool.name, oauth_client_path(tool.client_application) %>
         <span class="learnFavS">
           <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="images/starWhite.png">
         </span>
@@ -10,8 +10,8 @@
       <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
       <div class="learnDetDate">January 03, 2010 at 4:02 PM      
         <div class="learnFa" style="float: right"> 
-          <%= link_to 'Edit', edit_oauth_client_path(client) %>
-          <%= link_to 'Delete', oauth_client_path(client), :confirm => "Are you sure?", :method => :delete %>
+          <%= link_to 'Edit', edit_oauth_client_path(tool.client_application) %>
+          <%= link_to 'Delete', oauth_client_path(tool.client_application), :confirm => "Are you sure?", :method => :delete %>
         </div>
       </div>
     </div>
@@ -19,6 +19,6 @@
 <% end %>
 
 <div class="assPage" style="padding-left:0">
-  <span class="numPage"><%= page_entries_info @client_applications %></span>
-  <%= will_paginate @client_applications %> 
+  <span class="numPage"><%= page_entries_info @api_tools %></span>
+  <%= will_paginate @api_tools %> 
 </div>

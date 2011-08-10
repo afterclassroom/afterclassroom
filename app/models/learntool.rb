@@ -85,21 +85,23 @@ on learntools.id = a.learntool_id where learn_tool_cate_id=#{cate_id}")
   end
   
   def rate_result
-    
-    
     if self.ratings.count > 0
       x1 = self.ratings.count(:conditions => ["rating = ?", 1])
       x2 = self.ratings.count(:conditions => ["rating = ?", 2])
       x3 = self.ratings.count(:conditions => ["rating = ?", 3])
       x4 = self.ratings.count(:conditions => ["rating = ?", 4])
       x5 = self.ratings.count(:conditions => ["rating = ?", 5])
-    
       count_no_of_rated = x1+x2+x3+x4+x5 #number of user has perform rated on this tool
       value_of_rated = x1 + x2*2 + x3*3 + x4*4 + x5*5 #sum of result that user has rated
       percent = (value_of_rated  * 100) / (5*count_no_of_rated) 
     end
-    
-    
+  end
+  
+  def self.tool_api(user)
+    Learntool.ez_find(:all) do |t|
+      t.user_id == user.id
+      t.ac_api == true
+    end    
   end
   
   
