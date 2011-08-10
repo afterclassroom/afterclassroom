@@ -41,7 +41,7 @@ module LearnToolsHelper
       if tool.fans.map(&:user_id).include?(current_user.id)
         str = "You are a fan"
       else
-        str = link_to_function raw("<span>Become a Fan</span>"), "become_a_fan('#{become_a_fan_user_learn_tools_path(current_user)}?fan_id=#{tool.id}')"
+        str = link_to_function raw("<span>Become a Fan</span>"), "become_tool_fan('#{become_a_fan_user_learn_tools_path(current_user)}?tool_id=#{tool.id}')"
       end
     end
     return str

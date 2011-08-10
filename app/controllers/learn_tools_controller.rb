@@ -207,6 +207,12 @@ class LearnToolsController < ApplicationController
   end
   
   def become_a_fan
+    tool = Learntool.find(params[:tool_id])
+    
+    fan = Fan.new
+    fan.user_id = current_user.id
+    tool.fans << fan
+
     render :text => "You are a fan"
   end
   

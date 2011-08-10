@@ -23,3 +23,20 @@
 
   </div>
 </div>
+<script type="text/javascript">
+// Become a fan
+function become_tool_fan(path){
+    $.ajax({
+        url: path,
+        type: "GET",
+        dataType: "html",
+        failure: function(msg){
+            alert('ajax fail:' + msg);
+        },
+        success: function(msg){
+            //$('.AsDContR .fan').html(msg);
+            $('.btmBe a').text(msg);
+        }
+    });
+}  
+</script>
