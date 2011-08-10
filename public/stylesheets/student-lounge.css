@@ -410,6 +410,7 @@
 .AfterTitle{
     font-weight:bold;
     padding:3px 0px 1px 0px;
+    overflow: hidden;
 }
 .AfterTit{
     font-weight:bold;

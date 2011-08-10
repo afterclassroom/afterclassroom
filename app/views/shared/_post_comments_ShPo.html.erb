@@ -10,18 +10,22 @@
         <div class="submit"><a href="javascript:;" onclick="send_comment('<%= obj.id %>', '<%= obj.class.name %>');" >Send</a></div>
       </form>
     </div>
-  <% else %>
-    You must be <%= link_to raw("Sign in"), RubyCAS::Filter.login_url(controller) %> to post a comment.
   <% end %>
 </div>
-<div class="AsDcomL" id="list_comments">
-  <h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comments (<span id="comment_count"><%= obj.comments.size %></span>)</a></h1>
-  <% if obj.comments.size > 0 %>
-    <% obj.comments.each do |c| %>
-      <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
+<% if logged_in? %>
+<% else %>
+You must be <%=  link_to_if(@current_user.nil?, "Sign in", { :controller => "student_lounges", :action => "index" }, :target=> "_parent")%> to Student Lounge.
+<% end %>
+  <% if logged_in? %>
+  <div class="AsDcomL" id="list_comments">
+    <h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comments (<span id="comment_count"><%= obj.comments.size %></span>)</a></h1>
+    <% if obj.comments.size > 0 %>
+      <% obj.comments.each do |c| %>
+        <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 <script>
   $(document).ready(function(){
     $(".AsDcomItem").hover(function(){

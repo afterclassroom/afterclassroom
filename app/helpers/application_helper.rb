@@ -363,6 +363,10 @@ module ApplicationHelper
     render :partial => "shared/post_comments", :locals => {:obj => obj}
   end
   
+  def show_post_comments_ShPo(obj)
+    render :partial => "shared/post_comments_ShPo", :locals => {:obj => obj}
+  end
+  
   def show_student_lounge()
     if !logged_in?
       link_to_require_login("Student Lounge")

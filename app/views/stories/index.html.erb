@@ -128,6 +128,7 @@
       $('#btnF_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
     });
   });
+  
   formatLinkForPaginationURLFriend();
   formatLinkForPaginationURLMy();
   (function($)
@@ -162,6 +163,8 @@
     $("#btnSM_submit").click(function(){
       $('#btnM_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
     });
+    $('#story_contentIFrame').css('height','150px');
   });
+  
 
 </script>
