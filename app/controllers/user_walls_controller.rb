@@ -1,6 +1,9 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
-include ActionView::Helpers::UrlHelper
+
 class UserWallsController < ApplicationController
+  include ActionView::Helpers::UrlHelper
+  include ApplicationHelper
+  
   before_filter RubyCAS::Filter::GatewayFilter
   before_filter RubyCAS::Filter
   before_filter :cas_user
@@ -177,7 +180,7 @@ class UserWallsController < ApplicationController
         # Email, notification
         subject = "#{current_user.name} suggests a friend for you."
         content = "Click #{link_to "here", user_url(usr), :target => "blank"} to view profile of #{usr.full_name}"
-        send_notification(u, subject, content, "suggests_a_friend_to_me")
+        send_notification(u, subject, content, "suggests_a_frtruncate_wordsiend_to_me")
       end
     end
     subject = "#{current_user.name} match making for you."
@@ -335,15 +338,37 @@ class UserWallsController < ApplicationController
   
   def jplayer_music
     wall_id = params[:wall_id]
-    wall = UserWall.find(wall_id)
-    @user_wall_music = wall.user_wall_music
+    @wall = UserWall.find(wall_id)
+    @musics = []
+    if @wall.user_wall_music
+      @musics << {:link => @wall.user_wall_music.link, :duration => "", :title => ""}
+    elsif @wall.user_wall_post
+      type = @wall.user_wall_post.post_type
+      id = @wall.user_wall_post.post_id
+      obj = eval(type).find(id)
+      case type
+        when "MusicAlbum"
+          obj.musics.each do |m|
+            @musics << {:link => m.music_attach.url, :duration => m.length_in_seconds, :title => (m.title == "" ? m.music_attach_file_name : m.title)}
+          end
+        when "Music"
+          @musics << {:link => obj.music_attach.url, :duration => obj.length_in_seconds, :title => (obj.title == "" ? obj.music_attach_file_name : obj.title)}
+      end
+    end
     render :layout => false
   end
   
   def jplayer_video
     wall_id = params[:wall_id]
-    wall = UserWall.find(wall_id)
-    @user_wall_video = wall.user_wall_video
+    @wall = UserWall.find(wall_id)
+    if @wall.user_wall_video
+      @link = @wall.user_wall_video.link
+    elsif @wall.user_wall_post and @wall.user_wall_post.post_type == "Video"
+      type = @wall.user_wall_post.post_type
+      id = @wall.user_wall_post.post_id
+      obj = eval(type).find(id)
+      @link = obj.video_file.video_attach.url
+    end
     render :layout => false
   end
   

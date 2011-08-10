@@ -715,9 +715,27 @@ module ApplicationHelper
             end
           end
         when "Photo"
+          link = user_photo_url(obj.user, obj)
+          img_link = link_to(raw(image_tag(obj.photo_attach.url(:thumb), :style => "width:92px;height:68px")), obj.photo_attach.url, :class => "imageLink", :target => "_blank")
+          image = get_image_wall(wall.id, img_link)
+          title = obj.title
+          sub_content = truncate_html(obj.description, :length => 100, :omission => '...')
         when "MusicAlbum"
+          link = show_music_album_user_url(obj.user, :music_album_id => obj)
+          img_link = link_to image_tag(obj.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+          image = get_image_wall(wall.id, img_link)
+          title = obj.name
         when "Music"
+          link = user_music_url(obj.user, obj)
+          img_link = link_to image_tag(obj.music_album.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+          image = get_image_wall(wall.id, img_link)
+          title = obj.title
         when "Video"
+          link = get_video_path(obj.video_file.video_attach.url)
+          img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
+          image = get_image_wall(wall.id, img_link)
+          title = obj.title
+          sub_content = obj.description
         when "PostAssignment"
         link_edit = edit_post_assignment_url(post.post_assignment)
         when "PostProject"
