@@ -233,10 +233,10 @@ function showResult(){
     $('#view_results').hide();
 }
 
-function showCommentForm(wall_id){
-    $('#wall_comment_form_' + wall_id).show();
-    $('#wall_comment_' + wall_id).hide();
-    $('#comment_' + wall_id).focus();
+function showCommentForm(class_name, post_id){
+    $('#wall_comment_form_' + class_name + '_' + post_id).show();
+    $('#wall_comment_' + class_name + '_' + post_id).hide();
+    $('#comment_' + class_name + '_' + post_id).focus();
 }
 
 function hideCommentForm(wall_id){
