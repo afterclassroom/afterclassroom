@@ -27,6 +27,14 @@ class OauthClientsController < ApplicationController
     
     render :layout => false
   end
+  
+  def edit_tool
+    
+  end
+  
+  def delete_tool
+    
+  end
 
   def new
     @client_application = ClientApplication.new

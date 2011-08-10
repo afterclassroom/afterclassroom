@@ -10,8 +10,11 @@
       <div class="learnNdes">Vestibulum id lectus eget felis laoreet accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos...</div>
       <div class="learnDetDate">January 03, 2010 at 4:02 PM      
         <div class="learnFa" style="float: right"> 
-          <%= link_to 'Edit', edit_oauth_client_path(tool.client_application) %>
-          <%= link_to 'Delete', oauth_client_path(tool.client_application), :confirm => "Are you sure?", :method => :delete %>
+    <%#= link_to 'Edit', edit_tool_oauth_client_path %>
+          <%#= link_to('Edit', "#{edit_tool_oauth_client_path}?tool_id=#{tool.id.to_s}", :class => "vtip", :title => "Edit" ) %>
+          <%= link_to "Edit", :controller => 'oauth_clients', :action => 'edit_tool', :tool_id => tool.id %>
+    <%#= link_to(content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => 'border: 0px;')), "#{delpr_press_infos_path(current_user)}?pr_id=#{pr.id.to_s}", :class => "vtip", :title => "Delete", :remote => true, :confirm => "Are you sure?" ) %>
+    <%#= link_to 'Delete', delete_tool_oauth_client_path(tool.client_application), :confirm => "Are you sure?", :method => :delete %>
         </div>
       </div>
     </div>
