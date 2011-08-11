@@ -61,6 +61,10 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def delete_review
+    render :text => "Delete 1 item"
+  end
+  
   def submit_review
     @toolreview = ToolReview.new(params[:tool_review])
     @tool = Learntool.find(params[:tool_id])
