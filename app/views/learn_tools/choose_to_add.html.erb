@@ -3,22 +3,27 @@ Do you wish to use After Classroom API ?<P>
   <input type="radio" name="api_ac" value="Y">Yes<BR>
   <input type="radio" name="api_ac" VALUE="N">No<BR>
 
-  <input id="btn_of_choice" type="button" value="submit"/>
 
-  <%= form_tag url_for(:controller => "learn_tools", :action => "new_tool"), {:id => "new_tool", :method => "GET"}  do %>
-  <% end %>
-  <%= form_tag url_for(:controller => "learn_tools", :action => "new_tool_with_api"), {:id => "new_tool_with_api", :method => "GET"}  do %>
-  <% end %>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('#btn_of_choice').click(function(){
-        var selection = $("input[name='api_ac']:checked").val();
-        if (selection === "Y"){
-          $('form#new_tool_with_api').submit();
-        }
-        else if (selection === "N"){
-            $('form#new_tool').submit();
-        }
-      });
+<div style="float: left;padding-left: 0px" class="submit">
+  <a href="javascript:;" id="btn_of_choice">
+    <input type="submit" value="Submit" name="commit" id="learntool_submit">
+  </a>
+</div>
+
+<%= form_tag url_for(:controller => "learn_tools", :action => "new_tool"), {:id => "new_tool", :method => "GET"}  do %>
+<% end %>
+<%= form_tag url_for(:controller => "learn_tools", :action => "new_tool_with_api"), {:id => "new_tool_with_api", :method => "GET"}  do %>
+<% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#btn_of_choice').click(function(){
+      var selection = $("input[name='api_ac']:checked").val();
+      if (selection === "Y"){
+        $('form#new_tool_with_api').submit();
+      }
+      else if (selection === "N"){
+        $('form#new_tool').submit();
+      }
     });
-  </script>
+  });
+</script>
