@@ -43,7 +43,7 @@
           <% percent = @tool.rate_result ? @tool.rate_result : 0 %>
           <span>(<%= percent/20 %> out of 5)</span>
         </div>
-        <div class="basedOn">Based on <a href="#">2552 review</a></div>
+        <div class="basedOn">There are <a href="#"><%= @tool.tool_reviews.size %> review(s)</a></div>
         <div class="learnUser">user</div>
         <div class="learnUser"><%= @tool.my_tools.size %> active users</div>
         <div class="learnFri"><a href="#"><%= show_friend_player(@tool) %> friends</a></div>

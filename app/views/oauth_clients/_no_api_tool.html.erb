@@ -5,7 +5,7 @@
       <div class="learnFavtitle">
         <%= link_to tool.name, :controller => 'oauth_clients', :action => 'show_tool', :tool_id => tool.id %>
         <span class="learnFavS">
-          <img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="images/starWhite.png">
+          <%= render :partial => "learn_tools/rating_star", :locals => {:tool => tool, :nocheck => "no_check" }  %>
         </span>
       </div>
       <div class="learnNdes"><%= truncate_html(tool.description, :length => 400, :omission => '...') %></div>
