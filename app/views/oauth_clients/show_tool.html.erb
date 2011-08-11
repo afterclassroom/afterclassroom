@@ -7,30 +7,25 @@
   <div class="contDetL">
     <div class="contDetLin post">
       <div class="AsDTop">
-        <h1 class="titleH1">Submit new tool</h1>
+        <h1 class="titleH1">Tool Information</h1>
       </div>
-      <%= display_flash_messages_with_raw %>
-
-      <% form_for(@tool, :url => url_for(:controller => "oauth_clients", :action => "save_edit_no_api") , :html => {:method=>"post",:multipart => true, :id => "form_new_tool" }) do |f| %>
-        <%= hidden_field_tag "tool_id", @tool.id %>
         <div class="postCont">
           <div class="postErr">
             <div class="postItem">
-              <div class="postTit">Edit tool</div>
+              <div class="postTit">Tool Information</div>
               <div class="postInp">
-                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] }, :selected => @tool.learn_tool_cate.id ) )%>
-
+                <%= @tool.learn_tool_cate.title %>
               </div>
             </div>
             <div class="postItem">
               <div class="postTit">Name</div>
-              <div class="postInp"><%= f.text_field :name %></div>
+              <div class="postInp"><%= @tool.name %></div>
             </div>
             <div class="postItem">
               <div class="postTit">Description*</div>
               <div class="postInput">
-                <div class="postDesInf">900 characters max - Current: 0 character</div>
-                <div class="postInp"><%= f.text_area :description %></div>
+                <div class="postDesInf"></div>
+                <div class="postInp"><%= @tool.description %></div>
               </div>
             </div>
             <div class="postItem">
@@ -38,19 +33,13 @@
               <div class="postInp"><%= image_tag @tool.tool_img.url(:medium) %></div>
             </div>
             <div class="postItem">
-              <div class="postTit">Images</div>
-              <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23" %></div>
-            </div>
-            <div class="postItem">
               <div class="postTit">URL</div>
-              <div class="postInp"><%= f.text_field :href %></div>
+              <div class="postInp"><a href="<%= @tool.href %>"><%= @tool.href %></a></div>
             </div>
           </div>
         </div>
-        <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px"><a href="javascript:;"><%= f.submit "Submit" %></a></div>
-        <div class="submit" style="margin-left: -106px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
+        <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px"><%= link_to "Edit", :controller => 'oauth_clients', :action => 'edit_tool_no_api', :tool_id => @tool.id %></div>
 
-      <% end %>
     </div>
   </div>
 
@@ -98,10 +87,3 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#reset_form').click(function(){
-      document.getElementById('form_new_tool').reset();
-    });
-  });
-</script>
