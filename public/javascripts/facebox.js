@@ -78,7 +78,7 @@
     settings: {
       opacity      : 0,
       overlay      : true,
-      loadingImage : '/images/loading.gif',
+      loadingImage : '/images/ajax-loader-a.gif',
       closeImage   : 'closelabel.gif',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
@@ -118,10 +118,10 @@
         left:	'33.8%'
       }).show()
 
-      $(document).bind('keydown.facebox', function(e) {
-        if (e.keyCode == 27) $.facebox.close()
-        return true
-      })
+   //   $(document).bind('keydown.facebox', function(e) {
+    //    if (e.keyCode == 27) $.facebox.close()
+    //    return true
+    //  })
       $(document).trigger('loading.facebox')
     },
 

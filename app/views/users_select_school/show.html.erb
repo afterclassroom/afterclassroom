@@ -1,8 +1,11 @@
-<div class="popup2" id="select_school">
+<a href="#" class="close"></a>
+<div class="top_area">Select Schools</div>
+<div class="popup2" id="select_school" style="background: #EBEBEB">
   <%= render :partial => "form", :locals => {:countries => @countries, :states => @states, :cities => @cities, :schools => @schools, :country => @country, :state => @state, :city => @city, :school => @school} %>
 </div>
 <script type="text/javascript">
   $(document).ready(load_menus);
+  $('.close').click($.facebox.close);
   function update_form(type_select, id){
     $.ajax({
       url: '/users_select_school/update_form',
@@ -79,6 +82,4 @@
     });
   }
 </script>
-
-
 

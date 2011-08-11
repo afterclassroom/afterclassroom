@@ -40,8 +40,11 @@
 <div class="popupBtm"><a href="javascript:;" onclick="select_school();">Select</a></div>
 
 <%= render :partial => "list" %>
+
 <script>
-   $(window).scroll(function() {
-    var y = $(window).scrollTop();
-    $("#country_menu").css('top', y+20);
+  $(document).ready(function(){
+    $("#country").click(function(){
+      $('#country').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
+    });
+  });
 </script>
