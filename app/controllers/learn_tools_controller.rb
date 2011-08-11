@@ -32,12 +32,12 @@ class LearnToolsController < ApplicationController
   
   def show
     @tool = Learntool.find(params[:id])
-    @tool_reviews = @tool.tool_reviews.paginate(:page => params[:page], :per_page => 5)
+    @tool_reviews = @tool.tool_reviews.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
   end
   
   def tool_rev_paging
     @tool = Learntool.find(params[:tool_id])
-    @tool_reviews = @tool.tool_reviews.paginate(:page => params[:review_page_to_load], :per_page => 5)
+    @tool_reviews = @tool.tool_reviews.order("created_at DESC").paginate(:page => params[:review_page_to_load], :per_page => 5)
     @cur_rev_page = params[:review_page_to_load]
     render :layout => false
   end
