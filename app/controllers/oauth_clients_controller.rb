@@ -7,6 +7,7 @@ class OauthClientsController < ApplicationController
 
   def index
     @tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
+    @cur_tab = "first"
   end
   
   def tab_paging
