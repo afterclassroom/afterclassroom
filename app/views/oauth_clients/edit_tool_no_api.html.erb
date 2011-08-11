@@ -16,7 +16,7 @@
         <div class="postCont">
           <div class="postErr">
             <div class="postItem">
-              <div class="postTit">Edit tool (<%=  @tool.learn_tool_cate.id %>) </div>
+              <div class="postTit">Edit tool</div>
               <div class="postInp">
                 <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] }, :selected => @tool.learn_tool_cate.id ) )%>
 

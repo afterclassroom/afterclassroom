@@ -1,4 +1,6 @@
-<form id="form_send_message">
+<a class="close" href="#"></a>
+<div class="top_area" ></div>
+<form id="form_send_message" style="background: #EBEBEB">
   <div class="postItem">
     <div style="width: 80px;" class="postItem1">Subject*</div>
     <input type="text" value="<%= @subject %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" size="30" class="required" name="subject" id="message_subject" style="width: 330px;"/></div>
@@ -33,28 +35,31 @@
       failure: function(msg){
         $('#alert_message').html("Ajax fail.");
         $("#dialog-message").dialog({
-            modal: true,
-            buttons: {
-                Ok: function(){
-                    $('#TB_closeWindowButton').click();
-										$("#dialog-message").dialog('close');
-                }
+          modal: true,
+          buttons: {
+            Ok: function(){
+              $('#TB_closeWindowButton').click();
+              $("#dialog-message").dialog('close');
             }
+          }
         });
       },
       success: function(msg){
-				$('#alert_message').html("Success.");
+        $('#alert_message').html("Success.");
         $("#dialog-message").dialog({
-            modal: true,
-            buttons: {
-                Ok: function(){
-                    $('#TB_closeWindowButton').click();
-										$("#dialog-message").dialog('close');
-                }
+          modal: true,
+          buttons: {
+            Ok: function(){
+              $('#TB_closeWindowButton').click();
+              $("#dialog-message").dialog('close');
             }
+          }
         });
       }
     });
     
   }
+  $(document).ready(function(){
+    $('.close').click($.facebox.close);
+  });
 </script>

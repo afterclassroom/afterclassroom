@@ -34,22 +34,23 @@
 </ul>
 
 <script>
-//  $(function() {
-//	$('#country_menu,#state_menu,#city_menu,#school_menu').hover(function() {
-//		$(this).stop().show();
-//	}, function() {
-//		$(this).stop().hide();
-//	});
-//  });
-//  $(function() {
-//	$('div.signinItem,div#contDetLin,#select_school_form,div.popupNumb').hover(function() {
-//	}, function() {
-//		$('#country_menu,#state_menu,#city_menu,#school_menu').stop().hide();
-//	});
-//  });
-$(".mc_root").click(function(){
-      $('.mc_root').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
-    });
+  $(function() {
+	$('#country_menu,#state_menu,#city_menu,#school_menu').hover(function() {
+		$(this).stop().show();
+	}, function() {
+		$(this).stop().hide();
+	});
+  });
+  $(function() {
+	$('div.signinItem,div#contDetLin,#select_school_form,div.popupNumb').hover(function() {
+	}, function() {
+		$('#country_menu,#state_menu,#city_menu,#school_menu').stop().hide();
+	});
+  });
+  $(window).scroll(function() {
+        $("#country_menu,#state_menu").css({position:"fixed"});
+    
+        $("#city_menu,#school_menu").css({position:"fixed"});
+  });
   
- 
 </script>

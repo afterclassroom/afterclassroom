@@ -1,0 +1,127 @@
+<div class="abLink postLink">
+  <div class="abLinkL">You are here: <a href="#">Learning Tools</a><a class="abLink-detail" href="#">Post</a></div>
+
+</div>
+
+<div class="contMain">
+  <div class="contDetL">
+    <div class="contDetLin post">
+      <div class="AsDTop">
+        <h1 class="titleH1">Tool Information</h1>
+      </div>
+      <div class="postCont">
+        <div class="postErr">
+          <div class="postItem">
+            <div class="postTit">Tool Information</div>
+            <div class="postInp">
+              <%= @tool.learn_tool_cate.title %>
+            </div>
+          </div>
+          <div class="postItem">
+            <div class="postTit">Name</div>
+            <div class="postInp"><%= @tool.name %></div>
+          </div>
+          <div class="postItem">
+            <div class="postTit">Description*</div>
+            <div class="postInput">
+              <div class="postDesInf"></div>
+              <div class="postInp"><%= @tool.description %></div>
+            </div>
+          </div>
+          <div class="postItem">
+            <div class="postTit">Current Image</div>
+            <div class="postInp"><%= image_tag @tool.tool_img.url(:medium) %></div>
+          </div>
+          <div class="postItem">
+            <div class="postTit">Main Application URL</div>
+            <div class="postInp"><a href="<%= @tool.href %>"><%= @tool.href %></a></div>
+          </div>
+          <% if @tool.client_application != nil %>
+            <div class="postItem">
+              <div class="postTit">Callback URL</div>
+              <div class="postInp"><%= @tool.client_application.callback_url %></div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Support URL</div>
+              <div class="postInp"><%= @tool.client_application.support_url %></div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Consumer key</div>
+              <div class="postInp"><%=@tool.client_application.key %></div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Consumer secret</div>
+              <div class="postInp"><%=@tool.client_application.secret %></div>
+            </div>
+
+            <div class="postItem">
+              <div class="postTit">Request Token URL</div>
+              <div class="postInp">http<%='s' if request.ssl? %>://<%= request.host_with_port %><%=@tool.client_application.oauth_server.request_token_path %></div>
+            </div>
+
+            <div class="postItem">
+              <div class="postTit">Access Token URL</div>
+              <div class="postInp">http<%='s' if request.ssl? %>://<%= request.host_with_port %><%=@tool.client_application.oauth_server.access_token_path %></div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Authorize URL</div>
+              <div class="postInp">http<%='s' if request.ssl? %>://<%= request.host_with_port %><%=@tool.client_application.oauth_server.authorize_path %></div>
+            </div>
+          <% end %><!-- end if -->          
+        </div>
+      </div>
+      <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px">
+        <% if @tool.client_application != nil %>
+          <%= link_to "Edit", :controller => 'oauth_clients', :action => 'edit_tool', :tool_id => @tool.id %>
+        <% else %>
+          <%= link_to "Edit", :controller => 'oauth_clients', :action => 'edit_tool_no_api', :tool_id => @tool.id %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="contMainR">
+    <div class="creAdv"><a href="#">Create an Ad</a></div>
+    <div class="advert">
+      <div class="advertTitle">Advertisement</div>
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/pic6.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">DaniWeb - IT Discussion Community</div>
+      <div class="advertImg"><img src="/images/pictures/adv.png"></div>
+      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+    <div class="advert">
+      <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
+      <div class="advertImg"><img src="/images/pictures/adv1.png"></div>
+      <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
+      <div class="advertInf">
+        <div class="advertInfL">
+          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
+        </div>
+        <div class="advertInfR">
+          <span class="pre"><a href="#">&nbsp;</a></span>
+          <span class="next"><a href="#">&nbsp;</a></span></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -332,14 +332,14 @@ div.player.inactive
     margin-left: -20px;
 }
 #player_border{
-    margin-top: 20px;
+  /*  margin-top: 20px;
     position: absolute;
-    width: 300px;
+    width: 300px;*/
 }
 #player_border embed{
-    width: 310px;
     position: absolute;
-    margin-left: -20px;
+  /*  width: 310px;
+    margin-left: -20px;*/
 }
 
 /*---------TextboxList.Autocomplete Style guidelines-------------*/

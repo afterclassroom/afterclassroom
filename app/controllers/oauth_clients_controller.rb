@@ -72,7 +72,7 @@ class OauthClientsController < ApplicationController
   end
   
   def show_tool
-    
+    @tool = Learntool.find(params[:tool_id])
   end
 
   def new
