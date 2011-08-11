@@ -1,5 +1,4 @@
-<% @tool_reviews.each do |rv| %>
-<div class="helpItem" style="border-bottom: 1px solid rgb(219, 219, 219);">
+<div class="helpItem" id="rv_item_<%= rv.id %>" style="border-bottom: 1px solid rgb(219, 219, 219);">
   <div style="float: right; padding-top: 1px; display: none;" id="pr_id_1">
     <a title="Delete" data-remote="true" data-confirm="Are you sure?" class="vtip" href="#">
       <span>
@@ -8,10 +7,11 @@
     </a>
   </div>
 
-  <div style="float: right; display: none;" id="edpr_id_1">
-    <a title="Edit" class="vtip" href="#">
+  <div style="float: right; display: none;" id="edpr_id_<%= rv.id %>">
+    <!-- a title="Edit" class="vtip" href="javascript:;">
       <img src="/images/flistREdit.png" style="border: 0px none;"/>
-    </a>
+    </a -->
+    <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => ''), "#{url_for(:controller => "learn_tools", :action => "edit_review_form")}?review_id=#{rv.id}&height=325&width=550", :class => "thickbox", :title => "Edit Review" %>
   </div>
   <div style="float: left;" class="assPic">
     <a href="javascript:;" id="cal_id_1">   
@@ -25,4 +25,23 @@
   </div>
   <div class="helpD" style="margin-left: 62px; height: 100%;" id="press_1"><%= truncate_html(rv.content, :length => 180, :omission => '...') %></div>
 </div>
-<% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#rv_item_<%= rv.id %>").hover(function(){
+      $("div#edpr_id_<%= rv.id %>").show();
+    }, function(){
+      $("div#edpr_id_<%= rv.id %>").hide();
+    });
+  });
+  function ShowHideDelEditIcon(){
+    /*Show hide delete X icon for each comment*/
+<%#*$(".helpItem").hover(function(){%>
+<%#*$("div[id*='pr_id_']", this).show();%>
+<%#*}, function(){%>
+<%#*$("div[id*='pr_id_']", this).hide();%>
+<%#*});%>
+
+    /*Show hide delete X icon for each forum post*/
+  }  
+</script>
+

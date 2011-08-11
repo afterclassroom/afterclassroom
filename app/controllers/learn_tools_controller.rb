@@ -47,6 +47,19 @@ class LearnToolsController < ApplicationController
     @toolreview = ToolReview.new
     render :layout => false
   end
+
+  def edit_review_form
+    @toolreview = ToolReview.find(params[:review_id])
+    render :layout => false
+  end
+  
+  def update_review
+    @toolreview = ToolReview.find(params[:review_id])
+    @toolreview.update_attributes(params[:tool_review])
+    @toolreview.save
+    
+    render :layout => false
+  end
   
   def submit_review
     @toolreview = ToolReview.new(params[:tool_review])

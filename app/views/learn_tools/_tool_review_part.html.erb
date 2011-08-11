@@ -4,7 +4,11 @@
 
   <div class="col451 learnDet">
     <div class="col451in">
-      <%= render :partial => "tool_review_item" %>
+      
+      
+      <% @tool_reviews.each do |rv| %>
+        <%= render :partial => "tool_review_item",:locals => {:rv => rv} %>
+      <% end %>
 
       <div class="assPage" style="padding-left:0">
         <span class="numPage"><%= page_entries_info @tool_reviews %></span>
