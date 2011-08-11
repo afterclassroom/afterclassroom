@@ -8,9 +8,6 @@
   </div>
 
   <div style="float: right; display: none;" id="edpr_id_<%= rv.id %>">
-    <!-- a title="Edit" class="vtip" href="javascript:;">
-      <img src="/images/flistREdit.png" style="border: 0px none;"/>
-    </a -->
     <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => ''), "#{url_for(:controller => "learn_tools", :action => "edit_review_form")}?review_id=#{rv.id}&height=325&width=550", :class => "thickbox", :title => "Edit Review" %>
   </div>
   <div style="float: left;" class="assPic">
