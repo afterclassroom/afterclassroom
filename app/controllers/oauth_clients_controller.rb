@@ -6,7 +6,7 @@ class OauthClientsController < ApplicationController
   before_filter :get_variables, :only => [:new, :create, :edit_tool, :edit_tool_no_api]
 
   def index
-    @tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
+    @tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 5)
     @cur_tab = "first"
   end
   
@@ -15,11 +15,11 @@ class OauthClientsController < ApplicationController
     when "first"#all tool
       @cur_page = params[:page_to_load]
       @cur_tab = "first"
-      @tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
+      @tools = Learntool.tool_api(current_user).paginate(:page => params[:page_to_load], :per_page => 5)
     else #second
       @cur_page = params[:page_to_load]
       @cur_tab = "second"
-      @tools = Learntool.tool_no_api(current_user).paginate(:page => params[:page_to_load], :per_page => 2)
+      @tools = Learntool.tool_no_api(current_user).paginate(:page => params[:page_to_load], :per_page => 5)
     end
     
     render :layout => false

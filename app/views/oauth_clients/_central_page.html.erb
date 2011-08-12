@@ -22,7 +22,7 @@
     });
     $('.pagination a').each(function(){
       $(this).click(function(){
-        //ShowOverlay();
+        ShowBottomOverlay();
         if ($(this).text() == 'Next'){
           var str_page = parseInt("<%= @cur_page ? @cur_page : "1" %>")+1;
           $('#page_to_load').val(""+str_page);
@@ -37,28 +37,14 @@
       });
     });
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $('#tool_with_api').click(function(){
-      //ShowOverlay();
+      ShowBottomOverlay();
       $('#page_to_load').val('1');
       $('#tab_parm').val('first');
       $('form#form_tab').submit();
     });
     $('#common_tool').click(function(){
-      //ShowOverlay();
+      ShowBottomOverlay();
       $('#page_to_load').val('1');
       $('#tab_parm').val('second');
       $('form#form_tab').submit();
