@@ -4,8 +4,26 @@
   <%= render :partial => "form", :locals => {:countries => @countries, :states => @states, :cities => @cities, :schools => @schools, :country => @country, :state => @state, :city => @city, :school => @school} %>
 </div>
 <script type="text/javascript">
+ //   function ShowFeaturedOverlay(){
+ //   $('#facebox').first().next().append('<div id="overlay"></div>');
+ //   var position = $('#facebox').offset();
+
+ //   $("#overlay")
+  //  .height(143)
+  //  .css({
+  //    'opacity' : 0.4,
+  //    'position': 'absolute',
+  //    'top': position.top -10,
+  //    'left': position.left - 10,
+  //    'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+   //   'background-color': 'black',
+  //    'width': '653px',
+  //    'z-index': 5000
+  //  });
+ // }
   $(document).ready(load_menus);
   $('.close').click($.facebox.close);
+ // ShowFeaturedOverlay();
   function update_form(type_select, id){
     $.ajax({
       url: '/users_select_school/update_form',

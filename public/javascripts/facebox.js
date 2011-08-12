@@ -76,6 +76,8 @@
    */
   $.extend($.facebox, {
     settings: {
+        // disable this for modal dialog-type of overlays
+      closeOnClick: false,
       opacity      : 0,
       overlay      : true,
       loadingImage : '/images/ajax-loader-a.gif',
