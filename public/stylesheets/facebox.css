@@ -116,8 +116,14 @@
     position: absolute;
     height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
 }
+
 .div_disable{
     opacity:0.6;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    filter: alpha(opacity = 60);
+    -khtml-opacity: 0.6;
+    -moz-opacity: 0.6;
+    float: left;
 }
 #opaque {
     position: fixed;
@@ -130,5 +136,23 @@
     background-color: black;
     filter: alpha(opacity=40);
     opacity: 0.4;
+}
+.friends_area{
+    width:135px;
+    margin:10px 0 3px 12px;
+    float:left;color:#000;
+    padding:6px;cursor:pointer;
+    height:49px;
+    -moz-border-radius: 6px; 
+    -webkit-border-radius: 6px;
+}
+.friends_area:hover{ 
+    -moz-border-radius: 6px; 
+    -webkit-border-radius: 6px;
+    background: #F2F2F2;
+}
+ul#list{
+    margin: 0;
+    padding: 0;
 }
 

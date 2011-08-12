@@ -9,3 +9,23 @@
   <% end %>
 </div>
 <!--Select School-->
+<script>
+  $(function() {
+    var top = 70;
+    $(window).scroll(function() {
+      $('#facebox').stop().animate({ top: $(window).scrollTop() + top}, 100);
+    });
+  });
+  $("body").append("<div id='opaque' style='display: none;'></div>");
+
+  $(document).bind('loading.facebox', function() {
+    $("#opaque").show();
+  });
+  $(document).bind('close.facebox', function() {
+    $("#opaque").hide();
+  });
+  $(document).bind('afterReveal.facebox', function() {
+    // this is a fix for IE6 which resets the height to 100% of the window height
+    $("#opaque").height($(document).height());
+  });
+</script>

@@ -177,9 +177,7 @@
       }), input = $("<input>").attr({
         "class": "filterinput",
         "type": "text",
-        "value":"Search",
-        "onfocus":"if(this.value=='Search'){this.value=''};",
-        "onblur":"if(this.value==''){this.value='Search'};"           
+        "value":"Search"        
       });
       $(form).append(input).appendTo(header);            
       $(input).change(function(){
@@ -204,64 +202,12 @@
       filterList($("#form"), $("#list"));
     });
   }(jQuery));
+  $(document).ready(function(){ 
+    $(".filterinput").focus(function(){ 
+        if(this.value=='Search') this.value = '';
+    }); 
+    $(".filterinput").blur(function(){ 
+        if (this.value=='') this.value = 'Search';
+    }); 
+});
 </script>
-<style>
-  .name{
-    font-size:11px;
-    padding:0px;
-    cursor:pointer;
-    font-style:normal;
-  }
-  ul#list{
-    margin: 0;
-    padding: 0;
-  }
-  .friends_area{
-    width:135px;
-    margin:10px 0 3px 12px;
-    float:left;color:#000;
-    padding:6px;cursor:pointer;
-    height:49px;
-    -moz-border-radius: 6px; 
-    -webkit-border-radius: 6px;
-  }
-  .friends_area:hover{ 
-    -moz-border-radius: 6px; 
-    -webkit-border-radius: 6px;
-    background: #F2F2F2;
-  }
-  a.close{
-    background: url(/images/popupClose.png);
-    float: right;
-    height: 20px;
-    text-decoration: none;
-    width: 25px;
-    cursor:pointer;
-    margin-right:-10px;
-    margin-top:-10px;
-  }
-  a.close:hover{
-    background: url(/images/popupCloseH.png);
-  }
-  .top_area{
-    background:#EBEBEB;
-    font-size:14px;
-    color:#0A81C4;
-    font-weight:bold;
-    padding:6px 6px 6px 0px;		
-  }
-  .product-head {
-    font-size:12px;
-    padding:4px;
-    background-color:#EBEBEB;
-    width:100%;
-  }
-  .filterform input{
-    margin-left: -4px;
-    font-size:12px;
-    border:1px solid #999;
-    color: #6F6F63;
-    height: 17px;
-    width: 175px;
-  }
-</style>
