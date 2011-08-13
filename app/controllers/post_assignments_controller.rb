@@ -115,7 +115,7 @@ class PostAssignmentsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_assignment = PostAssignment.new(params[:post_assignment])
-    @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+    @post_assignment.due_date = DateTime.strptime(params[:due_date_p], "%m/%d/%Y") if params[:due_date_p] != ""
     
     if simple_captcha_valid? 
       @post.save
@@ -142,7 +142,7 @@ class PostAssignmentsController < ApplicationController
     @post_assignment = PostAssignment.find(params[:id])
     @post = @post_assignment.post
     if (@post_assignment.update_attributes(params[:post_assignment]) && @post.update_attributes(params[:post]))
-      @post_assignment.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+      @post_assignment.due_date = DateTime.strptime(params[:due_date_p], "%m/%d/%Y") if params[:due_date_p] != ""
       sc = School.find(@post.school.id)
       sc.tag(@post_assignment, :with => params[:tag], :on => :tags)
       @post_assignment.save

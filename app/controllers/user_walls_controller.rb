@@ -1,9 +1,8 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
-
-class UserWallsController < ApplicationController
-  include ActionView::Helpers::UrlHelper
-  include ApplicationHelper
+include ActionView::Helpers::UrlHelper
+include ApplicationHelper
   
+class UserWallsController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
   before_filter RubyCAS::Filter
   before_filter :cas_user

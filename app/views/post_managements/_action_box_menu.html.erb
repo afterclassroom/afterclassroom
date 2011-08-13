@@ -35,8 +35,9 @@
                             var $this = $(this);
                             ids += $this.val() + ", ";
                         });
-                        category = $('#category').val();
-                        document.location.href = "<%= delete_all_user_post_managements_url(current_user) %>?category=" + category + "&list_ids=" + ids;
+                        var cat = $('#category').val();
+
+                        document.location.href = "<%= delete_all_user_post_managements_url(current_user) %>?category=" + cat + "&list_ids=" + ids;
                     },
                     Cancel: function(){
                         $("#delete-story-dialog-message").dialog('close');

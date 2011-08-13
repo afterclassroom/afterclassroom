@@ -15,12 +15,12 @@ class PostQa < ActiveRecord::Base
 
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :with_type, lambda { |tp| tp == "answered" ? {:conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 0]} : {:conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0]} }
+  scope :with_type, lambda { |tp| tp == "answered" ? {:conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 0], :order => "created_at DESC"} : {:conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0], :order => "created_at DESC"} }
   scope :recent, {:joins => :post, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') = ?", 0], :order => "created_at DESC"}
-  scope :with_status, lambda { |st| {:conditions => ["post_qas.rating_status = ?", st]} }
+  scope :with_status, lambda { |st| {:conditions => ["post_qas.rating_status = ?", st], :order => "created_at DESC"} }
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
-  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_qas.post_id And favorable_type = ?) > ?", "Post", 10]
-  scope :top_answer, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 10]
+  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_qas.post_id And favorable_type = ?) > ?", "Post", 10], :order => "created_at DESC"
+  scope :top_answer, :conditions => ["(Select Count(*) From comments Where comments.commentable_id = post_qas.post_id And comments.commentable_type = 'Post') > ?", 10], :order => "created_at DESC"
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_qas.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_qas.id > ?", att], :order => "id ASC"} }
@@ -92,7 +92,11 @@ class PostQa < ActiveRecord::Base
   
   def self.related_posts(school, type)
     posts = []
-    post_qa = self.random(5).with_school(school).with_type(type)
+    post_qa = if school
+      self.random(5).with_school(school).with_type(type)
+    else
+      self.random(5).with_type(type)
+    end
     post_qa.select {|p| posts << p.post}
     posts
   end

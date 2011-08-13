@@ -11,10 +11,10 @@ class PostAssignment < ActiveRecord::Base
   
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :due_date, :conditions => ["post_assignments.due_date > ?", Time.now], :order => "due_date ASC"
-  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_assignments.post_id And favorable_type = ?) > ?", "Post", 10]
+  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_assignments.post_id And favorable_type = ?) > ?", "Post", 10], :order => "posts.created_at DESC"
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_assignments.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_assignments.id > ?", att], :order => "id ASC"} }
@@ -74,7 +74,11 @@ class PostAssignment < ActiveRecord::Base
   
   def self.related_posts(school)
     posts = []
-    post_as = self.random(5).with_school(school)
+    post_as = if school 
+      self.random(5).with_school(school)
+    else
+      self.random(5)
+    end
     post_as.select {|p| posts << p.post}
     posts
   end

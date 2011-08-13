@@ -6,25 +6,25 @@ class PostFood < ActiveRecord::Base
   belongs_to :post
   has_one :rating_statistic
   has_many :ratings
-
+  
   # Tags
   acts_as_taggable_on :tags
-
+  
   # Rating for Bad, Cheap but Good, Good
   # Bad: 0
   # Cheap but Good: 1
   # Good: 2
   acts_as_rated :rating_range => 0..2, :with_stats_table => true
-
+  
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :with_status, lambda { |st| {:conditions => ["post_foods.rating_status = ?", st]} }
-  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :with_status, lambda { |st| {:conditions => ["post_foods.rating_status = ?", st], :order => "created_at DESC"} }
+  scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_foods.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_foods.id > ?", att], :order => "id ASC"} }
-
+  
   def self.paginated_post_conditions_with_option(params, school, rating_status)
     over = 30 || params[:over].to_i
     year = params[:year]
@@ -32,7 +32,7 @@ class PostFood < ActiveRecord::Base
     from_school = params[:from_school]
     with_school = school
     with_school = from_school if from_school
-
+    
     post_foods = PostFood.ez_find(:all, :include => [:post], :order => "posts.created_at DESC") do |post_food, post|
       post.department_id == department if department
       post.school_year == year if year
@@ -40,7 +40,7 @@ class PostFood < ActiveRecord::Base
       post.school_id == with_school if with_school
       post.created_at > over.business_days.before(Time.now)
     end
-
+    
     posts = []
     post_foods.select {|p| posts << p.post}
     return posts
@@ -56,14 +56,22 @@ class PostFood < ActiveRecord::Base
   def self.related_posts(school, status)
     posts = []
     if status
-      post_as = self.random(5).with_school(school).with_status(status)
+      post_as = if school
+        self.random(5).with_school(school).with_status(status)
+      else
+        self.random(5).with_status(status)
+      end
     else
-      post_as = self.random(5).with_school(school)
+      post_as = if school 
+        self.random(5).with_school(school)
+      else
+        self.random(5)
+      end
     end
     post_as.select {|p| posts << p.post}
     posts
   end
-
+  
   def self.top_food_posters(school)
     type_name = "PostFood"
     limit = 15
@@ -78,35 +86,35 @@ class PostFood < ActiveRecord::Base
     end
     users
   end
-
+  
   def self.require_rating(school)
     self.with_school(school).with_status("Require Rating").random(1)
   end
-
+  
   def total_good
     self.ratings.count(:conditions => ["rating = ?", 2])
   end
-
+  
   def total_cheap_but_good
     self.ratings.count(:conditions => ["rating = ?", 1])
   end
-
+  
   def total_bad
     self.ratings.count(:conditions => ["rating = ?", 0])
   end
-
+  
   def score_good
     total = self.total_good + self.total_cheap_but_good + self.total_bad
-    (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
+     (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
   end
-
+  
   def score_cheap_but_good
     total = self.total_good + self.total_cheap_but_good + self.total_bad
-    (total) == 0 ? 0 : (self.total_cheap_but_good.to_f/(total))*100
+     (total) == 0 ? 0 : (self.total_cheap_but_good.to_f/(total))*100
   end
-
+  
   def score_bad
     total = self.total_good + self.total_cheap_but_good + self.total_bad
-    (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
+     (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
   end
 end

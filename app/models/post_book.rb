@@ -17,9 +17,9 @@ class PostBook < ActiveRecord::Base
   
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :with_type, lambda { |tp| {:conditions => ["post_books.book_type_id = ?", tp]} }
-  scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st]} }
-  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :with_type, lambda { |tp| {:conditions => ["post_books.book_type_id = ?", tp], :order => "created_at DESC"} }
+  scope :with_status, lambda { |st| {:conditions => ["rating_status = ?", st], :order => "created_at DESC"} }
+  scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_books.id < ?", att], :order => "id ASC"} }
@@ -82,7 +82,11 @@ class PostBook < ActiveRecord::Base
   
   def self.related_posts(school, type)
     posts = []
-    post_as = self.random(5).with_school(school).with_type(type)
+    post_as = if school 
+      self.random(5).with_school(school).with_type(type)
+    else
+      self.random(5).with_type(type)
+    end
     post_as.select {|p| posts << p.post}
     posts
   end
