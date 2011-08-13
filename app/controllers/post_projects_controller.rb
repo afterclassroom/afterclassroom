@@ -113,7 +113,7 @@ class PostProjectsController < ApplicationController
     @post.post_category_id = @type
     @post.type_name = @class_name
     @post_project = PostProject.new(params[:post_project])
-    @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+    @post_project.due_date = DateTime.strptime(params[:due_date_p], "%m/%d/%Y") if params[:due_date_p] != ""
     
     if simple_captcha_valid? 
       @post.save
@@ -141,7 +141,7 @@ class PostProjectsController < ApplicationController
     @post = @post_project.post
     
     if (@post_project.update_attributes(params[:post_project]) && @post_project.post.update_attributes(params[:post]))
-      @post_project.due_date = DateTime.strptime(params[:due_date], "%m/%d/%Y") if params[:due_date] != ""
+      @post_project.due_date = DateTime.strptime(params[:due_date_p], "%m/%d/%Y") if params[:due_date_p] != ""
       sc = School.find(@post.school.id)
       sc.tag(@post_project, :with => params[:tag], :on => :tags)
       @post_project.save

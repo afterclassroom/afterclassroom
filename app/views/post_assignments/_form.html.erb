@@ -8,7 +8,7 @@
   <%= render :partial => "/shared/form_post/email" %>
   <div class="postItem">
     <div class="postTit">Due date</div>
-    <div class="postInp"><%= text_field_tag "due_date", @post_assignment.due_date != nil ? @post_assignment.due_date.strftime("%m/%d/%Y") : "", :id => "due_date", :class => 'date', :style => "width:100px" %></div>
+    <div class="postInp"><%= text_field_tag "due_date_p", @post_assignment.due_date != nil ? @post_assignment.due_date.strftime("%m/%d/%Y") : "", :id => "due_date", :class => 'date', :style => "width:100px" %></div>
   </div>
   <div class="postItem">
     <div class="postTit">Professor</div>

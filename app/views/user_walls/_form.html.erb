@@ -1,59 +1,113 @@
 <%= hidden_field_tag "type", @type %>
 <%= hidden_field_tag "user_wall_id", @user.id %>
-<label class="vtip" title="Not valid!"></label>
 <div class="proMind">
-  <div class="proMindT">
-    <div class="proques"><%= text_field_tag "your_mind", "What’s on your mind?", :id => "wall_cotent_txt" %></div>
-  </div>
-  <div class="proAtt">
-    <div class="proAttItem" id="wrap_content_attach">
-      <div class="wrapItem">
-        <div class="suggesC"><a href="javascript:;" onclick="closeAttach();"><img src="/images/suggesC.png"/></a></div>
-        <div class="wrapCont" id="attach">
+    <div class="proMindT">
+        <div class="proques">
+            <%= text_field_tag "your_mind", "What’s on your mind?", :id => "wall_cotent_txt" %>
         </div>
-      </div>
     </div>
-    <div class="proAttL" id="attach_icon">
-      <%= render :partial => "user_walls/attach_icons" %>
+    <div class="proAtt">
+        <div class="proAttItem" id="wrap_content_attach">
+            <div class="wrapItem">
+                <div class="suggesC">
+                    <a href="javascript:;" onclick="closeAttach();"><img src="/images/suggesC.png"/></a>
+                </div>
+                <div class="wrapCont" id="attach">
+                </div>
+            </div>
+        </div>
+        <div class="proAttL" id="attach_icon">
+            <%= render :partial => "user_walls/attach_icons" %>
+        </div>
+        <div class="proAttR" style="margin-right: 0px;">
+            <%= submit_tag 'Share', :class => "button", :id => "submit_btn" %>
+        </div>
     </div>
-    <div class="proAttR" style="margin-right: 0px;"><%= submit_tag 'Share', :class => "button", :id => "submit_btn" %></div>
-  </div>
 </div>
-<div class="footWall"></div>
+<div class="footWall">
+</div>
 <script type="text/javascript">
-  function closeAttach(){
-    $('#wrap_content_attach').hide();
-    $('#attach_icon').show();
-  }
-
-  $(document).ready(function() {  
-    $('#wall_cotent_txt').focus(function(){
-      $(this).val('');
-
+    function closeAttach(){
+        $('#wrap_content_attach').hide();
+        $('#attach_icon').show();
+    }
+    
+    $(document).ready(function(){
+        $('#submit_btn').click(function(event){
+            var str_content = $('#wall_cotent_txt').val();
+            if (str_content == 'What’s on your mind?') {
+                return false;
+            }
+        });
+        $('#wall_cotent_txt').keyup(function(){
+            var len = this.value.length;
+            if (len >= 500) {
+                this.value = this.value.substring(0, 500);
+            }
+        });
+        
+        $("#wall_cotent_txt").bind("paste", function(e){
+            var el = $(this);
+            setTimeout(function(){
+                var text = $(el).val();
+                check_attach_link(text);
+            }, 100);
+        });
     });
-                
-    $('#submit_btn').click(function(event){
-      var str_content = $('#wall_cotent_txt').val();
-      if (str_content == 'What’s on your mind?'){
-        event.preventDefault();
-                            
-        $('#wall_cotent_txt').focus().select();
-        $("label").text("Not valid!").hide();
-        return false;                  
-      }
-      if (str_content == ''){
-        event.preventDefault();
-                     
-        $('#wall_cotent_txt').focus().select();
-        $("label").text("Not valid!").hide();
-        return false;                 
-      }
-    });
-    $('#wall_cotent_txt').keyup(function() {  
-      var len = this.value.length;  
-      if (len >= 500) {  
-        this.value = this.value.substring(0, 500);  
-      }  
-    });  
-  });  
+    var path_link = '/user_walls/attach_link';
+    var path_video = '/user_walls/attach_video';
+    var path_mp3 = '/user_walls/attach_music';
+		var path_image = '/user_walls/attach_image';
+    function check_attach_link(link){
+        if (isValidURL(link)) {
+            if (link.match(/^(https?:\/\/)?([^\/]*\.)?youtube\.com\/watch\?([^]*&)?v=\w+(&[^]*)?/i)) {
+                get_link = path_video;
+            }
+            else
+						if (file_get_ext(link) == "mp3"){
+                get_link = path_mp3;
+            }
+						else
+						if ($.inArray(file_get_ext(link), ["jpg", "png", "jpeg", "gif"]) == 0){
+							get_link = path_image;
+						}
+						else{
+							get_link = path_link;
+						}
+            
+            $.ajax({
+                url: get_link,
+                type: 'GET',
+                cache: false,
+                dataType: 'html',
+                data: ({
+                    link: link
+                }),
+                success: function(data){
+                    $('#attach').html(data);
+                    $('#attach_icon').hide();
+                    $('#wrap_content_attach').show();
+                }
+            });
+        }
+    }
+    
+    function isValidURL(url){
+        var RegExp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        
+        if (RegExp.test(url)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    function sanitize(s){
+        return s.replace(/\bfoo\b/g, "~");
+    }
+    
+    function file_get_ext(filename){
+        return typeof filename != "undefined" ? filename.substring(filename.lastIndexOf(".") + 1, filename.length).toLowerCase() : false;
+    }
 </script>

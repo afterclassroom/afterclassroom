@@ -124,7 +124,7 @@ class PostEventsController < ApplicationController
       @post_event.post = @post
       if @post_event.save
         flash[:notice] = "Your post was successfully created."
-        post_wall(@post_exam_schedule)
+        post_wall(@post_event)
         redirect_to post_event_url(@post_event)
       else
         flash[:error] = "Failed to create a new post."

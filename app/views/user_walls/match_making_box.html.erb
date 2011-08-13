@@ -1,6 +1,59 @@
 <a class="close" href="#"></a>
-<div class="top_area" >Match making for <%= @user_post.name %> </div>
+<div class="top_area">
+    Match making for <%= @user_post.name %>
+</div>
 <form id="form_send_message">
+<<<<<<< HEAD
+    <div id="search_area" align="left">
+        <div id="wrap">
+            <div class="selectTop" style="float:right;padding:5px;">
+                <div id="cntBoxMenu" style='float:right'>
+                    0 
+                </div>
+                <div id="BoxMenu" style="float:right;margin-right:5px;margin-left:5px">
+                    <a style="cursor:pointer">Select : </a>
+                </div>
+                <div id="BoxMenu01" style="float:right">
+                    <a style="cursor:pointer">All |</a>
+                </div>
+            </div>
+            <div class="product-head">
+                <div id="form">
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div style="overflow-y:scroll; height:290px;">
+                <ul id="list">
+                    <% current_user.user_friends.each do |f|
+                    isfriend =  @user_post.user_friends.include?(f) 
+										if @user_post != f
+										%>
+	                    <div class="<%= "div_disable" if isfriend %>"<% if isfriend %>onclick="return false;" <% end %>>
+	                        <div id="select">
+	                            <span>
+	                                <li class="friends_area" id="<%= isfriend ? "" : f.id %>" title="<%= f.name %>">
+	                                    <div class="assPic">
+	                                        <div style="height:51px;">
+	                                            <%= image_tag(f.avatar.url(:thumb), :class => "pic", :style=>'float:left') %>
+	                                        </div>
+	                                    </div>
+	                                    <a class="name"><%= f.name %></a>
+	                                    <br/>
+	                                    <% if isfriend %>
+	                                    <div class="nameF" style="color:#0A81C4">
+	                                        Friend
+	                                    </div>
+	                                    <% end %>
+	                                </li>
+	                            </span>
+	                        </div>
+	                    </div>
+											<% end %>
+                    <% end %>
+                </ul>
+            </div>
+=======
   <div id="search_area" align="left">
     <div id="wrap">
       <div class="selectTop" style="float:right;padding:5px;">
@@ -12,67 +65,107 @@
         </div>
         <div id="BoxMenu01" style="float:right">
           <a style="cursor:pointer;color: #6F6F63;font-weight: bold">All |</a>
+>>>>>>> fc4257d23a3d491713fe4a31afe214fd7a52970a
         </div>
-      </div>
-      <div class="product-head">
-        <div id="form">
-        </div>
-        <div class="clear">
-        </div>
-      </div>
-      <div style="overflow-y:scroll; height:290px;">
-        <ul id="list">
-          <% current_user.user_friends.each do |f| 
-            isfriend =  @user_post.user_friends.include?(f)
-          %>
-            <div class="<%= "div_disable" if isfriend %>" <% if isfriend %>onclick="return false;" <% end %>>
-              <div id="select">
-                <span>
-                  <li class="friends_area" id="<%= isfriend ? "" : f.id %>" title="<%= f.name %>">
-                    <div class="assPic">
-                      <div style="height:51px;">
-                        <%= image_tag(f.avatar.url(:thumb), :class => "pic", :style=>'float:left') %>
-                      </div>
-                    </div>
-                    <a class="name"><%= f.name %></a>
-                    <br/>
-                    <% if isfriend %>
-                      <div class="nameF" style="color:#0A81C4">
-                        Friend
-                      </div>
-                    <% end %>
-                  </li>
-                </span>
-              </div>
+        <div class="postItem" style="background:none repeat scroll 0 0 #EBEBEB;padding: 0px">
+            <div style="width: 80px; margin-top: 5px;float: none" class="postItem1">
+                Message:
             </div>
-          <% end %>
-        </ul>
-      </div>
+            <div class="postInp">
+                <%= text_area_tag "body", "", :id => "message_body", :style => "height: 50px;width:497px" %>
+            </div>
+        </div>
+        <input type="hidden" value="" id="frend_ids" name="frend_ids">
+        <div align="left" class="footer" style="border:0 none;">
+            <label class="uiButtonConfirm">
+                <a>Send</a>
+            </label>
+        </div>
     </div>
-    <div class="postItem" style="background:none repeat scroll 0 0 #EBEBEB;padding: 0px">
-      <div style="width: 80px; margin-top: 5px;float: none" class="postItem1">
-        Message:
-      </div>
-      <div class="postInp">
-        <%= text_area_tag "body", "", :id => "message_body", :style => "height: 50px;width:497px" %>
-      </div>
-    </div>
-    <input type="hidden" value="" id="frend_ids" name="frend_ids">
-    <div align="left" class="footer" style="border:0 none;">
-      <label class="uiButtonConfirm">
-        <a>Send</a>
-      </label>
-    </div>
-  </div>
 </form>
 <!--Alert-->
 <div id="dialog-message" title="Alert" style="display:none;">
-  <p>
-    Please select at least one friend.
-  </p>
+    <p>
+        Please select at least one friend.
+    </p>
 </div>
 <!--Alert-->
 <script>
+<<<<<<< HEAD
+    $(document).ready(function(){
+    
+        $('span').addClass('selected01');
+        
+        function include(arr, obj) // this function will check if a box is already selected and if it is selected the make it unslected and clear the id of that box from array.
+        {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == obj) {
+                    $('#frend_ids').val('');
+                    
+                    for (var k = 0; k < arr.length; k++) {
+                        var f_ids = $('#frend_ids').val();
+                        if (arr[k] != obj && arr[k] != "") {
+                            $('#frend_ids').val(arr[k] + ',' + f_ids);
+                        }
+                    }
+                    
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+        
+        
+        $('.friends_area').click(function(){
+        
+            var fid = $(this).attr('id');
+            var ids = $('#frend_ids').val();
+            
+            var exploded_ids = ids.split(',');
+            
+            if (include(exploded_ids, fid)) {
+            
+                $(this).css('color', '#000000'); // if box is already selected then, make it unselected 
+                $(this).css('background-color', '#fff');
+                $(this).parents('#select:first').removeClass('selected');
+
+            }
+            else {
+            
+                $(this).css('color', '#ffffff'); // if box is not selected , make it selected
+                $(this).css('background-color', '#627AAD');
+                $(this).parents('#select:first').addClass('selected');
+                $(this).parents('span:first').removeClass('selected01');
+                $('#frend_ids').val(fid + ',' + ids);
+                showActionsBox();
+            }
+            
+            
+            function showActionsBox(){
+            
+                var n = $('.selected').length;
+                $("#cntBoxMenu").text(n + (n <= 1 ? "" : "") + " ");
+                
+            }
+            showActionsBox();
+            $(".selected").click(showActionsBox);
+        });
+        
+        $('#BoxMenu').click(function(e){
+        
+            var f_ids = $('#frend_ids').val(); // get all ids in hidden field
+            if (f_ids != '') {
+                $('.selected01').hide();
+                
+            }
+            
+        });
+
+        $('#BoxMenu01').click(function(e){
+            $('.selected01').show();
+            $('.product-head').show();
+=======
   $(document).ready(function(){  
     $('span').addClass('selected01');   
     function include(arr, obj) // this function will check if a box is already selected and if it is selected the make it unslected and clear the id of that box from array.
@@ -128,9 +221,186 @@
     $('#BoxMenu01').click(function(e){
       $('.selected01').show();
       $('.product-head').show();
+>>>>>>> fc4257d23a3d491713fe4a31afe214fd7a52970a
             
-    });
+        });
         
+<<<<<<< HEAD
+        $('.uiButtonConfirm').click(function(){
+        
+            var content = $('#message_body').attr('value');
+            var recipient = $('#frend_ids').val();
+            if (recipient == "") {
+                $("#dialog-message").dialog({
+                    modal: true,
+                    buttons: {
+                        Ok: function(){
+                            //Close facebox
+                            $("#dialog-message").dialog('close');
+                        }
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    url: '/user_walls/match_making_send?content=' + content + '&user_id_post=<%=  @user_id_post %>&recipient=' + recipient,
+                    type: "GET",
+                    dataType: "html",
+                    failure: function(msg){
+                        alert('ajax fail:' + msg);
+                    },
+                    success: function(msg){
+                        $('#search_area').html(msg);
+                    }
+                });
+            }
+            
+        });
+        
+        $('.close').click($.facebox.close);
+        
+        
+        
+    });//background:#627AAD;
+    (function($){
+        // custom css expression for a case-insensitive contains()
+        jQuery.expr[':'].Contains = function(a, i, m){
+            return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+        };
+        
+        function filterList(header, list){
+            // header is any element, list is an unordered list
+            // create and add the filter form to the header
+            var form = $("<form>").attr({
+                "class": "filterform",
+                "action": "#"
+            }), input = $("<input>").attr({
+                "class": "filterinput",
+                "type": "text",
+                "value": "Search",
+                "onfocus": "if(this.value=='Search'){this.value=''};",
+                "onblur": "if(this.value==''){this.value='Search'};"
+            
+            });
+            $(form).append(input).appendTo(header);
+            
+            $(input).change(function(){
+                var filter = $(this).val();
+                if (filter) {
+                
+                    $matches = $(list).find('a:Contains(' + filter + ')').parent();
+                    $('li', list).not($matches).slideUp();
+                    $matches.slideDown();
+                    
+                }
+                else {
+                    $(list).find("li").slideDown();
+                }
+                return false;
+            }).keyup(function(){
+                // fire the above change event after every letter
+                $(this).change();
+            });
+        }
+        
+        
+        //ondomready
+        $(function(){
+            filterList($("#form"), $("#list"));
+        });
+    }(jQuery));
+</script>
+<style>
+    .name {
+        font-size: 11px;
+        padding: 0px;
+        cursor: pointer;
+        font-style: normal;
+    }
+    
+    ul#list {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .friends_area {
+        width: 135px;
+        margin: 10px 0 3px 12px;
+        float: left;
+        color: #000;
+        padding: 6px;
+        cursor: pointer;
+        height: 49px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+    }
+    
+    .friends_area:hover {
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        background: #F2F2F2;
+    }
+    
+    a.close {
+        /*color:#666666;
+         display:block;
+         padding:6px;
+         text-decoration:none;
+         -moz-background-clip:border;
+         -moz-background-inline-policy:continuous;
+         -moz-background-origin:padding;
+         border:solid #999 1px;
+         *background:#CCCCCC;
+         background:url(popupClose.png);
+         
+         color:#333333;
+         cursor:pointer;
+         display:inline-block;
+         float:left;
+         font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+         font-size:11px;
+         font-weight:bold;
+         margin:0 0 0 4px;
+         outline-color:-moz-use-text-color;
+         outline-style:none;
+         outline-width:medium;
+         white-space:nowrap;*/
+        background: url(/images/popupClose.png);
+        float: right;
+        height: 20px;
+        text-decoration: none;
+        width: 25px;
+        cursor: pointer;
+        margin-right: -10px;
+        margin-top: -10px;
+    }
+    
+    a.close:hover {
+        background: url(/images/popupCloseH.png);
+    }
+    
+    .top_area {
+        background: #EBEBEB;
+        font-size: 14px;
+        color: #0A81C4;
+        font-weight: bold;
+        padding: 6px 6px 6px 0px;
+    }
+    
+    .product-head {
+        font-size: 12px;
+        padding: 4px;
+        background-color: #EBEBEB;
+        width: 100%;
+    }
+    
+    .filterform input {
+        margin-left: -4px;
+        font-size: 15px;
+        border: 1px solid #999;
+    }
+</style>
+=======
     $('.uiButtonConfirm').click(function(){
       var content = $('#message_body').attr('value');
       var recipient = $('#frend_ids').val();
@@ -211,3 +481,4 @@
     }); 
 });
 </script>
+>>>>>>> fc4257d23a3d491713fe4a31afe214fd7a52970a

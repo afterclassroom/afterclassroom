@@ -741,37 +741,100 @@ module ApplicationHelper
           title = obj.title
           sub_content = obj.description
         when "PostAssignment"
-        link_edit = edit_post_assignment_url(post.post_assignment)
+          link = post_assignment_path(obj)
+          img_link = link_to image_post_thumb("post_assignments", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostProject"
-        link_edit = edit_post_project_url(post.post_project)
+          link = post_project_path(obj)
+          img_link = link_to image_post_thumb("post_projects", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostTest"
-        link_edit = edit_post_test_url(post.post_test)
+          link = post_test_path(obj)
+          img_link = link_to image_post_thumb("post_tests", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostExam"
-        link_edit = edit_post_exam_url(post.post_exam)
+          link = post_exam_path(obj)
+          img_link = link_to image_post_thumb("post_exams", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostEvent"
-        link_edit = edit_post_event_url(post.post_event)
+          link = post_event_path(obj)
+          img_link = link_to image_post_thumb("post_events", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostQa"
-        link_edit = edit_post_qa_url(post.post_qa)
+          link = post_qa_path(obj)
+          img_link = link_to image_post_thumb("post_qas", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostTutor"
-        link_edit = edit_post_tutor_url(post.post_tutor)
+          link = post_tutor_path(obj)
+          img_link = link_to image_post_thumb("post_tutors", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostBook"
-        link_edit = edit_post_book_url(post.post_book)
+          link = post_book_path(obj)
+          img_link = link_to image_post_thumb("post_books", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostJob"
-        link_edit = edit_post_job_url(post.post_job)
+          link = post_job_path(obj)
+          img_link = link_to image_post_thumb("post_jobs", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostFood"
-        link_edit = edit_post_food_url(post.post_food)
+          link = post_food_path(obj)
+          img_link = link_to image_post_thumb("post_foods", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostParty"
-        link_edit = edit_post_party_url(post.post_party)
+          link = post_party_path(obj)
+          img_link = link_to image_post_thumb("post_parties", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostMyx"
-        link_edit = edit_post_myx_url(post.post_myx)
+          link = post_myx_path(obj)
+          img_link = link_to image_post_thumb("post_myxes", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostAwareness"
-        link_edit = edit_post_awareness_url(post.post_awareness)
+          link = post_awareness_path(obj)
+          img_link = link_to image_post_thumb("post_awarenesses", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostHousing"
-        link_edit = edit_post_housing_url(post.post_housing)
+          link = post_housing_path(obj)
+          img_link = link_to image_post_thumb("post_housings", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostTeamup"
-        link_edit = edit_post_teamup_url(post.post_teamup)
+          link = post_teamup_path(obj)
+          img_link = link_to image_post_thumb("post_teamups", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
         when "PostExamSchedule"
-        link_edit = edit_post_exam_schedule_url(post.post_exam_schedule)
+          link = post_exam_schedule_path(obj)
+          img_link = link_to image_post_thumb("post_exam_schedules", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
       end
     end
     
