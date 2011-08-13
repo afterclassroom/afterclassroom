@@ -5,13 +5,7 @@
     <div class="contDetLin">
       <div class="learnLeft">
         <%= display_flash_messages_with_raw %>
-        <div class="learnN">
-          <div class="learnNM">
-
-            <div id="tool_with_api" class="learnNMtitle" style="background-color: #F9F9F8; color: #3E3E3E; font-weight: normal;border-left: 1px solid #DBDBDB;">Tools with API</div>
-            <div id="common_tool" class="learnNMP" style="color: #0A81C4; background: url('/images/bor1.gif') repeat-x scroll right bottom transparent">Common Tools</div>
-          </div>
-        </div>
+        <%= render :partial => "tab_part" %>
 
         <%= render :partial => "api_tool" %>
 
@@ -28,7 +22,7 @@
     });
     $('.pagination a').each(function(){
       $(this).click(function(){
-        //ShowOverlay();
+        ShowBottomOverlay();
         if ($(this).text() == 'Next'){
           var str_page = parseInt("<%= @cur_page ? @cur_page : "1" %>")+1;
           $('#page_to_load').val(""+str_page);
@@ -43,28 +37,14 @@
       });
     });
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $('#tool_with_api').click(function(){
-      //ShowOverlay();
+      ShowBottomOverlay();
       $('#page_to_load').val('1');
       $('#tab_parm').val('first');
       $('form#form_tab').submit();
     });
     $('#common_tool').click(function(){
-      //ShowOverlay();
+      ShowBottomOverlay();
       $('#page_to_load').val('1');
       $('#tab_parm').val('second');
       $('form#form_tab').submit();

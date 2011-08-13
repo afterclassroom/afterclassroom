@@ -34,7 +34,6 @@
 </ul>
 
 <script>
-
   $(function() {
 	$('#country_menu,#state_menu,#city_menu,#school_menu').hover(function() {
 		$(this).stop().show();
@@ -48,11 +47,17 @@
 		$('#country_menu,#state_menu,#city_menu,#school_menu').stop().hide();
 	});
   });
-  $(window).scroll(function() {
-        $("#country_menu,#state_menu").css({position:"fixed"});
-    
-        $("#city_menu,#school_menu").css({position:"fixed"});
+  $(function() {
+    var top = 136;
+    $(window).scroll(function() {
+      $('#country_menu,#state_menu').stop().animate({ top: $(window).scrollTop() + top}, 10);
+    });
+  });  
+  $(function() {
+    var top = 169;
+    $(window).scroll(function() {
+      $('#city_menu,#school_menu').stop().animate({ top: $(window).scrollTop() + top}, 10);
+    });
   });
-  
  
 </script>

@@ -4866,7 +4866,7 @@ div.navigation a.next:hover {
 .stoExBtm{
     padding-left:13px;
     padding-top:5px;
-		min-height:20px;
+    min-height:20px;
 }
 .stoExBtm div{
     float:left;
@@ -5242,9 +5242,9 @@ span.btmTag a:hover{
     padding-top:5px;
 }
 .musicVideo{
-		margin-left: 48px;
-		margin-top: 30px;
-		text-align: center;
+    margin-left: 48px;
+    margin-top: 30px;
+    text-align: center;
 }
 .musicNode{
     padding:0px 0px 10px 10px;
@@ -5488,4 +5488,6 @@ span.btmTag a:hover{
 }
 .menuSelectDe{
     background: url("/images/menuOnR.png") no-repeat scroll right top transparent;
-  }
+}
+
+/*------------------- Facebox -------------*/

@@ -98,14 +98,14 @@ on learntools.id = a.learntool_id where learn_tool_cate_id=#{cate_id}")
   end
   
   def self.tool_api(user)
-    Learntool.ez_find(:all) do |t|
+    Learntool.ez_find(:all, :order => "created_at DESC") do |t|
       t.user_id == user.id
       t.ac_api == true
     end    
   end
   
   def self.tool_no_api(user)
-    Learntool.ez_find(:all) do |t|
+    Learntool.ez_find(:all, :order => "created_at DESC") do |t|
       t.user_id == user.id
       t.ac_api == false
     end    

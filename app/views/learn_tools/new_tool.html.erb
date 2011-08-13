@@ -17,23 +17,23 @@
               <div class="postTit">Submit new tool</div>
               <div class="postInp">
                 <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
- 
+
               </div>
             </div>
             <div class="postItem">
               <div class="postTit">Name</div>
-              <div class="postInp"><%= f.text_field :name %></div>
+              <div class="postInp"><%= f.text_field :name, :class => '{validate:{required:true}}' %></div>
             </div>
             <div class="postItem">
               <div class="postTit">Description*</div>
               <div class="postInput">
                 <div class="postDesInf">900 characters max - Current: 0 character</div>
-                <div class="postInp"><%= f.text_area :description %></div>
+                <div class="postInp"><%= f.text_area :description, :class => '{validate:{required:true}}' %></div>
               </div>
             </div>
             <div class="postItem">
-               <div class="postTit">Images</div>
-               <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23" %></div>
+              <div class="postTit">Images</div>
+              <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23", :class => '{validate:{required:true}}' %></div>
             </div>
             <div class="postItem">
               <div class="postTit">URL</div>
@@ -44,59 +44,31 @@
             </div>
           </div>
         </div>
-        <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px"><a href="javascript:;"><%= f.submit "Submit" %></a></div>
+        <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px">
+          <a href="javascript:;" id="btn_sbm_tool">Submit</a>
+        </div>
         <div class="submit" style="margin-left: -106px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
 
       <% end %>
     </div>
   </div>
 
-  <div class="contMainR">
-    <div class="creAdv"><a href="#">Create an Ad</a></div>
-    <div class="advert">
-      <div class="advertTitle">Advertisement</div>
-      <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="/images/pictures/pic6.png"></div>
-      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-      <div class="advertInf">
-        <div class="advertInfL">
-          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-        </div>
-        <div class="advertInfR">
-          <span class="pre"><a href="#">&nbsp;</a></span>
-          <span class="next"><a href="#">&nbsp;</a></span></div>
-      </div>
-    </div>
-    <div class="advert">
-      <div class="Dani">DaniWeb - IT Discussion Community</div>
-      <div class="advertImg"><img src="/images/pictures/adv.png"></div>
-      <div class="advertDes">Tech support, programming, web development, and internet marketing community.</div>
-      <div class="advertInf">
-        <div class="advertInfL">
-          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-        </div>
-        <div class="advertInfR">
-          <span class="pre"><a href="#">&nbsp;</a></span>
-          <span class="next"><a href="#">&nbsp;</a></span></div>
-      </div>
-    </div>
-    <div class="advert">
-      <div class="Dani">MTV - New Music Videos, Reality TV Shows...</div>
-      <div class="advertImg"><img src="/images/pictures/adv1.png"></div>
-      <div class="advertDes">Watch the latest Music Video from your favorite artists.</div>
-      <div class="advertInf">
-        <div class="advertInfL">
-          <a class="adverta" href="#">482</a><a class="advertb" href="#">12</a><a class="advertc" href="#">10 Comments</a>
-        </div>
-        <div class="advertInfR">
-          <span class="pre"><a href="#">&nbsp;</a></span>
-          <span class="next"><a href="#">&nbsp;</a></span></div>
-      </div>
-    </div>
-  </div>
+  <%= render :partial => "ads/show_vertical_ads" %>
+
 </div>
 <script type="text/javascript">
+  function SubmitFormTool(){
+    var result = $("form#form_new_tool").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("form#form_new_tool").submit();
+    }
+  }    
   $(document).ready(function(){
+    $('#btn_sbm_tool').click(function(){
+      SubmitFormTool();
+    });
     $('#reset_form').click(function(){
       document.getElementById('form_new_tool').reset();
     });

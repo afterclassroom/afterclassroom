@@ -32,12 +32,12 @@ class LearnToolsController < ApplicationController
   
   def show
     @tool = Learntool.find(params[:id])
-    @tool_reviews = @tool.tool_reviews.paginate(:page => params[:page], :per_page => 5)
+    @tool_reviews = @tool.tool_reviews.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
   end
   
   def tool_rev_paging
     @tool = Learntool.find(params[:tool_id])
-    @tool_reviews = @tool.tool_reviews.paginate(:page => params[:review_page_to_load], :per_page => 5)
+    @tool_reviews = @tool.tool_reviews.order("created_at DESC").paginate(:page => params[:review_page_to_load], :per_page => 5)
     @cur_rev_page = params[:review_page_to_load]
     render :layout => false
   end
@@ -45,6 +45,25 @@ class LearnToolsController < ApplicationController
   def write_review_form
     @tool_id = params[:tool_id]
     @toolreview = ToolReview.new
+    render :layout => false
+  end
+
+  def edit_review_form
+    @toolreview = ToolReview.find(params[:review_id])
+    render :layout => false
+  end
+  
+  def update_review
+    @toolreview = ToolReview.find(params[:review_id])
+    @toolreview.update_attributes(params[:tool_review])
+    @toolreview.save
+    
+    render :layout => false
+  end
+  
+  def delete_review
+    @toolreview = ToolReview.find(params[:review_id])
+    @toolreview.destroy
     render :layout => false
   end
   

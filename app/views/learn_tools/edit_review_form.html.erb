@@ -1,25 +1,23 @@
-<%= form_for(@toolreview, :remote => true, :url => url_for(:controller => "learn_tools", :action => "submit_review") ) do |f| %>
-  <%= hidden_field_tag "tool_id", @tool_id %>
-  Title*
+<%= form_for(@toolreview, :remote => true, :html => {:method => "post"}, :url => url_for(:controller => "learn_tools", :action => "update_review") ) do |f| %>
+
+<%= hidden_field_tag "review_id", @toolreview.id %>
   <div>
     <%= f.text_field :title, :style => "width: 500px;", :class => '{validate:{required:true}}' %>
   </div>
-  Content*
   <div>
     <%= f.text_area :content, :style => "width: 500px; height: 220px;", :class => '{validate:{required:true}}' %>
   </div>
-
   <div class="submit" style="float: left;padding-left: 0px">
     <a href="javascript:;"><%= f.submit "Submit", :id => "btn_sbm_tool" %></a>
   </div>  
 <% end %>
 <script type="text/javascript">
   function SubmitFormTool(){
-    var result = $("form#new_tool_review").validate({
+    var result = $("form#edit_tool_review_<%= @toolreview.id %>").validate({
       meta: "validate"
     });
     if (result) {
-      $("form#new_tool_reviewl").submit();
+      $("form#edit_tool_review_<%= @toolreview.id %>").submit();
     }
   }    
   $(document).ready(function(){
