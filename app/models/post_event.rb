@@ -7,25 +7,25 @@ class PostEvent < ActiveRecord::Base
   belongs_to :event_type
   has_one :rating_statistic
   has_many :ratings
-  
+
   # Tags
   acts_as_taggable_on :tags
-  
+
   # Rating for Bad, Good
   # Bad: 0
   # Good: 1
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
-  
+
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :with_status, lambda { |st| {:conditions => ["post_events.rating_status = ?", st], :order => "created_at DESC"} }
-  scope :with_type, lambda {|tp| {:conditions => ["event_type_id = ?", tp], :order => "created_at DESC"} }
-  scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
+  scope :with_status, lambda { |st| {:conditions => ["post_events.rating_status = ?", st]} }
+  scope :with_type, lambda {|tp| {:conditions => ["event_type_id = ?", tp]} }
+  scope :recent, {:joins => :post, :order => "created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_events.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_events.id > ?", att], :order => "id ASC"} }
-  
+
   def self.paginated_post_conditions_with_option(params, school, event_type_id)
     over = 30 || params[:over].to_i
     year = params[:year]
@@ -33,7 +33,7 @@ class PostEvent < ActiveRecord::Base
     from_school = params[:from_school]
     with_school = school
     with_school = from_school if from_school
-    
+
     post_events = PostEvent.ez_find(:all, :include => [:post, :event_type], :order => "posts.created_at DESC") do |post_event, post, event_type|
       post.department_id == department if department
       post.school_year == year if year
@@ -41,7 +41,7 @@ class PostEvent < ActiveRecord::Base
       post.school_id == with_school if with_school
       post.created_at > over.business_days.before(Time.now)
     end
-    
+
     posts = []
     post_events.select {|p| posts << p.post}
     return posts
@@ -56,15 +56,11 @@ class PostEvent < ActiveRecord::Base
   
   def self.related_posts(school, type_id)
     posts = []
-    post_as = if school 
-      self.random(5).with_school(school).with_type(type_id)
-    else
-      self.random(5).with_type(type)
-    end
+    post_as = self.random(5).with_school(school).with_type(type_id)
     post_as.select {|p| posts << p.post}
     posts
   end
-  
+
   def self.top_event_posters(school)
     type_name = "PostEvent"
     limit = 15
@@ -79,26 +75,26 @@ class PostEvent < ActiveRecord::Base
     end
     users
   end
-  
+
   def self.require_rating(school)
     self.with_school(school).with_status("Require Rating").random(1)
   end
-  
+
   def total_good
     self.ratings.count(:conditions => ["rating = ?", 1])
   end
-  
+
   def total_bad
     self.ratings.count(:conditions => ["rating = ?", 0])
   end
-  
+
   def score_good
     total = self.total_good + self.total_bad
-     (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
+    (total) == 0 ? 0 : (self.total_good.to_f/(total))*100
   end
-  
+
   def score_bad
     total = self.total_good + self.total_bad
-     (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
+    (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
   end
 end
