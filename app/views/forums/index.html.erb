@@ -37,8 +37,6 @@
           <%= display_flash_messages_with_raw %>
           <div class="helpTitle" style="height: 25px;">
             <a href="javascript:;" style="color: #6F6F63;" onmouseover="this.style.color = '#6F6F63'; this.style.cursor='default'">Community Help Forum <%= "- Popular discussions" if controller.action_name == "see_all_top_fr" %></a>
-
-
             <div style="margin-top: -2px; ; color: rgb(110, 110, 110); background: url('/images/bgSearchF.png') no-repeat scroll left top transparent;  float: right;  height: 24px;  padding-right: 0;  width: 194px;">
               <%= form_tag url_for(:controller => "forums", :action => "search"), {:id => "info_search", :method => "GET"} do %>
                 <div class="textS"><%= text_field_tag "search_content", "#{@str_search}" , :style => "height: 12px" %></div>
@@ -47,26 +45,16 @@
                 </div>
               <% end %>
             </div>
-
-
-
           </div>
           <% if controller.action_name == "search" %>
             <% @forums.each_hit_with_result do |hit,fr| %>
-
               <% if (hit.highlight(:content)) %>
                 <% txt_content = raw(hit.highlight(:content).format { |fragment| content_tag(:em, fragment) } ) %>
-
                 <% txt_content =  raw("<div style='' id='res_handler_#{fr.id}'>")+txt_content+raw('</div><br/>')+raw("<div style='display:none;'>")+fr.content+raw("</div>") %>
-
               <% else %>
                 <% txt_content = raw(fr.content) %>
-
                 <% txt_content =  raw("<div style='' id=''>")+txt_content+raw('</div><br/>')+raw("<div style='display:none;'>")+fr.content+raw("</div>") %>
-
               <% end %>
-
-
               <%= render :partial => "item", :locals => {:fr => fr, :content => txt_content } %>
             <% end %>
           <% else %>
@@ -74,10 +62,6 @@
               <%= render :partial => "item", :locals => {:fr => fr, :content => fr.content} %>
             <% end %>
           <% end %>
-
-
-
-
           <% if controller.action_name == "index" %>
             <div class="assPage" style="padding-left:0">
               <span class="numPage"><%= page_entries_info @forums %></span>
@@ -100,13 +84,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
 <div class="contMainRHQ">
   <div style="margin-left: 6px; margin-right: 8px; margin-top: 10px; cursor: pointer;">
     <a id="imageDivLink" onclick="javascript:ToggleForm('form_new_fr', 'imageDivLink');">
@@ -116,12 +93,9 @@
   <div class="popu">
     <div id="form_new_fr" style="display: none;">
       <div id="contentDivImg">
-
         <%= form_tag addfr_forums_path, :id => "new_fr_formQ" do -%>
           <div class="postHelp">
             <div class="reqLa"><label>Title *</label></div>
-
-
             <div class="reqTi">
               <% if session["open_form"] == "open" %>
                 <% str_title = session["new_fr_title"] %>
@@ -133,17 +107,11 @@
               <% end %>
               <input value="<%= str_title %>" type="text" id="txt_help" class="{validate:{required:true}}" name="txt_help" size="22" style="width:280px"/>
             </div>
-
-
             <div class="reqLa"><label>Description *</label></div>
-
-
             <div style="margin: 3px 0pt;" class="reqEn">
               <%= text_area_tag "help_content", str_cnt, :id => "help_content", :style => "width:280px", :class => "{validate:{required:true}}" %>
             </div>
-
             <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-
             <% if logged_in? %>
               <div style="margin-top: 5px;" class="submit">
                 <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom" onclick="submitQ();"/>
@@ -153,18 +121,12 @@
               <%= link_to_require_login('Submit') %>
             </div>
             <% end %>
-
           </div>
         <% end -%>
-
       </div>
     </div>
-
-
-
   </div>
 </div>
-
 <div class="contMainRH">
   <div class="popu">
     <div class="popuTop">
