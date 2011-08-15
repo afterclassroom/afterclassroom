@@ -49,7 +49,7 @@
 
     var previousPage = $('.learnPage').eq(1).find('.previous_page');
     
-    if ( $('.learnPage').eq(1).find('.previous_page')[0].nodeName == 'A' ){
+    if ( $('.learnPage').eq(1).find('.previous_page')[0] != undefined && $('.learnPage').eq(1).find('.previous_page')[0].nodeName == 'A' ){
       $('.learnPage').eq(1).find('.previous_page').attr('href','javascript:;');
       $(previousPage).click(function(){
         SetPreviousMayLikeVariable();
@@ -59,7 +59,7 @@
     }
 
     var nextPage = $('.learnPage').eq(1).find('.next_page');
-    if ( $('.learnPage').eq(1).find('.next_page')[0].nodeName == 'A' ){
+    if ( $('.learnPage').eq(1).find('.next_page')[0]!= undefined && $('.learnPage').eq(1).find('.next_page')[0].nodeName == 'A' ){
       $('.learnPage').eq(1).find('.next_page').attr('href','javascript:;');
       $(nextPage).click(function(){
         SetNextMayLikeVariable();
