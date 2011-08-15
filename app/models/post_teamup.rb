@@ -17,7 +17,7 @@ class PostTeamup < ActiveRecord::Base
   acts_as_rated :rating_range => 0..1, :with_stats_table => true
 
   scope :with_limit, :limit => LIMIT
-  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_status, lambda { |st| {:conditions => ["post_teamups.rating_status = ?", st]} }
   scope :with_category, lambda { |c| {:conditions => ["post_teamups.teamup_category_id = ?", c]} }
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}

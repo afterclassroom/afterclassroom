@@ -22,7 +22,7 @@ class PostJob < ActiveRecord::Base
   scope :with_type, lambda { |tp| {:conditions => ["post_jobs.job_type_id = ?", tp]} }
   scope :without_type, lambda { |tp| {:conditions => ["post_jobs.job_type_id <> ?", tp]} }
   scope :with_status, lambda { |st| {:conditions => ["post_jobs.rating_status = ?", st]} }
-  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_jobs.id < ?", att], :order => "id ASC"} }

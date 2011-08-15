@@ -1,39 +1,41 @@
 <div class="proList" id="post_comment_form_<%= post.id %>" style="display:none;">
-  <% form_tag url_for(:controller => "posts", :action => "create_comment_on_list"), :remote => true, :id => "post_form_#{post.id}" do %>
+    <% form_tag url_for(:controller => "posts", :action => "create_comment_on_list"), :remote => true, :id => "post_form_#{post.id}" do %>
     <%= hidden_field_tag "post_id", post.id %>
-    <div class="proListPic"><%= show_image_user_post(current_user) %></div>
+    <div class="proListPic">
+        <%= show_image_user_post(current_user) %>
+    </div>
     <div class="proListR">
-      <div class="writeCom">
-        <%= text_area_tag "comment", nil, :id => "comment_#{post.id}", :onblur => "hidePostCommentForm('#{post.id}')", :class => "{validate:{required:true}}" %>
-      </div>
+        <div class="writeCom">
+            <%= text_area_tag "comment", nil, :id => "comment_#{post.id}", :onblur => "hidePostCommentForm('#{post.id}')", :class => "{validate:{required:true}}" %>
+        </div>
     </div>
     <div class="proAttR">
-      <input id="submitBtn<%= post.id %>" type="button" value="Send" name="commit" class="buttonCom" />
-    </div>
-  <% end %>
+        <input id="submitBtn<%= post.id %>" type="button" value="Send" name="commit" class="buttonCom" />
+    </div><% end %>
 </div>
 <script type="text/javascript">
-  function checkmyform(formidd){
-    var result = $("#"+formidd).validate({
-      meta: "validate"
-    });
-    if (result) {
-      $("#"+formidd).submit();
+    function checkmyform(formidd){
+        var result = $("#" + formidd).validate({
+            meta: "validate"
+        });
+        if (result) {
+            $("#" + formidd).submit();
+        }
     }
-  }
-  $(function() {
-    $('#submitBtn<%= post.id %>').click(function(){
-      checkmyform('post_form_<%=  post.id.to_s %>');
-    });
     
-    $('#post_form_<%=  post.id.to_s %>').bind('ajax:beforeSend',function(){
-      $('#submitBtn<%=  post.id.to_s %>').attr('disabled', 'disabled');
-      $('#submitBtn<%=  post.id.to_s %>').before('<%= show_ajax_loader("loader_id#{post.id}","display: block; position: absolute; float: right; height: 19px; margin-top: 4px; margin-left: -22px;") %>');    
-    })
-
-    $('#post_form_<%=  post.id.to_s %>').bind('ajax:complete',function(){
-      $('#submitBtn<%=  post.id.to_s %>').attr('disabled', '');
-      $('#loader_id<%=  post.id.to_s %>').remove();
-    })
-  });
+    $(document).ready(function(){
+        $('#submitBtn<%= post.id %>').click(function(){
+            checkmyform('post_form_<%=  post.id.to_s %>');
+        });
+        
+        $('#post_form_<%=  post.id.to_s %>').bind('ajax:beforeSend', function(){
+            $('#submitBtn<%=  post.id.to_s %>').attr('disabled', 'disabled');
+            $('#submitBtn<%=  post.id.to_s %>').before('<%= show_ajax_loader("loader_id#{post.id}","display: block; position: absolute; float: right; height: 19px; margin-top: 4px; margin-left: -22px;") %>');
+        })
+        
+        $('#post_form_<%=  post.id.to_s %>').bind('ajax:complete', function(){
+            $('#submitBtn<%=  post.id.to_s %>').attr('disabled', '');
+            $('#loader_id<%=  post.id.to_s %>').remove();
+        })
+    });
 </script>

@@ -15,19 +15,39 @@ class MailAccount
     @password = password
     @mail_type = mail_type
   end
-
+  
   def contacts
     case @mail_type
       when MailAccount::GMAIL
-        Contacts::Gmail.new(@login, @password).contacts
+      account = Contacts::Gmail.new(@login, @password)
+      if account
+        account.contacts
+      else
+        []
+      end
       when MailAccount::YAHOOMAIL
-        Contacts::Yahoo.new(@login, @password).contacts
+      account = Contacts::Yahoo.new(@login, @password)
+      if account
+        account.contacts
+      else
+        []
+      end
       when  MailAccount::HOTMAIL
-        Contacts::Hotmail.new(@login, @password).contacts
+      account = Contacts::Hotmail.new(@login, @password)
+      if account
+        account.contacts
+      else
+        []
+      end
       when  MailAccount::AOL
-        Contacts::Aol.new(@login, @password).contacts
-      else 
-        []  
+      account = Contacts::Aol.new(@login, @password)
+      if account
+        account.contacts
+      else
+        []
+      end
+    else 
+      []  
     end  
   end
 end
