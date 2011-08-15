@@ -17,7 +17,7 @@
             <div class="postItem">
               <div class="postTit">Submit new tool</div>
               <div class="postInp">
-                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
+                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] }, "Select Category")) %>
               </div>
             </div>
 

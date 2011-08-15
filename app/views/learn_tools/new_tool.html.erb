@@ -7,7 +7,7 @@
   <div class="contDetL">
     <div class="contDetLin post">
       <div class="AsDTop">
-        <h1 class="titleH1">Submit new tool</h1>
+        <h1 class="titleH1">Submit new tool==============</h1>
       </div>
       <%= display_flash_messages_with_raw %>
       <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "submit_new_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
@@ -16,7 +16,7 @@
             <div class="postItem">
               <div class="postTit">Submit new tool</div>
               <div class="postInp">
-                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
+                <%= f.select("learn_tool_cate_id", "<option value='-1'>Please select</option>"+options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
 
               </div>
             </div>
