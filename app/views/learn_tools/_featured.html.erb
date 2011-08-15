@@ -59,7 +59,7 @@
   $(document).ready(function(){
     var previousPage = $('.learnPage').first().find('.previous_page');
     
-    if ( $('.learnPage').first().find('.previous_page')[0].nodeName == 'A' ){
+    if ( $('.learnPage').first().find('.previous_page')[0] != undefined && $('.learnPage').first().find('.previous_page')[0].nodeName == 'A' ){
       $('.learnPage').first().find('.previous_page').attr('href','javascript:;');
       $(previousPage).click(function(){
         SetPreviousPageVariable();
@@ -69,7 +69,7 @@
     }
     
     var nextPage = $('.learnPage').first().find('.next_page');
-    if ( $('.learnPage').first().find('.next_page')[0].nodeName == 'A' ){
+    if (  $('.learnPage').first().find('.next_page')[0] != undefined && $('.learnPage').first().find('.next_page')[0].nodeName == 'A' ){
       $('.learnPage').first().find('.next_page').attr('href','javascript:;');
       $(nextPage).click(function(){
         SetNextPageVariable();
