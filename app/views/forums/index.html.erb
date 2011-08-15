@@ -22,6 +22,11 @@
   </div>
 </div>
 <!--Content-->
+<% if controller.action_name == "search" %><!-- this condition to fix bug 1100 -->
+<% strstyle = @forums.results.length == 1 ? "height: 321px;" : "" %>
+<% else %>
+<% strstyle = "" %>
+<% end %>
 
 <div class="contMainLH">
   <div class="col654 QAs">
