@@ -24,8 +24,6 @@ class Learntool < ActiveRecord::Base
   
   acts_as_fannable
 
-  
-
   # Solr search index
   searchable do
     text :name, :default_boost => 2, :stored => true
