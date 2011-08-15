@@ -34,29 +34,34 @@
 </ul>
 
 <script>
-  $(function() {
-	$('#country_menu,#state_menu,#city_menu,#school_menu').hover(function() {
-		$(this).stop().show();
-	}, function() {
-		$(this).stop().hide();
-	});
-  });
-  $(function() {
-	$('div.signinItem,div#contDetLin,#select_school_form,div.popupNumb').hover(function() {
-	}, function() {
-		$('#country_menu,#state_menu,#city_menu,#school_menu').stop().hide();
-	});
+  // $(function() {
+  //	$('#country_menu,#state_menu,#city_menu,#school_menu').hover(function() {
+  //		$(this).stop().show();
+  //	}, function() {
+  //		$(this).stop().hide();
+  //	});
+  //  });
+  //  $(function() {
+  //	$('.popupItemCe,.popupNumb,.popupCoun,#facebox_overlay,.top_area,.filter,#list_alphabet,.popupBtm').hover(function() {
+  //	}, function() {
+  //		$('#country_menu,#state_menu,#city_menu,#school_menu').stop().hide();
+  //	});
+  //  });
+  $(function(){
+    $('#facebox .mcdropdown a').eq(1).click(function(){
+      $('.mcdropdown_menu').hide();
+    });
   });
   $(function() {
     var top = 136;
     $(window).scroll(function() {
-      $('#country_menu,#state_menu').stop().animate({ top: $(window).scrollTop() + top}, 10);
+      $('#country_menu,#state_menu').stop().animate({ top: $(window).scrollTop() + top}, 1);
     });
   });  
   $(function() {
     var top = 169;
     $(window).scroll(function() {
-      $('#city_menu,#school_menu').stop().animate({ top: $(window).scrollTop() + top}, 10);
+      $('#city_menu,#school_menu').stop().animate({ top: $(window).scrollTop() + top}, 1);
     });
   });
  
