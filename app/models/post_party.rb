@@ -9,6 +9,8 @@ class PostParty < ActiveRecord::Base
   has_and_belongs_to_many :party_types
   has_one :rating_statistic
   has_many :ratings
+  has_many :partys_lists, :dependent => :destroy 
+  has_many :post_party_rsvps, :dependent => :destroy
 
   # Tags
   acts_as_taggable_on :tags

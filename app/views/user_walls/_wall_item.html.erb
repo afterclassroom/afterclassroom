@@ -49,9 +49,13 @@
       <div class="com">
         <% if wall.user_wall_post 
           obj =	get_object_by_class_name_and_id(wall.user_wall_post.post_type, wall.user_wall_post.post_id)
-          if !["PhotoAlbum", "Photo", "MusicAlbum", "Music", "Video", "Story"].include?(obj.class.name)
-            obj = obj.post
-          end
+					if obj
+	          if !["PhotoAlbum", "Photo", "MusicAlbum", "Music", "Video", "Story"].include?(obj.class.name)
+	            obj = obj.post
+	          end
+					else
+						obj = wall
+					end
         else
           obj = wall
         end
