@@ -16,7 +16,7 @@ class PostAwareness < ActiveRecord::Base
 
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_status, lambda { |st| {:conditions => ["post_awarenesses.rating_status = ?", st]} }
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :with_type, lambda { |c| {:conditions => ["post_awarenesses.awareness_type_id = ?", c]} }

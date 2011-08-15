@@ -13,7 +13,13 @@ class LearnToolsController < ApplicationController
     
       params[:may_like_page] = params[:may_like_page] ? params[:may_like_page]  : "1"
       @maylikes = Learntool.paging_may_like(params)
-      @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_may_like.size / 10.0 ).round.to_s
+      
+      no_maylike_page = Learntool.with_may_like.size / 10.0 
+      if Learntool.with_may_like.size % 10 > 0
+        no_maylike_page = no_maylike_page + 1
+      end
+      
+      @str_maylike_page = "Page #{params[:may_like_page]} of #{no_maylike_page.to_i}"
       @all_tools = Learntool.find(:all, :order => "learntools.created_at DESC").paginate(:page => params[:all_tool_page], :per_page => 5)
     else #when user filter tool by category
       @features = Learntool.with_cate(params[:tool_cate]).paging_featured(params)
@@ -150,7 +156,12 @@ class LearnToolsController < ApplicationController
     if params[:cur_cate_at_maylike] == "-1"
       params[:may_like_page] = params[:maylike_to_load]#page of will_paginate
       @maylikes = Learntool.paging_may_like(params)
-      @str_maylike_page = "Page #{params[:may_like_page]} of "+ ( Learntool.with_may_like.size / 10.0 ).round.to_s
+      
+      no_maylike_page = Learntool.with_may_like.size / 10.0 
+      if Learntool.with_may_like.size % 10 > 0
+        no_maylike_page = no_maylike_page + 1
+      end
+      @str_maylike_page = "Page #{params[:may_like_page]} of #{no_maylike_page.to_i}"
       @cur_cate_at_like = params[:cur_cate_at_maylike]
     else
       params[:may_like_page] = params[:maylike_to_load]#page of will_paginate
@@ -272,27 +283,37 @@ class LearnToolsController < ApplicationController
   
   def create_tool_with_api
     str_error = ""
-    @client_application = current_user.client_applications.build(params[:client_application])
-    @tool = Learntool.new(params[:learntool])
-    @tool.user = current_user
-    @tool.client_application = @client_application
-    @tool.name = @client_application.name
-    @tool.href = @client_application.url
-    @tool.ac_api = true
+    client_application = current_user.client_applications.build(params[:client_application])
+    tool = Learntool.new(params[:learntool])
+    tool.user = current_user
+    tool.client_application = client_application
+    tool.name = client_application.name
+    tool.href = client_application.url
+    tool.ac_api = true
+    
     
     if simple_captcha_valid?
-      if @client_application.save && @tool.save
+      if client_application.save && tool.save
+        @tool = Learntool.new #these 2 lines to support for form_new to display correct
+        @client_application = ClientApplication.new
+        
         flash[:notice] = "Your tool has been submitted"
         render :action => "new_tool_with_api"
       else
+        @tool = tool#these 2 lines to support for form_new to display correct
+        @client_application = client_application
+        
         str_error = "Failed to create API !"
         flash[:notice] = str_error
         render :action => "new_tool_with_api"
       end
     else
+      @tool = tool#these 2 lines to support for form_new to display correct
+      @client_application = client_application
       flash[:warning] = "Captcha does not match."
       render :action => "new_tool_with_api"
     end
+    
   end
   
   def choose_to_add

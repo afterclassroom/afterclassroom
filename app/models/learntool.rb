@@ -24,8 +24,6 @@ class Learntool < ActiveRecord::Base
   
   acts_as_fannable
 
-  
-
   # Solr search index
   searchable do
     text :name, :default_boost => 2, :stored => true
@@ -40,7 +38,10 @@ class Learntool < ActiveRecord::Base
   scope :with_featured, :conditions => "client_application_id > 0", :order => "learntools.acc_play_no DESC"
   
   #with_payable is those tools that third-party pay money to AfterClassroom
-  scope :with_may_like, :conditions =>  "acc_play_no > 0", :order => "learntools.acc_play_no DESC"
+  scope :with_may_like, :order => "learntools.acc_play_no DESC"
+  #Below is the correct statment, but because we do not have payment function
+  #for now, so that we use the above statement instead
+  #scope :with_may_like, :conditions =>  "acc_play_no > 0", :order => "learntools.acc_play_no DESC"
   
   scope :with_cate, lambda {|cate_id| {:conditions => ["learn_tool_cate_id = ?", cate_id]}}
   
@@ -53,7 +54,11 @@ class Learntool < ActiveRecord::Base
   end
   
   def self.paging_may_like(params)
-    Learntool.with_may_like.paginate(:page => params[:may_like_page], :per_page => 10)
+    Learntool.find(:all).paginate(:page => params[:may_like_page], :per_page => 10)
+    #below is the correct statement
+    #But for now, we do not have payment functionality to work for now
+    #so that, we have to use the above statement
+    #Learntool.with_may_like.paginate(:page => params[:may_like_page], :per_page => 10)
   end
   
   def self.most_popular(cate_id)

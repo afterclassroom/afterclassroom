@@ -380,7 +380,7 @@ class UserWallsController < ApplicationController
       when "profile"
       @walls = user.my_walls.paginate :page => params[:page], :per_page => 10
     else
-      @walls = user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+      @walls = user.user_walls.order("updated_at DESC").paginate :page => params[:page], :per_page => 10
     end
     render :layout => false
   end

@@ -151,11 +151,11 @@ module ApplicationHelper
     else
       "N/A"
     end
-#    if sex
-#      sex == true ? "Male" : "Female"
-#    else
-#      "N/A"
-#    end
+    #    if sex
+    #      sex == true ? "Male" : "Female"
+    #    else
+    #      "N/A"
+    #    end
   end
   
   def truncate_words(text, length = 30, end_string = '...')
@@ -587,7 +587,7 @@ module ApplicationHelper
   def show_map(address, html)
     link_to(raw("<span>View map</span>"), "/gmaps?address=#{address}&html=#{html}?height=375&amp;width=450&amp;inlineId=gmap", :class => "thickbox", :title => "View map")  
   end
-     
+  
   def show_support(post)
     str = "Reliable"
     str = "Support" if post.post_awareness.awareness_type.label == "take_action_now"
@@ -704,9 +704,16 @@ module ApplicationHelper
     if wall.user_wall_post
       post_type = wall.user_wall_post.post_type
       post_id = wall.user_wall_post.post_id
-      obj = eval(post_type).find(post_id)
-      case post_type
-        when "PhotoAlbum"
+      
+      begin
+        obj = eval(post_type).find(post_id)
+      rescue
+        obj = nil
+      end
+      
+      if obj
+        case post_type
+          when "PhotoAlbum"
           if obj.photos.size > 0
             s = obj.photos.size < 4 ? obj.photos.size : 4
             i = 0 
@@ -718,123 +725,124 @@ module ApplicationHelper
               break if i == s
             end
           end
-        when "Photo"
+          when "Photo"
           link = user_photo_url(obj.user, obj)
           img_link = link_to(raw(image_tag(obj.photo_attach.url(:thumb), :style => "width:92px;height:68px")), obj.photo_attach.url, :class => "imageLink", :target => "_blank")
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           sub_content = truncate_html(obj.description, :length => 100, :omission => '...')
-        when "MusicAlbum"
+          when "MusicAlbum"
           link = show_music_album_user_url(obj.user, :music_album_id => obj)
           img_link = link_to image_tag(obj.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.name
-        when "Music"
+          when "Music"
           link = user_music_url(obj.user, obj)
           img_link = link_to image_tag(obj.music_album.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
-        when "Video"
+          when "Video"
           link = get_video_path(obj.video_file.video_attach.url)
           img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           sub_content = obj.description
-        when "PostAssignment"
+          when "PostAssignment"
           link = post_assignment_path(obj)
           img_link = link_to image_post_thumb("post_assignments", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostProject"
+          when "PostProject"
           link = post_project_path(obj)
           img_link = link_to image_post_thumb("post_projects", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostTest"
+          when "PostTest"
           link = post_test_path(obj)
           img_link = link_to image_post_thumb("post_tests", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostExam"
+          when "PostExam"
           link = post_exam_path(obj)
           img_link = link_to image_post_thumb("post_exams", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostEvent"
+          when "PostEvent"
           link = post_event_path(obj)
           img_link = link_to image_post_thumb("post_events", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostQa"
+          when "PostQa"
           link = post_qa_path(obj)
           img_link = link_to image_post_thumb("post_qas", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostTutor"
+          when "PostTutor"
           link = post_tutor_path(obj)
           img_link = link_to image_post_thumb("post_tutors", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostBook"
+          when "PostBook"
           link = post_book_path(obj)
           img_link = link_to image_post_thumb("post_books", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostJob"
+          when "PostJob"
           link = post_job_path(obj)
           img_link = link_to image_post_thumb("post_jobs", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostFood"
+          when "PostFood"
           link = post_food_path(obj)
           img_link = link_to image_post_thumb("post_foods", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostParty"
+          when "PostParty"
           link = post_party_path(obj)
           img_link = link_to image_post_thumb("post_parties", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostMyx"
+          when "PostMyx"
           link = post_myx_path(obj)
           img_link = link_to image_post_thumb("post_myxes", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostAwareness"
+          when "PostAwareness"
           link = post_awareness_path(obj)
           img_link = link_to image_post_thumb("post_awarenesses", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostHousing"
+          when "PostHousing"
           link = post_housing_path(obj)
           img_link = link_to image_post_thumb("post_housings", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostTeamup"
+          when "PostTeamup"
           link = post_teamup_path(obj)
           img_link = link_to image_post_thumb("post_teamups", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-        when "PostExamSchedule"
+          when "PostExamSchedule"
           link = post_exam_schedule_path(obj)
           img_link = link_to image_post_thumb("post_exam_schedules", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
+        end
       end
     end
     
@@ -846,7 +854,11 @@ module ApplicationHelper
   end
   
   def get_object_by_class_name_and_id(class_name, id)
-    eval(class_name).find(id)
+    begin
+      eval(class_name).find(id)
+    rescue
+      nil
+    end
   end
   
   def show_refer_to_experts(post)
@@ -879,11 +891,11 @@ module ApplicationHelper
   
   def gmap_key
     case Rails.env
-    when 'production'
+      when 'production'
       key = GMAP_KEY_SITE
-    when 'development'
+      when 'development'
       key = GMAP_KEY_LOCAL
-    when 'staging'
+      when 'staging'
       key = GMAP_KEY_STAGING
     end
     return key
@@ -1000,7 +1012,7 @@ module ApplicationHelper
   end
   
   def show_ajax_loader(str_id, str_style)
-      content_tag(:span, image_tag("/images/ajax-loader-a.gif", :alt => '', :style => str_style, :id => str_id))
+    content_tag(:span, image_tag("/images/ajax-loader-a.gif", :alt => '', :style => str_style, :id => str_id))
   end  
   
   private

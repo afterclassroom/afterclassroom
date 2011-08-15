@@ -9,6 +9,8 @@ class PostParty < ActiveRecord::Base
   has_and_belongs_to_many :party_types
   has_one :rating_statistic
   has_many :ratings
+  has_many :partys_lists, :dependent => :destroy 
+  has_many :post_party_rsvps, :dependent => :destroy
 
   # Tags
   acts_as_taggable_on :tags
@@ -22,7 +24,7 @@ class PostParty < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => LIMIT
   scope :with_status, lambda { |st| {:conditions => ["post_parties.rating_status = ?", st]} }
-  scope :recent, {:joins => :post, :order => "created_at DESC"}
+  scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_parties.id < ?", att], :order => "id ASC"} }
