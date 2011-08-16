@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="postItem">
-              <div class="postTit">Name</div>
+              <div class="postTit">Name*</div>
               <div class="postInp"><%= f.text_field :name, :class => '{validate:{required:true}}' %></div>
             </div>
             <div class="postItem">
@@ -37,12 +37,12 @@
               </div>
             </div>
             <div class="postItem">
-              <div class="postTit">Images</div>
+              <div class="postTit">Images*</div>
               <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23", :class => '{validate:{required:true}}' %></div>
             </div>
             <div class="postItem">
-              <div class="postTit">URL</div>
-              <div class="postInp"><%= f.text_field :href %></div>
+              <div class="postTit">URL*</div>
+              <div class="postInp"><%= f.text_field :href, :class => '{validate:{required:true, url: true}}' %></div>
             </div>
             <div style="margin-left:120px">
               <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
