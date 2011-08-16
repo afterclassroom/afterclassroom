@@ -17,15 +17,16 @@
           <a title="Match Making" rel="facebox" href="/user_walls/match_making_box?user_id_post=<%= wall.user_id_post.to_s %>" id="myaclick">Match Making</a>
         </div>
         <div class="like wall_page_<%= @page %>">
-          <a title="I like you" rel="facebox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="Ilikeyou">I like you</a>
+          <a title="I like you" rel="facebox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
         </div>
         <div class="love wall_page_<%= @page %>">
-          <a title="I love you" rel="facebox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="Iloveyou">I love you</a>
+          <a title="I love you" rel="facebox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
         </div>
         <div class="hate wall_page_<%= @page %>">
-          <a title="I hate you" rel="facebox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="Ihateyou">I hate you</a>
+          <a title="I hate you" rel="facebox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
         </div>
       </div>
+
     <% end %>
     <div class="AfterCl">
       <%= show_user_post(wall.user_post) %><%= raw(" posted on #{show_user_post(wall.user)}'s Lounge") if @type == "profile" and wall.user != wall.user_post %> - <%= raw(wall.content) %>
@@ -49,13 +50,13 @@
       <div class="com">
         <% if wall.user_wall_post 
           obj =	get_object_by_class_name_and_id(wall.user_wall_post.post_type, wall.user_wall_post.post_id)
-					if obj
-	          if !["PhotoAlbum", "Photo", "MusicAlbum", "Music", "Video", "Story"].include?(obj.class.name)
-	            obj = obj.post
-	          end
-					else
-						obj = wall
-					end
+          if obj
+            if !["PhotoAlbum", "Photo", "MusicAlbum", "Music", "Video", "Story"].include?(obj.class.name)
+              obj = obj.post
+            end
+          else
+            obj = wall
+          end
         else
           obj = wall
         end
@@ -99,22 +100,23 @@
   $(document).ready(function(){
     vtip();
   });
-  $(function() {
+  $(document).ready(function(){
+  //    $('a[rel<%= wall.user_id_post.to_s %>*=facebox]').facebox({})
     var top = 70;
     $(window).scroll(function() {
       $('#facebox').stop().animate({ top: $(window).scrollTop() + top}, 10);
     });
-  });
-  $("body").append("<div id='opaque' style='display: none;'></div>");
+    $("body").append("<div id='opaque' style='display: none;'></div>");
 
-  $(document).bind('loading.facebox', function() {
-    $("#opaque").show();
-  });
-  $(document).bind('close.facebox', function() {
-    $("#opaque").hide();
-  });
-  $(document).bind('afterReveal.facebox', function() {
-    // this is a fix for IE6 which resets the height to 100% of the window height
-    $("#opaque").height($(document).height());
+    $(document).bind('loading.facebox', function() {
+      $("#opaque").show();
+    });
+    $(document).bind('close.facebox', function() {
+      $("#opaque").hide();
+    });
+    $(document).bind('afterReveal.facebox', function() {
+      // this is a fix for IE6 which resets the height to 100% of the window height
+      $("#opaque").height($(document).height());
+    });
   });
 </script>

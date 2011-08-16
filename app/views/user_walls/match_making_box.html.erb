@@ -30,7 +30,7 @@
 										%>
 	                    <div class="<%= "div_disable" if isfriend %>"<% if isfriend %>onclick="return false;" <% end %>>
 	                        <div id="select">
-	                            <span>
+	                            <span id="selectMat">
 	                                <li class="friends_area" id="<%= isfriend ? "" : f.id %>" title="<%= f.name %>">
 	                                    <div class="assPic">
 	                                        <div style="height:51px;">
@@ -79,7 +79,7 @@
 <script>
     $(document).ready(function(){
     
-        $('span').addClass('selected01');
+        $('span#selectMat').addClass('selectedMat01');
         
         function include(arr, obj) // this function will check if a box is already selected and if it is selected the make it unslected and clear the id of that box from array.
         {
@@ -114,14 +114,14 @@
                 $(this).css('color', '#000000'); // if box is already selected then, make it unselected 
                 $(this).css('background-color', '#fff');
                 $(this).parents('#select:first').removeClass('selected');
-
+                $('span#selectMat').addClass('selectedMat01');
             }
             else {
             
                 $(this).css('color', '#ffffff'); // if box is not selected , make it selected
                 $(this).css('background-color', '#627AAD');
                 $(this).parents('#select:first').addClass('selected');
-                $(this).parents('span:first').removeClass('selected01');
+                $(this).parents('span#selectMat:first').removeClass('selectedMat01');
                 $('#frend_ids').val(fid + ',' + ids);
                 showActionsBox();
             }
@@ -141,15 +141,15 @@
         
             var f_ids = $('#frend_ids').val(); // get all ids in hidden field
             if (f_ids != '') {
-                $('.selected01').hide();
+                $('.selectedMat01').hide();
                 
             }
             
         });
 
         $('#BoxMenu01').click(function(e){
-            $('.selected01').show();
-            $('.product-head').show();
+            $('.selectedMat01').show();
+     //       $('.product-head').show();
         });
         
         $('.uiButtonConfirm').click(function(){
