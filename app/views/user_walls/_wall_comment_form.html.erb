@@ -7,6 +7,6 @@
   <div class="proListR" style="width:380px">
     <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{obj.class.name}_#{obj.id}", :onblur => "hideCommentForm('#{obj.class.name}', '#{obj.id}')"} %></div>
   </div>
-  <div class="proAttR"><%= submit_tag 'Send', :class => "buttonCom" %></div>
+  <div class="proAttR" style="margin-left: 37px; float: left;"><%= submit_tag 'Send', :class => "buttonCom" %></div>
   <% end %>
 </div>

@@ -67,7 +67,7 @@
         <div id="my_stories_list">
           <div class="slsTop">
             <div class="slsTopL">
-              <div class="slsTopLT">Your stories</div>
+              <div class="slsTopLT">Your storiesHHHHHHHHHHHHHHHHHHHHH</div>
               <div class="slsTopLB friLeft">
                 <div class="search" style="margin-top: -15px;">
                   <%= form_for :search_my_story, :url => my_s_user_stories_path(current_user), :html => {:id => "my_stories_search", :method => "GET", :onsubmit => "return false;"} do %>
@@ -155,7 +155,7 @@
   $(document).ready(function(){   
     $("#my_stories_list").bind("keypress", function(e) {
       if (e.keyCode == 13) {
-        searchFriendStories();
+        $('#btnSM_submit').click();
         $('#btnM_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
         return false;
       }

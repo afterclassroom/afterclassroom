@@ -80,7 +80,8 @@
 
         },
         onComplete: function(file, response){
-          $letter.text('Uploaded Successfully');
+          //$letter.text('Uploaded Successfully');
+          $letter.text(''+response);
 
           window.clearInterval(interval);
           coverComplete= true;
@@ -135,7 +136,8 @@
 
         },
         onComplete: function(file, response){
-          $transcript.text('Uploaded Successfully');
+          //$transcript.text('Uploaded Successfully');
+          $transcript.text(''+response);
 
           window.clearInterval(script_interval);
           transComplete= true;
@@ -191,7 +193,8 @@
 
         },
         onComplete: function(file, response){
-          $resume.text('Uploaded Successfully');
+          //$resume.text('Uploaded Successfully');
+          $resume.text(''+response);
 
           window.clearInterval(resume_interval);
           resumeComplete= true;

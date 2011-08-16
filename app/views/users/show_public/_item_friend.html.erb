@@ -4,9 +4,9 @@
     <div class="flistN"><%= show_user_post(friend) %></div>
     <div class="flistS"><span>at</span><%= friend.school.name %></div>
   </div>
-	<div style="float:right">
-        <% if friend != current_user %>
-        <%= show_invite_friend(friend) %>
-        <% end %>
-    </div>
+  <div style="float:right">
+    <% if friend != current_user %>
+      <span class="support85"><%= show_invite_friend(friend) %></span>
+    <% end %>
+  </div>
 </div>

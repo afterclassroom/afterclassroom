@@ -43,7 +43,7 @@ namespace :db do
       #create_demo_press_release
       #create_demo_learn_tool_category
       #create_demo_learn_tool
-      #create_demo_my_learn_tool_lounge
+      create_demo_my_learn_tool_lounge
       create_demo_review_tool
 
     end

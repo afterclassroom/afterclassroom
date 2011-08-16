@@ -6,6 +6,7 @@
     <div class="assPic">
         <%= show_image_user_post(wall.user_post) %>
     </div>
+<<<<<<< HEAD
     <div class="AfterInfo">
         <% if wall.user_post != current_user %>
         <div class="asslinkdownSt">
@@ -28,6 +29,47 @@
         <% end %>
         <div class="AfterCl">
             <%= show_user_post(wall.user_post) %><%= raw(" posted on #{show_user_post(wall.user)}'s Lounge") if @type == "profile" and wall.user != wall.user_post %>- <%= raw(wall.content) %>
+=======
+  <% end %>
+  <div class="assPic">
+    <%= show_image_user_post(wall.user_post) %>
+  </div>
+  <div class="AfterInfo">
+    <% if wall.user_post != current_user %>
+      <div class="asslinkdownSt">
+        <div class="ichat">
+          <%= show_invite_chat(wall.user_post) %>
+        </div>
+        <div class="making wall_page_<%= @page %>">
+          <a title="Match Making" rel="facebox" href="/user_walls/match_making_box?user_id_post=<%= wall.user_id_post.to_s %>" id="myaclick">Match Making</a>
+        </div>
+        <div class="like wall_page_<%= @page %>">
+          <a title="I like you" rel="facebox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
+        </div>
+        <div class="love wall_page_<%= @page %>">
+          <a title="I love you" rel="facebox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
+        </div>
+        <div class="hate wall_page_<%= @page %>">
+          <a title="I hate you" rel="facebox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= wall.user_post.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
+        </div>
+      </div>
+
+    <% end %>
+    <div class="AfterCl">
+      <%= show_user_post(wall.user_post) %><%= raw(" posted on #{show_user_post(wall.user)}'s Lounge") if @type == "profile" and wall.user != wall.user_post %> - <%= raw(wall.content) %>
+    </div>
+    <!--Attach--><%= show_attach(wall) if wall.has_attach %><!--Attach-->
+    <div class="assInfB">
+      <div class="time">
+        <%= distance_of_time_in_words_to_now(wall.created_at, false) + " ago." %>
+      </div>
+      <div id="rate_<%= wall.id %>">
+        <%
+        check = UserWall.find_rated_by(current_user).include?(wall) if logged_in?
+        check ||= false %>
+        <div class="qashdU">
+          <%= show_rating(wall.id, wall.total_good, "user_walls", check, 1) %>
+>>>>>>> 48bfbe9545eaf826dcb1d67154a05211f1a95aa9
         </div>
         <!--Attach--><%= show_attach(wall) if wall.has_attach %><!--Attach-->
         <div class="assInfB">
@@ -61,6 +103,7 @@
                 <a href="javascript:;" onclick="showCommentForm('<%= obj.class.name %>', '<%= obj.id %>');">Comments (<span id="wall_<%= obj.class.name %>_<%= obj.id %>_comments"><%= obj.comments.size %></span>)</a>
             </div>
         </div>
+<<<<<<< HEAD
         <!--Comments-->
         <div id="wall_list_comment_<%= obj.class.name %>_<%= obj.id %>">
             <% if obj.comments.size > 0 %>
@@ -69,6 +112,33 @@
                 <div class="writeCom">
                     <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall, :post_id => obj.id, :class_name => obj.class.name}, :remote => true %>
                 </div>
+=======
+      </div>
+      <div class="com">
+        <% if wall.user_wall_post 
+          obj =	get_object_by_class_name_and_id(wall.user_wall_post.post_type, wall.user_wall_post.post_id)
+          if obj
+            if !["PhotoAlbum", "Photo", "MusicAlbum", "Music", "Video", "Story"].include?(obj.class.name)
+              obj = obj.post
+            end
+          else
+            obj = wall
+          end
+        else
+          obj = wall
+        end
+      %>
+        <a href="javascript:;" onclick="showCommentForm('<%= obj.class.name %>', '<%= obj.id %>');">Comments (<span id="wall_<%= obj.class.name %>_<%= obj.id %>_comments"><%= obj.comments.size %></span>)</a>
+      </div>
+    </div>
+    <!--Comments-->
+    <div id="wall_list_comment_<%= obj.class.name %>_<%= obj.id %>">
+      <% if obj.comments.size > 0 %>
+        <% if obj.comments.size > 2 %>
+          <div class="proList" style="width:440px">
+            <div class="writeCom">
+              <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall, :post_id => obj.id, :class_name => obj.class.name}, :remote => true %>
+>>>>>>> 48bfbe9545eaf826dcb1d67154a05211f1a95aa9
             </div>
             <% end %>
             <% obj.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
@@ -105,6 +175,7 @@
             }, 10);
         });
     });
+<<<<<<< HEAD
     $(document).ready(function(){
         $("body").append("<div id='opaque' style='display: none;'></div>");
         
@@ -120,3 +191,29 @@
         });
     });
 </script>
+=======
+  });
+  $(document).ready(function(){
+    vtip();
+  });
+  $(document).ready(function(){
+  //    $('a[rel<%= wall.user_id_post.to_s %>*=facebox]').facebox({})
+    var top = 70;
+    $(window).scroll(function() {
+      $('#facebox').stop().animate({ top: $(window).scrollTop() + top}, 10);
+    });
+    $("body").append("<div id='opaque' style='display: none;'></div>");
+
+    $(document).bind('loading.facebox', function() {
+      $("#opaque").show();
+    });
+    $(document).bind('close.facebox', function() {
+      $("#opaque").hide();
+    });
+    $(document).bind('afterReveal.facebox', function() {
+      // this is a fix for IE6 which resets the height to 100% of the window height
+      $("#opaque").height($(document).height());
+    });
+  });
+</script>
+>>>>>>> 48bfbe9545eaf826dcb1d67154a05211f1a95aa9

@@ -276,11 +276,15 @@ ActiveRecord::Schema.define(:version => 20110808102658) do
     t.text     "description"
     t.boolean  "verify"
     t.boolean  "authorize"
+    t.boolean  "ac_api"
     t.text     "href"
     t.integer  "acc_play_no"
     t.integer  "client_application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tool_img_file_name"
+    t.string   "tool_img_content_type"
+    t.integer  "tool_img_file_size"
   end
 
   create_table "messages", :force => true do |t|
@@ -345,6 +349,8 @@ ActiveRecord::Schema.define(:version => 20110808102658) do
   create_table "my_tools", :force => true do |t|
     t.integer  "user_id",      :null => false
     t.integer  "learntool_id", :null => false
+    t.boolean  "favorite"
+    t.boolean  "play_demo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
