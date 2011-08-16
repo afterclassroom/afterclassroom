@@ -201,7 +201,7 @@ class PostJobsController < ApplicationController
         render :action => "new"
       end
     else
-      session["cur_job_type_id"] = @post_job.job_type_id
+      session["cur_job_type_id"] = @post_job.job_type_id#fix bug 974
       flash[:warning] = "Captcha does not match."
       render :action => "new"
     end
@@ -249,9 +249,16 @@ class PostJobsController < ApplicationController
     cover_letter.category = "Cover letter"
     cover_letter.user_id = current_user.id
     
-    @post_job.save
+    str_result = ""#fix bug 250
+    if @post_job.save
+      str_result = "Done"
+    else
+      str_result = "File too large"
+    end
+    
+    
     ApplyJob.apply_now(current_user.id, @post_job.post.id, cover_letter.resume_cv.url).deliver
-    render :text => cover_letter.resume_cv.url
+    render :text => str_result#cover_letter.resume_cv.url
     
   end
   
@@ -265,9 +272,16 @@ class PostJobsController < ApplicationController
     transcript.category = "Transcript"
     transcript.user_id = current_user.id
     
-    @post_job.save
+    str_result = ""#fix bug 250
+    if @post_job.save
+      str_result = "Done"
+    else
+      str_result = "File too large"
+    end
+    
+    
     ApplyJob.apply_now(current_user.id, @post_job.post.id, transcript.resume_cv.url).deliver
-    render :text => transcript.resume_cv.url
+    render :text => str_result#transcript.resume_cv.url
     
   end
   
@@ -281,9 +295,14 @@ class PostJobsController < ApplicationController
     resume.category = "Resume"
     resume.user_id = current_user.id
     
-    @post_job.save
+    str_result = ""#fix bug 250
+    if @post_job.save
+      str_result = "Done"
+    else
+      str_result = "File too large"
+    end
     ApplyJob.apply_now(current_user.id, @post_job.post.id, resume.resume_cv.url).deliver
-    render :text => resume.resume_cv.url
+    render :text => str_result#resume.resume_cv.url
     
   end
   
