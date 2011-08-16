@@ -76,7 +76,7 @@
     border-color:#29447E #29447E #1A356E;*/
     font-weight:bold;
     font-size:11px;
-    background:url(/images/btm48.png);
+    background:url(/images/btmPop.png);
     cursor:pointer;
     float:left;
     color:#FFFFFF;
@@ -86,7 +86,7 @@
     line-height:24px;
 }
 .uiButtonConfirm a:hover{
-    background:url(/images/btm48Red.png);
+    background:url(/images/btmPopH.png);
 }
 #facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
     height: 10px;
@@ -134,8 +134,8 @@
     z-index: 99;
     display: none;
     background-color: black;
-    filter: alpha(opacity=40);
-    opacity: 0.4;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
 }
 .friends_area{
     width:135px;

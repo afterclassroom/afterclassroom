@@ -34,6 +34,22 @@
 </ul>
 
 <script>
+//  $('#facebox .mcdropdown').eq(0).find('a').bind('click', function(){
+//var num = $('#city_menu.mcdropdown_menu').length-1;
+//var status = $('#city_menu.mcdropdown_menu').eq(num).css('display');
+//if (status == 'block'){
+//$('#facebox .mcdropdown').eq(2).find('a').click();
+//}
+//});
+//
+//
+//  $(document).ready(function() {
+//$(".container").hover(
+//      function() { $(this).children('.comment_actions').show(); },
+//      function() { $(this).children('.comment_actions').hide(); }
+// );
+
+//});
   // $(function() {
   //	$('#country_menu,#state_menu,#city_menu,#school_menu').hover(function() {
   //		$(this).stop().show();
@@ -48,8 +64,8 @@
   //	});
   //  });
   $(function(){
-    $('#facebox .mcdropdown a').eq(1).click(function(){
-      $('.mcdropdown_menu').hide();
+    $('#facebox div.mcdropdown a').eq(0).click(function(){
+      $('#city_menu .mcdropdown_menu').hide();
     });
   });
   $(function() {
