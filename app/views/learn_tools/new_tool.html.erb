@@ -1,5 +1,10 @@
+<%= render :partial => "top_learn" %>
+
 <div class="abLink postLink">
-  <div class="abLinkL">You are here: <a href="#">Learning Tools</a><a class="abLink-detail" href="#">Post</a></div>
+  <div class="abLinkL">You are here: 
+    <a href="<%= url_for(:controller => "learn_tools", :action => "index") %>">Learning Tools</a>
+    <a class="abLink-detail" href="#">Post</a>
+  </div>
 
 </div>
 
