@@ -1,6 +1,6 @@
 class GoogleChart
   include ActionView::Helpers
-  SERVER = 'https://chart.apis.google.com/chart?'.freeze
+  SERVER = 'https://chart.googleapis.com/chart?'.freeze
   TYPE_VAR = 'cht'.freeze
   TITLE_VAR = 'chtt'.freeze
   SIZE_VAR = 'chs'.freeze

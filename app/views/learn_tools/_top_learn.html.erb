@@ -1,0 +1,22 @@
+<div class="topLearning">
+  <div class="menuRL">
+    <!-- div class="menuRItem menuRselect"><a href="#"><span class="span1"><span class="span2">Recommend Learning Tools</span></span></a></div -->
+    <div class="menuRItem <%= controller.action_name == "index" ? "menuRselect" : "" %>">
+      <a href=<%= controller.action_name == "index" ? "javascript:;" : "#{url_for(:controller => "learn_tools", :action => "index")}" %>><span class="span1"><span class="span2">Recommend Learning Tools</span></span></a>
+    </div>
+
+    <div class="menuRItem <%= controller.action_name == "new_tool" ? "menuRselect" : "" %>">
+      <% if controller.action_name == "index" %>
+        <%= link_to content_tag(:span, content_tag(:span, "Submit Learning Tools", :class => "span2"), :class => "span1"), "#{url_for(:controller => "learn_tools", :action => "choose_to_add")}?height=120&width=292", :class => "thickbox", :title => "Please select ..." %>
+      <% else %>
+            <a href="javascript:;"><span class="span1"><span class="span2">Submit Learning Tools</span></span></a>
+
+      <% end %>
+    </div>
+
+    <div class="menuRItem">
+      <a href="<%= mylearn_user_learn_tools_path(current_user) %>"><span class="span1"><span class="span2">My Learning Tools</span></span></a>
+    </div>
+    
+  </div>
+</div>

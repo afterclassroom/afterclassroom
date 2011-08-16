@@ -1,5 +1,8 @@
+<%# NOTICE: because we have not define the function "verify", so that I set nocheck = "no_check" to disable the green icon %>
+<%# later, if we have this function I will put it in again%>
+<% nocheck = "no_check" %>
 <div id="rate_id_<%= tool.id %>" class="learnTst" style="<%= ( nocheck != nil && nocheck == "no_check") ? "background: url('')" : "" %>">
-  <%#
+  <%
   check = Learntool.find_rated_by(current_user).include?(tool) if logged_in?
   check ||= false %>
   

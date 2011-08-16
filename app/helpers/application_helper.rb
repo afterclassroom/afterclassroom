@@ -669,7 +669,7 @@ module ApplicationHelper
   def show_attach(wall)
     if wall.user_wall_photo
       link = wall.user_wall_photo.sub_content
-      img_link = link_to(raw(image_tag(wall.user_wall_photo.link, :style => "width:92px;height:68px")), wall.user_wall_photo.link, :target => "_blank", :class => "imageLink")
+      img_link = link_to(raw(image_tag("/gadgets_proxy/link?url=#{wall.user_wall_photo.link}", :style => "width:92px;height:68px")), wall.user_wall_photo.link, :target => "_blank", :class => "imageLink")
       image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_photo.title
       sub_content = ""
