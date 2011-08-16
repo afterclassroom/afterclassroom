@@ -93,7 +93,7 @@ class FriendsController < ApplicationController
       user = User.find(params[:friend_id])
       if fig.save
         subject = "#{current_user.name} adds you to Family Group."
-        content = "Please click <a href='#{user_profiles_path(current_user)}' target='blank'>here</a> to view #{current_user.name}'s profile"
+        content = "Please click <a href='#{user_profiles_url(current_user)}' target='blank'>here</a> to view #{current_user.name}'s profile"
         if params[:group_id] == "1"
           send_notification(user, subject, content, "confirms_a_friendship_request")
         end
