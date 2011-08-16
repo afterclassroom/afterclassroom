@@ -201,6 +201,7 @@ class PostJobsController < ApplicationController
         render :action => "new"
       end
     else
+      session["cur_job_type_id"] = @post_job.job_type_id
       flash[:warning] = "Captcha does not match."
       render :action => "new"
     end
