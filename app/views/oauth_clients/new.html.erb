@@ -1,5 +1,5 @@
 <div class="abLink postLink">
-  <div class="abLinkL">You are here: <a href="#">Learning Tools</a><a class="abLink-detail" href="#">Post</a></div>
+  <div class="abLinkL">You are here: <a href="#">Developer</a><a class="abLink-detail" href="#">Post</a></div>
 
 </div>
 
@@ -31,8 +31,8 @@
 
 
               <div class="postItem">
-                <div class="postTit">Main Application URL*</div>
-                <div class="postInp"><%= ca.text_field :url, :class => '{validate:{required:true}}' %></div>
+                <div class="postTit">Main URL*</div>
+                <div class="postInp"><%= ca.text_field :url, :class => '{validate:{required:true, url:true}}' %></div>
               </div>           
 
 
@@ -41,14 +41,14 @@
 
               <div class="postItem">
                 <div class="postTit">Callback URL*</div>
-                <div class="postInp"><%= ca.text_field :callback_url, :class => '{validate:{required:true}}' %></div>
+                <div class="postInp"><%= ca.text_field :callback_url, :class => '{validate:{required:true, url:true}}' %></div>
               </div>                
 
 
 
               <div class="postItem">
                 <div class="postTit">Support URL</div>
-                <div class="postInp"><%= ca.text_field :support_url %></div>
+                <div class="postInp"><%= ca.text_field :support_url, :class => '{validate:{url:true}}'  %></div>
               </div>               
 
 
