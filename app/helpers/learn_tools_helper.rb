@@ -28,11 +28,6 @@ module LearnToolsHelper
     fan_results #return this array
   end
   
-  def is_tool_favorite(tool,user)
-    item = MyTool.find(:first, :conditions => [ "learntool_id = #{tool.id} AND user_id = #{user.id}"] )
-    item ? item.favorite : false
-  end
-  
   def show_tool_fan_register(tool)
     str = ""
     if !logged_in?
