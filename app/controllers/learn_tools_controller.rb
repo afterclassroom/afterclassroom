@@ -6,6 +6,7 @@ class LearnToolsController < ApplicationController
   before_filter :get_variables, :only => [:index, :search_tool, :new_tool, :submit_new_tool, :new_tool_with_api, :create_tool_with_api]
   
   def index
+    @cur_bottom_tab = "first"#by default, the first bottom-tab is selected
     if params[:tool_cate] == "-1"
       @features = Learntool.paging_featured(params)
       params[:feature_page] = params[:feature_page] ? params[:feature_page]  : "1"
@@ -253,6 +254,7 @@ class LearnToolsController < ApplicationController
   def submit_new_tool
     @tool = Learntool.new(params[:learntool])
     @tool.user = current_user
+    @tool.verify = false #meaning::tool has not been verified
     if simple_captcha_valid?
       if @tool.save
         flash[:notice] = "Your tool was successfully submitted."
@@ -290,6 +292,7 @@ class LearnToolsController < ApplicationController
     tool.name = client_application.name
     tool.href = client_application.url
     tool.ac_api = true
+    tool.verify = false #meaning::tool has not been verified
     
     
     if simple_captcha_valid?

@@ -3,7 +3,7 @@
 <div class="abLink postLink">
   <div class="abLinkL">You are here: 
     <a href="<%= url_for(:controller => "learn_tools", :action => "index") %>">Learning Tools</a>
-    <a class="abLink-detail" href="#">Post</a>
+    <a class="abLink-detail" href="javascript:;">Post</a>
   </div>
 
 </div>
@@ -32,7 +32,7 @@
             <div class="postItem">
               <div class="postTit">Description*</div>
               <div class="postInput">
-                <div class="postDesInf">900 characters max - Current: 0 character</div>
+                <div class="postDesInf" id="desc_count">900 characters max - Current: 0 character</div>
                 <div class="postInp"><%= f.text_area :description, :class => '{validate:{required:true}}' %></div>
               </div>
             </div>
@@ -76,6 +76,14 @@
     });
     $('#reset_form').click(function(){
       document.getElementById('form_new_tool').reset();
+    });
+    //desc_count
+    $('#learntool_description').keyup(function(){
+      var len = this.value.length;
+      if (len >= 900) {
+        this.value = this.value.substring(0, 900);
+      }
+      $('#desc_count').text("900 characters max - Current: "+len+" character")
     });
   });
 </script>

@@ -23,12 +23,12 @@
 </div>
 <!--Content-->
 <% if controller.action_name == "search" %><!-- this condition to fix bug 1100 -->
-<% strstyle = @forums.results.length == 1 ? "height: 321px;" : "" %>
+  <% strstyle = @forums.results.length == 1 ? "height: 350px;" : "" %>
 <% else %>
-<% strstyle = "" %>
+  <% strstyle = "" %>
 <% end %>
 
-<div class="contMainLH">
+<div class="contMainLH" style="<%= strstyle %>">
   <div class="col654 QAs">
     <div class="col654in">
       <div class="col654Cont">
@@ -117,9 +117,9 @@
                 <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom" onclick="submitQ();"/>
               </div>
             <% else %>
-            <div style="margin-top: 5px;" class="submit">
-              <%= link_to_require_login('Submit') %>
-            </div>
+              <div style="margin-top: 5px;" class="submit">
+                <%= link_to_require_login('Submit') %>
+              </div>
             <% end %>
           </div>
         <% end -%>

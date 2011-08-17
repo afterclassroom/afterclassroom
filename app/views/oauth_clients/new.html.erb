@@ -1,5 +1,5 @@
 <div class="abLink postLink">
-  <div class="abLinkL">You are here: <a href="#">Learning Tools</a><a class="abLink-detail" href="#">Post</a></div>
+  <div class="abLinkL">You are here: <a href="#">Developer</a><a class="abLink-detail" href="#">Post</a></div>
 
 </div>
 
@@ -17,7 +17,7 @@
             <div class="postItem">
               <div class="postTit">Submit new tool</div>
               <div class="postInp">
-                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
+                <%= f.select("learn_tool_cate_id", "<option value='-1'>Please select</option>"+options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
               </div>
             </div>
 
@@ -31,8 +31,8 @@
 
 
               <div class="postItem">
-                <div class="postTit">Main Application URL*</div>
-                <div class="postInp"><%= ca.text_field :url, :class => '{validate:{required:true}}' %></div>
+                <div class="postTit">Main URL*</div>
+                <div class="postInp"><%= ca.text_field :url, :class => '{validate:{required:true, url:true}}' %></div>
               </div>           
 
 
@@ -41,14 +41,14 @@
 
               <div class="postItem">
                 <div class="postTit">Callback URL*</div>
-                <div class="postInp"><%= ca.text_field :callback_url, :class => '{validate:{required:true}}' %></div>
+                <div class="postInp"><%= ca.text_field :callback_url, :class => '{validate:{required:true, url:true}}' %></div>
               </div>                
 
 
 
               <div class="postItem">
                 <div class="postTit">Support URL</div>
-                <div class="postInp"><%= ca.text_field :support_url %></div>
+                <div class="postInp"><%= ca.text_field :support_url, :class => '{validate:{url:true}}'  %></div>
               </div>               
 
 
@@ -57,7 +57,7 @@
             <div class="postItem">
               <div class="postTit">Description*</div>
               <div class="postInput">
-                <div class="postDesInf">900 characters max - Current: 0 character</div>
+                <div class="postDesInf" id="desc_count">900 characters max - Current: 0 character</div>
                 <div class="postInp"><%= f.text_area :description, :class => '{validate:{required:true}}' %></div>
               </div>
             </div>
@@ -97,5 +97,13 @@
     $('#reset_form').click(function(){
       document.getElementById('form_new_tool').reset();
     });
+    $('#learntool_description').keyup(function(){
+      var len = this.value.length;
+      if (len >= 900) {
+        this.value = this.value.substring(0, 900);
+      }
+      $('#desc_count').text("900 characters max - Current: "+len+" character")
+    });
+
   });
 </script>

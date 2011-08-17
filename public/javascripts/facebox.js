@@ -80,7 +80,7 @@
       closeOnClick: false,
       opacity      : 0,
       overlay      : true,
-      loadingImage : '/images/ajax-loader-a.gif',
+      loadingImage : '/images/loadingAnimation.gif',
       closeImage   : 'closelabel.gif',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
