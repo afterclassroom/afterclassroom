@@ -77,7 +77,7 @@ class Post < ActiveRecord::Base
     sort = 'DESC'
     sort = params[:sort] if params[:sort]
     Post.search do
-      if params[:search][:query].present?
+      if params[:search].present?
         keywords(params[:search][:query]) do
           highlight :description
         end

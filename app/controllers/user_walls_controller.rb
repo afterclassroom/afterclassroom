@@ -275,7 +275,7 @@ class UserWallsController < ApplicationController
       #Get thumbnail
       arr = link.match("[\\?&]v=([^&#]*)")
       vid = arr == nil ? link : arr[1]
-      thumb = "http://img.youtube.com/vi/"+vid+"/2.jpg"
+      thumb = "https://img.youtube.com/vi/"+vid+"/2.jpg"
       
       @user_wall_video = UserWallVideo.new
       @user_wall_video.link = link

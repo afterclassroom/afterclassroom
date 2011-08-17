@@ -45,7 +45,7 @@ class PostManagementsController < ApplicationController
     posts = current_user.posts.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
     if posts.size > 0
       posts.each do |abl|
-        abl.favorites.destroy_all
+        abl.favorites.destroy_all if abl.favorites.size > 0
         abl.destroy
       end
     end
