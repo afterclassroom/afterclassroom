@@ -1,4 +1,4 @@
-#facebox .b {
+/*#facebox .b {
     background:url(b..png);
     background-color:#EBEBEB;
 }
@@ -21,7 +21,7 @@
 #facebox .br {
     background:url(br..png);
     background-color:#EBEBEB;
-}
+}*/
 
 #facebox {
     position: absolute;
@@ -29,7 +29,12 @@
     left: 0;
     z-index: 100;
     text-align: left;
+    /*  border: 3px solid #1D98DF;*/
+}
+#facebox .content{
     border: 3px solid #1D98DF;
+    padding: 10px;
+    background:#EBEBEB;
 }
 
 #facebox .popup {
@@ -47,12 +52,17 @@
 
 #facebox .body {
     background: #fff;
-    width: 500px;
-
+    width: 208px;
+  /*  height: 13px;*/
 }
 
 #facebox .loading {
     text-align: center;
+    width: 208px;
+    height: 0px;
+}
+#facebox .loading img{
+   margin-top:150px;
 }
 
 #facebox .image {

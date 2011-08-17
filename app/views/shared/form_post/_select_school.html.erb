@@ -8,15 +8,15 @@
 </div>
 <script>
   $(document).ready(function(){
-    $("a.thickbox").click(function(){
+    $("a#facebox").click(function(){
       $('#department_menu,#year_menu').hide();
     });
   });
   $(document).ready(function(){
-    var top = 70;
-    $(window).scroll(function() {
-      $('#facebox').stop().animate({ top: $(window).scrollTop() + top}, 1);
-    });
+//    var top = 70;
+//    $(window).scroll(function() {
+//      $('#facebox').stop().animate({ top: $(window).scrollTop() + top}, 1);
+//    });
     $("body").append("<div id='opaque' style='display: none;'></div>");
 
     $(document).bind('loading.facebox', function() {
