@@ -41,7 +41,7 @@ namespace :db do
       #create_demo_posts_forums
 
       #create_demo_press_release
-      create_demo_learn_tool_category
+      #create_demo_learn_tool_category
       create_demo_learn_tool
       create_demo_my_learn_tool_lounge
       create_demo_review_tool
@@ -679,6 +679,8 @@ def create_demo_learn_tool
       l.href = href[rand(href.size).to_i]
       l.learn_tool_cate = cate
       l.acc_play_no = rand(10)
+      l.atc_creator = bool_array[rand(bool_array.size).to_i]
+      l.ac_api = false #we do not allow API tool for now, so, I set it to FALSE 
       
       #BEGIN generate image attach
       avatars = nil

@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(:version => 20110808102658) do
     t.boolean  "verify"
     t.boolean  "authorize"
     t.boolean  "ac_api"
+    t.boolean  "atc_creator"
     t.text     "href"
     t.integer  "acc_play_no"
     t.integer  "client_application_id"
@@ -638,18 +639,6 @@ ActiveRecord::Schema.define(:version => 20110808102658) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "rates", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.integer  "stars"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rates", ["post_id"], :name => "index_rates_on_post_id"
-  add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
 
   create_table "rating_statistics", :force => true do |t|
     t.integer "rated_id"
