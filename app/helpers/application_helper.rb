@@ -730,7 +730,7 @@ module ApplicationHelper
           img_link = link_to(raw(image_tag(obj.photo_attach.url(:thumb), :style => "width:92px;height:68px")), obj.photo_attach.url, :class => "imageLink", :target => "_blank")
           image = get_image_wall(wall.id, img_link)
           title = obj.title
-          sub_content = truncate_html(obj.description, :length => 100, :omission => '...')
+          sub_content = truncate_words(obj.description)
           when "MusicAlbum"
           link = show_music_album_user_url(obj.user, :music_album_id => obj)
           img_link = link_to image_tag(obj.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
@@ -747,6 +747,14 @@ module ApplicationHelper
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           sub_content = obj.description
+          when "Story"
+          link = user_story_path(obj.user, obj)
+          if display_image(obj) != ""
+            img_link = link_to display_image(obj, {:style => "width:92px;height:68px"}), link, :target => "_blank"
+            image = get_image_wall(wall.id, img_link)
+          end
+          title = obj.title
+          sub_content = truncate_words(obj.content)
           when "PostAssignment"
           link = post_assignment_path(obj)
           img_link = link_to image_post_thumb("post_assignments", obj.post), link, :target => "_blank"

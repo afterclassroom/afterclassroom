@@ -144,14 +144,17 @@ class StoriesController < ApplicationController
     state = params[:state]
     @story = Story.new(params[:story])
     @story.user = current_user
-    
+    content = Hpricot(params[:story][:content])
+    content.search("img").each {|e| e.attributes['src'] = "/gadgets_proxy/link?url=#{e.attributes['src']}" if e.attributes['src'].index('http') == 0}
+    content.search("a").each {|e| e.attributes['href'] = "/gadgets_proxy/link?url=#{e.attributes['href']}" if e.attributes['href'].index('http') == 0}
+    @story.content = content.to_html
     respond_to do |format|
       if @story.save
         @story.state = state
         @story.save
         flash[:notice] = 'Story was successfully created.'
         if state == "share"
-          story_wall(@story) if check_private_permission(current_user, "my_stories")
+          post_wall(@story) if check_private_permission(current_user, "my_stories")
           path = user_stories_path(current_user)
         else
           path = draft_user_stories_path(current_user)
@@ -170,10 +173,14 @@ class StoriesController < ApplicationController
   def update
     state = params[:state]
     @story = Story.find(params[:id])
-    
     @story.state = state
     respond_to do |format|
       if @story.update_attributes(params[:story])
+        content = Hpricot(params[:story][:content])
+        content.search("img").each {|e| e.attributes['src'] = "/gadgets_proxy/link?url=#{e.attributes['src']}" if e.attributes['src'].index('http') == 0}
+    content.search("a").each {|e| e.attributes['href'] = "/gadgets_proxy/link?url=#{e.attributes['href']}" if e.attributes['href'].index('http') == 0}
+        @story.content = content.to_html
+        @story.save
         flash[:notice] = 'Story was successfully updated.'
         format.html { redirect_to(user_stories_path(current_user)) }
         format.xml  { head :ok }
