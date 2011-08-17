@@ -34,7 +34,9 @@ class LearnToolsController < ApplicationController
   end
   
   def mylearn
-    @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
+    #@my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
+    size = current_user.my_tools.size
+    @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => size)
   end
   
   def show
@@ -94,46 +96,6 @@ class LearnToolsController < ApplicationController
     mt.favorite = true
     mt.save
     render :text => "Add Complete"
-  end
-  
-  def add_favorite_with_check
-    #this one differ from above
-    #we need to check whether myleartool for this current user has contained
-    #this tool or not, if yes then add favorite=true, if not, then create and
-    #add favorite = true
-    #
-    mtobj = MyTool.find(:first, :conditions => { :learntool_id => params[:current_tool_id], :user_id => current_user.id })
-    tool = Learntool.find(params[:current_tool_id])
-    
-    if mtobj != nil
-      mtobj.favorite = true
-    else
-      mtobj = MyTool.new
-      mtobj.user = current_user
-      mtobj.learntool =  tool
-      mtobj.favorite = true
-    end
-    
-    mtobj.save
-    
-    render :text => "Add Complete"
-  end
-  
-  def update_play_demo
-    mtobj = current_user.my_tools.where("learntool_id = ?", params[:current_tool_id]).first
-    tool = Learntool.find(params[:current_tool_id])
-    if mtobj != nil
-      mtobj.play_demo = true
-    else
-      mtobj = MyTool.new
-      mtobj.user = current_user
-      mtobj.learntool =  tool
-      mtobj.play_demo = true
-    end
-    
-    mtobj.save
-    
-    render :text => "Update Status Complete"
   end
   
   def featured_tool_paging
