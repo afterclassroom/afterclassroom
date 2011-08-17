@@ -101,6 +101,7 @@ class OauthClientsController < ApplicationController
     @tool.name = @client_application.name
     @tool.href = @client_application.url
     @tool.ac_api = true
+    @tool.verify = false #meaning::tool has not been verified
     
     if simple_captcha_valid?
       if @client_application.save && @tool.save

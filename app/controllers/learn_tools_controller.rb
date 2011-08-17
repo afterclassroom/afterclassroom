@@ -254,6 +254,7 @@ class LearnToolsController < ApplicationController
   def submit_new_tool
     @tool = Learntool.new(params[:learntool])
     @tool.user = current_user
+    @tool.verify = false #meaning::tool has not been verified
     if simple_captcha_valid?
       if @tool.save
         flash[:notice] = "Your tool was successfully submitted."
@@ -291,6 +292,7 @@ class LearnToolsController < ApplicationController
     tool.name = client_application.name
     tool.href = client_application.url
     tool.ac_api = true
+    tool.verify = false #meaning::tool has not been verified
     
     
     if simple_captcha_valid?
