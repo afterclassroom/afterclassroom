@@ -6,6 +6,7 @@ class LearnToolsController < ApplicationController
   before_filter :get_variables, :only => [:index, :search_tool, :new_tool, :submit_new_tool, :new_tool_with_api, :create_tool_with_api]
   
   def index
+    @cur_bottom_tab = "first"#by default, the first bottom-tab is selected
     if params[:tool_cate] == "-1"
       @features = Learntool.paging_featured(params)
       params[:feature_page] = params[:feature_page] ? params[:feature_page]  : "1"
