@@ -35,7 +35,7 @@ class Learntool < ActiveRecord::Base
   handle_asynchronously :solr_index  
   
   #with_featured is those tools use AfterclassroomAPI
-  scope :with_featured, :conditions => "client_application_id > 0", :order => "learntools.acc_play_no DESC"
+  scope :with_featured, :conditions => "atc_creator = true", :order => "learntools.acc_play_no DESC"
   
   #with_payable is those tools that third-party pay money to AfterClassroom
   scope :with_may_like, :order => "learntools.acc_play_no DESC"
