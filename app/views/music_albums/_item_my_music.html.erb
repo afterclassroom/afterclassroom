@@ -1,5 +1,5 @@
 <div class="musicL">
   <div class="musicB">
-    <div class="musicN"><%= check_box_tag "music_id", music.id %><%= link_to truncate((music.title == "" ? music.music_attach_file_name : music.title), :length => 45, :omission => '...' ), user_music_path(current_user, music) %></div>
+    <div class="musicN"><%= check_box_tag "music_id", music.id %><%= link_to truncate(((music.title == "" or music.title == nil) ? music.music_attach_file_name : music.title), :length => 45, :omission => '...' ), user_music_path(current_user, music) %></div>
   </div>
 </div>

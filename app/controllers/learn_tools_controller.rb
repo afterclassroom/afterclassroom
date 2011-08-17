@@ -6,6 +6,7 @@ class LearnToolsController < ApplicationController
   before_filter :get_variables, :only => [:index, :search_tool, :new_tool, :submit_new_tool, :new_tool_with_api, :create_tool_with_api]
   
   def index
+    @cur_bottom_tab = "first"#by default, the first bottom-tab is selected
     if params[:tool_cate] == "-1"
       @features = Learntool.paging_featured(params)
       params[:feature_page] = params[:feature_page] ? params[:feature_page]  : "1"
@@ -33,7 +34,9 @@ class LearnToolsController < ApplicationController
   end
   
   def mylearn
-    @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
+    #@my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
+    size = current_user.my_tools.size
+    @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => size)
   end
   
   def show
@@ -93,46 +96,6 @@ class LearnToolsController < ApplicationController
     mt.favorite = true
     mt.save
     render :text => "Add Complete"
-  end
-  
-  def add_favorite_with_check
-    #this one differ from above
-    #we need to check whether myleartool for this current user has contained
-    #this tool or not, if yes then add favorite=true, if not, then create and
-    #add favorite = true
-    #
-    mtobj = MyTool.find(:first, :conditions => { :learntool_id => params[:current_tool_id], :user_id => current_user.id })
-    tool = Learntool.find(params[:current_tool_id])
-    
-    if mtobj != nil
-      mtobj.favorite = true
-    else
-      mtobj = MyTool.new
-      mtobj.user = current_user
-      mtobj.learntool =  tool
-      mtobj.favorite = true
-    end
-    
-    mtobj.save
-    
-    render :text => "Add Complete"
-  end
-  
-  def update_play_demo
-    mtobj = current_user.my_tools.where("learntool_id = ?", params[:current_tool_id]).first
-    tool = Learntool.find(params[:current_tool_id])
-    if mtobj != nil
-      mtobj.play_demo = true
-    else
-      mtobj = MyTool.new
-      mtobj.user = current_user
-      mtobj.learntool =  tool
-      mtobj.play_demo = true
-    end
-    
-    mtobj.save
-    
-    render :text => "Update Status Complete"
   end
   
   def featured_tool_paging
@@ -253,6 +216,7 @@ class LearnToolsController < ApplicationController
   def submit_new_tool
     @tool = Learntool.new(params[:learntool])
     @tool.user = current_user
+    @tool.verify = false #meaning::tool has not been verified
     if simple_captcha_valid?
       if @tool.save
         flash[:notice] = "Your tool was successfully submitted."
@@ -290,6 +254,7 @@ class LearnToolsController < ApplicationController
     tool.name = client_application.name
     tool.href = client_application.url
     tool.ac_api = true
+    tool.verify = false #meaning::tool has not been verified
     
     
     if simple_captcha_valid?

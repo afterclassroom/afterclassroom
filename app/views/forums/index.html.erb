@@ -23,7 +23,7 @@
 </div>
 <!--Content-->
 <% if controller.action_name == "search" %><!-- this condition to fix bug 1100 -->
-  <% strstyle = @forums.results.length == 1 ? "height: 350px;" : "" %>
+  <% strstyle = @forums.results.length == 1 ? "min-height: 370px;" : "" %>
 <% else %>
   <% strstyle = "" %>
 <% end %>

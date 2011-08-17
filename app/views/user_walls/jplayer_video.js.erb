@@ -1,9 +1,9 @@
-$("#wall_attach_<%= @wall.id %>").toggle("slow");
-$("#show_jplayer_<%= @wall.id %>").html('<div id="player_<%= @wall.id %>"></div>');
- var so_<%= @wall.id %> = new SWFObject('/javascripts/playerSWF.swf','player_<%= @wall.id %>','425','300','9','#000000');
-  so_<%= @wall.id %>.addParam('allowfullscreen','true');
-  so_<%= @wall.id %>.addParam('allowscriptaccess','always');
-  so_<%= @wall.id %>.addParam('wmode','opaque');
-  so_<%= @wall.id %>.addVariable('autostart','true');
-  so_<%= @wall.id %>.addVariable('file','<%= @link %>');
-  so_<%= @wall.id %>.write('player_<%= @wall.id %>');
+	$("#wall_attach_<%= @wall.id %>").toggle("slow");
+	$("#show_jplayer_<%= @wall.id %>").html('<div id="player_<%= @wall.id %>"></div>');
+	 var so_<%= @wall.id %> = new SWFObject('/javascripts/playerSWF.swf','player_<%= @wall.id %>','425','300','9','#000000');
+	  so_<%= @wall.id %>.addParam('allowfullscreen','true');
+	  so_<%= @wall.id %>.addParam('allowscriptaccess','always');
+	  so_<%= @wall.id %>.addParam('wmode','opaque');
+	  so_<%= @wall.id %>.addVariable('autostart','true');
+	  so_<%= @wall.id %>.addVariable('file','<%= @link %>');
+	  so_<%= @wall.id %>.write('player_<%= @wall.id %>');
