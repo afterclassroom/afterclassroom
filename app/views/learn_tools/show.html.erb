@@ -10,12 +10,12 @@
           </div>
           <div class="demoBtm">
             <a id="play_tool_now" href="javascript:;">Play now</a>
-
-
           </div>
         </div>
         <div class="demoBtm" style="margin-top: 10px">
-          <a id="add_tool_to_mytool" href="javascript:;">Add to My Tool</a>
+          <% if  is_my_tool(@tool) == false %>
+            <a id="add_tool_to_mytool" href="javascript:;">Add to My Tool</a>
+          <% end %>
         </div>
       </div>
     </div>
