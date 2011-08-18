@@ -1,9 +1,8 @@
-<div class="abLink postLink">
+<div class="abLink postLink" style="padding-bottom: 0px;">
   <div class="abLinkL">You are here: 
     <a href="<%= url_for(:controller => "learn_tools", :action => "index") %>">Learning Tools</a>
     <a class="abLink-detail" href="javascript:;"></a>
   </div>
-
 </div>
 <div class="topLearning">
   <div class="menuRL">
@@ -12,19 +11,27 @@
       <a href=<%= controller.action_name == "index" ? "javascript:;" : "#{url_for(:controller => "learn_tools", :action => "index")}" %>><span class="span1"><span class="span2">Recommend Learning Tools</span></span></a>
     </div>
     <div class="menuRItem <%= controller.action_name == "new_tool" ? "menuRselect" : "" %>">
-      <% if controller.action_name == "index" %>
-        <%= link_to content_tag(:span, content_tag(:span, "Submit Learning Tools", :class => "span2"), :class => "span1"), "#{url_for(:controller => "learn_tools", :action => "choose_to_add")}?height=120&width=292", :class => "thickbox", :title => "Please select ..." %>
+      <% if (controller.action_name == "index" || controller.action_name == "show" || controller.action_name == "mylearn") %>
+  <%# NOTE: following has been disabled due to NO API TOOLS ALLOWED for now, I will enable it later, when api is allow %>
+  <%#= link_to content_tag(:span, content_tag(:span, "Submit Learning Tools", :class => "span2"), :class => "span1"), "#{url_for(:controller => "learn_tools", :action => "choose_to_add")}?height=120&width=292", :class => "thickbox", :title => "Please select ..." %>
+        <%= link_to content_tag(:span, content_tag(:span, "Submit Learning Tools", :class => "span2"), :class => "span1"), "#{url_for(:controller => "learn_tools", :action => "new_tool")}" %>
       <% else %>
-            <a href="javascript:;"><span class="span1"><span class="span2">Submit Learning Tools</span></span></a>
+        <a href="javascript:;"><span class="span1"><span class="span2">Submit Learning Tools</span></span></a>
       <% end %>
     </div>
-    <div class="menuRItem">
-      <a href="<%= mylearn_user_learn_tools_path(current_user) %>"><span class="span1"><span class="span2">My Learning Tools</span></span></a>
-    </div>
+    <% if controller.action_name == "mylearn" %>
+      <div class="menuRItem menuRselect">
+        <a href="javascript:;"><span class="span1"><span class="span2">My Learning Tools</span></span></a>
+      </div>
+    <% else %>
+      <div class="menuRItem">
+        <a href="<%= mylearn_user_learn_tools_path(current_user) %>"><span class="span1"><span class="span2">My Learning Tools</span></span></a>
+      </div>
+    <% end %>
     <% if controller.action_name == "show" %>
-    <div class="menuRItem menuRselect">
-      <a href="javascript:;"><span class="span1"><span class="span2">Detail</span></span></a>
-    </div>
+      <div class="menuRItem menuRselect">
+        <a href="javascript:;"><span class="span1"><span class="span2">Detail</span></span></a>
+      </div>
     <% end%>
   </div>
 </div>
