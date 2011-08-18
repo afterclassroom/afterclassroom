@@ -34,9 +34,9 @@ class LearnToolsController < ApplicationController
   end
   
   def mylearn
-    #@my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
+    @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
     size = current_user.my_tools.size
-    @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => size)
+    #@my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => size)
   end
   
   def show
@@ -86,16 +86,6 @@ class LearnToolsController < ApplicationController
       flash[:notice] = "Your review was successfully created."
     end
     render :layout => false
-  end
-  
-  def add_favorite
-    #this action is applied for page My Learning Tool
-    #hence, we do not need to check whether this id of MyTool exist or NOT
-    mt = MyTool.find(:first, :conditions => { :id => params[:str_mytool_id], :user_id => current_user.id })
-    
-    mt.favorite = true
-    mt.save
-    render :text => "Add Complete"
   end
   
   def featured_tool_paging
@@ -281,7 +271,21 @@ class LearnToolsController < ApplicationController
     
   end
   
-  def choose_to_add
+  def verify_handler
+    tool = Learntool.find(params[:tool_id])
+    tool.verify = params[:check_status]
+    tool.save
+    render :text => "Done"
+  end
+  
+  def owner_handler
+    tool = Learntool.find(params[:tool_id])
+    tool.atc_creator = params[:own_status]
+    tool.save
+    render :text => "Done == #{tool.atc_creator}, new state = #{params[:own_status]}"
+  end
+  
+  def choose_to_add #display options API/NonAPI when user add new tool
     render :layout => false
   end
   

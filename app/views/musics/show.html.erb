@@ -1,90 +1,92 @@
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => '/shared/submenu' %>
+  <%= render :partial => '/shared/submenu' %>
 <% end -%>
 <div class="slStoryL">
-    <div class="contDetL">
-        <div class="contDetLin">
-            <div class="inboxLeft">
-                <div class="slsShare">
-                    <div class="slsShareL">
-                        <span>You are here:</span>
-                        <%= link_to "Musics", user_musics_url(current_user), :class => "slsShareLink" %>
-                        <a href="javascript:;" class="slsShareLinkL"><%= current_user == @music.user ? "Your musics" : "Friends shared musics" %></a>
-                    </div>
-                    <div class="slsShareR">
-                        <%= render :partial => "menu" %>
-                    </div>
-                </div>
-                <%= display_flash_messages_with_raw %>
-                <%= render :partial => "expand_create_music_album" %>
-                <div class="stoDet phoD">
-                    <div class="AsDcomImg">
-                        <%= show_image_user_post(@music.user) %>
-                    </div>
-                    <div class="stoDetR">
-                        <div class="stoDetRT">
-                            <%= @music.user.full_name %>: <%= @music.title %>
-                        </div>
-                    </div>
-                </div>
-                <div class="onThisBtm">
-                    <div class="stoPre">
-                        <%= link_to "", user_music_path(current_user, @prev) if @prev %>
-                    </div>
-                    <div class="stoNext">
-                        <%= link_to "", user_music_path(current_user, @next) if @next %>
-                    </div>
-                </div>
-                <div class="AsDOr RePho">
-                    <div class="musicVideo" id="playlist_list">
-                        <% if @music.music_album.music_album_attach %>
-                        <div class="photoImg">
-                            <%= image_tag @music.music_album.music_album_attach.url(:thumb) %>
-                        </div>
-                        <% end %>
-                        <div id="playlist_<%= @music.id %>">
-                            <div href="<%= @music.music_attach.url %>" style="width: 400px;" class="item">
-                                <div>
-                                    <div class="fr duration">
-                                        <%= @music.length_in_seconds %>
-                                    </div>
-                                    <div class="btn play">
-                                    </div>
-                                    <div class="title">
-                                        <b><%= @music.music_attach_file_name %></b>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <script type="text/javascript">
-                            $(document).ready(function(){
-                                $("#playlist_list").playlist({
-                                    playerurl: "/swfs/drplayer.swf"
-                                });
-                            });
-                        </script>
-                    </div>
-                    <div style="text-align: center;">
-                        <%= link_to "View music album: #{@music.music_album.name}", play_list_user_musics_url(current_user, :music_album_id => @music.music_album) %>
-                    </div>
-                </div>
-                <%= render :partial => "music_action" %>
-                <%= show_post_comments(@music) %>
-                <div class="goback" id="go_back">
-                    <%= show_go_back %>
-                </div>
-                <div class="goTop">
-                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
-                </div>
-            </div>
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">
+            <span>You are here:</span>
+            <%= link_to "Musics", user_musics_url(current_user), :class => "slsShareLink" %>
+            <a href="javascript:;" class="slsShareLinkL"><%= current_user == @music.user ? "Your musics" : "Friends shared musics" %></a>
+          </div>
+          <div class="slsShareR">
+            <%= render :partial => "menu" %>
+          </div>
         </div>
+        <%= display_flash_messages_with_raw %>
+        <%= render :partial => "expand_create_music_album" %>
+        <div class="stoDet phoD">
+          <div class="AsDcomImg">
+            <%= show_image_user_post(@music.user) %>
+          </div>
+          <div class="stoDetR">
+            <div class="stoDetRT">
+              <%= @music.user.full_name %>: <%= @music.title %>
+            </div>
+          </div>
+        </div>
+        <div class="onThisBtm"> bbbb
+          <div class="stoPre">
+            <%= link_to "", user_music_path(current_user, @prev) if @prev %>
+          </div>
+          <div class="stoNext">
+            <%= link_to "", user_music_path(current_user, @next) if @next %>
+          </div>
+        </div>
+        <div class="AsDOr RePho">
+          <div class="musicVideo" id="playlist_list">
+            <% if @music.music_album.music_album_attach %>
+              <div class="photoImg">
+                <%= image_tag @music.music_album.music_album_attach.url(:thumb) %>
+              </div>
+            <% end %>
+            <div id="playlist_<%= @music.id %>">
+              <div href="<%= @music.music_attach.url %>" style="width: 400px;" class="item">
+                <div>
+                  <div class="fr duration">
+                    <%= @music.length_in_seconds %>
+                  </div>
+                  <div class="btn play">
+                  </div>
+                  <div class="title">
+                    <b><%= @music.music_attach_file_name %></b>
+                  </div>
+                </div>
+                <div class="player inactive"></div>
+              </div>
+              <div class="clear"></div>
+            </div>
+            <script type="text/javascript">
+              $(document).ready(function(){
+                $("#playlist_list").playlist({
+                  playerurl: "/swfs/drplayer.swf"
+                });
+              });
+            </script>
+          </div>
+          <div style="text-align: center;margin-top: 15px;">
+            <%= link_to "View music album: #{@music.music_album.name}", play_list_user_musics_url(current_user, :music_album_id => @music.music_album) %>
+          </div>
+        </div>
+        <%= render :partial => "music_action" %>
+        <%= show_post_comments(@music) %>
+        <div class="goback" id="go_back">
+          <%= show_go_back %>
+        </div>
+        <div class="goTop">
+          <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="contMainR">
-    <!--Most Viewed-->
-    <%= render :partial => "on_this_music" %>
-    <!--Most Viewed-->
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
+  <!--Most Viewed-->
+  <%= render :partial => "on_this_music" %>
+  <!--Most Viewed-->
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>

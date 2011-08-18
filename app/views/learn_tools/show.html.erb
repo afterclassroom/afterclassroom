@@ -1,4 +1,4 @@
-<%= render :partial => "top_part" %>
+<%= render :partial => "top_learn" %>
 
 <div class="contMain">
   <div class="contMainC">
@@ -6,35 +6,48 @@
       <div class="col195in">
         <div class="demo">
           <div class="demoImg">
-            <a href="#"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a>
+            <a href="javascript:;"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a>
           </div>
           <div class="demoBtm">
             <a id="play_tool_now" href="javascript:;">Play now</a>
-
-
           </div>
         </div>
         <div class="demoBtm" style="margin-top: 10px">
-          <a id="add_tool_to_mytool" href="javascript:;">Add to My Tool</a>
+          <% if  is_my_tool(@tool) == false %>
+            <a id="add_tool_to_mytool" href="javascript:;">Add to My Tool</a>
+          <% end %>
         </div>
+
+        <% if admin? %>
+          <div id="verify" style="text-indent:4px; color: #6F6F63;">
+            Verify<input style="margin-left: 12px;" type="checkbox" value="checkbox" name="checkbox" id="checkbox_<%= @tool.id %>" <%= @tool.verify == true ? "checked" : "" %>/>
+          </div>        
+          <div id="ater_owner" style="text-indent:4px; color: #6F6F63;">
+            Develop by AfterClassroom<input style="margin-left: 12px;" type="checkbox" value="checkbox" name="checkbox" id="owner_<%= @tool.id %>" <%= @tool.atc_creator == true ? "checked" : "" %>/>
+          </div>        
+        <%  end %>
       </div>
     </div>
     <div class="col195 learnInf">
       <div class="col195in">
         <h1 class="col195Title">Information</h1>
         <div class="StarInf">
-          <!-- img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRed.png"><img src="/images/starRW.png"><img src="/images/starWhite.png" -->
           <%= render :partial => "rating_star", :locals => {:tool => @tool, :nocheck => "no_check" } %>
           <% percent = @tool.rate_result ? @tool.rate_result : 0 %>
           <span>(<%= percent/20 %> out of 5)</span>
         </div>
-        <div class="basedOn">There are <a href="#"><%= @tool.tool_reviews.size %> review(s)</a></div>
-        <div class="learnUser">user</div>
-        <div class="learnUser"><%= @tool.my_tools.size %> active users</div>
-        <div class="learnFri"><a href="#"><%= show_friend_player(@tool) %> friends</a></div>
+        <div class="basedOn">There are <%= @tool.tool_reviews.size %> review(s)</div>
+        <div class="learnUser"></div>
+        <div class="learnUser"><%= @tool.my_tools.size %>  users</div>
+        <div class="learnFri" style="color: #6F6F63"><%= show_friend_player(@tool) %> friends</div>
         <div class="learnCa">Category</div>
-        <div class="learnFri"><a href="javascript:;"><%= @tool.learn_tool_cate_id == -1 ? "None" :  @tool.learn_tool_cate.title %></a></div>
-        <div class="thisLearn">*This learning tools was <strong>not</strong> developed by AfterClassroom.</div>
+        <div class="learnFri" style="color: #6F6F63">
+          <%= @tool.learn_tool_cate_id == -1 ? "None" :  @tool.learn_tool_cate.title %>
+        </div>
+        <% if  @tool.atc_creator == false  %>
+          <div class="thisLearn">*This learning tools was <strong>not</strong> developed by AfterClassroom.</div>
+        <% end %>
+
       </div>
     </div>
     <div class="col195 Fans">
@@ -51,15 +64,19 @@
       <div class="col451in">
         <div class="learnDetCont">
           <h1 class="titleH1"><%= @tool.name  %></h1>
+
+
+
           <div class="learnDetDes"><%= @tool.description %></div>
-          <div class="learnDis">
+<%# THIS PART WILL BE ENABLED WHEN WE HAVE API TOOLS%>
+          <!-- div class="learnDis">
             <div class="learnDis1">
               <div class="learnDis2">
                 <div class="learnDisTitle"><a href="#">Visit the discussion forum for questions, updates, and bugs/help.</a></div>
                 <div class="learnDisInf"><a href="#">Do not post it bellow,</a> we cannot keep up with the my lounge so we will miss it and not respond</div>
               </div>
             </div>
-          </div>
+          </div -->
           <%= render :partial => "friend_player" %>
         </div>
       </div>
@@ -73,9 +90,90 @@
 
 </div>
 <script type="text/javascript" >
-  $(document).ready(function(){
-    $('#play_tool_now').click(function(){
-      window.location.replace("<%= @tool.href %>");
+  function ShowVerifyAjaxLoader(place_holder){
+    $(place_holder).before('<%= show_ajax_loader("holder_place", "background: white;  position: absolute;  width: 18px; margin-left: 10px;") %>');
+  }
+  function ShowOwnerAjaxLoader(place_holder){
+    $(place_holder).before('<%= show_ajax_loader("owner_place", "background: white;  position: absolute;  width: 18px; margin-left: 10px;") %>');
+  }
+  function OwnHandler(own_status){
+    ShowOwnerAjaxLoader('#owner_<%= @tool.id %>');
+    var v_url = "<%= owner_handler_user_learn_tools_path(current_user) %>";
+    $.ajax({
+      url: v_url,
+      data: {
+        tool_id: '<%= @tool.id %>',
+        own_status: own_status
+      },
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        //$('#owner_place').remove();
+        alert('Failed to communicate with server:' + msg);
+      },
+      success: function(msg){
+        $('#owner_place').remove();
+      }
+    });    
+  }
+
+  function VerifyHandler(check_status){
+    ShowVerifyAjaxLoader('#checkbox_<%= @tool.id %>');
+    var v_url = "<%= verify_handler_user_learn_tools_path(current_user) %>";
+    $.ajax({
+      url: v_url,
+      data: {
+        tool_id: '<%= @tool.id %>',
+        check_status: check_status
+      },
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        //$('#holder_place').remove();
+        alert('Failed to communicate with server:' + msg);
+      },
+      success: function(msg){
+        $('#holder_place').remove();
+      }
+    });    
+  }
+  // Become a fan
+  function become_tool_fan(path){
+    $.ajax({
+      url: path,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:' + msg);
+      },
+      success: function(msg){
+        //$('.AsDContR .fan').html(msg);
+        $('.btmBe a').text(msg);
+      }
     });
+  }  
+  
+  $(document).ready(function(){
+    var current_box = $('#checkbox_<%= @tool.id %>');
+    
+    $(current_box).click(function(){
+
+      var check_status = false;
+      if (  $(current_box).is(":checked") == true  ){
+        check_status = true;
+      }
+      VerifyHandler(check_status);
+    });
+    
+    var owner_box = $('#owner_<%= @tool.id %>');
+    $(owner_box).click(function(){
+
+      var own_status = false;
+      if (  $(owner_box).is(":checked") == true  ){
+        own_status = true;
+      }
+      OwnHandler(own_status);
+    });
+
   });
 </script>

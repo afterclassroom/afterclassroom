@@ -2,12 +2,22 @@
   <%= hidden_field_tag "current_tool_id", @tool.id %>
   <% div_class = ["fanImg1","fanImg2","fanImg3"] %>
 
-  
+
   <% obj_fans = display_fan(@tool) %>
   <h1 class="col195Title">Fans</h1>
-  <div class="infoFans">
+  <div class="infoFans" style="height: 44px;">
     <div class="infoFan"><%= obj_fans.size < 6 ? obj_fans.size : 6 %> of <span><%= obj_fans.size %> fans</span></div>
     <div class="seeAll"><a id="btn_see_all_fan" href="javascript:;">see all</a></div>
+
+    <div class="AftBe" style="margin-top: 18px;">
+      <div class="txtsignup1"></div>
+      <div class="btmBe" style="margin-left: -9px;">
+        <!-- a href="#">Become a Fan</a -->
+        <%= controller.action_name =="show" ? show_tool_fan_register(@tool) : "" %>
+      </div>
+    </div>
+
+
   </div>
   <% if obj_fans.size >= 6 %>
     <% obj_fans.first(6).each_with_index do |f_user, index| %>

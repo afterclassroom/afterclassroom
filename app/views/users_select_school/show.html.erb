@@ -7,7 +7,6 @@
   function ShowFeaturedOverlay(){
     $('#select_school').append('<div id="overlay"></div>');
     var position = $('#select_school').offset();
-
     $("#overlay")
     .height(143)
     .css({
@@ -19,6 +18,8 @@
       'background-color': 'black',
       'width': '630px',
       'height':'193px',
+      'margin-left':'13px',
+      'margin-top':'13px',
       'z-index': 5000
     });
   }

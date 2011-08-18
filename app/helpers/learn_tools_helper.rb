@@ -34,12 +34,22 @@ module LearnToolsHelper
       str = link_to_require_login(raw("<span>Become a Fan</span>"))
     else
       if tool.fans.map(&:user_id).include?(current_user.id)
-        str = "You are a fan"
+        str = link_to raw("<span>You are a fan</span>"), "javascript:;"
       else
         str = link_to_function raw("<span>Become a Fan</span>"), "become_tool_fan('#{become_a_fan_user_learn_tools_path(current_user)}?tool_id=#{tool.id}')"
       end
     end
     return str
-  end  
+  end 
+  
+  def is_my_tool(tool)
+    result = nil
+    if current_user.my_tools.where("learntool_id = ?", tool.id).size > 0
+      result = true
+    else
+      result = false
+    end
+    result #return this value
+  end
   
 end

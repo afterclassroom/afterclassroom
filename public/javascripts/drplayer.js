@@ -72,7 +72,7 @@ $(window).unload(function() {
 		   var funcRes = flsh.callFunction(xml);
 		   if ((funcRes != null) && (funcRes != undefined)) {
 			   res = eval(funcRes);
-		   };
+		   }
 	   }
 	   else {
 		   if (!arg1) {
@@ -158,7 +158,7 @@ $(window).unload(function() {
                 progressBarColor     : 0x999999,
                 progressSliderColor  : 0x555555,
                 bufferColor          : 0x555555,
-		playerurl	     : "drplayer.swf",
+		playerurl	     : "drplayer.swf"
             }
 
             if (options) {
@@ -255,14 +255,14 @@ $(window).unload(function() {
 
     };
 
-    $.fn.playlist = function(method) {
+    $.fn.playlist = function(method){
         if (methods[method]) {
             return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' + method + ' does not exist');
-        };
+        }
 
     };
 })(jQuery);
