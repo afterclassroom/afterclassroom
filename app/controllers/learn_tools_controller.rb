@@ -271,7 +271,14 @@ class LearnToolsController < ApplicationController
     
   end
   
-  def choose_to_add
+  def verify_handler
+    tool = Learntool.find(params[:tool_id])
+    tool.verify = params[:check_status]
+    tool.save
+    render :text => "Done == #{tool.verify}, new state = #{params[:check_status]}"
+  end
+  
+  def choose_to_add #display options API/NonAPI when user add new tool
     render :layout => false
   end
   

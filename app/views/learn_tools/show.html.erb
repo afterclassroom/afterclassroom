@@ -82,6 +82,30 @@
 
 </div>
 <script type="text/javascript" >
+  function ShowVerifyAjaxLoader(place_holder){
+    $(place_holder).before('<%= show_ajax_loader("holder_place", "background: white;  position: absolute;  width: 18px; margin-left: 10px;") %>');
+  }
+
+  function VerifyHandler(check_status){
+    ShowVerifyAjaxLoader('#checkbox_<%= @tool.id %>');
+    var v_url = "<%= verify_handler_user_learn_tools_path(current_user) %>";
+    $.ajax({
+      url: v_url,
+      data: {
+        tool_id: '<%= @tool.id %>',
+        check_status: check_status
+      },
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        //$('#holder_place').remove();
+        alert('Failed to communicate with server:' + msg);
+      },
+      success: function(msg){
+        $('#holder_place').remove();
+      }
+    });    
+  }
   $(document).ready(function(){
     var current_box = $('#checkbox_<%= @tool.id %>');
     
@@ -91,10 +115,7 @@
       if (  $(current_box).is(":checked") == true  ){
         check_status = true;
       }
-
-
-      alert('vall == set to '+check_status);
-      //CALL TO FUNCTION TO VERIFY TOOL, AND UPDATE DATABASE
+      VerifyHandler(check_status);
     });
 
   });
