@@ -196,6 +196,7 @@ class StoriesController < ApplicationController
   def destroy
     @story = Story.find(params[:id])
     @story.favorites.destroy_all
+    del_post_wall(@story)
     @story.destroy
     
     respond_to do |format|
@@ -234,6 +235,7 @@ class StoriesController < ApplicationController
     stories = current_user.stories.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
     if stories.size > 0
       stories.each do |abl|
+        del_post_wall(abl)
         abl.destroy
       end
     end

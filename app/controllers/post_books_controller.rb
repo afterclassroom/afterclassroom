@@ -186,6 +186,7 @@ class PostBooksController < ApplicationController
   def destroy
     @post_book = PostBook.find(params[:id])
     @post_book.post.favorites.destroy_all
+    del_post_wall(@post_book)
     @post_book.destroy
     
     redirect_to my_post_user_url(current_user)

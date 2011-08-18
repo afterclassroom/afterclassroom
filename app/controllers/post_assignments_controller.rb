@@ -155,6 +155,7 @@ class PostAssignmentsController < ApplicationController
   def destroy
     @post_assignment = PostAssignment.find(params[:id])
     @post_assignment.post.favorites.destroy_all
+    del_post_wall(@post_assignment)
     @post_assignment.destroy
 
     redirect_to my_post_user_url(current_user)

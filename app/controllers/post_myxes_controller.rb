@@ -103,7 +103,7 @@ class PostMyxesController < ApplicationController
   # GET /post_myxes/1
   # GET /post_myxes/1.xml
   def show
-    @post_myx = PostMyx.find(params[:id])
+    @post_myx = PostMyx.find(params[:id])del_post_wall(@post_housing)
     @post = @post_myx.post
     @rating_status = @post_myx.rating_status
     update_view_count(@post)
@@ -185,6 +185,7 @@ class PostMyxesController < ApplicationController
   def destroy
     @post_myx = PostMyx.find(params[:id])
     @post_myx.post.favorites.destroy_all
+    del_post_wall(@post_myx)
     @post_myx.destroy
     
     redirect_to my_post_user_url(current_user)

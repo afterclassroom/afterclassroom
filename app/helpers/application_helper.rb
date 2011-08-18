@@ -1010,6 +1010,13 @@ module ApplicationHelper
     end
   end
   
+  def get_video_id(link)
+    video_regexp = [/^(?:https?:\/\/)?(?:www\.)?youtube\.com(?:\/v\/|\/watch\?v=)([A-Za-z0-9_-]{11})/, 
+    /^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([A-Za-z0-9_-]{11})/, 
+    /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/user\/[^\/]+\/?#(?:[^\/]+\/){1,4}([A-Za-z0-9_-]{11})/]
+    video_regexp.each { |m| return link.match(m)[1] unless link.match(m).nil? }
+  end
+  
   def get_video_path(link)
     begin
       Domainatrix.parse(link)

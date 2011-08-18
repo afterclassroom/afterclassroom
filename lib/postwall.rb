@@ -32,6 +32,15 @@ module Postwall
     create_wall(user_id, class_name, post.id, content)
   end
   
+  def del_post_wall(post)
+    user_wall_post = UserWallPost.find_by_post_type_and_post_id(post.class.name, post.id)
+    if user_wall_post
+      user_wall_id = user_wall_post.user_wall_id
+      user_wall = UserWall.find(user_wall_id)
+      user_wall.destroy if user_wall
+    end
+  end
+  
   def create_wall(user_id, class_name, id, content)
     user_wall_post = UserWallPost.new()
     user_wall_post.post_type = class_name

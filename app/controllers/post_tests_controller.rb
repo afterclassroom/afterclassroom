@@ -143,6 +143,7 @@ class PostTestsController < ApplicationController
   def destroy
     @post_test = PostTest.find(params[:id])
     @post_test.post.favorites.destroy_all
+    del_post_wall(@post_test)
     @post_test.destroy
     
     redirect_to my_post_user_url(current_user)

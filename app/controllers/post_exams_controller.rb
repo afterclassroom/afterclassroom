@@ -140,6 +140,7 @@ class PostExamsController < ApplicationController
   def destroy
     @post_exam = PostExam.find(params[:id])
     @post_exam.post.favorites.destroy_all
+    del_post_wall(@post_exam)
     @post_exam.destroy
     
     redirect_to my_post_user_url(current_user)

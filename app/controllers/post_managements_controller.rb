@@ -46,6 +46,51 @@ class PostManagementsController < ApplicationController
     if posts.size > 0
       posts.each do |abl|
         abl.favorites.destroy_all if abl.favorites.size > 0
+        if abl.post_assignments
+          del_post_wall(abl.post_assignments)
+        end
+        if abl.post_projects
+          del_post_wall(abl.post_projects)
+        end
+        if abl.post_tests
+          del_post_wall(abl.post_tests)
+        end
+        if abl.post_exams
+          del_post_wall(abl.post_exams)
+        end
+        if abl.post_events
+          del_post_wall(abl.post_events)
+        end
+        if abl.post_qas
+          del_post_wall(abl.post_qas)
+        end
+        if abl.post_tutors
+          del_post_wall(abl.post_tutors)
+        end
+        if abl.post_books
+          del_post_wall(abl.post_books)
+        end
+        if abl.post_jobs
+          del_post_wall(abl.post_jobs)
+        end
+        if abl.post_foods
+          del_post_wall(abl.post_foods)
+        end
+        if abl.post_myxes
+          del_post_wall(abl.post_myxes)
+        end
+        if abl.post_awarenesses
+          del_post_wall(abl.post_awarenesses)
+        end
+        if abl.post_housings
+          del_post_wall(abl.post_housings)
+        end
+        if abl.post_teamups
+          del_post_wall(abl.post_teamups)
+        end
+        if abl.post_exam_schedules
+          del_post_wall(abl.post_exam_schedules)
+        end
         abl.destroy
       end
     end

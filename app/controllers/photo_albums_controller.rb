@@ -58,6 +58,7 @@ class PhotoAlbumsController < ApplicationController
   def destroy
     @photo_album = PhotoAlbum.find(params[:id])
     @photo_album.favorites.destroy_all
+    del_post_wall(@photo_album)
     @photo_album.destroy
 
     respond_to do |format|
@@ -74,6 +75,7 @@ class PhotoAlbumsController < ApplicationController
     if photo_albums.size > 0
       photo_albums.each do |abl|
         abl.favorites.destroy_all
+        del_post_wall(abl)
         abl.destroy
       end
     end

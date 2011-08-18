@@ -172,6 +172,7 @@ class PhotosController < ApplicationController
   def destroy
     @photo = Photo.find(params[:id])
     @photo.favorites.destroy_all
+    del_post_wall(@photo)
     @photo.destroy
     
     render :nothing => true
