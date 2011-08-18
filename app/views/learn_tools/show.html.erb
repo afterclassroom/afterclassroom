@@ -1,4 +1,4 @@
-<%= render :partial => "top_part" %>
+<%= render :partial => "top_learn" %>
 
 <div class="contMain">
   <div class="contMainC">
@@ -61,9 +61,9 @@
       <div class="col451in">
         <div class="learnDetCont">
           <h1 class="titleH1"><%= @tool.name  %></h1>
-          
-          
-          
+
+
+
           <div class="learnDetDes"><%= @tool.description %></div>
 <%# THIS PART WILL BE ENABLED WHEN WE HAVE API TOOLS%>
           <!-- div class="learnDis">
@@ -111,6 +111,22 @@
       }
     });    
   }
+  // Become a fan
+  function become_tool_fan(path){
+    $.ajax({
+      url: path,
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:' + msg);
+      },
+      success: function(msg){
+        //$('.AsDContR .fan').html(msg);
+        $('.btmBe a').text(msg);
+      }
+    });
+  }  
+  
   $(document).ready(function(){
     var current_box = $('#checkbox_<%= @tool.id %>');
     
