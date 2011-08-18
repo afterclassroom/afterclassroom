@@ -1,11 +1,4 @@
 <div class="topLearning">
-  <div class="AftBe">
-    <div class="txtsignup1"></div>
-    <div class="btmBe" style="margin-left: -10px;">
-      <!-- a href="#">Become a Fan</a -->
-      <%= controller.action_name =="show" ? show_tool_fan_register(@tool) : "" %>
-    </div>
-  </div>
   <div class="menuRL">
     <div class="menuRItem <%= controller.action_name == "mylearn" ? 'menuRselect' : '' %>">
       <a href="<%= controller.action_name == "mylearn" ? "javascript:;" : "#{mylearn_user_learn_tools_path(current_user)}" %>">

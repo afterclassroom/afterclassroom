@@ -6,7 +6,7 @@
       <div class="col195in">
         <div class="demo">
           <div class="demoImg">
-            <a href="#"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a>
+            <a href="javascript:;"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a>
           </div>
           <div class="demoBtm">
             <a id="play_tool_now" href="javascript:;">Play now</a>
@@ -19,7 +19,7 @@
         </div>
 
         <% if admin? %>
-          <div id="verify" style="border: 1px solid #DBDBDB; border-radius: 4px;text-indent:4px;">
+          <div id="verify" style="border: 1px solid #DBDBDB; border-radius: 4px;text-indent:4px; color: #6F6F63;">
             Verify/De-verify this tool <input style="margin-left: 12px;" type="checkbox" value="checkbox" name="checkbox" id="checkbox_<%= @tool.id %>" <%= @tool.verify == true ? "checked" : "" %>/>
           </div>        
         <%  end %>
@@ -38,7 +38,9 @@
         <div class="learnUser"><%= @tool.my_tools.size %>  users</div>
         <div class="learnFri" style="color: #6F6F63"><%= show_friend_player(@tool) %> friends</div>
         <div class="learnCa">Category</div>
-        <div class="learnFri" style="color: #6F6F63"><%= @tool.learn_tool_cate_id == -1 ? "None" :  @tool.learn_tool_cate.title %></div>
+        <div class="learnFri" style="color: #6F6F63">
+          <%= @tool.learn_tool_cate_id == -1 ? "None" :  @tool.learn_tool_cate.title %>
+        </div>
         <% if  @tool.atc_creator == false  %>
           <div class="thisLearn">*This learning tools was <strong>not</strong> developed by AfterClassroom.</div>
         <% end %>
@@ -59,6 +61,9 @@
       <div class="col451in">
         <div class="learnDetCont">
           <h1 class="titleH1"><%= @tool.name  %></h1>
+          
+          
+          
           <div class="learnDetDes"><%= @tool.description %></div>
 <%# THIS PART WILL BE ENABLED WHEN WE HAVE API TOOLS%>
           <!-- div class="learnDis">
