@@ -84,11 +84,18 @@
 <script type="text/javascript" >
   $(document).ready(function(){
     var current_box = $('#checkbox_<%= @tool.id %>');
-    if (  $(current_box).is(":checked") != true  ){
-      $(current_box).click(function(){
-        alert('vall == '+$(current_box).val());
-        //CALL TO FUNCTION TO VERIFY TOOL, AND UPDATE DATABASE
-      });
-    }
+    
+    $(current_box).click(function(){
+
+      var check_status = false;
+      if (  $(current_box).is(":checked") == true  ){
+        check_status = true;
+      }
+
+
+      alert('vall == set to '+check_status);
+      //CALL TO FUNCTION TO VERIFY TOOL, AND UPDATE DATABASE
+    });
+
   });
 </script>
