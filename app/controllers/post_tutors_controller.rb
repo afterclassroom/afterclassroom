@@ -189,6 +189,7 @@ class PostTutorsController < ApplicationController
   def destroy
     @post_tutor = PostTutor.find(params[:id])
     @post_tutor.post.favorites.destroy_all
+    del_post_wall(@post_tutor)
     @post_tutor.destroy
     
     redirect_to my_post_user_url(current_user)

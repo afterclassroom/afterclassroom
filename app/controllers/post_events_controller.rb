@@ -156,6 +156,7 @@ class PostEventsController < ApplicationController
   def destroy
     @post_event = PostEvent.find(params[:id])
     @post_event.post.favorites.destroy_all
+    del_post_wall(@post_event)
     @post_event.destroy
     
     redirect_to my_post_user_url(current_user)

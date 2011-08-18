@@ -38,6 +38,8 @@ javascripts:
     - public/javascripts/TextboxList.Autocomplete.js
     - public/javascripts/GrowingInput.js
     - public/javascripts/facebox.js
+    - public/javascripts/youTubeEmbed-jquery.js
+    - public/javascripts/jquery.swfobject.js
   student_lounge:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
@@ -77,6 +79,8 @@ javascripts:
     - public/javascripts/TextboxList.Autocomplete.js
     - public/javascripts/GrowingInput.js
     - public/javascripts/facebox.js
+    - public/javascripts/youTubeEmbed-jquery.js
+    - public/javascripts/jquery.swfobject.js
   photo:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
@@ -133,6 +137,7 @@ stylesheets:
     - public/stylesheets/jquery.pnotify.default.css
     - public/stylesheets/jquery.autogeocomplete.css
     - public/stylesheets/facebox.css
+    - public/stylesheets/youTubeEmbed-jquery.css
   student_lounge:
     - public/stylesheets/main.css
     - public/stylesheets/post.css
@@ -164,6 +169,7 @@ stylesheets:
     - public/stylesheets/jquery.pnotify.default.css
     - public/stylesheets/video-js.css
     - public/stylesheets/facebox.css
+    - public/stylesheets/youTubeEmbed-jquery.css
   photo:
     - public/stylesheets/main.css
     - public/stylesheets/post.css

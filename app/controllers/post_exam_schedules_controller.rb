@@ -162,6 +162,7 @@ class PostExamSchedulesController < ApplicationController
   def destroy
     @post_exam_schedule = PostExamSchedule.find(params[:id])
     @post_exam_schedule.post.favorites.destroy_all
+    del_post_wall(@post_exam_schedule)
     @post_exam_schedule.destroy
 
     respond_to do |format|

@@ -154,6 +154,7 @@ class PostProjectsController < ApplicationController
   def destroy
     @post_project = PostProject.find(params[:id])
     @post_project.post.favorites.destroy_all
+    del_post_wall(@post_project)
     @post_project.destroy
     
     redirect_to my_post_user_url(current_user)

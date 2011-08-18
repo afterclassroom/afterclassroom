@@ -226,6 +226,7 @@ class PostJobsController < ApplicationController
   def destroy
     @post_job = PostJob.find(params[:id])
     @post_job.post.favorites.destroy_all
+    del_post_wall(@post_job)
     @post_job.destroy
     
     redirect_to my_post_user_url(current_user)

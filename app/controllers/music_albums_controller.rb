@@ -58,6 +58,7 @@ class MusicAlbumsController < ApplicationController
   def destroy
     @music_album = MusicAlbum.find(params[:id])
     @music_album.favorites.destroy_all
+    del_post_wall(@music_album)
     @music_album.destroy
 
     respond_to do |format|
@@ -74,6 +75,7 @@ class MusicAlbumsController < ApplicationController
     if music_albums.size > 0
       music_albums.each do |abl|
         abl.favorites.destroy_all
+        del_post_wall(abl)
         abl.destroy
       end
     end

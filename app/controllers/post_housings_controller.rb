@@ -157,6 +157,7 @@ class PostHousingsController < ApplicationController
   def destroy
     @post_housing = PostHousing.find(params[:id])
     @post_housing.post.favorites.destroy_all
+    del_post_wall(@post_housing)
     @post_housing.destroy
     
     redirect_to my_post_user_url(current_user)

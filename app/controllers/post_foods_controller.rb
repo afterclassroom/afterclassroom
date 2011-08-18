@@ -186,6 +186,7 @@ class PostFoodsController < ApplicationController
   def destroy
     @post_food = PostFood.find(params[:id])
     @post_food.post.favorites.destroy_all
+    del_post_wall(@post_food)
     @post_food.destroy
     
     redirect_to my_post_user_url(current_user)

@@ -203,6 +203,7 @@ class PostAwarenessesController < ApplicationController
   def destroy
     @post_awareness = PostAwareness.find(params[:id])
     @post_awareness.post.favorites.destroy_all
+    del_post_wall(@post_awareness)
     @post_awareness.destroy
     
     redirect_to my_post_user_url(current_user)

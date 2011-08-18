@@ -174,6 +174,7 @@ class VideosController < ApplicationController
     videos = current_user.videos.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
     if videos.size > 0
       videos.each do |abl|
+        del_post_wall(abl)
         abl.favorites.destroy_all
         abl.destroy
       end

@@ -159,6 +159,7 @@ class PostTeamupsController < ApplicationController
   def destroy
     @post_teamup = PostTeamup.find(params[:id])
     @post_teamup.post.favorites.destroy_all
+    del_post_wall(@post_teamup)
     @post_teamup.destroy
     
     redirect_to my_post_user_url(current_user)

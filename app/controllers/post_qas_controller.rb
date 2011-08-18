@@ -196,6 +196,7 @@ class PostQasController < ApplicationController
   def destroy
     @post_qa = PostQa.find(params[:id])
     @post_qa.post.favorites.destroy_all
+    del_post_wall(@post_qa)
     @post_qa.destroy
     
     redirect_to my_post_user_url(current_user)

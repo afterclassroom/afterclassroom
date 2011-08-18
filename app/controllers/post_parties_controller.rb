@@ -241,6 +241,7 @@ class PostPartiesController < ApplicationController
   def destroy
     @post_party = PostParty.find(params[:id])
     @post_party.post.favorites.destroy_all
+    del_post_wall(@post_party)
     @post_party.destroy
     
     redirect_to my_post_user_url(current_user)

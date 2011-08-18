@@ -273,8 +273,7 @@ class UserWallsController < ApplicationController
       url = Domainatrix.parse(link)
       domain = get_domain(url)
       #Get thumbnail
-      arr = link.match("[\\?&]v=([^&#]*)")
-      vid = arr == nil ? link : arr[1]
+      vid = get_video_id(link)
       thumb = "https://img.youtube.com/vi/"+vid+"/2.jpg"
       
       @user_wall_video = UserWallVideo.new

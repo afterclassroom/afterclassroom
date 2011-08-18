@@ -60,7 +60,7 @@
 		var path_image = '/user_walls/attach_image';
     function check_attach_link(link){
         if (isValidURL(link)) {
-            if (link.match(/^(https?:\/\/)?([^\/]*\.)?youtube\.com\/watch\?([^]*&)?v=\w+(&[^]*)?/i)) {
+            if (link.match(/^(https?:\/\/)?([^\/]*\.)?youtube\.com\/watch\?([^]*&)?v=\w+(&[^]*)?/i) || link.match(/^(https?:\/\/)?(www\.)?youtu.be\/([a-z0-9-]+)/i)) {
                 get_link = path_video;
             }
             else

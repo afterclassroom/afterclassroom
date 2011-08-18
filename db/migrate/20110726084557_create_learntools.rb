@@ -12,6 +12,7 @@ class CreateLearntools < ActiveRecord::Migration
       t.text :href
       t.integer :acc_play_no
       t.integer :client_application_id
+      t.integer :video_id
       t.timestamps
       #BEGIN columns required for image attachment
       t.string :tool_img_file_name # Original filename
