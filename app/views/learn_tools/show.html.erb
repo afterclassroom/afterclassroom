@@ -83,8 +83,12 @@
 </div>
 <script type="text/javascript" >
   $(document).ready(function(){
-    $('#play_tool_now').click(function(){
-      window.location.replace("<%= @tool.href %>");
-    });
+    var current_box = $('#checkbox_<%= @tool.id %>');
+    if (  $(current_box).is(":checked") != true  ){
+      $(current_box).click(function(){
+        alert('vall == '+$(current_box).val());
+        //CALL TO FUNCTION TO VERIFY TOOL, AND UPDATE DATABASE
+      });
+    }
   });
 </script>
