@@ -19,8 +19,11 @@
         </div>
 
         <% if admin? %>
-          <div id="verify" style="border: 1px solid #DBDBDB; border-radius: 4px;text-indent:4px; color: #6F6F63;">
-            Verify/De-verify this tool <input style="margin-left: 12px;" type="checkbox" value="checkbox" name="checkbox" id="checkbox_<%= @tool.id %>" <%= @tool.verify == true ? "checked" : "" %>/>
+          <div id="verify" style="text-indent:4px; color: #6F6F63;">
+            Verify<input style="margin-left: 12px;" type="checkbox" value="checkbox" name="checkbox" id="checkbox_<%= @tool.id %>" <%= @tool.verify == true ? "checked" : "" %>/>
+          </div>        
+          <div id="ater_owner" style="text-indent:4px; color: #6F6F63;">
+            Develop by AfterClassroom<input style="margin-left: 12px;" type="checkbox" value="checkbox" name="checkbox" id="owner_<%= @tool.id %>" <%= @tool.atc_creator == true ? "checked" : "" %>/>
           </div>        
         <%  end %>
       </div>
@@ -90,6 +93,29 @@
   function ShowVerifyAjaxLoader(place_holder){
     $(place_holder).before('<%= show_ajax_loader("holder_place", "background: white;  position: absolute;  width: 18px; margin-left: 10px;") %>');
   }
+  function ShowOwnerAjaxLoader(place_holder){
+    $(place_holder).before('<%= show_ajax_loader("owner_place", "background: white;  position: absolute;  width: 18px; margin-left: 10px;") %>');
+  }
+  function OwnHandler(own_status){
+    ShowOwnerAjaxLoader('#owner_<%= @tool.id %>');
+    var v_url = "<%= owner_handler_user_learn_tools_path(current_user) %>";
+    $.ajax({
+      url: v_url,
+      data: {
+        tool_id: '<%= @tool.id %>',
+        own_status: own_status
+      },
+      type: "GET",
+      dataType: "html",
+      failure: function(msg){
+        //$('#owner_place').remove();
+        alert('Failed to communicate with server:' + msg);
+      },
+      success: function(msg){
+        $('#owner_place').remove();
+      }
+    });    
+  }
 
   function VerifyHandler(check_status){
     ShowVerifyAjaxLoader('#checkbox_<%= @tool.id %>');
@@ -137,6 +163,16 @@
         check_status = true;
       }
       VerifyHandler(check_status);
+    });
+    
+    var owner_box = $('#owner_<%= @tool.id %>');
+    $(owner_box).click(function(){
+
+      var own_status = false;
+      if (  $(owner_box).is(":checked") == true  ){
+        own_status = true;
+      }
+      OwnHandler(own_status);
     });
 
   });

@@ -275,7 +275,14 @@ class LearnToolsController < ApplicationController
     tool = Learntool.find(params[:tool_id])
     tool.verify = params[:check_status]
     tool.save
-    render :text => "Done == #{tool.verify}, new state = #{params[:check_status]}"
+    render :text => "Done"
+  end
+  
+  def owner_handler
+    tool = Learntool.find(params[:tool_id])
+    tool.atc_creator = params[:own_status]
+    tool.save
+    render :text => "Done == #{tool.atc_creator}, new state = #{params[:own_status]}"
   end
   
   def choose_to_add #display options API/NonAPI when user add new tool
