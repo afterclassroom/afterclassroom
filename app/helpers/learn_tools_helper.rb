@@ -40,6 +40,16 @@ module LearnToolsHelper
       end
     end
     return str
-  end  
+  end 
+  
+  def is_my_tool(tool)
+    result = nil
+    if current_user.my_tools.where("learntool_id = ?", tool.id).size > 0
+      result = true
+    else
+      result = false
+    end
+    result #return this value
+  end
   
 end
