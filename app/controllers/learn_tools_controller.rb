@@ -88,16 +88,6 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
-  def add_favorite
-    #this action is applied for page My Learning Tool
-    #hence, we do not need to check whether this id of MyTool exist or NOT
-    mt = MyTool.find(:first, :conditions => { :id => params[:str_mytool_id], :user_id => current_user.id })
-    
-    mt.favorite = true
-    mt.save
-    render :text => "Add Complete"
-  end
-  
   def featured_tool_paging
     if params[:cur_cate_at_feature] == "-1"#there is no category selected
       params[:feature_page] = params[:page_to_load]#page of will_paginate

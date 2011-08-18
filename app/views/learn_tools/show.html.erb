@@ -17,9 +17,11 @@
             <a id="add_tool_to_mytool" href="javascript:;">Add to My Tool</a>
           <% end %>
         </div>
-        
+
         <% if admin? %>
-          hien thi check box thuc hien chuc nang verify/De-verify
+          <div id="verify" style="border: 1px solid #DBDBDB; border-radius: 4px;text-indent:4px;">
+            Verify/De-verify this tool <input style="margin-left: 12px;" type="checkbox" value="checkbox" name="checkbox" id="checkbox_<%= @tool.id %>" <%= @tool.verify == true ? "checked" : "" %>/>
+          </div>        
         <%  end %>
       </div>
     </div>
@@ -41,7 +43,7 @@
         <% if  @tool.atc_creator == false  %>
           <div class="thisLearn">*This learning tools was <strong>not</strong> developed by AfterClassroom.</div>
         <% end %>
-        
+
       </div>
     </div>
     <div class="col195 Fans">
@@ -59,7 +61,7 @@
         <div class="learnDetCont">
           <h1 class="titleH1"><%= @tool.name  %></h1>
           <div class="learnDetDes"><%= @tool.description %></div>
-          <%# THIS PART WILL BE ENABLED WHEN WE HAVE API TOOLS%>
+<%# THIS PART WILL BE ENABLED WHEN WE HAVE API TOOLS%>
           <!-- div class="learnDis">
             <div class="learnDis1">
               <div class="learnDis2">
