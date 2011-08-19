@@ -290,6 +290,7 @@ class LearnToolsController < ApplicationController
   end
   
   def video_list
+    @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
     render :layout => false
   end
   
