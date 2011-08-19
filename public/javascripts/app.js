@@ -239,10 +239,10 @@ function showCommentForm(class_name, post_id){
     $('#comment_' + class_name + '_' + post_id).focus();
 }
 
-function hideCommentForm(wall_id){
-    if ($('#comment_' + wall_id).val() == "") {
-        $('#wall_comment_' + wall_id).show();
-        $('#wall_comment_form_' + wall_id).hide();
+function hideCommentForm(class_name, id){
+    if ($('#comment_'  + class_name + "_" + id).val() == "") {
+        $('#wall_comment_'  + class_name + "_" + id).show();
+        $('#wall_comment_form_'  + class_name + "_" + id).hide();
     }
 }
 
