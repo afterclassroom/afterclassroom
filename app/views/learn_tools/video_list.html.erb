@@ -1,0 +1,5 @@
+<% form_tag url_for(:controller => "learn_tools", :action => "video_list_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
+<%= hidden_field_tag "bottom_page_to_load", @cur_bottom_page ? @cur_bottom_page : "1" %>
+<%= render :partial => "video_list_content" %>
+<% end %><!-- end form_tag -->
+

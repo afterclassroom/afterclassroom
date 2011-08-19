@@ -10,6 +10,7 @@ class CreateLearntools < ActiveRecord::Migration
       t.boolean :ac_api#this attribute specifies whether this tool using API or not
       t.boolean :atc_creator#this attribute specifies that, this tool is created by afterclassroom
       t.text :href
+      t.text :support_url
       t.integer :acc_play_no
       t.integer :client_application_id
       t.integer :video_id

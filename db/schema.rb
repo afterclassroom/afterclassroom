@@ -61,11 +61,12 @@ ActiveRecord::Schema.define(:version => 20110808102658) do
     t.string   "url"
     t.string   "support_url"
     t.string   "callback_url"
-    t.string   "key",          :limit => 40
-    t.string   "secret",       :limit => 40
+    t.string   "key",           :limit => 40
+    t.string   "secret",        :limit => 40
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "xauth_enabled", :limit => 1,  :default => 0
   end
 
   add_index "client_applications", ["key"], :name => "index_client_applications_on_key", :unique => true
@@ -183,7 +184,7 @@ ActiveRecord::Schema.define(:version => 20110808102658) do
 
   create_table "forums", :force => true do |t|
     t.string   "title"
-    t.text     "content"
+    t.string   "content"
     t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -279,8 +280,10 @@ ActiveRecord::Schema.define(:version => 20110808102658) do
     t.boolean  "ac_api"
     t.boolean  "atc_creator"
     t.text     "href"
+    t.text     "support_url"
     t.integer  "acc_play_no"
     t.integer  "client_application_id"
+    t.integer  "video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "tool_img_file_name"
@@ -638,6 +641,18 @@ ActiveRecord::Schema.define(:version => 20110808102658) do
     t.datetime "updated_at"
   end
 
+  create_table "rates", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "stars"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["post_id"], :name => "index_rates_on_post_id"
+  add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
+
   create_table "rating_statistics", :force => true do |t|
     t.integer "rated_id"
     t.string  "rated_type"
@@ -930,14 +945,18 @@ ActiveRecord::Schema.define(:version => 20110808102658) do
   end
 
   create_table "videos", :force => true do |t|
-    t.integer  "user_id",                    :null => false
+    t.integer  "user_id",                                   :null => false
     t.string   "title"
     t.text     "description"
-    t.string   "category"
-    t.integer  "count_view",  :default => 0
-    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "video_attach_file_name"
+    t.string   "video_attach_content_type"
+    t.integer  "video_attach_file_size"
+    t.datetime "video_attach_updated_at"
+    t.string   "category",                  :default => "", :null => false
+    t.integer  "count_view",                :default => 0,  :null => false
+    t.string   "state",                                     :null => false
   end
 
 end
