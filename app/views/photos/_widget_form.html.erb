@@ -63,21 +63,21 @@
           }
         }
         return $('<tr><td class="file_upload_preview"><\/td>' +
-        '<td class="file_upload_title">' +
-        '<span>'+
+          '<td class="file_upload_title">' +
+          '<span>'+
           fileNames + 
           '<\/span>' +
           '<div class="file_upload_title_photo">.....<\/div>' +
           '<\/td>' +
-          '<td class="file_upload_txt_title">Title: <input type="text" title="Title" class="vtip"><\/td>' +
+          '<td class="file_upload_txt_title"><input type="text" title="Title" class="musicTitle" value="Title"><\/td>' +
           '<td class="file_upload_progress"><div><\/div><\/td>' +
           '<td class="file_upload_start">' +
           '<button class="ui-state-default ui-corner-all" title="Start Upload">' +
           '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' +
           '<\/button><\/td>' +
           '<td class="file_upload_cancel">' +
-          '<button class="ui-state-default ui-corner-all" title="Cancel Upload">' +
-          '<span class="ui-icon ui-icon-cancel">Cancel Upload<\/span>' +
+          '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+          '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
           '<\/button><\/td><\/tr>');
       },
       buildDownloadRow: function(file){
@@ -113,11 +113,24 @@
           handler.formData = {
             "photo[title]": title,
             "photo[photo_album_id]": $('#photo_photo_album_id').val(),
-						"authenticity_token": $('[name="authenticity_token"]').val()
+            "authenticity_token": $('[name="authenticity_token"]').val()
           };
           callBack();
         });
       }
+    });
+    $('.musicTitle').each(function() {
+      var default_value = this.value;
+      $(this).focus(function() {
+        if(this.value == default_value) {
+          this.value = '';
+        }
+      });
+      $(this).blur(function() {
+        if(this.value == '') {
+          this.value = default_value;
+        }
+      });
     });
   });
         
@@ -178,8 +191,8 @@
   $('.file_upload_title span').each(function(){
     var $this = $(this);
     if($this.width() > $this.parent().width()){
-        $this.parent().find('.file_upload_title_photo').show();
+      $this.parent().find('.file_upload_title_photo').show();
     }
-});
+  });
 
 </script>
