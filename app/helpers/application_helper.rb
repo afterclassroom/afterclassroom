@@ -363,6 +363,10 @@ module ApplicationHelper
     render :partial => "shared/post_comments", :locals => {:obj => obj}
   end
   
+  def show_post_comments_video(obj)
+    render :partial => "shared/post_comments_video", :locals => {:obj => obj}
+  end
+  
   def show_post_comments_ShPo(obj)
     render :partial => "shared/post_comments_ShPo", :locals => {:obj => obj}
   end
@@ -889,7 +893,15 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login(raw("<span>Report Abuse</span>"))
     else
-      link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_posts_path}?reported_id=#{post.id}&reported_type=#{post.class.name}&height=320&width=490", :rel=>"facebox", :title => "Report Abuse")
+      link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_video_posts_path}?reported_id=#{post.id}&reported_type=#{post.class.name}&height=320&width=490", :rel=>"facebox", :title => "Report Abuse")
+    end
+  end
+  
+  def show_report_abuse_comment_video(comnt)
+    if !logged_in?
+      link_to_require_login(raw("Report Abuse"))
+    else
+      link_to(raw("Report Abuse"), "#{report_abuse_video_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=320&width=490", :rel=>"facebox", :title => "Report Abuse")
     end
   end
   

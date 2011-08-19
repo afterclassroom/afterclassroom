@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   include ApplicationHelper
   
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:report_abuse, :create_report_abuse, :download]
+  before_filter RubyCAS::Filter, :except => [:report_abuse, :create_report_abuse,:report_abuse_video, :create_report_abuse_video, :download]
   before_filter :cas_user
   
   def create_comment
@@ -130,6 +130,33 @@ class PostsController < ApplicationController
     report_abuse.reporter_id = current_user.id if current_user
     
     if report_abuse.save
+      @str = "Thank you for your report, we will have someone from our security and ethnic department to look into your report and take action accordingly.<br/>"
+      @str << "You will get notify once we take action."
+    else
+      @str = 'Error.'
+    end
+  end
+  
+  def report_abuse_video
+    @reported_id = params[:reported_id]
+    @reported_type = params[:reported_type]
+    render :layout => false
+  end
+  
+  def create_report_abuse_video
+    reported_id = params[:reported_id]
+    reported_type = params[:reported_type]
+    abuse_type_id = params[:abuse_type_id]
+    abuse_content = params[:abuse_content]
+    
+    report_abuse_video = ReportAbuse.new
+    report_abuse_video.reported_id = reported_id
+    report_abuse_video.reported_type = reported_type
+    report_abuse_video.report_abuse_category_id = abuse_type_id
+    report_abuse_video.content = abuse_content
+    report_abuse_video.reporter_id = current_user.id if current_user
+    
+    if report_abuse_video.save
       @str = "Thank you for your report, we will have someone from our security and ethnic department to look into your report and take action accordingly.<br/>"
       @str << "You will get notify once we take action."
     else
