@@ -2,10 +2,10 @@
   <%= hidden_field_tag "bottom_page_to_load", @cur_bottom_page ? @cur_bottom_page : "1" %>
   <div class="musicRow">
     <% @my_videos.each do |m_p| %>
-      <%= render :partial => "videos/item_my_video", :locals => {:video => m_p}  %>
+      <%= render :partial => "item_my_video", :locals => {:video => m_p}  %>
     <% end %>
   </div>
-  <div class="slsTopR">
+  <div class="slsTopR" style="width: 200px; position: absolute; left: 553px; top: 426px; ">
     <!--Pagination-->
     <div class="assPage my_videos">
       <span class="numPage"><%= page_entries_info @my_videos %></span>
@@ -13,10 +13,22 @@
     </div>
     <!--Pagination-->
   </div>
+
+  <div style="position: absolute; float: left; top: 438px; left: -35px;">
+    <span class="submitRSVP" style="padding: 0px;">
+      <a id="btn_select_vid" href="javascript:;" style="width: 55px;">
+        <input style="margin-left: 0px;" type="button" value="Select" name="foo"/>
+      </a>
+    </span>
+  </div> 
+
 <% end %><!-- end form_tag -->
 
 
 <script type="text/javascript">
+  
+  var overalObject = null;//my intention of creating this object, is to deselect the selected videos on thickbox
+  
   function ShowVidOverlay(){
     $('form#form_first_tab').append('<div id="bottomoverlay"></div>');
     var position = $('form#form_first_tab').offset();
@@ -29,12 +41,20 @@
       'top': 20,
       'left': position.left - 332,
       'background':'url("/images/ajax-loader-a.gif") no-repeat center',
-      'background-color':'black',
       'width': '770px',
       'z-index': 5000
     });
   }
   $(document).ready(function(){
+    $('#btn_select_vid').click(function(){
+      if (overalObject != null){
+        var strId = $(overalObject).attr('id').split('_')[2];
+        $('#learntool_video_id').val(strId);
+        $('#vid_name').val(jQuery.data(overalObject,"vid_name"));
+        $('#TB_closeWindowButton').click();
+      }
+    });
+    //BEGIN ajax pagination
     $('.bot_paging a').each(function(){
       $(this).attr('href','javascript:;');
     });
@@ -54,5 +74,7 @@
         $('form#form_first_tab').submit();
       });
     });
+    //END ajax pagination
+  
   });  
 </script>
