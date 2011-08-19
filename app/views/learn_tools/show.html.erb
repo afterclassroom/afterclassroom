@@ -11,6 +11,11 @@
           <div class="demoBtm">
             <a id="play_tool_now" href="javascript:;">Play now</a>
           </div>
+          <% if @tool.video_id != nil %>
+            <div class="demoBtm">
+              <%= link_to "Play Video Demo", "#{url_for(:controller => "learn_tools", :action => "play_vid")}?height=480&width=760", :class => "thickbox", :title => "Showing the video introduce this tool" %>
+            </div>
+          <% end %>
         </div>
         <div class="demoBtm" style="margin-top: 10px">
           <% if  is_my_tool(@tool) == false %>

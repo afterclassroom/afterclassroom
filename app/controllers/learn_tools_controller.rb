@@ -322,6 +322,10 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def play_vid
+    render :layout => false
+  end
+  
   
   private
   
