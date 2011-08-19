@@ -72,12 +72,12 @@
 </div>
 <script type="text/javascript">
   function SubmitFormTool(){
-    var result = $("form#form_new_tool").validate({
-      meta: "validate"
-    });
-    if (result) {
+    <%#*var result = $("form#form_new_tool").validate({%>
+      <%#*meta: "validate"%>
+    <%#*});%>
+    <%#*if (result) {%>
       $("form#form_new_tool").submit();
-    }
+    <%#*}%>
   }    
   $(document).ready(function(){
     $('#btn_sbm_tool').click(function(){

@@ -205,6 +205,8 @@ class LearnToolsController < ApplicationController
   
   def submit_new_tool
     @tool = Learntool.new(params[:learntool])
+    @tool.video_id = params[:learntool_video_id]
+    
     @tool.user = current_user
     @tool.verify = false #meaning::tool has not been verified
     if simple_captcha_valid?
@@ -296,67 +298,6 @@ class LearnToolsController < ApplicationController
   end
   
   def video_list_paging
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val ==  params[:bottom_page_to_load] == #{ params[:bottom_page_to_load]}"
     @cur_bottom_page = params[:bottom_page_to_load]
     @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 15
     render :layout => false
