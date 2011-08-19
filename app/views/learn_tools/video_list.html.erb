@@ -1,13 +1,5 @@
-<div class="musicRow">
-  <% @my_videos.each do |m_p| %>
-    <%= render :partial => "videos/item_my_video", :locals => {:video => m_p}  %>
-  <% end %>
-</div>
-<div class="slsTopR">
-  <!--Pagination-->
-  <div class="assPage my_videos">
-    <span class="numPage"><%= page_entries_info @my_videos %></span>
-    <%= will_paginate @my_videos %>
-  </div>
-  <!--Pagination-->
-</div>
+<% form_tag url_for(:controller => "learn_tools", :action => "video_list_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
+<%= hidden_field_tag "bottom_page_to_load", @cur_bottom_page ? @cur_bottom_page : "1" %>
+<%= render :partial => "video_list_content" %>
+<% end %><!-- end form_tag -->
+
