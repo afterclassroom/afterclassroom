@@ -19,6 +19,9 @@
         $(overalObject).css('background-color', '');
         overalObject = eachItem;
       }
+      var filename = overalObject.find('div.musicN').text();
+      jQuery.data(overalObject,"vid_name",filename);
+      
       
       $(this).css('background-color', '#0085DF');
       $(this).css('border-radius', '4px');

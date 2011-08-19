@@ -44,15 +44,11 @@
             </div>
             <div class="postItem">
               <div class="postTit">Demo Video</div>
-              <div class="postInp"><%= link_to "Please select demo video", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list" %></div>
+              <div class="postInp">
+                <input type="text" name="vid_name" id="vid_name"/>
+                <%= link_to "Please select demo video", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list" %>
+              </div>
             </div>
-            
-            
-            
-            
-            
-            
-            
             <div style="margin-left:120px">
               <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
             </div>
@@ -72,12 +68,12 @@
 </div>
 <script type="text/javascript">
   function SubmitFormTool(){
-    <%#*var result = $("form#form_new_tool").validate({%>
-      <%#*meta: "validate"%>
-    <%#*});%>
-    <%#*if (result) {%>
+    var result = $("form#form_new_tool").validate({
+      meta: "validate"
+    });
+    if (result) {
       $("form#form_new_tool").submit();
-    <%#*}%>
+    }
   }    
   $(document).ready(function(){
     $('#btn_sbm_tool').click(function(){

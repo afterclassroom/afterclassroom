@@ -50,6 +50,7 @@
       if (overalObject != null){
         var strId = $(overalObject).attr('id').split('_')[2];
         $('#learntool_video_id').val(strId);
+        $('#vid_name').val(jQuery.data(overalObject,"vid_name"));
         $('#TB_closeWindowButton').click();
       }
     });

@@ -206,6 +206,25 @@ class LearnToolsController < ApplicationController
   def submit_new_tool
     @tool = Learntool.new(params[:learntool])
     @tool.video_id = params[:learntool_video_id]
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id == "
+    puts "vid id2 == "
+    puts "vid id1 == #{params[:learntool_video_id]}"
+    puts "vid id == #{@tool.video_id}"
     
     @tool.user = current_user
     @tool.verify = false #meaning::tool has not been verified
