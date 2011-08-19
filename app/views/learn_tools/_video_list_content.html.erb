@@ -1,32 +1,38 @@
-<div class="musicRow">
-  <% @my_videos.each do |m_p| %>
-    <%= render :partial => "videos/item_my_video", :locals => {:video => m_p}  %>
-  <% end %>
-</div>
-<div class="slsTopR">
-  <!--Pagination-->
-  <div class="assPage my_videos">
-    <span class="numPage"><%= page_entries_info @my_videos %></span>
-    <%= will_paginate @my_videos, :class => "bot_paging" %>
+<% form_tag url_for(:controller => "learn_tools", :action => "video_list_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
+  <%= hidden_field_tag "bottom_page_to_load", @cur_bottom_page ? @cur_bottom_page : "1" %>
+  <div class="musicRow">
+    <% @my_videos.each do |m_p| %>
+      <%= render :partial => "videos/item_my_video", :locals => {:video => m_p}  %>
+    <% end %>
   </div>
-  <!--Pagination-->
-</div>
+  <div class="slsTopR">
+    <!--Pagination-->
+    <div class="assPage my_videos">
+      <span class="numPage"><%= page_entries_info @my_videos %></span>
+      <%= will_paginate @my_videos, :class => "bot_paging" %>
+    </div>
+    <!--Pagination-->
+  </div>
+<% end %><!-- end form_tag -->
+
+
 <script type="text/javascript">
   function ShowVidOverlay(){
-    $('div#TB_ajaxContent').append('<div id="bottomoverlay"></div>');
-    var position = $('div#TB_ajaxContent').offset();
+    $('form#form_first_tab').append('<div id="bottomoverlay"></div>');
+    var position = $('form#form_first_tab').offset();
 
     $("#bottomoverlay")
     .height(500)
     .css({
       'opacity' : 0.4,
       'position': 'absolute',
-      'top': position.top -240,//17.85px
-      'left': position.left - 315,//16.83px
+      'top': 20,
+      'left': position.left - 332,
       'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+      'background-color':'black',
       'width': '770px',
       'z-index': 5000
-    });//a = 255.28334045410156 b = 331
+    });
   }
   $(document).ready(function(){
     $('.bot_paging a').each(function(){
