@@ -28,8 +28,10 @@
             if @user_post != f
             %>
               <div class="<%= "div_disable" if isfriend %>"<% if isfriend %>onclick="return false;" <% end %>>
+                <div class="test">
                 <div id="select">
                   <span id="selectMat">
+
                     <li class="friends_area" id="<%= isfriend ? "" : f.id %>" title="<%= f.name %>">
                       <div class="assPic">
                         <div style="height:51px;">
@@ -44,8 +46,10 @@
                         </div>
                       <% end %>
                     </li>
+
                   </span>
                 </div>
+                  </div>
               </div>
             <% end %>
           <% end %>
@@ -76,6 +80,7 @@
 </div>
 <!--Alert-->
 <script>
+
   $(document).ready(function(){
     $('#TB_ajaxContent').css({
       'width':'500px',
@@ -106,7 +111,7 @@
         
         
     $('.friends_area').click(function(){
-        
+     
       var fid = $(this).attr('id');
       var ids = $('#frend_ids').val();
             
@@ -118,6 +123,7 @@
         $(this).css('background-color', '#fff');
         $(this).parents('#select:first').removeClass('selected');
         $(this).parents('span#selectMat:first').addClass('selectedMat01');
+        //    $(this).parents('span#selectMat:first').removeClass('selectedMat02');
       }
       else {
             
@@ -125,10 +131,15 @@
         $(this).css('background-color', '#627AAD');
         $(this).parents('#select:first').addClass('selected');
         $(this).parents('span#selectMat:first').removeClass('selectedMat01');
+        //    $(this).parents('span#selectMat:first').addClass('selectedMat02');
         $('#frend_ids').val(fid + ',' + ids);
         showActionsBox();
       }
-            
+  //    $(".selected9999").click(function ( event ) {
+   //     event.preventDefault();
+   //     $(this).toggle();
+   //     $('.test').addClass('selected99');
+   //   }); 
             
       function showActionsBox(){
             
@@ -140,19 +151,22 @@
       $(".selected").click(showActionsBox);
     });
         
-    $('#BoxMenu').click(function(e){
-        
+    $('#BoxMenu').click(function(){
+ //$('.test').addClass('selected9999');
       var f_ids = $('#frend_ids').val(); // get all ids in hidden field
       if (f_ids != '') {
         $('.selectedMat01').hide();
-        $('.selected').show();
-      }
-            
+        $('.selected').show(); 
+      }         
     });
+    
 
-    $('#BoxMenu01').click(function(e){
+    $('#BoxMenu01').click(function(){
+  //    $('.test').removeClass('selected9999');
+      
       $('.selectedMat01').show();
-      //       $('.product-head').show();
+      $('.selected01').show();
+  //    $('.selected99').show();
     });
         
     $('.uiButtonConfirm').click(function(){
@@ -235,4 +249,6 @@
       filterList($("#form"), $("#list"));
     });
   }(jQuery));
+
+
 </script>
