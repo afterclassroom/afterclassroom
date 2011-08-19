@@ -5,7 +5,7 @@
       <%= render :partial => "item_my_video", :locals => {:video => m_p}  %>
     <% end %>
   </div>
-  <div class="slsTopR">
+  <div class="slsTopR" style="width: 200px; position: absolute; left: 553px; top: 417px; ">
     <!--Pagination-->
     <div class="assPage my_videos">
       <span class="numPage"><%= page_entries_info @my_videos %></span>
@@ -13,6 +13,15 @@
     </div>
     <!--Pagination-->
   </div>
+
+  <div style="position: absolute; float: left; top: 430px; left: 25px;">
+    <span class="submitRSVP" style="padding: 0px;">
+      <a id="btn_submit_dev" href="javascript:;" style="width: 55px;">
+        <input style="margin-left: 0px;" type="button" value="Select" name="foo"/>
+      </a>
+    </span>
+  </div> 
+
 <% end %><!-- end form_tag -->
 
 
