@@ -46,50 +46,50 @@ class PostManagementsController < ApplicationController
     if posts.size > 0
       posts.each do |abl|
         abl.favorites.destroy_all if abl.favorites.size > 0
-        if abl.post_assignments
-          del_post_wall(abl.post_assignments)
+        if abl.post_assignment
+          del_post_wall(abl.post_assignment)
         end
-        if abl.post_projects
-          del_post_wall(abl.post_projects)
+        if abl.post_project
+          del_post_wall(abl.post_project)
         end
-        if abl.post_tests
-          del_post_wall(abl.post_tests)
+        if abl.post_test
+          del_post_wall(abl.post_test)
         end
-        if abl.post_exams
-          del_post_wall(abl.post_exams)
+        if abl.post_exam
+          del_post_wall(abl.post_exam)
         end
-        if abl.post_events
-          del_post_wall(abl.post_events)
+        if abl.post_event
+          del_post_wall(abl.post_event)
         end
-        if abl.post_qas
-          del_post_wall(abl.post_qas)
+        if abl.post_qa
+          del_post_wall(abl.post_qa)
         end
-        if abl.post_tutors
-          del_post_wall(abl.post_tutors)
+        if abl.post_tutor
+          del_post_wall(abl.post_tutor)
         end
-        if abl.post_books
-          del_post_wall(abl.post_books)
+        if abl.post_book
+          del_post_wall(abl.post_book)
         end
-        if abl.post_jobs
-          del_post_wall(abl.post_jobs)
+        if abl.post_job
+          del_post_wall(abl.post_job)
         end
-        if abl.post_foods
-          del_post_wall(abl.post_foods)
+        if abl.post_food
+          del_post_wall(abl.post_food)
         end
-        if abl.post_myxes
-          del_post_wall(abl.post_myxes)
+        if abl.post_myx
+          del_post_wall(abl.post_myx)
         end
-        if abl.post_awarenesses
-          del_post_wall(abl.post_awarenesses)
+        if abl.post_awareness
+          del_post_wall(abl.post_awareness)
         end
-        if abl.post_housings
-          del_post_wall(abl.post_housings)
+        if abl.post_housing
+          del_post_wall(abl.post_housing)
         end
-        if abl.post_teamups
-          del_post_wall(abl.post_teamups)
+        if abl.post_teamup
+          del_post_wall(abl.post_teamup)
         end
-        if abl.post_exam_schedules
-          del_post_wall(abl.post_exam_schedules)
+        if abl.post_exam_schedule
+          del_post_wall(abl.post_exam_schedule)
         end
         abl.destroy
       end

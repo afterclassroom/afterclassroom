@@ -103,7 +103,7 @@ class PostMyxesController < ApplicationController
   # GET /post_myxes/1
   # GET /post_myxes/1.xml
   def show
-    @post_myx = PostMyx.find(params[:id])del_post_wall(@post_housing)
+    @post_myx = PostMyx.find(params[:id])
     @post = @post_myx.post
     @rating_status = @post_myx.rating_status
     update_view_count(@post)
