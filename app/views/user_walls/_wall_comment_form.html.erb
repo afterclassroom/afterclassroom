@@ -1,5 +1,5 @@
 <div class="proList" id="wall_comment_form_<%= obj.class.name %>_<%= obj.id %>" style="display:none;width:440px">
-  <% form_tag url_for(:controller => "user_walls", :action => "create_comment"), :remote => true, :html => {:id => "wall_form_#{obj.class.name}_#{obj.id}"} do %>
+  <% form_tag url_for(:controller => "user_walls", :action => "create_comment"), :remote => true, :id => "wall_form_#{obj.class.name}_#{obj.id}" do %>
   <%= hidden_field_tag "wall_id", wall.id %>
 	<%= hidden_field_tag "commentable_id", obj.id %>
 	<%= hidden_field_tag "commentable_type", obj.class.name %>
@@ -7,6 +7,32 @@
   <div class="proListR" style="width:380px">
     <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{obj.class.name}_#{obj.id}", :onblur => "hideCommentForm('#{obj.class.name}', '#{obj.id}')"} %></div>
   </div>
-  <div class="proAttR" style="margin-left: 37px; float: left;"><%= submit_tag 'Send', :class => "buttonCom" %></div>
+  <div class="proAttR" style="margin-left: 37px; float: left;"><%= submit_tag 'Send', :class => "buttonCom", :id => "submitBtn_#{obj.class.name}_#{obj.id}" %></div>
   <% end %>
 </div>
+<script type="text/javascript">
+  function checkmyform(class, id){
+    var cm = $("#comment_" + class + "_" + id);
+    if (cm.val() != "") {
+      $("#wall_form_" + class + "_" + id).submit();
+    }else{
+			cm.focus();
+		}
+  }
+    
+  $(document).ready(function(){
+    $('#submitBtn_<%= obj.class.name %>_<%= obj.id %>').click(function(){
+      checkmyform('<%= obj.class.name %>', '<%= obj.id %>');
+    });
+        
+    $('#wall_form_<%= obj.class.name %>_<%= obj.id %>').bind('ajax:beforeSend', function(){
+      $('#submitBtn_<%= obj.class.name %>_<%= obj.id %>').attr('disabled', 'disabled');
+      $('#submitBtn_<%= obj.class.name %>_<%= obj.id %>').before('<%= show_ajax_loader("loader_id#{obj.class.name}_#{obj.id}","display: block; position: absolute; float: right; height: 19px; margin-top: 4px; margin-left: -22px;") %>');
+    })
+        
+    $('#wall_form_<%= obj.class.name %>_<%= obj.id %>').bind('ajax:complete', function(){
+      $('#submitBtn_<%= obj.class.name %>_<%= obj.id %>').attr('disabled', '');
+      $('#loader_id<%= obj.class.name %>_<%= obj.id %>').remove();
+    })
+  });
+</script>
