@@ -3,6 +3,31 @@
     <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
     <span class="btmShare"><%= addthis_bookmark_button { raw("<span>Share</span>") } %></span>
     <span class="btmFav" id="item_favorite_<%= @video.id %>"><%= show_favorite_in_detail("Video", @video) %></span>
-    <span class="btmAbuse"><%= show_report_abuse(@video) %></span>
+    <span class="btmAbuse"><%= show_report_abuse_video(@video) %></span>
   </div>
 </div>
+<script>
+  $(document).ready(function(){
+    $('.postCont').css({
+      'width':'500px'
+    });
+//    var top = 70;
+//    $(window).scroll(function(){
+//      $('#facebox').stop().animate({
+//        top: $(window).scrollTop() + top
+//      }, 1);
+//    });
+    $("body").append("<div id='opaque' style='display: none;'></div>");
+        
+    $(document).bind('loading.facebox', function(){
+      $("#opaque").show();
+    });
+    $(document).bind('close.facebox', function(){
+      $("#opaque").hide();
+    });
+    $(document).bind('afterReveal.facebox', function(){
+      // this is a fix for IE6 which resets the height to 100% of the window height
+      $("#opaque").height($(document).height());
+    });
+  });
+</script>

@@ -29,27 +29,27 @@
             %>
               <div class="<%= "div_disable" if isfriend %>"<% if isfriend %>onclick="return false;" <% end %>>
                 <div class="test">
-                <div id="select">
-                  <span id="selectMat">
+                  <div id="select">
+                    <span id="selectMat">
 
-                    <li class="friends_area" id="<%= isfriend ? "" : f.id %>" title="<%= f.name %>">
-                      <div class="assPic">
-                        <div style="height:51px;">
-                          <%= image_tag(f.avatar.url(:thumb), :class => "pic", :style=>'float:left') %>
+                      <li class="friends_area" id="<%= isfriend ? "" : f.id %>" title="<%= f.name %>">
+                        <div class="assPic">
+                          <div style="height:51px;">
+                            <%= image_tag(f.avatar.url(:thumb), :class => "pic", :style=>'float:left') %>
+                          </div>
                         </div>
-                      </div>
-                      <a class="name"><%= f.name %></a>
-                      <br/>
-                      <% if isfriend %>
-                        <div class="nameF" style="color:#0A81C4">
-                          Friend
-                        </div>
-                      <% end %>
-                    </li>
+                        <a class="name"><%= f.name %></a>
+                        <br/>
+                        <% if isfriend %>
+                          <div class="nameF" style="color:#0A81C4">
+                            Friend
+                          </div>
+                        <% end %>
+                      </li>
 
-                  </span>
-                </div>
+                    </span>
                   </div>
+                </div>
               </div>
             <% end %>
           <% end %>
@@ -83,8 +83,8 @@
 
   $(document).ready(function(){
     $('#TB_ajaxContent').css({
-      'width':'500px',
-      'height':'375px'
+      'width':'510px',
+      'height':'380px'
     });
    
     $('span#selectMat').addClass('selectedMat01');
@@ -135,11 +135,11 @@
         $('#frend_ids').val(fid + ',' + ids);
         showActionsBox();
       }
-  //    $(".selected9999").click(function ( event ) {
-   //     event.preventDefault();
-   //     $(this).toggle();
-   //     $('.test').addClass('selected99');
-   //   }); 
+      //    $(".selected9999").click(function ( event ) {
+      //     event.preventDefault();
+      //     $(this).toggle();
+      //     $('.test').addClass('selected99');
+      //   }); 
             
       function showActionsBox(){
             
@@ -152,7 +152,7 @@
     });
         
     $('#BoxMenu').click(function(){
- //$('.test').addClass('selected9999');
+      //$('.test').addClass('selected9999');
       var f_ids = $('#frend_ids').val(); // get all ids in hidden field
       if (f_ids != '') {
         $('.selectedMat01').hide();
@@ -162,11 +162,11 @@
     
 
     $('#BoxMenu01').click(function(){
-  //    $('.test').removeClass('selected9999');
+      //    $('.test').removeClass('selected9999');
       
       $('.selectedMat01').show();
       $('.selected01').show();
-  //    $('.selected99').show();
+      //    $('.selected99').show();
     });
         
     $('.uiButtonConfirm').click(function(){
@@ -218,9 +218,9 @@
       }), input = $("<input>").attr({
         "class": "filterinput",
         "type": "text",
-        "value": "Search",
-        "onfocus": "if(this.value=='Search'){this.value=''};",
-        "onblur": "if(this.value==''){this.value='Search'};"
+        "value": "Search"
+        //      "onfocus": "if(this.value=='Search'){this.value=''};",
+        //      "onblur": "if(this.value==''){this.value='Search'};"
             
       });
       $(form).append(input).appendTo(header);
@@ -242,7 +242,21 @@
         // fire the above change event after every letter
         $(this).change();
       });
+      $('.filterinput').each(function() {
+        var default_value = this.value;
+        $(this).focus(function() {
+          if(this.value == default_value) {
+            this.value = '';
+          }
+        });
+        $(this).blur(function() {
+          if(this.value == '') {
+            this.value = default_value;
+          }
+        });
+      });
     }
+    
         
     //ondomready
     $(function(){

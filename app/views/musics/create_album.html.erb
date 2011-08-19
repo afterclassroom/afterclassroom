@@ -30,7 +30,7 @@
         <a onclick="$('#story_state').val('draft');$('#form_new').submit();" href="javascript:;">Start Uploads</a>
       </div>
       <div class="stoExShare" id="cancel_uploads">
-        <a onclick="$('#story_state').val('share');$('#form_new').submit();" href="javascript:;">Cancel uploads</a>
+        <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').hide();">Cancel</a></div>
       </div>
     </div>
     <br/>
@@ -73,10 +73,10 @@
           }
         }
         return $('<tr><td class="file_upload_preview_music"><\/td>' +
-        '<td class="file_upload_title_music">' +
+          '<td class="file_upload_title_music">' +
           fileNames +
           '<\/td>' +
-          '<td class="file_upload_txt_title">Title: <input type="text" title="Title" class="vtip"><\/td>' +
+          '<td class="file_upload_txt_title"><input type="text" title="Title" class="musicTitle" value="Title"><\/td>' +
           '<td class="file_upload_progress"><div><\/div><\/td>' +
           '<td class="file_upload_start">' +
           '<button class="ui-state-default ui-corner-all" title="Start Upload">' +
@@ -120,11 +120,24 @@
           handler.formData = {
             "music[title]": title,
             "music[music_album_id]": $('#music_music_album_id').val(),
-						"authenticity_token": $('[name="authenticity_token"]').val(),
+            "authenticity_token": $('[name="authenticity_token"]').val()
           };
           callBack();
         });
-      },
+      }
+    });
+    $('.musicTitle').each(function() {
+      var default_value = this.value;
+      $(this).focus(function() {
+        if(this.value == default_value) {
+          this.value = '';
+        }
+      });
+      $(this).blur(function() {
+        if(this.value == '') {
+          this.value = default_value;
+        }
+      });
     });
   });
         

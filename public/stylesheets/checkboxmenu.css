@@ -314,10 +314,10 @@ div.player.inactive
     cursor:pointer;
 }
 .musicVideo div div.item{
-    margin-left: 120px;
+    margin-left: 100px;
 }
 .showMusicVideo div div.item{
-    margin-left: 20px;
+    margin-left: 75px;
 }
 #playlist_list img{
     margin-top: 3px;
