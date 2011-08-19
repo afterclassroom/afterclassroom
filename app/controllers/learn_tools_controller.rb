@@ -323,6 +323,7 @@ class LearnToolsController < ApplicationController
   end
   
   def play_vid
+    @video = Video.find(params[:vid_id])
     render :layout => false
   end
   
