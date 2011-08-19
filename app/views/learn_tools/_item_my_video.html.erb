@@ -1,0 +1,9 @@
+<div class="musicL">
+  <div class="photoImg"><%= link_to display_image_video(video), user_video_url(current_user, video) %></div>
+  <div class="mostMSR">
+    <div class="mostMSA"><%= link_to "", user_video_url(current_user, video), :class => "mostMSPlay" %></div>
+  </div>
+  <div class="musicB">
+    <div class="musicN"><%= link_to video.title, user_video_url(current_user, video) %></div>
+  </div>
+</div>

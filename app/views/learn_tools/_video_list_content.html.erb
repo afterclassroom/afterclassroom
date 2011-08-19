@@ -2,7 +2,7 @@
   <%= hidden_field_tag "bottom_page_to_load", @cur_bottom_page ? @cur_bottom_page : "1" %>
   <div class="musicRow">
     <% @my_videos.each do |m_p| %>
-      <%= render :partial => "videos/item_my_video", :locals => {:video => m_p}  %>
+      <%= render :partial => "item_my_video", :locals => {:video => m_p}  %>
     <% end %>
   </div>
   <div class="slsTopR">
