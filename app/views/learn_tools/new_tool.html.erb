@@ -37,6 +37,21 @@
               <div class="postTit">URL*</div>
               <div class="postInp"><%= f.text_field :href, :class => '{validate:{required:true, url: true}}' %></div>
             </div>
+            <div class="postItem">
+              <div class="postTit">Support URL</div>
+              <div class="postInp"><%= f.text_field :href, :class => '{validate:{url: true}}' %></div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Demo Video</div>
+              <div class="postInp"><a href="javascript:;">Please select a video</a></div>
+            </div>
+            
+            
+            
+            
+            
+            
+            
             <div style="margin-left:120px">
               <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
             </div>
