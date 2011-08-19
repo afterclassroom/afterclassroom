@@ -5,7 +5,7 @@
       <%= render :partial => "item_my_video", :locals => {:video => m_p}  %>
     <% end %>
   </div>
-  <div class="slsTopR" style="width: 200px; position: absolute; left: 553px; top: 417px; ">
+  <div class="slsTopR" style="width: 200px; position: absolute; left: 553px; top: 426px; ">
     <!--Pagination-->
     <div class="assPage my_videos">
       <span class="numPage"><%= page_entries_info @my_videos %></span>
@@ -14,9 +14,9 @@
     <!--Pagination-->
   </div>
 
-  <div style="position: absolute; float: left; top: 430px; left: 25px;">
+  <div style="position: absolute; float: left; top: 438px; left: -35px;">
     <span class="submitRSVP" style="padding: 0px;">
-      <a id="btn_submit_dev" href="javascript:;" style="width: 55px;">
+      <a id="btn_select_vid" href="javascript:;" style="width: 55px;">
         <input style="margin-left: 0px;" type="button" value="Select" name="foo"/>
       </a>
     </span>
@@ -46,6 +46,14 @@
     });
   }
   $(document).ready(function(){
+    $('#btn_select_vid').click(function(){
+      if (overalObject != null){
+        var strId = $(overalObject).attr('id').split('_')[2];
+        $('#learntool_video_id').val(strId);
+        $('#TB_closeWindowButton').click();
+      }
+    });
+    //BEGIN ajax pagination
     $('.bot_paging a').each(function(){
       $(this).attr('href','javascript:;');
     });
@@ -65,5 +73,7 @@
         $('form#form_first_tab').submit();
       });
     });
+    //END ajax pagination
+  
   });  
 </script>

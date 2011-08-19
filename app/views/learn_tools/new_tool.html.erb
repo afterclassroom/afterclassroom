@@ -9,6 +9,7 @@
       </div>
       <%= display_flash_messages_with_raw %>
       <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "submit_new_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
+        <%= hidden_field_tag "learntool_video_id" %>
         <div class="postCont">
           <div class="postErr">
             <div class="postItem">
