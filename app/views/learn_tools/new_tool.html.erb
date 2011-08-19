@@ -43,7 +43,7 @@
             </div>
             <div class="postItem">
               <div class="postTit">Demo Video</div>
-              <div class="postInp"><a href="javascript:;">Please select a video</a></div>
+              <div class="postInp"><%= link_to "Contact Developer", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=325&width=550", :class => "thickbox", :title => "Choose a video from your video list" %></div>
             </div>
             
             

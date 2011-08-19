@@ -289,6 +289,10 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def video_list
+    render :layout => false
+  end
+  
   
   private
   
