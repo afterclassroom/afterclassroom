@@ -1,0 +1,30 @@
+<div class="AsDcomItem" id="post_<%= comnt.commentable_id %>_comment_<%= comnt.id %>">
+    <% if eval(comnt.commentable_type).find(comnt.commentable_id).user == current_user || comnt.user == current_user %>
+    <div class="del_post_com" style="float: right; display: none; cursor: pointer;" onclick="DeletePostComment('<%= comnt.commentable_id %>', '<%= comnt.id %>');">
+        <img src="/images/icon-ing.gif">
+    </div><% end %>
+    <div class="AsDcomImg">
+        <%= show_image_user_post(comnt.user) %>
+    </div>
+    <div class="AsDcomItemR">
+        <div class="AsDcomName">
+            <%= show_user_post(comnt.user) %>- <%= time_ago_in_words(comnt.created_at, true) + " ago." %>
+        </div>
+        <div class="AsDcomDes">
+            <%= comnt.comment %>
+        </div>
+        <div class="AsDcomRe">
+            <div id="rate_comment_<%= comnt.id %>">
+                <div class="AsDcomRe1">
+                    <%= link_to comnt.total_good, {:controller => "ajax_not_login", :action => "rate_comment", :comment_id => comnt.id, :rating => "1" }, :remote => true %>
+                </div>
+                <div class="AsDcomRe2">
+                    <%= link_to comnt.total_bad, {:controller => "ajax_not_login", :action => "rate_comment", :comment_id => comnt.id, :rating => "0" }, :remote => true %>
+                </div>
+            </div>
+            <div class="AsDcomRe3">
+                <%= show_report_abuse_comment_video(comnt) %>
+            </div>
+        </div>
+    </div>
+</div>

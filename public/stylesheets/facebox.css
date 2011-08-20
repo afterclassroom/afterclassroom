@@ -64,6 +64,7 @@
 }
 #facebox .loading img{
    margin-top:150px;
+   margin-left: 100px;
    z-index: 99999999;
 }
 

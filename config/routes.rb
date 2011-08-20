@@ -43,7 +43,8 @@ Afterclassroom::Application.routes.draw do
           :first_tab_paging, :search_tool, :see_all_tool_fan, :contact_dev_form, 
           :mylearn, :tool_rev_paging, :write_review_form, :become_a_fan,
           :new_tool, :verify_handler, :owner_handler, :video_list, :video_list_paging,
-          :rate, :new_tool_with_api, :choose_to_add, :edit_review_form, :delete_review
+          :rate, :new_tool_with_api, :choose_to_add, :edit_review_form, :delete_review,
+          :play_vid
         post :submit_review, :submit_new_tool, :create_tool_with_api, 
           :send_to_dev,:update_review
       end
@@ -193,7 +194,7 @@ Afterclassroom::Application.routes.draw do
   # Posts
   resources :posts do
     collection do
-      get :report_abuse, :create_report_abuse, :delete_comment, :download, :view_all_comments
+      get :report_abuse, :create_report_abuse, :report_abuse_video, :create_report_abuse_video, :delete_comment, :download, :view_all_comments, :report_abuse_vid
       post :create_comment, :create_comment_on_list
     end
   end

@@ -43,7 +43,7 @@
           <% end %>
         </div>
         <%= render :partial => "video_action" %>
-        <%= show_post_comments(@video) %>
+        <%= show_post_comments_video(@video) %>
         <div class="goTop">
           <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
         </div>
@@ -63,4 +63,21 @@
     
   // Add VideoJS to all video tags on the page when the DOM is ready
   VideoJS.setupAllWhenReady();
+
+  $(document).ready(function(){
+    $(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 200) {
+    //      $('#toolbar').fadeOut();
+        $('#toolbar').show();
+        $('#toolbarbut').hide();
+        } else {
+          $('#toolbar').hide();
+          $('#toolbarbut').show();
+    //      $('#toolbar').fadeIn();
+        }
+      });
+    });
+  });
+
 </script>
