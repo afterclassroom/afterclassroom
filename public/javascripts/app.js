@@ -240,9 +240,9 @@ function showCommentForm(class_name, post_id){
 }
 
 function hideCommentForm(class_name, id){
-    if ($('#comment_'  + class_name + "_" + id).val() == "") {
-        $('#wall_comment_'  + class_name + "_" + id).show();
-        $('#wall_comment_form_'  + class_name + "_" + id).hide();
+    if ($('#comment_' + class_name + "_" + id).val() == "") {
+        $('#wall_comment_' + class_name + "_" + id).show();
+        $('#wall_comment_form_' + class_name + "_" + id).hide();
     }
 }
 
@@ -253,7 +253,7 @@ function showListPostComment(post_id){
 }
 
 function showPostCommentForm(post_id){
-    $('#post_comment_form_' + post_id).toggle("slow");//.show();
+    $('#post_comment_form_' + post_id).toggle("slow");
     $('#post_comment_' + post_id).hide();
     $('#comment_' + post_id).focus();
 }

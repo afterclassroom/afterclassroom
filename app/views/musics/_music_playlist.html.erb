@@ -8,7 +8,7 @@
             <div class="btn play">
             </div>
             <div class="title" style="height:15px">
-                <b><%= truncate((m.title == "" ? m.music_attach_file_name : m.title), :length => 45, :omission => '...' ) %></b>
+                <b><%= truncate(((m.title == "" or m.title == nil) ? m.music_attach_file_name : m.title), :length => 45, :omission => '...' ) %></b>
             </div>
         </div>
         <div class="player inactive"></div>
