@@ -2,7 +2,7 @@
 <% if obj.comments.size > 0 %>
 <div id="wall_list_comment_<%= obj.id %>">
     <% if obj.comments.size > 2 %>
-    <div class="proList">
+    <div class="proList" style="width: 440px;">
         <div class="writeCom">
             <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall, :post_id => obj.id, :class_name => obj.class.name}, :remote => true %>
         </div>

@@ -91,6 +91,7 @@ class MusicAlbumsController < ApplicationController
     if musics.size > 0
       musics.each do |abl|
         abl.favorites.destroy_all
+        del_post_wall(abl)
         abl.destroy
       end
     end

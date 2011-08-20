@@ -680,7 +680,7 @@ module ApplicationHelper
     end
     
     if wall.user_wall_video
-      link = wall.user_wall_video.link
+      link = "/gadgets_proxy/link?url=#{wall.user_wall_video.link}"
       img_link = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
       image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_video.title

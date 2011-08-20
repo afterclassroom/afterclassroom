@@ -91,6 +91,7 @@ class PhotoAlbumsController < ApplicationController
     if photos.size > 0
       photos.each do |abl|
         abl.favorites.destroy_all
+        del_post_wall(abl)
         abl.destroy
       end
     end

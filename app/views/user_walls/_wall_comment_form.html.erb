@@ -7,14 +7,14 @@
   <div class="proListR" style="width:380px">
     <div class="writeCom"><%= text_area_tag "comment", nil, {:id => "comment_#{obj.class.name}_#{obj.id}", :onblur => "hideCommentForm('#{obj.class.name}', '#{obj.id}')"} %></div>
   </div>
-  <div class="proAttR" style="margin-left: 37px; float: left;"><%= submit_tag 'Send', :class => "buttonCom", :id => "submitBtn_#{obj.class.name}_#{obj.id}" %></div>
+  <div class="proAttR" style="margin-left: 37px; float: left;"><input id="submitBtn_<%= obj.class.name %>_<%= obj.id %>" type="button" value="Send" name="commit" class="buttonCom" /></div>
   <% end %>
 </div>
 <script type="text/javascript">
-  function checkmyform(class, id){
-    var cm = $("#comment_" + class + "_" + id);
+  function checkmyform(class_name, id){
+    var cm = $("#comment_" + class_name + "_" + id);
     if (cm.val() != "") {
-      $("#wall_form_" + class + "_" + id).submit();
+      $("#wall_form_" + class_name + "_" + id).submit();
     }else{
 			cm.focus();
 		}

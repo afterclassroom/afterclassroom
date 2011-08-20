@@ -12,7 +12,7 @@
       <%= hidden_field_tag "photo[photo_album_id]", @photo_album.id %>
       <%= file_field_tag "photo[photo_attach]", :multiple => true %>
       <div>
-        Upload photos
+        Select photos
       </div>
     <% end %>
     <table class="upload_files" width="100%">
@@ -92,7 +92,7 @@
         if (!regexp.test(files[index].name)) {
           handler.uploadRow.find('.file_upload_progress').html('ONLY IMAGES ALLOWED!');
           setTimeout(function(){
-            handler.removeNode(handler.uploadRow);file_upload_preview
+            handler.removeNode(handler.uploadRow);
           }, 10000);
           return;
         }
