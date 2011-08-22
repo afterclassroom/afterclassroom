@@ -351,6 +351,10 @@ class LearnToolsController < ApplicationController
     if @tool.video_id != nil
       @video_name = Video.find(@tool.video_id).title
     end
+    #the following line for video form
+    @video = Video.new()
+    @categories ||= Youtube.video_categories
+    
   end
   
   def save_edit_tool
@@ -358,8 +362,69 @@ class LearnToolsController < ApplicationController
     @tool.update_attributes(params[:learntool])
     @tool.video_id = params[:learntool_video_id]
     
+    str_notice = ""
+    
     if @tool.save
-      flash[:notice] = "Your tool was successfully submitted."
+      puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++ params[:vid_check] == #{params[:vid_check]}"
+      if (params[:vid_check] == "new video upload")
+        
+        @video = Video.new(params[:video])
+        @video.user = current_user
+        @video.tag_list = params[:tag_list]
+        if @video.save!
+          @video.convert
+          @tool.video_id = @video.id
+          @tool.save
+          post_wall(@video)
+        else
+          str_notice = "Failed to add video."
+        end
+      end
+      
+      
+      flash[:notice] = "Your tool was successfully submitted. #{str_notice}"
       redirect_to :controller=>'learn_tools', :action => 'toolmanager'
     else
       @tool_cats = LearnToolCate.find(:all)

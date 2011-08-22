@@ -11,6 +11,7 @@
       <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
         <%= hidden_field_tag "tool_id", @tool.id %>
         <%= hidden_field_tag "learntool_video_id" %>
+        <%= hidden_field_tag "vid_check" %>
         <div class="postCont">
           <div class="postErr">
             <div class="postItem">
@@ -63,10 +64,21 @@
             <div class="postItem">
               <div class="postTit">Demo Video</div>
               <div class="postInp">
-                <input type="text" name="vid_name" id="vid_name"/>
-                <%= link_to "Please select another demo video", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list" %>
+                <div class="submit" style="padding: 0px;">
+                  <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
+                </div>
+                <input type="text" name="vid_name" id="vid_name" style="margin-left: -106px;  margin-top: 31px; display: none "/>
+                <div class="submit" style="padding: 0px; padding-left: 10px;">
+                  <a href="javascript:;" id="btn_new_vid">New</a>
+                </div>
               </div>
             </div>
+            <div id ="form_vid" style ="display: none;">
+              <%= render :partial => "form_vid" %>
+            </div>
+
+
+
           </div>
         </div>
         <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px">
@@ -91,7 +103,23 @@
     }
   }    
   $(document).ready(function(){
+
+    $('#select_vid').click(function(){
+      $('input#vid_name').show('slow');
+      $('div#form_vid').hide();
+      $('input#vid_check').val("video selected");
+    });
+    $('#btn_new_vid').click(function(){
+      $('input#vid_name').hide();
+      $('div#form_vid').show('slow');
+      $('input#vid_check').val("new video upload");
+    });
+
+
     $('#btn_sbm_tool').click(function(){
+      if ($('input#vid_check').val() != "new video upload" ){
+        $('div#form_vid').remove();
+      }
       SubmitFormTool();
     });
     $('#reset_form').click(function(){
