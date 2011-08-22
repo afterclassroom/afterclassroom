@@ -3332,7 +3332,6 @@ a.close:hover{
     background: url(/images/popupCloseH.png);
 }
 .top_area{
-    background:#EBEBEB;
     font-size:12px;
     color:#0A81C4;
     font-weight:bold;
@@ -3360,7 +3359,6 @@ a.close:hover{
 .product-head {
     font-size:12px;
     padding:4px;
-    background-color:#EBEBEB;
     width:100%;
 }
 .filterform input{

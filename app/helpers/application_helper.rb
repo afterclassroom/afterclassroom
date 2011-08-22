@@ -892,7 +892,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login(raw("<span>Report Abuse</span>"))
     else
-      link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_video_posts_path}?reported_id=#{post.id}&reported_type=#{post.class.name}&height=320&width=490", :rel=>"facebox", :title => "Report Abuse")
+      link_to(raw("<span>Report Abuse</span>"), "#{report_abuse_video_posts_path}?reported_id=#{post.id}&reported_type=#{post.class.name}&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
     end
   end
   
@@ -900,7 +900,7 @@ module ApplicationHelper
     if !logged_in?
       link_to_require_login(raw("Report Abuse"))
     else
-      link_to(raw("Report Abuse"), "#{report_abuse_video_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=320&width=490", :rel=>"facebox", :title => "Report Abuse")
+      link_to(raw("Report Abuse"), "#{report_abuse_video_posts_path}?reported_id=#{comnt.id}&reported_type=Comment&height=320&width=490", :class => "thickbox", :title => "Report Abuse")
     end
   end
   

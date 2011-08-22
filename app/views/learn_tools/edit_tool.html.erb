@@ -1,0 +1,137 @@
+<%= render :partial => "top_learn" %>
+
+
+<div class="contMain">
+  <div class="contDetL">
+    <div class="contDetLin post">
+      <div class="AsDTop">
+        <h1 class="titleH1">Submit new tool</h1>
+      </div>
+      <%= display_flash_messages_with_raw %>
+      <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
+        <%= hidden_field_tag "tool_id", @tool.id %>
+        <%= hidden_field_tag "learntool_video_id" %>
+        <%= hidden_field_tag "vid_check" %>
+        <div class="postCont">
+          <div class="postErr">
+            <div class="postItem">
+              <div class="postTit">Submit new tool</div>
+              <div class="postInp">
+                <%= f.select("learn_tool_cate_id", options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "#{@tool.learn_tool_cate_id}")) %>
+
+              </div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Name*</div>
+              <div class="postInp"><%= f.text_field :name, :class => '{validate:{required:true}}' %></div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Description*</div>
+              <div class="postInput">
+                <div class="postDesInf" id="desc_count">900 characters max - Current: 0 character</div>
+                <div class="postInp"><%= f.text_area :description, :class => '{validate:{required:true}}' %></div>
+              </div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Current Image</div>
+              <div class="postInp"><%= image_tag @tool.tool_img.url(:medium) %></div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Images</div>
+              <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23" %></div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">URL*</div>
+              <div class="postInp"><%= f.text_field :href, :class => '{validate:{required:true, url: true}}' %></div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">Support URL</div>
+              <div class="postInp"><%= f.text_field :href, :class => '{validate:{url: true}}' %></div>
+            </div>
+
+            <% if @tool.video_id != nil %>
+              <div class="postItem">
+                <div class="postTit">Current Video</div>
+                <div class="postInp">
+                  <%= link_to "#{@video_name} - Play this video ", "#{url_for(:controller => "learn_tools", :action => "play_vid")}?vid_id=#{@tool.video_id}&height=425&width=555", :class => "thickbox", :title => "Showing the video introduce this tool" %>
+                </div>
+              </div>
+
+
+            <% end %>
+
+
+            <div class="postItem">
+              <div class="postTit">Demo Video</div>
+              <div class="postInp">
+                <div class="submit" style="padding: 0px;">
+                  <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
+                </div>
+                <input type="text" name="vid_name" id="vid_name" style="margin-left: -106px;  margin-top: 31px; display: none "/>
+                <div class="submit" style="padding: 0px; padding-left: 10px;">
+                  <a href="javascript:;" id="btn_new_vid">New</a>
+                </div>
+              </div>
+            </div>
+            <div id ="form_vid" style ="display: none;">
+              <%= render :partial => "form_vid" %>
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px">
+          <a href="javascript:;" id="btn_sbm_tool">Submit</a>
+        </div>
+        <div class="submit" style="margin-left: -106px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
+
+      <% end %>
+    </div>
+  </div>
+
+  <%= render :partial => "ads/show_vertical_ads" %>
+
+</div>
+<script type="text/javascript">
+  function SubmitFormTool(){
+    var result = $("form#form_new_tool").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("form#form_new_tool").submit();
+    }
+  }    
+  $(document).ready(function(){
+
+    $('#select_vid').click(function(){
+      $('input#vid_name').show('slow');
+      $('div#form_vid').hide();
+      $('input#vid_check').val("video selected");
+    });
+    $('#btn_new_vid').click(function(){
+      $('input#vid_name').hide();
+      $('div#form_vid').show('slow');
+      $('input#vid_check').val("new video upload");
+    });
+
+
+    $('#btn_sbm_tool').click(function(){
+      if ($('input#vid_check').val() != "new video upload" ){
+        $('div#form_vid').remove();
+      }
+      SubmitFormTool();
+    });
+    $('#reset_form').click(function(){
+      document.getElementById('form_new_tool').reset();
+    });
+    //desc_count
+    $('#learntool_description').keyup(function(){
+      var len = this.value.length;
+      if (len >= 900) {
+        this.value = this.value.substring(0, 900);
+      }
+      $('#desc_count').text("900 characters max - Current: "+len+" character")
+    });
+  });
+</script>

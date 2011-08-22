@@ -1,0 +1,37 @@
+<style>
+  span.learnFavS img:hover{
+    border: 1px solid #0A81C4;
+    border-radius: 4px;
+  }
+</style>
+
+
+
+
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="learnLeft">
+      
+      <%= display_flash_messages_with_raw %>
+
+      <div class="learnFavT">
+
+        <div class="learnFavTL"><%= page_entries_info @my_tools %></div>
+        <div class="learnFavTC"><%= link_to( "See All", {:controller => "learn_tools", :action => "toolmanager", :see_all => "See all tool"  }, :remote => false, :method => :get) %></div>
+      </div>
+
+      <% @my_tools.each do |mtool| %>
+        <%= render :partial => "tool_manager_item", :locals => {:learntool => mtool} %>
+      <% end %>
+
+
+      <div class="assPage" style="padding-left:0">
+        <span class="numPage"><%= page_entries_info @my_tools %></span>
+        <%= will_paginate @my_tools %> 
+      </div>
+
+
+      <div class="goTop"><a href="#">Top</a></div>
+    </div>
+  </div>
+</div>
