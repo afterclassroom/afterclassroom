@@ -337,6 +337,10 @@ class LearnToolsController < ApplicationController
     @tool = Learntool.find(params[:tool_id])
   end
   
+  def save_edit_tool
+    render :action => "toolmanager"
+  end
+  
   
   private
   
