@@ -210,37 +210,41 @@ class LearnToolsController < ApplicationController
   
   def submit_new_tool
     
-    redirect_to :controller=>'learn_tools', :action => 'new_tool'
+    @tool = Learntool.new(params[:learntool])
+    @tool.video_id = params[:learntool_video_id]
     
-#    @tool = Learntool.new(params[:learntool])
-#    @tool.video_id = params[:learntool_video_id]
-#    
-#    @tool.user = current_user
-#    @tool.verify = false #meaning::tool has not been verified
-#    
-#    @video = Video.new(params[:video])
-#    @video.user = current_user
-#    @video.tag_list = params[:tag_list]
-#    
-#    if @video.save!
-#      @video.convert
-#      post_wall(@video)
-#    else
-#      flash[:error] = 'Error.'
-#    end
-#    
-#    if simple_captcha_valid?
-#      if @tool.save
-#        flash[:notice] = "Your tool was successfully submitted."
-#        redirect_to :controller=>'learn_tools', :action => 'new_tool'
-#      else
-#        flash[:notice] = "Error !"
-#        render :action => "new_tool"
-#      end
-#    else
-#      flash[:warning] = "Captcha does not match."
-#      render :action => "new_tool"
-#    end
+    @tool.user = current_user
+    @tool.verify = false #meaning::tool has not been verified
+    
+    @video = Video.new(params[:video])
+    @video.user = current_user
+    @video.tag_list = params[:tag_list]
+    
+    str_notice = ""
+    
+    if simple_captcha_valid?
+      if @tool.save
+        if (params[:vid_check] == "new video upload")
+          if @video.save!
+            @video.convert
+            @tool.video_id = @video.id
+            @tool.save
+            post_wall(@video)
+          else
+            str_notice = "Failed to add video."
+          end
+        end
+        
+        flash[:notice] = "Your tool was successfully submitted. #{str_notice}"
+        redirect_to :controller=>'learn_tools', :action => 'new_tool'
+      else
+        flash[:notice] = "Error !"
+        render :action => "new_tool"
+      end
+    else
+      flash[:warning] = "Captcha does not match."
+      render :action => "new_tool"
+    end
   end
   
   def rate

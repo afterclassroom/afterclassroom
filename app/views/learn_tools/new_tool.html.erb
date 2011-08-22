@@ -47,7 +47,7 @@
               <div class="postTit">Demo Video</div>
               <div class="postInp">
                 <div class="submit" style="padding: 0px;">
-                  <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list" %>  
+                  <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
                 </div>
                 <input type="text" name="vid_name" id="vid_name" style="margin-left: -106px;  margin-top: 31px; display: none "/>
                 <div class="submit" style="padding: 0px; padding-left: 10px;">
@@ -89,7 +89,20 @@
     }
   }    
   $(document).ready(function(){
+    $('#select_vid').click(function(){
+      $('input#vid_name').show('slow');
+      $('div#form_vid').hide();
+      $('input#vid_check').val("video selected");
+    });
+    $('#btn_new_vid').click(function(){
+      $('input#vid_name').hide();
+      $('div#form_vid').show('slow');
+      $('input#vid_check').val("new video upload");
+    });
     $('#btn_sbm_tool').click(function(){
+      if ($('input#vid_check').val() != "new video upload" ){
+        $('div#form_vid').remove();
+      }
       SubmitFormTool();
     });
     $('#reset_form').click(function(){
