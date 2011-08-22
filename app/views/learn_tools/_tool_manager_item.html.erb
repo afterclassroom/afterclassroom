@@ -14,6 +14,8 @@
     <div class="learnFavTR">
       <%= link_to "Edit", "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{learntool.id.to_s}", :style => "background: url('')" %>
     </div>
-    <div class="learnFavTRv"><a href="javascript:;" style="background: url('')"><span>Delete</span></a></div>
+    <div class="learnFavTRv">
+      <%= link_to( content_tag(:span, "Delete"), {:controller => "learn_tools", :action => "delete_tool", :tool_id => learntool.id  }, :remote => false, :style=>"background: url('')" ,:method => :get, :confirm => 'Are you sure you want to delete it?') %>
+    </div>
   </div>
 </div>

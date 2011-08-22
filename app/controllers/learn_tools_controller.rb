@@ -337,6 +337,16 @@ class LearnToolsController < ApplicationController
       end
   end
   
+  def delete_tool
+    @tool = Learntool.find(params[:tool_id])
+    if @tool.destroy
+      flash[:notice] = "Removed 1 tool"
+    else
+      flash[:notice] = "Error! Failed to remote tool"
+    end
+    redirect_to :controller=>'learn_tools', :action => 'toolmanager'
+  end
+  
   
   private
   
