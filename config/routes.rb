@@ -44,7 +44,7 @@ Afterclassroom::Application.routes.draw do
           :mylearn, :tool_rev_paging, :write_review_form, :become_a_fan,
           :new_tool, :verify_handler, :owner_handler, :video_list, :video_list_paging,
           :rate, :new_tool_with_api, :choose_to_add, :edit_review_form, :delete_review,
-          :play_vid
+          :play_vid, :toolmanager
         post :submit_review, :submit_new_tool, :create_tool_with_api, 
           :send_to_dev,:update_review
       end

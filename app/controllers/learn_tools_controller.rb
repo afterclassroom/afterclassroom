@@ -327,6 +327,11 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def toolmanager
+    @my_tools = current_user.learntools.paginate(:page => params[:page], :per_page => 5)
+    size = current_user.learntools.size
+  end
+  
   
   private
   
