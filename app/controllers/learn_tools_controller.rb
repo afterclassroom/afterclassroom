@@ -374,14 +374,6 @@ class LearnToolsController < ApplicationController
     redirect_to :controller=>'learn_tools', :action => 'toolmanager'
   end
   
-  def new_vid
-    @categories ||= Youtube.video_categories
-    @video = Video.new()
-    render :layout => false
-  end
-  
-  
-  
   private
   
   def get_variables

@@ -10,6 +10,7 @@
       <%= display_flash_messages_with_raw %>
       <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "submit_new_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
         <%= hidden_field_tag "learntool_video_id" %>
+        <%= hidden_field_tag "vid_check" %>
         <div class="postCont">
           <div class="postErr">
             <div class="postItem">
@@ -45,9 +46,14 @@
             <div class="postItem">
               <div class="postTit">Demo Video</div>
               <div class="postInp">
-                <input type="text" name="vid_name" id="vid_name"/>
-                <%= link_to "Please select demo video", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list" %>
-                <%= link_to( "New Video", {:controller => "learn_tools", :action => "new_vid"  }, :remote => true, :method => :get) %>
+                <div class="submit" style="padding: 0px;">
+                  <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list" %>  
+                </div>
+                <input type="text" name="vid_name" id="vid_name" style="margin-left: -106px;  margin-top: 31px; display: none "/>
+                <div class="submit" style="padding: 0px; padding-left: 10px;">
+                  <a href="javascript:;" id="btn_new_vid">New</a>
+                </div>
+
               </div>
             </div>
             <div id ="form_vid" style ="display: none;">
