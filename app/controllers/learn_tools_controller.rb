@@ -363,51 +363,6 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
-  def submit_vid
-    
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == "
-    puts "val == 1"
-    puts "val == params[:video] == #{params[:video]}"
-    
-    @video = Video.new(params[:video])
-    @video.user = current_user
-    @video.tag_list = params[:tag_list]
-    if @video.save!
-      @video.convert
-      post_wall(@video)
-      flash[:notice] = 'Video was successfully created.'
-      @cur_bottom_page = "1"
-      @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => "1", :per_page => 15
-      render :action => 'video_list_paging'
-
-    else
-      flash[:error] = 'Error.'
-      @cur_bottom_page = "1"
-      @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => "1", :per_page => 15
-      render :action => 'video_list_paging'
-      
-    end
-    
-  end
   
   
   private
