@@ -35,6 +35,8 @@
             <%= link_to "", user_video_path(current_user, @next) if @next %>
           </div>
         </div>
+        <div class="musicVideo01" style="display:none;background: url('/images/playFlowplayer.png');height:416px;width:554px;margin-left: 50px;margin-top: 35px;">
+        </div>
         <div class="musicVideo">
           <% if @video.video_file %>
             <%= render :partial => "video_js" %>
@@ -60,24 +62,33 @@
   <!--Ads-->
 </div>
 <script type="text/javascript" charset="utf-8">
-    
+     
   // Add VideoJS to all video tags on the page when the DOM is ready
   VideoJS.setupAllWhenReady();
 
   $(document).ready(function(){
+    //    $("#faceboxx").fancybox();
+    $('.btmAbuse a').click(function(){
+      $('.musicVideo01').show();
+      $('.musicVideo').hide();
+    });
+    $('.AsDcomRe3 a').click(function(){
+      $('.musicVideo01').show();
+      $('.musicVideo').hide();
+    });
+
     $(function () {
       $(window).scroll(function () {
         if ($(this).scrollTop() > 200) {
-    //      $('#toolbar').fadeOut();
-        $('#toolbar').show();
-        $('#toolbarbut').hide();
+          //      $('#toolbar').fadeOut();
+          $('#toolbar').show();
+          $('#toolbarbut').hide();
         } else {
           $('#toolbar').hide();
           $('#toolbarbut').show();
-    //      $('#toolbar').fadeIn();
+          //      $('#toolbar').fadeIn();
         }
       });
     });
   });
-
 </script>
