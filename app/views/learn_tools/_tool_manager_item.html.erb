@@ -12,8 +12,8 @@
   </div>
   <div class="learnDetDate"><%= learntool.created_at.strftime('%B %d, %Y at %I:%M%p') %>  
     <div class="learnFavTR">
-      <%= link_to "Edit", "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{learntool.id.to_s}"%>
+      <%= link_to "Edit", "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{learntool.id.to_s}", :style => "background: url('')" %>
     </div>
-    <div class="learnFavTRv"><a href="javascript:;"><span>Delete</span></a></div>
+    <div class="learnFavTRv"><a href="javascript:;" style="background: url('')"><span>Delete</span></a></div>
   </div>
 </div>

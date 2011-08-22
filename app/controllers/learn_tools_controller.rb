@@ -332,6 +332,11 @@ class LearnToolsController < ApplicationController
     size = current_user.learntools.size
   end
   
+  def edit_tool
+    @tool_cats = LearnToolCate.find(:all)
+    @tool = Learntool.find(params[:tool_id])
+  end
+  
   
   private
   
