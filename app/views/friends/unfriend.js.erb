@@ -1,0 +1,3 @@
+$("#friend_status_<%= @user.id %>").html("<%= escape_javascript(link_to(raw("<span class='span1'><span class='span2' id='friend_#{@user.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{@user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{@user.full_name}")) %>"); 
+//on page load call tb_init 
+tb_init('div a.thickbox');//pass where to apply thickbox

@@ -551,7 +551,7 @@
 
 .AsDContL {
     float: left;
-    width: 435px;
+    width: 395px;
     padding-right: 10px;
     word-wrap: break-word;
 }
@@ -607,7 +607,7 @@
 }
 
 .AsDContR {
-    float: right;
+    float: left;
     padding-right: 10px;
 }
 

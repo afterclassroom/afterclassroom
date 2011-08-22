@@ -116,6 +116,18 @@ class FriendsController < ApplicationController
     @mail_account = MailAccount.new(nil, nil, "gmail")
   end
   
+  def unfriend
+    friend_id = params[:friend_id]
+    @user = User.find(friend_id)
+    cond = Caboose::EZ::Condition.new :user_invites do
+      any :user_invites do
+        user_id == friend_id
+        user_id_target == friend_id
+      end
+    end
+    current_user.user_invites.find(:first, :conditions => cond.to_sql).destroy
+  end
+  
   def invite_by_list_email
     if params[:email_list]
       content = params[:content]
@@ -187,30 +199,35 @@ class FriendsController < ApplicationController
   def accept
     @invite_id = params[:invite_id]
     @invite = @user.user_invites_in.find_by_id(@invite_id)
+    @user_invite = @invite.user 
     @invite.is_accepted = true
     @invite.save
-    user_invite = User.find(@invite.user_id)
     subject = "#{current_user.name} accepted you is a friend."
-    content = "Click <a href='#{user_friends_url(user_invite)}' target='blank'>here</a> to view more"
-    send_notification(user_invite, subject, content, "confirms_a_friendship_request")
-    render :layout => false
+    content = "Click <a href='#{user_friends_url(@user_invite)}' target='blank'>here</a> to view more"
+    send_notification(@user_invite, subject, content, "confirms_a_friendship_request")
   end
   
   def de_accept
     @invite_id = params[:invite_id]
     @invite = @user.user_invites_in.find_by_id(@invite_id)
-    user_invite = User.find(@invite.user_id)
+    @user_invite = @invite.user
     @invite.destroy
     subject = "#{current_user.name} sended a message for you."
     content = "#{current_user.name} has declined invitations to your friend."
-    send_notification(user_invite, subject, content, "confirms_a_friendship_request")
-    render :layout => false
+    send_notification(@user_invite, subject, content, "confirms_a_friendship_request")
   end
   
   def show_invite
     @user_invite = params[:user_invite]
     user = User.find_by_id(@user_invite)
     @full_name = user.full_name
+    render :layout => false
+  end
+  
+  def respond_to_friend_request
+    friend_id = params[:friend_id]
+    @user = User.find_by_id(friend_id)
+    @invite = current_user.user_invites_in.find_by_user_id(@user.id)
     render :layout => false
   end
   
@@ -224,7 +241,7 @@ class FriendsController < ApplicationController
         content = "#{invite_message}<br/>Click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to view more"
         send_notification(user, subject, content, "adds_me_as_a_friend")
     end
-    render :text => "Waiting accept"
+    render :text => '<div class="txtsignup1">Still waiting</div>'
   end
   
   def become_a_fan
@@ -260,7 +277,6 @@ class FriendsController < ApplicationController
     
     fam_group = FriendGroup.find_by_label("family_members")
     @count_faminly = @user.friend_in_groups.count(:all, :conditions => ["friend_group_id = ?", fam_group])
-    
     
     school_group = FriendGroup.find_by_label("friends_from_school")
     @count_sch = @user.friend_in_groups.count(:all, :conditions => ["friend_group_id = ?", school_group])

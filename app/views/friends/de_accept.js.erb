@@ -1,1 +1,7 @@
 $("#friend_request_<%= @invite_id %>").toggle();
+if($('#friend_status_<%= @user_invite.id %>')){
+	$('#friend_status_<%= @user_invite.id %>').html('<%= escape_javascript(link_to(raw("<span class='span1'><span class='span2' id='friend_#{@user_invite.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{@user_invite.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{@user_invite.full_name}")) %>');
+	$('#TB_closeWindowButton').click();
+	//on page load call tb_init 
+	tb_init(' div.menuRItem a.thickbox');//pass where to apply thickbox
+}

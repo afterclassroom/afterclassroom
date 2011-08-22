@@ -289,7 +289,9 @@ class User < ActiveRecord::Base
     ids = fof.collect {|f| f.user_id_target}
     friend_ids = self.user_friends.map(&:id)
     ids = ids + friend_ids
-    User.find(:all, :conditions => ["id IN(#{ids.join(',')})"])
+    if ids.size > 0
+      User.find(:all, :conditions => ["id IN(#{ids.join(',')})"])
+    end
   end
   
   def set_time_zone_from_ip(ip)

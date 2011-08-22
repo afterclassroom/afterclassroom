@@ -1,1 +1,6 @@
 $("#friend_request_<%= @invite_id %>").toggle();
+
+if($('#friend_status_<%= @user_invite.id %>')){
+	$('#friend_status_<%= @user_invite.id %>').html('<%= escape_javascript(link_to(raw("<span class='span1'><span class='span2'>Unfriend</span></span>"), unfriend_user_friends_url(current_user, :friend_id => @user_invite), :remote => true)) %>');
+	$('#TB_closeWindowButton').click();
+}

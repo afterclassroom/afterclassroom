@@ -514,20 +514,17 @@ module ApplicationHelper
   def show_invite_friend(user)
     str = ""
     if !logged_in?
-      str = link_to_require_login(raw("<span>Invite Friend</span>"))
+      str = link_to_require_login(raw("<span class='span1'><span class='span2'>Be friend</span></span>"))
     else
       if current_user.user_friends.include?(user)
-        str = link_to(raw("<span>My friend</span>"), "javascript:;")
+        str = link_to(raw("<span class='span1'><span class='span2'>Unfriend</span></span>"), unfriend_user_friends_url(current_user, :friend_id => user), :remote => true)
       else
-        if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
-          if current_user.user_invites_out.find_by_user_id_target(user.id)
-            str = link_to(raw("<span>Waiting accept</span>"), "javascript:;")
+        if current_user.user_invites_out.find_by_user_id_target(user.id)
+          str = raw('<div class="txtsignup1">Still waiting</div>')
+        elsif current_user.user_invites_in.find_by_user_id(user.id)
+            str = link_to(raw("<span class='span1'><span class='span2'>Respond to friend request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
           else
-            i = current_user.user_invites_in.find_by_user_id(user.id)
-            str = raw("<span id='friend_request_#{i.id}'>" + link_to("Accept", accept_user_friends_path(current_user, :invite_id => i.id), :remote => true, :style=>"margin-bottom:5px") + " " + link_to("No Accept", de_accept_user_friends_path(current_user, :invite_id => i.id), :remote => true) + "</span>")
-          end
-        else
-          str = link_to(raw("<span id='friend_#{user.id}'>Invite Friend</span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+            str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{user.full_name}")
         end
       end
     end
@@ -537,15 +534,17 @@ module ApplicationHelper
   def show_invite_friend_on_user_profile(user)
     str = ""
     if !logged_in?
-      str = link_to_require_login(raw("<span class='span1'><span class='span2'>Invite Friend</span></span>"))
+      str = link_to_require_login(raw("<span class='span1'><span class='span2'>Be friend</span></span>"))
     else
       if current_user.user_friends.include?(user)
-        str = link_to(raw("<span class='span1'><span class='span2'>My friend</span></span>"), "javascript:;")
+        str = link_to(raw("<span class='span1'><span class='span2'>Unfriend</span></span>"), unfriend_user_friends_url(current_user, :friend_id => user), :remote => true)
       else
-        if current_user.user_invites_out.find_by_user_id_target(user.id) || current_user.user_invites_in.find_by_user_id(user.id)
-          str = link_to(raw("<span class='span1'><span class='span2'>Waiting accept</span></span>"), "javascript:;")
-        else
-          str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Invite Friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Invite #{user.full_name} to be a friend")
+        if current_user.user_invites_out.find_by_user_id_target(user.id)
+          str = raw('<div class="txtsignup1">Still waiting</div>')
+        elsif current_user.user_invites_in.find_by_user_id(user.id)
+            str = link_to(raw("<span class='span1'><span class='span2'>Respond to friend request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
+          else
+            str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{user.full_name}")
         end
       end
     end
@@ -955,7 +954,7 @@ module ApplicationHelper
           when 2 # Friend of friends
           if current_user
             fof = user.friend_of_friends
-            check = fof.include?(current_user)
+            check = fof.nil? ? false : fof.include?(current_user)
           end
           when 3 # My Family
           if current_user
