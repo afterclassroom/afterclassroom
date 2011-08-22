@@ -35,8 +35,11 @@ class LearnToolsController < ApplicationController
   
   def mylearn
     @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
-    size = current_user.my_tools.size
-    #@my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => size)
+    
+    if params[:see_all] != nil && params[:see_all] == "See all tool"
+      size = current_user.my_tools.size
+      @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => size)
+    end
   end
   
   def show
@@ -201,36 +204,38 @@ class LearnToolsController < ApplicationController
   
   def new_tool
     @tool = Learntool.new
+    @video = Video.new()
+    @categories ||= Youtube.video_categories
   end
   
   def submit_new_tool
+    
     @tool = Learntool.new(params[:learntool])
     @tool.video_id = params[:learntool_video_id]
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id2 == "
-    puts "vid id1 == #{params[:learntool_video_id]}"
-    puts "vid id == #{@tool.video_id}"
     
     @tool.user = current_user
     @tool.verify = false #meaning::tool has not been verified
+    
+    @video = Video.new(params[:video])
+    @video.user = current_user
+    @video.tag_list = params[:tag_list]
+    
+    str_notice = ""
+    
     if simple_captcha_valid?
       if @tool.save
-        flash[:notice] = "Your tool was successfully submitted."
+        if (params[:vid_check] == "new video upload")
+          if @video.save!
+            @video.convert
+            @tool.video_id = @video.id
+            @tool.save
+            post_wall(@video)
+          else
+            str_notice = "Failed to add video."
+          end
+        end
+        
+        flash[:notice] = "Your tool was successfully submitted. #{str_notice}"
         redirect_to :controller=>'learn_tools', :action => 'new_tool'
       else
         flash[:notice] = "Error !"
@@ -327,6 +332,116 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def toolmanager
+    @my_tools = current_user.learntools.paginate(:page => params[:page], :per_page => 5)
+    
+    if params[:see_all] != nil && params[:see_all] == "See all tool"
+      size = current_user.learntools.size
+      @my_tools = current_user.learntools.paginate(:page => params[:page], :per_page => size )
+    end
+    
+    
+    size = current_user.learntools.size
+  end
+  
+  def edit_tool
+    @tool_cats = LearnToolCate.find(:all)
+    @tool = Learntool.find(params[:tool_id])
+    @video_name = ""
+    if @tool.video_id != nil
+      @video_name = Video.find(@tool.video_id).title
+    end
+    #the following line for video form
+    @video = Video.new()
+    @categories ||= Youtube.video_categories
+    
+  end
+  
+  def save_edit_tool
+    @tool = Learntool.find(params[:tool_id])
+    @tool.update_attributes(params[:learntool])
+    @tool.video_id = params[:learntool_video_id]
+    
+    str_notice = ""
+    
+    if @tool.save
+      puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++ params[:vid_check] == #{params[:vid_check]}"
+      if (params[:vid_check] == "new video upload")
+        
+        @video = Video.new(params[:video])
+        @video.user = current_user
+        @video.tag_list = params[:tag_list]
+        if @video.save!
+          @video.convert
+          @tool.video_id = @video.id
+          @tool.save
+          post_wall(@video)
+        else
+          str_notice = "Failed to add video."
+        end
+      end
+      
+      
+      flash[:notice] = "Your tool was successfully submitted. #{str_notice}"
+      redirect_to :controller=>'learn_tools', :action => 'toolmanager'
+    else
+      @tool_cats = LearnToolCate.find(:all)
+      flash[:notice] = "Error! Possibly due to File Size too large"
+      render :action => "edit_tool"
+    end
+  end
+  
+  def delete_tool
+    @tool = Learntool.find(params[:tool_id])
+    if @tool.destroy
+      flash[:notice] = "Removed 1 tool"
+    else
+      flash[:notice] = "Error! Failed to remote tool"
+    end
+    redirect_to :controller=>'learn_tools', :action => 'toolmanager'
+  end
   
   private
   

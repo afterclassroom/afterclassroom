@@ -1,0 +1,21 @@
+<div class="learnNItem">
+  <div class="assPic">
+    <a href="<%= user_learn_tool_path(current_user,learntool) %>"><div><%= image_tag learntool.tool_img.url(:small) %></div></a>
+  </div>
+  <div class="learnFavtitle"><a href="<%= user_learn_tool_path(current_user,learntool) %>"><%= learntool.name %></a>
+    <span class="learnFavS" style="position: absolute; margin-top: -7px;">
+      <%= render :partial => "rating_star", :locals => {:tool => learntool, :nocheck => "no_check"} %>
+    </span>
+  </div>
+  <div class="learnNdes">
+    <%= truncate_html(learntool.description, :length => 200, :omission => '...') %>
+  </div>
+  <div class="learnDetDate"><%= learntool.created_at.strftime('%B %d, %Y at %I:%M%p') %>  
+    <div class="learnFavTR">
+      <%= link_to "Edit", "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{learntool.id.to_s}", :style => "background: url('')" %>
+    </div>
+    <div class="learnFavTRv">
+      <%= link_to( content_tag(:span, "Delete"), {:controller => "learn_tools", :action => "delete_tool", :tool_id => learntool.id  }, :remote => false, :style=>"background: url('')" ,:method => :get, :confirm => 'Are you sure you want to delete it?') %>
+    </div>
+  </div>
+</div>
