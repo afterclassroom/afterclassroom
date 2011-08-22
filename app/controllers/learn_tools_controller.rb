@@ -364,6 +364,30 @@ class LearnToolsController < ApplicationController
   end
   
   def submit_vid
+    
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == "
+    puts "val == 1"
+    puts "val == params[:video] == #{params[:video]}"
+    
     @video = Video.new(params[:video])
     @video.user = current_user
     @video.tag_list = params[:tag_list]
