@@ -17,7 +17,7 @@
       <div class="learnFavT">
 
         <div class="learnFavTL"><%= page_entries_info @my_tools %></div>
-        <div class="learnFavTC"><a href="javascript:;">See All</a></div>
+        <div class="learnFavTC"><%= link_to( "See All", {:controller => "learn_tools", :action => "toolmanager", :see_all => "See all tool"  }, :remote => false, :method => :get) %></div>
       </div>
 
       <% @my_tools.each do |mtool| %>

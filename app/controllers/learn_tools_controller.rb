@@ -310,6 +310,13 @@ class LearnToolsController < ApplicationController
   
   def toolmanager
     @my_tools = current_user.learntools.paginate(:page => params[:page], :per_page => 5)
+    
+    if params[:see_all] != nil && params[:see_all] == "See all tool"
+      size = current_user.learntools.size
+      @my_tools = current_user.learntools.paginate(:page => params[:page], :per_page => size )
+    end
+    
+    
     size = current_user.learntools.size
   end
   
