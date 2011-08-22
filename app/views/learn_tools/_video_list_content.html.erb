@@ -1,4 +1,5 @@
 <% form_tag url_for(:controller => "learn_tools", :action => "video_list_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
+  <%= display_flash_messages_with_raw %>
   <%= hidden_field_tag "bottom_page_to_load", @cur_bottom_page ? @cur_bottom_page : "1" %>
   <div class="musicRow">
     <% @my_videos.each do |m_p| %>

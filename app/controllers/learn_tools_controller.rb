@@ -337,14 +337,14 @@ class LearnToolsController < ApplicationController
     @tool.update_attributes(params[:learntool])
     @tool.video_id = params[:learntool_video_id]
     
-      if @tool.save
-        flash[:notice] = "Your tool was successfully submitted."
-        redirect_to :controller=>'learn_tools', :action => 'toolmanager'
-      else
-        @tool_cats = LearnToolCate.find(:all)
-        flash[:notice] = "Error! Possibly due to File Size too large"
-        render :action => "edit_tool"
-      end
+    if @tool.save
+      flash[:notice] = "Your tool was successfully submitted."
+      redirect_to :controller=>'learn_tools', :action => 'toolmanager'
+    else
+      @tool_cats = LearnToolCate.find(:all)
+      flash[:notice] = "Error! Possibly due to File Size too large"
+      render :action => "edit_tool"
+    end
   end
   
   def delete_tool
@@ -358,14 +358,31 @@ class LearnToolsController < ApplicationController
   end
   
   def new_vid
+    @categories ||= Youtube.video_categories
+    @video = Video.new()
     render :layout => false
   end
   
   def submit_vid
+    @video = Video.new(params[:video])
+    @video.user = current_user
+    @video.tag_list = params[:tag_list]
+    if @video.save!
+      @video.convert
+      post_wall(@video)
+      flash[:notice] = 'Video was successfully created.'
+      @cur_bottom_page = "1"
+      @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => "1", :per_page => 15
+      render :action => 'video_list_paging'
+
+    else
+      flash[:error] = 'Error.'
+      @cur_bottom_page = "1"
+      @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => "1", :per_page => 15
+      render :action => 'video_list_paging'
+      
+    end
     
-    @cur_bottom_page = "1"
-    @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => "1", :per_page => 15
-    render :action => 'video_list_paging'
   end
   
   
