@@ -35,8 +35,11 @@ class LearnToolsController < ApplicationController
   
   def mylearn
     @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => 5)
-    size = current_user.my_tools.size
-    #@my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => size)
+    
+    if params[:see_all] != nil && params[:see_all] == "See all tool"
+      size = current_user.my_tools.size
+      @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => size)
+    end
   end
   
   def show
