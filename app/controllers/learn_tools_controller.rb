@@ -357,6 +357,17 @@ class LearnToolsController < ApplicationController
     redirect_to :controller=>'learn_tools', :action => 'toolmanager'
   end
   
+  def new_vid
+    render :layout => false
+  end
+  
+  def submit_vid
+    
+    @cur_bottom_page = "1"
+    @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => "1", :per_page => 15
+    render :action => 'video_list_paging'
+  end
+  
   
   private
   
