@@ -204,26 +204,43 @@ class LearnToolsController < ApplicationController
   
   def new_tool
     @tool = Learntool.new
+    @video = Video.new()
+    @categories ||= Youtube.video_categories
   end
   
   def submit_new_tool
-    @tool = Learntool.new(params[:learntool])
-    @tool.video_id = params[:learntool_video_id]
     
-    @tool.user = current_user
-    @tool.verify = false #meaning::tool has not been verified
-    if simple_captcha_valid?
-      if @tool.save
-        flash[:notice] = "Your tool was successfully submitted."
-        redirect_to :controller=>'learn_tools', :action => 'new_tool'
-      else
-        flash[:notice] = "Error !"
-        render :action => "new_tool"
-      end
-    else
-      flash[:warning] = "Captcha does not match."
-      render :action => "new_tool"
-    end
+    redirect_to :controller=>'learn_tools', :action => 'new_tool'
+    
+#    @tool = Learntool.new(params[:learntool])
+#    @tool.video_id = params[:learntool_video_id]
+#    
+#    @tool.user = current_user
+#    @tool.verify = false #meaning::tool has not been verified
+#    
+#    @video = Video.new(params[:video])
+#    @video.user = current_user
+#    @video.tag_list = params[:tag_list]
+#    
+#    if @video.save!
+#      @video.convert
+#      post_wall(@video)
+#    else
+#      flash[:error] = 'Error.'
+#    end
+#    
+#    if simple_captcha_valid?
+#      if @tool.save
+#        flash[:notice] = "Your tool was successfully submitted."
+#        redirect_to :controller=>'learn_tools', :action => 'new_tool'
+#      else
+#        flash[:notice] = "Error !"
+#        render :action => "new_tool"
+#      end
+#    else
+#      flash[:warning] = "Captcha does not match."
+#      render :action => "new_tool"
+#    end
   end
   
   def rate

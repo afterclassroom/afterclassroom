@@ -50,14 +50,20 @@
                 <%= link_to( "New Video", {:controller => "learn_tools", :action => "new_vid"  }, :remote => true, :method => :get) %>
               </div>
             </div>
+            <div id ="form_vid">
+              <%= render :partial => "form_vid" %>
+            </div>
             <div id="captcha_area" style="margin-left:120px">
               <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
             </div>
           </div>
         </div>
+
+
         <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px">
           <a href="javascript:;" id="btn_sbm_tool">Submit</a>
         </div>
+
         <div class="submit" style="margin-left: -106px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
 
       <% end %>
