@@ -9,6 +9,7 @@
       </div>
       <%= display_flash_messages_with_raw %>
       <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
+        <%= hidden_field_tag "tool_id", @tool.id %>
         <%= hidden_field_tag "learntool_video_id" %>
         <div class="postCont">
           <div class="postErr">
@@ -46,11 +47,24 @@
               <div class="postTit">Support URL</div>
               <div class="postInp"><%= f.text_field :href, :class => '{validate:{url: true}}' %></div>
             </div>
+
+            <% if @tool.video_id != nil %>
+              <div class="postItem">
+                <div class="postTit">Current Video</div>
+                <div class="postInp">
+                  <%= link_to "#{@video_name} - Play this video ", "#{url_for(:controller => "learn_tools", :action => "play_vid")}?vid_id=#{@tool.video_id}&height=425&width=555", :class => "thickbox", :title => "Showing the video introduce this tool" %>
+                </div>
+              </div>
+
+
+            <% end %>
+
+
             <div class="postItem">
               <div class="postTit">Demo Video</div>
               <div class="postInp">
                 <input type="text" name="vid_name" id="vid_name"/>
-                <%= link_to "Please select demo video", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list" %>
+                <%= link_to "Please select another demo video", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list" %>
               </div>
             </div>
           </div>

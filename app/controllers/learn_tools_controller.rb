@@ -206,25 +206,6 @@ class LearnToolsController < ApplicationController
   def submit_new_tool
     @tool = Learntool.new(params[:learntool])
     @tool.video_id = params[:learntool_video_id]
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id == "
-    puts "vid id2 == "
-    puts "vid id1 == #{params[:learntool_video_id]}"
-    puts "vid id == #{@tool.video_id}"
     
     @tool.user = current_user
     @tool.verify = false #meaning::tool has not been verified
@@ -335,10 +316,25 @@ class LearnToolsController < ApplicationController
   def edit_tool
     @tool_cats = LearnToolCate.find(:all)
     @tool = Learntool.find(params[:tool_id])
+    @video_name = ""
+    if @tool.video_id != nil
+      @video_name = Video.find(@tool.video_id).title
+    end
   end
   
   def save_edit_tool
-    render :action => "toolmanager"
+    @tool = Learntool.find(params[:tool_id])
+    @tool.update_attributes(params[:learntool])
+    @tool.video_id = params[:learntool_video_id]
+    
+      if @tool.save
+        flash[:notice] = "Your tool was successfully submitted."
+        redirect_to :controller=>'learn_tools', :action => 'toolmanager'
+      else
+        @tool_cats = LearnToolCate.find(:all)
+        flash[:notice] = "Error! Possibly due to File Size too large"
+        render :action => "edit_tool"
+      end
   end
   
   
