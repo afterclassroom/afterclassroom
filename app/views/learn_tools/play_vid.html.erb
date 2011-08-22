@@ -1,2 +1,6 @@
-display video player for this video: <%= @video.title %>
 <%= render :partial => "videos/video_js" %>
+<script type="text/javascript">
+    // Add VideoJS to all video tags on the page when the DOM is ready
+  VideoJS.setupAllWhenReady();
+
+</script>

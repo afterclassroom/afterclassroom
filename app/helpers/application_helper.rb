@@ -689,7 +689,7 @@ module ApplicationHelper
     
     if wall.user_wall_music
       link = wall.user_wall_music.sub_content
-      img_link = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+      img_link = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play_music'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
       image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_music.title
       sub_content = ""
@@ -737,12 +737,12 @@ module ApplicationHelper
           sub_content = truncate_words(obj.description)
           when "MusicAlbum"
           link = show_music_album_user_url(obj.user, :music_album_id => obj)
-          img_link = link_to image_tag(obj.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+          img_link = link_to image_tag(obj.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play_music'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.name
           when "Music"
           link = user_music_url(obj.user, obj)
-          img_link = link_to image_tag(obj.music_album.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+          img_link = link_to image_tag(obj.music_album.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play_music'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           when "Video"
