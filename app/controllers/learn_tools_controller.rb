@@ -45,6 +45,7 @@ class LearnToolsController < ApplicationController
   def show
     @tool = Learntool.find(params[:id])
     @tool_reviews = @tool.tool_reviews.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    @view_anchor = params[:go_to_review]
   end
   
   def tool_rev_paging
@@ -187,8 +188,16 @@ class LearnToolsController < ApplicationController
   end
   
   def see_all_tool_fan
-    tool = Learntool.find(params[:current_tool_id])
-    @obj_fans = display_fan(tool)
+    @tool = Learntool.find(params[:current_tool_id])
+    @obj_fans = display_fan(@tool).paginate(:page => params[:page], :per_page => 10)
+    @cur_fan_page = "1" #param supports for paging with ajax
+    render :layout => false
+  end
+  
+  def fan_list_paging
+    @tool = Learntool.find(params[:current_tool_id])
+    @cur_fan_page = params[:fan_page_to_load]
+    @obj_fans = display_fan(@tool).paginate(:page => params[:fan_page_to_load], :per_page => 10)
     render :layout => false
   end
   
@@ -333,7 +342,7 @@ class LearnToolsController < ApplicationController
   end
   
   def toolmanager
-    @my_tools = current_user.learntools.paginate(:page => params[:page], :per_page => 5)
+    @my_tools = current_user.learntools.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
     
     if params[:see_all] != nil && params[:see_all] == "See all tool"
       size = current_user.learntools.size
@@ -365,49 +374,6 @@ class LearnToolsController < ApplicationController
     str_notice = ""
     
     if @tool.save
-      puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++ params[:vid_check] == #{params[:vid_check]}"
       if (params[:vid_check] == "new video upload")
         
         @video = Video.new(params[:video])

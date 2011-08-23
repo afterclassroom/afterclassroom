@@ -8,9 +8,9 @@
         <h1 class="titleH1">Submit new tool</h1>
       </div>
       <%= display_flash_messages_with_raw %>
-      <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
+      <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool", :method => "save_edit_tool" }) do |f| %>
         <%= hidden_field_tag "tool_id", @tool.id %>
-        <%= hidden_field_tag "learntool_video_id" %>
+        <%= hidden_field_tag "learntool_video_id", @tool.video_id %>
         <%= hidden_field_tag "vid_check" %>
         <div class="postCont">
           <div class="postErr">
@@ -46,7 +46,7 @@
             </div>
             <div class="postItem">
               <div class="postTit">Support URL</div>
-              <div class="postInp"><%= f.text_field :href, :class => '{validate:{url: true}}' %></div>
+              <div class="postInp"><%= f.text_field :support_url, :class => '{validate:{url: true}}' %></div>
             </div>
 
             <% if @tool.video_id != nil %>
@@ -117,9 +117,9 @@
 
 
     $('#btn_sbm_tool').click(function(){
-      if ($('input#vid_check').val() != "new video upload" ){
+      /*if ($('input#vid_check').val() != "new video upload" ){
         $('div#form_vid').remove();
-      }
+      }*/
       SubmitFormTool();
     });
     $('#reset_form').click(function(){

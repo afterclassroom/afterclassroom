@@ -1,2 +1,8 @@
 $('form#new_tool_review').before("<%= escape_javascript ( raw(render :partial => "submit_review_msg")) %>").delay(300);
 setTimeout("$('a#TB_closeWindowButton').click()",1000)
+
+
+/* the following statements are applied for page view Detail only*/
+if ( $('form#form_tool_review').html() != null){
+    $('form#form_tool_review').find('div.helpItem').eq(0).before("<%= escape_javascript ( raw(render :partial => "tool_review_item",:locals => {:rv => @toolreview} )) %>");
+}

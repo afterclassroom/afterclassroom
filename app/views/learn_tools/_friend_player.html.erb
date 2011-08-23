@@ -1,9 +1,9 @@
 <% form_tag url_for(:controller => "learn_tools", :action => "see_all_friend_player"), :id => "form_friend_player", :method => :get, :remote => true do %>
 
   <% fr_user = display_friend_player(@tool) %>
-  <div class="friUse">
+  <div class="friUse" style="border-top: 1px solid #DBDBDB; margin-top: 18px;">
     <div class="friUsetit">Friends using this Learning Tools</div>
-    <div class="friUseAll"><a id="btn_see_all" href="javascript:;"><%= fr_user.size <= 6 ? "" : "See all" %></a></div>
+    <div class="friUseAll" style="margin-top: 3px;"><a id="btn_see_all" href="javascript:;"><%= fr_user.size <= 6 ? "" : "See all friend" %></a></div>
   </div>
   <div class="friImg">
 

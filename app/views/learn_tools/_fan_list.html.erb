@@ -1,21 +1,51 @@
-<div class="col451 learnDet">
-  <% @obj_fans.each do |fan_user| %>
+<% form_tag url_for(:controller => "learn_tools", :action => "fan_list_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
+  <%= hidden_field_tag "fan_page_to_load", @cur_fan_page ? @cur_fan_page : "1" %>
+  <%= hidden_field_tag "current_tool_id", @tool.id %>
 
-    <div class="col451in">
-      <div style="padding-top: 0px; border-bottom: 1px solid rgb(219, 219, 219);" class="helpItem">
-        <%= show_image_user_post(fan_user) %>
-        <a href="<%= "#{show_lounge_user_path(fan_user)}" %>"><%= fan_user.name %></a> at <%= fan_user.school.name %>
-        <div style="float:right">
-          <% if fan_user != current_user %>
-            <%= show_invite_friend(fan_user) %>
+  <div class="contMainL">
+    <div class="col571 proCen" id="user_wall">
+      <div class="col571in">
+        <h1 class="titleH1">My fans</h1>
+        <div id="mytable">
+          <%= display_flash_messages_with_raw %>
+          <% @obj_fans.each do |fan_user| %>
+
+            <%= render :partial => "item_fan", :locals => {:fan => fan_user} %>
+
+
           <% end %>
-        </div>
 
+          <!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @obj_fans %></span>
+            <%= will_paginate @obj_fans, :class => "bot_paging"   %> 
+          </div>
+          <!--Pagination-->
+        </div>
       </div>
     </div>
-
-  <% end %>
-</div>
+  </div>
+<% end %><!-- end form -->
 <script type="text/javascript">
-  vtip();
+  $(document).ready(function(){
+    $('.bot_paging a').each(function(){
+      $(this).attr('href','javascript:;');
+    });
+    $('.bot_paging a').each(function(){
+      $(this).click(function(){
+        //ShowBottomOverlay();
+        if ($(this).text() == 'Next'){
+          var str_page = parseInt("<%= @cur_fan_page ? @cur_fan_page : "1" %>")+1;
+          $('#fan_page_to_load').val(""+str_page);
+        }else if ($(this).text() == 'Previous'){
+          var str_page = parseInt("<%= @cur_fan_page %>")-1;
+          $('#fan_page_to_load').val(""+str_page);
+        }
+        else {
+          $('#fan_page_to_load').val($(this).text());
+        }
+        $('form#form_first_tab').submit();
+      });
+    });    
+  });
 </script>

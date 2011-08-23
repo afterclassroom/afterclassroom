@@ -1710,7 +1710,7 @@ div.postInf {
     height: 23px;
     text-align: center;
     line-height: 23px;
-    background: url('/images/popupNum.png') no-repeat;
+    background: url('/images/ppnumT.png') no-repeat;
     color: #fff;
     font-size: 15px;
     font-weight: bold;
@@ -3344,7 +3344,7 @@ a.close:hover{
     font-style:normal;
 }
 a.close{
-    background: url(/images/popupClose.png);
+    background: url(/images/popupCloseT.png);
     float: right;
     height: 20px;
     text-decoration: none;
@@ -3354,7 +3354,7 @@ a.close{
     margin-top:-10px;
 }
 a.close:hover{
-    background: url(/images/popupCloseH.png);
+    background: url(/images/popupCloseHT.png);
 }
 .product-head {
     font-size:12px;

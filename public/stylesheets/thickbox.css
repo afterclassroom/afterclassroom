@@ -75,10 +75,10 @@
     float:right;
 }
 
-#TB_closeWindowButton:hover{background: url(/images/popupCloseH.png) no-repeat scroll 0 0;}
+#TB_closeWindowButton:hover{background: url(/images/popupCloseHT.png) no-repeat scroll 0 0;}
 
 #TB_closeWindowButton{
-    background:transparent url(/images/popupClose.png) no-repeat scroll 0 0; float:right;
+    background:transparent url(/images/popupCloseT.png) no-repeat scroll 0 0; float:right;
     height:20px;
     width:25px;
     text-decoration:none;
