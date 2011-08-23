@@ -7,7 +7,7 @@ class ToolCategoriesController < ApplicationController
   end
   
   def edit
-    
+    @ct = LearnToolCate.find(params[:selectedID])
   end
   
   def delete

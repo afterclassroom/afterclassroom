@@ -1,1 +1,55 @@
-hi edit
+<%= form_for(@ct, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
+  <%= hidden_field_tag "tool_id", @ct.id %>
+
+  <div id="related-activities-user">
+    <!--  start related-act-top -->
+    <div id="related-act-top">
+      <img height="43" width="271" alt="" src="/images/admin/forms/header_noti_edit.png"/>
+    </div>
+    <!-- end related-act-top -->
+    <!--  start related-act-bottom -->
+    <div id="related-act-bottom">
+      <!--  start related-act-inner -->
+      <div id="related-act-inner">
+        <div class="right">
+          <div id="posting-section">
+            <div class="reqLa"><strong>Tool Category</strong></div>
+            <div class="reqLa"><strong>Category Title</strong></div>
+            <div class="inp-formS">
+              <%= f.text_field :title, :class => '{validate:{required:true}}' %>
+            </div>
+            <div class="reqLa"><strong>Category Description</strong></div>
+            <div style="padding-top: 22px;">
+              <%= f.text_area :description, :class => '{validate:{required:true}}',:style => "border: 1px solid grey; width: 196px; height: 100px;" %>
+            </div>
+            <br/>
+
+            <div class="clear"></div>
+            <div class="reqLa">
+              <div class="form-buttom">
+                <!-- post  button -->
+                <a class="link_bt" title="Post" href="javascript:;">
+                  <span class="ltred_l"></span>
+                  <span class="ltred_c btf" onclick="sendChange()">Save</span>
+                  <span class="ltred_r"></span>
+                </a>
+                <!-- end post button -->
+              </div>
+            </div>
+            <div id="elements_store"></div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!-- end related-act-inner -->
+      <div class="clear"></div>
+    </div>
+    <!-- end related-act-bottom -->
+  </div>
+<% end %><!-- end form_for -->
+
+<script type="text/javascript">
+  function sendChange(){
+    $("form:first").submit();
+  }
+</script>
