@@ -19,7 +19,7 @@ class ToolCategoriesController < ApplicationController
   end
   
   def addnew
-    
+    @tool_cate = LearnToolCate.new
   end
   
   def create
