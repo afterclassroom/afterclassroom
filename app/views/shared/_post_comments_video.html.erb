@@ -29,7 +29,6 @@
         <% end %>
         <!--Pagination-->
         <div class="assPage">
-            <span class="numPage"><%= page_entries_info comments %></span>
             <%= will_paginate comments %>
         </div>
         <!--Pagination-->
@@ -43,6 +42,6 @@
         }, function(){
             $(".del_post_com", this).hide();
         });
+				formatFirstLinkForPaginationComment('<%= obj.class.name %>', '<%= obj.id %>');
     });
-    formatFirstLinkForPaginationComment('<%= obj.class.name %>', '<%= obj.id %>');
 </script>

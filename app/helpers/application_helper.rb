@@ -522,7 +522,7 @@ module ApplicationHelper
         if current_user.user_invites_out.find_by_user_id_target(user.id)
           str = raw('<div class="txtsignup1">Still waiting</div>')
         elsif current_user.user_invites_in.find_by_user_id(user.id)
-            str = link_to(raw("<span class='span1'><span class='span2'>Respond to friend request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
+            str = link_to(raw("<span class='span1'><span class='span2'>Confirm request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
           else
             str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{user.full_name}")
         end
@@ -542,7 +542,7 @@ module ApplicationHelper
         if current_user.user_invites_out.find_by_user_id_target(user.id)
           str = raw('<div class="txtsignup1">Still waiting</div>')
         elsif current_user.user_invites_in.find_by_user_id(user.id)
-            str = link_to(raw("<span class='span1'><span class='span2'>Respond to friend request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
+            str = link_to(raw("<span class='span1'><span class='span2'>Confirm request</span></span>"), "#{respond_to_friend_request_user_friends_url(current_user, :friend_id => user.id)}?&height=150&width=470", :class => "thickbox", :title => "Confirm #{user.full_name} as a friend?")
           else
             str = link_to(raw("<span class='span1'><span class='span2' id='friend_#{user.id}'>Be friend</span></span>"), "#{show_invite_user_friends_path(current_user)}?user_invite=#{user.id}&height=300&width=470", :id => "link_invite", :class => "thickbox", :title => "Be friend with #{user.full_name}")
         end

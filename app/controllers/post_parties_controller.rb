@@ -108,7 +108,11 @@ class PostPartiesController < ApplicationController
     @post = @post_party.post
     @rating_status = @post_party.rating_status
     update_view_count(@post)
-    posts_as = PostParty.with_school(@school).with_status(@rating_status)
+    if @rating_status
+      posts_as = PostParty.with_school(@school).with_status(@rating_status)
+    else
+      posts_as = PostParty.with_school(@school)
+    end
     as_next = posts_as.nexts(@post_party.id).last
     as_prev = posts_as.previous(@post_party.id).first
     @next = as_next if as_next

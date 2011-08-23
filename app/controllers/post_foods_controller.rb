@@ -108,7 +108,11 @@ class PostFoodsController < ApplicationController
     @post = @post_food.post
     @rating_status = @post_food.rating_status
     update_view_count(@post)
-    posts_as = PostFood.with_school(@school).with_status(@rating_status)
+    if @rating_status
+      posts_as = PostFood.with_school(@school).with_status(@rating_status)
+    else
+      posts_as = PostFood.with_school(@school)
+    end
     as_next = posts_as.nexts(@post_food.id).last
     as_prev = posts_as.previous(@post_food.id).first
     @next = as_next if as_next

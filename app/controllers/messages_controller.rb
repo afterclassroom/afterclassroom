@@ -122,7 +122,8 @@ class MessagesController < ApplicationController
     @message.body = params[:body]
     
     if @message.save
-      @str = "You sent an email to #{recipient.full_name}."
+      send_notification(@message.recipient, @message.subject, @message.body, "sends_me_a_message")
+      @str = "You sent an email to #{@message.recipient.full_name}."
     else
       @str = "Error."
     end

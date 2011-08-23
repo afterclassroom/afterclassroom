@@ -8,7 +8,6 @@
 <% end %>
 <!--Pagination-->
 <div class="assPage">
-    <span class="numPage"><%= page_entries_info @comments %></span>
     <%= will_paginate @comments %>
 </div>
 <!--Pagination-->
@@ -24,6 +23,6 @@
         tb_init(' div.AsDcomRe3 a.thickbox');//pass where to apply thickbox
         imgLoader = new Image();// preload image
         imgLoader.src = tb_pathToImage;
+				formatLinkForPaginationComment();
     });
-    formatLinkForPaginationComment();
 </script>
