@@ -8,7 +8,7 @@
         <h1 class="titleH1">Submit new tool</h1>
       </div>
       <%= display_flash_messages_with_raw %>
-      <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
+      <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool", :method => "save_edit_tool" }) do |f| %>
         <%= hidden_field_tag "tool_id", @tool.id %>
         <%= hidden_field_tag "learntool_video_id" %>
         <%= hidden_field_tag "vid_check" %>
