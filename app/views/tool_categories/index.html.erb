@@ -33,16 +33,8 @@
                                 <th class="table-header-options line-left"><a href="">Options</a></th>
                               </tr>
 
-                              <% @tool_cates.each do |ntfobj| %>
-
-                                <tr id="tr_<%= ntfobj.id %>" class="alternate-row">
-                                  <td><%= ntfobj.title %></td>
-                                  <td><%= ntfobj.description %></td>
-                                  <td>
-                                    <a id="edit_<%= ntfobj.id.to_s %>" href="javascript:;" class="icon-1 info-tooltip" title="Edit"></a>
-                                    <a id="del_<%= ntfobj.id.to_s %>" href="javascript:;" class="icon-2 info-tooltip" title="Delete"></a>
-                                  </td>
-                                </tr>
+                              <% @tool_cates.each do |tc| %>
+                                <%= render :partial => "each_row", :locals => {:tc => tc} %>
                               <% end %>
 
                             </tbody></table>

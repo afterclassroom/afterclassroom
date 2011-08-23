@@ -1,0 +1,12 @@
+<tr id="tr_<%= tc.id %>" class="alternate-row">
+  <td><%= tc.title %></td>
+  <td><%= tc.description %></td>
+  <td>
+    <a id="edit_<%= tc.id.to_s %>" href="javascript:;" class="icon-1 info-tooltip" title="Edit"></a>
+    <a id="del_<%= tc.id.to_s %>" href="javascript:;" class="icon-2 info-tooltip" title="Delete"></a>
+  </td>
+</tr>
+<script type="text/javascript">
+  $(document).ready(function(){
+  });
+</script>
