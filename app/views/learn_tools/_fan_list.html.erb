@@ -18,7 +18,7 @@
           <!--Pagination-->
           <div class="assPage">
             <span class="numPage"><%= page_entries_info @obj_fans %></span>
-            <%= will_paginate @obj_fans, :param_name => "fan_page", :class => "bot_paging"   %> 
+            <%= will_paginate @obj_fans, :class => "bot_paging"   %> 
           </div>
           <!--Pagination-->
         </div>
@@ -36,13 +36,13 @@
         //ShowBottomOverlay();
         if ($(this).text() == 'Next'){
           var str_page = parseInt("<%= @cur_fan_page ? @cur_fan_page : "1" %>")+1;
-          $('#bottom_page_to_load').val(""+str_page);
+          $('#fan_page_to_load').val(""+str_page);
         }else if ($(this).text() == 'Previous'){
           var str_page = parseInt("<%= @cur_fan_page %>")-1;
-          $('#bottom_page_to_load').val(""+str_page);
+          $('#fan_page_to_load').val(""+str_page);
         }
         else {
-          $('#bottom_page_to_load').val($(this).text());
+          $('#fan_page_to_load').val($(this).text());
         }
         $('form#form_first_tab').submit();
       });
