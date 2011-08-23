@@ -8,5 +8,21 @@
 </tr>
 <script type="text/javascript">
   $(document).ready(function(){
+    
+    
+    
+    
+    
+    $("#tr_<%= tc.id %>").click(function(){
+      if (selectedTR!= undefined){
+        selectedTR.css('background-color','');
+      }
+      selectedTR = $(this);
+      $(this).css('background-color','lightBlue');
+
+    });
+    
+    
+    
   });
 </script>
