@@ -1,0 +1,38 @@
+<tr id="tr_<%= tc.id %>" class="alternate-row">
+  <td><%= tc.title %></td>
+  <td><%= tc.description %></td>
+  <td>
+    <a id="edit_<%= tc.id.to_s %>" href="javascript:;" class="icon-1 info-tooltip" title="Edit"></a>
+    <a id="del_<%= tc.id.to_s %>" href="javascript:;" class="icon-2 info-tooltip" title="Delete"></a>
+  </td>
+</tr>
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+    $("#edit_<%= tc.id.to_s %>").click(function(){
+<%  strt = url_for(:controller => "tool_categories", :action => "edit") %>
+      window.location = '<%= strt %>?selectedID=<%= tc.id %>';
+    });    
+    
+    $("#del_<%= tc.id.to_s %>").click(function(){
+<%  strdel = url_for(:controller => "tool_categories", :action => "delete") %>
+      var answer = confirm ("Are you sure to delete this notification?")
+      if (answer){
+        window.location = '<%= strdel %>?selectedID=<%= tc.id.to_s %>';
+      }
+    });      
+    
+    
+    $("#tr_<%= tc.id %>").click(function(){
+      if (selectedTR!= undefined){
+        selectedTR.css('background-color','');
+      }
+      selectedTR = $(this);
+      $(this).css('background-color','lightBlue');
+
+    });
+    
+    
+    
+  });
+</script>

@@ -1,0 +1,56 @@
+<%= form_tag(savenew_admin_tool_categories_path, :method => :post, :id => "setting_form") do %>
+
+
+  <div id="related-activities-user">
+    <!--  start related-act-top -->
+    <div id="related-act-top">
+      <img height="43" width="271" alt="" src="/images/admin/forms/header_noti_edit.png"/>
+    </div>
+    <!-- end related-act-top -->
+    <!--  start related-act-bottom -->
+    <div id="related-act-bottom">
+      <!--  start related-act-inner -->
+      <div id="related-act-inner">
+        <div class="right">
+          <div id="posting-section">
+            <div style="margin: 0pt; padding: 0pt; display: inline;"><input type="hidden" value="✓" name="utf8"></div>
+            <div class="reqLa"><strong>Tool Category</strong></div>
+            <div class="reqLa"><strong>Category Title</strong></div>
+            <div class="inp-formS">
+              <%= text_field_tag "title", "", :id => "title", :value => @tool_cate.title %> <br/>
+            </div>
+            <div class="reqLa"><strong>Category Description</strong></div>
+            <div style="padding-top: 22px;">
+              <%= text_area_tag "description", "", :id => "description", :value => @tool_cate.description, :style => "border: 1px solid grey; width: 196px; height: 100px;" %> <br/>
+            </div>
+            <br/>
+
+            <div class="clear"></div>
+            <div class="reqLa">
+              <div class="form-buttom">
+                <!-- post  button -->
+                <a class="link_bt" title="Post" href="javascript:;">
+                  <span class="ltred_l"></span>
+                  <span class="ltred_c btf" onclick="sendChange()">Save</span>
+                  <span class="ltred_r"></span>
+                </a>
+                <!-- end post button -->
+              </div>
+            </div>
+            <div id="elements_store"></div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!-- end related-act-inner -->
+      <div class="clear"></div>
+    </div>
+    <!-- end related-act-bottom -->
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  function sendChange(){
+    $("form:first").submit();
+  }
+</script>

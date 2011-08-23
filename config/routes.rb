@@ -340,6 +340,16 @@ Afterclassroom::Application.routes.draw do
         post :save
       end
     end
+    
+    resources :tool_categories do
+      collection do
+        get :edit
+        get :delete
+        get :addnew
+        post :savenew
+        post :saveedit
+      end
+    end
 
     resources :users do
       member do
