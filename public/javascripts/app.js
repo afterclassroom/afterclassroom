@@ -165,6 +165,56 @@ function send_comment(id, type){
     }
 }
 
+function formatFirstLinkForPaginationComment(class_name, id){
+    var url = "/posts/comments_list";
+    $("div.assPage").find("a").each(function(){
+        var linkElement = $(this);
+        var page = linkElement.attr('href').split("?page=")[1];
+        linkElement.attr({
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            $.ajax({
+            url: url,
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                page: page,
+                class_name: class_name,
+                id: id
+            }),
+            success: function(data){
+                $('#comments_list').html(data);
+            }
+        });
+        });
+    });
+}
+
+function formatLinkForPaginationComment(){
+    $("div.assPage").find("a").each(function(){
+        var linkElement = $(this);
+        var url = linkElement.attr('href');
+        linkElement.attr({
+            "href": "javascript:;"
+        });
+        
+        linkElement.click(function(){
+            $.ajax({
+            url: url,
+            type: 'GET',
+            cache: false,
+            dataType: 'html',
+            success: function(data){
+                $('#comments_list').html(data);
+            }
+        });
+        });
+    });
+}
+
 function send_answer(post_id){
     comment = $('#comment').val();
     if (comment != "") {
