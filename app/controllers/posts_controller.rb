@@ -100,6 +100,14 @@ class PostsController < ApplicationController
     render :layout => false
   end
   
+  def comments_list
+    class_name = params[:class_name]
+    id = params[:id]
+    @obj = eval(class_name).find(id)
+    @comments = @obj.comments.paginate :page => params[:page], :per_page => 10
+    render :layout => false
+  end
+  
   def delete_comment
     commentable_id = params[:post_id]
     id = params[:comment_id]

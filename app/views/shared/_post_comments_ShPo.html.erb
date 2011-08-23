@@ -1,37 +1,52 @@
 <div class="AsDcom" id="form_comment" style="display: none">
-  <h1 class="titleH1">Leave your comments</h1>
-  <% if logged_in? %>
-    <div class="AsDcomImg"><%= show_image_user_post(current_user) %></div>
-    <div class="AsDcomIn">
-      <form name="form_comment" id="form_comment" action="" method="get">
-        <div class="AsDcomTxt">
-          <div class="AsDcomTexta"><%= text_area_tag :comment, "" %></div>
-        </div>
-        <div class="submit"><a href="javascript:;" onclick="send_comment('<%= obj.id %>', '<%= obj.class.name %>');" >Send</a></div>
-      </form>
+    <h1 class="titleH1">Leave your comments</h1>
+    <% if logged_in? %>
+    <div class="AsDcomImg">
+        <%= show_image_user_post(current_user) %>
     </div>
-  <% end %>
+    <div class="AsDcomIn">
+        <form name="form_comment" id="form_comment" action="" method="get">
+            <div class="AsDcomTxt">
+                <div class="AsDcomTexta">
+                    <%= text_area_tag :comment, "" %>
+                </div>
+            </div>
+            <div class="submit">
+                <a href="javascript:;" onclick="send_comment('<%= obj.id %>', '<%= obj.class.name %>');">Send</a>
+            </div>
+        </form>
+    </div>
+    <% end %>
 </div>
 <% if logged_in? %>
 <% else %>
-You must be <%=  link_to_if(@current_user.nil?, "Sign in", { :controller => "student_lounges", :action => "index" }, :target=> "_parent")%> to Student Lounge.
-<% end %>
-  <% if logged_in? %>
-  <div class="AsDcomL" id="list_comments">
+You must be <%= link_to_if(@current_user.nil?, "Sign in", { :controller => "student_lounges", :action => "index" }, :target=> "_parent") %>to Student Lounge.<% end %>
+<% if logged_in? %>
+<div class="AsDcomL" id="list_comments">
     <h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comments (<span id="comment_count"><%= obj.comments.size %></span>)</a></h1>
-    <% if obj.comments.size > 0 %>
-      <% obj.comments.each do |c| %>
+    <div id="comments_list">
+        <% if obj.comments.size > 0 %>
+				<% comments = obj.comments.paginate :page => params[:page], :per_page => 10 %>
+        <% comments.each do |c| %>
         <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
-      <% end %>
+        <% end %>
+    </div>
+    <!--Pagination-->
+    <div class="assPage">
+        <span class="numPage"><%= page_entries_info comments %></span>
+        <%= will_paginate comments %>
+    </div>
+    <!--Pagination-->
     <% end %>
-  </div>
+</div>
 <% end %>
 <script>
-  $(document).ready(function(){
-    $(".AsDcomItem").hover(function(){
-      $(".del_post_com", this).show();
-    }, function(){
-      $(".del_post_com", this).hide();
+    $(document).ready(function(){
+        $(".AsDcomItem").hover(function(){
+            $(".del_post_com", this).show();
+        }, function(){
+            $(".del_post_com", this).hide();
+        });
     });
-  });
+    formatFirstLinkForPaginationComment('<%= obj.class.name %>', '<%= obj.id %>');
 </script>
