@@ -347,6 +347,7 @@ Afterclassroom::Application.routes.draw do
         get :delete
         get :addnew
         post :savenew
+        post :saveedit
       end
     end
 

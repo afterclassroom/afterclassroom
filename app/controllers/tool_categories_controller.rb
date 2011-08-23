@@ -16,8 +16,12 @@ class ToolCategoriesController < ApplicationController
     redirect_to :action => "index"
   end
   
-  def save
-    
+  def saveedit
+    ct = LearnToolCate.find(params[:ct_id])
+    ct.update_attributes(params[:learn_tool_cate])
+    ct.save
+
+    redirect_to :action => "index"
   end
   
   def addnew

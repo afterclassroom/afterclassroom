@@ -1,5 +1,5 @@
-<%= form_for(@ct, :url => url_for(:controller => "learn_tools", :action => "save_edit_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
-  <%= hidden_field_tag "tool_id", @ct.id %>
+<%= form_for(@ct, :url => url_for(:controller => "tool_categories", :action => "saveedit"), :html => {:method => "post" }) do |f| %>
+  <%= hidden_field_tag "ct_id", @ct.id %>
 
   <div id="related-activities-user">
     <!--  start related-act-top -->
