@@ -7,7 +7,7 @@
 
 
       <div class="friUse">
-        <div class="friUsetit">Tool Reviews</div>
+        <div class="friUsetit">Tool Reviews <%= (@view_anchor == 'YES') ? raw("<a name='stranchor'></a><a href='#stranchor' id='gotoanchor'></a>") : ""  %></div>
         <div class="friUseAll"><a id="btn_see_all" href="javascript:;"></a></div>
       </div>
 

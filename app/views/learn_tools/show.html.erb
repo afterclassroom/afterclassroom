@@ -73,6 +73,9 @@
 
 
           <div class="learnDetDes"><%= @tool.description %></div>
+          <div style="float: right; position: absolute; margin-left: 341px;">
+            <%= link_to "Write a Review", "#{url_for(:controller => "learn_tools", :action => "write_review_form")}?tool_id=#{@tool.id}&height=325&width=550", :style => "background: url('/images/icon-morelink.gif') no-repeat scroll 0 0 transparent; padding-left: 15px; color: #0A81C4;",:class => "thickbox", :title => "Write A Review" %>
+          </div>
 <%# THIS PART WILL BE ENABLED WHEN WE HAVE API TOOLS%>
           <!-- div class="learnDis">
             <div class="learnDis1">

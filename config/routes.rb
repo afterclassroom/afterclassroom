@@ -44,7 +44,7 @@ Afterclassroom::Application.routes.draw do
           :mylearn, :tool_rev_paging, :write_review_form, :become_a_fan,
           :new_tool, :verify_handler, :owner_handler, :video_list, :video_list_paging,
           :rate, :new_tool_with_api, :choose_to_add, :edit_review_form, :delete_review,
-          :play_vid, :toolmanager, :edit_tool, :delete_tool
+          :play_vid, :toolmanager, :edit_tool, :delete_tool, :fan_list_paging
         post :submit_review, :submit_new_tool, :create_tool_with_api, 
           :send_to_dev,:update_review, :save_edit_tool
       end
@@ -194,7 +194,7 @@ Afterclassroom::Application.routes.draw do
   # Posts
   resources :posts do
     collection do
-      get :report_abuse, :create_report_abuse, :report_abuse_video, :create_report_abuse_video, :delete_comment, :download, :view_all_comments, :report_abuse_vid
+      get :report_abuse, :create_report_abuse, :report_abuse_video, :create_report_abuse_video, :delete_comment, :download, :view_all_comments, :report_abuse_vid, :comments_list
       post :create_comment, :create_comment_on_list
     end
   end
@@ -338,6 +338,16 @@ Afterclassroom::Application.routes.draw do
         get :edit
         post :save_edit
         post :save
+      end
+    end
+    
+    resources :tool_categories do
+      collection do
+        get :edit
+        get :delete
+        get :addnew
+        post :savenew
+        post :saveedit
       end
     end
 
