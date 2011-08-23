@@ -16,21 +16,21 @@
         $('a[rel*=facebox]').facebox({})
     });
     
-    $(document).ready(function(){
-        $('input[type=text], textarea').addClass("idleField"); // reset all ##  
-        $('input[type=text], textarea').live("focus", function(event){
-            $(this).toggleClass("focusField idleField");
-            if (this.value == this.defaultValue) {
-                this.value = '';
-            }
-            if (this.value != this.defaultValue) {
-                this.select();
-            }
-        }).live("blur", function(event){
-            $(this).toggleClass("focusField idleField");
-            if ($.trim(this.value) == '') {
-                this.value = (this.defaultValue ? this.defaultValue : '');
-            }
-        });
-    });
+ //   $(document).ready(function(){
+ //       $('input[type=text], textarea').addClass("idleField"); // reset all ##  
+ //       $('input[type=text], textarea').live("focus", function(event){
+ //           $(this).toggleClass("focusField idleField");
+ //           if (this.value == this.defaultValue) {
+ //               this.value = '';
+ //           }
+ //           if (this.value != this.defaultValue) {
+ //               this.select();
+ //           }
+ //       }).live("blur", function(event){
+ //           $(this).toggleClass("focusField idleField");
+ //           if ($.trim(this.value) == '') {
+ //               this.value = (this.defaultValue ? this.defaultValue : '');
+ //           }
+ //       });
+ //   });
 </script>
