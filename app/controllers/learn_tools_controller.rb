@@ -45,6 +45,7 @@ class LearnToolsController < ApplicationController
   def show
     @tool = Learntool.find(params[:id])
     @tool_reviews = @tool.tool_reviews.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    @view_anchor = params[:go_to_review]
   end
   
   def tool_rev_paging

@@ -14,6 +14,6 @@
     <div class="learnFavTR">
       <%= link_to "Write a Review", "#{url_for(:controller => "learn_tools", :action => "write_review_form")}?tool_id=#{my_tool.learntool.id.to_s}&height=325&width=550", :class => "thickbox", :title => "Write A Review" %>
     </div>
-    <div class="learnFavTRv"><a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>"><span>View all Review</span></a></div>
+    <div class="learnFavTRv"><a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>?go_to_review=YES#stranchor"><span>View all Review</span></a></div>
   </div>
 </div>
