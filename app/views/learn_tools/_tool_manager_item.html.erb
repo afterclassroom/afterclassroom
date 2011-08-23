@@ -2,13 +2,15 @@
   <div class="assPic">
     <a href="<%= user_learn_tool_path(current_user,learntool) %>"><div><%= image_tag learntool.tool_img.url(:small) %></div></a>
   </div>
-  <div class="learnFavtitle"><a href="<%= user_learn_tool_path(current_user,learntool) %>"><%= learntool.name %></a>
+  <div class="learnFavtitle"><a href="<%= user_learn_tool_path(current_user,learntool) %>">
+      <%= truncate_html(learntool.name, :length => 85, :omission => '...') %>
+    </a>
     <span class="learnFavS" style="position: absolute; margin-top: -7px;">
       <%= render :partial => "rating_star", :locals => {:tool => learntool, :nocheck => "no_check"} %>
     </span>
   </div>
   <div class="learnNdes">
-    <%= truncate_html(learntool.description, :length => 200, :omission => '...') %>
+    <%= truncate_html(learntool.description, :length => 320, :omission => '...') %>
   </div>
   <div class="learnDetDate"><%= learntool.created_at.strftime('%B %d, %Y at %I:%M%p') %>  
     <div class="learnFavTR">
