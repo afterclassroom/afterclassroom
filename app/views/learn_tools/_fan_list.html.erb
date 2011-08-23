@@ -1,24 +1,49 @@
-<div class="contMainL">
-  <div class="col571 proCen" id="user_wall">
-    <div class="col571in">
-      <h1 class="titleH1">My fans</h1>
-      <div id="mytable">
-        <%= display_flash_messages_with_raw %>
-        <% @obj_fans.each do |fan_user| %>
+<% form_tag url_for(:controller => "learn_tools", :action => "fan_list_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
+  <%= hidden_field_tag "fan_page_to_load", @cur_fan_page ? @cur_fan_page : "1" %>
+  <div class="contMainL">
+    <div class="col571 proCen" id="user_wall">
+      <div class="col571in">
+        <h1 class="titleH1">My fans</h1>
+        <div id="mytable">
+          <%= display_flash_messages_with_raw %>
+          <% @obj_fans.each do |fan_user| %>
 
-          <%= render :partial => "item_fan", :locals => {:fan => fan_user} %>
+            <%= render :partial => "item_fan", :locals => {:fan => fan_user} %>
 
 
-        <% end %>
+          <% end %>
 
-        <!--Pagination-->
-        <div class="assPage">
-          <span class="numPage"><%#= page_entries_info @fans %></span>
-          <%#= will_paginate @fans %>
+          <!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @obj_fans %></span>
+            <%= will_paginate @obj_fans, :param_name => "fan_page", :class => "bot_paging"   %> 
+          </div>
+          <!--Pagination-->
         </div>
-        <!--Pagination-->
       </div>
     </div>
   </div>
-</div>
-
+<% end %><!-- end form -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.bot_paging a').each(function(){
+      $(this).attr('href','javascript:;');
+    });
+    $('.bot_paging a').each(function(){
+      $(this).click(function(){
+        //ShowBottomOverlay();
+        if ($(this).text() == 'Next'){
+          var str_page = parseInt("<%= @cur_fan_page ? @cur_fan_page : "1" %>")+1;
+          $('#bottom_page_to_load').val(""+str_page);
+        }else if ($(this).text() == 'Previous'){
+          var str_page = parseInt("<%= @cur_fan_page %>")-1;
+          $('#bottom_page_to_load').val(""+str_page);
+        }
+        else {
+          $('#bottom_page_to_load').val($(this).text());
+        }
+        $('form#form_first_tab').submit();
+      });
+    });    
+  });
+</script>
