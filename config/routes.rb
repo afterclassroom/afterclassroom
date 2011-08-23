@@ -325,6 +325,7 @@ Afterclassroom::Application.routes.draw do
   namespace :admin do
     resources :dashboards
     resources :settings
+    resources :tool_categories
     resources :posts do
       collection do
         get :with_type
