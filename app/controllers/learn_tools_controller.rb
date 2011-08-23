@@ -187,13 +187,14 @@ class LearnToolsController < ApplicationController
   end
   
   def see_all_tool_fan
-    tool = Learntool.find(params[:current_tool_id])
-    @obj_fans = display_fan(tool).paginate(:page => params[:page], :per_page => 1)
+    @tool = Learntool.find(params[:current_tool_id])
+    @obj_fans = display_fan(@tool).paginate(:page => params[:page], :per_page => 1)
     @cur_fan_page = "1" #param supports for paging with ajax
     render :layout => false
   end
   
   def fan_list_paging
+    @tool = Learntool.find(params[:current_tool_id])
     render :layout => false
   end
   

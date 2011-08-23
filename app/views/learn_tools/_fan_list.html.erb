@@ -1,5 +1,7 @@
 <% form_tag url_for(:controller => "learn_tools", :action => "fan_list_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
   <%= hidden_field_tag "fan_page_to_load", @cur_fan_page ? @cur_fan_page : "1" %>
+  <%= hidden_field_tag "current_tool_id", @tool.id %>
+
   <div class="contMainL">
     <div class="col571 proCen" id="user_wall">
       <div class="col571in">
