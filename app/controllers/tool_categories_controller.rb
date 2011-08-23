@@ -6,4 +6,24 @@ class ToolCategoriesController < ApplicationController
     @tool_cates = LearnToolCate.find(:all)
   end
   
+  def edit
+    
+  end
+  
+  def delete
+    redirect_to :action => "index"
+  end
+  
+  def save
+    
+  end
+  
+  def addnew
+    
+  end
+  
+  def create
+    
+  end
+  
 end
