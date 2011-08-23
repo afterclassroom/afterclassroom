@@ -1,1 +1,116 @@
-hi
+<div id="content-outer">
+  <div id="content">
+    <!-- start content -->
+    <!--  start page-heading -->
+
+    <div id="page-heading"><h1>NOTIFICATION</h1></div>
+    <!-- end page-heading -->
+    <table cellspacing="0" cellpadding="0" border="0" width="100%" id="content-table">
+      <tbody><tr>
+          <th class="sized" rowspan="3"><img width="20" height="300" alt="" src="/images/admin/shared/side_shadowleft.jpg"/></th>
+          <th class="topleft"></th>
+          <td id="tbl-border-top">&nbsp;</td>
+          <th class="topright"></th>
+          <th class="sized" rowspan="3"><img width="20" height="300" alt="" src="/images/admin/shared/side_shadowright.jpg"/></th>
+        </tr>
+        <tr>
+          <td id="tbl-border-left"></td>
+          <td>
+            <!--  start content-table-inner -->
+            <div id="content-table-inner">
+              <!--  start table-content  -->
+              <div id="table-content">
+                <!--  start product-table -->
+                <form action="" id="mainform">
+                  <table cellspacing="0" cellpadding="0" border="0" width="75%">
+                    <tbody><tr valign="top">
+                        <td>
+                          <table cellspacing="0" cellpadding="0" border="0" width="100%" id="product-table-user">
+                            <tbody>
+                              <tr>
+                                <th class="table-header-repeat line-left minwidth-1"><a href="javascript:;">Name</a></th>
+                                <th class="table-header-repeat line-left minwidth-1"><a href="javascript:;">Description</a></th>
+                                <th class="table-header-options line-left"><a href="">Options</a></th>
+                              </tr>
+
+                              <% @tool_cates.each do |ntfobj| %>
+
+                                <tr id="tr_<%= ntfobj.id %>" class="alternate-row">
+                                  <td><%= ntfobj.title %></td>
+                                  <td><%= ntfobj.description %></td>
+                                  <td>
+                                    <a id="edit_<%= ntfobj.id.to_s %>" href="javascript:;" class="icon-1 info-tooltip" title="Edit"></a>
+                                    <a id="del_<%= ntfobj.id.to_s %>" href="javascript:;" class="icon-2 info-tooltip" title="Delete"></a>
+                                  </td>
+                                </tr>
+                              <% end %>
+
+                            </tbody></table>
+                        </td>
+                        <td>
+                          <div id="related-activities" style="position: fixed;">
+                            <!--  start related-act-top -->
+                            <div id="related-act-top">
+                              <img width="271" height="43" alt="" src="/images/admin/forms/header_noti_new.gif"/>
+                            </div>
+                            <!-- end related-act-top -->
+                            <!--  start related-act-bottom -->
+                            <div id="related-act-bottom">
+                              <!--  start related-act-inner -->
+                              <div id="related-act-inner">
+                                <div class="left"><a href=""><img width="21" height="21" alt="" src="/images/admin/forms/icon_plus.gif"></a></div>
+                                <div class="right">
+                                  <h5>
+                                    <a id="btn_add_new" href="javascript:;">New Category</a>
+                                  </h5>
+                                </div>
+                                <div class="clear"></div>
+                              </div>
+
+                              <!-- end related-act-inner -->
+                              <div class="clear"></div>
+                            </div>
+                            <!-- end related-act-bottom -->
+
+
+
+
+
+
+
+
+
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody></table>
+                  <!--  end product-table -->
+                </form>
+              </div>
+              <!--  end content-table  -->
+              <!--  start actions-box -->
+
+              <!-- end actions-box -->
+              <!--  start paging -->
+              <!--  end paging-->
+              <div class="clear"></div>
+            </div>
+            <!--  end content-table-inner END  -->
+          </td>
+          <td id="tbl-border-right"></td>
+        </tr>
+        <tr>
+          <th class="sized bottomleft"></th>
+          <td id="tbl-border-bottom">&nbsp;</td>
+          <th class="sized bottomright"></th>
+        </tr>
+      </tbody></table>
+    <!--  end content -->
+    <!--  end content-outer END -->
+
+
+    <!--  end content -->
+  </div>
+</div>
+
+
