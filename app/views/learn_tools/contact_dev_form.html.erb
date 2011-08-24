@@ -8,18 +8,18 @@
           <ul>
             <li>
               <div class="user_ri6">
-                <label style="float:left;">
+                <label style="float:left; color: #6F6F63;">
                   Title*:
                 </label>
-                <%= text_field_tag "tel_no", "", :class => '{validate:{required:true}}' %>
+                <%= text_field_tag "tel_no", "", :class => '{validate:{required:true}}', :style => "width: 330px; border: 1px solid #CECECE"  %>
               </div>
             </li>
             <li>
-              <label style="float:left;">
+              <label style="float:left; color: #6F6F63;">
                 Message*:
               </label>
               <div class="user_ri7" style="margin-left: 29px; margin-top: 0px;">
-                <%= text_area_tag "message_str", nil, :rows => 5, :cols => 60, :class => '{validate:{required:true}}'  %>
+                <%= text_area_tag "message_str", nil, :rows => 5, :cols => 60, :class => '{validate:{required:true}}', :style => "margin-bottom: 10px;  margin-left: 30px;  margin-top: 0;  width: 330px; height: 200px; border: 1px solid #CECECE;"  %>
               </div>
             </li>
             <li>
