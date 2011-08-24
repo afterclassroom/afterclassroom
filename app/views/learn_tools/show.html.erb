@@ -25,10 +25,10 @@
 
         <% if admin? %>
           <div id="verify" style="text-indent:4px; color: #6F6F63;">
-            Verify<input style="margin-left: 12px;" type="checkbox" value="checkbox" name="checkbox" id="checkbox_<%= @tool.id %>" <%= @tool.verify == true ? "checked" : "" %>/>
+            <input style="margin-left: 1px;" type="checkbox" value="checkbox" name="checkbox" id="checkbox_<%= @tool.id %>" <%= @tool.verify == true ? "checked" : "" %>/> Verify
           </div>        
           <div id="ater_owner" style="text-indent:4px; color: #6F6F63;">
-            Develop by AfterClassroom<input style="margin-left: 12px;" type="checkbox" value="checkbox" name="checkbox" id="owner_<%= @tool.id %>" <%= @tool.atc_creator == true ? "checked" : "" %>/>
+            <input style="margin-left: 1px;" type="checkbox" value="checkbox" name="checkbox" id="owner_<%= @tool.id %>" <%= @tool.atc_creator == true ? "checked" : "" %>/> Develop by AfterClassroom
           </div>        
         <%  end %>
       </div>
