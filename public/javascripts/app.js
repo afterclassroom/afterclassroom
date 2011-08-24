@@ -670,7 +670,7 @@ function searchFriendVideos(){
     var url = form.attr("action");
     var formData = form.serialize();
     $.get(url, formData, function(html){
-        $("#friend_musics_list").html(html);
+        $("#friend_videos_list").html(html);
     });
 }
 

@@ -144,7 +144,7 @@ class PostsController < ApplicationController
         send_notification(u, subject, content, "comments_on_my_posts")
       end
       
-      if ["Photo", "PhotoAlbum", "Music", "Music Album", "Video", "Story"].include?(comnd.commentable_type)
+      if ["Photo", "PhotoAlbum", "Music", "MusicAlbum", "Video", "Story"].include?(comnd.commentable_type)
         case comnd.commentable_type
           when "Photo"
           subject = "#{current_user.name} comment on your Photo."
@@ -160,7 +160,7 @@ class PostsController < ApplicationController
           send_notification(u, subject, content, "comments_on_my_musics")
           when "MusicAlbum"
           subject = "#{current_user.name} comment on your Music Album."
-          content = "Click <a href='#{show_playlist_user_musics_url(u, :music_album_id => obj)}' target='blank'>here</a> to view more"
+          content = "Click <a href='#{playlist_user_musics_url(u, :music_album_id => obj)}' target='blank'>here</a> to view more"
           send_notification(u, subject, content, "comments_on_my_musics")
           when "Video"
           subject = "#{current_user.name} comment on your Video."
