@@ -1,6 +1,20 @@
-  <div>
-    <%= @toolreview.title %>
-  </div>
-  <div>
+<div>
+  <b><%= @toolreview.title %></b>
+</div>
+<div>
+  <p>
     <%= @toolreview.content %>
-  </div>
+  </p>
+</div>
+  <div class="submit" style="float: left;padding-left: 0px; position: absolute; top: 330px;">
+    <a href="javascript:;"><input type="button" id="btn_close" name="Close" value="Close"/></a>
+  </div>  
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#btn_close').click(function(){
+      $('#TB_closeWindowButton').click();
+    });
+  });
+</script>
