@@ -9,7 +9,7 @@
   <%= form_for @video, :url => user_videos_path(current_user), :html => {:id => "form", :multipart => true} do |fm| %>
     <div class="stoExItem">
       <div class="stoExItemL">
-        Title*
+        Title
       </div>
       <div class="stoExItemR" style="">
         <%= fm.text_field :title %>
@@ -17,7 +17,7 @@
     </div>
     <div class="stoExItem">
       <div class="stoExItemL">
-        Location*
+        Location
       </div>
       <div class="stoExItemR">
         <div id="fakeinputfile" style="margin-top:-8px">
