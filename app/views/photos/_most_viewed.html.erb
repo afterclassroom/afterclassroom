@@ -16,7 +16,7 @@ most_viewed_photo_albums = PhotoAlbum.with_users(u).with_limit.most_view
       <% most_viewed_photo_albums.each do |pa| %>
         <div class="photoItem" style="margin-bottom: 16px;">
           <div class="photoImg"><%= link_to get_first_photo(pa), show_album_user_photos_path(pa.user, :photo_album_id => pa) %></div>
-          <span style="margin-top: -16px; position: absolute; width: 85px; overflow: hidden; height: 25px;"><%= truncate(pa.name, :length => 20, :omission => '...') %></span>
+          <span style="margin-top: -16px; position: absolute; width: 85px; overflow: hidden; height: 30px;"><%= truncate(pa.name, :length => 20, :omission => '...') %></span>
         </div>
       <% end %>
     </div>

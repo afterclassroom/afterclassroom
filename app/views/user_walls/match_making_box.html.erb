@@ -21,7 +21,7 @@
         <div class="clear">
         </div>
       </div>
-      <div style="overflow-y:scroll; height:230px; background: #ffffff">
+      <div style="overflow-y:scroll; height:230px; background: #ffffff;border: 1px solid #CECECE;">
         <ul id="list">
           <% current_user.user_friends.each do |f|
             isfriend =  @user_post.user_friends.include?(f) 
@@ -57,11 +57,11 @@
       </div>
     </div>
     <div class="postItem" style="padding: 0px">
-      <div style="width: 80px; margin-top: 5px;float: none" class="postItem1">
+      <div style="width: 80px; margin-top: 5px;float: none;font-weight: bold;color: #6F6F63" class="postItem1">
         Message:
       </div>
       <div class="postInp">
-        <%= text_area_tag "body", "", :id => "message_body", :style => "height: 50px;width:497px" %>
+        <%= text_area_tag "body", "", :id => "message_body", :style => "height: 50px;width:507px;" %>
       </div>
     </div>
     <input type="hidden" value="" id="frend_ids" name="frend_ids">
@@ -135,11 +135,11 @@
         $('#frend_ids').val(fid + ',' + ids);
         showActionsBox();
       }
-      //    $(".selected9999").click(function ( event ) {
+      //     $(".selected9999").click(function ( event ) {
       //     event.preventDefault();
-      //     $(this).toggle();
+      //     $(this).hide();
       //     $('.test').addClass('selected99');
-      //   }); 
+       //  }); 
             
       function showActionsBox(){
             
@@ -149,10 +149,13 @@
       }
       showActionsBox();
       $(".selected").click(showActionsBox);
+          
+ 
     });
+    
         
     $('#BoxMenu').click(function(){
-      //$('.test').addClass('selected9999');
+      $('.selected').addClass('selected9999');
       var f_ids = $('#frend_ids').val(); // get all ids in hidden field
       if (f_ids != '') {
         $('.selectedMat01').hide();
@@ -162,11 +165,11 @@
     
 
     $('#BoxMenu01').click(function(){
-      //    $('.test').removeClass('selected9999');
+      $('.selected').removeClass('selected9999');
       
       $('.selectedMat01').show();
       $('.selected01').show();
-      //    $('.selected99').show();
+      $('#select').show();
     });
         
     $('.uiButtonConfirm').click(function(){
@@ -255,14 +258,28 @@
           }
         });
       });
-    }
-    
-        
+    }     
     //ondomready
     $(function(){
       filterList($("#form"), $("#list"));
     });
   }(jQuery));
+  
+//  (function ($) {
+//    $.extend($.fn, {
+//      example: function () {
+//        return this.each(function () {
+//           $(".selected9999").click(function ( event ) {
+//           event.preventDefault();
+//           $(this).hide();
+//         }); 
+//        })
+//      }
+//    })
+// })(jQuery);
+//  jQuery(document).ready(function ($) {
+//    $('#select').example();
+//  });
 
 
 </script>
