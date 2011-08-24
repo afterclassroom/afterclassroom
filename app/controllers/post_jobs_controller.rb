@@ -253,12 +253,12 @@ class PostJobsController < ApplicationController
     str_result = ""#fix bug 250
     if @post_job.save
       str_result = "Done"
+      ApplyJob.apply_now(current_user.id, @post_job.post.id, cover_letter.resume_cv.url).deliver#fix bug 250
     else
       str_result = "File too large"
     end
     
     
-    ApplyJob.apply_now(current_user.id, @post_job.post.id, cover_letter.resume_cv.url).deliver
     render :text => str_result#cover_letter.resume_cv.url
     
   end
@@ -276,12 +276,12 @@ class PostJobsController < ApplicationController
     str_result = ""#fix bug 250
     if @post_job.save
       str_result = "Done"
+      ApplyJob.apply_now(current_user.id, @post_job.post.id, transcript.resume_cv.url).deliver#fix bug 250
     else
       str_result = "File too large"
     end
     
     
-    ApplyJob.apply_now(current_user.id, @post_job.post.id, transcript.resume_cv.url).deliver
     render :text => str_result#transcript.resume_cv.url
     
   end
@@ -299,10 +299,10 @@ class PostJobsController < ApplicationController
     str_result = ""#fix bug 250
     if @post_job.save
       str_result = "Done"
+      ApplyJob.apply_now(current_user.id, @post_job.post.id, resume.resume_cv.url).deliver#fix bug 250
     else
       str_result = "File too large"
     end
-    ApplyJob.apply_now(current_user.id, @post_job.post.id, resume.resume_cv.url).deliver
     render :text => str_result#resume.resume_cv.url
     
   end
