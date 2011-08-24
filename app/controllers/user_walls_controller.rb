@@ -179,7 +179,7 @@ class UserWallsController < ApplicationController
         # Email, notification
         subject = "#{current_user.name} suggests a friend for you."
         content = "Click #{link_to "here", user_url(usr), :target => "blank"} to view profile of #{usr.full_name}"
-        send_notification(u, subject, content, "suggests_a_frtruncate_wordsiend_to_me")
+        send_notification(u, subject, content, "match_making")
       end
     end
     subject = "#{current_user.name} match making for you."

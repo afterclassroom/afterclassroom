@@ -26,7 +26,6 @@
                   <% end %>
                 </div>
               </div>
-
                 <div class="musicRow">
                   <% @friend_videos.each do |f_p| %>
                     <%= render :partial => "item_friend_video", :locals => {:video => f_p}  %>
@@ -36,6 +35,7 @@
                   <!--Pagination-->
                   <div class="assPage friend_videos">
                     <span class="numPage"><%= page_entries_info @friend_videos %></span>
+										<%= will_paginate @friend_videos %>
                   </div>
                   <!--Pagination-->
                 </div>

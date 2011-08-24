@@ -718,3 +718,12 @@ function formatLinkForPaginationURLMyVideo(){
 }
 
 //My Videos
+$(document).ready(function(){
+    $('#form_post').find('input').each(function(){
+        $(this).bind('keypress', function(e) {
+            if(e.keyCode==13){
+                $('#submit_form').click();
+            }
+        });
+    });
+});

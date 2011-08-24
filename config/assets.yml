@@ -89,6 +89,8 @@ javascripts:
     - public/javascripts/thickbox.js
     - public/javascripts/vtip.js
     - public/javascripts/jquery.ad-gallery.js
+    - public/javascripts/jquery-validate.js
+    - public/javascripts/jquery.metadata.js
   admin:
     - public/javascripts/jquery.js
     - public/javascripts/jquery-ui.js
@@ -178,6 +180,8 @@ stylesheets:
     - public/stylesheets/vtip.css
     - public/stylesheets/jquery-carrousel.css
     - public/stylesheets/jquery.ad-gallery.css
+    - public/stylesheets/pagination.css
+    - public/stylesheets/validation.css
   admin:
     - public/stylesheets/main.css
     - public/stylesheets/jquery-multiSelect.css

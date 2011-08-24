@@ -18,7 +18,7 @@ class PostTutor < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => LIMIT
   scope :with_type, lambda { |tp| {:conditions => ["post_tutors.tutor_type_id = ?", tp]} }
-  scope :with_status, lambda { |st| {:conditions => ["post_tutors.rating_status = ?", st]} }
+  scope :with_status, lambda { |st| {:conditions => ["post_tutors.rating_status = ?", st], :order => "post_id DESC"} }
   scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
@@ -87,7 +87,7 @@ class PostTutor < ActiveRecord::Base
     posts
   end
 
-  def self.effective_tutors(school)   
+  def self.effective_tutors(school)
     tutor_type = TutorType.find_by_label("tutor_provider")
     self.with_type(tutor_type.id).with_school(school).with_status("Good")
   end

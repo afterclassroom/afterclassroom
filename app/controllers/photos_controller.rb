@@ -23,9 +23,9 @@ class PhotosController < ApplicationController
       cond = Caboose::EZ::Condition.new :photo_albums do
         user_id === arr_user_id
       end
-      @friend_photos = PhotoAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
+      @friend_photos = PhotoAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
     end
-    @my_photos = current_user.photo_albums.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
+    @my_photos = current_user.photo_albums.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
   end
   
   def friend_p
@@ -54,7 +54,7 @@ class PhotosController < ApplicationController
       end
     end
     
-    @photo_albums = PhotoAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
+    @photo_albums = PhotoAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
     
     render :layout => false
   end
@@ -77,7 +77,7 @@ class PhotosController < ApplicationController
       user_id == id
     end
     
-    @photo_albums = PhotoAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 25
+    @photo_albums = PhotoAlbum.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
     
     render :layout => false
   end

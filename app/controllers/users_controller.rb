@@ -76,8 +76,10 @@ class UsersController < ApplicationController
       when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.<br/>Please follow the URL from your email."
       redirect_back_or_default(root_path)
-    else 
-      flash[:error]  = "We couldn't find a user with that activation code -- check your email?<br/>Or maybe you've already activated -- try signing in."
+    else
+      if !logged_in?
+        flash[:error]  = "We couldn't find a user with that activation code -- check your email?<br/>Or maybe you've already activated -- try signing in."
+      end
       redirect_back_or_default(root_path)
     end
   end

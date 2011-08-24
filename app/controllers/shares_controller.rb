@@ -57,8 +57,8 @@ class SharesController < ApplicationController
     @share.sender = current_user
     respond_to do |format|
       if @share.save
-        recipient = params[:recipient]
-        user_ids = recipient.split(",")
+        share_to = params[:share_to]
+        user_ids = share_to.split(",")
         if user_ids.size > 0 
           user_ids.each do |i|
             u = User.find(i)
@@ -71,6 +71,9 @@ class SharesController < ApplicationController
               mess.body = content
               mess.save
               @share.recipients << u
+              subject = "#{current_user.name} share file."
+              content = "Click <a href='#{user_shares_url(u)}' target='blank'>here</a> to view more"
+              send_notification(u, subject, content, "friend_share_file")
             end
             
           end
