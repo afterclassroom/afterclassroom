@@ -30,6 +30,7 @@
 <script type="text/javascript">
   
   var overalObject = null;//my intention of creating this object, is to deselect the selected videos on thickbox
+  var overVidImg = null;
   
   function ShowVidOverlay(){
     $('form#form_first_tab').append('<div id="bottomoverlay"></div>');
@@ -53,6 +54,11 @@
         var strId = $(overalObject).attr('id').split('_')[2];
         $('#learntool_video_id').val(strId);
         $('#vid_name').val(jQuery.data(overalObject,"vid_name"));
+        
+        $('#img_selected').html('');
+        $('#img_selected').html($(overVidImg).html());
+        $('#img_selected').show();
+        
         $('#TB_closeWindowButton').click();
       }
     });

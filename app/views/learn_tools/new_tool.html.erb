@@ -62,6 +62,10 @@
                 <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
               </div>
             </div>
+
+            <div class="photoImg" id="img_selected" style="margin-left: 120px; display: none;">
+            </div>            
+
             <div id ="form_vid" style ="display: none;">
               <%= render :partial => "form_vid" %>
             </div>
@@ -102,6 +106,7 @@
     });
     $('#btn_new_vid').click(function(){
       $('input#vid_name').hide();
+      $('#img_selected').hide();
       $('div#form_vid').show('slow');
       $('input#vid_check').val("new video upload");
     });

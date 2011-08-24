@@ -22,9 +22,12 @@
       var filename = overalObject.find('div.musicN').text();
       jQuery.data(overalObject,"vid_name",filename);
       
-      
       $(this).css('background-color', '#0085DF');
       $(this).css('border-radius', '4px');
+      /* BEGIN: select the video image */
+      //overVidImg
+      overVidImg = $(this).find('.photoImg');
+      /* END: select the video image */
     });
     eachItem.mouseover(function() {
       $(this).css('cursor', 'pointer');
