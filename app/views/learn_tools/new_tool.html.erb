@@ -37,11 +37,17 @@
             </div>
             <div class="postItem">
               <div class="postTit">URL*</div>
-              <div class="postInp"><%= f.text_field :href, :class => '{validate:{required:true, url: true}}' %></div>
+              <div class="postInp">
+                <%= f.text_field :href, :class => '{validate:{required:true, url: true}}' %>
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px"), "javascript:;", :class => "vtip", :title => "Your company or product website and we will embedded it into your logo. We will direct your potential customers to your site once they click on your logo or on Check out their website button.") %>
+              </div>
             </div>
             <div class="postItem">
               <div class="postTit">Support URL</div>
-              <div class="postInp"><%= f.text_field :href, :class => '{validate:{url: true}}' %></div>
+              <div class="postInp">
+                <%= f.text_field :href, :class => '{validate:{url: true}}' %>
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px"), "javascript:;", :class => "vtip", :title => "Your technical support forum URL, in case users have problem with technical issue then we will direct them to your forum.") %>
+              </div>
             </div>
             <div class="postItem">
               <div class="postTit">Demo Video</div>
@@ -53,7 +59,7 @@
                 <div class="submit" style="padding: 0px; padding-left: 10px;">
                   <a href="javascript:;" id="btn_new_vid">New</a>
                 </div>
-
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
               </div>
             </div>
             <div id ="form_vid" style ="display: none;">
