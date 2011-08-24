@@ -42,11 +42,17 @@
             </div>
             <div class="postItem">
               <div class="postTit">URL*</div>
-              <div class="postInp"><%= f.text_field :href, :class => '{validate:{required:true, url: true}}' %></div>
+              <div class="postInp">
+                <%= f.text_field :href, :class => '{validate:{required:true, url: true}}' %>
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px"), "javascript:;", :class => "vtip", :title => "Your company or product website and we will embedded it into your logo. We will direct your potential customers to your site once they click on your logo or on Check out their website button.") %>
+              </div>
             </div>
             <div class="postItem">
               <div class="postTit">Support URL</div>
-              <div class="postInp"><%= f.text_field :support_url, :class => '{validate:{url: true}}' %></div>
+              <div class="postInp">
+                <%= f.text_field :support_url, :class => '{validate:{url: true}}' %>
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px"), "javascript:;", :class => "vtip", :title => "Your technical support forum URL, in case users have problem with technical issue then we will direct them to your forum.") %>
+              </div>
             </div>
 
             <% if @tool.video_id != nil %>
@@ -56,8 +62,8 @@
                   <%= link_to "#{@video_name} - Play this video ", "#{url_for(:controller => "learn_tools", :action => "play_vid")}?vid_id=#{@tool.video_id}&height=425&width=555", :class => "thickbox", :title => "Showing the video introduce this tool" %>
                 </div>
               </div>
-
-
+              <% video = Video.find(@tool.video_id) %>
+              <div class="photoImg" style="margin-left: 120px;"><%= display_image_video(video) %></div>
             <% end %>
 
 
@@ -71,8 +77,13 @@
                 <div class="submit" style="padding: 0px; padding-left: 10px;">
                   <a href="javascript:;" id="btn_new_vid">New</a>
                 </div>
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
               </div>
             </div>
+
+            <div class="photoImg" id="img_selected" style="margin-left: 120px; display: none;">
+            </div>            
+
             <div id ="form_vid" style ="display: none;">
               <%= render :partial => "form_vid" %>
             </div>
@@ -81,10 +92,10 @@
 
           </div>
         </div>
-        <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px">
+        <div class="submit" style="margin-left: 129px;float: left;padding-left: 0px">
           <a href="javascript:;" id="btn_sbm_tool">Submit</a>
         </div>
-        <div class="submit" style="margin-left: -106px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
+        <div class="submit" style="margin-left: -109px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
 
       <% end %>
     </div>
@@ -106,11 +117,13 @@
 
     $('#select_vid').click(function(){
       $('input#vid_name').show('slow');
+      $('#img_selected').show('slow');
       $('div#form_vid').hide();
       $('input#vid_check').val("video selected");
     });
     $('#btn_new_vid').click(function(){
       $('input#vid_name').hide();
+      $('#img_selected').hide();
       $('div#form_vid').show('slow');
       $('input#vid_check').val("new video upload");
     });

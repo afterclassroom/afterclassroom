@@ -47,51 +47,65 @@ class PostManagementsController < ApplicationController
       posts.each do |abl|
         abl.favorites.destroy_all if abl.favorites.size > 0
         if abl.post_assignment
+          abl.post_assignment.destroy
           del_post_wall(abl.post_assignment)
         end
         if abl.post_project
+          abl.post_project.destroy
           del_post_wall(abl.post_project)
         end
         if abl.post_test
+          abl.post_test.destroy
           del_post_wall(abl.post_test)
         end
         if abl.post_exam
+          abl.post_exam.destroy
           del_post_wall(abl.post_exam)
         end
         if abl.post_event
+          abl.post_event.destroy
           del_post_wall(abl.post_event)
         end
         if abl.post_qa
+          abl.post_qa.destroy
           del_post_wall(abl.post_qa)
         end
         if abl.post_tutor
+          abl.post_tutor.destroy
           del_post_wall(abl.post_tutor)
         end
         if abl.post_book
+          abl.post_book.destroy
           del_post_wall(abl.post_book)
         end
         if abl.post_job
+          abl.post_job.destroy
           del_post_wall(abl.post_job)
         end
         if abl.post_food
+          abl.post_food.destroy
           del_post_wall(abl.post_food)
         end
         if abl.post_myx
+          abl.post_myx.destroy
           del_post_wall(abl.post_myx)
         end
         if abl.post_awareness
+          abl.post_awareness.destroy
           del_post_wall(abl.post_awareness)
         end
         if abl.post_housing
+          abl.post_housing.destroy
           del_post_wall(abl.post_housing)
         end
         if abl.post_teamup
+          abl.post_teamup.destroy
           del_post_wall(abl.post_teamup)
         end
         if abl.post_exam_schedule
+          abl.post_exam_schedule.destroy
           del_post_wall(abl.post_exam_schedule)
         end
-        abl.destroy
       end
     end
     redirect_to(user_post_managements_url(current_user, :category => category))

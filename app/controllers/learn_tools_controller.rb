@@ -39,6 +39,7 @@ class LearnToolsController < ApplicationController
     if params[:see_all] != nil && params[:see_all] == "See all tool"
       size = current_user.my_tools.size
       @my_tools = current_user.my_tools.paginate(:page => params[:page], :per_page => size)
+      @seeall_parm = params[:see_all]
     end
   end
   
@@ -62,6 +63,11 @@ class LearnToolsController < ApplicationController
   end
 
   def edit_review_form
+    @toolreview = ToolReview.find(params[:review_id])
+    render :layout => false
+  end
+  
+  def view_review
     @toolreview = ToolReview.find(params[:review_id])
     render :layout => false
   end
@@ -346,7 +352,8 @@ class LearnToolsController < ApplicationController
     
     if params[:see_all] != nil && params[:see_all] == "See all tool"
       size = current_user.learntools.size
-      @my_tools = current_user.learntools.paginate(:page => params[:page], :per_page => size )
+      @seeall_parm = params[:see_all]
+      @my_tools = current_user.learntools.order("created_at DESC").paginate(:page => params[:page], :per_page => size )
     end
     
     

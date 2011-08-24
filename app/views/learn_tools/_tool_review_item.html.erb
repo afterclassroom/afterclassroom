@@ -1,5 +1,4 @@
 <div class="helpItem" id="rv_item_<%= rv.id %>" style="border-bottom: 1px solid rgb(219, 219, 219);">
-
   <% if rv.user == current_user %>
     <div style="float: right; padding-top: 1px; display: none;" id="pr_id_<%= rv.id %>">
       <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), {:controller => "learn_tools", :action => "delete_review", :review_id => rv.id  }, :remote => true ,:method => :get, :confirm => 'Are you sure you want to delete it?') %>
@@ -8,6 +7,13 @@
     <div style="float: right; display: none;" id="edpr_id_<%= rv.id %>">
       <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => ''), "#{url_for(:controller => "learn_tools", :action => "edit_review_form")}?review_id=#{rv.id}&height=325&width=550", :class => "thickbox", :title => "Edit Review" %>
     </div>
+  <% else %><!-- the developer who upload tool is allowed to delete review, but not allowed to edit review -->
+    <% if  rv.learntool.user == current_user %>
+      <div style="float: right; padding-top: 1px; display: none;" id="pr_id_<%= rv.id %>">
+        <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), {:controller => "learn_tools", :action => "delete_review", :review_id => rv.id  }, :remote => true ,:method => :get, :confirm => 'Are you sure you want to delete it?') %>
+      </div>
+
+    <% end %>
   <% end %>
   <div style="float: left;" class="assPic">
     <a href="javascript:;" id="cal_id_1">   
@@ -17,7 +23,7 @@
   <div class="helpT" style="margin-left: 62px;">
   </div>
   <div id="1" class="forumTit" style="font-weight: bold; margin-left: 62px;width: 330px">
-    <a data-remote="true" href="#"><%= rv.title %></a>
+    <%= link_to rv.title, "#{url_for(:controller => "learn_tools", :action => "view_review")}?review_id=#{rv.id}&height=325&width=550", :class => "thickbox", :title => "View Review Detail" %>
   </div>
   <div class="helpD" style="margin-left: 62px; height: 100%;" id="press_1"><%= truncate_html(rv.content, :length => 180, :omission => '...') %></div>
 </div>
