@@ -62,8 +62,8 @@
                   <%= link_to "#{@video_name} - Play this video ", "#{url_for(:controller => "learn_tools", :action => "play_vid")}?vid_id=#{@tool.video_id}&height=425&width=555", :class => "thickbox", :title => "Showing the video introduce this tool" %>
                 </div>
               </div>
-
-
+              <% video = Video.find(@tool.video_id) %>
+              <div class="photoImg" style="margin-left: 120px;"><%= display_image_video(video) %></div>
             <% end %>
 
 
@@ -80,6 +80,10 @@
                 <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
               </div>
             </div>
+
+            <div class="photoImg" id="img_selected" style="margin-left: 120px; display: none;">
+            </div>            
+
             <div id ="form_vid" style ="display: none;">
               <%= render :partial => "form_vid" %>
             </div>
@@ -113,11 +117,13 @@
 
     $('#select_vid').click(function(){
       $('input#vid_name').show('slow');
+      $('#img_selected').show('slow');
       $('div#form_vid').hide();
       $('input#vid_check').val("video selected");
     });
     $('#btn_new_vid').click(function(){
       $('input#vid_name').hide();
+      $('#img_selected').hide();
       $('div#form_vid').show('slow');
       $('input#vid_check').val("new video upload");
     });
