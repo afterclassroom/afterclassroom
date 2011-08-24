@@ -17,7 +17,7 @@
   <div class="helpT" style="margin-left: 62px;">
   </div>
   <div id="1" class="forumTit" style="font-weight: bold; margin-left: 62px;width: 330px">
-    <a data-remote="true" href="#"><%= rv.title %></a>
+    <%= link_to rv.title, "#{url_for(:controller => "learn_tools", :action => "view_review")}?review_id=#{rv.id}&height=325&width=550", :class => "thickbox", :title => "View Review Detail" %>
   </div>
   <div class="helpD" style="margin-left: 62px; height: 100%;" id="press_1"><%= truncate_html(rv.content, :length => 180, :omission => '...') %></div>
 </div>

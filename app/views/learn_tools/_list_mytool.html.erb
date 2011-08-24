@@ -13,7 +13,13 @@
       <div class="learnFavT">
 
         <div class="learnFavTL"><%= page_entries_info @my_tools %></div>
-        <div class="learnFavTC"><div class="learnFavTC"><%= link_to( "See All", {:controller => "learn_tools", :action => "mylearn", :see_all => "See all tool"  }, :remote => false, :method => :get) %></div></div>
+        <div class="learnFavTC">
+          <div class="learnFavTC">
+            <% if (@seeall_parm == nil || @seeall_parm != "See all tool") %>
+              <%= link_to( "See All", {:controller => "learn_tools", :action => "mylearn", :see_all => "See all tool"  }, :remote => false, :method => :get) %>
+            <% end %>
+          </div>
+        </div>
       </div>
 
       <% @my_tools.each do |mtool| %>

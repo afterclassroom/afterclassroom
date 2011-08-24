@@ -1,13 +1,17 @@
 <div class="contDetL">
   <div class="contDetLin">
     <div class="learnLeft">
-      
+
       <%= display_flash_messages_with_raw %>
 
       <div class="learnFavT">
 
         <div class="learnFavTL"><%= page_entries_info @my_tools %></div>
-        <div class="learnFavTC"><%= link_to( "See All", {:controller => "learn_tools", :action => "toolmanager", :see_all => "See all tool"  }, :remote => false, :method => :get) %></div>
+        <div class="learnFavTC">
+          <% if (@seeall_parm == nil || @seeall_parm != "See all tool") %>
+            <%= link_to( "See All", {:controller => "learn_tools", :action => "toolmanager", :see_all => "See all tool"  }, :remote => false, :method => :get) %>
+          <% end %>
+        </div>
       </div>
 
       <% @my_tools.each do |mtool| %>
