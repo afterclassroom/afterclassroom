@@ -6,10 +6,6 @@
   check = Learntool.find_rated_by(current_user).include?(tool) if logged_in?
   check ||= false %>
   
-  
-  
-  
-  
   <% str_vtip = configatron.str_rated %>
   <% if  (controller.action_name == "tab_paging" || controller.action_name == "toolmanager")  %>
   <% check = true %><!-- this line is to disable rating function in MyApp -->
@@ -49,3 +45,16 @@
     <% end %>
   <% end %>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#rate_id_<%= tool.id %>').find('img').each(function(){
+      var currentImg = null;
+      $(this).hover(function(){
+        currentImg = $(this).attr('src');
+        $(this).attr('src','/images/starRed.png');
+      },function(){
+        $(this).attr('src',''+currentImg);
+      });
+    });
+  });
+</script>
