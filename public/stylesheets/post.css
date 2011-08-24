@@ -3364,7 +3364,7 @@ a.close:hover{
 .filterform input{
     margin-left: -4px;
     font-size:12px;
-    border:1px solid #999;
+    border: 1px solid #CECECE;
     color: #6F6F63;
     height: 17px;
     width: 175px;
