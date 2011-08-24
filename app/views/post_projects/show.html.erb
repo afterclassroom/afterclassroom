@@ -31,7 +31,7 @@ You are here: <a href="/">Home</a>
                 <% if @post_project.due_date %>
                 <div class="AsDContLinf">
                     <span>Due date:</span>
-                    <%= @post_project.due_date.strftime("%B %d, %Y") %>
+                    <%= @post_project.due_date.getutc.strftime("%B %d, %Y") %>
                 </div>
                 <% end %>
                 <div class="AsDContLinf">
