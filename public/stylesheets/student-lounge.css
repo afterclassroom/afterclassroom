@@ -464,6 +464,9 @@
 
 .AfterImg .imgDiv a span.play_music { display:none; background: url('/images/play-arrow.png') center center no-repeat; margin: -80px 10px 0 0; height: 80px; position: relative; z-index: 100; opacity: 0.8; }
 .AfterImg .imgDiv a:hover span.play_music { display:block; }
+
+.AfterImg .imgDiv a span.play_video { display:none; background: url('/images/play-arrow.png') center center no-repeat; margin: -80px 10px 0 0; height: 80px; position: relative; z-index: 100; opacity: 0.8; }
+.AfterImg .imgDiv a:hover span.play_video { display:block; }
 /*** Press **/
 .press{
     float:left;
