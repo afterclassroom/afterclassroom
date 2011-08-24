@@ -144,7 +144,7 @@ class PostsController < ApplicationController
         send_notification(u, subject, content, "comments_on_my_posts")
       end
       
-      if ["Photo", "PhotoAlbum", "Music", "Music Album", "Story"].include?(comnd.commentable_type)
+      if ["Photo", "PhotoAlbum", "Music", "Music Album", "Video", "Story"].include?(comnd.commentable_type)
         case comnd.commentable_type
           when "Photo"
           subject = "#{current_user.name} comment on your Photo."
@@ -153,7 +153,7 @@ class PostsController < ApplicationController
           when "PhotoAlbum"
           subject = "#{current_user.name} comment on your Photo Album."
           content = "Click <a href='#{show_album_user_photos_url(u, :photo_album_id => obj)}' target='blank'>here</a> to view more"
-          send_notification(u, subject, content, "comments_on_my_photo_albums")
+          send_notification(u, subject, content, "comments_on_my_photos")
           when "Music"
           subject = "#{current_user.name} comment on your Music."
           content = "Click <a href='#{user_music_url(u, obj)}' target='blank'>here</a> to view more"
@@ -161,7 +161,11 @@ class PostsController < ApplicationController
           when "MusicAlbum"
           subject = "#{current_user.name} comment on your Music Album."
           content = "Click <a href='#{show_playlist_user_musics_url(u, :music_album_id => obj)}' target='blank'>here</a> to view more"
-          send_notification(u, subject, content, "comments_on_my_music_albums")
+          send_notification(u, subject, content, "comments_on_my_musics")
+          when "Video"
+          subject = "#{current_user.name} comment on your Video."
+          content = "Click <a href='#{show_detail_video_user_url(obj.user, :video_id => obj.id)}' target='blank'>here</a> to view more"
+          send_notification(u, subject, content, "comments_on_my_videos")
           when "Story"
           subject = "#{current_user.name} comment on your Story."
           content = "Click <a href='#{user_story_url(u, obj)}' target='blank'>here</a> to view more"
