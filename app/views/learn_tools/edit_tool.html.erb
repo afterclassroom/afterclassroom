@@ -38,7 +38,7 @@
             </div>
             <div class="postItem">
               <div class="postTit">Images</div>
-              <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23" %></div>
+              <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23", :class => '{validate:{accept: "jpg|jpeg|png"}}' %></div>
             </div>
             <div class="postItem">
               <div class="postTit">URL*</div>
