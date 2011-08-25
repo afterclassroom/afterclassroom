@@ -4,6 +4,6 @@
     <a href="<%= user_learn_tool_path(current_user,item) %>">
       <%= truncate_html(item.name, :length => 85, :omission => '...') %>
     </a> <br/>by <%= item.user.name %></div>
-  <div class="learnNdes"><%= truncate_html(description, :length => 320, :omission => '...') %></div>
+  <div class="learnNdes"><%= truncate_html(description, :length => 300, :omission => '...') %></div>
   <div class="learnNinf"><%= item.my_tools.size %> active users - <%= show_friend_player(item) %> friends </div>
 </div>
