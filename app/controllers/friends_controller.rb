@@ -92,8 +92,9 @@ class FriendsController < ApplicationController
       fig.user_id_friend = params[:friend_id]
       user = User.find(params[:friend_id])
       if fig.save
-        subject = "#{current_user.name} adds you to Family Group."
-        content = "Please click <a href='#{user_profiles_url(current_user)}' target='blank'>here</a> to view #{current_user.name}'s profile"
+        subject = "#{current_user.name} added you as a family member."
+        content = "Hello #{user.name},<br/>"
+        content << "#{current_user.name} just added you as a family member, click <a href='#{user_url(current_user)}' target='blank'>here</a> to see if you know #{current_user.name}."
         if params[:group_id] == "1"
           send_notification(user, subject, content, "confirms_a_friendship_request")
         end
@@ -202,8 +203,9 @@ class FriendsController < ApplicationController
     @user_invite = @invite.user 
     @invite.is_accepted = true
     @invite.save
-    subject = "#{current_user.name} accepted you is a friend."
-    content = "Click <a href='#{user_friends_url(@user_invite)}' target='blank'>here</a> to view more"
+    subject = "#{current_user.name} has accepted you as a friend."
+    content = "Hello #{@user_invite.name}, <br/>"
+    content << "<a href='#{user_url(@user_invite)}' target='blank'>#{@user_invite.name}</a> has accepted you as a friend,  click <a href='#{show_photos_user_path(@user_invite)}' target='blank'>#{@user_invite.name}</a> to check out #{@user_invite.name}’s  photo."
     send_notification(@user_invite, subject, content, "confirms_a_friendship_request")
   end
   
@@ -212,9 +214,6 @@ class FriendsController < ApplicationController
     @invite = @user.user_invites_in.find_by_id(@invite_id)
     @user_invite = @invite.user
     @invite.destroy
-    subject = "#{current_user.name} sended a message for you."
-    content = "#{current_user.name} has declined invitations to your friend."
-    send_notification(@user_invite, subject, content, "confirms_a_friendship_request")
   end
   
   def show_invite
@@ -238,7 +237,8 @@ class FriendsController < ApplicationController
     if (user && invite_message)
         UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
         subject = "#{current_user.name} want to be friend with you."
-        content = "#{invite_message}<br/>Click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to view more"
+        content = "Hello #{user.name},<br/>"
+        content << "#{user.name} want to be friend with you,  click <a href='#{user_url(user)}' target='blank'>here</a> to see  if you know #{user.name} OR click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to confirm #{user.name} is your friend."
         send_notification(user, subject, content, "adds_me_as_a_friend")
     end
     render :text => '<div class="txtsignup1">Still waiting</div>'

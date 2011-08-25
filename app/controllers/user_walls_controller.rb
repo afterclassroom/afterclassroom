@@ -43,8 +43,9 @@ class UserWallsController < ApplicationController
       @user.user_walls << user_wall
       @user.save
       if @user != current_user
-        subject = "#{current_user.name} post on your lounge."
-        content = "Click <a href='#{user_student_lounges_url(@user)}' target='blank'>here</a> to view more"
+        subject = "#{current_user.name} just posted on your Student Lounge."
+        content = "Hello #{@user.name}, <br/>"
+        content << "#{current_user.name} just posted something on your Student Lounge,  click <a href='#{user_student_lounges_url(@user)}' target='blank'>here</a> to see what’s in it."
         send_notification(@user, subject, content, "posts_on_my_lounge")
       end
     end
