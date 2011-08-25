@@ -15,11 +15,11 @@
     <% str_class =["learnNewTL","learnNewTR"] %>
     <% @features.each_with_index do |f, index| %>
       <div class="<%=  str_class[index % 2] %>">
-        <div class="learnNewTLtitle"><a href="<%= user_learn_tool_path(current_user,f) %>"><%= truncate_html(f.name, :length => 30, :omission => '...') %></a></div>
-        <div class="learnNewTLdes">
-          <%= truncate_html(f.description, :length => 180, :omission => '...') %> 
+        <div class="learnNewTLtitle" style="float: right;"><a href="<%= user_learn_tool_path(current_user,f) %>"><%= truncate_html(f.name, :length => 30, :omission => '...') %></a></div>
+        <div class="learnNewTLdes" style="float: right;">
+          <%= truncate_html(f.description, :length => 140, :omission => '...') %>
         </div>
-        <div class="learnNewTLimg">
+        <div class="learnNewTLimg" style="float: left; margin-top: -11px;">
           <a href="<%= user_learn_tool_path(current_user,f) %>">
             <div><%= image_tag f.tool_img.url(:thumb) %></div>
           </a>
