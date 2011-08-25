@@ -18,30 +18,30 @@
     <% n = percent/20 %>
     <% k = percent % 20 %>
     <% n.times do %>
-      <%= link_to image_tag("/images/starRed.png"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
+      <%= link_to image_tag("/images/starRed.png", :style => "border: 0px;"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
       <% rating_value = rating_value + 1 %>
     <% end %>
     <% if k > 0 %>
       <% n = n + 1 %>
       <% rating_value = rating_value + 1 %>
-      <%= link_to image_tag("/images/starRW.png"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
+      <%= link_to image_tag("/images/starRW.png", :style => "border: 0px;"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
     <% end %>
     <% (5-n).times do |index| %>
-      <%= link_to image_tag("/images/starWhite.png"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
+      <%= link_to image_tag("/images/starWhite.png", :style => "border: 0px;"), { :controller => "learn_tools", :action => "rate", :tool_id => tool.id, :rating => rating_value }, :remote => true %>
       <% rating_value = rating_value + 1 %>
     <% end %>
   <% else %><!-- user has rated, so that disable this function-->
     <% n = percent/20 %>
     <% k = percent % 20 %>
     <% n.times do %>
-      <%= link_to(image_tag("/images/starRed.png"), "javascript:;", :class => "vtip", :title => "#{str_vtip}") %>
+      <%= link_to(image_tag("/images/starRed.png", :style => "border: 0px;"), "javascript:;", :class => "vtip", :title => "#{str_vtip}") %>
     <% end %>
     <% if k > 0 %>
       <% n = n + 1 %>
-      <%= link_to(image_tag("/images/starRW.png"), "javascript:;", :class => "vtip", :title => "#{str_vtip}") %>
+      <%= link_to(image_tag("/images/starRW.png", :style => "border: 0px;"), "javascript:;", :class => "vtip", :title => "#{str_vtip}") %>
     <% end %>
     <% (5-n).times do |index| %>
-      <%= link_to(image_tag("/images/starWhite.png"), "javascript:;", :class => "vtip", :title => "#{str_vtip}") %>
+      <%= link_to(image_tag("/images/starWhite.png", :style => "border: 0px;"), "javascript:;", :class => "vtip", :title => "#{str_vtip}") %>
     <% end %>
   <% end %>
 </div>
