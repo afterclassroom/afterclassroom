@@ -18,3 +18,11 @@
   <%= render :partial => "/shared/form_post/email" %>
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#post_description").counter({
+            count: 'up',
+            goal: 900
+        });
+    });
+</script>

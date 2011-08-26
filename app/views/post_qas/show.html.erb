@@ -77,11 +77,7 @@ You are here: <a href="/">Home</a>
                     <% comments.each do |c| %>
                     <%= render :partial => "item_answer", :locals => {:comnt => c} %>
                     <% end %>
-                    <!--Pagination-->
-                    <div class="assPage">
-                        <%= will_paginate comments %>
-                    </div>
-                    <!--Pagination--><% end %>
+                    <% end %>
                 </div>
             </div>
         </div>

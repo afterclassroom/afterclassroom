@@ -85,6 +85,7 @@ javascripts:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
     - public/javascripts/app.js
+    - public/javascripts/jquery-ui.js
     - public/javascripts/jquery-carrousel.js
     - public/javascripts/thickbox.js
     - public/javascripts/vtip.js
@@ -111,7 +112,7 @@ javascripts:
     - public/javascripts/rails.js
     - public/javascripts/app.js
     - public/javascripts/jquery-validate.js
-    - public/javascripts/jquery.metadata.js
+    - public/javascripts/jquery.metadata.jsappend
 stylesheets:
   base:
     - public/stylesheets/main.css
@@ -175,6 +176,12 @@ stylesheets:
   photo:
     - public/stylesheets/main.css
     - public/stylesheets/post.css
+    - public/stylesheets/jquery-ui.css
+    - public/stylesheets/jquery-ui-theme.css
+    - public/stylesheets/jquery-ui-button.css
+    - public/stylesheets/jquery-ui-resizable.css
+    - public/stylesheets/jquery-ui-datepicker.css
+    - public/stylesheets/jquery-ui-dialog.css
     - public/stylesheets/student-lounge.css
     - public/stylesheets/thickbox.css
     - public/stylesheets/vtip.css
