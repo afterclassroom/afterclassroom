@@ -156,7 +156,7 @@ function send_comment(id, type){
                 comment: comment
             }),
             success: function(data){
-                $('#list_comments').append(data);
+                $('#add_comments').append(data);
                 $('#comment').val('');
                 $('#form_comment').toggle('slow');
                 $('#comment_count').html($('div .AsDcomItem').size());

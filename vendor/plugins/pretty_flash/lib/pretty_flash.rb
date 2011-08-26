@@ -18,7 +18,7 @@ module RPH
               the_close = content_tag(:div, raw("<a href='javascript:;' onClick='hideFlashes();'> </a>"), :class => 'postErrClo')
               the_content = content_tag(:div, raw(message), :class => 'postErrNote')
               html << content_tag(:div, the_content + the_close, :id => "flash_#{css_class}")
-              html << content_tag(:script, "setTimeout(hideFlashes, 25000);", :type => 'text/javascript')
+              html << content_tag(:script, "setTimeout(hideFlashes, 75000);", :type => 'text/javascript')
               flash.delete(css_class)
             end
           end

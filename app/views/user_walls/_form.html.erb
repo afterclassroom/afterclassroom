@@ -3,7 +3,7 @@
 <div class="proMind">
     <div class="proMindT">
         <div class="proques">
-            <%= text_field_tag "your_mind", "What’s on your mind?", :id => "wall_cotent_txt", :class => "focus_text_field" %>
+            <%= text_field_tag "your_mind", "What's on your mind?", :id => "wall_cotent_txt", :class => "focus_text_field" %>
         </div>
     </div>
     <div class="proAtt">
@@ -35,7 +35,7 @@
     $(document).ready(function(){
         $('#submit_btn').click(function(event){
             var str_content = $('#wall_cotent_txt').val();
-            if (str_content == 'What’s on your mind?') {
+            if (str_content == 'What's on your mind?') {
                 return false;
             }
         });
