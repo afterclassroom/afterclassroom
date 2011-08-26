@@ -1,10 +1,19 @@
-<div class="learnNItem">
+<div class="learnNItem" id="item_<%= learntool.id %>">
+  <div class="learnFavTRv" style="margin-right: -38px; display: none;" id="edpr_id_<%= learntool.id %>">
+    <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), {:controller => "learn_tools", :action => "delete_tool", :tool_id => learntool.id  }, :remote => false, :style=>"background: url('')" ,:method => :get, :confirm => 'Are you sure you want to delete it?') %>
+  </div>
+
+  <div class="learnFavTR" style="margin-right: -65px; display: none;" id="pr_id_<%= learntool.id %>">
+    <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => ''), "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{learntool.id.to_s}", :style => "background: url('')"  %>
+  </div>
+
+
   <div class="assPic">
     <a href="<%= user_learn_tool_path(current_user,learntool) %>"><div><%= image_tag learntool.tool_img.url(:small) %></div></a>
   </div>
-      <span class="learnFavS" style="position: absolute; margin-top: -7px;">
-      <%= render :partial => "rating_star", :locals => {:tool => learntool, :nocheck => "no_check"} %>
-    </span>
+  <span class="learnFavS" style="position: absolute; margin-top: -7px;">
+    <%= render :partial => "rating_star", :locals => {:tool => learntool, :nocheck => "no_check"} %>
+  </span>
 
   <div class="learnFavtitle" style="margin-top: 12px;"><a href="<%= user_learn_tool_path(current_user,learntool) %>">
       <%= truncate_html(learntool.name, :length => 85, :omission => '...') %>
@@ -14,11 +23,16 @@
     <%= truncate_html(learntool.description, :length => 220, :omission => '...') %>
   </div>
   <div class="learnDetDate"><%= learntool.created_at.strftime('%B %d, %Y at %I:%M%p') %>  
-    <div class="learnFavTR">
-      <%= link_to "Edit", "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{learntool.id.to_s}", :style => "background: url('')" %>
-    </div>
-    <div class="learnFavTRv">
-      <%= link_to( content_tag(:span, "Delete"), {:controller => "learn_tools", :action => "delete_tool", :tool_id => learntool.id  }, :remote => false, :style=>"background: url('')" ,:method => :get, :confirm => 'Are you sure you want to delete it?') %>
-    </div>
   </div>
 </div>
+<script tyle="text/javascript">
+  $(document).ready(function(){
+    $("#item_<%= learntool.id %>").hover(function(){
+      $("#edpr_id_<%= learntool.id %>").show();
+      $("#pr_id_<%= learntool.id %>").show();
+    }, function(){
+      $("#edpr_id_<%= learntool.id %>").hide();
+      $("#pr_id_<%= learntool.id %>").hide();
+    });
+  })
+</script>
