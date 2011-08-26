@@ -36,8 +36,7 @@ module LearnToolsHelper
       if tool.fans.map(&:user_id).include?(current_user.id)
         str = link_to raw("<span>You are a fan</span>"), "javascript:;"
       else
-        str = link_to_function raw("<span>Become a Fan</span>"), "become_tool_fan('#{become_a_fan_user_learn_tools_path(current_user)}?tool_id=#{tool.id}')"
-        #Note: become_tool_fan is a javascript function within file show.html.erb
+        str = link_to( content_tag(:span, "Become a Fan"), {:controller => "learn_tools", :action => "become_a_fan", :tool_id => tool.id  }, :remote => true ,:method => :get)
       end
     end
     return str

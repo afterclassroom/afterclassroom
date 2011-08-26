@@ -146,22 +146,6 @@
       }
     });    
   }
-  // Become a fan
-  function become_tool_fan(path){
-    $.ajax({
-      url: path,
-      type: "GET",
-      dataType: "html",
-      failure: function(msg){
-        alert('ajax fail:' + msg);
-      },
-      success: function(msg){
-        //$('.AsDContR .fan').html(msg);
-        $('.btmBe a').text(msg);
-        $('.btmBe').unbind();//so that ajaxLoader icon will not display again
-      }
-    });
-  }  
   
   $(document).ready(function(){
     var current_box = $('#checkbox_<%= @tool.id %>');
