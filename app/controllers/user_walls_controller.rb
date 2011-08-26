@@ -45,7 +45,7 @@ class UserWallsController < ApplicationController
       if @user != current_user
         subject = "#{current_user.name} just posted on your Student Lounge."
         content = "Hello #{@user.name}, <br/>"
-        content << "#{current_user.name} just posted something on your Student Lounge,  click <a href='#{user_student_lounges_url(@user)}' target='blank'>here</a> to see what’s in it."
+        content << "#{current_user.name} just posted something on your Student Lounge,  click <a href='#{user_student_lounges_url(@user)}' target='blank'>here</a> to see what's in it."
         send_notification(@user, subject, content, "posts_on_my_lounge")
       end
     end
@@ -96,7 +96,7 @@ class UserWallsController < ApplicationController
       if @wall.user != current_user
         subject = "#{current_user.name} left comments on your Student Lounge"
         content = "Hello #{@wall.user.name},<br/>"
-        content << "#{current_user.name} just left comments on your Student Lounge, click <a href='#{user_student_lounges_url(@wall.user)}' target='blank'>here</a> to see what’s in it."
+        content << "#{current_user.name} just left comments on your Student Lounge, click <a href='#{user_student_lounges_url(@wall.user)}' target='blank'>here</a> to see what's in it."
         send_notification(@wall.user, subject, content, "comments_on_my_lounge")
       end
     end

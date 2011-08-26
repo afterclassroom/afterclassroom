@@ -1,6 +1,6 @@
 <div class="col195 Bookdont">
   <div class="col195in">
-    <h1 class="col195Title">Don’t buy</h1>
+    <h1 class="col195Title">Don't buy</h1>
     <div class="col195Cont">
       <%
       dont_buy_books = PostBook.dont_buy(@school).with_limit
@@ -15,7 +15,7 @@
           </div>
         <% end %>
 		<% if dont_buy_books.size > LIMIT - 1 %>
-        <div class="dueDbutton"><%= link_to "View more Don’t buy", dont_buy_post_books_path %></div>
+        <div class="dueDbutton"><%= link_to "View more Don't buy", dont_buy_post_books_path %></div>
 		<% end %>
       <% end %>
     </div>
