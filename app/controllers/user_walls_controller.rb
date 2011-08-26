@@ -94,8 +94,9 @@ class UserWallsController < ApplicationController
       @obj.comments << obj_comment
       @wall.update_attribute(:updated_at, Time.now)
       if @wall.user != current_user
-        subject = "#{current_user.name} post comment on your lounge."
-        content = "Click <a href='#{user_student_lounges_url(@wall.user)}' target='blank'>here</a> to view more"
+        subject = "#{current_user.name} left comments on your Student Lounge"
+        content = "Hello #{@wall.user.name},<br/>"
+        content << "#{current_user.name} just left comments on your Student Lounge, click <a href='#{user_student_lounges_url(@wall.user)}' target='blank'>here</a> to see what’s in it."
         send_notification(@wall.user, subject, content, "comments_on_my_lounge")
       end
     end
@@ -168,23 +169,29 @@ class UserWallsController < ApplicationController
     list_ids.each do |id|
       u = User.find(id)
       if u and u != usr
-        list_name << "<a href='#{user_url(u)}'>#{u.full_name}</a>"
+        list_name << "<a href='#{user_url(u)}'>#{u.name}</a>"
         # Internal message
         message = Message.new
         message.sender = current_user
         message.recipient = u
-        message.subject = "#{current_user.full_name} introduce #{usr.full_name} with you"
-        message.body = content + "<br />" + "Click #{link_to "here", user_url(usr), :target => "blank"} to view profile of #{usr.full_name}"
+        message.subject = "#{current_user.name} introduces someone special to you"
+        body = "Hello #{usr.name}, <br/>"
+        body << "<a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> wants to introduce someone special to you."
+        body << "#{user_url(current_user)} says: #{content}" if content
+        body << "<br />" + "Click #{link_to "here", user_url(u), :target => "blank"} to see if you know #{u.name}"
+        message.body = body
         message.save
         
         # Email, notification
-        subject = "#{current_user.name} suggests a friend for you."
-        content = "Click #{link_to "here", user_url(usr), :target => "blank"} to view profile of #{usr.full_name}"
+        subject = "#{current_user.name} introduces someone special to you"
+        content = body
         send_notification(u, subject, content, "match_making")
       end
     end
     subject = "#{current_user.name} match making for you."
-    content = list_name.join(", ")
+    content = "Hello #{usr.name},<br/>"
+    content << "#{current_user.name} match making for you with:<br/>" 
+    content << list_name.join(", ")
     send_notification(usr, subject, content, "match_making")
     render :text => "Success"
   end
