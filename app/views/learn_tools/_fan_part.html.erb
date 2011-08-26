@@ -13,7 +13,7 @@
       <div class="txtsignup1"></div>
       <div class="btmBe" style="margin-left: -9px;">
         <!-- a href="#">Become a Fan</a -->
-        <%= controller.action_name =="show" ? show_tool_fan_register(@tool) : "" %>
+        <%= (controller.action_name =="show" || controller.action_name == "become_a_fan") ? show_tool_fan_register(@tool) : "" %>
       </div>
     </div>
 
@@ -47,6 +47,10 @@
     <% end %><!-- end if obj_fans.size <= 3   -->
   <% end %>
 
+  <% if obj_fans.size == 0 %>
+    There are no fans.
+  <% end %>
+
 
 
 <% end %><!-- end of form -->
@@ -54,10 +58,23 @@
 
 
 <script type="text/javascript">
+  function ShowFanAjaxLoader(place_holder){
+    $(place_holder).prepend('<%= show_ajax_loader("fan_place", "background: white;  position: absolute;  width: 18px; margin-left: 78px; margin-top: 3px;") %>');
+  }
+
+  function ShowSeeAllAjaxLoader(place_holder){
+    $(place_holder).prepend('<%= show_ajax_loader("seall_place", "background: white;  position: absolute;  width: 18px; margin-left: -22px; margin-top: -3px;") %>');
+  }
   $(document).ready(function(){
     $('#btn_see_all_fan').click(function(){
       $("form#form_fan_player").submit();
-      $('#btn_see_all_fan').remove();
+      //$('#btn_see_all_fan').remove();
+      ShowSeeAllAjaxLoader($('#btn_see_all_fan'));
     });
+    
+    $('.btmBe').click(function(){
+      ShowFanAjaxLoader($(this).find('a'));
+    });
+    
   });
 </script>

@@ -11,6 +11,9 @@
       <% fr_user.first(6).each_with_index do |f_user,index| %>
         <%= render :partial => "friend_item", :locals => {:index => index, :f_user => f_user} %>
       <% end %>
+      <% if fr_user.size == 0 %>
+      There is no friend using this tool.
+      <% end %>
     </div>
     <div id="val_for_see_all" style="display: none;">
       <% fr_user.each_with_index do |f_user,index| %>

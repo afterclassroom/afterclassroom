@@ -28,6 +28,9 @@
 <% end %><!-- end form -->
 <script type="text/javascript">
   $(document).ready(function(){
+    $('input#fan_id').eq(0).focus();//to move to the top of page
+    $('#seall_place').toggle();
+    
     $('.bot_paging a').each(function(){
       $(this).attr('href','javascript:;');
     });
