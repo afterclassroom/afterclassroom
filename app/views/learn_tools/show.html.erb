@@ -49,9 +49,11 @@
         <div class="learnFri" style="color: #6F6F63">
           <%= @tool.learn_tool_cate_id == -1 ? "None" :  @tool.learn_tool_cate.title %>
         </div>
+        <% str_display = "display: none;" %>
         <% if  @tool.atc_creator == false  %>
-          <div class="thisLearn" id="owner_info">*This learning tools was <strong>not</strong> developed by AfterClassroom.</div>
+          <% str_display = "" %>
         <% end %>
+        <div class="thisLearn" id="owner_info" style="<%= str_display %>">*This learning tools was <strong>not</strong> developed by AfterClassroom.</div>
 
       </div>
     </div>
