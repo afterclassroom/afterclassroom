@@ -67,7 +67,6 @@
   VideoJS.setupAllWhenReady();
 
   $(document).ready(function(){
-    //    $("#faceboxx").fancybox();
     $('.btmAbuse a').click(function(){
       $('.musicVideo01').show();
       $('.musicVideo').hide();
@@ -79,14 +78,12 @@
 
     $(function () {
       $(window).scroll(function () {
-        if ($(this).scrollTop() > 200) {
-          //      $('#toolbar').fadeOut();
+        if ($(this).scrollTop() > 400) {
           $('#toolbar').show();
           $('#toolbarbut').hide();
         } else {
           $('#toolbar').hide();
           $('#toolbarbut').show();
-          //      $('#toolbar').fadeIn();
         }
       });
     });

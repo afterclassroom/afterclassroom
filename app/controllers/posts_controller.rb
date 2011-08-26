@@ -24,6 +24,24 @@ class PostsController < ApplicationController
     render :layout => false
   end
   
+  def create_comment_video
+    comment = params[:comment]
+    commentable_id = params[:commentable_id]
+    commentable_type = params[:commentable_type]
+    
+    if comment && commentable_id && commentable_type
+      @obj_comment = Comment.new()
+      @obj_comment.comment = comment
+      @obj_comment.commentable_id = commentable_id
+      @obj_comment.commentable_type = commentable_type
+      @obj_comment.user = current_user
+      @obj_comment.save
+      obj = eval(commentable_type).find(commentable_id)
+      send_notification_when_comment(obj, @obj_comment)
+    end
+    render :layout => false
+  end
+  
   def create_comment_on_list
     comment = params[:comment]
     post_id = params[:post_id]
@@ -146,27 +164,27 @@ class PostsController < ApplicationController
       
       if ["Photo", "PhotoAlbum", "Music", "MusicAlbum", "Video", "Story"].include?(comnd.commentable_type)
         case comnd.commentable_type
-          when "Photo"
+        when "Photo"
           subject = "#{current_user.name} comment on your Photo."
           content = "Click <a href='#{user_photo_url(u, obj)}' target='blank'>here</a> to view more"
           send_notification(u, subject, content, "comments_on_my_photos")
-          when "PhotoAlbum"
+        when "PhotoAlbum"
           subject = "#{current_user.name} comment on your Photo Album."
           content = "Click <a href='#{show_album_user_photos_url(u, :photo_album_id => obj)}' target='blank'>here</a> to view more"
           send_notification(u, subject, content, "comments_on_my_photos")
-          when "Music"
+        when "Music"
           subject = "#{current_user.name} comment on your Music."
           content = "Click <a href='#{user_music_url(u, obj)}' target='blank'>here</a> to view more"
           send_notification(u, subject, content, "comments_on_my_musics")
-          when "MusicAlbum"
+        when "MusicAlbum"
           subject = "#{current_user.name} comment on your Music Album."
           content = "Click <a href='#{playlist_user_musics_url(u, :music_album_id => obj)}' target='blank'>here</a> to view more"
           send_notification(u, subject, content, "comments_on_my_musics")
-          when "Video"
+        when "Video"
           subject = "#{current_user.name} comment on your Video."
           content = "Click <a href='#{show_detail_video_user_url(obj.user, :video_id => obj.id)}' target='blank'>here</a> to view more"
           send_notification(u, subject, content, "comments_on_my_videos")
-          when "Story"
+        when "Story"
           subject = "#{current_user.name} comment on your Story."
           content = "Click <a href='#{user_story_url(u, obj)}' target='blank'>here</a> to view more"
           send_notification(u, subject, content, "comments_on_my_share_a_story")

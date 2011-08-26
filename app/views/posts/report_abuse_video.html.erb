@@ -1,5 +1,3 @@
-<!--<a href="#" class="close"></a>
-<div class="top_area">Report Abuse</div>-->
 <div class="postCont" id="div_send_report">
   <%= form_tag create_report_abuse_video_posts_url(), :remote => true, :id => "form_send_report", :name => "form_send_report" do %>
     <%= hidden_field_tag "reported_id", @reported_id %>

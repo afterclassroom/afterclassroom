@@ -55,6 +55,7 @@ class Video < ActiveRecord::Base
       'video/ogg',
       'video/webm',
       'application/vnd.rn-realmedia',
+      'application/octet-stream',
       'application/x-shockwave-flash']
   
   # Comments

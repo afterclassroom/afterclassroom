@@ -13,23 +13,23 @@
         <%= display_flash_messages_with_raw %>
         <div class="postCont">
           <%= form_for [current_user, @video], :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
-    <div class="postItem">
-        <div class="postTit">
-            Category*
-        </div>
-        <div class="postInp">
-            <%= f.select :category, @categories %>
-        </div>
-    </div>
-    <div class="postItem">
-        <div class="postTit">
-            Title*
-        </div>
-        <div class="postInp">
-            <%= f.text_field :title, :style => "width:360px", :class => "{validate:{required:true}}" %>
-        </div>
-    </div>
-		<div class="postTitt">
+            <div class="postItem">
+              <div class="postTit">
+                Category*
+              </div>
+              <div class="postInp">
+                <%= f.select :category, @categories %>
+              </div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">
+                Title*
+              </div>
+              <div class="postInp">
+                <%= f.text_field :title, :style => "width:360px", :class => "{validate:{required:true}}" %>
+              </div>
+            </div>
+            <div class="postTitt">
               Location*
             </div>
             <div class="postItemA">
@@ -44,28 +44,28 @@
                 </div>
               </div>
             </div>
-    <div class="postItem">
-        <div class="postTit">
-            Description
-        </div>
-        <div class="postInp">
-            <%= f.text_area :description %>
-        </div>
-    </div>
-    <div class="postItem">
-        <div class="postTit">
-            Tag line
-        </div>
-        <div class="postInp">
-            <%= text_field_tag 'tag_list', "", :style => "width:360px" %>
-        </div>
-    </div>
-    <div class="stoExBtm">
-        <div class="stoExCre" style="margin-left: 107px; margin-bottom: 15px; margin-top: -2px;">
-            <a href="javascript:;" onclick="submit();">Send</a>
-        </div>
-    </div>
-    <% end %>
+            <div class="postItem">
+              <div class="postTit">
+                Description
+              </div>
+              <div class="postInp">
+                <%= f.text_area :description %>
+              </div>
+            </div>
+            <div class="postItem">
+              <div class="postTit">
+                Tag line
+              </div>
+              <div class="postInp">
+                <%= text_field_tag 'tag_list', "", :style => "width:360px" %>
+              </div>
+            </div>
+            <div class="stoExBtm">
+              <div class="stoExCre" style="margin-left: 107px; margin-bottom: 15px; margin-top: -2px;">
+                <a href="javascript:;" id="submitNew_video">Send</a>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -85,12 +85,17 @@
   }
 </style>
 <script type="text/javascript">
-  function submit(){
-        var result = $("#form").validate({
-            meta: "validate"
-        });
-        if (result) {
-            $("#form").submit();
-        }
+  $(document).ready(function(){
+    $("#submitNew_video").click(function(){
+      submitNewVideo();
+    });
+  });
+  function submitNewVideo(){
+    var result = $("#form").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("#form").submit();
     }
+  }
 </script>
