@@ -62,10 +62,14 @@
     $(place_holder).prepend('<%= show_ajax_loader("fan_place", "background: white;  position: absolute;  width: 18px; margin-left: 78px; margin-top: 3px;") %>');
   }
 
+  function ShowSeeAllAjaxLoader(place_holder){
+    $(place_holder).prepend('<%= show_ajax_loader("seall_place", "background: white;  position: absolute;  width: 18px; margin-left: -22px; margin-top: -3px;") %>');
+  }
   $(document).ready(function(){
     $('#btn_see_all_fan').click(function(){
       $("form#form_fan_player").submit();
-      $('#btn_see_all_fan').remove();
+      //$('#btn_see_all_fan').remove();
+      ShowSeeAllAjaxLoader($('#btn_see_all_fan'));
     });
     
     $('.btmBe').click(function(){
