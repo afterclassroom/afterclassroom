@@ -37,6 +37,7 @@ module LearnToolsHelper
         str = link_to raw("<span>You are a fan</span>"), "javascript:;"
       else
         str = link_to_function raw("<span>Become a Fan</span>"), "become_tool_fan('#{become_a_fan_user_learn_tools_path(current_user)}?tool_id=#{tool.id}')"
+        #Note: become_tool_fan is a javascript function within file show.html.erb
       end
     end
     return str

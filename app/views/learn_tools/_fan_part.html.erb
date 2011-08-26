@@ -46,7 +46,7 @@
       <% end %><!-- end of loop -->
     <% end %><!-- end if obj_fans.size <= 3   -->
   <% end %>
-    
+
   <% if obj_fans.size == 0 %>
     There are no fans.
   <% end %>
@@ -58,10 +58,18 @@
 
 
 <script type="text/javascript">
+  function ShowFanAjaxLoader(place_holder){
+    $(place_holder).prepend('<%= show_ajax_loader("fan_place", "background: white;  position: absolute;  width: 18px; margin-left: 76px; margin-top: 3px;") %>');
+  }
+
   $(document).ready(function(){
     $('#btn_see_all_fan').click(function(){
       $("form#form_fan_player").submit();
       $('#btn_see_all_fan').remove();
+    });
+    
+    $('.btmBe').click(function(){
+      ShowFanAjaxLoader($(this).find('a'));
     });
   });
 </script>

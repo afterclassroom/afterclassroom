@@ -158,6 +158,7 @@
       success: function(msg){
         //$('.AsDContR .fan').html(msg);
         $('.btmBe a').text(msg);
+        $('.btmBe').unbind();//so that ajaxLoader icon will not display again
       }
     });
   }  
