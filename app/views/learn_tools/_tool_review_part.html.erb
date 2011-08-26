@@ -11,10 +11,15 @@
         <div class="friUseAll"><a id="btn_see_all" href="javascript:;"></a></div>
       </div>
 
+      <% if @tool_reviews.size == 0 %>
+      There is no review.
+      <% end %>
 
       <% @tool_reviews.each do |rv| %>
         <%= render :partial => "tool_review_item",:locals => {:rv => rv} %>
       <% end %>
+      
+      
 
       <div class="assPage" style="padding-left:0">
         <span class="numPage"><%= page_entries_info @tool_reviews %></span>
