@@ -88,7 +88,7 @@
       selectAllText: 'Select All'
     });
     
-    if ( $.browser.msie == true ) {
+    if ( $.browser.msie == true ) {//Fix bug 982
       $('.multiSelectOptions').find('input').each(function(){
         $(this).css('width','11px');
       });
