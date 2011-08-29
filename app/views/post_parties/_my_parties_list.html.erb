@@ -4,7 +4,7 @@
         <h1 class="col195Title">My party list</h1>
         <div class="col195Cont">
             <%
-            partys_lists = current_user.partys_lists.limit(LIMIT) %>
+            partys_lists = current_user.partys_lists.order("created_at DESC").limit(LIMIT) %>
             <% if partys_lists.size > 0 %>
             <%
 						count = 0

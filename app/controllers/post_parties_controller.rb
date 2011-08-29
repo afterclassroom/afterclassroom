@@ -134,7 +134,7 @@ class PostPartiesController < ApplicationController
   end
   
   def my_party_list
-    @partys_lists = current_user.partys_lists
+    @partys_lists = current_user.partys_lists.order("created_at DESC")
     render :layout => false
   end
   
