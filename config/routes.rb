@@ -65,7 +65,7 @@ Afterclassroom::Application.routes.draw do
     resources :profiles do
       collection do
         get :show_profile, :edit_infor, :edit_edu_infor,
-          :edit_work_infor, :my_favorite, :fan, :delete_fans
+          :edit_work_infor, :my_favorite, :fan, :delete_fans, :delete_prof
         post :update_about_yourself, :update_infor, :update_edu_infor, :update_work_infor
       end
     end

@@ -1,55 +1,49 @@
 <% cache "select_department_post_#{@school}" do %>
-<div class="postItemDep">
-  <div class="postTit">Program</div>
-  <div class="postDep"><%= post.text_field :department_id, :id => "department" %></div>
-</div>
-<ul id="department_menu" class="mcdropdown_menu">
-  <li rel_department="">
-    Choose program
-  </li>
-  <%
-  category_id = ""
-%>
-  <% @departments.each do |dp| %>
-    <% if category_id == "" %>
-      <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
+  <div class="postItemDep">
+    <div class="postTit">Program</div>
+    <div class="postDep"><%= post.text_field :department_id, :id => "department" %></div>
+  </div>
+  <% depcate = DepartmentCategory.find(:all, :order => "department_categories.name ASC") %>
+
+  <ul id="department_menu" class="mcdropdown_menu">
+    <li rel_department="">
+      Choose program
+    </li>
+    <% depcate.each do |dc| %>
+      <li rel="category_id_<%= dc.id %>">
+        <%= dc.name %>
+        <% departments = dc.departments.order("name ASC") %>
         <ul>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% elsif category_id == dp.department_category.id %>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% else %>
+          <% departments.each do |dp| %>
+            <li rel_department="<%= dp.id %>">
+              <%= dp.name %>
+            </li>
+          <% end %>
         </ul>
-      </li>
-      <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
-        <ul>
-          <li rel_department="<%= dp.id %>"><%= dp.name %></li>
-        <% end %>
-        <% category_id = dp.department_category.id %>
-      <% end %>
-    </ul>
-  </li>
-</ul>
-<script type="text/javascript">
+      </li>    
+
+
+    <% end %>
+  </ul>
+  <script type="text/javascript">
     $(document).ready(function(){
-        $("#department").mcDropdown("#department_menu", {
-            width: 275,
-            valueAttr: "rel_department"    
-        });
+      $("#department").mcDropdown("#department_menu", {
+        width: 275,
+        valueAttr: "rel_department"    
+      });
     });
-      $(function() {
-	$('#department_menu,#year_menu').hover(function() {
-		$(this).stop().show();
-	}, function() {
-		$(this).stop().hide();
-	});
-  });
-   $(function() {
-	$('div.postItemDep').hover(function() {
-	}, function() {
-		$('#department_menu,#year_menu').stop().hide();
-	});
+    $(function() {
+      $('#department_menu,#year_menu').hover(function() {
+        $(this).stop().show();
+      }, function() {
+        $(this).stop().hide();
+      });
     });
-</script>
+    $(function() {
+      $('div.postItemDep').hover(function() {
+      }, function() {
+        $('#department_menu,#year_menu').stop().hide();
+      });
+    });
+  </script>
 <% end %>

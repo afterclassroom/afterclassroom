@@ -16,10 +16,25 @@
         <div class="proInfTop"></div>
         <div class="proFavPageT"></div>
         <% @favorites.each do |f| %>
-          <%= item_favorite(f) %>
+          <div id="each_item_<%= f.id %>">
+            <div id="del_btn_<%= f.id %>" style="padding-left: 538px; position: absolute; padding-top: 8px; display: none;">
+              <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), {:controller => "profiles", :action => "delete_prof", :prf_id => f.id  }, :remote => false, :method => :get, :confirm => 'Are you sure you want to delete it?') %>
+            </div>
+            <%= item_favorite(f) %>
+          </div>
+          <script type="text/javascript">
+            $(document).ready(function(){
+              $("#each_item_<%= f.id %>").hover(function(){
+                $("#del_btn_<%= f.id %>").show();
+              }, function(){
+                $("#del_btn_<%= f.id %>").hide();
+              });
+
+            })
+          </script>
         <% end %>
         <div class="proFavPage">
-         <div class="proFavPageR">
+          <div class="proFavPageR">
             <!--Pagination-->
             <div class="assPage">
               <%= will_paginate @favorites %>

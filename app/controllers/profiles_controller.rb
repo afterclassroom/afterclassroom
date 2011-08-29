@@ -88,6 +88,17 @@ class ProfilesController < ApplicationController
     end
     redirect_to(fan_user_profiles_url(current_user))
   end
+  
+  def delete_prof
+    @fvr = Favorite.find(params[:prf_id])
+    
+    if (@fvr.user == current_user)
+      @fvr.destroy
+    end
+    @favorites = current_user.favorites.order("created_at DESC").paginate :page => params[:page], :per_page => 10
+    #render :action => "my_favorite"
+    redirect_to(my_favorite_user_profiles_url(current_user))
+  end
 
   protected
 
