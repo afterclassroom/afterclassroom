@@ -1,110 +1,110 @@
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => '/shared/submenu' %>
+  <%= render :partial => '/shared/submenu' %>
 <% end -%>
 <div class="slStoryL">
-    <div class="contDetL">
-        <div class="contDetLin">
-            <div class="inboxLeft">
-                <div class="slsShare">
-                    <div class="slsShareL">
-                        Share a Story
-                    </div>
-                    <div class="slsShareR">
-                        <%= render :partial => "menu" %>
-                    </div>
-                </div>
-                <%= display_flash_messages_with_raw %>
-                <div class="stoEx" id="story_form_new" style="display:none">
-                    <%= form_for :story, :url => user_stories_path(current_user), :html => {:id => "form_new"} do |f| %>
-                    <%= hidden_field_tag "state", "", :id => "story_state" %>
-                    <div class="stoExItem">
-                        <div class="stoExItemL">
-                            Title*
-                        </div>
-                        <div class="stoExItemR">
-                            <%= f.text_field :title, :class => '{validate:{required:true}}' %>
-                        </div>
-                    </div>
-                    <div class="stoExItem">
-                        <div class="stoExItemL">
-                            Your story
-                        </div>
-                        <div class="stoExItemR">
-                            <%= f.text_area :content, :rows => 2, :cols => 63 %>
-                        </div>
-                    </div>
-                    <div class="stoExBtm">
-                        <div class="stoExSave" style="margin-left:62px">
-                            <a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();">Save as a Draft</a>
-                        </div>
-                        <div class="stoExShare">
-                            <a href="javascript:;" onclick="$('#story_state').val('share');$('#form_new').submit();">Share now</a>
-                        </div>
-                        <div class="stoExCan">
-                            <a href="javascript:;" onclick="resetForm('form_new');$('#story_form_new').toggle('slow');">Cancel</a>
-                        </div>
-                    </div>
-                    <div class="stoError" style="padding: 10px;">
-                    </div>
-                    <% end %>
-                </div>
-                <div id="my_stories_list">
-                    <div class="slsTop">
-                        <div class="slsTopL">
-                            <div class="slsTopLT">
-                                Draft
-                            </div>
-                            <div class="slsTopLB friLeft">
-                                <div class="search" style="margin-top: -15px;">
-                                    <%= form_for :search_my_story, :url => my_draft_user_stories_path(current_user), :html => {:id => "my_stories_search", :method => "GET", :onsubmit => "return false;"} do %>
-                                    <div id="btnF_submit" class="textS">
-                                        <%= text_field_tag "search[name]", "" %>
-                                    </div>
-                                    <div class="btmS">
-                                        <a id="btnSF_submit" href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a>
-                                    </div><% end %>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slsTopR" style="float:left;">
-                            <!--Pagination-->
-                            <div class="assPage my_stories">
-                                <span class="numPage"><%= page_entries_info @stories %></span>
-                                <%= will_paginate @stories %>
-                            </div>
-                            <!--Pagination-->
-                        </div>
-                    </div>
-                    <div id="mytable">
-                        <% @stories.each do |f_s| %>
-                        <%= render :partial => "item_mystory", :locals => {:story => f_s} %>
-                        <% end %>
-                    </div>
-                </div>
-            </div>
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">
+            Share a Story
+          </div>
+          <div class="slsShareR">
+            <%= render :partial => "menu" %>
+          </div>
         </div>
+        <%= display_flash_messages_with_raw %>
+        <div class="stoEx" id="story_form_new" style="display:none">
+          <%= form_for :story, :url => user_stories_path(current_user), :html => {:id => "form_new"} do |f| %>
+            <%= hidden_field_tag "state", "", :id => "story_state" %>
+            <div class="stoExItem">
+              <div class="stoExItemL">
+                Title*
+              </div>
+              <div class="stoExItemR">
+                <%= f.text_field :title, :class => '{validate:{required:true}}' %>
+              </div>
+            </div>
+            <div class="stoExItem">
+              <div class="stoExItemL">
+                Your story
+              </div>
+              <div class="stoExItemR">
+                <%= f.text_area :content, :rows => 2, :cols => 63 %>
+              </div>
+            </div>
+            <div class="stoExBtm">
+              <div class="stoExSave" style="margin-left:62px">
+                <a href="javascript:;" onclick="$('#story_state').val('draft');$('#form_new').submit();">Save as a Draft</a>
+              </div>
+              <div class="stoExShare">
+                <a href="javascript:;" onclick="$('#story_state').val('share');$('#form_new').submit();">Share now</a>
+              </div>
+              <div class="stoExCan">
+                <a href="javascript:;" onclick="resetForm('form_new');$('#story_form_new').toggle('slow');">Cancel</a>
+              </div>
+            </div>
+            <div class="stoError" style="padding: 10px;">
+            </div>
+          <% end %>
+        </div>
+        <div id="my_stories_list">
+          <div class="slsTop">
+            <div class="slsTopL">
+              <div class="slsTopLT">
+                Draft
+              </div>
+              <div class="slsTopLB friLeft">
+                <div class="search" style="margin-top: -15px;">
+                  <%= form_for :search_my_story, :url => my_draft_user_stories_path(current_user), :html => {:id => "my_stories_search", :method => "GET", :onsubmit => "return false;"} do %>
+                    <div id="btnF_submit" class="textS">
+                      <%= text_field_tag "search[name]", "" %>
+                    </div>
+                    <div class="btmS">
+                      <a id="btnSF_submit" href="javascript:;" onclick="searchMyStories();"><img src="/images/iconSF.png"/></a>
+                    </div><% end %>
+                </div>
+              </div>
+            </div>
+            <div class="slsTopR" style="float:left;">
+              <!--Pagination-->
+              <div class="assPage my_stories">
+                <span class="numPage"><%= page_entries_info @stories %></span>
+                <%= will_paginate @stories %>
+              </div>
+              <!--Pagination-->
+            </div>
+          </div>
+          <div id="mytable">
+            <% @stories.each do |f_s| %>
+              <%= render :partial => "item_mystory", :locals => {:story => f_s} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="contMainR">
-    <!--Most Viewed-->
-    <%= render :partial => "most_viewed" %>
-    <!--Most Viewed-->
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
+  <!--Most Viewed-->
+  <%= render :partial => "most_viewed" %>
+  <!--Most Viewed-->
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>
 <%= render :partial => "action_box_menu" %>
 <script type="text/javascript">
-    function submit(){
-        $("#form_new").submit();
-    }
+  function submit(){
+    $("#form_new").submit();
+  }
     
-    $().ready(function(){
-        $("#form_new").validate({
-            meta: "validate"
-        });
-        $("#my_stories_list").bind("keypress", function(e) {
-        if (e.keyCode == 13) {
+  $().ready(function(){
+    $("#form_new").validate({
+      meta: "validate"
+    });
+    $("#my_stories_list").bind("keypress", function(e) {
+      if (e.keyCode == 13) {
         searchMyStories();
         $('#btnF_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
         return false;
@@ -113,47 +113,47 @@
     $("#btnSF_submit").click(function(){
       $('#btnF_submit').append('<%= show_ajax_loader("loader_id","display: block; position: absolute; float: right; height: 19px; margin-top: -18px; margin-left: -25px;") %>');
     });
+  });
+  formatLinkForPaginationURLMy();
+  (function($){
+    $('#story_content').wysiwyg({
+      controls: {
+        createLink: {
+          visible: true
+        },
+                
+        insertImage: {
+          visible: true
+        },
+                
+        separator05: {
+          visible: false
+        },
+                
+        separator06: {
+          visible: false
+        },
+                
+        h1: {
+          visible: false
+        },
+        h2: {
+          visible: false
+        },
+        h3: {
+          visible: false
+        },
+                
+        removeFormat: {
+          visible: true
+        }
+      }
     });
-    formatLinkForPaginationURLMy();
-    (function($){
-        $('#story_content').wysiwyg({
-            controls: {
-                createLink: {
-                    visible: true
-                },
-                
-                insertImage: {
-                    visible: true
-                },
-                
-                separator05: {
-                    visible: false
-                },
-                
-                separator06: {
-                    visible: false
-                },
-                
-                h1: {
-                    visible: false
-                },
-                h2: {
-                    visible: false
-                },
-                h3: {
-                    visible: false
-                },
-                
-                removeFormat: {
-                    visible: true
-                }
-            }
-        });
-    })(jQuery)
+  })(jQuery)
 
 </script>
 <style>
-    .stoError {
-        padding-top: 40px;
-    }
+  .stoError {
+    padding-top: 40px;
+  }
 </style>
