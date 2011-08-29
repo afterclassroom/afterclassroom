@@ -1,86 +1,73 @@
 <div class="assDrop">
-    <form id="action_option" name="option" action="" method="Get">
-        <div class="option_item_1">
-            <input type="text" name="department" id="department" value="<%= department %>" />
-        </div>
-        <div class="option_item_2">
-            <input type="text" name="year" id="year" value="<%= year %>" />
-        </div>
-        <div class="option_item_3">
-            <input type="text" name="over" id="over" value="<%= over %>" />
-        </div><%
-        list_hidden = ""
-        if options
-        options.each_pair {|key, value| list_hidden << hidden_field_tag(key, value)}
-        end %>
-        <%= raw(list_hidden) %>
-    </form>
-</div><% cache "option_select_department_#{@school}" do %>
-<ul id="department_menu" class="mcdropdown_menu">
+  <form id="action_option" name="option" action="" method="Get">
+    <div class="option_item_1">
+      <input type="text" name="department" id="department" value="<%= department %>" />
+    </div>
+    <div class="option_item_2">
+      <input type="text" name="year" id="year" value="<%= year %>" />
+    </div>
+    <div class="option_item_3">
+      <input type="text" name="over" id="over" value="<%= over %>" />
+    </div><%
+    list_hidden = ""
+    if options
+      options.each_pair {|key, value| list_hidden << hidden_field_tag(key, value)}
+    end %>
+    <%= raw(list_hidden) %>
+  </form>
+</div>
+<% cache "option_select_department_#{@school}" do %>
+  <% depcate = DepartmentCategory.find(:all, :order => "department_categories.name ASC") %>
+  <ul id="department_menu" class="mcdropdown_menu">
     <li rel_department="">
-        Choose program
+      Choose program
     </li>
-    <%
-    category_id = "" %>
-    <% @departments.each do |dp| %>
-    <% if category_id == "" %>
-    <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
+    <% depcate.each do |dc| %>
+      <li rel="category_id_<%= dc.id %>">
+        <%= dc.name %>
+        <% departments = dc.departments %>
         <ul>
+          <% departments.each do |dp| %>
             <li rel_department="<%= dp.id %>">
-                <%= dp.name %>
+              <%= dp.name %>
             </li>
-            <% elsif category_id == dp.department_category.id %>
-            <li rel_department="<%= dp.id %>">
-                <%= dp.name %>
-            </li>
-            <% else %>
+          <% end %>
         </ul>
-    </li>
-    <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
-        <ul>
-            <li rel_department="<%= dp.id %>">
-                <%= dp.name %>
-            </li>
-            <% end %>
-            <% category_id = dp.department_category.id %>
-            <% end %>
-        </ul>
-    </li>
-</ul>
+      </li>    
+    <% end %>
+  </ul>
 <% end %>
 <%
 list_years = [["Choose year", ""], ["1st Year", "1year"], ["2nd Year", "2year"], ["3rd Year", "3year"], ["4th Year", "4year"], ["Ms.C", "ms.c"], ["Ph.D", "ph.d"]] %>
 <ul id="year_menu" class="mcdropdown_menu">
-    <% list_years.each do |year| %>
+  <% list_years.each do |year| %>
     <li rel_year="<%= year[1] %>">
-        <%= year[0] %>
+      <%= year[0] %>
     </li>
-    <% end %>
+  <% end %>
 </ul>
 <%
 list_overs = [["Over 30 days", "30"], ["Over 3 months", "90"], ["Over 6 months", "180"], ["Over 9 months", "270"], ["Over 1 year", "365"]] %>
 <ul id="over_menu" class="mcdropdown_menu">
-    <% list_overs.each do |over| %>
+  <% list_overs.each do |over| %>
     <li rel_over="<%= over[1] %>">
-        <%= over[0] %>
+      <%= over[0] %>
     </li>
-    <% end %>
+  <% end %>
 </ul>
 <script type="text/javascript">
-    $(document).ready(load_options);
-    $(function(){
-        $('#over_menu,#year_menu').hover(function(){
-            $(this).stop().show();
-        }, function(){
-            $(this).stop().hide();
-        });
+  $(document).ready(load_options);
+  $(function(){
+    $('#over_menu,#year_menu').hover(function(){
+      $(this).stop().show();
+    }, function(){
+      $(this).stop().hide();
     });
-    $(function(){
-        $('div.col451in').hover(function(){
-        }, function(){
-            $('#department_menu,#over_menu,#year_menu').stop().hide();
-        });
+  });
+  $(function(){
+    $('div.col451in').hover(function(){
+    }, function(){
+      $('#department_menu,#over_menu,#year_menu').stop().hide();
     });
+  });
 </script>
