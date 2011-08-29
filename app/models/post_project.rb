@@ -14,7 +14,7 @@ class PostProject < ActiveRecord::Base
   scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :due_date, :conditions => ["post_projects.due_date > ?", Time.now], :order => "due_date ASC"
-  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_projects.post_id And favorable_type = ?) > ?", "Post", 10]
+  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_projects.post_id And favorable_type = ?) > ?", "Post", 10], :order => "id DESC"
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_projects.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_projects.id > ?", att], :order => "id ASC"} }
@@ -60,7 +60,11 @@ class PostProject < ActiveRecord::Base
 
   def self.paginated_post_conditions_with_interesting(params, school)
     posts = []
-    post_as = self.with_school(school).interesting
+    if school
+      post_as = self.with_school(school).interesting
+    else
+      post_as = self.interesting
+    end
     post_as.select {|p| posts << p.post}
     return posts
   end

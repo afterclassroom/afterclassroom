@@ -13,7 +13,7 @@ class PostExam < ActiveRecord::Base
   scope :with_limit, :limit => LIMIT
   scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
-  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_exams.post_id And favorable_type = ?) > ?", "Post", 10]
+  scope :interesting, :conditions => ["(Select Count(*) As fr From favorites Where favorites.favorable_id = post_exams.post_id And favorable_type = ?) > ?", "Post", 10], :order => "id DESC"
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_exams.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_exams.id > ?", att], :order => "id ASC"} }
@@ -52,7 +52,11 @@ class PostExam < ActiveRecord::Base
 
   def self.paginated_post_conditions_with_interesting(params, school)
     posts = []
-    post_as = self.with_school(school).interesting
+    if school
+      post_as = self.with_school(school).interesting
+    else
+      post_as = self.interesting
+    end
     post_as.select {|p| posts << p.post}
     return posts
   end
