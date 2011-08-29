@@ -147,6 +147,9 @@ class PostAssignmentsController < ApplicationController
       sc.tag(@post_assignment, :with => params[:tag], :on => :tags)
       @post_assignment.save
       redirect_to post_assignment_url(@post_assignment)
+    else
+      flash[:warning] = "Failed to update post. Possibly due to file size is too large !"
+      redirect_to :controller => "post_assignments", :action => "edit"
     end
   end
   
