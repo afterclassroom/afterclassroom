@@ -25,7 +25,7 @@
     <% depcate.each do |dc| %>
       <li rel="category_id_<%= dc.id %>">
         <%= dc.name %>
-        <% departments = dc.departments %>
+        <% departments = dc.departments.order("name ASC") %>
         <ul>
           <% departments.each do |dp| %>
             <li rel_department="<%= dp.id %>">
