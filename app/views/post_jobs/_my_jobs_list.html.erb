@@ -1,30 +1,30 @@
 <% if logged_in? %>
-<div class="col195 jobGood">
+  <div class="col195 jobGood">
     <div class="col195in">
-        <h1 class="col195Title">My jobs list</h1>
-        <div class="col195Cont">
-            <%
-            jobs_lists = current_user.jobs_lists.limit(LIMIT) %>
-            <% if jobs_lists.size > 0 %>
-            <%
-						count = 0
-            jobs_lists.each do |jl| %>
+      <h1 class="col195Title">My jobs list</h1>
+      <div class="col195Cont">
+        <%
+        jobs_lists = current_user.jobs_lists.order("created_at DESC").limit(LIMIT) %>
+        <% if jobs_lists.size > 0 %>
+          <%
+          count = 0
+          jobs_lists.each do |jl| %>
             <% if jl.post_job %>
-            <div class="dueDItem">
+              <div class="dueDItem">
                 <div class="dueDTitle">
-                    <%= link_to truncate_words(jl.post_job.post.title, 4), post_job_path(jl.post_job) %>
+                  <%= link_to truncate_words(jl.post_job.post.title, 4), post_job_path(jl.post_job) %>
                 </div>
-            </div>
-						<% count = count + 1%>
+              </div>
+              <% count = count + 1%>
             <% end %>
-            <% end %>
-            <% if count == LIMIT %>
+          <% end %>
+          <% if count == LIMIT %>
             <div class="dueDbutton">
-                <%= link_to "View more my jobs list", "#{my_job_list_post_jobs_path}?height=400&width=470", :class => "thickbox" %>
+              <%= link_to "View more my jobs list", "#{my_job_list_post_jobs_path}?height=400&width=470", :class => "thickbox" %>
             </div>
-            <% end %>
-            <% end %>
-        </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-</div>
+  </div>
 <% end %>

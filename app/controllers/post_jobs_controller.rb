@@ -139,7 +139,7 @@ class PostJobsController < ApplicationController
   end
   
   def my_job_list
-    @jobs_lists = current_user.jobs_lists
+    @jobs_lists = current_user.jobs_lists.order("created_at DESC")
     render :layout => false
   end
   

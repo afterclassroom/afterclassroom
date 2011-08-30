@@ -20,8 +20,9 @@
     You must be <%= link_to raw("Sign in"), RubyCAS::Filter.login_url(controller) %>to post a comment.<% end %>
 </div>
 <div class="AsDcomL" id="list_comments">
-<<<<<<< HEAD
-  <h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comments (<span id="comment_count"><%= obj.comments.size %></span>)</a></h1>
+  <h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comments</a></h1>
+  <div id="add_comments">
+  </div>
   <div id="comments_list">
     <% if obj.comments.size > 0 %>
       <% comments = obj.comments.paginate :page => params[:page], :per_page => 10 %>
@@ -30,6 +31,7 @@
       <% end %>
       <!--Pagination-->
       <div class="assPage">
+        <span class="numPage"><%= page_entries_info comments %></span>
         <%= will_paginate comments %>
       </div>
       <!--Pagination-->
@@ -42,34 +44,6 @@
       $(".del_post_com", this).show();
     }, function(){
       $(".del_post_com", this).hide();
-=======
-    <h1 class="titleH1"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comments</a></h1>
-    <div id="add_comments">
-    </div>
-    <div id="comments_list">
-        <% if obj.comments.size > 0 %>
-        <% comments = obj.comments.paginate :page => params[:page], :per_page => 10 %>
-        <% comments.each do |c| %>
-        <%= render :partial => "shared/item_comment_video", :locals => {:comnt => c} %>
-        <% end %>
-        <!--Pagination-->
-        <div class="assPage">
-            <span class="numPage"><%= page_entries_info comments %></span>
-            <%= will_paginate comments %>
-        </div>
-        <!--Pagination-->
-        <% end %>
-    </div>
-</div>
-<script>
-    $(document).ready(function(){
-        $(".AsDcomItem").hover(function(){
-            $(".del_post_com", this).show();
-        }, function(){
-            $(".del_post_com", this).hide();
-        });
-        formatFirstLinkForPaginationComment('<%= obj.class.name %>', '<%= obj.id %>');
->>>>>>> e8dca88bc4c7f5b39ea13e6d11e15dea42191801
     });
     formatFirstLinkForPaginationComment('<%= obj.class.name %>', '<%= obj.id %>');
   });

@@ -510,4 +510,6 @@ div.player.inactive
 .form_friends .textboxlist-autocomplete-result img {
     float: left;
     padding-right: 10px;
+    height: 45px;
+    width: 45px;
 }

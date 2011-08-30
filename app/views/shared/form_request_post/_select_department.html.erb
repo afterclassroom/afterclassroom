@@ -1,51 +1,43 @@
 <% cache "select_department_quick_post_#{@school}" do %>
-<div class="reqLa">
+  <div class="reqLa">
     <label>
-        Program
+      Program
     </label>
-</div>
-<div class="reqTi">
+  </div>
+  <div class="reqTi">
     <%= p.text_field :department_id, :id => "department_id" %>
-</div>
-<ul id="department_menu" class="mcdropdown_menu">
+  </div>
+  <% depcate = DepartmentCategory.find(:all, :order => "department_categories.name ASC") %>
+
+  <ul id="department_menu" class="mcdropdown_menu">
     <li rel_department="">
-        Choose program
+      Choose program
     </li>
-    <%
-    category_id = "" %>
-    <% @departments.each do |dp| %>
-    <% if category_id == "" %>
-    <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
+    <% depcate.each do |dc| %>
+      <li rel="category_id_<%= dc.id %>">
+        <%= dc.name %>
+        <% departments = dc.departments.order("name ASC") %>
         <ul>
+          <% departments.each do |dp| %>
             <li rel_department="<%= dp.id %>">
-                <%= dp.name %>
+              <%= dp.name %>
             </li>
-            <% elsif category_id == dp.department_category.id %>
-            <li rel_department="<%= dp.id %>">
-                <%= dp.name %>
-            </li>
-            <% else %>
+          <% end %>
         </ul>
-    </li>
-    <li rel="category_id_<%= dp.department_category.id %>">
-        <%= dp.department_category.name %>
-        <ul>
-            <li rel_department="<%= dp.id %>">
-                <%= dp.name %>
-            </li>
-            <% end %>
-            <% category_id = dp.department_category.id %>
-            <% end %>
-        </ul>
-    </li>
-</ul>
+      </li>    
+
+
+    <% end %>
+  </ul>
+
+
+
 <% end %>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#department_id").mcDropdown("#department_menu", {
-            width: 275,
-            valueAttr: "rel_department"
-        });
+  $(document).ready(function(){
+    $("#department_id").mcDropdown("#department_menu", {
+      width: 275,
+      valueAttr: "rel_department"
     });
+  });
 </script>
