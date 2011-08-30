@@ -363,10 +363,6 @@ module ApplicationHelper
     render :partial => "shared/post_comments", :locals => {:obj => obj}
   end
   
-  def show_post_comments_video(obj)
-    render :partial => "shared/post_comments_video", :locals => {:obj => obj}
-  end
-  
   def show_post_comments_ShPo(obj)
     render :partial => "shared/post_comments_ShPo", :locals => {:obj => obj}
   end
