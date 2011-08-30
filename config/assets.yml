@@ -112,7 +112,7 @@ javascripts:
     - public/javascripts/rails.js
     - public/javascripts/app.js
     - public/javascripts/jquery-validate.js
-    - public/javascripts/jquery.metadata.jsappend
+    - public/javascripts/jquery.metadata.js
 stylesheets:
   base:
     - public/stylesheets/main.css

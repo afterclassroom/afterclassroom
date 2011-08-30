@@ -22,4 +22,10 @@ class Story < ActiveRecord::Base
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   scope :most_view, :order => "count_view DESC"
   scope :with_state, :conditions => "state = 'share'"
+
+  # Squeezes spaces inside the string: "James   Bond  " => "James Bond"
+  auto_strip_attributes :title, :squish => true
+
+  # Won't set to null even if string is blank. "   " => ""
+  auto_strip_attributes :content, :nullify => false
 end

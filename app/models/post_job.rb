@@ -19,9 +19,9 @@ class PostJob < ActiveRecord::Base
 
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :with_type, lambda { |tp| {:conditions => ["post_jobs.job_type_id = ?", tp]} }
-  scope :without_type, lambda { |tp| {:conditions => ["post_jobs.job_type_id <> ?", tp]} }
-  scope :with_status, lambda { |st| {:conditions => ["post_jobs.rating_status = ?", st]} }
+  scope :with_type, lambda { |tp| {:conditions => ["post_jobs.job_type_id = ?", tp], :order => "id DESC"} }
+  scope :without_type, lambda { |tp| {:conditions => ["post_jobs.job_type_id <> ?", tp], :order => "id DESC"} }
+  scope :with_status, lambda { |st| {:conditions => ["post_jobs.rating_status = ?", st], :order => "id DESC"} }
   scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}

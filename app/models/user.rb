@@ -86,6 +86,12 @@ class User < ActiveRecord::Base
   # process_in_background :avatar
 
   validates_attachment_content_type :avatar, :content_type => ['image/pjpeg', 'image/jpeg', 'image/gif', 'image/png', 'image/x-png']
+
+  # Squeezes spaces inside the string: "James   Bond  " => "James Bond"
+  auto_strip_attributes :name, :squish => true
+
+  # Won't set to null even if string is blank. "   " => ""
+  auto_strip_attributes :email, :nullify => false
   
   # Solr search index
   searchable do

@@ -60,6 +60,8 @@ GEM
     acts_as_favorite (0.1.2)
     addressable (2.2.2)
     arel (2.0.10)
+    auto_strip_attributes (1.0.0)
+      activemodel (~> 3.0)
     aws-s3 (0.6.2)
       builder
       mime-types
@@ -237,6 +239,7 @@ DEPENDENCIES
   acts-as-taggable-on
   acts_as_commentable
   acts_as_favorite
+  auto_strip_attributes
   aws-s3
   aws-ses
   backgroundrb-rails3
