@@ -52,11 +52,7 @@ class PostExam < ActiveRecord::Base
 
   def self.paginated_post_conditions_with_interesting(params, school)
     posts = []
-    if school
-      post_as = self.with_school(school).interesting
-    else
-      post_as = self.interesting
-    end
+    post_as = self.with_school(school).interesting
     post_as.select {|p| posts << p.post}
     return posts
   end

@@ -18,8 +18,8 @@ class PostEvent < ActiveRecord::Base
 
   # Named Scope
   scope :with_limit, :limit => LIMIT
-  scope :with_status, lambda { |st| {:conditions => ["post_events.rating_status = ?", st]} }
-  scope :with_type, lambda {|tp| {:conditions => ["event_type_id = ?", tp]} }
+  scope :with_status, lambda { |st| {:conditions => ["post_events.rating_status = ?", st], :order => "id DESC"} }
+  scope :with_type, lambda {|tp| {:conditions => ["event_type_id = ?", tp], :order => "id DESC"} }
   scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
