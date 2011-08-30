@@ -68,4 +68,5 @@ gem 'active_reload'
 gem 'oauth'
 gem 'oauth-plugin', '>= 0.4.0.pre6'
 gem 'rabl'
+gem 'auto_strip_attributes'
 
