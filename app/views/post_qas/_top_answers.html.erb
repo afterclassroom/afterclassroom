@@ -1,5 +1,6 @@
 <%
-top_answers = PostQa.with_school(@school).top_answer.with_limit
+#top_answers = PostQa.with_school(@school).top_answer.with_limit # this is the old statement, create bug 1096
+top_answers = PostQa.paginated_post_conditions_with_top_answer(params,@school).first(LIMIT) #this is to fix bug 1096
 %>
 <div class="col195 QAsTopic">
   <div class="col195in">
@@ -8,7 +9,7 @@ top_answers = PostQa.with_school(@school).top_answer.with_limit
       <div class="col195Cont">
         <% top_answers.each do |qa| %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(qa.post.title, 4), post_qa_path(qa) %></div>
+            <div class="dueDTitle"><%= link_to truncate_words(qa.title, 4), post_qa_path(qa.post_qa) %></div>
           </div>
         <% end %>
         <% if top_answers.size > LIMIT - 1 %>
