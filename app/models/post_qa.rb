@@ -55,6 +55,7 @@ class PostQa < ActiveRecord::Base
     end
     arr_p = []
     post_qas.select {|p| arr_p << p.post if p.post.comments.size > 0}
+    
     return arr_p
   end
 
@@ -87,7 +88,10 @@ class PostQa < ActiveRecord::Base
     arr_p = []
     post_qa = self.with_school(school).top_answer
     post_qa.select {|p| arr_p << p.post}
-    @posts = arr_p.paginate :page => params[:page], :per_page => 10
+    
+    arr_p1 = arr_p.sort_by { |p| p.comments.size }.reverse! #fixbug 1096
+    
+    @posts = arr_p1.paginate :page => params[:page], :per_page => 10
   end
   
   def self.related_posts(school, type)
