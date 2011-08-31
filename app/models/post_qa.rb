@@ -81,7 +81,8 @@ class PostQa < ActiveRecord::Base
     arr_p = []
     post_qa = self.with_school(school).interesting
     post_qa.select {|p| arr_p << p.post if p.post.favorites.size > 10}
-    return arr_p
+    arr_p1 = arr_p.sort_by { |p| p.favorites.size }.reverse! #fixbug 1097
+    return arr_p1
   end
 
   def self.paginated_post_conditions_with_top_answer(params, school)
