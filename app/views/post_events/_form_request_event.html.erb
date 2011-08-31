@@ -2,107 +2,109 @@
 type = params[:event_type_id]
 type ||= 1 %>
 <div class="col300 requestEvent">
-    <div class="col300in">
-        <h1 class="col300Title">Quick post for Event</h1>
-        <div class="col300Cont">
-            <%= form_for :post_event, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-            <div class="reqLa">
-                <label>
-                    Type
-                </label>
-            </div>
-            <div class="reqTi">
-                <%= text_field_tag "post_event[event_type_id]", type %>
-            </div>
-            <%= fields_for :post do |p| %>
-            <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
-            <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
-            <div class="reqLa">
-                <label>
-                    Start time
-                </label>
-            </div>
-            <div class="reqTi">
-                <%= text_field_tag :start_time, "", :style => "width:150px" %>
-            </div>
-            <div class="reqLa">
-                <label>
-                    End time
-                </label>
-            </div>
-            <div class="reqTi">
-                <%= text_field_tag :end_time, "", :style => "width:150px" %>
-            </div>
-            <script type="text/javascript">
-                $(document).ready(function(){
-                    $("#start_time").datetimepicker({
-                        ampm: true
-                    });
-                    $("#end_time").datetimepicker({
-                        ampm: true
-                    });
-                });
-            </script>
-            <div class="reqSl">
-                <div class="req40">
-                    <div class="reqLa">
-                        <label>
-                            Phone
-                        </label>
-                    </div>
-                    <div class="reqTi">
-                        <%= f.text_field :phone %>
-                    </div>
-                </div>
-                <div class="req60">
-                    <div class="reqLa">
-                        <label>
-                            Address
-                        </label>
-                    </div>
-                    <div class="reqTi">
-                        <%= f.text_field :address %>
-                    </div>
-                </div>
-            </div>
-            <%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_event_address" } %>
-            <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
-            <%= render :partial => "/shared/form_request_post/select_tag" %>
-            <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
-            <div class="submit" style="margin-top: 5px;">
-                <%= show_submit_form() %>
-            </div>
-            <% end %>
-            <% end %>
+  <div class="col300in">
+    <h1 class="col300Title">Quick post for Event</h1>
+    <div class="col300Cont">
+      <%= form_for :post_event, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+        <div class="reqLa">
+          <label>
+            Type
+          </label>
         </div>
+        <div class="reqTi">
+          <%= text_field_tag "post_event[event_type_id]", type %>
+        </div>
+        <%= fields_for :post do |p| %>
+          <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
+          <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
+          <div class="reqLa">
+            <label>
+              Start time
+            </label>
+          </div>
+          <div class="reqTi">
+            <%= text_field_tag :start_time, "", :style => "width:150px" %>
+          </div>
+          <div class="reqLa">
+            <label>
+              End time
+            </label>
+          </div>
+          <div class="reqTi">
+            <%= text_field_tag :end_time, "", :style => "width:150px" %>
+          </div>
+          <script type="text/javascript">
+            $(document).ready(function(){
+              $("#start_time").datetimepicker({
+                ampm: true
+              });
+              $("#end_time").datetimepicker({
+                ampm: true
+              });
+            });
+          </script>
+          <div class="reqSl">
+            <div class="req40" style="padding-right: 1px;">
+              <div class="reqLa">
+                <label>
+                  Phone
+                </label>
+              </div>
+              <div class="reqTi">
+                <%= f.text_field :phone, :style=>"position: absolute;width: 100px;" %>
+              </div>
+            </div>
+            <div class="req60" style="width:175px">
+              <div class="reqLa" style="margin-left: 4px;">
+                <label>
+                  Address
+                </label>
+              </div>
+              <div class="reqTi">
+                <div class="addressGmap" style="background: url(/images/AddressGmap.png) no-repeat scroll 0 -4px transparent;height: 33px;">
+                <%= f.text_field :address, :style=>"border: 0 none;margin-left: -290px;position: inherit;width: 168px;z-index: -19;padding-left: 295px;" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%= render :partial => "/shared/auto_addressGmap", :locals => {:id_addres_field => "post_event_address" } %>
+          <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
+          <%= render :partial => "/shared/form_request_post/select_tag" %>
+          <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+          <div class="submit" style="margin-top: 5px;">
+            <%= show_submit_form() %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
+  </div>
 </div>
 <ul id="event_type_menu" class="mcdropdown_menu">
-    <% EventType.find(:all).each do |t| %>
+  <% EventType.find(:all).each do |t| %>
     <li rel_event_type="<%= t.id %>">
-        <%= t.name %>
+      <%= t.name %>
     </li>
-    <% end %>
+  <% end %>
 </ul>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#post_event_event_type_id").mcDropdown("#event_type_menu", {
-            width: 275,
-            valueAttr: "rel_event_type"
-        });
+  $(document).ready(function(){
+    $("#post_event_event_type_id").mcDropdown("#event_type_menu", {
+      width: 275,
+      valueAttr: "rel_event_type"
     });
-    $(function(){
-        $('#event_type_menu').hover(function(){
-            $(this).stop().show();
-        }, function(){
-            $(this).stop().hide();
-        });
+  });
+  $(function(){
+    $('#event_type_menu').hover(function(){
+      $(this).stop().show();
+    }, function(){
+      $(this).stop().hide();
     });
-    $(function(){
-        $('div.reqLa,div.col300Cont').hover(function(){
+  });
+  $(function(){
+    $('div.reqLa,div.col300Cont').hover(function(){
         
-        }, function(){
-            $('#event_type_menu').stop().hide();
-        });
+    }, function(){
+      $('#event_type_menu').stop().hide();
     });
+  });
 </script>
