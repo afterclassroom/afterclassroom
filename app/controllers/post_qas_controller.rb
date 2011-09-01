@@ -43,9 +43,10 @@ class PostQasController < ApplicationController
   end
   
   def interesting
-    @post_results = Rails.cache.fetch("interesting_#{@class_name}_#{@school}") do
-      PostQa.paginated_post_conditions_with_interesting(params, @school)
-    end
+    #@post_results = Rails.cache.fetch("interesting_#{@class_name}_#{@school}") do
+      #PostQa.paginated_post_conditions_with_interesting(params, @school)
+      @post_results = PostQa.recent_interesting(@school, params)
+    #end
     @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # interesting.html.erb
