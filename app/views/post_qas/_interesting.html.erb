@@ -3,13 +3,13 @@
     <div class="col195in">
         <h1 class="col195Title">Interesting questions</h1>
         <%# interestings = PostQa.with_school(@school).interesting.with_limit %>
-        <% interestings = PostQa.paginated_post_conditions_with_interesting(params,@school).first(LIMIT) #this is to fix bug 1097 %>
+        <% interestings = PostQa.recent_interesting(@school, params).first(LIMIT) %>
         <% if interestings.size > 0 %>
         <div class="col195Cont">
-            <% interestings.each do |qa| %>
+            <% interestings.each do |post| %>
             <div class="dueDItem">
                 <div class="dueDTitle">
-                    <%= link_to truncate_words(qa.title, 4), post_qa_path(qa.post_qa) %>
+                    <%= link_to truncate_words(post.title, 4), post_qa_path(post.post_qa) %>
                 </div>
             </div>
             <% end %>
