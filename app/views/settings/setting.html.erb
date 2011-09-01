@@ -1,68 +1,69 @@
 <% content_for :menu_top_student_lounge do -%>
   <%= render :partial => 'submenu' %>
 <% end -%>
+<div class="contMain" style="min-height: 385px">
+  <div class="settCont">
+    <div class="settCont1">
+      <div class="settMenu">
+        <ul>
+          <%= render :partial => "setting_menu" %>
+        </ul>
+      </div>
 
-<div class="settCont">
-  <div class="settCont1">
-    <div class="settMenu">
-      <ul>
-        <%= render :partial => "setting_menu" %>
-      </ul>
-    </div>
+      <%= display_flash_messages_with_raw %>
 
-    <%= display_flash_messages_with_raw %>
-    
-    <% if logged_in? %>
+      <% if logged_in? %>
 
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Name</div>
+        <div class="settItem">
+          <div class="settItemT">
+            <div class="settItemTL">Name</div>
 
-          <div class="settItemTR">
-            <%=  link_to(raw("<span>change</span>"), "#{change_name_user_settings_path(current_user)}?height=120&width=470&typeOfChange=name", :class => "thickbox", :title => "Change Name") %>
+            <div class="settItemTR">
+              <%=  link_to(raw("<span>change</span>"), "#{change_name_user_settings_path(current_user)}?height=120&width=470&typeOfChange=name", :class => "thickbox", :title => "Change Name") %>
+            </div>
+          </div>
+          <div class="settItemB">
+            <div class="settItemBL">Your real name. </div>
+            <div class="settItemBR"><%= current_user.full_name %></div>
           </div>
         </div>
-        <div class="settItemB">
-          <div class="settItemBL">Your real name. </div>
-          <div class="settItemBR"><%= current_user.full_name %></div>
-        </div>
-      </div>
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Email</div>
-          <div class="settItemTR">
-            <%=  link_to(raw("<span>change</span>"), "#{change_email_user_settings_path(current_user)}?height=120&width=520&typeOfChange=email", :class => "thickbox", :title => "Change email address") %>
+        <div class="settItem">
+          <div class="settItemT">
+            <div class="settItemTL">Email</div>
+            <div class="settItemTR">
+              <%=  link_to(raw("<span>change</span>"), "#{change_email_user_settings_path(current_user)}?height=120&width=520&typeOfChange=email", :class => "thickbox", :title => "Change email address") %>
+            </div>
+          </div>
+          <div class="settItemB">
+            <div class="settItemBL">Set your email contact information.</div>
+            <div class="settItemBR"><%= current_user.email %></div>
           </div>
         </div>
-        <div class="settItemB">
-          <div class="settItemBL">Set your email contact information.</div>
-          <div class="settItemBR"><%= current_user.email %></div>
-        </div>
-      </div>
-      <div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Password</div>
-          <div class="settItemTR">
-            <%=  link_to(raw("<span>change</span>"), "#{change_psw_user_settings_path(current_user)}?height=170&width=500&typeOfChange=psw", :class => "thickbox", :title => "Change password") %>
+        <div class="settItem">
+          <div class="settItemT">
+            <div class="settItemTL">Password</div>
+            <div class="settItemTR">
+              <%=  link_to(raw("<span>change</span>"), "#{change_psw_user_settings_path(current_user)}?height=170&width=500&typeOfChange=psw", :class => "thickbox", :title => "Change password") %>
+            </div>
+          </div>
+          <div class="settItemB">
+            <div class="settItemBL">What you use to log in.</div>
+            <div class="settItemBR">******</div>
           </div>
         </div>
-        <div class="settItemB">
-          <div class="settItemBL">What you use to log in.</div>
-          <div class="settItemBR">******</div>
-        </div>
-      </div>
-			<div class="settItem">
-        <div class="settItemT">
-          <div class="settItemTL">Time zone</div>
-          <div class="settItemTR">
-            <%=  link_to(raw("<span>change</span>"), "#{change_time_zone_user_settings_path(current_user)}?height=170&width=500&typeOfChange=psw", :class => "thickbox", :title => "Change time zone") %>
+        <div class="settItem">
+          <div class="settItemT">
+            <div class="settItemTL">Time zone</div>
+            <div class="settItemTR">
+              <%=  link_to(raw("<span>change</span>"), "#{change_time_zone_user_settings_path(current_user)}?height=170&width=500&typeOfChange=psw", :class => "thickbox", :title => "Change time zone") %>
+            </div>
+          </div>
+          <div class="settItemB">
+            <div class="settItemBL"></div>
+            <div class="settItemBR"><%= current_user.time_zone %></div>
           </div>
         </div>
-        <div class="settItemB">
-          <div class="settItemBL"></div>
-          <div class="settItemBR"><%= current_user.time_zone %></div>
-        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

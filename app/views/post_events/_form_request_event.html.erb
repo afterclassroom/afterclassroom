@@ -44,26 +44,24 @@ type ||= 1 %>
             });
           </script>
           <div class="reqSl">
-            <div class="req40" style="padding-right: 1px;">
+            <div class="req40">
               <div class="reqLa">
                 <label>
                   Phone
                 </label>
               </div>
               <div class="reqTi">
-                <%= f.text_field :phone, :style=>"position: absolute;width: 100px;" %>
+                <%= f.text_field :phone %>
               </div>
             </div>
-            <div class="req60" style="width:175px">
-              <div class="reqLa" style="margin-left: 4px;">
+            <div class="req60">
+              <div class="reqLa">
                 <label>
                   Address
                 </label>
               </div>
-              <div class="reqTi">
-                <div class="addressGmap" style="background: url(/images/AddressGmap.png) no-repeat scroll 0 -4px transparent;height: 33px;">
-                <%= f.text_field :address, :style=>"border: 0 none;margin-left: -290px;position: inherit;width: 168px;z-index: -19;padding-left: 295px;" %>
-                </div>
+              <div class="reqTi">               
+                <%= f.text_field :address %>                
               </div>
             </div>
           </div>

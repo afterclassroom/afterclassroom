@@ -112,7 +112,10 @@
                     $("#" + map_frame_id).css("visibility", "visible");
                     $("#" + map_frame_id).css("z-index", "5");
                     $("#" + map_window_id).css("z-index", "5");
-                    $(".ui-autocomplete").css("z-index", "1");
+                    $(".ui-autocomplete").css({
+                        "left":"0",
+                        "z-index": "1"
+                    });
                     
                     // hard coded css width in javascript to avoid editing jQuery css files
                     $('.ui-menu-item').css("width", "200px");
