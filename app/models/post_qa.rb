@@ -133,13 +133,11 @@ class PostQa < ActiveRecord::Base
     
     objs = Post.find_by_sql("select p.* from posts as p right join (select * from post_qas) as qa on p.id = qa.post_id
 inner join
-
-
 (select a.favorable_id, a.created_at, b.total from favorites as a
 right join (
 select favorable_id,count(favorable_id) as total from favorites
 group by favorable_id
-having count(favorable_id)>0
+having count(favorable_id)>11
 ) as b
 on a.favorable_id = b.favorable_id
 order by a.favorable_id DESC, a.created_at DESC ) as f
