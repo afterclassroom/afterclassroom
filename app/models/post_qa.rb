@@ -124,6 +124,13 @@ class PostQa < ActiveRecord::Base
   end
   
   def self.recent_interesting(school_id,params)
+    
+    str_school_condition = ""
+    
+    if school_id != nil
+      str_school_condition = "where p.school_id = #{school_id}"
+    end
+    
     objs = Post.find_by_sql("select p.* from posts as p right join (select * from post_qas) as qa on p.id = qa.post_id
 inner join
 
@@ -132,12 +139,12 @@ inner join
 right join (
 select favorable_id,count(favorable_id) as total from favorites
 group by favorable_id
-having count(favorable_id)>11
+having count(favorable_id)>0
 ) as b
 on a.favorable_id = b.favorable_id
 order by a.favorable_id DESC, a.created_at DESC ) as f
 on p.id = f.favorable_id 
-where p.school_id=#{school_id}
+#{str_school_condition}
 group by f.favorable_id 
 order by f.created_at DESC")
     
