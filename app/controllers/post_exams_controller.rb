@@ -43,7 +43,10 @@ class PostExamsController < ApplicationController
   end
   
   def interesting
-    @post_results = PostExam.paginated_post_conditions_with_interesting(params, @school)
+    #@post_results = PostExam.paginated_post_conditions_with_interesting(params, @school)
+    
+    @post_results = PostExam.recent_interesting(@school)
+    
     @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
       format.html # index.html.erb
