@@ -78,7 +78,7 @@ class PostExam < ActiveRecord::Base
       str_school_condition = "where p.school_id = #{school_id}"
     end
     
-    objs = Post.find_by_sql("select px.id,p.* from posts as p right join (select * from post_exams) as px on p.id = px.post_id
+    objs = Post.find_by_sql("select p.* from posts as p right join (select * from post_exams) as px on p.id = px.post_id
 inner join
 (select a.favorable_id, a.created_at, b.total from favorites as a
 right join (
