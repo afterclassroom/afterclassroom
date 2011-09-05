@@ -62,7 +62,7 @@
               </div>
             </div>
           </div>
-          <%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_party_address" } %>
+          <%= render :partial => "/shared/auto_addressGmap", :locals => {:id_addres_field => "post_party_address" } %>
           <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
           <%= show_simple_captcha(:label => "CAPTCHA Code *") %>

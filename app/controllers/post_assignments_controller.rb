@@ -55,7 +55,8 @@ class PostAssignmentsController < ApplicationController
   
   def interesting
     @post_results = Rails.cache.fetch("interesting_#{@class_name}_#{@school}") do
-      PostAssignment.paginated_post_conditions_with_interesting(params, @school)
+      #PostAssignment.paginated_post_conditions_with_interesting(params, @school)
+      PostAssignment.recent_interesting(@school)
     end
     @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|

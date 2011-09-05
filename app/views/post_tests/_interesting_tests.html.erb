@@ -3,17 +3,16 @@
   <div class="col195in">
     <h1 class="col195Title">Interesting Tests</h1>
     <div class="col195Cont">
-      <%
-      interesting_tests = PostTest.with_school(@school).interesting.with_limit
-    %>
+      <%#  interesting_tests = PostTest.with_school(@school).interesting.with_limit %>
+      <%  interesting_tests = PostTest.recent_interesting(@school).first(LIMIT) %>
       <% if interesting_tests.size > 0 %>
-        <% interesting_tests.each do |p| %>
+        <% interesting_tests.each do |post| %>
           <div class="dueDItem">
-            <div class="dueDTitle"><%= link_to truncate_words(p.post.title, 4), post_test_path(p) %></div>
-            <div class="dueDTime"><%= p.post.created_at.strftime("%B %d, %Y")%></div>
+            <div class="dueDTitle"><%= link_to truncate_words(post.title, 4), post_test_path(post.post_test) %></div>
+            <div class="dueDTime"><%= post.created_at.strftime("%B %d, %Y")%></div>
           </div>
         <% end %>
-        <% if interesting_tests.size > LIMIT - 1 %>
+        <% if interesting_tests.size > LIMIT - 3 %>
           <div class="dueDbutton"><%= link_to "View more Interesting Tests", interesting_post_tests_path %></div>
         <% end %>
       <% end %>

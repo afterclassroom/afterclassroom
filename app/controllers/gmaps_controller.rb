@@ -2,7 +2,7 @@
 class GmapsController < ApplicationController
   def index
     @address = params[:address]
-    @html = params[:html]
+#    @html = params[:html]
     render :layout => false
   end
 end
