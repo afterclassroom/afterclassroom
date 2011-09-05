@@ -1,0 +1,21 @@
+--- 
+- !ruby/object:Backup::Storage::S3 
+  access_key_id: AKIAJ3B6N3Y22A2R2LZQ
+  bucket: computer_backup
+  keep: 10
+  local_file: 2011.08.31.13.51.14.db_backup.tar.gz
+  path: afterclassroom_development
+  region: us-east-1
+  remote_file: 2011.08.31.13.51.14.db_backup.tar.gz
+  secret_access_key: uDrHsboC2t4Hqpcpz5vMpVQMd32ZX+TlATRZ0nN9
+  time: 2011.08.31.13.51.14
+- !ruby/object:Backup::Storage::S3 
+  access_key_id: AKIAJ3B6N3Y22A2R2LZQ
+  bucket: computer_backup
+  keep: 10
+  local_file: 2011.08.31.13.39.23.db_backup.tar.gz
+  path: afterclassroom_development
+  region: us-east-1
+  remote_file: 2011.08.31.13.39.23.db_backup.tar.gz
+  secret_access_key: uDrHsboC2t4Hqpcpz5vMpVQMd32ZX+TlATRZ0nN9
+  time: 2011.08.31.13.39.23

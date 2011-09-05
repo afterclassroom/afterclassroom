@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.10'
 
 # Deploy with Capistrano
 gem 'capistrano'
@@ -44,13 +44,14 @@ gem 'aws-s3'
 gem 'jquery-rails', '>= 0.2.6'
 gem 'chronic'
 gem 'packet'
-gem 'backgroundrb-rails3', :require => 'backgroundrb'
 gem 'validates_timeliness', '~> 3.0.2'
 gem 'rubycas-client'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'rubycas-client-rails', :path => 'vendor/plugins/rubycas-client-rails'
 gem "exception_notification", :git => "git://github.com/rails/exception_notification.git", :require => "exception_notifier"
 gem 'aws-ses', :require => 'aws/ses'
+gem 'fog'
+gem 'backup'
 gem 'backup-task'
 gem 'whenever', :require => false
 gem 'jammit'
@@ -69,4 +70,5 @@ gem 'oauth'
 gem 'oauth-plugin', '>= 0.4.0.pre6'
 gem 'rabl'
 gem 'auto_strip_attributes'
-
+#gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
+gem 'activeadmin'
