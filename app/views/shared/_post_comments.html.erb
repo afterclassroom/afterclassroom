@@ -1,22 +1,22 @@
 <div class="AsDcom" id="form_comment" style="display: none">
-    <h1 class="titleH1">Leave your comments</h1>
-    <% if logged_in? %>
+  <h1 class="titleH1">Leave your comments</h1>
+  <% if logged_in? %>
     <div class="AsDcomImg">
-        <%= show_image_user_post(current_user) %>
+      <%= show_image_user_post(current_user) %>
     </div>
     <div class="AsDcomIn">
-        <form name="form_comment" id="form_comment" action="" method="get">
-            <div class="AsDcomTxt">
-                <div class="AsDcomTexta">
-                    <%= text_area_tag :comment, "" %>
-                </div>
-            </div>
-            <div class="submit">
-                <a href="javascript:;" onclick="send_comment('<%= obj.id %>', '<%= obj.class.name %>');">Send</a>
-            </div>
-        </form>
+      <form name="form_comment" id="form_comment" action="" method="get">
+        <div class="AsDcomTxt">
+          <div class="AsDcomTexta">
+            <%= text_area_tag :comment, "" %>
+          </div>
+        </div>
+        <div class="submit">
+          <a href="javascript:;" onclick="send_comment('<%= obj.id %>', '<%= obj.class.name %>');">Send</a>
+        </div>
+      </form>
     </div>
-    <% else %>
+  <% else %>
     You must be <%= link_to raw("Sign in"), RubyCAS::Filter.login_url(controller) %>to post a comment.<% end %>
 </div>
 <div class="AsDcomL" id="list_comments">

@@ -18,8 +18,8 @@ class PostTeamup < ActiveRecord::Base
 
   scope :with_limit, :limit => LIMIT
   scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
-  scope :with_status, lambda { |st| {:conditions => ["post_teamups.rating_status = ?", st]} }
-  scope :with_category, lambda { |c| {:conditions => ["post_teamups.teamup_category_id = ?", c]} }
+  scope :with_status, lambda { |st| {:conditions => ["post_teamups.rating_status = ?", st], :order => "id DESC"} }
+  scope :with_category, lambda { |c| {:conditions => ["post_teamups.teamup_category_id = ?", c], :order => "id DESC"} }
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_teamups.id < ?", att], :order => "id ASC"} }

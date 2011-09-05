@@ -55,7 +55,8 @@ class PostAssignmentsController < ApplicationController
   
   def interesting
     @post_results = Rails.cache.fetch("interesting_#{@class_name}_#{@school}") do
-      PostAssignment.paginated_post_conditions_with_interesting(params, @school)
+      #PostAssignment.paginated_post_conditions_with_interesting(params, @school)
+      PostAssignment.recent_interesting(@school)
     end
     @posts = @post_results.paginate({:page => params[:page], :per_page => 10})
     respond_to do |format|
@@ -147,6 +148,9 @@ class PostAssignmentsController < ApplicationController
       sc.tag(@post_assignment, :with => params[:tag], :on => :tags)
       @post_assignment.save
       redirect_to post_assignment_url(@post_assignment)
+    else
+      flash[:warning] = "Failed to update post. Possibly due to file size is too large !"
+      redirect_to :controller => "post_assignments", :action => "edit"
     end
   end
   

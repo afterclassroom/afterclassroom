@@ -33,3 +33,8 @@ end
 every 1.day, :at => '1:00 am' do 
   runner "Share.del_share_expire", :environment => :production
 end
+
+# Backup database every 3 days
+every 3.day, :at => '1:00 am' do 
+  runner "cd /var/www/after/current && backup perform --trigger db_backup --config_file config/backup.rb --data-path db --log-path log --tmp-path tmp", :environment => :production
+end

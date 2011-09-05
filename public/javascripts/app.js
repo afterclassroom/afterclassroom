@@ -165,6 +165,29 @@ function send_comment(id, type){
     }
 }
 
+function send_comment_video(id, type){
+    comment = $('#comment').val();
+    if (comment != "") {
+        $.ajax({
+            url: '/posts/create_comment_video',
+            type: 'POST',
+            cache: false,
+            dataType: 'html',
+            data: ({
+                commentable_id: id,
+                commentable_type: type,
+                comment: comment
+            }),
+            success: function(data){
+                $('#list_comments').append(data);
+                $('#comment').val('');
+                $('#form_comment').toggle('slow');
+                $('#comment_count').html($('div .AsDcomItem').size());
+            }
+        });
+    }
+}
+
 function formatFirstLinkForPaginationComment(class_name, id){
     var url = "/posts/comments_list";
     $("div.assPage").find("a").each(function(){

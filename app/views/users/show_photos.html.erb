@@ -1,46 +1,31 @@
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => 'users/show_public/submenu' %>
+  <%= render :partial => 'users/show_public/submenu' %>
 <% end -%>
 <div class="contMainC">
-    <%= render :partial => "users/show_public/proc" %>
-    <%= render :partial => "users/show_public/infor" %>
-    <%= render :partial => "users/show_public/friends" %>
-    <%#= render :partial => "/users/show_public/links" %>
+  <%= render :partial => "users/show_public/proc" %>
+  <%= render :partial => "users/show_public/infor" %>
+  <%= render :partial => "users/show_public/friends" %>
+<%#= render :partial => "/users/show_public/links" %>
 </div>
 <div class="contMainL">
-    <div class="col571 proCen">
-        <div class="col571in">
-            <div class="proCenCont">
-                <% @photo_albums.each do |ab| %>
-                <%= render :partial => "users/show_public/item_photo", :locals => {:photo_album => ab} %>
-                <% end %>
-                <!--Pagination-->
-                <div class="assPage">
-                    <span class="numPage"><%= page_entries_info @photo_albums %></span>
-                    <%= will_paginate @photo_albums %>
-                </div>
-                <!--Pagination-->
-            </div>
+  <div class="col571 proCen">
+    <div class="col571in">
+      <div class="proCenCont">
+        <% @photo_albums.each do |ab| %>
+          <%= render :partial => "users/show_public/item_photo", :locals => {:photo_album => ab} %>
+        <% end %>
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @photo_albums %></span>
+          <%= will_paginate @photo_albums %>
         </div>
+        <!--Pagination-->
+      </div>
     </div>
+  </div>
 </div>
 <div class="contMainR">
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.iframe').fancybox({
-            'width': '70%',
-            'height': 600,
-            'autoScale': false,
-            'transitionIn'  : 'elastic',
-            'transitionOut' : 'elastic',
-            'type': 'iframe'
-        });
-        $('#fancybox-outer').css({
-          'width':'110%'
-        });
-    });
-</script>

@@ -9,19 +9,7 @@ Afterclassroom::Application.routes.draw do
   match '/users/reset_password/:password_reset_code' => 'users#reset_password', :as => :user_reset_password
   match '/users/forgot_login' => 'users#forgot_login', :as => :user_forgot_login
   match '/users/clueless' => 'users#clueless', :as => :user_clueless
-
-  resources :forums do 
-    collection do
-      get :delcmt, :search, :see_all_top_fr, :view_all_comments, :view_all_no_loggin, :delfrm, :view_fr
-      post :addfr, :save_edit, :savecmt
-    end
-  end
-  resources :press_infos do
-    collection do
-      get :view_pr, :view_detail, :delpr, :searchpr
-      post :save
-    end
-  end
+  
   # Users
   resources :users do
     member do
@@ -29,7 +17,8 @@ Afterclassroom::Application.routes.draw do
       put :update_password, :update_email
       post :update_avatar
     end
-
+	
+    #Messages
     resources :messages do
       collection do
         get :show_email, :list_friend, :delete_message
@@ -37,6 +26,7 @@ Afterclassroom::Application.routes.draw do
       end
     end
     
+    #Learning tools
     resources :learn_tools do
       collection do
         get :index, :featured_tool_paging, :maylike_tool_paging, 
@@ -50,7 +40,7 @@ Afterclassroom::Application.routes.draw do
       end
     end    
     
-    
+    #Settings
     resources :settings do
       collection do
         get :networks, :notifications, :language,
@@ -62,14 +52,16 @@ Afterclassroom::Application.routes.draw do
       end
     end
  
+    #Profiles
     resources :profiles do
       collection do
         get :show_profile, :edit_infor, :edit_edu_infor,
-          :edit_work_infor, :my_favorite, :fan, :delete_fans
+          :edit_work_infor, :my_favorite, :fan, :delete_fans, :delete_prof
         post :update_about_yourself, :update_infor, :update_edu_infor, :update_work_infor
       end
     end
-
+    
+    #Student lounges
     resources :student_lounges do
       collection do
         get :chat, :invite_chat, :add_users_to_chat, :stop_chat, :chanel_chat_content,
@@ -78,6 +70,7 @@ Afterclassroom::Application.routes.draw do
       end
     end
 
+    #Friends
     resources :friends do
       collection do
         get :search, :find, :find_people, :recently_added, :recently_updated,
@@ -87,7 +80,8 @@ Afterclassroom::Application.routes.draw do
           :invite_by_import_email, :delete
       end
     end
-
+	
+    #Stories
     resources :stories do
       collection do
         get :friend_s, :my_s, :my_draft, :draft, :create_comment, :delete_comment, :delete_all
@@ -301,6 +295,7 @@ Afterclassroom::Application.routes.draw do
     end
   end
   
+  #Ajax not login
   resources :ajax_not_login do
     collection do
       get :show_comment, :rate_comment, :view_results
@@ -321,7 +316,27 @@ Afterclassroom::Application.routes.draw do
   #Simple Captcha
   match 'simple_captcha/:id', :to => 'simple_captcha#show', :as => :simple_captcha
   
+  #Forums
+  resources :forums do 
+    collection do
+      get :delcmt, :search, :see_all_top_fr, :view_all_comments, :view_all_no_loggin, :delfrm, :view_fr
+      post :addfr, :save_edit, :savecmt
+    end
+  end
+  
+  #Press infos
+  resources :press_infos do
+    collection do
+      get :view_pr, :view_detail, :delpr, :searchpr
+      post :save
+    end
+  end
+  
   # Administration
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  
   namespace :admin do
     resources :dashboards
     resources :settings

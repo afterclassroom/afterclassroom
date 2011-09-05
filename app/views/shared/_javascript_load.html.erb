@@ -1,36 +1,55 @@
 <script type="text/javascript">
-    $(document).ready(function(){
-        if ($(".imageLink")) {
-            $(".imageLink").fancybox();
-        }
-        $('.iframe').fancybox({
-            'width': '70%',
-            'height': 600,
-            'autoScale': false,
-            'hideOnContentClick': false,
-            'type': 'iframe'
-        });
+  $(document).ready(function(){
+    if ($(".imageLink")) {
+      $(".imageLink").fancybox();
+    }
+    $('.iframe').fancybox({
+      'width': 1100,
+      'height': 600,
+      'autoScale': false,
+      'hideOnContentClick': false,
+      'type': 'iframe'
     });
+  });
     
-    jQuery(document).ready(function($){
-        $('a[rel*=facebox]').facebox({})
-    });
+  jQuery(document).ready(function($){
+    $('a[rel*=facebox]').facebox({})
+  });
     
-    $(document).ready(function(){
-        $('input[type=text], textarea.focus_text_field').addClass("idleField"); // reset all ##  
-        $('input[type=text], textarea.focus_text_field').live("focus", function(event){
-            $(this).toggleClass("focusField idleField");
-            if (this.value == this.defaultValue) {
-                this.value = '';
-            }
-            if (this.value != this.defaultValue) {
-                this.select();
-            }
-        }).live("blur", function(event){
-            $(this).toggleClass("focusField idleField");
-            if ($.trim(this.value) == '') {
-                this.value = (this.defaultValue ? this.defaultValue : '');
-            }
-        });
+  $(document).ready(function(){
+    $('input[type=text], textarea.focus_text_field').addClass("idleField"); // reset all ##  
+    $('input[type=text], textarea.focus_text_field').live("focus", function(event){
+      $(this).toggleClass("focusField idleField");
+      if (this.value == this.defaultValue) {
+        this.value = '';
+      }
+      if (this.value != this.defaultValue) {
+        this.select();
+      }
+    }).live("blur", function(event){
+      $(this).toggleClass("focusField idleField");
+      if ($.trim(this.value) == '') {
+        this.value = (this.defaultValue ? this.defaultValue : '');
+      }
     });
+  });
+    
+  jQuery(function(){
+    var $ = jQuery;
+    positionFooter();
+    function positionFooter(){
+      var winH = $(window).height();
+      var docH = $(document).height();
+      if( docH <= winH ) {
+        $('.contMain').css('margin-bottom','60px');
+        $(".footer").css({'position': "fixed",'bottom':'0', 'width':'100%'})
+      } else {
+        $('.contMain').css('margin-bottom','20px')
+        $(".footer").css({'position': "relative"})
+      }
+    }
+
+    jQuery(window)
+    .resize(positionFooter)
+  });
 </script>

@@ -2,14 +2,14 @@
   <%= hidden_field_tag "recipient" %>
   <div class="postItem">
     <div class="postTit">Share File</div>
-    <div class="postInppSH">
+    <div class="postInppSH" style="line-height: 20px;">
       <span><%= @share.attach_file_name %></span>
       <div class="postInpSH">.....</div>
     </div>
   </div>
-  <div class="postItem">
-    <div class="postTit">Share to*</div>
-    <div class="postInp"><%= text_field_tag "share_to" %></div>
+  <div class="postItem1">
+    <div class="postTit" style="margin-left: 10px;float: left;line-height: 30px;">Share to*</div>
+    <div class="form_friends" style="margin-left:120px"><%= text_field_tag "share_to" %></div>
   </div>
   <div class="postItem">
   </div>
@@ -50,51 +50,58 @@
 
   $(function(){
     
-        // Autocomplete initialization
-        var tb = new $.TextboxList('#share_to', {
-            max: 1,
-            unique: true,
-            plugins: {
-                autocomplete: {}
-            }
-        });
-        tb.getContainer().addClass('textboxlist-loading');
-        $.ajax({
-            url: path,
-            dataType: 'json',
-            success: function(r){
-                tb.plugins['autocomplete'].setValues(r);
-                tb.getContainer().removeClass('textboxlist-loading');
-            }
-        });
-        
+    // Autocomplete initialization
+    var tb = new $.TextboxList('#share_to', {
+      max: 1,
+      unique: true,
+      plugins: {
+        autocomplete: {}
+      }
     });
+    tb.getContainer().addClass('textboxlist-loading');
+    $.ajax({
+      url: path,
+      dataType: 'json',
+      success: function(r){
+        tb.plugins['autocomplete'].setValues(r);
+        tb.getContainer().removeClass('textboxlist-loading');
+      }
+    });
+        
+  });
 		
   function Share(){
-		if ($('#as-values-share_to').val() == ""){
-			$("#dialog-message").dialog({
-  modal: true,
-  buttons: {
-  Ok: function(){
-  $("#dialog-message").dialog('close');
+    if ($('#as-values-share_to').val() == ""){
+      $("#dialog-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $("#dialog-message").dialog('close');
+          }
+        }
+      });
+    }else{
+      $('#recipient').val($('#as-values-share_to').val());
+      $('#form_post').submit();
+    }
   }
-  }
-  });
-		}else{
-			$('#recipient').val($('#as-values-share_to').val());
-    	$('#form_post').submit();
-		}
-  }
-	$().ready(function() {
-  $("#form_post").validate({
-						meta: "validate"
-  });
+  $().ready(function() {
+    $("#form_post").validate({
+      meta: "validate"
+    });
   });
   $('.postInppSH span').each(function(){
-  var $this = $(this);
-  if($this.width() > $this.parent().width()){
-  $this.parent().find('.postInpSH').show();
-  }
+    var $this = $(this);
+    if($this.width() > $this.parent().width()){
+      $this.parent().find('.postInpSH').show();
+    }
   });
+
+  $(document).ready(function(){   
+    $('#TB_window .textboxlist').css('width','362px');
+    $('#TB_window .textboxlist-bits').css('width','352px');
+    $('#TB_window .textboxlist-autocomplete').css('width','362px');
+  });
+
 
 </script>

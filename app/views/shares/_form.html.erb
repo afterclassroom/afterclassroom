@@ -1,9 +1,9 @@
 <%= form_for([current_user, @share], :html => {:multipart => true, :id => "form_post"}) do |f| %>
   <%= hidden_field_tag "recipient" %>
-	<%= display_flash_messages_with_raw %>
+  <%= display_flash_messages_with_raw %>
   <div class="postItem1" style="margin-top:10px">
     <div class="postTit" style="margin-left: 10px;float: left">Share to*</div>
-     <div class="form_friends" style="margin-left:120px"><%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %></div>
+    <div class="form_friends" style="margin-left:120px"><%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %></div>
   </div>
   <div class="postTitt">Add File*</div>
   <div class="postItemA">
@@ -16,12 +16,12 @@
       </div>
     </div>
   </div>
-	<div class="postItem" id="only_img">
-  <div class="postTit">&nbsp;</div>
-  <div class="postInp">
-    File size limit <%= number_to_human_size FILE_SIZE_SHARE %>.
+  <div class="postItem" id="only_img">
+    <div class="postTit">&nbsp;</div>
+    <div class="postInp">
+      File size limit <%= number_to_human_size FILE_SIZE_SHARE %>.
+    </div>
   </div>
-</div>
   <div class="postItem">
     <div class="postTit">Title*</div>
     <div class="postInp"><%= f.text_field :title, :class => '{validate:{required:true}}', :style => "width:360px;" %></div>
@@ -36,18 +36,18 @@
 <% end %>
 <!--Alert-->
 <div id="dialog-message" title="Alert" style="display:none;">
-    <p>
-        Please enter at least one recipient.
-    </p>
+  <p>
+    Please enter at least one recipient.
+  </p>
 </div>
 <!--Alert-->
 <style>
-	.postInp ul{
-		width:358px;
-	}
-	#fakeinputfile #fakefilepc {
-		margin-top:-1px;
-	}
+  .postInp ul{
+    width:358px;
+  }
+  #fakeinputfile #fakefilepc {
+    margin-top:-1px;
+  }
 </style>
 
 <script type="text/javascript">
@@ -55,43 +55,43 @@
 
   $(function(){
     
-        // Autocomplete initialization
-        var tb = new $.TextboxList('#share_to', {
-            unique: true,
-            plugins: {
-                autocomplete: {}
-            }
-        });
-        tb.getContainer().addClass('textboxlist-loading');
-        $.ajax({
-            url: path,
-            dataType: 'json',
-            success: function(r){
-                tb.plugins['autocomplete'].setValues(r);
-                tb.getContainer().removeClass('textboxlist-loading');
-            }
-        });
-        
+    // Autocomplete initialization
+    var tb = new $.TextboxList('#share_to', {
+      unique: true,
+      plugins: {
+        autocomplete: {}
+      }
     });
+    tb.getContainer().addClass('textboxlist-loading');
+    $.ajax({
+      url: path,
+      dataType: 'json',
+      success: function(r){
+        tb.plugins['autocomplete'].setValues(r);
+        tb.getContainer().removeClass('textboxlist-loading');
+      }
+    });
+        
+  });
 		
   function Share(){
-		if ($('#as-values-share_to').val() == ""){
-			$("#dialog-message").dialog({
-                modal: true,
-                buttons: {
-                    Ok: function(){
-                        $("#dialog-message").dialog('close');
-                    }
-                }
-            });
-		}else{
-			$('#recipient').val($('#as-values-share_to').val());
-    	$('#form_post').submit();
-		}
+    if ($('#as-values-share_to').val() == ""){
+      $("#dialog-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $("#dialog-message").dialog('close');
+          }
+        }
+      });
+    }else{
+      $('#recipient').val($('#as-values-share_to').val());
+      $('#form_post').submit();
+    }
   }
-	$().ready(function() {
-        $("#form_post").validate({
-						meta: "validate"
-        });
+  $().ready(function() {
+    $("#form_post").validate({
+      meta: "validate"
     });
+  });
 </script>

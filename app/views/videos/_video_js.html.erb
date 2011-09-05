@@ -5,9 +5,10 @@
     <source src="<%= get_video_path(@video.video_file.video_attach.url) %>" />
     <!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
     <object id="flash_fallback_1" class="vjs-flash-fallback" width="554" height="416" type="application/x-shockwave-flash" data="/swfs/flowplayer.swf">
-      <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+      <param name="movie" name="wmode" value="transparent" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
       <param name="allowfullscreen" value="true" />
-      <param name="flashvars" value='config={"playlist":[{"url": "<%= get_video_path(@video.video_file.video_attach.url) %>","autoPlay":false,"autoBuffering":true}]}' />
+      <param name="wmode" value="opaque" />
+      <param name="flashvars" wmode="transparent" value='config={"playlist":[{"url": "<%= get_video_path(@video.video_file.video_attach.url) %>","autoPlay":false,"autoBuffering":true}]}' />
     </object>
   </video>
 </div>

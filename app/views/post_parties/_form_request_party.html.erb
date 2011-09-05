@@ -3,15 +3,13 @@
     <h1 class="col300Title">Quick post for Party</h1>
     <div class="col300Cont">
       <%= form_for :post_party, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
-        <div class="postItem" style="padding: 0px;">
-          <div class="reqLa">
-            <label>
+        <div class="reqLa">
+          <label>
             Type
-            </label>
-          </div>
-          <div class="reqTi">
-            <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:257px" }) %>
-          </div>
+          </label>
+        </div>
+        <div class="reqTi">
+          <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:257px" }) %>
         </div>
         <%= fields_for :post do |p| %>
           <%= render :partial => "/shared/form_request_post/title", :locals => {:p => p} %>
@@ -64,7 +62,7 @@
               </div>
             </div>
           </div>
-          <%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_party_address" } %>
+          <%= render :partial => "/shared/auto_addressGmap", :locals => {:id_addres_field => "post_party_address" } %>
           <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
           <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
@@ -89,5 +87,12 @@
     $("#party_type").multiSelect({
       selectAllText: 'Select All'
     });
+    
+    if ( $.browser.msie == true ) {//Fix bug 982
+      $('.multiSelectOptions').find('input').each(function(){
+        $(this).css('width','11px');
+      });
+    }
+
   });
 </script>

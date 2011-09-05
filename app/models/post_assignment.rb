@@ -14,7 +14,7 @@ class PostAssignment < ActiveRecord::Base
   scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :due_date, :conditions => ["post_assignments.due_date > ?", Time.now], :order => "due_date ASC"
-  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_assignments.post_id And favorable_type = ?) > ?", "Post", 10]
+  scope :interesting, :conditions => ["(Select Count(*) From favorites Where favorites.favorable_id = post_assignments.post_id And favorable_type = ?) > ?", "Post", 10], :order => "id DESC"
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_assignments.id < ?", att], :order => "id ASC"} }
   scope :nexts, lambda { |att| {:conditions => ["post_assignments.id > ?", att], :order => "id ASC"} }
@@ -77,5 +77,29 @@ class PostAssignment < ActiveRecord::Base
     post_as = self.random(5).with_school(school)
     post_as.select {|p| posts << p.post}
     posts
+  end
+  
+  def self.recent_interesting(school_id)
+    
+    str_school_condition = ""
+    
+    if school_id != nil
+      str_school_condition = "where p.school_id = #{school_id}"
+    end
+    
+    objs = Post.find_by_sql("select pa.id,p.* from posts as p right join (select * from post_assignments) as pa on p.id = pa.post_id
+inner join
+(select a.favorable_id, a.created_at, b.total from favorites as a
+right join (
+select favorable_id,count(favorable_id) as total from favorites
+group by favorable_id
+having count(favorable_id)>11
+) as b
+on a.favorable_id = b.favorable_id
+order by a.favorable_id DESC, a.created_at DESC ) as f
+on p.id = f.favorable_id 
+#{str_school_condition}
+group by f.favorable_id 
+order by f.created_at DESC")
   end
 end

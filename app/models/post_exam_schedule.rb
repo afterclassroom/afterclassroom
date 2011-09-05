@@ -8,7 +8,7 @@ class PostExamSchedule < ActiveRecord::Base
   # Named Scope
   scope :with_limit, :limit => LIMIT
   scope :recent, {:joins => :post, :order => "posts.created_at DESC"}
-  scope :with_type, lambda { |tp| {:conditions => ["post_exam_schedules.type_name = ?", tp]} }
+  scope :with_type, lambda { |tp| {:conditions => ["post_exam_schedules.type_name = ?", tp], :order => "id DESC"} }
   scope :with_school, lambda {|sc| return {} if sc.nil?; {:joins => :post, :conditions => ["school_id = ?", sc], :order => "posts.created_at DESC"}}
   scope :random, lambda { |random| {:order => "RAND()", :limit => random }}
   scope :previous, lambda { |att| {:conditions => ["post_exam_schedules.id < ?", att], :order => "id ASC"} }
