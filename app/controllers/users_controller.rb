@@ -17,6 +17,26 @@ class UsersController < ApplicationController
   end
 
   def list_friend_to_tag
+    #this action support for displaying user suggestion when adding tag at Video/Photos 
+    
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000"
+    puts "000000000000 value"
+    puts "000000000000 value == #{params[:taggable_id]}"
+    
+    
     q = params[:q]
     friends = current_user.user_friends#.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
     arr = []
