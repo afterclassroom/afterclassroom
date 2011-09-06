@@ -34,12 +34,20 @@ class UsersController < ApplicationController
     puts "000000000000"
     puts "000000000000"
     puts "000000000000 value"
-    puts "000000000000 value == #{params[:taggable_id]}"
-    puts "000000000000 value of type == #{params[:taggable_type]}"
+    puts "000000000000 value == #{params[:tagable_id]}"
+    puts "000000000000 value of type == #{params[:tagable_type]}"
     
     
     q = params[:q]
     friends = current_user.user_friends#.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
+    
+    tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:tagable_id],params[:tagable_type]])
+    
+    
+    
+    puts "res == "
+    puts "res == #{tagged_friends.size}"
+    
     arr = []
     friends.each do |f|
       arr << [f.id, f.full_name, nil, "<div class='list_friend_suggest'><img src='#{f.avatar.url(:thumb)}' />#{f.full_name}</div>"]
