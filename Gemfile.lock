@@ -10,6 +10,13 @@ GIT
   specs:
     exception_notification (1.0.0)
 
+GIT
+  remote: git://github.com/thedarkone/rails-dev-boost.git
+  revision: 54ad48fe175a59dee15901ef8ef319030f703750
+  branch: activeadmin-fix
+  specs:
+    rails-dev-boost (0.1.1)
+
 PATH
   remote: vendor/plugins/rubycas-client-rails
   specs:
@@ -324,6 +331,7 @@ DEPENDENCIES
   rabl
   rack
   rails (= 3.0.10)
+  rails-dev-boost!
   rake (>= 0.8.7)
   rest-open-uri
   riddle (>= 1.2.1)
