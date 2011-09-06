@@ -229,8 +229,8 @@ class VideosController < ApplicationController
     puts "=="
     puts "=="
     puts "=="
-    puts "=="
-    puts "=="
+    puts "==++"
+    puts "== share_to = #{params[:share_to]}"
     render :layout => false
   end
   

@@ -1,4 +1,4 @@
-<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :method => :get, :remote => true do %>
+<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :method => :post, :remote => true do %>
   <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
     <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
   </div>
