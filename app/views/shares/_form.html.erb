@@ -75,7 +75,7 @@
   });
 		
   function Share(){
-    if ($('#as-values-share_to').val() == ""){
+    if ($('#share_to').val() == ""){
       $("#dialog-message").dialog({
         modal: true,
         buttons: {
@@ -85,9 +85,8 @@
         }
       });
     }else{
-      $('#recipient').val($('#as-values-share_to').val());
-			alert($('#as-values-share_to').val());
-      //$('#form_post').submit();
+      $('#recipient').val($('#share_to').val());
+      $('#form_post').submit();
     }
   }
   $().ready(function() {
