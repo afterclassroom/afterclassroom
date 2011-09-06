@@ -16,7 +16,7 @@
   </div>
 </div>
 <script type="text/javascript">
-  var path = "<%= list_friend_user_messages_path(current_user) %>";
+  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
 
   $(function(){
     
@@ -43,13 +43,8 @@
   $(document).ready(function(){
     $('.textboxlist').width(440);
     
-    $('#share_to').change(function(){
-      alert('a == '+$(this).val());
-    });
-    
     $('#send_btn').click(function(){
-      alert('va == '+$('#share_to').val());
-      //$('form#form_tag_user').submit();
+      $('form#form_tag_user').submit();
     });
     
   })
