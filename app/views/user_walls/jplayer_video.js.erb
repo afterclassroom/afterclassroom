@@ -9,6 +9,6 @@
   so_<%= @wall.id %>.addVariable('file','<%= @link %>');
   so_<%= @wall.id %>.write('player_<%= @wall.id %>');
 <% else %>
-  $("#wall_attach_<%= @wall.id %>").toggle("slow");
+  $("#wall_attach_<%= @wall.id %>").hide("slow");
   $("#show_jplayer_<%= @wall.id %>").html("<%= escape_javascript( render :partial => "user_walls/youtube_embed" ) %>");
 <% end %>
