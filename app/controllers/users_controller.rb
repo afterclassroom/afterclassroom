@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     puts "000000000000"
     puts "000000000000 value"
     puts "000000000000 value == #{params[:taggable_id]}"
+    puts "000000000000 value of type == #{params[:taggable_type]}"
     
     
     q = params[:q]
