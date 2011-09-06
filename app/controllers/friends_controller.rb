@@ -27,7 +27,10 @@ class FriendsController < ApplicationController
   end
   
   def find
-    @mail_account = MailAccount.new(nil, nil, "gmail")
+		type = "gmail"
+		type = params[:mail_type] if params[:mail_type]
+		login = params[:login] if params[:login]
+    @mail_account = MailAccount.new(login, nil, type)
     user_id_suggestions = session[:user_id_suggestions]
     if user_id_suggestions.nil?
       user_id_suggestions = get_user_id_suggestions(@user)
@@ -59,7 +62,7 @@ class FriendsController < ApplicationController
       flash[:error] = "Account email incorrect."
       error oops
     end
-    redirect_to find_user_friends_path(@user)
+    redirect_to find_user_friends_path(@user, :mail_type => mail_type, :login => login)
   end
   
   def recently_added
