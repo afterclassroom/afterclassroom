@@ -1,8 +1,51 @@
+<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => true do %>
+  <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
+    <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
+  </div>
+  <div class="submit" style="float: right; margin-top: -25px; margin-right: 100px;" id="send_btn"><a>Send</a></div>
+<% end %>
+
+
 <div class="stoDbtm">
   <div class="AsDContBtm">
     <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
     <span class="btmShare"><%= addthis_bookmark_button { raw("<span>Share</span>") } %></span>
     <span class="btmFav" id="item_favorite_<%= @video.id %>"><%= show_favorite_in_detail("Video", @video) %></span>
+    <span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Tag Friend</a></span>
     <span class="btmAbuse"><%= show_report_abuse(@video) %></span>
   </div>
 </div>
+<script type="text/javascript">
+  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
+
+  $(function(){
+    
+    // Autocomplete initialization
+    var tb = new $.TextboxList('#share_to', {
+      unique: true,
+      plugins: {
+        autocomplete: {
+          onlyFromValues: true
+        }
+      }
+    });
+    tb.getContainer().addClass('textboxlist-loading');
+    $.ajax({
+      url: path,
+      dataType: 'json',
+      success: function(r){
+        tb.plugins['autocomplete'].setValues(r);
+        tb.getContainer().removeClass('textboxlist-loading');
+      }
+    });
+        
+  });  
+  $(document).ready(function(){
+    $('.textboxlist').width(440);
+    
+    $('#send_btn').click(function(){
+      $('form#form_tag_user').submit();
+    });
+    
+  })
+</script>
