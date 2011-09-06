@@ -7,7 +7,7 @@ class VideosController < ApplicationController
   before_filter :cas_user
   #before_filter :login_required
   before_filter :require_current_user,
-                :only => [:edit, :update]
+    :only => [:edit, :update]
   # GET /videos
   # GET /videos.xml
   def index
@@ -180,6 +180,71 @@ class VideosController < ApplicationController
       end
     end
     redirect_to(update_video_user_videos_url(current_user))
+  end
+  
+  def add_tag
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "==++"
+    puts "== share_to = #{params[:share_to]}"
+    
+    share_to = params[:share_to]
+    user_ids = share_to.split(",")
+    if user_ids.size > 0 
+      user_ids.each do |i|
+        u = User.find(i)
+        if u
+          puts "username = #{u.name}"
+        end
+      end
+    end
+    
+    
+    render :layout => false
   end
   
   protected

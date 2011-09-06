@@ -113,6 +113,7 @@ Afterclassroom::Application.routes.draw do
     resources :videos do
       collection do
         get :friend_p, :my_p, :create_form, :delete_videos, :update_video
+        post :add_tag
       end
     end
     
