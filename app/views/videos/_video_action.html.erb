@@ -43,13 +43,8 @@
   $(document).ready(function(){
     $('.textboxlist').width(440);
     
-    $('#share_to').change(function(){
-      alert('a == '+$(this).val());
-    });
-    
     $('#send_btn').click(function(){
-      alert('va == '+$('#share_to').val());
-      //$('form#form_tag_user').submit();
+      $('form#form_tag_user').submit();
     });
     
   })
