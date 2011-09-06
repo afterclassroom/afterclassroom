@@ -1,4 +1,4 @@
-<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :method => :post, :remote => true do %>
+<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => true do %>
   <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
     <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
   </div>
@@ -11,7 +11,7 @@
     <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
     <span class="btmShare"><%= addthis_bookmark_button { raw("<span>Share</span>") } %></span>
     <span class="btmFav" id="item_favorite_<%= @video.id %>"><%= show_favorite_in_detail("Video", @video) %></span>
-    <span class="btmComment"><a href="javascript:;" onclick="$('#form_tag').toggle('slow');">Tag Friend</a></span>
+    <span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Tag Friend</a></span>
     <span class="btmAbuse"><%= show_report_abuse(@video) %></span>
   </div>
 </div>
