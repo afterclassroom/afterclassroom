@@ -1,3 +1,4 @@
+hello world === <%= list_friend_to_tag_user_path(current_user) %>
 <% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => true do %>
   <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
     <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
@@ -16,7 +17,7 @@
   </div>
 </div>
 <script type="text/javascript">
-  var path = "<%= list_friend_user_messages_path(current_user) %>";
+  var path = "<%= list_friend_to_tag_user_path(current_user) %>";
 
   $(function(){
     

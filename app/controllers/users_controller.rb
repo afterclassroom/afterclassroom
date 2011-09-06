@@ -15,6 +15,18 @@ class UsersController < ApplicationController
   def index
     redirect_to root_url
   end
+
+  def list_friend_to_tag
+    q = params[:q]
+    friends = current_user.user_friends#.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
+    arr = []
+    friends.each do |f|
+      arr << [f.id, f.full_name, nil, "<div class='list_friend_suggest'><img src='#{f.avatar.url(:thumb)}' />#{f.full_name}</div>"]
+    end
+    respond_to do |format|
+      format.js { render :json => arr.to_json()}
+    end
+  end
   
   def new
     if logged_in?
@@ -313,4 +325,5 @@ class UsersController < ApplicationController
       @school = @schools.first
     end
   end
+  
 end
