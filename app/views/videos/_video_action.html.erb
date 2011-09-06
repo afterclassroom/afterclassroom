@@ -24,7 +24,9 @@
     var tb = new $.TextboxList('#share_to', {
       unique: true,
       plugins: {
-        autocomplete: {}
+        autocomplete: {
+          onlyFromValues: true
+        }
       }
     });
     tb.getContainer().addClass('textboxlist-loading');
@@ -41,8 +43,13 @@
   $(document).ready(function(){
     $('.textboxlist').width(440);
     
+    $('#share_to').change(function(){
+      alert('a == '+$(this).val());
+    });
+    
     $('#send_btn').click(function(){
-      $('form#form_tag_user').submit();
+      alert('va == '+$('#share_to').val());
+      //$('form#form_tag_user').submit();
     });
     
   })
