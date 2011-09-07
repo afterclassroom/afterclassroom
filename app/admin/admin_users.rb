@@ -10,10 +10,9 @@ ActiveAdmin.register AdminUser do
 		default_actions
   end
 	form do |f|
-		f.inputs "Details" do
-			f.input :email
-			f.input :encrypted_password
-			f.buttons
-		end
-	end	
+    f.inputs "Admin Details" do
+      f.input :email
+    end
+    f.buttons
+  end
 end
