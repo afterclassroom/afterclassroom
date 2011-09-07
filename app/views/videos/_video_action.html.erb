@@ -1,20 +1,10 @@
 <%= render :partial => "form_add_tag" %>
 
-<% if  @video.user == current_user %>
+<% if  @video.user == current_user && @verify_users.size > 0 %>
 
-<div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
-  
-  <% @verify_users.each do |user| %>
-    <%= render :partial => "item_user", :locals => {:user => user} %>
-  <% end %>
-</div>
-  <div class="stoDbtm">
-    <div class="AsDContBtm" style="float:right; margin-right: 39px;">
-      <span class="btmComment"><a href="javascript:;" onclick="">Accept</a></span>
-      <span class="btmComment"><a href="javascript:;" onclick="">Refuse</a></span>
-    </div>
-  </div>
-<% end %>
+  <%= render :partial => "form_decision" %>
+
+<% end %><!-- end if -->
 
 
 
@@ -28,7 +18,19 @@
   </div>
 </div>
 <script type="text/javascript">
+  var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
+  
+  $(document).ready(function(){
+    $('#accept_btn').click(function(){
+      $('#decision_id').val('ACCEPT');
+      $("form#form_tag_decision").submit();
+    });
+    $('#refuse_btn').click(function(){
+      $('#decision_id').val('REFUSE');
+      $("form#form_tag_decision").submit();
+    });
+  });
 
   $(function(){
     
