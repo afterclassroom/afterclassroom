@@ -1,6 +1,11 @@
 <div class="col300 slStory">
   <div class="col300in">
-    <h1 class="col300Title">On this video</h1>
+    <h1 class="col300Title">
+      On this video
+      <% if current_user == @video.user %>
+        <input type="button" value="Manage Tagged Users" id="manage_btn" style="margin-left: 70px;"/>
+      <% end %>
+    </h1> 
     <div class="onThis">
       <div class="navigation-container">
         <div id="thumbs" class="navigation">
@@ -10,7 +15,7 @@
                 <li>
                   <div class="onThisL">
                     <div class="AsDcomImg"><%= show_image_user_post(u) %></div>
-                    <input style="margin-left: 1px;" type="checkbox" value="<%= u.id %>" name="checkbox[]" id="checkbox_<%= u.id %>"/>
+                    <input style="margin-left: 1px; display: none;" type="checkbox" value="<%= u.id %>" name="tag_checkbox[]" id="tagbox_<%= u.id %>"/>
                   </div>
                 </li>
               <% end %>
