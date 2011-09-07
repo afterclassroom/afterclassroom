@@ -16,40 +16,17 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
-  def list_friend_to_tag
-    #this action support for displaying user suggestion when adding tag at Video/Photos 
-    
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000 value"
-    puts "000000000000 value == #{params[:tagable_id]}"
-    puts "000000000000 value of type == #{params[:tagable_type]}"
-    
-    
+  def list_friend_to_tag#this action support for displaying user suggestion when adding tag at Video/Photos 
     q = params[:q]
-    friends = current_user.user_friends#.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
+    friends = current_user.user_friends
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:tagable_id],params[:tagable_type]])
     
-    
-    
-    puts "res == "
-    puts "res == #{tagged_friends.size}"
+    tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
+    filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
     
     arr = []
-    friends.each do |f|
+    filtered_friends.each do |f|
       arr << [f.id, f.full_name, nil, "<div class='list_friend_suggest'><img src='#{f.avatar.url(:thumb)}' />#{f.full_name}</div>"]
     end
     respond_to do |format|

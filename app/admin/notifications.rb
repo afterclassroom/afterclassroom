@@ -1,5 +1,4 @@
 ActiveAdmin.register Notification do
-  menu :parent => "Notifications"
   filter :name
   filter :notify_type, :as => :select, :collection => ["AfterClassroom", "Share a Story", "Photos", "Music", "My Lounge Comments"]
 	index do
