@@ -749,7 +749,7 @@ module ApplicationHelper
           when "Story"
           link = user_story_path(obj.user, obj)
           if display_image(obj) != ""
-            img_link = link_to display_image(obj, {:style => "width:92px;height:68px"}), link, {:target => "_blank"}
+            img_link = link_to display_image(obj, {:style => "width:92px;height:68px"}), link, :target => "_blank"
             image = get_image_wall(wall.id, img_link)
           end
           title = obj.title
