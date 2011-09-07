@@ -17,14 +17,16 @@ ActiveAdmin.register User do
   end
   
   form do |f|
-      f.inputs  do
-        f.input :school_id
- #       f.input :published_at, :label => "Publish Post At"
- #       f.input :category
-  #    end
- #     f.inputs "Content" do
- #       f.input :body
-      end
- #     f.buttons
+    f.inputs  do
+      f.input :school_id, :as => :select, :collection => School.all       
+      f.input :login
+      f.input :name
+      f.input :email
+      f.input :crypted_password
+      f.input :state
+      f.input :time_zone
     end
+
+    f.buttons :commit
+  end
 end
