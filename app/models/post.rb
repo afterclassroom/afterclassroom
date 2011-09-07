@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
     :bucket => 'afterclassroom_post',
     :styles => Proc.new { |a| a.instance.file_styles }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
-  
+
   validates_attachment_size :attach, :less_than => FILE_SIZE_POST
   
   # Comments
