@@ -221,6 +221,10 @@ class VideosController < ApplicationController
     redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
   end
   
+  def tag_decision
+    redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
+  end
+  
   protected
   
   def require_current_user
