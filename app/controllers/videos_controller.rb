@@ -197,13 +197,33 @@ class VideosController < ApplicationController
       user_ids.each do |i|
         u = User.find(i)
         if u
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
+          puts "name"
           puts "username = #{u.name}"
         end
       end
     end
     
     
-    render :layout => false
+    redirect_to :controller=>'videos', :action => 'show', :params => params.merge({ :id => params[:video_id] })
   end
   
   protected
