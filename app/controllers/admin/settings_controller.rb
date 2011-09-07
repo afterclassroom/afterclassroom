@@ -1,4 +1,3 @@
-# © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class Admin::SettingsController < ApplicationController
   require_role :admin
   layout 'admin'
