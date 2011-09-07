@@ -190,7 +190,7 @@ Afterclassroom::Application.routes.draw do
   # Posts
   resources :posts do
     collection do
-      get :report_abuse, :create_report_abuse, :report_abuse_video, :create_report_abuse_video, :delete_comment, :download, :view_all_comments, :report_abuse_vid, :comments_list
+      get :report_abuse, :create_report_abuse, :report_abuse_video, :create_report_abuse_video, :delete_comment, :download, :view_all_comments, :report_abuse_vid, :comments_list, :remove_attach_file
       post :create_comment, :create_comment_on_list
     end
   end

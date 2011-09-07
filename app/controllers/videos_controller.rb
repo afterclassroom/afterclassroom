@@ -86,12 +86,19 @@ class VideosController < ApplicationController
   def show
     @video = Video.find(params[:id])
     @user = @video.user
+    
     if check_private_permission(@user, "my_videos")
       update_view_count(@video)
       as_next = @user.videos.nexts(@video.id).last
       as_prev = @user.videos.previous(@video.id).first
       @next = as_next if as_next
       @prev = as_prev if as_prev
+      
+      #list of user has been tagged, and been verified
+      @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Video",true ] )
+      @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Video",false ] )
+
+      
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @video }
@@ -183,54 +190,6 @@ class VideosController < ApplicationController
   end
   
   def add_tag
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "==++"
-    puts "== share_to = #{params[:share_to]}"
     
     share_to = params[:share_to]
     user_ids = share_to.split(",")

@@ -1,9 +1,21 @@
-<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => true do %>
-  <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
-    <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
+<%= render :partial => "form_add_tag" %>
+
+<% if  @video.user == current_user %>
+
+<div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
+  
+  <% @verify_users.each do |user| %>
+    <%= render :partial => "item_user", :locals => {:user => user} %>
+  <% end %>
+</div>
+  <div class="stoDbtm">
+    <div class="AsDContBtm" style="float:right; margin-right: 39px;">
+      <span class="btmComment"><a href="javascript:;" onclick="">Accept</a></span>
+      <span class="btmComment"><a href="javascript:;" onclick="">Refuse</a></span>
+    </div>
   </div>
-  <div class="submit" style="float: right; margin-top: -25px; margin-right: 100px;" id="send_btn"><a>Send</a></div>
 <% end %>
+
 
 
 <div class="stoDbtm">

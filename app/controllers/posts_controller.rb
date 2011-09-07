@@ -93,6 +93,17 @@ class PostsController < ApplicationController
       @str = 'Error.'
     end
   end
+
+	def remove_attach_file
+		post_id = params[:post_id]
+		post = Post.find(post_id)
+	  if post and post.user == current_user
+			post.attach.queued_for_write.clear if post.attach
+			post.attach = nil
+			post.save
+		end
+		render :layout => false
+	end
   
   def download
   end

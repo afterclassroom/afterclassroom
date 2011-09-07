@@ -1,0 +1,37 @@
+<% if @post.attach_file_name %>
+<div class="postItem" id="post_attach_file">
+    <div class="postTit">Attach file</div>
+    <div class="postInp"><%= @post.attach_file_name %> <%= link_to_function "Remove attach", "RemoveAttachFile('#{@post.id}');" %></div>
+</div>
+<% end %>
+<!--Alert-->
+<div id="dialog-delete-message" title="Confirm delete" style="display:none;">
+  <p>
+    Are you sure?
+  </p>
+</div>
+<!--Alert-->
+<script>
+	var path = "<%= remove_attach_file_posts_url() %>";
+	function RemoveAttachFile(id){
+    $("#dialog-delete-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function() {
+            $.ajax({
+            url: path,
+            type: 'GET',
+            cache: false,
+            dataType: 'script',
+            data: ({
+                post_id: id
+            })
+        });
+          },
+          Cancel: function() {
+            $(this).dialog('close');
+          }
+        }
+      });
+  }
+</script>

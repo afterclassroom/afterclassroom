@@ -10,6 +10,7 @@
     <div class="postTit">Due date</div>
     <div class="postInp"><%= text_field_tag "due_date_p", @post_project.due_date != nil ? @post_project.due_date.getutc.strftime("%m/%d/%Y") : nil, :id => "due_date", :class => 'date', :style => "width:100px" %></div>
   </div>
+	<%= render :partial => "/shared/form_post/attach_file" %>
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
   <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
