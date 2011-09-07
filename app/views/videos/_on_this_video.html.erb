@@ -33,6 +33,15 @@
   </div>
 </div>
 <script type="text/javascript">
+  
+  $(document).ready(function(){
+    $('#manage_btn').click(function(){
+      $('input[id*=tagbox_]').each(function() {
+        $(this).toggle('slow');
+      });
+    });
+  });
+  
   jQuery(document).ready(function($) {
     $('div.navigation').css({'width' : '300px', 'float' : 'left'});
     var onMouseOutOpacity = 3.67;
