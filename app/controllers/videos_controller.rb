@@ -242,7 +242,7 @@ class VideosController < ApplicationController
     puts "cbox val = "
     puts "cbox val = #{params[:checkbox]}"
     if params[:decision_id] == "ACCEPT"
-      TagInfo.verify(params[:decision_id],params[:user_id],params[:video_id])
+      TagInfo.verify(params[:decision_id],params[:checkbox],params[:video_id])
     else
       puts "refuse"
     end
