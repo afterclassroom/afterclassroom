@@ -16,67 +16,17 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
-  def list_friend_to_tag
-    #this action support for displaying user suggestion when adding tag at Video/Photos 
-    
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000"
-    puts "000000000000 value"
-    puts "000000000000 value-tagable_id (id of the Photo/Video to be tagged) == #{params[:tagable_id]}"
-    puts "000000000000 value of type-tagable_type == #{params[:tagable_type]}"
-    
-    
+  def list_friend_to_tag#this action support for displaying user suggestion when adding tag at Video/Photos 
     q = params[:q]
-    friends = current_user.user_friends#.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
-    
-    puts "ORIGINAL FRIEND SIZE"
-    puts "ORIGINAL FRIEND SIZE == #{friends.size}"
+    friends = current_user.user_friends
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:tagable_id],params[:tagable_type]])
     
-    
-    # next step is tobe filter all the taggedfriends
-    
-    
-    
-    
-    puts "res == "
-    puts "res == #{tagged_friends.size}"
-    tagged_friends.each do |tagged_user|
-      puts "user_id == #{tagged_user.tagable_user}"
-    end
-    
-    arr_p = []
-    tagged_user_ids = tagged_friends.map(&:tagable_user)
-    myobj = friends.select { |c| !tagged_user_ids.include?(c.id) }
-    
-    puts "friend size"
-    puts "friend size == #{myobj.size}"
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
+    filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
     
     arr = []
-    myobj.each do |f|
+    filtered_friends.each do |f|
       arr << [f.id, f.full_name, nil, "<div class='list_friend_suggest'><img src='#{f.avatar.url(:thumb)}' />#{f.full_name}</div>"]
     end
     respond_to do |format|
