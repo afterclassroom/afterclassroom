@@ -1,4 +1,3 @@
-hello ===== <%= @tagged_users.size %>
 <div class="col300 slStory">
   <div class="col300in">
     <h1 class="col300Title">On this video</h1>
@@ -6,11 +5,11 @@ hello ===== <%= @tagged_users.size %>
       <div class="navigation-container">
         <div id="thumbs" class="navigation">
           <ul class="thumbs noscript">
-            <% if @video.favoriting_users.size > 0 %>
-              <% @video.favoriting_users.each do |u| %>
+            <% if @tagged_users.size > 0 %>
+              <% @tagged_users.each do |u| %>
                 <li>
                   <div class="onThisL">
-                    <div class="AsDcomImg"><%= show_image_user_post(@video.user) %></div>
+                    <div class="AsDcomImg"><%= show_image_user_post(u) %></div>
                   </div>
                 </li>
               <% end %>
