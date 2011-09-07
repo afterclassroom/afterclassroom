@@ -1,10 +1,11 @@
 <%= render :partial => "form_add_tag" %>
 
 <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
-  <% 16.times do %>
+  <% 14.times do %>
   <%= render :partial => "item_user" %>
   <% end %>
-  
+  <input style="margin: 8px; float: right; margin-right: 20px; padding: 2px;" type="button" value="Accept" name="button" id=""/>
+  <input style="margin: 8px; float: right; margin-right: 20px; padding: 2px;" type="button" value="Refuse" name="button" id=""/>
 </div>
 
 
