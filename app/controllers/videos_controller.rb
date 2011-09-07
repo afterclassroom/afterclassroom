@@ -222,29 +222,10 @@ class VideosController < ApplicationController
   end
   
   def tag_decision
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val"
-    puts "decide val decision_id = #{params[:decision_id]}"
-    puts "cbox val = "
-    puts "cbox val = #{params[:checkbox]}"
     if params[:decision_id] == "ACCEPT"
-      TagInfo.verify(params[:decision_id],params[:checkbox],params[:video_id])
+      TagInfo.verify(params[:checkbox],params[:video_id])
     else
-      puts "refuse"
+      TagInfo.refuse(params[:checkbox],params[:video_id])
     end
     redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
   end
