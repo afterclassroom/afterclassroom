@@ -1,18 +1,19 @@
 <%= render :partial => "form_add_tag" %>
 
+<% if  @video.user == current_user %>
+
 <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
   <% 14.times do %>
     <%= render :partial => "item_user" %>
   <% end %>
-  <
 </div>
-
-<div class="stoDbtm">
-  <div class="AsDContBtm" style="float:right; margin-right: 39px;">
-    <span class="btmComment"><a href="javascript:;" onclick="">Accept</a></span>
-    <span class="btmComment"><a href="javascript:;" onclick="">Refuse</a></span>
+  <div class="stoDbtm">
+    <div class="AsDContBtm" style="float:right; margin-right: 39px;">
+      <span class="btmComment"><a href="javascript:;" onclick="">Accept</a></span>
+      <span class="btmComment"><a href="javascript:;" onclick="">Refuse</a></span>
+    </div>
   </div>
-</div>
+<% end %>
 
 
 
