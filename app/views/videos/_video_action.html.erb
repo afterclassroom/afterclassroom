@@ -2,19 +2,23 @@
 
 <% if  @video.user == current_user && @verify_users.size > 0 %>
 
-<div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
-  
-  <% @verify_users.each do |user| %>
-    <%= render :partial => "item_user", :locals => {:user => user} %>
-  <% end %>
-</div>
-<div class="stoDbtm" style="display:none;" id="btn_pannel">
-    <div class="AsDContBtm" style="float:right; margin-right: 39px;">
-      <span class="btmComment"><a href="javascript:;" onclick="">Accept</a></span>
-      <span class="btmComment"><a href="javascript:;" onclick="">Refuse</a></span>
+  <% form_tag url_for(:controller => "videos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
+    <%= hidden_field_tag "decision_id" %>
+    <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
+      <% @verify_users.each do |user| %>
+        <%= render :partial => "item_user", :locals => {:user => user} %>
+      <% end %>
     </div>
-  </div>
-<% end %>
+    <div class="stoDbtm" style="display:none;" id="btn_pannel">
+      <div class="AsDContBtm" style="float:right; margin-right: 39px;">
+        <span class="btmComment"><a href="javascript:;" onclick="">Accept</a></span>
+        <span class="btmComment"><a href="javascript:;" onclick="">Refuse</a></span>
+      </div>
+    </div>
+
+  <% end %><!-- end form -->
+
+<% end %><!-- end if -->
 
 
 
