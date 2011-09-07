@@ -98,7 +98,7 @@ module ApplicationHelper
     if post.attach_content_type =~ /^image.*/
       path = post.attach.url(:thumb)
     else
-      file_ext = File.extname(file_path).delete(".") if file_path
+      file_ext = File.extname(file_path).delete(".").downcase if file_path
       path = "/images/icons/file_type/#{file_ext}.png"
     end
     
