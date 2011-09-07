@@ -208,6 +208,9 @@ class VideosController < ApplicationController
           taginfo.verify = false
           if current_user == video.user
             taginfo.verify = true
+            flash[:notice] = "Your friend(s) has been tagged."
+          else
+            flash[:notice] = "Your friend(s) has been tagged. The approval will be sent to your email."
           end
           taginfo.save
         end
