@@ -34,22 +34,49 @@ class UsersController < ApplicationController
     puts "000000000000"
     puts "000000000000"
     puts "000000000000 value"
-    puts "000000000000 value == #{params[:tagable_id]}"
-    puts "000000000000 value of type == #{params[:tagable_type]}"
+    puts "000000000000 value-tagable_id (id of the Photo/Video to be tagged) == #{params[:tagable_id]}"
+    puts "000000000000 value of type-tagable_type == #{params[:tagable_type]}"
     
     
     q = params[:q]
     friends = current_user.user_friends#.find(:all, :conditions => ["name LIKE ?", "%" + q + "%" ])
     
+    puts "ORIGINAL FRIEND SIZE"
+    puts "ORIGINAL FRIEND SIZE == #{friends.size}"
+    
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:tagable_id],params[:tagable_type]])
+    
+    
+    # next step is tobe filter all the taggedfriends
+    
     
     
     
     puts "res == "
     puts "res == #{tagged_friends.size}"
+    tagged_friends.each do |tagged_user|
+      puts "user_id == #{tagged_user.tagable_user}"
+    end
+    
+    arr_p = []
+    tagged_user_ids = tagged_friends.map(&:tagable_user)
+    myobj = friends.select { |c| !tagged_user_ids.include?(c.id) }
+    
+    puts "friend size"
+    puts "friend size == #{myobj.size}"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     arr = []
-    friends.each do |f|
+    myobj.each do |f|
       arr << [f.id, f.full_name, nil, "<div class='list_friend_suggest'><img src='#{f.avatar.url(:thumb)}' />#{f.full_name}</div>"]
     end
     respond_to do |format|
