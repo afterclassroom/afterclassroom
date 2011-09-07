@@ -191,39 +191,31 @@ class VideosController < ApplicationController
   
   def add_tag
     
+    video = Video.find(params[:video_id])
+    
     share_to = params[:share_to]
     user_ids = share_to.split(",")
     if user_ids.size > 0 
       user_ids.each do |i|
         u = User.find(i)
         if u
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "name"
-          puts "username = #{u.name}"
+          #adding selected user into TagInfo
+          taginfo = TagInfo.new()
+          taginfo.tag_creator_id = current_user.id
+          taginfo.tagable_id = params[:video_id]
+          taginfo.tagable_user = u.id
+          taginfo.tagable_type = "Video"
+          taginfo.verify = false
+          if current_user == video.user
+            taginfo.verify = true
+          end
+          taginfo.save
         end
       end
     end
     
     
-    redirect_to :controller=>'videos', :action => 'show', :params => params.merge({ :id => params[:video_id] })
+    redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
   end
   
   protected
