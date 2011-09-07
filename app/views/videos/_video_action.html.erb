@@ -19,7 +19,6 @@
 </div>
 <script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
-  var overallUserSelected = "";
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
   
   $(document).ready(function(){
