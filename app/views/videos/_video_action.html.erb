@@ -1,15 +1,8 @@
-<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => true do %>
-  <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
-    <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
-  </div>
-  <div class="submit" style="float: right; margin-top: -25px; margin-right: 100px;" id="send_btn"><a>Send</a></div>
-<% end %>
+<%= render :partial => "form_add_tag" %>
 
 <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
   <% 16.times do %>
-  <div class="onThisL" style="margin-bottom: 8px;margin-left: 14px;margin-right: -1px;margin-top: 8px;">
-    <div class="AsDcomImg"><a href="/users/11/show_lounge"><div><img title="Mary" src="/system/avatars/11/thumb/Firefox_wallpaper.png?1315365668" class="vtip avatar_11" alt="Firefox_wallpaper"></div></a></div>
-  </div>
+  <%= render :partial => "item_user" %>
   <% end %>
   
 </div>
