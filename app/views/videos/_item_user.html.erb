@@ -1,6 +1,6 @@
 <div class="onThisL" style="margin-bottom: 8px;margin-left: 14px;margin-right: -1px;margin-top: 8px;">
   <div class="AsDcomImg"><%= show_image_user_post(user) %></div>
-  <input style="margin-left: 1px;" type="checkbox" value="checkbox" name="checkbox" id="checkbox_<%= user.id %>"/>
+  <input style="margin-left: 1px;" type="checkbox" value="<%= user.id %>" name="checkbox[]" id="checkbox_<%= user.id %>"/>
 </div>
 <script type="text/javascript">
   $(document).ready(function(){

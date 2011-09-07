@@ -2,22 +2,7 @@
 
 <% if  @video.user == current_user && @verify_users.size > 0 %>
 
-  <% form_tag url_for(:controller => "videos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
-    <%= hidden_field_tag "decision_id" %>
-    <%= hidden_field_tag "video_id", @video.id %>
-    <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
-      <% @verify_users.each do |user| %>
-        <%= render :partial => "item_user", :locals => {:user => user} %>
-      <% end %>
-    </div>
-    <div class="stoDbtm" style="display:none;" id="btn_pannel">
-      <div class="AsDContBtm" style="float:right; margin-right: 39px;">
-        <span class="btmComment"><a href="javascript:;" id="accept_btn">Accept</a></span>
-        <span class="btmComment"><a href="javascript:;" id="refuse_btn">Refuse</a></span>
-      </div>
-    </div>
-
-  <% end %><!-- end form -->
+  <%= render :partial => "form_decision" %>
 
 <% end %><!-- end if -->
 
@@ -34,6 +19,7 @@
 </div>
 <script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
+  var overallUserSelected = "";
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
   
   $(document).ready(function(){
