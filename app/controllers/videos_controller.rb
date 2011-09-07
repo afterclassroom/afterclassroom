@@ -210,7 +210,7 @@ class VideosController < ApplicationController
             taginfo.verify = true
             flash[:notice] = "Your friend(s) has been tagged."
           else
-            flash[:notice] = "Your friend(s) has been tagged. The approval will be sent to your email."
+            flash[:notice] = "Your request has been sent to author. The approval will be sent to your email."
           end
           taginfo.save
         end

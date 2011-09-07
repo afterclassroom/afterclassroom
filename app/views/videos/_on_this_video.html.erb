@@ -10,6 +10,7 @@
                 <li>
                   <div class="onThisL">
                     <div class="AsDcomImg"><%= show_image_user_post(u) %></div>
+                    <input style="margin-left: 1px;" type="checkbox" value="<%= u.id %>" name="checkbox[]" id="checkbox_<%= u.id %>"/>
                   </div>
                 </li>
               <% end %>
@@ -38,7 +39,7 @@
     });
     var gallery = $('#thumbs').galleriffic({
       delay:                     2500,
-      numThumbs:                 6,
+      numThumbs:                 12,
       preloadAhead:              0,
       enableTopPager:            false,
       enableBottomPager:         false,
