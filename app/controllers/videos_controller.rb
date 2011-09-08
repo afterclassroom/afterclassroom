@@ -235,6 +235,11 @@ class VideosController < ApplicationController
     redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
   end
   
+  def self_untag
+    @video = Video.find(params[:video_id])
+    render :text => "Removed user"
+  end
+  
   protected
   
   def require_current_user
