@@ -59,6 +59,7 @@
         });
     });
 </script>
+<%= render :partial => "/shared/form_post/attach_file" %>
 <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
 <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>
