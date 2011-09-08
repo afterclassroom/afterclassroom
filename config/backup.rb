@@ -37,12 +37,9 @@ Backup::Model.new(:db_backup, 'Database Backup to S3') do
     compression.fast = false
   end
 
-end
-
 	notify_by Mail do |mail|
 		mail.on_success           = true
 		mail.on_failure           = true
-
 		mail.from                 = 'support@afterclassroom.com'
 		mail.to                   = 'dungtqa@gmail.com'
 		mail.address              = 'smtpout.secureserver.net'
@@ -53,4 +50,5 @@ end
 		mail.authentication       = 'plain'
 		mail.enable_starttls_auto = true
 	end
+	
 end

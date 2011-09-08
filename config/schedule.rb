@@ -36,5 +36,5 @@ end
 
 # Backup database every 3 days
 every 3.day, :at => '1:00 am' do 
-  runner "backup perform --trigger db_backup --config_file /var/www/after/current/config/backup.rb --data-path /var/www/after/current/db --log-path /var/www/after/current/log --tmp-path /var/www/after/current/tmp", :environment => :production
+  rake "db:backup"
 end
