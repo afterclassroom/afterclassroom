@@ -4691,7 +4691,7 @@ ul.thumbs {
     float: left;
     margin-left: 20px;
     padding: 0;
-    height:170px;
+    min-height:170px;
 }
 ul.thumbs li {
     float: left;
