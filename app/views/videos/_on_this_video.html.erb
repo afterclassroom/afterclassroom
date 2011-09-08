@@ -6,7 +6,10 @@
         <a href="javascript:;" style="margin-left: 70px; color: #0A81C4;" id="manage_btn">Manage Tagged Users</a>
       <% end %>
       <% if current_user != @video.user %>
-        <%= link_to "UnTag", {:controller => "videos", :action => "self_untag", :video_id => @video.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right;" %>
+        <% tagged_user_ids = @tagged_users.map(&:id) %>
+        <% if tagged_user_ids.include?(current_user.id) == true%>
+          <%= link_to "UnTag", {:controller => "videos", :action => "self_untag", :video_id => @video.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right;" %>
+        <% end %>
       <% end %>
     </h1> 
     <div class="onThis">
@@ -14,16 +17,12 @@
         <div id="thumbs" class="navigation">
           <ul class="thumbs noscript">
             <% if @tagged_users.size > 0 %>
-
-
               <% form_tag url_for(:controller => "videos", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
                 <%= hidden_field_tag "video_id", @video.id %>
                 <% @tagged_users.each do |u| %>
                   <%= render :partial => "item_tagged", :locals => {:u => u} %>
                 <% end %>
-
               <% end %>            
-
             <% else %>
               There is no tagged user.
             <% end %>
