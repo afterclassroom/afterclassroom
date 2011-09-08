@@ -227,8 +227,18 @@ class VideosController < ApplicationController
   end
   
   def tag_decision
+    video = Video.find(params[:video_id])
     if params[:decision_id] == "ACCEPT"
       TagInfo.verify(params[:checkbox],params[:video_id])
+      share_to = params[:checkbox]
+      user_ids = share_to.split(",")
+      puts "share_to == #{share_to}"
+      share_to.each do |i|
+        u = User.find(i)
+        if u
+          QaSendMail.tag_approved(u,video,current_user).deliver
+        end
+      end #end each
     else
       TagInfo.refuse(params[:checkbox],params[:video_id])
     end

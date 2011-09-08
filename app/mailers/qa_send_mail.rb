@@ -44,5 +44,12 @@ class QaSendMail < ActionMailer::Base
     @user = user
     mail :to => @video.user.email, :subject => "New user has been tagged!"
   end
+
+  def tag_approved(user,video,author)
+    @video = video
+    @user = user
+    @author = author
+    mail :to => @user.email, :subject => "#{author.name} has approved you to his video tag list!"
+  end
   
 end
