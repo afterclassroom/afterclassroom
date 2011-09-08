@@ -236,6 +236,8 @@ class VideosController < ApplicationController
   end
   
   def self_untag
+    user_to_remove = ["#{current_user.id}"]
+    TagInfo.refuse(user_to_remove,params[:video_id])
     @video = Video.find(params[:video_id])
   end
   
