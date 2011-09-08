@@ -12,19 +12,14 @@
           <ul class="thumbs noscript">
             <% if @tagged_users.size > 0 %>
               <% @tagged_users.each do |u| %>
-                <li>
-                  <div class="onThisL">
-                    <div class="AsDcomImg"><%= show_image_user_post(u) %></div>
-                    <input style="margin-left: 1px; display: none;" type="checkbox" value="<%= u.id %>" name="tag_checkbox[]" id="tagbox_<%= u.id %>"/>
-                  </div>
-                </li>
+                <%= render :partial => "item_tagged", :locals => {:u => u} %>
               <% end %>
             <% else %>
               There is no tagged user.
             <% end %>
           </ul>
           
-          <a href="" style="padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;" id="">Remove</a>
+          <a id="remove_btn" href="" style="display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;">Remove</a>
           
           <div class="onThisBtm">
             <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
@@ -36,6 +31,8 @@
   </div>
 </div>
 <script type="text/javascript">
+  
+  var noOfRemove = 0;//this variable is used to show/hide Remove button
   
   $(document).ready(function(){
     $('#manage_btn').click(function(){
