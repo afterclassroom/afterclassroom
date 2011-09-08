@@ -4,3 +4,23 @@
     <input style="margin-left: 1px; display: none;" type="checkbox" value="<%= u.id %>" name="tag_checkbox[]" id="tagbox_<%= u.id %>"/>
   </div>
 </li>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var current_ckbox = $('#tagbox_<%= u.id %>');
+    
+    $(current_ckbox).click(function(){
+      if (  $(current_ckbox).is(":checked") == true  ){
+        noOfRemove = noOfRemove + 1;
+      }
+      else{
+        noOfRemove = noOfRemove - 1;
+      }
+      
+      if (noOfRemove <= 0){
+        $('#remove_btn').hide('slow');
+      }else {
+        $('#remove_btn').show('slow');
+      }
+    });
+  });
+</script>

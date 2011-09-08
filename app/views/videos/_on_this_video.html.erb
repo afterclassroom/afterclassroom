@@ -11,16 +11,23 @@
         <div id="thumbs" class="navigation">
           <ul class="thumbs noscript">
             <% if @tagged_users.size > 0 %>
-              <% @tagged_users.each do |u| %>
-                <%= render :partial => "item_tagged", :locals => {:u => u} %>
-              <% end %>
+
+
+              <% form_tag url_for(:controller => "videos", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
+                <%= hidden_field_tag "video_id", @video.id %>
+                <% @tagged_users.each do |u| %>
+                  <%= render :partial => "item_tagged", :locals => {:u => u} %>
+                <% end %>
+
+              <% end %>            
+
             <% else %>
               There is no tagged user.
             <% end %>
           </ul>
-          
-          <a id="remove_btn" href="" style="display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;">Remove</a>
-          
+
+          <a id="remove_btn" href="javascript:;" style="display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;">Remove</a>
+
           <div class="onThisBtm">
             <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
             <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
@@ -40,6 +47,11 @@
         $(this).toggle('slow');
       });
     });
+    
+    $('#remove_btn').click(function(){
+      $('form#form_remove').submit();
+    });
+    
   });
   
   jQuery(document).ready(function($) {
