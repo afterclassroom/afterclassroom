@@ -35,12 +35,14 @@ class QaSendMail < ActionMailer::Base
   def tag_vid_notify(user,video,tag_creator)
     @video = video
     @tag_creator=tag_creator
-    #mail :to => user.email, :subject => "You have been tagged!"
-    mail :to => "datefield@yahoo.com", :subject => "You have been tagged!"
+    mail :to => user.email, :subject => "You have been tagged!"
   end
 
-  def inform_vid_owner(video)
-    mail :to => video.user.email, :subject => "You've got mail from #{current_user.name}"
+  def inform_vid_owner(user,video,tag_creator)
+    @video = video
+    @tag_creator=tag_creator
+    @user = user
+    mail :to => @video.user.email, :subject => "New user has been tagged!"
   end
   
 end

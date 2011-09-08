@@ -214,6 +214,8 @@ class VideosController < ApplicationController
           end
           if taginfo.save
             QaSendMail.tag_vid_notify(u,video, current_user).deliver
+            QaSendMail.inform_vid_owner(u,video, current_user).deliver
+            
           end
           #if save then send mail to each user here, and to video.user
         end
