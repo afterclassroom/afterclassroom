@@ -2,8 +2,11 @@
   <div class="col300in">
     <h1 class="col300Title">
       On this video
-      <% if current_user == @video.user %>
-        <input type="button" value="Manage Tagged Users" id="manage_btn" style="margin-left: 70px;"/>
+      <% if current_user == @video.user && @tagged_users.size > 0 %>
+        <a href="javascript:;" style="margin-left: 70px; color: #0A81C4;" id="manage_btn">Manage Tagged Users</a>
+      <% end %>
+      <% if current_user != @video.user %>
+        <%= link_to "UnTag", {:controller => "videos", :action => "self_untag", :video_id => @video.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right;" %>
       <% end %>
     </h1> 
     <div class="onThis">
@@ -11,18 +14,22 @@
         <div id="thumbs" class="navigation">
           <ul class="thumbs noscript">
             <% if @tagged_users.size > 0 %>
-              <% @tagged_users.each do |u| %>
-                <li>
-                  <div class="onThisL">
-                    <div class="AsDcomImg"><%= show_image_user_post(u) %></div>
-                    <input style="margin-left: 1px; display: none;" type="checkbox" value="<%= u.id %>" name="tag_checkbox[]" id="tagbox_<%= u.id %>"/>
-                  </div>
-                </li>
-              <% end %>
+
+
+              <% form_tag url_for(:controller => "videos", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
+                <%= hidden_field_tag "video_id", @video.id %>
+                <% @tagged_users.each do |u| %>
+                  <%= render :partial => "item_tagged", :locals => {:u => u} %>
+                <% end %>
+
+              <% end %>            
+
             <% else %>
               There is no tagged user.
             <% end %>
           </ul>
+          <a id="remove_btn" href="javascript:;" style="display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;">Remove</a>
+
           <div class="onThisBtm">
             <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
             <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
@@ -34,12 +41,19 @@
 </div>
 <script type="text/javascript">
   
+  var noOfRemove = 0;//this variable is used to show/hide Remove button
+  
   $(document).ready(function(){
     $('#manage_btn').click(function(){
       $('input[id*=tagbox_]').each(function() {
         $(this).toggle('slow');
       });
     });
+    
+    $('#remove_btn').click(function(){
+      $('form#form_remove').submit();
+    });
+    
   });
   
   jQuery(document).ready(function($) {

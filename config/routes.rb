@@ -113,8 +113,8 @@ Afterclassroom::Application.routes.draw do
     # Videos
     resources :videos do
       collection do
-        get :friend_p, :my_p, :create_form, :delete_videos, :update_video
-        post :add_tag, :tag_decision
+        get :friend_p, :my_p, :create_form, :delete_videos, :update_video, :self_untag
+        post :add_tag, :tag_decision, :remove_tagged
       end
     end
     
