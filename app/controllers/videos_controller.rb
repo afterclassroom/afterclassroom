@@ -237,7 +237,6 @@ class VideosController < ApplicationController
   
   def self_untag
     @video = Video.find(params[:video_id])
-    render :text => "Removed user"
   end
   
   protected
