@@ -8,6 +8,8 @@
       <% if current_user != @video.user %>
         <% tagged_user_ids = @tagged_users.map(&:id) %>
         <% if tagged_user_ids.include?(current_user.id) == true%>
+        
+        
           <%= link_to "UnTag", {:controller => "videos", :action => "self_untag", :video_id => @video.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right;" %>
         <% end %>
       <% end %>
