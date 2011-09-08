@@ -4,9 +4,7 @@ ActiveAdmin.register Comment, :as => "PostComment" do
   filter :created_at
   filter :commentable_type
   index do
-    column "User" do |post|
-      post.user.name
-    end
+    column :user
     column :comment
 		column :created_at
 		column :commentable_type
