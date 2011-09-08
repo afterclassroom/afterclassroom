@@ -212,9 +212,12 @@ class VideosController < ApplicationController
           else
             flash[:notice] = "Your request has been sent to author. The approval will be sent to your email."
           end
-          taginfo.save
+          if taginfo.save
+            QaSendMail.tag_vid_notify(u,video, current_user).deliver
+          end
+          #if save then send mail to each user here, and to video.user
         end
-      end
+      end #end each
     end
     
     

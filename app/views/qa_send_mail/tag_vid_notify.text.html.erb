@@ -1,0 +1,9 @@
+<html>
+  <body>
+    <div id="detail_window">
+      You have been tagged to a video <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a> by your friend <a href="<%= user_url(@tag_creator) %>"><%= @tag_creator.name %></a>!
+      
+      Please wait for the decision of the video's author via email.
+    </div>  
+  </body>
+</html>
