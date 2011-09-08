@@ -1,4 +1,4 @@
-<% if @post.attach_file_name %>
+<% if @controller.action_name == "edit" and @post.attach_file_name %>
 <div class="postItem" id="post_attach_file">
     <div class="postTit">Attach file</div>
     <div class="postInp"><%= @post.attach_file_name %> <%= link_to_function "Remove attach", "RemoveAttachFile('#{@post.id}');" %></div>

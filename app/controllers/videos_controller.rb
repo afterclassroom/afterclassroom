@@ -230,6 +230,17 @@ class VideosController < ApplicationController
     redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
   end
   
+  def remove_tagged
+    TagInfo.refuse(params[:tag_checkbox],params[:video_id])
+    redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
+  end
+  
+  def self_untag
+    user_to_remove = ["#{current_user.id}"]
+    TagInfo.refuse(user_to_remove,params[:video_id])
+    @video = Video.find(params[:video_id])
+  end
+  
   protected
   
   def require_current_user
