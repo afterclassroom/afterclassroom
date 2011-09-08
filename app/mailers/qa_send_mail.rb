@@ -52,4 +52,11 @@ class QaSendMail < ActionMailer::Base
     mail :to => @user.email, :subject => "#{author.name} has approved you to his video tag list!"
   end
   
+  def tag_removed(user,video,author)
+    @video = video
+    @user = user
+    @author = author
+    mail :to => @user.email, :subject => "#{author.name} has removed you from his video tag list!"
+  end
+
 end
