@@ -34,22 +34,4 @@
     });
   });
     
-  jQuery(function(){
-    var $ = jQuery;
-    positionFooter();
-    function positionFooter(){
-      var winH = $(window).height();
-      var docH = $(document).height();
-      if( docH <= winH ) {
-        $('.contMain').css('margin-bottom','60px');
-        $(".footer").css({'position': "fixed",'bottom':'0', 'width':'100%'})
-      } else {
-        $('.contMain').css('margin-bottom','20px')
-        $(".footer").css({'position': "relative"})
-      }
-    }
-
-    jQuery(window)
-    .resize(positionFooter)
-  });
 </script>
