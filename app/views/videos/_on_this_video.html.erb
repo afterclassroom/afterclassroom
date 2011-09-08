@@ -2,8 +2,8 @@
   <div class="col300in">
     <h1 class="col300Title">
       On this video
-      <% if current_user == @video.user %>
-        <input type="button" value="Manage Tagged Users" id="manage_btn" style="margin-left: 70px;"/>
+      <% if current_user == @video.user && @tagged_users.size > 0 %>
+        <a href="" style="margin-left: 70px; color: #0A81C4;" id="manage_btn">Manage Tagged Users</a>
       <% end %>
     </h1> 
     <div class="onThis">
@@ -23,6 +23,9 @@
               There is no tagged user.
             <% end %>
           </ul>
+          
+          <a href="" style="padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;" id="">Remove</a>
+          
           <div class="onThisBtm">
             <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
             <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
