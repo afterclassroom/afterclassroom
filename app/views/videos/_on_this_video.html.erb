@@ -8,77 +8,35 @@
       <% if current_user != @video.user %>
         <% tagged_user_ids = @tagged_users.map(&:id) %>
         <% if tagged_user_ids.include?(current_user.id) == true%>
-        
-        
+
+
           <%= link_to "UnTag", {:controller => "videos", :action => "self_untag", :video_id => @video.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right;" %>
         <% end %>
       <% end %>
     </h1> 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-              <% form_tag url_for(:controller => "videos", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
-                <%= hidden_field_tag "video_id", @video.id %>
-
-
-    <div class="onThis">
-      <div class="navigation-container">
-        <div id="thumbs" class="navigation">
-          <ul class="thumbs noscript">
-            <% if @tagged_users.size > 0 %>
-
-
+    <% form_tag url_for(:controller => "videos", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
+      <%= hidden_field_tag "video_id", @video.id %>
+      <div class="onThis">
+        <div class="navigation-container">
+          <div id="thumbs" class="navigation">
+            <ul class="thumbs noscript">
+              <% if @tagged_users.size > 0 %>
                 <% @tagged_users.each do |u| %>
                   <%= render :partial => "item_tagged", :locals => {:u => u} %>
                 <% end %> <!-- end .each -->
-
-
-
-            <% else %>
-              There is no tagged user.
-            <% end %><!-- end if -->
-          </ul>
-          <a id="remove_btn" href="javascript:;" style="display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;">Remove</a>
-
-          <div class="onThisBtm">
-            <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
-            <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
+              <% else %>
+                There is no tagged user.
+              <% end %><!-- end if -->
+            </ul>
+            <a id="remove_btn" href="javascript:;" style="display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;">Remove</a>
+            <div class="onThisBtm">
+              <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
+              <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-              <% end %> <!-- end form -->       
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <% end %> <!-- end form -->       
   </div>
 </div>
 <script type="text/javascript">
