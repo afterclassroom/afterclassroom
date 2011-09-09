@@ -17,8 +17,8 @@
   });
     
   $(document).ready(function(){
-    $('input[type=text], textarea.focus_text_field').addClass("idleField"); // reset all ##  
-    $('input[type=text], textarea.focus_text_field').live("focus", function(event){
+    $('input[type=text].focus_text_field, textarea.focus_text_field').addClass("idleField"); // reset all ##  
+    $('input[type=text].focus_text_field, textarea.focus_text_field').live("focus", function(event){
       $(this).toggleClass("focusField idleField");
       if (this.value == this.defaultValue) {
         this.value = '';

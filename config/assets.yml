@@ -21,6 +21,7 @@ javascripts:
     - public/javascripts/thickbox.js
     - public/javascripts/vtip.js
     - public/javascripts/json.js
+    - public/javascripts/jquery-galleriffic.js
     - public/javascripts/jquery-opacityrollover.js
     - public/javascripts/checkboxmenu.js
     - public/javascripts/drplayer.js
