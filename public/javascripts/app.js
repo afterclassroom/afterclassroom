@@ -302,6 +302,7 @@ function showResult(){
     $('[rel=rate]').each(function(index){
         $(this).show();
     });
+
     
     $('#view_results').hide();
 }
