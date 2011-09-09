@@ -335,9 +335,9 @@ Afterclassroom::Application.routes.draw do
   end
   
   # Administration
-  ActiveAdmin.routes(self)
+  #ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  #devise_for :admin_users, ActiveAdmin::Devise.config
   
   namespace :admin do
     resources :dashboards
