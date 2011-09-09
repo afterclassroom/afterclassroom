@@ -3387,7 +3387,7 @@ div.navigation-container {
 }
 div.navigation {
     float: left;
-    position: relative;
+  /*  position: relative;*/
     left: -50%;
 }
 div.navigation a.pageLink {
