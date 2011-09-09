@@ -31,5 +31,32 @@ class QaSendMail < ActionMailer::Base
     @tool = tool
     mail :to => tool.user.email, :subject => "You've got mail from #{current_user.name}"
   end
+
+  def tag_vid_notify(user,video,tag_creator)
+    @video = video
+    @tag_creator=tag_creator
+    mail :to => user.email, :subject => "You have been tagged!"
+  end
+
+  def inform_vid_owner(user,video,tag_creator)
+    @video = video
+    @tag_creator=tag_creator
+    @user = user
+    mail :to => @video.user.email, :subject => "New user has been tagged!"
+  end
+
+  def tag_approved(user,video,author)
+    @video = video
+    @user = user
+    @author = author
+    mail :to => @user.email, :subject => "#{author.name} has approved you to his video tag list!"
+  end
   
+  def tag_removed(user,video,author)
+    @video = video
+    @user = user
+    @author = author
+    mail :to => @user.email, :subject => "#{author.name} has removed you from his video tag list!"
+  end
+
 end

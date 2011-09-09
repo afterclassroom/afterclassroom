@@ -11,54 +11,53 @@
 <% end -%>
 
 <!--Content-->
-<div class="contMain">
-  <div class="contMainL">
-    <div class="col451 Event">
-      <div class="col451in">
-        <div class="col451Cont">
-          <%= display_flash_messages_with_raw %>
+<div class="contMainL">
+  <div class="col451 Event">
+    <div class="col451in">
+      <div class="col451Cont">
+        <%= display_flash_messages_with_raw %>
 
-          <!--List Items-->
-          <% @posts.each do |post| %>
-            <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => controller.controller_name} %></div>
-          <% end %>
-          <!--List Items-->
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => controller.controller_name} %></div>
+        <% end %>
+        <!--List Items-->
 
-          <!--Pagination-->
-          <div class="assPage">
-            <span class="numPage"><%= page_entries_info @posts %></span>
-            <%= will_paginate @posts %>
-          </div>
-          <!--Pagination-->
-          <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
         </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
       </div>
     </div>
-
   </div>
 
-  <div class="contMainC">
-    <!--Browser Top event posters-->
-    <%= render :partial => "top_event_posters" %>
-    <!--Browser Top event posters-->
-  </div>
-
-  <div class="contMainR">
-    <!--Browser by Subject-->
-    <%= render :partial => "shared/browser_by_subject" %>
-    <!--Browser by Subject-->
-
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
-
-    <!--Request Event-->
-    <%= render :partial => "form_request_event" %>
-    <!--Request Event-->
-
-    <!--Recent Request events-->
-    <%= render :partial => "recent_request_events" %>
-    <!--Recent Request events-->
-  </div>
 </div>
+
+<div class="contMainC">
+  <!--Browser Top event posters-->
+  <%= render :partial => "top_event_posters" %>
+  <!--Browser Top event posters-->
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Request Event-->
+  <%= render :partial => "form_request_event" %>
+  <!--Request Event-->
+
+  <!--Recent Request events-->
+  <%= render :partial => "recent_request_events" %>
+  <!--Recent Request events-->
+</div>
+
 <!--Content-->

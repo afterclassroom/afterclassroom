@@ -1,6 +1,6 @@
 ActiveAdmin.register PostAssignment do
   menu :parent => "Posts"
-	filter :title
+	filter :post_assignment_post_title_contains
 	index do
 		column "Title" do |post|
 			post.post.title

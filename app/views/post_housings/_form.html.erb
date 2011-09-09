@@ -33,6 +33,7 @@
     </div>
 </div>
 <%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_housing_address" } %>
+<%= render :partial => "/shared/form_post/attach_file" %>
 <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => true} %>
 <%= render :partial => "/shared/form_post/select_tag" %>
 <% end %>

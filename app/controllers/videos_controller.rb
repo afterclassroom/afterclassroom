@@ -212,9 +212,14 @@ class VideosController < ApplicationController
           else
             flash[:notice] = "Your request has been sent to author. The approval will be sent to your email."
           end
-          taginfo.save
+          if taginfo.save
+            QaSendMail.tag_vid_notify(u,video, current_user).deliver
+            QaSendMail.inform_vid_owner(u,video, current_user).deliver
+            
+          end
+          #if save then send mail to each user here, and to video.user
         end
-      end
+      end #end each
     end
     
     
@@ -222,20 +227,52 @@ class VideosController < ApplicationController
   end
   
   def tag_decision
+    video = Video.find(params[:video_id])
     if params[:decision_id] == "ACCEPT"
       TagInfo.verify(params[:checkbox],params[:video_id])
+      share_to = params[:checkbox]
+      user_ids = share_to.split(",")
+      puts "share_to == #{share_to}"
+      share_to.each do |i|
+        u = User.find(i)
+        if u
+          QaSendMail.tag_approved(u,video,current_user).deliver
+        end
+      end #end each
     else
       TagInfo.refuse(params[:checkbox],params[:video_id])
+      share_to = params[:checkbox]
+      user_ids = share_to.split(",")
+      puts "share_to == #{share_to}"
+      share_to.each do |i|
+        u = User.find(i)
+        if u
+          QaSendMail.tag_removed(u,video,current_user).deliver
+        end
+      end #end each
     end
     redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
   end
   
   def remove_tagged
+    video = Video.find(params[:video_id])
     TagInfo.refuse(params[:tag_checkbox],params[:video_id])
+    share_to = params[:tag_checkbox]
+    user_ids = share_to.split(",")
+    puts "share_to == #{share_to}"
+    share_to.each do |i|
+      u = User.find(i)
+      if u
+        QaSendMail.tag_removed(u,video,current_user).deliver
+      end
+    end #end each
+
     redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
   end
   
   def self_untag
+    user_to_remove = ["#{current_user.id}"]
+    TagInfo.refuse(user_to_remove,params[:video_id])
     @video = Video.find(params[:video_id])
   end
   

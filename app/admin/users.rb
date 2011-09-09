@@ -9,7 +9,7 @@ ActiveAdmin.register User do
   index do
     column :name
 		column :email
-		column :state
+		column("State") {|user| status_tag(user.state) }
     column :created_at
 		column :school_id
 		column :online

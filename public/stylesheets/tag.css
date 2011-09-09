@@ -12,57 +12,57 @@
 
 /* Tag cloud */
 
-	#tags ul{
-		margin:1em 0;
-		padding:.5em 10px;
-		text-align:center;	
-		}
-	#tags li{
-		margin:0;
-		padding:0;
-		list-style:none;
-		display:inline;
-		}
-	#tags li a{
-		text-decoration:none;
-		padding:0 2px;	
-		}
-	#tags li a:hover{	
-		color:#0A81C4;
-		}		
-	
-	.tag1{font-size:100%;}
-	.tag2{font-size:120%;}
-	.tag3{font-size:140%;}
-	.tag4{font-size:160%;}
-	.tag5{font-size:180%;}
-	
-	/* alternative layout */
+#tags ul{
+    margin:1em 0;
+    padding:.5em 10px;
+    text-align:center;	
+}
+#tags li{
+    margin:0;
+    padding:0;
+    list-style:none;
+    display:inline;
+}
+#tags li a{
+    text-decoration:none;
+    padding:0 2px;	
+}
+#tags li a:hover{	
+    color:#0A81C4;
+}		
 
-	#tags .alt{
-		text-align:left;
-		padding:0;
-		background:none;
-		}
-	#tags .alt li{
-		padding:2px 10px;
-		display:block;
-		}
-	#tags .alt .tag1, 
-	#tags .alt .tag2, 
-	#tags .alt .tag3, 
-	#tags .alt .tag4, 
-	#tags .alt .tag5{font-size:100%;}
-	
-	.btn{display:block;}
-	#tags_button{
-	 background: none repeat scroll 0 0 white;
+.tag1{font-size:100%;}
+.tag2{font-size:120%;}
+.tag3{font-size:110%;}
+.tag4{font-size:90%;}
+.tag5{font-size:130%;}
+
+/* alternative layout */
+
+#tags .alt{
+    text-align:left;
+    padding:0;
+    background:none;
+}
+#tags .alt li{
+    padding:2px 10px;
+    display:block;
+}
+#tags .alt .tag1, 
+#tags .alt .tag2, 
+#tags .alt .tag3, 
+#tags .alt .tag4, 
+#tags .alt .tag5{font-size:100%;}
+
+.btn{display:block;}
+#tags_button{
+    background: none repeat scroll 0 0 white;
     border: 1px solid;
     margin-left: 150px;
     margin-top: -12px;
     padding: 5px;
     position: absolute;
     width: 121px;
-		display: none;
+    display: none;
 }
 /* // Tag cloud */

@@ -1,3 +1,18 @@
+html, body {
+    height: 100%;
+}
+.after_main {
+    min-height: 100%;
+    position: relative;
+}
+.footer {
+    bottom: 0;
+    width: 100%;
+    position:absolute;
+}
+.contMain{
+    padding-bottom: 165px;
+}
 body{
     font-family:Arial;font-size:11px;background-color:#ebebeb;margin:0px;
 }
@@ -12,7 +27,6 @@ body input, body textarea, body select{
     _height:100%;
     width:962px;
     margin:0px auto;
-    padding-bottom:10px;
 }
 .contMainL{
     width:459px;float:left;
@@ -362,9 +376,9 @@ div.menuMain ul li.select a.menuFirst, div.menuMain ul li a.menuFirst:hover span
     background:url('/images/icon-nextH.gif') no-repeat center top;
 }
 .comPage a{
-   padding:0px 4px;
-   margin-left:10px;
-   padding-left: 5px;
+    padding:0px 4px;
+    margin-left:10px;
+    padding-left: 5px;
 }
 .comPage img{
     border:0px;
@@ -648,7 +662,7 @@ h2.titleH2 a:hover{
     /* margin-top:50px;*/
 }
 .mainSignUpS{
-   
+
 }
 .sponsorS{
     float: left;

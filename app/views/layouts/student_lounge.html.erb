@@ -13,34 +13,36 @@
     <script src="https://chat.afterclassroom.com/application.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
-    <div class="top" id="top_page">
-      <div class="banner">
-        <div class="logo">
-          <a href="/"><img alt="classroom" src="/images/logo.png" /></a>
-        </div><% if logged_in? %>
-          <%= render :partial => 'shared/login_sl' %>
-        <% else %>
-          <%= render :partial => 'shared/login' %>
-        <% end %>
+    <div class="after_main">
+      <div class="top" id="top_page">
+        <div class="banner">
+          <div class="logo">
+            <a href="/"><img alt="classroom" src="/images/logo.png" /></a>
+          </div><% if logged_in? %>
+            <%= render :partial => 'shared/login_sl' %>
+          <% else %>
+            <%= render :partial => 'shared/login' %>
+          <% end %>
+        </div>
       </div>
-    </div>
-    <div class="menu">
-      <div class="menuFriend">
-        <% if logged_in? %>
-          <%= render :partial => 'shared/menu_main_sl' %>
-        <% else %>
-          <%= render :partial => 'shared/menu_main' %>
-        <% end %>
+      <div class="menu">
+        <div class="menuFriend">
+          <% if logged_in? %>
+            <%= render :partial => 'shared/menu_main_sl' %>
+          <% else %>
+            <%= render :partial => 'shared/menu_main' %>
+          <% end %>
+        </div>
       </div>
+      <%= yield_or_default(yield(:menu_top_student_lounge)) %>
+      <div class="contMain">
+        <%= yield %>
+      </div>
+      <%= render :partial => "shared/post_comments/alert" %>
+      <%= render :partial => 'shared/javascript_load' %>
+      <%= render :partial => 'shared/footer' %>
+      <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
+      <%= render :partial => 'shared/notification' if logged_in? %>
     </div>
-    <%= yield_or_default(yield(:menu_top_student_lounge)) %>
-    <div class="contMain">
-      <%= yield %>
-    </div>
-    <%= render :partial => "shared/post_comments/alert" %>
-    <%= render :partial => 'shared/javascript_load' %>
-    <%= render :partial => 'shared/footer' %>
-    <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
-    <%= render :partial => 'shared/notification' if logged_in? %>
   </body>
 </html>
