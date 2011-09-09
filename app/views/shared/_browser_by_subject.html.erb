@@ -1,129 +1,129 @@
 <% cache "browser_by_subject_#{@class_name}_#{@school}" do %>
-<%
-case controller.controller_name
-when 'post_qas'
-text = "Browser by category"
-else
-text = "Browse by subject "
-end %>
-<div class="col300 Br-by-sub">
+  <%
+  case controller.controller_name
+  when 'post_qas'
+    text = "Browser by category"
+  else
+    text = "Browse by subject "
+  end %>
+  <div class="col300 Br-by-sub">
     <div class="col300in">
-        <h1 class="col300Title"><%= text %></h1>
-        <%# if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
-        <div style="float: right; position: relative; margin-top: -27px; cursor: pointer;" id="open_menu">
-            <img src="/images/open.png">
-        </div><%# end %>
-        <div class="col300Cont">
-            <% if @tags and @tags.to_a.size > 0
-            max_count = @tags.sort_by(&:count).last.count.to_f %>
-            <div class="tabClouse">
-                <div id="tags_button">
-                </div>
-                <%# if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
-<div class="navigation-container">                
-<div id="tags" class="navigation">
-                    <ul class="thumbs noscript">
-                        <% @tags.each do |tag| %>
-                        <li class="tag<%= get_among_for_tag(tag.count, max_count) %>">
-                            <%= link_to tag.name, { :action => :tag, :tag_name => tag.name } %>
-                        </li>
-                        <% end %>
-                    </ul>
-											<div class="onThisBtm">
-																	<a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
-																	<a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
-																</div>
-                </div>
-</div>
-                <%# else %>
-                <%#= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
-                <%# end %>
+      <h1 class="col300Title"><%= text %></h1>
+  <%# if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
+      <div style="float: right; position: relative; margin-top: -27px; cursor: pointer;" id="open_menu">
+        <img src="/images/open.png">
+      </div><%# end %>
+      <div class="col300Cont">
+        <% if @tags and @tags.to_a.size > 0
+          max_count = @tags.sort_by(&:count).last.count.to_f %>
+          <div class="tabClouse">
+            <div id="tags_button">
             </div>
-            <% end %>
-        </div>
+    <%# if ["ipod", "ipad", "iphone", "safari"].include?(users_browser) %>
+            <div class="navigation-container-tag">                
+              <div id="tags" class="navigation">
+                <ul class="thumbs noscript">
+                  <% @tags.each do |tag| %>
+                    <li class="tag<%= get_among_for_tag(tag.count, max_count) %>">
+                      <%= link_to tag.name, { :action => :tag, :tag_name => tag.name } %>
+                    </li>
+                  <% end %>
+                </ul>
+                <div class="onThisBtm">
+                  <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
+                  <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
+                </div>
+              </div>
+            </div>
+    <%# else %>
+    <%#= swf_tag "text_and_image_cloud", :parameters => {:wmode => "transparent"}, :flashvars => {:cloud_data => URI.escape("../tags/show_tags?class_name=#{@class_name}&ctrl_name=#{controller.controller_name}", Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))} %>
+    <%# end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-</div>
-<script type="text/javascript">
+  </div>
+  <script type="text/javascript">
     $(document).ready(function(){
     
-        // create a style switch button
-        var switcher = $('<a href="javascript:void(0)" class="btn">Change appearance</a>').toggle(function(){
-            $("#tags ul").hide().addClass("alt").fadeIn("fast");
-        }, function(){
-            $("#tags ul").hide().removeClass("alt").fadeIn("fast");
-        });
-        $('#tags_button').append(switcher);
+      // create a style switch button
+      var switcher = $('<a href="javascript:void(0)" class="btn">Change appearance</a>').toggle(function(){
+        $("#tags ul").hide().addClass("alt").fadeIn("fast");
+      }, function(){
+        $("#tags ul").hide().removeClass("alt").fadeIn("fast");
+      });
+      $('#tags_button').append(switcher);
         
-        // create a sort by alphabet button
-        var sortabc = $('<a href="javascript:void(0)" class="btn">Sort alphabetically</a>').toggle(function(){
-            $("#tags ul li").tsort({
-                order: "asc"
-            });
-        }, function(){
-            $("#tags ul li").tsort({
-                order: "desc"
-            });
+      // create a sort by alphabet button
+      var sortabc = $('<a href="javascript:void(0)" class="btn">Sort alphabetically</a>').toggle(function(){
+        $("#tags ul li").tsort({
+          order: "asc"
         });
-        $('#tags_button').append(sortabc);
+      }, function(){
+        $("#tags ul li").tsort({
+          order: "desc"
+        });
+      });
+      $('#tags_button').append(sortabc);
         
-        // create a sort by alphabet button
-        var sortstrength = $('<a href="javascript:void(0)" class="btn">Sort by strength</a>').toggle(function(){
-            $("#tags ul li").tsort({
-                order: "desc",
-                attr: "class"
-            });
-        }, function(){
-            $("#tags ul li").tsort({
-                order: "asc",
-                attr: "class"
-            });
+      // create a sort by alphabet button
+      var sortstrength = $('<a href="javascript:void(0)" class="btn">Sort by strength</a>').toggle(function(){
+        $("#tags ul li").tsort({
+          order: "desc",
+          attr: "class"
         });
-        $('#tags_button').append(sortstrength);
+      }, function(){
+        $("#tags ul li").tsort({
+          order: "asc",
+          attr: "class"
+        });
+      });
+      $('#tags_button').append(sortstrength);
         
-        $('#open_menu').click(function(){
-            $('#tags_button').toggle("slow");
-        });
+      $('#open_menu').click(function(){
+        $('#tags_button').toggle("slow");
+      });
     });
-jQuery(document).ready(function($) {
-        $('div.navigation').css({'width' : '300px', 'float' : 'left'});
-        var onMouseOutOpacity = 3.67;
-        $('#tags ul.thumbs li, div.navigation a.pageLink').opacityrollover({
-            mouseOutOpacity:   onMouseOutOpacity,
-            mouseOverOpacity:  1.0,
-            fadeSpeed:         'fast',
-            exemptionSelector: '.selected'
-        });
-        var gallery = $('#tags').galleriffic({
-            delay:                     2500,
-            numThumbs:                 20,
-            preloadAhead:              0,
-            enableTopPager:            false,
-            enableBottomPager:         false,
-            imageContainerSel:         '#slideshow',
-            captionContainerSel:       '#caption',
-            defaultTransitionDuration: 900,
-            onPageTransitionOut:       function(callback) {
-                this.fadeTo('fast', 1.0, callback);
-            },
-            onPageTransitionIn:        function() {
-                var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
-                var nextPageLink = this.find('a.next').css('visibility', 'hidden');
-                if (this.displayedPage > 0)
-                    prevPageLink.css('visibility', 'visible');
-                var lastPage = this.getNumPages() - 1;
-                if (this.displayedPage < lastPage)
-                    nextPageLink.css('visibility', 'visible');
-                this.fadeTo('fast', 1.0);
-            }
-        });
-        gallery.find('a.prev').click(function(e) {
-            gallery.previousPage();
-            e.preventDefault();
-        });
-        gallery.find('a.next').click(function(e) {
-            gallery.nextPage();
-            e.preventDefault();
-        });
+    jQuery(document).ready(function($) {
+      $('div.navigation').css({'width' : '280px', 'float' : 'left'});
+      var onMouseOutOpacity = 3.67;
+      $('#tags ul.thumbs li, div.navigation a.pageLink').opacityrollover({
+        mouseOutOpacity:   onMouseOutOpacity,
+        mouseOverOpacity:  1.0,
+        fadeSpeed:         'fast',
+        exemptionSelector: '.selected'
+      });
+      var gallery = $('#tags').galleriffic({
+        delay:                     2500,
+        numThumbs:                 20,
+        preloadAhead:              0,
+        enableTopPager:            false,
+        enableBottomPager:         false,
+        imageContainerSel:         '#slideshow',
+        captionContainerSel:       '#caption',
+        defaultTransitionDuration: 900,
+        onPageTransitionOut:       function(callback) {
+          this.fadeTo('fast', 1.0, callback);
+        },
+        onPageTransitionIn:        function() {
+          var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
+          var nextPageLink = this.find('a.next').css('visibility', 'hidden');
+          if (this.displayedPage > 0)
+            prevPageLink.css('visibility', 'visible');
+          var lastPage = this.getNumPages() - 1;
+          if (this.displayedPage < lastPage)
+            nextPageLink.css('visibility', 'visible');
+          this.fadeTo('fast', 1.0);
+        }
+      });
+      gallery.find('a.prev').click(function(e) {
+        gallery.previousPage();
+        e.preventDefault();
+      });
+      gallery.find('a.next').click(function(e) {
+        gallery.nextPage();
+        e.preventDefault();
+      });
     });
-</script>
+  </script>
 <% end %>
