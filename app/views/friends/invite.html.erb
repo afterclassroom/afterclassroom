@@ -63,6 +63,7 @@
 
 <!--Alert-->
 <div id="dialog-contact-list" title="Send invite" style="display:none;">
+	<%= form_for :mail_account, :url => invite_by_import_email_user_friends_path(current_user), :remote => true, :html => {:id => "send_email"} do |f| %>
   <div class="fInvMess">
             <div class="fInvTxt">Message<br/><span>(optional)</span></div>
             <div class="fInvIn"><%= text_area_tag "content", nil, :rows => 1, :cols => 20 %></div>
@@ -71,6 +72,7 @@
             <div class="fInvTxt">Contacts</div>
           </div>
 <div style="height:150px;overflow:auto;"><ul id="contacts_list"></ul></div>
+<% end %>
 </div>
 <div id="dialog-error-message" title="Alert" style="display:none;">
   <p>
@@ -80,6 +82,11 @@
 <div id="dialog-alert-message" title="Alert" style="display:none;">
   <p>
     Username or password are incorrect!
+  </p>
+</div>
+<div id="dialog-success-message" title="Alert" style="display:none;">
+  <p>
+    Invite Friends Successfully.
   </p>
 </div>
 <!--Alert-->
@@ -166,7 +173,7 @@ function SendInvite(){
 		      modal: true,
 		      buttons: {
 		        Send: function() {
-		          $('#msg_form').submit();
+		          $('#send_email').submit();
 		        },
 		        Cancel: function() {
 		          $(this).dialog('close');
@@ -197,6 +204,35 @@ function SendInvite(){
 			})
       .bind('ajax:complete', function() {
 			$("#ajax_load").remove();			
+		});
+
+	$("#send_email")
+      .bind('ajax:beforeSend', function() {
+				 $("div.ui-dialog-buttonset").prepend('<%= show_ajax_loader("ajax_load", "background: white;  position: absolute;  width: 18px; margin-left: -22px; margin-top: 15px;") %>');
+			})
+      .bind('ajax:success', function(evt, data, status, xhr) {
+				$("#dialog-success-message").dialog({
+				    modal: true,
+				    buttons: {
+				      Ok: function() {
+				        $(this).dialog('close');
+								$("#dialog-contact-list").dialog('close');
+				      }
+				    }
+				  });
+			})
+      .bind('ajax:error', function(xhr, status, error) {
+					$("#dialog-error-message").dialog({
+		      modal: true,
+		      buttons: {
+		        Ok: function() {
+		          $(this).dialog('close');
+		        }
+		      }
+		    });
+			})
+      .bind('ajax:complete', function() {
+			//$("#ajax_load").remove();			
 		});
   });
 $( function() {
