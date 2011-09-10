@@ -3,7 +3,6 @@
 <script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
 <!-- END: library for photo-tag -->
 
-
 <% content_for :menu_top_student_lounge do -%>
   <%= render :partial => '/shared/submenu' %>
 <% end -%>
@@ -67,12 +66,11 @@
   <!--Ads-->
 </div>
 <script type="text/javascript">
-  var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>";
+  var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>";
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>";
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>";
   $(document).ready(function(){
-    alert('a');
     $('.photoTag').photoTag({
       requesTagstUrl: strrequesTagstUrl,
       deleteTagsUrl: strdeleteTagsUrl,

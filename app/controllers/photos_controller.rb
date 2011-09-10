@@ -216,35 +216,62 @@ class PhotosController < ApplicationController
   end
   
   def phototag
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "=== id == #{params[:photo_id]}"
+    
+    taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ?", params[:photo_id], "Photo"])
+    #@my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 15
+    
+    puts "--"
+    puts "--user size == #{taginfo.size}"
+    taginfo.each do |tag|
+      puts "usr"
+      puts "usr == #{tag.tagable_user}"
+    end
+      
+    
     arr = {
       "Image" => [
         {
           "id"=>150,
           "Tags"=>[
             {
-              "id"=>200,
-              "text"=>"John Doe",
-              "left"=>250,
-              "top"=>50,
-              "url"=> "person.php?id=200",
-              "isDeleteEnable"=> true
-            },
-            {
-              "id"=>400,
-              "text"=>"Michael Smith",
-              "left"=>420,
-              "top"=>45,
-              "width"=>120,
-              "height"=>120,
-              "isDeleteEnable"=> true
-            },
-            {
               "id"=>500,
               "text"=>"Peter Parker",
               "left"=>55,
               "top"=>40,
+              "width"=>120,
+              "height"=>120,
               "url"=> "person.php?id=500",
-              "isDeleteEnable"=> false
+              "isDeleteEnable"=> true
             }
           ]
         }
