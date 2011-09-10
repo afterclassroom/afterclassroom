@@ -10,22 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110906091954) do
-
-  create_table "active_admin_comments", :force => true do |t|
-    t.integer  "resource_id",   :null => false
-    t.string   "resource_type", :null => false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "namespace"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+ActiveRecord::Schema.define(:version => 20110910020252) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -34,24 +19,6 @@ ActiveRecord::Schema.define(:version => 20110906091954) do
     t.string   "item_type"
     t.datetime "created_at"
   end
-
-  create_table "admin_users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
-  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "awareness_types", :force => true do |t|
     t.string "name"
@@ -304,22 +271,24 @@ ActiveRecord::Schema.define(:version => 20110906091954) do
   end
 
   create_table "learntools", :force => true do |t|
-    t.integer  "user_id",                            :null => false
-    t.integer  "learn_tool_cate_id",                 :null => false
+    t.integer  "user_id",               :null => false
+    t.integer  "learn_tool_cate_id",    :null => false
     t.string   "name"
     t.text     "description"
     t.boolean  "verify"
     t.boolean  "authorize"
     t.boolean  "ac_api"
+    t.boolean  "atc_creator"
     t.text     "href"
+    t.text     "support_url"
     t.integer  "acc_play_no"
     t.integer  "client_application_id"
+    t.integer  "video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "tool_img_file_name"
     t.string   "tool_img_content_type"
     t.integer  "tool_img_file_size"
-    t.integer  "atc_creator",           :limit => 1, :null => false
   end
 
   create_table "messages", :force => true do |t|
@@ -384,8 +353,6 @@ ActiveRecord::Schema.define(:version => 20110906091954) do
   create_table "my_tools", :force => true do |t|
     t.integer  "user_id",      :null => false
     t.integer  "learntool_id", :null => false
-    t.boolean  "favorite"
-    t.boolean  "play_demo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -818,6 +785,16 @@ ActiveRecord::Schema.define(:version => 20110906091954) do
     t.datetime "updated_at"
   end
 
+  create_table "tag_photos", :force => true do |t|
+    t.integer  "tag_info_id"
+    t.integer  "left"
+    t.integer  "top"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -971,6 +948,13 @@ ActiveRecord::Schema.define(:version => 20110906091954) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "video_albums", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "video_files", :force => true do |t|
     t.integer  "video_id",                  :null => false
