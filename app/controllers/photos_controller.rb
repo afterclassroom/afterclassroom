@@ -255,16 +255,21 @@ class PhotosController < ApplicationController
     taginfo.each do |tag|
       puts "usr"
       puts "usr == #{tag.tagable_user}"
+      puts "username == #{User.find(tag.tagable_user).name}"
+      puts "id == #{tag.id}"
+      tagphoto = TagPhoto.find(:first, :conditions => ["tag_info_id =?",tag.id])
+      puts "photo info == "
+      puts "photo info == #{tagphoto.left}"
     end
       
     
     arr = {
       "Image" => [
         {
-          "id"=>150,
+          "id"=>150,#photo id
           "Tags"=>[
             {
-              "id"=>500,
+              "id"=>500, #user id
               "text"=>"Peter Parker",
               "left"=>55,
               "top"=>40,
