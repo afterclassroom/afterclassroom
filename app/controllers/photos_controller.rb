@@ -215,86 +215,86 @@ class PhotosController < ApplicationController
     end
   end
   
+  #  def phototag
+  #    puts "=== id == #{params[:photo_id]}"
+  #      
+  #    taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ?", params[:photo_id], "Photo"])
+  #    #@my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 15
+  #    @testinfo = nil
+  #      
+  #    taginfo_id = taginfo.map(&:id)
+  #    @res = TagPhoto.find(:first, :conditions => ["tag_info_id in (?)", taginfo_id])
+  #      
+  #      
+  #    respond_to do |format|
+  #      #      format.js { render :json => arr.to_json()}
+  #      format.js { render :json => @res}
+  #    end
+  #  end
+  
   def phototag
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
     puts "=== id == #{params[:photo_id]}"
     
     taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ?", params[:photo_id], "Photo"])
     #@my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 15
     @testinfo = nil
-    puts "--"
-    puts "--user size == #{taginfo.size}"
-    taginfo.each do |tag|
-      puts "usr"
-      puts "usr == #{tag.tagable_user}"
-      puts "username == #{User.find(tag.tagable_user).name}"
-      puts "id == #{tag.id}"
-      tagphoto = TagPhoto.find(:first, :conditions => ["tag_info_id =?",tag.id])
-      @testinfo = tagphoto
-      puts "photo info == "
-      puts "photo info == #{tagphoto.left}"
-    end
-      
+        
+    taginfo_id = taginfo.map(&:id)
+    @res = TagPhoto.find(:all, :conditions => ["tag_info_id in (?)", taginfo_id])
     
-    arr = {
-      "Image" => [
+    
+    arr1 = []
+    @res.each do |test|
+      objx={
+        :id=>500,  
+        :text=>"Peter Parker",
+        :left=>test.left,
+        :top=>40,
+        :width=>120,
+        :height=>120,
+        :url=> "http://google.com",
+        :isDeleteEnable=> true
+      }
+      arr1 << objx
+      
+    end
+       
+#    obj2={
+#      :id=>500,  
+#      :text=>"Peter Parker",
+#      :left=>'200',
+#      :top=>40,
+#      :width=>120,
+#      :height=>120,
+#      :url=> "http://google.com",
+#      :isDeleteEnable=> true
+#    }
+#    arr = []
+#    arr << obj2
+       
+       
+    @str = {
+      :Image => [
         {
-          "id"=>params[:photo_id],#photo id
-          "Tags"=>[
-            {
-              "id"=>500, #user id
-              "text"=>"Peter Parker",
-              "left"=>55,
-              "top"=>40,
-              "width"=>120,
-              "height"=>120,
-              "url"=> "person.php?id=500",
-              "isDeleteEnable"=> true
-            }
-          ]
+          :id=> "123",
+          :Tags=> arr1
         }
       ],
-      "options"=>{
-        "literals"=> {
-          "removeTag"=> "Remove tag"
+      :options=>{
+        :literals=> {
+          :removeTag=> "Remove tag"
         },
-        "tag"=>{
-          "flashAfterCreation"=> true
+        :tag=>{
+          :flashAfterCreation=> true
         }
       }
-    }
+    }        
+    
     respond_to do |format|
-#      format.js { render :json => arr.to_json()}
-      format.js { render :json => @testinfo }
+      format.js { render :json => @str}
     end
+    
+    
   end
   
   def deletetag
