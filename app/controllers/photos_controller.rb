@@ -245,10 +245,22 @@ class PhotosController < ApplicationController
     
     arr1 = []
     @res.each do |test|
+      puts "test info here"
+      puts "test info here"
+      puts "test info here"
+      puts "test info here"
+      puts "test info here"
+      puts "test info here"
+      puts "test info here"
+      puts "test info here"
+      puts "test info here"
+      puts "test info here"
+      puts "test info here"
+      puts "test info here tag_info == #{test.tag_info.id}"
       objx={
         :id=>500,  
         :text=>"Peter Parker",
-        :left=>test.left,
+        :left=> test.left,
         :top=>40,
         :width=>120,
         :height=>120,
@@ -256,21 +268,7 @@ class PhotosController < ApplicationController
         :isDeleteEnable=> true
       }
       arr1 << objx
-      
     end
-       
-#    obj2={
-#      :id=>500,  
-#      :text=>"Peter Parker",
-#      :left=>'200',
-#      :top=>40,
-#      :width=>120,
-#      :height=>120,
-#      :url=> "http://google.com",
-#      :isDeleteEnable=> true
-#    }
-#    arr = []
-#    arr << obj2
        
        
     @str = {
