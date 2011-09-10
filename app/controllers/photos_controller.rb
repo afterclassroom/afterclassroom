@@ -249,7 +249,7 @@ class PhotosController < ApplicationController
     
     taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ?", params[:photo_id], "Photo"])
     #@my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 15
-    
+    @testinfo = nil
     puts "--"
     puts "--user size == #{taginfo.size}"
     taginfo.each do |tag|
@@ -258,6 +258,7 @@ class PhotosController < ApplicationController
       puts "username == #{User.find(tag.tagable_user).name}"
       puts "id == #{tag.id}"
       tagphoto = TagPhoto.find(:first, :conditions => ["tag_info_id =?",tag.id])
+      @testinfo = tagphoto
       puts "photo info == "
       puts "photo info == #{tagphoto.left}"
     end
@@ -266,7 +267,7 @@ class PhotosController < ApplicationController
     arr = {
       "Image" => [
         {
-          "id"=>150,#photo id
+          "id"=>params[:photo_id],#photo id
           "Tags"=>[
             {
               "id"=>500, #user id
@@ -291,7 +292,8 @@ class PhotosController < ApplicationController
       }
     }
     respond_to do |format|
-      format.js { render :json => arr.to_json()}
+#      format.js { render :json => arr.to_json()}
+      format.js { render :json => @testinfo }
     end
   end
   
