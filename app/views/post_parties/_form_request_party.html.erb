@@ -8,7 +8,7 @@
             Type
           </label>
         </div>
-        <div class="reqTi">
+        <div>
           <%= select_tag("post_party[party_type_ids][]", options_for_select(PartyType.find(:all).collect {|p| [ p.name, p.id ] }), { :include_blank => "Select Type", :multiple => true, :id => "party_type", :style => "width:257px" }) %>
         </div>
         <%= fields_for :post do |p| %>
