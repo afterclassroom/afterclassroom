@@ -1,0 +1,18 @@
+<div>
+  <% if image %>
+    <%= raw(image) %>
+  <% end %>
+
+  <% if title %>
+    <div class="AfterTitle" id="wall_attach_story_<%= wall_id %>">
+      <%= link_to title, link, :target => "_blank" %>
+    </div>
+  <% end %>
+
+  <% if sub_content %>
+    <div class="AfterDes" id="wall_attach_story_<%= wall_id %>">
+      <%= sub_content %>
+    </div>
+  <% end %>
+  <!--<div id="show_jplayer_<%= wall_id %>"></div>-->
+</div>
