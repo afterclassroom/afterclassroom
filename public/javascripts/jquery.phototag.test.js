@@ -24,7 +24,7 @@
 					isAutocomplete: true,
 					autocompleteUrl: 'names.php',
 					label: 'Name'					
-				},
+				}/*,
 				other: {
 					parameterKey: 'descr',
 					isAutocomplete: false,
@@ -34,7 +34,7 @@
 					parameterKey: 'another',
 					isAutocomplete: false,
 					label: 'Email'
-				}
+				}*/
 			},
 			parametersForRequest : {
 				imageId : {
