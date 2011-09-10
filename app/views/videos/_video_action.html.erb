@@ -17,6 +17,24 @@
     <span class="btmAbuse"><%= show_report_abuse(@video) %></span>
   </div>
 </div>
+
+
+
+
+
+<% form_tag url_for(:controller => "videos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
+  <%= hidden_field_tag "comment_content" %>
+  <%= hidden_field_tag "video_id", @video.id %>
+<% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
@@ -30,6 +48,14 @@
       $('#decision_id').val('REFUSE');
       $("form#form_tag_decision").submit();
     });
+    /* BEGIN: handle send comment event to send email notification */
+    var sendBtn = $('form#form_comment').find('a');
+    sendBtn.bind('click',function(){
+      var strContent = $('form#form_comment').find('#comment').val();
+      $('form#form_cmt_inf').find('#comment_content').val(''+strContent);
+      $('form#form_cmt_inf').submit();
+    });
+    /* END: handle send comment event to send email notification */
   });
 
   $(function(){

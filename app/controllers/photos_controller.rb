@@ -215,6 +215,86 @@ class PhotosController < ApplicationController
     end
   end
   
+  def phototag
+    arr = {
+      "Image" => [
+        {
+          "id"=>150,
+          "Tags"=>[
+            {
+              "id"=>200,
+              "text"=>"John Doe",
+              "left"=>250,
+              "top"=>50,
+              "url"=> "person.php?id=200",
+              "isDeleteEnable"=> true
+            },
+            {
+              "id"=>400,
+              "text"=>"Michael Smith",
+              "left"=>420,
+              "top"=>45,
+              "width"=>120,
+              "height"=>120,
+              "isDeleteEnable"=> true
+            },
+            {
+              "id"=>500,
+              "text"=>"Peter Parker",
+              "left"=>55,
+              "top"=>40,
+              "url"=> "person.php?id=500",
+              "isDeleteEnable"=> false
+            }
+          ]
+        }
+      ],
+      "options"=>{
+        "literals"=> {
+          "removeTag"=> "Remove tag"
+        },
+        "tag"=>{
+          "flashAfterCreation"=> true
+        }
+      }
+    }
+    respond_to do |format|
+      format.js { render :json => arr.to_json()}
+    end
+  end
+  
+  def deletetag
+    
+  end
+  
+  def addtag
+    arr = {
+      "result"=>true,
+      "tag"=> {
+        "id"=> params[:name_id],
+        "text"=> params[:name],
+        "left"=> params[:left],
+        "top"=> params[:top],
+        "width"=> params[:width],
+        "height"=> params[:height],
+        "url"=> "http://google.com",
+        "isDeleteEnable"=> true
+      }
+    }
+    
+    respond_to do |format|
+      format.js { render :json => arr.to_json()}
+    end
+  end
+  
+  def usrdata
+    arr = [ { "id"=> 25, "label"=> "John Doe", "value"=> "John Doe" }, { "id"=> 55, "label"=> "Michael Smith", "value"=> "Michael Smith" }, { "id"=> 203, "label"=> "Peter Parker", "value"=> "Peter Parker" }, { "id"=> 250, "label"=> "Angelina Jolie", "value"=> "Angelina Jolie" }, { "id"=> 401, "label"=> "Cameron Diaz", "value"=> "Cameron Diaz" } ]
+    
+    respond_to do |format|
+      format.js { render :json => arr.to_json()}
+    end
+  end
+  
   protected
   
   def require_current_user
