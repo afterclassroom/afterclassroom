@@ -125,6 +125,11 @@ class MessagesController < ApplicationController
     @message.body = params[:body]
     
     if @message.save
+      subject = "#{current_user.name} sent you a message."
+      content = "Hello #{@message.recipient.name},<br/>"
+      content << "#{current_user.name} just sent you a message from After Classroom Inbox."
+      content << "</br/>#{@message.subject}<br/>#{@message.body}"
+      content << "<br/>Click <a href='#{user_message_url(@message.recipient, @message)}' target='blank'>here</a> to view more"
       send_notification(@message.recipient, @message.subject, @message.body, "sends_me_a_message")
       @str = "You sent an email to #{@message.recipient.full_name}."
     else

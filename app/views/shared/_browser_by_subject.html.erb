@@ -84,6 +84,7 @@
         $('#tags_button').toggle("slow");
       });
     });
+ <% if @tags and @tags.to_a.size > 0 %>
     jQuery(document).ready(function($) {
       $('div.navigation').css({'width' : '280px', 'float' : 'left'});
       var onMouseOutOpacity = 3.67;
@@ -125,5 +126,7 @@
         e.preventDefault();
       });
     });
+<% end %>
   </script>
 <% end %>
+
