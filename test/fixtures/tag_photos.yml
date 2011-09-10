@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tag_info_id: 1
+  left: 1
+  top: 1
+  width: 1
+  height: 1
+
+two:
+  tag_info_id: 1
+  left: 1
+  top: 1
+  width: 1
+  height: 1
