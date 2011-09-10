@@ -843,7 +843,7 @@ span.btmDown a:hover {
 .reqTi input {
     border: 1px solid #CECECE;
     color: #969696;
-    width: 100%;
+  /*width: 100%;*/
     background-color: transparent;
     height: 18px;
     text-indent: 2px;
