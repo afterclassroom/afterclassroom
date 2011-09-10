@@ -934,11 +934,7 @@
 		if (this.enableKeyboardNavigation) {
 			$(document).keydown(function(e) {
 				var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
-				switch(key) {
-					case 32: // space
-						gallery.next();
-						e.preventDefault();
-						break;
+				switch(key) {					
 					case 33: // Page Up
 						gallery.previousPage();
 						e.preventDefault();

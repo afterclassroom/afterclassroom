@@ -48,7 +48,7 @@
 <!--Alert-->
 
 <script type="text/javascript" charset="utf-8">
-  $(function(){
+  $(document).ready(function(){
     $('#music_form').each(function(){
       // Fix for browsers which support multiple file selection but not the File API:
       // https://github.com/blueimp/jQuery-File-Upload/issues#issue/36
@@ -124,19 +124,6 @@
           callBack();
         });
       }
-    });
-    $('.musicTitle').each(function() {
-      var default_value = this.value;
-      $(this).focus(function() {
-        if(this.value == default_value) {
-          this.value = '';
-        }
-      });
-      $(this).blur(function() {
-        if(this.value == '') {
-          this.value = default_value;
-        }
-      });
     });
   });
         
