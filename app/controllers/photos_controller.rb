@@ -215,6 +215,113 @@ class PhotosController < ApplicationController
     end
   end
   
+  def phototag
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "==="
+    puts "=== id == #{params[:photo_id]}"
+    
+    taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ?", params[:photo_id], "Photo"])
+    #@my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 15
+    
+    puts "--"
+    puts "--user size == #{taginfo.size}"
+    taginfo.each do |tag|
+      puts "usr"
+      puts "usr == #{tag.tagable_user}"
+    end
+      
+    
+    arr = {
+      "Image" => [
+        {
+          "id"=>150,
+          "Tags"=>[
+            {
+              "id"=>500,
+              "text"=>"Peter Parker",
+              "left"=>55,
+              "top"=>40,
+              "width"=>120,
+              "height"=>120,
+              "url"=> "person.php?id=500",
+              "isDeleteEnable"=> true
+            }
+          ]
+        }
+      ],
+      "options"=>{
+        "literals"=> {
+          "removeTag"=> "Remove tag"
+        },
+        "tag"=>{
+          "flashAfterCreation"=> true
+        }
+      }
+    }
+    respond_to do |format|
+      format.js { render :json => arr.to_json()}
+    end
+  end
+  
+  def deletetag
+    
+  end
+  
+  def addtag
+    arr = {
+      "result"=>true,
+      "tag"=> {
+        "id"=> params[:name_id],
+        "text"=> params[:name],
+        "left"=> params[:left],
+        "top"=> params[:top],
+        "width"=> params[:width],
+        "height"=> params[:height],
+        "url"=> "http://google.com",
+        "isDeleteEnable"=> true
+      }
+    }
+    
+    respond_to do |format|
+      format.js { render :json => arr.to_json()}
+    end
+  end
+  
+  def usrdata
+    arr = [ { "id"=> 25, "label"=> "John Doe", "value"=> "John Doe" }, { "id"=> 55, "label"=> "Michael Smith", "value"=> "Michael Smith" }, { "id"=> 203, "label"=> "Peter Parker", "value"=> "Peter Parker" }, { "id"=> 250, "label"=> "Angelina Jolie", "value"=> "Angelina Jolie" }, { "id"=> 401, "label"=> "Cameron Diaz", "value"=> "Cameron Diaz" } ]
+    
+    respond_to do |format|
+      format.js { render :json => arr.to_json()}
+    end
+  end
+  
   protected
   
   def require_current_user

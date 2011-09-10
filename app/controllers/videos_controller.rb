@@ -276,6 +276,28 @@ class VideosController < ApplicationController
     @video = Video.find(params[:video_id])
   end
   
+  def comment_inform
+    puts "+++++++++++++++++++++++val == video id == #{params[:video_id]} "
+    puts "+++++++++++++++++++++++val == #{params[:comment_content]}"
+    
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
+    @video = Video.find(params[:video_id])
+    
+    #send mail to author
+    QaSendMail.vid_cmt_added(@video.user,@video,params[:comment_content],current_user).deliver
+    
+    puts "size == "
+    puts "size == #{@tagged_users.size}"
+    #and then send mail to tagged user
+    if @tagged_users.size > 0
+      @tagged_users.each do |user|
+        QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
+      end #end each
+    end #end if
+    
+    render :text => "Done"
+  end
+  
   protected
   
   def require_current_user

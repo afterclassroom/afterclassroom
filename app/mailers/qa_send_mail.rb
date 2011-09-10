@@ -59,4 +59,13 @@ class QaSendMail < ActionMailer::Base
     mail :to => @user.email, :subject => "#{author.name} has removed you from his video tag list!"
   end
 
+  def vid_cmt_added(user,video,content,cmt_author)
+    @video = video
+    @content = content
+    @cmt_author = cmt_author
+    #user.email
+    mail :to => "datefield@yahoo.com", :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
+  end
+
+
 end

@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem 'rails', '3.0.10'
+gem 'rails', '3.0.3'
 
 # Deploy with Capistrano
 gem 'capistrano'

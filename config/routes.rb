@@ -78,7 +78,7 @@ Afterclassroom::Application.routes.draw do
           :friend_request, :list, :invite, :unfriend, :display_email, :add_to_group,
           :send_invite_message, :show_invite, :become_a_fan, :accept, :de_accept, :respond_to_friend_request
         post :find_email, :invite_by_list_email,
-          :invite_by_import_email, :delete
+          :invite_by_import_email, :delete, :show_list_email_contacts
       end
     end
 	
@@ -114,13 +114,13 @@ Afterclassroom::Application.routes.draw do
     resources :videos do
       collection do
         get :friend_p, :my_p, :create_form, :delete_videos, :update_video, :self_untag
-        post :add_tag, :tag_decision, :remove_tagged
+        post :add_tag, :tag_decision, :remove_tagged, :comment_inform
       end
     end
     
     resources :photos do
       collection do
-        get :friend_p, :my_p, :create_form, :destroy_all, :show_album
+        get :friend_p, :my_p, :create_form, :destroy_all, :show_album, :phototag, :deletetag, :addtag, :usrdata
         post :create_album, :upload
       end
     end
@@ -191,7 +191,7 @@ Afterclassroom::Application.routes.draw do
   resources :posts do
     collection do
       get :report_abuse, :create_report_abuse, :report_abuse_video, :create_report_abuse_video, :delete_comment, :download, :view_all_comments, :report_abuse_vid, :comments_list, :remove_attach_file
-      post :create_comment, :create_comment_on_list
+      post :create_comment_on_list, :create_comment
     end
   end
 

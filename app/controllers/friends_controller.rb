@@ -155,27 +155,30 @@ class FriendsController < ApplicationController
   def invite_by_import_email
     content = params[:content]
     content = "I found After Classroom as a great place for socialize and study after school, thus I would like to invite you to join" if content == ""
+    contacts = params[:contacts]
+    for email in contacts
+        send_email(email, content)
+    end
+    render :text => "Invite Friends Successfully."
+  end
+  
+  def send_invite_by_import_email
+    
+  end
+
+	def show_list_email_contacts
+		content = params[:content]
     login = params[:mail_account][:login]
     password = params[:mail_account][:password]
     mail_type = params[:mail_type]
     begin
       mail_account = MailAccount.new(login, password, mail_type)
       contacts = mail_account.contacts
-      arr_mails = []
-      contacts.collect {|m| arr_mails << m[1]}
-      for email in arr_mails
-        send_email(email, content)
-      end
-      flash[:notice] = "Invite Friends Successfully."
     rescue Contacts::AuthenticationError => oops
       error oops
     end
-    redirect_to :action => "invite"
-  end
-  
-  def send_invite_by_import_email
-    
-  end
+		render :json => contacts.to_json
+	end
   
   def delete
     user_id_friend = params[:user_id_friend]

@@ -1,62 +1,88 @@
+<!-- BEGIN: library for photo-tag -->
+<link media="screen" type="text/css" href="/stylesheets/styles2.css" rel="stylesheet"/>
+<script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
+<!-- END: library for photo-tag -->
+
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => '/shared/submenu' %>
+  <%= render :partial => '/shared/submenu' %>
 <% end -%>
 <div class="slStoryL">
-    <div class="contDetL">
-        <div class="contDetLin">
-            <div class="inboxLeft">
-                <div class="slsShare">
-                    <div class="slsShareL">
-                        <span>You are here:</span>
-                        <%= link_to "Photos", user_photos_url(current_user), :class => "slsShareLink" %>
-                        <a href="javascript:;" class="slsShareLinkL"><%= current_user == @photo.user ? "Your photos" : "Friends shared photos" %></a>
-                    </div>
-                    <div class="slsShareR">
-                        <%= render :partial => "menu" %>
-                    </div>
-                </div>
-                <%= display_flash_messages_with_raw %>
-                <%= render :partial => "expand_create_photo_album" %>
-                <div class="stoDet phoD">
-                    <div class="AsDcomImg">
-                        <%= show_image_user_post(@photo.user) %>
-                    </div>
-                    <div class="stoDetR">
-                        <div class="stoDetRT">
-                            <%= @photo.user.full_name %>: <%= @photo.title %>
-                        </div>
-                    </div>
-                </div>
-								<div class="onThisBtm">
-									<div class="stoPre"><%= link_to "", user_photo_path(current_user, @prev) if @prev %></div>
-									<div class="stoNext"><%= link_to "", user_photo_path(current_user, @next) if @next %></div>
-								</div>
-                <div class="AsDOr RePho">
-                    <div id="container" style="text-align:center;">
-                        <div id="gallery" class="ad-gallery">
-                            <div class="ad-image-wrapper">
-                                <div class="ad-image" style="width: 533.333px; height: 400px; top: 0px; left: 33px;">
-                                    <%= image_tag @photo.photo_attach.url(:medium) %>
-                                </div>
-                            </div>
-                        </div>
-												<%= link_to "View photo album: #{@photo_album.name}", show_album_user_photos_url(current_user, :photo_album_id => @photo_album) %>
-                    </div>
-                </div>
-                <%= render :partial => "photo_action" %>
-                <%= show_post_comments(@photo) %>
-                <div class="goTop">
-                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
-                </div>
-            </div>
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">
+            <span>You are here:</span>
+            <%= link_to "Photos", user_photos_url(current_user), :class => "slsShareLink" %>
+            <a href="javascript:;" class="slsShareLinkL"><%= current_user == @photo.user ? "Your photos" : "Friends shared photos" %></a>
+          </div>
+          <div class="slsShareR">
+            <%= render :partial => "menu" %>
+          </div>
         </div>
+        <%= display_flash_messages_with_raw %>
+        <%= render :partial => "expand_create_photo_album" %>
+        <div class="stoDet phoD">
+          <div class="AsDcomImg">
+            <%= show_image_user_post(@photo.user) %>
+          </div>
+          <div class="stoDetR">
+            <div class="stoDetRT">
+              <%= @photo.user.full_name %>: <%= @photo.title %>
+            </div>
+          </div>
+        </div>
+        <div class="onThisBtm">
+          <div class="stoPre"><%= link_to "", user_photo_path(current_user, @prev) if @prev %></div>
+          <div class="stoNext"><%= link_to "", user_photo_path(current_user, @next) if @next %></div>
+        </div>
+        <div class="AsDOr RePho">
+          <div id="container" style="text-align:center;">
+            <div id="gallery" class="ad-gallery">
+              <div class="ad-image-wrapper">
+                <div class="ad-image" style="width: 533.333px; height: 400px; top: 0px; left: 33px;">
+                  <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag" %>
+                </div>
+              </div>
+            </div>
+            <%= link_to "View photo album: #{@photo_album.name}", show_album_user_photos_url(current_user, :photo_album_id => @photo_album) %>
+          </div>
+        </div>
+        <%= render :partial => "photo_action" %>
+        <%= show_post_comments(@photo) %>
+        <div class="goTop">
+          <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="contMainR">
-    <!--Most Viewed-->
-    <%= render :partial => "on_this_photo" %>
-    <!--Most Viewed-->
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
+  <!--Most Viewed-->
+<%#= render :partial => "on_this_photo" %>
+  <!--Most Viewed-->
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>
+<script type="text/javascript">
+  var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+  var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>";
+  var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>";
+  var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>";
+  $(document).ready(function(){
+    $('.photoTag').photoTag({
+      requesTagstUrl: strrequesTagstUrl,
+      deleteTagsUrl: strdeleteTagsUrl,
+      addTagUrl: straddTagUrl,
+      parametersForNewTag: {
+        name: {
+          parameterKey: 'name',
+          isAutocomplete: true,
+          autocompleteUrl: strautocompleteUrl,
+          label: 'Name'
+        }
+      }
+    });
+  });
+</script>
