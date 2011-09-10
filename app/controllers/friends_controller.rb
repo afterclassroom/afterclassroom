@@ -176,6 +176,20 @@ class FriendsController < ApplicationController
   def send_invite_by_import_email
     
   end
+
+	def show_list_email_contacts
+		content = params[:content]
+    login = params[:mail_account][:login]
+    password = params[:mail_account][:password]
+    mail_type = params[:mail_type]
+    begin
+      mail_account = MailAccount.new(login, password, mail_type)
+      contacts = mail_account.contacts
+    rescue Contacts::AuthenticationError => oops
+      error oops
+    end
+		render :json => contacts.to_json
+	end
   
   def delete
     user_id_friend = params[:user_id_friend]
