@@ -211,7 +211,7 @@ class FriendsController < ApplicationController
     @invite.save
     subject = "#{current_user.name} has accepted you as a friend."
     content = "Hello #{@user_invite.name}, <br/>"
-    content << "<a href='#{user_url(@user_invite)}' target='blank'>#{@user_invite.name}</a> has accepted you as a friend,  click <a href='#{show_photos_user_path(@user_invite)}' target='blank'>#{@user_invite.name}</a> to check out #{@user_invite.name}'s  photo."
+    content << "<p><a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> has accepted you as a friend, click <a href='#{show_photos_user_path(current_user)}' target='blank'>#{current_user.name}</a> to check out #{current_user.name}'s  photo.</p>"
     send_notification(@user_invite, subject, content, "confirms_a_friendship_request")
   end
   
@@ -244,7 +244,7 @@ class FriendsController < ApplicationController
         UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
         subject = "#{current_user.name} want to be friend with you."
         content = "Hello #{user.name},<br/>"
-        content << "#{user.name} want to be friend with you,  click <a href='#{user_url(user)}' target='blank'>here</a> to see  if you know #{user.name} OR click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to confirm #{user.name} is your friend."
+        content << "<p>#{current_user.name} want to be friend with you, click <a href='#{user_url(current_user)}' target='blank'>here</a> to see  if you know #{current_user.name} OR click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to confirm #{current_user.name} is your friend.</p>"
         send_notification(user, subject, content, "adds_me_as_a_friend")
     end
     render :text => '<div class="txtsignup1">Still waiting</div>'
@@ -256,7 +256,10 @@ class FriendsController < ApplicationController
     fan = Fan.new
     fan.user_id = current_user.id
     user_follow.fans << fan
-    
+    subject = "One more person added as your fan."
+    content = "Dear #{user.name},<br/>"
+    content << "<p>#{current_user.name} just became your fan. Your total fan now is #{user.fans.size}, click <a href='#{fan_user_profiles_url(user)}'>here</a> to review all of your fans.</p>"
+    send_notification(user, subject, content, "adds_me_as_a_friend")
     render :text => "You are a fan"
   end
   

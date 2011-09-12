@@ -1,8 +1,5 @@
-<html>
-<body>
 <p>
-<a href="<%= user_url(@user) %>"><%= @user.full_name %></a> apply job you posted.
-File attach: <a href="<%= @file_attach %>"><%= @file_attach %></a>
+<a href="<%= user_url(@user) %>"><%= @user.full_name %></a> just sent you resume applying for job that you at posted with the title something here.  
+<br/>
+You can download <a href="<%= user_url(@user) %>"><%= @user.full_name %></a>’s job application at: <a href="<%= @file_attach %>"><%= @file_attach %></a>
 </p>
-</body>
-</html>
