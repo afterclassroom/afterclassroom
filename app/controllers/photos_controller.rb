@@ -313,6 +313,7 @@ class PhotosController < ApplicationController
         "isDeleteEnable"=> true
       }
     }
+    arr = nil
     
     respond_to do |format|
       format.js { render :json => arr.to_json()}
@@ -320,7 +321,65 @@ class PhotosController < ApplicationController
   end
   
   def usrdata
-    arr = [ { "id"=> 25, "label"=> "John Doe", "value"=> "John Doe" }, { "id"=> 55, "label"=> "Michael Smith", "value"=> "Michael Smith" }, { "id"=> 203, "label"=> "Peter Parker", "value"=> "Peter Parker" }, { "id"=> 250, "label"=> "Angelina Jolie", "value"=> "Angelina Jolie" }, { "id"=> 401, "label"=> "Cameron Diaz", "value"=> "Cameron Diaz" } ]
+    
+    arr = []
+    obj1={ "id"=> 25, "label"=> "John Doe", "value"=> "John Doe" }
+    obj2={ "id"=> 55, "label"=> "Michael Smith", "value"=> "Michael Smith" }
+    obj3={ "id"=> 203, "label"=> "Peter Parker", "value"=> "Peter Parker" }
+    obj4={ "id"=> 250, "label"=> "Angelina Jolie", "value"=> "Angelina Jolie" }
+    obj5={ "id"=> 401, "label"=> "Cameron Diaz", "value"=> "Cameron Diaz" } 
+    
+    arr << obj1
+    arr << obj2
+    arr << obj3
+    arr << obj4
+    arr << obj5
+    
+    
+    friends = current_user.user_friends
+    
+    arr_friend = []
+    friends.select {|usr| arr_friend << usr if usr.name.downcase.start_with? params[:term].to_s.downcase }
+
+    
+    puts "test term == "
+    puts "test term; friends SIZE  == #{friends.size} "
+    puts "test term;;; arr_friend SIZE  == #{arr_friend.size}"
+    
+    arr_friend.each do |usr|
+      puts "user name == #{usr.name}"
+    end
+    
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term == "
+    puts "test term ==  test"
+    puts "test term == #{params[:term]}"
     
     respond_to do |format|
       format.js { render :json => arr.to_json()}
