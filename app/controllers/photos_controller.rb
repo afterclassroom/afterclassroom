@@ -300,41 +300,47 @@ class PhotosController < ApplicationController
   end
   
   def addtag
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test == "
-    puts "test //// photo_id= #{params[:photo_id]}"
-    puts "left == #{params[:left]}"
+    #=============================================    
+    #=============================================    
+    photo = Photo.find(params[:photo_id])
+    
+    taginfo = TagInfo.new()
+    taginfo.tag_creator_id = current_user.id
+    taginfo.tagable_id = params[:photo_id]
+    taginfo.tagable_user = params[:name_id]
+    taginfo.tagable_type = "Photo"
+    taginfo.verify = false
+    if current_user == photo.user
+      taginfo.verify = true
+    end
+    taginfo.save
+    
+    tagphoto = TagPhoto.new()
+    tagphoto.tag_info = taginfo
+    tagphoto.left=params[:left]
+    tagphoto.top=params[:top]
+    tagphoto.width=params[:width]
+    tagphoto.height=params[:height]
+    tagphoto.save
+    
+    usr = User.find(params[:name_id])
+
+    #=============================================    
+    #=============================================    
+    
     arr = {
       "result"=>true,
       "tag"=> {
-        "id"=> params[:name_id],
-        "text"=> params[:name],
+        "id"=> usr.id,
+        "text"=> usr.name,
         "left"=> params[:left],
         "top"=> params[:top],
         "width"=> params[:width],
         "height"=> params[:height],
-        "url"=> "http://google.com",
+        "url"=> user_url(usr),
         "isDeleteEnable"=> true
       }
-    }
+    }    
     
     respond_to do |format|
       format.js { render :json => arr.to_json()}
