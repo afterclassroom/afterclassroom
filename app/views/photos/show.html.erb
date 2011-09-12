@@ -39,8 +39,8 @@
         <div class="AsDOr RePho">
           <div id="container" style="text-align:center;">
             <div id="gallery" class="ad-gallery">
-              <div class="ad-image-wrapper">
-                <div class="ad-image" style="width: 533.333px; height: 400px; top: 0px; left: 33px;">
+              <div class="ad-image-wrapper" style="height: 500px;">
+                <div class="ad-image" style="width: 533.333px; height: 500px; top: 0px; left: 33px;">
                   <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag" %>
                 </div>
               </div>
@@ -48,6 +48,72 @@
             <%= link_to "View photo album: #{@photo_album.name}", show_album_user_photos_url(current_user, :photo_album_id => @photo_album) %>
           </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">Verify users have been tagged </div>
+        <% form_tag url_for(:controller => "photos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
+          <%= hidden_field_tag "decision_id" %>
+          <%= hidden_field_tag "video_id", @photo.id %>
+          <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
+            <% @tag_usr.each do |user| %>
+
+
+
+              <div class="onThisL" style="margin-bottom: 8px;margin-left: 14px;margin-right: -1px;margin-top: 8px;">
+                <div class="AsDcomImg"><%= show_image_user_post(user) %></div>
+                <input style="margin-left: 1px;" type="checkbox" value="<%= user.id %>" name="checkbox[]" id="checkbox_<%= user.id %>"/>
+              </div>
+
+
+
+
+            <% end %>
+          </div>
+          <div class="stoDbtm" style="display:none;" id="btn_pannel">
+            <div class="AsDContBtm" style="float:right; margin-right: 39px;">
+              <span class="btmComment"><a href="javascript:;" id="accept_btn">Accept</a></span>
+              <span class="btmComment"><a href="javascript:;" id="refuse_btn">Refuse</a></span>
+            </div>
+          </div>
+
+        <% end %><!-- end form -->        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <%= render :partial => "photo_action" %>
         <%= show_post_comments(@photo) %>
         <div class="goTop">
@@ -59,7 +125,7 @@
 </div>
 <div class="contMainR">
   <!--Most Viewed-->
-<%#= render :partial => "on_this_photo" %>
+  <%= render :partial => "on_this_photo" %>
   <!--Most Viewed-->
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
@@ -68,8 +134,8 @@
 <script type="text/javascript">
   var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>";
-  var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>";
-  var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>";
+  var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+  var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
     $('.photoTag').photoTag({
       requesTagstUrl: strrequesTagstUrl,

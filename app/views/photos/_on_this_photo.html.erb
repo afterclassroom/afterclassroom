@@ -1,71 +1,71 @@
-<% if @photo.favoriting_users.size > 0 %>
-<div class="col300 slStory">
-  <div class="col300in">
-    <h1 class="col300Title">On this photo</h1>
-    <div class="onThis">
-      <div class="navigation-container">
-        <div id="thumbs" class="navigation">
-          <ul class="thumbs noscript">
-            <% @photo.favoriting_users.each do |u| %>
-              <li>
-                <div class="onThisL">
-                  <div class="AsDcomImg"><%= show_image_user_post(@photo.user) %></div>
-                </div>
-              </li>
-            <% end %>
-          </ul>
-          <div class="onThisBtm">
-            <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
-            <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
+<% if @tag_usr.size > 0 %>
+  <div class="col300 slStory">
+    <div class="col300in">
+      <h1 class="col300Title">On this photo</h1>
+      <div class="onThis">
+        <div class="navigation-container">
+          <div id="thumbs" class="navigation">
+            <ul class="thumbs noscript">
+              <% @tag_usr.each do |u| %>
+                <li>
+                  <div class="onThisL">
+                    <div class="AsDcomImg"><%= show_image_user_post(u) %></div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+            <div class="onThisBtm">
+              <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
+              <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
 <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $('div.navigation').css({'width' : '300px', 'float' : 'left'});
-        var onMouseOutOpacity = 3.67;
-        $('#thumbs ul.thumbs li, div.navigation a.pageLink').opacityrollover({
-            mouseOutOpacity:   onMouseOutOpacity,
-            mouseOverOpacity:  1.0,
-            fadeSpeed:         'fast',
-            exemptionSelector: '.selected'
-        });
-        var gallery = $('#thumbs').galleriffic({
-            delay:                     2500,
-            numThumbs:                 6,
-            preloadAhead:              0,
-            enableTopPager:            false,
-            enableBottomPager:         false,
-            imageContainerSel:         '#slideshow',
-            captionContainerSel:       '#caption',
-            defaultTransitionDuration: 900,
-            onPageTransitionOut:       function(callback) {
-                this.fadeTo('fast', 1.0, callback);
-            },
-            onPageTransitionIn:        function() {
-                var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
-                var nextPageLink = this.find('a.next').css('visibility', 'hidden');
-                if (this.displayedPage > 0)
-                    prevPageLink.css('visibility', 'visible');
-                var lastPage = this.getNumPages() - 1;
-                if (this.displayedPage < lastPage)
-                    nextPageLink.css('visibility', 'visible');
-                this.fadeTo('fast', 1.0);
-            }
-        });
-        gallery.find('a.prev').click(function(e) {
-            gallery.previousPage();
-            e.preventDefault();
-        });
-        gallery.find('a.next').click(function(e) {
-            gallery.nextPage();
-            e.preventDefault();
-        });
+  jQuery(document).ready(function($) {
+    $('div.navigation').css({'width' : '300px', 'float' : 'left'});
+    var onMouseOutOpacity = 3.67;
+    $('#thumbs ul.thumbs li, div.navigation a.pageLink').opacityrollover({
+      mouseOutOpacity:   onMouseOutOpacity,
+      mouseOverOpacity:  1.0,
+      fadeSpeed:         'fast',
+      exemptionSelector: '.selected'
     });
+    var gallery = $('#thumbs').galleriffic({
+      delay:                     2500,
+      numThumbs:                 6,
+      preloadAhead:              0,
+      enableTopPager:            false,
+      enableBottomPager:         false,
+      imageContainerSel:         '#slideshow',
+      captionContainerSel:       '#caption',
+      defaultTransitionDuration: 900,
+      onPageTransitionOut:       function(callback) {
+        this.fadeTo('fast', 1.0, callback);
+      },
+      onPageTransitionIn:        function() {
+        var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
+        var nextPageLink = this.find('a.next').css('visibility', 'hidden');
+        if (this.displayedPage > 0)
+          prevPageLink.css('visibility', 'visible');
+        var lastPage = this.getNumPages() - 1;
+        if (this.displayedPage < lastPage)
+          nextPageLink.css('visibility', 'visible');
+        this.fadeTo('fast', 1.0);
+      }
+    });
+    gallery.find('a.prev').click(function(e) {
+      gallery.previousPage();
+      e.preventDefault();
+    });
+    gallery.find('a.next').click(function(e) {
+      gallery.nextPage();
+      e.preventDefault();
+    });
+  });
 
 </script>
 <% end %>
-

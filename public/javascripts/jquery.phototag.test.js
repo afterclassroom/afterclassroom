@@ -256,17 +256,28 @@
 					width: tempTagBox.width(),
 					height: tempTagBox.height()
 				}
-				$.getJSON(options.addTagUrl+'?'+$.param(tag) + '&' + $(this).serialize(),function(response){
-					if(response.result != undefined && !response.result){
-						manageError(response);
-						return;
-					}
-					var tagBox = createTagBoxFromJSON(response.tag,image);
-					$('#' + options.imageWrapBox.idPrefix + image_id).append(tagBox);
-					extendTagBoxAttributes(tagBox,response.tag,image,image_id);
-				});
-				removeNewTempTag();
-				showAllTags(image_id);
+                                //DatNT note: I modified this line in order for tag_photo
+                                //of afterclassroom to work
+				//$.getJSON(options.addTagUrl+'?'+$.param(tag) + '&' + $(this).serialize(),function(response){
+                                
+                                if ($('*[id*=hidden_tempInput_]').eq(0).val() != ""){
+                                    $.getJSON(options.addTagUrl+'&'+$.param(tag) + '&' + $(this).serialize(),function(response){
+                                            if(response.result != undefined && !response.result){
+                                                    manageError(response);
+                                                    return;
+                                            }
+                                            var tagBox = createTagBoxFromJSON(response.tag,image);
+                                            $('#' + options.imageWrapBox.idPrefix + image_id).append(tagBox);
+                                            extendTagBoxAttributes(tagBox,response.tag,image,image_id);
+                                    });
+                                    removeNewTempTag();
+                                    showAllTags(image_id);                                    
+                                    
+                                }else{
+                                    alert('Please select a friend within the dropdown list!');
+                                }
+                                
+
 			});
 					
 		};
