@@ -252,8 +252,7 @@ class PhotosController < ApplicationController
       }
       arr1 << objx
     end
-       
-       
+
     @str = {
       :Image => [
         {
