@@ -329,64 +329,30 @@ class PhotosController < ApplicationController
     obj4={ "id"=> 250, "label"=> "Angelina Jolie", "value"=> "Angelina Jolie" }
     obj5={ "id"=> 401, "label"=> "Cameron Diaz", "value"=> "Cameron Diaz" } 
     
-    arr << obj1
-    arr << obj2
-    arr << obj3
-    arr << obj4
-    arr << obj5
-    
+    #    arr << obj1
+    #    arr << obj2
+    #    arr << obj3
+    #    arr << obj4
+    #    arr << obj5
+    #    
     
     list_friends = current_user.user_friends
-    
     friends = []
     list_friends.select {|usr| friends << usr if usr.name.downcase.start_with? params[:term].to_s.downcase }
     
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:photo_id],"Photo"])
-    
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
     filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
     
-
-    
-    puts "test term == "
-    puts "test term; friends SIZE  == #{list_friends.size} "
-    puts "test term;;; arr_friend SIZE  == #{friends.size}"
-    
-    friends.each do |usr|
-      puts "user name == #{usr.name}, ID == #{usr.id}"
+    filtered_friends.each do |usr|
+      obj = { 
+        :id=> usr.id, 
+        :label => usr.name, 
+        :value=> usr.name 
+      }
+      arr << obj
     end
-    
-    puts "test term|||| photo_id  == #{params[:photo_id]}"
-    puts "test term//// filtered_friends  == #{filtered_friends.size}"
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term == "
-    puts "test term ==  test"
-    puts "test term == #{params[:term]}"
     
     respond_to do |format|
       format.js { render :json => arr.to_json()}
