@@ -91,7 +91,8 @@ class PhotosController < ApplicationController
     
     #display user for partial on_this_photo
     list_friends = current_user.user_friends
-    tagged_ids = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:id],"Photo"])
+    tagged_ids = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=? and verify=?",params[:id],"Photo",true])
+    
     usr_ids = tagged_ids.map(&:tagable_user)
     
     @tag_usr = list_friends.select { |c| usr_ids.include?(c.id) }
@@ -224,7 +225,7 @@ class PhotosController < ApplicationController
   end
   
   def phototag
-    taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ?", params[:photo_id], "Photo"])
+    taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ? and verify=?", params[:photo_id], "Photo", true])
     @testinfo = nil
         
     taginfo_id = taginfo.map(&:id)
