@@ -88,6 +88,15 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     @photo_album = @photo.photo_album
     @user = @photo.user
+    
+    #display user for partial on_this_photo
+    list_friends = current_user.user_friends
+    tagged_ids = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=? and verify=?",params[:id],"Photo",true])
+    
+    usr_ids = tagged_ids.map(&:tagable_user)
+    
+    @tag_usr = list_friends.select { |c| usr_ids.include?(c.id) }
+    
     if check_private_permission(@user, "my_photos")
       as_next = @photo_album.photos.nexts(@photo.id).last
       as_prev = @photo_album.photos.previous(@photo.id).first
@@ -215,28 +224,8 @@ class PhotosController < ApplicationController
     end
   end
   
-  #  def phototag
-  #    puts "=== id == #{params[:photo_id]}"
-  #      
-  #    taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ?", params[:photo_id], "Photo"])
-  #    #@my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 15
-  #    @testinfo = nil
-  #      
-  #    taginfo_id = taginfo.map(&:id)
-  #    @res = TagPhoto.find(:first, :conditions => ["tag_info_id in (?)", taginfo_id])
-  #      
-  #      
-  #    respond_to do |format|
-  #      #      format.js { render :json => arr.to_json()}
-  #      format.js { render :json => @res}
-  #    end
-  #  end
-  
   def phototag
-    puts "=== id == #{params[:photo_id]}"
-    
-    taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ?", params[:photo_id], "Photo"])
-    #@my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 15
+    taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ? and verify=?", params[:photo_id], "Photo", true])
     @testinfo = nil
         
     taginfo_id = taginfo.map(&:id)
@@ -264,12 +253,11 @@ class PhotosController < ApplicationController
       }
       arr1 << objx
     end
-       
-       
+
     @str = {
       :Image => [
         {
-          :id=> "123",
+          :id=> params[:photo_id],
           :Tags=> arr1
         }
       ],
