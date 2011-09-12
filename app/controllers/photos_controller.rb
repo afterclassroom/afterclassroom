@@ -300,6 +300,28 @@ class PhotosController < ApplicationController
   end
   
   def addtag
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test == "
+    puts "test //// photo_id= #{params[:photo_id]}"
+    puts "left == #{params[:left]}"
     arr = {
       "result"=>true,
       "tag"=> {
@@ -313,7 +335,6 @@ class PhotosController < ApplicationController
         "isDeleteEnable"=> true
       }
     }
-    arr = nil
     
     respond_to do |format|
       format.js { render :json => arr.to_json()}
@@ -321,25 +342,11 @@ class PhotosController < ApplicationController
   end
   
   def usrdata
-    
     arr = []
-    obj1={ "id"=> 25, "label"=> "John Doe", "value"=> "John Doe" }
-    obj2={ "id"=> 55, "label"=> "Michael Smith", "value"=> "Michael Smith" }
-    obj3={ "id"=> 203, "label"=> "Peter Parker", "value"=> "Peter Parker" }
-    obj4={ "id"=> 250, "label"=> "Angelina Jolie", "value"=> "Angelina Jolie" }
-    obj5={ "id"=> 401, "label"=> "Cameron Diaz", "value"=> "Cameron Diaz" } 
-    
-    #    arr << obj1
-    #    arr << obj2
-    #    arr << obj3
-    #    arr << obj4
-    #    arr << obj5
-    #    
     
     list_friends = current_user.user_friends
     friends = []
     list_friends.select {|usr| friends << usr if usr.name.downcase.start_with? params[:term].to_s.downcase }
-    
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:photo_id],"Photo"])
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
