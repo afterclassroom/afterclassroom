@@ -244,28 +244,18 @@ class PhotosController < ApplicationController
     
     
     arr1 = []
-    @res.each do |test|
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here tag_info == #{test.tag_info.id}"
+    @res.each do |tagphoto|
+      tag_info = tagphoto.tag_info
+      usr = User.find(tag_info.tagable_user)
       objx={
-        :id=>500,  
-        :text=>"Peter Parker",
-        :left=> test.left,
-        :top=>40,
-        :width=>120,
-        :height=>120,
-        :url=> "http://google.com",
-        :isDeleteEnable=> true
+        :id=>usr.id,  
+        :text=>usr.name,
+        :left=> tagphoto.left,
+        :top=>tagphoto.top,
+        :width=>tagphoto.width,
+        :height=>tagphoto.height,
+        :url=> user_url(usr),
+        :isDeleteEnable=> false
       }
       arr1 << objx
     end
