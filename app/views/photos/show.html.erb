@@ -69,7 +69,7 @@
   var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>";
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>";
-  var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>";
+  var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
     $('.photoTag').photoTag({
       requesTagstUrl: strrequesTagstUrl,
