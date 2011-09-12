@@ -242,30 +242,25 @@ class PhotosController < ApplicationController
     taginfo_id = taginfo.map(&:id)
     @res = TagPhoto.find(:all, :conditions => ["tag_info_id in (?)", taginfo_id])
     
+    deletable = false
+    current_photo = Photo.find(params[:photo_id])
+    if (current_user == current_photo.user)
+      deletable = true
+    end
     
     arr1 = []
-    @res.each do |test|
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here"
-      puts "test info here tag_info == #{test.tag_info.id}"
+    @res.each do |tagphoto|
+      tag_info = tagphoto.tag_info
+      usr = User.find(tag_info.tagable_user)
       objx={
-        :id=>500,  
-        :text=>"Peter Parker",
-        :left=> test.left,
-        :top=>40,
-        :width=>120,
-        :height=>120,
-        :url=> "http://google.com",
-        :isDeleteEnable=> true
+        :id=>usr.id,  
+        :text=>usr.name,
+        :left=> tagphoto.left,
+        :top=>tagphoto.top,
+        :width=>tagphoto.width,
+        :height=>tagphoto.height,
+        :url=> user_url(usr),
+        :isDeleteEnable=> deletable
       }
       arr1 << objx
     end
@@ -291,8 +286,6 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.js { render :json => @str}
     end
-    
-    
   end
   
   def deletetag
@@ -300,19 +293,47 @@ class PhotosController < ApplicationController
   end
   
   def addtag
+    #=============================================    
+    #=============================================    
+    photo = Photo.find(params[:photo_id])
+    
+    taginfo = TagInfo.new()
+    taginfo.tag_creator_id = current_user.id
+    taginfo.tagable_id = params[:photo_id]
+    taginfo.tagable_user = params[:name_id]
+    taginfo.tagable_type = "Photo"
+    taginfo.verify = false
+    if current_user == photo.user
+      taginfo.verify = true
+    end
+    taginfo.save
+    
+    tagphoto = TagPhoto.new()
+    tagphoto.tag_info = taginfo
+    tagphoto.left=params[:left]
+    tagphoto.top=params[:top]
+    tagphoto.width=params[:width]
+    tagphoto.height=params[:height]
+    tagphoto.save
+    
+    usr = User.find(params[:name_id])
+
+    #=============================================    
+    #=============================================    
+    
     arr = {
       "result"=>true,
       "tag"=> {
-        "id"=> params[:name_id],
-        "text"=> params[:name],
+        "id"=> usr.id,
+        "text"=> usr.name,
         "left"=> params[:left],
         "top"=> params[:top],
         "width"=> params[:width],
         "height"=> params[:height],
-        "url"=> "http://google.com",
+        "url"=> user_url(usr),
         "isDeleteEnable"=> true
       }
-    }
+    }    
     
     respond_to do |format|
       format.js { render :json => arr.to_json()}
@@ -320,7 +341,24 @@ class PhotosController < ApplicationController
   end
   
   def usrdata
-    arr = [ { "id"=> 25, "label"=> "John Doe", "value"=> "John Doe" }, { "id"=> 55, "label"=> "Michael Smith", "value"=> "Michael Smith" }, { "id"=> 203, "label"=> "Peter Parker", "value"=> "Peter Parker" }, { "id"=> 250, "label"=> "Angelina Jolie", "value"=> "Angelina Jolie" }, { "id"=> 401, "label"=> "Cameron Diaz", "value"=> "Cameron Diaz" } ]
+    arr = []
+    
+    list_friends = current_user.user_friends
+    friends = []
+    list_friends.select {|usr| friends << usr if usr.name.downcase.start_with? params[:term].to_s.downcase }
+    
+    tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:photo_id],"Photo"])
+    tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
+    filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
+    
+    filtered_friends.each do |usr|
+      obj = { 
+        :id=> usr.id, 
+        :label => usr.name, 
+        :value=> usr.name 
+      }
+      arr << obj
+    end
     
     respond_to do |format|
       format.js { render :json => arr.to_json()}

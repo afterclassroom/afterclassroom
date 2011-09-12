@@ -256,7 +256,10 @@
 					width: tempTagBox.width(),
 					height: tempTagBox.height()
 				}
-				$.getJSON(options.addTagUrl+'?'+$.param(tag) + '&' + $(this).serialize(),function(response){
+                                //DatNT note: I modified this line in order for tag_photo
+                                //of afterclassroom to work
+				//$.getJSON(options.addTagUrl+'?'+$.param(tag) + '&' + $(this).serialize(),function(response){
+				$.getJSON(options.addTagUrl+'&'+$.param(tag) + '&' + $(this).serialize(),function(response){
 					if(response.result != undefined && !response.result){
 						manageError(response);
 						return;
