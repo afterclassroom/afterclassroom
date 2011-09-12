@@ -242,6 +242,11 @@ class PhotosController < ApplicationController
     taginfo_id = taginfo.map(&:id)
     @res = TagPhoto.find(:all, :conditions => ["tag_info_id in (?)", taginfo_id])
     
+    deletable = false
+    current_photo = Photo.find(params[:photo_id])
+    if (current_user == current_photo.user)
+      deletable = true
+    end
     
     arr1 = []
     @res.each do |tagphoto|
@@ -255,7 +260,7 @@ class PhotosController < ApplicationController
         :width=>tagphoto.width,
         :height=>tagphoto.height,
         :url=> user_url(usr),
-        :isDeleteEnable=> false
+        :isDeleteEnable=> deletable
       }
       arr1 << objx
     end
@@ -281,8 +286,6 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.js { render :json => @str}
     end
-    
-    
   end
   
   def deletetag
