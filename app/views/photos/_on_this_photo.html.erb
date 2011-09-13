@@ -8,7 +8,7 @@
       <% if current_user != @photo.user %>
         <% tagged_user_ids = @tag_usr.map(&:id) %>
         <% if tagged_user_ids.include?(current_user.id) == true%>
-          <%= link_to "UnTag", {:controller => "photos", :action => "self_untag", :video_id => @photo.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right;" %>
+          <%= link_to "UnTag", {:controller => "photos", :action => "self_untag", :photo_id => @photo.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right; margin-top:-24px;" %>
         <% end %>
       <% end %>
 
