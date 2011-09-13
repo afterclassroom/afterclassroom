@@ -98,8 +98,7 @@ class QaSendMail < ActionMailer::Base
     @photo = photo
     @user = user
     @author = author
-#@user.email
-    mail :to => "datefield@yahoo.com", :subject => "#{author.name} has removed you from his video tag list!"
+    mail :to => @user.email, :subject => "#{author.name} has removed you from his video tag list!"
   end
 
 
