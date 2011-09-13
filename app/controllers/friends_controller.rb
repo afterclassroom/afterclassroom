@@ -211,7 +211,7 @@ class FriendsController < ApplicationController
     @invite.save
     subject = "#{current_user.name} has accepted you as a friend."
     content = "Hello #{@user_invite.name}, <br/>"
-    content << "<p><a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> has accepted you as a friend, click <a href='#{show_photos_user_path(current_user)}' target='blank'>#{current_user.name}</a> to check out #{current_user.name}'s  photo.</p>"
+    content << "<p>#{current_user.name} has accepted you as a friend, click <a href='#{user_url(current_user)}' target='blank'>here</a> to check out #{current_user.name}'s  photo.</p>"
     send_notification(@user_invite, subject, content, "confirms_a_friendship_request")
   end
   

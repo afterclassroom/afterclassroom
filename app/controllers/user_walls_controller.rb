@@ -1,4 +1,4 @@
-# © Copyright 2009 AfterClassroom.com — All Rights Reserved
+# � Copyright 2009 AfterClassroom.com -- All Rights Reserved
 include ActionView::Helpers::UrlHelper
 include ApplicationHelper
   
@@ -170,27 +170,15 @@ class UserWallsController < ApplicationController
       u = User.find(id)
       if u and u != usr
         list_name << "<a href='#{user_url(u)}'>#{u.name}</a>"
-        # Internal message
-        message = Message.new
-        message.sender = current_user
-        message.recipient = u
-        message.subject = "#{current_user.name} introduces someone special to you."
-        body = "Hello #{usr.name}, <br/>"
-        body << "<p><a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> wants to introduce someone special to you."
-        body << "#{user_url(current_user)} says: #{content}" if content
-        body << "<br />" + "Click #{link_to "here", user_url(u), :target => "blank"} to see if you know #{u.name}</p>"
-        message.body = body
-        message.save
-        
         # Email, notification
         subject = "#{current_user.name} introduces someone special to you"
         content = body
         send_notification(u, subject, content, "match_making")
       end
     end
-    subject = "#{current_user.name} introduces somebody special to you."
+    subject = "#{current_user.name} introduces some people special to you."
     content = "Hello #{usr.name},<br/>"
-    content << "#{current_user.name} introduces somebody special to you:<br/>" 
+    content << "#{current_user.name} introduces some people special to you:<br/>" 
     content << list_name.join(", ")
     send_notification(usr, subject, content, "match_making")
     render :text => "Success"
