@@ -280,6 +280,36 @@ class PhotosController < ApplicationController
   end
   
   def deletetag
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "== params[:photo_id] == #{params[:photo_id]}"
+    usrs = []
+    usrs << params["tag-id"]
+    params[:tag_checkbox] = usrs
+    
+    TagInfo.refuse_photo(params[:tag_checkbox],params[:photo_id])
+    
     obj = {
       :result => true,
       :message => "ooops"}
