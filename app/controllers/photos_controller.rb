@@ -374,6 +374,8 @@ class PhotosController < ApplicationController
   end
   
   def remove_tagged
+    TagInfo.refuse_photo(params[:tag_checkbox],params[:photo_id])
+    
     redirect_to :controller=>'photos', :action => 'show', :id => params[:photo_id]
   end
   
