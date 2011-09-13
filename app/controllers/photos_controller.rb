@@ -296,6 +296,7 @@ class PhotosController < ApplicationController
   
   def addtag
     photo = Photo.find(params[:photo_id])
+    usr = User.find(params[:name_id])
     
     taginfo = TagInfo.new()
     taginfo.tag_creator_id = current_user.id
@@ -306,17 +307,24 @@ class PhotosController < ApplicationController
     if current_user == photo.user
       taginfo.verify = true
     end
-    taginfo.save
     
-    tagphoto = TagPhoto.new()
-    tagphoto.tag_info = taginfo
-    tagphoto.left=params[:left]
-    tagphoto.top=params[:top]
-    tagphoto.width=params[:width]
-    tagphoto.height=params[:height]
-    tagphoto.save
+    if taginfo.save
+      
+      tagphoto = TagPhoto.new()
+      tagphoto.tag_info = taginfo
+      tagphoto.left=params[:left]
+      tagphoto.top=params[:top]
+      tagphoto.width=params[:width]
+      tagphoto.height=params[:height]
     
-    usr = User.find(params[:name_id])
+      if tagphoto.save
+        QaSendMail.tag_photo_notify(usr,photo, current_user).deliver
+        #QaSendMail.inform_vid_owner(u,video, current_user).deliver
+      end
+
+    end
+    
+    
     
     arr = {
       "result"=>true,

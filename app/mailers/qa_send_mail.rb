@@ -67,5 +67,15 @@ class QaSendMail < ActionMailer::Base
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
   end
 
+  def tag_photo_notify(user,photo,tag_creator)
+    @photo = photo
+    @tag_creator=tag_creator
+    @statement = ""
+    if (tag_creator != photo.user)
+      @statement = "Please wait for the authorization from photo owner."
+    end
+    #user.email
+    mail :to => "datefield@yahoo.com", :subject => "You have been tagged!"
+  end
 
 end
