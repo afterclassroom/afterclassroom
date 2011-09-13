@@ -97,43 +97,6 @@ class PhotosController < ApplicationController
     
     #find all the user need to be verified
     id_for_verify = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=? and verify=?",params[:id],"Photo",false])
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "==;;;"
-    puts "==;;;id_for_verify == #{id_for_verify.size}"
-    id_for_verify.each do |abc|
-      puts "abc == #{abc.tagable_user}"
-    end
-    
-    
-    
-    
     usr_ids_for_verify = id_for_verify.map(&:tagable_user)
     @usrs_for_verify = list_friends.select { |c| usr_ids_for_verify.include?(c.id) }
     
