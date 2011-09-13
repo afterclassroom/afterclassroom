@@ -3,12 +3,12 @@
     <p>
     <h3>This email is sent to you by <%= @current_user.name %> - an user at <a href="http://afterclassroom.com">afterclassroom.com</a> </h3>
 
-    Below is the information that <%= @current_user.name %> wants to let you know: <br/>
+    Below is the information that <%= @current_user.name %> wants to receive your advice: <br/>
     <ul>
       <%= @introduce %> <br/>
       Please response at: <a href="<%= post_qa_url @post.post_qa %>"><%= @post.title %></a>
     </ul>
-    <h3>Thank you very much for your concern !</h3>
+    <h3>Thank you very much for your advice and participate into Q&A on After Classroom!</h3>
   </p>
 </body>
 </html>

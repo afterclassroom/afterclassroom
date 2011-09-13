@@ -676,7 +676,7 @@ module ApplicationHelper
     
     if wall.user_wall_video
       link = "/gadgets_proxy/link?url=#{wall.user_wall_video.link}"
-      img_link = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play_video'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
+      img_link = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
       image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_video.title
       sub_content = raw(wall.user_wall_video.sub_content)
@@ -684,7 +684,7 @@ module ApplicationHelper
     
     if wall.user_wall_music
       link = wall.user_wall_music.sub_content
-      img_link = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play_music'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+      img_link = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play_music'></span>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
       image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_music.title
       sub_content = ""
@@ -732,17 +732,17 @@ module ApplicationHelper
           sub_content = truncate_words(obj.description)
           when "MusicAlbum"
           link = show_music_album_user_url(obj.user, :music_album_id => obj)
-          img_link = link_to image_tag(obj.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play_music'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+          img_link = link_to image_tag(obj.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play_music'></span>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.name
           when "Music"
           link = user_music_url(obj.user, obj)
-          img_link = link_to image_tag(obj.music_album.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play_music'/>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
+          img_link = link_to image_tag(obj.music_album.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play_music'></span>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           when "Video"
           link = get_video_path(obj.video_file.video_attach.url)
-          img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play_video'/>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
+          img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           sub_content = obj.description

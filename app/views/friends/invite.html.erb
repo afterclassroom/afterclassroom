@@ -164,11 +164,16 @@ function SendInvite(){
       .bind('ajax:success', function(evt, data, status, xhr) {
 				var contacts = data;
 				if(contacts == ""){
-						alert('Contacts list is empry.');
+						$("#dialog-contact-is-null-message").dialog({
+				    modal: true,
+				    buttons: {
+				      Ok: function() {
+				        $(this).dialog('close');
+				      }
+				    }
+				  });
 				}else{
-						alert('Contacts list is unempry.');
-				}
-				if(countProperties(contacts) > 0){
+						if(countProperties(contacts) > 0){
 					$('#contacts_list').append('<li><input type="checkbox" value="" name="check_all" class="checkAll"> Check all </li>');
 					for(var key in contacts){
 						str = '<li><input class="cb-element" type="checkbox" value="' + contacts[key][1] + '" name="contacts[]">' + contacts[key][1];
@@ -201,6 +206,8 @@ function SendInvite(){
 				    }
 				  });
 				}
+				}
+				
 			})
       .bind('ajax:error', function(xhr, status, error) {
 					$("#dialog-error-message").dialog({

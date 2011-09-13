@@ -229,10 +229,8 @@ class VideosController < ApplicationController
   def tag_decision
     video = Video.find(params[:video_id])
     if params[:decision_id] == "ACCEPT"
-      TagInfo.verify(params[:checkbox],params[:video_id])
+      TagInfo.verify_vid(params[:checkbox],params[:video_id])
       share_to = params[:checkbox]
-      user_ids = share_to.split(",")
-      puts "share_to == #{share_to}"
       share_to.each do |i|
         u = User.find(i)
         if u
@@ -240,10 +238,8 @@ class VideosController < ApplicationController
         end
       end #end each
     else
-      TagInfo.refuse(params[:checkbox],params[:video_id])
+      TagInfo.refuse_vid(params[:checkbox],params[:video_id])
       share_to = params[:checkbox]
-      user_ids = share_to.split(",")
-      puts "share_to == #{share_to}"
       share_to.each do |i|
         u = User.find(i)
         if u
@@ -256,10 +252,8 @@ class VideosController < ApplicationController
   
   def remove_tagged
     video = Video.find(params[:video_id])
-    TagInfo.refuse(params[:tag_checkbox],params[:video_id])
+    TagInfo.refuse_vid(params[:tag_checkbox],params[:video_id])
     share_to = params[:tag_checkbox]
-    user_ids = share_to.split(",")
-    puts "share_to == #{share_to}"
     share_to.each do |i|
       u = User.find(i)
       if u
@@ -272,14 +266,11 @@ class VideosController < ApplicationController
   
   def self_untag
     user_to_remove = ["#{current_user.id}"]
-    TagInfo.refuse(user_to_remove,params[:video_id])
+    TagInfo.refuse_vid(user_to_remove,params[:video_id])
     @video = Video.find(params[:video_id])
   end
   
   def comment_inform
-    puts "+++++++++++++++++++++++val == video id == #{params[:video_id]} "
-    puts "+++++++++++++++++++++++val == #{params[:comment_content]}"
-    
     @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
     @video = Video.find(params[:video_id])
     

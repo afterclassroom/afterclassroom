@@ -1,14 +1,16 @@
-Hello <%= @user.name %>,
-
+Hello <%= @user.name %>,<br/>
+<p>
 Congratulation, your account has been created successfully at <%= @site_name %>. You login credentials are:
-
-  Email: <%= @user.email %>
+<br/>
+  Email: <%= @user.email %><br/>
   Password: <%= @user.password %>
-
+<br/>
 Before you can access your account, we require you to activate your account. You can activate your account now by copy and paste the following URL to any browsers OR simply click on following url:
-
+<br/>
   <%= @url %>
-
+</p>
+<p>
 Yours sincerely, 
-
-<%= @site_name %> Support Team.
+<br/>
+Afterclassroom Support Team.
+</p>

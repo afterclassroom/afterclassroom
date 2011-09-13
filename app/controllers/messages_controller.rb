@@ -35,7 +35,9 @@ class MessagesController < ApplicationController
       unless @reply_to.nil?
         if @reply_to.recipient == current_user
           @message.to = @reply_to.sender.login
-          @message.subject = "Re: #{@reply_to.subject}"
+          subject = "#{@reply_to.subject}"
+          subject = "Re: " + subject if !subject.include?("Re: ")
+          @message.subject = subject
           @message.body = "\n\n*Original message*\n\n #{@reply_to.body}"
         end
       end
@@ -71,9 +73,9 @@ class MessagesController < ApplicationController
       flash[:notice] = "Message sent"
       subject = "#{current_user.name} sent you a message."
       content = "Hello #{@message.recipient.name},<br/>"
-      content << "#{current_user.name} just sent you a message from After Classroom Inbox."
+      content << "<p>#{current_user.name} just sent you a message from After Classroom Inbox."
       content << "</br/>#{@message.subject}<br/>#{@message.body}"
-      content << "<br/>Click <a href='#{user_message_url(@message.recipient, @message)}' target='blank'>here</a> to view more"
+      content << "<br/>Click <a href='#{user_message_url(@message.recipient, @message)}' target='blank'>here</a> to view more.</p>"
       send_notification(@message.recipient, subject, content, "sends_me_a_message")
       redirect_to user_messages_path(current_user, :mailbox => "sent")
     else
@@ -127,9 +129,9 @@ class MessagesController < ApplicationController
     if @message.save
       subject = "#{current_user.name} sent you a message."
       content = "Hello #{@message.recipient.name},<br/>"
-      content << "#{current_user.name} just sent you a message from After Classroom Inbox."
+      content << "<p>#{current_user.name} just sent you a message from After Classroom Inbox."
       content << "</br/>#{@message.subject}<br/>#{@message.body}"
-      content << "<br/>Click <a href='#{user_message_url(@message.recipient, @message)}' target='blank'>here</a> to view more"
+      content << "<br/>Click <a href='#{user_message_url(@message.recipient, @message)}' target='blank'>here</a> to view more.</p>"
       send_notification(@message.recipient, @message.subject, @message.body, "sends_me_a_message")
       @str = "You sent an email to #{@message.recipient.full_name}."
     else

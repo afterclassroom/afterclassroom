@@ -1,61 +1,9 @@
-<html>
-  <body>
-    <div id="detail_window">
-      <div class="detail-info">
-        <div id="">
-          <div id="posting-section">
-            <ul>
-              <li>
-                <h1>Party! <%= @post.title %></h1>
-              </li>
-              <li>
-              </li>
-              <li>
-                <div class="user_ri3">
-                  <label>
-                    First Name*:
-                  </label>
-                  <span style="margin-left:45px"><%=  @first_name %></span>
-
-
-                </div>
-              </li>
-              <li>
-                <div class="user_ri4">
-                  <label>
-                    Last Name*:
-                  </label>
-                  <span style="margin-left:45px"><%=  @last_name %></span>
-                </div>
-              </li>
-              <li>
-                <div class="user_ri5">
-                  <label>
-                    Email*:
-                  </label>
-                  <span style="margin-left:45px"><%=  @email %></span>
-                </div>
-              </li>
-              <li>
-                <div class="user_ri6">
-                  <label>
-                    Tel*:
-                  </label>
-                  <span style="margin-left:45px"><%=  @tel %></span>
-                </div>
-              </li>
-              <li>
-                <label>
-                  Message:
-                </label>
-                <div class="user_ri7">
-                  <span style="margin-left:45px"><%=  @message %></span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>  
-  </body>
-</html>
+It’s time to Party! <br/>
+<p>
+You have received the following person wants to participate at your party; <br/>
+First Name*: <%=  @first_name %><br/>
+Last Name*: <%=  @last_name %><br/>
+Email*: <%=  @email %><br/>
+Tel*: <%=  @tel %><br/>
+Message: <%=  @message %><br/>
+</p>
