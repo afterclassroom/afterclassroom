@@ -82,8 +82,8 @@ class QaSendMail < ActionMailer::Base
     @photo = photo
     @tag_creator=tag_creator
     @user = user
-#@photo.user.email
-    mail :to => "datefield@yahoo.com", :subject => "New user has been tagged!"
+
+    mail :to => @photo.user.email, :subject => "New user has been tagged!"
   end
 
 
