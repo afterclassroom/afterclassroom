@@ -396,7 +396,15 @@ class PhotosController < ApplicationController
   end
   
   def remove_tagged
+    photo = Photo.find(params[:photo_id])
     TagInfo.refuse_photo(params[:tag_checkbox],params[:photo_id])
+    share_to = params[:tag_checkbox]
+    share_to.each do |i|
+      u = User.find(i)
+      if u
+        QaSendMail.tag_photo_removed(u,photo,current_user).deliver
+      end
+    end #end each
     
     redirect_to :controller=>'photos', :action => 'show', :id => params[:photo_id]
   end
