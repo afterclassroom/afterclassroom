@@ -358,41 +358,11 @@ class PhotosController < ApplicationController
   
   def tag_decision
     photo = Photo.find(params[:photo_id])
-    puts "==="
-    puts "=== photo id == #{params[:photo_id]}"
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "==="
-    puts "===title"
-    puts "===title == #{photo.id}"
+    
+    if params[:decision_id] == "ACCEPT"
+    else
+    end
+    
     redirect_to :controller=>'photos', :action => 'show', :id => params[:photo_id]
   end
   

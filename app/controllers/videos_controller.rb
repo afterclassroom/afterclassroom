@@ -229,7 +229,7 @@ class VideosController < ApplicationController
   def tag_decision
     video = Video.find(params[:video_id])
     if params[:decision_id] == "ACCEPT"
-      TagInfo.verify(params[:checkbox],params[:video_id])
+      TagInfo.verify_vid(params[:checkbox],params[:video_id])
       share_to = params[:checkbox]
       user_ids = share_to.split(",")
       puts "share_to == #{share_to}"
