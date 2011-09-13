@@ -92,10 +92,50 @@ class PhotosController < ApplicationController
     #display user for partial on_this_photo
     list_friends = current_user.user_friends
     tagged_ids = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=? and verify=?",params[:id],"Photo",true])
-    
     usr_ids = tagged_ids.map(&:tagable_user)
-    
     @tag_usr = list_friends.select { |c| usr_ids.include?(c.id) }
+    
+    #find all the user need to be verified
+    id_for_verify = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=? and verify=?",params[:id],"Photo",false])
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "==;;;"
+    puts "==;;;id_for_verify == #{id_for_verify.size}"
+    id_for_verify.each do |abc|
+      puts "abc == #{abc.tagable_user}"
+    end
+    
+    
+    
+    
+    usr_ids_for_verify = id_for_verify.map(&:tagable_user)
+    @usrs_for_verify = list_friends.select { |c| usr_ids_for_verify.include?(c.id) }
     
     if check_private_permission(@user, "my_photos")
       as_next = @photo_album.photos.nexts(@photo.id).last
