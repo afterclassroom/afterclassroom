@@ -321,10 +321,7 @@ class PhotosController < ApplicationController
         QaSendMail.tag_photo_notify(usr,photo, current_user).deliver
         QaSendMail.inform_photo_owner(usr,photo, current_user).deliver
       end
-
     end
-    
-    
     
     arr = {
       "result"=>true,
@@ -374,8 +371,22 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:photo_id])
     if params[:decision_id] == "ACCEPT"
       TagInfo.verify_photo(params[:checkbox],params[:photo_id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        if u
+          QaSendMail.tag_photo_approved(u,photo,current_user).deliver
+        end
+      end #end each      
     else
       TagInfo.refuse_photo(params[:checkbox],params[:photo_id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        if u
+          QaSendMail.tag_photo_removed(u,photo,current_user).deliver
+        end
+      end #end each      
     end
     
     redirect_to :controller=>'photos', :action => 'show', :id => params[:photo_id]

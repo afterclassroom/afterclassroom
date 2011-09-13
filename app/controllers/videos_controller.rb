@@ -231,7 +231,6 @@ class VideosController < ApplicationController
     if params[:decision_id] == "ACCEPT"
       TagInfo.verify_vid(params[:checkbox],params[:video_id])
       share_to = params[:checkbox]
-      user_ids = share_to.split(",")
       share_to.each do |i|
         u = User.find(i)
         if u
@@ -241,7 +240,6 @@ class VideosController < ApplicationController
     else
       TagInfo.refuse_vid(params[:checkbox],params[:video_id])
       share_to = params[:checkbox]
-      user_ids = share_to.split(",")
       share_to.each do |i|
         u = User.find(i)
         if u

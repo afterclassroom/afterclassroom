@@ -86,5 +86,22 @@ class QaSendMail < ActionMailer::Base
     mail :to => @photo.user.email, :subject => "New user has been tagged!"
   end
 
+  def tag_photo_approved(user,photo,author)
+    @photo = photo
+    @user = user
+    @author = author
+
+    mail :to => @user.email, :subject => "#{author.name} has approved you to his video tag list!"
+  end
+
+  def tag_photo_removed(user,photo,author)
+    @photo = photo
+    @user = user
+    @author = author
+#@user.email
+    mail :to => "datefield@yahoo.com", :subject => "#{author.name} has removed you from his video tag list!"
+  end
+
+
 
 end
