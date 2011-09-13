@@ -359,8 +359,26 @@ class PhotosController < ApplicationController
   def tag_decision
     photo = Photo.find(params[:photo_id])
     
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== "
+    puts "=== test"
+    puts "=== test == params[:checkbox] = #{params[:checkbox]}"
+    
+    
     if params[:decision_id] == "ACCEPT"
+      TagInfo.verify_photo(params[:checkbox],params[:photo_id])
     else
+      TagInfo.refuse_photo(params[:checkbox],params[:photo_id])
     end
     
     redirect_to :controller=>'photos', :action => 'show', :id => params[:photo_id]
