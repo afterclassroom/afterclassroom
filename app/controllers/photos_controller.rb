@@ -310,6 +310,11 @@ class PhotosController < ApplicationController
     if current_user == photo.user
       taginfo.verify = true
     end
+
+    deletable = false
+    if (current_user == photo.user)
+      deletable = true
+    end    
     
     if taginfo.save
       
@@ -336,7 +341,7 @@ class PhotosController < ApplicationController
         "width"=> params[:width],
         "height"=> params[:height],
         "url"=> user_url(usr),
-        "isDeleteEnable"=> true
+        "isDeleteEnable"=> deletable
       }
     }    
     
