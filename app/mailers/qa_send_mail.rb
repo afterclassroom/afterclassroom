@@ -74,8 +74,17 @@ class QaSendMail < ActionMailer::Base
     if (tag_creator != photo.user)
       @statement = "Please wait for the authorization from photo owner."
     end
-    #user.email
-    mail :to => "datefield@yahoo.com", :subject => "You have been tagged!"
+    
+    mail :to => user.email, :subject => "You have been tagged!"
   end
+
+  def inform_photo_owner(user,photo,tag_creator)
+    @photo = photo
+    @tag_creator=tag_creator
+    @user = user
+#@photo.user.email
+    mail :to => "datefield@yahoo.com", :subject => "New user has been tagged!"
+  end
+
 
 end

@@ -319,7 +319,7 @@ class PhotosController < ApplicationController
     
       if tagphoto.save
         QaSendMail.tag_photo_notify(usr,photo, current_user).deliver
-        #QaSendMail.inform_vid_owner(u,video, current_user).deliver
+        QaSendMail.inform_photo_owner(usr,photo, current_user).deliver
       end
 
     end
