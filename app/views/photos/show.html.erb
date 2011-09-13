@@ -68,7 +68,7 @@
         <div style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">Verify users have been tagged </div>
         <% form_tag url_for(:controller => "photos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
           <%= hidden_field_tag "decision_id" %>
-          <%= hidden_field_tag "video_id", @photo.id %>
+          <%= hidden_field_tag "photo_id", @photo.id %>
           <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
             <% @usrs_for_verify.each do |user| %>
               <%= render :partial => "item_user", :locals => {:user => user} %>
@@ -124,7 +124,18 @@
 <script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide accept/refuse
   
+  $(document).ready(function(){
+    $('#accept_btn').click(function(){
+      $('#decision_id').val('ACCEPT');
+      $("form#form_tag_decision").submit();
+    });
+    $('#refuse_btn').click(function(){
+      $('#decision_id').val('REFUSE');
+      $("form#form_tag_decision").submit();
+    });    
+  });  
   
+  //BEGIN: code for tag user
   var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>";
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
@@ -144,4 +155,6 @@
       }
     });
   });
+  //END: code for tag user
+  
 </script>
