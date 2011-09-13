@@ -7,11 +7,7 @@
           <div id="thumbs" class="navigation">
             <ul class="thumbs noscript">
               <% @tag_usr.each do |u| %>
-                <li>
-                  <div class="onThisL">
-                    <div class="AsDcomImg"><%= show_image_user_post(u) %></div>
-                  </div>
-                </li>
+                <%= render :partial => "item_tagged", :locals => {:u => u} %>
               <% end %>
             </ul>
             <div class="onThisBtm">
