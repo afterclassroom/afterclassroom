@@ -12,30 +12,6 @@ class TagInfo < ActiveRecord::Base
     TagInfo.destroy_all({:tagable_id => tagable_id, :tagable_type => "Video", :tagable_user => list_of_users})
   end
   def self.refuse_photo(list_of_users,tagable_id)
-    
-    list_of_users.each do |test|
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++"
-      puts "+++++++++ test == "
-      puts "+++++++++ test == #{test}"
-    end
-    
     TagInfo.destroy_all({:tagable_id => tagable_id, :tagable_type => "Photo", :tagable_user => list_of_users})
   end
 end
