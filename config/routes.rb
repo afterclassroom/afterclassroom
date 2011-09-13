@@ -120,8 +120,8 @@ Afterclassroom::Application.routes.draw do
     
     resources :photos do
       collection do
-        get :friend_p, :my_p, :create_form, :destroy_all, :show_album, :phototag, :deletetag, :addtag, :usrdata
-        post :create_album, :upload
+        get :friend_p, :my_p, :create_form, :destroy_all, :show_album, :phototag, :deletetag, :addtag, :usrdata, :self_untag
+        post :create_album, :upload, :tag_decision, :remove_tagged
       end
     end
 
