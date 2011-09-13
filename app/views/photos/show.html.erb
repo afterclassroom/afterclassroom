@@ -36,11 +36,11 @@
           <div class="stoPre"><%= link_to "", user_photo_path(current_user, @prev) if @prev %></div>
           <div class="stoNext"><%= link_to "", user_photo_path(current_user, @next) if @next %></div>
         </div>
-        <div class="AsDOr RePho">
+        <div class="AsDOr RePho" style="min-height: 400px;">
           <div id="container" style="text-align:center;">
             <div id="gallery" class="ad-gallery">
-              <div class="ad-image-wrapper" style="height: 500px;">
-                <div class="ad-image" style="width: 533.333px; height: 500px; top: 0px; left: 33px;">
+              <div class="ad-image-wrapper" style="height: 400px;">
+                <div class="ad-image" style="width: 533.333px; height: 400px; top: 0px; left: 33px;">
                   <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag" %>
                 </div>
               </div>
