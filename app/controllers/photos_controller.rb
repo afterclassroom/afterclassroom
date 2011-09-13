@@ -280,12 +280,15 @@ class PhotosController < ApplicationController
   end
   
   def deletetag
-    
+    obj = {
+      :result => true,
+      :message => "ooops"}
+    respond_to do |format|
+      format.js { render :json => obj}
+    end
   end
   
   def addtag
-    #=============================================    
-    #=============================================    
     photo = Photo.find(params[:photo_id])
     
     taginfo = TagInfo.new()
@@ -308,9 +311,6 @@ class PhotosController < ApplicationController
     tagphoto.save
     
     usr = User.find(params[:name_id])
-
-    #=============================================    
-    #=============================================    
     
     arr = {
       "result"=>true,
@@ -358,23 +358,6 @@ class PhotosController < ApplicationController
   
   def tag_decision
     photo = Photo.find(params[:photo_id])
-    
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== "
-    puts "=== test"
-    puts "=== test == params[:checkbox] = #{params[:checkbox]}"
-    
-    
     if params[:decision_id] == "ACCEPT"
       TagInfo.verify_photo(params[:checkbox],params[:photo_id])
     else
