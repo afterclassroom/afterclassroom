@@ -373,6 +373,10 @@ class PhotosController < ApplicationController
     redirect_to :controller=>'photos', :action => 'show', :id => params[:photo_id]
   end
   
+  def remove_tagged
+    redirect_to :controller=>'photos', :action => 'show', :id => params[:photo_id]
+  end
+  
   protected
   
   def require_current_user
