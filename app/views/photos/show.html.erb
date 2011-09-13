@@ -71,10 +71,8 @@
           <%= hidden_field_tag "video_id", @photo.id %>
           <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
             <% @usrs_for_verify.each do |user| %>
-              <div class="onThisL" style="margin-bottom: 8px;margin-left: 14px;margin-right: -1px;margin-top: 8px;">
-                <div class="AsDcomImg"><%= show_image_user_post(user) %></div>
-                <input style="margin-left: 1px;" type="checkbox" value="<%= user.id %>" name="checkbox[]" id="checkbox_<%= user.id %>"/>
-              </div>
+              <%= render :partial => "item_user", :locals => {:user => user} %>
+            
             <% end %>
           </div>
           <div class="stoDbtm" style="display:none;" id="btn_pannel">
@@ -124,6 +122,9 @@
   <!--Ads-->
 </div>
 <script type="text/javascript">
+  var overallCount = 0;//this variable support for show/hide accept/refuse
+  
+  
   var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>";
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
