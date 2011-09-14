@@ -49,6 +49,7 @@ class VideosController < ApplicationController
           description =~ "%#{content_search}%"
         end
       end
+			state == "converted"
     end
     
     @videos = Video.find(:all, :conditions => cond.to_sql, :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
