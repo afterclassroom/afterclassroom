@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
     filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
     
+    
     arr = []
     filtered_friends.each do |f|
       arr << [f.id, f.full_name, nil, "<div class='list_friend_suggest'><img src='#{f.avatar.url(:thumb)}' />#{f.full_name}</div>"]

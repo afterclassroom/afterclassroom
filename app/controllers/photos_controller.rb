@@ -349,16 +349,23 @@ class PhotosController < ApplicationController
   end
   
   def usrdata
-    arr = []
+    list_friends = []
     
-    list_friends = current_user.user_friends
-    friends = []
-    list_friends.select {|usr| friends << usr if usr.name.downcase.start_with? params[:term].to_s.downcase }
+    
+    current_user.user_friends.each do |usr|
+      list_friends << usr
+    end
+    
+    list_friends << current_user
+    puts "after == #{list_friends.size}"
+
+    friends = list_friends.select { |usr| usr.name.downcase.start_with? params[:term].to_s.downcase }
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:photo_id],"Photo"])
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
     filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
     
+    arr = []
     filtered_friends.each do |usr|
       obj = { 
         :id=> usr.id, 
