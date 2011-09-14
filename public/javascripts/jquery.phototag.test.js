@@ -322,7 +322,8 @@
 		}
 		
 		var createTagItemForList = function( tagJSON, image ){
-			var item = $('<li></li>');
+                        //DatNT modified li to display row by row
+			var item = $('<li style="display:inline;"></li>');
 			if(tagJSON.url){
 				var link = $('<a href="'+ tagJSON.url +'">'+ tagJSON.text +'</a>');
 				item.append(link);
@@ -390,7 +391,8 @@
 			$('#' + options.imageWrapBox.canvasIdPrefix + image_id).wrap(container);
 			if(options.imageWrapBox.showTagList){
 				var tagList = $('<ul id="'+options.imageWrapBox.tagListIdPrefix+image_id+'" class="'+options.imageWrapBox.tagListCssClass+'"></ul>');
-				$('#' + options.imageWrapBox.canvasIdPrefix + image_id).parent().append(tagList);
+				//DatNT modified: $('#' + options.imageWrapBox.canvasIdPrefix + image_id).parent().append(tagList);
+                                $('#tag_list_place').append(tagList);
 			}
 		}
 		
