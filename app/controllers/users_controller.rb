@@ -18,7 +18,12 @@ class UsersController < ApplicationController
 
   def list_friend_to_tag#this action support for displaying user suggestion when adding tag at Video/Photos 
     q = params[:q]
-    friends = current_user.user_friends
+    friends = []
+      
+    current_user.user_friends.each do |usr|
+      friends << usr
+    end
+    friends << current_user
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:tagable_id],params[:tagable_type]])
     
