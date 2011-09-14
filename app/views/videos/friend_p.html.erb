@@ -20,7 +20,8 @@
 <div class="slsTopR">
     <!--Pagination-->
     <div class="assPage friend_videos">
-        <span class="numPage"><%= page_entries_info @friend_videos %></span>
+        <span class="numPage"><%= page_entries_info @videos %></span>
+				<%= will_paginate @videos %>
     </div>
     <!--Pagination-->
 </div>
