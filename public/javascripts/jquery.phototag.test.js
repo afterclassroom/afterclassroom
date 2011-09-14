@@ -234,18 +234,38 @@
 				if(properties.isAutocomplete){
 					$('#tempInput_'+i).parent().append($('<input name="'+properties.parameterKey+'_id" id="hidden_tempInput_'+i+'" type="hidden"/>'));
 					$('#tempInput_'+i).autocomplete({
-						source:properties.autocompleteUrl,
+						//source:properties.autocompleteUrl,
+                                                
+                                                source: function(request, response) {
+                                                                $.ajax({
+                                                                    type : 'GET',
+                                                                    url: properties.autocompleteUrl,
+                                                                    dataType: "json",
+                                                                        data: {
+                                                                        term: request.term
+                                                                    },
+                                                                    success: function(data) {
+                                                                        $('#img_id_loader').hide();
+                                                                        response($.map(data, function(item) {
+                                                                            return {
+                                                                                label: item.value,
+                                                                                value: item.value,
+                                                                                id: item.id
+                                                                            }
+                                                                        }));
+                                                                    }
+                                                                });
+                                                        },                                                
                                                 search: function(event, ui) { 
                                                     $('.inputSubmit').hide();
-                                                    $('.inputCancel').hide();
-                                                    $('#img_id_loader').toggle();
+                                                    $('#img_id_loader').show();
                                                 },
                                                 open: function(event, ui){
                                                     $('.inputSubmit').show();
-                                                    $('.inputCancel').show();
-                                                    $('#img_id_loader').toggle();
+                                                    $('#img_id_loader').hide();
                                                 },
 						select: function( event, ui){
+                                                    alert('v== '+ui.item.id);
 							$('#hidden_tempInput_'+i).val(ui.item.id);
 						}
 					});
