@@ -229,13 +229,14 @@
 					$('#tempNewTagForm').append(label);
 				};
                                 $('#tempNewTagForm').append(input);
+                                //DatNT: add the ajax loader icon while waiting for the result
                                 $('#tempNewTagForm').append('<img id="img_id_loader" style="height: 15px; display:none; margin-top: -3px; margin-left: -92px;" title="Next" src="/images/ajax-loader-a.gif"/>');
                                 inputObj = input;
 				if(properties.isAutocomplete){
 					$('#tempInput_'+i).parent().append($('<input name="'+properties.parameterKey+'_id" id="hidden_tempInput_'+i+'" type="hidden"/>'));
 					$('#tempInput_'+i).autocomplete({
 						//source:properties.autocompleteUrl,
-                                                
+                                                //DatNT: I modified the source function to handle when there's no return result
                                                 source: function(request, response) {
                                                                 $.ajax({
                                                                     type : 'GET',
@@ -265,7 +266,6 @@
                                                     $('#img_id_loader').hide();
                                                 },
 						select: function( event, ui){
-                                                    alert('v== '+ui.item.id);
 							$('#hidden_tempInput_'+i).val(ui.item.id);
 						}
 					});
