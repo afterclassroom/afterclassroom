@@ -21,7 +21,7 @@
       <div class="onThis">
         <div class="navigation-container">
           <div id="thumbs" class="navigation">
-            <ul class="thumbs noscript">
+            <ul class="thumbs noscript" style="">
               <% if @tagged_users.size > 0 %>
                 <% @tagged_users.each do |u| %>
                   <%= render :partial => "item_tagged", :locals => {:u => u} %>
@@ -30,12 +30,20 @@
                 There is no tagged user.
               <% end %><!-- end if -->
             </ul>
-            <a id="remove_btn" href="javascript:;" style="display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;">Remove</a>
-            <div class="onThisBtm">
-              <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
-              <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
-            </div>
           </div>
+            <div class="onThisBtm" style="margin-right: 144px;">
+              <a id="remove_btn" href="javascript:;" style="margin-left: 2px; display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 0px;">Remove</a>
+              <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page">
+                <img title="Next" src="/images/btmPagePre.png"/>
+              </a>
+              <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page">
+                <img title="Next" src="/images/btmPageNext.png"/>
+              </a>
+            </div>
+          
+          
+          
+          
         </div>
       </div>
     <% end %> <!-- end form -->       
@@ -80,8 +88,10 @@
         this.fadeTo('fast', 1.0, callback);
       },
       onPageTransitionIn:        function() {
-        var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
-        var nextPageLink = this.find('a.next').css('visibility', 'hidden');
+        //var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
+        //var nextPageLink = this.find('a.next').css('visibility', 'hidden');
+        var prevPageLink = $('.onThisBtm').find('a.prev').css('visibility', 'hidden');
+        var nextPageLink = $('.onThisBtm').find('a.next').css('visibility', 'hidden');
         if (this.displayedPage > 0)
           prevPageLink.css('visibility', 'visible');
         var lastPage = this.getNumPages() - 1;
@@ -90,11 +100,11 @@
         this.fadeTo('fast', 1.0);
       }
     });
-    gallery.find('a.prev').click(function(e) {
+    $('.onThisBtm').find('a.prev').click(function(e) {
       gallery.previousPage();
       e.preventDefault();
     });
-    gallery.find('a.next').click(function(e) {
+    $('.onThisBtm').find('a.next').click(function(e) {
       gallery.nextPage();
       e.preventDefault();
     });

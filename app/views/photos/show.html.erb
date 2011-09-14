@@ -32,6 +32,7 @@
             </div>
           </div>
         </div>
+        
         <div class="onThisBtm">
           <div class="stoPre"><%= link_to "", user_photo_path(current_user, @prev) if @prev %></div>
           <div class="stoNext"><%= link_to "", user_photo_path(current_user, @next) if @next %></div>
@@ -49,22 +50,6 @@
             <%= link_to "View photo album: #{@photo_album.name}", show_album_user_photos_url(current_user, :photo_album_id => @photo_album) %>
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <% if  @photo.user == current_user && @usrs_for_verify.size > 0 %>
           <div style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">Verify users have been tagged </div>
           <% form_tag url_for(:controller => "photos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
@@ -85,26 +70,6 @@
           <% end %><!-- end form -->        
 
         <% end %><!-- end if  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <%= render :partial => "photo_action" %>
         <%= show_post_comments(@photo) %>
         <div class="goTop">
