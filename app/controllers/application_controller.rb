@@ -115,6 +115,10 @@ class ApplicationController < ActionController::Base
     Favorite.destroy_all(["favorable_type = ? AND favorable_id = ?", type, id])
   end
   
+	def facebook_cookies
+    @facebook_cookies ||= Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
+	end
+
   private
   
   def authenticate
