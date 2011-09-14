@@ -79,6 +79,11 @@
     </div>
   </div>
 </div>
+<% form_tag url_for(:controller => "photos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
+  <%= hidden_field_tag "comment_content" %>
+  <%= hidden_field_tag "photo_id", @photo.id %>
+<% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
+
 <div class="contMainR">
   <!--Most Viewed-->
   <%= render :partial => "on_this_photo" %>
@@ -109,6 +114,14 @@
     $('#remove_btn').click(function(){
       $('form#form_remove').submit();
     });
+    /* BEGIN: handle send comment event to send email notification */
+    var sendBtn = $('form#form_comment').find('a');
+    sendBtn.bind('click',function(){
+      var strContent = $('form#form_comment').find('#comment').val();
+      $('form#form_cmt_inf').find('#comment_content').val(''+strContent);
+      $('form#form_cmt_inf').submit();
+    });
+    /* END: handle send comment event to send email notification */
 
 
   });  
