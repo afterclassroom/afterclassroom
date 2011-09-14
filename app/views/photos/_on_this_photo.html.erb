@@ -1,10 +1,11 @@
 <% if @tag_usr.size > 0 %>
   <div class="col300 slStory">
     <div class="col300in">
-      <h1 class="col300Title">On this photo</h1>
+      <h1 class="col300Title">On this photo
       <% if current_user == @photo.user && @tag_usr.size > 0 %>
-        <a href="javascript:;" style="margin-left: 168px; margin-top: -24px; position: absolute; color: #0A81C4;" id="manage_btn">Manage Tagged Users</a>
+        <a href="javascript:;" style="margin-left: 80px; position: absolute; color: #0A81C4;" id="manage_btn">Manage Tagged Users</a>
       <% end %>
+      </h1>
       <% if current_user != @photo.user %>
         <% tagged_user_ids = @tag_usr.map(&:id) %>
         <% if tagged_user_ids.include?(current_user.id) == true%>
