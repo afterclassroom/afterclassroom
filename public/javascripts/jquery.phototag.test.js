@@ -275,7 +275,7 @@
                     });
                 }
             });
-            var submit = $('<input class="inputSubmit" type="submit" value="Ok" />');
+            var submit = $('<input class="inputSubmit" type="submit" value="Ok" style="display: none;"/>');
             $('#tempNewTagForm').append(submit);
             var hiddenInput = $("<input type='hidden' name='image_id' value ='" + image_id + "' />");
             $('#tempNewTagForm').append(hiddenInput);
