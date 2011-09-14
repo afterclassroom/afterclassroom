@@ -23,6 +23,7 @@ class MessagesController < ApplicationController
   end
   
   def show
+	@operation_ = "Inbox"
     @message = Message.read(params[:id], current_user)
   end
   
@@ -74,7 +75,6 @@ class MessagesController < ApplicationController
       subject = "#{current_user.name} sent you a message."
       content = "Hello #{@message.recipient.name},<br/>"
       content << "<p>#{current_user.name} just sent you a message from After Classroom Inbox."
-      content << "</br/>#{@message.subject}<br/>#{@message.body}"
       content << "<br/>Click <a href='#{user_message_url(@message.recipient, @message)}' target='blank'>here</a> to view more.</p>"
       send_notification(@message.recipient, subject, content, "sends_me_a_message")
       redirect_to user_messages_path(current_user, :mailbox => "sent")

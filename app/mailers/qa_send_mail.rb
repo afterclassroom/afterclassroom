@@ -91,15 +91,14 @@ class QaSendMail < ActionMailer::Base
     @user = user
     @author = author
 
-    mail :to => @user.email, :subject => "#{author.name} has approved you to his video tag list!"
+    mail :to => @user.email, :subject => "#{author.name} has approved you to a photo tag list!"
   end
 
   def tag_photo_removed(user,photo,author)
     @photo = photo
     @user = user
     @author = author
-#@user.email
-    mail :to => "datefield@yahoo.com", :subject => "#{author.name} has removed you from his video tag list!"
+    mail :to => @user.email, :subject => "#{author.name} has removed you from a photo tag list!"
   end
 
 
