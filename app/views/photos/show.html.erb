@@ -45,7 +45,7 @@
                   <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag" %>
                 </div>
               </div>
-              <div id="tag_list_place" style="text-align: left;"></div>
+              <div id="tag_list_place" style="text-align: left; margin-left: 33px; width: 495px;"></div>
             </div>
             <%= link_to "View photo album: #{@photo_album.name}", show_album_user_photos_url(current_user, :photo_album_id => @photo_album) %>
           </div>
