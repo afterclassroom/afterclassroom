@@ -217,6 +217,9 @@
 			var imageWrapper = $("#" + options.imageWrapBox.idPrefix + image_id);
 			imageWrapper.append(newTagFormBox);
 			$('#tempNewTagFormContent').append(form);
+                        
+                        var inputObj;
+                        
 			$.each(options.parametersForNewTag,function( i, properties ){
 				var input = $('<input type="text" autocomplete="off" id="tempInput_'+i+'" name="'+properties.parameterKey+'">');
 				if(properties.label){
@@ -225,11 +228,23 @@
 					label.append(properties.label);
 					$('#tempNewTagForm').append(label);
 				};
-					$('#tempNewTagForm').append(input);
+                                $('#tempNewTagForm').append(input);
+                                $('#tempNewTagForm').append('<img id="img_id_loader" style="height: 15px; display:none; margin-top: -3px; margin-left: -92px;" title="Next" src="/images/ajax-loader-a.gif"/>');
+                                inputObj = input;
 				if(properties.isAutocomplete){
 					$('#tempInput_'+i).parent().append($('<input name="'+properties.parameterKey+'_id" id="hidden_tempInput_'+i+'" type="hidden"/>'));
 					$('#tempInput_'+i).autocomplete({
 						source:properties.autocompleteUrl,
+                                                search: function(event, ui) { 
+                                                    $('.inputSubmit').hide();
+                                                    $('.inputCancel').hide();
+                                                    $('#img_id_loader').toggle();
+                                                },
+                                                open: function(event, ui){
+                                                    $('.inputSubmit').show();
+                                                    $('.inputCancel').show();
+                                                    $('#img_id_loader').toggle();
+                                                },
 						select: function( event, ui){
 							$('#hidden_tempInput_'+i).val(ui.item.id);
 						}
