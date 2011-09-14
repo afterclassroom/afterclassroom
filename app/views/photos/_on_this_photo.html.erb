@@ -19,13 +19,14 @@
         <div class="onThis">
           <div class="navigation-container">
             <div id="thumbs" class="navigation">
-              <ul class="thumbs noscript">
+              <ul class="thumbs noscript" style="min-height: 250px;">
                 <% @tag_usr.each do |u| %>
                   <%= render :partial => "item_tagged", :locals => {:u => u} %>
                 <% end %>
               </ul>
-              <a id="remove_btn" href="javascript:;" style="display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 20px;">Remove</a>
-              <div class="onThisBtm">
+              <div class="onThisBtm" style="position:absolute; bottom:0; right:0; margin-bottom: -6px;">
+              <a id="remove_btn" href="javascript:;" style="display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 0px;">Remove</a>
+
                 <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
                 <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
               </div>
