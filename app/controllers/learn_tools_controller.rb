@@ -241,6 +241,9 @@ class LearnToolsController < ApplicationController
     
     str_notice = ""
     
+    #the following statement support for case of new_tool invalid
+    @categories ||= Youtube.video_categories
+    
     if simple_captcha_valid?
       if @tool.save
         if (params[:vid_check] == "new video upload")
