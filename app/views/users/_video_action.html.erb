@@ -1,13 +1,10 @@
-<%= render :partial => "videos/form_add_tag" %>
+<%= render :partial => "form_add_tag" %>
 
 <% if  @video.user == current_user && @verify_users.size > 0 %>
 
   <%= render :partial => "form_decision" %>
 
 <% end %><!-- end if -->
-
-
-
 <div class="stoDbtm">
   <div class="AsDContBtm">
     <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
@@ -17,24 +14,10 @@
     <span class="btmAbuse"><%= show_report_abuse(@video) %></span>
   </div>
 </div>
-
-
-
-
-
 <% form_tag url_for(:controller => "videos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
   <%= hidden_field_tag "comment_content" %>
   <%= hidden_field_tag "video_id", @video.id %>
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
-
-
-
-
-
-
-
-
-
 <script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
@@ -59,7 +42,6 @@
   });
 
   $(function(){
-    
     // Autocomplete initialization
     var tb = new $.TextboxList('#share_to', {
       unique: true,
@@ -81,7 +63,7 @@
         
   });  
   $(document).ready(function(){
-    $('.textboxlist').width(440);
+    $('.textboxlist').width(500);
     
     $('#send_btn').click(function(){
       $('form#form_tag_user').submit();
