@@ -70,7 +70,7 @@
               <%= render :partial => "form_vid" %>
             </div>
             <div id="captcha_area" style="margin-left:120px">
-              <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+              <%= show_simple_captcha(:label => "CAPTCHA Code *", :class => '{validate:{required:true}}') %>
             </div>
           </div>
         </div>
