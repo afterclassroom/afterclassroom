@@ -224,6 +224,10 @@ class UsersController < ApplicationController
       as_prev = @user.videos.previous(@video.id).first
       @next = as_next if as_next
       @prev = as_prev if as_prev
+      
+      #the following statement to support tag_friend at video
+      @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
+      
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
