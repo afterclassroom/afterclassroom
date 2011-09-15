@@ -135,7 +135,7 @@ class FriendsController < ApplicationController
   def invite_by_list_email
     if params[:email_list]
       content = params[:content]
-      content = "I found After Classroom as a great place for socialize and study after school, thus I would like to invite you to join" if content == ""
+      content = "I found AfterClassroom as a great place for socialize and study after school, thus I would like to invite you to join" if content == ""
       contacts = params[:email_list].split(",")
       contacts = contacts.collect {|c| c.strip}
       mail_list = []
