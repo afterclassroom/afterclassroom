@@ -262,6 +262,20 @@ class UsersController < ApplicationController
     render :layout => "student_lounge"
   end
   
+  def remove_tagged
+    video = Video.find(params[:video_id])
+    TagInfo.refuse_vid(params[:tag_checkbox],params[:video_id])
+    share_to = params[:tag_checkbox]
+    share_to.each do |i|
+      u = User.find(i)
+      if u
+        QaSendMail.tag_removed(u,video,current_user).deliver
+      end
+    end #end each
+
+    redirect_to :controller=>'users', :action => 'show_detail_video', :video_id => params[:video_id], :id => params[:id]
+  end
+  
   protected
   
   def get_params

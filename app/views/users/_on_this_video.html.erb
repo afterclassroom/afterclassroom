@@ -39,8 +39,9 @@
       <% end %>
 
 
-      <% form_tag url_for(:controller => "videos", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
+      <% form_tag url_for(:controller => "users", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
         <%= hidden_field_tag "video_id", @video.id %>
+        <%= hidden_field_tag "id", @user.id %>
         <div class="onThis">
           <div class="navigation-container">
             <div id="thumbs" class="navigation">
