@@ -276,6 +276,109 @@ class UsersController < ApplicationController
     redirect_to :controller=>'users', :action => 'show_detail_video', :video_id => params[:video_id], :id => params[:id]
   end
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  def add_tag
+video = Video.find(params[:video_id])
+    
+    share_to = params[:share_to]
+    user_ids = share_to.split(",")
+    if user_ids.size > 0 
+      user_ids.each do |i|
+        u = User.find(i)
+        if u
+          #adding selected user into TagInfo
+          taginfo = TagInfo.new()
+          taginfo.tag_creator_id = current_user.id
+          taginfo.tagable_id = params[:video_id]
+          taginfo.tagable_user = u.id
+          taginfo.tagable_type = "Video"
+          taginfo.verify = false
+          if current_user == video.user
+            taginfo.verify = true
+            flash[:notice] = "Your friend(s) has been tagged."
+          else
+            flash[:notice] = "Your request has been sent to author. The approval will be sent to your email."
+          end
+          if taginfo.save
+            QaSendMail.tag_vid_notify(u,video, current_user).deliver
+            if current_user != video.user
+              QaSendMail.inform_vid_owner(u,video, current_user).deliver
+            end
+          end
+          #if save then send mail to each user here, and to video.user
+        end
+      end #end each
+    end
+    
+    
+    redirect_to :controller=>'users', :action => 'show_detail_video', :video_id => params[:video_id], :id => params[:id]
+  end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   protected
   
   def get_params

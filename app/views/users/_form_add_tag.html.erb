@@ -1,5 +1,6 @@
-<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => false do %>
+<% form_tag url_for(:controller => "users", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => false do %>
   <%= hidden_field_tag "video_id", @video.id %>
+  <%= hidden_field_tag "id", @user.id %>
 
   <div class="form_friends" style="margin-top: 10px; width: 440px;">
     <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
