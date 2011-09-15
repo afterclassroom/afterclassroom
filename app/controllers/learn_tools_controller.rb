@@ -420,6 +420,16 @@ class LearnToolsController < ApplicationController
     redirect_to :controller=>'learn_tools', :action => 'toolmanager'
   end
   
+  def add_mytool
+    tool = Learntool.find(params[:tool_id])
+    mt= MyTool.new()
+    mt.user = current_user
+    mt.learntool = tool
+    mt.save
+      
+    render :layout => false
+  end
+  
   private
   
   def get_variables

@@ -325,7 +325,9 @@ class PhotosController < ApplicationController
     
       if tagphoto.save
         QaSendMail.tag_photo_notify(usr,photo, current_user).deliver
-        QaSendMail.inform_photo_owner(usr,photo, current_user).deliver
+        if current_user != photo.user
+          QaSendMail.inform_photo_owner(usr,photo, current_user).deliver
+        end
       end
     end
     
@@ -349,16 +351,23 @@ class PhotosController < ApplicationController
   end
   
   def usrdata
-    arr = []
+    list_friends = []
     
-    list_friends = current_user.user_friends
-    friends = []
-    list_friends.select {|usr| friends << usr if usr.name.downcase.start_with? params[:term].to_s.downcase }
+    
+    current_user.user_friends.each do |usr|
+      list_friends << usr
+    end
+    
+    list_friends << current_user
+    puts "after == #{list_friends.size}"
+
+    friends = list_friends.select { |usr| usr.name.downcase.start_with? params[:term].to_s.downcase }
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:photo_id],"Photo"])
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
     filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
     
+    arr = []
     filtered_friends.each do |usr|
       obj = { 
         :id=> usr.id, 
@@ -416,6 +425,24 @@ class PhotosController < ApplicationController
     user_to_remove = ["#{current_user.id}"]
     TagInfo.refuse_photo(user_to_remove,params[:photo_id])
     @photo = Photo.find(params[:photo_id])
+  end
+  
+  def comment_inform
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:photo_id],"Photo",true ] )
+    @photo = Photo.find(params[:photo_id])
+    
+    #send mail to author
+    QaSendMail.photo_cmt_added(@photo.user,@photo,params[:comment_content],current_user).deliver
+    
+    #and then send mail to tagged user
+    if @tagged_users.size > 0
+      @tagged_users.each do |user|
+        QaSendMail.photo_cmt_added(user,@photo,params[:comment_content],current_user).deliver
+      end #end each
+    end #end if
+
+    
+    render :text => "Done"
   end
   
   

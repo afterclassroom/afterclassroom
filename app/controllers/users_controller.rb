@@ -18,12 +18,18 @@ class UsersController < ApplicationController
 
   def list_friend_to_tag#this action support for displaying user suggestion when adding tag at Video/Photos 
     q = params[:q]
-    friends = current_user.user_friends
+    friends = []
+      
+    current_user.user_friends.each do |usr|
+      friends << usr
+    end
+    friends << current_user
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:tagable_id],params[:tagable_type]])
     
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
     filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
+    
     
     arr = []
     filtered_friends.each do |f|
@@ -218,6 +224,11 @@ class UsersController < ApplicationController
       as_prev = @user.videos.previous(@video.id).first
       @next = as_next if as_next
       @prev = as_prev if as_prev
+      
+      #the following statement to support tag_friend at video
+      @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
+      @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
+      
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)

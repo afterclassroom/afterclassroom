@@ -19,7 +19,7 @@
         </div>
         <div class="demoBtm" style="margin-top: 10px">
           <% if  is_my_tool(@tool) == false %>
-            <a id="add_tool_to_mytool" href="javascript:;">Add to My Tool</a>
+             <%= link_to( "Add to My Tool", {:controller => "learn_tools", :action => "add_mytool", :tool_id => @tool.id  }, :id => "add_tool_to_mytool", :remote => true ,:method => :get) %>
           <% end %>
         </div>
 
