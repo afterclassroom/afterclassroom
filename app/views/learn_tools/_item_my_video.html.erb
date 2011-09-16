@@ -10,25 +10,60 @@
 <script type="text/javascript">
   $(document).ready(function(){
     var eachItem = $('div#each_vid_<%= video.id %>');
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     eachItem.click(function(){
       
       if (overalObject == null){
         overalObject = eachItem;
-      }
-      else {
-        $(overalObject).css('background-color', '');
+      }else {
         overalObject = eachItem;
       }
       var filename = overalObject.find('div.musicN').text();
       jQuery.data(overalObject,"vid_name",filename);
       
-      $(this).css('background-color', '#0085DF');
-      $(this).css('border-radius', '4px');
-      /* BEGIN: select the video image */
-      //overVidImg
-      overVidImg = $(this).find('.photoImg');
-      /* END: select the video image */
+      
+
+      $('div#bottomoverlay').remove();
+      
+      eachItem.find('div.photoImg').append('<div id="bottomoverlay"></div>');
+      //var position = eachItem.find('div.photoImg').offset();
+      var position = eachItem.offset();
+
+      $("#bottomoverlay")
+      .height(75)
+      .css({
+        'opacity' : 0.4,
+        'position': 'absolute',
+        'top': position.top-54,
+        'left': position.left-404,
+        'border':'2px solid #1D98DF',
+        'width': '98px',
+        'z-index': 5000
+      });      
     });
+
     eachItem.mouseover(function() {
       $(this).css('cursor', 'pointer');
     });
