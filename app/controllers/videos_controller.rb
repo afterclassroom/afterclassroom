@@ -182,6 +182,11 @@ class VideosController < ApplicationController
     videos = current_user.videos.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
     if videos.size > 0
       videos.each do |abl|
+        tools = Learntool.find(:all, :conditions => ["video_id = ?", abl.id])
+        if tools.size > 0
+          Learntool.update_all({:video_id => nil}, {:video_id => abl.id})
+        end
+        
         del_post_wall(abl)
         abl.favorites.destroy_all
         abl.destroy
