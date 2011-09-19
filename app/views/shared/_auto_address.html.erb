@@ -1,30 +1,47 @@
 <div id="mapblock">
-    <div id="mapframe" style="margin-left: 350px">
-        <div id="mapwindow">
-        </div>
+  <div id="mapframe" style="margin-left: 350px">
+    <div id="mapwindow">
     </div>
-    <script type="text/javascript">
+  </div>
+  <script type="text/javascript">
         
-        $(document).ready(function(){
+    $(document).ready(function(){
         
-            var options = {
-                map_frame_id: "mapframe",
-                map_window_id: "mapwindow",
-                lat_id: "filter_lat",
-                lng_id: "filter_lng",
-                addr_id: "filter_address",
-                lat: "37.7749295",
-                lng: "-122.4194155",
-                map_zoom: 13
-            }
+      var options = {
+        map_frame_id: "mapframe",
+        map_window_id: "mapwindow",
+        lat_id: "filter_lat",
+        lng_id: "filter_lng",
+        addr_id: "filter_address",
+        lat: "37.7749295",
+        lng: "-122.4194155",
+        map_zoom: 13
+      }
             
-            $('#<%= id_addres_field %>').autogeocomplete(options);
-        });
-    </script>
+      $('#<%= id_addres_field %>').autogeocomplete(options);
+    });
+    $(window).keyup(function(e) {
+      if (e.keyCode == 17 || e.keyCode == 61 || e.keyCode == 109) 
+      {      
+        $('.ui-autocomplete, #mapblock').hide();
+        return false;
+      }
+      else
+      {
+        $('.ui-autocomplete, #mapblock').show();
+      }
+    });  
+    $(document).ready(function(){
+      $(window).mousewheel(function() {
+        $('.ui-autocomplete, #mapblock').hide();
+      });
+    });
+  </script>
 </div>
+<script type="text/javascript" src="/javascripts/jquery.mousewheel.js"></script> 
 <style>
   .ui-autocomplete{
     position: relative;
-    margin-left: 441px;
+  
   }
 </style>

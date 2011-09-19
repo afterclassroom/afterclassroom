@@ -11,57 +11,20 @@
   $(document).ready(function(){
     var eachItem = $('div#each_vid_<%= video.id %>');
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     eachItem.click(function(){
+      $(this).find('div.photoImg div').css('background',"url('/images/bgphoto_sel.png') no-repeat scroll left top transparent");
       
       if (overalObject == null){
         overalObject = eachItem;
       }else {
+        overalObject.find('div.photoImg div').css('background',"url('/images/bgphoto.png') no-repeat scroll left top transparent");
         overalObject = eachItem;
       }
       var filename = overalObject.find('div.musicN').text();
       jQuery.data(overalObject,"vid_name",filename);
       
+      overVidImg = $(this).find('div div');
       
-
-      $('div#bottomoverlay').remove();
-      
-      eachItem.find('div.photoImg').append('<div id="bottomoverlay"></div>');
-      //var position = eachItem.find('div.photoImg').offset();
-      var position = eachItem.offset();
-
-      $("#bottomoverlay")
-      .height(75)
-      .css({
-        'opacity' : 0.4,
-        'position': 'absolute',
-        'top': position.top-54,
-        'left': position.left-404,
-        'border':'2px solid #1D98DF',
-        'width': '98px',
-        'z-index': 5000
-      });      
     });
 
     eachItem.mouseover(function() {
