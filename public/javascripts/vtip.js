@@ -11,7 +11,7 @@ this.vtip = function(){
         this.top = (e.pageY + yOffset);
         this.left = (e.pageX + xOffset);
         
-        $('body').append('<p id="vtip"><img id="vtipArrow" />' + this.t + '</p>');
+        $('body').append('<p id="vtip" style="max-width: 250px;"><img id="vtipArrow" />' + this.t + '</p>');
         
         $('p#vtip #vtipArrow').attr("src", '/images/vtip_arrow.png');
         $('p#vtip').css("top", this.top + "px").css("left", this.left + "px").fadeIn("slow");

@@ -1,6 +1,9 @@
-<%= render :partial => "videos/form_add_tag" %>
+<%= render :partial => "form_add_tag" %>
+
 <% if  @video.user == current_user && @verify_users.size > 0 %>
+
   <%= render :partial => "form_decision" %>
+
 <% end %><!-- end if -->
 <div class="stoDbtm">
   <div class="AsDContBtm">
@@ -39,7 +42,6 @@
   });
 
   $(function(){
-    
     // Autocomplete initialization
     var tb = new $.TextboxList('#share_to', {
       unique: true,
@@ -61,8 +63,8 @@
         
   });  
   $(document).ready(function(){
-    $('.textboxlist').width(440);
-    $('div.textboxlist-autocomplete').width(440);
+    $('.textboxlist').width(500);
+    $('div.textboxlist-autocomplete').width(500);
     
     $('#send_btn').click(function(){
       $('form#form_tag_user').submit();

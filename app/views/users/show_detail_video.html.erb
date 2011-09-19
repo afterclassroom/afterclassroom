@@ -31,8 +31,9 @@
         <div class="musicVideo" style="margin-left:0px">
           <%= render :partial => "videos/video_js" %>
         </div>
-        <%= render :partial => "videos/video_action" %>
-        <%= show_post_comments_video(@video) %>
+        <%= render :partial => "video_action" %>
+        <%#= show_post_comments_video(@video) %>
+        <%= show_post_comments(@video) %> 
         <div class="goTop">
           <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
         </div>
@@ -41,6 +42,7 @@
   </div>
 </div>
 <div class="contMainR">
+  <%= render :partial => "on_this_video" %>
   <!--Ads-->
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->

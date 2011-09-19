@@ -59,7 +59,9 @@
     var tb = new $.TextboxList('#share_to', {
       unique: true,
       plugins: {
-        autocomplete: {}
+        autocomplete: {
+          onlyFromValues: true
+        }
       }
     });
     tb.getContainer().addClass('textboxlist-loading');

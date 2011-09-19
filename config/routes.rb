@@ -16,7 +16,7 @@ Afterclassroom::Application.routes.draw do
       get :edit_password, :edit_email, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning,
         :list_friend_to_tag
       put :update_password, :update_email
-      post :update_avatar
+      post :update_avatar, :remove_tagged, :add_tag, :tag_decision
     end
 	
     #Messages
@@ -35,7 +35,8 @@ Afterclassroom::Application.routes.draw do
           :mylearn, :tool_rev_paging, :write_review_form, :become_a_fan,
           :new_tool, :verify_handler, :owner_handler, :video_list, :video_list_paging,
           :rate, :new_tool_with_api, :choose_to_add, :edit_review_form, :delete_review,
-          :play_vid, :toolmanager, :edit_tool, :delete_tool, :fan_list_paging, :view_review
+          :play_vid, :toolmanager, :edit_tool, :delete_tool, :fan_list_paging, :view_review,
+          :add_mytool
         post :submit_review, :submit_new_tool, :create_tool_with_api, 
           :send_to_dev,:update_review, :save_edit_tool
       end
@@ -121,7 +122,7 @@ Afterclassroom::Application.routes.draw do
     resources :photos do
       collection do
         get :friend_p, :my_p, :create_form, :destroy_all, :show_album, :phototag, :deletetag, :addtag, :usrdata, :self_untag
-        post :create_album, :upload, :tag_decision, :remove_tagged
+        post :create_album, :upload, :tag_decision, :remove_tagged, :comment_inform
       end
     end
 
@@ -335,9 +336,6 @@ Afterclassroom::Application.routes.draw do
   end
   
   # Administration
-  #ActiveAdmin.routes(self)
-
-  #devise_for :admin_users, ActiveAdmin::Devise.config
   
   namespace :admin do
     resources :dashboards

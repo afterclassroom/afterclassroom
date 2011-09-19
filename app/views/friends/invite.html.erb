@@ -114,10 +114,9 @@
     var substr = $('#email_list').val().split(',');
     
     var wrongEmail = "";
-    var count = 0;jQuery.parseJSON( json )
+    var count = 0;
     for (i=0; i<substr.length; i++){
       if (validateEmail(substr[i]) == false){
-        
         if (wrongEmail == ""){
           wrongEmail = substr[i];
         }

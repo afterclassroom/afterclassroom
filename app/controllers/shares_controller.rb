@@ -71,7 +71,7 @@ class SharesController < ApplicationController
               mess.body = content
               mess.save
               @share.recipients << u
-              subject = " You got new file from #{current_user.name}."
+              subject = "You got new file from #{current_user.name}."
               content = "#{current_user.name} sent you a new file on After Classroom Share File, click <a href='#{user_shares_url(u)}' target='blank'>here</a> to receive a file before it expires in 7 days."
               send_notification(u, subject, content, "friend_share_file")
             end

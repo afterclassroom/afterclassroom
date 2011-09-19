@@ -52,12 +52,17 @@
             <div class="postItem">
               <div class="postTit">Demo Video</div>
               <div class="postInp">
-                <div class="submit" style="padding: 0px;">
-                  <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
+                <div class="" style="padding-top: 4px;">
+                  
+                  <% vid_size = current_user.videos.count(:all, :conditions => ["state = ?", "converted"]) %>
+                  
+                  <% if ( vid_size > 0 ) %>
+                    <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :style => "color: #1988C7;",:class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
+                  <% end %>
                 </div>
-                <input type="text" name="vid_name" id="vid_name" style="margin-left: -106px;  margin-top: 31px; display: none "/>
-                <div class="submit" style="padding: 0px; padding-left: 10px;">
-                  <a href="javascript:;" id="btn_new_vid">New</a>
+                <input type="text" name="vid_name" id="vid_name" style="margin-left: -62px;  margin-top: 31px; display: none "/>
+                <div class="" style="padding-top: 4px; <%= vid_size > 0 ? "padding-left: 10px;": "" %>">
+                  <a href="javascript:;" id="btn_new_vid" style="color: #1988C7;">New</a>
                 </div>
                 <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
               </div>
@@ -70,7 +75,7 @@
               <%= render :partial => "form_vid" %>
             </div>
             <div id="captcha_area" style="margin-left:120px">
-              <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+              <%= show_simple_captcha(:label => "CAPTCHA Code *", :class => '{validate:{required:true}}') %>
             </div>
           </div>
         </div>

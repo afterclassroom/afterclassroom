@@ -159,7 +159,7 @@ class PostsController < ApplicationController
         when "Story"
           subject = "#{current_user.name} left comments on your Story."
           content = "Hello #{obj.user.name}, <br/>"
-          content << "<p>#{current_user.name} just left comments on your Story, click <a href='#{user_story_url(u, obj)}' target='blank'>here</a> see what’s in it.</p>"
+          content << "<p>#{current_user.name} just left comments on your Story, click <a href='#{user_story_url(u, obj)}' target='blank'>here</a> see what's in it.</p>"
           send_notification(u, subject, content, "comments_on_my_share_a_story")
         end
       end

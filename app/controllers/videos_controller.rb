@@ -182,6 +182,11 @@ class VideosController < ApplicationController
     videos = current_user.videos.find(:all, :conditions => ["id IN(#{ids.join(", ")})"])
     if videos.size > 0
       videos.each do |abl|
+        tools = Learntool.find(:all, :conditions => ["video_id = ?", abl.id])
+        if tools.size > 0
+          Learntool.update_all({:video_id => nil}, {:video_id => abl.id})
+        end
+        
         del_post_wall(abl)
         abl.favorites.destroy_all
         abl.destroy
@@ -215,8 +220,9 @@ class VideosController < ApplicationController
           end
           if taginfo.save
             QaSendMail.tag_vid_notify(u,video, current_user).deliver
-            QaSendMail.inform_vid_owner(u,video, current_user).deliver
-            
+            if current_user != video.user
+              QaSendMail.inform_vid_owner(u,video, current_user).deliver
+            end
           end
           #if save then send mail to each user here, and to video.user
         end
@@ -278,8 +284,6 @@ class VideosController < ApplicationController
     #send mail to author
     QaSendMail.vid_cmt_added(@video.user,@video,params[:comment_content],current_user).deliver
     
-    puts "size == "
-    puts "size == #{@tagged_users.size}"
     #and then send mail to tagged user
     if @tagged_users.size > 0
       @tagged_users.each do |user|

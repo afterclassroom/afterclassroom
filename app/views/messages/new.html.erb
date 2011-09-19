@@ -107,7 +107,9 @@
       max: 1,
       unique: true,
       plugins: {
-        autocomplete: {}
+        autocomplete: {
+          onlyFromValues: true
+        }
       }
     });
 <% if @reply_to != nil %>/* This part is enabled for action replyTo only */

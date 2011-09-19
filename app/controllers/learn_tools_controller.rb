@@ -241,6 +241,9 @@ class LearnToolsController < ApplicationController
     
     str_notice = ""
     
+    #the following statement support for case of new_tool invalid
+    @categories ||= Youtube.video_categories
+    
     if simple_captcha_valid?
       if @tool.save
         if (params[:vid_check] == "new video upload")
@@ -418,6 +421,16 @@ class LearnToolsController < ApplicationController
       flash[:notice] = "Error! Failed to remote tool"
     end
     redirect_to :controller=>'learn_tools', :action => 'toolmanager'
+  end
+  
+  def add_mytool
+    tool = Learntool.find(params[:tool_id])
+    mt= MyTool.new()
+    mt.user = current_user
+    mt.learntool = tool
+    mt.save
+      
+    render :layout => false
   end
   
   private

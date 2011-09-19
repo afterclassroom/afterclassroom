@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_password]
   before_filter :require_current_user,
-    :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
+    :except => [:add_tag, :index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
   before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
   # render new.rhtml
   def index
@@ -18,12 +18,18 @@ class UsersController < ApplicationController
 
   def list_friend_to_tag#this action support for displaying user suggestion when adding tag at Video/Photos 
     q = params[:q]
-    friends = current_user.user_friends
+    friends = []
+      
+    current_user.user_friends.each do |usr|
+      friends << usr
+    end
+    friends << current_user
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:tagable_id],params[:tagable_type]])
     
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
     filtered_friends = friends.select { |c| !tagged_user_ids.include?(c.id) }
+    
     
     arr = []
     filtered_friends.each do |f|
@@ -87,11 +93,11 @@ class UsersController < ApplicationController
     logout_keeping_session!
     user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
-      when (!params[:activation_code].blank?) && user && !user.active?
+    when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
       flash[:notice] = "Signup complete! Please sign in to continue."
       redirect_to RubyCAS::Filter.login_url(self)
-      when params[:activation_code].blank?
+    when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.<br/>Please follow the URL from your email."
       redirect_back_or_default(root_path)
     else
@@ -218,6 +224,11 @@ class UsersController < ApplicationController
       as_prev = @user.videos.previous(@video.id).first
       @next = as_next if as_next
       @prev = as_prev if as_prev
+      
+      #the following statement to support tag_friend at video
+      @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
+      @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
+      
       render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
@@ -250,6 +261,147 @@ class UsersController < ApplicationController
   def warning
     render :layout => "student_lounge"
   end
+  
+  def remove_tagged
+    video = Video.find(params[:video_id])
+    TagInfo.refuse_vid(params[:tag_checkbox],params[:video_id])
+    share_to = params[:tag_checkbox]
+    share_to.each do |i|
+      u = User.find(i)
+      if u
+        QaSendMail.tag_removed(u,video,current_user).deliver
+      end
+    end #end each
+
+    redirect_to :controller=>'users', :action => 'show_detail_video', :video_id => params[:video_id], :id => params[:id]
+  end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  def add_tag
+    video = Video.find(params[:video_id])
+    
+    share_to = params[:share_to]
+    user_ids = share_to.split(",")
+        if user_ids.size > 0 
+          user_ids.each do |i|
+            u = User.find(i)
+            if u
+              #adding selected user into TagInfo
+              taginfo = TagInfo.new()
+              taginfo.tag_creator_id = current_user.id
+              taginfo.tagable_id = params[:video_id]
+              taginfo.tagable_user = u.id
+              taginfo.tagable_type = "Video"
+              taginfo.verify = false
+              if current_user == video.user
+                taginfo.verify = true
+                flash[:notice] = "Your friend(s) has been tagged."
+              else
+                flash[:notice] = "Your request has been sent to author. The approval will be sent to your email."
+              end
+              if taginfo.save
+                QaSendMail.tag_vid_notify(u,video, current_user).deliver
+                if current_user != video.user
+                  QaSendMail.inform_vid_owner(u,video, current_user).deliver
+                end
+              end
+              #if save then send mail to each user here, and to video.user
+            end
+          end #end each
+        end
+    
+    
+    redirect_to :controller=>'users', :action => 'show_detail_video', :video_id => params[:video_id], :id => params[:id]
+  end
+  
+def tag_decision
+    video = Video.find(params[:video_id])
+    if params[:decision_id] == "ACCEPT"
+      TagInfo.verify_vid(params[:checkbox],params[:video_id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        if u
+          QaSendMail.tag_approved(u,video,current_user).deliver
+        end
+      end #end each
+    else
+      TagInfo.refuse_vid(params[:checkbox],params[:video_id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        if u
+          QaSendMail.tag_removed(u,video,current_user).deliver
+        end
+      end #end each
+    end
+    redirect_to :controller=>'users', :action => 'show_detail_video', :video_id => params[:video_id], :id => params[:id]
+  end
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   protected
   
