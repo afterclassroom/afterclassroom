@@ -53,9 +53,9 @@
               <div class="postTit">Demo Video</div>
               <div class="postInp">
                 <div class="" style="padding-top: 4px;">
-                  
+
                   <% vid_size = current_user.videos.count(:all, :conditions => ["state = ?", "converted"]) %>
-                  
+
                   <% if ( vid_size > 0 ) %>
                     <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :style => "color: #1988C7;",:class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
                   <% end %>
@@ -102,18 +102,44 @@
     if (result) {
       $("form#form_new_tool").submit();
     }
-  }    
-  $(document).ready(function(){
-    $('#select_vid').click(function(){
+  }
+  function ManipulateFormNewVid(status){
+    if (status == true)//show
+    {
+      $('div#form_vid').show('slow');
+      $('input#video_video_attach').addClass('required');
+      $('input#video_title').addClass('required');
+    }
+    else//hide
+    {
+      $('div#form_vid').hide();
+      $('input#video_video_attach').removeClass('required');
+      $('input#video_title').removeClass('required');
+    }
+  }
+  function ManipulateFormSelectVid(status){
+    if (status == true)//show
+    {
       $('input#vid_name').show('slow');
       $('#img_selected').show('slow');
-      $('div#form_vid').hide();
+      $('input#vid_name').addClass('required');
+    }
+    else//hide
+    {
+      $('input#vid_name').hide();
+      $('#img_selected').hide();
+      $('input#vid_name').removeClass('required');
+    }
+  }
+  $(document).ready(function(){
+    $('#select_vid').click(function(){
+      ManipulateFormNewVid(false);
+      ManipulateFormSelectVid(true);
       $('input#vid_check').val("video selected");
     });
     $('#btn_new_vid').click(function(){
-      $('input#vid_name').hide();
-      $('#img_selected').hide();
-      $('div#form_vid').show('slow');
+      ManipulateFormSelectVid(false);
+      ManipulateFormNewVid(true);
       $('input#vid_check').val("new video upload");
     });
     $('#btn_sbm_tool').click(function(){
@@ -125,6 +151,9 @@
     });
     $('#reset_form').click(function(){
       document.getElementById('form_new_tool').reset();
+      ManipulateFormNewVid(false);
+      ManipulateFormSelectVid(false);
+      $('label.error').remove();
     });
     //desc_count
     $('#learntool_description').keyup(function(){
