@@ -21,8 +21,6 @@
           <% end %>
         </ul>
       </li>    
-
-
     <% end %>
   </ul>
   <script type="text/javascript">
@@ -32,14 +30,14 @@
         valueAttr: "rel_department"    
       });
     });
-    $(function() {
+    $(document).ready(function(){
       $('#department_menu,#year_menu').hover(function() {
         $(this).stop().show();
       }, function() {
         $(this).stop().hide();
       });
     });
-    $(function() {
+    $(document).ready(function(){
       $('div.postItemDep').hover(function() {
       }, function() {
         $('#department_menu,#year_menu').stop().hide();

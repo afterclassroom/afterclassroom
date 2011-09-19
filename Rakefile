@@ -6,6 +6,6 @@ require 'rake'
 require 'sunspot/rails/tasks'
 require 'jammit'
 
-Jammit.package!
+#Jammit.package!
 
 Afterclassroom::Application.load_tasks

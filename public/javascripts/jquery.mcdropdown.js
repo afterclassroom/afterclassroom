@@ -625,6 +625,8 @@
 
             var pos = $.extend($el[bUseOffset === true ? "offset" : "position"](),{
                 width: $el.outerWidth()
+
+
                 ,
                 height: $el.outerHeight()
                 ,

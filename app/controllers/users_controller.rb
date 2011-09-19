@@ -276,47 +276,6 @@ class UsersController < ApplicationController
     redirect_to :controller=>'users', :action => 'show_detail_video', :video_id => params[:video_id], :id => params[:id]
   end
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   def add_tag
     video = Video.find(params[:video_id])
     
@@ -377,32 +336,7 @@ def tag_decision
     end
     redirect_to :controller=>'users', :action => 'show_detail_video', :video_id => params[:video_id], :id => params[:id]
   end
-    
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   protected
   
   def get_params

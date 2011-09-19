@@ -92,6 +92,10 @@ class User < ActiveRecord::Base
 
   # Won't set to null even if string is blank. "   " => ""
   auto_strip_attributes :email, :nullify => false
+	
+	# Friendly ID
+	extend FriendlyId
+  friendly_id :login, :use => :slugged
   
   # Solr search index
   searchable do

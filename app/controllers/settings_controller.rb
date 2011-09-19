@@ -137,6 +137,31 @@ class SettingsController < ApplicationController
     end
     redirect_to :action => "setting"
   end
+
+	def change_user_name
+    render :layout => false
+  end
+  
+  def save_user_name
+    if current_user == @user
+      @user = current_user
+			login = params[:username]
+			logins = User.where(:login => login)
+			if logins.size > 0
+				flash[:error] = "Username '#{login}' already exists"
+			else
+				@user.login = login
+		    if @user.save!
+		      flash[:notice] = "Updated your username successfully"
+		    else
+		      flash[:error] = "Updated your username failed"
+		    end
+			end
+    else
+      flash[:error] = "You cannot update another username!"
+    end
+    redirect_to setting_user_settings_url(@user)
+  end
   
   def change_email
     render :layout => false
@@ -171,6 +196,12 @@ class SettingsController < ApplicationController
     end
     redirect_to :action => "setting"
   end
+
+	def check_login
+		username = params[:username]
+		logins = User.where(:login => username)
+		(logins.size > 0) ? "valid" : "invalid"
+	end
   
   private
   def require_current_user

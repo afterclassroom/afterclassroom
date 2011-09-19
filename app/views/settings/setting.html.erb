@@ -26,6 +26,19 @@
           <div class="settItemBR"><%= current_user.full_name %></div>
         </div>
       </div>
+		<div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Username</div>
+
+          <div class="settItemTR">
+            <%=  link_to(raw("<span>change</span>"), "#{change_user_name_user_settings_path(current_user)}?height=120&width=470&typeOfChange=name", :class => "thickbox", :title => "Change Username") %>
+          </div>
+        </div>
+        <div class="settItemB">
+          <div class="settItemBL">Your username. <br/> Friends can view your profile using the link: <%= user_url(current_user) %></div>
+          <div class="settItemBR"><%= current_user.login %></div>
+        </div>
+      </div>
       <div class="settItem">
         <div class="settItemT">
           <div class="settItemTL">Email</div>

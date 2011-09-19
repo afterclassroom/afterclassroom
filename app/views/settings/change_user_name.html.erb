@@ -1,0 +1,40 @@
+<div class="postCont" id="div_send_report">
+    <form id="editeUsername" action="<%= save_user_name_user_settings_path(current_user) %>">
+        <div class="postItem" id="username_txt">
+            <div class="postItem1" style="width: 205px">
+                Please enter a new username *
+            </div>
+            <div class="postInp">
+                <input type="text" style="width:270px;" value="" id="username" name="username" class="required"/>
+            </div>
+						<div style="background: url(/images/iconCheck.gif) no-repeat scroll left 2px transparent; margin-left: 10px; padding-left: 18px;">Username is available</div>
+						<div style="background: url(/images/icon-ing.gif) no-repeat scroll left 2px transparent; margin-left: 10px; padding-left: 18px;">Username is not available</div>
+        </div>
+        <div class="submit" style="padding-left: 215px ;">
+            <a href="javascript:;" onclick="sendChange()">Send</a>
+        </div>
+        <div class="error" style="padding: 10px">
+        </div>
+    </form>
+</div>
+<script language="javascript">
+    function sendChange(){
+        $("#editeUsername").submit();
+    }
+    var path = "<%= check_login_user_settings_url(current_user) %>";
+    $().ready(function(){
+        $("#editeUsername").validate({});
+				$('#username').autocomplete({
+                        source: function(request, response) {
+                            $.ajax({
+                                type: 'POST',
+                                url: path,
+                                dataType: "json",
+                                success: function(data) {
+                                    alert(data);
+                                }
+                            });
+                        }
+                    });
+    });
+</script>
