@@ -6,7 +6,7 @@
   <script type="text/javascript">
         
     $(document).ready(function(){
-
+ 
       var options = {
         map_frame_id: "mapframe",
         map_window_id: "mapwindow",
@@ -18,16 +18,36 @@
         map_zoom: 13
       }
                 
-      $('#<%= id_addres_field %>').autogeocomplete(options);
-      
+      $('#<%= id_addres_field %>').autogeocomplete(options);   
+    });
+    $(window).keyup(function(e) {
+      if (e.keyCode == 17 || e.keyCode == 61 || e.keyCode == 109) 
+      {      
+        $('.ui-autocomplete, #mapblock').hide();
+        return false;
+      }
+      else
+      {
+        $('.ui-autocomplete, #mapblock').show();
+      }
+    });  
+    $(document).ready(function(){
+      $(window).mousewheel(function() {
+        $('.ui-autocomplete, #mapblock').hide();
+      });
+    });
+    
+    jQuery(function($) {
+      $("ul..ui-autocomplete:last").addClass("auto_gmap")
     });
       
   </script>
 </div>
+<script type="text/javascript" src="/javascripts/jquery.mousewheel.js"></script> 
 <style>
-  .ui-autocomplete{
+  .auto_gmap{
     position: relative;
-    margin-left: 810px;
+    margin-left: 51.1%;
   }
 </style>
 
