@@ -70,12 +70,12 @@
             <div class="postItem">
               <div class="postTit">Demo Video</div>
               <div class="postInp">
-                <div class="submit" style="padding: 0px;">
-                  <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
+                <div class="" style="padding-top: 4px;">
+                  <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :style => "color: #1988C7;", :class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
                 </div>
                 <input type="text" name="vid_name" id="vid_name" style="margin-left: -106px;  margin-top: 31px; display: none "/>
-                <div class="submit" style="padding: 0px; padding-left: 10px;">
-                  <a href="javascript:;" id="btn_new_vid">New</a>
+                <div class="" style="padding-top: 4px; padding-left: 10px;">
+                  <a href="javascript:;" id="btn_new_vid" style="color: #1988C7;">New</a>
                 </div>
                 <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
               </div>
@@ -113,18 +113,44 @@
       $("form#form_new_tool").submit();
     }
   }    
+  function ManipulateFormNewVid(status){
+    if (status == true)//show
+    {
+      $('div#form_vid').show('slow');
+      $('input#video_video_attach').addClass('required');
+      $('input#video_title').addClass('required');
+    }
+    else//hide
+    {
+      $('div#form_vid').hide();
+      $('input#video_video_attach').removeClass('required');
+      $('input#video_title').removeClass('required');
+    }
+  }
+  function ManipulateFormSelectVid(status){
+    if (status == true)//show
+    {
+      $('input#vid_name').show('slow');
+      $('#img_selected').show('slow');
+      $('input#vid_name').addClass('required');
+    }
+    else//hide
+    {
+      $('input#vid_name').hide();
+      $('#img_selected').hide();
+      $('input#vid_name').removeClass('required');
+    }
+  }  
   $(document).ready(function(){
 
     $('#select_vid').click(function(){
-      $('input#vid_name').show('slow');
-      $('#img_selected').show('slow');
-      $('div#form_vid').hide();
+      ManipulateFormNewVid(false);
+      ManipulateFormSelectVid(true);
       $('input#vid_check').val("video selected");
     });
     $('#btn_new_vid').click(function(){
-      $('input#vid_name').hide();
-      $('#img_selected').hide();
-      $('div#form_vid').show('slow');
+      ManipulateFormSelectVid(false);
+      ManipulateFormNewVid(true);
       $('input#vid_check').val("new video upload");
     });
 
@@ -137,6 +163,11 @@
     });
     $('#reset_form').click(function(){
       document.getElementById('form_new_tool').reset();
+      ManipulateFormNewVid(false);
+      ManipulateFormSelectVid(false);
+      $('input#vid_check').val("");//set to empty to inform controller that there's no VIDEO
+      $('label.error').remove();
+      
     });
     //desc_count
     $('#learntool_description').keyup(function(){
