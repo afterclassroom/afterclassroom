@@ -1,53 +1,66 @@
 <div class="postCont">
-    <%= form_for [current_user, @music], :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
+  <%= form_for [current_user, @music], :html => {:id => "form", :name => "form", :multipart => true } do |f| %>
     <div class="postItem">
-        <div class="postTit">
-            music album*
-        </div>
-        <div class="postInp">
-            <% if @music_albums.size > 0 %>
-            <%= f.select :music_album_id, @music_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:360px", :class => '{validate:{required:true}}'} %>
-            <% end %>
-        </div>
+      <div class="postTit">
+        music album*
+      </div>
+      <div class="postInp">
+        <% if @music_albums.size > 0 %>
+          <%= f.select :music_album_id, @music_albums.collect {|p| [p.name, p.id]}, {}, {:style => "width:360px", :class => '{validate:{required:true}}'} %>
+        <% end %>
+      </div>
     </div>
     <div class="postItem">
-        <div class="postTit">
-            Title
-        </div>
-        <div class="postInp">
-            <%= f.text_field :title, :style => "width:360px" %>
-        </div>
+      <div class="postTit">
+        Title
+      </div>
+      <div class="postInp">
+        <%= f.text_field :title, :style => "width:360px" %>
+      </div>
     </div>
-	 <div class="postItem">
-        <div class="postTit">
-            Artist
-        </div>
-        <div class="postInp">
-            <%= f.text_field :artist, :style => "width:360px" %>
-        </div>
+    <div class="postItem">
+      <div class="postTit">
+        Artist
+      </div>
+      <div class="postInp">
+        <%= f.text_field :artist, :style => "width:360px" %>
+      </div>
+    </div>
+    <div class="postItem">
+      <div class="postTit">
+        New File
+      </div>
+      <div class="postInp">
+        <%= f.file_field :music_attach, :style => "height: 25px;width:360px", :class => "{validate:{accept:'mp3'}}" %>
+      </div>
     </div>
     <div class="postItem" style="display: none;">
-        <div class="postTit">
-            Tag line
-        </div>
-        <div class="postInp">
-            <%= text_field_tag 'tag_list', "", :style => "width:360px" %>
-        </div>
+      <div class="postTit">
+        Tag line
+      </div>
+      <div class="postInp">
+        <%= text_field_tag 'tag_list', "", :style => "width:360px" %>
+      </div>
     </div>
     <div class="stoExBtm">
-        <div class="stoExCre">
-            <a href="javascript:;" onclick="submit();">Update music</a>
-        </div>
+      <div class="stoExCre">
+        <a href="javascript:;" onclick="submit();">Update music</a>
+      </div>
     </div>
-    <% end %>
+  <% end %>
 </div>
 <script type="text/javascript">
-    function submit(){
-        var result = $("#form").validate({
-            meta: "validate"
-        });
-        if (result) {
-            $("#form").submit();
-        }
+  function submit(){
+    var result = $("#form").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("#form").submit();
     }
+  }
+
+    $(document).ready(function(){
+      $('input#music_music_attach').attr('size','39');
+    });
+
 </script>
