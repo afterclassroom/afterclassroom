@@ -34,6 +34,14 @@
             <%= text_field_tag 'tag_list', "", :style => "width:360px" %>
         </div>
     </div>
+    <div class="postItem">
+        <div class="postTit">
+            New Image
+        </div>
+        <div class="postInp">
+            <%= f.file_field :photo_attach, :style => "height: 25px;width:360px", :class => '{validate:{accept:true}}' %>
+        </div>
+    </div>
     <div class="stoExBtm">
         <div class="stoExCre">
             <a href="javascript:;" onclick="submit();">Update photo</a>
@@ -50,4 +58,7 @@
             $("#form").submit();
         }
     }
+    $(document).ready(function(){
+      $('input#photo_photo_attach').attr('size','38');
+    });
 </script>
