@@ -73,11 +73,11 @@
                 <div class="" style="padding-top: 4px;">
                   <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :style => "color: #1988C7;", :class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
                 </div>
-                <input type="text" name="vid_name" id="vid_name" style="margin-left: -106px;  margin-top: 31px; display: none "/>
+                <input type="text" name="vid_name" id="vid_name" style="margin-left: -62px; margin-top: 31px; display: none; width: 360px;"/>
                 <div class="" style="padding-top: 4px; padding-left: 10px;">
                   <a href="javascript:;" id="btn_new_vid" style="color: #1988C7;">New</a>
                 </div>
-                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px;", :id => "tool_tip_vid"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
               </div>
             </div>
 
@@ -87,9 +87,6 @@
             <div id ="form_vid" style ="display: none;">
               <%= render :partial => "form_vid" %>
             </div>
-
-
-
           </div>
         </div>
         <div class="submit" style="margin-left: 129px;float: left;padding-left: 0px">
@@ -141,17 +138,26 @@
       $('input#vid_name').removeClass('required');
     }
   }  
+  function ModGui(){
+    $('input#learntool_tool_img').attr('size',39);
+    $('#learntool_learn_tool_cate_id').width('360px');
+    $('#learntool_name').width('360px');
+    $('#learntool_href').width('360px');
+    $('#learntool_support_url').width('360px');
+  }
   $(document).ready(function(){
-
+    ModGui();
     $('#select_vid').click(function(){
       ManipulateFormNewVid(false);
       ManipulateFormSelectVid(true);
       $('input#vid_check').val("video selected");
+      $('#tool_tip_vid').css('padding-left','0px');
     });
     $('#btn_new_vid').click(function(){
       ManipulateFormSelectVid(false);
       ManipulateFormNewVid(true);
       $('input#vid_check').val("new video upload");
+      $('#tool_tip_vid').css('padding-left','4px');
     });
 
 
