@@ -172,7 +172,10 @@ class UserWallsController < ApplicationController
         list_name << "<a href='#{user_url(u)}'>#{u.name}</a>"
         # Email, notification
         subject = "#{current_user.name} introduces someone special to you"
-        content = body
+				content = "Hello #{usr.name}, <br/>"
+        content << "<p><a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> wants to introduce someone special to you."
+        content << "#{user_url(current_user)} says: #{content}" if content
+        content << "<br />" + "Click #{link_to "here", user_url(u), :target => "blank"} to see if you know #{u.name}</p>"
         send_notification(u, subject, content, "match_making")
       end
     end

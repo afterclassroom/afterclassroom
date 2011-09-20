@@ -1,14 +1,17 @@
 <div class="learnNItem" id="item_<%= learntool.id %>">
-  <div class="learnFavTRv" style="margin-right: -38px; display: none;" id="edpr_id_<%= learntool.id %>">
-    <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), {:controller => "learn_tools", :action => "delete_tool", :tool_id => learntool.id  }, :remote => false, :style=>"background: url('')" ,:method => :get, :confirm => 'Are you sure you want to delete it?') %>
+  <div class="learnFavTRv" style="margin-right: 0px; display: none;" id="edpr_id_<%= learntool.id %>">
+    <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), 
+      {:controller => "learn_tools", :action => "delete_tool", :tool_id => learntool.id  }, :remote => false, :style=>"background: url(''); width: 10px;" ,
+      :method => :get, :confirm => 'Are you sure you want to delete it?', 
+      :class => "vtip", :title => "Delete your tool") %>
   </div>
-
-  <div class="learnFavTR" style="margin-right: -65px; display: none;" id="pr_id_<%= learntool.id %>">
-    <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => ''), "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{learntool.id.to_s}", :style => "background: url('')"  %>
+  <div class="learnFavTR" style="padding-right: 7px; display: none;" id="pr_id_<%= learntool.id %>">
+    <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => ''), 
+      "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{learntool.id.to_s}", 
+      :style => "background: url(''); width: 10px;", 
+      :class => "vtip", :title => "Edit your tool"  %>
   </div>
-
-
-  <div class="assPic">
+  <div class="assPic" style="min-height: 65px;">
     <a href="<%= user_learn_tool_path(current_user,learntool) %>"><div><%= image_tag learntool.tool_img.url(:small) %></div></a>
   </div>
   <span class="learnFavS" style="position: absolute; margin-top: -7px;">
@@ -35,4 +38,4 @@
       $("#pr_id_<%= learntool.id %>").hide();
     });
   })
-</script>
+</script>	

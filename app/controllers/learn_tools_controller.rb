@@ -245,7 +245,7 @@ class LearnToolsController < ApplicationController
     @categories ||= Youtube.video_categories
     
     if simple_captcha_valid?
-      if @tool.save
+      if @tool.save!
         if (params[:vid_check] == "new video upload")
           if @video.save!
             @video.convert

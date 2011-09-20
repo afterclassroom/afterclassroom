@@ -28,6 +28,7 @@ class Baseapp < ActiveRecord::Migration
       t.datetime :activated_at
       t.datetime :deleted_at
       t.string :time_zone
+			t.string :slug, :unique => true
       t.timestamps
     end
     
