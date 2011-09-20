@@ -204,6 +204,19 @@ class LearnToolsController < ApplicationController
     render :layout => false
   end
   
+  def delete_fans
+    list_ids = params[:list_ids]
+    list_ids = list_ids.slice(0..list_ids.length - 2)
+    ids = list_ids.split(", ")
+    fans = Fan.find(:all, :conditions => ["fannable_id = ? AND fannable_type = ? AND user_id IN(#{ids.join(", ")})", params[:tool_id], "Learntool"])
+    if fans.size > 0
+      fans.each do |f|
+        f.destroy
+      end
+    end
+    redirect_to :controller=>'learn_tools', :action => 'show', :id => params[:tool_id]
+  end
+  
   def fan_list_paging
     @tool = Learntool.find(params[:current_tool_id])
     @cur_fan_page = params[:fan_page_to_load]

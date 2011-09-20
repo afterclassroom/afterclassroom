@@ -57,7 +57,7 @@
                         var $this = $(this);
                         ids += $this.val() + ", ";
                     });
-                    document.location.href = "<%= delete_fans_user_profiles_url(current_user) %>?list_ids=" + ids;
+                    document.location.href = "<%= delete_fans_user_learn_tools_url(current_user) %>?tool_id=<%= @tool.id %>&list_ids=" + ids;
                 },
                 Cancel: function(){
                     $("#delete-fan-dialog-message").dialog('close');
