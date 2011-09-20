@@ -1,3 +1,13 @@
+<div id="actionsBox" class="actionsBox">
+    <div id="actionsBoxMenu" class="menu" style="width: 128px;">
+        <span id="cntBoxMenu">0</span>
+        <a class="button box_action" id="act_delete">Delete</a>
+        <a id="closeBoxMenu" class="button">X</a>
+    </div>
+</div>
+
+
+
 <% form_tag url_for(:controller => "learn_tools", :action => "fan_list_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
   <%= hidden_field_tag "fan_page_to_load", @cur_fan_page ? @cur_fan_page : "1" %>
   <%= hidden_field_tag "current_tool_id", @tool.id %>
@@ -28,6 +38,8 @@
 <% end %><!-- end form -->
 <script type="text/javascript">
   $(document).ready(function(){
+    boxaction();
+    
     $('input#fan_id').eq(0).focus();//to move to the top of page
     $('#seall_place').toggle();
     

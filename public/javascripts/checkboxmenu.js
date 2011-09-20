@@ -1,4 +1,4 @@
-$(function(){
+this.boxaction = function(){
     /* tells us if we dragged the box */
     var dragged = false;
     
@@ -119,4 +119,7 @@ $(function(){
           
         });
     });
+};
+$(document).ready(function(){
+    boxaction();
 });
