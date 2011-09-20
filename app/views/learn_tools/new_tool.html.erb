@@ -30,9 +30,19 @@
                 <div class="postInp"><%= f.text_area :description, :class => '{validate:{required:true}}' %></div>
               </div>
             </div>
-            <div class="postItem">
-              <div class="postTit">Images*</div>
-              <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23", :class => '{validate:{required:true, accept: "jpg|jpeg|png"}}' %></div>
+            <div class="postTitt">Images*</div>
+            <div style="margin-left:120px">
+              <div class="postItemA" style="background:url(/images/upload_file.png) no-repeat scroll 66% 2px transparent">
+                <div id="divinputfile">
+                  <div class="postItemC">
+                    <%= f.file_field :tool_img, :onchange => "$('#fakefilepc').val(this.value);", :style => "height: 25px;", :size => "23", :class => '{validate:{required:true, accept: "jpg|jpeg|png"}} filepc' %></div>
+                </div>
+                <div class="postUpfile">
+                  <div id="fakeinputfile">
+                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-5px; width:288px"></input>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="postItem">
               <div class="postTit">URL*</div>
@@ -172,6 +182,9 @@
         this.value = this.value.substring(0, 900);
       }
       $('#desc_count').text("900 characters max - Current: "+len+" character")
+    });
+    $('.postInp img').css({
+      'border': '0 none'
     });
   });
 </script>
