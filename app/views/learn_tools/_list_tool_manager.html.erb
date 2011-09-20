@@ -1,11 +1,8 @@
 <div class="contDetL">
   <div class="contDetLin">
     <div class="learnLeft">
-
       <%= display_flash_messages_with_raw %>
-
       <div class="learnFavT">
-
         <div class="learnFavTL"><%= page_entries_info @my_tools %></div>
         <div class="learnFavTC">
           <% if (@seeall_parm == nil || @seeall_parm != "See all tool") %>
@@ -13,18 +10,13 @@
           <% end %>
         </div>
       </div>
-
       <% @my_tools.each do |mtool| %>
         <%= render :partial => "tool_manager_item", :locals => {:learntool => mtool} %>
       <% end %>
-
-
       <div class="assPage" style="padding-left:0">
         <span class="numPage"><%= page_entries_info @my_tools %></span>
         <%= will_paginate @my_tools %> 
       </div>
-
-
       <div class="goTop"><a href="#">Top</a></div>
     </div>
   </div>
