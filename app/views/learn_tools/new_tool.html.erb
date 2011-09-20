@@ -17,7 +17,6 @@
               <div class="postTit">Submit new tool</div>
               <div class="postInp">
                 <%= f.select("learn_tool_cate_id", "<option value='-1'>Please select</option>"+options_for_select(@tool_cats.collect {|p| [ p.title, p.id ] },   "Select Category")) %>
-
               </div>
             </div>
             <div class="postItem">
@@ -131,7 +130,18 @@
       $('input#vid_name').removeClass('required');
     }
   }
+  function ModGui(){
+    $('input#learntool_tool_img').attr('size',39);
+    $('#learntool_learn_tool_cate_id').width('360px');
+    $('#learntool_name').width('360px');
+    $('#learntool_href').width('360px');
+    $('#learntool_support_url').width('360px');
+    $('div.simple_captcha').width('360px');
+    $('input#captcha').width('360px');
+
+  }
   $(document).ready(function(){
+    ModGui();
     $('#select_vid').click(function(){
       ManipulateFormNewVid(false);
       ManipulateFormSelectVid(true);
