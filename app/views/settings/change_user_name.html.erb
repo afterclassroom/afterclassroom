@@ -7,8 +7,8 @@
             <div class="postInp">
                 <input type="text" style="width:270px;" value="" id="username" name="username" class="required"/>
             </div>
-						<div style="background: url(/images/iconCheck.gif) no-repeat scroll left 2px transparent; margin-left: 10px; padding-left: 18px;">Username is available</div>
-						<div style="background: url(/images/icon-ing.gif) no-repeat scroll left 2px transparent; margin-left: 10px; padding-left: 18px;">Username is not available</div>
+						<div id="valid_div" style="display: none; background: url(/images/iconCheck.gif) no-repeat scroll left 2px transparent; margin-left: 10px; padding-left: 18px;">Username is available</div>
+						<div id="invalid_div" style="display: none; background: url(/images/icon-ing.gif) no-repeat scroll left 2px transparent; margin-left: 10px; padding-left: 18px;">Username is not available</div>
         </div>
         <div class="submit" style="padding-left: 215px ;">
             <a href="javascript:;" onclick="sendChange()">Send</a>
@@ -29,9 +29,15 @@
                             $.ajax({
                                 type: 'POST',
                                 url: path,
-                                dataType: "json",
+																data: {username: $('#username').val()},
                                 success: function(data) {
-                                    alert(data);
+                                    if(data == "valid"){
+																			$('#valid_div').show();
+																			$('#invalid_div').hide();
+																		}else{
+																			$('#invalid_div').show();
+																			$('#valid_div').hide();
+																		}
                                 }
                             });
                         }

@@ -146,7 +146,7 @@ class SettingsController < ApplicationController
     if current_user == @user
       @user = current_user
 			login = params[:username]
-			logins = User.where(:login => login)
+			logins = User.where(:login => login.downcase)
 			if logins.size > 0
 				flash[:error] = "Username '#{login}' already exists"
 			else
@@ -199,8 +199,8 @@ class SettingsController < ApplicationController
 
 	def check_login
 		username = params[:username]
-		logins = User.where(:login => username)
-		(logins.size > 0) ? "valid" : "invalid"
+		logins = User.where(:login => username.downcase)
+		render :text => (logins.size > 0) ? "invalid" : "valid"
 	end
   
   private
