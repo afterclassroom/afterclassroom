@@ -1,6 +1,4 @@
 <%= render :partial => "top_learn" %>
-
-
 <div class="contMain">
   <div class="contDetL">
     <div class="contDetLin post">
@@ -62,9 +60,7 @@
               <div class="postTit">Demo Video</div>
               <div class="postInp">
                 <div class="" style="padding-top: 4px;">
-
                   <% vid_size = current_user.videos.count(:all, :conditions => ["state = ?", "converted"]) %>
-
                   <% if ( vid_size > 0 ) %>
                     <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :style => "color: #1988C7;",:class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
                   <% end %>
@@ -76,10 +72,8 @@
                 <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px; border: 0px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
               </div>
             </div>
-
             <div class="photoImg" id="img_selected" style="margin-left: 120px; display: none;">
             </div>            
-
             <div id ="form_vid" style ="display: none;">
               <%= render :partial => "form_vid" %>
             </div>
@@ -88,20 +82,14 @@
             </div>
           </div>
         </div>
-
-
         <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px">
           <a href="javascript:;" id="btn_sbm_tool">Submit</a>
         </div>
-
         <div class="submit" style="margin-left: -106px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
-
       <% end %>
     </div>
   </div>
-
   <%= render :partial => "ads/show_vertical_ads" %>
-
 </div>
 <script type="text/javascript">
   function SubmitFormTool(){
@@ -147,7 +135,7 @@
     $('#learntool_href').width('360px');
     $('#learntool_support_url').width('360px');
     $('div.simple_captcha').width('360px');
-    $('input#captcha').width('360px');
+    $('input#captcha').width('355px');
 
   }
   $(document).ready(function(){
@@ -186,5 +174,14 @@
     $('.postInp img').css({
       'border': '0 none'
     });
+    $('.simple_captcha').css({
+      'border': '1px solid #CCCCCC',
+      'padding': '5px'
+    })
+    $('.simple_captcha_image img').css({
+      'border': '1px solid #CCCCCC',
+      'margin': '0 0 2px',
+      'padding': '0'
+    })
   });
 </script>
