@@ -9,7 +9,7 @@
       <%= form_for(@tool, :url => url_for(:controller => "learn_tools", :action => "submit_new_tool") , :html => {:multipart => true, :id => "form_new_tool" }) do |f| %>
         <%= hidden_field_tag "learntool_video_id" %>
         <%= hidden_field_tag "vid_check" %>
-        <div class="postCont">
+        <div class="postCont" style="height: 600px;">
           <div class="postErr">
             <div class="postItem">
               <div class="postTit">Submit new tool</div>
@@ -138,7 +138,16 @@
     $('input#captcha').width('355px');
 
   }
+  function FixIECaptcha(){
+    if ($.browser.msie) {
+
+      $('#form_vid').after('<div id="captcha_replacement"></div>');
+      $('div#captcha_replacement').html($('#captcha_area').html());
+      $('#captcha_area').remove();
+    }
+  }
   $(document).ready(function(){
+    FixIECaptcha();
     ModGui();
     $('#select_vid').click(function(){
       ManipulateFormNewVid(false);
