@@ -148,6 +148,13 @@
   $(document).ready(function(){
     FixIECaptcha();
     ModGui();
+    
+    $('input#captcha').keypress(function(event){
+      if ( event.which == 13 ){
+        $('#btn_sbm_tool').click();
+      }
+    });
+    
     $('#select_vid').click(function(){
       ManipulateFormNewVid(false);
       ManipulateFormSelectVid(true);
