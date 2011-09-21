@@ -118,6 +118,10 @@ class ApplicationController < ActionController::Base
 	def facebook_cookies
     @facebook_cookies ||= Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
 	end
+	
+	def delayed_job_admin_authentication
+      # authentication_logic_goes_here
+  end
 
   private
   

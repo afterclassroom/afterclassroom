@@ -98,6 +98,9 @@ GEM
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
+    delayed_job_admin (1.0.3)
+      delayed_job
+      rails
     domainatrix (0.0.10)
       addressable
     erubis (2.6.6)
@@ -220,6 +223,8 @@ GEM
       escape (= 0.0.4)
       pr_geohash (~> 1.0)
       rsolr (= 0.12.1)
+    sunspot-rails-http-basic-auth (0.0.2)
+      sunspot_rails (~> 1.2.1)
     sunspot_index_queue (1.1.2)
       sunspot (>= 1.1.0)
     sunspot_plus (0.3.2)
@@ -268,6 +273,7 @@ DEPENDENCIES
   daemons-mikehale
   dalli
   delayed_job
+  delayed_job_admin
   domainatrix
   eventmachine
   exception_notification!
@@ -304,6 +310,7 @@ DEPENDENCIES
   rubycas-client
   rubycas-client-rails!
   simple_captcha!
+  sunspot-rails-http-basic-auth (~> 0.0.2)
   sunspot_index_queue
   sunspot_plus
   sunspot_rails (~> 1.2.1)
