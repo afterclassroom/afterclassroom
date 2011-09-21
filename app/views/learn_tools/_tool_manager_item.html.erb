@@ -1,24 +1,24 @@
 <div class="learnNItem" id="item_<%= learntool.id %>">
   <div class="learnFavTRv" style="margin-right: 0px; display: none;" id="edpr_id_<%= learntool.id %>">
-    <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), 
+    <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => 'border:0 none')), 
       {:controller => "learn_tools", :action => "delete_tool", :tool_id => learntool.id  }, :remote => false, :style=>"background: url(''); width: 10px;" ,
       :method => :get, :confirm => 'Are you sure you want to delete it?', 
       :class => "vtip", :title => "Delete your tool") %>
   </div>
   <div class="learnFavTR" style="padding-right: 7px; display: none;" id="pr_id_<%= learntool.id %>">
-    <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => ''), 
+    <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => 'border:0 none'), 
       "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{learntool.id.to_s}", 
       :style => "background: url(''); width: 10px;", 
       :class => "vtip", :title => "Edit your tool"  %>
   </div>
-  <div class="assPic">
+  <div class="assPic" style="min-height: 65px;">
     <a href="<%= user_learn_tool_path(current_user,learntool) %>"><div><%= image_tag learntool.tool_img.url(:small) %></div></a>
   </div>
-  <span class="learnFavS" style="position: absolute; margin-top: -7px;">
+  <span class="learnFavS" style="">
     <%= render :partial => "rating_star", :locals => {:tool => learntool, :nocheck => "no_check"} %>
   </span>
 
-  <div class="learnFavtitle" style="margin-top: 12px;"><a href="<%= user_learn_tool_path(current_user,learntool) %>">
+  <div class="learnFavtitle" style=""><a href="<%= user_learn_tool_path(current_user,learntool) %>">
       <%= truncate_html(learntool.name, :length => 85, :omission => '...') %>
     </a>
   </div>
@@ -37,5 +37,8 @@
       $("#edpr_id_<%= learntool.id %>").hide();
       $("#pr_id_<%= learntool.id %>").hide();
     });
+    $('.learnTst').css({
+      'padding-top':'0px'
+    })
   })
 </script>	

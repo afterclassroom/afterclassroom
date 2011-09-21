@@ -1,3 +1,19 @@
+<div id="actionsBox" class="actionsBox">
+    <div id="actionsBoxMenu" class="menu" style="width: 128px;">
+        <span id="cntBoxMenu">0</span>
+        <a class="button box_action" id="act_delete">Delete</a>
+        <a id="closeBoxMenu" class="button">X</a>
+    </div>
+</div>
+<!--Alert-->
+<div id="delete-fan-dialog-message" title="Confirm delete" style="display:none;">
+  <p>
+    Are you sure?
+  </p>
+</div>
+<!--Alert-->
+
+
 <% form_tag url_for(:controller => "learn_tools", :action => "fan_list_paging"), :id => "form_first_tab", :method => :get, :remote => true do %>
   <%= hidden_field_tag "fan_page_to_load", @cur_fan_page ? @cur_fan_page : "1" %>
   <%= hidden_field_tag "current_tool_id", @tool.id %>
@@ -28,6 +44,29 @@
 <% end %><!-- end form -->
 <script type="text/javascript">
   $(document).ready(function(){
+    boxaction();
+    
+    //BEGIN: function delete fan
+    $('#act_delete').click(function(){
+        $("#delete-fan-dialog-message").dialog({
+            modal: true,
+            buttons: {
+                Ok: function(){
+                    var ids = '';
+                    $('#mytable input:checked').each(function(e, i){
+                        var $this = $(this);
+                        ids += $this.val() + ", ";
+                    });
+                    document.location.href = "<%= delete_fans_user_learn_tools_url(current_user) %>?tool_id=<%= @tool.id %>&list_ids=" + ids;
+                },
+                Cancel: function(){
+                    $("#delete-fan-dialog-message").dialog('close');
+                }
+            }
+        });
+    });
+    //END: function delete fan
+    
     $('input#fan_id').eq(0).focus();//to move to the top of page
     $('#seall_place').toggle();
     

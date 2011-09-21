@@ -1,6 +1,4 @@
 <%= render :partial => "top_learn" %>
-
-
 <div class="contMain">
   <div class="contDetL">
     <div class="contDetLin post">
@@ -30,31 +28,39 @@
                 <div class="postInp"><%= f.text_area :description, :class => '{validate:{required:true}}' %></div>
               </div>
             </div>
-            <div class="postItem">
-              <div class="postTit">Images*</div>
-              <div class="postInp"><%= f.file_field :tool_img, :style => "height: 25px;", :size => "23", :class => '{validate:{required:true, accept: "jpg|jpeg|png"}}' %></div>
+            <div class="postTitt">Images*</div>
+            <div style="margin-left:120px">
+              <div class="postItemA" style="background:url(/images/upload_file.png) no-repeat scroll 66% 2px transparent">
+                <div id="divinputfile">
+                  <div class="postItemC">
+                    <%= f.file_field :tool_img, :onchange => "$('#fakefilepc').val(this.value);", :style => "height: 25px;width:370px", :size => "23", :class => '{validate:{required:true, accept: "jpg|jpeg|png"}} filepc' %></div>
+                </div>
+                <div class="postUpfile">
+                  <div id="fakeinputfile">
+                    <input name="fakefilepc" type="text" id="fakefilepc" style="margin-top:-5px; width:288px"></input>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="postItem">
               <div class="postTit">URL*</div>
               <div class="postInp">
                 <%= f.text_field :href, :class => '{validate:{required:true, url: true}}' %>
-                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px"), "javascript:;", :class => "vtip", :title => "Your company or product website and we will embedded it into your logo. We will direct your potential customers to your site once they click on your logo or on Check out their website button.") %>
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; border: 0px;"), "javascript:;", :class => "vtip", :title => "Your company or product website and we will embedded it into your logo. We will direct your potential customers to your site once they click on your logo or on Check out their website button.") %>
               </div>
             </div>
             <div class="postItem">
               <div class="postTit">Support URL</div>
               <div class="postInp">
                 <%= f.text_field :support_url, :class => '{validate:{url: true}}' %>
-                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px"), "javascript:;", :class => "vtip", :title => "Your technical support forum URL, in case users have problem with technical issue then we will direct them to your forum.") %>
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; border: 0px;"), "javascript:;", :class => "vtip", :title => "Your technical support forum URL, in case users have problem with technical issue then we will direct them to your forum.") %>
               </div>
             </div>
             <div class="postItem">
               <div class="postTit">Demo Video</div>
               <div class="postInp">
                 <div class="" style="padding-top: 4px;">
-
                   <% vid_size = current_user.videos.count(:all, :conditions => ["state = ?", "converted"]) %>
-
                   <% if ( vid_size > 0 ) %>
                     <%= link_to "Select", "#{url_for(:controller => "learn_tools", :action => "video_list")}?height=480&width=760", :style => "color: #1988C7;",:class => "thickbox", :title => "Choose a video from your video list", :id => "select_vid" %>  
                   <% end %>
@@ -63,13 +69,11 @@
                 <div class="" style="padding-top: 4px; <%= vid_size > 0 ? "padding-left: 10px;": "" %>">
                   <a href="javascript:;" id="btn_new_vid" style="color: #1988C7;">New</a>
                 </div>
-                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
+                <%= link_to(image_tag("/images/iconQas.png", :style => "width: 14px; padding-top: 3px; padding-left: 4px; border: 0px;"), "javascript:;", :class => "vtip", :title => "Your marketing video to demonstrate your product.") %>
               </div>
             </div>
-
             <div class="photoImg" id="img_selected" style="margin-left: 120px; display: none;">
             </div>            
-
             <div id ="form_vid" style ="display: none;">
               <%= render :partial => "form_vid" %>
             </div>
@@ -78,20 +82,14 @@
             </div>
           </div>
         </div>
-
-
         <div class="submit" style="margin-left: 128px;float: left;padding-left: 0px">
           <a href="javascript:;" id="btn_sbm_tool">Submit</a>
         </div>
-
         <div class="submit" style="margin-left: -106px;float: left;padding-left: 0px"><a id="reset_form" href="javascript:;">Reset</a></div>
-
       <% end %>
     </div>
   </div>
-
   <%= render :partial => "ads/show_vertical_ads" %>
-
 </div>
 <script type="text/javascript">
   function SubmitFormTool(){
@@ -137,7 +135,7 @@
     $('#learntool_href').width('360px');
     $('#learntool_support_url').width('360px');
     $('div.simple_captcha').width('360px');
-    $('input#captcha').width('360px');
+    $('input#captcha').width('355px');
 
   }
   $(document).ready(function(){
@@ -173,5 +171,17 @@
       }
       $('#desc_count').text("900 characters max - Current: "+len+" character")
     });
+    $('.postInp img').css({
+      'border': '0 none'
+    });
+    $('.simple_captcha').css({
+      'border': '1px solid #CCCCCC',
+      'padding': '5px'
+    })
+    $('.simple_captcha_image img').css({
+      'border': '1px solid #CCCCCC',
+      'margin': '0 0 2px',
+      'padding': '0'
+    })
   });
 </script>

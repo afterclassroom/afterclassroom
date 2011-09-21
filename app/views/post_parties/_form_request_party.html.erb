@@ -81,18 +81,18 @@
     </li>
   <% end %>
 </ul>
-<script type="text/javascript">
+<script type="text/javascript"> 
   $(document).ready(function(){
     // 'Select All' text changed
     $("#party_type").multiSelect({
       selectAllText: 'Select All'
     });
-    
+   
     if ( $.browser.msie == true ) {//Fix bug 982
       $('.multiSelectOptions').find('input').each(function(){
         $(this).css('width','11px');
       });
     }
+  });			
+</script> 
 
-  });
-</script>
