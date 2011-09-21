@@ -64,6 +64,19 @@ class FriendsController < ApplicationController
     end
     redirect_to find_user_friends_path(@user, :mail_type => mail_type, :login => login)
   end
+
+	def find_friend_by_email
+		contacts = params[:email_list].split(",")
+      contacts = contacts.collect {|c| c.strip}
+      #begin
+        flash[:notice] = "Find Friends Successfully."
+        friends = @user.user_friends.find(:all, :conditions => ["email IN('#{contacts.join("', '")}')"])
+				session[:user_id_suggestions] = friends.map(&:id)
+      #rescue
+        # Nothing
+      #end
+			redirect_to find_user_friends_path(@user)
+	end
   
   def recently_added
     @invites = @user.user_invites_out.find(:all, :conditions => "is_accepted IS NULL")

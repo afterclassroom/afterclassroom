@@ -1,0 +1,60 @@
+<%= form_for :find_by_email, :url => find_friend_by_email_user_friends_path(current_user), :html => {:id => "list_email"} do |f| %>
+<div class="findItem" style="margin-top:10px">
+    <div class="findText" style="width: 105px">Your friend emails<br/><span style="font-weight: normal">(use commas to separate emails)</span></div>
+    <div class="findIn"><%= text_area_tag "email_list", nil, :rows => 5, :style => "width:275px" %></div>
+		<label for="email_list" generated="true" class="myerror" style="display: none;">Please recorrect: </label>
+</div>
+<div class="btmFind" style="padding-left:125px">
+<a href="javascript:;" id="submitFindForm">Find Friends</a>
+</div>
+<% end %>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#submitFindForm').click(function(){
+      submitFormFind();
+    });
+  });
+
+  function submitFormFind(){
+    
+    if ($('#email_list').val() == "" ){
+      $('label.myerror').html('Please enter email address');
+      $('label.myerror').show();
+      return;
+    }
+    
+    var substr = $('#email_list').val().split(',');
+    
+    var wrongEmail = "";
+    var count = 0;
+    for (i=0; i<substr.length; i++){
+      if (validateEmail(substr[i]) == false){
+        if (wrongEmail == ""){
+          wrongEmail = substr[i];
+        }
+        else{
+          wrongEmail = wrongEmail +',' + substr[i];
+        }
+          
+      } else {
+        count ++;
+      }
+    }
+    if (count == substr.length){
+      $('label.myerror').hide();
+      $("#list_email").submit();
+    } else {
+      $('label.myerror').html('Please recorrect: '+wrongEmail);
+      $('label.myerror').show();
+    }
+  }
+  
+function validateEmail($email) {
+	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+	if( !emailReg.test( $email ) ) {
+		return false;
+	} else {
+		return true;
+	}
+}
+</script>

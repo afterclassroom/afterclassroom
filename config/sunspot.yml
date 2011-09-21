@@ -3,6 +3,8 @@ production:
     hostname: localhost
     port: 8983
     log_level: WARNING
+    user: after
+    password: after2011
   auto_commit_after_request: true
 
 development:
