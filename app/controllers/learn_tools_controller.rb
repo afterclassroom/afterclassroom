@@ -271,7 +271,8 @@ class LearnToolsController < ApplicationController
         end
         
         flash[:notice] = "Your tool was successfully submitted. #{str_notice}"
-        redirect_to :controller=>'learn_tools', :action => 'new_tool'
+        #redirect_to :controller=>'learn_tools', :action => 'new_tool'
+        redirect_to :controller=>'learn_tools', :action => 'show', :id => @tool.id
       else
         flash[:notice] = "Error !"
         render :action => "new_tool"
