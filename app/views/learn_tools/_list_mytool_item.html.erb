@@ -1,12 +1,18 @@
+<style>
+  .learnTst {
+    margin-right: 36px;
+    padding-top: 0px;
+  }
+</style>
 <div class="learnNItem">
-  <div class="assPic">
+  <div class="assPic" style="min-height: 65px;">
     <a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>"><div><%= image_tag my_tool.learntool.tool_img.url(:small) %></div></a>
   </div>
-  <div class="learnFavtitle"><a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>"><%= my_tool.learntool.name %></a>
-    <span class="learnFavS" style="position: absolute; margin-top: -7px;">
-      <%= render :partial => "rating_star", :locals => {:tool => my_tool.learntool, :nocheck => "no_check"} %>
-    </span>
-  </div>
+  <span class="learnFavS">
+    <%= render :partial => "rating_star", :locals => {:tool => my_tool.learntool, :nocheck => "no_check"} %>
+  </span>
+
+  <div class="learnFavtitle"><a href="<%= user_learn_tool_path(current_user,my_tool.learntool) %>"><%= my_tool.learntool.name %></a></div>
   <div class="learnNdes">
     <%= truncate_html(my_tool.learntool.description, :length => 200, :omission => '...') %>
   </div>
