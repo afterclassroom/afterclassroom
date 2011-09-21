@@ -352,13 +352,13 @@ class LearnToolsController < ApplicationController
   
   def video_list
     @cur_bottom_page = 1 #this param used for ajax_paging on thickbox
-    @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:page], :per_page => 15
+    @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:page], :per_page => 18
     render :layout => false
   end
   
   def video_list_paging
     @cur_bottom_page = params[:bottom_page_to_load]
-    @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 15
+    @my_videos = current_user.videos.find(:all, :conditions => ["state = ?", "converted"], :order => "created_at DESC").paginate :page => params[:bottom_page_to_load], :per_page => 18
     render :layout => false
   end
   
