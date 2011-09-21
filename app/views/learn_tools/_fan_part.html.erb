@@ -73,7 +73,14 @@
     });
     
     $('.btmBe').click(function(){
-      ShowFanAjaxLoader($(this).find('a'));
+      
+      
+      if ($('.btmBe').find('span').eq(1).html() == "You are a fan" || $('.btmBe').find('span').html() == "You are a fan" ){
+        return;
+      }else {
+        ShowFanAjaxLoader($(this).find('a'));
+      }
+      
     });
     
   });
