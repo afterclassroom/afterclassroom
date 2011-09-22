@@ -9,6 +9,9 @@ if ( $('form#form_tool_review').find('div.helpItem').html() != null ){
 }
 
 $(document).ready(function(){
+  vtip();
+  tb_init('div#edpr_id_<%= @toolreview.id %> a.thickbox');
+  
   $('div#TB_ajaxContent').css('height','');
   $('div#TB_ajaxContent').css('min-height','320px');
   $('#btn_close').val('Close');

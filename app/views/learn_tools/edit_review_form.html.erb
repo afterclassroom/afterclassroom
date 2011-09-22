@@ -14,6 +14,13 @@
   </div>  
 <% end %>
 <script type="text/javascript">
+  function ShowAjaxLoader(){
+    $('input#btn_sbm_tool').after('<%= show_ajax_loader("img_loader", "background: none repeat scroll 0 0 white;  float: left;  margin-left: 52px;  margin-top: -21px;  width: 18px;") %>');
+  }
+  function HideAjaxLoader(){
+    $('#img_loader').remove();
+  }
+
   function SubmitFormTool(){
     var result = $("form#edit_tool_review_<%= @toolreview.id %>").validate({
       meta: "validate"
@@ -23,8 +30,24 @@
     }
   }    
   $(document).ready(function(){
+    //Set title for the box
+    $('div#TB_ajaxWindowTitle').html('Edit review');
+
     $('#btn_sbm_tool').click(function(){
       SubmitFormTool();
     });
+    
+    
+    $('form.edit_tool_review').bind('ajax:beforeSend', function() {
+      ShowAjaxLoader();
+      $('input#btn_sbm_tool').before('<input type="button" id="btn_close" name="commit" value="Submit"/>');
+      $('input#btn_sbm_tool').remove();
+    }).bind('ajax:success',function(){
+      HideAjaxLoader();
+    });
+    
   });
+  
+  
+  
 </script>
