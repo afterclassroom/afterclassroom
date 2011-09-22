@@ -14,8 +14,8 @@
             <a id="play_tool_now" href="javascript:;">Play now</a>
           </div>
           <% if @tool.video_id != nil %>
-            <div class="demoBtm" style="margin-top: 10px;">
-              <%= link_to "Play Video Demo", "#{url_for(:controller => "learn_tools", :action => "play_vid")}?vid_id=#{@tool.video_id}&height=425&width=555", :class => "thickbox", :title => "Showing the video introduce this tool" %>
+            <div class="vtip demoBtm" style="margin-top: 10px;" title="Showing the video introduce this tool">
+              <%= link_to "Play Video Demo", "#{url_for(:controller => "learn_tools", :action => "play_vid")}?vid_id=#{@tool.video_id}&height=425&width=555", :class => "thickbox", :title => "" %>
             </div>
           <% end %>
         </div>

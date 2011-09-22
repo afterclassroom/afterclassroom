@@ -2,5 +2,9 @@
 <script type="text/javascript">
     // Add VideoJS to all video tags on the page when the DOM is ready
   VideoJS.setupAllWhenReady();
-
+  $(document).ready(function(){
+    $('div#TB_ajaxContent').eq(1).remove();//fixbug 1198
+    $('div#TB_title').eq(1).remove();//fixbug 1198
+    $('#TB_ajaxWindowTitle').html("Showing the video introduce this tool");
+  });
 </script>
