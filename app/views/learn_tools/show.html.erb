@@ -152,6 +152,12 @@
   }
   
   $(document).ready(function(){
+    //BEGIN implement function play now
+    
+    $('#play_tool_now').click(function(){
+      window.location = '<%= @tool.href %>';
+    });
+    //END implement function play now
     var current_box = $('#checkbox_<%= @tool.id %>');
     
     $(current_box).click(function(){
