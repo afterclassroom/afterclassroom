@@ -1,5 +1,5 @@
 $('form#new_tool_review').before("<%= escape_javascript ( raw(render :partial => "submit_review_msg")) %>").delay(300);
-setTimeout("$('a#TB_closeWindowButton').click()",1000)
+//setTimeout("$('a#TB_closeWindowButton').click()",1000)
 
 /* the following statements are applied for page view Detail only*/
 if ( $('form#form_tool_review').find('div.helpItem').html() != null ){
@@ -11,4 +11,8 @@ if ( $('form#form_tool_review').find('div.helpItem').html() != null ){
 $(document).ready(function(){
   $('div#TB_ajaxContent').css('height','');
   $('div#TB_ajaxContent').css('min-height','320px');
+  $('#btn_close').val('Close');
+  $('#btn_close').click(function(){
+    $('a#TB_closeWindowButton').click();
+  });
 });
