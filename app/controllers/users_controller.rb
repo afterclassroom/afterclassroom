@@ -139,10 +139,14 @@ class UsersController < ApplicationController
   end
   
   def show_lounge
-    @type = "show_lounge"
-    @user = User.find(params[:id])
-    @walls = @user.user_walls.find(:all, :order => "updated_at DESC").paginate :page => params[:page], :per_page => 10
-    render :layout => "student_lounge"
+		if check_private_permission(@user, "my_lounges")
+		  @type = "show_lounge"
+		  @user = User.find(params[:id])
+		  @walls = @user.user_walls.find(:all, :order => "updated_at DESC").paginate :page => params[:page], :per_page => 10
+		  render :layout => "student_lounge"
+		else
+			redirect_to warning_user_path(@user)
+		end
   end
   
   def show_stories
@@ -369,6 +373,11 @@ def tag_decision
       UserInformation.create(:user_id => @user.id)
       UserEducation.create(:user_id => @user.id)
       UserEmployment.create(:user_id => @user.id)
+			# Setting private
+			PRIVATE_SETTING.each do |type|
+				setting = 6 #Every one
+				PrivateSetting.create(:user_id => @user.id, :type_setting => type, :share_to => setting)
+			end
       # Setting notification
       notifications = Notification.find(:all)
       notifications.each do |f|

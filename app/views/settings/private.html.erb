@@ -106,6 +106,26 @@
         </div>
         <div class="settNetLPaT">
         </div>
+				<div class="settNetLPa">
+            Student Lounge
+        </div>
+        <div class="settC">
+            <div class="flistItem" style="border-bottom: none">
+                <div class="flistInf">
+                    <div class="flistNPa">
+                        <span>My Lounge</span>
+                    </div>
+                    <div class="flistS" id="my_lounges">
+                        <%= show_status_setting(current_user, "my_lounges") %>
+                    </div>
+                </div>
+                <div class="select_wrap">
+                    <%= show_options_setting(current_user, "my_lounges") %>
+                </div>
+            </div>
+        </div>
+        <div class="settNetLPaT">
+        </div>
         <div class="settNetLPa">
             Friends and Fans
         </div>
