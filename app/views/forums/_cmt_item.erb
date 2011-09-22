@@ -5,7 +5,7 @@
   <div class="proListPic"><%= show_image_user_post(current_user) %></div>
   <div class="proListR" style="width: 490px;">
     <div class="AfterClCom">
-      <a href="/users/1/show_lounge"><%= current_user.name %></a> <%= @obj_comment.comment %>
+      <%= show_image_user_post(@obj_comment.user) %><%= current_user.name %> <%= @obj_comment.comment %>
     </div>
     <div class="proListCont">
       <%= distance_of_time_in_words_to_now(@obj_comment.created_at, false) + " ago." %>
