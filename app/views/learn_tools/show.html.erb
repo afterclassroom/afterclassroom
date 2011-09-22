@@ -77,8 +77,8 @@
           <div class="learnDetDes"><%= @tool.description %></div>
           <div style="color: #6F6F63;  float: left;  margin-left: 0;  width: 125px;">by <a href="<%= user_url(@tool.user) %>"><%= @tool.user.name %></a></div>
                     
-          <div style="float: right; position: absolute; margin-left: 341px;">
-            <%= link_to "Write a Review", "#{url_for(:controller => "learn_tools", :action => "write_review_form")}?tool_id=#{@tool.id}&height=325&width=550", :style => "background: url('/images/icon-morelink.gif') no-repeat scroll 0 0 transparent; padding-left: 15px; color: #0A81C4;",:class => "thickbox", :title => "Write A Review" %>
+          <div style="float: right; position: absolute; margin-left: 341px;" class="vtip" title="Write A Review">
+            <%= link_to "Write a Review", "#{url_for(:controller => "learn_tools", :action => "write_review_form")}?tool_id=#{@tool.id}&height=325&width=550", :style => "background: url('/images/icon-morelink.gif') no-repeat scroll 0 0 transparent; padding-left: 15px; color: #0A81C4;",:class => "thickbox", :title => "" %>
           </div>
 <%# THIS PART WILL BE ENABLED WHEN WE HAVE API TOOLS%>
           <!-- div class="learnDis">

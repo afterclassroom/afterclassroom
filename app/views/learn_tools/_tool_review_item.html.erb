@@ -1,16 +1,16 @@
 <div class="helpItem" id="rv_item_<%= rv.id %>" style="border-bottom: 1px solid rgb(219, 219, 219);">
   <% if rv.user == current_user %>
     <div style="float: right; padding-top: 1px; display: none;" id="pr_id_<%= rv.id %>">
-      <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), {:controller => "learn_tools", :action => "delete_review", :review_id => rv.id  }, :remote => true ,:method => :get, :confirm => 'Are you sure you want to delete it?', :class => "vtip", :title => "Delete review") %>
+      <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => 'border: 0px;')), {:controller => "learn_tools", :action => "delete_review", :review_id => rv.id  }, :remote => true ,:method => :get, :confirm => 'Are you sure you want to delete it?', :class => "vtip", :title => "Delete review") %>
     </div>
 
     <div style="float: right; display: none;" id="edpr_id_<%= rv.id %>" class="vtip" title="Edit review">
-      <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => ''), "#{url_for(:controller => "learn_tools", :action => "edit_review_form")}?review_id=#{rv.id}&height=325&width=550", :class => "thickbox", :title => "Edit Review" %>
+      <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => 'border: 0px;'), "#{url_for(:controller => "learn_tools", :action => "edit_review_form")}?review_id=#{rv.id}&height=325&width=550", :class => "thickbox", :title => "" %>
     </div>
   <% else %><!-- the developer who upload tool is allowed to delete review, but not allowed to edit review -->
     <% if  rv.learntool.user == current_user %>
       <div style="float: right; padding-top: 1px; display: none;" id="pr_id_<%= rv.id %>">
-        <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => '')), {:controller => "learn_tools", :action => "delete_review", :review_id => rv.id  }, :remote => true ,:method => :get, :confirm => 'Are you sure you want to delete it?', :class => "vtip", :title => "Delete review") %>
+        <%= link_to( content_tag(:span, image_tag("/images/icon-ing.gif", :alt => '', :style => 'border: 0px;')), {:controller => "learn_tools", :action => "delete_review", :review_id => rv.id  }, :remote => true ,:method => :get, :confirm => 'Are you sure you want to delete it?', :class => "vtip", :title => "Delete review") %>
       </div>
 
     <% end %>
