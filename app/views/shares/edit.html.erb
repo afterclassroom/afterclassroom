@@ -44,6 +44,11 @@
     background : #FFF;
 
   }
+  .textboxlist-autocomplete-result div{
+    background: url("/images/bgi-col300.png") no-repeat scroll 0 0 transparent;
+    padding: 3px;
+    height: 51px;
+  }
 </style>
 <script type="text/javascript">
   var path = "<%= list_friend_user_messages_path(current_user) %>";
@@ -52,7 +57,7 @@
     
     // Autocomplete initialization
     var tb = new $.TextboxList('#share_to', {
-      max: 1,
+    //  max: 1,
       unique: true,
       plugins: {
         autocomplete: {

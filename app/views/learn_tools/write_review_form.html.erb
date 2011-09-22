@@ -9,22 +9,22 @@
     <%= f.text_area :content, :style => "width: 500px; height: 220px;", :class => "{validate:{required:true}}" %>
   </div>
 
-  <div class="submit" style="float: left;padding-left: 0px">
-    <a href="javascript:;"><%= f.submit "Submit", :id => "btn_sbm_tool" %></a>
-  </div>  
+  <div style="float: left; padding-left: 0px;" class="submit">
+    <a id="tool_review_submit" href="javascript:;"><input type="button" value="Submit" name="foo"></a>
+  </div>
 <% end %>
 <script type="text/javascript">
-  function SubmitFormTool(){
-    var result = $("form#new_tool_review").validate({
-      meta: "validate"
-    });
-    if (result) {
-      $("form#new_tool_reviewl").submit();
-    }
-  }    
   $(document).ready(function(){
-    $('#btn_sbm_tool').click(function(){
+    $('#tool_review_submit').click(function(){
       SubmitFormTool();
     });
   });
+  function SubmitFormTool(){
+    var result = $("#new_tool_review").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("#new_tool_review").submit();
+    }
+  }
 </script>
