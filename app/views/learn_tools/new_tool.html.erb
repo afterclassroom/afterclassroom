@@ -1,5 +1,5 @@
 <%= render :partial => "top_learn" %>
-<div class="contMain">
+
   <div class="contDetL">
     <div class="contDetLin post">
       <div class="AsDTop">
@@ -90,7 +90,7 @@
     </div>
   </div>
   <%= render :partial => "ads/show_vertical_ads" %>
-</div>
+
 <script type="text/javascript">
   function SubmitFormTool(){
     var result = $("form#form_new_tool").validate({
@@ -138,8 +138,23 @@
     $('input#captcha').width('355px');
 
   }
+  function FixIECaptcha(){
+    if ($.browser.msie) {
+      $('#form_vid').after('<div id="captcha_replacement" style="margin-left:120px"></div>');
+      $('div#captcha_replacement').html($('#captcha_area').html());
+      $('#captcha_area').remove();
+    }
+  }
   $(document).ready(function(){
+    FixIECaptcha();
     ModGui();
+    
+    $('input#captcha').keypress(function(event){
+      if ( event.which == 13 ){
+        $('#btn_sbm_tool').click();
+      }
+    });
+    
     $('#select_vid').click(function(){
       ManipulateFormNewVid(false);
       ManipulateFormSelectVid(true);
