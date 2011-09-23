@@ -59,10 +59,11 @@ class PostAssignment < ActiveRecord::Base
   end
   
   def self.paginated_post_conditions_with_interesting(params, school)
-    posts = []
-    post_as = self.with_school(school).interesting
-    post_as.select {|p| posts << p.post}
-    return posts
+    self.recent_interesting(school)
+#    posts = []
+#    post_as = self.with_school(school).interesting
+#    post_as.select {|p| posts << p.post}
+#    return posts
   end
   
   def self.paginated_post_conditions_with_tag(params, school, tag_name)
@@ -93,7 +94,7 @@ inner join
 right join (
 select favorable_id,count(favorable_id) as total from favorites
 group by favorable_id
-having count(favorable_id)>11
+having count(favorable_id)>10
 ) as b
 on a.favorable_id = b.favorable_id
 order by a.favorable_id DESC, a.created_at DESC ) as f

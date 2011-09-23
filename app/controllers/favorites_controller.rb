@@ -24,12 +24,12 @@ class FavoritesController < ApplicationController
     current_user.has_favorite(item)
     @f_size = item.favoriting_users.size
     # clear interesting cache
-    if type == "Post" && @f_size > 10
+    if type == "Post" && @f_size > 0
       class_name = item.type_name
       school_id = item.school_id
       # Objects cache
       if ["PostAssignment", "PostProject", "PostTest", "PostExam", "PostQa"].include?(class_name)
-        Delayed::Job.enqueue(CacheInterestingJob.new(class_name nil, params))
+        Delayed::Job.enqueue(CacheInterestingJob.new(class_name, nil, params))
         Delayed::Job.enqueue(CacheInterestingJob.new(class_name, school_id, params))
       end
       # Fragment cache

@@ -78,10 +78,11 @@ class PostQa < ActiveRecord::Base
   end
 
   def self.paginated_post_conditions_with_interesting(params, school)
-    arr_p = []
-    post_qa = self.with_school(school).interesting
-    post_qa.select {|p| arr_p << p.post if p.post.favorites.size > 10}
-    return arr_p
+#    arr_p = []
+#    post_qa = self.with_school(school).interesting
+#    post_qa.select {|p| arr_p << p.post if p.post.favorites.size > 10}
+#    return arr_p
+    self.recent_interesting(school,params)
   end
 
   def self.paginated_post_conditions_with_top_answer(params, school)
@@ -137,7 +138,7 @@ inner join
 right join (
 select favorable_id,count(favorable_id) as total from favorites
 group by favorable_id
-having count(favorable_id)>11
+having count(favorable_id)>10
 ) as b
 on a.favorable_id = b.favorable_id
 order by a.favorable_id DESC, a.created_at DESC ) as f
