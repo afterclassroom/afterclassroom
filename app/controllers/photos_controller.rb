@@ -94,9 +94,10 @@ class PhotosController < ApplicationController
     @tag_usr = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Photo",true ] )
     
     #find all the user need to be verified
-    id_for_verify = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=? and verify=?",params[:id],"Photo",false])
-    usr_ids_for_verify = id_for_verify.map(&:tagable_user)
-    @usrs_for_verify = list_friends.select { |c| usr_ids_for_verify.include?(c.id) }
+    #id_for_verify = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=? and verify=?",params[:id],"Photo",false])
+    #usr_ids_for_verify = id_for_verify.map(&:tagable_user)
+    #@usrs_for_verify = list_friends.select { |c| usr_ids_for_verify.include?(c.id) }
+    @usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Photo",false ] )
     
     if check_private_permission(@user, "my_photos")
       as_next = @photo_album.photos.nexts(@photo.id).last
