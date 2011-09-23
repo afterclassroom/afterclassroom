@@ -1,5 +1,8 @@
 <div class="photoEx" style="border-bottom: 0px; margin-left: 0px;">
-  <%= form_for @video, :url => user_videos_path(current_user), :html => {:id => "form", :multipart => true} do |fm| %>
+  <%#= form_for @video, :url => user_videos_path(current_user), :html => {:id => "form", :multipart => true} do |fm| %>
+  
+<%= fields_for @video do |fm| %>  
+  
     <div class="stoExItem">
       <div class="stoExItemL" style="width:110px">
         Title

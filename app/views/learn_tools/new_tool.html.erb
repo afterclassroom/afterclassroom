@@ -138,15 +138,7 @@
     $('input#captcha').width('355px');
 
   }
-  function FixIECaptcha(){
-    if ($.browser.msie) {
-      $('#form_vid').after('<div id="captcha_replacement" style="margin-left:120px"></div>');
-      $('div#captcha_replacement').html($('#captcha_area').html());
-      $('#captcha_area').remove();
-    }
-  }
   $(document).ready(function(){
-    FixIECaptcha();
     ModGui();
     
     $('input#captcha').keypress(function(event){
