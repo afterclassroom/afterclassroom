@@ -1,0 +1,26 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Sign Up", "javascript:;", :class => "abLink-detail" %>
+<% end -%>
+
+<!--Content-->
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="AsDTop">
+      <h1 class="titleH1">Sign Up</h1>
+    </div>
+    <div class="signUpCont">
+			<div class="welBackCont">
+      	On behalf of After Classroom's users, we would like to welcome you to our students space. <br/>
+				You're just one step away from joining us, <b>please go to your email that you registered with us to activate your After Classroom account</b>. <br/>
+				The reason we required you to doing it is because we want to make sure that an email you provided is your email and that's all. <br/>
+				<b>Thank you for your patience</b>.
+			</div>
+    </div>
+  </div>
+</div>
+
+<div class="contMainR">
+  <%= render :partial => "welcome_back" %>
+  <%= render :partial => "ads/show_vertical_ads" %>
+</div>
+<!--Content-->

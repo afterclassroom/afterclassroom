@@ -126,13 +126,11 @@ class ApplicationController < ActionController::Base
   private
   
   def authenticate
-    
-    authenticate_or_request_with_http_basic do |user_name, password|
-      
-      user_name == USER_NAME && password == PASSWORD
-      
-    end
-    
+    if Rails.env == "staging"
+		  authenticate_or_request_with_http_basic do |user_name, password| 
+		    user_name == USER_NAME && password == PASSWORD   
+		  end
+		end
   end
   
   def set_user_time_zone

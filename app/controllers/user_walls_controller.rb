@@ -309,9 +309,8 @@ class UserWallsController < ApplicationController
       url = Domainatrix.parse(link)
       domain = get_domain(url)
       # Build an Hpricot object from a web page:
-      hdrs = {"User-Agent"=>"Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1", "Accept-Charset"=>"utf-8", "Accept"=>"text/html"}
       my_html = ""
-      open(link, hdrs).each {|s| my_html << s}
+      open(link, :proxy => nil).each {|s| my_html << s}
       @web_doc= Hpricot(my_html)
       @arr_img = []
       @web_doc.search("img").each{ |e| @arr_img << get_img_url(e.attributes['src'], domain) if e.attributes['width'].to_i > 90 }
