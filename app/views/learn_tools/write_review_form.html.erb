@@ -9,22 +9,58 @@
     <%= f.text_area :content, :style => "width: 500px; height: 220px;", :class => "{validate:{required:true}}" %>
   </div>
 
-  <div class="submit" style="float: left;padding-left: 0px">
-    <a href="javascript:;"><%= f.submit "Submit", :id => "btn_sbm_tool" %></a>
-  </div>  
+  <div style="float: left; padding-left: 0px;" class="submit">
+    <a id="tool_review_submit" href="javascript:;"><input type="button" value="Submit" name="foo"></a>
+  </div>
 <% end %>
 <script type="text/javascript">
-  function SubmitFormTool(){
-    var result = $("form#new_tool_review").validate({
-      meta: "validate"
-    });
-    if (result) {
-      $("form#new_tool_reviewl").submit();
-    }
-  }    
+<<<<<<< HEAD
   $(document).ready(function(){
-    $('#btn_sbm_tool').click(function(){
+    $('#tool_review_submit').click(function(){
       SubmitFormTool();
     });
   });
+=======
+  function ShowAjaxLoader(){
+    $('input#btn_sbm_tool').after('<%= show_ajax_loader("img_loader", "background: none repeat scroll 0 0 white;  float: left;  margin-left: 52px;  margin-top: -21px;  width: 18px;") %>');
+  }
+  function HideAjaxLoader(){
+    $('#img_loader').remove();
+  }
+  
+>>>>>>> 2291536021bb68c239e30c285731d025411b469c
+  function SubmitFormTool(){
+    var result = $("#new_tool_review").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("#new_tool_review").submit();
+    }
+<<<<<<< HEAD
+  }
+=======
+  }    
+  $(document).ready(function(){
+    //In some case, thick box display more than 1 title, and content
+    //we need to remove them
+    $('div#TB_title').filter(':gt(0)').remove();
+    $('div#TB_ajaxContent').filter(':gt(0)').remove();
+
+    //Set title for the box
+    $('div#TB_ajaxWindowTitle').html('Write A Review');
+    $('#btn_sbm_tool').click(function(){
+      SubmitFormTool();
+    });
+    
+    $("form#new_tool_review")
+    .bind('ajax:beforeSend', function() {
+      ShowAjaxLoader();
+      $('input#btn_sbm_tool').before('<input type="button" id="btn_close" name="commit" value="Submit"/>');
+      $('input#btn_sbm_tool').remove();
+    }).bind('ajax:success',function(){
+      HideAjaxLoader();
+    });
+  });
+  //show ajax loader
+>>>>>>> 2291536021bb68c239e30c285731d025411b469c
 </script>

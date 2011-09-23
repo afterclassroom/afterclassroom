@@ -79,7 +79,11 @@ class LearnToolsController < ApplicationController
   def update_review
     @toolreview = ToolReview.find(params[:review_id])
     @toolreview.update_attributes(params[:tool_review])
-    @toolreview.save
+    
+    if @toolreview.save
+      flash[:notice] = "Your review was successfully updated."
+    end
+    
     
     render :layout => false
   end

@@ -14,8 +14,8 @@
             <a id="play_tool_now" href="javascript:;">Play now</a>
           </div>
           <% if @tool.video_id != nil %>
-            <div class="demoBtm" style="margin-top: 10px;">
-              <%= link_to "Play Video Demo", "#{url_for(:controller => "learn_tools", :action => "play_vid")}?vid_id=#{@tool.video_id}&height=425&width=555", :class => "thickbox", :title => "Showing the video introduce this tool" %>
+            <div class="vtip demoBtm" style="margin-top: 10px;" title="Showing the video introduce this tool">
+              <%= link_to "Play Video Demo", "#{url_for(:controller => "learn_tools", :action => "play_vid")}?vid_id=#{@tool.video_id}&height=425&width=555", :class => "thickbox", :title => "" %>
             </div>
           <% end %>
         </div>
@@ -47,9 +47,17 @@
         <div class="learnUser"></div>
         <div class="learnUser"><%= @tool.my_tools.size %>  users</div>
         <div class="learnFri" style="color: #6F6F63"><%= show_friend_player(@tool) %> friends</div>
-        <div class="learnCa">Category</div>
+        <div class="learnCa">Category</div> 
+        
+         
+        
         <div class="learnFri" style="color: #6F6F63">
-          <%= @tool.learn_tool_cate_id == -1 ? "None" :  @tool.learn_tool_cate.title %>
+          <%#= @tool.learn_tool_cate_id == -1 ? "None" :  @tool.learn_tool_cate.title %>
+          <% if @tool.learn_tool_cate_id == -1 %>
+            None
+          <% else %>
+            <%= link_to @tool.learn_tool_cate.title, "#{url_for(:controller => "learn_tools", :action => "index")}?tool_cate=#{@tool.learn_tool_cate.id}" %>
+          <% end %>
         </div>
         <% str_display = "display: none;" %>
         <% if  @tool.atc_creator == false  %>
