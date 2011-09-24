@@ -35,6 +35,7 @@ class QaSendMail < ActionMailer::Base
   def tag_vid_notify(user,video,tag_creator)
     @video = video
     @tag_creator=tag_creator
+    @user = user
     mail :to => user.email, :subject => "You have been tagged!"
   end
 
