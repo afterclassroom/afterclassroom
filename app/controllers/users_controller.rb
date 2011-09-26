@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   before_filter :require_current_user,
     :except => [:add_tag, :index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
   before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
-  # render new.rhtml
+  
+	# render new.rhtml
   def index
     redirect_to root_url
   end
@@ -386,16 +387,13 @@ def tag_decision
     end
     
     if @user.errors.empty?
-      successful_creation()
+      render :action => :successful_creation
     else
       failed_creation(@user, @user.errors.full_messages)
     end
   end
   
-  def successful_creation()
-    flash[:notice] = "Thanks for signing up!<br/>"
-    flash[:notice] << "We're sending you an email with your activation code."
-    redirect_back_or_default(root_path)
+  def successful_creation
   end
   
   def failed_creation(user, message = 'Sorry, there was an error occured while creating account.')

@@ -1,9 +1,14 @@
 <html>
   <body>
     <div id="detail_window">
-      <a href="<%= user_url(@tag_creator) %>"><%= @tag_creator.name %></a> has tagged <a href="<%= user_url(@user) %>"><%= @user.name %></a> to your <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>.
+       Hello <%= @video.user.name %>, <br/>
+       
+      <a href="<%= user_url(@tag_creator) %>"><%= @tag_creator.name %></a> has tagged <a href="<%= user_url(@user) %>"><%= @user.name %></a> to your <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>. <br/>
       
-      Please review and approve for the newly tagged users.
+      Please review and approve for the newly tagged users. <br/>
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
     </div>  
   </body>
 </html>

@@ -220,7 +220,9 @@ class VideosController < ApplicationController
           end
           if taginfo.save
             QaSendMail.tag_vid_notify(u,video, current_user).deliver
-            if current_user != video.user
+            if ( (current_user != video.user) && (video.user != u) )
+              #the above condition is "NOT TO SEND mail to video owner"
+              #if any user tag OWNER to OWNER's video
               QaSendMail.inform_vid_owner(u,video, current_user).deliver
             end
           end
@@ -228,7 +230,6 @@ class VideosController < ApplicationController
         end
       end #end each
     end
-    
     
     redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
   end
@@ -281,13 +282,12 @@ class VideosController < ApplicationController
     @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
     @video = Video.find(params[:video_id])
     
-    #send mail to author
-    QaSendMail.vid_cmt_added(@video.user,@video,params[:comment_content],current_user).deliver
-    
     #and then send mail to tagged user
     if @tagged_users.size > 0
       @tagged_users.each do |user|
-        QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
+        if user != @video.user
+          QaSendMail.vid_cmt_added(user,@video,params[:comment_content],current_user).deliver
+        end
       end #end each
     end #end if
     

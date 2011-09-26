@@ -78,10 +78,11 @@ class PostQa < ActiveRecord::Base
   end
 
   def self.paginated_post_conditions_with_interesting(params, school)
-    arr_p = []
-    post_qa = self.with_school(school).interesting
-    post_qa.select {|p| arr_p << p.post if p.post.favorites.size > 10}
-    return arr_p
+#    arr_p = []
+#    post_qa = self.with_school(school).interesting
+#    post_qa.select {|p| arr_p << p.post if p.post.favorites.size > 10}
+#    return arr_p
+    self.recent_interesting(school)
   end
 
   def self.paginated_post_conditions_with_top_answer(params, school)
@@ -123,29 +124,9 @@ class PostQa < ActiveRecord::Base
     (total) == 0 ? 0 : (self.total_bad.to_f/(total))*100
   end
   
-  def self.recent_interesting(school_id,params)
+  def self.recent_interesting(school_id)
     
-    str_school_condition = ""
-    
-    if school_id != nil
-      str_school_condition = "where p.school_id = #{school_id}"
-    end
-    
-    objs = Post.find_by_sql("select p.* from posts as p right join (select * from post_qas) as qa on p.id = qa.post_id
-inner join
-(select a.favorable_id, a.created_at, b.total from favorites as a
-right join (
-select favorable_id,count(favorable_id) as total from favorites
-group by favorable_id
-having count(favorable_id)>11
-) as b
-on a.favorable_id = b.favorable_id
-order by a.favorable_id DESC, a.created_at DESC ) as f
-on p.id = f.favorable_id 
-#{str_school_condition}
-group by f.favorable_id 
-order by f.created_at DESC")
-    
+    objs = Post.recent_interesting(school_id,"post_qas")
     
   end
   

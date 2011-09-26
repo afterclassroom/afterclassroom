@@ -1,12 +1,18 @@
 <html>
   <body>
     <div id="detail_window">
+      
+      Hello <%= @user.name %>, <br/>
 
       <a href="<%= user_url(@cmt_author) %>"><%= @cmt_author.name %></a> has added the following comment for the video <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>
       <p>
         Comment content: <br/>
         <%= @content %>
       </p>
+      
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
     </div>  
   </body>
 

@@ -35,6 +35,7 @@ class QaSendMail < ActionMailer::Base
   def tag_vid_notify(user,video,tag_creator)
     @video = video
     @tag_creator=tag_creator
+    @user = user
     mail :to => user.email, :subject => "You have been tagged!"
   end
 
@@ -63,6 +64,7 @@ class QaSendMail < ActionMailer::Base
     @video = video
     @content = content
     @cmt_author = cmt_author
+    @user = user
     #user.email
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
   end
@@ -71,6 +73,7 @@ class QaSendMail < ActionMailer::Base
     @photo = photo
     @tag_creator=tag_creator
     @statement = ""
+    @user = user
     if (tag_creator != photo.user)
       @statement = "Please wait for the authorization from photo owner."
     end
@@ -105,8 +108,9 @@ class QaSendMail < ActionMailer::Base
     @photo = photo
     @content = content
     @cmt_author = cmt_author
+    @user = user
     #user.email
-    mail :to => "datefield@yahoo.com", :subject => "#{cmt_author.name} has added new comment for photo #{photo.title}"
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for photo #{photo.title}"
   end
 
 
