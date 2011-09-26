@@ -71,12 +71,32 @@
   <%= render :partial => "ads/show_vertical_ads" %>
   <!--Ads-->
 </div>
+<!--Alert-->
+<div id="delete-story-dialog-message" title="Alert" style="display:none;">
+  <p>
+    Your file is to big! File size limit 100 MB.
+  </p>
+  <div style="border-top: 1px solid #AAAAAA;"></div>
+  <span>
+    <a href="#" id="clear">
+      <button style="cursor: pointer;height: 36px;margin-top: 15px;float: right">Cancel</button>
+    </a>   
+  </span>
+</div>
+<!--Alert-->
 <style>
   #fakeinputfile #fakefilepc {
     margin-top: -1px;
   }
+  .ui-dialog-titlebar a {
+    display: none;
+  }
 </style>
 <script type="text/javascript">
+    function resetFileInput($element) {
+    var clone = $element.clone(false, false);
+    $element.replaceWith(clone);
+  }
   $(document).ready(function(){
     $("#submitNew_video").click(function(){
       submitNewVideo();
@@ -90,6 +110,7 @@
       $("#form").submit();
     }
   }
+    //Check file size with every file type
   function checkFileSize()
   {
     if (navigator.userAgent.indexOf("Firefox") != -1 || navigator.userAgent.indexOf("Safari") != -1){
@@ -107,9 +128,8 @@
     var check = node.files[0].fileSize;
     if (check > max_size)
     {
-      $("#delete-story-dialog-message" ).dialog();
-      return false;
-    }  
+      $("#delete-story-dialog-message").dialog();
+    }
   }
 
   // It is working well with IE
@@ -121,4 +141,14 @@
     var size = thefile.size;
     alert(size + " bytes");
   }
+  $(document).ready(function(){
+    $('#clear').click(function(){   
+      $("#delete-story-dialog-message").dialog('close');
+      resetFileInput($('input#video_video_attach'));
+    });
+  });
+  $("#clear").click(function(){
+    $("#fakefilepc").attr({ value: '' });;
+    $("#video_video_attach").attr({ value: '' });;
+  });
 </script>
