@@ -231,7 +231,6 @@ class VideosController < ApplicationController
       end #end each
     end
     
-    
     redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
   end
   
