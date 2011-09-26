@@ -32,10 +32,17 @@ class QaSendMail < ActionMailer::Base
     mail :to => tool.user.email, :subject => "You've got mail from #{current_user.name}"
   end
 
-  def tag_vid_notify(user,video,tag_creator)
+  def tag_vid_notify(user,video,tag_creator,verify_status)
     @video = video
     @tag_creator=tag_creator
     @user = user
+    @statement = ""
+
+    if (verify_status == false)
+      @statement = "Please wait for the authorization from video owner."
+    end
+    
+    
     mail :to => user.email, :subject => "You have been tagged!"
   end
 
