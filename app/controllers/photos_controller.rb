@@ -326,7 +326,7 @@ class PhotosController < ApplicationController
     
       if tagphoto.save
         QaSendMail.tag_photo_notify(usr,photo, current_user).deliver
-        if current_user != photo.user
+        if ( (current_user != photo.user) && (usr != current_user) )
           QaSendMail.inform_photo_owner(usr,photo, current_user).deliver
         end
       end

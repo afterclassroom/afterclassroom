@@ -73,6 +73,7 @@ class QaSendMail < ActionMailer::Base
     @photo = photo
     @tag_creator=tag_creator
     @statement = ""
+    @user = user
     if (tag_creator != photo.user)
       @statement = "Please wait for the authorization from photo owner."
     end
