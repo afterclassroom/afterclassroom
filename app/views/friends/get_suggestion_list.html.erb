@@ -1,0 +1,18 @@
+<div class="suggesRow">
+											<%
+												@suggestions = current_user.suggestions
+											%>
+                        <% @suggestions.each do |u| %>
+                        <div class="suggesItem" style="width:140px;">
+                            <div class="AsDContImg">
+                                <%= show_image_user_post(u) %>
+                            </div>
+                            <div class="suggesName">
+                                <%= show_user_post(u) %>
+                            </div>
+                            <div class="suggesAdd">
+                                <span id="friend_status_<%= u.id %>"><%= show_invite_friend(u) %></span>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>

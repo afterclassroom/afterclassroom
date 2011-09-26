@@ -2,7 +2,7 @@
   <div class="col195in">
     <div class="search">
       <%= form_tag search_user_friends_path(current_user), {:id => "friend_search", :method => "GET"} do %>
-        <div class="textS"><%= text_field_tag "search[name]", "#{@search_name}" %></div>
+        <div class="textS"><%= text_field_tag "search[name]", "#{@search_name || "Search friends"}", :class => "focus_text_field" %></div>
         <div class="btmS"><a href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
       <% end %>
     </div>    

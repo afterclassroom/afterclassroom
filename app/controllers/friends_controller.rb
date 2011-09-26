@@ -32,12 +32,8 @@ class FriendsController < ApplicationController
 		login = params[:login] if params[:login]
     @mail_account = MailAccount.new(login, nil, type)
     user_id_suggestions = session[:user_id_suggestions]
-    if user_id_suggestions.nil?
-      user_id_suggestions = get_user_id_suggestions(@user)
-      session[:user_id_suggestions] = user_id_suggestions
-    end
-    @user_suggestions = []
-    @user_suggestions = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})") if user_id_suggestions.size > 0
+    @search_results = []
+    @search_results = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})") if user_id_suggestions.size > 0
   end
   
   def find_email
@@ -68,13 +64,13 @@ class FriendsController < ApplicationController
 	def find_friend_by_email
 		contacts = params[:email_list].split(",")
       contacts = contacts.collect {|c| c.strip}
-      #begin
+      begin
         flash[:notice] = "Find Friends Successfully."
         friends = @user.user_friends.find(:all, :conditions => ["email IN('#{contacts.join("', '")}')"])
 				session[:user_id_suggestions] = friends.map(&:id)
-      #rescue
-        # Nothing
-      #end
+      rescue
+         Nothing
+      end
 			redirect_to find_user_friends_path(@user)
 	end
   
@@ -288,6 +284,11 @@ class FriendsController < ApplicationController
       paginate :page => params[:page], :per_page => 10
     end
   end
+
+	def get_suggestion_list
+		@suggestions = current_user.suggestions
+		render :layout => false
+	end
   
   protected
   
@@ -315,18 +316,6 @@ class FriendsController < ApplicationController
       redirect_back_or_default(root_path)and return false
     end
     return @user
-  end
-  
-  def get_user_id_suggestions(user)
-    user_id_friends = user.user_friends.collect(&:id)
-    friend_of_friend = []
-    user.user_friends.each do |f|
-      f.user_friends.each do |ff|
-        friend_of_friend << ff.id unless user == ff
-      end
-    end
-    friend_of_friend = friend_of_friend.uniq
-    user_id_suggestions = friend_of_friend - user_id_friends
   end
   
   def send_email(email, content)

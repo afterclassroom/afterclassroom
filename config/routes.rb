@@ -78,7 +78,7 @@ Afterclassroom::Application.routes.draw do
       collection do
         get :search, :find, :find_people, :recently_added, :recently_updated,
           :friend_request, :list, :invite, :unfriend, :display_email, :add_to_group,
-          :send_invite_message, :show_invite, :become_a_fan, :accept, :de_accept, :respond_to_friend_request
+          :send_invite_message, :show_invite, :become_a_fan, :accept, :de_accept, :respond_to_friend_request, :get_suggestion_list
         post :find_email, :invite_by_list_email,
           :invite_by_import_email, :delete, :show_list_email_contacts,
 					:find_friend_by_email

@@ -1,0 +1,39 @@
+<div class="col300 inboxMess">
+<div class="col300in">
+  <div class="searchPInput">
+                            <div class="search" style="height:27px;width: 193px">
+                                <form id="action_people_search" name="search" action="<%= find_people_user_friends_path(current_user) %>" method="get">
+                                    <div class="textS">
+                                        <input type="text" name="search[query]" value="Search for people" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" style="height: 14px;margin-top: 3px;width: 167px;"/>
+                                    </div>
+                                    <div class="btmS">
+                                        <a href="javascript:;" onclick="$('#action_people_search').submit();"><img src="/images/iconSF.png"/></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+<div class="sugges" style="float:left;">
+                    Suggestions
+                </div>
+                <div id="suggestion_list" class="suggesList" style="float:left;width:100%;">
+                    <div class="suggesRow">
+											<%
+												@suggestions = current_user.suggestions
+											%>
+                        <% @suggestions.each do |u| %>
+                        <div class="suggesItem" style="width:140px;">
+                            <div class="AsDContImg">
+                                <%= show_image_user_post(u) %>
+                            </div>
+                            <div class="suggesName">
+                                <%= show_user_post(u) %>
+                            </div>
+                            <div class="suggesAdd">
+                                <span id="friend_status_<%= u.id %>"><%= show_invite_friend(u) %></span>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+</div>
+</div>

@@ -312,6 +312,20 @@ class User < ActiveRecord::Base
       self.time_zone = ActiveSupport::TimeZone::MAPPING.index(timezone.timezone_id) unless timezone.nil?
     end
   end
+	
+	def suggestions
+		friend_ids = self.user_friends.map(&:id)
+		fofs = self.friend_of_friends.map(&:id)
+		invite_out_ids = self.user_invites_out.where("is_accepted IS NULL").map(&:user_id_target)
+		invite_in_ids = self.user_invites_in.where("is_accepted IS NULL").map(&:user_id)
+		suggest_ids = fofs - friend_ids - invite_out_ids - invite_in_ids - [self.id]
+		if suggest_ids.size > 0
+			User.find(:all, :limit => 10, :conditions => ["id IN(#{suggest_ids.join(',')}) AND state='active'"])
+		else
+			suggest_ids = friend_ids + invite_out_ids + invite_in_ids + [self.id]
+			User.find(:all, :limit => 10, :conditions => ["id NOT IN(#{suggest_ids.join(',')}) AND state='active'"])
+		end
+	end
   
   protected
   
