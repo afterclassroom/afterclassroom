@@ -1,15 +1,10 @@
-<input  type="hidden" id="straction" value="<%= controller.action_name %>" name="<%= controller.action_name %>" />
-<li><%= link_to raw("<span>Setting</span>"), setting_user_settings_path(current_user) %></li>
+<li><%= link_to raw("<span>Setting</span>"), setting_user_settings_path(current_user), :id => "#{controller.action_name}" %></li>
 <li><%= link_to raw("<span>Privacy</span>"), private_user_settings_path(current_user) %></li>
 <li><%= link_to raw("<span>Notifications</span>"), notifications_user_settings_path(current_user) %></li>
-<script language="javascript">
-
-  $('document').ready(function(){
-    var straction = $('#straction').attr('name');
-    var char1=''+straction[0];
-    char1=char1.toUpperCase();
-    straction=char1+straction.substring(1, straction.length);
-
-    $('li:contains('+straction+')').addClass("settselect");
+<script type="text/javascript">
+  var array = ["setting","private","notifications"];
+  $(document).ready(function(){
+    var index = jQuery.inArray("<%= controller.action_name %>", array);
+    $('div.settMenu').find('li').eq(index).addClass("settselect");
   });
 </script>
