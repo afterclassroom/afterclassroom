@@ -64,6 +64,7 @@ class QaSendMail < ActionMailer::Base
     @video = video
     @content = content
     @cmt_author = cmt_author
+    @user = user
     #user.email
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
   end
