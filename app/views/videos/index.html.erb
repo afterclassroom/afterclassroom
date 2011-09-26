@@ -26,19 +26,19 @@
                   <% end %>
                 </div>
               </div>
-                <div class="musicRow">
-                  <% @friend_videos.each do |f_p| %>
-                    <%= render :partial => "item_friend_video", :locals => {:video => f_p}  %>
-                  <% end %>
+              <div class="musicRow">
+                <% @friend_videos.each do |f_p| %>
+                  <%= render :partial => "item_friend_video", :locals => {:video => f_p}  %>
+                <% end %>
+              </div>
+              <div class="slsTopR">
+                <!--Pagination-->
+                <div class="assPage friend_videos">
+                  <span class="numPage"><%= page_entries_info @friend_videos %></span>
+                  <%= will_paginate @friend_videos %>
                 </div>
-                <div class="slsTopR">
-                  <!--Pagination-->
-                  <div class="assPage friend_videos">
-                    <span class="numPage"><%= page_entries_info @friend_videos %></span>
-										<%= will_paginate @friend_videos %>
-                  </div>
-                  <!--Pagination-->
-                </div>
+                <!--Pagination-->
+              </div>
             </div>
           </div>
         <% end %>
@@ -61,19 +61,19 @@
               </div>
             </div>
 
-              <div class="musicRow">
-                <% @my_videos.each do |m_p| %>
-                  <%= render :partial => "item_my_video", :locals => {:video => m_p}  %>
-                <% end %>
+            <div class="musicRow">
+              <% @my_videos.each do |m_p| %>
+                <%= render :partial => "item_my_video", :locals => {:video => m_p}  %>
+              <% end %>
+            </div>
+            <div class="slsTopR">
+              <!--Pagination-->
+              <div class="assPage my_videos">
+                <span class="numPage"><%= page_entries_info @my_videos %></span>
+                <%= will_paginate @my_videos %>
               </div>
-              <div class="slsTopR">
-                <!--Pagination-->
-                <div class="assPage my_videos">
-                  <span class="numPage"><%= page_entries_info @my_videos %></span>
-                  <%= will_paginate @my_videos %>
-                </div>
-                <!--Pagination-->
-              </div>
+              <!--Pagination-->
+            </div>
           </div>
 
         </div>
@@ -92,14 +92,14 @@
 </div>
 
 <script type="text/javascript" >
-  function submit(){
-    $("#form_new").submit();
-  }
-  $(document).ready(function() {
-    $("#form_new").validate({
-      errorLabelContainer: $("#form_new div.stoError")
+    function submit(){
+      $("#form_new").submit();
+    }
+    $(document).ready(function() {
+      $("#form_new").validate({
+        errorLabelContainer: $("#form_new div.stoError")
+      });
+      formatLinkForPaginationURLFriendVideo();
+      formatLinkForPaginationURLMyVideo();
     });
-		formatLinkForPaginationURLFriendVideo();
-  	formatLinkForPaginationURLMyVideo();
-  });
 </script>

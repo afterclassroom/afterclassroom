@@ -90,4 +90,35 @@
       $("#form").submit();
     }
   }
+  function checkFileSize()
+  {
+    if (navigator.userAgent.indexOf("Firefox") != -1 || navigator.userAgent.indexOf("Safari") != -1){
+      checkFileSizeFireFox();
+    }else{
+      checkFileSizeIE();
+    }
+  }
+
+  //Check file size before upload, it is working well with Firefox
+  //It is not compatible with another browse
+  function checkFileSizeFireFox() {
+    var node = document.getElementById('video_video_attach');
+    var max_size= '100000000';
+    var check = node.files[0].fileSize;
+    if (check > max_size)
+    {
+      $("#delete-story-dialog-message" ).dialog();
+      return false;
+    }  
+  }
+
+  // It is working well with IE
+  function checkFileSizeIE()
+  {
+    var myFSO = new ActiveXObject("Scripting.FileSystemObject");
+    var filepath = document.upload.file.value;
+    var thefile = myFSO.getFile(filepath);
+    var size = thefile.size;
+    alert(size + " bytes");
+  }
 </script>
