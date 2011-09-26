@@ -305,9 +305,19 @@ class PhotosController < ApplicationController
     taginfo.tagable_id = params[:photo_id]
     taginfo.tagable_user = params[:name_id]
     taginfo.tagable_type = "Photo"
+    
     taginfo.verify = false
     if current_user == photo.user
       taginfo.verify = true
+    else
+      pr = photo.user.private_settings.where(:type_setting => "tag_photo").first
+      if (pr != nil)
+        if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
+          taginfo.verify = true
+        end
+      else#user has not setting this, considered NO VERIFY BY DEFAULT
+        taginfo.verify = true
+      end
     end
 
     deletable = false
@@ -325,7 +335,9 @@ class PhotosController < ApplicationController
       tagphoto.height=params[:height]
     
       if tagphoto.save
-        QaSendMail.tag_photo_notify(usr,photo, current_user).deliver
+        #taginfo.verify equal to TRUE when no need to pass to verifying process
+        #when there is no need to verify, there is no need to wait for authorization
+        QaSendMail.tag_photo_notify(usr,photo, current_user,taginfo.verify).deliver
         if ( (current_user != photo.user) && (usr != current_user) )
           QaSendMail.inform_photo_owner(usr,photo, current_user).deliver
         end

@@ -69,13 +69,20 @@ class QaSendMail < ActionMailer::Base
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
   end
 
-  def tag_photo_notify(user,photo,tag_creator)
+  def tag_photo_notify(user,photo,tag_creator, verify_status)
     @photo = photo
     @tag_creator=tag_creator
     @statement = ""
     @user = user
+    
     if (tag_creator != photo.user)
-      @statement = "Please wait for the authorization from photo owner."
+      #when author enable the verify process
+      #we need to send mail to inform tagged_user to wait
+      #other wise, author has turned off the verify process
+      #we just inform user that he has been tagged only
+      if (verify_status == false)
+        @statement = "Please wait for the authorization from photo owner."
+      end
     end
     
     mail :to => user.email, :subject => "You have been tagged!"
