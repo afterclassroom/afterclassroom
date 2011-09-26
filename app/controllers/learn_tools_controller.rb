@@ -263,6 +263,7 @@ class LearnToolsController < ApplicationController
     
     if simple_captcha_valid?
       if @tool.save!
+        post_wall(@tool)
         if (params[:vid_check] == "new video upload")
           if @video.save!
             @video.convert
