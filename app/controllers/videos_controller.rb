@@ -216,10 +216,25 @@ class VideosController < ApplicationController
             taginfo.verify = true
             flash[:notice] = "Your friend(s) has been tagged."
           else
+            pr = video.user.private_settings.where(:type_setting => "tag_video").first
+            if (pr != nil)
+              if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
+                taginfo.verify = true
+              end
+            else#user has not setting this, considered NO VERIFY BY DEFAULT
+              taginfo.verify = true
+            end
+            
+            
             flash[:notice] = "Your request has been sent to author. The approval will be sent to your email."
           end
+          
+          
+          
           if taginfo.save
-            QaSendMail.tag_vid_notify(u,video, current_user).deliver
+            #taginfo.verify equal to TRUE when no need to pass to verifying process
+            #when there is no need to verify, there is no need to wait for authorization
+            QaSendMail.tag_vid_notify(u,video, current_user,taginfo.verify).deliver
             if ( (current_user != video.user) && (video.user != u) )
               #the above condition is "NOT TO SEND mail to video owner"
               #if any user tag OWNER to OWNER's video
