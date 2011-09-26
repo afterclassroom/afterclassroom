@@ -659,10 +659,24 @@ module ApplicationHelper
     "Share to: " + str
   end
   
+  def show_tags_status(user, type)
+    pr = user.private_settings.where(:type_setting => type).first
+    
+    str = pr ? Hash[TAGS_SETTING.map {|x| [x[0], x[1]]}].key(pr.share_to) : "No Verify"
+    
+    "Share to: " + str
+  end
+  
   def show_options_setting(user, type)
     pr = user.private_settings.where(:type_setting => type).first
     val = pr ? pr.share_to : 0
     select_tag "#{type}", options_for_select(OPTIONS_SETTING, val), :class => "menuPrivate"
+  end
+  
+  def show_tags_setting(user, type)#type can be PHOTO or VIDEO
+    pr = user.private_settings.where(:type_setting => type).first
+    val = pr ? pr.share_to : 0
+    select_tag "#{type}", options_for_select(TAGS_SETTING, val), :class => "menuPrivate"
   end
   
   def show_attach(wall)

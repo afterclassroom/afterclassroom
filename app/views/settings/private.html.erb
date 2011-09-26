@@ -222,7 +222,7 @@
 
     <div class="settNetLPaT">
     </div>
-    <div class="vtip settNetLPa" title="Tag Teview of tags that friends want to add to your posts">
+    <div class="vtip settNetLPa" title="Tag review of tags that friends want to add to your posts">
       Tag Review
     </div>
     <div class="settC">
@@ -232,11 +232,11 @@
             <span>Photos</span>
           </div>
           <div class="flistS" id="photo_tag_setting">
-            CURRENT
+            <%= show_tags_status(current_user, "tag_photo") %>
           </div>
         </div>
-        <div class="select_wrap">
-          LIST SELECT
+        <div class="select_wrap" id="tag_photo">
+          <%= show_tags_setting(current_user, "tag_photo") %>
         </div>
       </div>
       <div class="flistItem" style="border-bottom: none">
@@ -245,11 +245,11 @@
             <span>Videos</span>
           </div>
           <div class="flistS" id="video_tag_settings">
-            CURRENT
+            <%= show_tags_status(current_user, "tag_video") %>
           </div>
         </div>
-        <div class="select_wrap">
-          LIST SELECT
+        <div class="select_wrap" id="tag_video">
+          <%= show_tags_setting(current_user, "tag_video") %>
         </div>
       </div>
     </div>
@@ -310,6 +310,8 @@
 </div>
 <script>
   $(document).ready(function(){
+    $('#tag_photo').find('#photo').css('width','121px');
+    $('#tag_video').find('#video').css('width','121px');
     
     $('.menuPrivate').change(function(){
       share_select($(this).attr('value'), $(this).attr('id'));
