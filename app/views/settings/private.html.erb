@@ -1,270 +1,331 @@
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => 'submenu' %>
+  <%= render :partial => 'submenu' %>
 <% end -%>
 <div class="settCont">
-    <div class="settCont1">
-        <div class="settMenu">
-            <ul>
-                <%= render :partial => "setting_menu" %>
-            </ul>
-        </div>
-        <div class="settNetLPa">
-            Control your sharing information
-        </div>
-        <div class="settC">
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>About myself</span>
-                    </div>
-                    <div class="flistS" id="about_myself_share_status">
-                        <%= show_status_setting(current_user, "about_myself") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "about_myself") %>
-                </div>
-            </div>
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>Sex</span>
-                    </div>
-                    <div class="flistS" id="sex_share_status">
-                        <%= show_status_setting(current_user, "sex") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "sex") %>
-                </div>
-            </div>
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>Relationship Status</span>
-                    </div>
-                    <div class="flistS" id="relationship_status_share_status">
-                        <%= show_status_setting(current_user, "relationship_status") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "relationship_status") %>
-                </div>
-            </div>
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>Looking for</span>
-                    </div>
-                    <div class="flistS" id="looking_for_share_status">
-                        <%= show_status_setting(current_user, "looking_for") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "looking_for") %>
-                </div>
-            </div>
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>Political views</span>
-                    </div>
-                    <div class="flistS" id="political_views_share_status">
-                        <%= show_status_setting(current_user, "political_views") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "political_views") %>
-                </div>
-            </div>
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>Mobile number</span>
-                    </div>
-                    <div class="flistS" id="mobile_number_share_status">
-                        <%= show_status_setting(current_user, "mobile_number") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "mobile_number") %>
-                </div>
-            </div>
-            <div class="flistItem" style="border-bottom: none">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>Current city</span>
-                    </div>
-                    <div class="flistS" id="current_city_share_status">
-                        <%= show_status_setting(current_user, "current_city") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "current_city") %>
-                </div>
-            </div>
-        </div>
-        <div class="settNetLPaT">
-        </div>
-				<div class="settNetLPa">
-            Student Lounge
-        </div>
-        <div class="settC">
-            <div class="flistItem" style="border-bottom: none">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>My Lounge</span>
-                    </div>
-                    <div class="flistS" id="my_lounges">
-                        <%= show_status_setting(current_user, "my_lounges") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "my_lounges") %>
-                </div>
-            </div>
-        </div>
-        <div class="settNetLPaT">
-        </div>
-        <div class="settNetLPa">
-            Friends and Fans
-        </div>
-        <div class="settC">
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>My Friends</span>
-                    </div>
-                    <div class="flistS" id="my_friends_share_status">
-                        <%= show_status_setting(current_user, "my_friends") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "my_friends") %>
-                </div>
-            </div>
-            <div class="flistItem" style="border-bottom: none">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>My Fans</span>
-                    </div>
-                    <div class="flistS" id="my_fans_share_status">
-                        <%= show_status_setting(current_user, "my_fans") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "my_fans") %>
-                </div>
-            </div>
-        </div>
-        <div class="settNetLPaT">
-        </div>
-        <div class="settNetLPa">
-            Photos and Musics
-        </div>
-        <div class="settC">
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>My Photos</span>
-                    </div>
-                    <div class="flistS" id="my_photos_share_status">
-                        <%= show_status_setting(current_user, "my_photos") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "my_photos") %>
-                </div>
-            </div>
-            <div class="flistItem" style="border-bottom: none">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>My Musics</span>
-                    </div>
-                    <div class="flistS" id="my_musics_share_status">
-                        <%= show_status_setting(current_user, "my_musics") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "my_musics") %>
-                </div>
-            </div>
-        </div>
-        <div class="settNetLPaT">
-        </div>
-				<div class="settNetLPa">
-            Videos
-        </div>
-        <div class="settC">
-            <div class="flistItem" style="border-bottom: none">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>My Videos</span>
-                    </div>
-                    <div class="flistS" id="my_videos_share_status">
-                        <%= show_status_setting(current_user, "my_videos") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "my_videos") %>
-                </div>
-            </div>
-        </div>
-        <div class="settNetLPaT">
-        </div>
-        <div class="settNetLPa">
-            Stories and Links
-        </div>
-        <div class="settC">
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>My Stories</span>
-                    </div>
-                    <div class="flistS" id="my_stories_share_status">
-                        <%= show_status_setting(current_user, "my_stories") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "my_stories") %>
-                </div>
-            </div>
-            <div class="flistItem">
-                <div class="flistInf">
-                    <div class="flistNPa">
-                        <span>My Links</span>
-                    </div>
-                    <div class="flistS" id="my_links_share_status">
-                        <%= show_status_setting(current_user, "my_links") %>
-                    </div>
-                </div>
-                <div class="select_wrap">
-                    <%= show_options_setting(current_user, "my_links") %>
-                </div>
-            </div>
-        </div>
+  <div class="settCont1">
+    <div class="settMenu">
+      <ul>
+        <%= render :partial => "setting_menu" %>
+      </ul>
     </div>
+    <div class="settNetLPa">
+      Control your sharing information
+    </div>
+    <div class="settC">
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>About myself</span>
+          </div>
+          <div class="flistS" id="about_myself_share_status">
+            <%= show_status_setting(current_user, "about_myself") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "about_myself") %>
+        </div>
+      </div>
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>Sex</span>
+          </div>
+          <div class="flistS" id="sex_share_status">
+            <%= show_status_setting(current_user, "sex") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "sex") %>
+        </div>
+      </div>
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>Relationship Status</span>
+          </div>
+          <div class="flistS" id="relationship_status_share_status">
+            <%= show_status_setting(current_user, "relationship_status") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "relationship_status") %>
+        </div>
+      </div>
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>Looking for</span>
+          </div>
+          <div class="flistS" id="looking_for_share_status">
+            <%= show_status_setting(current_user, "looking_for") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "looking_for") %>
+        </div>
+      </div>
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>Political views</span>
+          </div>
+          <div class="flistS" id="political_views_share_status">
+            <%= show_status_setting(current_user, "political_views") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "political_views") %>
+        </div>
+      </div>
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>Mobile number</span>
+          </div>
+          <div class="flistS" id="mobile_number_share_status">
+            <%= show_status_setting(current_user, "mobile_number") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "mobile_number") %>
+        </div>
+      </div>
+      <div class="flistItem" style="border-bottom: none">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>Current city</span>
+          </div>
+          <div class="flistS" id="current_city_share_status">
+            <%= show_status_setting(current_user, "current_city") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "current_city") %>
+        </div>
+      </div>
+    </div>
+    <div class="settNetLPaT">
+    </div>
+    <div class="settNetLPa">
+      Student Lounge
+    </div>
+    <div class="settC">
+      <div class="flistItem" style="border-bottom: none">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>My Lounge</span>
+          </div>
+          <div class="flistS" id="my_lounges">
+            <%= show_status_setting(current_user, "my_lounges") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "my_lounges") %>
+        </div>
+      </div>
+    </div>
+    <div class="settNetLPaT">
+    </div>
+    <div class="settNetLPa">
+      Friends and Fans
+    </div>
+    <div class="settC">
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>My Friends</span>
+          </div>
+          <div class="flistS" id="my_friends_share_status">
+            <%= show_status_setting(current_user, "my_friends") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "my_friends") %>
+        </div>
+      </div>
+      <div class="flistItem" style="border-bottom: none">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>My Fans</span>
+          </div>
+          <div class="flistS" id="my_fans_share_status">
+            <%= show_status_setting(current_user, "my_fans") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "my_fans") %>
+        </div>
+      </div>
+    </div>
+    <div class="settNetLPaT">
+    </div>
+    <div class="settNetLPa">
+      Photos and Musics
+    </div>
+    <div class="settC">
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>My Photos</span>
+          </div>
+          <div class="flistS" id="my_photos_share_status">
+            <%= show_status_setting(current_user, "my_photos") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "my_photos") %>
+        </div>
+      </div>
+      <div class="flistItem" style="border-bottom: none">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>My Musics</span>
+          </div>
+          <div class="flistS" id="my_musics_share_status">
+            <%= show_status_setting(current_user, "my_musics") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "my_musics") %>
+        </div>
+      </div>
+    </div>
+    <div class="settNetLPaT">
+    </div>
+    <div class="settNetLPa">
+      Videos
+    </div>
+    <div class="settC">
+      <div class="flistItem" style="border-bottom: none">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>My Videos</span>
+          </div>
+          <div class="flistS" id="my_videos_share_status">
+            <%= show_status_setting(current_user, "my_videos") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "my_videos") %>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="settNetLPaT">
+    </div>
+    <div class="settNetLPa">
+      Tags
+    </div>
+    <div class="settC">
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>Photos</span>
+          </div>
+          <div class="flistS" id="photo_tag_setting">
+            CURRENT
+          </div>
+        </div>
+        <div class="select_wrap">
+          LIST SELECT
+        </div>
+      </div>
+      <div class="flistItem" style="border-bottom: none">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>Videos</span>
+          </div>
+          <div class="flistS" id="video_tag_settings">
+            CURRENT
+          </div>
+        </div>
+        <div class="select_wrap">
+          LIST SELECT
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="settNetLPaT">
+    </div>
+    <div class="settNetLPa">
+      Stories and Links
+    </div>
+    <div class="settC">
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>My Stories</span>
+          </div>
+          <div class="flistS" id="my_stories_share_status">
+            <%= show_status_setting(current_user, "my_stories") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "my_stories") %>
+        </div>
+      </div>
+      <div class="flistItem">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>My Links</span>
+          </div>
+          <div class="flistS" id="my_links_share_status">
+            <%= show_status_setting(current_user, "my_links") %>
+          </div>
+        </div>
+        <div class="select_wrap">
+          <%= show_options_setting(current_user, "my_links") %>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>
 </div>
 <script>
-    $(document).ready(function(){
-        $('.menuPrivate').change(function(){
-            share_select($(this).attr('value'), $(this).attr('id'));
-        });
+  $(document).ready(function(){
+    $('.menuPrivate').change(function(){
+      share_select($(this).attr('value'), $(this).attr('id'));
     });
+  });
     
-    function share_select(val, tp){
-        $.ajax({
-            url: '<%= save_private_setting_user_settings_path(current_user) %>',
-            type: 'POST',
-            cache: false,
-            dataType: 'html',
-            data: ({
-                type: tp,
-                value: val
-            }),
-            success: function(data){
-                $('#' + tp + '_share_status').html(data);
-            }
-        });
-    };
+  function share_select(val, tp){
+    $.ajax({
+      url: '<%= save_private_setting_user_settings_path(current_user) %>',
+      type: 'POST',
+      cache: false,
+      dataType: 'html',
+      data: ({
+        type: tp,
+        value: val
+      }),
+      success: function(data){
+        $('#' + tp + '_share_status').html(data);
+      }
+    });
+  };
 </script>
