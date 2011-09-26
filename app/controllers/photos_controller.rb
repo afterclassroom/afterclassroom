@@ -438,7 +438,9 @@ class PhotosController < ApplicationController
     #and then send mail to tagged user
     if @tagged_users.size > 0
       @tagged_users.each do |user|
-        QaSendMail.photo_cmt_added(user,@photo,params[:comment_content],current_user).deliver
+        if user != current_user
+          QaSendMail.photo_cmt_added(user,@photo,params[:comment_content],current_user).deliver
+        end
       end #end each
     end #end if
 
