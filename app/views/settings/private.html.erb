@@ -1,3 +1,5 @@
+<script type="text/javascript" src="/javascripts/vtip.js"></script>
+
 <% content_for :menu_top_student_lounge do -%>
   <%= render :partial => 'submenu' %>
 <% end -%>
@@ -220,8 +222,8 @@
 
     <div class="settNetLPaT">
     </div>
-    <div class="settNetLPa">
-      Tags
+    <div class="vtip settNetLPa" title="Tag Teview of tags that friends want to add to your posts">
+      Tag Review
     </div>
     <div class="settC">
       <div class="flistItem">
@@ -308,6 +310,7 @@
 </div>
 <script>
   $(document).ready(function(){
+    
     $('.menuPrivate').change(function(){
       share_select($(this).attr('value'), $(this).attr('id'));
     });
