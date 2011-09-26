@@ -1,29 +1,58 @@
 <div class="col195 proPic">
-    <div class="col195in">
-        <div class="demo">
-            <div class="proImg">
-                <%= raw("<div>#{image_tag(@user.avatar.url(:medium), {:id => "avatar"})}</div>") %>
-            </div>
-            <div class="proItem">
-                <%= link_to "#{@user.full_name}'s Stories (#{@user.stories.where(:state => "share").size})", show_stories_user_path(@user) %>
-            </div>
-            <div class="proItem">
-                <%= link_to "#{@user.full_name}'s Photos (#{@user.photos.size})", show_photos_user_path(@user) %>
-            </div>
-            <div class="proItem">
-                <%= link_to "#{@user.full_name}'s Musics (#{@user.musics.size})", show_musics_user_path(@user) %>
-            </div>
-						<div class="proItem">
-                <%= link_to "#{@user.full_name}'s Videos (#{@user.videos.size})", show_videos_user_path(@user) %>
-            </div>
-            <% if check_private_permission(@user, "about_myself") and @user.user_information and @user.user_information.about_yourself %>
-            <div class="proItem">
-                About myself
-            </div>
-            <div class="proBtm">
-                <%= @user.user_information.about_yourself if @user.user_information %>
-            </div>
-            <% end %>
+  <div class="col195in">
+    <div class="demo">
+
+      <div class="proImg">
+        <%= render :partial => "users/user_info"%>
+        <%= raw("<div class=offsetImg>#{image_tag(@user.avatar.url(:medium), {:id => "avatar"})}</div>") %>
+      </div>
+      <div class="proItem">
+        <%= link_to "#{@user.full_name}'s Stories (#{@user.stories.where(:state => "share").size})", show_stories_user_path(@user) %>
+      </div>
+      <div class="proItem">
+        <%= link_to "#{@user.full_name}'s Photos (#{@user.photos.size})", show_photos_user_path(@user) %>
+      </div>
+      <div class="proItem">
+        <%= link_to "#{@user.full_name}'s Musics (#{@user.musics.size})", show_musics_user_path(@user) %>
+      </div>
+      <div class="proItem">
+        <%= link_to "#{@user.full_name}'s Videos (#{@user.videos.size})", show_videos_user_path(@user) %>
+      </div>
+      <% if check_private_permission(@user, "about_myself") and @user.user_information and @user.user_information.about_yourself %>
+        <div class="proItem">
+          About myself
         </div>
+        <div class="proBtm">
+          <%= @user.user_information.about_yourself if @user.user_information %>
+        </div>
+      <% end %>
     </div>
+  </div>
 </div>
+<script>
+  
+  $(document).ready(function(){
+    $(".proImg").hover(function(){
+      $(".del_wall", this).show();
+    }, function(){
+      $(".del_wall", this).hide();
+    })
+  });
+    
+  $(document).ready(function(){ 
+    $("img#avatar").load(function(){
+      var pos = $('#avatar').offset();
+      $(".proImg").hover(function(){
+        $(".asslinkdownSt_User", this).css({
+          left:pos.left
+        }).show();
+      }, function(){
+        $(".asslinkdownSt_User", this).hide();
+      })
+    });
+  });
+    
+  $(document).ready(function(){
+    vtip()
+  });
+</script>
