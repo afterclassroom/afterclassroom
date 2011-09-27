@@ -1,0 +1,113 @@
+<div class="feedback-panel">
+  <a class="feedback-tab">Friend</a>
+
+<div class="contMainR" style="float:left">
+	<!--Find people-->
+  <div class="col300 inboxMess">
+  <div class="col300in" style="background: none repeat scroll 0 0 #F6F6F6">
+    <div class="searchPInput">
+      <div style="height: 27px; width: 193px;" class="search">
+        <form method="get" action="/users/3/friends/find_people" name="search" id="action_people_search">
+          <div class="textS">
+            <input type="text" style="height: 14px; margin-top: 3px; width: 167px;" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" value="Search for people" name="search[query]">
+          </div>
+          <div class="btmS">
+            <a onclick="$('#action_people_search').submit();" href="javascript:;"><img src="/images/iconSF.png"></a>
+          </div>
+        </form>
+        <div style="margin-left: -289px;">
+        
+        </div>
+      </div>
+    </div>
+    <div style="float: left;" class="sugges">
+      Suggestions
+    </div>
+    <div style="float: left; width: 100%;" class="suggesList" id="suggestion_list">
+      <div class="suggesRow">
+          <div style="width: 140px;" class="suggesItem">
+            <div class="AsDContImg">
+              <a href="/users/1/show_lounge"><div><img title="James" src="/system/avatars/1/thumb/Firefox_wallpaper.png?1314087505" class="vtip avatar_1" alt="Firefox_wallpaper"></div></a>
+            </div>
+            <div class="suggesName">
+              <a href="/users/1/show_lounge">James</a>
+            </div>
+            <div class="suggesAdd">
+              <span id="friend_status_1"><a title="Be friend with James" id="link_invite" class="thickbox" href="/users/3/friends/show_invite?user_invite=1&amp;height=300&amp;width=470"><span class="span1"><span id="friend_1" class="span2">Be friend</span></span></a></span>
+            </div>
+          </div>
+          <div style="width: 140px;" class="suggesItem">
+            <div class="AsDContImg">
+              <a href="/users/2/show_lounge"><div><img title="Tran Quoc Anh Dung" src="/system/avatars/2/thumb/1.png?1314086399" class="vtip avatar_2" alt="1"></div></a>
+            </div>
+            <div class="suggesName">
+              <a href="/users/2/show_lounge">Tran Quoc Anh Dung</a>
+            </div>
+            <div class="suggesAdd">
+              <span id="friend_status_2"><a title="Be friend with Tran Quoc Anh Dung" id="link_invite" class="thickbox" href="/users/3/friends/show_invite?user_invite=2&amp;height=300&amp;width=470"><span class="span1"><span id="friend_2" class="span2">Be friend</span></span></a></span>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+<style>
+
+  .feedback-panel {
+    padding:20px;
+    width: 250px;
+    background: #bab6d8;
+    border: #29216d 1px solid;
+    position:fixed;
+    top:200px;
+    right:-292px;
+  }
+
+  .feedback-panel a.feedback-tab {
+    background:transparent url('/images/feedbacktab.gif') no-repeat scroll 0 0;
+    border-width: 1px 1px 1px 0;
+    display:block;
+    height:99px;
+    right:51px;
+    bottom:21px;
+    position:relative;
+    float:left;
+    text-indent:-9999px;
+    width:30px;
+    outline:none;
+  }
+
+</style>
+<script>
+ 
+  var feedbackTab = {
+ 
+    speed:300,
+    containerWidth:$('.feedback-panel').outerWidth(),
+    containerHeight:$('.feedback-panel').outerHeight(),
+    tabWidth:$('.feedback-tab').outerWidth(),
+ 
+ 
+    init:function(){
+        $('.feedback-panel').css('height',feedbackTab.containerHeight + 'px');
+ 
+        $('a.feedback-tab').click(function(event){
+            if ($('.feedback-panel').hasClass('open')) {
+                $('.feedback-panel')
+                .animate({right:'-' + feedbackTab.containerWidth}, feedbackTab.speed)
+                .removeClass('open');
+            } else {
+                $('.feedback-panel')
+                .animate({right:'0'},  feedbackTab.speed)
+                .addClass('open');
+            }
+            event.preventDefault();
+        });
+    }
+};
+ 
+feedbackTab.init();
+</script>
