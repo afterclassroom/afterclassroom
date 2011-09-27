@@ -308,6 +308,8 @@
                         var tagBox = createTagBoxFromJSON(response.tag,image);
                         $('#' + options.imageWrapBox.idPrefix + image_id).append(tagBox);
                         extendTagBoxAttributes(tagBox,response.tag,image,image_id);
+                    }).success(function() { 
+                       LoadTagHover(); //This function at show.html.erb at views/photos
                     });
                     removeNewTempTag();
                     showAllTags(image_id);                                    

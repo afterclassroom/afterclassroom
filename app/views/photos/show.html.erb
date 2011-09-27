@@ -126,6 +126,7 @@
   function LoadTagHover(){
     $('#tag_list_place').find('li').each(function(){
       var usr_id=$(this).attr('id');    
+      $(this).unbind();
       $(this).hover(
       function () {
         $('#photoTag-tag_'+usr_id).css('opacity','0.8');
