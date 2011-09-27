@@ -1,12 +1,12 @@
 production:
-  app_id: 248629261839949
-  secret_key: 0c45200e366dc99ce408db919d84116d
+  app_id: 260832390618390
+  secret_key: 7e3a91740c2d48d5d065ab5a6344f3d9
 development:
   app_id: 218775308176828
   secret_key: 3efcc24468e3e3ab9a6cd9bd05b9a2de
 test:
-  app_id: 248629261839949
-  secret_key: 0c45200e366dc99ce408db919d84116d
+  app_id: 218775308176828
+  secret_key: 3efcc24468e3e3ab9a6cd9bd05b9a2de
 staging:
-  app_id: 248629261839949
-  secret_key: 0c45200e366dc99ce408db919d84116d
+  app_id: 260832390618390
+  secret_key: 7e3a91740c2d48d5d065ab5a6344f3d9

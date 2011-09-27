@@ -4052,18 +4052,22 @@ div.helpAdv2{
 .making{
     background:url('/images/icon-view.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
+		text-align:left;
 }
 .hate{
     background:url('/images/icon-hate.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
+		text-align:left;
 }
 .like{
     background:url('/images/icon-like.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
+		text-align:left;
 }
 .love{
     background:url('/images/icon-love.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
+		text-align:left;
 }
 .ichat a, .ichat a:link, .ichat a:visited,
 .making a, .making a:link, .making a:visited,

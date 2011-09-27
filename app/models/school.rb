@@ -11,7 +11,7 @@ class School < ActiveRecord::Base
   has_and_belongs_to_many :departments
 
   # Named Scope
-  scope :list_school, lambda {|*args| {:conditions => ["city_id = ? AND SUBSTR(LOWER(name), 1, 1) LIKE ?", args[0], args[1]]}}
+  scope :list_school, lambda {|*args| {:conditions => ["city_id = ? AND SUBSTR(LOWER(name), 1, 1) LIKE ? AND type_school = ?", args[0], args[1], args[2]]}}
   
   # Tag post with school
   acts_as_tagger

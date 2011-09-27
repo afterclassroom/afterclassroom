@@ -1,3 +1,8 @@
+<div style="width:100%;text-align: center;">
+		<div style="width:130px;float:left;" class="popupCoun">University <%= radio_button_tag "school_type", "University", (@type_school == "University"), :onchange => "select_type_school();" %></div>
+		<div style="width:130px;float:left;" class="popupCoun">College <%= radio_button_tag "school_type", "College", (@type_school == "College"), :onchange => "select_type_school();" %></div>
+		<div style="width:130px;float:left;" class="popupCoun">HighSchool <%= radio_button_tag "school_type", "HighSchool", (@type_school == "HighSchool"), :onchange => "select_type_school();" %></div>
+</div>
 <div class="popupItem">
   <%= form_tag('', :id => 'select_school_form') do %>
     <div class="popupL">
