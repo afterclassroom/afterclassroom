@@ -14,21 +14,18 @@
   </div>
 <% end %>
 <script type="text/javascript">
-<<<<<<< HEAD
   $(document).ready(function(){
     $('#tool_review_submit').click(function(){
       SubmitFormTool();
     });
   });
-=======
   function ShowAjaxLoader(){
-    $('input#btn_sbm_tool').after('<%= show_ajax_loader("img_loader", "background: none repeat scroll 0 0 white;  float: left;  margin-left: 52px;  margin-top: -21px;  width: 18px;") %>');
+    $('#tool_review_submit').after('<%= show_ajax_loader("img_loader", "background: none repeat scroll 0 0 white;  float: left;  margin-left: 52px;  margin-top: -21px;  width: 18px;") %>');
   }
   function HideAjaxLoader(){
     $('#img_loader').remove();
   }
   
->>>>>>> 2291536021bb68c239e30c285731d025411b469c
   function SubmitFormTool(){
     var result = $("#new_tool_review").validate({
       meta: "validate"
@@ -36,9 +33,6 @@
     if (result) {
       $("#new_tool_review").submit();
     }
-<<<<<<< HEAD
-  }
-=======
   }    
   $(document).ready(function(){
     //In some case, thick box display more than 1 title, and content
@@ -48,19 +42,15 @@
 
     //Set title for the box
     $('div#TB_ajaxWindowTitle').html('Write A Review');
-    $('#btn_sbm_tool').click(function(){
-      SubmitFormTool();
-    });
     
     $("form#new_tool_review")
     .bind('ajax:beforeSend', function() {
       ShowAjaxLoader();
-      $('input#btn_sbm_tool').before('<input type="button" id="btn_close" name="commit" value="Submit"/>');
-      $('input#btn_sbm_tool').remove();
+      $('#tool_review_submit').unbind();
+      //$('#tool_review_submit').before('<input type="button" name="foo" value="Submit"/>');
+      //$('#tool_review_submit').remove();
     }).bind('ajax:success',function(){
       HideAjaxLoader();
     });
   });
-  //show ajax loader
->>>>>>> 2291536021bb68c239e30c285731d025411b469c
 </script>

@@ -1,10 +1,14 @@
 <div class="col195 friLeft">
   <div class="col195in">
+
     <div class="search">
       <%= form_tag search_user_friends_path(current_user), {:id => "friend_search", :method => "GET"} do %>
         <div class="textS"><%= text_field_tag "search[name]", "#{@search_name || "Search friends"}", :class => "focus_text_field" %></div>
         <div class="btmS"><a href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
       <% end %>
+      <div>
+        <%= render :partial => "friend_search" %>
+      </div>
     </div>    
     <div class="friConnect">
       <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection (#{@user.user_friends.length.to_s})", user_friends_path(current_user) %></div>
@@ -19,35 +23,49 @@
       <div class="friConnect7 <%= "friSelect" if action_name == "list" && @group == "friends_from_school" %>"><%= link_to "Friends from school (#{@count_sch})", list_user_friends_path(current_user, :group => "friends_from_school") %></div>
       <div class="friConnect8 <%= "friSelect" if action_name == "list" && @group == "friends_from_work" %>"><%= link_to "Friends from work (#{@count_work.to_s})", list_user_friends_path(current_user, :group => "friends_from_work") %></div>
       <div class="friConnect11 <%= "friSelect" if action_name == "invite" %>"><%= link_to "Invite Friends to join AfterClassroom", invite_user_friends_path(current_user) %></div>
-			<div class="friConnect11 <%= "friSelect" if action_name == "invite" %>">
-				<%= link_to("Invite Your Facebook Friends", "#", :id => "invite_fb_friends") %>
-			</div>
+      <div class="friConnect11 <%= "friSelect" if action_name == "invite" %>">
+        <%= link_to("Invite Your Facebook Friends", "#", :id => "invite_fb_friends") %>
+      </div>
     </div>
   </div>
 </div>
 <script>
   $(".friConnect6 a, .friConnect7 a, .friConnect8 a, .friConnect9 a").each(function() {
-       if(this.href == window.location) $(this).addClass("active-page");
+    if(this.href == window.location) $(this).addClass("active-page");
   });
 </script>
 
 <div id="friends">
-      <div id="fb-root"></div>
+  <div id="fb-root"></div>
 
-      <script src="http://connect.facebook.net/en_US/all.js"></script>
+  <script src="http://connect.facebook.net/en_US/all.js"></script>
 
-      <script>
-        $(function(){
+  <script>
+    $(function(){
     
-          $("a#invite_fb_friends").click(function() {
-            FB.init({ 
-               appId:'<%= Facebook::APP_ID.to_s %>', 
-               cookie:false, 
-               status:true
-            });
-      
-            FB.ui({ method: 'apprequests', message: 'I found AfterClassroom as a great place for socialize and study after school, thus I would like to invite you to join.'});
-          });
+      $("a#invite_fb_friends").click(function() {
+        FB.init({ 
+          appId:'<%= Facebook::APP_ID.to_s %>', 
+          cookie:false, 
+          status:true
         });
-      </script>
+      
+        FB.ui({ method: 'apprequests', message: 'I found AfterClassroom as a great place for socialize and study after school, thus I would like to invite you to join.'});
+      });
+    });
+  </script>
 </div>
+<script>
+ 
+  $(document).ready(function(){
+    $(".search").hover(function(){
+      $(".asslinkdownSt_User", this).show();
+    }, function(){
+      $(".asslinkdownSt_User", this).hide();
+    })
+  });
+    
+  $(document).ready(function(){
+    vtip()
+  });
+</script>

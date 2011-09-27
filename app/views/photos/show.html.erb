@@ -32,7 +32,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="onThisBtm">
           <div class="stoPre"><%= link_to "", user_photo_path(current_user, @prev) if @prev %></div>
           <div class="stoNext"><%= link_to "", user_photo_path(current_user, @next) if @next %></div>
@@ -42,7 +42,7 @@
             <div id="gallery" class="ad-gallery">
               <div class="ad-image-wrapper" style="min-height: 400px;">
                 <div class="ad-image" style="width: 533.333px; top: 0px; left: 33px;">
-                  <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag" %>
+                  <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
                 </div>
               </div>
               <div id="tag_list_place" style="text-align: left; margin-left: 33px; width: 495px;"></div>
@@ -132,19 +132,24 @@
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
-    $('.photoTag').photoTag({
-      requesTagstUrl: strrequesTagstUrl,
-      deleteTagsUrl: strdeleteTagsUrl,
-      addTagUrl: straddTagUrl,
-      parametersForNewTag: {
-        name: {
-          parameterKey: 'name',
-          isAutocomplete: true,
-          autocompleteUrl: strautocompleteUrl,
-          label: 'Name'
+    
+    $('#img_to_tag').load(function() {
+      $('.photoTag').photoTag({
+        requesTagstUrl: strrequesTagstUrl,
+        deleteTagsUrl: strdeleteTagsUrl,
+        addTagUrl: straddTagUrl,
+        parametersForNewTag: {
+          name: {
+            parameterKey: 'name',
+            isAutocomplete: true,
+            autocompleteUrl: strautocompleteUrl,
+            label: 'Name'
+          }
         }
-      }
-    });
+      });  
+    });    
+    
+    
   });
   //END: code for tag user
   
