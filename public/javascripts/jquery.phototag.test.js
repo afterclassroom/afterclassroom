@@ -234,7 +234,7 @@
                 };
                 $('#tempNewTagForm').append(input);
                 //DatNT: add the ajax loader icon while waiting for the result
-                $('#tempNewTagForm').append('<img id="img_id_loader" style="height: 15px; display:none; margin-top: -3px; margin-left: -92px;" title="Next" src="/images/ajax-loader-a.gif"/>');
+                $('#tempNewTagForm').append('<img id="img_id_waiting" style="height: 15px; display:none; margin-top: -3px; margin-left: -92px;" title="Next" src="/images/ajax-loader-a.gif"/>');
                 inputObj = input;
                 if(properties.isAutocomplete){
                     $('#tempInput_'+i).parent().append($('<input name="'+properties.parameterKey+'_id" id="hidden_tempInput_'+i+'" type="hidden"/>'));
@@ -250,7 +250,7 @@
                                     term: request.term
                                 },
                                 success: function(data) {
-                                    $('#img_id_loader').hide();
+                                    $('#img_id_waiting').hide();
                                     response($.map(data, function(item) {
                                         return {
                                             label: item.value,
@@ -300,6 +300,7 @@
                 //$.getJSON(options.addTagUrl+'?'+$.param(tag) + '&' + $(this).serialize(),function(response){
                                 
                 if ($('*[id*=hidden_tempInput_]').eq(0).val() != ""){
+                    $('#img_id_loader').show();//let user knowing the waiting status by this waiting image
                     $.getJSON(options.addTagUrl+'&'+$.param(tag) + '&' + $(this).serialize(),function(response){
                         if(response.result != undefined && !response.result){
                             manageError(response);
@@ -309,6 +310,7 @@
                         $('#' + options.imageWrapBox.idPrefix + image_id).append(tagBox);
                         extendTagBoxAttributes(tagBox,response.tag,image,image_id);
                     }).success(function() { 
+                        $('#img_id_loader').hide();//hide the waiting image
                        LoadTagHover(); //This function at show.html.erb at views/photos
                     });
                     removeNewTempTag();
@@ -482,6 +484,7 @@
             var parameters = getParametersForImage($this);
 			
             if( !$.isFunction(options.beforeTagRequest) || options.beforeTagRequest(parameters) ){
+                
                 $.getJSON(
                     options.requesTagstUrl,
                     parameters,
@@ -496,8 +499,10 @@
                         $.each(response.Image,function(){
                             prepareImage(this,$this);
                         });
-                    }
-                    ).success(function() { LoadTagHover(); });//this function is at show.html.erb of views/photos
+                    }).success(function() { 
+                            LoadTagHover(); //this function is at show.html.erb of views/photos
+                            $('#img_id_loader').hide();
+                        });
             }
 
         });
