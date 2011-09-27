@@ -1,10 +1,14 @@
 <div class="col195 friLeft">
   <div class="col195in">
+    
     <div class="search">
       <%= form_tag search_user_friends_path(current_user), {:id => "friend_search", :method => "GET"} do %>
         <div class="textS"><%= text_field_tag "search[name]", "#{@search_name || "Search friends"}", :class => "focus_text_field" %></div>
         <div class="btmS"><a href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
       <% end %>
+        <div>
+      <%= render :partial => "friend_search"   %>
+    </div>
     </div>    
     <div class="friConnect">
       <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection (#{@user.user_friends.length.to_s})", user_friends_path(current_user) %></div>
@@ -51,3 +55,25 @@
         });
       </script>
 </div>
+<script>
+    
+  $(document).ready(function(){
+    $(".search").hover(function(){
+      $(".del_wall", this).show();
+    }, function(){
+      $(".del_wall", this).hide();
+    })
+  });
+    $(document).ready(function(){ 
+   
+      var pos = $('#avatar').offset();
+      $(".search").hover(function(){
+        $(".asslinkdownSt_User", this).css({
+          left:pos.left
+        }).show();
+      }, function(){
+        $(".asslinkdownSt_User", this).hide();
+      })
+   
+  });
+</script>
