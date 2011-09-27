@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <%= display_flash_messages_with_raw %>
-                <div class="stoEx" id="story_form_update">
+                <div class="stoEx" id="story_form_update" style="border-bottom: 0 none">
                     <%= form_for [current_user, @story], :html => {:id => "form"} do |f| %>
                     <%= hidden_field_tag "state", "", :id => "story_state" %>
                     <div class="stoExItem">
@@ -27,7 +27,7 @@
                             Your story
                         </div>
                         <div class="stoExItemR">
-                            <%= f.text_area :content, :style => "width:525px" %>
+                            <%= f.text_area :content%>
                         </div>
                     </div>
                     <div class="stoExBtm">
@@ -58,6 +58,16 @@
     <!--Ads-->
 </div>
 <script type="text/javascript">
+  $('document').ready(function(){
+    $('.wysiwyg').css({
+      'width':'525px',
+      'height':'250px'
+    })
+    $('#story_contentIFrame').css({
+      'height':'225px',
+      'width':'525px'
+    })
+  });
     function submit(){
         var result = $("#form").validate({
             meta: "validate"

@@ -25,6 +25,9 @@ module Postwall
       when "Story"
         user_id = post.user.id
         content = "Post a story"
+      when "Learntool"
+        user_id = post.user.id
+        content = "Post a Learning Tool"
       else
         content = "Add new post on #{post.post.post_category.name}"
         user_id = post.post.user.id
