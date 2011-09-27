@@ -39,9 +39,9 @@
         </div>
         <div class="AsDOr RePho">
           <div id="container" style="text-align:center;">
-                              <p>
-                  <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
-                    </p>
+            <p>
+              <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
+            </p>
 
             <div id="tag_list_place" style="text-align: left; margin-left: 33px; width: 495px;"></div>
             <%= link_to "View photo album: #{@photo_album.name}", show_album_user_photos_url(current_user, :photo_album_id => @photo_album) %>
@@ -123,6 +123,19 @@
 
   });  
   
+  function LoadTagHover(){
+    $('#tag_list_place').find('li').each(function(){
+      var usr_id=$(this).attr('id');    
+      $(this).hover(
+      function () {
+        $('#photoTag-tag_'+usr_id).css('opacity','0.8');
+      }, 
+      function () {
+        $('#photoTag-tag_'+usr_id).css('opacity','0');
+      });        
+    });
+  }
+  
   //BEGIN: code for tag user
   var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
@@ -144,6 +157,10 @@
           }
         }
       });  
+      //============================
+<%#*$('*[id*=mytext]').each(function() {%>
+<%#*$(this).doStuff();%>
+<%#*});%>
     });    
     
     

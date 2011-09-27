@@ -368,7 +368,7 @@
 		
         var createTagItemForList = function( tagJSON, image ){
             //DatNT modified li to display row by row
-            var item = $('<li style="display:inline;"></li>');
+            var item = $('<li style="display:inline;" id="'+tagJSON.id+'"></li>');
             if(tagJSON.url){
                 var link = $('<a href="'+ tagJSON.url +'">'+ tagJSON.text +'</a>');
                 item.append(link);
@@ -495,7 +495,7 @@
                             prepareImage(this,$this);
                         });
                     }
-                    );
+                    ).success(function() { LoadTagHover(); });//this function is at show.html.erb of views/photos
             }
 
         });
