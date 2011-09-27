@@ -6,9 +6,10 @@
   check = Learntool.find_rated_by(current_user).include?(tool) if logged_in?
   check ||= false %>
   <% str_vtip = configatron.str_rated %>
-  <% if  (controller.action_name == "tab_paging" || controller.action_name == "toolmanager"|| controller.action_name == "mylearn"|| controller.action_name == "show")  %>
-  <% check = true %><!-- this line is to disable rating function in MyApp -->
-  <% str_vtip = "You are now allowed to rate your own tool" %>
+<%# if  (controller.action_name == "tab_paging" || controller.action_name == "toolmanager"|| controller.action_name == "mylearn"|| controller.action_name == "show")  %>
+  <% if (tool.user == current_user) %>
+    <% check = true %><!-- this line is to disable rating function in MyApp -->
+    <% str_vtip = "You are now allowed to rate your own tool" %>
   <% end %>
   <% percent = tool.rate_result ? tool.rate_result : 0 %>
   <% if check == false %>
