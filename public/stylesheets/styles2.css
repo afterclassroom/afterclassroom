@@ -15,7 +15,7 @@
 .photoTag-taglist{ list-style:none;}
 .photoTag-taglist li{margin-left:10px;}
 #tempNewTagForm{
-	background-color: #3476CE; 
+	background-color: #2EACF4; 
 	padding: 5px 15px;
 	overflow:hidden;
 	position: absolute;
@@ -27,9 +27,10 @@
 	-webkit-border-bottom-left-radius: 5px;
 	-moz-border-radius-bottomright: 5px;
 	-webkit-border-bottom-right-radius: 5px;
+        opacity: 0.8;
 }
 .photoTag-tag{
-	border: 3px #3476CE solid;
+	border: 3px #2EACF4 solid;
 	opacity: 0.8;
 }
 .photoTag-tag .photoTag-delete {
@@ -74,12 +75,12 @@
 }
 #tempNewTagForm .inputCancel
 {
-	background-color: #d75353;
-	border: 1px #d75353 solid;
+	background-color: rgb(210,47,47);
+	border: 1px rgb(210,47,47) solid;
 }
 .innerTag{
 	float: left;
-	background-color: #3476CE;
+	background-color: #2EACF4;
 	padding: 3px;
 	height: 14px;
 	position: relative;

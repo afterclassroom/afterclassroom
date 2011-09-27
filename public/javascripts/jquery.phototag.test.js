@@ -125,7 +125,7 @@
             tagBox.mouseover(
                 function(){
                     $(this).stop().animate({
-                        opacity: 1.0
+                        opacity: 0.8
                     }, 500);
                 }).mouseout(
                 function(){
@@ -334,7 +334,7 @@
                 'left': position.left + 'px',
                 'height': dimension.height + 'px',
                 'width': dimension.width + 'px',
-                'opacity': opacity
+                'opacity': 0.8
             };
             tagBox.css(css);
             return tagBox
