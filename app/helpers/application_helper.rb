@@ -769,21 +769,6 @@ module ApplicationHelper
           title = obj.title
           sub_content = truncate_words(obj.content)
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
           when "PostAssignment"
           link = post_assignment_path(obj)
           img_link = link_to image_post_thumb("post_assignments", obj.post), link, :target => "_blank"
@@ -799,55 +784,6 @@ module ApplicationHelper
           image = get_image_wall(wall.id, img_link)
           title = obj.name
           sub_content = truncate_html(obj.description, :length => 100, :omission => '...')
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
           when "PostProject"
           link = post_project_path(obj)
           img_link = link_to image_post_thumb("post_projects", obj.post), link, :target => "_blank"
