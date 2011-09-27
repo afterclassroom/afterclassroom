@@ -52,6 +52,9 @@
         <div class="com">
           <a href="javascript:;" onclick="showCommentForm('<%= obj.class.name %>', '<%= obj.id %>');">Comments (<span id="wall_<%= obj.class.name %>_<%= obj.id %>_comments"><%= obj.comments.size %></span>)</a>
         </div>
+      <% else %><!-- this case, wall is a Learntool -->
+        <%= render :partial => "/learn_tools/rating_star", :locals => {:tool => obj, :nocheck => "no_check"} %>
+        <%= link_to "Write a Review", "#{url_for(:controller => "learn_tools", :action => "write_review_form")}?tool_id=#{obj.id.to_s}&height=325&width=550", :class => "thickbox", :title => "Write A Review" %>
       <% end %>
     </div>
     <!--Comments-->

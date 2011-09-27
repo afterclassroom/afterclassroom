@@ -14,13 +14,11 @@
   </div>
 <% end %>
 <script type="text/javascript">
-<<<<<<< HEAD
   $(document).ready(function(){
     $('#tool_review_submit').click(function(){
       SubmitFormTool();
     });
   });
-=======
   function ShowAjaxLoader(){
     $('input#btn_sbm_tool').after('<%= show_ajax_loader("img_loader", "background: none repeat scroll 0 0 white;  float: left;  margin-left: 52px;  margin-top: -21px;  width: 18px;") %>');
   }
@@ -28,7 +26,6 @@
     $('#img_loader').remove();
   }
   
->>>>>>> 2291536021bb68c239e30c285731d025411b469c
   function SubmitFormTool(){
     var result = $("#new_tool_review").validate({
       meta: "validate"
@@ -36,9 +33,6 @@
     if (result) {
       $("#new_tool_review").submit();
     }
-<<<<<<< HEAD
-  }
-=======
   }    
   $(document).ready(function(){
     //In some case, thick box display more than 1 title, and content
@@ -61,6 +55,4 @@
       HideAjaxLoader();
     });
   });
-  //show ajax loader
->>>>>>> 2291536021bb68c239e30c285731d025411b469c
 </script>
