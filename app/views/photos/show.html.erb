@@ -39,14 +39,11 @@
         </div>
         <div class="AsDOr RePho">
           <div id="container" style="text-align:center;">
-            <div id="gallery" class="ad-gallery">
-              <div class="ad-image-wrapper" style="min-height: 400px;">
-                <div class="ad-image" style="width: 533.333px; top: 0px; left: 33px;">
+                              <p>
                   <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
-                </div>
-              </div>
-              <div id="tag_list_place" style="text-align: left; margin-left: 33px; width: 495px;"></div>
-            </div>
+                    </p>
+
+            <div id="tag_list_place" style="text-align: left; margin-left: 33px; width: 495px;"></div>
             <%= link_to "View photo album: #{@photo_album.name}", show_album_user_photos_url(current_user, :photo_album_id => @photo_album) %>
           </div>
         </div>
