@@ -125,7 +125,7 @@
             tagBox.mouseover(
                 function(){
                     $(this).stop().animate({
-                        opacity: 1.0
+                        opacity: 0.8
                     }, 500);
                 }).mouseout(
                 function(){
@@ -234,7 +234,7 @@
                 };
                 $('#tempNewTagForm').append(input);
                 //DatNT: add the ajax loader icon while waiting for the result
-                $('#tempNewTagForm').append('<img id="img_id_loader" style="height: 15px; display:none; margin-top: -3px; margin-left: -92px;" title="Next" src="/images/ajax-loader-a.gif"/>');
+                $('#tempNewTagForm').append('<img id="img_id_waiting" style="height: 15px; display:none; margin-top: -3px; margin-left: -92px;" title="Next" src="/images/ajax-loader-a.gif"/>');
                 inputObj = input;
                 if(properties.isAutocomplete){
                     $('#tempInput_'+i).parent().append($('<input name="'+properties.parameterKey+'_id" id="hidden_tempInput_'+i+'" type="hidden"/>'));
@@ -250,7 +250,7 @@
                                     term: request.term
                                 },
                                 success: function(data) {
-                                    $('#img_id_loader').hide();
+                                    $('#img_id_waiting').hide();
                                     response($.map(data, function(item) {
                                         return {
                                             label: item.value,
@@ -300,6 +300,7 @@
                 //$.getJSON(options.addTagUrl+'?'+$.param(tag) + '&' + $(this).serialize(),function(response){
                                 
                 if ($('*[id*=hidden_tempInput_]').eq(0).val() != ""){
+                    $('#img_id_loader').show();//let user knowing the waiting status by this waiting image
                     $.getJSON(options.addTagUrl+'&'+$.param(tag) + '&' + $(this).serialize(),function(response){
                         if(response.result != undefined && !response.result){
                             manageError(response);
@@ -308,6 +309,9 @@
                         var tagBox = createTagBoxFromJSON(response.tag,image);
                         $('#' + options.imageWrapBox.idPrefix + image_id).append(tagBox);
                         extendTagBoxAttributes(tagBox,response.tag,image,image_id);
+                    }).success(function() { 
+                        $('#img_id_loader').hide();//hide the waiting image
+                       LoadTagHover(); //This function at show.html.erb at views/photos
                     });
                     removeNewTempTag();
                     showAllTags(image_id);                                    
@@ -334,7 +338,7 @@
                 'left': position.left + 'px',
                 'height': dimension.height + 'px',
                 'width': dimension.width + 'px',
-                'opacity': opacity
+                'opacity': 0.8
             };
             tagBox.css(css);
             return tagBox
@@ -368,7 +372,7 @@
 		
         var createTagItemForList = function( tagJSON, image ){
             //DatNT modified li to display row by row
-            var item = $('<li style="display:inline;"></li>');
+            var item = $('<li style="display:inline;" id="'+tagJSON.id+'"></li>');
             if(tagJSON.url){
                 var link = $('<a href="'+ tagJSON.url +'">'+ tagJSON.text +'</a>');
                 item.append(link);
@@ -423,7 +427,7 @@
         var wrapImage = function( image, image_id ){
             var imageHeight = image.height();
             var imageWidth = image.width();
-            var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;height:'+ (imageHeight + options.imageWrapBox.controlPanelHeight) +'px;width:'+ imageWidth +'px;"></div>');
+            var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;height:'+ (imageHeight + options.imageWrapBox.controlPanelHeight) +'px;width:'+ imageWidth +'px; display:block;margin:auto;"></div>');
             var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:absolute;top:20px;left:0;height:'+ imageHeight +'px;width:'+ imageWidth +'px;"></div>');
             canvas.append(wrapper);
             var controlPane = $('<div id="'+ options.imageWrapBox.controlPaneIdPrefix + image_id +'"></div>');
@@ -480,6 +484,7 @@
             var parameters = getParametersForImage($this);
 			
             if( !$.isFunction(options.beforeTagRequest) || options.beforeTagRequest(parameters) ){
+                
                 $.getJSON(
                     options.requesTagstUrl,
                     parameters,
@@ -494,8 +499,10 @@
                         $.each(response.Image,function(){
                             prepareImage(this,$this);
                         });
-                    }
-                    );
+                    }).success(function() { 
+                            LoadTagHover(); //this function is at show.html.erb of views/photos
+                            $('#img_id_loader').hide();
+                        });
             }
 
         });
