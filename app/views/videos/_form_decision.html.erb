@@ -1,4 +1,8 @@
-<div style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">Verify users have been tagged </div>
+<div style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
+  Verify users have been tagged 
+  <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
+  <a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
+</div>
 <% form_tag url_for(:controller => "videos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
   <%= hidden_field_tag "decision_id" %>
   <%= hidden_field_tag "video_id", @video.id %>
@@ -15,3 +19,38 @@
   </div>
 
 <% end %><!-- end form -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#show_or_hide').click(function(){
+      if ( $(this).html() == '(Show)' ){
+        $(this).html('(Hide)');
+        $('#sel_desel_all').hide();
+      }else {
+        $(this).html('(Show)');
+        $('#sel_desel_all').show();
+      }
+      $('#approve_panel').toggle();
+    })
+  });
+  //BEGIN: select all
+  $(document).ready(function(){
+    $('#sel_desel_all').click(function(){
+      if ( $(this).html() == 'Select all' ){
+        overallCount = $('#approve_panel').find('*[id*=checkbox_]').length;
+        $(this).html('Deselect');
+        $('#btn_pannel').show('slow');
+        $('#approve_panel').find('*[id*=checkbox_]').each(function(){
+          $(this).attr('checked','checked');
+        });
+      }else {
+        overallCount = 0;
+        $(this).html('Select all');
+        $('#btn_pannel').hide('slow');
+        $('#approve_panel').find('*[id*=checkbox_]').each(function(){
+          $(this).attr('checked','');
+        });
+      }      
+    });
+  });
+  //END: select all  
+</script>

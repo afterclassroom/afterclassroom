@@ -51,7 +51,11 @@
           </div>
         </div>
         <% if  @photo.user == current_user && @usrs_for_verify.size > 0 %>
-          <div style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">Verify users have been tagged </div>
+          <div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
+            Verify users have been tagged 
+            <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
+            <a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
+          </div>
           <% form_tag url_for(:controller => "photos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
             <%= hidden_field_tag "decision_id" %>
             <%= hidden_field_tag "photo_id", @photo.id %>
@@ -125,7 +129,6 @@
 
 
   });  
-  
   function LoadTagHover(){
     $('#tag_list_place').find('li').each(function(){
       var usr_id=$(this).attr('id');    
@@ -146,7 +149,6 @@
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
-    
     $('#img_to_tag').load(function() {
       $('.photoTag').photoTag({
         requesTagstUrl: strrequesTagstUrl,
@@ -161,14 +163,47 @@
           }
         }
       });  
-      //============================
-<%#*$('*[id*=mytext]').each(function() {%>
-<%#*$(this).doStuff();%>
-<%#*});%>
     });    
     
     
   });
   //END: code for tag user
-  
+  //BEGIN: show/hide verify panel
+  //approve_panel
+  $(document).ready(function(){
+    $('#show_or_hide').click(function(){
+      if ( $(this).html() == '(Show)' ){
+        $(this).html('(Hide)');
+        $('#sel_desel_all').hide();
+      }else {
+        $(this).html('(Show)');
+        $('#sel_desel_all').show();
+      }
+      $('#approve_panel').toggle();
+    })
+
+
+  });
+  //END: show/hide verify panel
+  //BEGIN: select all
+  $(document).ready(function(){
+    $('#sel_desel_all').click(function(){
+      if ( $(this).html() == 'Select all' ){
+        overallCount = $('#approve_panel').find('*[id*=checkbox_]').length;
+        $(this).html('Deselect');
+        $('#btn_pannel').show('slow');
+        $('#approve_panel').find('*[id*=checkbox_]').each(function(){
+          $(this).attr('checked','checked');
+        });
+      }else {
+        overallCount = 0;
+        $(this).html('Select all');
+        $('#btn_pannel').hide('slow');
+        $('#approve_panel').find('*[id*=checkbox_]').each(function(){
+          $(this).attr('checked','');
+        });
+      }      
+    });
+  });
+  //END: select all
 </script>

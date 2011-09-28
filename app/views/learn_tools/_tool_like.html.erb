@@ -14,7 +14,7 @@
   <% @maylikes.each_with_index do |m,index| %>
     <%= (index == 0 || index == 5) ? raw("<div class='learnTrow'>") : raw("") %>
     <%= render :partial => "may_like_item", :locals => {:index => index, :m => m} %>
-    <%= (index == 4 || index == 9 || index == @maylikes.size ) ? raw("</div>") : raw("") %>
+    <%= (index == 4 || index == 9 || index == @maylikes.size-1 ) ? raw("</div>") : raw("") %>
   <% end %>
 </div>
 <% end %><!-- end form_tag -->
