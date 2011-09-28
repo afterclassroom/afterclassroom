@@ -76,7 +76,7 @@ Afterclassroom::Application.routes.draw do
     #Friends
     resources :friends do
       collection do
-        get :search, :find, :find_people, :recently_added, :recently_updated,
+        get :search, :search_suggestion, :find, :find_people, :find_people_suggestion, :recently_added, :recently_updated,
           :friend_request, :list, :invite, :unfriend, :display_email, :add_to_group,
           :send_invite_message, :show_invite, :become_a_fan, :accept, :de_accept, :respond_to_friend_request, :get_suggestion_list
         post :find_email, :invite_by_list_email,

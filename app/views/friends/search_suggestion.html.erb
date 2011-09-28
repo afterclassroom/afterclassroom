@@ -1,0 +1,8 @@
+<% @friends.each do |f| %>
+		<%= render :partial => "item_friend_suggestion", :locals => {:friend => f} %>
+<% end %>
+<% if @friends.size == 5 %>
+<div class="assPage">
+              <span class="numPage"><b><a href="javascript:$('#friend_search').submit();">View more</a></b></span>
+            </div>
+<% end %>

@@ -3,7 +3,7 @@
 
     <div class="search">
       <%= form_tag search_user_friends_path(current_user), {:id => "friend_search", :method => "GET"} do %>
-        <div class="textS"><%= text_field_tag "search[name]", "#{@search_name || "Search friends"}", :class => "focus_text_field" %></div>
+        <div class="textS"><%= text_field_tag "search[name]", "#{@search_name || "Search friends"}", :class => "focus_text_field", :id => "search_friend_txt" %></div>
         <div class="btmS"><a href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
       <% end %>
       <div>
@@ -25,6 +25,9 @@
       <div class="friConnect11 <%= "friSelect" if action_name == "invite" %>"><%= link_to "Invite Friends to join AfterClassroom", invite_user_friends_path(current_user) %></div>
       <div class="friConnect11 <%= "friSelect" if action_name == "invite" %>">
         <%= link_to("Invite Your Facebook Friends", "#", :id => "invite_fb_friends") %>
+      </div>
+			<div class="friConnect11 <%= "friSelect" if action_name == "invite" %>">
+        <%= link_to("Invite Your LinkedIn Friends", "/friends/auth_linkedin", :class => "newWindow") %>
       </div>
     </div>
   </div>
@@ -56,15 +59,39 @@
   </script>
 </div>
 <script>
- 
   $(document).ready(function(){
-    $(".search").hover(function(){
-      $(".asslinkdownSt_User", this).show();
-    }, function(){
-      $(".asslinkdownSt_User", this).hide();
-    })
-  });
-    
+		var windowSizeArray = [ "width=500,height=450", "width=500,height=450,scrollbars=no" ];
+ 
+            $(document).ready(function(){
+                $('.newWindow').click(function (event){
+ 
+                    var url = $(this).attr("href");
+                    var windowName = "popUp";//$(this).attr("name");
+                    var windowSize = windowSizeArray[$(this).attr("rel")];
+ 
+                    window.open(url, windowName, windowSize);
+ 
+                    event.preventDefault();
+ 
+                });
+            });
+ });
+    var path = "<%= search_suggestion_user_friends_path(current_user) %>";
+    $().ready(function(){
+				$('#search_friend_txt').autocomplete({
+                        source: function(request, response) {
+                            $.ajax({
+                                type: 'GET',
+                                url: path,
+																data: {search_name: $('#search_friend_txt').val()},
+                                success: function(data) {
+                                   $('#search_friend_list').html(data);
+																		$('.asslinkdownSt_User').show();
+                                }
+                            });
+                        }
+                    });
+    });
   $(document).ready(function(){
     vtip()
   });
