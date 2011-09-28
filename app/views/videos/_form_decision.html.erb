@@ -1,6 +1,6 @@
 <div style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
   Verify users have been tagged 
-  <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Show)</a>
+  <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
   <a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
 </div>
 <% form_tag url_for(:controller => "videos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
@@ -24,8 +24,10 @@
     $('#show_or_hide').click(function(){
       if ( $(this).html() == '(Show)' ){
         $(this).html('(Hide)');
+        $('#sel_desel_all').hide();
       }else {
         $(this).html('(Show)');
+        $('#sel_desel_all').show();
       }
       $('#approve_panel').toggle();
     })
