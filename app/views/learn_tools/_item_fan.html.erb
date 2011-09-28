@@ -4,7 +4,9 @@
     <div class="flistN"><%= show_user_post(fan) %></div>
     <div class="flistS"><span>at</span><%= fan.school.name %></div>
   </div>
-  <div style="float:right">
-   <%= check_box_tag "fan_id", fan.id %>
-  </div>
+  <% if current_user == @tool.user %>
+    <div style="float:right">
+      <%= check_box_tag "fan_id_#{fan.id}", fan.id %>
+    </div>
+  <% end %>
 </div>
