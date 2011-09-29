@@ -140,7 +140,7 @@ class UsersController < ApplicationController
   end
   
   def show_lounge
-		if check_private_permission(@user, "my_lounges")
+		if check_private_permission(current_user, @user, "my_lounges")
 		  @type = "show_lounge"
 		  @user = User.find(params[:id])
 		  @walls = @user.user_walls.find(:all, :order => "updated_at DESC").paginate :page => params[:page], :per_page => 10
@@ -151,7 +151,7 @@ class UsersController < ApplicationController
   end
   
   def show_stories
-    if check_private_permission(@user, "my_stories")
+    if check_private_permission(current_user, @user, "my_stories")
       @stories = @user.stories.find(:all, :conditions => "state = 'share'", :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
       render :layout => "student_lounge"
     else
@@ -160,7 +160,7 @@ class UsersController < ApplicationController
   end
   
   def show_story_detail
-    if check_private_permission(@user, "my_stories")
+    if check_private_permission(current_user, @user, "my_stories")
       story_id = params[:story_id]
       @story = Story.find(story_id)
       update_view_count(@story)
@@ -171,7 +171,7 @@ class UsersController < ApplicationController
   end
   
   def show_photos
-    if check_private_permission(@user, "my_photos")
+    if check_private_permission(current_user, @user, "my_photos")
       @photo_albums = @user.photo_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 16
       render :layout => "student_lounge"
     else
@@ -180,7 +180,7 @@ class UsersController < ApplicationController
   end
   
   def show_photo_album
-    if check_private_permission(@user, "my_photos")
+    if check_private_permission(current_user, @user, "my_photos")
       photo_album_id = params[:photo_album_id]
       @photo_album = PhotoAlbum.find(photo_album_id)
       update_view_count(@photo_album)
@@ -191,7 +191,7 @@ class UsersController < ApplicationController
   end
   
   def show_musics
-    if check_private_permission(@user, "my_musics")
+    if check_private_permission(current_user, @user, "my_musics")
       @music_albums = @user.music_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 16
       render :layout => "student_lounge"
     else
@@ -200,7 +200,7 @@ class UsersController < ApplicationController
   end
   
   def show_music_album
-    if check_private_permission(@user, "my_musics")
+    if check_private_permission(current_user, @user, "my_musics")
       music_album_id = params[:music_album_id]
       @music_album = MusicAlbum.find(music_album_id)
       @another_music_albums = @music_album.another_music_albums
@@ -212,7 +212,7 @@ class UsersController < ApplicationController
   end
   
   def show_videos
-    if check_private_permission(@user, "my_videos")
+    if check_private_permission(current_user, @user, "my_videos")
       @videos = @user.videos.order("created_at DESC").paginate :page => params[:page], :per_page => 16
       render :layout => "student_lounge"
     else
@@ -221,7 +221,7 @@ class UsersController < ApplicationController
   end
   
   def show_detail_video
-    if check_private_permission(@user, "my_videos")
+    if check_private_permission(current_user, @user, "my_videos")
       video_id = params[:video_id]
       @video = Video.find(video_id)
       update_view_count(@video)
@@ -241,7 +241,7 @@ class UsersController < ApplicationController
   end
   
   def show_friends
-    if check_private_permission(@user, "my_friends")
+    if check_private_permission(current_user, @user, "my_friends")
       @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
       render :layout => "student_lounge"
     else
@@ -250,7 +250,7 @@ class UsersController < ApplicationController
   end
   
   def show_fans
-    if check_private_permission(@user, "my_fans")
+    if check_private_permission(current_user, @user, "my_fans")
       fan_ids = @user.fans.order("created_at DESC").collect{|f| f.user_id}
       
       fan_results = User.ez_find(:all) do |user|

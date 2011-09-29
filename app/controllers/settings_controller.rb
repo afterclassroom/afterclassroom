@@ -70,7 +70,7 @@ class SettingsController < ApplicationController
     pr.share_to = val.to_i
     pr.save
     hash = Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}]
-    render :text => "Share to: " + hash.index(val.to_i)
+    render :text => hash.index(val.to_i)
   end
   
   def networks

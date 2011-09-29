@@ -11,7 +11,7 @@ class StudentLoungesController < ApplicationController
     @user = current_user
     user_login = params[:user]
     @walls = []
-    @walls = @user.user_walls.order("updated_at DESC").paginate :page => params[:page], :per_page => 10
+    @walls = @user.walls_with_setting.paginate :page => params[:page], :per_page => 10
     @user_invite_chat = User.find_by_login(user_login) if user_login != current_user.login
     @friends_in_chat = current_user.friends_in_chat
     @friends_want = current_user.friends_want_chat
