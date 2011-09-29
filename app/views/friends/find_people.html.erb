@@ -1,45 +1,45 @@
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => 'submenu' %>
+  <%= render :partial => 'submenu' %>
 <% end -%>
 <div class="contMainC">
-    <%= render :partial => "leftmenu" %>
+  <%= render :partial => "leftmenu" %>
 </div>
 <div class="contMainL">
-    <div class="col451 FriendSearch">
-        <div class="col451in">
-            <div class="col451Cont">
-                <h1 class="titleH1">Search for People</h1>
-                <div class="AsDsearch" style="margin-top:-37px">
-                	<form id="action_people_search" name="search" action="<%= find_people_user_friends_path(current_user) %>" method="get">
-                    <div class="AsDST">
-                        <input type="text" name="search[query]" value="<%= @query || "Enter your search keywords..." %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';"/>
-                    </div>
-                    <div class="AsDSB">
-                        <a href="javascript:;" onclick="$('#action_people_search').submit();"><img src="/images/AsD-iconS.png"></a>
-                    </div>
-					</form>
-                </div>
-                <div id="friend_list">
-                    <%= display_flash_messages_with_raw %>
-                    <% @users.each_hit_with_result do |hit, u| %>
-                    <%= render :partial => "item_people", :locals => {:user => u, :name => raw(hit.highlight(:name) ? hit.highlight(:name).format { |fragment| content_tag(:em, fragment) } : u.name) } %>
-                    <% end %>
-                    <!--Pagination-->
-                    <div class="assPage">
-                        <span class="numPage"><%= page_entries_info @users.results %></span>
-                        <%= will_paginate @users.results %>
-                    </div>
-                    <!--Pagination-->
-                </div>
+  <div class="col451 FriendSearch">
+    <div class="col451in">
+      <div class="col451Cont">
+        <h1 class="titleH1">Search for People</h1>
+        <div class="AsDsearch" style="margin-top:-37px">
+          <form id="action_people_search" name="search" action="<%= find_people_user_friends_path(current_user) %>" method="get">
+            <div class="AsDST">
+              <input type="text" name="search[query]" value="<%= @query || "Enter your search keywords..." %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';"/>
             </div>
+            <div class="AsDSB">
+              <a href="javascript:;" onclick="$('#action_people_search').submit();"><img src="/images/AsD-iconS.png"></a>
+            </div>
+          </form>
         </div>
+        <div id="friend_list">
+          <%= display_flash_messages_with_raw %>
+          <% @users.each_hit_with_result do |hit, u| %>
+            <%= render :partial => "item_people", :locals => {:user => u, :name => raw(hit.highlight(:name) ? hit.highlight(:name).format { |fragment| content_tag(:em, fragment) } : u.name) } %>
+          <% end %>
+          <!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @users.results %></span>
+            <%= will_paginate @users.results %>
+          </div>
+          <!--Pagination-->
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="contMainR">
-<!--Find people-->
+  <!--Find people-->
   <%= render :partial => "find_people" %>
   <!--Find people-->
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>

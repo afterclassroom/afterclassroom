@@ -10,12 +10,8 @@
             <a id="btnFrie_submit" href="javascript:;" onclick="$('#action_people_search').submit();"><img src="/images/iconSF.png"/></a>
           </div>
         </form>
-        <div style="margin-left:-289px">
-<<<<<<< HEAD
+        <div class="people_search" style="margin-left:-155px">
           <%= render :partial => "people_search" %>
-=======
-        <%= render :partial => "friends/people_search" %>
->>>>>>> 70d5624e776d08835e17aa2fe236452ac57a757d
         </div>
       </div>
     </div>
@@ -64,9 +60,9 @@
       }
     });
   });
-  $(document).ready(function(){
-    $('#flistRclose').click(function(){
-      $('.asslinkdownSt_User').hide();
+    $(document).ready(function(){
+    $('.flistRclose').click(function(){
+      $('.people_search').hide();
     });
   });
 </script>
