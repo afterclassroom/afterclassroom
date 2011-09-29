@@ -1,0 +1,67 @@
+<div style="padding: 10px; width: 95%;">
+	<div class="fInvMess">
+		<div class="fInvTxt">Contacts</div>
+	</div>
+	<div style="height: 110px; overflow: auto;">
+	<% if @connections.all.size > 0 %>
+		<%= form_for :send_invite_linkedin, :url => "/friends/send_invite_linkedin", :html => {:id => "send_invite_linkedin_form"} do |f| %>
+			<ul style="list-style: none outside none;">
+			<li><input type="checkbox" class="checkAll" name="check_all" value=""> Check all </li>
+			<% @connections.all.each do |con| %>
+			<li><input type="checkbox" name="contacts[]" value="<%= con.id %>" class="cb-element"><%= con.first_name + " " + con.last_name %></li>
+			<% end %>
+			</ul>
+		<% end %>
+	<% end %>
+	</div>
+	<div class="stoDbtm">
+  <div class="AsDContBtm">
+    <span class="btmComment"><a href="javascript:;" id="send_invite_linkedin">Send Invite</a></span>
+  </div>
+</div>
+</div>
+<!--Alert-->
+<div id="dialog-contact-select-message" title="Alert" style="display:none;">
+  <p>
+    Select contact.
+  </p>
+</div>
+<!--Alert-->
+<script>
+$( function() {
+    $( '.checkAll' ).live( 'change', function() {
+      $( '.cb-element' ).attr( 'checked', $( this ).is( ':checked' ) ? 'checked' : '' );
+      $( this ).next().text( $( this ).is( ':checked' ) ? 'Uncheck All' : 'Check All' );
+    });
+    $( '.invertSelection' ).live( 'click', function() {
+      $( '.cb-element' ).each( function() {
+        $( this ).attr( 'checked', $( this ).is( ':checked' ) ? '' : 'checked' );
+      }).trigger( 'change' );
+
+    });
+    $( '.cb-element' ).live( 'change', function() {
+      $( '.cb-element' ).length == $( '.cb-element:checked' ).length ? $( '.checkAll' ).attr( 'checked', 'checked' ).next().text( 'Uncheck All' ) : $( '.checkAll' ).attr( 'checked', '' ).next().text( 'Check All' );
+    });
+  });
+
+	$(document).ready(function(){
+    $('#send_invite_linkedin').click(function(){
+      submitFormInviteLinkedin();
+    });
+  });
+	
+  function submitFormInviteLinkedin(){
+		if(!$('.cb-element').is(':checked')){
+						$("#dialog-contact-select-message").dialog({
+				    modal: true,
+				    buttons: {
+				      Ok: function() {
+				        $(this).dialog('close');
+				      }
+				    }
+				  });
+				}else{
+					$('#send_invite_linkedin_form').submit();
+		}
+	}
+</script>

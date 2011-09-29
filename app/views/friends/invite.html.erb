@@ -97,6 +97,11 @@
     Invite Friends Successfully.
   </p>
 </div>
+<div id="dialog-contact-select-message" title="Alert" style="display:none;">
+  <p>
+    Select contact.
+  </p>
+</div>
 <!--Alert-->
 
 <script type="text/javascript">
@@ -190,7 +195,18 @@ function SendInvite(){
 		      modal: true,
 		      buttons: {
 		        Send: function() {
-		          $('#send_email').submit();
+							if(!$('.cb-element').is(':checked')){
+								$("#dialog-contact-select-message").dialog({
+									modal: true,
+									buttons: {
+										Ok: function() {
+										  $(this).dialog('close');
+										}
+									}
+								});
+							}else{
+								$('#send_email').submit();
+							}
 		        },
 		        Cancel: function() {
 		          $(this).dialog('close');
@@ -251,7 +267,7 @@ function SendInvite(){
 		    });
 			})
       .bind('ajax:complete', function() {
-			//$("#ajax_load").remove();			
+			$("#ajax_load").remove();			
 		});
   });
 $( function() {

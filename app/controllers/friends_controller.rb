@@ -1,6 +1,7 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 require 'contacts'
 require 'email_veracity'
+require 'linkedin'
 
 class FriendsController < ApplicationController
   layout 'student_lounge'
@@ -9,7 +10,8 @@ class FriendsController < ApplicationController
   before_filter RubyCAS::Filter
   before_filter :cas_user
   #before_filter :login_required
-  before_filter :require_current_user, :get_variables
+  before_filter :require_current_user, :except => [:auth_linkedin, :callback_linkedin, :send_invite_linkedin]
+  before_filter :get_variables, :except => [:auth_linkedin, :callback_linkedin, :send_invite_linkedin]
   
   def index
     @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
@@ -25,16 +27,22 @@ class FriendsController < ApplicationController
       @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
     end
   end
+
+	def search_suggestion
+    search_name = params[:search_name]
+    @friends = @user.user_friends.find(:all, :conditions => "name LIKE '%#{search_name}%'").paginate :page => params[:page], :per_page => 5
+		render :layout => false
+  end
   
   def find
-		type = "gmail"
-		type = params[:mail_type] if params[:mail_type]
-		login = params[:login] if params[:login]
+    type = "gmail"
+    type = params[:mail_type] if params[:mail_type]
+    login = params[:login] if params[:login]
     @mail_account = MailAccount.new(login, nil, type)
     user_id_suggestions = session[:user_id_suggestions]
     @search_results = []
     @search_results = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})") if user_id_suggestions.size > 0
-		session[:user_id_suggestions] = []
+    session[:user_id_suggestions] = []
   end
   
   def find_email
@@ -61,19 +69,19 @@ class FriendsController < ApplicationController
     end
     redirect_to find_user_friends_path(@user, :mail_type => mail_type, :login => login)
   end
-
-	def find_friend_by_email
-		contacts = params[:email_list].split(",")
-      contacts = contacts.collect {|c| c.strip}
-      begin
-        flash[:notice] = "Find Friends Successfully."
-        friends = @user.user_friends.find(:all, :conditions => ["email IN('#{contacts.join("', '")}')"])
-				session[:user_id_suggestions] = friends.map(&:id)
-      rescue
-         Nothing
-      end
-			redirect_to find_user_friends_path(@user)
-	end
+  
+  def find_friend_by_email
+    contacts = params[:email_list].split(",")
+    contacts = contacts.collect {|c| c.strip}
+    begin
+      flash[:notice] = "Find Friends Successfully."
+      friends = @user.user_friends.find(:all, :conditions => ["email IN('#{contacts.join("', '")}')"])
+      session[:user_id_suggestions] = friends.map(&:id)
+    rescue
+      Nothing
+    end
+    redirect_to find_user_friends_path(@user)
+  end
   
   def recently_added
     @invites = @user.user_invites_out.find(:all, :conditions => "is_accepted IS NULL")
@@ -145,7 +153,10 @@ class FriendsController < ApplicationController
   def invite_by_list_email
     if params[:email_list]
       content = params[:content]
-      content = "I found AfterClassroom as a great place for socialize and study after school, thus I would like to invite you to join" if content == ""
+      if content == ""
+        content = "<p>I found After Classroom as a great place to make new friends and study after school, and I think you might like it as well.</p>" 
+        content << "<p>What's are you waiting for, it's absolutely FREE to join After Classroom.</p>"
+      end
       contacts = params[:email_list].split(",")
       contacts = contacts.collect {|c| c.strip}
       mail_list = []
@@ -164,10 +175,13 @@ class FriendsController < ApplicationController
   
   def invite_by_import_email
     content = params[:content]
-    content = "I found After Classroom as a great place for socialize and study after school, thus I would like to invite you to join" if content == ""
+    if content == ""
+      content = "<p>I found After Classroom as a great place to make new friends and study after school, and I think you might like it as well.</p>" 
+      content << "<p>What's are you waiting for, it's absolutely FREE to join After Classroom.</p>"
+    end 
     contacts = params[:contacts]
     for email in contacts
-        send_email(email, content)
+      send_email(email, content)
     end
     render :text => "Invite Friends Successfully."
   end
@@ -175,9 +189,9 @@ class FriendsController < ApplicationController
   def send_invite_by_import_email
     
   end
-
-	def show_list_email_contacts
-		content = params[:content]
+  
+  def show_list_email_contacts
+    content = params[:content]
     login = params[:mail_account][:login]
     password = params[:mail_account][:password]
     mail_type = params[:mail_type]
@@ -187,8 +201,8 @@ class FriendsController < ApplicationController
     rescue Contacts::AuthenticationError => oops
       error oops
     end
-		render :json => contacts.to_json
-	end
+    render :json => contacts.to_json
+  end
   
   def delete
     user_id_friend = params[:user_id_friend]
@@ -251,11 +265,11 @@ class FriendsController < ApplicationController
     invite_message = params[:invite_message] || "let's be friends!"
     user = User.find(user_id_friend)
     if (user && invite_message)
-        UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
-        subject = "#{current_user.name} want to be friend with you."
-        content = "Hello #{user.name},<br/>"
-        content << "<p>#{current_user.name} want to be friend with you, click <a href='#{user_url(current_user)}' target='blank'>here</a> to see  if you know #{current_user.name} OR click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to confirm #{current_user.name} is your friend.</p>"
-        send_notification(user, subject, content, "adds_me_as_a_friend")
+      UserInvite.create(:user_id => current_user.id, :user_id_target => user_id_friend, :message => invite_message)
+      subject = "#{current_user.name} want to be friend with you."
+      content = "Hello #{user.name},<br/>"
+      content << "<p>#{current_user.name} want to be friend with you, click <a href='#{user_url(current_user)}' target='blank'>here</a> to see  if you know #{current_user.name} OR click <a href='#{friend_request_user_friends_url(user)}' target='blank'>here</a> to confirm #{current_user.name} is your friend.</p>"
+      send_notification(user, subject, content, "adds_me_as_a_friend")
     end
     render :text => '<div class="txtsignup1">Still waiting</div>'
   end
@@ -286,10 +300,79 @@ class FriendsController < ApplicationController
     end
   end
 
-	def get_suggestion_list
-		@suggestions = current_user.suggestions
+	def find_people_suggestion
+    query = params[:search_name]
+    @users = User.search do
+      if params[:search_name].present?
+        keywords(query) do
+          highlight :name
+        end
+      end
+      order_by :created_at, :desc
+      paginate :page => params[:page], :per_page => 5
+    end
 		render :layout => false
-	end
+  end
+  
+  def get_suggestion_list
+    @suggestions = current_user.suggestions
+    render :layout => false
+  end
+  
+  def auth_linkedin
+    # get your api keys at https://www.linkedin.com/secure/developer
+    client = LinkedIn::Client.new(LinkedInConfig::APP_ID.to_s, LinkedInConfig::SECRET.to_s)
+    request_token = client.request_token(:oauth_callback => LinkedInConfig::CALL_BACK.to_s)
+    session[:rtoken] = request_token.token
+    session[:rsecret] = request_token.secret
+    
+    redirect_to client.request_token.authorize_url
+  end
+  
+  def callback_linkedin
+    client = LinkedIn::Client.new(LinkedInConfig::APP_ID.to_s, LinkedInConfig::SECRET.to_s)
+    if session[:atoken].nil?
+      pin = params[:oauth_verifier]
+      atoken, asecret = client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
+      session[:atoken] = atoken
+      session[:asecret] = asecret
+    else
+      client.authorize_from_access(session[:atoken], session[:asecret])
+    end
+    @profile = client.profile
+    @connections = client.connections
+		render :layout => "photo"
+  end
+
+	def send_invite_linkedin
+    contacts = params[:contacts]
+		client = LinkedIn::Client.new(LinkedInConfig::APP_ID.to_s, LinkedInConfig::SECRET.to_s)
+		puts client.methods
+    if session[:atoken].nil?
+      pin = params[:oauth_verifier]
+      atoken, asecret = client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
+      session[:atoken] = atoken
+      session[:asecret] = asecret
+    else
+      client.authorize_from_access(session[:atoken], session[:asecret])
+    end
+    @profile = client.profile
+		@connections = client.connections
+    sender_name = @profile.first_name + " " + @profile.last_name
+		@connections.all.each do |con|
+			if contacts.include?(con.id)
+				subject = "#{sender_name} has invited you to join Afterclassroom"
+				body = "Hello, #{con.first_name + " " + con.last_name}"
+				body << "<p>I found After Classroom as a great place to make new friends and study after school, and I think you might like it as well.</p>" 
+				body << "<p>What's are you waiting for, it's absolutely FREE to join After Classroom.</p>"
+				body << "<p>Click <a href='https://afterclassroom.com'>here</a> to join now.</p>"
+				body << "<p>Your Sincerely,<br/>"
+				body << "#{sender_name}</p>"
+				client.send_message(subject, body, "/people/#{con.id}")
+			end
+		end
+		render :layout => "photo"
+  end
   
   protected
   

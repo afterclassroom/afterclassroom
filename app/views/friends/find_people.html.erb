@@ -12,7 +12,7 @@
                 <div class="AsDsearch" style="margin-top:-37px">
                 	<form id="action_people_search" name="search" action="<%= find_people_user_friends_path(current_user) %>" method="get">
                     <div class="AsDST">
-                        <input type="text" name="search[query]" value="<%= @query || "Enter your search keywords..." %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';"/>
+                        <input :id => "search_people_txt" type="text" name="search[query]" value="<%= @query || "Enter your search keywords..." %>" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';"/>
                     </div>
                     <div class="AsDSB">
                         <a href="javascript:;" onclick="$('#action_people_search').submit();"><img src="/images/AsD-iconS.png"></a>

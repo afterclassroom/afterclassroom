@@ -1,0 +1,16 @@
+production:
+  app_id: iieqyucyo5kf
+  secret_key: h3UZ4OKJq3dwkPZr
+  call_back: https://afterclassroom.com/friends/callback_linkedin
+development:
+  app_id: iieqyucyo5kf
+  secret_key: h3UZ4OKJq3dwkPZr
+  call_back: http://localhost:3000/friends/callback_linkedin
+test:
+  app_id: iieqyucyo5kf
+  secret_key: h3UZ4OKJq3dwkPZr
+  call_back: http://localhost:3000/friends/callback_linkedin
+staging:
+  app_id: iieqyucyo5kf
+  secret_key: h3UZ4OKJq3dwkPZr
+  call_back: https://afterclassroom.com/friends/callback_linkedin
