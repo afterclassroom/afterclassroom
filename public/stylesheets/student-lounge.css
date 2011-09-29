@@ -4052,22 +4052,22 @@ div.helpAdv2{
 .making{
     background:url('/images/icon-view.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
-		text-align:left;
+    text-align:left;
 }
 .hate{
     background:url('/images/icon-hate.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
-		text-align:left;
+    text-align:left;
 }
 .like{
     background:url('/images/icon-like.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
-		text-align:left;
+    text-align:left;
 }
 .love{
     background:url('/images/icon-love.gif') no-repeat left 1px;
     padding:0px 0px 4px 15px;
-		text-align:left;
+    text-align:left;
 }
 .ichat a, .ichat a:link, .ichat a:visited,
 .making a, .making a:link, .making a:visited,
@@ -5499,4 +5499,31 @@ span.btmTag a:hover{
     background: url("/images/menuOnR.png") no-repeat scroll right top transparent;
 }
 
-/*------------------- Facebox -------------*/
+/*------------------- friend search -------------*/
+.asslinkdownSt_User{
+    background: #F6F6F6;
+    border: 1px solid;
+    color: #969696;
+    display:none;
+    float: right;
+    font-size: 11px;
+    margin-left: -188px;
+    margin-top: 24px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000;
+}
+.flistRclose a{
+    background: url("/images/flistDelete.png") no-repeat scroll center center transparent;
+    display: block;
+    height: 8px;
+    text-decoration: none;
+    width: 8px;
+    margin-left: 322px;
+    margin-top: -5px;
+    position: absolute;
+    cursor: pointer;
+}
+.flistRclose a:hover{
+    background: url("/images/flistDeleteH.png") no-repeat scroll center center transparent;
+}
