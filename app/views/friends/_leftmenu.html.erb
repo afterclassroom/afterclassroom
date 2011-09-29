@@ -2,13 +2,7 @@
   <div class="col195in">
 
     <div class="search">
-      <%= form_tag search_user_friends_path(current_user), {:id => "friend_search", :method => "GET"} do %>
-        <div class="textS"><%= text_field_tag "search[name]", "#{@search_name || "Search friends"}", :class => "focus_text_field", :id => "search_friend_txt" %></div>
-        <div class="btmS"><a href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
-      <% end %>
-      <div>
-        <%= render :partial => "friend_search" %>
-      </div>
+      <%= render :partial => "search_friend_form" %>
     </div>    
     <div class="friConnect">
       <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection (#{@user.user_friends.length.to_s})", user_friends_path(current_user) %></div>
@@ -76,22 +70,6 @@
                 });
             });
  });
-    var path_friend = "<%= search_suggestion_user_friends_path(current_user) %>";
-    $().ready(function(){
-				$('#search_friend_txt').autocomplete({
-                        source: function(request, response) {
-                            $.ajax({
-                                type: 'GET',
-                                url: path_friend,
-																data: {search_name: $('#search_friend_txt').val()},
-                                success: function(data) {
-                                   $('#search_friend_list').html(data);
-																		$('#search_friend_wrap').show();
-                                }
-                            });
-                        }
-                    });
-    });
   $(document).ready(function(){
     vtip()
   });
