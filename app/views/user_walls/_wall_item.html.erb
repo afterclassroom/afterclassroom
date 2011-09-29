@@ -2,6 +2,7 @@
   <% if wall.user == current_user or wall.user_post == current_user %>
     <div class="del_wall" style="float: right; display: none; cursor: pointer;" onclick="DeleteWall('<%= wall.id %>')">
       <img src="/images/icon-ing.gif" />
+      <%= render :partial => "user_walls/action_dell_wall" %>
     </div>
   <% end %>
   <div class="assPic">
@@ -97,6 +98,14 @@
       $(".asslinkdownSt", this).show();
     }, function(){
       $(".asslinkdownSt", this).hide();
+    })
+  });
+  
+  $(document).ready(function(){
+    $(".del_wall").hover(function(){
+      $(".ass_down", this).show();
+    }, function(){
+      $(".ass_down", this).hide();
     })
   });
     
