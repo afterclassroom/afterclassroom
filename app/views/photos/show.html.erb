@@ -149,7 +149,7 @@
   var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
-    $('#img_to_tag').load(function() {
+
       $('.photoTag').photoTag({
         requesTagstUrl: strrequesTagstUrl,
         deleteTagsUrl: strdeleteTagsUrl,
@@ -163,9 +163,7 @@
           }
         }
       });//end phototag
-    });    
-    
-    
+  
   });
   //END: code for tag user
   //BEGIN: show/hide verify panel
