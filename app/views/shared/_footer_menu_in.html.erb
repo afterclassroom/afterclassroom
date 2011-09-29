@@ -36,7 +36,7 @@
           </ul>
         </div>
       </li>
-	  <li><a class="events" href="#"></a>
+      <li><a class="events" href="#"></a>
         <div id="tipevents" class="tip">
           <ul>
             <li><%= link_to "Events", post_events_path %></li>
@@ -140,24 +140,25 @@
 
     //hide toolbar and make visible the 'show' button
     $("span.downarr a").click(function() {
-      $("#toolbar").slideToggle("fast");
-      $("#toolbarbut").fadeIn("slow");
+      $("#toolbar").css("display","none");
+      $("#toolbarbut").css("display","block");
       $.cookie('toolbar', 'collapsed');
     });
 
     //show toolbar and hide the 'show' button
     $("span.showbar a").click(function() {
-      $("#toolbar").slideToggle("fast");
-      $("#toolbarbut").fadeOut();
+      $("#toolbar").css("display","block");
+      $("#toolbarbut").css("display","none");
+      $.cookie('toolbar', 'expanded');
     });
     
     var toolbar = $.cookie('toolbar');
-	// Set the user's selection for the toolbar
-	if (toolbar == 'collapsed') {
-		$('#toolbar').css("display","none");
-		$("#toolbarbut").css("display","block")
+    // Set the user's selection for the toolbar
+    if (toolbar == 'collapsed') {
+      $('#toolbar').css("display","none");
+      $("#toolbarbut").css("display","block")
 		
-	};
+    };
 
     //show tooltip when the mouse is moved over a list element
     $("ul#social li").hover(function() {

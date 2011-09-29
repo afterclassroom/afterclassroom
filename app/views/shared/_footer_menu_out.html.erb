@@ -41,7 +41,7 @@
         <div id="tipvideos" class="tip">
           <ul>
             <li><%= link_to "Videos", user_videos_path(current_user) %></li>
-						<li><%= link_to "| Post", new_user_video_path(current_user) %></li>
+            <li><%= link_to "| Post", new_user_video_path(current_user) %></li>
           </ul>
         </div>
       </li>
@@ -57,7 +57,7 @@
         <div id="tipfriends" class="tip">
           <ul>
             <li><%= link_to "Friends", user_friends_path(current_user) %></li>
-						<li><%= link_to "| Friend request", friend_request_user_friends_path(current_user) %></li>
+            <li><%= link_to "| Friend request", friend_request_user_friends_path(current_user) %></li>
           </ul>
         </div>
       </li>
@@ -84,15 +84,15 @@
           </ul>
         </div>
       </li>
-<!--
-<li><a class="shopping" href="#"></a>
-        <div id="tipshopping" class="tip">
-          <ul>
-            <li><%= link_to "Wheretolist", "https://wheretolist.com" %></li>
-          </ul>
-        </div>
-      </li>
--->
+      <!--
+      <li><a class="shopping" href="#"></a>
+              <div id="tipshopping" class="tip">
+                <ul>
+                  <li><%= link_to "Wheretolist", "https://wheretolist.com" %></li>
+                </ul>
+              </div>
+            </li>
+      -->
     </ul>
   </div>
   <div class="rightside"> <!-- all things in floating left side -->
@@ -107,26 +107,26 @@
   $(document).ready(function(){
 
     //hide toolbar and make visible the 'show' button
-    $("span.downarr a").click(function() {
-      
-      $("#toolbar").slideToggle("fast");
-      $("#toolbarbut").fadeIn("slow");
+    $("span.downarr a").click(function() {  
+      $("#toolbar").css("display","none");
+      $("#toolbarbut").css("display","block");
       $.cookie('toolbar', 'collapsed');
     });
 
     //show toolbar and hide the 'show' button
     $("span.showbar a").click(function() {
-      $("#toolbar").slideToggle("fast");
-      $("#toolbarbut").fadeOut();
+      $("#toolbar").css("display","block");
+      $("#toolbarbut").css("display","none");
+      $.cookie('toolbar', 'expanded');
     });
     
     var toolbar = $.cookie('toolbar');
-	// Set the user's selection for the toolbar
-	if (toolbar == 'collapsed') {
-		$('#toolbar').css("display","none");
-		$("#toolbarbut").css("display","block")
+    // Set the user's selection for the toolbar
+    if (toolbar == 'collapsed') {
+      $('#toolbar').css("display","none");
+      $("#toolbarbut").css("display","block")
 		
-	};
+    };
 
     //show tooltip when the mouse is moved over a list element
     $("ul#social li").hover(function() {

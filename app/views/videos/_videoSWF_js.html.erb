@@ -1,0 +1,9 @@
+<p id='preview' style="margin-right: 30px"></p>
+<script type='text/javascript'>
+var s1 = new SWFObject('/javascripts/playerSWF.swf','player','554','416','9','#ffffff');
+s1.addParam('allowfullscreen','true');
+s1.addParam('allowscriptaccess','always');
+s1.addParam('wmode','opaque'); 
+s1.addParam('flashvars','file=<%= get_video_path(@video.video_file.video_attach.url) %>&autostart=true&stretching=fill&');
+s1.write('preview');
+</script>

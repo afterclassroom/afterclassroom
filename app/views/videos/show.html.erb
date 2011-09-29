@@ -39,7 +39,7 @@
         </div>
         <div class="musicVideo">
           <% if @video.video_file %>
-            <%= render :partial => "video_js" %>
+            <%= render :partial => "videoSWF_js" %>
           <% else %>
             <%= display_image_video(@video) %>
           <% end %>
