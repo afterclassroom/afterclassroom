@@ -295,13 +295,11 @@ class User < ActiveRecord::Base
   end
   
   def friend_of_friends
-    fof = UserInvite.find_by_sql("SELECT DISTINCT tb.user_id_target FROM user_invites AS tl JOIN user_invites AS tb ON tl.user_id_target = tb.user_id WHERE tl.user_id = #{self.id}")
-    ids = fof.collect {|f| f.user_id_target}
-    friend_ids = self.user_friends.map(&:id)
-    ids = ids + friend_ids
-    if ids.size > 0
-      User.find(:all, :conditions => ["id IN(#{ids.join(',')})"])
-    end
+		fof = []
+		self.user_friends.each do |f|
+			fof = fof + f.user_friends
+		end
+    fof = fof + self.user_friends
   end
   
   def set_time_zone_from_ip(ip)

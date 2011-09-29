@@ -1,3 +1,4 @@
+<% if @friends.size > 0 %>
 <% @friends.each do |f| %>
 		<%= render :partial => "item_friend_suggestion", :locals => {:friend => f} %>
 <% end %>
@@ -5,4 +6,7 @@
 <div class="assPage">
               <span class="numPage"><b><a href="javascript:$('#friend_search').submit();">View more</a></b></span>
             </div>
+<% end %>
+<% else %>
+	No entries found	
 <% end %>

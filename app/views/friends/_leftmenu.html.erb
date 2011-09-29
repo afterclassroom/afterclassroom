@@ -2,6 +2,7 @@
   <div class="col195in">
 
     <div class="search">
+<<<<<<< HEAD
       <%= form_tag search_user_friends_path(current_user), {:id => "friend_search", :method => "GET"} do %>
         <div class="textS"><%= text_field_tag "search[name]", "#{@search_name || "Search friends"}", :class => "focus_text_field", :id => "search_friend_txt" %></div>
         <div class="btmS"><a id="btnFri_submit" href="javascript:;" onclick="$('#friend_search').submit();"><img src="/images/iconSF.png"/></a></div>
@@ -9,6 +10,9 @@
       <div>
         <%= render :partial => "friend_search" %>
       </div>
+=======
+      <%= render :partial => "search_friend_form" %>
+>>>>>>> 70d5624e776d08835e17aa2fe236452ac57a757d
     </div>    
     <div class="friConnect">
       <div class="friConnect1 <%= "friSelect" if action_name == "index" %>"><%= link_to "All connection (#{@user.user_friends.length.to_s})", user_friends_path(current_user) %></div>
@@ -59,6 +63,7 @@
   </script>
 </div>
 <script>
+<<<<<<< HEAD
    $(document).ready(function(){
     var windowSizeArray = [ "width=500,height=450", "width=500,height=450,scrollbars=no" ];
     $(document).ready(function(){
@@ -89,6 +94,25 @@
       }
     });
   });
+=======
+  $(document).ready(function(){
+		var windowSizeArray = [ "width=500,height=450", "width=500,height=450,scrollbars=no" ];
+ 
+            $(document).ready(function(){
+                $('.newWindow').click(function (event){
+ 
+                    var url = $(this).attr("href");
+                    var windowName = "popUp";//$(this).attr("name");
+                    var windowSize = windowSizeArray[$(this).attr("rel")];
+ 
+                    window.open(url, windowName, windowSize);
+ 
+                    event.preventDefault();
+ 
+                });
+            });
+ });
+>>>>>>> 70d5624e776d08835e17aa2fe236452ac57a757d
   $(document).ready(function(){
     vtip()
   });

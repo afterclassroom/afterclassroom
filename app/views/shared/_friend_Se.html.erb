@@ -1,79 +1,10 @@
 <div class="feedback-panel">
   <a class="feedback-tab"></a>
   <div class="contMainR" style="float:left">
-    <!--Find people-->
-    <div class="col300 inboxMess">
-      <div class="col300in">
-        <div class="feed_close"><img src="/images/bg-search-for-people-a.png" width="192px" height="29px"/></div>
-        <div class="searchPInput" style="margin-top: 30px;">
-          <div style="height: 27px; width: 193px; float: right;" class="searchFri">
-            <form method="get" action="/users/3/friends/find_people" name="search" id="action_people_search">
-              <div class="textS" style="float:left;background-image: none;">
-                <input type="text" style="height: 14px; margin-top: 3px; width: 167px;padding-top: 2px" onfocus="this.value = '';" onblur="this.value = this.value || this.defaultValue;" value="Search for people" name="search[query]">
-              </div>
-              <div class="btmS" style="float:left;padding-top: 4px;">
-                <a onclick="$('#action_people_search').submit();" href="javascript:;"><img src="/images/iconSF.png"></a>
-              </div>
-            </form>
-            <div style="margin-left: -289px;">
-
-            </div>
-          </div>
-        </div>
-        <div style="float: left;" class="sugges">
-          Suggestions
-        </div>
-        <div style="float: left; width: 100%;overflow: hidden;padding-bottom: 5px;" class="suggesList" id="suggestion_list">
-          <div class="suggesRow">
-            <div style="width: 140px;" class="suggesItem">
-              <div class="AsDContImg">
-                <a href="/users/1/show_lounge"><div><img alt="100509a31b2_thumb" class="vtip avatar_140" src="https://s3.amazonaws.com/afterclassroom_avatar/avatars/140/100509a31b2_thumb.jpg?1314668828" title="David Lee"></div></a>
-              </div>
-              <div class="suggesName">
-                <a href="/users/1/show_lounge">James</a>
-              </div>
-              <div class="suggesAdd">
-                <span id="friend_status_1"><a title="Be friend with James" id="link_invite" class="thickbox" href="/users/3/friends/show_invite?user_invite=1&amp;height=300&amp;width=470"><span class="span1"><span id="friend_1" class="span2">Be friend</span></span></a></span>
-              </div>
-            </div>
-            <div style="width: 140px;" class="suggesItem">
-              <div class="AsDContImg">
-                <a href="/users/2/show_lounge"><div><img alt="100509a31b2_thumb" class="vtip avatar_140" src="https://s3.amazonaws.com/afterclassroom_avatar/avatars/140/100509a31b2_thumb.jpg?1314668828" title="David Lee"></div></a>
-              </div>
-              <div class="suggesName">
-                <a href="/users/2/show_lounge">Tran Quoc Anh Dung</a>
-              </div>
-              <div class="suggesAdd">
-                <span id="friend_status_2"><a title="Be friend with Tran Quoc Anh Dung" id="link_invite" class="thickbox" href="/users/3/friends/show_invite?user_invite=2&amp;height=300&amp;width=470"><span class="span1"><span id="friend_2" class="span2">Be friend</span></span></a></span>
-              </div>
-            </div>
-            <div style="width: 140px;" class="suggesItem">
-              <div class="AsDContImg">
-                <a href="/users/2/show_lounge"><div><img alt="100509a31b2_thumb" class="vtip avatar_140" src="https://s3.amazonaws.com/afterclassroom_avatar/avatars/140/100509a31b2_thumb.jpg?1314668828" title="David Lee"></div></a>
-              </div>
-              <div class="suggesName">
-                <a href="/users/2/show_lounge">Tran Quoc Anh Dung</a>
-              </div>
-              <div class="suggesAdd">
-                <span id="friend_status_2"><a title="Be friend with Tran Quoc Anh Dung" id="link_invite" class="thickbox" href="/users/3/friends/show_invite?user_invite=2&amp;height=300&amp;width=470"><span class="span1"><span id="friend_2" class="span2">Be friend</span></span></a></span>
-              </div>
-            </div>
-            <div style="width: 140px;" class="suggesItem">
-              <div class="AsDContImg">
-                <a href="/users/2/show_lounge"><div><img alt="100509a31b2_thumb" class="vtip avatar_140" src="https://s3.amazonaws.com/afterclassroom_avatar/avatars/140/100509a31b2_thumb.jpg?1314668828" title="David Lee"></div></a>
-              </div>
-              <div class="suggesName">
-                <a href="/users/2/show_lounge">Tran Quoc Anh Dung</a>
-              </div>
-              <div class="suggesAdd">
-                <span id="friend_status_2"><a title="Be friend with Tran Quoc Anh Dung" id="link_invite" class="thickbox" href="/users/3/friends/show_invite?user_invite=2&amp;height=300&amp;width=470"><span class="span1"><span id="friend_2" class="span2">Be friend</span></span></a></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
+				<div class="feed_close"><img src="/images/bg-search-for-people-a.png" width="192px" height="29px"/></div>
+        <!--Find people-->
+    			<%= render :partial => "friends/find_people" %>
+				<!--Find people-->
   </div>
 </div>
 <script>
