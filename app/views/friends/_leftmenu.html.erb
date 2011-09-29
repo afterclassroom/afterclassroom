@@ -76,17 +76,17 @@
                 });
             });
  });
-    var path = "<%= search_suggestion_user_friends_path(current_user) %>";
+    var path_friend = "<%= search_suggestion_user_friends_path(current_user) %>";
     $().ready(function(){
 				$('#search_friend_txt').autocomplete({
                         source: function(request, response) {
                             $.ajax({
                                 type: 'GET',
-                                url: path,
+                                url: path_friend,
 																data: {search_name: $('#search_friend_txt').val()},
                                 success: function(data) {
                                    $('#search_friend_list').html(data);
-																		$('.asslinkdownSt_User').show();
+																		$('#search_friend_wrap').show();
                                 }
                             });
                         }

@@ -4,14 +4,14 @@
       <div class="search" style="height:27px;width: 193px">
         <form id="action_people_search" name="search" action="<%= find_people_user_friends_path(current_user) %>" method="get">
           <div class="textS">
-            <input type="text" name="search[query]" value="Search for people" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" style="height: 14px;margin-top: 3px;width: 167px;"/>
+            <input id="search_people_txt" type="text" name="search[query]" value="Search for people" onblur="this.value = this.value || this.defaultValue;" onfocus="this.value = '';" style="height: 14px;margin-top: 3px;width: 167px;"/>
           </div>
           <div class="btmS">
             <a href="javascript:;" onclick="$('#action_people_search').submit();"><img src="/images/iconSF.png"/></a>
           </div>
         </form>
         <div style="margin-left:-289px">
-        <%= render :partial => "friend_search" %>
+        <%= render :partial => "people_search" %>
         </div>
       </div>
     </div>
@@ -40,3 +40,22 @@
     </div>
   </div>
 </div>
+
+<script>
+    var path_people = "<%= find_people_suggestion_user_friends_path(current_user) %>";
+    $().ready(function(){
+				$('#search_people_txt').autocomplete({
+                        source: function(request, response) {
+                            $.ajax({
+                                type: 'GET',
+                                url: path_people,
+																data: {search_name: $('#search_people_txt').val()},
+                                success: function(data) {
+                                   $('#search_people_list').html(data);
+																		$('#search_people_wrap').show();
+                                }
+                            });
+                        }
+                    });
+    });
+</script>
