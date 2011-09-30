@@ -398,6 +398,7 @@ class PhotosController < ApplicationController
   
   def tag_decision
     photo = Photo.find(params[:photo_id])
+
     if params[:decision_id] == "ACCEPT"
       TagInfo.verify_photo(params[:checkbox],params[:photo_id])
       share_to = params[:checkbox]
