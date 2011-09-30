@@ -73,15 +73,15 @@ div#toolbar {
 
 }
 div#toolbarbut { /* div for the 'hide status' */
-                 width: 60px;
-                 height: 15px;
-                 margin-right: 3%;
-                 display: none;
+    width: 60px;
+    height: 15px;
+    margin-right: 3%;
+    display: none;
 }
 span.showbar a { /* show button */
-                 padding: 5px;
-                 font-size: 10px;
-                 color: #989898;
+    padding: 5px;
+    font-size: 10px;
+    color: #989898;
 }
 .leftside {
     float: left;
@@ -328,8 +328,8 @@ a.share {
 /*-- Right Side --*/
 
 span.downarr { /* hide button */
-               float: right;
-               /* border-left: 1px solid #a4a4a4;*/
+    float: right;
+    /* border-left: 1px solid #a4a4a4;*/
 }
 span.downarr a {
     display: block;

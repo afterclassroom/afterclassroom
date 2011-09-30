@@ -42,7 +42,7 @@
       <%= render :partial => "shared/post_comments/alert" %>
       <%= render :partial => 'shared/javascript_load' %>
       <%= render :partial => 'shared/footer' %>
-      <%= render :partial => 'shared/friend_Se' if logged_in? and controller.controller_name != "friends" %>
+      <%= render :partial => 'shared/friend_se' if logged_in? and controller.controller_name != "friends" %>
       <%= render :partial => 'shared/footer_menu_in' if logged_in? %>
       <%= render :partial => 'shared/notification' if logged_in? %>
     </div>
