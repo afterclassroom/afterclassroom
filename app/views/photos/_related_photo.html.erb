@@ -17,7 +17,7 @@
     </div>
   <% else %>
     <div style="text-align: center"><img src='/images/imagesNo.jpeg' /></div>
-  <% end %>
+    <% end %>
 </div>
 <script type="text/javascript">
   $(function(){
@@ -40,4 +40,17 @@
       return false;
     });
   });
+  $(document).ready(function(){
+    $('.ad-image').css({
+      'width':'540px',
+      'margin-left':'30px'
+    })
+    $('.ad-image img').css({
+      'width':'540px'
+    })
+    $('.ad-image-description').css({
+      'width': '530px'
+    })
+  });
+
 </script>

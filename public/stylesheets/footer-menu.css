@@ -458,3 +458,75 @@ a.feedback-tab {
     background: url("/images/bgSearchF.png") no-repeat scroll left top transparent;
     padding-right: 0px;
 }
+/*------------------- friend search -------------*/
+.asslinkdownSt_UserR{
+    background: #F6F6F6;
+    border: 1px solid;
+    color: #969696;
+    display:none;
+    float: right;
+    font-size: 11px;
+    margin-left: -188px;
+    margin-top: 24px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000;
+}
+.asslinkdownSt_UserL{
+    background: #F6F6F6;
+    border: 1px solid;
+    color: #969696;
+    display:none;
+    float: right;
+    font-size: 11px;
+    margin-left: -188px;
+    margin-top: 24px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000;
+}
+.flistRclose a{
+    background: url("/images/flistDelete.png") no-repeat scroll center center transparent;
+    display: block;
+    height: 8px;
+    text-decoration: none;
+    width: 8px;
+    margin-left: 322px;
+    margin-top: -5px;
+    position: absolute;
+    cursor: pointer;
+}
+.flistRclose a:hover{
+    background: url("/images/flistDeleteH.png") no-repeat scroll center center transparent;
+}
+.flistItem{
+    padding:10px 0px;
+    margin:0px 10px;
+    overflow:hidden;
+    border-bottom:1px #e4e4e4 solid;
+    _height:100%;
+}
+.flistInf{
+    width:245px;
+    float:left;
+    padding-top:5px;
+}
+.flistN a, .flistN a:link, .flistN a:visited{
+    font-weight:bold;
+    text-decoration:none;
+    color:#0a81c4;
+}
+.flistS{
+    color:#0a81c4;
+}
+.flistN a:hover{
+    color:#d00;
+    text-decoration:none;
+}
+.flistN em{
+    color:#F6A828;
+}
+.flistS span{
+    color:#6f6f63;
+    padding-right:4px;
+}

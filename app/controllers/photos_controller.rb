@@ -242,6 +242,11 @@ class PhotosController < ApplicationController
     
     arr1 = []
     @res.each do |tagphoto|
+      #allow tagCreator able to delete tag that he created
+      if tagphoto.tag_info.tag_creator_id == current_user.id        
+        deletable = true
+      end
+
       tag_info = tagphoto.tag_info
       usr = User.find(tag_info.tagable_user)
       objx={
@@ -355,7 +360,7 @@ class PhotosController < ApplicationController
         "width"=> params[:width],
         "height"=> params[:height],
         "url"=> user_url(usr),
-        "isDeleteEnable"=> deletable
+        "isDeleteEnable"=> true#deletable
       }
     }    
     
