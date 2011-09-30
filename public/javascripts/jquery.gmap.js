@@ -5,7 +5,7 @@
  * @author	Cedric Kastner <cedric@nur-text.de>
  * @version	1.1.0
  */
-(function($)
+zzz(function($)
 {
 	// Main plugin function
 	$.fn.gMap = function(options)

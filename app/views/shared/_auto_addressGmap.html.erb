@@ -20,7 +20,7 @@
                 
       $('#<%= id_addres_field %>').autogeocomplete(options);   
     });
-    $(window).keyup(function(e) {
+    $("input#post_event_address").keyup(function(e) {
       if (e.keyCode == 17 || e.keyCode == 61 || e.keyCode == 109) 
       {      
         $('.ui-autocomplete, #mapblock').hide();
@@ -38,7 +38,7 @@
     });
     
     jQuery(function($) {
-      $("ul..ui-autocomplete:last").addClass("auto_gmap")
+      $("ul.ui-autocomplete:last").addClass("auto_gmap")
     });
       
   </script>
