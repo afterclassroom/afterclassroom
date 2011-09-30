@@ -224,7 +224,7 @@ class VideosController < ApplicationController
             if (pr != nil)
               if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
                 taginfo.verify = true
-                str_flash_msg = "Tag created"
+                str_flash_msg = "Your tag(s) have been created"
               end
             else#user has not setting this, considered NO VERIFY BY DEFAULT
               taginfo.verify = true
