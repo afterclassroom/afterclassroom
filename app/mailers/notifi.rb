@@ -1,5 +1,5 @@
 class Notifi < ActionMailer::Base
-  default :from => "technical@afterclassroom.com"
+  default :from => "#{Setting.get(:support_name)} <#{Setting.get(:support_email)}>"
   default_url_options[:host] = "afterclassroom.com"
   
   def send_notifi(recipient, subject, content)

@@ -318,10 +318,10 @@ class User < ActiveRecord::Base
     invite_in_ids = self.user_invites_in.where("is_accepted IS NULL").map(&:user_id)
     suggest_ids = fofs - friend_ids - invite_out_ids - invite_in_ids - [self.id]
     if suggest_ids.size > 0
-      User.find(:all, :limit => 10, :conditions => ["id IN(#{suggest_ids.join(',')}) AND state='active'"])
+      User.find(:all, :limit => 10, :conditions => ["id IN(#{suggest_ids.join(',')}) AND state='active'"], :order => "RAND()")
     else
       suggest_ids = friend_ids + invite_out_ids + invite_in_ids + [self.id]
-      User.find(:all, :limit => 10, :conditions => ["id NOT IN(#{suggest_ids.join(',')}) AND state='active'"])
+      User.find(:all, :limit => 10, :conditions => ["id NOT IN(#{suggest_ids.join(',')}) AND state='active'"], :order => "RAND()")
     end
   end
   

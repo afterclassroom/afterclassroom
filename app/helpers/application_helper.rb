@@ -940,7 +940,7 @@ module ApplicationHelper
     Textilizer.new(text).to_html.html_safe unless text.blank?
   end
   
-  def check_private_permission(user_check, user, type)
+  def check_private_permission(user, type)
     check = false
     if user == user_check
       check = true

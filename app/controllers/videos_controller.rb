@@ -88,7 +88,7 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     @user = @video.user
     
-    if check_private_permission(current_user, @user, "my_videos")
+    if check_private_permission(@user, "my_videos")
       update_view_count(@video)
       as_next = @user.videos.nexts(@video.id).last
       as_prev = @user.videos.previous(@video.id).first

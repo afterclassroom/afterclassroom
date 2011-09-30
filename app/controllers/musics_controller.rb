@@ -84,7 +84,7 @@ class MusicsController < ApplicationController
   def show
     @music = Music.find(params[:id])
     @user = @music.user
-    if check_private_permission(current_user, @user, "my_musics")
+    if check_private_permission(@user, "my_musics")
       update_view_count(@music)
       as_next = @music.music_album.musics.nexts(@music.id).last
       as_prev = @music.music_album.musics.previous(@music.id).first
@@ -139,7 +139,7 @@ class MusicsController < ApplicationController
           # Nothing
         end
         flash[:notice] = 'Music was successfully created.'
-        post_wall(@music) if check_private_permission(current_user, "my_musics")
+        post_wall(@music) if check_private_permission("my_musics")
         redirect_to user_music_album_path(current_user, @music.music_album)
       else
         render :action => "new"
@@ -208,7 +208,7 @@ class MusicsController < ApplicationController
     @music_album.user = current_user
     @music_album.swfupload_file = params[:music_album_attach] if params[:music_album_attach]
     @music_album.save
-    post_wall(@music_album) if check_private_permission(current_user, "my_musics")
+    post_wall(@music_album) if check_private_permission("my_musics")
     render :layout => false
   end
   
@@ -221,7 +221,7 @@ class MusicsController < ApplicationController
   def play_list
     @music_album = MusicAlbum.find(params[:music_album_id])
     @user = @music_album.user
-    if check_private_permission(current_user, @user, "my_musics")
+    if check_private_permission(@user, "my_musics")
       @another_music_albums = @music_album.another_music_albums
       update_view_count(@music_album)
       

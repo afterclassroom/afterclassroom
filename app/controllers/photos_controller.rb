@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
     @friend_photos = []
     arr_user_id = []
     @photo_albums = current_user.photo_albums
-    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_photos")}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f "my_photos")}
     if arr_user_id.size > 0
       cond = Caboose::EZ::Condition.new :photo_albums do
         user_id === arr_user_id
@@ -99,7 +99,7 @@ class PhotosController < ApplicationController
     #@usrs_for_verify = list_friends.select { |c| usr_ids_for_verify.include?(c.id) }
     @usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Photo",false ] )
     
-    if check_private_permission(current_user, @user, "my_photos")
+    if check_private_permission(@user, "my_photos")
       as_next = @photo_album.photos.nexts(@photo.id).last
       as_prev = @photo_album.photos.previous(@photo.id).first
       @next = as_next if as_next
@@ -145,7 +145,7 @@ class PhotosController < ApplicationController
       respond_to do |format|
         if @photo.save
           flash[:notice] = 'Photo was successfully created.'
-          post_wall(@photo) if check_private_permission(current_user, "my_photos")
+          post_wall(@photo) if check_private_permission("my_photos")
           format.html { redirect_to user_photo_path(current_user, @photo) }
           format.xml  { render :xml => @photo, :status => :created, :location => @photo }
         else
@@ -206,7 +206,7 @@ class PhotosController < ApplicationController
     @photo_album = PhotoAlbum.new(params[:photo_album])
     @photo_album.user = current_user
     @photo_album.save
-    post_wall(@photo_album) if check_private_permission(current_user, "my_photos")
+    post_wall(@photo_album) if check_private_permission("my_photos")
     render :layout => false
   end
   
@@ -215,7 +215,7 @@ class PhotosController < ApplicationController
     @photo_album = PhotoAlbum.find(photo_album_id)
     update_view_count(@photo_album)
     @user = @photo_album.user
-    if check_private_permission(current_user, @user, "my_photos")
+    if check_private_permission(@user, "my_photos")
       @another_photo_albums = @photo_album.another_photo_albums
       respond_to do |format|
         format.html # show.html.erb
