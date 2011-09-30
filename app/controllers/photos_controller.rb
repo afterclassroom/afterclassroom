@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PhotosController < ApplicationController
   include ApplicationHelper
@@ -18,7 +19,7 @@ class PhotosController < ApplicationController
     @friend_photos = []
     arr_user_id = []
     @photo_albums = current_user.photo_albums
-    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_photos")}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(current_user,f, "my_photos")}
     if arr_user_id.size > 0
       cond = Caboose::EZ::Condition.new :photo_albums do
         user_id === arr_user_id
