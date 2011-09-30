@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PhotosController < ApplicationController
   include ApplicationHelper
@@ -397,6 +398,7 @@ class PhotosController < ApplicationController
   
   def tag_decision
     photo = Photo.find(params[:photo_id])
+
     if params[:decision_id] == "ACCEPT"
       TagInfo.verify_photo(params[:checkbox],params[:photo_id])
       share_to = params[:checkbox]
