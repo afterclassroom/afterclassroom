@@ -312,60 +312,31 @@ class User < ActiveRecord::Base
   end
   
   def suggestions
+		limit_suggestion = 10
     friend_ids = self.user_friends.map(&:id)
     fofs = self.friend_of_friends.map(&:id)
     invite_out_ids = self.user_invites_out.where("is_accepted IS NULL").map(&:user_id_target)
     invite_in_ids = self.user_invites_in.where("is_accepted IS NULL").map(&:user_id)
     suggest_ids = fofs - friend_ids - invite_out_ids - invite_in_ids - [self.id]
+		people_ids = friend_ids + invite_out_ids + invite_in_ids + [self.id]
     if suggest_ids.size > 0
-      User.find(:all, :limit => 10, :conditions => ["id IN(#{suggest_ids.join(',')}) AND state='active'"], :order => "RAND()")
+      fofs_suggestion = User.find(:all, :limit => limit_suggestion, :conditions => ["id IN(#{suggest_ids.join(',')}) AND state='active'"], :order => "RAND()")
+			if fofs_suggestion.size == limit_suggestion
+				return limit_suggestion
+			else
+				people_suggestion = User.find(:all, :limit => (limit_suggestion - fofs_suggestion.size), :conditions => ["id NOT IN(#{people_ids.join(',')}) AND state='active'"], :order => "RAND()")
+				return fofs_suggestion + people_suggestion
+			end
     else
-      suggest_ids = friend_ids + invite_out_ids + invite_in_ids + [self.id]
-      User.find(:all, :limit => 10, :conditions => ["id NOT IN(#{suggest_ids.join(',')}) AND state='active'"], :order => "RAND()")
+      User.find(:all, :limit => limit_suggestion, :conditions => ["id NOT IN(#{people_ids.join(',')}) AND state='active'"], :order => "RAND()")
     end
   end
   
   def walls_with_setting
     user_ids = [self.id] 
-    type = "my_lounges"
-    ps = self.private_settings.where(:type_setting => type).first     
-    if ps
-      share_to = ps.share_to
-      case share_to
-        when 0 # Privace
-        # Nothing
-        when 1 # Friend from school
-        fg = FriendGroup.where(:label => "friends_from_school").first
-        fng = FriendInGroup.where(:user_id => self.id, :friend_group_id => fg.id)
-        fng.each do |f|
-          user_ids << f.friend.id if check_private_permission(self, f.friend, "my_lounges")
-        end
-        when 2 # Friend of friends
-        self.friend_of_friends.each do |f|
-          user_ids << f.id if check_private_permission(self, f, "my_lounges")
-        end
-        when 3 # My Family
-        fg = FriendGroup.where(:label => "family_members").first
-        fng = FriendInGroup.where(:user_id => self.id, :friend_group_id => fg.id)
-        fng.each do |f|
-          user_ids << f.friend.id if check_private_permission(self, f.friend, "my_lounges")
-        end
-        when 4 # My friends
-        self.user_friends.each do |f|
-          user_ids << f.id if check_private_permission(self, f, "my_lounges")
-        end
-        when 5 # Friends from work
-        fg = FriendGroup.where(:label => "friends_from_work").first
-        fng = FriendInGroup.where(:user_id => self.id, :friend_group_id => fg.id)
-        fng.each do |f|
-          user_ids << f.friend.id if check_private_permission(self, f.friend, "my_lounges")
-        end
-        when 6 # Every one
-        self.friend_of_friends.each do |f|
-          user_ids << f.id if check_private_permission(self, f, "my_lounges")
-        end
-      end
-      end
+    self.friend_of_friends.each do |f|
+      user_ids << f.id
+    end
     UserWall.where("user_id IN('#{user_ids.join("', '")}')").order("updated_at DESC")
   end
   
