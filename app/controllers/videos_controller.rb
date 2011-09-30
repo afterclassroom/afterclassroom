@@ -14,7 +14,7 @@ class VideosController < ApplicationController
   def index
     @friend_videos = []
     arr_user_id = []
-    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(current_user, f, "my_videos")}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_videos")}
     if arr_user_id.size > 0
       cond = Caboose::EZ::Condition.new :videos do
         user_id === arr_user_id
@@ -89,7 +89,7 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     @user = @video.user
     
-    if check_private_permission(current_user, @user, "my_videos")
+    if check_private_permission(@user, "my_videos")
       update_view_count(@video)
       as_next = @user.videos.nexts(@video.id).last
       as_prev = @user.videos.previous(@video.id).first
@@ -224,7 +224,7 @@ class VideosController < ApplicationController
             if (pr != nil)
               if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
                 taginfo.verify = true
-                str_flash_msg = "Tag created"
+                str_flash_msg = "Your tag(s) have been created"
               end
             else#user has not setting this, considered NO VERIFY BY DEFAULT
               taginfo.verify = true

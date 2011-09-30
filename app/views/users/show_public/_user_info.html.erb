@@ -1,3 +1,4 @@
+<% if logged_in? %>
 <div class="asslinkdownSt_User">
   <div class="making wall_page">
     <a title="Intro friends for <%= @user.name %>" class="thickbox" href="/user_walls/match_making_box?user_id_post=<%= @user.id.to_s %>?&height=350&width=510" id="myaclick">Intro Friend</a>
@@ -42,3 +43,4 @@
     });
   });
 </script>
+<% end %>

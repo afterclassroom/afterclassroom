@@ -20,7 +20,7 @@
       <div class="proItem">
         <%= link_to "#{@user.full_name}'s Videos (#{@user.videos.size})", show_videos_user_path(@user) %>
       </div>
-      <% if check_private_permission(current_user, @user, "about_myself") and @user.user_information and @user.user_information.about_yourself %>
+      <% if check_private_permission(@user, "about_myself") and @user.user_information and @user.user_information.about_yourself %>
         <div class="proItem">
           About myself
         </div>

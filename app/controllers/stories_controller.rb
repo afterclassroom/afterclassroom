@@ -111,7 +111,7 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @user = @story.user
-    if check_private_permission(current_user, @user, "my_stories")
+    if check_private_permission(@user, "my_stories")
       update_view_count(@story)
       respond_to do |format|
         format.html # show.html.erb
@@ -154,7 +154,7 @@ class StoriesController < ApplicationController
         @story.save
         flash[:notice] = 'Story was successfully created.'
         if state == "share"
-          post_wall(@story) if check_private_permission(current_user, "my_stories")
+          post_wall(@story) if check_private_permission("my_stories")
           path = user_stories_path(current_user)
         else
           path = draft_user_stories_path(current_user)

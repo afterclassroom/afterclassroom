@@ -940,9 +940,9 @@ module ApplicationHelper
     Textilizer.new(text).to_html.html_safe unless text.blank?
   end
   
-  def check_private_permission(user_check, user, type)
+  def check_private_permission(user, type)
     check = false
-    if user == user_check
+    if user == current_user
       check = true
     else
       ps = PrivateSetting.where(:user_id => user.id, :type_setting => type).first
@@ -956,24 +956,24 @@ module ApplicationHelper
             check = true if fng
           end
           when 2 # Friend of friends
-          if user_check
+          if current_user
             fof = user.friend_of_friends
             check = fof.nil? ? false : fof.include?(current_user)
           end
           when 3 # My Family
-          if user_check
+          if current_user
             fg = FriendGroup.where(:label => "family_members").first
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
             check = true if fng
           end
           when 4 # My friends
-          if user_check
-            check = true if user.user_friends.include?(user_check)
+          if current_user
+            check = true if user.user_friends.include?(current_user)
           end
           when 5 # Friends from work
-          if user_check
+          if current_user
             fg = FriendGroup.where(:label => "friends_from_work").first
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
             check = true if fng
           end
           when 6 # Every one

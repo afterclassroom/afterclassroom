@@ -1,5 +1,5 @@
 class ApplyJob < ActionMailer::Base
-  default :from => "technical@afterclassroom.com"
+  default :from => "#{Setting.get(:support_name)} <#{Setting.get(:support_email)}>"
   default_url_options[:host] = "afterclassroom.com"
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

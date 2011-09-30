@@ -172,10 +172,10 @@
     $('#show_or_hide').click(function(){
       if ( $(this).html() == '(Show)' ){
         $(this).html('(Hide)');
-        $('#sel_desel_all').hide();
+        $('#sel_desel_all').show();
       }else {
         $(this).html('(Show)');
-        $('#sel_desel_all').show();
+        $('#sel_desel_all').hide();
       }
       $('#approve_panel').toggle();
     })
