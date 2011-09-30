@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class VideosController < ApplicationController
   layout "student_lounge"
@@ -13,7 +14,7 @@ class VideosController < ApplicationController
   def index
     @friend_videos = []
     arr_user_id = []
-    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_videos")}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(current_user, f, "my_videos")}
     if arr_user_id.size > 0
       cond = Caboose::EZ::Condition.new :videos do
         user_id === arr_user_id
@@ -201,6 +202,9 @@ class VideosController < ApplicationController
     
     share_to = params[:share_to]
     user_ids = share_to.split(",")
+
+    str_flash_msg = "Your request has been sent to author. The approval will be sent to your email."
+
     if user_ids.size > 0 
       user_ids.each do |i|
         u = User.find(i)
@@ -220,13 +224,14 @@ class VideosController < ApplicationController
             if (pr != nil)
               if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
                 taginfo.verify = true
+                str_flash_msg = "Tag created"
               end
             else#user has not setting this, considered NO VERIFY BY DEFAULT
               taginfo.verify = true
             end
             
             
-            flash[:notice] = "Your request has been sent to author. The approval will be sent to your email."
+            flash[:notice] = str_flash_msg
           end
           
           
