@@ -4,30 +4,45 @@ class UserMailer < ActionMailer::Base
     setup_email(user)
     @subject    += 'Please activate your new account'
     @body[:url]  = "https://#{Setting.get(:site_url)}/activate/#{user.activation_code}"
+		@sent_on = Time.now
+    @headers = {}
+    @content_type = 'text/html'
   end
   
   def reset_password(user)
     setup_email(user)
     @subject += "Your password has been reset"
     @body[:url]  = "https://login.#{Setting.get(:site_url)}/login"
+		@sent_on = Time.now
+    @headers = {}
+    @content_type = 'text/html'
   end
   
   def forgot_password(user)
     setup_email(user)
     @subject += "Forgotten password instructions"
     @body[:url]  = "https://#{Setting.get(:site_url)}/users/reset_password/#{user.password_reset_code}"
+		@sent_on = Time.now
+    @headers = {}
+    @content_type = 'text/html'
   end
   
   def forgot_login(user)
     setup_email(user)
     @subject += "Forgotten account login"
     @body[:url]  = "https://login.#{Setting.get(:site_url)}/login"
+		@sent_on = Time.now
+    @headers = {}
+    @content_type = 'text/html'
   end
   
   def activation(user)
     setup_email(user)
     @subject    += 'Your account has been activated!'
     @body[:url]  = "https://#{Setting.get(:site_url)}/"
+		@sent_on = Time.now
+    @headers = {}
+    @content_type = 'text/html'
   end
 
   def invitation(user, email, domain, invitation_code, content)
@@ -49,12 +64,14 @@ class UserMailer < ActionMailer::Base
       @recipients  = "#{user.email}"
       @from        = "#{Setting.get(:support_name)} <#{Setting.get(:support_email)}>"
       @subject     = "[#{Setting.get(:site_name)}] "
-      @sent_on     = Time.now
       @body[:user] = user
       
       # Get Settings
       [:site_name, :company_name, :support_email, :support_name].each do |id|
         @body[id] = Setting.get(id)
       end
+			@sent_on = Time.now
+      @headers = {}
+      @content_type = 'text/html'
     end
 end
