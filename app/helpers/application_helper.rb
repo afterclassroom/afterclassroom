@@ -950,7 +950,7 @@ module ApplicationHelper
         share_to = ps.share_to
         case share_to
           when 1 # Friend from school
-          if user_check
+          if current_user
             fg = FriendGroup.where(:label => "friends_from_school").first
             fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
             check = true if fng

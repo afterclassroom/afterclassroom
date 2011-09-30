@@ -154,7 +154,7 @@ class StoriesController < ApplicationController
         @story.save
         flash[:notice] = 'Story was successfully created.'
         if state == "share"
-          post_wall(@story) if check_private_permission("my_stories")
+          post_wall(@story)
           path = user_stories_path(current_user)
         else
           path = draft_user_stories_path(current_user)
