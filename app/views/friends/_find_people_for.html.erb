@@ -1,0 +1,69 @@
+<div class="col300 inboxMess" style="background:#ffffff;border: 1px solid #DBDBDB">
+  <div class="col300in" style="background:#ffffff">
+    <div class="searchPInput">
+      <div class="searchFri" style="height:27px;width: 193px">
+        <form id="action_people_search" name="search" action="<%= find_people_user_friends_path(current_user) %>" method="get">
+          <div class="textS" style="float:left;background-image: none;">
+            <input id="search_people_txt" type="text" name="search[query]" value="Search for people" class="focus_text_field" style="height: 14px;margin-top: 3px;width: 167px;"/>
+          </div>
+          <div class="btmS" style="float:left;padding-top: 4px;">
+            <a id="btnFrie_submit" href="javascript:;" onclick="$('#action_people_search').submit();"><img src="/images/iconSF.png"/></a>
+          </div>
+        </form>
+        <div class="people_search" style="margin-left:34px">
+          <%= render :partial => "friends/people_search" %>
+        </div>
+      </div>
+    </div>
+    <div class="sugges" style="float:left;">
+      Suggestions
+    </div>
+    <div id="suggestion_list" class="suggesList" style="float:left;width:100%;">
+      <div class="suggesRow">
+        <%
+        @suggestions = current_user.suggestions
+      %>
+        <% @suggestions.each do |u| %>
+          <div class="suggesItem" style="width:140px;">
+            <div class="AsDContImg">
+              <%= show_image_user_post(u) %>
+            </div>
+            <div class="suggesName">
+              <%= show_user_post(u) %>
+            </div>
+            <div class="suggesAdd">
+              <span id="friend_status_<%= u.id %>"><%= show_invite_friend(u) %></span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  var path_people = "<%= find_people_suggestion_user_friends_path(current_user) %>";
+  $().ready(function(){
+    $('#search_people_txt').autocomplete({
+      source: function(request, response) {
+       $('#btnFrie_submit').append('<%= show_ajax_loader("loader_id_fri","display: block; position: absolute; float: right; height: 19px; margin-top: -19px; margin-left: -25px;") %>');
+        $.ajax({
+          type: 'GET',
+          url: path_people,
+          data: {search_name: $('#search_people_txt').val()},
+          success: function(data) {
+            $('#search_people_list').html(data);
+            $('#search_people_wrap').show();
+           $('#loader_id_fri').remove();
+          }
+        });
+      }
+    });
+  });
+    $(document).ready(function(){
+    $('.flistRclose').click(function(){
+      $('.asslinkdownSt_UserL').hide();
+    });
+  });
+</script>
