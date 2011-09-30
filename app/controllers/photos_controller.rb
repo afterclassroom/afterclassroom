@@ -19,7 +19,7 @@ class PhotosController < ApplicationController
     @friend_photos = []
     arr_user_id = []
     @photo_albums = current_user.photo_albums
-    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f,"my_photos")}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_photos")}
     if arr_user_id.size > 0
       cond = Caboose::EZ::Condition.new :photo_albums do
         user_id === arr_user_id
@@ -146,7 +146,7 @@ class PhotosController < ApplicationController
       respond_to do |format|
         if @photo.save
           flash[:notice] = 'Photo was successfully created.'
-          post_wall(@photo) if check_private_permission("my_photos")
+          post_wall(@photo)
           format.html { redirect_to user_photo_path(current_user, @photo) }
           format.xml  { render :xml => @photo, :status => :created, :location => @photo }
         else
@@ -207,7 +207,7 @@ class PhotosController < ApplicationController
     @photo_album = PhotoAlbum.new(params[:photo_album])
     @photo_album.user = current_user
     @photo_album.save
-    post_wall(@photo_album) if check_private_permission("my_photos")
+    post_wall(@photo_album)
     render :layout => false
   end
   
