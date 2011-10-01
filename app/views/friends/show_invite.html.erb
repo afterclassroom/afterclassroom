@@ -1,44 +1,3 @@
-<script language="javascript">
-    var submit_url = $('#send_invite_link').attr('rel');
-		var suggestion_path = "<%= get_suggestion_list_user_friends_path(current_user) %>";
-    $('#send_invite_link').bind('click',function(){
-				$('#send_invite_button').html('<a>Sending ...</a>');
-        var strMessage = $('#message').val();
-        $.ajax({
-            url: submit_url,
-            type: "GET",
-            data:({
-                invite_message:strMessage,
-                full_name:'<%= @full_name %>',
-                user_invite: '<%= @user_invite %>'
-            }),
-            dataType: "html",
-            failure: function(msg){
-                alert('ajax fail:'+msg);
-            },
-            success: function(msg){
-								if($('#suggestion_list').size()) {
-										$.ajax({
-										  url: suggestion_path,
-										  type: "GET",
-										  dataType: "html",
-										  failure: function(msg){
-										      alert('ajax fail:'+msg);
-										  },
-										  success: function(msg){
-										      $('#suggestion_list').html(msg);
-										  }
-									});
-								}else{
-									$('#friend_status_<%= @user_invite %>').html(msg);
-								}
-								$('#TB_closeWindowButton').click();
-            }
-        });
-
-        return false;
-    });
-</script>
 <div id="send_invite_message" class="postCont">
   <form name="form_send_invite" id="form_invite_friend">
     <div class="postItem" style="margin-top: 15px">
@@ -56,3 +15,45 @@
     <!-- end post button -->
   </form>
 </div>
+<script language="javascript">
+  var submit_url = $('#send_invite_link').attr('rel');
+  var suggestion_path = "<%= get_suggestion_list_user_friends_path(current_user) %>";
+  $('#send_invite_link').bind('click',function(){
+    $('#send_invite_button').html('<a>Sending ...</a>');
+    var strMessage = $('#message').val();
+    $.ajax({
+      url: submit_url,
+      type: "GET",
+      data:({
+        invite_message:strMessage,
+        full_name:'<%= @full_name %>',
+        user_invite: '<%= @user_invite %>'
+      }),
+      dataType: "html",
+      failure: function(msg){
+        alert('ajax fail:'+msg);
+      },
+      success: function(msg){
+        if($('#suggestion_list').size()) {
+          $.ajax({
+            url: suggestion_path,
+            type: "GET",
+            dataType: "html",
+            failure: function(msg){
+              alert('ajax fail:'+msg);
+            },
+            success: function(msg){
+              $('#suggestion_list').html(msg);            
+            }
+          });
+          
+        }else{
+          $('#friend_status_<%= @user_invite %>').html(msg);
+        }
+        $('#TB_closeWindowButton').click();
+      }
+    });
+
+    return false;
+  });
+</script>

@@ -11,8 +11,15 @@
         <%= show_user_post(u) %>
       </div>
       <div class="suggesAdd">
-        <span id="friend_status_<%= u.id %>"><%= show_invite_friend(u) %></span>
+        <span id="friend_status_<%= u.id %>">
+          <%= show_invite_friend(u) %>
+        </span>
       </div>
     </div>
   <% end %>
 </div>
+<script>
+  $(document).ready(function(){
+    tb_init('a.thickbox, area.thickbox, input.thickbox'); // reload thickbox !!!!!!!
+  });
+</script>
