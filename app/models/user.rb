@@ -328,7 +328,7 @@ class User < ActiveRecord::Base
 				return fofs_suggestion + people_suggestion
 			end
     else
-      User.find(:all, :limit => limit_suggestion, :conditions => ["id NOT IN(#{people_ids.join(',')}) AND state='active'"], :order => "RAND()")
+      return User.find(:all, :limit => limit_suggestion, :conditions => ["id NOT IN(#{people_ids.join(',')}) AND state='active'"], :order => "RAND()")
     end
   end
   
