@@ -168,8 +168,12 @@
 		
         var registerEventsForAddTagLink = function( link, image, image_id ){
             $(link).click(function(e){
-		//DatNT note: setting this variable to true to allow user continue create tag
+		//BEGIN DatNT note: setting this variable to true to allow user continue create tag
 		begintag = true;
+		$(this).hide();
+		$('#stop_tag').show();
+		$('#stop_tag').css('display','');
+		//END DatNT note
 
 
 		
@@ -178,8 +182,8 @@
                     hideAllTags(image_id);
                     $('#' + options.imageWrapBox.idPrefix + image_id).append(createTempTag(image));
                     prepareTempTagBox($('#' + options.tag.idPrefix + 'temp'),image,image_id);
-                }
-            });
+                }//end if
+            });//end click
         };
 		
         var dragOrResizeEventHandler = function( e, ui ){

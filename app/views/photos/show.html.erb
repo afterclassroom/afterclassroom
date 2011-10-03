@@ -42,6 +42,8 @@
             Loading tag info ... <img id="" style="height: 15px; margin-top: -1px; float: left; margin-left: 38px;" title="Next" src="/images/ajax-loader-a.gif"/>
           </div>
           <div id="container" style="text-align:center;">
+	    <a href="javascript:;" id="stop_tag" style="display:none;position:absolute; z-index:99;">Done</a>
+
             <p>
               <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
             </p>
@@ -144,33 +146,9 @@
       });        
     });
   }
-  
-  //BEGIN: code for tag user
-  var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
-  var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
-  var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
-  var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
-  $(document).ready(function(){
-
-      $('.photoTag').photoTag({
-        requesTagstUrl: strrequesTagstUrl,
-        deleteTagsUrl: strdeleteTagsUrl,
-        addTagUrl: straddTagUrl,
-        parametersForNewTag: {
-          name: {
-            parameterKey: 'name',
-            isAutocomplete: true,
-            autocompleteUrl: strautocompleteUrl,
-            label: 'Name'
-          }
-        }
-      });//end phototag
-
-
-
-    $('#img_to_tag').click(function(e){
+  function TagByClick(e){
       if (begintag == true){
-        $('a#photoTag-add_77').click();
+        $('a#photoTag-add_<%= @photo.id %>').click();
 
         var imageTop = $('#img_to_tag').offset().top;
         var imageLeft = $('#img_to_tag').offset().left;
@@ -204,7 +182,41 @@
 
         
       }//end if 
+  }
+  
+  //BEGIN: code for tag user
+  var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+  var strdeleteTagsUrl = "<%= deletetag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+  var straddTagUrl = "<%= addtag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+  var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
+  $(document).ready(function(){
+
+      $('.photoTag').photoTag({
+        requesTagstUrl: strrequesTagstUrl,
+        deleteTagsUrl: strdeleteTagsUrl,
+        addTagUrl: straddTagUrl,
+        parametersForNewTag: {
+          name: {
+            parameterKey: 'name',
+            isAutocomplete: true,
+            autocompleteUrl: strautocompleteUrl,
+            label: 'Name'
+          }
+        }
+      });//end phototag
+
+
+    $('#stop_tag').click(function(){
+      $('#photoTag-add_<%= @photo.id %>').show();
+      $(this).hide();
+      begintag = false;
+      $('.inputCancel').click();
+    });
+
+    $('#img_to_tag').click(function(e){
+      TagByClick(e);
     });//end image.click
+
 
   
   });//end document.ready
