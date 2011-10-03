@@ -234,7 +234,7 @@
                 };
                 $('#tempNewTagForm').append(input);
                 //DatNT: add the ajax loader icon while waiting for the result
-                $('#tempNewTagForm').append('<img id="img_id_waiting" style="height: 15px; display:none; margin-top: -3px; margin-left: -92px;" title="Next" src="/images/ajax-loader-a.gif"/>');
+                $('#tempNewTagForm').append('<img id="img_id_waiting" style="display: none; height: 15px; margin-top: -3px; margin-left: -92px;" title="Next" src="/images/ajax-loader-a.gif"/>');
                 inputObj = input;
                 if(properties.isAutocomplete){
                     $('#tempInput_'+i).parent().append($('<input name="'+properties.parameterKey+'_id" id="hidden_tempInput_'+i+'" type="hidden"/>'));
@@ -263,11 +263,11 @@
                         },                                                
                         search: function(event, ui) { 
                             $('.inputSubmit').hide();
-                            $('#img_id_loader').show();
+                            $('#img_id_waiting').show();
                         },
                         open: function(event, ui){
                             $('.inputSubmit').show();
-                            $('#img_id_loader').hide();
+                            $('#img_id_waiting').hide();
                         },
                         select: function( event, ui){
                             $('#hidden_tempInput_'+i).val(ui.item.id);

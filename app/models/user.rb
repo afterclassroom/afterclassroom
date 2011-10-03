@@ -312,6 +312,7 @@ class User < ActiveRecord::Base
   end
   
   def suggestions
+		suggest_ids = []
 		limit_suggestion = 10
     friend_ids = self.user_friends.map(&:id)
     fofs = self.friend_of_friends.map(&:id)
