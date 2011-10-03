@@ -1,0 +1,22 @@
+<% cache "interesting_#{@class_name}_#{@school}" do %>
+<div class="col195 intPro">
+  <div class="col195in">
+    <h1 class="col195Title">Interesting Quizzes</h1>
+    <div class="col195Cont">
+      <%# interesting_lecture_notes = PostLectureNote.with_school(@school).interesting.with_limit %>
+      <% interesting_lecture_notes = PostLectureNote.recent_interesting(@school).first(LIMIT) %>
+      <% if interesting_lecture_notes.size > 0 %>
+        <% interesting_lecture_notes.each do |post| %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(post.title, 4), post_lecture_note_path(post.post_lecture_note) %></div>
+            <div class="dueDTime"><%= post.created_at.strftime("%B %d, %Y")%></div>
+          </div>
+        <% end %>
+        <% if interesting_lecture_notes.size > LIMIT - 1 %>
+          <div class="dueDbutton"><%= link_to "View more Interesting Quizzes", interesting_post_lecture_notes_path %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

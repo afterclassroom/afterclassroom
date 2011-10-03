@@ -1,22 +1,22 @@
 <div class="flistItem" id="friend_request_<%= @user.id %>">
-    <div class="assPic">
-        <%= show_image_user_post(@user) %>
+  <div class="assPic">
+    <%= show_image_user_post(@user) %>
+  </div>
+  <div class="flistInf" style="float: left;width: 310px;">
+    <div class="flistN">
+      <%= show_user_post(@user) %>
     </div>
-    <div class="flistInf" style="float: left;width: 310px;">
-        <div class="flistN">
-            <%= show_user_post(@user) %>
-        </div>
-        <div class="flistS">
-            <span>at</span>
-            <%= @user.school.name %>
-        </div>
+    <div class="flistS">
+      <span>at</span>
+      <%= @user.school.name %>
     </div>
-    <div class="asslinkdown" style="padding: 0px; margin-top: 0px;">
-        <div class="support">
-            <%= link_to "Be friend", accept_user_friends_path(current_user, :invite_id => @invite.id), :remote => true %>
-        </div>
-        <div class="support">
-            <%= link_to "Unfriend", de_accept_user_friends_path(current_user, :invite_id => @invite.id), :remote => true %>
-        </div>
+  </div>
+  <div class="asslinkdown" style="padding: 0px; margin-top: 0px;">
+    <div class="support">
+      <%= link_to "Be friend", accept_user_friends_path(current_user, :invite_id => @invite.id), :remote => true %>
     </div>
+    <div class="support">
+      <%= link_to "Unfriend", de_accept_user_friends_path(current_user, :invite_id => @invite.id), :remote => true %>
+    </div>
+  </div>
 </div>

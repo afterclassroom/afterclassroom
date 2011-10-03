@@ -1,5 +1,5 @@
 <div class="feedback-panel" style="top:36%">
-  <a class="feedback-tab"></a>
+  <a class="feedback-tab" style="display: none"></a>
   <div class="contMainR" style="float:left">
     <div class="feed_close" style="position: absolute;margin-top: -25px;margin-left: 110px"><img src="/images/bg-search-for-people-a.png" width="192px" height="29px"/></div>
     <!--Find people-->
@@ -9,14 +9,14 @@
 </div>
 <script>
   $('document').ready(function(){
-    $('a.feedback-tab').click(function(){
-      $('.feedback-panel').animate({right:'0'},  300)
-      $('a.feedback-tab').hide();
-    });
-    $('.feed_close,a#feedback_close_friend').click(function(){
-      $('.feedback-panel').animate({right:'-301'}, 300)
+    $('a.feedback-tab').hide();
+    $('.feed_close,a#feedback_close_fr').click(function(){
+      $('.feedback-panel').animate({right:'-331'}, 3000)
       $('a.feedback-tab').show(300);
     });
+    $('a.feedback-tab').click(function(){
+      $('.feedback-panel').animate({right:'-30'},  3000)
+      $('a.feedback-tab').hide();
+    });    
   });
-
 </script>

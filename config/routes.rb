@@ -300,6 +300,12 @@ Afterclassroom::Application.routes.draw do
     end
   end
   
+    resources :post_lecture_notes do
+    collection do
+      get :search, :due_date, :interesting, :tag, :quick_post_form
+    end
+  end
+  
   #Ajax not login
   resources :ajax_not_login do
     collection do

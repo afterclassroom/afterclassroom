@@ -1,0 +1,26 @@
+<%= fields_for @post do |post| %>
+  <div class="postReq">*(asterisk) is required.</div>
+  <%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_school" %>
+  <%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
+  <%= render :partial => "/shared/form_post/email" %>
+  <div class="postItem">
+    <div class="postTit">Due date</div>
+    <div class="postInp"><%= text_field_tag "due_date_p", @post_lecture_note.due_date != nil ? @post_lecture_note.due_date.getutc.strftime("%m/%d/%Y") : "", :id => "due_date", :class => 'date', :style => "width:100px" %></div>
+  </div>
+  <div class="postItem">
+    <div class="postTit">Professor</div>
+    <div class="postInp"><%= f.text_field :professor, :style => "width:208px" %></div>
+  </div>
+  <%= render :partial => "/shared/form_post/attach_file" %>
+  <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
+  <%= render :partial => "/shared/form_post/select_tag" %>
+<% end %>
+  
+<script type="text/javascript">
+  $(function() {
+    $("#due_date").datepicker();
+  });
+</script>

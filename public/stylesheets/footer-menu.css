@@ -106,7 +106,7 @@ a.rss {
     background: url(/images/footer_menu/rss.png) no-repeat;
 }
 a.chatt, a.share_story, a.musics, a.photos, a.videos, a.inbox, a.friends, a.profile, a.setting, a.phone_app,
-a.play_games, a.shopping, a.assignments, a.projects, a.past_tests, a.past_exams, a.events, a.qas, a.tutors, a.books,
+a.play_games, a.shopping, a.assignments, a.lecture_notes, a.projects, a.past_tests, a.past_exams, a.events, a.qas, a.tutors, a.books,
 a.jobs, a.foods, a.party, a.myx, a.student_awareness, a.housing, a.teamUp, a.share {
     display: inline-block;
     width: 40px;
@@ -118,7 +118,7 @@ a.jobs, a.foods, a.party, a.myx, a.student_awareness, a.housing, a.teamUp, a.sha
 
 a.rss:hover, a.chatt:hover, a.share_story:hover, a.musics:hover, a.photos:hover, a.videos:hover, a.inbox:hover,
 a.friends:hover, a.profile:hover, a.setting:hover, a.phone_app:hover, a.play_games:hover, a.shopping:hover,
-a.assignments:hover, a.projects:hover, a.past_tests:hover, a.past_exams:hover, a.events:hover, a.qas:hover, a.tutors:hover,
+a.assignments:hover, a.lecture_notes:hover, a.projects:hover, a.past_tests:hover, a.past_exams:hover, a.events:hover, a.qas:hover, a.tutors:hover,
 a.books:hover, a.jobs:hover, a.foods:hover, a.party:hover, a.myx:hover, a.student_awareness:hover,
 a.housing:hover, a.teamUp:hover, a.share:hover {
     background-position: 1px 1px; /* simple css hover effect */
@@ -160,6 +160,9 @@ a.shopping {
     background: url(/images/footer_menu/shopping-1.png) no-repeat;
 }
 a.assignments {
+    background: url(/images/footer_menu/assignments-1.png) no-repeat;
+}
+a.lecture_notes {
     background: url(/images/footer_menu/assignments-1.png) no-repeat;
 }
 a.projects {
@@ -395,10 +398,10 @@ span.downarr a {
 }
 /*------ search for people--*/
 .feedback-panel {
-    width: 300px;
+    width: 330px;
     position:fixed;
     top:32%;
-    right:-301px;
+    right:-30px;
 }
 
 a.feedback-tab {
@@ -458,6 +461,21 @@ a.feedback-tab {
     background: url("/images/bgSearchF.png") no-repeat scroll left top transparent;
     padding-right: 0px;
 }
+#feedback_close_fr{
+    background-image: url("/images/feedback/pop500CH.gif");
+    height: 15px;
+    position: absolute;
+    right: 0;
+    top: -12.5pt;
+    width: 15px;
+    z-index: 99999;
+    cursor: pointer;
+    margin-right: 30px;
+}
+#feedback_close_fr:hover{
+    background-image: url("/images/feedback/pop500C.gif");
+    
+}
 /*------------------- friend search -------------*/
 .asslinkdownSt_UserR{
     background: #F6F6F6;
@@ -468,7 +486,6 @@ a.feedback-tab {
     font-size: 11px;
     margin-left: -188px;
     margin-top: 24px;
-    padding: 10px;
     position: absolute;
     z-index: 1000;
 }
@@ -479,9 +496,8 @@ a.feedback-tab {
     display:none;
     float: right;
     font-size: 11px;
-    margin-left: -188px;
+    margin-left: -33px;
     margin-top: 24px;
-    padding: 10px;
     position: absolute;
     z-index: 1000;
 }
@@ -491,8 +507,8 @@ a.feedback-tab {
     height: 8px;
     text-decoration: none;
     width: 8px;
-    margin-left: 322px;
-    margin-top: -5px;
+    margin-left: 268px;
+    margin-top: 2px;
     position: absolute;
     cursor: pointer;
 }

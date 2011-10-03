@@ -1,0 +1,80 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="/">Home</a><%= link_to "Quizzes", post_lecture_notes_path, :class => "abLink-detail" %>
+<% end -%>
+
+<% content_for :post_button do -%>
+  <%= render :partial => 'shared/post_button', :locals => {:new_post_path => @new_post_path} %>
+<% end -%>
+
+<% content_for :menu_sub do -%>
+  <%= render :partial => "submenu" %>
+<% end -%>
+
+<!--Content-->
+<div class="contMainL">
+  <div class="col451 lecture_note">
+    <div class="col451in">
+      <div class="col451Cont">
+
+        <%= display_flash_messages_with_raw %>
+  
+        <% if params[:department] == nil %>
+          <% params[:department] = @str_department %>
+        <% end %>
+  
+        <% if params[:year] == nil %>
+          <% params[:year] = @str_year %>
+        <% end %>
+
+        <!--Options-->
+        <%= show_options(@school, params) %>
+        <!--Options-->
+        
+        <!--List Items-->
+        <% @posts.each do |post| %>
+          <div id="post_<%= post.id %>"><%= render :partial => "item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => controller.controller_name} %></div>
+        <% end %>
+        <!--List Items-->
+
+        <!--Pagination-->
+        <div class="assPage">
+          <span class="numPage"><%= page_entries_info @posts %></span>
+          <%= will_paginate @posts %>
+        </div>
+        <!--Pagination-->
+        <div class="goTop"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="contMainC">
+  <!--Browser Due Date-->
+  <%= render :partial => "due_date" %>
+  <!--Browser Due Date-->
+
+  <!--Browser Interesting lecture_note-->
+  <%= render :partial => "interesting_lecture_notes"%>
+  <!--Browser Interesting lecture_note-->
+</div>
+
+<div class="contMainR">
+  <!--Browser by Subject-->
+  <%= render :partial => "shared/browser_by_subject" %>
+  <!--Browser by Subject-->
+
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+
+  <!--Request lecture_note-->
+  <div id="quick_post_homework">
+  	<%= render :partial => "form_request_lecture_note" %>
+  </div>
+  <!--Request lecture_note-->
+
+  <!--Recent Request lecture_notes-->
+  <%= render :partial => "recent_request_lecture_notes" %>
+  <!--Recent Request lecture_notes-->
+</div>
+<!--Content-->

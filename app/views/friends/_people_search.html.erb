@@ -1,8 +1,8 @@
 <div class="asslinkdownSt_UserL" id="search_people_wrap">
   <div class="flistRclose">
-    <a title="Close" class="vtip" id="flistRclose"></a>
+    <a title="Close" class="vvtip" id="flistRclose"></a>
   </div>
-  <div class="contMainL" style="width: 325px">
+  <div class="contMainL" style="width: 278px">
     <div class="col451s">
       <div class="col451ins">
         <div class="col451Cont">
@@ -13,4 +13,39 @@
     </div>
   </div>
 </div>
+<script>
+  /**
+ Vertigo Tip by www.vertigo-project.com
+ Requires jQuery
+   */
+  this.vvtip = function(){
+    this.xOffset = -10; // x distance from mouse
+    this.yOffset = 10; // y distance from mouse       
+    $(".vvtip").unbind().hover(function(e){
+      this.t = this.title;
+      this.title = '';
+      this.top = (e.pageY + yOffset);
+      this.left = (e.pageX + xOffset);
+        
+      $('body').append('<p id="vvtip" style="max-width: 250px;margin-left:-40px"><img id="vvtipArrow" />' + this.t + '</p>');
+        
+      $('p#vvtip #vvtipArrow').attr("src", '/images/vtip_arrow.png');
+      $('p#vvtip').css("top", this.top + "px").css("left", this.left + "px").fadeIn("slow");
+        
+    }, function(){
+      this.title = this.t;
+      $("p#vvtip").fadeOut("slow").remove();
+    }).mousemove(function(e){
+      this.top = (e.pageY + yOffset);
+      this.left = (e.pageX + xOffset);
+        
+      $("p#vvtip").css("top", this.top + "px").css("left", this.left + "px");
+    });
+    
+  };
 
+  $(document).ready(function(){
+    vvtip();
+  });
+
+</script>

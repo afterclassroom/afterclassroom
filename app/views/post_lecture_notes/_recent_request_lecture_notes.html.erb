@@ -1,0 +1,27 @@
+<% cache "recents_#{@class_name}_#{@school}" do %>
+<div class="col300 Recent">
+  <div class="col300in">
+    <h1 class="col300Title">Recent requested Quizzes</h1>
+    <div class="col300Cont">
+      <%
+      lecture_notes_recent = PostLectureNote.with_school(@school).recent.with_limit
+    %>
+      <% if lecture_notes_recent.size > 0 %>
+        <%
+        lecture_notes_recent.each do |asg|
+        %>
+          <div class="recentItem">
+            <div class="recentImg"><%= show_image_user_post(asg.post.user) %></div>
+            <div class="recentInf">
+              <div class="recentName"><%= show_user_post(asg.post.user) %></div>
+              <div class="recentUni"><span>at</span><%= link_to asg.post.school.name, :controller => "post_lecture_notes", :action => "index", :from_school => asg.post.school %></div>
+              <div class="recentDes"><%= link_to asg.post.title, post_lecture_note_path(asg) %></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="recentBottom">&nbsp;</div>
+    </div>
+  </div>
+</div>
+<% end %>
