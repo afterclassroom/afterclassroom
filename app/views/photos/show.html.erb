@@ -163,6 +163,41 @@
           }
         }
       });//end phototag
+
+    $('#img_to_tag').click(function(e){
+      var imageTop = $('#img_to_tag').offset().top;
+      var imageLeft = $('#img_to_tag').offset().left;
+
+      var imageWidth =  $('#img_to_tag').width();
+      var imageHeight = $('#img_to_tag').height();
+
+      var top = e.pageY - imageTop;
+      var left = e.pageX - imageLeft;
+
+      var tagBoxHeight = $('#photoTag-tag_temp').height();
+      var tagBoxWidth = $('#photoTag-tag_temp').width();
+
+      var formTop = top+tagBoxHeight+10;
+
+      //BEGIN check, whether form is rendered outside the image
+      if ( (e.pageY+tagBoxHeight) > (imageTop+imageHeight) ){
+        top = imageHeight - tagBoxHeight-6;//6 is the DIV's border width
+        formTop = top+tagBoxHeight+10;
+      }
+      if ( (e.pageX+tagBoxWidth) > (imageLeft+imageWidth) ){
+        left = imageWidth - tagBoxWidth-6;//6 is the DIV's border width
+      }
+      //END check, whether form is rendered outside the image
+
+
+      $('#tempTagBoxForm').css('left',left);
+      $('#tempTagBoxForm').css('top',formTop);
+      $('#photoTag-tag_temp').css('left',left);
+      $('#photoTag-tag_temp').css('top',top);
+
+      $('a#photoTag-add_77').click();
+    });
+
   
   });//end document.ready
 
@@ -175,7 +210,6 @@
       $('#photoTag-canvas_<%= @photo.id %>').width($('#img_to_tag').width());
     }
   });
-
 
   //END: code for tag user
   //BEGIN: show/hide verify panel
