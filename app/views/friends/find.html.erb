@@ -1,79 +1,79 @@
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => 'submenu' %>
+  <%= render :partial => 'submenu' %>
 <% end -%>
 <div class="contMainC">
-    <%= render :partial => "leftmenu" %>
+  <%= render :partial => "leftmenu" %>
 </div>
 <div class="contMainL">
-    <div class="col451 Friend">
-        <div class="col451in">
-            <div class="col451Cont">
-                <h2 class="titleH2">We'd like to help you find your friends</h2>
-                <%= display_flash_messages_with_raw %>
-                <div class="friCont">
-                    Your friends on AfterClassroom are the same friends, acquaintances and family members that you communicate with in the real world. You can use any of the tools on this page to find more friends.
-                </div>
-                <%= render :partial => "mailbox_list" %>
-                <div class="findPeo">
-                    <div class="findTop">
-                        <div class="findLeft">
-                            Find friends from contacts of your email accounts
-                        </div>
-                    </div>
-                    <div class="findDes">
-                        Searching your email account is the fastest way to find your friends on AterClassroom
-                    </div>
-                    <%= render :partial => "mail_form" %>
-                    <div class="findPass">
-                        AfterClassroom will not store your password.<!--<a href="#">Learn more</a>-->
-                    </div>
-                </div>
-<br/>
-								<div class="findPeo">
-                    <div class="findTop">
-                        <div class="findLeft">
-                            Find friends by email
-                        </div>
-                    </div>
-                    <%= render :partial => "find_friend_by_mail_form" %>
-                </div>
-<% if @search_results.size > 0 %>
-                <div class="sugges">
-                    Search results
-                </div>
-                <div class="suggesDes">
-                    Add people you know as friends and become a fan of public profiles you like
-                </div>
-                <div class="suggesList">
-                    <div class="suggesRow">
-                        <% @search_results.each do |u| %>
-                        <% if current_user != u %>
-                        <div class="suggesItem">
-                            <div class="AsDContImg">
-                                <%= show_image_user_post(u) %>
-                            </div>
-                            <div class="suggesName">
-                                <%= show_user_post(u) %>
-                            </div>
-                            <div class="suggesAdd">
-                                <span id="friend_status_<%= u.id %>"><%= show_invite_friend(u) %></span>
-                            </div>
-                        </div>
-                        <% end %>
-                        <% end %>
-                    </div>
-                </div>
-<% end %>
-            </div>
+  <div class="col451 Friend">
+    <div class="col451in">
+      <div class="col451Cont">
+        <h2 class="titleH2">We'd like to help you find your friends</h2>
+        <%= display_flash_messages_with_raw %>
+        <div class="friCont">
+          Your friends on AfterClassroom are the same friends, acquaintances and family members that you communicate with in the real world. You can use any of the tools on this page to find more friends.
         </div>
+        <%= render :partial => "mailbox_list" %>
+        <div class="findPeo">
+          <div class="findTop">
+            <div class="findLeft">
+              Find friends from contacts of your email accounts
+            </div>
+          </div>
+          <div class="findDes">
+            Searching your email account is the fastest way to find your friends on AterClassroom
+          </div>
+          <%= render :partial => "mail_form" %>
+          <div class="findPass">
+            AfterClassroom will not store your password.<!--<a href="#">Learn more</a>-->
+          </div>
+        </div>
+        <br/>
+        <div class="findPeo">
+          <div class="findTop">
+            <div class="findLeft">
+              Find friends by email
+            </div>
+          </div>
+          <%= render :partial => "find_friend_by_mail_form" %>
+        </div>
+        <% if @search_results.size > 0 %>
+          <div class="sugges">
+            Search results
+          </div>
+          <div class="suggesDes">
+            Add people you know as friends and become a fan of public profiles you like
+          </div>
+          <div class="suggesList">
+            <div class="suggesRow">
+              <% @search_results.each do |u| %>
+                <% if current_user != u %>
+                  <div class="suggesItem">
+                    <div class="AsDContImg">
+                      <%= show_image_user_post(u) %>
+                    </div>
+                    <div class="suggesName">
+                      <%= show_user_post(u) %>
+                    </div>
+                    <div class="suggesAdd">
+                      <span id="friend_status_<%= u.id %>"><%= show_invite_friend(u) %></span>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>
 <div class="contMainR">
-		<!--Find people-->
+  <!--Find people-->
   <%= render :partial => "find_people" %>
   <!--Find people-->
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>
 
