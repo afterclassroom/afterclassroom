@@ -322,7 +322,7 @@ class User < ActiveRecord::Base
     if suggest_ids.size > 0
       fofs_suggestion = User.find(:all, :limit => limit_suggestion, :conditions => ["id IN(#{suggest_ids.join(',')}) AND state='active'"], :order => "RAND()")
 			if fofs_suggestion.size == limit_suggestion
-				return limit_suggestion
+				return fofs_suggestion
 			else
 				people_suggestion = User.find(:all, :limit => (limit_suggestion - fofs_suggestion.size), :conditions => ["id NOT IN(#{people_ids.join(',')}) AND state='active'"], :order => "RAND()")
 				return fofs_suggestion + people_suggestion
