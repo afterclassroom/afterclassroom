@@ -164,7 +164,19 @@
         }
       });//end phototag
   
+  });//end document.ready
+
+  $('#img_to_tag').load(function(){
+    //fix the issue of google does not load image properly when hit f5
+    var userAgent = navigator.userAgent.toLowerCase(); 
+    $.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
+    if($.browser.chrome){
+      $('#photoTag-canvas_<%= @photo.id %>').height($('#img_to_tag').height()+25);
+      $('#photoTag-canvas_<%= @photo.id %>').width($('#img_to_tag').width());
+    }
   });
+
+
   //END: code for tag user
   //BEGIN: show/hide verify panel
   //approve_panel
