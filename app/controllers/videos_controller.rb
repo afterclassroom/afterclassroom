@@ -243,7 +243,7 @@ class VideosController < ApplicationController
             if ( (current_user != video.user) && (video.user != u) )
               #the above condition is "NOT TO SEND mail to video owner"
               #if any user tag OWNER to OWNER's video
-              QaSendMail.inform_vid_owner(u,video, current_user).deliver
+              QaSendMail.inform_vid_owner(u,video, current_user,taginfo.verify).deliver
             end
           end
           #if save then send mail to each user here, and to video.user

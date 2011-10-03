@@ -46,10 +46,16 @@ class QaSendMail < ActionMailer::Base
     mail :to => user.email, :subject => "You have been tagged!"
   end
 
-  def inform_vid_owner(user,video,tag_creator)
+  def inform_vid_owner(user,video,tag_creator, tag_verify_status)
     @video = video
     @tag_creator=tag_creator
     @user = user
+
+    @str_of_verify = ""
+    if tag_verify_status == false #FALSE means this tag need to be verified 
+      @str_of_verify = "Please review and authorize !"
+    end
+
     mail :to => @video.user.email, :subject => "New user has been tagged!"
   end
 
@@ -95,10 +101,16 @@ class QaSendMail < ActionMailer::Base
     mail :to => user.email, :subject => "You have been tagged!"
   end
 
-  def inform_photo_owner(user,photo,tag_creator)
+  def inform_photo_owner(user,photo,tag_creator,tag_verify_status)
     @photo = photo
     @tag_creator=tag_creator
     @user = user
+
+    @str_of_verify = ""
+    if tag_verify_status == false #FALSE means this tag need to be verified
+      @str_of_verify = "Please review and authorize"
+    end
+
 
     mail :to => @photo.user.email, :subject => "New user has been tagged!"
   end

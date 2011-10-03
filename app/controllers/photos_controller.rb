@@ -345,7 +345,7 @@ class PhotosController < ApplicationController
         #when there is no need to verify, there is no need to wait for authorization
         QaSendMail.tag_photo_notify(usr,photo, current_user,taginfo.verify).deliver
         if ( (current_user != photo.user) && (usr != current_user) )
-          QaSendMail.inform_photo_owner(usr,photo, current_user).deliver
+          QaSendMail.inform_photo_owner(usr,photo, current_user, taginfo.verify).deliver
         end
       end
     end
