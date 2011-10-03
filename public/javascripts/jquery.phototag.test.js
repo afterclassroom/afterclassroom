@@ -168,6 +168,11 @@
 		
         var registerEventsForAddTagLink = function( link, image, image_id ){
             $(link).click(function(e){
+		//DatNT note: setting this variable to true to allow user continue create tag
+		begintag = true;
+
+
+		
                 e.preventDefault();
                 if($('#' + options.tag.idPrefix + 'temp').length == 0){
                     hideAllTags(image_id);
