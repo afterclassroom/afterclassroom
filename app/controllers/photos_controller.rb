@@ -262,81 +262,13 @@ class PhotosController < ApplicationController
       arr1 << objx
     end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     #BEGIN: display tags has not VERIFIED by owner, but current_user is the tag_creator
     taginfo_pending = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ? and verify=? and tag_creator_id=?", params[:photo_id], "Photo", false, current_user.id])
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "val == "
-    puts "taginfo_pending.size ==#{taginfo_pending.size} "
-
-
 
     taginfo_pending_id = taginfo_pending.map(&:id)
     @res_pending = TagPhoto.find(:all, :conditions => ["tag_info_id in (?)", taginfo_pending_id])
     @res_pending.each do |tagphoto|
       tag_info = tagphoto.tag_info
-      #usr = current_user#because the condition of above statement, we know that current_user is the tag_creator
       usr = User.find(tag_info.tagable_user)
       objx={
         :id=>usr.id,  
