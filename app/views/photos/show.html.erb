@@ -42,6 +42,8 @@
             Loading tag info ... <img id="" style="height: 15px; margin-top: -1px; float: left; margin-left: 38px;" title="Next" src="/images/ajax-loader-a.gif"/>
           </div>
           <div id="container" style="text-align:center;">
+	    <a href="javascript:;" id="stop_tag" style="display:none;position:absolute; z-index:99;">Done</a>
+
             <p>
               <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
             </p>
@@ -99,6 +101,8 @@
 <script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide accept/refuse
   var noOfRemove=0;//this variable support for show/hide ckbox at tag-list
+  var begintag = false;//this variable support for phototag
+
   
   $(document).ready(function(){
     $('#accept_btn').click(function(){
@@ -142,6 +146,43 @@
       });        
     });
   }
+  function TagByClick(e){
+      if (begintag == true){
+        $('a#photoTag-add_<%= @photo.id %>').click();
+
+        var imageTop = $('#img_to_tag').offset().top;
+        var imageLeft = $('#img_to_tag').offset().left;
+
+        var imageWidth =  $('#img_to_tag').width();
+        var imageHeight = $('#img_to_tag').height();
+
+        var top = e.pageY - imageTop;
+        var left = e.pageX - imageLeft;
+
+        var tagBoxHeight = $('#photoTag-tag_temp').height();
+        var tagBoxWidth = $('#photoTag-tag_temp').width();
+
+        var formTop = top+tagBoxHeight+10;
+
+        //BEGIN check, whether form is rendered outside the image
+        if ( (e.pageY+tagBoxHeight) > (imageTop+imageHeight) ){
+          top = imageHeight - tagBoxHeight-6;//6 is the DIV's border width
+          formTop = top+tagBoxHeight+10;
+        }
+        if ( (e.pageX+tagBoxWidth) > (imageLeft+imageWidth) ){
+          left = imageWidth - tagBoxWidth-6;//6 is the DIV's border width
+        }
+        //END check, whether form is rendered outside the image
+
+
+        $('#tempTagBoxForm').css('left',left);
+        $('#tempTagBoxForm').css('top',formTop);
+        $('#photoTag-tag_temp').css('left',left);
+        $('#photoTag-tag_temp').css('top',top);
+
+        
+      }//end if 
+  }
   
   //BEGIN: code for tag user
   var strrequesTagstUrl = "<%= phototag_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
@@ -163,8 +204,33 @@
           }
         }
       });//end phototag
+
+
+    $('#stop_tag').click(function(){
+      $('#photoTag-add_<%= @photo.id %>').show();
+      $(this).hide();
+      begintag = false;
+      $('.inputCancel').click();
+    });
+
+    $('#img_to_tag').click(function(e){
+      TagByClick(e);
+    });//end image.click
+
+
   
+  });//end document.ready
+
+  $('#img_to_tag').load(function(){
+    //fix the issue of google does not load image properly when hit f5
+    var userAgent = navigator.userAgent.toLowerCase(); 
+    $.browser.chrome = /chrome/.test(navigator.userAgent.toLowerCase());
+    if($.browser.chrome){
+      $('#photoTag-canvas_<%= @photo.id %>').height($('#img_to_tag').height()+25);
+      $('#photoTag-canvas_<%= @photo.id %>').width($('#img_to_tag').width());
+    }
   });
+
   //END: code for tag user
   //BEGIN: show/hide verify panel
   //approve_panel
