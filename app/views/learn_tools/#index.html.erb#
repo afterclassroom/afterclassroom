@@ -1,0 +1,54 @@
+<style>
+  .pagination .previous_page{
+  background: url("/images/btmPagePre.png") no-repeat scroll left center transparent;
+  display: block;
+  height: 19px;
+  text-decoration: none;
+  width: 19px;
+  margin-right: 28px;
+  }
+  .pagination .next_page {
+  background: url("/images/btmPageNext.png") no-repeat scroll left center transparent;
+  display: block;
+  height: 19px;
+  text-decoration: none;
+  width: 19px;
+  float: right;
+  margin-top: -19px;
+  }
+</style>
+
+<%= render :partial => "top_learn" %>
+
+
+<div class="contDetL">
+  <div class="contDetLin">
+    <div class="learnLeft">
+      <%= render :partial => "components" %>
+
+      <%= render :partial => "featured" %>
+
+      <%= render :partial => "tool_like" %>
+
+      <%= render :partial => "bottom_data" %>
+
+
+      <div class="goTop"><a href="#">Top</a></div>
+    </div>
+  </div>
+</div>
+
+<div>test
+<span>another thing</span>
+</div>
+
+<%= render :partial => "ads/show_vertical_ads" %>
+
+
+<script type="text/javascript">
+<%#*$(document).ready(function(){%>
+<%#*$('#btn_add_tool_choice').click(function(){%>
+<%#*alert('a');%>
+<%#*});%>
+<%#*});%>
+</script>

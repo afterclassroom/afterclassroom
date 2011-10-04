@@ -101,6 +101,18 @@ class QaSendMail < ActionMailer::Base
     mail :to => user.email, :subject => "You have been tagged!"
   end
 
+  def inform_tag_creator(user,photo,tag_creator,tag_verify_status)
+    @photo = photo
+    @tag_creator=tag_creator
+    @user = user
+
+    @str_of_verify = ""
+    if tag_verify_status == false #FALSE means this tag need to be verified
+      @statement = "Please wait for the authorization from video owner."
+      mail :to => @tag_creator.email, :subject => "Your tag has been sent to photo owner!"
+    end
+  end
+
   def inform_photo_owner(user,photo,tag_creator,tag_verify_status)
     @photo = photo
     @tag_creator=tag_creator
