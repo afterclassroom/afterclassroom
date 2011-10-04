@@ -248,63 +248,66 @@ a.share {
 #tippast_exams {
     left: 126px;
 }
+#tiplecture_notes {
+    left: 176px;
+}
 #tipvideos {
     left: 175px;
 }
 #tipevents {
-    left: 176px;
+    left: 224px;
 }
 #tipqas {
-    left: 224px;
+    left: 273px;
 }
 #tipinbox {
     left: 225px;
 }
 #tiptutors {
-    left: 273px;
+    left: 324px;
 }
 #tipfriends {
     left: 274px;
 }
 #tipbooks {
-    left: 324px;
+    left: 372px;
 }
 #tipprofile {
     left: 322px;
 }
 #tipjobs {
-    left: 372px;
+    left: 422px;
 }
 #tipsetting {
     left: 372px;
 }
 #tipfoods {
-    left: 422px;
+    left: 470px;
 }
 #tipphone_app {
     left: 421px;
 }
 #tipparty {
-    left: 470px;
+    left: 518px;
 }
 #tipplay_games {
     left: 470px;
 }
 #tipmyx {
-    left: 518px;
+    left: 569px;
 }
 #tipshopping {
     /*--left: 517px; --*/
     left: 422px;
 }
 #tipstudent_awareness {
-    left: 569px;
-}
-#tiphousing {
     left: 617px;
 }
-#tipteamUp {
+#tiphousing {
     left: 665px;
+}
+#tipteamUp {
+    left: 715px;
 }
 #tipshare {
     /*-- left: 570px; --*/
@@ -402,10 +405,11 @@ span.downarr a {
     position:fixed;
     top:32%;
     right:-30px;
+    z-index: 10px;
 }
 
 a.feedback-tab {
-    background:transparent url('/images/bg-search-for-people-b.png') no-repeat scroll 0 0;
+    background:transparent url('/images/bg-find-for-friendsD.png') no-repeat scroll 0 0;
     display:block;
     height:192px;
     left:-28px;

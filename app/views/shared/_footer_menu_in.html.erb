@@ -36,6 +36,14 @@
           </ul>
         </div>
       </li>
+      <li><a class="lecture_notes" href="#"></a>
+        <div id="tiplecture_notes" class="tip">
+          <ul>
+            <li><%= link_to "Lecture Notes", post_lecture_notes_path %></li>
+            <li><%= link_to "| Post", new_post_lecture_note_path %></li>
+          </ul>
+        </div>
+      </li>
       <li><a class="events" href="#"></a>
         <div id="tipevents" class="tip">
           <ul>
@@ -162,38 +170,30 @@
 
     //show tooltip when the mouse is moved over a list element
     $("ul#social li").hover(function() {
-      $(this).find("div").fadeIn("fast").show(); //add 'show()'' for IE
+      $(this).find("div").show(); //add 'show()'' for IE
       $(this).mouseleave(function () { //hide tooltip when the mouse moves off of the element
         $(this).find("div").hide();
       });
     });
+    
+    $('.slideDiv').hide();
+   $('.mainDiv').hover(
+     function(){
+       $(this).find('.slideDiv').show('slide', { direction: 'left' }, 100)
+     },
+     function(){
+       $(this).find('.slideDiv').hide('slide', { direction: 'left' }, 100)
+     }
+   )
+
 
     //don't jump to #id link anchor
 
-    $(".assignments, .projects, .past_tests, .past_exams, .rss, .qas, .tutors, .books, .jobs, .foods, .party, .myx, .student_awareness, .housing, .teamUp, span.downarr a, span.showbar a").click(function() {
+    $(".assignments, .projects, .past_tests, .past_exams, .lecture_notes, .rss, .qas, .tutors, .books, .jobs, .foods, .party, .myx, .student_awareness, .housing, .teamUp, span.downarr a, span.showbar a").click(function() {
 
       return false;
     });
 
-    //show quick menu on click
-
-    $("span.menu_title a").click(function() {
-      if($(".quickmenu").is(':hidden')){ //if quick menu isn't visible
-        $(".quickmenu").fadeIn("fast"); //show menu on click
-      }
-      else if ($(".quickmenu").is(':visible')) { //if quick menu is visible
-        $(".quickmenu").fadeOut("fast"); //hide menu on click
-      }
-    });
-
-    //hide menu on casual click on the page
-    $(document).click(function() {
-      $(".quickmenu").fadeOut("fast");
-      $(".quickmenu").css({'vivibility': 'hidden'});
-    });
-    $('.quickmenu').click(function(event) {
-      event.stopPropagation(); //use .stopPropagation() method to avoid the closing of quick menu panel clicking on its elements
-    });
 
     $.fn.adjustPanel = function(){
       $(this).find("ul, .subpanel").css({ 'height' : 'auto'}); //Reset subpanel and ul height

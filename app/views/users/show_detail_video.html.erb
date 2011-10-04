@@ -29,7 +29,7 @@
         <div class="musicVideo01" style="display:none;background: url('/images/playFlowplayer.png');height:416px;width:554px;margin-top: 35px;">
         </div>
         <div class="musicVideo" style="margin-left:0px">
-          <%= render :partial => "videos/video_js" %>
+          <%= render :partial => "videos/videoswf_js" %>
         </div>
         <%= render :partial => "video_action" %>
         <%#= show_post_comments_video(@video) %>
@@ -51,27 +51,4 @@
     
   // Add VideoJS to all video tags on the page when the DOM is ready
   VideoJS.setupAllWhenReady();
-  $(document).ready(function(){
-    $('#comment').css({width:'98.5%'});
-    $('.btmAbuse a').click(function(){
-      $('.musicVideo01').show();
-      $('.musicVideo').hide();
-    });
-    $('.AsDcomRe3 a').click(function(){
-      $('.musicVideo01').show();
-      $('.musicVideo').hide();
-    });
-
-    $(function () {
-      $(window).scroll(function () {
-        if ($(this).scrollTop() > 200) {
-          $('#toolbar').show();
-          $('#toolbarbut').hide();
-        } else {
-          $('#toolbar').hide();
-          $('#toolbarbut').show();
-        }
-      });
-    });
-  });
 </script>
