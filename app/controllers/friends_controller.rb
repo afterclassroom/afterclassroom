@@ -40,7 +40,7 @@ class FriendsController < ApplicationController
     @mail_account = MailAccount.new(login, nil, type)
     user_id_suggestions = session[:user_id_suggestions]
     @search_results = []
-    @search_results = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})") if user_id_suggestions.size > 0
+    @search_results = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})") if user_id_suggestions and user_id_suggestions.size > 0
     session[:user_id_suggestions] = []
   end
   
