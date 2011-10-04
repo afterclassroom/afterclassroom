@@ -288,6 +288,7 @@
                         },
                         select: function( event, ui){
                             $('#hidden_tempInput_'+i).val(ui.item.id);
+			    $('.inputSubmit').click();
                         }
                     });
                 }
