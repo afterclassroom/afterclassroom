@@ -145,7 +145,32 @@
         $('#photoTag-tag_'+usr_id).css('opacity','0');
       });        
     });
+
+    //BEGIN: fix bug for ie8
+    if ($.browser.msie && $.browser.version == "8.0"){
+      //hidden all the tag
+      $('.innerTag').each(function(){
+        $(this).css('filter','alpha(opacity:1.0);');
+      });
+      //whenver the TAG is hovered, display it again
+      $('.photoTag-tag').each(function(){
+        $(this).hover( 
+          function(){
+                $(this).find('.innerTag').css('filter','');
+          },
+          function(){
+              $(this).find('.innerTag').css('filter','alpha(opacity:0.0)');
+          }
+        );//end hover
+      });//end each
+
+
+      //photoTag-tag
+    }//end if
+    //END: fix bug for ie8
+
   }
+
   function TagByClick(e){
       if (begintag == true){
         $('a#photoTag-add_<%= @photo.id %>').click();
