@@ -406,7 +406,9 @@ class PhotosController < ApplicationController
     list_friends << current_user
     puts "after == #{list_friends.size}"
 
-    friends = list_friends.select { |usr| usr.name.downcase.start_with? params[:term].to_s.downcase }
+    #friends = list_friends.select { |usr| usr.name.downcase.start_with? params[:term].to_s.downcase }
+    friends = list_friends.select { |usr| usr.name.downcase.include?(params[:term].to_s.downcase)  }
+    #if @var.include?("string")
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:photo_id],"Photo"])
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see
