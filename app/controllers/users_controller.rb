@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 include ApplicationHelper
 class UsersController < ApplicationController
@@ -304,9 +305,9 @@ class UsersController < ApplicationController
                 flash[:notice] = "Your request has been sent to author. The approval will be sent to your email."
               end
               if taginfo.save
-                QaSendMail.tag_vid_notify(u,video, current_user).deliver
+                QaSendMail.tag_vid_notify(u,video, current_user,taginfo.verify).deliver
                 if current_user != video.user
-                  QaSendMail.inform_vid_owner(u,video, current_user).deliver
+                  QaSendMail.inform_vid_owner(u,video, current_user,taginfo.verify).deliver
                 end
               end
               #if save then send mail to each user here, and to video.user

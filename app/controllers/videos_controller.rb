@@ -234,8 +234,6 @@ class VideosController < ApplicationController
             flash[:notice] = str_flash_msg
           end
           
-          
-          
           if taginfo.save
             #taginfo.verify equal to TRUE when no need to pass to verifying process
             #when there is no need to verify, there is no need to wait for authorization
