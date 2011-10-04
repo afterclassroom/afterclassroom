@@ -172,6 +172,8 @@
 		begintag = true;
 		$(this).hide();
 		$('#stop_tag').show();
+	        $('#stop_tag').css('margin-left',''+$('.AsDOr').width()/2+'px');
+
 		$('#stop_tag').css('display','');
 		//END DatNT note
 
