@@ -108,7 +108,7 @@ class QaSendMail < ActionMailer::Base
 
     @str_of_verify = ""
     if tag_verify_status == false #FALSE means this tag need to be verified
-      @statement = "Please wait for the authorization from video owner."
+      @statement = "Please wait for the authorization from owner."
       mail :to => @tag_creator.email, :subject => "Your tag has been sent to photo owner!"
     end
   end

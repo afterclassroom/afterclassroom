@@ -439,6 +439,7 @@ class PhotosController < ApplicationController
         u = User.find(i)
         if u
           QaSendMail.tag_photo_approved(u,photo,current_user).deliver
+          QaSendMail.tag_photo_approved_to_creator(u,photo,current_user).deliver
         end
       end #end each      
     else
@@ -448,6 +449,7 @@ class PhotosController < ApplicationController
         u = User.find(i)
         if u
           QaSendMail.tag_photo_removed(u,photo,current_user).deliver
+          QaSendMail.tag_photo_approved_to_creator(u,photo,current_user).deliver
         end
       end #end each      
     end

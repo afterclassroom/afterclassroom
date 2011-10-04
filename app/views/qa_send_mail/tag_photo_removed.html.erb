@@ -7,7 +7,7 @@
       
       <%= @photo.title == "" ? raw("<a href='#{user_photo_url(@photo.user, @photo)}'>photo</a>") : "photo: "  %> 
       <a href="<%= user_video_url(@photo.user, @photo) %>"><%= @photo.title %></a>'s
-      tag list
+      tag list <br />
 
 
       Yours sincerely, <br/>

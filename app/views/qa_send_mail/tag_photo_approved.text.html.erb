@@ -3,17 +3,15 @@
     <div id="detail_window">
       Hello <%= @user.name %>, <br/>
       
-      <a href="<%= user_url(@author) %>"><%= @author.name %></a> has added you to 
+      <a href="<%= user_url(@author) %>"><%= @author.name %></a> has approved you to 
       <%= @photo.title == "" ? raw("<a href='#{user_photo_url(@photo.user, @photo)}'>photo</a>") : "photo: "  %> 
       <a href="<%= user_video_url(@photo.user, @photo) %>"><%= @photo.title %></a>'s
       
-      tag list
+      tag list <br />
 
       Yours sincerely, <br/>
       Afterclassroom Support Team.
 
     </div>  
   </body>
-  
-  
 </html>
