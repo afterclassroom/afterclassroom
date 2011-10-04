@@ -9,7 +9,9 @@
 </div>
 <div class="contMainL">
     <div class="col571 proCen" id="user_wall">
+				<% if !@user.user_blocks.map(&:user_id_block).include?(current_user.id) %>
         <%= render :partial => "user_walls/wall_form_ajax" %>
+				<% end %>
         <div class="col571in">
             <div class="proCenCont">
                 <div id="wall_page_wrap">

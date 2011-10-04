@@ -7,6 +7,8 @@ class UserWall < ActiveRecord::Base
   has_one :user_wall_music, :dependent => :destroy
   has_one :user_wall_link, :dependent => :destroy
   has_one :user_wall_post, :dependent => :destroy
+	has_many :user_wall_blocks, :dependent => :destroy
+	has_many :user_wall_follows, :dependent => :destroy
 
   # Comments
   acts_as_commentable

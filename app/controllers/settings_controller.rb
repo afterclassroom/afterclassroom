@@ -202,6 +202,19 @@ class SettingsController < ApplicationController
 		logins = User.where(:login => username.downcase)
 		render :text => (logins.size > 0) ? "invalid" : "valid"
 	end
+
+	def blocks
+		@user_blocks = @user.user_blocks.order("created_at DESC")
+	end
+
+	def unblock
+		@user_id_block = params[:user_id_block]
+		user_block = UserBlock.find(@user_id_block)
+		if @user.user_blocks.include?(user_block)
+			user_block.destroy
+		end
+		render :layout => false
+	end
   
   private
   def require_current_user

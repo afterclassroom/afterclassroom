@@ -50,7 +50,7 @@ Afterclassroom::Application.routes.draw do
           :change_psw, :save_psw, :change_name,
           :save_name, :change_user_name, :save_user_name,
 					:change_email, :save_email,
-          :change_time_zone, :save_time_zone
+          :change_time_zone, :save_time_zone, :blocks, :unblock
         post :save_setting, :save_private_setting, :check_login
       end
     end

@@ -1,8 +1,9 @@
-<li><%= link_to raw("<span>Setting</span>"), setting_user_settings_path(current_user), :id => "#{controller.action_name}" %></li>
+<li><%= link_to raw("<span>Setting</span>"), setting_user_settings_path(current_user) %></li>
 <li><%= link_to raw("<span>Privacy</span>"), private_user_settings_path(current_user) %></li>
 <li><%= link_to raw("<span>Notifications</span>"), notifications_user_settings_path(current_user) %></li>
+<li><%= link_to raw("<span>Friends blocked</span>"), blocks_user_settings_path(current_user) %></li>
 <script type="text/javascript">
-  var array = ["setting","private","notifications"];
+  var array = ["setting","private","notifications","blocks"];
   $(document).ready(function(){
     var index = jQuery.inArray("<%= controller.action_name %>", array);
     $('div.settMenu').find('li').eq(index).addClass("settselect");

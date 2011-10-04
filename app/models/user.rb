@@ -55,6 +55,9 @@ class User < ActiveRecord::Base
   has_many :learntools, :dependent => :destroy
   has_many :my_tools, :dependent => :destroy
   has_many :tool_reviews, :dependent => :destroy
+	has_many :user_blocks, :dependent => :destroy
+	has_many :user_wall_blocks, :dependent => :destroy
+	has_many :user_wall_follows, :dependent => :destroy
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]
@@ -271,7 +274,7 @@ class User < ActiveRecord::Base
   end
   
   def my_walls
-    UserWall.find(:all, :conditions => ["user_id_post = ?", self.id], :order => "updated_at DESC")
+    UserWall.find(:all, :conditions => ["user_id_post = ? OR user_id = ?", self.id, self.id], :order => "updated_at DESC")
   end
   
   def fans_recent_update
@@ -334,11 +337,20 @@ class User < ActiveRecord::Base
   end
   
   def walls_with_setting
-    user_ids = [self.id] 
-    self.friend_of_friends.each do |f|
+    user_ids = [] 
+		user_id_blocks = self.user_blocks.map(&:user_id_block)
+		user_wall_id_blocks = self.user_wall_blocks.map(&:user_wall_id)
+    self.user_friends.each do |f|
       user_ids << f.id
     end
-    UserWall.where("user_id IN('#{user_ids.join("', '")}')").order("updated_at DESC")
+		if user_ids.size > 0
+			str_cond = "user_id_post IN('#{user_ids.join("', '")}')"
+			str_cond = str_cond + " AND user_id_post NOT IN('#{user_id_blocks.join("', '")}')" if user_id_blocks.size > 0
+			str_cond = str_cond + " AND id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
+		  return UserWall.where(str_cond).order("updated_at DESC")
+		else
+			return []
+		end
   end
   
   protected
