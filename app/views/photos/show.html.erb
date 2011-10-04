@@ -140,9 +140,19 @@
       $(this).hover(
       function () {
         $('#photoTag-tag_'+usr_id).css('opacity','0.8');
+        //BEGIN fix bug for ie8
+        if ($.browser.msie && $.browser.version == "8.0"){
+          $('#photoTag-tag_'+usr_id).find('.innerTag').css('filter','');
+        }
+        //end fix bug for ie8
       }, 
       function () {
         $('#photoTag-tag_'+usr_id).css('opacity','0');
+        //BEGIN fix bug for ie8
+        if ($.browser.msie && $.browser.version == "8.0"){
+          $('#photoTag-tag_'+usr_id).find('.innerTag').css('filter','alpha(opacity:0.0)');
+        }
+        //end fix bug for ie8
       });        
     });
 
