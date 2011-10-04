@@ -10,7 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20111003043746) do
+=======
+ActiveRecord::Schema.define(:version => 20111003094356) do
+>>>>>>> 711fa7156852ea8a4e8674afa352756cb073445d
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -578,6 +582,12 @@ ActiveRecord::Schema.define(:version => 20111003043746) do
     t.string  "rating_status"
   end
 
+  create_table "post_lecture_notes", :force => true do |t|
+    t.integer  "post_id"
+    t.string   "professor"
+    t.datetime "due_date"
+  end
+
   create_table "post_myxes", :force => true do |t|
     t.integer "post_id"
     t.string  "professor"
@@ -814,16 +824,6 @@ ActiveRecord::Schema.define(:version => 20111003043746) do
     t.string   "tagable_type"
     t.integer  "tagable_user"
     t.boolean  "verify"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tag_photos", :force => true do |t|
-    t.integer  "tag_info_id"
-    t.integer  "left"
-    t.integer  "top"
-    t.integer  "width"
-    t.integer  "height"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

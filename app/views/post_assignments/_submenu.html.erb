@@ -1,5 +1,5 @@
 <div class="menuRItem menuRselect">
-    <a href="#"><span class="span1"><span class="span2">Quizzes</span></span></a>
+    <a href="<%= post_assignments_path %>"><span class="span1"><span class="span2">Quizzes</span></span></a>
 </div>
 <div class="menuRItem">
     <a href="<%= post_projects_path %>"><span class="span1"><span class="span2">Projects</span></span></a>
@@ -9,6 +9,9 @@
 </div>
 <div class="menuRItem">
     <a href="<%= post_exams_path %>"><span class="span1"><span class="span2">Past Exams</span></span></a>
+</div>
+<div class="menuRItem" menuRselect>
+    <a href="<%= post_lecture_notes_path %>"><span class="span1"><span class="span2">Lecture Notes</span></span></a>
 </div>
 <% if logged_in? %>
 <div style="margin-left:20px" class="menuRItem">

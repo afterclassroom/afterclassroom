@@ -1,13 +1,13 @@
 <% if @users.results.size > 0 %>
-<% @users.each_hit_with_result do |hit, u| %>
-                    <%= render :partial => "item_people_suggestion", :locals => {:user => u, :name => raw(hit.highlight(:name) ? hit.highlight(:name).format { |fragment| content_tag(:em, fragment) } : u.name) } %>
-                    <% end %>
-<% if @users.results.size == 5 %>
-<div class="assPage">
-              <span class="numPage"><b><a href="javascript:$('#action_people_search').submit();">View more</a></b></span>
-            </div>
-<% end %>
+  <% @users.each_hit_with_result do |hit, u| %>
+    <%= render :partial => "item_people_suggestion", :locals => {:user => u, :name => raw(hit.highlight(:name) ? hit.highlight(:name).format { |fragment| content_tag(:em, fragment) } : u.name) } %>
+  <% end %>
+  <% if @users.results.size == 5 %>
+    <div class="assPage">
+      <span class="numPage"><b><a href="javascript:$('#action_people_search').submit();">View more</a></b></span>
+    </div>
+  <% end %>
 
 <% else %>
-	No entries found	
+          No entries found	
 <% end %>

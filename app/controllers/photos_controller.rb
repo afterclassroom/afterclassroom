@@ -368,7 +368,10 @@ class PhotosController < ApplicationController
         #when there is no need to verify, there is no need to wait for authorization
         QaSendMail.tag_photo_notify(usr,photo, current_user,taginfo.verify).deliver
         if ( (current_user != photo.user) && (usr != current_user) )
+          #inform user that he/she has been tagged
           QaSendMail.inform_photo_owner(usr,photo, current_user, taginfo.verify).deliver
+          #if author enable verify Seteting, inform tag_creator to wait for authorization
+          QaSendMail.inform_tag_creator(usr,photo, current_user, taginfo.verify).deliver
         end
       end
     end
@@ -403,7 +406,9 @@ class PhotosController < ApplicationController
     list_friends << current_user
     puts "after == #{list_friends.size}"
 
-    friends = list_friends.select { |usr| usr.name.downcase.start_with? params[:term].to_s.downcase }
+    #friends = list_friends.select { |usr| usr.name.downcase.start_with? params[:term].to_s.downcase }
+    friends = list_friends.select { |usr| usr.name.downcase.include?(params[:term].to_s.downcase)  }
+    #if @var.include?("string")
     
     tagged_friends = TagInfo.find(:all, :conditions => ["tagable_id=? and tagable_type=?",params[:photo_id],"Photo"])
     tagged_user_ids = tagged_friends.map(&:tagable_user) #array user_id of has been tagged so that should not display to user to see

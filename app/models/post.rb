@@ -16,6 +16,7 @@ class Post < ActiveRecord::Base
   has_one :post_project, :dependent => :destroy
   has_one :post_test, :dependent => :destroy
   has_one :post_exam, :dependent => :destroy
+  has_one :post_lecture_note, :dependent => :destroy
   has_one :post_myx, :dependent => :destroy
   has_one :post_tutor, :dependent => :destroy
   has_one :post_book, :dependent => :destroy

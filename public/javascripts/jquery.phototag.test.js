@@ -168,13 +168,30 @@
 		
         var registerEventsForAddTagLink = function( link, image, image_id ){
             $(link).click(function(e){
+		//BEGIN DatNT note: setting this variable to true to allow user continue create tag
+		begintag = true;
+		$(this).hide();
+		$('#stop_tag').show();
+		//detect firefox browser
+		if  ( $.browser.mozilla && $.browser.version > '2' ){
+		    //do nothing
+		}else {
+		    $('#stop_tag').css('margin-left',''+$('.AsDOr').width()/2+'px');
+		}
+	        
+
+		$('#stop_tag').css('display','');
+		//END DatNT note
+
+
+		
                 e.preventDefault();
                 if($('#' + options.tag.idPrefix + 'temp').length == 0){
                     hideAllTags(image_id);
                     $('#' + options.imageWrapBox.idPrefix + image_id).append(createTempTag(image));
                     prepareTempTagBox($('#' + options.tag.idPrefix + 'temp'),image,image_id);
-                }
-            });
+                }//end if
+            });//end click
         };
 		
         var dragOrResizeEventHandler = function( e, ui ){
@@ -271,6 +288,7 @@
                         },
                         select: function( event, ui){
                             $('#hidden_tempInput_'+i).val(ui.item.id);
+			    $('.inputSubmit').click();
                         }
                     });
                 }

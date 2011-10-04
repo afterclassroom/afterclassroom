@@ -1,0 +1,25 @@
+<div class="col195 dueDate">
+  <div class="col195in">
+    <h1 class="col195Title">Due date</h1>
+    <div class="col195Cont">
+      <%
+      lecture_notes_due_date = PostLectureNote.due_date.with_school(@school).with_limit
+    %>
+      <% if lecture_notes_due_date.size > 0 %>
+        <%
+        lecture_notes_due_date.each do |asg|
+        %>
+          <div class="dueDItem">
+            <div class="dueDTitle"><%= link_to truncate_words(asg.post.title, 4), post_lecture_note_path(asg.post.post_lecture_note) %></div>
+            <div class="dueDTime"><%= asg.due_date.strftime("%B %d, %Y")%></div>
+          </div>
+        <%
+        end
+      %>
+        <% if lecture_notes_due_date.size > LIMIT - 1 %>
+          <div class="dueDbutton"><%= link_to "View more Due Date", due_date_post_lecture_notes_path %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
