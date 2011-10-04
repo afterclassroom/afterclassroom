@@ -381,6 +381,19 @@ class UserWallsController < ApplicationController
     end
     render :layout => false
   end
+
+	def block_wall
+		@user_wall_id = params[:user_wall_id]
+		user_wall_block = UserWallBlock.find_or_create_by_user_id_and_user_wall_id(current_user.id, @user_wall_id)
+		render :layout => false
+	end
+
+	def block_user
+		@user_wall_id = params[:user_wall_id]
+		wall = UserWall.find(@user_wall_id)
+		user_block = UserBlock.find_or_create_by_user_id_and_user_id_block(current_user.id, wall.user_post.id)
+		render :layout => false
+	end
   
   private
   def get_domain(url)

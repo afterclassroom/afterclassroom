@@ -304,24 +304,22 @@ ActiveRecord::Schema.define(:version => 20111003094356) do
   end
 
   create_table "learntools", :force => true do |t|
-    t.integer  "user_id",               :null => false
-    t.integer  "learn_tool_cate_id",    :null => false
+    t.integer  "user_id",                            :null => false
+    t.integer  "learn_tool_cate_id",                 :null => false
     t.string   "name"
     t.text     "description"
     t.boolean  "verify"
     t.boolean  "authorize"
     t.boolean  "ac_api"
-    t.boolean  "atc_creator"
     t.text     "href"
-    t.text     "support_url"
     t.integer  "acc_play_no"
     t.integer  "client_application_id"
-    t.integer  "video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "tool_img_file_name"
     t.string   "tool_img_content_type"
     t.integer  "tool_img_file_size"
+    t.integer  "atc_creator",           :limit => 1, :null => false
   end
 
   create_table "messages", :force => true do |t|
@@ -386,6 +384,8 @@ ActiveRecord::Schema.define(:version => 20111003094356) do
   create_table "my_tools", :force => true do |t|
     t.integer  "user_id",      :null => false
     t.integer  "learntool_id", :null => false
+    t.boolean  "favorite"
+    t.boolean  "play_demo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -824,6 +824,16 @@ ActiveRecord::Schema.define(:version => 20111003094356) do
     t.datetime "updated_at"
   end
 
+  create_table "tag_photos", :force => true do |t|
+    t.integer  "tag_info_id"
+    t.integer  "left"
+    t.integer  "top"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -858,6 +868,13 @@ ActiveRecord::Schema.define(:version => 20111003094356) do
   create_table "tutor_types", :force => true do |t|
     t.string "name"
     t.string "label"
+  end
+
+  create_table "user_blocks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "user_id_block"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_educations", :force => true do |t|
@@ -901,6 +918,21 @@ ActiveRecord::Schema.define(:version => 20111003094356) do
     t.text     "message"
     t.boolean  "is_accepted"
     t.datetime "accepted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_wall_blocks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "user_wall_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_wall_follows", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "user_wall_id"
+    t.integer  "count_update"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -978,13 +1010,6 @@ ActiveRecord::Schema.define(:version => 20111003094356) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-
-  create_table "video_albums", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "name",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "video_files", :force => true do |t|
     t.integer  "video_id",                  :null => false

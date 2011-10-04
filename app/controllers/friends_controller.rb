@@ -1,6 +1,5 @@
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 require 'contacts'
-require 'email_veracity'
 require 'linkedin'
 
 class FriendsController < ApplicationController
@@ -41,7 +40,7 @@ class FriendsController < ApplicationController
     @mail_account = MailAccount.new(login, nil, type)
     user_id_suggestions = session[:user_id_suggestions]
     @search_results = []
-    @search_results = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})") if user_id_suggestions.size > 0
+    @search_results = User.find(:all, :conditions => "id IN(#{user_id_suggestions.join(", ")})") if user_id_suggestions and user_id_suggestions.size > 0
     session[:user_id_suggestions] = []
   end
   
@@ -158,17 +157,18 @@ class FriendsController < ApplicationController
         content << "<p>What's are you waiting for, it's absolutely FREE to join After Classroom.</p>"
       end
       contacts = params[:email_list].split(",")
-      #contacts = contacts.collect {|c| c.strip}
+      contacts = contacts.collect {|c| c.strip}
       mail_list = []
-      #begin
+      begin
         flash[:notice] = "Invite Friends Successfully."
-        contacts.collect {|c| mail_list << c if !c.nil? && c != "" && EmailVeracity::Address.new(c).valid? }
+        #contacts.collect {|c| mail_list << c if !c.nil? && c != "" && Email::Valid.address(c) }
+				contacts.collect {|c| mail_list << c if !c.nil? && c != ""}
         for email in mail_list
           send_email(email, content)
         end
-      #rescue
+      rescue
         # Nothing
-      #end
+      end
     end
     redirect_to :action => "invite"
   end
