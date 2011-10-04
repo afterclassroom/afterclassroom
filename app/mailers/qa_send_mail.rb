@@ -151,5 +151,21 @@ class QaSendMail < ActionMailer::Base
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for photo #{photo.title}"
   end
 
+  def tag_photo_approved_to_creator(tag_creator,photo,author,user)
+    @photo = photo
+    @tag_creator = tag_creator
+    @author = author
+    @user = user
 
+    mail :to => @tag_creator.email, :subject => "#{author.name} has approved your tag!"
+  end
+
+  def tag_photo_removed_to_creator(tag_creator,photo,author,user)
+    @photo = photo
+    @tag_creator = tag_creator
+    @author = author
+    @user = user
+
+    mail :to => @tag_creator.email, :subject => "#{author.name} has approved you tag!"
+  end
 end
