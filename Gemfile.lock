@@ -103,6 +103,7 @@ GEM
       rails
     domainatrix (0.0.10)
       addressable
+    email_valid (0.0.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape (0.0.4)
@@ -280,6 +281,7 @@ DEPENDENCIES
   delayed_job
   delayed_job_admin
   domainatrix
+  email_valid
   eventmachine
   exception_notification!
   faker
