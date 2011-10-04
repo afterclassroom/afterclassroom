@@ -23,22 +23,17 @@
 
   <div class="col300i slStory">
     <div class="col300in">
-      <h1 class="col300Title">
-        On this video
-      </h1> 
-      <% if current_user == @video.user && @tagged_users.size > 0 %>
-        <a href="javascript:;" style="color: #0A81C4;" id="manage_btn">Manage Tagged Users</a>
-      <% end %>
-      <% if current_user != @video.user %>
-        <% tagged_user_ids = @tagged_users.map(&:id) %>
-        <% if tagged_user_ids.include?(current_user.id) == true%>
-
-
-          <%= link_to "UnTag", {:controller => "videos", :action => "self_untag", :video_id => @video.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right;" %>
+      <h1 class="col300Title">On this video   
+        <% if current_user == @video.user && @tagged_users.size > 0 %>
+          <a href="javascript:;" style="color: #0A81C4;" id="manage_btn">Manage Tagged Users</a>
         <% end %>
-      <% end %>
-
-
+        <% if current_user != @video.user %>
+          <% tagged_user_ids = @tagged_users.map(&:id) %>
+          <% if tagged_user_ids.include?(current_user.id) == true%>
+            <%= link_to "UnTag", {:controller => "videos", :action => "self_untag", :video_id => @video.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right;" %>
+          <% end %>
+        <% end %>
+      </h1> 
       <% form_tag url_for(:controller => "users", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
         <%= hidden_field_tag "video_id", @video.id %>
         <%= hidden_field_tag "id", @user.id %>
@@ -55,19 +50,15 @@
                 <% end %><!-- end if -->
               </ul>
             </div>
-            <div class="onThisBtm" style="float: left; margin-left: -57px">
+            <div class="onThisBtm" style="float: left;">
               <a id="remove_btn" href="javascript:;" style="margin-left: 2px; display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: left;  padding-right: 2px;">Remove</a>
               <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page">
-                <img title="Next" src="/images/btmPagePre.png"/>
+                <img title="Next" src="/images/btmPagePre.png" style="border: 0 none;margin-left: 30px"/>
               </a>
               <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page">
-                <img title="Next" src="/images/btmPageNext.png"/>
+                <img title="Next" src="/images/btmPageNext.png" style="border: 0 none;"/>
               </a>
             </div>
-
-
-
-
           </div>
         </div>
       <% end %> <!-- end form -->       
@@ -91,7 +82,7 @@
     });
   
     jQuery(document).ready(function($) {
-      $('div.navigation').css({'width' : '178px', 'float' : 'left'});
+      $('div.navigation').css({'width' : '170px', 'float' : 'left'});
       var onMouseOutOpacity = 3.67;
       $('#thumbs ul.thumbs li, div.navigation a.pageLink').opacityrollover({
         mouseOutOpacity:   onMouseOutOpacity,
