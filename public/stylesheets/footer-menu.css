@@ -478,7 +478,7 @@ a.feedback-tab {
 }
 #feedback_close_fr:hover{
     background-image: url("/images/feedback/pop500C.gif");
-    
+
 }
 /*------------------- friend search -------------*/
 .asslinkdownSt_UserR{
@@ -561,4 +561,12 @@ a.feedback-tab {
     padding: 10px;
     position: absolute;
     z-index: 1000;
+}
+.ass_down a{
+    color: #969696;
+    text-decoration: none;
+    line-height: 17px;
+}
+.ass_down a:hover{
+    color: #DD0000;
 }
