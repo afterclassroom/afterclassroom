@@ -41,7 +41,7 @@
               <div class="postItemA" style="background:url(/images/upload_file.png) no-repeat scroll 66% 2px transparent">
                 <div id="divinputfile">
                   <div class="postItemC">
-                    <%= f.file_field :tool_img, :onchange => "$('#fakefilepc').val(this.value);", :style => "height: 25px;width:370px", :size => "23", :class => '{validate:{required:true, accept: "jpg|jpeg|png"}} filepc' %></div>
+                    <%= f.file_field :tool_img, :onchange => "$('#fakefilepc').val(this.value);", :style => "height: 25px;width:370px", :size => "23", :class => '{validate:{accept: "jpg|jpeg|png"}} filepc' %></div>
                 </div>
                 <div class="postUpfile">
                   <div id="fakeinputfile">
