@@ -44,6 +44,9 @@
     $('#btn_submit_dev').click(function(){
       SendToDev();
     });
+    $('div#TB_title').filter(':gt(0)').remove();
+    $('div#TB_ajaxContent').filter(':gt(0)').remove();
+
   });
   function SendToDev(){
     var result = $("#form_to_dev").validate({
