@@ -111,6 +111,8 @@ module ApplicationHelper
       path = file_path ? path : "/images/icons/icon_defaut/icon_test.png"
       when "post_exams"
       path = file_path ? path : "/images/icons/icon_defaut/icon_exam.png"
+      when "post_lecture_notes"
+      path = file_path ? path : "/images/icons/icon_defaut/lecture_note.jpg"
       when "post_events"
       path = file_path ? path : "/images/icons/icon_defaut/icon_event.png"
       when "post_qas"
