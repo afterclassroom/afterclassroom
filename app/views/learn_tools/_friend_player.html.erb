@@ -7,16 +7,36 @@
   </div>
   <div class="friImg">
 
+      <% @count = 0 %>
+      <% @strclass = "" %>
+
+    
     <div id="view_first_6">
       <% fr_user.first(6).each_with_index do |f_user,index| %>
-        <%= render :partial => "friend_item", :locals => {:index => index, :f_user => f_user} %>
+        <% @count = @count + 1 %>
+	<% if @count == 6 %>
+	<% count = 0 %>
+	<% @strclass = "friImgLast" %>
+	<% else %>
+	<% @strclass = "friImg1" %>
+	<% end %>
+
+      <%= render :partial => "friend_item", :locals => {:index => index, :f_user => f_user} %>
       <% end %>
       <% if fr_user.size == 0 %>
       There is no friend using this tool.
       <% end %>
     </div>
     <div id="val_for_see_all" style="display: none;">
+      <% @count = 0 %>
       <% fr_user.each_with_index do |f_user,index| %>
+        <% @count = @count + 1 %>
+	<% if @count == 6 %>
+	<% @count = 0 %>
+	<% @strclass = "friImgLast" %>
+	<% else %>
+	<% @strclass = "friImg1" %>
+	<% end %>
         <%= render :partial => "friend_item", :locals => {:index => index, :f_user => f_user} %>
       <% end %>
     </div>
