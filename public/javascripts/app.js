@@ -77,6 +77,9 @@ function getPostSearchType(post_type){
         case "Exams":
             action = "/post_exams/search";
             break;
+				case "Lecture Notes":
+            action = "/post_lecture_notes/search";
+            break;
         case "Events":
             action = "/post_events/search";
             break;
@@ -302,6 +305,7 @@ function showResult(){
     $('[rel=rate]').each(function(index){
         $(this).show();
     });
+
 
     
     $('#view_results').hide();

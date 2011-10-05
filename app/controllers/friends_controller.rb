@@ -74,7 +74,7 @@ class FriendsController < ApplicationController
     contacts = contacts.collect {|c| c.strip}
     begin
       flash[:notice] = "Find Friends Successfully."
-      friends = @user.user_friends.find(:all, :conditions => ["email IN('#{contacts.join("', '")}')"])
+      friends = User.find(:all, :conditions => ["email IN('#{contacts.join("', '")}')"])
       session[:user_id_suggestions] = friends.map(&:id)
     rescue
       Nothing

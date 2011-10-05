@@ -111,8 +111,10 @@ module ApplicationHelper
       path = file_path ? path : "/images/icons/icon_defaut/icon_test.png"
       when "post_exams"
       path = file_path ? path : "/images/icons/icon_defaut/icon_exam.png"
-      when "post_events"
-      path = file_path ? path : "/images/icons/icon_defaut/icon_event.png"
+			when "post_exams"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_exam.png"
+      when "post_lecture_notes"
+      path = file_path ? path : "/images/icons/icon_defaut/icon_assignment.png"
       when "post_qas"
       path = "/images/icons/icon_defaut/icon_qa.png"
       when "post_tutors"
@@ -194,6 +196,9 @@ module ApplicationHelper
       when "post_exams"
       type = PostCategory.find_by_class_name("PostExam").id
       search_post_path = search_post_exams_path
+			when "post_lecture_notes"
+      type = PostCategory.find_by_class_name("PostLectureNote").id
+      search_post_path = search_post_lecture_notes_path
       when "post_events"
       type = PostCategory.find_by_class_name("PostEvent").id
       search_post_path = search_post_events_path
@@ -768,14 +773,6 @@ module ApplicationHelper
           end
           title = obj.title
           sub_content = truncate_words(obj.content)
-          
-          when "PostAssignment"
-          link = post_assignment_path(obj)
-          img_link = link_to image_post_thumb("post_assignments", obj.post), link, :target => "_blank"
-          image = '<div class="assImg"><div>' + img_link + '</div></div>'
-          title = obj.post.title
-          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
-          
           when "Learntool"
             #<%= user_learn_tool_path(current_user,learntool) %>
           link = user_learn_tool_path(current_user,obj)
@@ -784,6 +781,12 @@ module ApplicationHelper
           image = get_image_wall(wall.id, img_link)
           title = obj.name
           sub_content = truncate_html(obj.description, :length => 100, :omission => '...')
+          when "PostAssignment"
+          link = post_assignment_path(obj)
+          img_link = link_to image_post_thumb("post_assignments", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
           when "PostProject"
           link = post_project_path(obj)
           img_link = link_to image_post_thumb("post_projects", obj.post), link, :target => "_blank"
@@ -799,6 +802,12 @@ module ApplicationHelper
           when "PostExam"
           link = post_exam_path(obj)
           img_link = link_to image_post_thumb("post_exams", obj.post), link, :target => "_blank"
+          image = '<div class="assImg"><div>' + img_link + '</div></div>'
+          title = obj.post.title
+          sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
+					when "PostLectureNote"
+          link = post_lecture_note_path(obj)
+          img_link = link_to image_post_thumb("post_lecture_notes", obj.post), link, :target => "_blank"
           image = '<div class="assImg"><div>' + img_link + '</div></div>'
           title = obj.post.title
           sub_content = truncate_html(obj.post.description, :length => 100, :omission => '...')
