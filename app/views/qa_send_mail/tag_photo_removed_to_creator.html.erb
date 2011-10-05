@@ -1,9 +1,11 @@
 <html>
   <body>
     <div id="detail_window">
-      Hello <%= @user.name %>, <br/>
+      Hello <%= @tag_creator.name %>, <br/>
       
-      <a href="<%= user_url(@author) %>"><%= @author.name %></a> has removed you from 
+      <a href="<%= user_url(@author) %>"><%= @author.name %></a> has removed your tag about
+
+	<a href="<%= user_url(@user) %>"><%= @user.name %></a> from
       
       <%= @photo.title == "" ? raw("<a href='#{user_photo_url(@photo.user, @photo)}'>photo</a>") : "photo: "  %> 
       <a href="<%= user_video_url(@photo.user, @photo) %>"><%= @photo.title %></a>'s
