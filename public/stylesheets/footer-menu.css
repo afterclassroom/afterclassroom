@@ -166,7 +166,7 @@ a.lecture_notes {
     background: url(/images/footer_menu/lecture_note04.png) no-repeat;
 }
 a.projects {
-    background: url(/images/footer_menu/projects-1.png) no-repeat scroll 3px 1px transparent;
+    background: url(/images/footer_menu/projects-1.png) no-repeat;
     border-bottom: none;
 }
 a.past_tests {
@@ -176,7 +176,7 @@ a.past_exams {
     background: url(/images/footer_menu/past_exams-1.png) no-repeat;
 }
 a.events {
-    background: url("/images/footer_menu/event-1.png") no-repeat scroll 3px 1px transparent;
+    background: url("/images/footer_menu/event-1.png") no-repeat;
     border-bottom: none;
 }
 a.qas {
@@ -569,4 +569,12 @@ a.feedback-tab {
 }
 .ass_down a:hover{
     color: #DD0000;
+}
+.friConnect11 a{
+    color: #6F6F63;
+    text-decoration: none;
+}
+.friConnect11 a:hover{
+    color: #DD0000;
+    text-decoration: none;
 }
