@@ -5,6 +5,6 @@
   </div>
   <div class="musicB">
   	<div style="margin-top: -6px;" class="musicS">State: <%= video.state %></div>
-    <div class="musicN"><%= check_box_tag "video_id", video.id %><%= link_to video.title, user_videos_url(current_user, video) %></div>
+    <div class="musicN"><%= check_box_tag "video_id", video.id %><%= link_to truncate(video.title, :length => 30, :omission => '...'), user_videos_url(current_user, video) %></div>
   </div>
 </div>

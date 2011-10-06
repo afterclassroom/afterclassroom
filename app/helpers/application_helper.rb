@@ -1062,6 +1062,11 @@ module ApplicationHelper
     content_tag(:span, image_tag("/images/ajax-loader-a.gif", :alt => '', :style => str_style, :id => str_id))
   end  
   
+  def get_chat_id(user, type)
+		user_id_chat = user.user_id_chats.where(:type => type).first
+		user_id_chat ? user_id_chat.chat_id : ""
+  end
+  
   private
   
   def link_to_require_login(str)
