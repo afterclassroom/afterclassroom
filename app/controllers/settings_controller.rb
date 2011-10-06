@@ -183,6 +183,16 @@ class SettingsController < ApplicationController
   def change_time_zone
     render :layout => false
   end
+
+	def change_chat_id
+
+	end
+
+	def save_chat_id
+		chat_id = params[:chat_id]
+		user_chat_id = params[:user_chat_id]
+	end
+  
   
   def save_time_zone
     if current_user == @user
@@ -215,7 +225,7 @@ class SettingsController < ApplicationController
 		end
 		render :layout => false
 	end
-  
+
   private
   def require_current_user
     @user ||= User.find(params[:user_id] || params[:id])

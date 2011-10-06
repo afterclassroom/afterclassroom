@@ -75,6 +75,17 @@
           <div class="settItemBR"><%= current_user.time_zone %></div>
         </div>
       </div>
+			<div class="settItem">
+        <div class="settItemT">
+          <div class="settItemTL">Chat ID</div>
+        </div>
+        <div class="settItemB">
+					<div class="settItemBL">Yahoo: <%= get_chat_id(current_user, "yahoo") %></div>
+          <div class="settItemBR"><div class="settItemTR">
+            <%=  link_to(raw("<span>change</span>"), "#{change_time_zone_user_settings_path(current_user)}?height=170&width=500&typeOfChange=psw", :class => "thickbox", :title => "Change Chat ID: Yahoo") %>
+          </div></div>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
