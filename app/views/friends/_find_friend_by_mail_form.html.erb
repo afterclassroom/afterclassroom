@@ -3,7 +3,7 @@
     <div class="findText" style="width: 105px">Your friend emails<br/><span style="font-weight: normal">(use commas to separate emails)</span></div>
     <div class="findIn"><%= text_area_tag "email_list", nil, :rows => 5, :style => "width:275px" %></div>
     <label style="display: none; margin-left: 250px;" for="email_list" generated="true" class="error">This field is required.</label>
-		<!-- label for="email_list" generated="true" class="myerror" style="display: none;">Please recorrect: </label -->
+
 </div>
 <div class="btmFind" style="padding-left:125px">
 <a href="javascript:;" id="submitFindForm">Find Friends</a>
@@ -15,6 +15,7 @@
       submitFormFind();
     });
   });
+
 
   function submitFormFind(){
     
