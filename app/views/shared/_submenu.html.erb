@@ -15,6 +15,7 @@
             <%= link_to raw('<span class="span1"><span class="span2">Photos</span></span>'), user_photos_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'photos' or controller.controller_name == 'photo_albums'}" %>
         </div>
         <div class="menuRItem mnMus">
+          <div class="stuItemR" style="position: absolute;margin-left:60px;color: #D00000"><span>1</span></div>
             <%= link_to raw('<span class="span1"><span class="span2">Musics</span></span>'), user_musics_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'musics' or controller.controller_name == 'music_albums'}" %>
         </div>
         <div class="menuRItem mnVi">
