@@ -82,6 +82,7 @@ javascripts:
     - public/javascripts/facebox.js
     - public/javascripts/youTubeEmbed-jquery.js
     - public/javascripts/jquery.swfobject.js
+    - public/javascripts/jquery.jtruncate.js
   photo:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js

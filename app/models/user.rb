@@ -275,7 +275,12 @@ class User < ActiveRecord::Base
   end
   
   def my_walls
-    UserWall.find(:all, :conditions => ["user_id_post = ? OR user_id = ?", self.id, self.id], :order => "updated_at DESC")
+		user_id_blocks = self.user_blocks.map(&:user_id_block)
+		user_wall_id_blocks = self.user_wall_blocks.map(&:user_wall_id)
+		str_cond = "user_id_post = #{self.id} OR user_id = #{self.id}"
+		str_cond = str_cond + " AND user_id NOT IN('#{user_id_blocks.join("', '")}')" if user_id_blocks.size > 0
+		str_cond = str_cond + " AND user_wall_id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
+		UserWall.where(str_cond).order("updated_at DESC")
   end
   
   def fans_recent_update
