@@ -10,6 +10,7 @@ class CreatePostCategories < ActiveRecord::Migration
       ["Tests", "PostTest"],
       ["Projects", "PostProject"],
       ["Exams", "PostExam"],
+			["Lecture Notes", "PostLectureNote"],
       ["QAs", "PostQa"],
       ["Tutors", "PostTutor"],
       ["Books", "PostBook"],
