@@ -19,7 +19,7 @@ most_viewed_videos = Video.with_users(u).with_limit.most_view %>
                 </div>
                 <div class="musicB">
                     <div class="musicN">
-                        <%= link_to vc.title, user_video_url(current_user, vc) %>
+                        <%= link_to truncate(vc.title, :length => 30, :omission => '...'), user_video_url(current_user, vc) %>
                     </div>
                 </div>
             </div>

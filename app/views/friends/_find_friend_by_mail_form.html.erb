@@ -2,7 +2,8 @@
 <div class="findItem" style="margin-top:10px">
     <div class="findText" style="width: 105px">Your friend emails<br/><span style="font-weight: normal">(use commas to separate emails)</span></div>
     <div class="findIn"><%= text_area_tag "email_list", nil, :rows => 5, :style => "width:275px" %></div>
-		<label for="email_list" generated="true" class="myerror" style="display: none;">Please recorrect: </label>
+    <label style="display: none; margin-left: 250px;" for="email_list" generated="true" class="error">This field is required.</label>
+
 </div>
 <div class="btmFind" style="padding-left:125px">
 <a href="javascript:;" id="submitFindForm">Find Friends</a>
@@ -14,6 +15,7 @@
       submitFormFind();
     });
   });
+
 
   function submitFormFind(){
     
@@ -33,7 +35,7 @@
           wrongEmail = substr[i];
         }
         else{
-          wrongEmail = wrongEmail +',' + substr[i];
+          wrongEmail = wrongEmail +', ' + substr[i];
         }
           
       } else {
@@ -41,15 +43,16 @@
       }
     }
     if (count == substr.length){
-      $('label.myerror').hide();
+      $('label.error').hide();
       $("#list_email").submit();
     } else {
-      $('label.myerror').html('Please recorrect: '+wrongEmail);
-      $('label.myerror').show();
+      $('label.error').html('Please recorrect: '+wrongEmail);
+      $('label.error').show();
     }
   }
   
 function validateEmail($email) {
+        $email = jQuery.trim($email);
 	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 	if( !emailReg.test( $email ) ) {
 		return false;
