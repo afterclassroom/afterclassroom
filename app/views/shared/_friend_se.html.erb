@@ -7,16 +7,25 @@
     <!--Find people-->
   </div>
 </div>
+<script type="text/javascript" language="javascript" src="/javascripts/jquery.cookie.js"></script>
 <script>
-  $('document').ready(function(){
+  $(document).ready(function(){  
     $('a.feedback-tab').hide();
     $('.feed_close,a#feedback_close_fr').click(function(){
       $('.feedback-panel').animate({right:'-331'}, 300);
       $('a.feedback-tab').show(300);
+      $.cookie('feedbackpanel', 'collapsed');      
     });
     $('a.feedback-tab').click(function(){
       $('.feedback-panel').animate({right:'-30'},  300);
       $('a.feedback-tab').hide();
+      $.cookie('feedbackpanel', 'expanded');
     });    
+     var feedbackpanel = $.cookie('feedbackpanel');
+    // Set the user's selection for the toolbar
+    if (feedbackpanel == 'collapsed') {
+      $(".feedback-panel").animate({right:'-331'}, 300);
+      $('a.feedback-tab').show(300);
+    };
   });
 </script>

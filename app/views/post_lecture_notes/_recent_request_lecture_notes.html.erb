@@ -1,7 +1,7 @@
 <% cache "recents_#{@class_name}_#{@school}" do %>
 <div class="col300 Recent">
   <div class="col300in">
-    <h1 class="col300Title">Recent requested Quizzes</h1>
+    <h1 class="col300Title">Recent requested Lecture Notes</h1>
     <div class="col300Cont">
       <%
       lecture_notes_recent = PostLectureNote.with_school(@school).recent.with_limit
