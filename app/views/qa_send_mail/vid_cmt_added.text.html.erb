@@ -4,11 +4,10 @@
       
       Hello <%= @user.name %>, <br/>
 
-      <a href="<%= user_url(@cmt_author) %>"><%= @cmt_author.name %></a> has added the following comment for the video <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>
-      <p>
-        Comment content: <br/>
-        <%= @content %>
-      </p> <br />
+      <a href="<%= user_url(@cmt_author) %>"><%= @cmt_author.name %></a> left comments on <%= @video.user.name %>'s video of you, click
+
+<a href="<%= user_video_url(@video.user, @video) %>">here</a> to see what's in it
+ <br />
       
       Yours sincerely, <br/>
       Afterclassroom Support Team.
