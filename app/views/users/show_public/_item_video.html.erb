@@ -4,6 +4,6 @@
     <div class="mostMSA"><%= link_to "", show_detail_video_user_url(video.user, :video_id => video.id), :class => "mostMSPlay" %></div>
   </div>
   <div class="musicB">
-    <div class="musicN"><%= link_to video.title, show_detail_video_user_url(video.user, :video_id => video.id) %></div>
+    <div class="musicN"><%= link_to truncate(video.title, :length => 30, :omission => '...'), show_detail_video_user_url(video.user, :video_id => video.id) %></div>
   </div>
 </div>
