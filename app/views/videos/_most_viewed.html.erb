@@ -2,34 +2,38 @@
 arr_user_id = []
 arr_user_id << current_user.id
 if current_user.user_friends
-current_user.user_friends.each do |friend|
-arr_user_id << friend.id if check_private_permission(friend, "my_videos")
-end
+  current_user.user_friends.each do |friend|
+    arr_user_id << friend.id if check_private_permission(friend, "my_videos")
+  end
 end
 u = arr_user_id.join(", ")
 most_viewed_videos = Video.with_users(u).with_limit.most_view %>
 <div class="col300 slStory">
-    <div class="col300in mostPho">
-        <h1 class="col300Title">Most viewed videos</h1>
-        <div class="musicRow" style="padding: 0px">
-            <% most_viewed_videos.each do |vc| %>
-            <div class="musicL" style="width: 90px;">
-                <div class="photoImg">
-                    <%= link_to display_image_video(vc), user_video_url(current_user, vc) %>
-                </div>
-                <div class="musicB">
-                    <div class="musicN">
-                        <%= link_to truncate(vc.title, :length => 30, :omission => '...'), user_video_url(current_user, vc) %>
-                    </div>
-                </div>
+  <div class="col300in mostPho">
+    <h1 class="col300Title">Most viewed videos</h1>
+    <div class="musicRow" style="padding: 0px">
+      <% most_viewed_videos.each do |vc| %>
+        <div class="musicL" style="width: 90px;">
+          <div class="photoImg">
+            <span class="photoImgMV">
+              <%= link_to display_image_video(vc), user_video_url(current_user, vc) %>
+            </span>
+          </div>
+          <div class="musicB">
+            <div class="musicN">
+              <span>
+                <%= link_to truncate(vc.title, :length => 30, :omission => '...'), user_video_url(current_user, vc), :style=>'width:85px' %>
+              </span>
             </div>
-            <% end %>
+          </div>
         </div>
+      <% end %>
     </div>
+  </div>
 </div>
 
 <style>
-  .photoImg div{
-    height: auto;
+  .photoImgMV div{
+    height: 55px;
   }
 </style>
