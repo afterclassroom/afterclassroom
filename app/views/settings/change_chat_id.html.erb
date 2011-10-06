@@ -1,0 +1,26 @@
+<div class="postCont" id="div_send_report">
+    <form id="editChatid" action="<%= save_chat_id_user_settings_path(current_user) %>">
+        <div class="postItem">
+            <div class="postItem1" style="width: 155px">
+                Please enter a new chat id*
+            </div>
+            <div class="postInp">
+                <input type="text" style="width:270px;" value="" id="chat_id" name="chat_id" class="required" minlength="2"/>
+            </div>
+        </div>
+        <div class="submit" style="padding-left: 165px;">
+            <a href="javascript:;" onclick="sendChange()">Send</a>
+        </div>
+        <div class="error" style="padding: 10px;">
+        </div>
+    </form>
+</div>
+<script language="javascript">
+    function sendChange(){
+        $("#editChatid").submit();
+    }
+    
+    $().ready(function(){
+        $("#editChatid").validate({});
+    });
+</script>
