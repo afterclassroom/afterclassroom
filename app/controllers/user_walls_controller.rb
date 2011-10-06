@@ -51,10 +51,10 @@ class UserWallsController < ApplicationController
     end
     
     case @type
-      when "profile"
-      @walls = current_user.my_walls.paginate :page => params[:page], :per_page => 10
+      when "student_lounge"
+      @walls = current_user.walls_with_setting.paginate :page => params[:page], :per_page => 10
     else
-      @walls = @user.user_walls.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
+      @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
     end
     
     respond_to do |format|
@@ -374,10 +374,10 @@ class UserWallsController < ApplicationController
     user = User.find(user_id)
     @page = params[:page]
     case @type
-      when "profile"
-      @walls = user.my_walls.paginate :page => params[:page], :per_page => 10
+      when "student_lounge"
+      @walls = current_user.walls_with_setting.paginate :page => params[:page], :per_page => 10
     else
-      @walls = user.user_walls.order("updated_at DESC").paginate :page => params[:page], :per_page => 10
+      @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
     end
     render :layout => false
   end

@@ -144,7 +144,7 @@ class UsersController < ApplicationController
 		if check_private_permission(@user, "my_lounges")
 		  @type = "show_lounge"
 		  @user = User.find(params[:id])
-		  @walls = @user.user_walls.find(:all, :order => "updated_at DESC").paginate :page => params[:page], :per_page => 10
+		  @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
 		  render :layout => "student_lounge"
 		else
 			redirect_to warning_user_path(@user)

@@ -17,7 +17,7 @@
       <%= render :partial => "user_walls/action", :locals => {:wall => wall}%>
     <% end %>
     <div class="AfterCl">
-      <%= show_user_post(wall.user_post) %><%= raw(" posted on #{show_user_post(wall.user)}'s Lounge") if @type == "profile" and wall.user != wall.user_post %>- <%= raw(wall.content) %>
+      <%= show_user_post(wall.user_post) %><%= raw(" posted on #{show_user_post(wall.user)}'s Lounge") if wall.user != wall.user_post %>- <%= raw(wall.content) %>
     </div>
     <!--Attach--><%= show_attach(wall) if wall.has_attach %><!--Attach-->
     <div class="assInfB">
