@@ -15,6 +15,10 @@
             <%= link_to raw('<span class="span1"><span class="span2">Photos</span></span>'), user_photos_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'photos' or controller.controller_name == 'photo_albums'}" %>
         </div>
         <div class="menuRItem mnMus">
+<<<<<<< HEAD
+=======
+          <%= render :partial => "shared/number_count" %>
+>>>>>>> 135c2db6e6f31cf42236d81d71acfcd52e0ff03c
             <%= link_to raw('<span class="span1"><span class="span2">Musics</span></span>'), user_musics_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'musics' or controller.controller_name == 'music_albums'}" %>
         </div>
         <div class="menuRItem mnVi">
