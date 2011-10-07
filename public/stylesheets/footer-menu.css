@@ -164,6 +164,7 @@ a.assignments {
 }
 a.lecture_notes {
     background: url(/images/footer_menu/lecture_note04.png) no-repeat;
+    height: 28px;
 }
 a.projects {
     background: url(/images/footer_menu/projects-1.png) no-repeat;
@@ -178,6 +179,7 @@ a.past_exams {
 a.events {
     background: url("/images/footer_menu/event-1.png") no-repeat;
     border-bottom: none;
+    height: 28px;
 }
 a.qas {
     background: url(/images/footer_menu/qas-1.png) no-repeat;
