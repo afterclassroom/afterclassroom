@@ -1,32 +1,17 @@
+<% if get_chat_id(user_post, "yahoo") != "" %>
 <div class="yahoo">
-  <a href="ymsgr:sendim?vietbeto">
-    <img src="http://opi.yahoo.com/online?u=vietbeto&m=g&t=0" style="border: 0 none;margin-top: 4px"/>
+  <a href="ymsgr:sendim?<%= get_chat_id(user_post, "yahoo") %>">
+    <img src="http://opi.yahoo.com/online?u=<%= get_chat_id(user_post, "yahoo") %>&m=g&t=0" style="border: 0 none;margin-top: 4px"/>
     <span style="margin-left: 14px;margin-top: 5px;position: absolute;">Yahoo</span>
   </a>
 </div>
+<% end %>
+<% if get_chat_id(user_post, "skype") != "" %>
 <div class="skype">
   <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
-  <a href="skype:bao.viet?call">
-    <img border="0" width="16" height="14" style="border: medium none;margin-top: 4px" alt="My status" src="http://mystatus.skype.com/smallicon/bao%2Eviet">
+  <a href="skype:<%= get_chat_id(user_post, "skype") %>?call">
+    <img border="0" width="16" height="14" style="border: medium none;margin-top: 4px" alt="My status" src="http://mystatus.skype.com/smallicon/<%= get_chat_id(user_post, "skype") %>">
     <span style="margin-left: 11px;margin-top: 5px;position: absolute;">Skype</span>
   </a>
 </div>
-<div class="msn">
-  <a target="_blank" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=6ff9fdea28428b49@apps.messenger.live.com&mkt=en-vn">
-    <img style="border-style: none;margin-top: 4px" src="http://messenger.services.live.com/users/6ff9fdea28428b49@apps.messenger.live.com/presenceimage?mkt=en-vn" width="16" height="16" />
-    <span style="margin-left: 11px;margin-top: 6px;position: absolute;">MSN</span>
-  </a>
-</div>
-<div class="gtalk" style="width:150px;margin-top: 4px">
-  <iframe src="http://www.google.com/talk/service/badge/Show?tk=z01q6amlqk4nc7eimc9vdfh6gbt76b2qfp16aqh4ovueiof9r8vqf2sn4f84hpffpsm1rd4e9alsng69k1ls6ql0lkfaeqg077p7v9hagj9ja5ol5l80jj4uq0opd4aluitf7tn919b12dvpkld2o9b2abppqu9qi7og1cjma&amp;w=150&amp;h=18" allowtransparency="true" frameborder="0" height="18" width="150"></iframe>
-</div>
-<div class="aol">
-  <script type="text/javascript" src="http://cdn.widgetserver.com/syndication/subscriber/InsertWidget.js"></script>
-  <script type="text/javascript">if (WIDGETBOX) WIDGETBOX.renderWidget('90a8b56a-7e90-43e9-8658-8abaa4c4ce8a');</script>
-  <span style=" cursor: pointer;margin-left: 55px;margin-top: -16px;position: absolute;">AOL</span>
-  <script>
-    $(document).ready(function(){
-      $('.aol embed').css('display','none');
-    });
-  </script>
-</div>
+<% end %>
