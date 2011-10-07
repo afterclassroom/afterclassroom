@@ -5,6 +5,6 @@
     <div class="friend" id="friend_status_<%= user.id %>"><%= show_invite_friend(user) %></div>
     <!--<div class="chat"><%#= show_invite_chat(user) %></div>-->
     <div class="mail"><%= show_email(post) %></div>
-    <%= render :partial => "shared/chat_yahoo" %>
+    <%= render :partial => "shared/chat_yahoo", :locals => {:user_post => user} %>
   <% end %>
 </div>

@@ -1063,7 +1063,7 @@ module ApplicationHelper
   end  
   
   def get_chat_id(user, type)
-		user_id_chat = user.user_id_chats.where(:type => type).first
+		user_id_chat = user.user_id_chats.where(:type_chat => type).first
 		user_id_chat ? user_id_chat.chat_id : ""
   end
   

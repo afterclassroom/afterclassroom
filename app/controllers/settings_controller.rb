@@ -185,15 +185,21 @@ class SettingsController < ApplicationController
   end
 
 	def change_chat_id
+		@type = params[:type]
 		render :layout => false
 	end
 
 	def save_chat_id
 		chat_id = params[:chat_id]
 		type = params[:type]
-		chat = UserIdChat.find_or_create_by_user_id_and_type(@user.id, type)
-		chat.update_attribute(:chat_id => chat_id)
-		flash[:notice] = "Your chat id has been updated."
+		chat = UserIdChat.find_or_create_by_user_id_and_type_chat(@user.id, type)
+		chat.chat_id = chat_id
+		chat.type_chat = type
+		if chat.save
+			flash[:notice] = "Your chat id has been updated."
+		else
+			flash[:error] = "Your chat id could not be updated."
+		end
 		redirect_to :action => "setting"
 	end
   

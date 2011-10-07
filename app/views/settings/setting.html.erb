@@ -85,6 +85,12 @@
             <%=  link_to(raw("<span>change</span>"), "#{change_chat_id_user_settings_path(current_user)}?height=170&width=500&type=yahoo", :class => "thickbox", :title => "Change Chat ID: Yahoo") %>
           </div></div>
         </div>
+			  <div class="settItemB">
+					<div class="settItemBL">Skype: <%= get_chat_id(current_user, "skype") %></div>
+          <div class="settItemBR"><div class="settItemTR">
+            <%=  link_to(raw("<span>change</span>"), "#{change_chat_id_user_settings_path(current_user)}?height=170&width=500&type=skype", :class => "thickbox", :title => "Change Chat ID: Skype") %>
+          </div></div>
+        </div>
       </div>
     </div>
   <% end %>
