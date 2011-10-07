@@ -866,7 +866,7 @@ ActiveRecord::Schema.define(:version => 20111006080142) do
   create_table "user_id_chats", :force => true do |t|
     t.integer "user_id"
     t.string  "chat_id"
-    t.string  "type"
+    t.string  "type_chat"
   end
 
   create_table "user_informations", :force => true do |t|

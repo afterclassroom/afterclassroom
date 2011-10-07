@@ -287,39 +287,56 @@ class UsersController < ApplicationController
     
     share_to = params[:share_to]
     user_ids = share_to.split(",")
-        if user_ids.size > 0 
-          user_ids.each do |i|
-            u = User.find(i)
-            if u
-              #adding selected user into TagInfo
-              taginfo = TagInfo.new()
-              taginfo.tag_creator_id = current_user.id
-              taginfo.tagable_id = params[:video_id]
-              taginfo.tagable_user = u.id
-              taginfo.tagable_type = "Video"
-              taginfo.verify = false
-              if current_user == video.user
-                taginfo.verify = true
-                flash[:notice] = "Your friend(s) has been tagged."
-              else
-                flash[:notice] = "Your request has been sent to author. The approval will be sent to your email."
-              end
-              if taginfo.save
-                QaSendMail.tag_vid_notify(u,video, current_user,taginfo.verify).deliver
-                if current_user != video.user
-                  QaSendMail.inform_vid_owner(u,video, current_user,taginfo.verify).deliver
+
+    str_flash_msg = "Your request has been sent to author. The approval will be sent to your email."
+
+    if user_ids.size > 0 
+      user_ids.each do |i|
+        u = User.find(i)
+        if u
+          #adding selected user into TagInfo
+          taginfo = TagInfo.new()
+          taginfo.tag_creator_id = current_user.id
+          taginfo.tagable_id = params[:video_id]
+          taginfo.tagable_user = u.id
+          taginfo.tagable_type = "Video"
+          taginfo.verify = false
+          if current_user == video.user
+            taginfo.verify = true
+            flash[:notice] = "Your friend(s) has been tagged."
+          else
+            pr = video.user.private_settings.where(:type_setting => "tag_video").first
+              if (pr != nil)
+                if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
+                  taginfo.verify = true
+                  str_flash_msg = "Your tag(s) have been created"
                 end
+              else#user has not setting this, considered NO VERIFY BY DEFAULT
+                taginfo.verify = true
               end
-              #if save then send mail to each user here, and to video.user
+            flash[:notice] = str_flash_msg
+          end
+
+          if taginfo.save
+            #taginfo.verify equal to TRUE when no need to pass to verifying process
+            #when there is no need to verify, there is no need to wait for authorization
+            QaSendMail.tag_vid_notify(u,video, current_user,taginfo.verify).deliver
+            if ( (current_user != video.user) && (video.user != u) )
+              #the above condition is "NOT TO SEND mail to video owner"
+              #if any user tag OWNER to OWNER's video
+              QaSendMail.inform_vid_owner(u,video, current_user,taginfo.verify).deliver
             end
-          end #end each
+          end
+          #if save then send mail to each user here, and to video.user
         end
+      end #end each
+    end
     
     
     redirect_to :controller=>'users', :action => 'show_detail_video', :video_id => params[:video_id], :id => params[:id]
   end
   
-def tag_decision
+  def tag_decision
     video = Video.find(params[:video_id])
     if params[:decision_id] == "ACCEPT"
       TagInfo.verify_vid(params[:checkbox],params[:video_id])
