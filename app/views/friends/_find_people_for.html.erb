@@ -74,7 +74,7 @@
   $().ready(function(){
     $('#search_people_txt').autocomplete({
       source: function(request, response) {
-        $('#btnFrie_submit').append('<%= show_ajax_loader("loader_id_fri","display: block; position: absolute; float: right; height: 19px; margin-top: -23.5px; margin-left: -25px;") %>');
+        $('#btnFrie_submit').append('<%= show_ajax_loader("loader_id_fri","display: block; position: absolute; float: right; height: 19px; margin-top: -22.5px; margin-left: 200px;") %>');
         $.ajax({
           type: 'GET',
           url: path_people,

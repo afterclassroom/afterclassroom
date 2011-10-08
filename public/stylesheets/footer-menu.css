@@ -503,7 +503,6 @@ a.feedback-tab {
     float: right;
     font-size: 11px;
     margin-left: -33px;
-    margin-top: 24px;
     position: absolute;
     z-index: 1000;
 }
