@@ -33,11 +33,17 @@
 </div>
 <script>
 $(document).ready(function(){
+
+  var pos = $('#avatar').offset();
     $(".proImg").hover(function(){
-      $(".del_wall", this).show();
+      $(".asslinkdownSt_User", this).css({
+          left: pos.left,
+          top : pos.top
+        }).show();
     }, function(){
-      $(".del_wall", this).hide();
+      $(".asslinkdownSt_User", this).hide();
     })
+
   });
   $(document).ready(function(){
     vtip()

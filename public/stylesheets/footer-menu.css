@@ -411,7 +411,7 @@ span.downarr a {
 }
 
 a.feedback-tab {
-    background:transparent url('/images/bg-find-for-friendsD.png') no-repeat scroll 0 0;
+    background:transparent url('/images/bg-search-for-people-b.png') no-repeat scroll 0 0;
     display:block;
     height:192px;
     left:-28px;
@@ -505,6 +505,7 @@ a.feedback-tab {
     margin-left: -33px;
     position: absolute;
     z-index: 1000;
+    margin-top: 24px;
 }
 .flistRclose a{
     background: url("/images/flistDelete.png") no-repeat scroll center center transparent;

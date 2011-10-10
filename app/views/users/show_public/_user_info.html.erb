@@ -29,18 +29,4 @@
     z-index: 1000;
   }
 </style>
-<script>
-  $(document).ready(function(){ 
-    $("img#avatar").load(function(){
-      var pos = $('#avatar').offset();
-      $(".proImg").hover(function(){
-        $(".asslinkdownSt_User", this).css({
-          left:pos.left
-        }).show();
-      }, function(){
-        $(".asslinkdownSt_User", this).hide();
-      })
-    });
-  });
-</script>
 <% end %>
