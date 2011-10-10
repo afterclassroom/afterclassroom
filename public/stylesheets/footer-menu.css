@@ -589,3 +589,17 @@ a.feedback-tab {
 .truncate_more_link:hover{
     color: #DD0000;
 }
+.asslinkdownSt_User{
+    background: none repeat scroll 0 0 white;
+    border: 1px solid;
+    color: #969696;
+    display: none;
+    float: right;
+    font-size: 11px;
+    margin-left: -122px;
+    margin-top: 0px;
+    padding: 10px;
+    position: absolute;
+    width: 100px;
+    z-index: 1000;
+  }
