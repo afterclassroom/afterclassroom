@@ -1,0 +1,51 @@
+<script type="text/javascript" src="/javascripts/flowplayer-3.2.6.min.js"></script>
+<!-- Begin VideoJS -->
+
+
+
+<div id="page">
+
+  <a  
+    href="<%= get_video_path(@video.video_file.video_attach.url) %>"
+    style="display:block;width:520px;height:330px"  
+    id="player"> 
+  </a> 
+</div>
+
+<script>
+
+  flowplayer("player", "/swfs/flowplayer.commercial-3.2.7.swf", {		// supply the configuration
+
+    clip : {			// Clip is an object, hence '{...}'
+      autoPlay: false,
+      autoBuffering: true
+    },
+    logo: {
+      url: '/images/logo.png',
+      fullscreenOnly: false,
+      opacity: 0,
+      top: '83%',
+      left: '20%'
+    },
+    // gradually show on mouseover
+    onMouseOver: function() {
+      this.getPlugin("logo").fadeTo(0.5, 1000);
+    },
+
+    // gradually hide on mouseout
+    onMouseOut: function() {
+      this.getPlugin("logo").fadeTo(0, 1000);
+    },
+
+
+
+    playlist: [			// playlist is an array of Clips, hence [...]
+
+      {url: '<%= get_video_path(@video.video_file.video_attach.url) %>'}	// small object as entry
+    ]
+
+
+    
+  });
+</script>
+
