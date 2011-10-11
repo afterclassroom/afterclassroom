@@ -67,6 +67,17 @@
 </div>
 
 <script type="text/javascript">
+function PostRateComment<%= post.id %>(){
+                    $.ajax({
+                        url: '<%= rate_cmt_post_books_url(current_user) %>',
+                        type: 'GET',
+                        dataType: 'html',
+                        data: 'id=123',
+                        success: function(html){
+alert('a');
+                        }
+                    });
+}
 function ShowDialog_<%= post.id %>(strtitle){
   $('#cmt_dialog_<%= post.id %>').show();
   $("#cmt_dialog_<%= post.id %>").dialog({
@@ -78,6 +89,7 @@ function ShowDialog_<%= post.id %>(strtitle){
       { text: "Ok",
         click: function() {
           $(this).dialog("close");
+          PostRateComment<%= post.id %>();
         }//end function click
       },//end button text
       { text: "Cancel",
