@@ -36,17 +36,7 @@
                 <div class="fav" id="item_favorite_<%= post.id %>">
                     <%= show_favorite("Post", post) %>
                 </div>
-                <div id="rate_<%= post.id %>">
-                    <%
-                    check = PostQa.find_rated_by(current_user).include?(post.post_qa) if logged_in?
-                    check ||= false %>
-                    <div class="qashdU">
-                        <%= show_rating(post.id, post.post_qa.total_good, get_controler_name_from_class_name(post.post_qa.class.name), check, 1) %>
-                    </div>
-                    <div class="qashdD">
-                        <%= show_rating(post.id, post.post_qa.total_bad, get_controler_name_from_class_name(post.post_qa.class.name), check, 0) %>
-                    </div>
-                </div>
+								<%= render :partial => "rating_action", :locals => {:post => post, :controller_name => controller.controller_name}%>
                 <div class="com">
                     <%= show_answer_button(post.id, post.comments.size) %>
                 </div>

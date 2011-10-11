@@ -538,7 +538,7 @@ module ApplicationHelper
       str = link_to_require_login(raw("<span class='span1'><span class='span2'>Be friend</span></span>"))
     else
       if current_user.user_friends.include?(user)
-        str = link_to(raw("<span class='span1'><span class='span2'>Unfriend</span></span>"), unfriend_user_friends_url(current_user, :friend_id => user), :remote => true)
+        str = link_to(raw("<span class='span1'><span class='span2'>Unfriend</span></span>"), unfriend_user_friends_url(current_user, :friend_id => user.id), :remote => true)
       else
         if current_user.user_invites_out.find_by_user_id_target(user.id)
           str = raw('<div class="txtsignup1">Still waiting</div>')
@@ -760,7 +760,7 @@ module ApplicationHelper
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           when "Video"
-          link = get_video_path(obj.video_file.video_attach.url)
+          link = show_detail_video_user_url(obj.user, :video_id => obj.id)
           img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
@@ -887,6 +887,74 @@ module ApplicationHelper
     end
     
     render :partial => "user_walls/wall_attach", :locals => {:wall_id => wall.id, :image => image, :title => title, :link => link, :sub_content => sub_content}
+  end
+
+	def show_rating_action(wall)
+    if wall.user_wall_post
+      post_type = wall.user_wall_post.post_type
+      post_id = wall.user_wall_post.post_id
+      
+      begin
+        obj = eval(post_type).find(post_id)
+      rescue
+        obj = nil
+      end
+      
+      if obj
+        case post_type
+          when "PhotoAlbum"
+          render :partial => "photo_albums/rating_action", :locals => {:post => obj, :controller_name => "photo_albums"}
+          when "Photo"
+          render :partial => "photos/rating_action", :locals => {:post => obj, :controller_name => "photos"}
+          when "MusicAlbum"
+          render :partial => "music_albums/rating_action", :locals => {:post => obj, :controller_name => "music_albums"}
+          when "Music"
+          render :partial => "musics/rating_action", :locals => {:post => obj, :controller_name => "musics"}
+          when "Video"
+          render :partial => "videos/rating_action", :locals => {:post => obj, :controller_name => "videos"}
+          when "Story"
+          render :partial => "stories/rating_action", :locals => {:post => obj, :controller_name => "stories"}
+          when "Learntool"
+          render :partial => "learn_tools/rating_action", :locals => {:post => obj, :controller_name => "learn_tools"}  
+          when "PostAssignment"
+          #render :partial => "post_assignments/rating_action", :locals => {:post => obj.post, :controller_name => "post_assignments"}
+          when "PostProject"
+          #render :partial => "post_projects/rating_action", :locals => {:post => obj.post, :controller_name => "post_projects"}
+          when "PostTest"
+          #render :partial => "post_tests/rating_action", :locals => {:post => obj.post, :controller_name => "post_tests"}
+          when "PostExam"
+          #render :partial => "post_exams/rating_action", :locals => {:post => obj.post, :controller_name => "post_exams"}
+					when "PostLectureNote"
+          #render :partial => "post_lecture_notes/rating_action", :locals => {:post => obj.post, :controller_name => "post_lecture_notes"}
+          when "PostEvent"
+          render :partial => "post_events/rating_action", :locals => {:post => obj.post, :controller_name => "post_events"}
+          when "PostQa"
+          render :partial => "post_qas/rating_action", :locals => {:post => obj.post, :controller_name => "post_qas"}
+          when "PostTutor"
+          render :partial => "post_tutors/rating_action", :locals => {:post => obj.post, :controller_name => "post_tutors"}
+          when "PostBook"
+          render :partial => "post_books/rating_action", :locals => {:post => obj.post, :controller_name => "post_books"}
+          when "PostJob"
+          render :partial => "post_jobs/rating_action", :locals => {:post => obj.post, :controller_name => "post_jobs"}
+          when "PostFood"
+          render :partial => "post_foods/rating_action", :locals => {:post => obj.post, :controller_name => "post_foods"}
+          when "PostParty"
+          render :partial => "post_parties/rating_action", :locals => {:post => obj.post, :controller_name => "post_parties"}
+          when "PostMyx"
+          render :partial => "post_myxes/rating_action", :locals => {:post => obj.post, :controller_name => "post_myxes"}
+          when "PostAwareness"
+          render :partial => "post_awareness/rating_action", :locals => {:post => obj.post, :controller_name => "post_awareness"}
+          when "PostHousing"
+          render :partial => "post_housings/rating_action", :locals => {:post => obj.post, :controller_name => "post_housings"}
+          when "PostTeamup"
+          render :partial => "post_teamups/rating_action", :locals => {:post => obj.post, :controller_name => "post_teamups"}
+          when "PostExamSchedule"
+          render :partial => "post_exam_schedules/rating_action", :locals => {:post => obj.post, :controller_name => "post_exam_schedules"}
+        end
+      end
+		else
+			render :partial => "user_walls/rating_action", :locals => {:wall => wall, :controller_name => "user_walls"}
+    end
   end
   
   def get_image_wall(wall_id, link)

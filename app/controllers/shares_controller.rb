@@ -10,7 +10,7 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.xml
   def index
-    @str_fr = "DESC"
+    @srt_fr = "DESC"
     @srt = "DESC"
     @srt = params[:sort] if params[:sort]
     @srt_fr = params[:sort_fr] if params[:sort_fr]

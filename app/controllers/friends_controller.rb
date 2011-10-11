@@ -146,7 +146,8 @@ class FriendsController < ApplicationController
         user_id_target == friend_id
       end
     end
-    current_user.user_invites.find(:first, :conditions => cond.to_sql).destroy
+    user_invite = current_user.user_invites.find(:first, :conditions => cond.to_sql)
+		user_invite.destroy if user_invite
   end
   
   def invite_by_list_email
@@ -212,7 +213,8 @@ class FriendsController < ApplicationController
         user_id_target == user_id_friend
       end
     end
-    @user.user_invites.find(:first, :conditions => cond.to_sql).destroy
+    user_invite = @user.user_invites.find(:first, :conditions => cond.to_sql)
+		user_invite.destroy if user_invite
     flash[:notice] = "Delete success."
     redirect_to :action => "index"
   end
@@ -281,9 +283,9 @@ class FriendsController < ApplicationController
     fan.user_id = current_user.id
     user_follow.fans << fan
     subject = "One more person added as your fan."
-    content = "Dear #{user.name},<br/>"
-    content << "<p>#{current_user.name} just became your fan. Your total fan now is #{user.fans.size}, click <a href='#{fan_user_profiles_url(user)}'>here</a> to review all of your fans.</p>"
-    send_notification(user, subject, content, "adds_me_as_a_friend")
+    content = "Dear #{user_follow.name},<br/>"
+    content << "<p>#{current_user.name} just became your fan. Your total fan now is #{user_follow.fans.size}, click <a href='#{fan_user_profiles_url(user_follow)}'>here</a> to review all of your fans.</p>"
+    send_notification(user_follow, subject, content, "adds_me_as_a_friend")
     render :text => "You are a fan"
   end
   
