@@ -4,7 +4,7 @@ $(document).ready(function(){
   $('#rate_<%= @post.id %>').find('a').each(function(){
     var strLink = $(this).attr('href');
       $(this).parent().click(function(){
-        ShowDialog_<%= @post.id %>("Rating summary");
+	ShowList_<%= @post.id %>("Rating summary");
       });
   });//end .each
 });//end ready event

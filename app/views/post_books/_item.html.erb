@@ -62,11 +62,13 @@
 </div>
 
 <div visible="false" id="cmt_dialog_<%= post.id %>" style="display:none;">
-
-<div id="desc_count<%= post.id %>">255 characters max</div>
-<%= text_area_tag "rate_content", "", :id => "rate_content#{post.id}", :style => "width:568px; height: 60px;" %>
-
+  <div id="desc_count<%= post.id %>">255 characters max</div>
+  <%= text_area_tag "rate_content", "", :id => "rate_content#{post.id}", :style => "width:568px; height: 60px;" %>
 </div>
+
+<div visible="false" id="lst_cmt_dlg<%= post.id %>" style="display:none;">
+</div>
+
 
 <script type="text/javascript">
 function PostRateComment<%= post.id %>(){
@@ -103,13 +105,31 @@ function ShowDialog_<%= post.id %>(strtitle){
   //$('.ui-dialog-titlebar').hide();
   $('.ui-dialog').draggable( "destroy" );
 }
+function ShowList_<%= post.id %>(strtitle){
+  $('#lst_cmt_dlg<%= post.id %>').show();
+  $("#lst_cmt_dlg<%= post.id %>").dialog({
+    title: strtitle,
+    modal: true,
+    width: 600,
+    height: 600,
+    buttons: [
+      { text: "Close",
+        click: function() {
+          $(this).dialog("close");
+        }//end function click
+      }//end button text
+    ] //end button
+  });
+  //$('.ui-dialog-titlebar').hide();
+  $('.ui-dialog').draggable( "destroy" );
+}
 
 $(document).ready(function(){
   $('#rate_<%= post.id %>').find('a').each(function(){
     var strLink = $(this).attr('href');
     if (strLink == 'javascript:;' ){
       $(this).parent().click(function(){
-        ShowDialog_<%= post.id %>("Rating summary");
+        ShowList_<%= post.id %>("Rating summary");
       });
     }
     else{
