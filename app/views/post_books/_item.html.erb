@@ -62,21 +62,22 @@
 </div>
 
 <div visible="false" id="cmt_dialog_<%= post.id %>" style="display:none;">
-<%= text_area_tag "rate_abc", "", :id => "rate_content", :style => "width:568px; height: 280px;" %>
+
+<div id="desc_count<%= post.id %>">255 characters max</div>
+<%= text_area_tag "rate_content", "", :id => "rate_content#{post.id}", :style => "width:568px; height: 60px;" %>
 
 </div>
 
 <script type="text/javascript">
 function PostRateComment<%= post.id %>(){
-                    $.ajax({
-                        url: '<%= rate_cmt_post_books_url(current_user) %>',
-                        type: 'GET',
-                        dataType: 'html',
-                        data: 'id=123',
-                        success: function(html){
-alert('a');
-                        }
-                    });
+  $.ajax({
+    url: '<%= rate_cmt_post_books_url(current_user) %>',
+    type: 'GET',
+    dataType: 'html',
+    data: 'id=123',
+    success: function(html){
+    }
+  });
 }
 function ShowDialog_<%= post.id %>(strtitle){
   $('#cmt_dialog_<%= post.id %>').show();
@@ -84,7 +85,7 @@ function ShowDialog_<%= post.id %>(strtitle){
     title: strtitle,
     modal: true,
     width: 600,
-    height: 400,
+    height: 200,
     buttons: [
       { text: "Ok",
         click: function() {
@@ -121,5 +122,16 @@ $(document).ready(function(){
       });
     }
   });//end .each
+  //BEGIN limit input to 255 characters
+    $('#rate_content<%= post.id %>').keyup(function(){
+      var len = this.value.length;
+      if (len >= 255) {
+        this.value = this.value.substring(0, 255);
+      }
+      $('#desc_count<%= post.id %>').text("255 characters max - Current: "+len+" character")
+    });
+
+  //END limit input to 255 characters
+
 });//end ready event
 </script>

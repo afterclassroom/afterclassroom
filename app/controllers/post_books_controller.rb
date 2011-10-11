@@ -54,22 +54,22 @@ class PostBooksController < ApplicationController
     rating = params[:rating]
     @post = Post.find(params[:post_id])
     post_b = @post.post_book
-    post_b.rate rating.to_i, current_user
+    # post_b.rate rating.to_i, current_user
     # Update rating status
-    score_good = post_b.score_good
-    score_bad = post_b.score_bad
+    # score_good = post_b.score_good
+    # score_bad = post_b.score_bad
     
-    if score_good > score_bad
-      status = "Good"
-    elsif score_good == score_bad
-      status = "Require Rating"
-    else
-      status = "Bad"
-    end
+    # if score_good > score_bad
+    #   status = "Good"
+    # elsif score_good == score_bad
+    #   status = "Require Rating"
+    # else
+    #   status = "Bad"
+    # end
     
-    post_b.rating_status = status
+    # post_b.rating_status = status
     
-    post_b.save
+    # post_b.save
     
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_b.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_b.total_bad}</a></div>"
