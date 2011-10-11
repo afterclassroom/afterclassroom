@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostBooksController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
@@ -50,9 +51,9 @@ class PostBooksController < ApplicationController
   end
   
   def rate
-    rating = params[:rating]
-    @post = Post.find(params[:post_id])
-    post_b = @post.post_book
+     rating = params[:rating]
+     @post = Post.find(params[:post_id])
+     post_b = @post.post_book
     post_b.rate rating.to_i, current_user
     # Update rating status
     score_good = post_b.score_good
