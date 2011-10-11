@@ -243,7 +243,7 @@ Afterclassroom::Application.routes.draw do
 
   resources :post_books do
     collection do
-      get :search, :tag, :good_books, :dont_buy, :rate, :require_rate
+      get :search, :tag, :good_books, :dont_buy, :rate, :require_rate, :rate_cmt
     end
   end
 

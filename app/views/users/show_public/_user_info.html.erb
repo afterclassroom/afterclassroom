@@ -1,46 +1,53 @@
 <% if logged_in? %>
-<div class="asslinkdownSt_User">
-  <div class="making wall_page">
-    <a title="Intro friends for <%= @user.name %>" class="thickbox" href="/user_walls/match_making_box?user_id_post=<%= @user.id.to_s %>?&height=350&width=510" id="myaclick">Intro Friend</a>
+  <div class="asslinkdownSt_User">
+    <div class="making wall_page">
+      <a title="Intro friends for <%= @user.name %>" class="thickbox" href="/user_walls/match_making_box?user_id_post=<%= @user.id.to_s %>?&height=350&width=510" id="myaclick">Intro Friend</a>
+    </div>
+    <div class="like wall_page">
+      <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= @user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
+    </div>
+    <div class="love wall_page">
+      <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= @user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
+    </div>
+    <div class="hate wall_page">
+      <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= @user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
+    </div>
   </div>
-  <div class="like wall_page">
-    <a title="I like you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+like+you&user_id=<%= @user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I like you</a>
-  </div>
-  <div class="love wall_page">
-    <a title="I love you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+love+you&user_id=<%= @user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I love you</a>
-  </div>
-  <div class="hate wall_page">
-    <a title="I hate you" class="thickbox" href="/user_walls/passion_box?&height=288&width=500&subject=I+hate+you&user_id=<%= @user.id.to_s %>&user_id_post=<%= current_user.id.to_s %>" id="myaclick">I hate you</a>
-  </div>
-</div>
-<style>
-  .asslinkdownSt_User{
-    background: none repeat scroll 0 0 white;
-    border: 1px solid;
-    color: #969696;
-    display: none;
-    float: right;
-    font-size: 11px;
-    margin-left: -122px;
-    margin-top: 0px;
-    padding: 10px;
-    position: absolute;
-    width: 100px;
-    z-index: 1000;
-  }
-</style>
+<% end %>
 <script>
-  $(document).ready(function(){ 
+  function checkWeb()
+  {
+    if ($.browser.mozilla){    
+      checkWebFireFox();}
+    if ($.browser.chrome){    
+      checkWebFireFox();}
+  }
+  function checkWebFireFox() { 
+    var posi = $("img#avatar").offset();
+    $(".proImg").hover(function(){       
+      $(".asslinkdownSt_User").css({
+        "top":posi.top,
+        "left":posi.left
+      }).show();
+    }, function(){
+      $(".asslinkdownSt_User").hide();               
+    });
+  }
+  function checkWebChrom(){
     $("img#avatar").load(function(){
-      var pos = $('#avatar').offset();
-      $(".proImg").hover(function(){
-        $(".asslinkdownSt_User", this).css({
-          left:pos.left
+      var posi = $("img#avatar").offset();
+      $(".proImg").hover(function(){       
+        $(".asslinkdownSt_User").css({
+          "top":posi.top,
+          "left":posi.left
         }).show();
       }, function(){
-        $(".asslinkdownSt_User", this).hide();
-      })
+        $(".asslinkdownSt_User").hide();               
+      });
     });
+  } 
+  $(document).ready(function(){ 
+    checkWebFireFox();
+    checkWebChrom(); 
   });
 </script>
-<% end %>

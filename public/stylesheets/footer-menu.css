@@ -164,6 +164,7 @@ a.assignments {
 }
 a.lecture_notes {
     background: url(/images/footer_menu/lecture_note04.png) no-repeat;
+    height: 28px;
 }
 a.projects {
     background: url(/images/footer_menu/projects-1.png) no-repeat;
@@ -178,6 +179,7 @@ a.past_exams {
 a.events {
     background: url("/images/footer_menu/event-1.png") no-repeat;
     border-bottom: none;
+    height: 28px;
 }
 a.qas {
     background: url(/images/footer_menu/qas-1.png) no-repeat;
@@ -409,7 +411,7 @@ span.downarr a {
 }
 
 a.feedback-tab {
-    background:transparent url('/images/bg-find-for-friendsD.png') no-repeat scroll 0 0;
+    background:transparent url('/images/bg-search-for-people-b.png') no-repeat scroll 0 0;
     display:block;
     height:192px;
     left:-28px;
@@ -501,9 +503,9 @@ a.feedback-tab {
     float: right;
     font-size: 11px;
     margin-left: -33px;
-    margin-top: 24px;
     position: absolute;
     z-index: 1000;
+    margin-top: 24px;
 }
 .flistRclose a{
     background: url("/images/flistDelete.png") no-repeat scroll center center transparent;
@@ -587,3 +589,17 @@ a.feedback-tab {
 .truncate_more_link:hover{
     color: #DD0000;
 }
+.asslinkdownSt_User{
+    background: none repeat scroll 0 0 white;
+    border: 1px solid;
+    color: #969696;
+    display: none;
+    float: right;
+    font-size: 11px;
+    margin-left: -122px;
+    margin-top: 0px;
+    padding: 10px;
+    position: absolute;
+    width: 100px;
+    z-index: 1000;
+  }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=620">
+    <title>Simple HTML5 Player Demo</title>
+    <link rel="stylesheet" href="/stylesheets/simpleplayer.css" type="text/css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script> 
+    <script src="/javascripts/jquery.simpleplayer.js"></script>
+    
+</head>
+<body>
+    <h1>Simple HTML5 Audio Player Demo</h1>
+    <% @music_album.musics.each do |m| %>
+    <div>
+        <audio class="player_<%= m.id %>" src="<%= m.music_attach.url %>">  
+          Your browser does not support the <code>audio</code> element.  
+        </audio>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var settings = {
+                progressbarWidth: '200px',
+                progressbarHeight: '5px',
+                progressbarColor: '#22ccff',
+                progressbarBGColor: '#eeeeee',
+                defaultVolume: 0.8
+            };
+            $(".player_<%= m.id %>").player(settings);
+        });
+    </script>
+<%  end %>
+</body>
+</html>
+
+
+
+<%# @music_album.musics.each do |m| %>
+<%#*<div id="playlist_<%= m.id %>">%>
+    <%#*<div href="<%= m.music_attach.url %>" style="width: 400px;" class="item">%>
+        <%#*<div>%>
+            <%#*<div class="fr duration">%>
+                <%#= m.length_in_seconds %>
+            <%#*</div>%>
+            <%#*<div class="btn play">%>
+            <%#*</div>%>
+            <%#*<div class="title" style="height:15px">%>
+                <%#*<b><%= truncate(((m.title == "" or m.title == nil) ? m.music_attach_file_name : m.title), :length => 45, :omission => '...' ) %></b>%>
+            <%#*</div>%>
+        <%#*</div>%>
+        <%#*<div class="player inactive"></div>%>
+    <%#*</div>%>
+<%#*</div>%>
+<%# end %>
+<%# if @music_album.musics.size > 0 %>
+<%#*<div style="text-align: center;margin-top: 15px;">%>
+    <%#*<a href="javascript:void(0);" onClick="$('#playlist_list').playlist('prev');">Prev</a>%>
+    <%#*<a href="javascript:void(0);" onClick="$('#playlist_list').playlist('next');">Next</a>%>
+    <%#*<a href="javascript:void(0);" onClick="$('#playlist_list').playlist('pause');">Pause</a>%>
+    <%#*<a href="javascript:void(0);" onClick="$('#playlist_list').playlist('play');">Play</a>%>
+<%#*</div>%>
+<%# else %>
+<%#*<div style="text-align: center;">%>
+    <%#*No music%>
+<%#*</div>%>
+<%# end %>
+<%#*<script type="text/javascript">%>
+    <%#*$(document).ready(function(){%>
+        <%#*$("#playlist_list").playlist({%>
+            <%#*playerurl: "/swfs/drplayer.swf"%>
+        <%#*});%>
+    <%#*});%>
+<%#*</script>%>

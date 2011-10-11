@@ -4,9 +4,9 @@
 
       <div class="proImg">
         <%= raw("<div class=offsetImg>#{image_tag(@user.avatar.url(:medium), {:id => "avatar"})}</div>") %>
-				<% if @user != current_user %>				
-					<%= render :partial => "users/show_public/user_info"%>
-				<% end %>
+        <% if @user != current_user %>				
+          <%= render :partial => "users/show_public/user_info"%>
+        <% end %>
       </div>
       <div class="proItem">
         <%= link_to "#{@user.full_name}'s Stories (#{@user.stories.where(:state => "share").size})", show_stories_user_path(@user) %>
@@ -32,7 +32,7 @@
   </div>
 </div>
 <script>
-$(document).ready(function(){
+  $(document).ready(function(){
     $(".proImg").hover(function(){
       $(".del_wall", this).show();
     }, function(){

@@ -1,3 +1,24 @@
+<style>
+  .pagination .previous_page{
+    background: url("/images/btmPagePre.png") no-repeat scroll left center transparent;
+    display: block;
+    height: 19px;
+    text-decoration: none;
+    width: 19px;
+    margin-right: 28px;
+  }
+  .pagination .next_page {
+    background: url("/images/btmPageNext.png") no-repeat scroll left center transparent;
+    display: block;
+    height: 19px;
+    text-decoration: none;
+    width: 19px;
+    float: right;
+    margin-top: -19px;
+  }
+</style>
+
+
 <% form_tag url_for(:controller => "learn_tools", :action => "maylike_tool_paging"), :id => "form_maylike", :method => :get, :remote => true do %>
 <%= hidden_field_tag "maylike_to_load", params[:may_like_page] %>
 <%= hidden_field_tag "cur_cate_at_maylike", params[:tool_cate] ? params[:tool_cate] : @cur_cate_at_like %>
@@ -18,6 +39,7 @@
   <% end %>
 </div>
 <% end %><!-- end form_tag -->
+
 <script type="text/javascript">
   function ShowMayLikeOverlay(){
     $('.learnTop').eq(1).next().append('<div id="maylikeoverlay"></div>');
@@ -46,6 +68,13 @@
   }
   
   $(document).ready(function(){
+    //BEGIN fix bug on ie
+      if ( $.browser.msie ){
+        var stra = $('.pagination .previous_page').html();
+        alert('val == '+stra);
+      }
+    //END fix bug on ie
+
 
     var previousPage = $('.learnPage').eq(1).find('.previous_page');
     

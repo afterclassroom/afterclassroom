@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006080142) do
+ActiveRecord::Schema.define(:version => 20111011033028) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -669,6 +669,16 @@ ActiveRecord::Schema.define(:version => 20111006080142) do
 
   add_index "rating_statistics", ["rated_type", "rated_id"], :name => "index_rating_statistics_on_rated_type_and_rated_id"
 
+  create_table "rating_texts", :force => true do |t|
+    t.integer  "rater_id"
+    t.integer  "rated_id"
+    t.string   "rated_type"
+    t.decimal  "rating",     :precision => 10, :scale => 0
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ratings", :force => true do |t|
     t.integer "rater_id"
     t.integer "rated_id"
@@ -866,7 +876,7 @@ ActiveRecord::Schema.define(:version => 20111006080142) do
   create_table "user_id_chats", :force => true do |t|
     t.integer "user_id"
     t.string  "chat_id"
-    t.string  "type"
+    t.string  "type_chat"
   end
 
   create_table "user_informations", :force => true do |t|
