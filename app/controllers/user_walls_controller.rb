@@ -377,7 +377,7 @@ class UserWallsController < ApplicationController
       when "student_lounge"
       @walls = current_user.walls_with_setting.paginate :page => params[:page], :per_page => 10
     else
-      @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
+      @walls = user.my_walls.paginate :page => params[:page], :per_page => 10
     end
     render :layout => false
   end

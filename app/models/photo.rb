@@ -29,6 +29,9 @@ class Photo < ActiveRecord::Base
   # Favorite
   acts_as_favorite
 
+	# Rating for Like or Unlike
+  acts_as_rated :rating_range => 0..1, :with_stats_table => true
+
   # Named Scope
   scope :with_limit, :limit => 6
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}

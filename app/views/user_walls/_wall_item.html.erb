@@ -4,10 +4,12 @@
       <img id="dell_wall_img" src="/images/icon-ing.gif" />
     </div>
   <% else %>
-    <div class="del_wall" style="float: right; display: none; cursor: pointer;">
-      <img id="block_wall_img" src="/images/flistA.gif" />
-      <%= render :partial => "user_walls/action_dell_wall", :locals => {:wall => wall} %>
-    </div>
+		<% if @user == current_user %>
+		  <div class="del_wall" style="float: right; display: none; cursor: pointer;">
+		    <img id="block_wall_img" src="/images/flistA.gif" />
+		    <%= render :partial => "user_walls/action_dell_wall", :locals => {:wall => wall} %>
+		  </div>
+		<% end %>
   <% end %>
   <div class="assPic">
     <%= show_image_user_post(wall.user_post) %>
@@ -25,7 +27,6 @@
         <%= distance_of_time_in_words_to_now(wall.created_at, false) + " ago." %>
       </div>
 
-
       <% if wall.user_wall_post
         obj =	get_object_by_class_name_and_id(wall.user_wall_post.post_type, wall.user_wall_post.post_id)
         if obj
@@ -38,29 +39,14 @@
       else
         obj = wall
       end %>
+			
+			<%= show_rating_action(wall) %>
 
       <%  if !["Learntool"].include?(obj.class.name)  %>
-
-
-        <div id="rate_<%= wall.id %>">
-          <%
-          check = UserWall.find_rated_by(current_user).include?(wall) if logged_in?
-          check ||= false %>
-          <div class="qashdU">
-            <%= show_rating(wall.id, wall.total_good, "user_walls", check, 1) %>
-          </div>
-          <div class="qashdD">
-            <%= show_rating(wall.id, wall.total_bad, "user_walls", check, 0) %>
-          </div>
-        </div>
-
         <div class="com">
           <a href="javascript:;" onclick="showCommentForm('<%= obj.class.name %>', '<%= obj.id %>');">Comments (<span id="wall_<%= obj.class.name %>_<%= obj.id %>_comments"><%= obj.comments.size %></span>)</a>
         </div>
-      <% else %><!-- this case, wall is a Learntool -->
-        <div id="ltool_rate" style="margin-bottom: -9px; margin-top: -6px;">
-          <%= render :partial => "/learn_tools/rating_star", :locals => {:tool => obj, :nocheck => "no_check"} %>
-        </div>
+      <% else %>
         <div id="ltool_rev" style="margin-left:-31px;" class="vtip" title="Write A Review">
           <%= link_to "Write a Review", "#{url_for(:controller => "learn_tools", :action => "write_review_form")}?tool_id=#{obj.id.to_s}&height=325&width=550", :class => "thickbox", :title => "" %>
         </div>

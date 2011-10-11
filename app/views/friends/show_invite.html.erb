@@ -47,7 +47,8 @@
             }
           });
           
-        }else{
+        }
+				if('#friend_status_<%= @user_invite %>'){
           $('#friend_status_<%= @user_invite %>').html(msg);
         }
         $('#TB_closeWindowButton').click();
