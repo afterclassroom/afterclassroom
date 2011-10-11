@@ -3,8 +3,8 @@ vtip();
 $(document).ready(function(){
   $('#rate_<%= @post.id %>').find('a').each(function(){
     var strLink = $(this).attr('href');
-      $(this).click(function(){
-        alert('Hien thi lai danh sach cac comment like-dislke');
+      $(this).parent().click(function(){
+        ShowDialog_<%= @post.id %>("Rating summary");
       });
   });//end .each
 });//end ready event

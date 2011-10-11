@@ -60,18 +60,52 @@
     <%= render :partial => "shared/post_comments/show_list_comments", :locals => {:post => post} %>
     <!--Comments-->
 </div>
+
+<div visible="false" id="cmt_dialog_<%= post.id %>" style="display:none;">
+<%= text_area_tag "rate_abc", "", :id => "rate_content", :style => "width:568px; height: 280px;" %>
+
+</div>
+
 <script type="text/javascript">
+function ShowDialog_<%= post.id %>(strtitle){
+  $('#cmt_dialog_<%= post.id %>').show();
+  $("#cmt_dialog_<%= post.id %>").dialog({
+    title: strtitle,
+    modal: true,
+    width: 600,
+    height: 400,
+    buttons: [
+      { text: "Ok",
+        click: function() {
+          $(this).dialog("close");
+        }//end function click
+      },//end button text
+      { text: "Cancel",
+        click: function() {
+          $(this).dialog("close");
+        }//end function click
+      }//end button text
+    ] //end button
+  });
+  //$('.ui-dialog-titlebar').hide();
+  $('.ui-dialog').draggable( "destroy" );
+}
+
 $(document).ready(function(){
   $('#rate_<%= post.id %>').find('a').each(function(){
     var strLink = $(this).attr('href');
     if (strLink == 'javascript:;' ){
-      $(this).click(function(){
-        alert('hien thi danh sach like/dislike');
+      $(this).parent().click(function(){
+        ShowDialog_<%= post.id %>("Rating summary");
       });
     }
     else{
-      $(this).click(function(){
-        alert('hien thi form nhap I like because, I dislike because');
+      $(this).parent().click(function(){
+        if ($(this).attr('class') == "qashdU"){
+          ShowDialog_<%= post.id %>("I like this because... ");
+        }else {
+          ShowDialog_<%= post.id %>("I dislike this because... ");
+        }
       });
     }
   });//end .each
