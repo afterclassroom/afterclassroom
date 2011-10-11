@@ -179,7 +179,7 @@ module ApplicationHelper
   
   def show_user_post(user)
     path = logged_in? ? show_lounge_user_path(user) : user_path(user)
-    link_to user.full_name, path
+    link_to truncate(user.full_name, :length => 27, :omission => ''), path
   end
   
   def show_search_form(ctrl_name, query)

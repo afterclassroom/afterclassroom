@@ -30,7 +30,7 @@
             <div class="AsDContImg">
               <%= show_image_user_post(u) %>
             </div>
-            <div class="suggesName">
+            <div class="suggesName" style="padding-top:0px">
               <%= show_user_post(u) %>
             </div>
             <div class="suggesAdd">
@@ -91,6 +91,15 @@
     $('#action_people_search').css({
       'position':'absolute',
       'width':'226px'
+    });
+    $('.suggesName a').css({
+      'word-wrap': 'break-word', 
+      'width': '70px',
+      'float':'left',
+      'overflow':'hidden'
+    });
+    $('.suggesItem .AsDContImg div').css({
+      'height': '52px'
     });
     $('.flistRclose').click(function(){
       $('.asslinkdownSt_UserL').hide();

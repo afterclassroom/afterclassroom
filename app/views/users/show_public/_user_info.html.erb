@@ -17,13 +17,24 @@
 <script>
   function checkWeb()
   {
-    if (navigator.userAgent.indexOf("Firefox") != -1 || navigator.userAgent.indexOf("Safari") != -1){
-      checkWebFireFox();
-    }else{
-      checkWebChrom();
-    }
+    if ($.browser.mozilla){    
+      checkWebFireFox();}
+    if ($.browser.chrome){    
+      checkWebFireFox();}
   }
-  function checkWebFireFox() {       
+  function checkWebFireFox() { 
+    var posi = $("img#avatar").offset();
+    $(".proImg").hover(function(){       
+      $(".asslinkdownSt_User").css({
+        "top":posi.top,
+        "left":posi.left
+      }).show();
+    }, function(){
+      $(".asslinkdownSt_User").hide();               
+    });
+  }
+  function checkWebChrom(){
+    $("img#avatar").load(function(){
       var posi = $("img#avatar").offset();
       $(".proImg").hover(function(){       
         $(".asslinkdownSt_User").css({
@@ -33,15 +44,10 @@
       }, function(){
         $(".asslinkdownSt_User").hide();               
       });
-  }
-  function checkWebChrom()
-  {
-    $("img#avatar").load(function(){
     });
   } 
   $(document).ready(function(){ 
-      checkWebFireFox();
-      checkWebChrom();
+    checkWebFireFox();
+    checkWebChrom(); 
   });
-
 </script>
