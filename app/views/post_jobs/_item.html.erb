@@ -30,17 +30,7 @@
                 </div>
             </div>
             <div class="assInfB">
-                <div id="rate_<%= post.id %>">
-                    <%
-                    check = PostJob.find_rated_by(current_user).include?(post.post_job) if logged_in?
-                    check ||= false %>
-                    <div class="qashdU">
-                        <%= show_rating(post.id, post.post_job.total_good, get_controler_name_from_class_name(post.post_job.class.name), check, 1) %>
-                    </div>
-                    <div class="qashdD">
-                        <%= show_rating(post.id, post.post_job.total_bad, get_controler_name_from_class_name(post.post_job.class.name), check, 0) %>
-                    </div>
-                </div>
+								<%= render :partial => "rating_action", :locals => {:post => post, :controller_name => controller.controller_name}%>
                 <div class="vie">
                     <%= "View (#{post.count_view})" %>
                 </div>

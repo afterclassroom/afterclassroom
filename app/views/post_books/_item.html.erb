@@ -30,17 +30,7 @@
                 </div>
             </div>
             <div class="assInfB">
-                <div id="rate_<%= post.id %>">
-                    <%
-                    check = PostBook.find_rated_by(current_user).include?(post.post_book) if logged_in?
-                    check ||= false %>
-                    <div class="qashdU">
-                        <%= show_rating(post.id, post.post_book.total_good, controller.controller_name, check, 1) %>
-                    </div>
-                    <div class="qashdD">
-                        <%= show_rating(post.id, post.post_book.total_bad, controller.controller_name, check, 0) %>
-                    </div>
-                </div>
+								<%= render :partial => "rating_action", :locals => {:post => post, :controller_name => controller.controller_name}%>
                 <div class="vie">
                     <%= "View (#{post.count_view})" %>
                 </div>
@@ -60,20 +50,114 @@
     <%= render :partial => "shared/post_comments/show_list_comments", :locals => {:post => post} %>
     <!--Comments-->
 </div>
+
+<div visible="false" id="cmt_dialog_<%= post.id %>" style="display:none;">
+  <div id="desc_count<%= post.id %>">255 characters max</div>
+  <%= text_area_tag "rate_content", "", :id => "rate_content#{post.id}", :style => "width:568px; height: 60px;" %>
+</div>
+
+<div visible="false" id="lst_cmt_dlg<%= post.id %>" style="display:none;">
+<div id="test<%= post.id %>"> click here to test</div>
+</div>
+
+
 <script type="text/javascript">
+function PostRateComment<%= post.id %>(){
+  $.ajax({
+    url: '<%= rate_cmt_post_books_url(current_user) %>',
+    type: 'GET',
+    dataType: 'html',
+    data: 'id=123',
+    success: function(html){
+    }
+  });
+}
+function ShowDialog_<%= post.id %>(strtitle){
+  $('#cmt_dialog_<%= post.id %>').show();
+  $("#cmt_dialog_<%= post.id %>").dialog({
+    title: strtitle,
+    modal: true,
+    width: 600,
+    height: 200,
+    buttons: [
+      { text: "Ok",
+        click: function() {
+          $(this).dialog("close");
+          PostRateComment<%= post.id %>();
+        }//end function click
+      },//end button text
+      { text: "Cancel",
+        click: function() {
+          $(this).dialog("close");
+        }//end function click
+      }//end button text
+    ] //end button
+  });
+  //$('.ui-dialog-titlebar').hide();
+  $('.ui-dialog').draggable( "destroy" );
+}
+function ShowList_<%= post.id %>(strtitle){
+  $('#lst_cmt_dlg<%= post.id %>').show();
+  $("#lst_cmt_dlg<%= post.id %>").dialog({
+    title: strtitle,
+    modal: true,
+    width: 600,
+    height: 600,
+    buttons: [
+      { text: "Close",
+        click: function() {
+          $(this).dialog("close");
+        }//end function click
+      }//end button text
+    ] //end button
+  });
+  //$('.ui-dialog-titlebar').hide();
+  $('.ui-dialog').draggable( "destroy" );
+}
+
 $(document).ready(function(){
   $('#rate_<%= post.id %>').find('a').each(function(){
     var strLink = $(this).attr('href');
     if (strLink == 'javascript:;' ){
-      $(this).click(function(){
-        alert('hien thi danh sach like/dislike');
+      $(this).parent().click(function(){
+        ShowList_<%= post.id %>("Rating summary");
       });
     }
     else{
-      $(this).click(function(){
-        alert('hien thi form nhap I like because, I dislike because');
+      $(this).parent().click(function(){
+        if ($(this).attr('class') == "qashdU"){
+          ShowDialog_<%= post.id %>("I like this because... ");
+        }else {
+          ShowDialog_<%= post.id %>("I dislike this because... ");
+        }
       });
     }
   });//end .each
+  //BEGIN limit input to 255 characters
+    $('#rate_content<%= post.id %>').keyup(function(){
+      var len = this.value.length;
+      if (len >= 255) {
+        this.value = this.value.substring(0, 255);
+      }
+      $('#desc_count<%= post.id %>').text("255 characters max - Current: "+len+" character")
+    });
+
+  //END limit input to 255 characters
+//begin test
+$('#test<%= post.id %>').click(function(){
+  $.ajax({
+    url: '<%= test_paging_post_books_url(current_user) %>',
+    type: 'GET',
+    dataType: 'html',
+    data: 'id=123',
+    success: function(html){
+      alert("v=="+html);
+      $('#test<%= post.id %>').append(''+html);
+    }
+  });
+
+});
+//end test
+
 });//end ready event
 </script>
