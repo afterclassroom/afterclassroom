@@ -60,3 +60,20 @@
     <%= render :partial => "shared/post_comments/show_list_comments", :locals => {:post => post} %>
     <!--Comments-->
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#rate_<%= post.id %>').find('a').each(function(){
+    var strLink = $(this).attr('href');
+    if (strLink == 'javascript:;' ){
+      $(this).click(function(){
+        alert('hien thi danh sach like/dislike');
+      });
+    }
+    else{
+      $(this).click(function(){
+        alert('hien thi form nhap I like because, I dislike because');
+      });
+    }
+  });//end .each
+});//end ready event
+</script>
