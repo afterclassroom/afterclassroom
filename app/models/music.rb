@@ -55,4 +55,12 @@ class Music < ActiveRecord::Base
       str = ""
     end
   end
+
+	def total_good
+    self.ratings.count(:conditions => ["rating = ?", 1])
+  end
+
+  def total_bad
+    self.ratings.count(:conditions => ["rating = ?", 0])
+  end
 end

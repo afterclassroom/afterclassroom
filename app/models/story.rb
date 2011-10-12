@@ -9,6 +9,9 @@ class Story < ActiveRecord::Base
   # Favorite
   acts_as_favorite
 
+	# Rating for Like or Unlike
+  acts_as_rated :rating_range => 0..1, :with_stats_table => true
+
   # Tracker
   acts_as_activity :user
 
@@ -28,4 +31,12 @@ class Story < ActiveRecord::Base
 
   # Won't set to null even if string is blank. "   " => ""
   auto_strip_attributes :content, :nullify => false
+	
+	def total_good
+    self.ratings.count(:conditions => ["rating = ?", 1])
+  end
+
+  def total_bad
+    self.ratings.count(:conditions => ["rating = ?", 0])
+  end
 end

@@ -75,9 +75,15 @@ class FriendsController < ApplicationController
     begin
       flash[:notice] = "Find Friends Successfully."
       friends = User.find(:all, :conditions => ["email IN('#{contacts.join("', '")}')"])
+			if friends.size > 0 
+				flash[:notice] = "Find Friends Successfully."
+			else
+				flash[:notice] = "Can not be found your friend with that email."
+			end
       session[:user_id_suggestions] = friends.map(&:id)
     rescue
-      Nothing
+      # Nothing
+			flash[:error] = "Error."
     end
     redirect_to find_user_friends_path(@user)
   end

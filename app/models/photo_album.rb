@@ -39,4 +39,12 @@ class PhotoAlbum < ActiveRecord::Base
   def another_photo_albums
     self.user.photo_albums.find(:all, :limit => 5, :conditions => ["id <> ?", self.id], :order => "rand()")
   end
+	
+	def total_good
+    self.ratings.count(:conditions => ["rating = ?", 1])
+  end
+
+  def total_bad
+    self.ratings.count(:conditions => ["rating = ?", 0])
+  end
 end

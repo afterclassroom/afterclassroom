@@ -313,12 +313,16 @@ class User < ActiveRecord::Base
   end
   
   def set_time_zone_from_ip(ip)
-    location = open("http://api.hostip.info/get_html.php?ip=#{ip}&position=true")
-    if location.string =~ /Latitude: (.+?)\nLongitude: (.+?)\n/
-      timezone = Geonames::WebService.timezone($1, $2)
-      
-      self.time_zone = ActiveSupport::TimeZone::MAPPING.index(timezone.timezone_id) unless timezone.nil?
-    end
+		begin
+			location = open("http://api.hostip.info/get_html.php?ip=#{ip}&position=true")
+		  if location.string =~ /Latitude: (.+?)\nLongitude: (.+?)\n/
+		    timezone = Geonames::WebService.timezone($1, $2)
+		    
+		    self.time_zone = ActiveSupport::TimeZone::MAPPING.index(timezone.timezone_id) unless timezone.nil?
+		  end
+		rescue
+			# Nothing
+		end
   end
   
   def suggestions
