@@ -84,6 +84,7 @@ javascripts:
     - public/javascripts/youTubeEmbed-jquery.js
     - public/javascripts/jquery.swfobject.js
     - public/javascripts/jquery.jtruncate.js
+    - public/javascripts/flowplayer-3.2.6.min.js
   photo:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js

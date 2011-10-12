@@ -1,21 +1,14 @@
-<script type="text/javascript" src="/javascripts/flowplayer-3.2.6.min.js"></script>
-<!-- Begin VideoJS -->
-
-
-
 <div id="page">
-
   <a  
     href="<%= get_video_path(@video.video_file.video_attach.url) %>"
     style="display:block;width:520px;height:330px"  
     id="player"> 
   </a> 
 </div>
-
 <script>
-
-  flowplayer("player", "/swfs/flowplayer.commercial-3.2.7.swf", {		// supply the configuration
-
+  flowplayer("player", 
+  {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode: 'opaque'}, 
+  {		// supply the configuration
     clip : {			// Clip is an object, hence '{...}'
       autoPlay: false,
       autoBuffering: true

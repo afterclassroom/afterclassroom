@@ -1,4 +1,4 @@
-# © Copyright 2009 AfterClassroom.com -- All Rights Reserved
+# ï¿½ Copyright 2009 AfterClassroom.com -- All Rights Reserved
 include ActionView::Helpers::UrlHelper
 include ApplicationHelper
   
@@ -355,6 +355,20 @@ class UserWallsController < ApplicationController
   end
   
   def jplayer_video
+    wall_id = params[:wall_id]
+    @wall = UserWall.find(wall_id)
+    if @wall.user_wall_video
+      @link = @wall.user_wall_video.link
+    elsif @wall.user_wall_post and @wall.user_wall_post.post_type == "Video"
+      type = @wall.user_wall_post.post_type
+      id = @wall.user_wall_post.post_id
+      obj = eval(type).find(id)
+      @link = obj.video_file.video_attach.url
+    end
+    render :layout => false
+  end
+  
+    def jplayer_video_test
     wall_id = params[:wall_id]
     @wall = UserWall.find(wall_id)
     if @wall.user_wall_video

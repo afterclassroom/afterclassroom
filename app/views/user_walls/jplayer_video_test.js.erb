@@ -1,0 +1,8 @@
+<% if @wall.user_wall_post and @wall.user_wall_post.post_type == "Video" %>
+  $("#wall_attach_<%= @wall.id %>").hide("slow");
+  $("#show_jplayer_<%= @wall.id %>").html('<div id="player_<%= @wall.id %>"></div><div id="page"><a style="display:block;width:420px;height:300px" id="player"></a></div>');
+  $f("player", "/swfs/flowplayer.commercial-3.2.7.swf");
+<% else %>
+  $("#wall_attach_<%= @wall.id %>").hide("slow");
+  $("#show_jplayer_<%= @wall.id %>").html("<%= escape_javascript( render :partial => "user_walls/youtube_embed" ) %>");
+<% end %>
