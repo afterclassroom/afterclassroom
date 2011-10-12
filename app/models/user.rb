@@ -280,7 +280,7 @@ class User < ActiveRecord::Base
 		user_wall_id_blocks = self.user_wall_blocks.map(&:user_wall_id)
 		str_cond = "user_id_post = #{self.id} OR user_id = #{self.id}"
 		str_cond = str_cond + " AND user_id NOT IN('#{user_id_blocks.join("', '")}')" if user_id_blocks.size > 0
-		str_cond = str_cond + " AND user_wall_id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
+		str_cond = str_cond + " AND id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
 		UserWall.where(str_cond).order("updated_at DESC")
   end
   

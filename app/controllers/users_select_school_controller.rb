@@ -69,7 +69,11 @@ class UsersSelectSchoolController < ApplicationController
         @state = @states.first
         @cities = @state.cities
         @city = @cities.first
-        @schools = @city.schools.where(:type_school => @type_school)
+        if @type_school
+        	@schools = @city.schools.where(:type_school => @type_school)
+        else
+        	@schools = @city.schools
+        end
         @school = @schools.first
       when "state"
         @state = State.find(id)
@@ -77,7 +81,11 @@ class UsersSelectSchoolController < ApplicationController
         @states = @country.states.has_cities
         @cities = @state.cities
         @city = @cities.first
-        @schools = @city.schools.where(:type_school => @type_school)
+        if @type_school
+        	@schools = @city.schools.where(:type_school => @type_school)
+        else
+        	@schools = @city.schools
+        end
         @school = @schools.first
       when "city"
         @city = City.find(id)
@@ -85,7 +93,11 @@ class UsersSelectSchoolController < ApplicationController
         @country = @state.country
         @states = @country.states.has_cities
         @cities = @state.cities
-        @schools = @city.schools.where(:type_school => @type_school)
+        if @type_school
+        	@schools = @city.schools.where(:type_school => @type_school)
+        else
+        	@schools = @city.schools
+        end
         @school = @schools.first
     end
   end
