@@ -42,6 +42,7 @@ javascripts:
     - public/javascripts/youTubeEmbed-jquery.js
     - public/javascripts/jquery.swfobject.js
     - public/javascripts/jquery.jtruncate.js
+    - public/javascripts/jquery.corner.js
   student_lounge:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js

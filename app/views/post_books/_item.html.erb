@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="assInfB">
-								<%= render :partial => "rating_action", :locals => {:post => post, :controller_name => controller.controller_name}%>
+                <%= render :partial => "rating_action", :locals => {:post => post, :controller_name => controller.controller_name}%>
                 <div class="vie">
                     <%= "View (#{post.count_view})" %>
                 </div>
@@ -49,5 +49,17 @@
     <!--Comments-->
     <%= render :partial => "shared/post_comments/show_list_comments", :locals => {:post => post} %>
     <!--Comments-->
+    <!-- BEGIN show rate comment area -->
+    <div id="rate_area<%= post.id %>" style="width: 410px; min-height: 100px; border: 1px solid #CECECE; display: none;">
+      <div id="rate_inner<%= post.id %>" style="padding: 5px;">content</div>
+    </div>
+    <!-- END show rate comment area -->
 </div>
-
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#rate_area<%= post.id %>').corner();
+    $('div#rate_<%= post.id %>').find('.qashdU').click(function(){
+      $('#rate_area<%= post.id %>').show();
+    });
+  });
+</script>
