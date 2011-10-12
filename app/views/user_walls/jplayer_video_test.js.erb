@@ -1,7 +1,35 @@
 <% if @wall.user_wall_post and @wall.user_wall_post.post_type == "Video" %>
   $("#wall_attach_<%= @wall.id %>").hide("slow");
-  $("#show_jplayer_<%= @wall.id %>").html('<div id="player_<%= @wall.id %>"></div><div id="page"><a style="display:block;width:420px;height:300px" id="player"></a></div>');
-  $f("player", "/swfs/flowplayer.commercial-3.2.7.swf");
+  $("#show_jplayer_<%= @wall.id %>").html('<div id="player_<%= @wall.id %>" style="display:block;width:450px;height:310px"></div>');
+
+  flowplayer("player_<%= @wall.id %>", "/swfs/flowplayer.commercial-3.2.7.swf",
+
+  {	
+  clip : {
+  autoPlay: true,
+  autoBuffering: true
+  },
+  logo: {
+  url: '/images/logo.png',
+  fullscreenOnly: false,
+  opacity: 0,
+  top: '83%',
+  left: '20%'
+  },
+  // gradually show on mouseover
+  onMouseOver: function() {
+  this.getPlugin("logo").fadeTo(0.5, 1000);
+  },
+
+  // gradually hide on mouseout
+  onMouseOut: function() {
+  this.getPlugin("logo").fadeTo(0, 1000);
+  },
+  playlist: [
+  {url: '<%= @link %>'}
+
+  ]   
+  });
 <% else %>
   $("#wall_attach_<%= @wall.id %>").hide("slow");
   $("#show_jplayer_<%= @wall.id %>").html("<%= escape_javascript( render :partial => "user_walls/youtube_embed" ) %>");
