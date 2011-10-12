@@ -79,6 +79,10 @@ class PostBooksController < ApplicationController
 
     render :text => ""
   end
+
+  def test_paging
+    render :text => "=================="
+  end
   
   def require_rate
     rating = params[:rating]

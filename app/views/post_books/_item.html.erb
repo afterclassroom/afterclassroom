@@ -57,6 +57,7 @@
 </div>
 
 <div visible="false" id="lst_cmt_dlg<%= post.id %>" style="display:none;">
+<div id="test<%= post.id %>"> click here to test</div>
 </div>
 
 
@@ -142,6 +143,21 @@ $(document).ready(function(){
     });
 
   //END limit input to 255 characters
+//begin test
+$('#test<%= post.id %>').click(function(){
+  $.ajax({
+    url: '<%= test_paging_post_books_url(current_user) %>',
+    type: 'GET',
+    dataType: 'html',
+    data: 'id=123',
+    success: function(html){
+      alert("v=="+html);
+      $('#test<%= post.id %>').append(''+html);
+    }
+  });
+
+});
+//end test
 
 });//end ready event
 </script>
