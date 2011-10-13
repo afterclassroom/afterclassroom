@@ -63,7 +63,7 @@
 	    <div class="proListR">
 	      <label style="color: #6F6F63;">I like this because . . .</label>
 	      <div class="writeCom" style="width: 372px;">
-		<textarea name="" id="" style="width: 364px; "></textarea>
+		<textarea name="" id="" style="width: 364px; background: white;"></textarea>
 	      </div>
 	    </div>
 	    <div style="float:left; margin-right: 0px; clear: both; margin-left: 36px;" class="proAttR">
@@ -75,8 +75,9 @@
 	
 
 <script type="text/javascript">
-
 $(document).ready(function(){
-alert('123');
+  $('#send<%= @post.id %>').click(function(){
+    alert('lo');
+  });
 });
 </script>
