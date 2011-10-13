@@ -1,7 +1,7 @@
         <div class="proList" style="margin: 0px; width: 405px;">
           <div class="writeCom">
             <label>100 people like this</label>
-            <div onclick="" style="float: right; cursor: pointer;" class="">
+            <div onclick="" style="float: right; cursor: pointer;" class="" id="hide<%= @post.id %>">
               <img src="/images/icon-ing.gif">
             </div>
           </div>
@@ -79,5 +79,13 @@ $(document).ready(function(){
   $('#send<%= @post.id %>').click(function(){
     alert('lo');
   });
+  //BEGIN hide like_cmt_area when user click X
+  $('#hide<%= @post.id %>').click(function(){
+    $('#like_area<%= @post.id %>').hide('slow',function(){
+      $('#wait_like<%= @post.id %>').show();
+      $('#like_inner<%= @post.id %>').html('');
+    });//end .hide
+  });//end .click
+  //END hide like_cmt_area when user click X
 });
 </script>
