@@ -12,26 +12,7 @@ class RateCmtsController < ApplicationController
     @cmt.rating = 1
     @cmt.content = params[:cmt_cnt]
     @cmt.save
-    puts "=="
-    puts "== v"
-    puts "== #{params[:post_id]}"
-    puts "== content"
-    puts "== a == #{params[:cmt_cnt]}"
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
+
     render :layout => false
   end
 end

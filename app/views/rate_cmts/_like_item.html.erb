@@ -4,11 +4,11 @@
 	  </div>
 	  <div class="proListR">
 	    <div class="AfterClCom">
-	      <a href="/users/1/show_lounge">James</a> -
+	      <%= show_user_post(current_user) %> - 
 	      <%= @cmt.content %>
 	    </div>
 	    <div class="proListCont">
-	      about 6 hours ago.
+	      <%= distance_of_time_in_words_to_now(@cmt.created_at, false) + " ago." %>
 	    </div>
 	  </div>
 	</div>
