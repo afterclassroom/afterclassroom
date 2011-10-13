@@ -3,7 +3,7 @@ class RateCmtsController < ApplicationController
     @post = Post.find(params[:post_id])
     render :layout => false
   end
-  def add_cmt
+  def add_like_cmt
     render :layout => false
   end
 end
