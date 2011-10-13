@@ -3,7 +3,7 @@
   $("#show_jplayer_<%= @wall.id %>").html('<div id="player_<%= @wall.id %>" style="display:block;width:450px;height:310px"></div>');
 
   flowplayer("player_<%= @wall.id %>",
-  {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
+  {src: "http://releases.flowplayer.org/swf/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
   {	
   key : '#$de9093c019ae644a1da',
   clip : {

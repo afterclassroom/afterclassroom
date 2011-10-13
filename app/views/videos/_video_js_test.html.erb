@@ -1,39 +1,21 @@
-<div id="page">
-  <a style="display:block;width:550px;height:360px" id="player"> </a> 
+<div id="flow_player" style="margin-left: -50px">
+  <object id="flowplayer" width="520" height="330" bgcolor="#000000"
+          data="http://releases.flowplayer.org/swf/flowplayer.commercial-3.2.7.swf"
+          type="application/x-shockwave-flash">
+
+    <!-- movie param is required for IE -->
+    <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer.commercial-3.2.7.swf" />
+
+    <!-- set to true if you want your users to be able to enter fullscreen mode -->
+    <param name="allowfullscreen" value="true" />
+    <param name="wmode" value="transparent" />
+    <!-- Flowplayer configuration -->
+    <param name="flashvars"  value='config={
+
+		"key":"#$de9093c019ae644a1da",
+		"clip":"<%= get_video_path(@video.video_file.video_attach.url) %>",
+		"logo":{"url":"/images/logo.png","fullscreenOnly":false
+           }
+           }'/>
+  </object>
 </div>
-<script>
-  window.onload = function () {
-
-    flowplayer("player", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.2.7.swf",
-    {	
-      key: '#$de9093c019ae644a1da',
-      logo:null,
-      clip : {	
-        url: '<%= get_video_path(@video.video_file.video_attach.url) %>',
-        autoPlay: true,
-        autoBuffering: true     
-      },    
-      plugins: {
-        controls: {
-          fullscreen: false
-        }
-      },
-      <%#*logo: {%>
-        <%#*url: '/images/logo.png',%>
-        <%#*fullscreenOnly: false,%>
-        <%#*opacity: 0,%>
-        <%#*top: '83%',%>
-        <%#*left: '20%'%>
-      <%#*},%>
-      // gradually show on mouseover
-      onMouseOver: function() {
-        this.getPlugin("logo").fadeTo(0.5, 1000);
-      },
-      // gradually hide on mouseout
-      onMouseOut: function() {
-        this.getPlugin("logo").fadeTo(0, 1000);
-      }
-    });
-  };
-</script>
-
