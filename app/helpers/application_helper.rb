@@ -686,8 +686,8 @@ module ApplicationHelper
   
   def show_attach(wall)
     if wall.user_wall_photo
-      link = wall.user_wall_photo.sub_content
-      img_link = link_to(raw(image_tag("/gadgets_proxy/link?url=#{wall.user_wall_photo.link}", :style => "width:92px;height:68px")), wall.user_wall_photo.link, :target => "_blank", :class => "imageLink")
+      link = "/gadgets_proxy/link?url=#{wall.user_wall_photo.link}"
+      img_link = link_to(raw(image_tag("/gadgets_proxy/link?url=#{wall.user_wall_photo.link}", :style => "width:92px;height:68px")), link, :target => "_blank", :class => "imageLink")
       image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_photo.title
       sub_content = ""
@@ -702,7 +702,7 @@ module ApplicationHelper
     end
     
     if wall.user_wall_music
-      link = wall.user_wall_music.sub_content
+      link = "/gadgets_proxy/link?url=#{wall.user_wall_music.sub_content}"
       img_link = link_to image_tag("/images/music.png", :style => "width:92px;height:68px") + raw("<span class='play_music'></span>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
       image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_music.title
@@ -710,7 +710,7 @@ module ApplicationHelper
     end
     
     if wall.user_wall_link
-      link = wall.user_wall_link.link
+      link = "/gadgets_proxy/link?url=#{wall.user_wall_link.link}"
       if wall.user_wall_link.image_link
         img_link = link_to(raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank")
         image = get_image_wall(wall.id, img_link)
@@ -943,7 +943,7 @@ module ApplicationHelper
           when "PostMyx"
           render :partial => "post_myxes/rating_action", :locals => {:post => obj.post, :controller_name => "post_myxes"}
           when "PostAwareness"
-          render :partial => "post_awareness/rating_action", :locals => {:post => obj.post, :controller_name => "post_awareness"}
+          render :partial => "post_awarenesses/rating_action", :locals => {:post => obj.post, :controller_name => "post_awarenesses"}
           when "PostHousing"
           render :partial => "post_housings/rating_action", :locals => {:post => obj.post, :controller_name => "post_housings"}
           when "PostTeamup"

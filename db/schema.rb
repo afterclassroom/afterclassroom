@@ -670,8 +670,8 @@ ActiveRecord::Schema.define(:version => 20111011033028) do
   add_index "rating_statistics", ["rated_type", "rated_id"], :name => "index_rating_statistics_on_rated_type_and_rated_id"
 
   create_table "rating_texts", :force => true do |t|
-    t.integer  "rater_id"
-    t.integer  "rated_id"
+    t.integer  "user_id"
+    t.integer  "post_id"
     t.string   "rated_type"
     t.decimal  "rating",     :precision => 10, :scale => 0
     t.text     "content"

@@ -172,6 +172,7 @@ Afterclassroom::Application.routes.draw do
   resources :rate_cmts do
     collection do
       get :load_bk_like
+      post :add_like_cmt
     end
   end    
 

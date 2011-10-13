@@ -57,6 +57,7 @@
     <!-- END show DISLIKE comment area -->
 </div>
 <script type="text/javascript">
+var waitIcon<%= post.id %> = '';
 function LoadLikeCmt<%= post.id %>(){
   $.ajax({
     url: '<%= load_bk_like_rate_cmts_url %>',
@@ -81,6 +82,8 @@ function LoadLikeCmt<%= post.id %>(){
         if ( $(this).is(":visible") == true ){
           LoadLikeCmt<%= post.id %>();
         } else {
+          $('#wait_like<%= post.id %>').show();
+          $('#like_inner<%= post.id %>').html('');
         }//end if
       });//end toggle
     });//end qashdU

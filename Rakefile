@@ -8,4 +8,6 @@ require 'jammit'
 
 #Jammit.package!
 
+include Rake::DSL
+
 Afterclassroom::Application.load_tasks

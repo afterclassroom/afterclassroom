@@ -311,6 +311,16 @@ class VideosController < ApplicationController
     
     render :text => "Done"
   end
+
+	def rate
+    rating = params[:rating]
+    @post = Video.find(params[:post_id])
+    @post.rate rating.to_i, current_user
+    @post.save
+    
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
+  end
   
   protected
   
