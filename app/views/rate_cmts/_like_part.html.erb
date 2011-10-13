@@ -73,6 +73,7 @@
 	      <input type="button" class="buttonCom" name="commit" value="Send" id="send<%= @post.id %>">
 	    </div>
 	    <% end %>
+	    <%= show_ajax_loader("wait_send#{@post.id}", "background: white; width: 18px; margin-left: 5px; margin-top: 5px; display: none; background: none;") %>
 	  </div>
 	<!-- END form -->
 	
@@ -82,6 +83,13 @@ $(document).ready(function(){
   $('#send<%= @post.id %>').click(function(){
     $('form#form_cmt<%= @post.id %>').submit();
   });
+  $('form#form_cmt<%= @post.id %>').bind('ajax:beforeSend', function(){
+    $(this).hide('slow');
+    $('#wait_send<%= @post.id %>').show('slow');
+  }).bind('ajax:success',function(){
+    $('#wait_send<%= @post.id %>').hide('slow');
+    $(this).show('slow');
+  });//end .bind
   //BEGIN hide like_cmt_area when user click X
   $('#hide<%= @post.id %>').click(function(){
     $('#like_area<%= @post.id %>').hide('slow',function(){
