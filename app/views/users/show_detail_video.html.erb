@@ -26,10 +26,8 @@
             <%= link_to "", show_detail_video_user_url(@video.user, :video_id => @next.id) if @next %>
           </div>
         </div>
-        <div class="musicVideo01" style="display:none;background: url('/images/playFlowplayer.png');height:416px;width:554px;margin-top: 35px;">
-        </div>
         <div class="musicVideo" style="margin-left:0px">
-          <%= render :partial => "videos/videoswf_js" %>
+          <%= render :partial => "videos/video_js_test" %>
         </div>
         <%= render :partial => "video_action" %>
         <%#= show_post_comments_video(@video) %>
@@ -48,7 +46,12 @@
   <!--Ads-->
 </div>
 <script type="text/javascript" charset="utf-8">
-    
+    $(document).ready(function(){
+      $('.del_post_com').css({
+        'position':'absolute',
+        'margin-left':'500px'
+      });
+    });
   // Add VideoJS to all video tags on the page when the DOM is ready
   VideoJS.setupAllWhenReady();
 </script>

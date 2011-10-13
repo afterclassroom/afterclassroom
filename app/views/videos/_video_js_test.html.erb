@@ -1,54 +1,39 @@
 <div id="page">
-  <a style="display:block;width:520px;height:330px" id="player"> </a> 
+  <a style="display:block;width:550px;height:360px" id="player"> </a> 
 </div>
 <script>
   window.onload = function () {
 
     flowplayer("player", 
-    {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"}, 
-    {		// supply the configuration
-      clip : {			// Clip is an object, hence '{...}'
+    {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
+    {	
+      key: '#$de9093c019ae644a1da',
+      logo:null,
+      clip : {	
         url: '<%= get_video_path(@video.video_file.video_attach.url) %>',
         autoPlay: true,
-        autoBuffering: true
-      
+        autoBuffering: true     
+      },    
+      plugins: {
+        controls: {
+          fullscreen: false
+        }
       },
-      play: {
-        	label: null,
-
-	// label text at end of video clip
-	replayLabel: 'Play again',
-
-	/*
-		progress indicator - this is shown while video is being loaded.
-		it is always in the same place as the play button.
-	*/
-	// how fast progress indicator fades out after video is loaded
-	fadeSpeed: 500,
-
-	// how fast buffering animation rotates
-	rotateSpeed: 50
-
-      },
-  
-
-      logo: {
-        url: '/images/logo.png',
-        fullscreenOnly: false,
-        opacity: 0,
-        top: '83%',
-        left: '20%'
-      },
+      <%#*logo: {%>
+        <%#*url: '/images/logo.png',%>
+        <%#*fullscreenOnly: false,%>
+        <%#*opacity: 0,%>
+        <%#*top: '83%',%>
+        <%#*left: '20%'%>
+      <%#*},%>
       // gradually show on mouseover
       onMouseOver: function() {
         this.getPlugin("logo").fadeTo(0.5, 1000);
       },
-
       // gradually hide on mouseout
       onMouseOut: function() {
         this.getPlugin("logo").fadeTo(0, 1000);
       }
-
     });
   };
 </script>
