@@ -1,5 +1,6 @@
 class RateCmtsController < ApplicationController
   def load_bk_like
+    @post = Post.find(params[:post_id])
     puts "=="
     puts "=="
     puts "=="
