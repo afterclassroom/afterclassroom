@@ -61,9 +61,11 @@ function LoadLikeCmt<%= post.id %>(){
   $.ajax({
     url: '<%= load_bk_like_rate_cmts_url %>',
     type: 'GET',
-    dataType: 'html',
-    data: 'something=',
-    success: function(html){
+    dataType: 'script',
+    data: {
+      post_id: <%= post.id %>
+    },
+    success: function(data){
       $('#wait_like<%= post.id %>').hide();
     }
   });//end ajax
