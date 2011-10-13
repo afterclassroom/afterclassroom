@@ -49,101 +49,50 @@
     <!--Comments-->
     <%= render :partial => "shared/post_comments/show_list_comments", :locals => {:post => post} %>
     <!--Comments-->
-    <!-- BEGIN show rate comment area -->
-    <div id="rate_area<%= post.id %>" style="width: 428px; min-height: 100px; border: 1px solid #CECECE; overflow: auto; padding-bottom: 5px;">
-      <div id="rate_inner<%= post.id %>" style="padding: 5px;">
-        <div class="proList" style="margin: 0px; width: 405px;">
-          <div class="writeCom">
-            <label>100 people like this</label>
-            <div onclick="" style="float: right; cursor: pointer;" class="">
-              <img src="/images/icon-ing.gif">
-            </div>
-          </div>
-        </div>
-
-	<div id="" class="proList" style="margin: 0px; width: 405px; margin-top: 5px;">
-	  <div class="proListPic">
-	    <a href="#"><div><img title="James" src="/system/avatars/1/thumb/Firefox_wallpaper.png?1314087505" class="vtip avatar_1" alt=""></div></a>
-	  </div>
-	  <div class="proListR">
-	    <div class="AfterClCom">
-	      <a href="/users/1/show_lounge">James</a> -
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	    </div>
-	    <div class="proListCont">
-	      about 6 hours ago.
-	    </div>
-	  </div>
-	</div> <!-- end each item -->
-	<!-- BEGIN pagination-->
-        <div class="proList" style="margin: 0px; width: 405px; margin-top: 5px;">
-          <div class="writeCom">
-	    <div style="padding-left:0" class="assPage">
-	      <span class="numPage">Displaying <b>1&nbsp;-&nbsp;5</b> of <b>331</b> in total. </span>
-
-	      <div class="reqTi" style="display: inline;">
-		<input type="text" value="5" size="2" name="" id=""  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
-	      </div>
-	      
-	      <div class="bot_paging">
-		<span class="previous_page disabled">Previous</span>
-		<em>1</em>
-		<a href="javascript:;" rel="next">2</a>
-		<a href="javascript:;">3</a>
-		<a href="javascript:;">4</a>
-		<a href="javascript:;">5</a>
-		<a href="javascript:;">6</a>
-		<a href="javascript:;">7</a>
-		<a href="javascript:;">8</a>
-		<a href="javascript:;">9</a>
-		<span class="gap">…</span>
-		<a href="javascript:;">66</a>
-		<a href="javascript:;">67</a>
-		<a href="javascript:;" rel="next" class="next_page">Next</a>
-	      </div> 
-	    </div>
-	    
-          </div>
-        </div>
-	
-	<!-- END pagination -->
-	<!-- BEGIN form -->
-	<div style="margin: 0px; width: 405px; margin-top: 5px;" id="" class="proList">
-	  <form method="get" id="" action="" accept-charset="UTF-8">
-	    <div class="proListPic">
-	      <a href="#"><div><img title="James" src="/system/avatars/1/thumb/Firefox_wallpaper.png?1314087505" class="vtip avatar_1" alt="Firefox_wallpaper"></div></a>
-	    </div>
-	    <div class="proListR">
-	      <label style="color: #6F6F63;">I like this because . . .</label>
-	      <div class="writeCom" style="width: 372px;">
-		<textarea name="" id="" style="width: 364px; "></textarea>
-	      </div>
-	    </div>
-	    <div style="float:left; margin-right: 0px; clear: both; margin-left: 36px;" class="proAttR">
-	      <input type="button" class="buttonCom" name="commit" value="Send" id="">
-	      </div>
-	    </form>
-	  </div>
-	<!-- END form -->
-	
-	
-       </div>
-    </div>
-    <!-- END show rate comment area -->
+    <!-- BEGIN show LIKE comment area -->
+    <%= render :partial => "rate_cmts/like_cmts", :locals => {:post => post} %>
+    <!-- END show DISLIKE comment area -->
+    <!-- BEGIN show LIKE comment area -->
+    <%= render :partial => "rate_cmts/dislike_cmts", :locals => {:post => post} %>
+    <!-- END show DISLIKE comment area -->
 </div>
 <script type="text/javascript">
+var waitIcon<%= post.id %> = '';
+function LoadLikeCmt<%= post.id %>(){
+  $.ajax({
+    url: '<%= load_bk_like_rate_cmts_url %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      post_id: <%= post.id %>
+    },
+    success: function(data){
+      $('#wait_like<%= post.id %>').hide();
+    }
+  });//end ajax
+}
+
   $(document).ready(function(){
-    $('#rate_area<%= post.id %>').corner();
+    //BEGIN like handler
+    if  ( ! ( $.browser.msie && $.browser.version == "8.0" ) ) {
+      $('#like_area<%= post.id %>').corner();
+    }
     $('div#rate_<%= post.id %>').find('.qashdU').click(function(){
-      $('#rate_area<%= post.id %>').show();
+      $('#like_area<%= post.id %>').toggle('slow', function(){
+        if ( $(this).is(":visible") == true ){
+          LoadLikeCmt<%= post.id %>();
+        } else {
+          $('#wait_like<%= post.id %>').show();
+          $('#like_inner<%= post.id %>').html('');
+        }//end if
+      });//end toggle
+    });//end qashdU
+    //END like handler
+    //BEGIN dislike handler
+    $('#dislike_area<%= post.id %>').corner();
+    $('div#rate_<%= post.id %>').find('.qashdD').click(function(){
+      $('#dislike_area<%= post.id %>').toggle('slow');
     });
+    //END dislike handler
   });
 </script>

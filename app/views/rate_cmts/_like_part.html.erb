@@ -1,0 +1,114 @@
+        <div class="proList" style="margin: 0px; width: 405px;" id="header<%= @post.id %>">
+          <div class="writeCom">
+            <label>100 people like this</label>
+            <div onclick="" style="float: right; cursor: pointer;" class="" id="hide<%= @post.id %>">
+              <img src="/images/icon-ing.gif">
+            </div>
+          </div>
+        </div>
+
+	<div id="" class="proList" style="margin: 0px; width: 405px; margin-top: 5px;">
+	  <div class="proListPic">
+	    <a href="#"><div><img title="James" src="/system/avatars/1/thumb/Firefox_wallpaper.png?1314087505" class="vtip avatar_1" alt=""></div></a>
+	  </div>
+	  <div class="proListR">
+	    <div class="AfterClCom">
+	      <a href="/users/1/show_lounge">James</a> -
+	      Content created and posted by AfterClassroom users is dedicated to the public domain.
+	      Content created and posted by AfterClassroom users is dedicated to the public domain.
+	    </div>
+	    <div class="proListCont">
+	      about 6 hours ago.
+	    </div>
+	  </div>
+	</div> <!-- end each item -->
+	<!-- BEGIN pagination-->
+        <div class="proList" style="margin: 0px; width: 405px; margin-top: 5px;">
+          <div class="writeCom">
+	    <div style="padding-left:0" class="assPage">
+	      <span class="numPage">Displaying <b>1&nbsp;-&nbsp;5</b> of <b>331</b> in total. </span>
+
+	      <div class="reqTi" style="display: inline;">
+		<input type="text" value="5" size="2" name="" id=""  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
+	      </div>
+	      
+	      <div class="bot_paging">
+		<span class="previous_page disabled">Previous</span>
+		<em>1</em>
+		<a href="javascript:;" rel="next">2</a>
+		<a href="javascript:;">3</a>
+		<a href="javascript:;">4</a>
+		<a href="javascript:;">5</a>
+		<a href="javascript:;">6</a>
+		<a href="javascript:;">7</a>
+		<a href="javascript:;">8</a>
+		<a href="javascript:;">9</a>
+		<span class="gap">…</span>
+		<a href="javascript:;">66</a>
+		<a href="javascript:;">67</a>
+		<a href="javascript:;" rel="next" class="next_page">Next</a>
+	      </div> 
+	    </div>
+	    
+          </div>
+        </div>
+	
+	<!-- END pagination -->
+	<!-- BEGIN form -->
+	<div style="margin: 0px; width: 405px; margin-top: 5px;" id="" class="proList">
+	  <% form_tag url_for(:controller => "rate_cmts", :action => "add_like_cmt"), :id => "form_cmt#{@post.id}", :method => :post, :remote => true, :name => "form_cmt#{@post.id}" do %>
+	    <%= hidden_field_tag "post_id", "#{@post.id}" %>
+
+	    
+	    <div class="proListPic">
+	      <%= show_image_user_post(current_user) %>
+
+	    </div>
+	    <div class="proListR">
+	      <label style="color: #6F6F63;">I like this because . . .</label>
+	      <div class="writeCom" style="width: 372px;">
+		<textarea name="cmt_cnt" id="cmt_<%= @post.id %>" style="width: 364px; background: white;" class="{validate:{required:true}}"></textarea>
+	      </div>
+	    </div>
+	    <div style="float:left; margin-right: 0px; clear: both; margin-left: 36px;" class="proAttR">
+	      <input type="button" class="buttonCom" name="commit" value="Send" id="send<%= @post.id %>">
+	    </div>
+	    <% end %>
+	    <%= show_ajax_loader("wait_send#{@post.id}", "background: white; width: 18px; margin-left: 5px; margin-top: 5px; display: none; background: none;") %>
+	  </div>
+	<!-- END form -->
+	
+
+<script type="text/javascript">
+function SubmitFormCmt<%= @post.id %>(){
+  var result = $('form#form_cmt<%= @post.id %>').validate({
+    meta: "validate"
+  });
+  if (result) {
+    $('form#form_cmt<%= @post.id %>').submit();
+  }
+}
+
+$(document).ready(function(){
+  $('#send<%= @post.id %>').click(function(){
+    SubmitFormCmt<%= @post.id %>();
+    //$('form#form_cmt<%= @post.id %>').submit();
+  });
+  $('form#form_cmt<%= @post.id %>').bind('ajax:beforeSend', function(){
+    $(this).hide('slow');
+    $('#wait_send<%= @post.id %>').show('slow');
+  }).bind('ajax:success',function(){
+    $('#wait_send<%= @post.id %>').hide('slow');
+    document.form_cmt<%= @post.id %>.reset();
+    $(this).show('slow');
+  });//end .bind
+  //BEGIN hide like_cmt_area when user click X
+  $('#hide<%= @post.id %>').click(function(){
+    $('#like_area<%= @post.id %>').hide('slow',function(){
+      $('#wait_like<%= @post.id %>').show();
+      $('#like_inner<%= @post.id %>').html('');
+    });//end .hide
+  });//end .click
+  //END hide like_cmt_area when user click X
+});
+</script>

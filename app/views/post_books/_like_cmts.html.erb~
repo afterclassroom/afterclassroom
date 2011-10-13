@@ -1,0 +1,62 @@
+<%= fields_for @post do |post| %>
+<div class="postReq">
+    *(asterisk) is required.
+</div>
+<div class="postItemDep">
+    <div class="postTit">
+        Type
+    </div>
+    <div class="postDep">
+        <%= f.text_field :book_type_id %>
+    </div>
+</div>
+<%= render :partial => "/shared/form_post/title", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/description", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school" %>
+<%= render :partial => "/shared/form_post/select_department", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/select_school_year", :locals => {:post => post} %>
+<%= render :partial => "/shared/form_post/email" %>
+<div class="postItem">
+    <div class="postTit">
+        Price
+    </div>
+    <div class="postInp">
+        <%= f.text_field :price, :style => "width:208px" %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Phone
+    </div>
+    <div class="postInp">
+        <%= f.text_field :phone, :style => "width:208px" %>
+    </div>
+</div>
+<div class="postItem">
+    <div class="postTit">
+        Address
+    </div>
+    <div class="postInp">
+        <%= f.text_field :address, :style => "width:208px" %>
+    </div>
+</div>
+<%= render :partial => "/shared/auto_address", :locals => {:id_addres_field => "post_book_address" } %>
+<%= render :partial => "/shared/form_post/attach_file" %>
+<%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => false} %>
+<%= render :partial => "/shared/form_post/select_tag" %>
+<% end %>
+<ul id="book_type_menu" class="mcdropdown_menu">
+    <% BookType.find(:all).each do |t| %>
+    <li rel_book_type="<%= t.id %>">
+        <%= t.name %>
+    </li>
+    <% end %>
+</ul>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#post_book_book_type_id").mcDropdown("#book_type_menu", {
+            width: 350,
+            valueAttr: "rel_book_type"
+        });
+    });
+</script>

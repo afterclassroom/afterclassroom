@@ -26,7 +26,7 @@ Afterclassroom::Application.routes.draw do
         post :message_action, :send_message
       end
     end
-    
+   
     #Learning tools
     resources :learn_tools do
       collection do
@@ -167,6 +167,15 @@ Afterclassroom::Application.routes.draw do
       get :state
     end
   end
+
+  #Rate comment 
+  resources :rate_cmts do
+    collection do
+      get :load_bk_like
+      post :add_like_cmt
+    end
+  end    
+
 
   # School
   resources :schools do

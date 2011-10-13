@@ -1,0 +1,14 @@
+<div style="margin: 0px; width: 405px; margin-top: 5px;" class="proList" id="">
+	  <div class="proListPic">
+	    <a href="#"><div><img alt="" class="vtip avatar_1" src="/system/avatars/1/thumb/Firefox_wallpaper.png?1314087505" title="James"></div></a>
+	  </div>
+	  <div class="proListR">
+	    <div class="AfterClCom">
+	      <%= show_user_post(current_user) %> - 
+	      <%= @cmt.content %>
+	    </div>
+	    <div class="proListCont">
+	      <%= distance_of_time_in_words_to_now(@cmt.created_at, false) + " ago." %>
+	    </div>
+	  </div>
+	</div>
