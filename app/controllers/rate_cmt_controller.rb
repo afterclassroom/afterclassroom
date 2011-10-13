@@ -1,2 +1,0 @@
-class RateCmtController < ApplicationController
-end

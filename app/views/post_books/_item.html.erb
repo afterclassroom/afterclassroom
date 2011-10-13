@@ -56,15 +56,33 @@
     <%= render :partial => "rate_cmt/dislike_cmts", :locals => {:post => post} %>
     <!-- END show DISLIKE comment area -->
 </div>
+hello world <%= loadk_bk_like_rate_cmts_url %>
 <script type="text/javascript">
+function LoadLikeCmt<%= post.id %>(){
+  $.ajax({
+    url: <%= loadk_bk_like_rate_cmts_url %>,
+    type: 'GET',
+    dataType: 'html',
+    data: 'something=',
+    success: function(html){
+      $('#wait_like<%= post.id %>').hide();
+    }
+  });//end ajax
+}
+
   $(document).ready(function(){
     //BEGIN like handler
     if  ( ! ( $.browser.msie && $.browser.version == "8.0" ) ) {
       $('#like_area<%= post.id %>').corner();
     }
     $('div#rate_<%= post.id %>').find('.qashdU').click(function(){
-      $('#like_area<%= post.id %>').toggle('slow');
-    });
+      $('#like_area<%= post.id %>').toggle('slow', function(){
+        if ( $(this).is(":visible") == true ){
+          LoadLikeCmt<%= post.id %>();
+        } else {
+        }//end if
+      });//end toggle
+    });//end qashdU
     //END like handler
     //BEGIN dislike handler
     $('#dislike_area<%= post.id %>').corner();

@@ -1,5 +1,5 @@
-<div id="like_area<%= post.id %>" style="width: 428px; min-height: 25px; border: 1px solid #CECECE; overflow: auto; padding-bottom: 5px;">
+<div id="like_area<%= post.id %>" style="width: 428px; min-height: 25px; border: 1px solid #CECECE; overflow: auto; padding-bottom: 5px; display: none;">
 <div id="like_inner<%= post.id %>" style="padding: 5px;">
-    <%= show_ajax_loader("waiting_for", "background: white;  position: absolute;  width: 18px; margin-left: -1px;") %>
+    <%= show_ajax_loader("wait_like#{post.id}", "background: white;  position: absolute;  width: 18px; margin-left: -1px;") %>
 </div>
 </div>
