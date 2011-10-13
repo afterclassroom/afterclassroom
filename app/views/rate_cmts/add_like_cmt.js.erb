@@ -1,1 +1,1 @@
-alert('a');
+$('#header<%= @post_id %>').after('<%= escape_javascript ( raw(render :partial => "like_item")) %>');  
