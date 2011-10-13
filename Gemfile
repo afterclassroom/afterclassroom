@@ -11,7 +11,7 @@ gem 'capistrano'
 #gem 'ruby-debug19'
 
 # Bundle the extra gems:
-gem 'rake', '>= 0.8.7'
+gem 'rake', '0.9.2'
 gem 'git-deploy'
 gem 'rack'
 gem 'aasm', '2.2.0'
@@ -77,3 +77,4 @@ gem 'delayed_job_admin'
 gem 'sunspot-rails-http-basic-auth', '~> 0.0.2'
 gem 'linkedin'
 gem 'email_valid'
+gem 'haml'
