@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class Post < ActiveRecord::Base
   # Validations
@@ -29,6 +30,7 @@ class Post < ActiveRecord::Base
   has_one :post_food, :dependent => :destroy
   has_one :post_exam_schedule, :dependent => :destroy
   has_one :post_event, :dependent => :destroy
+  has_many :rating_text, :dependent => :destroy
   # Named scope
   scope :with_user_id, lambda {|usr| {:conditions => ["user_id = ?", usr], :order => "posts.created_at DESC"}}
   
