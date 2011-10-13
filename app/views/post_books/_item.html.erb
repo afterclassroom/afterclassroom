@@ -56,11 +56,11 @@
     <%= render :partial => "rate_cmt/dislike_cmts", :locals => {:post => post} %>
     <!-- END show DISLIKE comment area -->
 </div>
-hello world <%= loadk_bk_like_rate_cmts_url %>
+hello world <%= load_bk_like_rate_cmts_url %>
 <script type="text/javascript">
 function LoadLikeCmt<%= post.id %>(){
   $.ajax({
-    url: <%= loadk_bk_like_rate_cmts_url %>,
+    url: '<%= load_bk_like_rate_cmts_url %>',
     type: 'GET',
     dataType: 'html',
     data: 'something=',

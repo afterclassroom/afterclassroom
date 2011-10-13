@@ -1,5 +1,5 @@
 class RateCmtsController < ApplicationController
-  def loadk_bk_like
+  def load_bk_like
     puts "=="
     puts "=="
     puts "=="
