@@ -1,37 +1,9 @@
 class RateCmtsController < ApplicationController
   def load_bk_like
     @post = Post.find(params[:post_id])
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
+    render :layout => false
+  end
+  def add_cmt
     render :layout => false
   end
 end
