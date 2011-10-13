@@ -68,7 +68,7 @@
                 get_link = path_mp3;
             }
 						else
-						if ($.inArray(file_get_ext(link), ["jpg", "png", "jpeg", "gif"]) == 0){
+						if ($.inArray(file_get_ext(link), ["jpg", "png", "jpeg", "gif"]) != -1){
 							get_link = path_image;
 						}
 						else{

@@ -407,7 +407,7 @@ span.downarr a {
     position:fixed;
     top:32%;
     right:-30px;
-    z-index: 10px;
+    z-index: 9999;
 }
 
 a.feedback-tab {
@@ -423,6 +423,7 @@ a.feedback-tab {
     margin-top: -20px;
     cursor: pointer;
     margin-top: 5px;
+		z-index: 9999;
 }
 .feed_close{
     margin-right: -11px;

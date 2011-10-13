@@ -45,6 +45,10 @@ class Post < ActiveRecord::Base
   
   # Favorite
   acts_as_favorite
+
+	# Friendly ID
+  extend FriendlyId
+  friendly_id :title, :use => :slugged
   
   # Solr search index
   searchable do

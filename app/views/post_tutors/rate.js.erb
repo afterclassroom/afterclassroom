@@ -1,2 +1,2 @@
-$("#rate_<%= @post.id %>").html("<%= raw(@text) %>");
+$("#rate_<%= @post.id %>_<%= @post.class.name %>").html("<%= raw(@text) %>");
 vtip();

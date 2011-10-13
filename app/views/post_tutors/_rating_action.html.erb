@@ -1,4 +1,4 @@
-<div id="rate_<%= post.id %>">
+<div id="rate_<%= post.id %>_<%= post.class.name %>">
                     <%
                     check = PostTutor.find_rated_by(current_user).include?(post.post_tutor) if logged_in?
                     check ||= false %>
