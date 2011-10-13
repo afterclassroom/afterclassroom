@@ -50,10 +50,10 @@
     <%= render :partial => "shared/post_comments/show_list_comments", :locals => {:post => post} %>
     <!--Comments-->
     <!-- BEGIN show LIKE comment area -->
-    <%= render :partial => "like_cmts", :locals => {:post => post} %>
+    <%= render :partial => "rate_cmt/like_cmts", :locals => {:post => post} %>
     <!-- END show DISLIKE comment area -->
     <!-- BEGIN show LIKE comment area -->
-    <%= render :partial => "dislike_cmts", :locals => {:post => post} %>
+    <%= render :partial => "rate_cmt/dislike_cmts", :locals => {:post => post} %>
     <!-- END show DISLIKE comment area -->
 </div>
 <script type="text/javascript">
