@@ -1,0 +1,2 @@
+module RateCmtHelper
+end
