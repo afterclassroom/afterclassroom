@@ -56,7 +56,7 @@
 	<!-- END pagination -->
 	<!-- BEGIN form -->
 	<div style="margin: 0px; width: 405px; margin-top: 5px;" id="" class="proList">
-	  <% form_tag url_for(:controller => "rate_cmts", :action => "add_like_cmt"), :id => "form_cmt#{@post.id}", :method => :post, :remote => true do %>
+	  <% form_tag url_for(:controller => "rate_cmts", :action => "add_like_cmt"), :id => "form_cmt#{@post.id}", :method => :post, :remote => true, :name => "form_cmt#{@post.id}" do %>
 	    <%= hidden_field_tag "post_id", "#{@post.id}" %>
 
 	    
@@ -98,6 +98,7 @@ $(document).ready(function(){
     $('#wait_send<%= @post.id %>').show('slow');
   }).bind('ajax:success',function(){
     $('#wait_send<%= @post.id %>').hide('slow');
+    document.form_cmt<%= @post.id %>.reset();
     $(this).show('slow');
   });//end .bind
   //BEGIN hide like_cmt_area when user click X
