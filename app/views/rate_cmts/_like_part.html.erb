@@ -66,7 +66,7 @@
 	    <div class="proListR">
 	      <label style="color: #6F6F63;">I like this because . . .</label>
 	      <div class="writeCom" style="width: 372px;">
-		<textarea name="" id="" style="width: 364px; background: white;"></textarea>
+		<textarea name="" id="" style="width: 364px; background: white;" class="{validate:{required:true}}"></textarea>
 	      </div>
 	    </div>
 	    <div style="float:left; margin-right: 0px; clear: both; margin-left: 36px;" class="proAttR">
@@ -79,9 +79,19 @@
 	
 
 <script type="text/javascript">
+function SubmitFormCmt<%= @post.id %>(){
+  var result = $('form#form_cmt<%= @post.id %>').validate({
+    meta: "validate"
+  });
+  if (result) {
+    $('form#form_cmt<%= @post.id %>').submit();
+  }
+}
+
 $(document).ready(function(){
   $('#send<%= @post.id %>').click(function(){
-    $('form#form_cmt<%= @post.id %>').submit();
+    SubmitFormCmt<%= @post.id %>();
+    //$('form#form_cmt<%= @post.id %>').submit();
   });
   $('form#form_cmt<%= @post.id %>').bind('ajax:beforeSend', function(){
     $(this).hide('slow');
