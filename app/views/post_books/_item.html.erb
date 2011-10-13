@@ -59,7 +59,9 @@
 <script type="text/javascript">
   $(document).ready(function(){
     //BEGIN like handler
-    //$('#like_area<%= post.id %>').corner();
+    if  ( ! ( $.browser.msie && $.browser.version == "8.0" ) ) {
+      $('#like_area<%= post.id %>').corner();
+    }
     $('div#rate_<%= post.id %>').find('.qashdU').click(function(){
       $('#like_area<%= post.id %>').toggle('slow');
     });
