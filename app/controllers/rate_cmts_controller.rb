@@ -23,8 +23,8 @@ class RateCmtsController < ApplicationController
     puts "=="
     puts "=="
     puts "=="
-    puts "=="
-    puts "=="
+    puts "==name"
+    puts "==name == #{@post.title}"
     puts "==v"
     puts "==v == #{@post.rating_texts.size}"
     render :layout => false
