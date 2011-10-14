@@ -12,36 +12,14 @@
 
 	
 	<!-- BEGIN pagination-->
-        <div class="proList" style="margin: 0px; width: 405px; margin-top: 5px;">
-          <div class="writeCom">
-	    <div style="padding-left:0" class="assPage">
-	      <span class="numPage">Displaying <b>1&nbsp;-&nbsp;5</b> of <b>331</b> in total. </span>
-
-	      <div class="reqTi" style="display: inline;">
-		<input type="text" value="5" size="2" name="" id=""  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
-	      </div>
-	      
-	      <div class="bot_paging">
-		<span class="previous_page disabled">Previous</span>
-		<em>1</em>
-		<a href="javascript:;" rel="next">2</a>
-		<a href="javascript:;">3</a>
-		<a href="javascript:;">4</a>
-		<a href="javascript:;">5</a>
-		<a href="javascript:;">6</a>
-		<a href="javascript:;">7</a>
-		<a href="javascript:;">8</a>
-		<a href="javascript:;">9</a>
-		<span class="gap">…</span>
-		<a href="javascript:;">66</a>
-		<a href="javascript:;">67</a>
-		<a href="javascript:;" rel="next" class="next_page">Next</a>
-	      </div> 
-	    </div>
-	    
-          </div>
-        </div>
-	
+	<div class="assPage" style="padding-left:0">
+	  <span class="numPage"><%= page_entries_info @rating_texts %></span>
+	  <div class="reqTi" style="display: inline;">
+	    <input type="text" value="5" size="2" name="" id=""  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
+	  </div>
+	  
+	  <%= will_paginate(@rating_texts, :params => { :controller => "rate_cmts", :action => "load_bk_like"},:method => :get) %>
+	</div>
 	<!-- END pagination -->
 	<!-- BEGIN form -->
 	<div style="margin: 0px; width: 405px; margin-top: 5px;" id="" class="proList">
