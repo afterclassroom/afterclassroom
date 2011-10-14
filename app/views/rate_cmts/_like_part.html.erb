@@ -6,22 +6,11 @@
             </div>
           </div>
         </div>
+        <% @post.rating_texts.each do |cmt| %>
+	<%= render :partial => "like_item", :locals => {:cmt => cmt} %>
+	<% end %>
 
-	<div id="" class="proList" style="margin: 0px; width: 405px; margin-top: 5px;">
-	  <div class="proListPic">
-	    <a href="#"><div><img title="James" src="/system/avatars/1/thumb/Firefox_wallpaper.png?1314087505" class="vtip avatar_1" alt=""></div></a>
-	  </div>
-	  <div class="proListR">
-	    <div class="AfterClCom">
-	      <a href="/users/1/show_lounge">James</a> -
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	      Content created and posted by AfterClassroom users is dedicated to the public domain.
-	    </div>
-	    <div class="proListCont">
-	      about 6 hours ago.
-	    </div>
-	  </div>
-	</div> <!-- end each item -->
+	
 	<!-- BEGIN pagination-->
         <div class="proList" style="margin: 0px; width: 405px; margin-top: 5px;">
           <div class="writeCom">
