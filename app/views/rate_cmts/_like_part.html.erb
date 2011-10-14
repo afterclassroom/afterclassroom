@@ -15,7 +15,7 @@
 	<div class="assPage" style="padding-left:0">
 	  <span class="numPage"><%= page_entries_info @rating_texts %></span>
 	  <div class="reqTi" style="display: inline;">
-	    <input type="text" value="5" size="2" name="" id=""  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
+	    . &nbsp <input type="text" value="5" size="2" name="" id=""  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
 	  </div>
 	  
 	  <%= will_paginate(@rating_texts, :params => { :controller => "rate_cmts", :action => "load_bk_like"},:method => :get) %>
