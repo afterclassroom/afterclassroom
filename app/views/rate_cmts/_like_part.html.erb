@@ -64,11 +64,13 @@ $(document).ready(function(){
     $(this).attr('href','javascript:;');
     $(this).click(function(){
       if ($(this).text() == 'Next'){
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
         curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
-        console.log('GO TO NEXT PAGE, load page == '+curentPage<%= @post.id %>);
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
       }else if ($(this).text() == 'Previous'){
         curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
-        console.log('go to previous page');
+        console.log('go to previous page, p = '+curentPage<%= @post.id %>);
       }
       else {
         console.log('jump to page number, page == '+$(this).text());
@@ -82,7 +84,7 @@ $(document).ready(function(){
       if ( ( !isNaN(parseInt($(this).val())) ) && !(parseInt($(this).val()) <= 0) ){
         $('#wait_like<%= @post.id %>').show();
         $('#like_inner<%= @post.id %>').html('');
-        LoadLikeCmt<%= @post.id %>($(this).val());
+        LoadLikeCmt<%= @post.id %>($(this).val(),'1');
       }
     }//end if 
   });//end key press
