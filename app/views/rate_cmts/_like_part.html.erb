@@ -62,10 +62,15 @@ $(document).ready(function(){
   //BEGIN change the reasons display per page
   $('#perpage<%= @post.id %>').keypress(function(e) {
     if(e.keyCode == 13) {
-      $('#wait_like<%= @post.id %>').show();
-      $('#like_inner<%= @post.id %>').html('');
-      LoadLikeCmt<%= @post.id %>($(this).val());
-    }
+      if ( ( !isNaN(parseInt($(this).val())) ) && !(parseInt($(this).val()) <= 0) ){
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
+        LoadLikeCmt<%= @post.id %>($(this).val());
+      }
+    }//end if 
+  });//end key press
+  $('#perpage<%= @post.id %>').keyup(function () { 
+    this.value = this.value.replace(/[^0-9\.]/g,'');
   });
   //END change the reasons display per page
   //BEGIN update number of people like; reasons
