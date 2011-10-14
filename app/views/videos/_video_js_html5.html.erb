@@ -1,0 +1,112 @@
+<div id="page">
+  <a style="display:block;width:550px;height:360px" id="player01"> </a> 
+</div>
+<div id="playlist_wrap" style="margin-left:5px">
+  <a class="prev"></a>
+  <div id="pl"> 
+    <div class="entries">
+      <div class="page">
+        <a href="<%= get_video_path(@video.video_file.video_attach.url) %>">
+          <img src="http://static.flowplayer.org/img/demos/thumb1.jpg" />test 01<br />		
+          <em>0.22</em>
+        </a>
+        <a href="KimAronson-TwentySeconds59483.m4v">
+          <img src="/system/avatars/6/thumb/HughMcCutcheon.jpg?1302747784"/>test 02 <br />
+          <em>0:20 min</em>
+        </a>
+        <a href="http://pseudo01.hddn.com/vod/demo.flowplayervod/flowplayer-700.flv">
+          <img src="/system/avatars/17/thumb/207551_300.jpg?1302747928"/>test 03<br />
+          <em>0:20 min</em>	
+        </a>
+      </div>
+      <div class="page">
+        <a href="http://pseudo01.hddn.com/vod/demo.flowplayervod/flowplayer-700.flv">
+          <img src="/system/avatars/18/thumb/84442_300.jpg?1302747940"/>test 02<br />
+          <em>0:20 min</em>	
+        </a>		
+      </div>
+    </div>
+  </div>
+
+  <a class="next"></a>
+
+</div>
+<script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
+<script src="http://static.flowplayer.org/js/flowplayer.playlist-3.0.8.min.js"></script>	
+<link rel="stylesheet" type="text/css" href="/stylesheets/playlist-horizontal.css"/>
+<style>
+  /* container has a background image */
+
+  a.player {	
+    display:block;
+    width:500px;
+    height:340px;
+    text-align:center;
+    color:#fff;
+    text-decoration:none;
+    cursor:pointer;
+    background:#000 url(/img/global/gradient/h500.png) repeat-x 0 0;
+    background:-moz-linear-gradient(top, rgba(55, 102, 152, 0.9), rgba(6, 6, 6, 0.9));
+    -moz-box-shadow:0 0 40px rgba(100, 118, 173, 0.5);
+  }
+
+  a.player:hover {
+    background:-moz-linear-gradient(center top, rgba(73, 122, 173, 0.898), rgba(6, 6, 6, 0.898));	
+  }
+
+  /* splash image */
+  a.player img {
+    margin-top:125px;
+    border:0;	
+  }
+  .page a img {
+	border:0;	
+	float:left;
+	margin-right:10px;
+        width: 60px;
+        height: 60px;
+}
+.page a strong {
+    color: blue;
+    padding-bottom: 5px;
+}
+
+</style>
+
+
+<br clear="all" />
+<script>
+  flowplayer("player01", 
+  {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
+  {	
+    key: '#$de9093c019ae644a1da',
+    logo:null,  
+    plugins: {
+      controls: {
+        fullscreen: false
+      }
+    },
+    logo: {
+      url: '/images/logo.png',
+      fullscreenOnly: false,
+      opacity: 0,
+      top: '50%',
+      left: '50%'
+    },
+    // gradually show on mouseover
+    onMouseOver: function() {
+      this.getPlugin("logo").fadeTo(0.5, 1000);
+    },
+    // gradually hide on mouseout
+    onMouseOut: function() {
+      this.getPlugin("logo").fadeTo(0, 1000);
+    }
+  }).playlist("div.entries");
+
+</script>
+<script>
+  $(function() {
+    // setup scrolling for the playlist elements
+    $("#pl").scrollable({ circular: true });	
+  });
+</script>
