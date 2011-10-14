@@ -369,6 +369,10 @@ class User < ActiveRecord::Base
 			return []
 		end
   end
+
+	def videos_same_category(video)
+		self.videos.where("id <> #{video.id} AND category = '#{video.category}'")
+	end
   
   protected
   

@@ -1,30 +1,31 @@
 <div id="page">
-  <a style="display:block;width:550px;height:360px" id="player01"> </a> 
+  <a style="display:block;width:550px;height:360px" id="player"> </a> 
 </div>
+<%
+	videos = @video.user.videos_same_category(@video)
+	videos = [@video] + videos
+%>
 <div id="playlist_wrap" style="margin-left:5px">
   <a class="prev"></a>
   <div id="pl"> 
     <div class="entries">
-      <div class="page">
-        <a href="<%= get_video_path(@video.video_file.video_attach.url) %>">
-          <img src="http://static.flowplayer.org/img/demos/thumb1.jpg" />test 01<br />		
-          <em>0.22</em>
+			<% count = 0 %>
+			<% videos.each do |v| %>
+				<% if count == 0 %>
+		    	<div class="page">
+				<% end %>	
+        <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
+          <%= display_image_video(v) %> <%= v.title %>
         </a>
-        <a href="KimAronson-TwentySeconds59483.m4v">
-          <img src="/system/avatars/6/thumb/HughMcCutcheon.jpg?1302747784"/>test 02 <br />
-          <em>0:20 min</em>
-        </a>
-        <a href="http://pseudo01.hddn.com/vod/demo.flowplayervod/flowplayer-700.flv">
-          <img src="/system/avatars/17/thumb/207551_300.jpg?1302747928"/>test 03<br />
-          <em>0:20 min</em>	
-        </a>
-      </div>
-      <div class="page">
-        <a href="http://pseudo01.hddn.com/vod/demo.flowplayervod/flowplayer-700.flv">
-          <img src="/system/avatars/18/thumb/84442_300.jpg?1302747940"/>test 02<br />
-          <em>0:20 min</em>	
-        </a>		
-      </div>
+				<% count = count + 1 %>
+				<% if count == 3 %>
+		    	</div>
+					<% count = 0 %>
+				<% end %>
+			<% end %>
+			<% if count < 3 %>
+		    	</div>
+				<% end %>
     </div>
   </div>
 
@@ -76,7 +77,7 @@
 
 <br clear="all" />
 <script>
-  flowplayer("player01", 
+  flowplayer("player", 
   {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
   {	
     key: '#$de9093c019ae644a1da',
@@ -102,9 +103,6 @@
       this.getPlugin("logo").fadeTo(0, 1000);
     }
   }).playlist("div.entries");
-
-</script>
-<script>
   $(function() {
     // setup scrolling for the playlist elements
     $("#pl").scrollable({ circular: true });	
