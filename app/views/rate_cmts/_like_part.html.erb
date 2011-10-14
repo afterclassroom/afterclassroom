@@ -62,7 +62,8 @@ $(document).ready(function(){
   //BEGIN change the reasons display per page
   $('#perpage<%= @post.id %>').keypress(function(e) {
     if(e.keyCode == 13) {
-      alert('You pressed enter!');
+      $('#wait_like<%= @post.id %>').show();
+      $('#like_inner<%= @post.id %>').html('');
     }
   });
   //END change the reasons display per page
