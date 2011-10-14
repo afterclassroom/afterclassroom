@@ -75,10 +75,12 @@ $(document).ready(function(){
         LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
       }
       else {
-        console.log('jump to page number, page == '+$(this).text());
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',$(this).text());
       }//end if for .text
     });
-  });
+  });//end .each
   //BEGIN ajax pagination
   //BEGIN change the reasons display per page
   $('#perpage<%= @post.id %>').keypress(function(e) {
