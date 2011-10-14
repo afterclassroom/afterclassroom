@@ -133,9 +133,15 @@ class VideosController < ApplicationController
       @video.tag_list = params[:tag_list]
       if @video.save!
         @video.convert
-        post_wall(@video)
-        flash[:notice] = 'Video was successfully created.'
-        redirect_to(user_video_url(current_user, @video))
+				if @video.state == "error"
+					flash[:error] = 'Convert video error.'
+					@video.destroy
+					render :action => "new"
+				else
+					post_wall(@video)
+        	flash[:notice] = 'Video was successfully created.'
+					redirect_to(user_video_url(current_user, @video))
+				end
       else
         flash[:error] = 'Error.'
         @categories ||= Youtube.video_categories
