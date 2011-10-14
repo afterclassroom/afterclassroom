@@ -1,6 +1,7 @@
         <div class="proList" style="margin: 0px; width: 405px;" id="header<%= @post.id %>">
           <div class="writeCom">
-            <label>100 people like this</label>
+            <label id="label1<%= @post.id %>">100 people like this.</label>
+	    <label id="label2<%= @post.id %>">There are <%= @post.rating_texts.size %> reasons.</label>
             <div onclick="" style="float: right; cursor: pointer;" class="" id="hide<%= @post.id %>">
               <img src="/images/icon-ing.gif">
             </div>
@@ -58,6 +59,9 @@ function SubmitFormCmt<%= @post.id %>(){
 }
 
 $(document).ready(function(){
+  //BEGIN update number of people like; reasons
+  $('#label1<%= @post.id %>').html($('div#rate_<%= @post.id %>_Post').find('.qashdU').find('a').html()+' people like this. ');
+  //END update number of people like; reasons
   $('#send<%= @post.id %>').click(function(){
     SubmitFormCmt<%= @post.id %>();
     //$('form#form_cmt<%= @post.id %>').submit();
