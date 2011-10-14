@@ -40,6 +40,7 @@
 	    <div style="float:left; margin-right: 0px; clear: both; margin-left: 36px;" class="proAttR">
 	      <input type="button" class="buttonCom" name="commit" value="Send" id="send<%= @post.id %>">
 	    </div>
+	    <div style="float:right;" class="postDesInf" id="desc_count<%= @post.id %>">255 characters max - Current: 0 character</div>	      
 	    <% end %>
 	    <%= show_ajax_loader("wait_send#{@post.id}", "background: white; width: 18px; margin-left: 5px; margin-top: 5px; display: none; background: none;") %>
 	  </div>
@@ -69,6 +70,15 @@ $(document).ready(function(){
     document.form_cmt<%= @post.id %>.reset();
     $(this).show('slow');
   });//end .bind
+  //BEGIN word count on textarea
+  $('#cmt_<%= @post.id %>').keyup(function(){
+    var len = this.value.length;
+    if (len >= 255) {
+      this.value = this.value.substring(0, 255);
+    }
+    $('#desc_count<%= @post.id %>').text("255 characters max - Current: "+len+" characters")
+  });
+  //END
   //BEGIN hide like_cmt_area when user click X
   $('#hide<%= @post.id %>').click(function(){
     $('#like_area<%= @post.id %>').hide('slow',function(){
