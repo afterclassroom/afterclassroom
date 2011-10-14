@@ -69,8 +69,10 @@ $(document).ready(function(){
         curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
         LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
       }else if ($(this).text() == 'Previous'){
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
         curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
-        console.log('go to previous page, p = '+curentPage<%= @post.id %>);
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
       }
       else {
         console.log('jump to page number, page == '+$(this).text());
