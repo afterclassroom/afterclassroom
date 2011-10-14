@@ -1,0 +1,83 @@
+#pl {
+	height:80px;
+	background:#f5fbfb url(/images/Photo/h150.png) repeat-x;	
+	border:1px solid #ddd;
+	width:455px;
+	position:relative;
+	overflow:hidden;
+	padding:5px 0;
+	float:left;
+}
+
+.entries {
+	height:80px;
+	position:absolute;
+	width:10000em;
+}
+
+.page {
+	width:580px;
+	float:left;
+}
+
+.entries a {
+	background:transparent url(/images/Photo/entry.png) no-repeat scroll 0%;
+	color:#666;
+	float:left;
+	font-family:"bitstream vera sans","lucida grande","verdana";
+	font-size:11px;
+	height:60px;
+	margin:0px 4px;
+	padding:10px;
+	text-decoration:none;
+	width:119px;
+	
+}
+
+.entries a:hover {
+	background-position:-140px 0;
+	color:#000;
+}
+
+.entries .playing {
+	background-position:-280px 0;		
+	color:#000;
+}
+
+.entries .paused {
+	background-position:-420px 0;		
+	color:#000;
+}
+
+.entries .progress {
+	opacity:0.8;
+}
+
+.entries em {	
+	float:right;
+	margin-top:15px;
+	color:red;
+	font-style:normal;
+}
+
+.next, .prev {
+	display:block;
+	width:18px;
+	height:18px;
+	background:url(/images/Photo/left.png) no-repeat;
+	margin:30px 10px;
+	cursor:pointer;
+	float:left;
+}
+
+.next:hover, .prev:hover {
+	background-position:0px -18px;		
+}
+
+.next {
+	background-image:url(/images/Photo/right.png);	
+}
+
+.next.disabled, .prev.disabled {
+	visibility:hidden;		
+}

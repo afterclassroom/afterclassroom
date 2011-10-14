@@ -695,7 +695,7 @@ module ApplicationHelper
     
     if wall.user_wall_video
       link = "/gadgets_proxy/link?url=#{wall.user_wall_video.link}"
-      img_link = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video_test", :wall_id => wall.id}, :remote => true
+      img_link = link_to image_tag(wall.user_wall_video.thumb, :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video_html5", :wall_id => wall.id}, :remote => true
       image = get_image_wall(wall.id, img_link)
       title = wall.user_wall_video.title
       sub_content = raw(wall.user_wall_video.sub_content)
@@ -761,7 +761,7 @@ module ApplicationHelper
           title = obj.title
           when "Video"
           link = show_detail_video_user_url(obj.user, :video_id => obj.id)
-          img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video_test", :wall_id => wall.id}, :remote => true
+          img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video_html5", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           sub_content = obj.description
