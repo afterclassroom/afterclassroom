@@ -1,7 +1,7 @@
         <div class="proList" style="margin: 0px; width: 405px;" id="header<%= @post.id %>">
-          <div class="writeCom">
-            <label id="label1<%= @post.id %>">100 people like this.</label>
-	    <label id="label2<%= @post.id %>">There are <%= @post.rating_texts.size %> reasons.</label>
+          <div class="writeCom" style="float:none;">
+            <label id="label1<%= @post.id %>" style="float: left;">100 people like this.</label>
+	    <label id="label2<%= @post.id %>" style="float: left;">There are <%= @post.rating_texts.size %> reasons.</label>
             <div onclick="" style="float: right; cursor: pointer;" class="" id="hide<%= @post.id %>">
               <!-- img src="/images/icon-ing.gif"  up_panel.png -->
               <img src="/images/up_panel.png"/>
@@ -15,8 +15,8 @@
 	
 	<!-- BEGIN pagination-->
 	<div class="assPage" style="padding-left:0" id="paging<%= @post.id %>">
-	  <span class="numPage"><%= page_entries_info @rating_texts %></span>
-	  <div class="reqTi" style="display: inline;">
+	  <span class="numPage" style="float: left;"><%= page_entries_info @rating_texts %></span>
+	  <div class="reqTi" style="display: inline; margin-top: 13px;">
 	    . &nbsp <input type="text" value="<%= @perpage %>" size="2" name="per_page" id="perpage<%= @post.id %>"  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
 	  </div>
 	  <%= will_paginate(@rating_texts, :params => { :controller => "rate_cmts", :action => "load_bk_like"},:method => :get) %>
