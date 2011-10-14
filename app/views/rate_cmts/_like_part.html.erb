@@ -6,7 +6,7 @@
             </div>
           </div>
         </div>
-        <% @post.rating_texts.each do |cmt| %>
+        <% @rating_texts.each do |cmt| %>
 	<%= render :partial => "like_item", :locals => {:cmt => cmt} %>
 	<% end %>
 
