@@ -13,12 +13,11 @@
 
 	
 	<!-- BEGIN pagination-->
-	<div class="assPage" style="padding-left:0">
+	<div class="assPage" style="padding-left:0" id="paging<%= @post.id %>">
 	  <span class="numPage"><%= page_entries_info @rating_texts %></span>
 	  <div class="reqTi" style="display: inline;">
 	    . &nbsp <input type="text" value="<%= @perpage %>" size="2" name="per_page" id="perpage<%= @post.id %>"  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
 	  </div>
-	  
 	  <%= will_paginate(@rating_texts, :params => { :controller => "rate_cmts", :action => "load_bk_like"},:method => :get) %>
 	</div>
 	<!-- END pagination -->
@@ -59,13 +58,33 @@ function SubmitFormCmt<%= @post.id %>(){
 }
 
 $(document).ready(function(){
+  //BEGIN ajax pagination
+  var curentPage<%= @post.id %> = parseInt('<%= @str_cur_page %>');
+  $('#paging<%= @post.id %> a').each(function(){
+    $(this).attr('href','javascript:;');
+    $(this).click(function(){
+      if ($(this).text() == 'Next'){
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
+        curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
+      }else if ($(this).text() == 'Previous'){
+        curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
+        console.log('go to previous page, p = '+curentPage<%= @post.id %>);
+      }
+      else {
+        console.log('jump to page number, page == '+$(this).text());
+      }//end if for .text
+    });
+  });
+  //BEGIN ajax pagination
   //BEGIN change the reasons display per page
   $('#perpage<%= @post.id %>').keypress(function(e) {
     if(e.keyCode == 13) {
       if ( ( !isNaN(parseInt($(this).val())) ) && !(parseInt($(this).val()) <= 0) ){
         $('#wait_like<%= @post.id %>').show();
         $('#like_inner<%= @post.id %>').html('');
-        LoadLikeCmt<%= @post.id %>($(this).val());
+        LoadLikeCmt<%= @post.id %>($(this).val(),'1');
       }
     }//end if 
   });//end key press
