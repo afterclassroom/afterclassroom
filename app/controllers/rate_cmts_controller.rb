@@ -1,32 +1,7 @@
 class RateCmtsController < ApplicationController
   def load_bk_like
     @post = Post.find(params[:post_id])
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "==v"
-    puts "==v == #{@post.rating_texts.size}"
+    @rating_texts = @post.rating_texts.order('created_at DESC').paginate(:page => 1, :per_page => 5)
     render :layout => false
   end
   def add_like_cmt

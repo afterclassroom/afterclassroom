@@ -10,7 +10,7 @@ class CreatePosts < ActiveRecord::Migration
       t.text :description, :null => false
       t.boolean :use_this_email, :default => 0
       t.string :type_name
-			t.string :slug
+      t.string :slug
 
       t.timestamps
     end

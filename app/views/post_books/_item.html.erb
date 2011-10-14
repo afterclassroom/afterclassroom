@@ -58,13 +58,14 @@
 </div>
 <script type="text/javascript">
 var waitIcon<%= post.id %> = '';
-function LoadLikeCmt<%= post.id %>(){
+function LoadLikeCmt<%= post.id %>(perpage){
   $.ajax({
     url: '<%= load_bk_like_rate_cmts_url %>',
     type: 'GET',
     dataType: 'script',
     data: {
-      post_id: <%= post.id %>
+      post_id: <%= post.id %>,
+      str_perpage: perpage
     },
     success: function(data){
       $('#wait_like<%= post.id %>').hide();
@@ -77,10 +78,10 @@ function LoadLikeCmt<%= post.id %>(){
     if  ( ! ( $.browser.msie && $.browser.version == "8.0" ) ) {
       $('#like_area<%= post.id %>').corner();
     }
-    $('div#rate_<%= post.id %>').find('.qashdU').click(function(){
+    $('div#rate_<%= post.id %>_Post').find('.qashdU').click(function(){
       $('#like_area<%= post.id %>').toggle('slow', function(){
         if ( $(this).is(":visible") == true ){
-          LoadLikeCmt<%= post.id %>();
+          LoadLikeCmt<%= post.id %>('5');
         } else {
           $('#wait_like<%= post.id %>').show();
           $('#like_inner<%= post.id %>').html('');
