@@ -8,7 +8,7 @@
           <ul class="ad-thumb-list">
             <% @photo_album.photos.each do |p| %>
               <li>
-                <%= link_to raw("#{image_tag(p.photo_attach.url(:thumb), :alt => p.title)}"), p.photo_attach.url %>
+                <%= link_to raw("#{image_tag(p.photo_attach.url(:thumb), :alt => p.title, :id => p.id)}"), p.photo_attach.url %>
               </li>
             <% end %>
           </ul>
@@ -22,7 +22,7 @@
 <script type="text/javascript">
   $(function(){
     var galleries = $('.ad-gallery').adGallery();
-     width: 540,
+    width: 540,
     $('#switch-effect').change(function(){
       galleries[0].settings.effect = $(this).val();
       return false;
@@ -40,5 +40,10 @@
       }
       return false;
     });
+  });
+  $(document).ready(function(){
+     $('.ad-thumb-list img').click(function() {
+      alert('id = ' + this.id);
+    })
   });
 </script>

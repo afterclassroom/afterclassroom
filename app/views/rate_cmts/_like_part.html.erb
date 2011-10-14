@@ -3,7 +3,8 @@
             <label id="label1<%= @post.id %>">100 people like this.</label>
 	    <label id="label2<%= @post.id %>">There are <%= @post.rating_texts.size %> reasons.</label>
             <div onclick="" style="float: right; cursor: pointer;" class="" id="hide<%= @post.id %>">
-              <img src="/images/icon-ing.gif">
+              <!-- img src="/images/icon-ing.gif"  up_panel.png -->
+              <img src="/images/up_panel.png"/>
             </div>
           </div>
         </div>
@@ -69,14 +70,18 @@ $(document).ready(function(){
         curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
         LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
       }else if ($(this).text() == 'Previous'){
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
         curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
-        console.log('go to previous page, p = '+curentPage<%= @post.id %>);
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
       }
       else {
-        console.log('jump to page number, page == '+$(this).text());
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',$(this).text());
       }//end if for .text
     });
-  });
+  });//end .each
   //BEGIN ajax pagination
   //BEGIN change the reasons display per page
   $('#perpage<%= @post.id %>').keypress(function(e) {
