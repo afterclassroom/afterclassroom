@@ -3,7 +3,8 @@
             <label id="label1<%= @post.id %>">100 people like this.</label>
 	    <label id="label2<%= @post.id %>">There are <%= @post.rating_texts.size %> reasons.</label>
             <div onclick="" style="float: right; cursor: pointer;" class="" id="hide<%= @post.id %>">
-              <img src="/images/icon-ing.gif">
+              <!-- img src="/images/icon-ing.gif"  up_panel.png -->
+              <img src="/images/up_panel.png"/>
             </div>
           </div>
         </div>
@@ -13,12 +14,11 @@
 
 	
 	<!-- BEGIN pagination-->
-	<div class="assPage" style="padding-left:0">
+	<div class="assPage" style="padding-left:0" id="paging<%= @post.id %>">
 	  <span class="numPage"><%= page_entries_info @rating_texts %></span>
 	  <div class="reqTi" style="display: inline;">
-	    . &nbsp <input type="text" value="5" size="2" name="per_page" id="perpage<%= @post.id %>"  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
+	    . &nbsp <input type="text" value="<%= @perpage %>" size="2" name="per_page" id="perpage<%= @post.id %>"  style="width: 25px;" maxlength="2"/>&nbsp; reasons per page.
 	  </div>
-	  
 	  <%= will_paginate(@rating_texts, :params => { :controller => "rate_cmts", :action => "load_bk_like"},:method => :get) %>
 	</div>
 	<!-- END pagination -->
@@ -59,13 +59,42 @@ function SubmitFormCmt<%= @post.id %>(){
 }
 
 $(document).ready(function(){
+  //BEGIN ajax pagination
+  var curentPage<%= @post.id %> = parseInt('<%= @str_cur_page %>');
+  $('#paging<%= @post.id %> a').each(function(){
+    $(this).attr('href','javascript:;');
+    $(this).click(function(){
+      if ($(this).text() == 'Next'){
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
+        curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
+      }else if ($(this).text() == 'Previous'){
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
+        curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
+      }
+      else {
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',$(this).text());
+      }//end if for .text
+    });
+  });//end .each
+  //BEGIN ajax pagination
   //BEGIN change the reasons display per page
   $('#perpage<%= @post.id %>').keypress(function(e) {
     if(e.keyCode == 13) {
-      $('#wait_like<%= @post.id %>').show();
-      $('#like_inner<%= @post.id %>').html('');
-      LoadLikeCmt<%= @post.id %>($(this).val());
-    }
+      if ( ( !isNaN(parseInt($(this).val())) ) && !(parseInt($(this).val()) <= 0) ){
+        $('#wait_like<%= @post.id %>').show();
+        $('#like_inner<%= @post.id %>').html('');
+        LoadLikeCmt<%= @post.id %>($(this).val(),'1');
+      }
+    }//end if 
+  });//end key press
+  $('#perpage<%= @post.id %>').keyup(function () { 
+    this.value = this.value.replace(/[^0-9\.]/g,'');
   });
   //END change the reasons display per page
   //BEGIN update number of people like; reasons
