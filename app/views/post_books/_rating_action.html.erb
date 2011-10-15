@@ -21,7 +21,7 @@ check ||= false %>
 <script type="text/javascript">
 var waitIcon<%= post.id %> = '';
 function LoadLikeCmt<%= post.id %>(perpage,page_no){
-  /*
+  
   $.ajax({
     url: '<%= load_bk_like_rate_cmts_url %>',
     type: 'GET',
@@ -35,7 +35,7 @@ function LoadLikeCmt<%= post.id %>(perpage,page_no){
       $('#wait_like<%= post.id %>').hide();
     }
   });//end ajax
-  */
+  
 }
 
   $(document).ready(function(){
@@ -46,6 +46,7 @@ function LoadLikeCmt<%= post.id %>(perpage,page_no){
     $('div#rate_<%= post.id %>_Post').find('.qashdU').click(function(){
       $('#like_area<%= post.id %>').toggle('slow', function(){
         if ( $(this).is(":visible") == true ){
+          $('#dislike_area<%= post.id %>').hide();
           LoadLikeCmt<%= post.id %>('5','1');
         } else {
           $('#wait_like<%= post.id %>').show();
@@ -59,6 +60,12 @@ function LoadLikeCmt<%= post.id %>(perpage,page_no){
     $('div#rate_<%= post.id %>_Post').find('.qashdD').click(function(){
       $('#dislike_area<%= post.id %>').toggle('slow', function(){
         if ( $(this).is(":visible") == true ){
+          //BEGIN reset like-panel
+          $('#like_area<%= post.id %>').hide();
+          $('#wait_like<%= post.id %>').show();
+          $('#like_inner<%= post.id %>').html('');
+          //END reset like-panel
+
           console.log('load LoadDisLikeCmt');
         }
       });
