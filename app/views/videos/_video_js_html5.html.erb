@@ -15,10 +15,11 @@ videos = [@video] + videos
           <div class="page">
           <% end %>	
           <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
-             <%= display_image_video(v) %><%= v.title %>
+             <%#= display_image_video(v) %><%= v.title %>
           </a>
           <% count = count + 1 %>
           <% if count == 4 %>
+           
           </div>
           <% count = 0 %>
         <% end %>
@@ -26,18 +27,20 @@ videos = [@video] + videos
       <% if count < 4 %>
       </div>
     <% end %>
+    </div>
   </div>
+ <a class="next"></a>
 </div>
-
-<a class="next"></a>
-
-<script src="/javascripts/jquery.tools.min.js"></script>
-<script src="/javascripts/flowplayer.playlist-3.0.8.js"></script>	
-<link rel="stylesheet" type="text/css" href="/stylesheets/playlist-horizontal.css"/>
+ 
 
 <br clear="all" />
+<script src="/javascripts/jquery.tools.min.js"></script>
+<script src="/javascripts/flowplayer.playlist-3.0.8.min.js"></script>	
+<link rel="stylesheet" type="text/css" href="/stylesheets/playlist-horizontal.css"/>
+
+
 <script>
-  flowplayer("player", 
+  $f("player", 
   {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
   {	
     key: '#$de9093c019ae644a1da',
@@ -62,7 +65,25 @@ videos = [@video] + videos
     onMouseOut: function() {
       this.getPlugin("logo").fadeTo(0, 1000);
     }
-  }).playlist("div.entries", {loop: true});
+  }).playlist("div.entries",  {
+
+	// CSS class name of a playing entry
+	playingClass: 'playing',
+
+	// CSS class name of a paused entry
+	pausedClass: 'paused',
+
+	// CSS class name for an entry that is loading
+	progressClass:'progress',
+
+	// if true, then each clip is advanced to the next clip when it ends
+	loop:false,
+
+	/*
+		when set to true and the splash image is clicked, then the first clip is played.
+		this has an effect on the manual configuration only
+	*/
+	playOnClick: true});
   $(function() {
     // setup scrolling for the playlist elements
     $("#pl").scrollable({ circular: true });	
