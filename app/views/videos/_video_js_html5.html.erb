@@ -1,83 +1,46 @@
 <div id="page">
-  <a style="display:block;width:550px;height:360px" id="player"> </a> 
+  <a style="display:block;width:560px;height:360px" id="player"> </a> 
 </div>
 <%
-	videos = @video.user.videos_same_category(@video)
-	videos = [@video] + videos
+videos = @video.user.videos_same_category(@video)
+videos = [@video] + videos
 %>
-<div id="playlist_wrap" style="margin-left:5px">
+<div id="playlist_wrap" style="margin-left:-49px">
   <a class="prev"></a>
   <div id="pl"> 
-    <div class="entries">
-			<% count = 0 %>
-			<% videos.each do |v| %>
-				<% if count == 0 %>
-		    	<div class="page">
-				<% end %>	
-        <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
-          <%= display_image_video(v) %> <%= v.title %>
-        </a>
-				<% count = count + 1 %>
-				<% if count == 3 %>
-		    	</div>
-					<% count = 0 %>
-				<% end %>
-			<% end %>
-			<% if count < 3 %>
-		    	</div>
-				<% end %>
+    <div class="entries">     
+      <% count = 0 %>
+      <% videos.each do |v| %>
+        <% if count == 0 %>
+          <div class="page">
+          <% end %>	
+          <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
+             <%#= display_image_video(v) %><%= v.title %>
+          </a>
+          <% count = count + 1 %>
+          <% if count == 4 %>
+           
+          </div>
+          <% count = 0 %>
+        <% end %>
+      <% end %>
+      <% if count < 4 %>
+      </div>
+    <% end %>
     </div>
   </div>
-
-  <a class="next"></a>
-
+ <a class="next"></a>
 </div>
-<script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
-<script src="http://static.flowplayer.org/js/flowplayer.playlist-3.0.8.min.js"></script>	
-<link rel="stylesheet" type="text/css" href="/stylesheets/playlist-horizontal.css"/>
-<style>
-  /* container has a background image */
-
-  a.player {	
-    display:block;
-    width:500px;
-    height:340px;
-    text-align:center;
-    color:#fff;
-    text-decoration:none;
-    cursor:pointer;
-    background:#000 url(/img/global/gradient/h500.png) repeat-x 0 0;
-    background:-moz-linear-gradient(top, rgba(55, 102, 152, 0.9), rgba(6, 6, 6, 0.9));
-    -moz-box-shadow:0 0 40px rgba(100, 118, 173, 0.5);
-  }
-
-  a.player:hover {
-    background:-moz-linear-gradient(center top, rgba(73, 122, 173, 0.898), rgba(6, 6, 6, 0.898));	
-  }
-
-  /* splash image */
-  a.player img {
-    margin-top:125px;
-    border:0;	
-  }
-  .page a img {
-	border:0;	
-	float:left;
-	margin-right:10px;
-        width: 60px;
-        height: 60px;
-}
-.page a strong {
-    color: blue;
-    padding-bottom: 5px;
-}
-
-</style>
-
+ 
 
 <br clear="all" />
+<script src="/javascripts/jquery.tools.min.js"></script>
+<script src="/javascripts/flowplayer.playlist-3.0.8.min.js"></script>	
+<link rel="stylesheet" type="text/css" href="/stylesheets/playlist-horizontal.css"/>
+
+
 <script>
-  flowplayer("player", 
+  $f("player", 
   {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
   {	
     key: '#$de9093c019ae644a1da',
@@ -91,8 +54,8 @@
       url: '/images/logo.png',
       fullscreenOnly: false,
       opacity: 0,
-      top: '50%',
-      left: '50%'
+      top: '85%',
+      left: '20%'
     },
     // gradually show on mouseover
     onMouseOver: function() {
@@ -102,7 +65,25 @@
     onMouseOut: function() {
       this.getPlugin("logo").fadeTo(0, 1000);
     }
-  }).playlist("div.entries");
+  }).playlist("div.entries",  {
+
+	// CSS class name of a playing entry
+	playingClass: 'playing',
+
+	// CSS class name of a paused entry
+	pausedClass: 'paused',
+
+	// CSS class name for an entry that is loading
+	progressClass:'progress',
+
+	// if true, then each clip is advanced to the next clip when it ends
+	loop:false,
+
+	/*
+		when set to true and the splash image is clicked, then the first clip is played.
+		this has an effect on the manual configuration only
+	*/
+	playOnClick: true});
   $(function() {
     // setup scrolling for the playlist elements
     $("#pl").scrollable({ circular: true });	
