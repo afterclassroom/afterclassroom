@@ -88,6 +88,7 @@ class ApplicationController < ActionController::Base
       self.current_user.set_time_zone_from_ip(request.remote_ip)
       # Set session your school
       session[:your_school] = self.current_user.school.id
+			redirect_to user_student_lounges_path(self.current_user)
     end
   end
   

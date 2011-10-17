@@ -78,8 +78,9 @@ $(document).ready(function(){
       }
       else {
         $('#wait_like<%= @post.id %>').show();
+        var strp = $(this).text()
         $('#like_inner<%= @post.id %>').html('');
-        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',$(this).text());
+        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',strp);
       }//end if for .text
     });
   });//end .each

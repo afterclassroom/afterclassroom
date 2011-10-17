@@ -1,0 +1,11 @@
+<div id="rate_comment_<%= comment.id %>" class="assInfB">
+                <div class="qashdU">
+                    <%= link_to comment.total_good, {:controller => "ajax_not_login", :action => "rate_comment", :comment_id => comment.id, :rating => "1" }, :remote => true %>
+                </div>
+                <div class="qashdD">
+                    <%= link_to comment.total_bad, {:controller => "ajax_not_login", :action => "rate_comment", :comment_id => comment.id, :rating => "0" }, :remote => true %>
+                </div>
+								<div class="com">
+                <%= show_report_abuse_comment(comment) %>
+            	</div>
+            </div>
