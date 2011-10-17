@@ -75,15 +75,6 @@ class PostBooksController < ApplicationController
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_b.total_bad}</a></div>"
   end
 
-  def rate_cmt
-
-    render :text => ""
-  end
-
-  def test_paging
-    render :text => "=================="
-  end
-  
   def require_rate
     rating = params[:rating]
     post = Post.find(params[:post_id])
