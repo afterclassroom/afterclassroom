@@ -3,7 +3,7 @@ class RateCmtsController < ApplicationController
     @post = Post.find(params[:post_id])
     @str_cur_page = params[:str_page_no] ? params[:str_page_no] : "1"
 
-    @rating_texts = @post.rating_texts.order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
+    @rating_texts = @post.rating_texts.where('rating = "1"').order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
     @perpage = params[:str_perpage]
     render :layout => false
   end
@@ -24,7 +24,7 @@ class RateCmtsController < ApplicationController
     @post = Post.find(params[:post_id])
     @str_cur_page = params[:str_page_no] ? params[:str_page_no] : "1"
 
-    @rating_texts = @post.rating_texts.order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
+    @rating_texts = @post.rating_texts.where('rating = "0"').order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
     @perpage = params[:str_perpage]
     render :layout => false
   end
