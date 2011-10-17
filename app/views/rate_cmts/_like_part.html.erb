@@ -59,6 +59,7 @@ function SubmitFormCmt<%= @post.id %>(){
 }
 
 $(document).ready(function(){
+  vtip();
   //BEGIN ajax pagination
   var curentPage<%= @post.id %> = parseInt('<%= @str_cur_page %>');
   $('#paging<%= @post.id %> a').each(function(){
