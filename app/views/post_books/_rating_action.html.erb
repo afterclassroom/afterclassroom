@@ -20,9 +20,11 @@ check ||= false %>
 		
 <script type="text/javascript">
 var waitIcon<%= post.id %> = '';
+var likeAjaxObj<%= post.id %>;
 function LoadLikeCmt<%= post.id %>(perpage,page_no){
   
-  $.ajax({
+
+  likeAjaxObj<%= post.id %> = $.ajax({
     url: '<%= load_bk_like_rate_cmts_url %>',
     type: 'GET',
     dataType: 'script',
@@ -49,6 +51,7 @@ function LoadLikeCmt<%= post.id %>(perpage,page_no){
           $('#dislike_area<%= post.id %>').hide();
           LoadLikeCmt<%= post.id %>('5','1');
         } else {
+          likeAjaxObj<%= post.id %>.abort();
           $('#wait_like<%= post.id %>').show();
           $('#like_inner<%= post.id %>').html('');
         }//end if
@@ -62,6 +65,7 @@ function LoadLikeCmt<%= post.id %>(perpage,page_no){
         if ( $(this).is(":visible") == true ){
           //BEGIN reset like-panel
           $('#like_area<%= post.id %>').hide();
+          likeAjaxObj<%= post.id %>.abort();
           $('#wait_like<%= post.id %>').show();
           $('#like_inner<%= post.id %>').html('');
           //END reset like-panel
