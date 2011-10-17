@@ -31,7 +31,16 @@ class RateCmtsController < ApplicationController
     render :layout => false
   end
 
-  def add_like_cmt
+  def add_dislike_cmt
+    @post = Post.find(params[:post_id])
+    @cmt = RatingText.new()
+    @cmt.user = current_user
+    @cmt.post = @post
+    @cmt.rated_type = "PostBook"
+    @cmt.rating = 0
+    @cmt.content = params[:cmt_dcnt]
+    @cmt.save
+    
     render :layout => false
   end
 
