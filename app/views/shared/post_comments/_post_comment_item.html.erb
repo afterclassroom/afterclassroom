@@ -13,6 +13,7 @@
         <div class="proListCont">
             <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %>
         </div>
+				<%= render :partial => "shared/post_comments/rating_action", :locals => {:comment => comment} %>
     </div>
 </div>
 <script>

@@ -2946,6 +2946,7 @@ span.btmFan a:hover {
     float: left;
     font-size: 10px;
     color: #6f6f63;
+		width: 100%;
 }
 
 .proListCont a, .proListCont a:link, .proListCont a:visited {
