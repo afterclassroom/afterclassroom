@@ -1,3 +1,6 @@
+<script src="/javascripts/jquery.tools.min.js"></script>
+<script src="/javascripts/flowplayer.playlist-3.0.8.min.js"></script>	
+<link rel="stylesheet" type="text/css" href="/stylesheets/playlist-horizontal.css"/>
 <div id="page">
   <a style="display:block;width:560px;height:360px" id="player"> </a> 
 </div>
@@ -15,11 +18,14 @@ videos = [@video] + videos
           <div class="page">
           <% end %>	
           <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
-             <%#= display_image_video(v) %><%= v.title %>
+            <div style="float: left;height: 55px;overflow: hidden;width: 55px;word-wrap: break-word;">
+              <%= truncate(v.title, :length=>22, :omission=>"...") %>
+            </div>
+            <div><%= display_image_video(v) %></div>
           </a>
           <% count = count + 1 %>
           <% if count == 4 %>
-           
+
           </div>
           <% count = 0 %>
         <% end %>
@@ -27,65 +33,50 @@ videos = [@video] + videos
       <% if count < 4 %>
       </div>
     <% end %>
-    </div>
   </div>
- <a class="next"></a>
 </div>
- 
+<a class="next"></a>
+</div>
+
 
 <br clear="all" />
-<script src="/javascripts/jquery.tools.min.js"></script>
-<script src="/javascripts/flowplayer.playlist-3.0.8.min.js"></script>	
-<link rel="stylesheet" type="text/css" href="/stylesheets/playlist-horizontal.css"/>
+
 
 
 <script>
-  $f("player", 
-  {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
-  {	
-    key: '#$de9093c019ae644a1da',
-    logo:null,  
-    plugins: {
-      controls: {
-        fullscreen: false
+  $(document).ready(function() {
+    $f("player", 
+    {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
+    {	
+      key: '#$de9093c019ae644a1da',
+      logo:null,  
+      plugins: {
+        controls: {
+          fullscreen: false
+        }
+      },
+      logo: {
+        url: '/images/logo.png',
+        fullscreenOnly: false,
+        opacity: 0,
+        top: '85%',
+        left: '20%'
+      },
+      // gradually show on mouseover
+      onMouseOver: function() {
+        this.getPlugin("logo").fadeTo(0.5, 1000);
+      },
+      // gradually hide on mouseout
+      onMouseOut: function() {
+        this.getPlugin("logo").fadeTo(0, 1000);
       }
-    },
-    logo: {
-      url: '/images/logo.png',
-      fullscreenOnly: false,
-      opacity: 0,
-      top: '85%',
-      left: '20%'
-    },
-    // gradually show on mouseover
-    onMouseOver: function() {
-      this.getPlugin("logo").fadeTo(0.5, 1000);
-    },
-    // gradually hide on mouseout
-    onMouseOut: function() {
-      this.getPlugin("logo").fadeTo(0, 1000);
-    }
-  }).playlist("div.entries",  {
-
-	// CSS class name of a playing entry
-	playingClass: 'playing',
-
-	// CSS class name of a paused entry
-	pausedClass: 'paused',
-
-	// CSS class name for an entry that is loading
-	progressClass:'progress',
-
-	// if true, then each clip is advanced to the next clip when it ends
-	loop:false,
-
-	/*
-		when set to true and the splash image is clicked, then the first clip is played.
-		this has an effect on the manual configuration only
-	*/
-	playOnClick: true});
-  $(function() {
+    }).playlist("div.entries");
+  });
+  $(document).ready(function() {
     // setup scrolling for the playlist elements
     $("#pl").scrollable({ circular: true });	
   });
+  function getEl(clip) {
+    return (manual) ? els.filter('[href="' + clip.originalUrl + '"]') : els.eq(clip.index);
+  }
 </script>
