@@ -1,4 +1,4 @@
-<div style="margin: 0px; width: 405px; margin-top: 5px;" class="proList" id="">
+<div style="margin: 0px; width: 405px; margin-top: 5px;" class="proList" id="item_<%= cmt.id %>">
 	  <div class="proListPic">
 	    <%= show_image_user_post(cmt.user) %>
 	  </div>
@@ -12,3 +12,8 @@
 	    </div>
 	  </div>
 	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#item_<%= cmt.id %>').find('.AfterClCom a').css('color','#0A81C4');
+});
+</script>
