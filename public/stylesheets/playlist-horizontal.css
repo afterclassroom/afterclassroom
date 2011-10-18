@@ -83,8 +83,7 @@
 }
 .page a img {
     border:0;	
-    float:left;
-    margin-right:10px;
+    float:right;
     width: 60px;
     height: 60px;
 }
