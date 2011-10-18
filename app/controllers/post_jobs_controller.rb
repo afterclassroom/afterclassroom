@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostJobsController < ApplicationController
   skip_before_filter :verify_authenticity_token
