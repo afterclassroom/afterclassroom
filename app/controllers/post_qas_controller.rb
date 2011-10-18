@@ -67,22 +67,22 @@ class PostQasController < ApplicationController
     rating = params[:rating]
     @post = Post.find(params[:post_id])
     post_q = @post.post_qa
-    # post_q.rate rating.to_i, current_user
+    post_q.rate rating.to_i, current_user
     # Update rating status
-    # score_good = post_q.score_good
-    # score_bad = post_q.score_bad
+    score_good = post_q.score_good
+    score_bad = post_q.score_bad
     
-    # if score_good > score_bad
-    #   status = "Good"
-    # elsif score_good == score_bad
-    #   status = "Require Rating"
-    # else
-    #   status = "Bad"
-    # end
+    if score_good > score_bad
+      status = "Good"
+    elsif score_good == score_bad
+      status = "Require Rating"
+    else
+      status = "Bad"
+    end
     
-    # post_q.rating_status = status
+    post_q.rating_status = status
     
-    # post_q.save
+    post_q.save
     
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_q.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_q.total_bad}</a></div>"
