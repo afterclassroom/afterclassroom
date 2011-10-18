@@ -26,7 +26,7 @@
 	<div style="margin: 0px; width: 405px; margin-top: 5px;" id="" class="proList">
 	  <% form_tag url_for(:controller => "rate_cmts", :action => "add_like_cmt"), :id => "form_cmt#{@post.id}", :method => :post, :remote => true, :name => "form_cmt#{@post.id}" do %>
 	    <%= hidden_field_tag "post_id", "#{@post.id}" %>
-	    <%= hidden_field_tag "rated_type", "#{@post.post_book.class.name}" %>
+	    <%= hidden_field_tag "rated_type", "#{@rated_type}" %>
 
 	    
 	    <div class="proListPic">

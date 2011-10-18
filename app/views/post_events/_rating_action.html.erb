@@ -31,7 +31,7 @@ function LoadDisLikeCmt<%= post.id %>(perpage,page_no){
       post_id: <%= post.id %>,
       str_perpage: perpage,
       str_page_no: page_no,
-      rated_type: '<%= post.post_book.class.name %>'
+      rated_type: '<%= post.post_event.class.name %>'
     },
     success: function(data){
       $('#wait_dislike<%= post.id %>').hide();
@@ -48,7 +48,7 @@ function LoadLikeCmt<%= post.id %>(perpage,page_no){
       post_id: <%= post.id %>,
       str_perpage: perpage,
       str_page_no: page_no,
-      rated_type: '<%= post.post_book.class.name %>'
+      rated_type: '<%= post.post_event.class.name %>'
     },
     success: function(data){
       $('#wait_like<%= post.id %>').hide();
