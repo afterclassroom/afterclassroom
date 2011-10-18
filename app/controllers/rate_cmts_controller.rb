@@ -13,7 +13,7 @@ class RateCmtsController < ApplicationController
     @cmt = RatingText.new()
     @cmt.user = current_user
     @cmt.post = @post
-    @cmt.rated_type = "PostBook"
+    @cmt.rated_type = params[:rated_type]
     @cmt.rating = 1
     @cmt.content = params[:cmt_cnt]
     @cmt.save
@@ -36,7 +36,7 @@ class RateCmtsController < ApplicationController
     @cmt = RatingText.new()
     @cmt.user = current_user
     @cmt.post = @post
-    @cmt.rated_type = "PostBook"
+    @cmt.rated_type = params[:rated_type]
     @cmt.rating = 0
     @cmt.content = params[:cmt_dcnt]
     @cmt.save

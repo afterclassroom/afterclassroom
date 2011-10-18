@@ -16,7 +16,6 @@ check ||= false %>
 <!-- BEGIN show LIKE comment area -->
 <%= render :partial => "rate_cmts/dislike_cmts", :locals => {:post => post} %>
 <!-- END show DISLIKE comment area -->
-
 		
 <script type="text/javascript">
 var waitIcon<%= post.id %> = '';
@@ -30,7 +29,8 @@ function LoadDisLikeCmt<%= post.id %>(perpage,page_no){
     data: {
       post_id: <%= post.id %>,
       str_perpage: perpage,
-      str_page_no: page_no
+      str_page_no: page_no,
+      rated_type: '<%= post.post_book.class.name %>'
     },
     success: function(data){
       $('#wait_dislike<%= post.id %>').hide();
@@ -46,7 +46,8 @@ function LoadLikeCmt<%= post.id %>(perpage,page_no){
     data: {
       post_id: <%= post.id %>,
       str_perpage: perpage,
-      str_page_no: page_no
+      str_page_no: page_no,
+      rated_type: '<%= post.post_book.class.name %>'
     },
     success: function(data){
       $('#wait_like<%= post.id %>').hide();
