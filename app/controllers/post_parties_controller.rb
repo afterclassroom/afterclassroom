@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostPartiesController < ApplicationController 
   before_filter RubyCAS::Filter::GatewayFilter
