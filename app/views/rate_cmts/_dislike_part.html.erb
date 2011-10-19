@@ -1,7 +1,7 @@
         <div class="proList" style="margin: 0px; width: 405px;" id="headerd<%= @post.id %>">
           <div class="writeCom" style="float:none;">
-            <label id="label1<%= @post.id %>" style="float: left;">0 people dislike this.</label>
-	    <label id="label2<%= @post.id %>" style="float: left;">There are <%= @dislike_size %> reasons.</label>
+            <label id="label1d<%= @post.id %>" style="float: left;">0 people dislike this.</label>
+	    <label id="label2d<%= @post.id %>" style="float: left;">There are <%= @dislike_size %> reasons.</label>
             <div onclick="" style="float: right; cursor: pointer;" class="" id="hided<%= @post.id %>">
               <img src="/images/up_panel.png"/>
             </div>
@@ -100,9 +100,9 @@ $(document).ready(function(){
     this.value = this.value.replace(/[^0-9\.]/g,'');
   });
   //END change the reasons display per page
-  //BEGIN update number of people like; reasons
-  $('#label1<%= @post.id %>').html($('div#rate_<%= @post.id %>_Post').find('.qashdD').find('a').html()+' people dislike this. ');
-  //END update number of people like; reasons
+  //BEGIN update number of people rate; reasons
+  $('#label1d<%= @post.id %>').html($('div#rate_<%= @post.id %>_Post').find('.qashdD').find('a').html()+' people dislike this. ');
+  //END update number of people rate; reasons
   $('#send<%= @post.id %>').click(function(){
     SubmitFormDCmt<%= @post.id %>();
   });
@@ -123,13 +123,13 @@ $(document).ready(function(){
     $('#descd_count<%= @post.id %>').text("255 characters max - Current: "+len+" characters")
   });
   //END
-  //BEGIN hide like_cmt_area when user click X
+  //BEGIN hide dislike_cmt_area when user click X
   $('#hided<%= @post.id %>').click(function(){
     $('#dislike_area<%= @post.id %>').hide('slow',function(){
       $('#wait_dislike<%= @post.id %>').show();
       $('#dislike_inner<%= @post.id %>').html('');
     });//end .hide
   });//end .click
-  //END hide like_cmt_area when user click X
+  //END hide dislike_cmt_area when user click X
 });
 </script>

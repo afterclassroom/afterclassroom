@@ -171,7 +171,7 @@ Afterclassroom::Application.routes.draw do
   #Rate comment 
   resources :rate_cmts do
     collection do
-      get :load_bk_like, :load_bk_dislike
+      get :load_bk_like, :load_bk_dislike, :load_other
       post :add_like_cmt, :add_like_cmt
     end
   end    
