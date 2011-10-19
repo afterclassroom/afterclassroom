@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PostFoodsController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
@@ -28,28 +29,28 @@ class PostFoodsController < ApplicationController
     rating = params[:rating]
     @post = Post.find(params[:post_id])
     @post_f = @post.post_food
-    @post_f.rate rating.to_i, current_user
+    # @post_f.rate rating.to_i, current_user
     # Update rating status
-    score_good = @post_f.score_good
-    score_cheap_but_good = @post_f.score_cheap_but_good
-    score_bad = @post_f.score_bad
+    # score_good = @post_f.score_good
+    # score_cheap_but_good = @post_f.score_cheap_but_good
+    # score_bad = @post_f.score_bad
     
-    if score_good == score_cheap_but_good && score_cheap_but_good == score_bad
-      status = "Require Rating"
-    else
-      sort_rating_status = {"Good" => score_good, "Cheap but Good" => score_cheap_but_good, "Bad" => score_bad}
-      arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
-      status = arr_rating_status.last.first
-    end
+    # if score_good == score_cheap_but_good && score_cheap_but_good == score_bad
+    #   status = "Require Rating"
+    # else
+    #   sort_rating_status = {"Good" => score_good, "Cheap but Good" => score_cheap_but_good, "Bad" => score_bad}
+    #   arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+    #   status = arr_rating_status.last.first
+    # end
     
-    @post_f.rating_status = status
+    # @post_f.rating_status = status
     
-    @post_f.save
+    # @post_f.save
     # Objects cache
-    class_name = @post_f.class.name
-    school_id = @post.school_id
-    Delayed::Job.enqueue(CacheRattingJob.new(@post_f.id, class_name, nil, status, params))
-    Delayed::Job.enqueue(CacheRattingJob.new(@post_f.id, class_name, school_id, status, params))
+    # class_name = @post_f.class.name
+    # school_id = @post.school_id
+    # Delayed::Job.enqueue(CacheRattingJob.new(@post_f.id, class_name, nil, status, params))
+    # Delayed::Job.enqueue(CacheRattingJob.new(@post_f.id, class_name, school_id, status, params))
   end
   
   def require_rate

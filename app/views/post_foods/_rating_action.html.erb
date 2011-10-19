@@ -1,15 +1,23 @@
 <div id="rate_<%= post.id %>_<%= post.class.name %>">
-          <%
-          check = PostFood.find_rated_by(current_user).include?(post.post_food) if logged_in?
-          check ||= false
-        %>
-          <div class="qashdU">
-            <%= show_rating(post.id, post.post_food.total_good, get_controler_name_from_class_name(post.post_food.class.name), check, 2) %>
-          </div>
-          <div class="cheap">
-            <%= show_rating(post.id, "Cheap but Good(#{post.post_food.total_cheap_but_good})", get_controler_name_from_class_name(post.post_food.class.name), check, 1) %>
-          </div>
-          <div class="qashdD">
-            <%= show_rating(post.id, post.post_food.total_bad, get_controler_name_from_class_name(post.post_food.class.name), check, 0) %>
-          </div>
-        </div>
+<%
+check = PostFood.find_rated_by(current_user).include?(post.post_food) if logged_in?
+check ||= false
+%>
+<div class="qashdU">
+  <%= show_rating(post.id, post.post_food.total_good, get_controler_name_from_class_name(post.post_food.class.name), check, 2) %>
+</div>
+<div class="cheap">
+  <%= show_rating(post.id, "Cheap but Good(#{post.post_food.total_cheap_but_good})", get_controler_name_from_class_name(post.post_food.class.name), check, 1) %>
+</div>
+<div class="qashdD">
+  <%= show_rating(post.id, post.post_food.total_bad, get_controler_name_from_class_name(post.post_food.class.name), check, 0) %>
+</div>
+</div>
+
+<!-- BEGIN show LIKE comment area -->
+<%= render :partial => "rate_cmts/like_cmts", :locals => {:post => post} %>
+<!-- END show DISLIKE comment area -->
+<!-- BEGIN show LIKE comment area -->
+<%= render :partial => "rate_cmts/dislike_cmts", :locals => {:post => post} %>
+<!-- END show DISLIKE comment area -->
+<%= render :partial => "rate_cmts/cmt_script_a", :locals => {:post => post, :obj_class_name => post.post_food.class.name } %>

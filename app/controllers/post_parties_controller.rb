@@ -30,28 +30,28 @@ class PostPartiesController < ApplicationController
     rating = params[:rating]
     @post = Post.find(params[:post_id])
     @post_p = @post.post_party
-    @post_p.rate rating.to_i, current_user
+    # @post_p.rate rating.to_i, current_user
     # Update rating status
-    score_good = @post_p.score_good
-    score_ok = @post_p.score_ok
-    score_bad = @post_p.score_bad
+    # score_good = @post_p.score_good
+    # score_ok = @post_p.score_ok
+    # score_bad = @post_p.score_bad
     
-    if score_good == score_ok && score_ok == score_bad
-      status = "Require Rating"
-    else
-      sort_rating_status = {"Good" => score_good, "It's Ok" => score_ok, "Bad" => score_bad}
-      arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
-      status = arr_rating_status.last.first
-    end
+    # if score_good == score_ok && score_ok == score_bad
+    #   status = "Require Rating"
+    # else
+    #   sort_rating_status = {"Good" => score_good, "It's Ok" => score_ok, "Bad" => score_bad}
+    #   arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+    #   status = arr_rating_status.last.first
+    # end
     
-    @post_p.rating_status = status
+    # @post_p.rating_status = status
     
-    @post_p.save
-    # Objects cache
-    class_name = @post_p.class.name
-    school_id = @post.school_id
-    Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, nil, status, params))
-    Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, school_id, status, params))
+    # @post_p.save
+    # # Objects cache
+    # class_name = @post_p.class.name
+    # school_id = @post.school_id
+    # Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, nil, status, params))
+    # Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, school_id, status, params))
   end
   
   def require_rate

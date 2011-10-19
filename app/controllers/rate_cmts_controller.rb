@@ -15,6 +15,11 @@ class RateCmtsController < ApplicationController
     @cmt.post = @post
     @cmt.rated_type = params[:rated_type]
     @cmt.rating = 1
+
+    if ( @cmt.rated_type == "PostFood" || @cmt.rated_type == "PostMyx" || @cmt.rated_type == "PostParty" )
+      @cmt.rating = 2
+    end
+
     @cmt.content = params[:cmt_cnt]
     @cmt.save
     
