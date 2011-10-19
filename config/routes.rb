@@ -171,7 +171,7 @@ Afterclassroom::Application.routes.draw do
   #Rate comment 
   resources :rate_cmts do
     collection do
-      get :load_bk_like, :load_bk_dislike
+      get :load_bk_like, :load_bk_dislike, :load_other
       post :add_like_cmt, :add_like_cmt
     end
   end    
@@ -252,7 +252,7 @@ Afterclassroom::Application.routes.draw do
 
   resources :post_books do
     collection do
-      get :search, :tag, :good_books, :dont_buy, :rate, :require_rate, :rate_cmt, :test_paging
+      get :search, :tag, :good_books, :dont_buy, :rate, :require_rate
     end
   end
 

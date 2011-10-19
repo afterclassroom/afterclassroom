@@ -1,0 +1,1 @@
+$('#headero<%= @post.id %>').after('<%= escape_javascript ( raw(render :partial => "like_item", :locals => { :cmt => @cmt, :user => current_user })) %>');  

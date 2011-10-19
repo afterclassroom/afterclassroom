@@ -27,18 +27,8 @@
         </div>
       </div>
       <div class="assInfB">
-        <div id="rate_<%= post.id %>_<%= post.class.name %>">
-          <%
-          check = PostTeamup.find_rated_by(current_user).include?(post.post_teamup) if logged_in?
-          check ||= false
-        %>
-          <div class="qashdU">
-            <%= show_rating(post.id, post.post_teamup.total_good, get_controler_name_from_class_name(post.post_teamup.class.name), check, 1) %>
-          </div>
-          <div class="qashdD">
-            <%= show_rating(post.id, post.post_teamup.total_bad, get_controler_name_from_class_name(post.post_teamup.class.name), check, 0) %>
-          </div>
-        </div>
+                <%= render :partial => "rating_action", :locals => {:post => post, :controller_name => controller.controller_name}%>
+
         <div class="vie"><%= "View (#{post.count_view})" %></div>
         <div class="fav" id="item_favorite_<%= post.id %>"><%= show_favorite("Post", post) %></div>
         <div class="com">

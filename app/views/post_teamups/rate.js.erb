@@ -1,1 +1,2 @@
 $("#rate_<%= @post.id %>_<%= @post.class.name %>").html("<div class='qashdU'><a href='javascript:;' class='vtip' title='<%= configatron.str_rated %>'><%= @post_tm.total_good %></a></div><div class='qashdD'><a href='javascript:;' class='vtip' title='<%= configatron.str_rated %>'><%= @post_tm.total_bad %></a></div><script>vtip();</script>'");
+<%= render :partial => "rate_cmts/cmt_script_b" %>
