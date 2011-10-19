@@ -43,10 +43,7 @@ class UserWallsController < ApplicationController
       @user.user_walls << user_wall
       @user.save
       if @user != current_user
-        subject = "#{current_user.name} just posted on your Student Lounge."
-        content = "Hello #{@user.name}, <br/>"
-        content << "#{current_user.name} just posted something on your Student Lounge,  click <a href='#{user_student_lounges_url(@user)}' target='blank'>here</a> to see what's in it."
-        send_notification(@user, subject, content, "posts_on_my_lounge")
+        send_wall_notification(@user, current_user, user_wall)
       end
     end
     
@@ -195,15 +192,18 @@ class UserWallsController < ApplicationController
   end
   
   def submit_passion
+		user = User.find(params[:user_id])
     new_user_wall = UserWall.new
     new_user_wall.user_id_post = params[:user_id_post]
-    new_user_wall.user_id = params[:user_id]
+    new_user_wall.user_id = user.id
     content_of_wall = params[:message_subject]
     content_of_wall << "<br/>" + params[:content] if params[:content]
     
     new_user_wall.content = content_of_wall
     
-    new_user_wall.save
+    if new_user_wall.save
+			send_wall_notification(user, current_user, new_user_wall) if user
+		end
     
     render :text => "Success"
   end
@@ -248,7 +248,42 @@ class UserWallsController < ApplicationController
     render :text => "Success"
   end
   
-  
+	def share_lounge
+		wall_id = params[:wall_id]
+		@wall = UserWall.find(wall_id)
+		@wall = @wall.wall_parent if @wall.wall_parent
+		render :layout => false
+	end
+
+	def submit_share_lounge
+		your_mind = params[:your_mind]
+		parent_id = params[:parent_id]
+		wall_parent = UserWall.find(parent_id)
+		receiver_id = params[:receiver_id]
+		@user_wall = UserWall.new
+    @user_wall.user_id_post = current_user.id
+		if wall_parent.wall_parent
+			@user_wall.parent_id = wall_parent.wall_parent.id
+		else
+			@user_wall.parent_id = wall_parent.id
+		end
+    @user_wall.content = your_mind
+		if receiver_id != ""
+			@user_wall.user_id = receiver_id
+		else
+			@user_wall.user_id = current_user.id
+		end
+
+		if @user_wall.save
+			if receiver_id != ""
+				user = User.find(receiver_id)
+				send_wall_notification(user, current_user, @user_wall) if user
+			end
+		end
+		
+		render :layout => false
+	end
+
   def attach_image
     link = params[:link]
     @err = false
@@ -426,4 +461,11 @@ class UserWallsController < ApplicationController
       "http://" + domain + url
     end
   end
+
+	def send_wall_notification(user_wall, user_post, wall)
+		subject = "#{user_post.name} just posted on your Student Lounge."
+        content = "Hello #{user_wall.name}, <br/>"
+        content << "#{user_post.name} just posted something on your Student Lounge,  click <a href='#{user_student_lounges_url(user_wall)}' target='blank'>here</a> to see what's in it."
+        send_notification(user_wall, subject, content, "posts_on_my_lounge")
+	end
 end

@@ -2,6 +2,7 @@ class UserWall < ActiveRecord::Base
   # Relations
   belongs_to :user
   belongs_to :user_post, :class_name => 'User', :foreign_key => 'user_id_post'
+	belongs_to :wall_parent, :class_name => 'UserWall', :foreign_key => 'parent_id'
   has_one :user_wall_photo, :dependent => :destroy
   has_one :user_wall_video, :dependent => :destroy
   has_one :user_wall_music, :dependent => :destroy

@@ -4,6 +4,7 @@ class CreateUserWalls < ActiveRecord::Migration
       t.belongs_to :user
       t.integer :user_id_post
       t.text :content
+			t.integer :parent_id
       t.timestamps
     end
   end

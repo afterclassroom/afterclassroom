@@ -1,0 +1,109 @@
+<%= form_tag url_for(:controller => "user_walls", :action => "submit_share_lounge"), :remote => true, :id => "wall_form_share" do %>
+	<%= hidden_field_tag "parent_id", @wall.id %>
+	<%= hidden_field_tag "receiver_id", "" %>
+  <div class="postItem">
+    <div class="postInp"><%= text_field_tag "your_mind", "" %></div>
+  </div>
+	<div class="postItem">
+    <div class="studentImg"><%= show_image_user_post(@wall.user_post) %></div><%= show_user_post(@wall.user_post) %> originally shared this post:<br/><%= raw(@wall.content) %>
+  </div>
+	<div class="postItem" style="height: 150px; overflow: auto;">
+	<!--Attach--><%= show_attach(@wall) if @wall.has_attach %><!--Attach-->
+	</div>
+	<div class="postItem" style="height: 30px;">
+		<div class="reqTi"><%= text_field_tag "share_type", 0, :id => "share_type" %></div>
+	</div>
+<%
+sub = [["Share on my lounge", 0], ["Share for a friend", 1]] %>
+<ul id="share_type_menu" class="mcdropdown_menu">
+  <% sub.each do |s| %>
+    <li rel_sub="<%= s[1] %>">
+      <%= s[0] %>
+    </li>
+  <% end %>
+</ul>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#share_type").mcDropdown("#share_type_menu", {
+      width: 275,
+      valueAttr: "rel_sub",
+      select: function(){
+        switch ($('#share_type').val()) {
+          case "0":
+						$('#receiver_id').val("");
+            $('#show_share_to').hide();
+            break;
+          case "1":
+            $('#show_share_to').show();
+            break;
+        }
+      }
+    });
+  });
+</script>
+	<div class="postItem">
+     <div class="form_friends" style="display:none;" id="show_share_to"><%= text_field_tag "share_to", "", :style=>"width:542px;height:24px" %></div>
+  </div>
+  <div class="submit"><a onclick="ShareLounge()" href="javascript:;">Share</a></div>
+<% end %>
+<!--Alert-->
+<div id="dialog-message" title="Alert" style="display:none;">
+  <p>
+    Please enter at least one recipient.
+  </p>
+</div>
+<!--Alert-->
+<script type="text/javascript">
+  var path = "<%= list_friend_user_messages_path(current_user) %>";
+            
+  function ShareLounge(){
+    if ($('#share_type').val() == 1 && $('#share_to').val() == ""){
+      $("#dialog-message").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $("#dialog-message").dialog('close');
+          }
+        }
+      });
+    }else{
+      $('#receiver_id').val($('#share_to').val());
+			$('#wall_form_share').submit();
+    }
+  }
+  $().ready(function() {
+    $("#msg_form").validate({
+      meta: "validate"
+    });
+  });
+  $(function(){
+        
+    // Autocomplete initialization
+    var tb = new $.TextboxList('#share_to', {
+      max: 1,
+      unique: true,
+      plugins: {
+        autocomplete: {
+          onlyFromValues: true
+        }
+      }
+    });
+    tb.getContainer().addClass('textboxlist-loading');
+    $.ajax({
+      url: path,
+      dataType: 'json',
+      success: function(r){
+        tb.plugins['autocomplete'].setValues(r);
+        tb.getContainer().removeClass('textboxlist-loading');
+      }
+    });
+            
+  });
+</script>
+<style>
+  .textboxlist-autocomplete-result div{
+    background: url("/images/bgi-col300.png") no-repeat scroll 0 0 transparent;
+    padding: 3px;
+    height: 51px;
+  }
+</style>

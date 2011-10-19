@@ -16,7 +16,11 @@
             <div class="proCenCont">
                 <div id="wall_page_wrap">
                     <% @walls.each do |w| %>
-                    <%= render :partial => "user_walls/wall_item", :locals => {:wall => w} %>
+                    <% if w.wall_parent %>
+                    	<%= render :partial => "user_walls/wall_item_with_parent", :locals => {:wall => w} %>
+										<% else %>
+											<%= render :partial => "user_walls/wall_item", :locals => {:wall => w} %>
+                    <% end %>
                     <% end %>
                 </div>
                 <%= render :partial => "user_walls/alert" %>

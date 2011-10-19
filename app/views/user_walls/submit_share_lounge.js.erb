@@ -1,0 +1,3 @@
+$("#wall_page_wrap div:first").before("<%= escape_javascript( render( :partial => "wall_item_with_parent", :locals => {:wall => @user_wall}) ) %>");
+$('#TB_closeWindowButton').click();
+tb_init('div.wall_parent a.thickbox');//pass where to apply thickbox
