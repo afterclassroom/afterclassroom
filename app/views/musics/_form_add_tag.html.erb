@@ -1,0 +1,54 @@
+<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "", :method => :post, :remote => false do %>
+  <%#= hidden_field_tag "video_id", @video.id %>
+
+  <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
+    <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
+  </div>
+  <div class="submit" style="float: right; margin-top: -25px; margin-right: 100px;" id="send_btn">
+    <a onmouseover="this.style.cursor='pointer';">Send</a>
+  </div>
+<% end %>
+<style>
+  .textboxlist-autocomplete-result div{
+    background: url("/images/bgi-col300.png") no-repeat scroll 0 0 transparent;
+    padding: 3px;
+    height: 51px;
+  }
+</style>
+<script type="text/javascript">
+  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%#= @music.id %>&tagable_type=<%#= @music.class.name %>";
+
+  $(function(){
+    
+    // Autocomplete initialization
+    var tb = new $.TextboxList('#share_to', {
+      unique: true,
+      plugins: {
+        autocomplete: {
+          onlyFromValues: true
+        }
+      }
+    });
+    tb.getContainer().addClass('textboxlist-loading');
+    $.ajax({
+      url: path,
+      dataType: 'json',
+      success: function(r){
+        tb.plugins['autocomplete'].setValues(r);
+        tb.getContainer().removeClass('textboxlist-loading');
+      }
+    });
+        
+  });  
+
+  $(document).ready(function(){
+    $('.textboxlist').width(440);
+    $('div.textboxlist-autocomplete').width(440);
+    
+    $('#send_btn').click(function(){
+      $('form#form_tag_user').submit();
+    });
+    
+  })
+
+</script>
