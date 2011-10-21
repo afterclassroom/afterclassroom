@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
-  def list_friend_to_tag#this action support for displaying user suggestion when adding tag at Video/Photos 
+  def list_friend_to_tag#this action support for displaying user suggestion when adding tag at Video/Photos/Music
     q = params[:q]
     friends = []
       
