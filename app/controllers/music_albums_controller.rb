@@ -194,6 +194,26 @@ class MusicAlbumsController < ApplicationController
     redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
   end
 
+  def remove_tagged
+    @music_album = MusicAlbum.find(params[:music_album_id])
+    TagInfo.refuse_music(params[:tag_checkbox],params[:music_album_id])
+    share_to = params[:tag_checkbox]
+    share_to.each do |i|
+      u = User.find(i)
+      # if u
+      #   QaSendMail.tag_removed(u,video,current_user).deliver
+      # end
+    end #end each
+
+    redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
+  end
+
+  def self_untag
+    user_to_remove = ["#{current_user.id}"]
+    TagInfo.refuse_music(user_to_remove,params[:music_album_id])
+    @music_album = MusicAlbum.find(params[:music_album_id])
+  end
+
 
   protected
 
