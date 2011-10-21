@@ -1,50 +1,50 @@
 <%= form_tag url_for(:controller => "user_walls", :action => "submit_share_lounge"), :remote => true, :id => "wall_form_share" do %>
-	<%= hidden_field_tag "parent_id", @wall.id %>
-	<%= hidden_field_tag "receiver_id", "" %>
+  <%= hidden_field_tag "parent_id", @wall.id %>
+  <%= hidden_field_tag "receiver_id", "" %>
   <div class="postItem">
-    <div class="postInp"><%= text_field_tag "your_mind", "" %></div>
+    <div class="postInp"><%= text_field_tag "your_mind", "", :style=>"width:450px" %></div>
   </div>
-	<div class="postItem">
-    <div class="studentImg"><%= show_image_user_post(@wall.user_post) %></div><%= show_user_post(@wall.user_post) %> originally shared this post:<br/><%= raw(@wall.content) %>
+  <div class="postItem" style="margin-top: 5px;width: 450px">
+    <div class="studentImg"><%= show_image_user_post(@wall.user_post) %></div><span class="shareLou"><%= show_user_post(@wall.user_post) %><span style="color: #6F6F63;"> originally shared this post:</span><br/><span style="color: #6F6F63;"><%= raw(@wall.content) %></span>
   </div>
-	<div class="postItem" style="height: 150px; overflow: auto;">
-	<!--Attach--><%= show_attach(@wall) if @wall.has_attach %><!--Attach-->
-	</div>
-	<div class="postItem" style="height: 30px;">
-		<div class="reqTi"><%= text_field_tag "share_type", 0, :id => "share_type" %></div>
-	</div>
-<%
-sub = [["Share on my lounge", 0], ["Share for a friend", 1]] %>
-<ul id="share_type_menu" class="mcdropdown_menu">
-  <% sub.each do |s| %>
-    <li rel_sub="<%= s[1] %>">
-      <%= s[0] %>
-    </li>
-  <% end %>
-</ul>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#share_type").mcDropdown("#share_type_menu", {
-      width: 275,
-      valueAttr: "rel_sub",
-      select: function(){
-        switch ($('#share_type').val()) {
-          case "0":
-						$('#receiver_id').val("");
-            $('#show_share_to').hide();
-            break;
-          case "1":
-            $('#show_share_to').show();
-            break;
+  <div class="postItemg" style="height: 150px; overflow: auto;width: 455px;margin-left: 10px">
+    <!--Attach--><%= show_attach(@wall) if @wall.has_attach %><!--Attach-->
+  </div>
+  <div class="postItem" style="height: 30px;">
+    <div class="reqTip" style="float:none"><%= text_field_tag "share_type", 0, :id => "share_type" %></div>
+  </div>
+  <%
+  sub = [["Share on my lounge", 0], ["Share for a friend", 1]] %>
+  <ul id="share_type_menu" class="mcdropdown_menu">
+    <% sub.each do |s| %>
+      <li rel_sub="<%= s[1] %>">
+        <%= s[0] %>
+      </li>
+    <% end %>
+  </ul>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#share_type").mcDropdown("#share_type_menu", {
+        width: 275,
+        valueAttr: "rel_sub",
+        select: function(){
+          switch ($('#share_type').val()) {
+            case "0":
+              $('#receiver_id').val("");
+              $('#show_share_to').hide();
+              break;
+            case "1":
+              $('#show_share_to').show();
+              break;
+          }
         }
-      }
+      });
     });
-  });
-</script>
-	<div class="postItem">
-     <div class="form_friends" style="display:none;" id="show_share_to"><%= text_field_tag "share_to", "", :style=>"width:542px;height:24px" %></div>
+  </script>
+  <div class="postItem">
+    <div class="form_friends" style="display:none;" id="show_share_to"><%= text_field_tag "share_to", "", :style=>"width:542px;height:24px" %></div>
   </div>
-  <div class="submit"><a onclick="ShareLounge()" href="javascript:;">Share</a></div>
+  <div class="submit" style="margin-left:10px;margin-top: 10px"><a onclick="ShareLounge()" href="javascript:;">Share</a></div>
 <% end %>
 <!--Alert-->
 <div id="dialog-message" title="Alert" style="display:none;">
@@ -68,7 +68,7 @@ sub = [["Share on my lounge", 0], ["Share for a friend", 1]] %>
       });
     }else{
       $('#receiver_id').val($('#share_to').val());
-			$('#wall_form_share').submit();
+      $('#wall_form_share').submit();
     }
   }
   $().ready(function() {
@@ -105,5 +105,22 @@ sub = [["Share on my lounge", 0], ["Share for a friend", 1]] %>
     background: url("/images/bgi-col300.png") no-repeat scroll 0 0 transparent;
     padding: 3px;
     height: 51px;
+  }
+  .reqTip .mcdropdown{
+    width: 450px;
+  }
+  .textboxlist-bits{
+    width: 446px;
+  }
+  .textboxlist-autocomplete-results{
+    width: 454px;
+  }
+  .studentImg div{
+    height: 33px;
+  }
+  .shareLou a{
+    color: #0A81C4;
+    font-weight: bold;
+    text-decoration: none;
   }
 </style>
