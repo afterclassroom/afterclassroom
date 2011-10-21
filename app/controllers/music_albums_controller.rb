@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class MusicAlbumsController < ApplicationController
   layout "student_lounge"
@@ -107,6 +108,41 @@ class MusicAlbumsController < ApplicationController
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
   end
+
+
+
+
+  def add_tag
+    @music_album = MusicAlbum.find(params[:music_album_id])
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "= music="
+    puts "==title == #{@music_album.name}"
+    redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
+  end
+  
+
 
   protected
 

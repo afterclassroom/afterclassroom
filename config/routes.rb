@@ -51,6 +51,7 @@ Afterclassroom::Application.routes.draw do
           :save_name, :change_user_name, :save_user_name,
 					:change_email, :save_email,
           :change_time_zone, :save_time_zone, :blocks, :unblock,
+					:change_school, :save_school,
 					:change_chat_id, :save_chat_id
         post :save_setting, :save_private_setting, :check_login
       end
@@ -96,7 +97,8 @@ Afterclassroom::Application.routes.draw do
     # Music Album
     resources :music_albums do
       collection do
-        get :delete_all, :delete_musics
+        get :delete_all, :delete_musics, :self_untag
+        post :add_tag, :tag_decision, :remove_tagged, :comment_inform
       end
     end
     

@@ -214,6 +214,26 @@
     </div>
     <div class="settNetLPaT">
     </div>
+    <div class="vtip settNetLPa" title="Review of request that your friends want to invite other friends to listen to your music album">
+      Let's Listen Review
+    </div>
+    <div class="settC">
+      <div class="flistItem" style="border-bottom: none;">
+        <div class="flistInf">
+          <div class="flistNPa">
+            <span>Photos</span>
+          </div>
+          <div class="flistS" id="music_tag_setting">
+            <%= show_tags_status(current_user, "tag_music") %>
+          </div>
+        </div>
+        <div class="select_wrap" id="tag_music">
+          <%= show_tags_setting(current_user, "tag_music") %>
+        </div>
+      </div>
+    </div>
+    <div class="settNetLPaT">
+    </div>
     <div class="vtip settNetLPa" title="Tag review of tags that friends want to add to your posts">
       Tag Review
     </div>
@@ -284,6 +304,7 @@
   $(document).ready(function(){
     $('#tag_photo').find('#tag_photo').css('width','121px');
     $('#tag_video').find('#tag_video').css('width','121px');
+    $('#tag_music').find('#tag_music').css('width','121px');
     
     $('.menuPrivate').change(function(){
       share_select($(this).attr('value'), $(this).attr('id'));

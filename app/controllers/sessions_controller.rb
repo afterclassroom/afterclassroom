@@ -26,6 +26,17 @@ class SessionsController < ApplicationController
       school_id = params[:school_id]
       school = School.find(school_id)
       session[:your_school] = school.id
+			if session[:return_to] and session[:return_to].include?("setting")
+				current_user.school = school
+				current_user.save!
+				case school.type_school
+				when "HighSchool"
+						current_user.user_education.high_school = school.address
+				else
+						current_user.user_education.college = school.address
+				end
+				current_user.user_education.save
+			end
     end
     redirect_back_or_default(root_path)
   end

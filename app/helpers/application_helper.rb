@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 module ApplicationHelper
   include ActsAsTaggableOn::TagsHelper
@@ -678,7 +679,7 @@ module ApplicationHelper
     select_tag "#{type}", options_for_select(OPTIONS_SETTING, val), :class => "menuPrivate"
   end
   
-  def show_tags_setting(user, type)#type can be PHOTO or VIDEO
+  def show_tags_setting(user, type)#type can be PHOTO or VIDEO or MUSIC
     pr = user.private_settings.where(:type_setting => type).first
     val = pr ? pr.share_to : 0
     select_tag "#{type}", options_for_select(TAGS_SETTING, val), :class => "menuPrivate"
