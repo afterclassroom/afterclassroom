@@ -1,5 +1,5 @@
-<% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "", :method => :post, :remote => false do %>
-  <%#= hidden_field_tag "video_id", @video.id %>
+<% form_tag url_for(:controller => "music_albums", :action => "add_tag"), :id => "form_tag_user", :style => "", :method => :post, :remote => false do %>
+  <%= hidden_field_tag "music_album_id", @music_album.id %>
 
   <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
     <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
@@ -16,7 +16,7 @@
   }
 </style>
 <script type="text/javascript">
-  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%#= @music.id %>&tagable_type=<%#= @music.class.name %>";
+  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @music_album.id %>&tagable_type=<%= @music_album.class.name %>";
 
   $(function(){
     

@@ -97,7 +97,8 @@ Afterclassroom::Application.routes.draw do
     # Music Album
     resources :music_albums do
       collection do
-        get :delete_all, :delete_musics
+        get :delete_all, :delete_musics, :self_untag
+        post :add_tag, :tag_decision, :remove_tagged, :comment_inform
       end
     end
     

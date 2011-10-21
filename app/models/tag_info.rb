@@ -14,4 +14,52 @@ class TagInfo < ActiveRecord::Base
   def self.refuse_photo(list_of_users,tagable_id)
     TagInfo.destroy_all({:tagable_id => tagable_id, :tagable_type => "Photo", :tagable_user => list_of_users})
   end
+
+  def self.verify_music(list_of_users,tagable_id)
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "==list_of_users"
+    puts "== list_of_users == #{list_of_users}"
+    TagInfo.update_all({:verify => true}, {:tagable_id => tagable_id, :tagable_type => "MusicAlbum", :tagable_user => list_of_users})
+  end
+  def self.refuse_music(list_of_users,tagable_id)
+    TagInfo.destroy_all({:tagable_id => tagable_id, :tagable_type => "MusicAlbum", :tagable_user => list_of_users})
+  end
+
+
 end

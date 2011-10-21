@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class MusicAlbumsController < ApplicationController
   layout "student_lounge"
@@ -107,6 +108,92 @@ class MusicAlbumsController < ApplicationController
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
   end
+
+
+
+
+  def add_tag
+    @music_album = MusicAlbum.find(params[:music_album_id])
+
+    str_flash_msg = "Your request has been sent to author. The approval will be sent to your email."
+
+    share_to = params[:share_to]
+    
+    user_ids = share_to.split(",")
+
+    if user_ids.size > 0 
+      user_ids.each do |i|
+        u = User.find(i)
+        if u
+          #adding selected user into TagInfo
+          taginfo = TagInfo.new()
+          taginfo.tag_creator_id = current_user.id
+          taginfo.tagable_id = params[:music_album_id]
+          taginfo.tagable_user = u.id
+          taginfo.tagable_type = "MusicAlbum"
+          taginfo.verify = false
+          if current_user == @music_album.user
+            taginfo.verify = true
+            flash[:notice] = "Your friend(s) will listen this album shortly."
+          else
+            pr = @music_album.user.private_settings.where(:type_setting => "tag_music").first
+            if (pr != nil)
+              if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
+                taginfo.verify = true
+                str_flash_msg = "Your tag(s) have been created"
+              end
+            else#user has not setting this, considered NO VERIFY BY DEFAULT
+              taginfo.verify = true
+            end
+            
+            
+            flash[:notice] = str_flash_msg
+          end
+
+          taginfo.save
+          
+          # if taginfo.save
+          #   #taginfo.verify equal to TRUE when no need to pass to verifying process
+          #   #when there is no need to verify, there is no need to wait for authorization
+          #   QaSendMail.tag_vid_notify(u,@music_album, current_user,taginfo.verify).deliver
+          #   if ( (current_user != @music_album.user) && (@music_album.user != u) )
+          #     #the above condition is "NOT TO SEND mail to @music_album owner"
+          #     #if any user tag OWNER to OWNER's @music_album
+          #     QaSendMail.inform_vid_owner(u,@music_album, current_user,taginfo.verify).deliver
+          #   end
+          # end
+          #if save then send mail to each user here, and to video.user
+        end
+      end #end each
+    end
+
+    redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
+  end
+  
+  def tag_decision
+    @music_album = MusicAlbum.find(params[:music_album_id])
+    if params[:decision_id] == "ACCEPT"
+      TagInfo.verify_music(params[:checkbox],params[:music_album_id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        # if u
+        #   QaSendMail.tag_approved(u,video,current_user).deliver
+        # end
+      end #end each
+    else
+      TagInfo.refuse_music(params[:checkbox],params[:music_album_id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        # if u
+        #   QaSendMail.tag_removed(u,video,current_user).deliver
+        # end
+      end #end each
+    end
+    redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
+  end
+
 
   protected
 

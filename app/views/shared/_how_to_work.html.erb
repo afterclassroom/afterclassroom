@@ -1,0 +1,200 @@
+<!-- Feedback Form code Starts -->
+<div id="feedback_overlay_box">
+  <div id="feedback_lightbox">
+    <div id="feedback_close">
+      <a href="#" title="close"></a>
+    </div>
+    <div id="feedback_form">
+      <div id="feedback_response"></div>
+      <div id="feedback_error"></div>
+      <form name="feedback_form" method="post" class="wp_feedback_form">
+        <p>
+          <label>Name :</label>
+          <input type="text" name="name"  id="feedback_name" class="feedback_text" />
+        </p>
+        <p>
+          <label>Email :</label>
+          <input type="text" name="email" id="feedback_email" class="feedback_text" />
+        </p>
+        <p>
+          <label>Website :</label>
+          <input type="text" name="website" id="feedback_website" class="feedback_text" />
+        </p>
+        <p>
+          <label>Message :</label>
+          <textarea name="message" class="feedback_textarea" id="feedback_message"></textarea>
+        </p>
+        <p>
+          <input type="image" src="images/default/submit.png"  />
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Feedback Form code Ends -->
+<!-- Feedback Button -->
+<div id="feedback_button">
+  <a href="#" title=""></a>
+</div>
+<!-- Feedback Button End -->
+<script>
+  $(document).ready(function(){
+    /* Show Feedback form when feedback button clicked */
+    $('#feedback_button a').click(function(){
+      $('#feedback_overlay_box').show();
+    });
+    /* Hide Feedback form when close button clicked */
+    $('#feedback_close a').click(function(){
+      $('#feedback_overlay_box').hide();
+    });
+ 
+    <%#*/* Following code will be called when user submit the feedback form */%>
+    <%#*$('.wp_feedback_form').submit(function(){%>
+      <%#*var url = $(this).attr('action');%>
+      <%#*var update = url.split("#")[1];%>
+      <%#*var name = $("#feedback_name").val();%>
+      <%#*var email = $("#feedback_email").val();%>
+      <%#*var website=$("#feedback_website").val();%>
+      <%#*var message=$("#feedback_message").val();%>
+      <%#*var dataString = 'email='+ email + '&name=' + name+'&website='+website+'&message='+message;%>
+      <%#*var emailFormat = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;%>
+ 
+      <%#*/* In first part of this code we validated inputs entered by user. */%>
+      <%#*if (email == '' || name == '' || website=='') {%>
+        <%#*$("#feedback_error").fadeIn(200).html("All fields are required !");%>
+      <%#*}else if (email.search(emailFormat) == -1) {%>
+        <%#*$("#feedback_error").fadeIn(200).html("Invalid Email Address!");%>
+      <%#*}%>
+ 
+      <%#*else%>
+      <%#*{%>
+        <%#*/*%>
+        <%#*Following code will send a jquery ajax request to the send_email.php file,%>
+        <%#*with user inputs */%>
+        <%#*$.ajax({%>
+          <%#*type: "POST",%>
+          <%#*url: "" + url + "",%>
+          <%#*data: dataString,%>
+          <%#*success: function(response){%>
+            <%#*/* Response is add to the #feedback_response div */%>
+            <%#*$('#feedback_response').html(response);%>
+ 
+          <%#*},%>
+          <%#*complete: function(){%>
+            <%#*/* On completion of ajax request following methods are called. */%>
+            <%#*$("#feedback_error").fadeOut(200);%>
+            <%#*$("#feedback_response").fadeIn(200);%>
+            <%#*$(".feedback_text").val('');%>
+          <%#*}%>
+ 
+        <%#*});%>
+ 
+      <%#*}%>
+      <%#*return false;%>
+    <%#*});%>
+  });
+</script>
+<style>
+  #feedback_lightbox
+  {
+    width:350px;
+    z-index:9999;
+    position:relative;
+    top:20%;
+    left:30%;
+  }
+  #feedback_overlay_box
+  {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    filter:alpha(opacity=50);
+    display: none;
+  }
+  #feedback_button
+  {
+    width:26px;
+    height:96px;
+    position:fixed;
+    left:0;
+    top:40%;
+    overflow:hidden;
+  }
+  #feedback_button a
+  {
+    width:26px;
+    height:96px;
+    overflow:hidden;
+    background:blue url(/images/feedback/feedback_tab.png) no-repeat top left;
+    display:inline-block;
+    padding:3px;
+  }
+  #feedback_close
+  {
+    display:block;
+    height:30px;
+    text-align:right;
+    width:350px;
+  }
+  #feedback_close a
+  {
+    display:block;
+    background:url(/images/feedback/pop500C.gif) no-repeat top left;
+    width:30px;
+    float:right;
+    height:30px;
+  }
+  #feedback_form
+  {
+    width:280px;
+    background: #ffffff url(images/dialog.png) repeat-x left bottom;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
+    padding:30px;
+  }
+  #feedback_form p
+  {
+    padding:0px 0px 10px 0px;
+    margin:0px;
+    display:block;
+  }
+  #feedback_form p label
+  {
+    display:block;
+    font-size:12px;
+    line-height:16px;
+    padding:0px 0px 3px 0px;
+    color:red;
+  }
+  #feedback_form p .feedback_text,#feedback_form p .feedback_textarea
+  {
+    border:1px solid #999999;
+
+  }
+  #feedback_error
+  {
+    margin:10px 0px 0px 0px;
+    border:1px solid red;
+    padding:10px;
+    overflow:hidden;
+    display:none;
+  }
+  #feedback_response
+  {
+    margin:10px 0px 10px 0px;
+    border:1px solid green;
+    padding:10px;
+    color:green;
+    overflow:hidden;
+    display:none;
+  }
+</style>

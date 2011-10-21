@@ -1,11 +1,10 @@
-<% listusers = User.find(:all)%>
   <div class="col300 slStory">
     <div class="col300in">
       <h1 class="col300Title">Together on this music</h1>
       <div class="onThis">
         <div id="thumbs" class="navigation" style="left: 0%; margin-left: -10px;">
           <ul class="thumbs noscript">
-            <% listusers.first(10).each do |u| %>
+            <% @tag_usr.each do |u| %>
               <li>
                 <div class="onThisL">
                   <div class="AsDcomImg"><%= show_image_user_post(u) %></div>

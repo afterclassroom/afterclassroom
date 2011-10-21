@@ -1,9 +1,35 @@
 <%= render :partial => "form_add_tag" %>
 
+<% if  @music_album.user == current_user && @usrs_for_verify.size > 0 %>
+<div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
+  Verify users have been tagged 
+  <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
+  <a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
+</div>
+<% form_tag url_for(:controller => "music_albums", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
+<%= hidden_field_tag "decision_id" %>
+<%= hidden_field_tag "music_album_id", @music_album.id %>
+<div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
+  <% @usrs_for_verify.each do |user| %>
+  <%= render :partial => "photos/item_user", :locals => {:user => user} %>
+
+  <% end %>
+</div>
+<div class="stoDbtm" style="display:none;" id="btn_pannel">
+  <div class="AsDContBtm" style="float:right; margin-right: 39px;">
+    <span class="btmComment"><a href="javascript:;" id="accept_btn">Accept</a></span>
+    <span class="btmComment"><a href="javascript:;" id="refuse_btn">Refuse</a></span>
+  </div>
+</div>
+<% end %><!-- end form -->        
+
+<% end %><!-- end if  -->
+
+
 <div class="stoDbtm">
   <div class="AsDContBtm">
     <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
-    <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
+    <span class="btmShare"><%#= addthis_bookmark_button { "<span>Share</span>" } %></span>
     <span class="btmFav" id="item_favorite_<%= @music_album.id %>"><%= show_favorite_in_detail("MusicAlbum", @music_album) %></span>
     <span class="btmAbuse"><%= show_report_abuse(@music_album) %></span>
     <span class="btmComment"><a href="javascript:;">Let's Listen</a></span>
@@ -11,4 +37,52 @@
 </div>
 
 <script type="text/javascript">
-<script/>
+  //BEGIN: show/hide verify panel
+  //approve_panel
+  var overallCount = 0;//this variable support for show/hide accept/refuse
+  $(document).ready(function(){
+    $('#show_or_hide').click(function(){
+      if ( $(this).html() == '(Show)' ){
+        $(this).html('(Hide)');
+        $('#sel_desel_all').show();
+      }else {
+        $(this).html('(Show)');
+        $('#sel_desel_all').hide();
+      }
+      $('#approve_panel').toggle();
+    })//end show or hide
+
+    $('#sel_desel_all').click(function(){
+      if ( $(this).html() == 'Select all' ){
+        overallCount = $('#approve_panel').find('*[id*=checkbox_]').length;
+        $(this).html('Deselect');
+        $('#btn_pannel').show('slow');
+        $('#approve_panel').find('*[id*=checkbox_]').each(function(){
+          $(this).attr('checked','checked');
+        });
+      }else {
+        overallCount = 0;
+        $(this).html('Select all');
+        $('#btn_pannel').hide('slow');
+        $('#approve_panel').find('*[id*=checkbox_]').each(function(){
+          $(this).attr('checked','');
+        });
+      }      
+    });//end sel desel all
+    //Begin event for accept/refuse
+    $('#accept_btn').click(function(){
+      $('#decision_id').val('ACCEPT');
+      $("form#form_tag_decision").submit();
+    });
+    $('#refuse_btn').click(function(){
+      $('#decision_id').val('REFUSE');
+      $("form#form_tag_decision").submit();
+    });
+
+    //end event for accept/refuse
+
+
+  });//end document ready
+  //END: show/hide verify panel
+
+</script>
