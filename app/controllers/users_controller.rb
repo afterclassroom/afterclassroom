@@ -88,7 +88,7 @@ class UsersController < ApplicationController
   
   def create
     logout_keeping_session!
-    create_new_user(params)
+    create_user(params)
   end
   
   def activate
@@ -375,7 +375,7 @@ class UsersController < ApplicationController
     return @user
   end
   
-  def create_new_user(attributes)
+  def create_user(attributes)
     first_name = attributes[:first_name]
     last_name = attributes[:last_name]
     session[:first_name] = first_name
@@ -406,7 +406,16 @@ class UsersController < ApplicationController
 			# Send email notificaton for user same school
 			school = @user.school
 			users = school.users.where("id <> #{@user.id}")
-			Delayed::Job.enqueue SignupNotificationJob.new(@user, users)
+			if users.size > 0
+				users.each do |u|
+					email = u.email
+					subject = "Do you know #{@user.name}?"
+					content = "Dear #{u.name},<br>"
+					content << "<p>You might know #{@user.name} who just joined After Classroom from #{@user.school.name}.<br>"
+					content << "Click <a href='#{show_lounge_user_url(@user)}'>here</a> to check who is #{@user.name}.<br></p>"
+					Delayed::Job.enqueue SignupNotificationJob.new(email, subject, content)
+				end
+			end
     end
     
     if @user.errors.empty?
