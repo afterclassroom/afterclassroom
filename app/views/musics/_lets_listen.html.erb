@@ -14,6 +14,7 @@
             <% end %>
           </ul>
           <div class="onThisBtm">
+              <a id="remove_btn" href="javascript:;" style="margin-left: 2px; display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 0px;">Remove</a>
             <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
             <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
           </div>
@@ -33,7 +34,7 @@
       });
       var gallery = $('#thumbs').galleriffic({
         delay:                     2500,
-        numThumbs:                 10,
+        numThumbs:                 2,
         preloadAhead:              0,
         enableTopPager:            false,
         enableBottomPager:         false,
@@ -62,6 +63,12 @@
         gallery.nextPage();
         e.preventDefault();
       });
+      gallery.find('.onThisBtm').css({
+        'margin-top':'172px',
+        'margin-left':'140px',
+        'position':'absolute'
+      });
+
     });
   </script>
 
