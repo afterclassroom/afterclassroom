@@ -234,7 +234,7 @@ class MusicsController < ApplicationController
     end
   end
 	
-	def rate
+  def rate
     rating = params[:rating]
     @post = Music.find(params[:post_id])
     @post.rate rating.to_i, current_user
@@ -243,7 +243,7 @@ class MusicsController < ApplicationController
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
   end
-  
+
   protected
   
   def require_current_user
