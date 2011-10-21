@@ -7,6 +7,7 @@ class SettingsController < ApplicationController
   before_filter :cas_user
   #before_filter :login_required
   before_filter :require_current_user
+	after_filter :store_location, :only => [:setting]
   
   def index
     redirect_to :action => "setting"
@@ -221,6 +222,14 @@ class SettingsController < ApplicationController
 		username = params[:username]
 		logins = User.where(:login => username.downcase)
 		render :text => (logins.size > 0) ? "invalid" : "valid"
+	end
+
+	def change_school
+		render :layout => false
+	end
+
+	def save_school
+
 	end
 
 	def blocks

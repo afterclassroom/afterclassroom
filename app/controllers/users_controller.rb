@@ -403,6 +403,10 @@ class UsersController < ApplicationController
       notifications.each do |f|
         NotifyEmailSetting.create(:user_id => @user.id, :notification_id => f.id)
       end
+			# Send email notificaton for user same school
+			school = @user.school
+			users = school.users.where("id <> #{@user.id}")
+			Delayed::Job.enqueue SignupNotificationJob.new(@user, users)
     end
     
     if @user.errors.empty?
