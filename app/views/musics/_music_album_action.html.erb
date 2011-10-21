@@ -1,7 +1,5 @@
 <%= render :partial => "form_add_tag" %>
 
-hello <%= @usrs_for_verify.size %>
-
 <% if  @music_album.user == current_user && @usrs_for_verify.size > 0 %>
 <div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
   Verify users have been tagged 
@@ -41,6 +39,7 @@ hello <%= @usrs_for_verify.size %>
 <script type="text/javascript">
   //BEGIN: show/hide verify panel
   //approve_panel
+  var overallCount = 0;//this variable support for show/hide accept/refuse
   $(document).ready(function(){
     $('#show_or_hide').click(function(){
       if ( $(this).html() == '(Show)' ){
@@ -70,7 +69,17 @@ hello <%= @usrs_for_verify.size %>
         });
       }      
     });//end sel desel all
+    //Begin event for accept/refuse
+    $('#accept_btn').click(function(){
+      $('#decision_id').val('ACCEPT');
+      $("form#form_tag_decision").submit();
+    });
+    $('#refuse_btn').click(function(){
+      $('#decision_id').val('REFUSE');
+      $("form#form_tag_decision").submit();
+    });
 
+    //end event for accept/refuse
 
 
   });//end document ready
