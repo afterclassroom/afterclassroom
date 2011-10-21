@@ -38,3 +38,23 @@ hello <%= @usrs_for_verify.size %>
   </div>
 </div>
 
+<script type="text/javascript">
+  //BEGIN: show/hide verify panel
+  //approve_panel
+  $(document).ready(function(){
+    $('#show_or_hide').click(function(){
+      if ( $(this).html() == '(Show)' ){
+        $(this).html('(Hide)');
+        $('#sel_desel_all').show();
+      }else {
+        $(this).html('(Show)');
+        $('#sel_desel_all').hide();
+      }
+      $('#approve_panel').toggle();
+    })
+
+
+  });
+  //END: show/hide verify panel
+
+</script>
