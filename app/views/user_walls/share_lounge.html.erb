@@ -45,6 +45,7 @@
     <div class="form_friends" style="display:none;" id="show_share_to"><%= text_field_tag "share_to", "", :style=>"width:542px;height:24px" %></div>
   </div>
   <div class="submit" style="margin-left:10px;margin-top: 10px"><a onclick="ShareLounge()" href="javascript:;">Share</a></div>
+  <div class="submit_loader"></div>
 <% end %>
 <!--Alert-->
 <div id="dialog-message" title="Alert" style="display:none;">
@@ -54,6 +55,24 @@
 </div>
 <!--Alert-->
 <script type="text/javascript">
+  $(document).ready(function(){
+    $('div#TB_title').filter(':gt(0)').remove();
+    $('div#TB_ajaxContent').filter(':gt(0)').remove();
+    $(".submit").click(function(){
+      $('.submit').append('<div id="loader_id_submit">');
+      $('.submit_loader').append('<%= show_ajax_loader("loader_submit","display: block; position: absolute; float: right; height: 19px; margin-top: -22px; margin-left: 65px;") %>');
+      $("#loader_id_submit")
+      .height(25)
+      .css({
+        'opacity' : 0.4,
+        'display': 'block',
+        'position': 'absolute',
+        'margin-top': '-25px',
+        'background-color': 'white',
+        'width':'80px'
+      });
+    });
+  }); 
   var path = "<%= list_friend_user_messages_path(current_user) %>";
             
   function ShareLounge(){
