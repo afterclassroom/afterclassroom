@@ -51,10 +51,29 @@ hello <%= @usrs_for_verify.size %>
         $('#sel_desel_all').hide();
       }
       $('#approve_panel').toggle();
-    })
+    })//end show or hide
+
+    $('#sel_desel_all').click(function(){
+      if ( $(this).html() == 'Select all' ){
+        overallCount = $('#approve_panel').find('*[id*=checkbox_]').length;
+        $(this).html('Deselect');
+        $('#btn_pannel').show('slow');
+        $('#approve_panel').find('*[id*=checkbox_]').each(function(){
+          $(this).attr('checked','checked');
+        });
+      }else {
+        overallCount = 0;
+        $(this).html('Select all');
+        $('#btn_pannel').hide('slow');
+        $('#approve_panel').find('*[id*=checkbox_]').each(function(){
+          $(this).attr('checked','');
+        });
+      }      
+    });//end sel desel all
 
 
-  });
+
+  });//end document ready
   //END: show/hide verify panel
 
 </script>
