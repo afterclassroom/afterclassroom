@@ -1,6 +1,8 @@
 <%= render :partial => "form_add_tag" %>
 
-<%# if  @music_album.user == current_user && @usrs_for_verify.size > 0 %>
+hello <%= @usrs_for_verify.size %>
+
+<% if  @music_album.user == current_user && @usrs_for_verify.size > 0 %>
 <div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
   Verify users have been tagged 
   <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
@@ -10,7 +12,6 @@
 <%= hidden_field_tag "decision_id" %>
 <%= hidden_field_tag "music_album_id", @music_album.id %>
 <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
-  <% @usrs_for_verify = User.find(:all).first 10 %>
   <% @usrs_for_verify.each do |user| %>
   <%= render :partial => "photos/item_user", :locals => {:user => user} %>
 
@@ -24,7 +25,7 @@
 </div>
 <% end %><!-- end form -->        
 
-<%# end %><!-- end if  -->
+<% end %><!-- end if  -->
 
 
 <div class="stoDbtm">
