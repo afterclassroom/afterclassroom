@@ -112,6 +112,11 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @user = @story.user
+
+    #finding a list of tagged users for this story
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Story",true ] )
+
+
     if check_private_permission(@user, "my_stories")
       update_view_count(@story)
       respond_to do |format|
