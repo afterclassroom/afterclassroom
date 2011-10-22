@@ -315,6 +315,63 @@ class StoriesController < ApplicationController
     
     redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
   end
+
+  def remove_tagged
+    @story = Story.find(params[:id])
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "==asd"
+    puts "==v == "
+    TagInfo.refuse_story(params[:tag_checkbox],params[:id])
+    share_to = params[:tag_checkbox]
+    share_to.each do |i|
+      u = User.find(i)
+      # if u
+      #   QaSendMail.tag_removed(u,video,current_user).deliver
+      # end
+    end #end each
+
+    redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
+  end
+
   
   protected
   

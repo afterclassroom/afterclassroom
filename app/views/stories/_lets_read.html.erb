@@ -3,9 +3,9 @@
 <div class="col300 slStory">
   <div class="col300in">
     <h1 class="col300Title">
-      On this video
+      Together on this story
       <% if current_user == @story.user && @tagged_users.size > 0 %>
-        <a href="javascript:;" style="margin-left: 70px; color: #0A81C4;" id="manage_btn">Manage Tagged Users</a>
+        <a href="javascript:;" style="margin-left: 50px; color: #0A81C4;" id="manage_btn">Manage Audience</a>
       <% end %>
       <% if current_user != @story.user %>
         <% tagged_user_ids = @tagged_users.map(&:id) %>
