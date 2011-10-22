@@ -169,4 +169,35 @@ class QaSendMail < ActionMailer::Base
 
     mail :to => @tag_creator.email, :subject => "#{author.name} has approved you tag!"
   end
+
+  //BEGIN send mail for music tag
+  def tag_music_notify(user,mus_album,tag_creator,verify_status)
+    @mus_album = mus_album
+    @tag_creator=tag_creator
+    @user = user
+    @statement = ""
+
+    if (verify_status == false)
+      @statement = "Please wait for the authorization from music album owner."
+    end
+    
+    
+    mail :to => user.email, :subject => "Let's listen this music album!"
+  end
+
+  def inform_music_album_owner(user,mus_album,tag_creator, tag_verify_status)
+    @mus_album = mus_album
+    @tag_creator=tag_creator
+    @user = user
+
+    @str_of_verify = ""
+    if tag_verify_status == false #FALSE means this tag need to be verified 
+      @str_of_verify = "Please review and authorize !"
+    end
+
+    mail :to => @mus_album.user.email, :subject => "New user has been invited to your music album!"
+  end
+
+  //END send mail for music tag
+
 end

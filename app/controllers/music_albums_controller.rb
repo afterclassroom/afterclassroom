@@ -150,19 +150,17 @@ class MusicAlbumsController < ApplicationController
             flash[:notice] = str_flash_msg
           end
 
-          taginfo.save
-          
-          # if taginfo.save
+          if taginfo.save
           #   #taginfo.verify equal to TRUE when no need to pass to verifying process
           #   #when there is no need to verify, there is no need to wait for authorization
-          #   QaSendMail.tag_vid_notify(u,@music_album, current_user,taginfo.verify).deliver
-          #   if ( (current_user != @music_album.user) && (@music_album.user != u) )
-          #     #the above condition is "NOT TO SEND mail to @music_album owner"
-          #     #if any user tag OWNER to OWNER's @music_album
-          #     QaSendMail.inform_vid_owner(u,@music_album, current_user,taginfo.verify).deliver
-          #   end
-          # end
-          #if save then send mail to each user here, and to video.user
+            QaSendMail.tag_music_notify(u,@music_album, current_user,taginfo.verify).deliver
+            if ( (current_user != @music_album.user) && (@music_album.user != u) )
+              #the above condition is "NOT TO SEND mail to @music_album owner"
+              #if any user tag OWNER to OWNER's @music_album
+              QaSendMail.inform_music_owner(u,@music_album, current_user,taginfo.verify).deliver
+            end
+          end
+          #if save then send mail to each user here, and to @music_album.user
         end
       end #end each
     end
