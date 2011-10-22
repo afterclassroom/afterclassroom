@@ -1,4 +1,7 @@
 <%= render :partial => "form_add_tag" %>
+<% if  @story.user == current_user && @verify_users.size > 0 %>
+  <%= render :partial => "form_decision" %>
+<% end %><!-- end if -->
 
 <div class="stoDbtm">
   <div class="AsDContBtm">
