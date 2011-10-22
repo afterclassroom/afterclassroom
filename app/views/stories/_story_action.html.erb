@@ -1,6 +1,5 @@
 <%= render :partial => "form_add_tag" %>
 
-
 <div class="stoDbtm">
   <div class="AsDContBtm">
     <span class="btmComment"><a href="javascript:;" onclick="$('#form_comment').toggle('slow');">Comment</a></span>
@@ -11,7 +10,7 @@
   </div>
 </div>
 <script type="text/javascript">
-  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=&tagable_type=";
+  var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @story.id %>&tagable_type=<%= @story.class.name %>";
 
 $(function(){
     
