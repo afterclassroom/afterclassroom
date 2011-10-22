@@ -79,8 +79,7 @@ class QaSendMail < ActionMailer::Base
     @cmt_author = cmt_author
     @user = user
     #user.email
-#    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
-    mail :to => "datefield@yahoo.com", :subject => "#{cmt_author.name} left comments on #{video.user.name}'s video of you"
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
   end
 
   def tag_photo_notify(user,photo,tag_creator, verify_status)
@@ -169,4 +168,56 @@ class QaSendMail < ActionMailer::Base
 
     mail :to => @tag_creator.email, :subject => "#{author.name} has approved you tag!"
   end
+
+  //BEGIN send mail for music tag
+  def tag_music_notify(user,mus_album,tag_creator,verify_status)
+    @mus_album = mus_album
+    @tag_creator=tag_creator
+    @user = user
+    @statement = ""
+
+    if (verify_status == false)
+      @statement = "Please wait for the authorization from music album owner."
+    end
+    
+    
+    mail :to => user.email, :subject => "Let's listen this music album!"
+  end
+
+  def inform_music_album_owner(user,mus_album,tag_creator, tag_verify_status)
+    @mus_album = mus_album
+    @tag_creator=tag_creator
+    @user = user
+
+    @str_of_verify = ""
+    if tag_verify_status == false #FALSE means this tag need to be verified 
+      @str_of_verify = "Please review and authorize !"
+    end
+
+    mail :to => @mus_album.user.email, :subject => "New user has been invited to your music album!"
+  end
+
+  def tag_music_approved(user,mus_album,author)
+    @mus_album = mus_album
+    @user = user
+    @author = author
+    mail :to => @user.email, :subject => "#{author.name} has approved you to his music album listeners!"
+  end
+
+  def tag_music_removed(user,mus_album,author)
+    @mus_album = mus_album
+    @user = user
+    @author = author
+    mail :to => @user.email, :subject => "#{author.name} has removed you from his music album listeners!"
+  end
+  def music_cmt_added(user,mus_album,content,cmt_author)
+    @mus_album = mus_album
+    @content = content
+    @cmt_author = cmt_author
+    @user = user
+    #user.email
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for music album #{@mus_album.name}"
+  end
+  //END send mail for music tag
+
 end
