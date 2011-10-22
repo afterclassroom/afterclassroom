@@ -198,9 +198,9 @@ class MusicAlbumsController < ApplicationController
     share_to = params[:tag_checkbox]
     share_to.each do |i|
       u = User.find(i)
-      # if u
-      #   QaSendMail.tag_removed(u,video,current_user).deliver
-      # end
+      if u
+        QaSendMail.tag_music_removed(u,@music_album,current_user).deliver
+      end
     end #end each
 
     redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
