@@ -282,7 +282,7 @@ class StoriesController < ApplicationController
             taginfo.verify = true
             flash[:notice] = "Your friend(s) has been invited."
           else
-            pr = story.user.private_settings.where(:type_setting => "tag_story").first
+            pr = @story.user.private_settings.where(:type_setting => "tag_story").first
             if (pr != nil)
               if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
                 taginfo.verify = true
