@@ -10,8 +10,6 @@
                     <div class="slsShareL">
                         <span>You are here:</span>
                         <%= link_to "Musics", user_musics_url(current_user), :class => "slsShareLink" %>
-================
-                        <%= link_to "test Musics album", play_list_user_musics_url(current_user, :music_album_id => @music_album.id), :class => "slsShareLink" %>
                         <a href="javascript:;" class="slsShareLinkL"><%= current_user == @music_album.user ? "Your musics" : "Friends shared musics" %></a>
                     </div>
                     <div class="slsShareR">
