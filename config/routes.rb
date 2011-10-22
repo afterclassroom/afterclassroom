@@ -90,7 +90,8 @@ Afterclassroom::Application.routes.draw do
     #Stories
     resources :stories do
       collection do
-        get :friend_s, :my_s, :my_draft, :draft, :create_comment, :delete_comment, :delete_all
+        get :friend_s, :my_s, :my_draft, :draft, :create_comment, :delete_comment, :delete_all, :self_untag
+        post :add_tag, :tag_decision, :remove_tagged, :comment_inform
       end
     end
 
