@@ -169,7 +169,7 @@ class QaSendMail < ActionMailer::Base
     mail :to => @tag_creator.email, :subject => "#{author.name} has approved you tag!"
   end
 
-  //BEGIN send mail for music tag
+  #BEGIN send mail for music tag
   def tag_music_notify(user,mus_album,tag_creator,verify_status)
     @mus_album = mus_album
     @tag_creator=tag_creator
@@ -218,6 +218,6 @@ class QaSendMail < ActionMailer::Base
     #user.email
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for music album #{@mus_album.name}"
   end
-  //END send mail for music tag
+  #END send mail for music tag
 
 end

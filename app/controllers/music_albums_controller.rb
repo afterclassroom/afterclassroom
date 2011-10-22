@@ -157,7 +157,7 @@ class MusicAlbumsController < ApplicationController
             if ( (current_user != @music_album.user) && (@music_album.user != u) )
               #the above condition is "NOT TO SEND mail to @music_album owner"
               #if any user tag OWNER to OWNER's @music_album
-              QaSendMail.inform_music_owner(u,@music_album, current_user,taginfo.verify).deliver
+              QaSendMail.inform_music_album_owner(u,@music_album, current_user,taginfo.verify).deliver
             end
           end
           #if save then send mail to each user here, and to @music_album.user
