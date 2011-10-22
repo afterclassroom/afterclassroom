@@ -79,8 +79,7 @@ class QaSendMail < ActionMailer::Base
     @cmt_author = cmt_author
     @user = user
     #user.email
-#    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
-    mail :to => "datefield@yahoo.com", :subject => "#{cmt_author.name} left comments on #{video.user.name}'s video of you"
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
   end
 
   def tag_photo_notify(user,photo,tag_creator, verify_status)
@@ -210,6 +209,14 @@ class QaSendMail < ActionMailer::Base
     @user = user
     @author = author
     mail :to => @user.email, :subject => "#{author.name} has removed you from his music album listeners!"
+  end
+  def music_cmt_added(user,mus_album,content,cmt_author)
+    @mus_album = mus_album
+    @content = content
+    @cmt_author = cmt_author
+    @user = user
+    #user.email
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for music album #{@mus_album.name}"
   end
   //END send mail for music tag
 

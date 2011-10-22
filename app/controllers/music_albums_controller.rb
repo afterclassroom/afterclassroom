@@ -218,13 +218,13 @@ class MusicAlbumsController < ApplicationController
 
    
     #send mail to author
-    # QaSendMail.photo_cmt_added(@photo.user,@photo,params[:comment_content],current_user).deliver
+    # QaSendMail.music_cmt_added(@music_album.user,@music_album,params[:comment_content],current_user).deliver
     
     #and then send mail to tagged user
     # if @tagged_users.size > 0
     #   @tagged_users.each do |user|
     #     if user != current_user
-    #       QaSendMail.photo_cmt_added(user,@photo,params[:comment_content],current_user).deliver
+    #       QaSendMail.music_cmt_added(user,@music_album,params[:comment_content],current_user).deliver
     #     end
     #   end #end each
     # end #end if

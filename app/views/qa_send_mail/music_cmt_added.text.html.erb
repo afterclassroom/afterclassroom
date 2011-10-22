@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <div id="detail_window">
+      
+      Hello <%= @user.name %>, <br/>
+
+      <a href="<%= user_url(@cmt_author) %>"><%= @cmt_author.name %></a> left comments on <%= @mus_album.name %>'s music album that you are listening, click
+
+<a href="<%= play_list_user_musics_url(@mus_album.user, :music_album_id => @mus_album.id) %>">here</a> to see what's in it
+ <br />
+      
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>
