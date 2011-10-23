@@ -3,21 +3,21 @@
 <div class="col300 slStory">
   <div class="col300in">
     <h1 class="col300Title">
-      Together on this story
-      <% if current_user == @story.user && @tagged_users.size > 0 %>
-        <a href="javascript:;" style="margin-left: 50px; color: #0A81C4;" id="manage_btn">Manage Audience</a>
+      On this video
+      <% if current_user == @video.user && @tagged_users.size > 0 %>
+        <a href="javascript:;" style="margin-left: 70px; color: #0A81C4;" id="manage_btn">Manage Tagged Users</a>
       <% end %>
-      <% if current_user != @story.user %>
+      <% if current_user != @video.user %>
         <% tagged_user_ids = @tagged_users.map(&:id) %>
         <% if tagged_user_ids.include?(current_user.id) == true%>
 
 
-          <%= link_to "UnTag", {:controller => "stories", :action => "self_untag", :id => @story.id}, :remote => true, :id => "self_remove",:title => "Leave", :style => "color: #0A81C4; float: right;" %>
+          <%= link_to "UnTag", {:controller => "videos", :action => "self_runtag", :video_id => @video.id}, :remote => true, :id => "self_remove",:title => "Untag me from this Video", :style => "color: #0A81C4; float: right;" %>
         <% end %>
       <% end %>
     </h1> 
-    <% form_tag url_for(:controller => "stories", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
-      <%= hidden_field_tag "id", @story.id %>
+    <% form_tag url_for(:controller => "videos", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
+      <%= hidden_field_tag "video_id", @video.id %>
       <div class="onThis">
         <div class="navigation-container">
           <div id="thumbs" class="navigation">

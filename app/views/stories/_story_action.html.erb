@@ -13,6 +13,7 @@
   </div>
 </div>
 <script type="text/javascript">
+  var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @story.id %>&tagable_type=<%= @story.class.name %>";
 
 $(function(){
@@ -43,6 +44,14 @@ $(function(){
     
     $('#send_btn').click(function(){
       $('form#form_tag_user').submit();
+    });
+    $('#accept_btn').click(function(){
+      $('#decision_id').val('ACCEPT');
+      $("form#form_tag_decision").submit();
+    });
+    $('#refuse_btn').click(function(){
+      $('#decision_id').val('REFUSE');
+      $("form#form_tag_decision").submit();
     });
     
   })

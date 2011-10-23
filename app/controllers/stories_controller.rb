@@ -319,48 +319,6 @@ class StoriesController < ApplicationController
 
   def remove_tagged
     @story = Story.find(params[:id])
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "==asd"
-    puts "==v == "
     TagInfo.refuse_story(params[:tag_checkbox],params[:id])
     share_to = params[:tag_checkbox]
     share_to.each do |i|
@@ -371,6 +329,36 @@ class StoriesController < ApplicationController
     end #end each
 
     redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
+  end
+
+  def tag_decision
+    @story = Story.find(params[:id])
+    if params[:decision_id] == "ACCEPT"
+      TagInfo.verify_story(params[:checkbox],params[:id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        # if u
+        #   QaSendMail.tag_approved(u,video,current_user).deliver
+        # end
+      end #end each
+    else
+      TagInfo.refuse_story(params[:checkbox],params[:id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        # if u
+        #   QaSendMail.tag_removed(u,video,current_user).deliver
+        # end
+      end #end each
+    end
+    redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
+  end
+
+  def self_untag
+    user_to_remove = ["#{current_user.id}"]
+    TagInfo.refuse_story(user_to_remove,params[:id])
+    @story = Story.find(params[:id])
   end
 
   
