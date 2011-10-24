@@ -679,7 +679,7 @@ module ApplicationHelper
     select_tag "#{type}", options_for_select(OPTIONS_SETTING, val), :class => "menuPrivate"
   end
   
-  def show_tags_setting(user, type)#type can be PHOTO or VIDEO or MUSIC
+  def show_tags_setting(user, type)#type can be PHOTO or VIDEO or MUSIC or STORY
     pr = user.private_settings.where(:type_setting => type).first
     val = pr ? pr.share_to : 0
     select_tag "#{type}", options_for_select(TAGS_SETTING, val), :class => "menuPrivate"

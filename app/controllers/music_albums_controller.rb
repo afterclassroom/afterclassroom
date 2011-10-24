@@ -150,19 +150,17 @@ class MusicAlbumsController < ApplicationController
             flash[:notice] = str_flash_msg
           end
 
-          taginfo.save
-          
-          # if taginfo.save
+          if taginfo.save
           #   #taginfo.verify equal to TRUE when no need to pass to verifying process
           #   #when there is no need to verify, there is no need to wait for authorization
-          #   QaSendMail.tag_vid_notify(u,@music_album, current_user,taginfo.verify).deliver
-          #   if ( (current_user != @music_album.user) && (@music_album.user != u) )
-          #     #the above condition is "NOT TO SEND mail to @music_album owner"
-          #     #if any user tag OWNER to OWNER's @music_album
-          #     QaSendMail.inform_vid_owner(u,@music_album, current_user,taginfo.verify).deliver
-          #   end
-          # end
-          #if save then send mail to each user here, and to video.user
+            QaSendMail.tag_music_notify(u,@music_album, current_user,taginfo.verify).deliver
+            if ( (current_user != @music_album.user) && (@music_album.user != u) )
+              #the above condition is "NOT TO SEND mail to @music_album owner"
+              #if any user tag OWNER to OWNER's @music_album
+              QaSendMail.inform_music_album_owner(u,@music_album, current_user,taginfo.verify).deliver
+            end
+          end
+          #if save then send mail to each user here, and to @music_album.user
         end
       end #end each
     end
@@ -177,21 +175,62 @@ class MusicAlbumsController < ApplicationController
       share_to = params[:checkbox]
       share_to.each do |i|
         u = User.find(i)
-        # if u
-        #   QaSendMail.tag_approved(u,video,current_user).deliver
-        # end
+        if u
+          QaSendMail.tag_music_approved(u,@music_album,current_user).deliver
+        end
       end #end each
     else
       TagInfo.refuse_music(params[:checkbox],params[:music_album_id])
       share_to = params[:checkbox]
       share_to.each do |i|
         u = User.find(i)
-        # if u
-        #   QaSendMail.tag_removed(u,video,current_user).deliver
-        # end
+        if u
+          QaSendMail.tag_music_removed(u,@music_album,current_user).deliver
+        end
       end #end each
     end
     redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
+  end
+
+  def remove_tagged
+    @music_album = MusicAlbum.find(params[:music_album_id])
+    TagInfo.refuse_music(params[:tag_checkbox],params[:music_album_id])
+    share_to = params[:tag_checkbox]
+    share_to.each do |i|
+      u = User.find(i)
+      if u
+        QaSendMail.tag_music_removed(u,@music_album,current_user).deliver
+      end
+    end #end each
+
+    redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
+  end
+
+  def self_untag
+    user_to_remove = ["#{current_user.id}"]
+    TagInfo.refuse_music(user_to_remove,params[:music_album_id])
+    @music_album = MusicAlbum.find(params[:music_album_id])
+  end
+
+  def comment_inform
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:music_album_id],"MusicAlbum",true ] )
+    @music_album = MusicAlbum.find(params[:music_album_id])
+
+   
+    #send mail to author
+    QaSendMail.music_cmt_added(@music_album.user,@music_album,params[:comment_content],current_user).deliver
+    
+    #and then send mail to tagged user
+    if @tagged_users.size > 0
+      @tagged_users.each do |user|
+        if user != current_user
+          QaSendMail.music_cmt_added(user,@music_album,params[:comment_content],current_user).deliver
+        end
+      end #end each
+    end #end if
+
+    
+    render :text => "Done"
   end
 
 

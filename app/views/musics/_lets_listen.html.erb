@@ -6,6 +6,18 @@
       <% end %>
 
       </h1>
+
+      <% if current_user != @music_album.user %>
+        <% tagged_user_ids = @tag_usr.map(&:id) %>
+        <% if tagged_user_ids.include?(current_user.id) == true%>
+          <%= link_to "Leave", {:controller => "music_albums", :action => "self_untag", :music_album_id => @music_album.id}, :remote => true, :id => "self_remove",:title => "Stop following this album", :style => "color: #0A81C4; float: right; margin-top:-24px;" %>
+        <% end %>
+      <% end %>
+
+
+      <% form_tag url_for(:controller => "music_albums", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
+      <%= hidden_field_tag "music_album_id", @music_album.id %>
+
       <div class="onThis">
         <div id="thumbs" class="navigation" style="left: 0%; margin-left: -10px;">
           <ul class="thumbs noscript">
@@ -20,6 +32,10 @@
           </div>
         </div>
       </div>
+      <% end %><!--  end form -->
+
+
+
     </div>
   </div>
   <script type="text/javascript">
@@ -34,7 +50,7 @@
       });
       var gallery = $('#thumbs').galleriffic({
         delay:                     2500,
-        numThumbs:                 2,
+        numThumbs:                 12,
         preloadAhead:              0,
         enableTopPager:            false,
         enableBottomPager:         false,
@@ -67,6 +83,9 @@
         'margin-top':'172px',
         'margin-left':'140px',
         'position':'absolute'
+      });
+      $('#remove_btn').click(function(){
+        $('form#form_remove').submit();
       });
 
     });

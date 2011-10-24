@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class StoriesController < ApplicationController
   include ApplicationHelper
@@ -111,6 +112,12 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @user = @story.user
+
+    #finding a list of tagged users for this story
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Story",true ] )
+    @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Story",false ] )
+
+
     if check_private_permission(@user, "my_stories")
       update_view_count(@story)
       respond_to do |format|
@@ -242,7 +249,7 @@ class StoriesController < ApplicationController
     redirect_to(user_stories_url(current_user))
   end
 
-	def rate
+  def rate
     rating = params[:rating]
     @post = Story.find(params[:post_id])
     @post.rate rating.to_i, current_user
@@ -251,6 +258,109 @@ class StoriesController < ApplicationController
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
   end
+
+  def add_tag
+    
+    @story = Story.find(params[:id])
+    
+    share_to = params[:share_to]
+    user_ids = share_to.split(",")
+
+    str_flash_msg = "Your request has been sent to author. The approval will be sent to your email."
+
+    if user_ids.size > 0 
+      user_ids.each do |i|
+        u = User.find(i)
+        if u
+          #adding selected user into TagInfo
+          taginfo = TagInfo.new()
+          taginfo.tag_creator_id = current_user.id
+          taginfo.tagable_id = params[:id]
+          taginfo.tagable_user = u.id
+          taginfo.tagable_type = "Story"
+          taginfo.verify = false
+          if current_user == @story.user
+            taginfo.verify = true
+            flash[:notice] = "Your friend(s) has been invited."
+          else
+            pr = @story.user.private_settings.where(:type_setting => "tag_story").first
+            if (pr != nil)
+              if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
+                taginfo.verify = true
+                str_flash_msg = "Your friend(s) have been invited"
+              end
+            else#user has not setting this, considered NO VERIFY BY DEFAULT
+              taginfo.verify = true
+            end
+            
+            
+            flash[:notice] = str_flash_msg
+          end
+
+          taginfo.save
+          
+          if taginfo.save
+          #   #taginfo.verify equal to TRUE when no need to pass to verifying process
+          #   #when there is no need to verify, there is no need to wait for authorization
+            QaSendMail.tag_story_notify(u,@story, current_user,taginfo.verify).deliver
+            if ( (current_user != @story.user) && (@story.user != u) )
+              #the above condition is "NOT TO SEND mail to story author"
+              #if any user tag OWNER to OWNER's story
+              QaSendMail.inform_story_owner(u,@story, current_user,taginfo.verify).deliver
+            end
+          end
+          #if save then send mail to each user here, and to story.user
+        end
+      end #end each
+    end
+    
+    redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
+  end
+
+  def remove_tagged
+    @story = Story.find(params[:id])
+    TagInfo.refuse_story(params[:tag_checkbox],params[:id])
+    share_to = params[:tag_checkbox]
+    share_to.each do |i|
+      u = User.find(i)
+      # if u
+      #   QaSendMail.tag_removed(u,video,current_user).deliver
+      # end
+    end #end each
+
+    redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
+  end
+
+  def tag_decision
+    @story = Story.find(params[:id])
+    if params[:decision_id] == "ACCEPT"
+      TagInfo.verify_story(params[:checkbox],params[:id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        # if u
+        #   QaSendMail.tag_approved(u,video,current_user).deliver
+        # end
+      end #end each
+    else
+      TagInfo.refuse_story(params[:checkbox],params[:id])
+      share_to = params[:checkbox]
+      share_to.each do |i|
+        u = User.find(i)
+        # if u
+        #   QaSendMail.tag_removed(u,video,current_user).deliver
+        # end
+      end #end each
+    end
+    redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
+  end
+
+  def self_untag
+    user_to_remove = ["#{current_user.id}"]
+    TagInfo.refuse_story(user_to_remove,params[:id])
+    @story = Story.find(params[:id])
+  end
+
   
   protected
   

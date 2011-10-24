@@ -1,5 +1,5 @@
 <script src="/javascripts/jquery.tools.min.js"></script>
-<script src="/javascripts/flowplayer.playlist-3.0.8.min.js"></script>	
+<script src="/javascripts/flowplayer.playlist-3.0.8.js"></script>	
 <link rel="stylesheet" type="text/css" href="/stylesheets/playlist-horizontal.css"/>
 <div id="page">
   <a style="display:block;width:560px;height:360px" id="player"> </a> 
@@ -17,7 +17,7 @@ videos = [@video] + videos
         <% if count == 0 %>
           <div class="page">
           <% end %>	
-          <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
+          <a id="click_video" class="click" href="<%= get_video_path(v.video_file.video_attach.url) %>">
             <div style="float: left;height: 55px;overflow: hidden;width: 55px;word-wrap: break-word;">
               <%= truncate(v.title, :length=>22, :omission=>"...") %>
             </div>
@@ -32,17 +32,13 @@ videos = [@video] + videos
       <% end %>
       <% if count < 4 %>
       </div>
+
     <% end %>
   </div>
 </div>
 <a class="next"></a>
 </div>
-
-
 <br clear="all" />
-
-
-
 <script>
   $(document).ready(function() {
     $f("player", 
@@ -74,9 +70,6 @@ videos = [@video] + videos
   });
   $(document).ready(function() {
     // setup scrolling for the playlist elements
-    $("#pl").scrollable({ circular: true });	
+    $("#pl").scrollablevideo({ circular: true,vertical:false });	
   });
-  function getEl(clip) {
-    return (manual) ? els.filter('[href="' + clip.originalUrl + '"]') : els.eq(clip.index);
-  }
 </script>
