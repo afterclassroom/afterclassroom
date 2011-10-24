@@ -37,7 +37,6 @@ videos = [@video] + videos
   </div>
 </div>
 <a class="next"></a>
-</div>
 <br clear="all" />
 <script>
   $(document).ready(function() {
@@ -45,18 +44,17 @@ videos = [@video] + videos
     {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
     {	
       key: '#$de9093c019ae644a1da',
-      logo:null,  
-      plugins: {
-        controls: {
-          fullscreen: false
-        }
-      },
       logo: {
         url: '/images/logo.png',
         fullscreenOnly: false,
         opacity: 0,
         top: '85%',
         left: '20%'
+      },  
+      plugins: {
+        controls: {
+          fullscreen: false
+        }
       },
       // gradually show on mouseover
       onMouseOver: function() {
@@ -66,6 +64,7 @@ videos = [@video] + videos
       onMouseOut: function() {
         this.getPlugin("logo").fadeTo(0, 1000);
       }
+
     }).playlist("div.entries");
   });
   $(document).ready(function() {
