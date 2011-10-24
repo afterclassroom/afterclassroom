@@ -361,6 +361,22 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
   end
 
+  def comment_inform
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Story",true ] )
+    @story = Story.find(params[:id])
+
+    #and then send mail to tagged user
+    if @tagged_users.size > 0
+      @tagged_users.each do |user|
+        if user != @story.user
+          QaSendMail.story_cmt_added(user,@story,params[:comment_content],current_user).deliver
+        end
+      end #end each
+    end #end if
+    
+    render :text => "Done"
+  end
+
   
   protected
   

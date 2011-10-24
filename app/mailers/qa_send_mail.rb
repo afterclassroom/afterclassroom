@@ -78,7 +78,6 @@ class QaSendMail < ActionMailer::Base
     @content = content
     @cmt_author = cmt_author
     @user = user
-    #user.email
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
   end
 
@@ -251,18 +250,23 @@ class QaSendMail < ActionMailer::Base
     @story = story
     @user = user
     @author = author
-#    mail :to => @user.email, :subject => "#{author.name} has approved you to read story!"
-    mail :to => "datefield@yahoo.com", :subject => "#{author.name} has approved you to read story!"
+    mail :to => @user.email, :subject => "#{author.name} has approved you to read story!"
   end
   
   def tag_story_removed(user,story,author)
     @story = story
     @user = user
     @author = author
-#    mail :to => @user.email, :subject => "#{author.name} has removed you from story readers!"
-    mail :to => "datefield@yahoo.com", :subject => "#{author.name} has removed you from story readers!"
+    mail :to => @user.email, :subject => "#{author.name} has removed you from story readers!"
   end
 
+  def story_cmt_added(user,story,content,cmt_author)
+    @story = story
+    @content = content
+    @cmt_author = cmt_author
+    @user = user
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
+  end
 
   #END send mail for story tag
 

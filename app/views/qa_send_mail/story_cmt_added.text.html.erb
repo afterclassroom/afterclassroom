@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <div id="detail_window">
+      
+      Hello <%= @user.name %>, <br/>
+
+      <a href="<%= user_url(@cmt_author) %>"><%= @cmt_author.name %></a> left comments on <%= @story.user.name %>'s story that you are reading, click
+
+<a href="<%= user_story_url(@story.user, @story) %>">here</a> to see what's in it
+ <br />
+      
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>
