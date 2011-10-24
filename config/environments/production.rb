@@ -48,6 +48,14 @@ Afterclassroom::Application.configure do
   
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+	
+	# ExceptionNotifier
+	config.after_initialize do
+	config.middleware.use ExceptionNotifier,
+		    :email_prefix => "[ERROR: Afterclassroom] ",
+		    :sender_address => '"Notifier" <notifier@afterclassroom.com>',
+		    :exception_recipients => ['dungtqa@gmail.com']
+	end
   
   # Restful Authentication
   REST_AUTH_SITE_KEY = '5a5e73a69a893311f859ccff1ffd0fa2d7ea25fd'
