@@ -216,7 +216,8 @@ class QaSendMail < ActionMailer::Base
     @cmt_author = cmt_author
     @user = user
     #user.email
-    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for music album #{@mus_album.name}"
+#    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for music album #{@mus_album.name}"
+    mail :to => "datefield@yahoo.com", :subject => "#{cmt_author.name} has added new comment for music album #{@mus_album.name}"
   end
   #END send mail for music tag
 
