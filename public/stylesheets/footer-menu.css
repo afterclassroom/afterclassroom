@@ -47,7 +47,7 @@ div#toolbar, div#toolbarbut {
     position: fixed; /* set fixed position for the bar */
     bottom: 0px;
     right: 0px;
-    z-index: 9999; /* keep the bar on top  */
+    z-index: 999; /* keep the bar on top  */
     height: 36px;
     background: url(/images/footer_menu/bcktool.png);
     /* CSS3 */
@@ -407,7 +407,7 @@ span.downarr a {
     position:fixed;
     top:32%;
     right:-30px;
-    z-index: 9999;
+    z-index: 999;
 }
 
 a.feedback-tab {
@@ -423,7 +423,7 @@ a.feedback-tab {
     margin-top: -20px;
     cursor: pointer;
     margin-top: 5px;
-		z-index: 9999;
+		z-index: 999;
 }
 .feed_close{
     margin-right: -11px;
@@ -475,7 +475,7 @@ a.feedback-tab {
     right: 0;
     top: -12.5pt;
     width: 15px;
-    z-index: 99999;
+    z-index: 9999;
     cursor: pointer;
     margin-right: 30px;
 }

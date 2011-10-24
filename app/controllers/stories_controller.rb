@@ -299,17 +299,17 @@ class StoriesController < ApplicationController
 
           taginfo.save
           
-          # if taginfo.save
+          if taginfo.save
           #   #taginfo.verify equal to TRUE when no need to pass to verifying process
           #   #when there is no need to verify, there is no need to wait for authorization
-          #   QaSendMail.tag_vid_notify(u,video, current_user,taginfo.verify).deliver
-          #   if ( (current_user != video.user) && (video.user != u) )
-          #     #the above condition is "NOT TO SEND mail to video owner"
-          #     #if any user tag OWNER to OWNER's video
-          #     QaSendMail.inform_vid_owner(u,video, current_user,taginfo.verify).deliver
-          #   end
-          # end
-          #if save then send mail to each user here, and to video.user
+            QaSendMail.tag_story_notify(u,@story, current_user,taginfo.verify).deliver
+            if ( (current_user != @story.user) && (@story.user != u) )
+              #the above condition is "NOT TO SEND mail to story author"
+              #if any user tag OWNER to OWNER's story
+              QaSendMail.inform_story_owner(u,@story, current_user,taginfo.verify).deliver
+            end
+          end
+          #if save then send mail to each user here, and to story.user
         end
       end #end each
     end
@@ -323,9 +323,9 @@ class StoriesController < ApplicationController
     share_to = params[:tag_checkbox]
     share_to.each do |i|
       u = User.find(i)
-      # if u
-      #   QaSendMail.tag_removed(u,video,current_user).deliver
-      # end
+      if u
+        QaSendMail.tag_story_removed(u,@story,current_user).deliver
+      end
     end #end each
 
     redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
@@ -338,18 +338,18 @@ class StoriesController < ApplicationController
       share_to = params[:checkbox]
       share_to.each do |i|
         u = User.find(i)
-        # if u
-        #   QaSendMail.tag_approved(u,video,current_user).deliver
-        # end
+        if u
+          QaSendMail.tag_story_approved(u,@story,current_user).deliver
+        end
       end #end each
     else
       TagInfo.refuse_story(params[:checkbox],params[:id])
       share_to = params[:checkbox]
       share_to.each do |i|
         u = User.find(i)
-        # if u
-        #   QaSendMail.tag_removed(u,video,current_user).deliver
-        # end
+        if u
+          QaSendMail.tag_story_removed(u,@story,current_user).deliver
+        end
       end #end each
     end
     redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
@@ -359,6 +359,22 @@ class StoriesController < ApplicationController
     user_to_remove = ["#{current_user.id}"]
     TagInfo.refuse_story(user_to_remove,params[:id])
     @story = Story.find(params[:id])
+  end
+
+  def comment_inform
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Story",true ] )
+    @story = Story.find(params[:id])
+
+    #and then send mail to tagged user
+    if @tagged_users.size > 0
+      @tagged_users.each do |user|
+        if user != @story.user
+          QaSendMail.story_cmt_added(user,@story,params[:comment_content],current_user).deliver
+        end
+      end #end each
+    end #end if
+    
+    render :text => "Done"
   end
 
   

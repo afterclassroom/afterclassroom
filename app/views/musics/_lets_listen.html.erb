@@ -1,13 +1,15 @@
+<% if @tagged_users.size > 0 %>
   <div class="col300 slStory">
     <div class="col300in">
       <h1 class="col300Title">Together on this music
-      <% if current_user == @music_album.user && @tag_usr.size > 0 %>
+
+      <% if current_user == @music_album.user && @tagged_users.size > 0 %>
         <a href="javascript:;" style="margin-left: 49px; position: absolute; color: #0A81C4;" id="manage_btn">Manage Audience</a>
       <% end %>
 
       </h1>
 
-      <% if current_user != @music_album.user %>
+      <% if current_user != @music_album.user && @tagged_users.size > 0 %>
         <% tagged_user_ids = @tag_usr.map(&:id) %>
         <% if tagged_user_ids.include?(current_user.id) == true%>
           <%= link_to "Leave", {:controller => "music_albums", :action => "self_untag", :music_album_id => @music_album.id}, :remote => true, :id => "self_remove",:title => "Stop following this album", :style => "color: #0A81C4; float: right; margin-top:-24px;" %>
@@ -21,7 +23,7 @@
       <div class="onThis">
         <div id="thumbs" class="navigation" style="left: 0%; margin-left: -10px;">
           <ul class="thumbs noscript">
-            <% @tag_usr.each do |u| %>
+            <% @tagged_users.each do |u| %>
               <%= render :partial => "photos/item_tagged", :locals => {:u => u} %>
             <% end %>
           </ul>
@@ -38,6 +40,9 @@
 
     </div>
   </div>
+
+
+
   <script type="text/javascript">
     jQuery(document).ready(function($) {
       $('div.navigation').css({'width' : '300px', 'float' : 'left'});
@@ -91,3 +96,4 @@
     });
   </script>
 
+<% end %><!-- end if -->

@@ -166,7 +166,7 @@
 #qunit-tests .pass .test-name               { color: #366097; }
  
 #qunit-tests .pass .test-actual,
-#qunit-tests .pass .test-expected           { color: #999999; }
+#qunit-tests .pass .test-expected           { color: #99999; }
 
 #qunit-banner.qunit-pass                    { background-color: #C6E746; }
 

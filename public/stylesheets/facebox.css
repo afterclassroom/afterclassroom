@@ -59,11 +59,11 @@
     text-align: center;
     width: 208px;
     height: 0px;
-    z-index: 99999999;
+    z-index: 9999999;
 }
 #facebox .loading img{
    margin-top:150px;
-   z-index: 99999999;
+   z-index: 9999999;
 }
 
 #facebox .image {
