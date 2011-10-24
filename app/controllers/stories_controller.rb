@@ -323,9 +323,9 @@ class StoriesController < ApplicationController
     share_to = params[:tag_checkbox]
     share_to.each do |i|
       u = User.find(i)
-      # if u
-      #   QaSendMail.tag_removed(u,video,current_user).deliver
-      # end
+      if u
+        QaSendMail.tag_story_removed(u,@story,current_user).deliver
+      end
     end #end each
 
     redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
@@ -338,18 +338,18 @@ class StoriesController < ApplicationController
       share_to = params[:checkbox]
       share_to.each do |i|
         u = User.find(i)
-        # if u
-        #   QaSendMail.tag_approved(u,video,current_user).deliver
-        # end
+        if u
+          QaSendMail.tag_story_approved(u,@story,current_user).deliver
+        end
       end #end each
     else
       TagInfo.refuse_story(params[:checkbox],params[:id])
       share_to = params[:checkbox]
       share_to.each do |i|
         u = User.find(i)
-        # if u
-        #   QaSendMail.tag_removed(u,video,current_user).deliver
-        # end
+        if u
+          QaSendMail.tag_story_removed(u,@story,current_user).deliver
+        end
       end #end each
     end
     redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
@@ -359,6 +359,22 @@ class StoriesController < ApplicationController
     user_to_remove = ["#{current_user.id}"]
     TagInfo.refuse_story(user_to_remove,params[:id])
     @story = Story.find(params[:id])
+  end
+
+  def comment_inform
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Story",true ] )
+    @story = Story.find(params[:id])
+
+    #and then send mail to tagged user
+    if @tagged_users.size > 0
+      @tagged_users.each do |user|
+        if user != @story.user
+          QaSendMail.story_cmt_added(user,@story,params[:comment_content],current_user).deliver
+        end
+      end #end each
+    end #end if
+    
+    render :text => "Done"
   end
 
   

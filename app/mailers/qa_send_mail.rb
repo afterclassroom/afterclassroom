@@ -63,14 +63,14 @@ class QaSendMail < ActionMailer::Base
     @video = video
     @user = user
     @author = author
-    mail :to => @user.email, :subject => "#{author.name} has approved you to his video tag list!"
+    mail :to => @user.email, :subject => "#{author.name} has approved you to video tag list!"
   end
   
   def tag_removed(user,video,author)
     @video = video
     @user = user
     @author = author
-    mail :to => @user.email, :subject => "#{author.name} has removed you from his video tag list!"
+    mail :to => @user.email, :subject => "#{author.name} has removed you from video tag list!"
   end
 
   def vid_cmt_added(user,video,content,cmt_author)
@@ -78,7 +78,6 @@ class QaSendMail < ActionMailer::Base
     @content = content
     @cmt_author = cmt_author
     @user = user
-    #user.email
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
   end
 
@@ -201,14 +200,14 @@ class QaSendMail < ActionMailer::Base
     @mus_album = mus_album
     @user = user
     @author = author
-    mail :to => @user.email, :subject => "#{author.name} has approved you to his music album listeners!"
+    mail :to => @user.email, :subject => "#{author.name} has approved you to music album listeners!"
   end
 
   def tag_music_removed(user,mus_album,author)
     @mus_album = mus_album
     @user = user
     @author = author
-    mail :to => @user.email, :subject => "#{author.name} has removed you from his music album listeners!"
+    mail :to => @user.email, :subject => "#{author.name} has removed you from music album listeners!"
   end
   def music_cmt_added(user,mus_album,content,cmt_author)
     @mus_album = mus_album
@@ -232,8 +231,7 @@ class QaSendMail < ActionMailer::Base
     end
     
     
-#    mail :to => user.email, :subject => "Let's read this!"
-    mail :to => "datefield@yahoo.com", :subject => "Let's read this!"
+    mail :to => user.email, :subject => "Let's read this!"
   end
 
   def inform_story_owner(user,story,tag_creator, tag_verify_status)
@@ -246,9 +244,30 @@ class QaSendMail < ActionMailer::Base
       @str_of_verify = "Please review and authorize !"
     end
 
-#    mail :to => @story.user.email, :subject => "New user has been invited to your story!"
-    mail :to => "datefield@yahoo.com", :subject => "New user has been invited to your story!"
+    mail :to => @story.user.email, :subject => "New user has been invited to your story!"
   end
+  def tag_story_approved(user,story,author)
+    @story = story
+    @user = user
+    @author = author
+    mail :to => @user.email, :subject => "#{author.name} has approved you to read story!"
+  end
+  
+  def tag_story_removed(user,story,author)
+    @story = story
+    @user = user
+    @author = author
+    mail :to => @user.email, :subject => "#{author.name} has removed you from story readers!"
+  end
+
+  def story_cmt_added(user,story,content,cmt_author)
+    @story = story
+    @content = content
+    @cmt_author = cmt_author
+    @user = user
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
+  end
+
   #END send mail for story tag
 
 
