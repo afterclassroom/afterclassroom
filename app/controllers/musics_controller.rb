@@ -221,7 +221,7 @@ class MusicsController < ApplicationController
   def play_list
     #display user that need to verify after add ta
     @usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:music_album_id],"MusicAlbum",false ] )
-    @tag_usr = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:music_album_id],"MusicAlbum",true ] )
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:music_album_id],"MusicAlbum",true ] )
 
 
     @music_album = MusicAlbum.find(params[:music_album_id])
