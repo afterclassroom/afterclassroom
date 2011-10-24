@@ -1,0 +1,15 @@
+<html>
+  <body>
+    <div id="detail_window">
+       Hello <%= @story.user.name %>, <br/>
+       
+      <a href="<%= user_url(@tag_creator) %>"><%= @tag_creator.name %></a> has invited <a href="<%= user_url(@user) %>"><%= @user.name %></a> to your <a href="<%= user_story_url(@story.user, @story) %>"><%= @story.title %></a>. <br/>
+      
+            <%= @str_of_verify %><br/>
+      
+      Yours sincerely, <br/>
+      Afterclassroom Support Team.
+      
+    </div>  
+  </body>
+</html>

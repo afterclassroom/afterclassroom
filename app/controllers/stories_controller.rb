@@ -299,17 +299,17 @@ class StoriesController < ApplicationController
 
           taginfo.save
           
-          # if taginfo.save
+          if taginfo.save
           #   #taginfo.verify equal to TRUE when no need to pass to verifying process
           #   #when there is no need to verify, there is no need to wait for authorization
-          #   QaSendMail.tag_vid_notify(u,video, current_user,taginfo.verify).deliver
-          #   if ( (current_user != video.user) && (video.user != u) )
-          #     #the above condition is "NOT TO SEND mail to video owner"
-          #     #if any user tag OWNER to OWNER's video
-          #     QaSendMail.inform_vid_owner(u,video, current_user,taginfo.verify).deliver
-          #   end
-          # end
-          #if save then send mail to each user here, and to video.user
+            QaSendMail.tag_story_notify(u,@story, current_user,taginfo.verify).deliver
+            if ( (current_user != @story.user) && (@story.user != u) )
+              #the above condition is "NOT TO SEND mail to story author"
+              #if any user tag OWNER to OWNER's story
+              QaSendMail.inform_story_owner(u,@story, current_user,taginfo.verify).deliver
+            end
+          end
+          #if save then send mail to each user here, and to story.user
         end
       end #end each
     end

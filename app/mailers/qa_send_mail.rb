@@ -216,9 +216,40 @@ class QaSendMail < ActionMailer::Base
     @cmt_author = cmt_author
     @user = user
     #user.email
-#    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for music album #{@mus_album.name}"
-    mail :to => "datefield@yahoo.com", :subject => "#{cmt_author.name} has added new comment for music album #{@mus_album.name}"
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for music album #{@mus_album.name}"
   end
   #END send mail for music tag
+
+  #BEGIN send mail for story tag
+  def tag_story_notify(user,story,tag_creator,verify_status)
+    @story = story
+    @tag_creator=tag_creator
+    @user = user
+    @statement = ""
+
+    if (verify_status == false)
+      @statement = "Please wait for the authorization from the author."
+    end
+    
+    
+#    mail :to => user.email, :subject => "Let's read this!"
+    mail :to => "datefield@yahoo.com", :subject => "Let's read this!"
+  end
+
+  def inform_story_owner(user,story,tag_creator, tag_verify_status)
+    @story = story
+    @tag_creator=tag_creator
+    @user = user
+
+    @str_of_verify = ""
+    if tag_verify_status == false #FALSE means this tag need to be verified 
+      @str_of_verify = "Please review and authorize !"
+    end
+
+#    mail :to => @story.user.email, :subject => "New user has been invited to your story!"
+    mail :to => "datefield@yahoo.com", :subject => "New user has been invited to your story!"
+  end
+  #END send mail for story tag
+
 
 end
