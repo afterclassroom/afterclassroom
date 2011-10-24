@@ -10,7 +10,7 @@ p#vvtip {
     border: 1px solid #a6c9e2; 
     -moz-border-radius: 5px; 
     -webkit-border-radius: 5px; 
-    z-index: 9999; 
+    z-index: 999; 
     min-width:35px; 
 }
 p#vvtip #vvtipArrow { 

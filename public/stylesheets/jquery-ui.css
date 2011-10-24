@@ -302,7 +302,7 @@
  * http://docs.jquery.com/UI/Resizable#theming
  */
 .ui-resizable { position: relative;}
-.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;
+.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 9999; display: block;
 	/* http://bugs.jqueryui.com/ticket/7233
 	 - Resizable: resizable handles fail to work in IE if transparent and content overlaps
 	*/

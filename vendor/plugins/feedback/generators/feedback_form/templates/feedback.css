@@ -10,7 +10,7 @@ div#feedback {
 			
 a#feedback_link {				
   position: fixed;
-  z-index: 99999;
+  z-index: 9999;
   background-color: #CC0000;
   width: 26px;
   height: 96px;
