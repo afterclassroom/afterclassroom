@@ -104,7 +104,7 @@ $(document).ready(function(){
   //END change the reasons display per page
 
   //BEGIN update number of people like; reasons
-    if ("<%= @rated_type %>" == "PhotoAlbum" ){
+    if ("<%= @rated_type %>" == "PhotoAlbum" || "<%= @rated_type %>" =="MusicAlbum"  ){
       noOfLike<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @rated_type %>').find('.qashdU').find('a').html();
     }
     else {
