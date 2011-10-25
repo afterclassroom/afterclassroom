@@ -50,6 +50,9 @@
 	
 
 <script type="text/javascript">
+var noOfDisLike<%= @post.id %>;
+
+
 function SubmitFormDCmt<%= @post.id %>(){
   var result = $('form#form_dcmt<%= @post.id %>').validate({
     meta: "validate"
@@ -101,7 +104,13 @@ $(document).ready(function(){
   });
   //END change the reasons display per page
   //BEGIN update number of people rate; reasons
-  $('#label1d<%= @post.id %>').html($('div#rate_<%= @post.id %>_Post').find('.qashdD').find('a').html()+' people dislike this. ');
+    if ("<%= @rated_type %>" == "PhotoAlbum" ){
+      noOfDislike<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @rated_type %>').find('.qashdU').find('a').html();
+    }
+    else {
+      noOfDislike<%= @post.id %> = $('div#rate_<%= @post.id %>_Post').find('.qashdU').find('a').html();
+    }
+  $('#label1d<%= @post.id %>').html(noOfDislike<%= @post.id %>+' people dislike this. ');
   //END update number of people rate; reasons
   $('#send<%= @post.id %>').click(function(){
     SubmitFormDCmt<%= @post.id %>();

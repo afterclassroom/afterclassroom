@@ -50,6 +50,8 @@
 	
 
 <script type="text/javascript">
+var noOfLike<%= @post.id %>;
+
 function SubmitFormCmt<%= @post.id %>(){
   var result = $('form#form_cmt<%= @post.id %>').validate({
     meta: "validate"
@@ -100,8 +102,16 @@ $(document).ready(function(){
     this.value = this.value.replace(/[^0-9\.]/g,'');
   });
   //END change the reasons display per page
+
   //BEGIN update number of people like; reasons
-  $('#label1<%= @post.id %>').html($('div#rate_<%= @post.id %>_Post').find('.qashdU').find('a').html()+' people like this. ');
+    if ("<%= @rated_type %>" == "PhotoAlbum" ){
+      noOfLike<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @rated_type %>').find('.qashdU').find('a').html();
+    }
+    else {
+      noOfLike<%= @post.id %> = $('div#rate_<%= @post.id %>_Post').find('.qashdU').find('a').html();
+    }
+
+  $('#label1<%= @post.id %>').html(noOfLike<%= @post.id %>+' people like this. ');
   //END update number of people like; reasons
   $('#send<%= @post.id %>').click(function(){
     SubmitFormCmt<%= @post.id %>();

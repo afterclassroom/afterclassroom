@@ -24,7 +24,13 @@ $(document).ready(function(){
       });//end toggle
     });//end qashdU
     //END other_type(bored, ok, chep) handler
-  $('div#rate_<%= @post.id %>_Post').find('.qashdU').click(function(){
+    if ("<%= @post.class.name %>" == "PhotoAlbum" ){
+      objQashdU<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @post.class.name %>').find('.qashdU');
+    }
+    else {
+      objQashdU<%= @post.id %> = $('div#rate_<%= @post.id %>_Post').find('.qashdU');
+    }
+  objQashdU<%= @post.id %>.click(function(){
     $('#like_area<%= @post.id %>').toggle('slow', function(){
       if ( $(this).is(":visible") == true ){
         if (dislikeAjaxObj<%= @post.id %> != undefined){
@@ -43,7 +49,14 @@ $(document).ready(function(){
       }//end if
     });//end toggle
   });//end qashdU
-  $('div#rate_<%= @post.id %>_Post').find('.qashdD').click(function(){
+
+
+    if ("<%= @post.class.name %>"=="PhotoAlbum"){
+      objQashdD<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @post.class.name %>').find('.qashdD');
+    } else {
+      objQashdD<%= @post.id %> = $('div#rate_<%= @post.id %>_Post').find('.qashdD');
+    }
+    objQashdD<%= @post.id %>.click(function(){
     $('#dislike_area<%= @post.id %>').toggle('slow', function(){
       if ( $(this).is(":visible") == true ){
         //BEGIN reset like-panel
