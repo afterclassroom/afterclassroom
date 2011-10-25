@@ -318,7 +318,7 @@ class VideosController < ApplicationController
     render :text => "Done"
   end
 
-	def rate
+  def rate
     rating = params[:rating]
     @post = Video.find(params[:post_id])
     @post.rate rating.to_i, current_user
