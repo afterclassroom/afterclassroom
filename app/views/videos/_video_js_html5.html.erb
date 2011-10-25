@@ -18,7 +18,9 @@
       <li>
         <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
           <%= truncate(v.title, :length=>12, :omission=>"...") %>
-          <%= display_image_video(v) %>
+          <div class="jcarousel-skin-tango-img" id="jarousel_<%= v.id %>"><%= display_image_video(v) %>
+            <span id="jarousel_play" class="play_video_<%= v.id %>"></span>
+          </div>
         </a> 
       </li>
     <% end %>
@@ -37,6 +39,7 @@
       // use first frame of the clip as a splash screen
       autoPlay: true,
       autoBuffering: true
+
     }, 
     logo: {
       url: '/images/logo.png',
@@ -53,6 +56,8 @@
     onMouseOut: function() {
       this.getPlugin("logo").fadeTo(0, 1000);
     }
+    
+
   });
   // get all links that are inside div#clips
   var links = document.getElementById("mycarousel").getElementsByTagName("a");
@@ -71,6 +76,6 @@
   // Ride the carousel...
   jQuery(document).ready(function() {
     jQuery('#mycarousel').jcarousel();
-
-  });
+    
+  }); 
 </script>
