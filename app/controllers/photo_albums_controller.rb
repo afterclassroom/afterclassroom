@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © Copyright 2009 AfterClassroom.com — All Rights Reserved
 class PhotoAlbumsController < ApplicationController
   layout "student_lounge"
@@ -98,7 +99,7 @@ class PhotoAlbumsController < ApplicationController
     redirect_to(user_photo_album_url(current_user, photo_album))
   end
 	
-	def rate
+  def rate
     rating = params[:rating]
     @post = PhotoAlbum.find(params[:post_id])
     @post.rate rating.to_i, current_user

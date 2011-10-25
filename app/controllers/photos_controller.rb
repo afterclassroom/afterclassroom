@@ -503,7 +503,7 @@ class PhotosController < ApplicationController
     render :text => "Done"
   end
   
-	def rate
+  def rate
     rating = params[:rating]
     @post = Photo.find(params[:post_id])
     @post.rate rating.to_i, current_user

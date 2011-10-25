@@ -99,7 +99,7 @@ class MusicAlbumsController < ApplicationController
     redirect_to(user_music_album_url(current_user, music_album))
   end
 
-	def rate
+  def rate
     rating = params[:rating]
     @post = MusicAlbum.find(params[:post_id])
     @post.rate rating.to_i, current_user
