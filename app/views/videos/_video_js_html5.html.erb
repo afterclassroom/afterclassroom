@@ -1,74 +1,76 @@
-<script src="/javascripts/jquery.tools.min.js"></script>
-<script src="/javascripts/flowplayer.playlist-3.0.8.js"></script>	
-<link rel="stylesheet" type="text/css" href="/stylesheets/playlist-horizontal.css"/>
-<div id="page">
-  <a style="display:block;width:560px;height:360px" id="player"> </a> 
-</div>
-<%
-videos = @video.user.videos_same_category(@video)
-videos = [@video] + videos
-%>
-<div id="playlist_wrap" style="margin-left:-49px">
-  <a class="prev"></a>
-  <div id="pl"> 
-    <div class="entries">     
-      <% count = 0 %>
-      <% videos.each do |v| %>
-        <% if count == 0 %>
-          <div class="page">
-          <% end %>	
-          <a id="click_video" class="click" href="<%= get_video_path(v.video_file.video_attach.url) %>">
-            <div style="float: left;height: 55px;overflow: hidden;width: 55px;word-wrap: break-word;">
-              <%= truncate(v.title, :length=>22, :omission=>"...") %>
-            </div>
-            <div><%= display_image_video(v) %></div>
-          </a>
-          <% count = count + 1 %>
-          <% if count == 4 %>
+<script type="text/javascript" src="/javascripts/jquery.jcarousel.js"></script>
 
-          </div>
-          <% count = 0 %>
-        <% end %>
-      <% end %>
-      <% if count < 4 %>
-      </div>
+<a 
+  href="<%= get_video_path(@video.video_file.video_attach.url) %>" 
+  style="display:block;width:530px;height:360px;margin-left: 15px;" 
+  id="player">
+</a>
 
+
+<div id="mycarousel" class="jcarousel-skin-tango" style="float: right">
+
+  <ul>
+    <%
+    videos = @video.user.videos_same_category(@video)
+    videos = [@video] + videos
+  %>
+    <% videos.each do |v| %>
+      <li>
+        <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
+          <%= truncate(v.title, :length=>12, :omission=>"...") %>
+          <%= display_image_video(v) %>
+        </a> 
+      </li>
     <% end %>
-  </div>
-</div>
-<a class="next"></a>
-<br clear="all" />
-<script>
-  $(document).ready(function() {
-    $f("player", 
-    {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
-    {	
-      key: '#$de9093c019ae644a1da',
-      logo: {
-        url: '/images/logo.png',
-        fullscreenOnly: false,
-        opacity: 0,
-        top: '85%',
-        left: '20%'
-      },  
-      plugins: {
-        controls: {
-          fullscreen: false
-        }
-      },
-      // gradually show on mouseover
-      onMouseOver: function() {
-        this.getPlugin("logo").fadeTo(0.5, 1000);
-      },
-      // gradually hide on mouseout
-      onMouseOut: function() {
-        this.getPlugin("logo").fadeTo(0, 1000);
-      }
+  </ul>
 
-    }).playlist("div.entries");
+</div>
+<!-- let rest of the page float normally -->
+<br clear="all" />
+
+<script>
+  //  install Flowplayer inside a#player
+  $f("player", 
+  {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"}, 
+  {		
+    clip: {
+      // use first frame of the clip as a splash screen
+      autoPlay: true,
+      autoBuffering: true
+    }, 
+    logo: {
+      url: '/images/logo.png',
+      fullscreenOnly: false,
+      opacity: 0,
+      top: '85%',
+      left: '20%'
+    },
+    // gradually show on mouseover
+    onMouseOver: function() {
+      this.getPlugin("logo").fadeTo(0.5, 1000);
+    },
+    // gradually hide on mouseout
+    onMouseOut: function() {
+      this.getPlugin("logo").fadeTo(0, 1000);
+    }
   });
-  $(document).ready(function() {
-    // setup scrolling for the playlist elements
-    $("#pl").scrollablevideo({ circular: true,vertical:false });	
+  // get all links that are inside div#clips
+  var links = document.getElementById("mycarousel").getElementsByTagName("a");
+
+  // loop those links and alter their click behaviour
+  for (var i = 0; i < links.length; i++) {
+    links[i].onclick = function() {
+		
+      // play the clip specified in href- attribute with Flowplayer
+      $f().play(this.getAttribute("href", 2));
+		
+      // by returning false normal link behaviour is skipped
+      return false;
+    }
+  }
+  // Ride the carousel...
+  jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel();
+
   });
 </script>
