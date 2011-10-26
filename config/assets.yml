@@ -178,6 +178,7 @@ stylesheets:
     - public/stylesheets/jquery.pnotify.default.css
     - public/stylesheets/video-js.css
     - public/stylesheets/facebox.css
+    - public/stylesheets/feedback.css
     - public/stylesheets/youTubeEmbed-jquery.css
   photo:
     - public/stylesheets/main.css

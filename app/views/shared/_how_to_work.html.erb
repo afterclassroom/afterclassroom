@@ -1,34 +1,26 @@
-<div id="feedback_youtube"><a class="yotu" href="<%= Setting.get(:video_tutorial) %>;autoplay=1"><img src="/images/how_it_work.png" /></a></div>
+<div id="feedback_youtube">
+  <a class="yotu" href="<%= Setting.get(:video_tutorial) %>;autoplay=1" style="display:block;position:fixed;top:15%;left:-2px;margin: 0;">
+    <img src="/images/how_it_work.png" style="border: 0 none"/>
+  </a>
+</div>
 <script>
   $(document).ready(function(){
     $(".yotu").click(function() {
-                 $.fancybox({
-                  'padding'             : 0,
-                  'autoScale'   : false,
-                  'transitionIn'        : 'none',
-                  'transitionOut'       : 'none',
-                  'title'               : this.title,
-                  'width'               : 680,
-                  'height'              : 495,
-                  'href'                : this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
-                  'type'                : 'swf',    // <--add a comma here
-                  'swf'                 : {'allowfullscreen':'true'} // <-- flashvars here
-                  });
-                 return false;
+      $.fancybox({
+        'padding'             : 0,
+        'autoScale'   : false,
+        'transitionIn'        : 'none',
+        'transitionOut'       : 'none',
+        'title'               : this.title,
+        'width'               : 680,
+        'height'              : 495,
+        'href'                : this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+        'type'                : 'swf',    // <--add a comma here
+        'swf'                 : {'allowfullscreen':'true','wmode':'opaque'} // <-- flashvars here
+      });
+      return false;
 
-            }); 
+    }); 
   });
 </script>
-<style>
-  #feedback_youtube a{ 
-    display:block; 
-    position:fixed; 
-    top:15%;
-    left:-2px; 
-    margin: 0;
-  }
-  #feedback_youtube img{
-    border: 0 none;
-  }
-</style>
 

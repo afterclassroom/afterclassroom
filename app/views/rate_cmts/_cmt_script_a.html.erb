@@ -4,6 +4,8 @@ var waitIcon<%= post.id %> = '';
 var likeAjaxObj<%= post.id %>;
 var dislikeAjaxObj<%= post.id %>;
 var otherAjaxObj<%= post.id %>;
+var objQashdU<%= post.id %>;
+var objQashdD<%= post.id %>;
 
 function LoadDisLikeCmt<%= post.id %>(perpage,page_no){
   dislikeAjaxObj<%= post.id %> = $.ajax({
@@ -85,14 +87,20 @@ function LoadOtherCmt<%= post.id %>(perpage,page_no){
           $('#other_inner<%= post.id %>').html('');
         }//end if
       });//end toggle
-    });//end qashdU
+    });//end .chep
     //END other_type(bored, ok, chep) handler
 
     //BEGIN like handler
     if  ( ! ( $.browser.msie && $.browser.version == "8.0" ) ) {
       $('#like_area<%= post.id %>').corner();
     }
-    $('div#rate_<%= post.id %>_Post').find('.qashdU').click(function(){
+    if ("<%= obj_class_name %>" == "PhotoAlbum" || "<%= obj_class_name %>" =="MusicAlbum" || "<%= obj_class_name %>" == "Video"){
+      objQashdU<%= post.id %> = $('div#rate_<%= post.id %>_<%= obj_class_name %>').find('.qashdU');
+    }
+    else {
+      objQashdU<%= post.id %> = $('div#rate_<%= post.id %>_Post').find('.qashdU');
+    }
+    objQashdU<%= post.id %>.click(function(){
       $('#like_area<%= post.id %>').toggle('slow', function(){
         if ( $(this).is(":visible") == true ){
           if (dislikeAjaxObj<%= post.id %> != undefined){
@@ -121,8 +129,12 @@ function LoadOtherCmt<%= post.id %>(perpage,page_no){
     if  ( ! ( $.browser.msie && $.browser.version == "8.0" ) ) {
       $('#dislike_area<%= post.id %>').corner();
     }
-
-    $('div#rate_<%= post.id %>_Post').find('.qashdD').click(function(){
+    if ("<%= obj_class_name %>"=="PhotoAlbum" || "<%= obj_class_name %>" =="MusicAlbum" || "<%= obj_class_name %>" == "Video"){
+      objQashdD<%= post.id %> = $('div#rate_<%= post.id %>_<%= obj_class_name %>').find('.qashdD');
+    } else {
+      objQashdD<%= post.id %> = $('div#rate_<%= post.id %>_Post').find('.qashdD');
+    }
+    objQashdD<%= post.id %>.click(function(){
       $('#dislike_area<%= post.id %>').toggle('slow', function(){
         if ( $(this).is(":visible") == true ){
           //BEGIN reset like-panel
