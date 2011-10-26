@@ -227,7 +227,7 @@
             <%= show_tags_status(current_user, "tag_story") %>
           </div>
         </div>
-        <div class="select_wrap" id="tag_music">
+        <div class="select_wrap" id="tag_story">
           <%= show_tags_setting(current_user, "tag_story") %>
         </div>
       </div>
@@ -325,6 +325,7 @@
     $('#tag_photo').find('#tag_photo').css('width','121px');
     $('#tag_video').find('#tag_video').css('width','121px');
     $('#tag_music').find('#tag_music').css('width','121px');
+    $('#tag_story').find('#tag_story').css('width','121px');
     
     $('.menuPrivate').change(function(){
       share_select($(this).attr('value'), $(this).attr('id'));

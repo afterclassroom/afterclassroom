@@ -72,18 +72,18 @@ $(document).ready(function(){
         $('#wait_like<%= @post.id %>').show();
         $('#like_inner<%= @post.id %>').html('');
         curentPage<%= @post.id %> = curentPage<%= @post.id %> + 1;
-        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
+        LoadLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
       }else if ($(this).text() == 'Previous'){
         $('#wait_like<%= @post.id %>').show();
         $('#like_inner<%= @post.id %>').html('');
         curentPage<%= @post.id %> = curentPage<%= @post.id %> - 1;
-        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',curentPage<%= @post.id %>);
+        LoadLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',curentPage<%= @post.id %>);
       }
       else {
         $('#wait_like<%= @post.id %>').show();
         var strp = $(this).text()
         $('#like_inner<%= @post.id %>').html('');
-        LoadLikeCmt<%= @post.id %>('<%= @perpage %>',strp);
+        LoadLikeCmt<%= @post.id %><%= @rated_type %>('<%= @perpage %>',strp);
       }//end if for .text
     });
   });//end .each
@@ -94,7 +94,7 @@ $(document).ready(function(){
       if ( ( !isNaN(parseInt($(this).val())) ) && !(parseInt($(this).val()) <= 0) ){
         $('#wait_like<%= @post.id %>').show();
         $('#like_inner<%= @post.id %>').html('');
-        LoadLikeCmt<%= @post.id %>($(this).val(),'1');
+        LoadLikeCmt<%= @post.id %><%= @rated_type %>($(this).val(),'1');
       }
     }//end if 
   });//end key press
@@ -104,7 +104,7 @@ $(document).ready(function(){
   //END change the reasons display per page
 
   //BEGIN update number of people like; reasons
-    if ("<%= @rated_type %>" == "PhotoAlbum" || "<%= @rated_type %>" =="MusicAlbum" || "<%= @rated_type %>" == "Video"   ){
+    if ("<%= @rated_type %>" == "PhotoAlbum" || "<%= @rated_type %>" =="MusicAlbum" || "<%= @rated_type %>" == "Video"  || "<%= @rated_type %>" == "Story"   ){
       noOfLike<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @rated_type %>').find('.qashdU').find('a').html();
     }
     else {

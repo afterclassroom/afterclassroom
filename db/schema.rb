@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011033028) do
+ActiveRecord::Schema.define(:version => 20111026041316) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -656,7 +656,12 @@ ActiveRecord::Schema.define(:version => 20111011033028) do
     t.integer  "attach_file_size"
     t.datetime "attach_updated_at"
     t.integer  "count_view",          :default => 0
+<<<<<<< HEAD
     t.string   "slug",                                   :null => false
+=======
+    t.boolean  "delta",               :default => true,  :null => false
+    t.string   "slug"
+>>>>>>> 4554ad9e962651adafa663bb2a0e6ff173195961
   end
 
   create_table "press_infos", :force => true do |t|
@@ -675,6 +680,61 @@ ActiveRecord::Schema.define(:version => 20111011033028) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
+=======
+  create_table "rate_text_musics", :force => true do |t|
+    t.integer  "user_id",                                       :null => false
+    t.integer  "music_album_id",                                :null => false
+    t.string   "rated_type"
+    t.decimal  "rating",         :precision => 10, :scale => 0
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rate_text_photos", :force => true do |t|
+    t.integer  "user_id",                                       :null => false
+    t.integer  "photo_album_id",                                :null => false
+    t.string   "rated_type"
+    t.decimal  "rating",         :precision => 10, :scale => 0
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rate_text_stories", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.string   "rated_type"
+    t.decimal  "rating",     :precision => 10, :scale => 0
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rate_text_videos", :force => true do |t|
+    t.integer  "user_id",                                   :null => false
+    t.integer  "video_id",                                  :null => false
+    t.string   "rated_type"
+    t.decimal  "rating",     :precision => 10, :scale => 0
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rates", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "stars"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["post_id"], :name => "index_rates_on_post_id"
+  add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
+
+>>>>>>> 4554ad9e962651adafa663bb2a0e6ff173195961
   create_table "rating_statistics", :force => true do |t|
     t.integer "rated_id"
     t.string  "rated_type"

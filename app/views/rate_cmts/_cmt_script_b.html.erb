@@ -24,7 +24,7 @@ $(document).ready(function(){
       });//end toggle
     });//end qashdU
     //END other_type(bored, ok, chep) handler
-    if ("<%= @post.class.name %>" == "PhotoAlbum" || "<%= @post.class.name %>" =="MusicAlbum" || "<%= @post.class.name %>" == "Video" ){
+    if ("<%= @post.class.name %>" == "PhotoAlbum" || "<%= @post.class.name %>" =="MusicAlbum" || "<%= @post.class.name %>" == "Video"|| "<%= @post.class.name %>" == "Story" ){
       objQashdU<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @post.class.name %>').find('.qashdU');
     }
     else {
@@ -39,7 +39,7 @@ $(document).ready(function(){
         $('#dislike_area<%= @post.id %>').hide();
         $('#wait_dislike<%= @post.id %>').show();
         $('#dislike_inner<%= @post.id %>').html('');
-        LoadLikeCmt<%= @post.id %>('5','1');
+        LoadLikeCmt<%= @post.id %><%= @post.class.name %>('5','1');
       } else {
         if ( likeAjaxObj<%= @post.id %> != undefined){
           likeAjaxObj<%= @post.id %>.abort();
@@ -51,7 +51,7 @@ $(document).ready(function(){
   });//end qashdU
 
 
-    if ("<%= @post.class.name %>"=="PhotoAlbum" || "<%= @post.class.name %>" =="MusicAlbum" || "<%= @post.class.name %>" == "Video"  ){
+    if ("<%= @post.class.name %>"=="PhotoAlbum" || "<%= @post.class.name %>" =="MusicAlbum" || "<%= @post.class.name %>" == "Video" || "<%= @post.class.name %>" == "Story" ){
       objQashdD<%= @post.id %> = $('div#rate_<%= @post.id %>_<%= @post.class.name %>').find('.qashdD');
     } else {
       objQashdD<%= @post.id %> = $('div#rate_<%= @post.id %>_Post').find('.qashdD');
@@ -67,7 +67,7 @@ $(document).ready(function(){
         $('#wait_like<%= @post.id %>').show();
         $('#like_inner<%= @post.id %>').html('');
         //END reset like-panel
-        LoadDisLikeCmt<%= @post.id %>('5','1');
+        LoadDisLikeCmt<%= @post.id %><%= @post.class.name %>('5','1');
       }else {
         if (  dislikeAjaxObj<%= @post.id %> != undefined){
           dislikeAjaxObj<%= @post.id %>.abort();

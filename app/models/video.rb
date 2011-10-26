@@ -4,6 +4,7 @@ class Video < ActiveRecord::Base
   # Relations
   belongs_to :user
   has_one :video_file
+  has_many :rate_text_videos, :dependent => :destroy
   
   # Attach
   has_attached_file :video_attach, {
