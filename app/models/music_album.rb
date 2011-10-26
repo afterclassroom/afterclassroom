@@ -7,7 +7,8 @@ class MusicAlbum < ActiveRecord::Base
   # Relations
   belongs_to :user
   has_many :musics, :dependent => :destroy
-  
+  has_many :rate_text_musics, :dependent => :destroy
+
   # Comments
   acts_as_commentable
   

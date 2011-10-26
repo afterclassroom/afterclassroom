@@ -2,6 +2,7 @@
 class Story < ActiveRecord::Base
   # Relations
   belongs_to :user
+  has_many :rate_text_stories, :dependent => :destroy
 
   # Comments
   acts_as_commentable

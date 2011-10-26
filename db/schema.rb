@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011033028) do
+ActiveRecord::Schema.define(:version => 20111026041316) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -629,6 +629,7 @@ ActiveRecord::Schema.define(:version => 20111011033028) do
     t.datetime "attach_updated_at"
     t.integer  "count_view",          :default => 0
     t.boolean  "delta",               :default => true,  :null => false
+    t.string   "slug"
   end
 
   create_table "press_infos", :force => true do |t|
@@ -643,6 +644,46 @@ ActiveRecord::Schema.define(:version => 20111011033028) do
     t.integer  "user_id"
     t.string   "type_setting"
     t.integer  "share_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rate_text_musics", :force => true do |t|
+    t.integer  "user_id",                                       :null => false
+    t.integer  "music_album_id",                                :null => false
+    t.string   "rated_type"
+    t.decimal  "rating",         :precision => 10, :scale => 0
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rate_text_photos", :force => true do |t|
+    t.integer  "user_id",                                       :null => false
+    t.integer  "photo_album_id",                                :null => false
+    t.string   "rated_type"
+    t.decimal  "rating",         :precision => 10, :scale => 0
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rate_text_stories", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.string   "rated_type"
+    t.decimal  "rating",     :precision => 10, :scale => 0
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rate_text_videos", :force => true do |t|
+    t.integer  "user_id",                                   :null => false
+    t.integer  "video_id",                                  :null => false
+    t.string   "rated_type"
+    t.decimal  "rating",     :precision => 10, :scale => 0
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

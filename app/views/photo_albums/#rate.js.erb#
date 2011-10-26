@@ -1,3 +1,4 @@
 $("#rate_<%= @post.id %>_<%= @post.class.name %>").html("<%= raw(@text) %>");
 vtip();
-<%= render :partial => "rate_cmts/cmt_script_b" %>
+<%
+= render :partial => "rate_cmts/cmt_script_b" %>
