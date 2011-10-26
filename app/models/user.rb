@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   include Authentication::ByPassword
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
-  
+  include ApplicationHelper
+
   # Validations
   validates_presence_of :login
   validates_format_of :name, :with => Authentication.name_regex, :message => Authentication.bad_name_message, :allow_nil => true
@@ -352,18 +353,13 @@ class User < ActiveRecord::Base
 		user_id_blocks = self.user_blocks.map(&:user_id_block)
 		user_wall_id_blocks = self.user_wall_blocks.map(&:user_wall_id)
     self.user_friends.each do |f|
-      user_ids << f.id
+      user_ids << f.id if check_private_permission(self, f, "my_lounges")
     end
 		user_ids = user_ids - [self.id]
-		user_wall_id_posts = self.user_wall_posts.map(&:user_wall_id)
-		str_cond = "user_id = #{self.id}"
-		str_cond = str_cond + " AND id NOT IN('#{user_wall_id_posts.join("', '")}')" if user_wall_id_posts.size > 0
 		if user_ids.size > 0
-			str_cond = str_cond + " OR ("
-			str_cond = str_cond + "user_id_post IN('#{user_ids.join("', '")}')"
+			str_cond = "user_id IN('#{user_ids.join("', '")}')"
 			str_cond = str_cond + " AND user_id_post NOT IN('#{user_id_blocks.join("', '")}')" if user_id_blocks.size > 0
 			str_cond = str_cond + " AND id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
-			str_cond = str_cond + ")"
 		  return UserWall.where(str_cond).order("updated_at DESC")
 		else
 			return []

@@ -13,7 +13,7 @@ class StoriesController < ApplicationController
   # GET /stories.xml
   def index
     arr_user_id = []
-    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_stories")}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(current_user, f, "my_stories")}
     cond = Caboose::EZ::Condition.new :stories do
       user_id === arr_user_id
       state == "share"
@@ -27,7 +27,7 @@ class StoriesController < ApplicationController
     
     if current_user.user_friends
       current_user.user_friends.each do |friend|
-        arr_user_id << friend.id if check_private_permission(friend, "my_stories")
+        arr_user_id << friend.id if check_private_permission(current_user, friend, "my_stories")
       end
     end
     
@@ -118,7 +118,7 @@ class StoriesController < ApplicationController
     @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Story",false ] )
 
 
-    if check_private_permission(@user, "my_stories")
+    if check_private_permission(current_user, @user, "my_stories")
       update_view_count(@story)
       respond_to do |format|
         format.html # show.html.erb

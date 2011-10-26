@@ -20,7 +20,7 @@ class MusicsController < ApplicationController
     @friend_musics = []
     @my_music_albums = current_user.music_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 15
     arr_user_id = []
-    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(f, "my_musics")}
+    current_user.user_friends.collect {|f| arr_user_id << f.id if check_private_permission(current_user, f, "my_musics")}
     @my_friend_music_albums = if arr_user_id.size > 0
       cond = Caboose::EZ::Condition.new :music_albums do
         user_id === arr_user_id
@@ -84,7 +84,7 @@ class MusicsController < ApplicationController
   def show
     @music = Music.find(params[:id])
     @user = @music.user
-    if check_private_permission(@user, "my_musics")
+    if check_private_permission(current_user, @user, "my_musics")
       update_view_count(@music)
       as_next = @music.music_album.musics.nexts(@music.id).last
       as_prev = @music.music_album.musics.previous(@music.id).first
@@ -226,7 +226,7 @@ class MusicsController < ApplicationController
 
     @music_album = MusicAlbum.find(params[:music_album_id])
     @user = @music_album.user
-    if check_private_permission(@user, "my_musics")
+    if check_private_permission(current_user, @user, "my_musics")
       @another_music_albums = @music_album.another_music_albums
       update_view_count(@music_album)
       

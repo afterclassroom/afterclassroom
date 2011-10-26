@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/galetahub/simple-captcha.git
-  revision: c3b72700972e79962ece918c30ae97690b882d5c
-  specs:
-    simple_captcha (0.1.1)
-
-GIT
   remote: git://github.com/rails/exception_notification.git
   revision: 192a49a02d63d28b23ed41cebadfedd490929cf1
   specs:
@@ -128,6 +122,7 @@ GEM
       ruby-hmac
     formatador (0.2.1)
     friendly_id (4.0.0.beta14)
+    galetahub-simple_captcha (0.1.1)
     gdata (1.1.1)
     gemcutter (0.7.0)
     geokit (1.6.0)
@@ -292,6 +287,7 @@ DEPENDENCIES
   fastercsv
   fog (~> 0.11.0)
   friendly_id (~> 4.0.0.beta8)
+  galetahub-simple_captcha
   gemcutter
   geokit
   geonames
@@ -322,7 +318,6 @@ DEPENDENCIES
   ruby-mp3info
   rubycas-client (~> 2.2.1)
   rubycas-client-rails!
-  simple_captcha!
   sunspot-rails-http-basic-auth (~> 0.0.2)
   sunspot_index_queue
   sunspot_plus

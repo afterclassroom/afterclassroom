@@ -1018,9 +1018,9 @@ module ApplicationHelper
     Textilizer.new(text).to_html.html_safe unless text.blank?
   end
   
-  def check_private_permission(user, type)
+  def check_private_permission(user_check, user, type)
     check = false
-    if user == current_user
+    if user == user_check
       check = true
     else
       ps = PrivateSetting.where(:user_id => user.id, :type_setting => type).first
@@ -1028,30 +1028,30 @@ module ApplicationHelper
         share_to = ps.share_to
         case share_to
           when 1 # Friend from school
-          if current_user
+          if user_check
             fg = FriendGroup.where(:label => "friends_from_school").first
             fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
             check = true if fng
           end
           when 2 # Friend of friends
-          if current_user
+          if user_check
             fof = user.friend_of_friends
-            check = fof.nil? ? false : fof.include?(current_user)
+            check = fof.nil? ? false : fof.include?(user_check)
           end
           when 3 # My Family
-          if current_user
+          if user_check
             fg = FriendGroup.where(:label => "family_members").first
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
+            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
             check = true if fng
           end
           when 4 # My friends
-          if current_user
-            check = true if user.user_friends.include?(current_user)
+          if user_check
+            check = true if user.user_friends.include?(user_check)
           end
           when 5 # Friends from work
-          if current_user
+          if user_check
             fg = FriendGroup.where(:label => "friends_from_work").first
-            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => current_user.id, :friend_group_id => fg.id).first
+            fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
             check = true if fng
           end
           when 6 # Every one
