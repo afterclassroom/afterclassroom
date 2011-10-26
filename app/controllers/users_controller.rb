@@ -437,6 +437,7 @@ class UsersController < ApplicationController
   end
   
   def get_variables
+		@type_school = "University"
     @countries = Country.has_cities
     if session[:your_school]
       @school = School.find(session[:your_school])
@@ -445,14 +446,14 @@ class UsersController < ApplicationController
       @country = @state.country
       @states = @country.states.has_cities
       @cities = @state.cities
-      @schools = @city.schools
+      @schools = @city.schools.where(:type_school => @type_school)
     else
       @country = @countries.first
       @states = @country.states.has_cities
       @state = @states.first
       @cities = @state.cities
       @city = @cities.first
-      @schools = @city.schools
+      @schools = @city.schools.where(:type_school => @type_school)
       @school = @schools.first
     end
   end

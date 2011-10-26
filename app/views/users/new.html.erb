@@ -65,7 +65,7 @@
   }
 
   $(document).ready(load_menus);
-  function update_form(type_select, id){
+  function update_form(type_select, id, type_school){
     $.ajax({
       url: '/users_select_school/update_form_signup',
       type: 'GET',
@@ -73,7 +73,8 @@
       dataType: 'html',
       data: ({
         type : type_select,
-        id : id
+        id : id,
+				type_school: type_school
       }),
       success: function(data){
         $('#select_school').html(data);
@@ -83,15 +84,15 @@
   }
 
   function select_country(){
-    update_form("country", $('#country').val());
+    update_form("country", $('#country').val(), $('input:radio[name=school_type]:checked').val());
   }
 
   function select_state(){
-    update_form("state", $('#state').val());
+    update_form("state", $('#state').val(), $('input:radio[name=school_type]:checked').val());
   }
 
   function select_city(){
-    update_form("city", $('#city').val());
+    update_form("city", $('#city').val(), $('input:radio[name=school_type]:checked').val());
   }
 
   function load_menus (){

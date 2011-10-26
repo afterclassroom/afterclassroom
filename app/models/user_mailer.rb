@@ -47,7 +47,7 @@ class UserMailer < ActionMailer::Base
 
   def invitation(user, email, domain, invitation_code, content)
       logger.info("invitation_email:" + invitation_code.to_s)
-      @subject = user.login + ' has invited you to join Afterclassroom'
+      @subject = user.name + ' has invited you to join Afterclassroom'
       @body = {:user => user,
               :invitation_url => signup_url(:protocol => 'https', :host=> domain)+ '?invitation_code=' + invitation_code.to_s,
               :content => content

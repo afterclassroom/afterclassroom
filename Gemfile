@@ -45,7 +45,7 @@ gem 'jquery-rails', '>= 0.2.6'
 gem 'chronic'
 gem 'packet'
 gem 'validates_timeliness', '~> 3.0.2'
-gem 'rubycas-client'
+gem 'rubycas-client', '~> 2.2.1'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'rubycas-client-rails', :path => 'vendor/plugins/rubycas-client-rails'
 gem "exception_notification", :git => "git://github.com/rails/exception_notification.git", :require => "exception_notifier"
@@ -78,3 +78,4 @@ gem 'sunspot-rails-http-basic-auth', '~> 0.0.2'
 gem 'linkedin'
 gem 'email_valid'
 gem 'haml'
+
