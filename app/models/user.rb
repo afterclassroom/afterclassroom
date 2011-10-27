@@ -355,11 +355,16 @@ class User < ActiveRecord::Base
     self.user_friends.each do |f|
       user_ids << f.id if check_private_permission(self, f, "my_lounges")
     end
+		user_wall_id_follows = []
+		self.user_wall_follows.each do |f|
+			user_wall_id_follows << f.user_wall_id if check_private_permission(self, f.user_wall.user, "my_lounges")
+		end
 		user_ids = user_ids - [self.id]
 		if user_ids.size > 0
 			str_cond = "user_id IN('#{user_ids.join("', '")}')"
 			str_cond = str_cond + " AND user_id_post NOT IN('#{user_id_blocks.join("', '")}')" if user_id_blocks.size > 0
 			str_cond = str_cond + " AND id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
+			str_cond = str_cond + " OR id IN('#{user_wall_id_follows.join("', '")}')" if user_wall_id_follows.size > 0
 		  return UserWall.where(str_cond).order("updated_at DESC")
 		else
 			return []

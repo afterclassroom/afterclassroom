@@ -17,3 +17,5 @@ LIMIT_SIZE_PHOTO = 2.gigabytes
 LIMIT_SIZE_MUSIC = 2.gigabytes
 LIMIT_SIZE_VIDEO = 10.gigabytes
 LIMIT_SIZE_SHARE = 1.gigabytes
+#UserWallFollow
+USERWALLFOLLOW_MAX = 5

@@ -49,7 +49,7 @@
             </div>
           <% end %>
           <% wall.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
-            <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :wall => wall, :comment => cm} %>
+            <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :obj => wall, :comment => cm} %>
           <% end %>
           <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall, :obj => wall} %>
         <% end %>

@@ -14,52 +14,40 @@ class UserWallsController < ApplicationController
     @type = params[:type]
     @user = User.find(user_wall_id)
     unless @user.nil?
-      user_wall = UserWall.new
-      user_wall.user_id_post = current_user.id
-      user_wall.content = your_mind
+      @user_wall = UserWall.new
+      @user_wall.user_id_post = current_user.id
+      @user_wall.content = your_mind
       
       if params[:user_wall_photo]
         user_wall_photo = UserWallPhoto.new(params[:user_wall_photo])
-        user_wall.user_wall_photo = user_wall_photo
+        @user_wall.user_wall_photo = user_wall_photo
       end
       
       if params[:user_wall_video]
         user_wall_video = UserWallVideo.new(params[:user_wall_video])
-        user_wall.user_wall_video = user_wall_video
+        @user_wall.user_wall_video = user_wall_video
       end
       
       if params[:user_wall_music]
         user_wall_music = UserWallMusic.new(params[:user_wall_music])
-        user_wall.user_wall_music = user_wall_music
+        @user_wall.user_wall_music = user_wall_music
       end
       
       if params[:user_wall_link]
         user_wall_link = UserWallLink.new(params[:user_wall_link])
-        user_wall.user_wall_link = user_wall_link
+        @user_wall.user_wall_link = user_wall_link
       end
       
-      user_wall.save
+      @user_wall.save
       
-      @user.user_walls << user_wall
+      @user.user_walls << @user_wall
       @user.save
       if @user != current_user
-        send_wall_notification(@user, current_user, user_wall)
+        send_wall_notification(@user, current_user, @user_wall)
       end
     end
     
-    case @type
-      when "student_lounge"
-      @walls = current_user.walls_with_setting.paginate :page => params[:page], :per_page => 10
-    else
-      @walls = @user.my_walls.paginate :page => params[:page], :per_page => 10
-    end
-    
-    respond_to do |format|
-      format.html { redirect_to user_profiles_path(current_user) }
-      format.js { 
-        render :layout => false
-      }
-    end
+    render :layout => false
   end
   
   def view_all_comments
@@ -90,7 +78,19 @@ class UserWallsController < ApplicationController
       obj_comment.user = current_user
       @obj.comments << obj_comment
       @wall.update_attribute(:updated_at, Time.now)
+			@wall.user_wall_follows.each do |f|
+				if f.count_update == USERWALLFOLLOW_MAX
+					f.destroy
+				else
+					f.count_update = f.count_update
+				end
+			end
       if @wall.user != current_user
+				# UserWall follow
+				user_wall_follow = UserWallFollow.find_or_create_by_user_id_and_user_wall_id(:user_id => current_user.id, :user_wall_id => @wall.id)
+				user_wall_follow.count_update = 0
+				user_wall_follow.save
+				# Send notification
         subject = "#{current_user.name} left comments on your Student Lounge"
         content = "Hello #{@wall.user.name},<br/>"
         content << "<p>#{current_user.name} just left comments on your Student Lounge, click <a href='#{user_student_lounges_url(@wall.user)}' target='blank'>here</a> to see what's in it.</p>"
