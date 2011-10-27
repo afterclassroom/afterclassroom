@@ -18,6 +18,12 @@
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
 
 
+<div id="rate_pos" style="padding: 4px 	;width: 81px; border: 1px solid #E3E3E3; float: right; margin-top: -40px; margin-right: 176px; height: 15px;">
+                <%= render :partial => "rating_action", :locals => {:post => @story, :controller_name => "stories"}%>
+</div>
+
+
+
 <script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @story.id %>&tagable_type=<%= @story.class.name %>";
@@ -69,5 +75,18 @@ $(function(){
     });
     /* END: handle send comment event to send email notification */
   })
+  //BEGIN fix issue of rate up/down position
+  $(document).ready(function(){
+    $('.qashdU').css({
+      'float': 'left',
+      'margin-left': '10px'
+    });
+
+    $('.qashdD').css({
+    'float': 'left', 
+    'margin-left': '9px'
+    });
+  });
+  //END fix issue of rate up/down position
 
 </script>

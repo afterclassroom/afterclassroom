@@ -37,6 +37,12 @@
                     <%= render :partial => "music_playlist" %>
                 </div>
                 <%= render :partial => "music_album_action" %>
+
+<div id="rate_pos" style="padding: 4px 	;width: 81px; border: 1px solid #E3E3E3; float: right; margin-top: -40px; margin-right: 104px; height: 15px;">
+                <%= render :partial => "music_albums/rating_action", :locals => {:post => @music_album, :controller_name => "music_albums"}%>
+</div>
+
+
                 <%= show_post_comments(@music_album) %>
                 <div class="goback" id="go_back">
                     <%= show_go_back %>
@@ -65,3 +71,16 @@
     <%= render :partial => "ads/show_vertical_ads" %>
     <!--Ads-->
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.qashdU').css({
+    'float': 'left',
+    'margin-left': '10px'
+  });
+
+  $('.qashdD').css({
+  'float': 'left', 
+  'margin-left': '9px'
+  });
+});
+</script>
