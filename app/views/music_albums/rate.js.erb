@@ -1,3 +1,17 @@
 $("#rate_<%= @post.id %>_<%= @post.class.name %>").html("<%= raw(@text) %>");
 vtip();
 <%= render :partial => "rate_cmts/cmt_script_b" %>
+//BEGIN fix postion issue at view detail after rate
+if ( $('div#rate_pos').html() != null )
+{
+  $('.qashdU').css({
+    'float': 'left',
+    'margin-left': '10px'
+  });
+
+  $('.qashdD').css({
+  'float': 'left', 
+  'margin-left': '9px'
+  });
+}
+//END fix postion issue at view detail after rate
