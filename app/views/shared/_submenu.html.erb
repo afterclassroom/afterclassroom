@@ -23,6 +23,46 @@
         <div class="menuRItem mnVi">
             <%= link_to raw('<span class="span1"><span class="span2">My Forum</span></span>'), user_u_forums_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'u_forums'}" %>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="menuRItem mnVi">
+<a href="javascript:;" id='atest' style='border: 1px solid green;'>
+<span style="background:url('/images/mnTestLeft.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;">
+</span>
+<span id='btest' style="background:url('/images/mnTest.png'); padding-top: 6px; padding-bottom: 6px;">
+My Test
+</span>
+<span style="background:url('/images/mnTestRight.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;">
+</span>
+</a>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
     <% if ['stories', 'photos', 'musics', 'videos', 'shares'].include?(controller.controller_name) %>
     <%
