@@ -59,6 +59,9 @@ class PostManagementsController < ApplicationController
         if abl.post_exam
           del_post_wall(abl.post_exam)
         end
+				if abl.post_lecture_note
+          del_post_wall(abl.post_lecture_note)
+        end
         if abl.post_event
           del_post_wall(abl.post_event)
         end
