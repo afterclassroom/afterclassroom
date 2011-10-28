@@ -31,7 +31,7 @@ class QaSendMail < ActionMailer::Base
     @tool = tool
     mail :to => tool.user.email, :subject => "You've got mail from #{current_user.name}"
   end
-
+  # BEGIN SEND MAIL TAG VIDEO
   def tag_vid_notify(user,video,tag_creator,verify_status)
     @video = video
     @tag_creator=tag_creator
@@ -65,6 +65,51 @@ class QaSendMail < ActionMailer::Base
     @author = author
     mail :to => @user.email, :subject => "#{author.name} has approved you to video tag list!"
   end
+
+  def tag_vid_approved_to_creator
+  end
+
+  def tag_vid_approved_to_creator(tag_creator,video,author,user)
+    @video = video
+    @tag_creator = tag_creator
+    @author = author
+    @user = user
+
+    # mail :to => @tag_creator.email, :subject => "#{author.name} has approved your tag!"
+    mail :to => "datefield@yahoo.com", :subject => "#{author.name} has approved your tag!"
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   def tag_removed(user,video,author)
     @video = video
@@ -80,7 +125,7 @@ class QaSendMail < ActionMailer::Base
     @user = user
     mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video"
   end
-
+  #END SEND MAIL TAG VIDEO
   def tag_photo_notify(user,photo,tag_creator, verify_status)
     @photo = photo
     @tag_creator=tag_creator
@@ -147,7 +192,7 @@ class QaSendMail < ActionMailer::Base
     @cmt_author = cmt_author
     @user = user
     #user.email
-    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for photo #{photo.title}"
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for photo"
   end
 
   def tag_photo_approved_to_creator(tag_creator,photo,author,user)
@@ -155,38 +200,6 @@ class QaSendMail < ActionMailer::Base
     @tag_creator = tag_creator
     @author = author
     @user = user
-
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "==v== "
-    puts "==a == #{@tag_creator}"
 
     mail :to => @tag_creator.email, :subject => "#{author.name} has approved your tag!"
   end
@@ -297,7 +310,7 @@ class QaSendMail < ActionMailer::Base
     @content = content
     @cmt_author = cmt_author
     @user = user
-    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video"
   end
 
   #END send mail for story tag
