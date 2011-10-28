@@ -18,9 +18,8 @@
       <li>
         <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
           <%= truncate(v.title, :length=>12, :omission=>"...") %>
-          <div class="jcarousel-skin-tango-img" id="jarousel_<%= v.id %>"><%= display_image_video(v) %>
-            <span id="jarousel_play" class="play_video_<%= v.id %>"></span>
-          </div>
+          <div class="jcarousel-skin-tango-img"><%= display_image_video(v) %></div>
+            <span class="play_videoJ"></span>
         </a> 
       </li>
     <% end %>
@@ -79,16 +78,3 @@
     
   }); 
 </script>
-<style>
-  .jcarousel-skin-tango .jcarousel-container-horizontal {
-    padding: 20px 40px;
-    width: 477px;
-    margin-right: 15px;
-  }
-  .jcarousel-skin-tango .jcarousel-prev-horizontal {
-    left: 15px;
-  }
-  .jcarousel-skin-tango .jcarousel-next-horizontal {
-    right: -22px;
-  }
-</style>

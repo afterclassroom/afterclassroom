@@ -5709,9 +5709,9 @@ span.btmTag a:hover{
     width: 98px;
 }
 #jarousel_play{
-    background: url("/images/msplay.png") no-repeat scroll left top transparent;
+    background: url("/images/msplay.png") no-repeat scroll 0 0 transparent;
     height: 14px;
-    margin: -74px 0 0 44px;
+    margin-top: -74px;
     position: absolute;
     z-index: 100;
     width: 14px;

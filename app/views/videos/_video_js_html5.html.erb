@@ -18,10 +18,9 @@
       <li>
         <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
           <%= truncate(v.title, :length=>12, :omission=>"...") %>
-          <div class="jcarousel-skin-tango-img" id="jarousel_<%= v.id %>"><%= display_image_video(v) %>
-            <span id="jarousel_play" class="play_video_<%= v.id %>"></span>
-          </div>
-        </a> 
+          <div class="jcarousel-skin-tango-img"><%= display_image_video(v) %></div>
+          <span class="play_videoJ"></span>
+        </a>
       </li>
     <% end %>
   </ul>
