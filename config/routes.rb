@@ -132,6 +132,8 @@ Afterclassroom::Application.routes.draw do
       end
     end
 
+    resources :u_forums
+
     # Youtube
     resources :youtubes do
       new do

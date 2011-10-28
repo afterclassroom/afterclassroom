@@ -7,8 +7,8 @@
 
 	<a href="<%= user_url(@user) %>"><%= @user.name %></a> from
       
-      <%= @photo.title == "" ? raw("<a href='#{user_photo_url(@photo.user, @photo)}'>photo</a>") : "photo: "  %> 
-      <a href="<%= user_photo_url(@photo.user, @photo) %>"><%= @photo.title %></a>'s
+      <%= @video.title == "" ? raw("<a href='#{user_video_url(@video.user, @video)}'>video</a>") : "video: "  %> 
+      <a href="<%= user_video_url(@video.user, @video) %>"><%= @video.title %></a>'s
       tag list <br />
 
 

@@ -4,12 +4,12 @@
       <img id="dell_wall_img" src="/images/icon-ing.gif" />
     </div>
   <% else %>
-		<% if @user == current_user %>
-		  <div class="del_wall" style="float: right; display: none; cursor: pointer;">
-		    <img id="block_wall_img" src="/images/flistA.gif" />
-		    <%= render :partial => "user_walls/action_dell_wall", :locals => {:wall => wall} %>
-		  </div>
-		<% end %>
+    <% if @user == current_user %>
+      <div class="del_wall" style="float: right; display: none; cursor: pointer;">
+        <img id="block_wall_img" src="/images/flistA.gif" />
+        <%= render :partial => "user_walls/action_dell_wall", :locals => {:wall => wall} %>
+      </div>
+    <% end %>
   <% end %>
   <div class="assPic">
     <%= show_image_user_post(wall.user_post) %>
@@ -21,40 +21,40 @@
     <div class="AfterCl">
       <%= show_user_post(wall.user_post) %><%= raw(" posted on #{show_user_post(wall.user)}'s Lounge") if wall.user != wall.user_post %> <%= raw(wall.content) %>
     </div>
-		<% if wall.wall_parent %>
-			<div class="postItem">
-		  	<div class="studentImg"><%= show_image_user_post(wall.user_post) %></div><%= show_user_post(wall.user_post) %> originally shared this post:<br/><%= raw(wall.wall_parent.content) %>
-			</div>
-    <!--Attach--><%= show_attach(wall.wall_parent) if wall.wall_parent.has_attach %><!--Attach-->
-		<% end %>
+    <% if wall.wall_parent %>
+      <div class="postItem">
+        <div class="studentImg"><%= show_image_user_post(wall.user_post) %></div><span class="shareLou"><%= show_user_post(wall.user_post) %><span style="color: #6F6F63;"> originally shared this post:</span><br/><span style="color: #6F6F63;"><%= raw(wall.wall_parent.content) %></span>
+      </div>
+      <!--Attach--><%= show_attach(wall.wall_parent) if wall.wall_parent.has_attach %><!--Attach-->
+    <% end %>
     <div class="assInfB wall_parent">
       <div class="time">
         <%= distance_of_time_in_words_to_now(wall.created_at, false) + " ago." %>
       </div>
-			
-			<%= show_rating_action(wall) %>
-			<div class="com">
-          <a href="javascript:;" onclick="showCommentForm('<%= wall.class.name %>', '<%= wall.id %>');">Comments (<span id="wall_<%= wall.class.name %>_<%= wall.id %>_comments"><%= wall.comments.size %></span>)</a>
+
+      <%= show_rating_action(wall) %>
+      <div class="com">
+        <a href="javascript:;" onclick="showCommentForm('<%= wall.class.name %>', '<%= wall.id %>');">Comments (<span id="wall_<%= wall.class.name %>_<%= wall.id %>_comments"><%= wall.comments.size %></span>)</a>
       </div>
-			<%= link_to "Share", "/user_walls/share_lounge?height=350&width=500&wall_id=#{wall.id.to_s}", :class => "thickbox", :title => "Share Lounge" %>
+      <%= link_to "Share", "/user_walls/share_lounge?height=350&width=500&wall_id=#{wall.id.to_s}", :class => "thickbox", :title => "Share Lounge" %>
     </div>
     <!--Comments-->
-      <div id="wall_list_comment_<%= wall.class.name %>_<%= wall.id %>">
-        <% if wall.comments.size > 0 %>
-          <% if wall.comments.size > 2 %>
-            <div class="proList" style="width:440px">
-              <div class="writeCom">
-                <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall, :post_id => wall.id, :class_name => wall.class.name}, :remote => true %>
-              </div>
+    <div id="wall_list_comment_<%= wall.class.name %>_<%= wall.id %>">
+      <% if wall.comments.size > 0 %>
+        <% if wall.comments.size > 2 %>
+          <div class="proList" style="width:440px">
+            <div class="writeCom">
+              <%= link_to "View all comments", {:controller => "user_walls", :action => "view_all_comments", :wall_id => wall, :post_id => wall.id, :class_name => wall.class.name}, :remote => true %>
             </div>
-          <% end %>
-          <% wall.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
-            <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :obj => wall, :comment => cm} %>
-          <% end %>
-          <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall, :obj => wall} %>
+          </div>
         <% end %>
-        <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall, :obj => wall} %>
-      </div>
+        <% wall.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
+          <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :obj => wall, :comment => cm} %>
+        <% end %>
+        <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall, :obj => wall} %>
+      <% end %>
+      <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall, :obj => wall} %>
+    </div>
     <!--Comments-->
   </div>
 </div>
@@ -92,8 +92,8 @@
     vtip()
   });
 
-	$().ready(function() {
+  $().ready(function() {
     $('#wall_<%= wall.id %> .AfterDes').jTruncate({
     });
-});
+  });
 </script>
