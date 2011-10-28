@@ -407,6 +407,11 @@
 .AfterCl span{
     color:#0a81c4;
 }
+.shareLou a{
+    color: #0A81C4;
+    font-weight: bold;
+    text-decoration: none;
+}
 .AfterTitle{
     font-weight:bold;
     padding:3px 0px 1px 0px;
