@@ -451,6 +451,7 @@ class PhotosController < ApplicationController
         if u
           QaSendMail.tag_photo_removed(u,photo,current_user).deliver
 
+
           tag_creator = User.find(:first, :joins => "INNER JOIN tag_infos ON tag_infos.tag_creator_id = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=? and tag_infos.tagable_user=?",params[:photo_id],"Photo",false, u.id ] )
           QaSendMail.tag_photo_removed_to_creator(tag_creator,photo,current_user,u).deliver
         end
