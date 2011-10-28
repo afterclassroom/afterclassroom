@@ -5582,7 +5582,7 @@ span.btmTag a:hover{
 */
 .jcarousel-skin-tango .jcarousel-next-horizontal {
     position: absolute;
-    top: 43px;
+    top: 53px;
     right: 5px;
     width: 32px;
     height: 32px;
@@ -5615,7 +5615,7 @@ span.btmTag a:hover{
 
 .jcarousel-skin-tango .jcarousel-prev-horizontal {
     position: absolute;
-    top: 43px;
+    top: 53px;
     left: 5px;
     width: 32px;
     height: 32px;
