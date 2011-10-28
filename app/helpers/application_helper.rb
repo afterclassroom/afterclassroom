@@ -253,6 +253,8 @@ module ApplicationHelper
       link_edit = edit_post_test_url(post.post_test)
       when "PostExam"
       link_edit = edit_post_exam_url(post.post_exam)
+			when "PostLectureNote"
+      link_edit = edit_post_lecture_note_url(post.post_lecture_note)
       when "PostEvent"
       link_edit = edit_post_event_url(post.post_event)
       when "PostQa"
@@ -291,6 +293,8 @@ module ApplicationHelper
       link_show = post_test_url(post.post_test)
       when "PostExam"
       link_show = post_exam_url(post.post_exam)
+			when "PostLectureNote"
+      link_show = post_lecture_note_url(post.post_lecture_note)
       when "PostEvent"
       link_show = post_event_url(post.post_event)
       when "PostQa"
@@ -329,6 +333,8 @@ module ApplicationHelper
       controler_name = "post_tests"
       when "PostExam"
       controler_name = "post_exams"
+			when "PostLectureNote"
+      controler_name = "post_lecture_notes"
       when "PostEvent"
       controler_name = "post_events"
       when "PostQa"
