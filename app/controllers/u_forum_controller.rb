@@ -1,0 +1,2 @@
+class UForumController < ApplicationController
+end
