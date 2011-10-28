@@ -78,7 +78,7 @@ class QaSendMail < ActionMailer::Base
     @content = content
     @cmt_author = cmt_author
     @user = user
-    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video #{video.title}"
+    mail :to => user.email, :subject => "#{cmt_author.name} has added new comment for video"
   end
 
   def tag_photo_notify(user,photo,tag_creator, verify_status)
@@ -155,6 +155,38 @@ class QaSendMail < ActionMailer::Base
     @tag_creator = tag_creator
     @author = author
     @user = user
+
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "==v== "
+    puts "==a == #{@tag_creator}"
 
     mail :to => @tag_creator.email, :subject => "#{author.name} has approved your tag!"
   end
