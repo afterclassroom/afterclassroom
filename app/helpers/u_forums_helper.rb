@@ -1,0 +1,2 @@
+module UForumsHelper
+end
