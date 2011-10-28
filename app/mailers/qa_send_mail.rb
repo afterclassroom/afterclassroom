@@ -75,40 +75,17 @@ class QaSendMail < ActionMailer::Base
     @author = author
     @user = user
 
-    # mail :to => @tag_creator.email, :subject => "#{author.name} has approved your tag!"
-    mail :to => "datefield@yahoo.com", :subject => "#{author.name} has approved your tag!"
+    mail :to => @tag_creator.email, :subject => "#{author.name} has approved your tag!"
   end
 
+  def tag_vid_removed_to_creator(tag_creator,video,author,user)
+    @video = video
+    @tag_creator = tag_creator
+    @author = author
+    @user = user
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    mail :to => @tag_creator.email, :subject => "#{author.name} has removed you tag!"
+  end
 
   
   def tag_removed(user,video,author)
