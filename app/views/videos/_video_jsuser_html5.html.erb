@@ -2,7 +2,7 @@
 
 <a 
   href="<%= get_video_path(@video.video_file.video_attach.url) %>" 
-  style="display:block;width:530px;height:360px;margin-left: 15px;" 
+  style="display:block;width:530px;height:360px;margin-left: 10px;" 
   id="player">
 </a>
 
@@ -19,7 +19,7 @@
         <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
           <%= truncate(v.title, :length=>12, :omission=>"...") %>
           <div class="jcarousel-skin-tango-img"><%= display_image_video(v) %></div>
-            <span class="play_videoJ"></span>
+          <span class="play_videoJ"></span>
         </a> 
       </li>
     <% end %>
@@ -78,3 +78,16 @@
     
   }); 
 </script>
+<style>
+  .jcarousel-skin-tango .jcarousel-container-horizontal {
+    margin-right: 0px;
+    padding: 20px 40px;
+    width: 495px;
+  }
+  .jcarousel-skin-tango .jcarousel-prev-horizontal {
+    left: 15px;
+  }
+  .jcarousel-skin-tango .jcarousel-next-horizontal {
+    right: -5px;
+  }
+</style>
