@@ -2,9 +2,16 @@
   <div class="col300in" style="background:#ffffff">
     <div class="searchPInput">
       <div class="searchFri" style="height:27px;width:226px">
-        <form id="action_people_search" name="search" action="<%= find_people_user_friends_path(current_user) %>" method="get">
+				<%
+				if logged_in?
+					path = find_people_user_friends_url(current_user) 
+				else
+					path = "/friends/find_people_without_login"
+				end 
+				%>
+        <form id="action_people_search" name="search" action="<%= path %>" method="get">
           <div class="textS" style="background-image: none;">
-            <input id="search_people_txt" type="text" name="search[query]" value="Search for people" class="focus_text_field" style="height: 14px;margin-top: 3px;width: 222px;padding-top: 2px;"/>
+            <input id="search_people_txt" type="text" name="search[query]" value="Search for friends" class="focus_text_field" style="height: 14px;margin-top: 3px;width: 222px;padding-top: 2px;"/>
           </div>
           <div class="btmS" style="float: right;padding-left: 0px;padding-top: 4px">
             <a id="btnFrie_submit" href="javascript:;" onclick="$('#action_people_search').submit();">
@@ -23,7 +30,11 @@
     <div id="suggestion_list" class="suggesList" style="float:left;width:100%;">
       <div class="suggesRow">
         <%
-        @suggestions = current_user.suggestions
+				if current_user
+        	@suggestions = current_user.suggestions
+				else
+					@suggestions = User.order("RAND()").limit(10)
+				end
       %>
         <% @suggestions.each do |u| %>
           <div class="suggesItem" style="width:140px;">
@@ -69,7 +80,7 @@
 </div>
 
 <script>
-  var path_people = "<%= find_people_suggestion_user_friends_path(current_user) %>";
+  var path_people = "/friends/find_people_suggestion";
   $().ready(function(){
     $('#search_people_txt').autocomplete({
       source: function(request, response) {

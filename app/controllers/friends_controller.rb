@@ -5,12 +5,12 @@ require 'linkedin'
 class FriendsController < ApplicationController
   layout 'student_lounge'
   
-  before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter
-  before_filter :cas_user
+  before_filter RubyCAS::Filter::GatewayFilter, :except => [:find_people_without_login, :find_people_suggestion]
+  before_filter RubyCAS::Filter, :except => [:find_people_without_login, :find_people_suggestion]
+  before_filter :cas_user, :except => [:find_people_without_login, :find_people_suggestion]
   #before_filter :login_required
-  before_filter :require_current_user, :except => [:auth_linkedin, :callback_linkedin, :send_invite_linkedin]
-  before_filter :get_variables, :except => [:auth_linkedin, :callback_linkedin, :send_invite_linkedin]
+  before_filter :require_current_user, :except => [:auth_linkedin, :callback_linkedin, :send_invite_linkedin, :find_people_without_login, :find_people_suggestion]
+  before_filter :get_variables, :except => [:auth_linkedin, :callback_linkedin, :send_invite_linkedin, :find_people_without_login, :find_people_suggestion]
   
   def index
     @friends = @user.user_friends.paginate :page => params[:page], :per_page => 10
@@ -321,6 +321,20 @@ class FriendsController < ApplicationController
     end
 		render :layout => false
   end
+
+	def find_people_without_login
+		@query = params[:search][:query]
+    @users = User.search do
+      if params[:search][:query].present?
+        keywords(params[:search][:query]) do
+          highlight :name
+        end
+      end
+      order_by :created_at, :desc
+      paginate :page => params[:page], :per_page => 10
+    end
+		render :layout => "application"
+	end
   
   def get_suggestion_list
     @suggestions = current_user.suggestions
