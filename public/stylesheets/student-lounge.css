@@ -5720,3 +5720,85 @@ span.btmTag a:hover{
     background: url("/images/msplayH.png") no-repeat scroll left top transparent;
 }
 
+
+/**** BEGIN forum button for studenLounge  *****/
+div.ufo {
+    display: inline-block;
+    float:left;
+    margin-right:5px;
+    height:30px;
+    line-height: 25px;
+}
+div.ufo a span.ufo_span1 {
+    background:url('/images/ufLeft.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;
+}
+div.ufo a span.ufo_span2 {
+    background:url('/images/ufMain.png'); padding-top: 6px; padding-bottom: 6px;
+    color: #969696;
+}
+div.ufo a span.ufo_span2 span.ufo_span2a{
+    background: url('/images/ufo.png') no-repeat; padding-top: -1px; padding-left: 24px; padding-bottom: 2px;
+}
+div.ufo div.ufo_span2b{
+    background: url('/images/ufCen_sel.png') no-repeat;
+    padding-left: 24px;
+    height: 10px;
+    margin-left: 28px;
+    margin-top: -1px;
+    position: absolute;
+    display: none;
+}
+div.ufo a span.ufo_span3{
+    background:url('/images/ufRight.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;
+}
+div.ufo:hover div.ufo_span2b{
+    display: block;
+}
+div.ufo:hover a span.ufo_span1 {
+    background:url('/images/ufLeft_sel.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;
+}
+div.ufo:hover a span.ufo_span2 {
+    background:url('/images/ufMain_sel.png'); padding-top: 6px; padding-bottom: 6px;
+    color: white;
+}
+div.ufo:hover a span.ufo_span2 span.ufo_span2a{
+    background: url('/images/ufo_sel.png') no-repeat; padding-top: -1px; padding-left: 24px; padding-bottom: 2px;
+}
+div.ufo:hover a span.ufo_span3{
+    background:url('/images/ufRight_sel.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;
+}
+div.ufo_sel {
+    display: inline-block;
+    float:left;
+    margin-right:5px;
+    height:30px;
+    line-height: 25px;
+}
+div.ufo_sel a span.ufo_span1 {
+    background:url('/images/ufLeft_sel.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;
+}
+div.ufo_sel a span.ufo_span2 {
+    background:url('/images/ufMain_sel.png'); padding-top: 6px; padding-bottom: 6px;
+    color: white;
+}
+div.ufo_sel a span.ufo_span2 span.ufo_span2a{
+    background: url('/images/ufo_sel.png') no-repeat; padding-top: -1px; padding-left: 24px; padding-bottom: 2px;
+}
+div.ufo_sel a span.ufo_span3{
+    background:url('/images/ufRight_sel.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;
+}
+div.ufo_sel div.ufo_span2b{
+    background: url('/images/ufCen_sel.png') no-repeat;
+    padding-left: 24px;
+    height: 10px;
+    margin-left: 28px;
+    margin-top: -1px;
+    position: absolute;
+}
+
+
+/**** END forum button for studenLounge  *****/
+
+
+
+
