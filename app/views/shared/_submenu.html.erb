@@ -22,42 +22,14 @@
         </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="ufo" id="ufo_btn">
-	  <a href="javascript:;" id='atest' style=''>
-	    <span class="ufo_span1">
-	    </span>
-	    <span class="ufo_span2">
-	      <span>
-	      </span>
-	      Forums-testtest
-	    </span>
-	    <span style="background:url('/images/ufRight.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;">
-	    </span>
-	  </a>
-
+        <div class="<%= controller.controller_name != "u_forums" ? "ufo_sel" : "ufo"  %>">
+            <%= link_to raw('<span class="ufo_span1"></span><span class="ufo_span2"><span class="ufo_span2a">
+	      </span>Forums</span><span class="ufo_span3">
+	  </span>'), user_u_forums_path(current_user) %>
+	<div class="ufo_span2b">
+	</div>
         </div>
-
-
 	
-
 
     </div>
     <% if ['stories', 'photos', 'musics', 'videos', 'shares'].include?(controller.controller_name) %>
