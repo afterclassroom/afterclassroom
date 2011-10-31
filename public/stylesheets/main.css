@@ -865,4 +865,26 @@ h2.titleH2 a:hover{
 .postTR td{
     background-color:#f2f2f2;
 }
+div.ufo {
+    display: inline-block;
+    float:left;
+    margin-right:5px;
+    height:30px;
+    line-height: 25px;
+}
+
+div.ufo a span.ufo_span1 {
+    background:url('/images/ufLeft.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;
+}
+div.ufo a span.ufo_span2 {
+    background:url('/images/ufMain.png'); padding-top: 6px; padding-bottom: 6px;
+    color: #969696;
+}
+
+div.ufo a span.ufo_span2 span{
+    background: url('/images/ufo.png') no-repeat; padding-top: -1px; padding-left: 24px; padding-bottom: 2px;
+}
+div.ufo a span.ufo_span3{
+    background:url('/images/ufRight.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;
+}
 /**** END Home postManagement  *****/

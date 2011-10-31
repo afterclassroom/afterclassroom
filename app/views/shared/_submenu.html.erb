@@ -21,20 +21,42 @@
             <%= link_to raw('<span class="span1"><span class="span2">Videos</span></span>'), user_videos_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'videos'}" %>
         </div>
 
-        <div class="menuRItem" id="ufo_btn">
-	  <a href="<%=  user_u_forums_path(current_user) %>" id='atest' style=''>
-	    <span style="background:url('/images/ufLeft.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="ufo" id="ufo_btn">
+	  <a href="javascript:;" id='atest' style=''>
+	    <span class="ufo_span1">
 	    </span>
-	    <span id='btest' style="background:url('/images/ufMain.png'); padding-top: 6px; padding-bottom: 6px;">
-	      <span style="background: url('/images/ufo.png') no-repeat; padding-top: -1px; padding-left: 24px; padding-bottom: 2px;">
+	    <span class="ufo_span2">
+	      <span>
 	      </span>
-	      Forums
+	      Forums-testtest
 	    </span>
 	    <span style="background:url('/images/ufRight.png'); padding-top: 6px; padding-bottom: 6px; padding-left: 6px;">
 	    </span>
 	  </a>
 
         </div>
+
+
+	
 
 
     </div>
@@ -57,40 +79,3 @@
     </div>
     <% end %>
 </div>
-<script style="text/javascript">
-
-$(document).ready(function(){
-  $('#ufo_btn').hover( function(){
-    $('#ufo_btn').find('span').eq(0).css({
-      'background':'url("/images/ufLeft_sel.png")'
-    })//end css
-    $('#ufo_btn').find('span').eq(1).css({
-      'background':'url("/images/ufMain_sel.png")',
-      'color':'white'
-    })//end css
-    $('#ufo_btn').find('span').eq(2).css({
-      'background':'url("/images/ufo_sel.png")'
-    })//end css
-    $('#ufo_btn').find('span').eq(3).css({
-      'background':'url("/images/ufRight_sel.png")'
-    })//end css
-
-  },
-  function(){
-    $('#ufo_btn').find('span').eq(0).css({
-      'background':'url("/images/ufLeft.png")'
-    })//end css
-    $('#ufo_btn').find('span').eq(1).css({
-      'background':'url("/images/ufMain.png")',
-      'color':'#969696'
-    })//end css
-    $('#ufo_btn').find('span').eq(2).css({
-      'background':'url("/images/ufo.png")'
-    })//end css
-    $('#ufo_btn').find('span').eq(3).css({
-      'background':'url("/images/ufRight.png")'
-    })//end css
-  });
-
-});
-</script>
