@@ -100,7 +100,7 @@ class PhotosController < ApplicationController
     #@usrs_for_verify = list_friends.select { |c| usr_ids_for_verify.include?(c.id) }
     @usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Photo",false ] )
     
-    if check_private_permission(current_user, @user, "my_photos")
+    if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
       as_next = @photo_album.photos.nexts(@photo.id).last
       as_prev = @photo_album.photos.previous(@photo.id).first
       @next = as_next if as_next
@@ -216,7 +216,7 @@ class PhotosController < ApplicationController
     @photo_album = PhotoAlbum.find(photo_album_id)
     update_view_count(@photo_album)
     @user = @photo_album.user
-    if check_private_permission(current_user, @user, "my_photos")
+    if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
       @another_photo_albums = @photo_album.another_photo_albums
       respond_to do |format|
         format.html # show.html.erb

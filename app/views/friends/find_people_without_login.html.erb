@@ -1,0 +1,46 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="javascript:;">Search For Friends</a>
+<% end -%>
+<div class="mainSignUpS">
+  <div class="AsDContImg"><a href="/"><div><img src="/images/pic11.png"></img></div></a></div>
+  <div class="txtsignup topHelp">
+    <div class="AftBe">
+      <div class="txtsignup1">AfterClassroom</div>
+    </div>
+    <div class="sponsorS">
+      <div class="sponsorLink">
+        <div class="menuRL">
+          <div class="menuRItem menuRselect">
+            <a href="/forums">
+              <span class="span1">
+                <span class="span2">Search For Friends</span>
+              </span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Content-->
+<div class="contMainLH">
+  <div class="col654 QAs">
+    <div class="col654in">
+      <div class="col654Cont">
+
+        <div class="helpCR" style="width: 632px;">
+          <%= display_flash_messages_with_raw %>
+          <% @users.each_hit_with_result do |hit, u| %>
+            <%= render :partial => "item_people", :locals => {:user => u, :name => raw(hit.highlight(:name) ? hit.highlight(:name).format { |fragment| content_tag(:em, fragment) } : u.name) } %>
+          <% end %>
+          <!--Pagination-->
+          <div class="assPage">
+            <span class="numPage"><%= page_entries_info @users.results %></span>
+            <%= will_paginate @users.results %>
+          </div>
+          <!--Pagination-->
+          <div class="goTop" style="padding:0"><a href="javascript:;" onclick="goToByScroll('top_page')">Top</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
