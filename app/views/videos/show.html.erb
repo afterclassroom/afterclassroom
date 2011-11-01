@@ -42,8 +42,10 @@
             <%= display_image_video(@video) %>
           <% end %>
         </div>
-        <%= render :partial => "video_action" %>
-        <%= show_post_comments(@video) %>
+				<div id="action_video">
+        	<%= render :partial => "video_action" %>
+        	<%= show_post_comments(@video) %>
+				</div>
         <div class="goTop">
           <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
         </div>
