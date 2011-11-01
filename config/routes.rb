@@ -132,7 +132,12 @@ Afterclassroom::Application.routes.draw do
       end
     end
 
-    resources :u_forums
+    resources :u_forums do
+      collection do
+        get :view_detail
+      end
+      
+    end
 
     # Youtube
     resources :youtubes do
