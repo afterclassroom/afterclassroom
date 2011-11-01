@@ -1,29 +1,29 @@
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => '/shared/submenu' %>
+  <%= render :partial => '/shared/submenu' %>
 <% end -%>
 <%= render :partial => "left_panel" %>
 <div class="contMainL">
-    <div class="col571 proCen" id="user_wall">
-        <%= render :partial => "user_walls/wall_form_ajax" %>
-        <div class="col571in">
-            <div class="proCenCont">
-                <div id="wall_page_wrap">
-                    <% @walls.each do |w| %>
-										<% if w.wall_parent %>
-                    	<%= render :partial => "user_walls/wall_item_with_parent", :locals => {:wall => w} %>
-										<% else %>
-											<%= render :partial => "user_walls/wall_item", :locals => {:wall => w} %>
-                    <% end %>
-									<% end %>
-									<div id="wall_page_wrap_footer"></div>
-                </div>
-                <%= render :partial => "user_walls/alert" %>
-                <div class="goTop">
-                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
-                </div>
-            </div>
+  <div class="col571 proCen" id="user_wall">
+    <%= render :partial => "user_walls/wall_form_ajax" %>
+    <div class="col571in">
+      <div class="proCenCont">
+        <div id="wall_page_wrap">
+          <% @walls.each do |w| %>
+            <% if w.wall_parent %>
+              <%= render :partial => "user_walls/wall_item_with_parent", :locals => {:wall => w} %>
+            <% else %>
+              <%= render :partial => "user_walls/wall_item", :locals => {:wall => w} %>
+            <% end %>
+          <% end %>
+          <div id="wall_page_wrap_footer"></div>
         </div>
-        <%= render :partial => "user_walls/next_page_wall_js", :locals => {:user_id => current_user.id} %>
+        <%= render :partial => "user_walls/alert" %>
+        <div class="goTop">
+          <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+        </div>
+      </div>
     </div>
+    <%= render :partial => "user_walls/next_page_wall_js", :locals => {:user_id => current_user.id} %>
+  </div>
 </div>
 <%= render :partial => "right_panel" %>

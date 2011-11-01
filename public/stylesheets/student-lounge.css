@@ -4250,12 +4250,21 @@ div.helpAdv2{
     color:#fff;
     padding:0px;
 }
+.mnFor .span2{
+    background:url('/images/mnForum.png') no-repeat;
+    padding-left:25px;
+}
+.mnFor a:hover .span1{
+    background:url('/images/mnForumOnL.png') left top no-repeat;
+    color:#fff;
+    padding:0px;
+}
 .stuLtop .menuRItem a:hover .span2{
     padding:0px 8px 0px 25px;
 }
 
 .mnChat .menuRselect .span2, .mnShare .menuRselect .span2, .mnPho .menuRselect .span2,
-.mnMus .menuRselect .span2, .mnVi .menuRselect .span2{
+.mnMus .menuRselect .span2, .mnVi .menuRselect .span2, .mnFor .menuRselect .span2{
     background:url('/images/menuRonR.png') no-repeat right top;
     padding-right:8px;
 }
@@ -4281,6 +4290,11 @@ div.helpAdv2{
 }
 .mnVi a.menuRselect .span1{
     background:url('/images/mnVideoOnL.png') left top no-repeat;
+    color:#fff;
+    padding:0px;
+}
+.mnFor a.menuRselect .span1{
+    background:url('/images/mnForumOnL.png') left top no-repeat;
     color:#fff;
     padding:0px;
 }
