@@ -16,7 +16,7 @@
   %>
     <% videos.each do |v| %>
       <li>
-        <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
+        <a href="<%= get_video_path(v.video_file.video_attach.url) %>" rel="<%= v.id %>">
           <%= truncate(v.title, :length=>12, :omission=>"...") %>
           <div class="jcarousel-skin-tango-img"><%= display_image_video(v) %></div>
           <span class="play_videoJ"></span>
@@ -67,7 +67,7 @@
     links[i].onclick = function() {
 		
       // play the clip specified in href- attribute with Flowplayer
-      $f().play(this.getAttribute("href", 2));
+			load_on_this_video(this.getAttribute("rel", 2), this.getAttribute("href", 2));
 		
       // by returning false normal link behaviour is skipped
       return false;
@@ -78,4 +78,21 @@
     jQuery('#mycarousel').jcarousel();
     
   }); 
+
+	function load_on_this_video(video_id, link){
+		$.ajax({
+      url: '/videos/get_on_this_video',
+      dataType: 'script',
+			data: {
+				video_id: video_id
+			},
+			beforeSend: function() {
+				$('#on_this_videos').val("");
+				$('#action_video').val("");
+			},
+      success: function(r){
+        $f().play(link);
+      }
+    });
+	}
 </script>
