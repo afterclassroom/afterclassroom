@@ -20,18 +20,7 @@
         <div class="menuRItem mnVi">
             <%= link_to raw('<span class="span1"><span class="span2">Videos</span></span>'), user_videos_path(current_user), :class => "#{'menuRselect' if controller.controller_name == 'videos'}" %>
         </div>
-
-
-        <div class="<%= controller.controller_name == "u_forums" ? "ufo_sel" : "ufo"  %>">
-	<%= link_to raw('
-	 <span class="ufo_span1"></span>
-	 <span class="ufo_span2">
-	   <span class="ufo_span2a"></span>Forums
-	 </span>
-	 <span class="ufo_span3"></span>'), user_u_forums_path(current_user) %>
-	<div class="ufo_span2b"><div>
-        </div>
-        </div>
+    </div>
     <% if ['stories', 'photos', 'musics', 'videos', 'shares'].include?(controller.controller_name) %>
     <%
     case controller.controller_name
@@ -51,3 +40,4 @@
     </div>
     <% end %>
 </div>
+
