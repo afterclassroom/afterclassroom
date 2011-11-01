@@ -50,7 +50,7 @@
 
 <div style="width: 624px; margin-top: 10px; margin-left: 5px; height: 290px;">
 
-<textarea rows="21" cols="85">
+<textarea rows="19" cols="84" id="topic_content">
 At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
 </textarea> 
 
@@ -166,4 +166,40 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
 </div>
 </div>
 </div>
-
+<script type="text/javascript">
+    (function($){
+        $('#topic_content').wysiwyg({
+            controls: {
+                createLink: {
+                    visible: true
+                },
+                
+                insertImage: {
+                    visible: true
+                },
+                
+                separator05: {
+                    visible: false
+                },
+                
+                separator06: {
+                    visible: false
+                },
+                
+                h1: {
+                    visible: false
+                },
+                h2: {
+                    visible: false
+                },
+                h3: {
+                    visible: false
+                },
+                
+                removeFormat: {
+                    visible: true
+                }
+            }
+        });
+    })(jQuery);
+</script>
