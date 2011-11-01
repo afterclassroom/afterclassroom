@@ -9,10 +9,10 @@ module Postwall
     case class_name
       when "PhotoAlbum"
         user_id = post.user.id
-        content = "Add new photo album <a href='#{show_album_user_photos_path(post.user, :photo_album_id => post)}' target='_blank'>#{post.name}</a>"
+        content = "Add new photo album <a href='#{show_album_with_list_user_photos_path(post.user, :photo_album_id => post)}' target='_blank'>#{post.name}</a>"
       when "Photo"
         user_id = post.user.id
-        content = "Add new photo to album: <a href='#{show_album_user_photos_path(post.photo_album.user, :photo_album_id => post.photo_album)}' target='_blank'>#{post.photo_album.name}</a>"
+        content = "Add new photo to album: <a href='#{show_album_with_list_user_photos_path(post.photo_album.user, :photo_album_id => post.photo_album)}' target='_blank'>#{post.photo_album.name}</a>"
       when "MusicAlbum"
         user_id = post.user.id
         content = "Add new music album <a href='#{play_list_user_musics_path(post.user, :music_album_id => post)}' target='_blank'>#{post.name}</a>"

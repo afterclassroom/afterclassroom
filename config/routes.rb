@@ -13,7 +13,7 @@ Afterclassroom::Application.routes.draw do
   # Users
   resources :users do
     member do
-      get :edit_password, :edit_email, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning,
+      get :edit_password, :edit_email, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning,
         :list_friend_to_tag
       put :update_password, :update_email
       post :update_avatar, :remove_tagged, :add_tag, :tag_decision
@@ -127,7 +127,7 @@ Afterclassroom::Application.routes.draw do
     
     resources :photos do
       collection do
-        get :friend_p, :my_p, :create_form, :destroy_all, :show_album, :phototag, :deletetag, :addtag, :usrdata, :self_untag
+        get :friend_p, :my_p, :create_form, :destroy_all, :show_album, :show_album_with_list, :phototag, :deletetag, :addtag, :usrdata, :self_untag
         post :create_album, :upload, :tag_decision, :remove_tagged, :comment_inform
       end
     end

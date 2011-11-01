@@ -1,0 +1,25 @@
+<% content_for :menu_top_student_lounge do -%>
+  <%= render :partial => 'users/show_public/submenu' %>
+<% end -%>
+<div class="contMainC">
+  <%= render :partial => "users/show_public/proc" %>
+  <%= render :partial => "users/show_public/infor" %>
+  <%= render :partial => "users/show_public/friends" %>
+<%#= render :partial => "/users/show_public/links" %>
+</div>
+<div class="contMainL">
+  <div class="col571 proCen">
+    <div class="col571in">
+      <div class="proCenCont">
+        <% @photo_album.photos.each do |pt| %>
+          <%= render :partial => "users/show_public/item_photo_with_list", :locals => {:photo => pt} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contMainR">
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
+</div>

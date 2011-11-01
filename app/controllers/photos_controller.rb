@@ -226,6 +226,22 @@ class PhotosController < ApplicationController
       redirect_to warning_user_path(@user)
     end
   end
+
+	def show_album_with_list
+    photo_album_id = params[:photo_album_id]
+    @photo_album = PhotoAlbum.find(photo_album_id)
+    update_view_count(@photo_album)
+    @user = @photo_album.user
+    if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
+      @another_photo_albums = @photo_album.another_photo_albums
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @photo_album }
+      end
+    else
+      redirect_to warning_user_path(@user)
+    end
+  end
   
   def phototag
     taginfo = TagInfo.find(:all,:conditions => ["tagable_id =? and tagable_type = ? and verify=?", params[:photo_id], "Photo", true])
@@ -512,7 +528,7 @@ class PhotosController < ApplicationController
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
   end
-  
+	
   protected
   
   def require_current_user

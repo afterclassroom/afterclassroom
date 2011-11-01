@@ -5,7 +5,7 @@
 		<% if action_name == "show_stories" || action_name == "show_story_detail" %>
 			<div class="menuRItem menuRselect"><a href="<%= "#{show_stories_user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Stories</span></span></a></div>
 		<% end %>
-		<% if action_name == "show_photos" || action_name == "show_photo_album" %>
+		<% if action_name == "show_photos" || action_name == "show_photos_with_list" || action_name == "show_photo_album" %>
 			<div class="menuRItem menuRselect"><a href="<%= "#{show_photos_user_path(@user)}" %>"><span class="span1"><span class="span2"><%= @user.full_name %>'s Photos</span></span></a></div>
 		<% end %>
 		<% if action_name == "show_musics" || action_name == "show_music_album" %>

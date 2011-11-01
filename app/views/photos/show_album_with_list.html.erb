@@ -8,15 +8,9 @@
                 <div class="slsShare">
                     <div class="slsShareL">
                         <span>You are here:</span>
-                        <%= link_to "Photos", user_photos_url(current_user), :class => "slsShareLink" %>
-                        <a href="javascript:;" class="slsShareLinkL"><%= current_user == @photo_album.user ? "Your photos" : "Friends shared photos" %></a>
-                    </div>
-                    <div class="slsShareR">
-                        <%= render :partial => "menu" %>
+                        <%= link_to "#{current_user.name}'s Photos", user_photos_url(current_user) %>
                     </div>
                 </div>
-                <%= display_flash_messages_with_raw %>
-                <%= render :partial => "expand_create_photo_album" %>
                 <div class="stoDet phoD">
                     <div class="AsDcomImg">
                         <%= show_image_user_post(@photo_album.user) %>
@@ -27,11 +21,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="ad-preloads">
-                </div>
-                <div class="AsDOr RePho">
-                    <%= render :partial => "related_photo" %>
-                </div>
+                <div class="photoRow" id="mytable">
+                            <% @photo_album.photos.each do |m_p| %>
+                            <%= render :partial => "photo_albums/item_photo_with_list", :locals => {:photo => m_p} %>
+                            <% end %>
+                        </div>
 								<div id="action_photo">
 		              <%= render :partial => "photo_album_action" %>
 									<div id="rate_pos" style="padding: 4px 	;width: 81px; border: 1px solid #E3E3E3; float: right; margin-top: -40px; margin-right: 176px; height: 15px;">
