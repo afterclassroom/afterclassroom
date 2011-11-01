@@ -7,7 +7,7 @@
   <div class="contDetL">
     <div class="contDetLin">
       <div class="inboxLeft">
-        <div class="overall" style="height: 950px;">
+        <div class="overall" style="height: 885;">
           <div class="inner1" style="border-right: 1px solid #CDCCCC; margin-right: 10px; margin-top: 10px;">
             <div class="inner2" style="height: 53px; padding: 10px; padding-top: 0px;">
               <span id="first_banner" style="background: url('/images/t_corner.png') no-repeat; padding-bottom: 16px; padding-left: 2px;"></span>
@@ -41,7 +41,7 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
                 <input type="file" style=""onchange="" name="topic_attach" id="topic_attach" class="" size="76"/>
               </div>
             </div>
-            <div class="inner2" style="padding: 10px; padding-top: 0px; min-height: 195px;">
+            <div class="inner2" style="padding: 10px; padding-top: 0px; min-height: 167px;">
               <span id="first_banner" style="background: url('/images/t_corner.png') no-repeat; padding-bottom: 16px; padding-left: 2px;"></span>
               <span id="first_banner" style="background: url('/images/t_main.png') repeat; padding-bottom: 16px; padding-left: 631px;">
 
@@ -49,19 +49,9 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
               </span>
 
 
-
-
-
-
-
-
-
-
-
-
-              <div style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; height: 162px; border: 1px solid #EBEBEB; border-radius: 10px;">
-                <div style='height: 81px;'>
-                  <div style="border: 1px solid black; width: 289px; height: 78px;">
+              <div style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; height: 108px; border: 1px solid #EBEBEB; border-radius: 10px;">
+                <div style='height: 60px;'>
+                  <div style="border: 0px solid black; width: 289px; height: 52px;">
                     <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
                     <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
                     <div style="margin-top:14px;">
@@ -76,11 +66,11 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
                       </select>                       
                     </div>
                   </div>
-                  <div style="border: 1px solid black; width: 289px; float: right; margin-top: -80px; height: 78px;">
+                  <div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
                     <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
                     <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
                     <div style="margin-top:12px;">
-                      <select>
+                      <select style="width: 100px;">
                         <option value="1">Yes</option>
                         <option value="2">No</option>
                       </select>                       
@@ -88,13 +78,21 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
                   </div>
                 </div>
                 <div style='height: 81px;'>
-                  <div style="border: 1px solid black; width: 289px; height: 78px;">
+                  <div style="border: 0px solid black; width: 289px; height: 52px;">
                     <label style="text-align: left; color: #969696;">Post to your lounge?</label>
-                    <div>combobox here</div>
+                    <div>
+                      <select style="width: 121px;">
+                        <option value="1">Yes</option>
+                        <option value="2">No</option>
+                      </select>                       
+
+                    </div>
                   </div>
-                  <div style="border: 1px solid black; width: 289px; float: right; margin-top: -80px; height: 78px;">
+                  <div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
                     <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
-                    <div>other things here</div>
+                    <div>
+                      <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
+                    </div>
                   </div>
                 </div>
 
@@ -106,6 +104,27 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
               <span id="first_banner" style="background: url('/images/t_main.png') repeat; padding-bottom: 16px; padding-left: 631px;">
                 <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Notify Friends via email</label>
               </span>
+
+
+
+              <div style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; min-height: 108px; border: 1px solid #EBEBEB; border-radius: 10px;">
+                <input type="checkbox" value="" name="checkfriend" id="checkfriend"/>
+                <% 2.times do %>
+                <div style="border: 1px solid #EBEBEB; height: 52px; margin-top: 5px;">
+                  
+                  <% 9.times do %>
+
+                  <div class="AsDContImg" style="padding-left: 9px;">
+                    <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
+                  </div>  
+                  <% end %>
+
+                </div>
+                <% end %>
+
+                
+              </div>
+
             </div>
           </div>
           <div class="bottomline" style="border: 1px solid #CDCCCC; margin-left: 10px; margin-right: 10px;"></div>

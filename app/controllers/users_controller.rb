@@ -6,12 +6,12 @@ class UsersController < ApplicationController
   protect_from_forgery :only => [:create]
   
   before_filter RubyCAS::Filter::GatewayFilter, :except => [:create]
-  before_filter RubyCAS::Filter, :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
+  before_filter RubyCAS::Filter, :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
   before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_password]
   before_filter :require_current_user,
     :except => [:add_tag, :index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
-  before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
+  before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
   
 	# render new.rhtml
   def index
@@ -176,6 +176,17 @@ class UsersController < ApplicationController
     if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
       @photo_albums = @user.photo_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 16
       render :layout => "student_lounge"
+    else
+      redirect_to warning_user_path(@user)
+    end
+  end
+  
+  def show_photos_with_list
+   if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
+      photo_album_id = params[:photo_album_id]
+      @photo_album = PhotoAlbum.find(photo_album_id)
+      update_view_count(@photo_album)
+			render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
     end
