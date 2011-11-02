@@ -17,8 +17,8 @@
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
 
 
-<div id="rate_pos" style="padding: 4px 	;width: 81px; border: 1px solid #E3E3E3; float: right; margin-top: -40px; margin-right: 104px; height: 15px;">
-                <%= render :partial => "rating_action", :locals => {:post => @video, :controller_name => "videos"}%>
+<div id="rate_pos" style="padding: 4px 	;width: 81px;float: right; margin-top: -40px; margin-right: 104px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
+  <%= render :partial => "rating_action", :locals => {:post => @video, :controller_name => "videos"}%>
 </div>
 
 <script type="text/javascript">
@@ -83,8 +83,11 @@
     });
 
     $('.qashdD').css({
-    'float': 'left', 
-    'margin-left': '9px'
+      'float': 'left', 
+      'margin-left': '9px'
+    });
+    $('.AsDcomItemR').css({
+      'width':'615px'
     });
   });
   //END fix issue of rate up/down position

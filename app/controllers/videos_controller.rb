@@ -334,8 +334,8 @@ class VideosController < ApplicationController
     @post.rate rating.to_i, current_user
     @post.save
     
-    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
-    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
+    @text = "<div class='qashdUsto'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
+    @text << "<div class='qashdDsto'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
   end
 
 	def get_on_this_video
