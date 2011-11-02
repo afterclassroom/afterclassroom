@@ -118,8 +118,8 @@
             </div>
           </div>
 
-          <div style="background-color: #ebebeb; min-height: 28px;">
-            <div style="background-color: white; min-height: 100px; width: 653px; border: 0px solid black;">
+          <div style="background-color: #ebebeb; min-height: 400px;">
+            <div style="background-color: white; min-height: 390px; width: 653px; border: 0px solid black;">
 
               <div class="AsDContImg" style="margin: 18px; margin-top: 1px;">
                 <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
@@ -136,11 +136,32 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
                 <div style="width: 545px; margin-top: 10px; margin-left: 5px; height: 28px;">
                   <input type="file" style=""onchange="" name="topic_attach" id="topic_attach" class="" size="65"/>
                 </div>
+                <button type="button">Add this comment</button> 
 
               </div>
 
+
+
             </div>
 
+          </div>
+
+          <div style="border: 1px solid black; min-height: 100px; padding: 10px;">
+            <% 10.times do %>
+            <div style="border: 1px solid green; height: 80px; ">
+              <div class="AsDContImg" style="float: left; margin-right: 9px;">
+                <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
+              </div>  
+              <div>
+                <div style="color: #2EACF4;">author</div>
+                <div style="color: #969696">19 hours ago</div>
+                <div>real content</div>
+                <div style="float: right">button remove</div>
+                <div style="float: right">button attach</div>
+                <div style="float: right">button collapse expand</div>
+              </div>
+            </div>
+            <% end %>
           </div>
 
 
