@@ -16,7 +16,7 @@
             <div style="float: left; border: 0px solid black; margin-left: -160px; width: 200px; margin-top: 3px;">
               <label style="text-align: left;color: #969696;">From: David</label>
               <label style="text-align: left;color: #969696;">Date : Monday, Oct 10th, 2011</label>
-              
+
             </div>
             <div class="AsDContImg" style="float: right; margin-right: 9px; margin-top: -30px;">
               <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
@@ -24,10 +24,149 @@
 
 
           </div>
-          
-          <div style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; height: 50px;">
-            setting section goes here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; height: 120px; width: 593px;">
+
+            <div style='height: 60px;'>
+              <div style="border: 0px solid black; width: 289px; height: 52px;">
+                <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
+                <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
+                <div style="margin-top:14px;">
+                  <select>
+                    <option value="1">Everyone</option>
+                    <option value="2">Private</option>
+                    <option value="3">Friend from school</option>
+                    <option value="4">Friends of Friends</option>
+                    <option value="5">My Family</option>
+                    <option value="6">My Friends</option>
+                    <option value="7">Friends from work</option>
+                  </select>                       
+                </div>
+              </div>
+              <div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
+                <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
+                <div style="margin-top:12px;">
+                  <select style="width: 100px;">
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>                       
+                </div>
+              </div>
+            </div>
+            <div style='height: 81px;'>
+              <div style="border: 0px solid black; width: 289px; height: 52px;">
+                <label style="text-align: left; color: #969696;">Post to your lounge?</label>
+                <div>
+                  <select style="width: 121px;">
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                  </select>                       
+
+                </div>
+              </div>
+              <div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
+                <div>
+                  <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
+                </div>
+              </div>
+            </div>
+
           </div>
+
+
+          <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
+
+          <div style="border: 0px solid black; padding: 10px;">
+            <div style="background: url('/images/ufo_attach.jpg') no-repeat; width: 24px; height: 24px;"></div>
+            <div style="overflow: auto; height: 300px;">
+              <% 100.times do %>
+                content be here<br/>              
+              <% end %>
+
+            </div>
+          </div>
+
+          <div style="background-color: #ebebeb; height: 28px; padding: 2px;">
+            <div style="background-color: white; width: 88px; height: 24px; margin-top: 2px; margin-left: 2px;">
+              <span style="background: url('/images/icon-comnent.gif') no-repeat center; padding-bottom: 10px; padding-left: 36px;"></span>
+              <label style="color: #969696; margin-top: -8px; margin-right: 10px;">Comment</label>
+            </div>
+            <div style="background-color: white; width: 76px; height: 24px; margin-top: -24px; margin-left: 97px;">
+              <label style="color: #969696; margin-top: -8px; margin-right: 10px; text-align: left; padding: 5px;">Invite friend</label>
+            </div>
+          </div>
+
+          <div style="background-color: #ebebeb; min-height: 400px;">
+            <div style="background-color: white; min-height: 390px; width: 653px; border: 0px solid black;">
+
+              <div class="AsDContImg" style="margin: 18px; margin-top: 1px;">
+                <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
+              </div>  
+
+              <label style="text-align: left; margin-top: 18px;">Leave your comment</label>
+
+              <textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
+At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
+              </textarea> 
+
+              <div style="height: 60px; width: 545px; border: 0px solid red; margin-top: 278px; margin-left: 86px;">
+                <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
+                <div style="width: 545px; margin-top: 10px; margin-left: 5px; height: 28px;">
+                  <input type="file" style=""onchange="" name="topic_attach" id="topic_attach" class="" size="65"/>
+                </div>
+                <button type="button">Add this comment</button> 
+
+              </div>
+
+
+
+            </div>
+
+          </div>
+
+          <div style="border: 1px solid black; min-height: 100px; padding: 10px;">
+            <% 10.times do %>
+            <div style="border: 1px solid green; height: 80px; ">
+              <div class="AsDContImg" style="float: left; margin-right: 9px;">
+                <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
+              </div>  
+              <div>
+                <div style="color: #2EACF4;">author</div>
+                <div style="color: #969696">19 hours ago</div>
+                <div>real content</div>
+                <div style="float: right">
+                  <img src="/images/icon-ing.gif" id=""/>
+                </div>
+                <div style="float: right">button attach</div>
+                <div style="float: right">button collapse expand</div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+
+
 
 
 
