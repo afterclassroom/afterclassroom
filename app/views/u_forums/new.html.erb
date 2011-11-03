@@ -109,14 +109,20 @@
               <div style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; min-height: 108px; border: 1px solid #EBEBEB; border-radius: 10px;">
                 <input type="checkbox" value="" name="checkfriend" id="checkfriend"/>
                 <% 2.times do %>
-                <div style="border: 1px solid #EBEBEB; height: 52px; margin-top: 5px;">
-                  
-                  <% 9.times do %>
+                <div style="border: 1px solid #EBEBEB; height: 72px; margin-top: 5px;">
+		  <!-- the following code is just for testing purpose -->
+                  <% list_friends = current_user.user_friends %>
+                  <% list_friends.each do |usr| %>
 
-                  <div class="AsDContImg" style="padding-left: 9px;">
-                    <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
-                  </div>  
-                  <% end %>
+		      <div class="AsDcomImg" style="padding-left: 9px;">
+			<%= show_image_user_post(usr) %>
+
+			<input style="margin-left: 1px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
+    
+		      </div>
+
+
+                  <% end %><!-- end each list friend -->
 
                 </div>
                 <% end %>
