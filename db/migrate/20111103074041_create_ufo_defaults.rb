@@ -1,7 +1,8 @@
 class CreateUfoDefaults < ActiveRecord::Migration
   def self.up
     create_table :ufo_defaults do |t|
-      t.string :title
+      t.belongs_to :user, :null => false
+      type_of_share
 
       t.timestamps
     end
