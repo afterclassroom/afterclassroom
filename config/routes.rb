@@ -134,7 +134,7 @@ Afterclassroom::Application.routes.draw do
 
     resources :u_forums do
       collection do
-        get :view_detail
+        get :view_detail, :dft_stgs
       end
       
     end

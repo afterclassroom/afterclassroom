@@ -1,80 +1,80 @@
 <% content_for :menu_top_student_lounge do -%>
-<%= render :partial => '/shared/submenu' %>
+  <%= render :partial => '/shared/submenu' %>
 <% end -%>
 <div class="slStoryL">
-    <div class="contDetL">
-        <div class="contDetLin">
-            <div class="inboxLeft">
-                <div class="slsShare">
-                    <div class="slsShareL">
-                        <span>You are here:</span>
-                        <%= link_to "Photos", user_photos_url(current_user), :class => "slsShareLink" %>
-                        <a href="javascript:;" class="slsShareLinkL"><%= current_user == @photo_album.user ? "Your photos" : "Friends shared photos" %></a>
-                    </div>
-                    <div class="slsShareR">
-                        <%= render :partial => "menu" %>
-                    </div>
-                </div>
-                <%= display_flash_messages_with_raw %>
-                <%= render :partial => "expand_create_photo_album" %>
-                <div class="stoDet phoD">
-                    <div class="AsDcomImg">
-                        <%= show_image_user_post(@photo_album.user) %>
-                    </div>
-                    <div class="stoDetR">
-                        <div class="stoDetRT">
-                            <%= @photo_album.user.full_name %>: <%= @photo_album.name %>
-                        </div>
-                    </div>
-                </div>
-                <div class="ad-preloads">
-                </div>
-                <div class="AsDOr RePho">
-                    <%= render :partial => "related_photo" %>
-                </div>
-								<div id="action_photo">
-		              <%= render :partial => "photo_album_action" %>
-									<div id="rate_pos" style="padding: 4px 	;width: 81px; border: 1px solid #E3E3E3; float: right; margin-top: -40px; margin-right: 176px; height: 15px;">
-		              	<%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo_album, :controller_name => "photo_albums"}%>
-									</div>
-		              <%= show_post_comments(@photo_album) %>
-								</div>
-                <div class="goback" id="go_back">
-                    <%= show_go_back %>
-                </div>
-                <div class="AsDOr">
-                    <h1 class="titleH1">Another photo albums</h1>
-                    <% @another_photo_albums.each do |pb| %>
-                    <div class="AsDOrItem">
-                        <%= link_to pb.name, show_album_user_photos_url(current_user, :photo_album_id => pb) %>
-                    </div>
-                    <% end %>
-                </div>
-                <div class="goTop">
-                    <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
-                </div>
-            </div>
+  <div class="contDetL">
+    <div class="contDetLin">
+      <div class="inboxLeft">
+        <div class="slsShare">
+          <div class="slsShareL">
+            <span>You are here:</span>
+            <%= link_to "Photos", user_photos_url(current_user), :class => "slsShareLink" %>
+            <a href="javascript:;" class="slsShareLinkL"><%= current_user == @photo_album.user ? "Your photos" : "Friends shared photos" %></a>
+          </div>
+          <div class="slsShareR">
+            <%= render :partial => "menu" %>
+          </div>
         </div>
+        <%= display_flash_messages_with_raw %>
+        <%= render :partial => "expand_create_photo_album" %>
+        <div class="stoDet phoD">
+          <div class="AsDcomImg">
+            <%= show_image_user_post(@photo_album.user) %>
+          </div>
+          <div class="stoDetR">
+            <div class="stoDetRT">
+              <%= @photo_album.user.full_name %>: <%= @photo_album.name %>
+            </div>
+          </div>
+        </div>
+        <div class="ad-preloads">
+        </div>
+        <div class="AsDOr RePho">
+          <%= render :partial => "related_photo" %>
+        </div>
+        <div id="action_photo">
+          <%= render :partial => "photo_album_action" %>
+          <div id="rate_pos" style="padding: 4px;width: 81px; border: 1px solid #E3E3E3; float: right; margin-top: -40px; margin-right: 176px; height: 15px;">
+            <%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo_album, :controller_name => "photo_albums"}%>
+          </div>
+          <%= show_post_comments(@photo_album) %>
+        </div>
+        <div class="goback" id="go_back">
+          <%= show_go_back %>
+        </div>
+        <div class="AsDOr">
+          <h1 class="titleH1">Another photo albums</h1>
+          <% @another_photo_albums.each do |pb| %>
+            <div class="AsDOrItem">
+              <%= link_to pb.name, show_album_user_photos_url(current_user, :photo_album_id => pb) %>
+            </div>
+          <% end %>
+        </div>
+        <div class="goTop">
+          <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="contMainR">
-    <!--Most Viewed-->
-    <%= render :partial => "photos/most_viewed" %>
-    <!--Most Viewed-->
-    <!--Ads-->
-    <%= render :partial => "ads/show_vertical_ads" %>
-    <!--Ads-->
+  <!--Most Viewed-->
+  <%= render :partial => "photos/most_viewed" %>
+  <!--Most Viewed-->
+  <!--Ads-->
+  <%= render :partial => "ads/show_vertical_ads" %>
+  <!--Ads-->
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
-  $('.qashdU').css({
-    'float': 'left',
-    'margin-left': '10px'
-  });
+  $(document).ready(function(){
+    $('.qashdU').css({
+      'float': 'left',
+      'margin-left': '10px'
+    });
 
-  $('.qashdD').css({
-  'float': 'left', 
-  'margin-left': '9px'
+    $('.qashdD').css({
+      'float': 'left', 
+      'margin-left': '9px'
+    });
   });
-});
 </script>

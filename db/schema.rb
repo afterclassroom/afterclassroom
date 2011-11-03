@@ -10,22 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026041316) do
-
-  create_table "active_admin_comments", :force => true do |t|
-    t.integer  "resource_id",   :null => false
-    t.string   "resource_type", :null => false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "namespace"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+ActiveRecord::Schema.define(:version => 20111103023335) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -34,24 +19,6 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
     t.string   "item_type"
     t.datetime "created_at"
   end
-
-  create_table "admin_users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
-  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "awareness_types", :force => true do |t|
     t.string "name"
@@ -97,9 +64,9 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
     t.string   "key",           :limit => 40
     t.string   "secret",        :limit => 40
     t.integer  "user_id"
-    t.boolean  "xauth_enabled",               :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "xauth_enabled", :limit => 1,  :default => 0
   end
 
   add_index "client_applications", ["key"], :name => "index_client_applications_on_key", :unique => true
@@ -216,9 +183,9 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
   end
 
   create_table "forums", :force => true do |t|
-    t.integer  "user_id",    :null => false
     t.string   "title"
-    t.text     "content"
+    t.string   "content"
+    t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -339,13 +306,13 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
   create_table "music_albums", :force => true do |t|
     t.integer  "user_id",                                        :null => false
     t.string   "name",                                           :null => false
-    t.integer  "count_view",                      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "music_album_attach_file_name"
     t.string   "music_album_attach_content_type"
     t.integer  "music_album_attach_file_size"
     t.datetime "music_album_attach_updated_at"
+    t.integer  "count_view",                      :default => 0, :null => false
   end
 
   create_table "musics", :force => true do |t|
@@ -465,9 +432,9 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
   create_table "photo_albums", :force => true do |t|
     t.integer  "user_id",                   :null => false
     t.string   "name",                      :null => false
-    t.integer  "count_view", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "count_view", :default => 0, :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -523,11 +490,11 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
   create_table "post_events", :force => true do |t|
     t.integer  "post_id"
     t.integer  "event_type_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
     t.string   "address"
     t.string   "phone"
     t.string   "rating_status"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "post_exam_schedules", :force => true do |t|
@@ -615,8 +582,13 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
     t.datetime "due_date"
   end
 
+  create_table "post_qa_categories", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "post_qas", :force => true do |t|
     t.integer "post_id"
+    t.integer "post_qa_category_id"
     t.string  "rating_status"
   end
 
@@ -656,12 +628,8 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
     t.integer  "attach_file_size"
     t.datetime "attach_updated_at"
     t.integer  "count_view",          :default => 0
-<<<<<<< HEAD
-    t.string   "slug",                                   :null => false
-=======
     t.boolean  "delta",               :default => true,  :null => false
     t.string   "slug"
->>>>>>> 4554ad9e962651adafa663bb2a0e6ff173195961
   end
 
   create_table "press_infos", :force => true do |t|
@@ -680,8 +648,6 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-=======
   create_table "rate_text_musics", :force => true do |t|
     t.integer  "user_id",                                       :null => false
     t.integer  "music_album_id",                                :null => false
@@ -734,7 +700,6 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
   add_index "rates", ["post_id"], :name => "index_rates_on_post_id"
   add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
 
->>>>>>> 4554ad9e962651adafa663bb2a0e6ff173195961
   create_table "rating_statistics", :force => true do |t|
     t.integer "rated_id"
     t.string  "rated_type"
@@ -923,6 +888,18 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
     t.string "label"
   end
 
+  create_table "ufos", :force => true do |t|
+    t.integer  "user_id",                 :null => false
+    t.string   "title"
+    t.text     "content"
+    t.string   "ufo_attach_file_name"
+    t.string   "ufo_attach_content_type"
+    t.integer  "ufo_attach_file_size"
+    t.datetime "ufo_attach_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_blocks", :force => true do |t|
     t.integer  "user_id"
     t.integer  "user_id_block"
@@ -1038,7 +1015,6 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_id"
   end
 
   create_table "users", :force => true do |t|
@@ -1055,8 +1031,6 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
     t.string   "password_reset_code"
     t.datetime "activated_at"
     t.datetime "deleted_at"
-    t.string   "time_zone"
-    t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
@@ -1066,9 +1040,19 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "online",                                   :default => false
+    t.boolean  "delta",                                    :default => true,      :null => false
+    t.string   "time_zone"
+    t.string   "slug"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "video_albums", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "video_files", :force => true do |t|
     t.integer  "video_id",                  :null => false
@@ -1079,18 +1063,18 @@ ActiveRecord::Schema.define(:version => 20111026041316) do
   end
 
   create_table "videos", :force => true do |t|
-    t.integer  "user_id",                                  :null => false
+    t.integer  "user_id",                                   :null => false
     t.string   "title"
     t.text     "description"
-    t.string   "category"
-    t.integer  "count_view",                :default => 0
-    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "video_attach_file_name"
     t.string   "video_attach_content_type"
     t.integer  "video_attach_file_size"
     t.datetime "video_attach_updated_at"
+    t.string   "category",                  :default => "", :null => false
+    t.integer  "count_view",                :default => 0,  :null => false
+    t.string   "state",                                     :null => false
   end
 
 end

@@ -18,8 +18,13 @@
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
 
 
+<<<<<<< HEAD
 <div id="rate_pos" style="padding: 4px 	;width: 81px; border: 1px solid #E3E3E3; float: right; margin-top: -40px; margin-right: 176px; height: 15px;">
                 <%= render :partial => "stories/rating_action", :locals => {:post => @story, :controller_name => "stories"}%>
+=======
+<div id="rate_pos" style="padding: 4px;width: 81px; float: right; margin-top: -40px; margin-right: 185px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
+  <%= render :partial => "rating_action", :locals => {:post => @story, :controller_name => "stories"}%>
+>>>>>>> 368557557ffdd172769468266f122e7aad14ed5c
 </div>
 
 
@@ -28,7 +33,7 @@
   var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @story.id %>&tagable_type=<%= @story.class.name %>";
 
-$(function(){
+  $(function(){
     
     // Autocomplete initialization
     var tb = new $.TextboxList('#share_to', {
@@ -83,10 +88,11 @@ $(function(){
     });
 
     $('.qashdD').css({
-    'float': 'left', 
-    'margin-left': '9px'
+      'float': 'left', 
+      'margin-left': '9px'
     });
   });
   //END fix issue of rate up/down position
 
 </script>
+

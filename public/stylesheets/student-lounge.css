@@ -4250,12 +4250,21 @@ div.helpAdv2{
     color:#fff;
     padding:0px;
 }
+.mnFor .span2{
+    background:url('/images/mnForum.png') no-repeat;
+    padding-left:25px;
+}
+.mnFor a:hover .span1{
+    background:url('/images/mnForumOnL.png') left top no-repeat;
+    color:#fff;
+    padding:0px;
+}
 .stuLtop .menuRItem a:hover .span2{
     padding:0px 8px 0px 25px;
 }
 
 .mnChat .menuRselect .span2, .mnShare .menuRselect .span2, .mnPho .menuRselect .span2,
-.mnMus .menuRselect .span2, .mnVi .menuRselect .span2{
+.mnMus .menuRselect .span2, .mnVi .menuRselect .span2, .mnFor .menuRselect .span2{
     background:url('/images/menuRonR.png') no-repeat right top;
     padding-right:8px;
 }
@@ -4281,6 +4290,11 @@ div.helpAdv2{
 }
 .mnVi a.menuRselect .span1{
     background:url('/images/mnVideoOnL.png') left top no-repeat;
+    color:#fff;
+    padding:0px;
+}
+.mnFor a.menuRselect .span1{
+    background:url('/images/mnForumOnL.png') left top no-repeat;
     color:#fff;
     padding:0px;
 }
@@ -5798,7 +5812,32 @@ div.ufo_sel div.ufo_span2b{
 
 
 /**** END forum button for studenLounge  *****/
-
+.qashdUsto, .qashdDsto{
+    float: left;
+    margin-left: 10px;
+    padding: 0 2px;
+}
+.qashdUsto a {
+    background: url("/images/icon-hdup.gif") no-repeat scroll right center transparent;
+    display: block;
+    margin-left: -7px;
+    margin-top: 2px;
+    padding-right: 19px;
+}
+.qashdUsto a:hover {
+    background: url("/images/icon-hdupH.gif") no-repeat scroll right center transparent;
+    padding-right: 19px;
+}
+.qashdDsto a {
+    background: url("/images/icon-hdd.gif") no-repeat scroll left center transparent;
+    display: block;
+    margin-top: 2px;
+    padding-left: 19px;
+}
+.qashdDsto a:hover {
+    background: url("/images/icon-hddH.gif") no-repeat scroll left center transparent;
+    padding-left: 19px;
+}
 
 
 
