@@ -6,12 +6,12 @@ class UsersController < ApplicationController
   protect_from_forgery :only => [:create]
   
   before_filter RubyCAS::Filter::GatewayFilter, :except => [:create]
-  before_filter RubyCAS::Filter, :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
+  before_filter RubyCAS::Filter, :except => [:index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
   before_filter :cas_user
   #before_filter :login_required, :except => [:new, :show, :create, :activate, :forgot_password]
   before_filter :require_current_user,
-    :except => [:add_tag, :index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
-  before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning]
+    :except => [:add_tag, :index, :new, :show, :create, :activate, :forgot_password, :reset_password, :show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
+  before_filter :get_params, :only => [:show_lounge, :show_stories, :show_story_detail, :show_photos, :show_photos_with_list, :show_photo_album, :show_photo_detail, :show_musics, :show_music_album, :show_videos, :show_detail_video, :show_friends, :show_fans, :warning, :warning_media]
   
 	# render new.rhtml
   def index
@@ -165,10 +165,17 @@ class UsersController < ApplicationController
     if check_private_permission(current_user, @user, "my_stories") or check_view_permission(current_user, @user, "my_stories")
       story_id = params[:story_id]
       @story = Story.find(story_id)
-      update_view_count(@story)
-      render :layout => "student_lounge"
+			#finding a list of tagged users for this story
+     	@tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",story_id,"Story",true ] )
+     	@verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",story_id,"Story",false ] )
+			as_next = @user.stories.nexts(@story.id).last
+      as_prev = @user.stories.previous(@story.id).first
+      @next = as_next if as_next
+      @prev = as_prev if as_prev      
+			update_view_count(@story)
+      render :layout => "photo"
     else
-      redirect_to warning_user_path(@user)
+      redirect_to warning_media_user_path(@user)
     end
   end
   
@@ -189,6 +196,28 @@ class UsersController < ApplicationController
 			render :layout => "student_lounge"
     else
       redirect_to warning_user_path(@user)
+    end
+  end
+
+	def show_photo_detail
+    if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
+      photo_id = params[:photo_id]
+			@photo = Photo.find(photo_id)
+      @photo_album = @photo.photo_album
+      update_view_count(@photo_album)
+			#display user for partial on_this_photo
+		  list_friends = current_user.user_friends
+		  @tag_usr = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",photo_id,"Photo",true ] )
+		  
+		  #find all the user need to be verified
+		  @usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",photo_id,"Photo",false ] )
+			as_next = @photo_album.photos.nexts(@photo.id).last
+      as_prev = @photo_album.photos.previous(@photo.id).first
+      @next = as_next if as_next
+      @prev = as_prev if as_prev      
+			render :layout => "photo"
+    else
+      redirect_to warning_media_user_path(@user)
     end
   end
   
@@ -217,10 +246,14 @@ class UsersController < ApplicationController
       music_album_id = params[:music_album_id]
       @music_album = MusicAlbum.find(music_album_id)
       @another_music_albums = @music_album.another_music_albums
+			#display user that need to verify after add ta
+    @usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",music_album_id,"MusicAlbum",false ] )
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",music_album_id,"MusicAlbum",true ] )
+
       update_view_count(@music_album)
-      render :layout => "student_lounge"
+      render :layout => "photo"
     else
-      redirect_to warning_user_path(@user)
+      redirect_to warning_media_user_path(@user)
     end
   end
   
@@ -247,9 +280,9 @@ class UsersController < ApplicationController
       @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
       @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
       
-      render :layout => "student_lounge"
+      render :layout => "photo"
     else
-      redirect_to warning_user_path(@user)
+      redirect_to warning_media_user_path(@user)
     end
   end
   
@@ -278,6 +311,10 @@ class UsersController < ApplicationController
   
   def warning
     render :layout => "student_lounge"
+  end
+
+	def warning_media
+    render :layout => "photo"
   end
   
   def remove_tagged

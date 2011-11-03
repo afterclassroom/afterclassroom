@@ -13,12 +13,17 @@
             <a href="#" class="slsShareLinkL">Detail</a>
           </div>
         </div>
+				
         <div class="stoDet">
           <div class="AsDcomImg"><%= show_image_user_post(@story.user) %></div>
           <div class="stoDetR">
             <div class="stoDetRT"><%= @story.user.full_name %>: <%= @story.title %></div>
             <div class="stoDetRB"><%= link_to "#{@story.user.name}'s Story", show_stories_user_url(@story.user), :class => "stoDetRBN" %><%= link_to "#{@story.user.name}'s Profile", user_url(@story.user) %></div>
           </div>
+        </div>
+				<div class="onThisBtm">
+          <div class="stoPre"><%= link_to "", user_story_path(current_user, @prev) if @prev %></div>
+          <div class="stoNext"><%= link_to "", user_story_path(current_user, @next) if @next %></div>
         </div>
         <div class="stoDcont">
           <%= raw(@story.content) %>
@@ -31,9 +36,6 @@
   </div>
 </div>
 <div class="contMainR">
-  <!--On this story-->
-  <%= render :partial => "on_this_story" %>
-  <!--On this story-->
   <!-- BEGIN list of tagged users for stories -->
   <%= render :partial => "lets_read" %>
   <!-- END list of tagged users for stories -->

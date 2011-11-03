@@ -1,4 +1,4 @@
-<%= render :partial => "form_add_tag" %>
+<%= render :partial => "musics/form_add_tag" %>
 
 <% if  @music_album.user == current_user && @usrs_for_verify.size > 0 %>
 <div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
@@ -32,7 +32,7 @@
     <span class="btmShare"><%= addthis_bookmark_button { "<span>Share</span>" } %></span>
     <span class="btmFav" id="item_favorite_<%= @music_album.id %>"><%= show_favorite_in_detail("MusicAlbum", @music_album) %></span>
     <span class="btmAbuse"><%= show_report_abuse(@music_album) %></span>
-    <span class="btmComment"><a href="javascript:;">Let's Listen</a></span>
+    <span class="btmComment"><a href="javascript:;" onclick="$('form#form_tag_user').toggle('slow');">Let's Listen</a></span>
   </div>
 </div>
 

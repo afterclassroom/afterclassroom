@@ -11,4 +11,9 @@
     <%= yield %>
   </body>
   <%= render :partial => "shared/post_comments/alert" %>
+	<script>
+	$(document).ready(function(){
+		$('div .AsDcomImg a').attr("target", "_blank");
+	});
+	</script>
 </html>

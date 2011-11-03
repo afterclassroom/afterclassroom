@@ -120,6 +120,10 @@ class StoriesController < ApplicationController
 
     if check_private_permission(current_user, @user, "my_stories") or check_view_permission(current_user, @user, "my_stories")
       update_view_count(@story)
+			as_next = @user.stories.nexts(@story.id).last
+      as_prev = @user.stories.previous(@story.id).first
+      @next = as_next if as_next
+      @prev = as_prev if as_prev
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @story }
@@ -313,8 +317,9 @@ class StoriesController < ApplicationController
         end
       end #end each
     end
-    
-    redirect_to :controller=>'stories', :action => 'show', :id => params[:id]
+    #finding a list of tagged users for this story
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",@story.id,"Story",true ] )
+    @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",@story.id,"Story",false ] )
   end
 
   def remove_tagged

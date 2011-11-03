@@ -1,0 +1,23 @@
+<div class="slStoryL">
+  <div class="inboxLeft">
+    <div class="AsDOr RePho">
+      <div class="stoDet phoD">
+          <div class="AsDcomImg">
+            <%= show_image_user_post(@photo.user) %>
+          </div>
+          <div class="stoDetR">
+            <div class="stoDetRT">
+              <%= @photo.user.full_name %>: <%= @photo.title %>
+            </div>
+          </div>
+        </div>
+
+        <div class="onThisBtm">
+          <div class="stoPre"><%= link_to "", show_photo_detail_user_path(current_user, :photo_id => @prev) if @prev %></div>
+          <div class="stoNext"><%= link_to "", show_photo_detail_user_path(current_user, :photo_id => @next) if @next %></div>
+        </div>
+        <%= render :partial => "photos/widget_photo_detail" %>
+    </div>
+  </div>
+</div>
+

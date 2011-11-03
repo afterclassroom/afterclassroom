@@ -113,6 +113,7 @@ class MusicAlbumsController < ApplicationController
 
 
   def add_tag
+		
     @music_album = MusicAlbum.find(params[:music_album_id])
 
     str_flash_msg = "Your request has been sent to author. The approval will be sent to your email."
@@ -164,8 +165,9 @@ class MusicAlbumsController < ApplicationController
         end
       end #end each
     end
-
-    redirect_to :controller=>'musics', :action => 'play_list', :music_album_id => params[:music_album_id]
+		#display user that need to verify after add ta
+    @usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:music_album_id],"MusicAlbum",false ] )
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:music_album_id],"MusicAlbum",true ] )
   end
   
   def tag_decision

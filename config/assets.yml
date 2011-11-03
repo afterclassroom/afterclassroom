@@ -91,13 +91,46 @@ javascripts:
     - public/javascripts/jquery.js
     - public/javascripts/rails.js
     - public/javascripts/app.js
+    - public/javascripts/swfobject.js
     - public/javascripts/jquery-ui.js
+    - public/javascripts/jquery.mcdropdown.js
+    - public/javascripts/jquery.bgiframe.js
+    - public/javascripts/jquery-auto-suggest.js
+    - public/javascripts/jquery-wysiwyg.js
+    - public/javascripts/jquery-jeditable.js
     - public/javascripts/jquery-carrousel.js
+    - public/javascripts/jquery-swfobject.js
+    - public/javascripts/jquery-customWindow.js
     - public/javascripts/thickbox.js
     - public/javascripts/vtip.js
+    - public/javascripts/json.js
+    - public/javascripts/jquery-galleriffic.js
+    - public/javascripts/jquery-opacityrollover.js
+    - public/javascripts/swfupload.js
+    - public/javascripts/swfupload-handlers.js
     - public/javascripts/jquery.ad-gallery.js
+    - public/javascripts/checkboxmenu.js
+    - public/javascripts/drplayer.js
+    - public/javascripts/jquery.jqpageflow.js
+    - public/javascripts/jquery.fancybox.js
+    - public/javascripts/jquery.fileupload.js
+    - public/javascripts/jquery.fileupload-ui.js
+    - public/javascripts/ajaxupload.js
+    - public/javascripts/jquery.pnotify.js
     - public/javascripts/jquery-validate.js
     - public/javascripts/jquery.metadata.js
+    - public/javascripts/jquery.autogeocomplete.js
+    - public/javascripts/fileuploader.js
+    - public/javascripts/video.js
+    - public/javascripts/TextboxList.js
+    - public/javascripts/TextboxList.Autocomplete.js
+    - public/javascripts/GrowingInput.js
+    - public/javascripts/facebox.js
+    - public/javascripts/youTubeEmbed-jquery.js
+    - public/javascripts/jquery.swfobject.js
+    - public/javascripts/jquery.jtruncate.js
+    - public/javascripts/flowplayer-3.2.6.min.js
+    - public/javascripts/jquery.corner.js
   admin:
     - public/javascripts/jquery.js
     - public/javascripts/jquery-ui.js
@@ -196,6 +229,24 @@ stylesheets:
     - public/stylesheets/jquery.ad-gallery.css
     - public/stylesheets/pagination.css
     - public/stylesheets/validation.css
+    - public/stylesheets/flash.css
+    - public/stylesheets/vtip.css
+    - public/stylesheets/thickbox.css
+    - public/stylesheets/jquery-wysiwyg.css
+    - public/stylesheets/tag.css
+    - public/stylesheets/jquery-carrousel.css
+    - public/stylesheets/footer-menu.css
+    - public/stylesheets/swfupload.css
+    - public/stylesheets/jquery.ad-gallery.css
+    - public/stylesheets/jquery.fileupload-ui.css
+    - public/stylesheets/checkboxmenu.css
+    - public/stylesheets/jqpageflow.css
+    - public/stylesheets/jquery.fancybox.css
+    - public/stylesheets/jquery.pnotify.default.css
+    - public/stylesheets/video-js.css
+    - public/stylesheets/facebox.css
+    - public/stylesheets/feedback.css
+    - public/stylesheets/youTubeEmbed-jquery.css
   admin:
     - public/stylesheets/main.css
     - public/stylesheets/jquery-multiSelect.css

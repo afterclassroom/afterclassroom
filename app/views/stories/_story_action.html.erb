@@ -1,6 +1,6 @@
-<%= render :partial => "form_add_tag" %>
+<%= render :partial => "stories/form_add_tag" %>
 <% if  @story.user == current_user && @verify_users.size > 0 %>
-  <%= render :partial => "form_decision" %>
+  <%= render :partial => "stories/form_decision" %>
 <% end %><!-- end if -->
 
 <div class="stoDbtm">
@@ -19,7 +19,7 @@
 
 
 <div id="rate_pos" style="padding: 4px 	;width: 81px; border: 1px solid #E3E3E3; float: right; margin-top: -40px; margin-right: 176px; height: 15px;">
-                <%= render :partial => "rating_action", :locals => {:post => @story, :controller_name => "stories"}%>
+                <%= render :partial => "stories/rating_action", :locals => {:post => @story, :controller_name => "stories"}%>
 </div>
 
 

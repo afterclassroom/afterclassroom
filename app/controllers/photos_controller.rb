@@ -104,7 +104,7 @@ class PhotosController < ApplicationController
       as_next = @photo_album.photos.nexts(@photo.id).last
       as_prev = @photo_album.photos.previous(@photo.id).first
       @next = as_next if as_next
-      @prev = as_prev if as_prev 
+      @prev = as_prev if as_prev
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @photo }
