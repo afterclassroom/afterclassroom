@@ -10,4 +10,21 @@ class UForumsController < ApplicationController
     
   end
 
+  def new
+    @ufo = Ufo.new()
+  end
+
+  def save
+    @ufo = Ufo.new(params[:ufo])
+    @ufo.user = current_user
+    if @ufo.save
+      flash[:notice] = "Your topic was successfully submitted."
+      @ufo = Ufo.new()
+      render :action => "new"
+    else
+      flash[:notice] = "Failed to create new topic."
+      render :action => "new"
+    end
+  end
+
 end
