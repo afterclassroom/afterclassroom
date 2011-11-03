@@ -27,4 +27,8 @@ class UForumsController < ApplicationController
     end
   end
 
+  def dft_stgs
+    render :layout => false
+  end
+
 end
