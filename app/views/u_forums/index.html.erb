@@ -11,8 +11,9 @@
     <div class="inboxForum" style="padding:10px">
       <div class="inboxFoTop">
         <div class="markFo" style="border-left: 1px solid #E3E3E3;"><a href="#" onclick="">All Topics</a></div>
-        <div class="markFo"><a href="#" onclick="">User's Topics</a></div>
-        <div class="markFo"><a href="#" onclick="">Friend Invited Topics </a></div>
+        <div class="markFo"><a href="javascript:;">User's Topics</a></div>
+        <div class="markFo"><a href="javascript:;">Friend Invited Topics </a></div>
+        <div class="markFo"><a href="javascript:;" id="ufo_setngs">Default Settings </a></div>
       </div>
       <div class="inboxFoNew"><a href="#" onclick=""><span class="span1">Post a new topic</span></a></div>
     </div>
@@ -181,4 +182,167 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 </div>
+=======
+
+<div id="setting_dlg" title="Default Settings for your forums" style="display:none;">
+  ---- ----
+  <div id="sContent">
+  </div>
+</div>
+
+
+<style>
+  .assPageFo{
+    border-top: 1px solid #CECECE;
+    color: #6F6F63;
+    float: left;
+    font-size: 11px;
+    margin-left: 10px;
+    padding: 10px 0 10px 0;
+    width: 634px;
+    margin-top: 5px;
+  }
+  .assItemForu{
+    border-right: 1px solid #cecece;
+    float: left;
+    margin-top: 5px;
+  }
+  .bodderTop{
+    border-top: 1px solid #CECECE;
+    margin-left: 8px;
+    position: relative;
+  }
+  .inboxFoSe a span{
+    margin-left: 34px;
+  }
+  .inboxFoSe a{
+    color: #797979;
+    cursor: pointer;
+    line-height: 25px;
+    text-decoration: none;
+    background: url("/images/btmForum.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    height: 25px;
+    width: 88px;
+    margin-top: 2px;
+  }
+  .inboxFoSe a:hover{
+    background: url("/images/btmForumH.png") no-repeat scroll 0 0 transparent;
+    color:#ffffff;
+  }
+  .assPicFo a{
+    font-family: arial;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .assPicFo{
+    background: url("/images/start_1.png") no-repeat scroll 0 0 transparent;
+    height: 16px;
+    margin-top: -6px;
+    padding-left: 20px;
+  }
+  .assForum{
+    margin-left: 15px;
+    margin-top: -19px;
+  }
+  .assContFoC{
+    background: url("/images/forumTextC.png") repeat scroll 0 0 transparent;
+    overflow: hidden;
+    width: 540px;
+    margin-top: 15px;
+  }
+  .assContFoD{
+    background: url("/images/forumTextT.png") no-repeat scroll left top;
+    width: 540px;
+    overflow: hidden;
+    padding: 10px;
+  }
+  .assContFoT{    
+    background: url("/images/forumTextD.png") no-repeat scroll left bottom transparent;
+    overflow: hidden;
+    width: 540px;
+    float: left;
+    padding-bottom: 5px;
+    margin-left: 10px;
+  }
+  .assItemFo{
+    clear: both;
+    overflow: hidden;
+  }
+  .inboxCeTop{
+    background: #F6F7F7;
+    font-weight: bold;
+    height: 30px;
+    line-height: 28px;
+    overflow: hidden;
+    background: url("/images/u_forum_U.png") no-repeat scroll 0 0 #F6F7F7;
+    margin-top: -1px;
+  }
+  .markFo {
+    background-color: #F6F7F7;
+    border-top: 1px solid #E3E3E3;
+    border-bottom: 1px solid #E3E3E3;
+    border-right: 1px solid #E3E3E3;
+    float: left;
+    padding: 0 10px;
+  }
+  .inboxFoTop {
+    font-weight: bold;
+    line-height: 28px;
+    overflow: hidden;
+    border-bottom: 1px solid #E3E3E3;
+  }
+  .inboxFoTop a, .inboxFoTop a:link, .inboxFoTop a:visited {
+    color: #0A81C4;
+    text-decoration: none;
+  }
+  .inboxFoTop a:hover {
+    color: #DD0000;
+    text-decoration: none;
+  }
+  .inboxFoNew a span{
+    margin-left: 22px;
+  }
+  .inboxFoNew a{
+    background: url("/images/btmMoreLinkForum.png") no-repeat scroll 0 0 transparent;
+    color: #797979;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 25px;
+    float: right;
+    margin-top: -28px;
+    height: 25px;
+    width: 106px;
+  }
+  .inboxFoNew a:hover{
+    background: url("/images/btmMoreLinkForumH.png") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+  }
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var stn_path = "<%= dft_stgs_user_u_forums_path %>"
+  $('#ufo_setngs').click(function(){
+    $("#setting_dlg").dialog({
+      open: function ()
+      {
+        $('#sContent').load(stn_path);
+      },
+      model: true,
+      height: 220,
+      width: 650,
+      draggable: false,
+      resizable: false,
+      closeOnEscape: true,
+      beforeClose: function(event, ui) {
+        $('#sContent').html('');
+      }
+
+    });
+  });
+});
+</script>
+>>>>>>> b970def2834b250fc19c81dd289b3651a96b14f9

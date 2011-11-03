@@ -8,15 +8,16 @@
     <div class="contDetLin">
       <div class="inboxLeft">
         <div class="overall" style="height: 885;">
-          <div class="inner1" style="border-right: 1px solid #CDCCCC; margin-right: 10px; margin-top: 10px;">
-            <div class="inner2" style="height: 53px; padding: 10px; padding-top: 0px;">
+	  <%= form_for(@ufo, :url => url_for(:controller => "u_forums", :action => "save") , :html => {:multipart => true, :id => "form_new" }) do |f| %>
+          <div style="border-right: 1px solid #CDCCCC; margin-right: 10px; margin-top: 10px;">
+            <div style="height: 53px; padding: 10px; padding-top: 0px;">
               <span id="first_banner" style="background: url('/images/t_corner.png') no-repeat; padding-bottom: 16px; padding-left: 2px;"></span>
               <span id="first_banner" style="background: url('/images/t_main.png') repeat; padding-bottom: 16px; padding-left: 631px;">
 
                 <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Title</label>
               </span>
               <div style="width: 624px; margin-top: 10px; margin-left: 5px;">
-                <input type="text" value="" name="title" id="title" style="width: 619px; height: 20px;"/>
+		<%= f.text_field :title, :class => '', :style => 'width: 619px; height: 20px;' %>
               </div>
             </div>
             <div class="inner2" style="padding: 10px; padding-top: 0px; min-height: 300px;">
@@ -26,9 +27,7 @@
                 <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Content</label>
               </span>
               <div style="width: 624px; margin-top: 10px; margin-left: 5px; height: 290px;">
-                <textarea rows="19" cols="84" id="topic_content">
-At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
-                </textarea> 
+		<%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => '' %>
               </div>
             </div>
             <div class="inner2" style="padding: 10px; padding-top: 0px; height: 53px;">
@@ -38,7 +37,7 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
                 <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
               </span>
               <div style="width: 624px; margin-top: 10px; margin-left: 5px; height: 28px;">
-                <input type="file" style=""onchange="" name="topic_attach" id="topic_attach" class="" size="76"/>
+		<%= f.file_field :ufo_attach, :onchange => "", :size => "76", :class => "", :style => "" %>
               </div>
             </div>
             <div class="inner2" style="padding: 10px; padding-top: 0px; min-height: 167px;">
@@ -110,14 +109,20 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
               <div style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; min-height: 108px; border: 1px solid #EBEBEB; border-radius: 10px;">
                 <input type="checkbox" value="" name="checkfriend" id="checkfriend"/>
                 <% 2.times do %>
-                <div style="border: 1px solid #EBEBEB; height: 52px; margin-top: 5px;">
-                  
-                  <% 9.times do %>
+                <div style="border: 1px solid #EBEBEB; height: 72px; margin-top: 5px;">
+		  <!-- the following code is just for testing purpose -->
+                  <% list_friends = current_user.user_friends %>
+                  <% list_friends.each do |usr| %>
 
-                  <div class="AsDContImg" style="padding-left: 9px;">
-                    <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
-                  </div>  
-                  <% end %>
+		      <div class="AsDcomImg" style="padding-left: 9px;">
+			<%= show_image_user_post(usr) %>
+
+			<input style="margin-left: 1px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
+    
+		      </div>
+
+
+                  <% end %><!-- end each list friend -->
 
                 </div>
                 <% end %>
@@ -129,15 +134,26 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
           </div>
           <div class="bottomline" style="border: 1px solid #CDCCCC; margin-left: 10px; margin-right: 10px;"></div>
           <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
-            <span class="btmComment"><a href="javascript:;">Submit</a></span>
+            <span class="btmComment"><a href="javascript:;" id="btn_submit">Submit</a></span>
             <span class="btmComment"><a href="javascript:;">Cancel</a></span>
           </div>
+	  <% end %><!-- end form_for -->
+
         </div>
       </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
+  function SubmitTopic(){
+    $("form#form_new").submit();
+  }
+  $(document).ready(function(){
+    $('#btn_submit').click(function(){
+      SubmitTopic();
+    });
+  });
+  //BEGIN: wysiwyg textarea editor
   (function($){
     $('#topic_content').wysiwyg({
       controls: {
@@ -173,4 +189,5 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
       }
     });
   })(jQuery);
+  //END: wysiwyg textarea editor
 </script>
