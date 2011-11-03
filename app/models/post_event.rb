@@ -27,7 +27,7 @@ class PostEvent < ActiveRecord::Base
   scope :nexts, lambda { |att| {:conditions => ["post_events.id > ?", att], :order => "id ASC"} }
 
   def self.paginated_post_conditions_with_option(params, school, event_type_id)
-    over = 30 || params[:over].to_i
+    over = params[:over].to_i
     year = params[:year]
     department = params[:department]
     from_school = params[:from_school]
@@ -39,7 +39,7 @@ class PostEvent < ActiveRecord::Base
       post.school_year == year if year
       event_type.id == event_type_id
       post.school_id == with_school if with_school
-      post.created_at > over.business_days.before(Time.now)
+      post.created_at > over.business_days.before(Time.now) if over > 0
     end
 
     posts = []

@@ -26,7 +26,7 @@ class PostTeamup < ActiveRecord::Base
   scope :nexts, lambda { |att| {:conditions => ["post_teamups.id > ?", att], :order => "id ASC"} }
 
   def self.paginated_post_conditions_with_option(params, school, category_id)
-    over = 30 || params[:over].to_i
+    over = params[:over].to_i
     year = params[:year]
     department = params[:department]
     from_school = params[:from_school]
@@ -38,7 +38,7 @@ class PostTeamup < ActiveRecord::Base
       post.school_year == year if year
       teamup_category.id == category_id
       post.school_id == with_school if with_school
-      post.created_at > over.business_days.before(Time.now)
+      post.created_at > over.business_days.before(Time.now) if over > 0
     end
 
     posts = []
