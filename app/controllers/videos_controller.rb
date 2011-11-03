@@ -204,7 +204,7 @@ class VideosController < ApplicationController
   
   def add_tag
     
-    video = Video.find(params[:video_id])
+    @video = Video.find(params[:video_id])
     
     share_to = params[:share_to]
     user_ids = share_to.split(",")
@@ -222,7 +222,7 @@ class VideosController < ApplicationController
           taginfo.tagable_user = u.id
           taginfo.tagable_type = "Video"
           taginfo.verify = false
-          if current_user == video.user
+          if current_user == @video.user
             taginfo.verify = true
             flash[:notice] = "Your friend(s) has been tagged."
           else
@@ -243,19 +243,21 @@ class VideosController < ApplicationController
           if taginfo.save
             #taginfo.verify equal to TRUE when no need to pass to verifying process
             #when there is no need to verify, there is no need to wait for authorization
-            QaSendMail.tag_vid_notify(u,video, current_user,taginfo.verify).deliver
-            if ( (current_user != video.user) && (video.user != u) )
+            QaSendMail.tag_vid_notify(u,@video, current_user,taginfo.verify).deliver
+            if ( (current_user != @video.user) && (@video.user != u) )
               #the above condition is "NOT TO SEND mail to video owner"
               #if any user tag OWNER to OWNER's video
-              QaSendMail.inform_vid_owner(u,video, current_user,taginfo.verify).deliver
+              QaSendMail.inform_vid_owner(u,@video, current_user,taginfo.verify).deliver
             end
           end
           #if save then send mail to each user here, and to video.user
         end
       end #end each
+			
     end
-    
-    redirect_to :controller=>'videos', :action => 'show', :id => params[:video_id]
+		#list of user has been tagged, and been verified
+      @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",true ] )
+      @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:video_id],"Video",false ] )
   end
   
   def tag_decision

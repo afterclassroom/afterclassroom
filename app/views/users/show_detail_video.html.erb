@@ -1,12 +1,3 @@
-<% content_for :menu_top_student_lounge do -%>
-  <%= render :partial => 'users/show_public/submenu' %>
-<% end -%>
-<div class="contMainC">
-  <%= render :partial => "users/show_public/proc" %>
-  <%= render :partial => "users/show_public/infor" %>
-  <%= render :partial => "users/show_public/friends" %>
-<%#= render :partial => "/users/show_public/links" %>
-</div>
 <div class="contMainL">
   <div class="col571 proCen">
     <div class="col571in">
@@ -30,28 +21,15 @@
           <%= render :partial => "videos/video_jsuser_html5" %>
         </div>
         <%= render :partial => "video_action" %>
-        <%#= show_post_comments_video(@video) %>
         <%= show_post_comments(@video) %> 
-        <div class="goTop">
-          <a href="javascript:;" onclick="goToByScroll('top_page')">Top</a>
-        </div>
       </div>
     </div>
   </div>
 </div>
 <div class="contMainR">
-  <%= render :partial => "on_this_video" %>
-  <!--Ads-->
-  <%= render :partial => "ads/show_vertical_ads" %>
-  <!--Ads-->
+  <%= render :partial => "videos/on_this_video" %>
 </div>
 <script type="text/javascript" charset="utf-8">
-    $(document).ready(function(){
-      $('.del_post_com').css({
-        'position':'absolute',
-        'margin-left':'500px'
-      });
-    });
   // Add VideoJS to all video tags on the page when the DOM is ready
   VideoJS.setupAllWhenReady();
 </script>
