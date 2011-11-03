@@ -889,9 +889,13 @@ ActiveRecord::Schema.define(:version => 20111103023335) do
   end
 
   create_table "ufos", :force => true do |t|
-    t.integer  "user_id",    :null => false
+    t.integer  "user_id",                 :null => false
     t.string   "title"
     t.text     "content"
+    t.string   "ufo_attach_file_name"
+    t.string   "ufo_attach_content_type"
+    t.integer  "ufo_attach_file_size"
+    t.datetime "ufo_attach_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
