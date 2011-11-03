@@ -31,7 +31,7 @@ class PostParty < ActiveRecord::Base
   scope :nexts, lambda { |att| {:conditions => ["post_parties.id > ?", att], :order => "id ASC"} }
 
   def self.paginated_post_conditions_with_option(params, school, rating_status)
-    over = 30 || params[:over].to_i
+    over = params[:over].to_i
     year = params[:year]
     department = params[:department]
     from_school = params[:from_school]
@@ -43,7 +43,7 @@ class PostParty < ActiveRecord::Base
       post.school_year == year if year
       post_party.rating_status == rating_status
       post.school_id == with_school if with_school
-      post.created_at > over.business_days.before(Time.now)
+      post.created_at > over.business_days.before(Time.now) if over > 0
     end
 
     posts = []
