@@ -182,13 +182,12 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-</div>
-=======
 
 <div id="setting_dlg" title="Default Settings for your forums" style="display:none;">
-  ---- ----
   <div id="sContent">
+    <div style="margin-left: 298px; margin-top: 66px;">
+      <img src="/images/ajax-loader-a.gif"/>
+    </div>
   </div>
 </div>
 
@@ -338,11 +337,11 @@ $(document).ready(function(){
       resizable: false,
       closeOnEscape: true,
       beforeClose: function(event, ui) {
-        $('#sContent').html('');
+        $('#sContent').html("<div style='margin-left: 298px; margin-top: 66px;'><img src='/images/ajax-loader-a.gif'/></div>");
       }
 
     });
   });
 });
 </script>
->>>>>>> b970def2834b250fc19c81dd289b3651a96b14f9
+

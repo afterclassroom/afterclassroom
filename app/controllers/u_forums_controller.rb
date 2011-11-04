@@ -31,4 +31,5 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+
 end
