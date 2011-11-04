@@ -168,8 +168,8 @@ class UsersController < ApplicationController
 			#finding a list of tagged users for this story
      	@tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",story_id,"Story",true ] )
      	@verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",story_id,"Story",false ] )
-			as_next = @user.stories.nexts(@story.id).last
-      as_prev = @user.stories.previous(@story.id).first
+			as_next = @user.stories.nexts(@story.id, @story.state).last
+      as_prev = @user.stories.previous(@story.id, @story.state).first
       @next = as_next if as_next
       @prev = as_prev if as_prev      
 			update_view_count(@story)

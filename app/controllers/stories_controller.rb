@@ -120,8 +120,8 @@ class StoriesController < ApplicationController
 
     if check_private_permission(current_user, @user, "my_stories") or check_view_permission(current_user, @user, "my_stories")
       update_view_count(@story)
-			as_next = @user.stories.nexts(@story.id).last
-      as_prev = @user.stories.previous(@story.id).first
+			as_next = @user.stories.nexts(@story.id, @story.state).last
+      as_prev = @user.stories.previous(@story.id, @story.state).first
       @next = as_next if as_next
       @prev = as_prev if as_prev
       respond_to do |format|

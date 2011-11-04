@@ -26,8 +26,8 @@ class Story < ActiveRecord::Base
   scope :with_users, lambda {|u| {:conditions => "user_id IN(#{u})"}}
   scope :most_view, :order => "count_view DESC"
   scope :with_state, :conditions => "state = 'share'"
-	scope :previous, lambda { |att| {:conditions => ["stories.id < ?", att], :order => "id DESC"} }
-  scope :nexts, lambda { |att| {:conditions => ["stories.id > ?", att], :order => "id DESC"} }
+	scope :previous, lambda { |att, state| {:conditions => ["stories.id < ? AND state = ?", att, state], :order => "id DESC"} }
+  scope :nexts, lambda { |att, state| {:conditions => ["stories.id > ? AND state = ?", att, state], :order => "id DESC"} }
 
   # Squeezes spaces inside the string: "James   Bond  " => "James Bond"
   auto_strip_attributes :title, :squish => true
