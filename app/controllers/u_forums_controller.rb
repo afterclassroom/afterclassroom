@@ -33,6 +33,10 @@ class UForumsController < ApplicationController
 
 
   def save_setting
+    #user = current_user
+    #type_setting = refer to constant
+    #share_to :: refer to constant (this is the value of option selected on page dialog
+
     render :layout => false 
   end
 

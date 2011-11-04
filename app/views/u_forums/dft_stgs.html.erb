@@ -62,13 +62,21 @@ function SaveSetting(){
   });
 
 }
+
 $(document).ready(function(){
+
+  var shareto=-1;
 
   $('#bt_save').click(function(){
     SaveSetting();
   });
   $('#bt_close').click(function(){
     $('span.ui-icon-closethick').click();
+  });
+
+  $('select#ufo').change(function(){
+    shareto = $(this).find('option:selected').val();
+    alert('v='+shareto);
   });
 
 
