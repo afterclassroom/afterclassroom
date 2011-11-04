@@ -1,6 +1,6 @@
-<div class="contMainL">
-  <div class="col571 proCen">
-    <div class="col571in">
+<div class="contMainL" style="width: 580px">
+  <div class="col571 proCen" style="background: none">
+    <div class="col571in" style="background: none">
       <div class="proCenCont">
         <div class="stoDet phoD">
           <div class="stoDetR">
@@ -26,8 +26,14 @@
     </div>
   </div>
 </div>
-<div class="contMainR">
-  <%= render :partial => "videos/on_this_video" %>
+<div class="contMainR" style="float: left;margin-top: 30px">
+  <% if @tagged_users.size > 0 %>
+    <div class="col300v slStory">
+      <div class="col300vin" id="on_this_video">
+        <%= render :partial => "videos/widget_on_this_video" %> 
+      </div>
+    </div>
+  <% end %>
 </div>
 <script type="text/javascript" charset="utf-8">
   // Add VideoJS to all video tags on the page when the DOM is ready
