@@ -62,7 +62,11 @@ class UForumsController < ApplicationController
     puts "=="
     puts "== v = "
     puts "==val = #{str}"
-
+    #ufo_defaults
+    default_setting = UfoDefault.new
+    default_setting.user = current_user
+    default_setting.type_setting = params[:shareto]
+    default_setting.save
 
 
     render :layout => false 
