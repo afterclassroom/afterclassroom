@@ -64,6 +64,7 @@ class UForumsController < ApplicationController
     puts "==val = #{str}"
 
 
+
     render :layout => false 
   end
 
