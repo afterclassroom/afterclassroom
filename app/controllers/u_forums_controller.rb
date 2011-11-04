@@ -33,9 +33,33 @@ class UForumsController < ApplicationController
 
 
   def save_setting
-    #user = current_user
-    #type_setting = refer to constant
-    #share_to :: refer to constant (this is the value of option selected on page dialog
+    default_setting = UfoDefault.find_or_create_by_user_id(current_user.id)
+    default_setting.share_to_index = params[:shareto]
+    default_setting.post_lounge = params[:postlounge]
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == "
+    puts "v == 1"
+    puts "v == #{params[:shareto]}"
+    default_setting.save
 
     render :layout => false 
   end
