@@ -61,11 +61,15 @@ function SaveSetting(ishareto, itolounge){
 }
 
 $(document).ready(function(){
+  $('#waiting_id').hide();
+
 
   var shareto=0;//Default is set to 0 which mean PRIVATE
   var tolounge=0;//0 is NO
 
   $('#bt_save').click(function(){
+    $('#waiting_id').show();
+    $('#mainCnt').hide();
     SaveSetting(shareto,tolounge);
   });
   $('#bt_close').click(function(){
@@ -78,8 +82,6 @@ $(document).ready(function(){
   $('select#lounge_setting').change(function(){
     tolounge = $(this).find('option:selected').val();
   });
-
-
 });
 
 </script>
