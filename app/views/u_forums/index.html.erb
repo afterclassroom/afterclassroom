@@ -187,9 +187,11 @@
 
 <div id="setting_dlg" title="Default Settings for your forums" style="display:none;">
   <div id="sContent">
-    <div style="margin-left: 298px; margin-top: 66px;">
+    <div id="waiting_id" style="margin-left: 298px; margin-top: 66px;">
       <img src="/images/ajax-loader-a.gif"/>
     </div>
+      <div id="mainCnt"></div>
+    
   </div>
 </div>
 
@@ -201,7 +203,7 @@
       $("#setting_dlg").dialog({
         open: function ()
         {
-          $('#sContent').load(stn_path);
+          $('#mainCnt').load(stn_path);
         },
         model: true,
         height: 220,
@@ -210,7 +212,8 @@
         resizable: false,
         closeOnEscape: true,
         beforeClose: function(event, ui) {
-          $('#sContent').html("<div style='margin-left: 298px; margin-top: 66px;'><img src='/images/ajax-loader-a.gif'/></div>");
+          $('#mainCnt').html("");
+          $('#waiting_id').show();
         }
 
       });
