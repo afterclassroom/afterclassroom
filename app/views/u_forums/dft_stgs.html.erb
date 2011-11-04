@@ -43,7 +43,7 @@
 
 <div>
   <div style="display: inline; float: right;">
-    <button>Close</button>
+    <button id="bt_close">Close</button>
   </div>
   <div style="display: inline; float: right;">
     <button id="bt_save">Save</button>
@@ -66,6 +66,9 @@ $(document).ready(function(){
 
   $('#bt_save').click(function(){
     SaveSetting();
+  });
+  $('#bt_close').click(function(){
+    $('span.ui-icon-closethick').click();
   });
 
 });
