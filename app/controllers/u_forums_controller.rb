@@ -8,7 +8,7 @@ class UForumsController < ApplicationController
   
 
   def show
-    
+    @ufo = Ufo.find(params[:id])
   end
 
   def new
