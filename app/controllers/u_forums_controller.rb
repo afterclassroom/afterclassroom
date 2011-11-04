@@ -32,4 +32,8 @@ class UForumsController < ApplicationController
   end
 
 
+  def save_setting
+    render :layout => false 
+  end
+
 end
