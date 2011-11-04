@@ -79,11 +79,12 @@
           <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
 
           <div style="border: 0px solid black; padding: 10px;">
-            <div style="background: url('/images/ufo_attach.jpg') no-repeat; width: 24px; height: 24px;"></div>
+            <div style="background: url('/images/ufo_attach.jpg') no-repeat; width: 24px; height: 24px;">
+              <span class="btmDown"><a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow"><span>Download</span></a></span>
+
+            </div>
             <div style="overflow: auto; height: 300px;">
-              <% 100.times do %>
-                content be here<br/>              
-              <% end %>
+              <%= @ufo.content  %>
 
             </div>
           </div>
