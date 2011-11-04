@@ -16,9 +16,10 @@
                       <div class="assInfL">
                         <div>
                           <span>Posted by:</span>
-                          <a href="/users/137">Danny Elle</a>
+                          <%= show_user_post(ufo.user) %>
                           <span>
-                            3 days ago.
+                            <%= time_ago_in_words(ufo.created_at, true) %> ago.
+
                           </span>
                         </div>
                       </div>
