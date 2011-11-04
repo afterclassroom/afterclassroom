@@ -32,7 +32,7 @@
 <script>
   //  install Flowplayer inside a#player
   $f("player", 
-  {src: "/swfs/flowplayer.commercial-3.2.7-2.swf", wmode:"opaque"}, 
+  {src: "/swfs/flowplayer.commercial-3.2.7-6.swf", wmode:"opaque"}, 
   {
     key: '#$de9093c019ae644a1da',
     clip: {
@@ -67,7 +67,7 @@
     links[i].onclick = function() {
 		
       // play the clip specified in href- attribute with Flowplayer
-			load_on_this_video(this.getAttribute("rel", 2), this.getAttribute("href", 2));
+      load_on_this_video(this.getAttribute("rel", 2), this.getAttribute("href", 2));
 		
       // by returning false normal link behaviour is skipped
       return false;
@@ -79,20 +79,20 @@
     
   }); 
 
-	function load_on_this_video(video_id, link){
-		$.ajax({
+  function load_on_this_video(video_id, link){
+    $.ajax({
       url: '/videos/get_on_this_video',
       dataType: 'script',
-			data: {
-				video_id: video_id
-			},
-			beforeSend: function() {
-				$('#on_this_videos').val("");
-				$('#action_video').val("");
-			},
+      data: {
+        video_id: video_id
+      },
+      beforeSend: function() {
+        $('#on_this_videos').val("");
+        $('#action_video').val("");
+      },
       success: function(r){
         $f().play(link);
       }
     });
-	}
+  }
 </script>
