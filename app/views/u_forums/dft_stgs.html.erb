@@ -5,7 +5,8 @@
                 <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
                 <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
                 <div style="margin-top:14px;">
-                  <%= show_options_setting(current_user, "ufo") %>
+                  <%#= show_options_setting(current_user, "ufo") %>
+		  <%= show_share_setting(current_user) %>
                 </div>
               </div>
               <div style="width: 289px; float: right; margin-top: -54px; height: 52px; display: none;">
@@ -74,7 +75,7 @@ $(document).ready(function(){
     $('span.ui-icon-closethick').click();
   });
 
-  $('select#ufo').change(function(){
+  $('select#ufo_setting').change(function(){
     shareto = $(this).find('option:selected').val();
   });
 

@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
 	has_many :user_wall_posts, :through => :user_walls
 	has_many :user_id_chats, :dependent => :destroy
   has_many :ufos, :dependent => :destroy
+  has_one :ufo_default, :dependent => :destroy
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]

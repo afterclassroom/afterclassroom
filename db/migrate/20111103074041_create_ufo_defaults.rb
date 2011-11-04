@@ -3,7 +3,7 @@ class CreateUfoDefaults < ActiveRecord::Migration
     create_table :ufo_defaults do |t|
       t.belongs_to :user, :null => false
       t.string :share_to_index
-      #refer to config/initializers/constans.rb, at PRIVATE_SETTING for text-value of share_to_index
+      #refer to config/initializers/constans.rb, at OPTIONS_SETTING for text-value of share_to_index
 
       t.boolean :post_lounge
 
