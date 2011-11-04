@@ -63,10 +63,24 @@ class UForumsController < ApplicationController
     puts "== v = "
     puts "==val = #{str}"
     #ufo_defaults
-    default_setting = UfoDefault.new
+    default_setting = UfoDefault.find_or_create_by_user_id_and_share_to_index(current_user.id, params[:shareto])
+
+
     default_setting.user = current_user
-    default_setting.type_setting = params[:shareto]
+    default_setting.share_to_index = params[:shareto]
     default_setting.save
+
+
+
+
+    # type = params[:type]
+    # val = params[:value]
+    
+    # pr = PrivateSetting.find_or_create_by_user_id_and_type_setting(current_user.id, type)
+    # pr.share_to = val.to_i
+    # pr.save
+    # hash = Hash[OPTIONS_SETTING.map {|x| [x[0], x[1]]}]
+    # render :text => hash.index(val.to_i)
 
 
     render :layout => false 

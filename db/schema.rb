@@ -889,8 +889,8 @@ ActiveRecord::Schema.define(:version => 20111103074041) do
   end
 
   create_table "ufo_defaults", :force => true do |t|
-    t.integer  "user_id",      :null => false
-    t.string   "type_setting"
+    t.integer  "user_id",        :null => false
+    t.string   "share_to_index"
     t.boolean  "post_lounge"
     t.datetime "created_at"
     t.datetime "updated_at"
