@@ -10,6 +10,10 @@ class UForumsController < ApplicationController
     
   end
 
+  def show
+    
+  end
+
   def new
     @ufo = Ufo.new()
   end

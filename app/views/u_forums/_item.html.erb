@@ -3,11 +3,13 @@
             <div class="inboxCeTop"></div>
             <div class="assForum">
               <div class="assPic">
-                <%#*<a href="/users/137"><div><img alt="20060321104423383121_thumb" class="vtip avatar_137" src="https://s3.amazonaws.com/afterclassroom_avatar/avatars/137/20060321104423383121_thumb.jpg?1314766092" title="Danny Elle"></div></a>%>
                 <%= show_image_user_post(ufo.user) %>
               </div>
 
-              <div style="float: left; width: 500px;" class="assPicFo"><a><%= ufo.title %></a></div>
+              <div style="float: left; width: 500px;" class="assPicFo">
+                <%= link_to ufo.title, user_u_forum_path(ufo.user, ufo) %>
+
+              </div>
               <div class="inboxFoSe"><a href="#" onclick=""><span class="span1">Setting</span></a></div>
               <div class="assContFoT">
                 <div class="assContFoD">
