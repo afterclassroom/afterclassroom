@@ -36,6 +36,33 @@ class UForumsController < ApplicationController
     #user = current_user
     #type_setting = refer to constant
     #share_to :: refer to constant (this is the value of option selected on page dialog
+    str = params[:shareto]
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "== v = "
+    puts "==val = #{str}"
+
 
     render :layout => false 
   end

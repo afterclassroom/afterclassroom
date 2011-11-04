@@ -51,13 +51,13 @@
 </div>
 
 <script type="text/javascript">
-function SaveSetting(){
+function SaveSetting(ishareto){
   $.ajax({
     url: "<%= save_setting_user_u_forums_path %>",
     type: 'POST',
     dataType: 'script',
     data: ({
-      post_id: '123'
+      shareto: ishareto
     })
   });
 
@@ -68,7 +68,7 @@ $(document).ready(function(){
   var shareto=-1;
 
   $('#bt_save').click(function(){
-    SaveSetting();
+    SaveSetting(shareto);
   });
   $('#bt_close').click(function(){
     $('span.ui-icon-closethick').click();
@@ -76,7 +76,6 @@ $(document).ready(function(){
 
   $('select#ufo').change(function(){
     shareto = $(this).find('option:selected').val();
-    alert('v='+shareto);
   });
 
 
