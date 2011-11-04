@@ -8,7 +8,7 @@ class MusicAlbumsController < ApplicationController
   before_filter :cas_user
   #before_filter :login_required
   before_filter :require_current_user,
-                :only => [:edit, :update, :destroy]
+                :only => [:edit, :show, :update, :destroy]
   # GET /music_albums
   # GET /music_albums.xml
   def index

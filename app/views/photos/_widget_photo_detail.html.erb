@@ -12,16 +12,12 @@
             <p>
               <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
             </p>
-						<%
-							if controller.action_name == 'show_photo_detail'
-								path = show_photo_album_user_url(current_user, :photo_album_id => @photo_album)
-
-							else
-								path = show_album_user_photos_url(current_user, :photo_album_id => @photo_album)
-							end
-						%>
             <div id="tag_list_place" style="text-align: left; margin-left: 33px; width: 495px;"></div>
-            <%= link_to "View photo album: #{@photo_album.name}", path %>
+						<%
+							if controller.action_name == 'show'
+						%>
+            <%= link_to "View photo album: #{@photo_album.name}", show_album_with_list_user_photos_url(current_user, :photo_album_id => @photo_album) %>
+						<% end %>
           </div>
         </div>
         <% if  @photo.user == current_user && @usrs_for_verify.size > 0 %>

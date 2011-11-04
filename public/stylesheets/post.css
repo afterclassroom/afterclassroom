@@ -362,19 +362,44 @@
     margin-top: 15px;
 }
 
-.asslinkdownSt {
+.assPic .asslinkdownSt {
     background: none repeat scroll 0 0 white;
     border: 1px solid;
     color: #969696;
     float: right;
     font-size: 11px;
-    margin-left: -131px;
-    margin-top: 50px;
+    margin-left: -122px;
+		margin-top: -54px;
     padding: 10px;
     position: absolute;
     width: 100px;
     z-index: 1000;
-    display: none;
+		display: none;
+}
+
+.assPic .asslinkdownSt div {
+    background: none repeat scroll 0 0 white;
+}
+
+.assPic .asslinkdownSt .making{
+    background:url('/images/icon-view.gif') no-repeat left 1px;
+    padding:0px 0px 4px 15px;
+    text-align:left;
+}
+.assPic .asslinkdownSt .hate{
+    background:url('/images/icon-hate.gif') no-repeat left 1px;
+    padding:0px 0px 4px 15px;
+    text-align:left;
+}
+.assPic .asslinkdownSt .like{
+    background:url('/images/icon-like.gif') no-repeat left 1px;
+    padding:0px 0px 4px 15px;
+    text-align:left;
+}
+.assPic .asslinkdownSt .love{
+    background:url('/images/icon-love.gif') no-repeat left 1px;
+    padding:0px 0px 4px 15px;
+    text-align:left;
 }
 
 .assInfB .time {
