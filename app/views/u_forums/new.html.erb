@@ -187,4 +187,10 @@
     });
   })(jQuery);
   //END: wysiwyg textarea editor
+  //BEGIN: process custom setting for each topic when add new
+    $('select#ufo_setting').change(function(){
+      alert('v = '+$(this).find('option:selected').val());
+    });
+  //END: process custom setting for each topic when add new
+
 </script>
