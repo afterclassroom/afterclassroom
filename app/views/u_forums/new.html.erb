@@ -145,10 +145,6 @@
   </div>
 </div>
 <script type="text/javascript">
-  var shareto=<%= current_user.ufo_default.share_to_index %>;
-  var tolounge=<%= current_user.ufo_default.post_lounge %>;
-
-
   function SubmitTopic(){
     $("form#form_new").submit();
   }
@@ -157,18 +153,6 @@
       SubmitTopic();
     });
   });
-  function SaveCustom(ishareto, itolounge){
-    $.ajax({
-      url: "<%= save_custom_user_u_forums_path %>",
-      type: 'POST',
-      dataType: 'script',
-      data: ({
-        shareto: ishareto,
-        postlounge: itolounge
-      })
-    });
-  }  
-
   //BEGIN: wysiwyg textarea editor
   (function($){
     $('#topic_content').wysiwyg({
@@ -206,22 +190,4 @@
     });
   })(jQuery);
   //END: wysiwyg textarea editor
-  //BEGIN: process custom setting for each topic when add new
-    $('select#ufo_setting').change(function(){
-      $('#custom_area').hide();
-      $('#waiting_id').show();
-      shareto=$(this).find('option:selected').val();
-      SaveCustom(shareto,tolounge);
-
-
-    });
-    $('select#lounge_setting').change(function(){
-      $('#custom_area').hide();
-      $('#waiting_id').show();
-      tolounge = $(this).find('option:selected').val();
-      SaveCustom(shareto,tolounge);
-    });
-
-  //END: process custom setting for each topic when add new
-
 </script>
