@@ -51,21 +51,18 @@
               <div style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; height: 108px; border: 1px solid #EBEBEB; border-radius: 10px;">
                 <div style='height: 60px;'>
                   <div style="border: 0px solid black; width: 289px; height: 52px;">
+
+
+
+
                     <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
                     <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
                     <div style="margin-top:14px;">
-                      <select>
-                        <option value="1">Everyone</option>
-                        <option value="2">Private</option>
-                        <option value="3">Friend from school</option>
-                        <option value="4">Friends of Friends</option>
-                        <option value="5">My Family</option>
-                        <option value="6">My Friends</option>
-                        <option value="7">Friends from work</option>
-                      </select>                       
+                      <%= show_share_setting(current_user)%>
                     </div>
                   </div>
-                  <div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+
+                  <!-- div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
                     <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
                     <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
                     <div style="margin-top:12px;">
@@ -74,25 +71,25 @@
                         <option value="2">No</option>
                       </select>                       
                     </div>
-                  </div>
+                  </div -->
+
+
                 </div>
+
                 <div style='height: 81px;'>
                   <div style="border: 0px solid black; width: 289px; height: 52px;">
                     <label style="text-align: left; color: #969696;">Post to your lounge?</label>
                     <div>
-                      <select style="width: 121px;">
-                        <option value="1">Yes</option>
-                        <option value="2">No</option>
-                      </select>                       
+                      <%= show_tolounge_setting(current_user) %>
 
                     </div>
                   </div>
-                  <div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                  <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
                     <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
                     <div>
                       <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
                     </div>
-                  </div>
+                  </div -->
                 </div>
 
               </div>
