@@ -145,6 +145,10 @@
   </div>
 </div>
 <script type="text/javascript">
+  var shareto=<%= current_user.ufo_default.share_to_index %>;
+  var tolounge=<%= current_user.ufo_default.post_lounge %>;
+
+
   function SubmitTopic(){
     $("form#form_new").submit();
   }
@@ -206,12 +210,16 @@
     $('select#ufo_setting').change(function(){
       $('#custom_area').hide();
       $('#waiting_id').show();
-      console.log('v = '+$(this).find('option:selected').val());
+      shareto=$(this).find('option:selected').val();
+      SaveCustom(shareto,tolounge);
+
+
     });
     $('select#lounge_setting').change(function(){
       $('#custom_area').hide();
       $('#waiting_id').show();
-      console.log('vab = '+$(this).find('option:selected').val());
+      tolounge = $(this).find('option:selected').val();
+      SaveCustom(shareto,tolounge);
     });
 
   //END: process custom setting for each topic when add new

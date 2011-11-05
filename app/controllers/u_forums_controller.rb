@@ -44,7 +44,30 @@ class UForumsController < ApplicationController
   end
 
   def save_custom
-    puts "print out the custom setting value"
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "===="
+    puts "====a"
+    puts "==== shareto == #{params[:shareto]}"
+    puts "==== lounge == #{params[:postlounge]}"
 
     render :layout => false 
   end
