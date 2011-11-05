@@ -13,6 +13,7 @@ class UForumsController < ApplicationController
 
   def new
     @ufo = Ufo.new()
+    @txt = "display custom setting in cross check with default setting here"
   end
 
   def save
@@ -20,12 +21,19 @@ class UForumsController < ApplicationController
     @ufo.user = current_user
     if @ufo.save
       flash[:notice] = "Your topic was successfully submitted."
+
+      custom_setting = UfoCustom.find_or_create_by_ufo_id(@ufo.id)
+      custom_setting.share_to_index = params[:ufo_setting]
+      custom_setting.post_lounge = params[:lounge_setting]
+      custom_setting.save
+
       @ufo = Ufo.new()
       render :action => "new"
     else
       flash[:notice] = "Failed to create new topic."
       render :action => "new"
     end
+
   end
 
   def dft_stgs
@@ -38,6 +46,17 @@ class UForumsController < ApplicationController
     default_setting.share_to_index = params[:shareto]
     default_setting.post_lounge = params[:postlounge]
     default_setting.save
+
+    render :layout => false 
+  end
+
+  def save_custom
+    #THIS ACTION WILL BE APPLIED TO VIEW-DETAIL PAGE
+    puts "==== shareto == #{params[:shareto]}"
+    puts "==== lounge == #{params[:postlounge]}"
+
+    default_setting = UfoCustom.find_or_create_by_ufo_id(current_user.id)
+
 
     render :layout => false 
   end
