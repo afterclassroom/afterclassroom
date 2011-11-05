@@ -47,8 +47,11 @@
                 <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Settings</label>
               </span>
 
+              <div id="waiting_id" style="margin-left: 298px; margin-top: 66px; display: none;">
+                <img src="/images/ajax-loader-a.gif"/>
+              </div>
 
-              <div style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; height: 108px; border: 1px solid #EBEBEB; border-radius: 10px;">
+              <div id="custom_area" style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; height: 108px; border: 1px solid #EBEBEB; border-radius: 10px;">
                 <div style='height: 60px;'>
                   <div style="border: 0px solid black; width: 289px; height: 52px;">
 
@@ -150,6 +153,18 @@
       SubmitTopic();
     });
   });
+  function SaveCustom(ishareto, itolounge){
+    $.ajax({
+      url: "<%= save_custom_user_u_forums_path %>",
+      type: 'POST',
+      dataType: 'script',
+      data: ({
+        shareto: ishareto,
+        postlounge: itolounge
+      })
+    });
+  }  
+
   //BEGIN: wysiwyg textarea editor
   (function($){
     $('#topic_content').wysiwyg({
@@ -189,8 +204,16 @@
   //END: wysiwyg textarea editor
   //BEGIN: process custom setting for each topic when add new
     $('select#ufo_setting').change(function(){
-      alert('v = '+$(this).find('option:selected').val());
+      $('#custom_area').hide();
+      $('#waiting_id').show();
+      console.log('v = '+$(this).find('option:selected').val());
     });
+    $('select#lounge_setting').change(function(){
+      $('#custom_area').hide();
+      $('#waiting_id').show();
+      console.log('vab = '+$(this).find('option:selected').val());
+    });
+
   //END: process custom setting for each topic when add new
 
 </script>

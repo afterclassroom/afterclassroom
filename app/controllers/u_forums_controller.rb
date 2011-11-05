@@ -43,6 +43,12 @@ class UForumsController < ApplicationController
     render :layout => false 
   end
 
+  def save_custom
+    puts "print out the custom setting value"
+
+    render :layout => false 
+  end
+
   def index
     @ufos = current_user.ufos
   end
