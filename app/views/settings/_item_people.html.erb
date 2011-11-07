@@ -1,7 +1,7 @@
 <div class="flistItem" id="user_block_<%= block.id %>">
   <div class="assPic"><%= show_image_user_post(block.user_block) %></div>
   <div class="flistInf">
-    <div class="flistN"><%= link_to block.user_block.name, user_path(block.user_block) %></div>
+    <div class="flistN"><%= show_user_post(block.user_block) %></div>
     <div class="flistS"><span>at</span><%= block.user_block.school.name %></div>
   </div>
   <span style="padding-left:20px" class="support85"><%= link_to "Unblock", unblock_user_settings_url(current_user, :user_id_block => block.id), :remote => true %></span>

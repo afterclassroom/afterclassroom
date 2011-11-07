@@ -11,6 +11,7 @@
   <div class="col571 proCen">
     <div class="col571in">
       <div class="proCenCont">
+				<div class="proInfTit"><%= @photo_album.name %></div>
         <% @photo_album.photos.each do |pt| %>
           <%= render :partial => "users/show_public/item_photo_with_list", :locals => {:photo => pt} %>
         <% end %>

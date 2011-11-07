@@ -8,7 +8,7 @@ class PhotoAlbumsController < ApplicationController
   before_filter :cas_user
   #before_filter :login_required
   before_filter :require_current_user,
-    :only => [:edit, :update, :destroy]
+    :only => [:edit, :show, :update, :destroy]
   # GET /photo_albums
   # GET /photo_albums.xml
   def index
