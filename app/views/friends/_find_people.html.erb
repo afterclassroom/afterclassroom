@@ -44,7 +44,7 @@
 
 <script>
   var posf = $('.searchFri').offset();
-  var path_people = "<%= find_people_suggestion_user_friends_path(current_user) %>";
+  var path_people = "/friends/find_people_suggestion";
   $().ready(function(){
     $('#search_people_txt').autocomplete({
       source: function(request, response) {

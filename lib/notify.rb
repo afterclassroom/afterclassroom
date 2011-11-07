@@ -19,6 +19,7 @@ module Notify
 		Notifi.send_notifi(user.email, subject, content).deliver
 		# Send javascript notification
 		begin
+			Juggernaut.options = {:host => "107.20.238.0", :port => 6379}
 			Juggernaut.publish("notification_#{user.id}", {:subject => subject, :content => content})
 		rescue
 			# Nothing

@@ -13,17 +13,17 @@
   <% end %>
   <div class="assPic">
     <%= show_image_user_post(wall.user_post) %>
-  </div>
-  <div class="AfterInfo">
-    <% if wall.user_post != current_user %>
+		<% if wall.user_post != current_user %>
       <%= render :partial => "user_walls/action", :locals => {:wall => wall}%>
     <% end %>
+  </div>
+  <div class="AfterInfo">
     <div class="AfterCl">
       <%= show_user_post(wall.user_post) %><%= raw(" posted on #{show_user_post(wall.user)}'s Lounge") if wall.user != wall.user_post %> <%= raw(wall.content) %>
     </div>
     <% if wall.wall_parent %>
       <div class="postItem">
-        <div class="studentImg"><%= show_image_user_post(wall.user_post) %></div><span class="shareLou"><%= show_user_post(wall.user_post) %><span style="color: #6F6F63;"> originally shared this post:</span><br/><span style="color: #6F6F63;"><%= raw(wall.wall_parent.content) %></span>
+        <div class="studentImg"><%= show_image_user_post(wall.wall_parent.user_post) %></div><span class="shareLou"><%= show_user_post(wall.wall_parent.user_post) %><span style="color: #6F6F63;"> originally shared this post:</span><br/><span style="color: #6F6F63;"><%= raw(wall.wall_parent.content) %></span>
       </div>
       <!--Attach--><%= show_attach(wall.wall_parent) if wall.wall_parent.has_attach %><!--Attach-->
     <% end %>

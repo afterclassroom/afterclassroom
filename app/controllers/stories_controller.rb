@@ -118,7 +118,7 @@ class StoriesController < ApplicationController
     @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",params[:id],"Story",false ] )
 
 
-    if check_private_permission(current_user, @user, "my_stories") or check_view_permission(current_user, @user, "my_stories")
+    if check_private_permission(current_user, @user, "my_stories") or check_view_permission(current_user, @story)
       update_view_count(@story)
 			as_next = @user.stories.nexts(@story.id, @story.state).last
       as_prev = @user.stories.previous(@story.id, @story.state).first
@@ -277,12 +277,12 @@ class StoriesController < ApplicationController
         u = User.find(i)
         if u
           #adding selected user into TagInfo
-          taginfo = TagInfo.new()
-          taginfo.tag_creator_id = current_user.id
-          taginfo.tagable_id = params[:id]
-          taginfo.tagable_user = u.id
-          taginfo.tagable_type = "Story"
-          taginfo.verify = false
+          #adding selected user into TagInfo
+          #adding selected user into TagInfo
+          taginfo = TagInfo.find_or_create_by_tagable_id_and_tagable_user_and_tagable_type(params[:id], u.id, "Story")
+					
+          taginfo.tag_creator_id = current_user.id if taginfo.tag_creator_id.nil?
+          taginfo.verify = false if taginfo.verify.nil?
           if current_user == @story.user
             taginfo.verify = true
             flash[:notice] = "Your friend(s) has been invited."

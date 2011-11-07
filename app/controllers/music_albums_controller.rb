@@ -127,12 +127,11 @@ class MusicAlbumsController < ApplicationController
         u = User.find(i)
         if u
           #adding selected user into TagInfo
-          taginfo = TagInfo.new()
-          taginfo.tag_creator_id = current_user.id
-          taginfo.tagable_id = params[:music_album_id]
-          taginfo.tagable_user = u.id
-          taginfo.tagable_type = "MusicAlbum"
-          taginfo.verify = false
+          #adding selected user into TagInfo
+          taginfo = TagInfo.find_or_create_by_tagable_id_and_tagable_user_and_tagable_type(params[:music_album_id], u.id, "MusicAlbum")
+					
+          taginfo.tag_creator_id = current_user.id if taginfo.tag_creator_id.nil?
+          taginfo.verify = false if taginfo.verify.nil?
           if current_user == @music_album.user
             taginfo.verify = true
             flash[:notice] = "Your friend(s) will listen this album shortly."
