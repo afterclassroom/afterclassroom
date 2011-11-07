@@ -68,7 +68,6 @@ class PostTeamupsController < ApplicationController
     end
     
     @post_tm.rating_status = status
-    
     @post_tm.save
 
     # support for rate like/dislike cmt
