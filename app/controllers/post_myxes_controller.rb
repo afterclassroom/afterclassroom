@@ -46,6 +46,10 @@ class PostMyxesController < ApplicationController
     @post_p.rating_status = status
     
     @post_p.save
+
+    #support for rate like/dislike cmt
+    @str_class = "PostMyx"
+
     # Objects cache
     class_name = @post_p.class.name
     school_id = @post.school_id
@@ -57,30 +61,30 @@ class PostMyxesController < ApplicationController
     rating = params[:rating]
     @post = Post.find(params[:post_id])
     @post_p = @post.post_myx
-    # if !PostMyx.find_rated_by(current_user).include?(@post_p)
-    #   @post_p.rate rating.to_i, current_user
-    #   # Update rating status
-    #   score_good = @post_p.score_good
-    #   score_bored = @post_p.score_bored
-    #   score_bad = @post_p.score_bad
+    if !PostMyx.find_rated_by(current_user).include?(@post_p)
+      @post_p.rate rating.to_i, current_user
+      # Update rating status
+      score_good = @post_p.score_good
+      score_bored = @post_p.score_bored
+      score_bad = @post_p.score_bad
       
-    #   if score_good == score_bored && score_bored == score_bad
-    #     status = "Require Rating"
-    #   else
-    #     sort_rating_status = {"Good" => score_good, "Bored" => score_bored, "Bad" => score_bad}
-    #     arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
-    #     status = arr_rating_status.last.first
-    #   end
+      if score_good == score_bored && score_bored == score_bad
+        status = "Require Rating"
+      else
+        sort_rating_status = {"Good" => score_good, "Bored" => score_bored, "Bad" => score_bad}
+        arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+        status = arr_rating_status.last.first
+      end
       
-    #   @post_p.rating_status = status
+      @post_p.rating_status = status
       
-    #   @post_p.save
-    #   # Objects cache
-    #   class_name = @post_p.class.name
-    #   school_id = @post.school_id
-    #   Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, nil, status, params))
-    #   Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, school_id, status, params))
-    # end
+      @post_p.save
+      # Objects cache
+      class_name = @post_p.class.name
+      school_id = @post.school_id
+      Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, nil, status, params))
+      Delayed::Job.enqueue(CacheRattingJob.new(@post_p.id, class_name, school_id, status, params))
+    end
     render :layout => false
   end
   
