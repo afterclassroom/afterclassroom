@@ -70,6 +70,10 @@ class PostTeamupsController < ApplicationController
     @post_tm.rating_status = status
     
     @post_tm.save
+
+    # support for rate like/dislike cmt
+    @str_class = "PostTeamup"
+
   end
   
   # GET /post_teamups/1
