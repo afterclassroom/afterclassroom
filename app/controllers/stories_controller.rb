@@ -258,6 +258,9 @@ class StoriesController < ApplicationController
     @post = Story.find(params[:post_id])
     @post.rate rating.to_i, current_user
     @post.save
+
+    #support for rate like/dislike cmt
+    @str_class = "Story"
     
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
