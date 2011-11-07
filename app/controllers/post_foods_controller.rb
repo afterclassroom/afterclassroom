@@ -46,6 +46,10 @@ class PostFoodsController < ApplicationController
     @post_f.rating_status = status
     
     @post_f.save
+
+    #support for like/dislike cmt
+    @str_class = "PostFood"
+
     # Objects cache
     class_name = @post_f.class.name
     school_id = @post.school_id
