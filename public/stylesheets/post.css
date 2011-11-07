@@ -338,12 +338,12 @@
     line-height: 15px;
 }
 
-.assInfB a:link, .assInfB a:visited {
+.assInfB a:link, .assInfB a:visited, #rate_pos a:link, #rate a:visited {
     color: #969696;
     text-decoration: none;
 }
 
-.assInfB a:hover {
+.assInfB a:hover, #rate_pos a:hover {
     color: #d00;
 }
 

@@ -34,7 +34,7 @@
         </div>
         <div id="action_photo">
           <%= render :partial => "photo_album_action" %>
-          <div id="rate_pos" style="padding: 4px;width: 81px; border: 1px solid #E3E3E3; float: right; margin-top: -40px; margin-right: 176px; height: 15px;">
+          <div id="rate_pos" style="padding: 4px;width: 81px;float: right; margin-top: -40px; margin-right: 176px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
             <%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo_album, :controller_name => "photo_albums"}%>
           </div>
           <%= show_post_comments(@photo_album) %>
@@ -69,12 +69,12 @@
   $(document).ready(function(){
     $('.qashdU').css({
       'float': 'left',
-      'margin-left': '10px'
+      'margin-left': '2px'
     });
 
     $('.qashdD').css({
       'float': 'left', 
-      'margin-left': '9px'
+      'margin-left': '14px'
     });
   });
 </script>
