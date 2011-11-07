@@ -332,18 +332,21 @@ class VideosController < ApplicationController
     @post = Video.find(params[:post_id])
     @post.rate rating.to_i, current_user
     @post.save
-    
+
+    #support for rate like/dislike cmt    
+    @str_class = "Video"
+
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
   end
 
-	def get_on_this_video
-		video_id = params[:video_id]
-		@video = Video.find(video_id)
-		#list of user has been tagged, and been verified
-      @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",video_id,"Video",true ] )
-      @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",video_id,"Video",false ] )
-	end
+  def get_on_this_video
+    video_id = params[:video_id]
+    @video = Video.find(video_id)
+    #list of user has been tagged, and been verified
+    @tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",video_id,"Video",true ] )
+    @verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",video_id,"Video",false ] )
+  end
   
   protected
   
