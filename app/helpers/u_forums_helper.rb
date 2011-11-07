@@ -20,8 +20,6 @@ module UForumsHelper
 
     if (@custom != nil)
       @testtxt = 'co ton tai'
-    else
-      @testtxt = 'KO TON TAI'
     end
     @testtxt
   end

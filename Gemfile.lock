@@ -4,6 +4,19 @@ GIT
   specs:
     exception_notification (1.0.0)
 
+GIT
+  remote: https://github.com/agentrock/contacts.git
+  revision: 1396bef975e3d8cce883f65b2bac9620f3e4532f
+  specs:
+    contacts (1.2.4)
+      json (>= 1.1.1)
+
+GIT
+  remote: https://github.com/agentrock/gdata.git
+  revision: 271d0b49d7dbe97b16969f06104f3e91022c40bc
+  specs:
+    gdata (1.1.1)
+
 PATH
   remote: vendor/plugins/rubycas-client-rails
   specs:
@@ -83,9 +96,6 @@ GEM
     cocaine (0.2.0)
     configatron (2.8.3)
       yamler (>= 0.1.0)
-    contacts (1.2.4)
-      gdata (= 1.1.1)
-      json (>= 0.4.1)
     daemons (1.1.4)
     daemons-mikehale (1.0.14)
     dalli (1.1.2)
@@ -123,7 +133,6 @@ GEM
     formatador (0.2.1)
     friendly_id (4.0.0.beta14)
     galetahub-simple_captcha (0.1.1)
-    gdata (1.1.1)
     gemcutter (0.7.0)
     geokit (1.6.0)
     geonames (0.2.2)
@@ -274,7 +283,7 @@ DEPENDENCIES
   capistrano
   chronic
   configatron
-  contacts
+  contacts!
   daemons-mikehale
   dalli
   delayed_job
@@ -288,6 +297,7 @@ DEPENDENCIES
   fog (~> 0.11.0)
   friendly_id (~> 4.0.0.beta8)
   galetahub-simple_captcha
+  gdata!
   gemcutter
   geokit
   geonames
