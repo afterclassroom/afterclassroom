@@ -1,33 +1,39 @@
-<div class="contMainL">
-    <div class="col571 proCen">
-        <div class="col571in">
-            <div class="proCenCont">
-                <div class="stoDet phoD">
-                    <div class="stoDetR">
-                        <div class="stoDetRT">
-                            <%= @music_album.name %>
-                        </div>
-                    </div>
-                </div>
-                <div class="showMusicVideo" id="playlist_list">
-                    <% if @music_album.music_album_attach %>
-                    <div class="photoImg">
-                        <%= image_tag @music_album.music_album_attach.url(:thumb) %>
-                    </div>
-                    <% end %>
-                    <%= render :partial => "musics/music_playlist" %>
-                </div>
-                <%= render :partial => "musics/music_album_action" %>
-                <%= show_post_comments(@music_album) %>
+<div class="contMainL" style="width: 580px">
+  <div class="col571 proCen" style="background: none">
+    <div class="col571in" style="background: none">
+      <div class="proCenCont">
+        <div class="stoDet phoD">
+          <div class="stoDetR">
+            <div class="stoDetRT">
+              <%= @music_album.name %>
             </div>
+          </div>
         </div>
+        <div class="showMusicVideo" id="playlist_list">
+          <% if @music_album.music_album_attach %>
+            <div class="photoImg">
+              <%= image_tag @music_album.music_album_attach.url(:thumb) %>
+            </div>
+          <% end %>
+          <%= render :partial => "musics/music_playlist" %>
+        </div>
+        <%= render :partial => "musics/music_album_user_action" %>
+        <%= show_post_comments(@music_album) %>
+      </div>
     </div>
+  </div>
 </div>
-<div class="contMainR">
-    <%= render :partial => "musics/lets_listen" %>
+<div class="contMainR" style="float: left;margin-top: 30px">
+  <% if @tagged_users.size > 0 %>
+    <div class="col300m slStory">
+      <div class="col300min" id="on_this_music">
+        <%= render :partial => "musics/widget_lets_listen" %>
+      </div>
+    </div>
+  <% end %><!-- end if -->
 </div>
 <script>
   $(document).ready(function() {
-  $('#comment').css({width:'98.5%'});
-});
+    $('#comment').css({width:'98.5%'});
+  });
 </script>

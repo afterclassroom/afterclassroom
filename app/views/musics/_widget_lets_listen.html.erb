@@ -1,86 +1,86 @@
 <h1 class="col300Title">Together on this music
 
-      <% if current_user == @music_album.user && @tagged_users.size > 0 %>
-        <a href="javascript:;" style="margin-left: 49px; position: absolute; color: #0A81C4;" id="manage_btn">Manage Audience</a>
-      <% end %>
+  <% if current_user == @music_album.user && @tagged_users.size > 0 %>
+    <a href="javascript:;" style="margin-left: 49px; position: absolute; color: #0A81C4;" id="manage_btn">Manage Audience</a>
+  <% end %>
 
-      </h1>
+</h1>
 
-      <% if current_user != @music_album.user && @tagged_users.size > 0 %>
-        <% tagged_user_ids = @tag_usr.map(&:id) %>
-        <% if tagged_user_ids.include?(current_user.id) == true%>
-          <%= link_to "Leave", {:controller => "music_albums", :action => "self_untag", :music_album_id => @music_album.id}, :remote => true, :id => "self_remove",:title => "Stop following this album", :style => "color: #0A81C4; float: right; margin-top:-24px;" %>
+<% if current_user != @music_album.user && @tagged_users.size > 0 %>
+  <% tagged_user_ids = @tagged_users.map(&:id) %>
+  <% if tagged_user_ids.include?(current_user.id) == true%>
+    <%= link_to "Leave", {:controller => "music_albums", :action => "self_untag", :music_album_id => @music_album.id}, :remote => true, :id => "self_remove",:title => "Stop following this album", :style => "color: #0A81C4; float: right; margin-top:-24px;" %>
+  <% end %>
+<% end %>
+
+
+<% form_tag url_for(:controller => "music_albums", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
+  <%= hidden_field_tag "music_album_id", @music_album.id %>
+
+  <div class="onThis">
+    <div id="thumbs" class="navigation" style="left: 0%; margin-left: -10px;">
+      <ul class="thumbs noscript">
+        <% @tagged_users.each do |u| %>
+          <%= render :partial => "photos/item_tagged", :locals => {:u => u} %>
         <% end %>
-      <% end %>
-
-
-      <% form_tag url_for(:controller => "music_albums", :action => "remove_tagged"), :id => "form_remove", :method => :post, :remote => false do %>
-      <%= hidden_field_tag "music_album_id", @music_album.id %>
-
-      <div class="onThis">
-        <div id="thumbs" class="navigation" style="left: 0%; margin-left: -10px;">
-          <ul class="thumbs noscript">
-            <% @tagged_users.each do |u| %>
-              <%= render :partial => "photos/item_tagged", :locals => {:u => u} %>
-            <% end %>
-          </ul>
-          <div class="onThisBtm">
-              <a id="remove_btn" href="javascript:;" style="margin-left: 2px; display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 0px;">Remove</a>
-            <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
-            <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
-          </div>
-        </div>
+      </ul>
+      <div class="onThisBtm">
+        <a id="remove_btn" href="javascript:;" style="margin-left: 2px; display: none; padding-top: 6px; text-align: center; height: 26px; width: 71px; color: #FFFFFF; background: url('/images/btm71.png') no-repeat scroll 0 0 transparent;  float: right;  margin-right: 0px;">Remove</a>
+        <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
+        <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
       </div>
-      <% end %><!--  end form -->
-			<script type="text/javascript">
-    jQuery(document).ready(function($) {
-      $('div.navigation').css({'width' : '300px', 'float' : 'left'});
-      var onMouseOutOpacity = 3.67;
-      $('#thumbs ul.thumbs li, div.navigation a.pageLink').opacityrollover({
-        mouseOutOpacity:   onMouseOutOpacity,
-        mouseOverOpacity:  1.0,
-        fadeSpeed:         'fast',
-        exemptionSelector: '.selected'
-      });
-      var gallery = $('#thumbs').galleriffic({
-        delay:                     2500,
-        numThumbs:                 12,
-        preloadAhead:              0,
-        enableTopPager:            false,
-        enableBottomPager:         false,
-        imageContainerSel:         '#slideshow',
-        captionContainerSel:       '#caption',
-        defaultTransitionDuration: 900,
-        onPageTransitionOut:       function(callback) {
-          this.fadeTo('fast', 1.0, callback);
-        },
-        onPageTransitionIn:        function() {
-          var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
-          var nextPageLink = this.find('a.next').css('visibility', 'hidden');
-          if (this.displayedPage > 0)
-            prevPageLink.css('visibility', 'visible');
-          var lastPage = this.getNumPages() - 1;
-          if (this.displayedPage < lastPage)
-            nextPageLink.css('visibility', 'visible');
-          this.fadeTo('fast', 1.0);
-        }
-      });
-      gallery.find('a.prev').click(function(e) {
-        gallery.previousPage();
-        e.preventDefault();
-      });
-      gallery.find('a.next').click(function(e) {
-        gallery.nextPage();
-        e.preventDefault();
-      });
-      gallery.find('.onThisBtm').css({
-        'margin-top':'172px',
-        'margin-left':'140px',
-        'position':'absolute'
-      });
-      $('#remove_btn').click(function(){
-        $('form#form_remove').submit();
-      });
-
+    </div>
+  </div>
+<% end %><!--  end form -->
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $('div.navigation').css({'width' : '300px', 'float' : 'left'});
+    var onMouseOutOpacity = 3.67;
+    $('#thumbs ul.thumbs li, div.navigation a.pageLink').opacityrollover({
+      mouseOutOpacity:   onMouseOutOpacity,
+      mouseOverOpacity:  1.0,
+      fadeSpeed:         'fast',
+      exemptionSelector: '.selected'
     });
-  </script>
+    var gallery = $('#thumbs').galleriffic({
+      delay:                     2500,
+      numThumbs:                 12,
+      preloadAhead:              0,
+      enableTopPager:            false,
+      enableBottomPager:         false,
+      imageContainerSel:         '#slideshow',
+      captionContainerSel:       '#caption',
+      defaultTransitionDuration: 900,
+      onPageTransitionOut:       function(callback) {
+        this.fadeTo('fast', 1.0, callback);
+      },
+      onPageTransitionIn:        function() {
+        var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
+        var nextPageLink = this.find('a.next').css('visibility', 'hidden');
+        if (this.displayedPage > 0)
+          prevPageLink.css('visibility', 'visible');
+        var lastPage = this.getNumPages() - 1;
+        if (this.displayedPage < lastPage)
+          nextPageLink.css('visibility', 'visible');
+        this.fadeTo('fast', 1.0);
+      }
+    });
+    gallery.find('a.prev').click(function(e) {
+      gallery.previousPage();
+      e.preventDefault();
+    });
+    gallery.find('a.next').click(function(e) {
+      gallery.nextPage();
+      e.preventDefault();
+    });
+    gallery.find('.onThisBtm').css({
+      'margin-top':'172px',
+      'margin-left':'140px',
+      'position':'absolute'
+    });
+    $('#remove_btn').click(function(){
+      $('form#form_remove').submit();
+    });
+
+  });
+</script>

@@ -64,8 +64,8 @@ $(document).ready(function(){
   $('#waiting_id').hide();
 
 
-  var shareto=0;//Default is set to 0 which mean PRIVATE
-  var tolounge=0;//0 is NO
+  var shareto=<%= current_user.ufo_default.share_to_index %>;
+  var tolounge=<%= current_user.ufo_default.post_lounge %>;
 
   $('#bt_save').click(function(){
     $('#waiting_id').show();

@@ -1,6 +1,7 @@
 class Ufo < ActiveRecord::Base
 
   belongs_to :user
+  has_one :ufo_custom, :dependent => :destroy
 
   has_attached_file :ufo_attach, {
     :bucket => 'afterclassroom_ufo'

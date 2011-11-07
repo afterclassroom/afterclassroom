@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111103074041) do
+ActiveRecord::Schema.define(:version => 20111105015008) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -886,6 +886,14 @@ ActiveRecord::Schema.define(:version => 20111103074041) do
   create_table "tutor_types", :force => true do |t|
     t.string "name"
     t.string "label"
+  end
+
+  create_table "ufo_customs", :force => true do |t|
+    t.integer  "ufo_id",         :null => false
+    t.string   "share_to_index"
+    t.boolean  "post_lounge"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ufo_defaults", :force => true do |t|
