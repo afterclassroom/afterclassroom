@@ -73,6 +73,10 @@ class PostAwarenessesController < ApplicationController
     @post_a.rating_status = status
     
     @post_a.save
+
+    #support for rate like/dislike cmt
+    @str_class = "PostAwareness"
+
   end
   
   def require_rate
