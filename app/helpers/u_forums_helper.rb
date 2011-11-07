@@ -14,14 +14,11 @@ module UForumsHelper
   end
 
   def show_share_custom(ufo)
-    @custom = ufo.ufo_custom
-    # val = pr ? pr.share_to_index : 0
-    # select_tag "ufo_setting", options_for_select(OPTIONS_SETTING, val), :class => "menuPrivate"
+    pr = ufo.ufo_custom
 
-    if (@custom != nil)
-      @testtxt = 'co ton tai'
-    end
-    @testtxt
+    val = pr ? pr.share_to_index : 0
+    select_tag "ufo_setting", options_for_select(OPTIONS_SETTING, val), :class => "menuPrivate"
+
   end
 
 
