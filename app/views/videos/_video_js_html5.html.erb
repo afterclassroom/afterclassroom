@@ -42,15 +42,14 @@
 
     }, 
     logo: {
-      url: '/images/logo-video2.png',
+      url: '/images/logo-video1.png',
       fullscreenOnly: false,
-      opacity: 0,
       top: '85%',
       left: '20%'
     },
     // gradually show on mouseover
     onMouseOver: function() {
-      this.getPlugin("logo").fadeTo(0.5, 1000);
+      this.getPlugin("logo").fadeTo(0, 1000);
     },
     // gradually hide on mouseout
     onMouseOut: function() {

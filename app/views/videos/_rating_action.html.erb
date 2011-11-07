@@ -2,10 +2,10 @@
   <%
   check = Video.find_rated_by(current_user).include?(post) if logged_in?
   check ||= false %>
-  <div class="qashdUsto" style="background: none">
+  <div class="qashdU" style="background: none">
     <%= show_rating(post.id, post.total_good, controller_name, check, 1) %>
   </div>
-  <div class="qashdDsto" style="background: none">
+  <div class="qashdD" style="background: none">
     <%= show_rating(post.id, post.total_bad, controller_name, check, 0) %>
   </div>
 </div>
