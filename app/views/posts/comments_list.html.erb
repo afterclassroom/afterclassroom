@@ -1,10 +1,6 @@
 <% if @comments.size > 0 %>
 <% @comments.each do |c| %>
-<% if @obj.class.name == "Video" %>
-<%= render :partial => "shared/item_comment_video", :locals => {:comnt => c} %>
-<% else %>
 <%= render :partial => "shared/item_comment", :locals => {:comnt => c} %>
-<% end %>
 <% end %>
 <!--Pagination-->
 <div class="assPage">

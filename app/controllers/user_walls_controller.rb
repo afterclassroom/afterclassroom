@@ -403,7 +403,7 @@ class UserWallsController < ApplicationController
     render :layout => false
   end
   
-    def jplayer_video_test
+    def jplayer_video_html5
     wall_id = params[:wall_id]
     @wall = UserWall.find(wall_id)
     if @wall.user_wall_video

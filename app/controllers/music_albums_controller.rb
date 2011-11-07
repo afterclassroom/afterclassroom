@@ -104,6 +104,9 @@ class MusicAlbumsController < ApplicationController
     @post = MusicAlbum.find(params[:post_id])
     @post.rate rating.to_i, current_user
     @post.save
+
+    #support for rate like/dislike cmt
+    @str_class = "MusicAlbum"
     
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@post.total_bad}</a></div>"
@@ -127,12 +130,11 @@ class MusicAlbumsController < ApplicationController
         u = User.find(i)
         if u
           #adding selected user into TagInfo
-          taginfo = TagInfo.new()
-          taginfo.tag_creator_id = current_user.id
-          taginfo.tagable_id = params[:music_album_id]
-          taginfo.tagable_user = u.id
-          taginfo.tagable_type = "MusicAlbum"
-          taginfo.verify = false
+          #adding selected user into TagInfo
+          taginfo = TagInfo.find_or_create_by_tagable_id_and_tagable_user_and_tagable_type(params[:music_album_id], u.id, "MusicAlbum")
+					
+          taginfo.tag_creator_id = current_user.id if taginfo.tag_creator_id.nil?
+          taginfo.verify = false if taginfo.verify.nil?
           if current_user == @music_album.user
             taginfo.verify = true
             flash[:notice] = "Your friend(s) will listen this album shortly."

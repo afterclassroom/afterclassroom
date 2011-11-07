@@ -1,9 +1,4 @@
 <div class="photoItem">
   <div class="photoImg"><%= link_to raw("<div>#{image_tag photo.photo_attach.url(:thumb)}</div>"), user_photo_url(current_user, photo) %>
   </div>
-  <div class="photoNamePho">
-    <span style="text-indent: 16px;">
-      <%= truncate_words(photo.title, 5) %>
-    </span>
-  </div>
 </div>

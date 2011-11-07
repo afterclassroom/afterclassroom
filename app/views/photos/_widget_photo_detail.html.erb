@@ -16,7 +16,7 @@
 						<%
 							if controller.action_name == 'show'
 						%>
-            <%= link_to "View photo album: #{@photo_album.name}", show_album_with_list_user_photos_url(current_user, :photo_album_id => @photo_album) %>
+            <%= @photo.title %>
 						<% end %>
           </div>
         </div>

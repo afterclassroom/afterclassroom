@@ -767,7 +767,7 @@ module ApplicationHelper
           image = get_image_wall(wall.id, img_link)
           title = obj.title
           when "Video"
-          link = show_detail_video_user_url(obj.user, :video_id => obj.id)
+          link = user_video_url(obj.user, obj)
           img_link = link_to image_tag(obj.video_file.video_attach.url(:medium), :style => "width:92px;height:68px") + raw("<span class='play_video'></span>"), {:controller => "user_walls", :action => "jplayer_video_html5", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.title
@@ -1024,85 +1024,58 @@ module ApplicationHelper
     Textilizer.new(text).to_html.html_safe unless text.blank?
   end
 
-	def check_view_permission(user_check, user, type)
+	def check_view_permission(user_check, obj)
 		check = false
-		case type
-				when "my_photos"
-					ids_photoalbum = user.photo_albums.map(&:id)
-					ids_photo = user.photos.map(&:id)
-					ids = ids_photoalbum + ids_photo
-					cond = "tagable_type IN('PhotoAlbum', 'Photo') AND tagable_user = #{user_check.id} AND verify = 1"
-					cond << " AND tagable_id IN('#{ids.join("', '")}')" if ids.size > 0
-					tg = TagInfo.where(cond)
-					check = true if tg.size > 0
-				when "my_musics"
-					ids_musicalbum = user.music_albums.map(&:id)
-					ids_music = user.musics.map(&:id)
-					ids = ids_musicalbum + ids_music
-					cond = "tagable_type IN('MusicAlbum', 'Music') AND tagable_user = #{user_check.id} AND verify = 1"
-					cond << " AND tagable_id IN('#{ids.join("', '")}')" if ids.size > 0
-					tg = TagInfo.where(cond)
-					check = true if tg.size > 0
-				when "my_videos"
-					ids = user.stories.map(&:id)
-					cond = "tagable_type = 'Video' AND tagable_user = #{user_check.id} AND verify = 1"
-					cond << " AND tagable_id IN('#{ids.join("', '")}')" if ids.size > 0
-					tg = TagInfo.where(cond)
-					check = true if tg.size > 0
-				when "my_stories"
-					ids = user.stories.map(&:id)
-					cond = "tagable_type = 'Story' AND tagable_user = #{user_check.id} AND verify = 1"
-					cond << " AND tagable_id IN('#{ids.join("', '")}')" if ids.size > 0
-					tg = TagInfo.where(cond)
-					check = true if tg.size > 0
-				else
-					check = false
+		if user_check
+			cond = "tagable_type = '#{obj.class.name}' AND tagable_user = #{user_check.id} AND verify = 1 AND tagable_id = #{obj.id}"
+			tg = TagInfo.where(cond)
+			check = true if tg.size > 0
 			end
-
 			return check
 	end
   
   def check_private_permission(user_check, user, type)
     check = false
-    if user == user_check
-      check = true
-    else
-				ps = PrivateSetting.where(:user_id => user.id, :type_setting => type).first
-		    if ps
-		      share_to = ps.share_to
-		      case share_to
-		        when 1 # Friend from school
-		        if user_check
-		          fg = FriendGroup.where(:label => "friends_from_school").first
-		          fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
-		          check = true if fng
-		        end
-		        when 2 # Friend of friends
-		        if user_check
-		          fof = user.friend_of_friends
-		          check = fof.nil? ? false : fof.include?(user_check)
-		        end
-		        when 3 # My Family
-		        if user_check
-		          fg = FriendGroup.where(:label => "family_members").first
-		          fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
-		          check = true if fng
-		        end
-		        when 4 # My friends
-		        if user_check
-		          check = true if user.user_friends.include?(user_check)
-		        end
-		        when 5 # Friends from work
-		        if user_check
-		          fg = FriendGroup.where(:label => "friends_from_work").first
-		          fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
-		          check = true if fng
-		        end
-		        when 6 # Every one
-		        check = true
-		      end
-			end 
-			
+		if user_check
+		  if user == user_check
+		    check = true
+		  else
+					ps = PrivateSetting.where(:user_id => user.id, :type_setting => type).first
+				  if ps
+				    share_to = ps.share_to
+				    case share_to
+				      when 1 # Friend from school
+				      if user_check
+				        fg = FriendGroup.where(:label => "friends_from_school").first
+				        fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+				        check = true if fng
+				      end
+				      when 2 # Friend of friends
+				      if user_check
+				        fof = user.friend_of_friends
+				        check = fof.nil? ? false : fof.include?(user_check)
+				      end
+				      when 3 # My Family
+				      if user_check
+				        fg = FriendGroup.where(:label => "family_members").first
+				        fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+				        check = true if fng
+				      end
+				      when 4 # My friends
+				      if user_check
+				        check = true if user.user_friends.include?(user_check)
+				      end
+				      when 5 # Friends from work
+				      if user_check
+				        fg = FriendGroup.where(:label => "friends_from_work").first
+				        fng = FriendInGroup.where(:user_id => user.id, :user_id_friend => user_check.id, :friend_group_id => fg.id).first
+				        check = true if fng
+				      end
+				      when 6 # Every one
+				      check = true
+				    end
+				end 
+			end
     end
     return check
   end

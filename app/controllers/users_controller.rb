@@ -153,7 +153,7 @@ class UsersController < ApplicationController
   end
   
   def show_stories
-    if check_private_permission(current_user, @user, "my_stories") or check_view_permission(current_user, @user, "my_stories")
+    if check_private_permission(current_user, @user, "my_stories")
       @stories = @user.stories.find(:all, :conditions => "state = 'share'", :order => "created_at DESC").paginate :page => params[:page], :per_page => 10
       render :layout => "student_lounge"
     else
@@ -162,9 +162,9 @@ class UsersController < ApplicationController
   end
   
   def show_story_detail
-    if check_private_permission(current_user, @user, "my_stories") or check_view_permission(current_user, @user, "my_stories")
-      story_id = params[:story_id]
-      @story = Story.find(story_id)
+		story_id = params[:story_id]
+    @story = Story.find(story_id)
+    if check_private_permission(current_user, @user, "my_stories") or check_view_permission(current_user, @story)
 			#finding a list of tagged users for this story
      	@tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",story_id,"Story",true ] )
      	@verify_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",story_id,"Story",false ] )
@@ -180,7 +180,7 @@ class UsersController < ApplicationController
   end
   
   def show_photos
-    if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
+    if check_private_permission(current_user, @user, "my_photos")
       @photo_albums = @user.photo_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 16
       render :layout => "student_lounge"
     else
@@ -189,7 +189,7 @@ class UsersController < ApplicationController
   end
   
   def show_photos_with_list
-   if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
+   if check_private_permission(current_user, @user, "my_photos")
       photo_album_id = params[:photo_album_id]
       @photo_album = PhotoAlbum.find(photo_album_id)
       update_view_count(@photo_album)
@@ -200,9 +200,9 @@ class UsersController < ApplicationController
   end
 
 	def show_photo_detail
-    if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
-      photo_id = params[:photo_id]
-			@photo = Photo.find(photo_id)
+		photo_id = params[:photo_id]
+	  @photo = Photo.find(photo_id)
+    if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @photo)
       @photo_album = @photo.photo_album
       update_view_count(@photo_album)
 			#display user for partial on_this_photo
@@ -222,9 +222,9 @@ class UsersController < ApplicationController
   end
   
   def show_photo_album
-    if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @user, "my_photos")
-      photo_album_id = params[:photo_album_id]
-      @photo_album = PhotoAlbum.find(photo_album_id)
+		photo_album_id = params[:photo_album_id]
+    @photo_album = PhotoAlbum.find(photo_album_id)
+    if check_private_permission(current_user, @user, "my_photos") or check_view_permission(current_user, @photo_album)
       update_view_count(@photo_album)
       render :layout => "photo"
     else
@@ -233,7 +233,7 @@ class UsersController < ApplicationController
   end
   
   def show_musics
-    if check_private_permission(current_user, @user, "my_musics") or check_view_permission(current_user, @user, "my_musics")
+    if check_private_permission(current_user, @user, "my_musics")
       @music_albums = @user.music_albums.order("created_at DESC").paginate :page => params[:page], :per_page => 16
       render :layout => "student_lounge"
     else
@@ -242,9 +242,9 @@ class UsersController < ApplicationController
   end
   
   def show_music_album
-    if check_private_permission(current_user, @user, "my_musics") or check_view_permission(current_user, @user, "my_musics")
-      music_album_id = params[:music_album_id]
-      @music_album = MusicAlbum.find(music_album_id)
+		music_album_id = params[:music_album_id]
+    @music_album = MusicAlbum.find(music_album_id)
+    if check_private_permission(current_user, @user, "my_musics") or check_view_permission(current_user, @music_album)
       @another_music_albums = @music_album.another_music_albums
 			#display user that need to verify after add ta
     @usrs_for_verify = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",music_album_id,"MusicAlbum",false ] )
@@ -258,7 +258,7 @@ class UsersController < ApplicationController
   end
   
   def show_videos
-    if check_private_permission(current_user, @user, "my_videos") or check_view_permission(current_user, @user, "my_videos")
+    if check_private_permission(current_user, @user, "my_videos")
       @videos = @user.videos.order("created_at DESC").paginate :page => params[:page], :per_page => 16
       render :layout => "student_lounge"
     else
@@ -267,9 +267,9 @@ class UsersController < ApplicationController
   end
   
   def show_detail_video
-    if check_private_permission(current_user, @user, "my_videos") or check_view_permission(current_user, @user, "my_videos")
-      video_id = params[:video_id]
-      @video = Video.find(video_id)
+		video_id = params[:video_id]
+    @video = Video.find(video_id)
+    if check_private_permission(current_user, @user, "my_videos") or check_view_permission(current_user, @video)
       update_view_count(@video)
       as_next = @user.videos.nexts(@video.id).last
       as_prev = @user.videos.previous(@video.id).first

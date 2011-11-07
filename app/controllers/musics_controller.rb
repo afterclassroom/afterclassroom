@@ -84,7 +84,7 @@ class MusicsController < ApplicationController
   def show
     @music = Music.find(params[:id])
     @user = @music.user
-    if check_private_permission(current_user, @user, "my_musics") or check_view_permission(current_user, @user, "my_musics")
+    if check_private_permission(current_user, @user, "my_musics") or check_view_permission(current_user, @music)
       update_view_count(@music)
       as_next = @music.music_album.musics.nexts(@music.id).last
       as_prev = @music.music_album.musics.previous(@music.id).first
@@ -226,7 +226,7 @@ class MusicsController < ApplicationController
 
     @music_album = MusicAlbum.find(params[:music_album_id])
     @user = @music_album.user
-    if check_private_permission(current_user, @user, "my_musics") or check_view_permission(current_user, @user, "my_musics")
+    if check_private_permission(current_user, @user, "my_musics") or check_view_permission(current_user, @music_album)
       @another_music_albums = @music_album.another_music_albums
       update_view_count(@music_album)
       

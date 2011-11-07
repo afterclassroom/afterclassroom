@@ -15,13 +15,15 @@
     videos = [@video] + videos
   %>
     <% videos.each do |v| %>
-      <li>
-        <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
-          <%= truncate(v.title, :length=>12, :omission=>"...") %>
-          <div class="jcarousel-skin-tango-img"><%= display_image_video(v) %></div>
-          <span class="play_videoJ"></span>
-        </a> 
-      </li>
+			<% if check_private_permission(current_user, @video.user, v) or check_view_permission(current_user, v) %>
+		    <li>
+		      <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
+		        <%= truncate(v.title, :length=>12, :omission=>"...") %>
+		        <div class="jcarousel-skin-tango-img"><%= display_image_video(v) %></div>
+		        <span class="play_videoJ"></span>
+		      </a> 
+		    </li>
+			<% end %>
     <% end %>
   </ul>
 
