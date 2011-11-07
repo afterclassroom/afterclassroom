@@ -13,7 +13,6 @@ class UForumsController < ApplicationController
 
   def new
     @ufo = Ufo.new()
-    @txt = "display custom setting in cross check with default setting here"
   end
 
   def save
