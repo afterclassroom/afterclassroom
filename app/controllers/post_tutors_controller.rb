@@ -73,6 +73,11 @@ class PostTutorsController < ApplicationController
     post_tt.rating_status = status
     
     post_tt.save
+
+    support for rate like/dislike cmt
+
+    @str_class = "PostTutor"
+
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_tt.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_tt.total_bad}</a></div>"
   end

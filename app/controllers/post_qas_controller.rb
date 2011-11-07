@@ -83,6 +83,8 @@ class PostQasController < ApplicationController
     post_q.rating_status = status
     
     post_q.save
+
+    @str_class = "PostQa"
     
     @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_q.total_good}</a></div>"
     @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{post_q.total_bad}</a></div>"

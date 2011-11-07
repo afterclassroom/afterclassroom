@@ -52,6 +52,8 @@ class PostHousingsController < ApplicationController
     @post_h.rating_status = status
     
     @post_h.save
+    #support for rate like/dislike cmts
+    @str_class = "PostHousing"
   end
   
   def search
