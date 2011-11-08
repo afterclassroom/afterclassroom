@@ -10,27 +10,27 @@
       <div class="overall">
         <%= form_for(@ufo, :url => url_for(:controller => "u_forums", :action => "save") , :html => {:multipart => true, :id => "form_new" }) do |f| %>
           <div style="padding: 10px">
-            <div style="border-right: 1px solid #cecece">
-                 <div class="inner2">
+            <div style="border-right: 1px solid #cecece;border-bottom: 1px solid #CECECE;">
+              <div class="inner2">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop"> 
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Title</label>
                 </div>
-                <div style="width: 624px; margin-top: 8px; margin-left: 5px;">
-                  <%= f.text_field :title, :class => '', :style => "width: 619px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
+                <div style="padding:8px">
+                  <%= f.text_field :title, :class => '', :style => "width: 615px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
                 </div>
               </div>
 
-              <div class="inner2" style="margin-top: 8px;">
+              <div class="inner2">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Content</label>
                 </div>       
-                <div style="width: 624px; margin-top: 10px; margin-left: 5px; height: 290px;">
-                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => '', :style=>"width:610px" %>
+                <div style="padding:8px">
+                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => ''%>
                 </div>
               </div>
-              <div class="inner2" style="margin-top: 15px;">
+              <div class="inner2">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
@@ -113,55 +113,63 @@
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Notify Friends via email</label>
                 </div>
 
-                <div class="assContFoT" style="margin-left:50px;float: none">
+                <div class="assContFoT" style="margin-left:50px;float: none;margin-bottom: 8px;">
                   <div class="assContFoD">
                     <div class="assContFoC" style="padding:5px 25px">
 
-       
-                        <input type="checkbox" value="" name="checkfriend" id="checkfriend" style="margin-bottom:15px"/>
-                        <span style="color: #969696;text-align: left;font-weight: bold;margin-top: 4px;position: absolute;">All</span>
-                        <% 2.times do %>
-                          <div>
-                            <!-- the following code is just for testing purpose -->
-                            <% list_friends = current_user.user_friends %>
-                            <% list_friends.each do |usr| %>
 
-                              <div class="AsDcomImg" style="padding: 5px;">
-                                <%= show_image_user_post(usr) %>
+                      <input type="checkbox" value="" name="checkfriend" id="checkfriend" style="margin-bottom:15px"/>
+                      <span style="color: #969696;text-align: left;font-weight: bold;margin-top: 4px;position: absolute;">All</span>
+                      <% 2.times do %>
+                        <div>
+                          <!-- the following code is just for testing purpose -->
+                          <% list_friends = current_user.user_friends %>
+                          <% list_friends.each do |usr| %>
 
-                                <input style="margin-left: 1px;margin-top: -3px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
+                            <div class="AsDcomImg" style="padding: 5px;">
+                              <%= show_image_user_post(usr) %>
 
-                              </div>
+                              <input style="margin-left: 1px;margin-top: -3px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
 
-
-                            <% end %><!-- end each list friend -->
-
-                          </div>
-                        <% end %>
+                            </div>
 
 
-                
+                          <% end %><!-- end each list friend -->
+
+                        </div>
+                      <% end %>
+
+
+
                     </div>
                   </div>
                 </div>
 
               </div>
             </div>
-         
-        </div>
-        <div class="bottomline"></div>
-        <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
-          <span class="btmComment"><a href="javascript:;" id="btn_submit">Submit</a></span>
-          <span class="btmComment"><a href="javascript:;">Cancel</a></span>
-        </div>
-      <% end %><!-- end form_for -->
+
+          </div>
+          <div class="bottomline"></div>
+          <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
+            <span class="btmComment"><a href="javascript:;" id="btn_submit">Submit</a></span>
+            <span class="btmComment"><a href="javascript:;">Cancel</a></span>
+          </div>
+        <% end %><!-- end form_for -->
+
+      </div>
 
     </div>
-
   </div>
 </div>
-</div>
 <script type="text/javascript">
+  $('document').ready(function(){
+    $('.wysiwyg').css({
+      'width':'605px'
+    })
+    $('#topic_contentIFrame').css({
+      'width':'605px'
+    })
+  });
   function SubmitTopic(){
     $("form#form_new").submit();
   }
