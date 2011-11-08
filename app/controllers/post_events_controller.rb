@@ -46,7 +46,7 @@ class PostEventsController < ApplicationController
     
     @post_f.save
 
-    support for rate like/dislike cmt
+    #support for rate like/dislike cmt
     @str_class = "PostEvent"
     
   end
