@@ -7,19 +7,14 @@
     <div class="col195 QAsTopic">
       <div class="col195in">
         <div class="demo">
-
-
           <div class="demoImg">
             <a href="javascript:;"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a>
           </div>
-
           <% if @tool.user == current_user %>
           <div class="demoBtm" style="padding-bottom: 8px;">
             <a href="<%= url_for(:controller => "learn_tools", :action => "edit_tool") %>?tool_id=<%= @tool.id %>">Edit</a>
           </div>
           <% end %>
-
-
           <div class="demoBtm">
             <a id="play_tool_now" href="javascript:;">Click start</a>
           </div>
