@@ -180,7 +180,7 @@ class UserWallsController < ApplicationController
     content = "Hello #{usr.name},<br/>"
     content << "#{current_user.name} introduces some people special to you:<br/>" 
     content << list_name.join(", ")
-    send_notification(usr, subject, content, "match_making")
+    send_notification(usr, subject, content, "suggests_a_friend_to_me")
     render :text => "Success"
   end
   
@@ -465,7 +465,7 @@ class UserWallsController < ApplicationController
 	def send_wall_notification(user_wall, user_post, wall)
 		subject = "#{user_post.name} just posted on your Student Lounge."
         content = "Hello #{user_wall.name}, <br/>"
-        content << "#{user_post.name} just posted something on your Student Lounge,  click <a href='#{user_student_lounges_url(user_wall)}' target='blank'>here</a> to see what's in it."
+        content << "#{user_post.name} just posted something on your Student Lounge,  click <a href='#{user_profiles_url(user_wall)}' target='blank'>here</a> to see what's in it."
         send_notification(user_wall, subject, content, "posts_on_my_lounge")
 	end
 end
