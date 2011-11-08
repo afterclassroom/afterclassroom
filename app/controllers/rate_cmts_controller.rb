@@ -32,7 +32,13 @@ class RateCmtsController < ApplicationController
       @like_size = @post.rate_text_stories.where('rating="1"').size
     else
       @post = Post.find(params[:post_id])
-      @rating_texts = @post.rating_texts.where(["rating=? and rated_type=?","1","#{params[:rated_type]}"]).order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
+
+      str_rating_number = "1"
+    if ( params[:rated_type] == "PostFood" || params[:rated_type] == "PostMyx" || params[:rated_type] == "PostParty" )
+      str_rating_number = 2
+    end
+
+      @rating_texts = @post.rating_texts.where(["rating=? and rated_type=?",str_rating_number,"#{params[:rated_type]}"]).order('created_at DESC').paginate(:page => @str_cur_page, :per_page => params[:str_perpage])
       @like_size = @post.rating_texts.where('rating="1"').size
     end
 
