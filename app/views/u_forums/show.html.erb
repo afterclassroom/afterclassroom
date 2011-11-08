@@ -161,8 +161,11 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
 <script type="text/javascript">
 $(document).ready(function(){
   $('select#ufo_setting').change(function(){
-
     alert("a||"+$(this).find('option:selected').val());
   });
+  $('select#lounge_setting').change(function(){
+    alert("a||"+$(this).find('option:selected').val());
+  });
+
 });
 </script>
