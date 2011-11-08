@@ -100,7 +100,15 @@ $(document).ready(function(){
   });
   //END change the reasons display per page
   //BEGIN update number of people rate; reasons
-  $('#label1o<%= @post.id %>').html($('div#rate_<%= @post.id %>_Post').find('.qashdU').find('a').html()+' people rate this. ');
+
+
+  str_value = $('div#rate_<%= @post.id %>_Post').find('.cheap').find('a').html();
+  var arr = str_value.split("It's Ok\(");
+  var iss = arr[1].indexOf("\)");
+  var stringsub = arr[1].substring(0, iss)
+
+
+  $('#label1o<%= @post.id %>').html(stringsub+' people rate this. ');
   //END update number of people rate; reasons
   $('#sendo<%= @post.id %>').click(function(){
     SubmitFormOCmt<%= @post.id %>();
