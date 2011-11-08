@@ -15,13 +15,13 @@
 
           <% if @tool.user == current_user %>
           <div class="demoBtm" style="padding-bottom: 8px;">
-            <a id="play_tool_now" href="<%= url_for(:controller => "learn_tools", :action => "edit_tool") %>?tool_id=<%= @tool.id %>">Edit</a>
+            <a href="<%= url_for(:controller => "learn_tools", :action => "edit_tool") %>?tool_id=<%= @tool.id %>">Edit</a>
           </div>
           <% end %>
 
 
           <div class="demoBtm">
-            <a id="play_tool_now" href="javascript:;">Play now</a>
+            <a id="play_tool_now" href="javascript:;">Click start</a>
           </div>
           <% if @tool.video_id != nil %>
             <div class="vtip demoBtm" style="margin-top: 10px;" title="Showing the video introduce this tool">
