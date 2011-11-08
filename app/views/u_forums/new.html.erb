@@ -6,42 +6,44 @@
 <div class="slStoryL">
   <div class="contDetL">
     <div class="contDetLin">
-      <div class="inboxFo">
-        <div class="overall">
-          <%= form_for(@ufo, :url => url_for(:controller => "u_forums", :action => "save") , :html => {:multipart => true, :id => "form_new" }) do |f| %>
-            <div style="margin-top: 10px;">
-              <div style="height: 53px; padding: 10px; padding-top: 0px;">
+
+      <div class="overall">
+        <%= form_for(@ufo, :url => url_for(:controller => "u_forums", :action => "save") , :html => {:multipart => true, :id => "form_new" }) do |f| %>
+          <div style="padding: 10px">
+            <div style="border-right: 1px solid #cecece">
+                 <div class="inner2">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop"> 
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Title</label>
                 </div>
                 <div style="width: 624px; margin-top: 8px; margin-left: 5px;">
-                  <%= f.text_field :title, :class => '', :style => 'width: 619px; height: 20px;' %>
+                  <%= f.text_field :title, :class => '', :style => "width: 619px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
                 </div>
               </div>
 
-              <div class="inner2" style="padding: 10px; padding-top: 10px; min-height: 300px;">
+              <div class="inner2" style="margin-top: 8px;">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Content</label>
                 </div>       
                 <div style="width: 624px; margin-top: 10px; margin-left: 5px; height: 290px;">
-                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => '' %>
+                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => '', :style=>"width:610px" %>
                 </div>
               </div>
-              <div class="inner2" style="padding: 10px; padding-top: 0px; height: 53px;">
+              <div class="inner2" style="margin-top: 15px;">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
                 </div>
-                <div class="postItemB" style="background:url(/images/upload_file.png) no-repeat scroll 38% 0 transparent">
+                <div class="postItemB" style="background:url(/images/upload_file.png) no-repeat scroll 95% 0 transparent;margin-left: 25px;
+                     margin-top: 5px;">
                   <div id="divinputfile">
                     <div class="postItemC">
-                      <input type="file" style="width: 280px; height: 24px; margin-top: 2px;" size="27" onchange="$('#fakefilepc').val(this.value);" name="ufo[ufo_attach]" id="ufo_ufo_attach" class="filepc">
+                      <input type="file" style="width: 580px; height: 24px; margin-top: 2px;" size="70" onchange="$('#fakefilepc').val(this.value);" name="ufo[ufo_attach]" id="ufo_ufo_attach" class="filepc">
 
                     </div>
                     <div style="margin-top: -26px;" id="fakeinputfile">
-                      <input type="text" id="fakefilepc" name="fakefilepc">
+                      <input type="text" id="fakefilepc" name="fakefilepc" style="width:508px">
                     </div>
                   </div>
                 </div>
@@ -50,7 +52,7 @@
                 </div>-->
               </div>
 
-              <div class="inner2" style="padding: 10px; padding-top: 0px; min-height: 167px;">
+              <div class="inner2" style="margin-top: 8px;">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Settings</label>
@@ -59,92 +61,105 @@
                   <img src="/images/ajax-loader-a.gif"/>
                 </div>
 
-                <div id="custom_area" style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; height: 108px; border: 1px solid #EBEBEB; border-radius: 10px;">
-                  <div style='height: 60px;'>
-                    <div style="border: 0px solid black; width: 289px; height: 52px;">
-                      <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
-                      <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
-                      <div style="margin-top:14px;">
-                        <%= show_share_setting(current_user)%>
+                <div class="assContFoT" style="margin-left:50px;float: none">
+                  <div class="assContFoD">
+                    <div class="assContFoC" style="padding:5px 25px">
+                      <div>
+                        <div style="border: 0px solid black; width: 289px; height: 52px;">
+                          <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
+                          <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
+                          <div style="margin-top:14px;">
+                            <%= show_share_setting(current_user)%>
+                          </div>
+                        </div>
+
+                        <!-- div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                          <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
+                          <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
+                          <div style="margin-top:12px;">
+                            <select style="width: 100px;">
+                              <option value="1">Yes</option>
+                              <option value="2">No</option>
+                            </select>                       
+                          </div>
+                        </div -->
+
+
+                      </div>
+
+                      <div>
+                        <div style="border: 0px solid black; width: 289px; height: 52px;">
+                          <label style="text-align: left; color: #969696;">Post to your lounge?</label>
+                          <div>
+                            <%= show_tolounge_setting(current_user) %>
+
+                          </div>
+                        </div>
+                        <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                          <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
+                          <div>
+                            <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
+                          </div>
+                        </div -->
                       </div>
                     </div>
-
-                    <!-- div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
-                      <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
-                      <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
-                      <div style="margin-top:12px;">
-                        <select style="width: 100px;">
-                          <option value="1">Yes</option>
-                          <option value="2">No</option>
-                        </select>                       
-                      </div>
-                    </div -->
-
-
                   </div>
-
-                  <div style='height: 81px;'>
-                    <div style="border: 0px solid black; width: 289px; height: 52px;">
-                      <label style="text-align: left; color: #969696;">Post to your lounge?</label>
-                      <div>
-                        <%= show_tolounge_setting(current_user) %>
-
-                      </div>
-                    </div>
-                    <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
-                      <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
-                      <div>
-                        <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
-                      </div>
-                    </div -->
-                  </div>
-
                 </div>
 
               </div>
-              <div class="inner2" style="padding: 10px; padding-top: 0px; min-height: 100px;">
+              <div class="inner2" style="margin-top: 8px;">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Notify Friends via email</label>
                 </div>
 
-                <div style="padding: 10px; width: 598px; margin-top: 15px; margin-left: 5px; min-height: 108px; border: 1px solid #EBEBEB; border-radius: 10px;">
-                  <input type="checkbox" value="" name="checkfriend" id="checkfriend"/>
-                  <% 2.times do %>
-                    <div style="border: 1px solid #EBEBEB; height: 72px; margin-top: 5px;">
-                      <!-- the following code is just for testing purpose -->
-                      <% list_friends = current_user.user_friends %>
-                      <% list_friends.each do |usr| %>
+                <div class="assContFoT" style="margin-left:50px;float: none">
+                  <div class="assContFoD">
+                    <div class="assContFoC" style="padding:5px 25px">
 
-                        <div class="AsDcomImg" style="padding-left: 9px;">
-                          <%= show_image_user_post(usr) %>
+       
+                        <input type="checkbox" value="" name="checkfriend" id="checkfriend" style="margin-bottom:15px"/>
+                        <span style="color: #969696;text-align: left;font-weight: bold;margin-top: 4px;position: absolute;">All</span>
+                        <% 2.times do %>
+                          <div>
+                            <!-- the following code is just for testing purpose -->
+                            <% list_friends = current_user.user_friends %>
+                            <% list_friends.each do |usr| %>
 
-                          <input style="margin-left: 1px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
+                              <div class="AsDcomImg" style="padding: 5px;">
+                                <%= show_image_user_post(usr) %>
 
-                        </div>
+                                <input style="margin-left: 1px;margin-top: -3px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
+
+                              </div>
 
 
-                      <% end %><!-- end each list friend -->
+                            <% end %><!-- end each list friend -->
 
+                          </div>
+                        <% end %>
+
+
+                
                     </div>
-                  <% end %>
-
-
+                  </div>
                 </div>
 
               </div>
             </div>
-            <div class="bottomline" style="border: 1px solid #CDCCCC; margin-left: 10px; margin-right: 10px;"></div>
-            <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
-              <span class="btmComment"><a href="javascript:;" id="btn_submit">Submit</a></span>
-              <span class="btmComment"><a href="javascript:;">Cancel</a></span>
-            </div>
-          <% end %><!-- end form_for -->
-
+         
         </div>
-      </div>
+        <div class="bottomline"></div>
+        <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
+          <span class="btmComment"><a href="javascript:;" id="btn_submit">Submit</a></span>
+          <span class="btmComment"><a href="javascript:;">Cancel</a></span>
+        </div>
+      <% end %><!-- end form_for -->
+
     </div>
+
   </div>
+</div>
 </div>
 <script type="text/javascript">
   function SubmitTopic(){
