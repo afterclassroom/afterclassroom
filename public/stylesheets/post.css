@@ -1080,6 +1080,7 @@ span.btmDown a:hover {
 .AsDcomImg div {
     padding: 3px;
     background: url('/images/bgi-col300.png') no-repeat;
+    height: 51px;
 }
 
 .AsDcomImg a:hover div {

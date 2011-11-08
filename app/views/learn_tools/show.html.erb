@@ -7,21 +7,16 @@
     <div class="col195 QAsTopic">
       <div class="col195in">
         <div class="demo">
-
-  <div class="learnFavTR" style="">
-    <%= link_to image_tag("/images/flistREdit.png", :alt => '', :style => 'border:0 none'), 
-      "#{url_for(:controller => "learn_tools", :action => "edit_tool")}?tool_id=#{@tool.id.to_s}", 
-      :style => "background: url(''); width: 10px;", 
-      :class => "vtip", :title => "Edit your tool"  %>
-
-
-
-	  
           <div class="demoImg">
             <a href="javascript:;"><div><%= image_tag @tool.tool_img.url(:medium) %></div></a>
           </div>
+          <% if @tool.user == current_user %>
+          <div class="demoBtm" style="padding-bottom: 8px;">
+            <a href="<%= url_for(:controller => "learn_tools", :action => "edit_tool") %>?tool_id=<%= @tool.id %>">Edit</a>
+          </div>
+          <% end %>
           <div class="demoBtm">
-            <a id="play_tool_now" href="javascript:;">Click Start</a>
+            <a id="play_tool_now" href="javascript:;">Click start</a>
           </div>
           <% if @tool.video_id != nil %>
             <div class="vtip demoBtm" style="margin-top: 10px;" title="Showing the video introduce this tool">
