@@ -364,6 +364,14 @@ Afterclassroom::Application.routes.draw do
     end
   end
   
+  #Careers
+  resources :careers do
+    collection do
+      get :view_pr, :view_detail, :delpr, :searchpr
+      post :save
+    end
+  end
+  
   # Administration
   
   namespace :admin do

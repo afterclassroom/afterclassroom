@@ -1,0 +1,212 @@
+<% content_for :you_are_here do -%>
+  You are here: <a href="javascript:;">Career</a>
+<% end -%>
+<% content_for :menu_sub do -%>
+  <%= render :partial => "/statics/submenu" %>
+<% end -%>
+<!--Content-->
+<div class="contMainLH">
+  <div class="col654 QAs">
+    <div class="col654in">
+      <div class="col654Cont">
+        <div style="width: 632px;" class="helpCR">
+          <%= display_flash_messages_with_raw %>
+          <% if admin? %>
+            <div class="helpTitle">
+              <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px; cursor: default;" href="javascript:;">Career</a>
+              <div style="height: 28px; display: inline; float: right; border: 1px solid rgb(219, 219, 219); margin-top: 3px;" class="slsShareR">
+                <a id="form_handler" style="height: 9px; display: block; padding: 10px; background-color: rgb(245, 246, 245);" class="slsShareW" href="javascript:;" onclick="$('#story_form_new').toggle('slow');">Write it</a>
+              </div>
+            </div>
+          <% end %>
+
+          <% if admin? %>
+            <div style="padding-left: 0pt;" class="assPage">
+              <div class="stoEx" style=" display: none;" id="story_form_new">
+                <%= form_for :story, :url => save_careers_path, :html => {:id => "form_new"} do |f| %>
+                  <%= hidden_field_tag "state", "", :id => "story_state" %>
+                  <div style="overflow: hidden; padding: 7px 0pt; margin-left: 12px;" class="stoExItem">
+                    <div style="display: inline; color: rgb(111, 111, 99); float: left; font-weight: bold; line-height: 21px; width: 75px;" class="stoExItemL">Title*</div>
+                    <div class="stoExItemR" style="display: inline;">
+                      <%= f.text_field :title, :class => '{validate:{required:true}}', :style => "border: 1px solid #CECECE;  padding-top: 6px;  text-indent: 2px;  width: 535px;" %>
+                    </div>
+                  </div>
+                  <div class="stoExItem" style="overflow: hidden;">
+                    <div class="stoExItemL" style="display: inline; color: rgb(111, 111, 99); float: left; font-weight: bold; line-height: 21px; width: 75px; margin-left: 13px;">Content</div>
+                    <div class="stoExItemR" style="display: inline; float: right; width: 525px; margin-right: 19px;">
+                      <%= f.text_area :content, :rows => 2, :style => "width:525px", :class => '{validate:{required:true}}' %>
+                    </div>
+                  </div>
+                  <div class="stoExBtm">
+                    <div style="margin-left: 87px; margin-top: 10px;">
+                      <a onclick="submitNewPress();" id="save_new" href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Save</a>
+                    </div>
+                    <div style="margin-left: 142px; margin-top: -31px;">
+                      <a id="cancel_btn" href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Cancel</a>
+                    </div>
+                  </div>
+                  <div class="stoError" style="padding: 10px;"></div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <div style="border-bottom: 1px solid #DBDBDB; clear: both; display: block">
+            <a style="color: #0A81C4; font-size: 12px; font-weight: bold; line-height: 29px; cursor: default;" href="javascript:;">Archives</a>
+          </div>
+          <div style="margin-top: -28px; ; color: rgb(110, 110, 110); background: url('/images/bgSearchF.png') no-repeat scroll left top transparent;  float: right;  height: 24px;  padding-right: 0;  width: 194px;">
+            <%= form_tag url_for(:controller => "careers", :action => "searchpr"), {:id => "info_search", :method => "GET"},  do %>
+              <div class="textS"><%= text_field_tag "search_content", "#{@str_search}", :style => "height: 12px" %></div>
+              <div style="margin-top: -18px; margin-right: 3px; float: right;" >
+                <a href="javascript:;" onclick="searchPress();"><img src="/images/iconSF.png" style="border: 0px;"/></a>
+              </div>
+            <% end %>
+          </div>
+
+          <% if controller.action_name == "searchpr" %>
+            <% @presses.each_hit_with_result do |hit,pr| %>
+
+              <% if hit.highlight(:content) %>
+                <% txt_content = raw( hit.highlight(:content).format { |fragment| content_tag(:em, fragment) } ) %>
+              <% else %>
+                <% txt_content = pr.content %>
+              <% end %>
+
+
+              <%= render :partial => "item", :locals => {:pr => pr, :content => txt_content } %>
+            <% end %>
+          <% else %>
+            <% @presses.each do |pr| %>
+              <%= render :partial => "item", :locals => {:pr => pr, :content => pr.content } %>
+            <% end %>
+          <% end %>
+
+
+          <% if controller.action_name == "searchpr" %> 
+
+            <div class="assPage" style="padding-left:0">
+              <span class="numPage"><%= page_entries_info @presses.results %></span>
+              <%= will_paginate(@presses.results, :params => { :controller => "careers", :action => "searchpr"}) %>
+            </div>
+
+
+          <% else %>
+            <div class="assPage" style="padding-left:0">
+              <span class="numPage"><%= page_entries_info @presses %></span>
+              <%= will_paginate @presses %>
+            </div>
+
+
+          <% end %>
+          <div style="padding: 0pt;" class="goTop"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" >
+  
+  function submitNewPress(){
+    var result = $("#form_new").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("#form_new").submit();
+    }
+  }  
+  function searchPress(){
+    $("#info_search").submit();
+  }
+  function ShowHideDelEditIcon(){
+    /*Show hide delete X icon for each comment*/
+
+    $(".helpItem").hover(function(){
+      $("div[id*='pr_id_']", this).show();
+    }, function(){
+      $("div[id*='pr_id_']", this).hide();
+    });
+
+    /*Show hide delete X icon for each forum post*/
+    $(".helpItem").hover(function(){
+      $("div[id*='edpr_id_']", this).show();
+    }, function(){
+      $("div[id*='edpr_id_']", this).hide();
+    });
+
+
+  }
+  
+  
+  $(document).ready(function(){
+    ShowHideDelEditIcon();
+    $('#cancel_btn').click(function(){
+      document.getElementById('form_new').reset();
+    });
+    
+    
+    $('.wysiwyg').css('width','525px');
+    $('#story_contentIFrame').css('width','525px');
+
+    $('#save_new').click(function(){
+      $('#form_new').submit();
+    });
+    
+    $("a[id*='cal_id_']").click(function(){
+      $(this).parent().next().next().find('a').click();
+    });
+
+
+    
+  });
+  (function($)
+  {
+    $('#story_content').wysiwyg({
+      controls: {
+        createLink : { visible : true },
+
+        insertImage : { visible : true },
+
+        separator05 : { visible : false },
+
+        separator06 : { visible : false },
+
+        h1 : { visible : false },
+        h2 : { visible : false },
+        h3 : { visible : false },
+
+        removeFormat : { visible : true }
+      }
+    });
+  })(jQuery)
+    
+</script>
+<style>
+  .sponsorS{
+    margin-top: -39px;
+    margin-left: 60px;
+  }
+
+  .contMain{
+    margin-top:-7px;
+  }
+  .menuRL{
+    margin-top: 7px; 
+  }
+
+  .prButton{
+    padding-left: 1px;
+    padding-top: 5px;
+    color: #FFFFFF;
+    display: block;
+    height: 25px;
+    width: 87px;
+    text-align: center;
+    text-decoration: none;
+    background: url('/images/btm87.png') no-repeat scroll left top transparent;
+  }
+  .helpD em{
+    color: #F6A828;
+    font-weight: bold;
+  }
+
+</style>
