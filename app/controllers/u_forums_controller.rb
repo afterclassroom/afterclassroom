@@ -9,6 +9,7 @@ class UForumsController < ApplicationController
 
   def show
     @ufo = Ufo.find(params[:id])
+    @ufo_cmt = UfoCmt.new()
   end
 
   def new
@@ -62,6 +63,17 @@ class UForumsController < ApplicationController
 
   def index
     @ufos = current_user.ufos
+  end
+
+  def save_cmt
+    objufo = Ufo.find(params[:ufo_id])
+
+    ufo_cmt = UfoCmt.new(params[:ufo_cmt])
+    ufo_cmt.user = current_user
+    ufo_cmt.ufo_id = objufo.id
+    ufo_cmt.save
+
+    render :layout => false 
   end
 
 end
