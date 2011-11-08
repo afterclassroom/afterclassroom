@@ -159,12 +159,32 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
 
 </div>
 <script type="text/javascript">
+
+var shareto = 0;
+var postlounge = false;
+
+function SaveCustom(ishareto,ipostlounge ){
+  $.ajax({
+    url: '<%= save_custom_user_u_forums_path %>',
+    type: 'POST',
+    dataType: 'script',
+    data: {
+      shareto: ishareto,
+      postlounge: ipostlounge
+    },
+    success: function(html){
+    }
+  });
+}
+
 $(document).ready(function(){
   $('select#ufo_setting').change(function(){
-    alert("a||"+$(this).find('option:selected').val());
+    shareto = $(this).find('option:selected').val();
+    SaveCustom(shareto,postlounge);
   });
   $('select#lounge_setting').change(function(){
-    alert("a||"+$(this).find('option:selected').val());
+    postlounge = $(this).find('option:selected').val()
+    SaveCustom(shareto,postlounge);
   });
 
 });
