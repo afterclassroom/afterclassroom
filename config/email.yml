@@ -10,7 +10,7 @@ production:
   port: 25
   domain: secureserver.net
   authentication: login
-  username: support@afterclassroom.com
+  username: register@afterclassroom.com
   password: vietnam0101
   tls: true
 staging:
@@ -18,6 +18,6 @@ staging:
   port: 25
   domain: secureserver.net
   authentication: login
-  username: support@afterclassroom.com
+  username: register@afterclassroom.com
   password: vietnam0101
   tls: true
