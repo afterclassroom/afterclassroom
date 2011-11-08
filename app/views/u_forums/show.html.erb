@@ -90,6 +90,12 @@
             </div>
           </div>
 
+
+
+          <%= form_for(@ufo_cmt, :remote => true,:url => url_for(:controller => "u_forums", :action => "save_cmt") , :html => {:multipart => true, :id => "form_cmt", :method => "post" }) do |f| %>
+          <%= hidden_field_tag "ufo_id", @ufo.id %>
+
+
           <div style="background-color: #ebebeb">
             <div style="background-color: white; min-height: 390px; border: 0px solid black;">
 
@@ -99,15 +105,20 @@
 
               <label style="text-align: left; margin-top: 18px;">Leave your comment</label>
 
-              <textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
+              <!-- textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
 At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
-              </textarea> 
+              </textarea --> 
+              <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '84', :class => ''%>
 
-              <div style="height: 60px; width: 545px; border: 0px solid red; margin-top: 278px; margin-left: 86px;">
+              <div style="height: 60px; width: 545px; border: 0px solid red; margin-top: 0px; margin-left: 86px;">
                 <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
                 <div style="width: 545px; margin-top: 10px; margin-left: 5px; height: 28px;">
-                  <input type="file" style=""onchange="" name="topic_attach" id="topic_attach" class="" size="65"/>
+                  <!-- input type="file" style=""onchange="" name="topic_attach" id="topic_attach" class="" size="65"/ -->
+                  <%= f.file_field :ucmt_attach, :onchange => "", :size => "76", :class => "", :style => "" %>
+
                 </div>
+                <%= f.submit "Create test" %>
+
                 <button type="button">Add this comment</button> 
 
               </div>
@@ -117,7 +128,7 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
             </div>
 
           </div>
-
+<% end %><!-- end form -->
 
 
 
