@@ -63,6 +63,7 @@ class User < ActiveRecord::Base
 	has_many :user_wall_posts, :through => :user_walls
 	has_many :user_id_chats, :dependent => :destroy
   has_many :ufos, :dependent => :destroy
+  has_many :ufo_cmts, :dependent => :destroy
   has_one :ufo_default, :dependent => :destroy
   
   # Acts_as_network
