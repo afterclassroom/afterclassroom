@@ -50,11 +50,11 @@ class UForumsController < ApplicationController
   end
 
   def save_custom
-    #THIS ACTION WILL BE APPLIED TO VIEW-DETAIL PAGE
-    puts "==== shareto == #{params[:shareto]}"
-    puts "==== lounge == #{params[:postlounge]}"
+    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting.share_to_index = params[:shareto]
+    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.save
 
-    default_setting = UfoCustom.find_or_create_by_ufo_id(current_user.id)
 
 
     render :layout => false 

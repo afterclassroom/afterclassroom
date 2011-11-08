@@ -163,8 +163,8 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
 </div>
 <script type="text/javascript">
 
-var shareto = 0;
-var postlounge = false;
+var shareto = <%= @ufo.ufo_custom.share_to_index %>;
+var postlounge = <%= @ufo.ufo_custom.post_lounge %>;
 
 function SaveCustom(ishareto,ipostlounge ){
   $('#wait_area').show();
@@ -176,7 +176,8 @@ function SaveCustom(ishareto,ipostlounge ){
     dataType: 'script',
     data: {
       shareto: ishareto,
-      postlounge: ipostlounge
+      postlounge: ipostlounge,
+      id: <%= @ufo.id %>
     },
     success: function(html){
     }
