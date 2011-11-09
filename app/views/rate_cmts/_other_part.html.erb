@@ -103,17 +103,18 @@ $(document).ready(function(){
 
 
   str_value = $('div#rate_<%= @post.id %>_Post').find('.cheap').find('a').html();
-if (str_value.indexOf('s Ok') > 0){
-alert('okok');
-}
-else if (str_value.indexOf('ored') > 0){
- alert('bore qua');
-}
-else if (str_value.indexOf('ut Goo') > 0)
-{
-alert('cheap and good');
-}
-  var arr = str_value.split("It's Ok\(");
+  var arr;
+
+  if (str_value.indexOf('s Ok') > 0){
+    arr = str_value.split("It's Ok\(");
+  }
+  else if (str_value.indexOf('ored') > 0){
+    arr = str_value.split("Bored\(");
+  }
+  else if (str_value.indexOf('ut Goo') > 0)
+  {
+    arr = str_value.split("Cheap but Good\(");
+  }
   
 
   var iss = arr[1].indexOf("\)");
