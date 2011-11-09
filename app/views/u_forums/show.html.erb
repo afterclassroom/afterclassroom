@@ -52,9 +52,20 @@
             <div style='height: 81px;'>
               <div style="border: 0px solid black; width: 289px; height: 52px;">
                 <label style="text-align: left; color: #969696;">Post to your lounge?</label>
+
+
                 <div>
-                  <%= show_tolounge_custom(@ufo) %>
+                  <%#= show_tolounge_custom(@ufo) %>
+                  <% pr = @ufo.ufo_custom %>
+                  <% check = pr ? pr.post_lounge : 0 %>
+                  <% if (check == 0 || check == false) %>
+                    <button id="to_lounge">Post to lounge</button>
+                  <% else %>
+                    This topic has been posted to your lounge.
+                  <% end %>
                 </div>
+
+
               </div>
               <div style="display: none; width: 289px; float: right; margin-top: -54px; height: 52px;">
                 <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
@@ -205,10 +216,8 @@ $(document).ready(function(){
     shareto = $(this).find('option:selected').val();
     SaveCustom(shareto,postlounge);
   });
-  $('select#lounge_setting').change(function(){
-    postlounge = $(this).find('option:selected').val()
-    SaveCustom(shareto,postlounge);
+  $('#to_lounge').click(function(){
+    alert('post to lounge');
   });
-
 });
 </script>
