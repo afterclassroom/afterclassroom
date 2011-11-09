@@ -70,10 +70,12 @@ class UForumsController < ApplicationController
 
     ufo_cmt = UfoCmt.new(params[:ufo_cmt])
     ufo_cmt.user = current_user
-    ufo_cmt.ufo_id = objufo.id
+    ufo_cmt.ufo = objufo
     ufo_cmt.save
 
-    render :layout => false 
+    #render :layout => false 
+    redirect_to user_u_forum_path(objufo.user, objufo)
+
   end
 
 end

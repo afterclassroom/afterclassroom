@@ -92,7 +92,7 @@
 
 
 
-          <%= form_for(@ufo_cmt, :remote => true,:url => url_for(:controller => "u_forums", :action => "save_cmt") , :html => {:multipart => true, :id => "form_cmt", :method => "post" }) do |f| %>
+          <%= form_for(@ufo_cmt, :remote => false,:url => url_for(:controller => "u_forums", :action => "save_cmt") , :html => {:multipart => true, :id => "form_cmt", :method => "post" }) do |f| %>
           <%= hidden_field_tag "ufo_id", @ufo.id %>
 
 
@@ -133,7 +133,7 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
 
 
 
-
+========HELLO WORLD == <%= @ufo.ufo_cmts.size %>
 
 
 
@@ -149,7 +149,8 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
       <div class="pagination"><span class="previous_page disabled">Previous</span> <em>1</em> <a href="/users/robert/messages?page=2" rel="next">2</a> <a href="/users/robert/messages?page=2" rel="next" class="next_page">Next</a></div>
     </div>
         <div style=" min-height: 100px; padding: 10px;">
-          <% 10.times do %>
+          <%# 10.times do %>
+          <% @ufo.ufo_cmts.size.times do %>
             <div style="border-bottom: 1px solid #D2D9E7; height: 80px; ">
               <div class="AsDContImg" style="float: left; margin-right: 9px;">
                 <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
