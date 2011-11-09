@@ -211,13 +211,27 @@ function SaveCustom(ishareto,ipostlounge ){
   });
 }
 
+function PostLounge(){
+  $.ajax({
+    url: '<%= post_lounge_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      id: <%= @ufo.id %>
+    },
+    success: function(html){
+    }
+  });
+}
+
+
 $(document).ready(function(){
   $('select#ufo_setting').change(function(){
     shareto = $(this).find('option:selected').val();
     SaveCustom(shareto,postlounge);
   });
   $('#to_lounge').click(function(){
-    alert('post to lounge');
+    PostLounge();
   });
 });
 </script>

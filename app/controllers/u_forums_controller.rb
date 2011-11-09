@@ -80,4 +80,35 @@ class UForumsController < ApplicationController
 
   end
 
+  def post_lounge
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+
+    objufo = Ufo.find(params[:id])
+
+    puts "==objufo title = #{objufo.title}"
+    puts "==TO LOUNGE"
+  end
+
 end
