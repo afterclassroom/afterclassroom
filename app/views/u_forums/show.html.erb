@@ -117,9 +117,7 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
                   <%= f.file_field :ucmt_attach, :onchange => "", :size => "76", :class => "", :style => "" %>
 
                 </div>
-                <%= f.submit "Create test" %>
-
-                <button type="button">Add this comment</button> 
+                <%= f.submit "Add this comment" %>
 
               </div>
 
@@ -129,12 +127,6 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
 
           </div>
 <% end %><!-- end form -->
-
-
-
-
-========HELLO WORLD == <%= @ufo.ufo_cmts.size %>
-
 
 
         </div>
@@ -150,19 +142,27 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
     </div>
         <div style=" min-height: 100px; padding: 10px;">
           <%# 10.times do %>
-          <% @ufo.ufo_cmts.size.times do %>
+          <% @ufo.ufo_cmts.each do |cmt| %>
             <div style="border-bottom: 1px solid #D2D9E7; height: 80px; ">
-              <div class="AsDContImg" style="float: left; margin-right: 9px;">
-                <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
-              </div>  
+
+              <div class="assPic">
+                <%= show_image_user_post(cmt.user) %>
+              </div>
+
+
               <div>
-                <div style="color: #0A81C4;">author</div>
-                <div style="color: #969696">19 hours ago</div>
-                <div>real content</div>
+                <div style="color: #0A81C4;">
+                  <%= show_user_post(cmt.user) %>
+                </div>
+                <div style="color: #969696"><%= time_ago_in_words(cmt.created_at, true) %> ago.</div>
+                <div><%= cmt.content %></div>
                 <div style="float: right">
                   <img src="/images/icon-ing.gif" id=""/>
                 </div>
-                <div style="float:right;background: url(/images/ufo_attach.jpg) no-repeat scroll 0 0 transparent;height:24px;width: 24px;"></div>
+                <div style="float:right;background: url(/images/ufo_attach.jpg) no-repeat scroll 0 0 transparent;height:24px;width: 24px;">
+<a href="javascript:downloadFile('<%= cmt.ucmt_attach.url %>')" class="downarrow"><span>Download</span></a>
+
+</div>
                 <div style="float: right">button collapse expand</div>
               </div>
             </div>
