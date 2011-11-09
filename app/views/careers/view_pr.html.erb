@@ -1,33 +1,9 @@
 <% content_for :you_are_here do -%>
   You are here: <a href="javascript:;">Help Information</a>
 <% end -%>
-<div class="mainSignUpS">
-  <div class="AsDContImg"><a href="/"><div><img src="/images/pic11.png"></img></div></a></div>
-  <div class="txtsignup topHelp">
-    <div class="AftBe">
-      <div class="txtsignup1">AfterClassroom</div>
-    </div>
-    <div class="sponsorS">
-      <div class="sponsorLink">
-        <div class="menuRL">
-          <div class="menuRItem">
-            <a href="/forums">
-              <span class="span1">
-                <span class="span2">Community Help Forum</span>
-              </span></a>
-          </div>
-
-          <div class="menuRItem menuRselect">
-            <a href="/careers">
-              <span class="span1">
-                <span class="span2">Career</span>
-              </span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<% content_for :menu_sub do -%>
+  <%= render :partial => "/statics/submenu" %>
+<% end -%>
 <!--Content-->
 <div class="contMainLH">
   <div class="col654 QAs">
@@ -49,7 +25,7 @@
                     </div>
                   </div>
                   <div class="stoExItem" style="overflow: hidden;">
-                    <div class="stoExItemL" style="display: inline; color: rgb(111, 111, 99); float: left; font-weight: bold; line-height: 21px; width: 75px; margin-left: 13px;">Your story</div>
+                    <div class="stoExItemL" style="display: inline; color: rgb(111, 111, 99); float: left; font-weight: bold; line-height: 21px; width: 75px; margin-left: 13px;">Content</div>
                     <div class="stoExItemR" style="display: inline; float: right; width: 525px; margin-right: 19px;">
                       <%= f.text_area :content, :rows => 2, :style => "width:525px", :class => '{validate:{required:true}}' %>
                       

@@ -20,7 +20,7 @@ class CareersController < ApplicationController
     
     pr = Career.find(params[:pr_id])
     
-    pr.update_attributes(params[:press_info])
+    pr.update_attributes(params[:career])
 
 
     if pr.save
