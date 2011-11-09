@@ -28,6 +28,9 @@ module Postwall
       when "Learntool"
         user_id = post.user.id
         content = "Post a Learning Tool"
+      when "Ufo"
+        user_id = post.user.id
+        content = "Post a new topic for User's Forum"
       else
         content = "Add new post on #{post.post.post_category.name}"
         user_id = post.post.user.id

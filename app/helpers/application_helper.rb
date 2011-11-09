@@ -780,6 +780,10 @@ module ApplicationHelper
           end
           title = obj.title
           sub_content = truncate_words(obj.content)
+          when "Ufo"
+            link = user_u_forum_path(obj.user, obj)
+            title = obj.title
+            sub_content = truncate_html(obj.content, :length => 100, :omission => '...')
           when "Learntool"
             #<%= user_learn_tool_path(current_user,learntool) %>
           link = user_learn_tool_path(current_user,obj)

@@ -30,7 +30,7 @@
       <% if wall.user_wall_post
         obj =	get_object_by_class_name_and_id(wall.user_wall_post.post_type, wall.user_wall_post.post_id)
         if obj
-          if !["PhotoAlbum", "Photo", "MusicAlbum", "Music", "Video", "Story","Learntool"].include?(obj.class.name)
+          if !["PhotoAlbum", "Photo", "MusicAlbum", "Music", "Video", "Story","Learntool","Ufo"].include?(obj.class.name)
             obj = obj.post
           end
         else
@@ -42,11 +42,11 @@
 			
 			<%= show_rating_action(wall) %>
 
-      <%  if !["Learntool"].include?(obj.class.name)  %>
+      <%  if !["Learntool","Ufo"].include?(obj.class.name)  %>
         <div class="com">
           <a href="javascript:;" onclick="showCommentForm('<%= obj.class.name %>', '<%= obj.id %>');">Comments (<span id="wall_<%= obj.class.name %>_<%= obj.id %>_comments"><%= obj.comments.size %></span>)</a>
         </div>
-      <% else %>
+      <% elsif "Learntool" == obj.class.name %>
         <div id="ltool_rev" style="margin-left:-31px;margin-right:5px;" class="vtip" title="Write A Review">
           <%= link_to "Write a Review", "#{url_for(:controller => "learn_tools", :action => "write_review_form")}?tool_id=#{obj.id.to_s}&height=325&width=550", :class => "thickbox", :title => "" %>
         </div>
@@ -54,7 +54,9 @@
 			<%= link_to "Share", "/user_walls/share_lounge?height=350&width=500&wall_id=#{wall.id.to_s}", :class => "thickbox", :title => "Share Lounge" %>
     </div>
     <!--Comments-->
-    <%  if !["Learntool"].include?(obj.class.name)  %>
+    
+
+    <%  if !["Learntool","Ufo"].include?(obj.class.name)  %>
       <div id="wall_list_comment_<%= obj.class.name %>_<%= obj.id %>">
         <% if obj.comments.size > 0 %>
           <% if obj.comments.size > 2 %>
@@ -72,6 +74,9 @@
         <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall, :obj => obj} %>
       </div>
     <% end %>
+
+
+
     <!--Comments-->
   </div>
 </div>

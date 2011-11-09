@@ -106,6 +106,7 @@ class UForumsController < ApplicationController
     puts "=="
 
     objufo = Ufo.find(params[:id])
+    post_wall(objufo)
 
     puts "==objufo title = #{objufo.title}"
     puts "==TO LOUNGE"
