@@ -1,24 +1,28 @@
 <div class="proList" style="width:440px">
-	<% if obj.user == current_user || comment.user == current_user %>
-	<div class="del_wall_com" style="float: right; display: none; cursor: pointer;" onclick="DeleteWallComment('<%= wall.id %>', '<%= obj.class.name %>', '<%= obj.id %>', '<%= comment.id %>');">
-        <img src="/images/icon-ing.gif">
+  <% if obj.user == current_user || comment.user == current_user %>
+    <div class="del_wall_com" style="float: right; display: none; cursor: pointer;" onclick="DeleteWallComment('<%= wall.id %>', '<%= obj.class.name %>', '<%= obj.id %>', '<%= comment.id %>');">
+      <img src="/images/icon-ing.gif">
     </div>
-	<% end %>
+  <% end %>
   <div class="proListPic"><%= show_image_user_post(comment.user) %></div>
   <div class="proListR" style="width: 84%">
     <div class="AfterClCom"><%= show_user_post(comment.user) %> - <%= comment.comment %></div>
     <div class="proListCont">
       <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %>
-			<%= render :partial => "shared/post_comments/rating_action", :locals => {:comment => comment} %>
+      <%= render :partial => "shared/post_comments/rating_action", :locals => {:comment => comment} %>
     </div>
   </div>
 </div>
 <script>
-    $(document).ready(function(){
-        $(".proList").hover(function(){
-            $(".del_wall_com", this).show();
-        }, function(){
-            $(".del_wall_com", this).hide();
-        });
+  $(document).ready(function(){
+    $(".proList").hover(function(){
+      $(".del_wall_com", this).show();
+    }, function(){
+      $(".del_wall_com", this).hide();
     });
+            <%#*//on page load call tb_init%>  
+        <%#*tb_init(' div.com a.thickbox');//pass where to apply thickbox%>
+        <%#*imgLoader = new Image();// preload image%>
+        <%#*imgLoader.src = tb_pathToImage;%>
+  });
 </script>

@@ -1,2 +1,3 @@
 $("#wall_list_comment_<%= @obj.class.name %>_<%= @obj.id %>").html("<%= escape_javascript( render :partial => "widget_comments", :locals => {:wall => @wall, :obj => @obj} ) %>");
 $("#wall_<%= @obj.class.name %>_<%= @obj.id %>_comments").html(<%= @obj.comments.size %>);
+tb_init('div.com a.thickbox');//pass where to apply thickbox

@@ -4,16 +4,16 @@
       <img id="dell_wall_img" src="/images/icon-ing.gif" />
     </div>
   <% else %>
-		<% if @user == current_user %>
-		  <div class="del_wall" style="float: right; display: none; cursor: pointer;">
-		    <img id="block_wall_img" src="/images/flistA.gif" />
-		    <%= render :partial => "user_walls/action_dell_wall", :locals => {:wall => wall} %>
-		  </div>
-		<% end %>
+    <% if @user == current_user %>
+      <div class="del_wall" style="float: right; display: none; cursor: pointer;">
+        <img id="block_wall_img" src="/images/flistA.gif" />
+        <%= render :partial => "user_walls/action_dell_wall", :locals => {:wall => wall} %>
+      </div>
+    <% end %>
   <% end %>
   <div class="assPic">
     <%= show_image_user_post(wall.user_post) %>
-		<% if wall.user_post != current_user %>
+    <% if wall.user_post != current_user %>
       <%= render :partial => "user_walls/action", :locals => {:wall => wall}%>
     <% end %>
   </div>
@@ -39,8 +39,8 @@
       else
         obj = wall
       end %>
-			
-			<%= show_rating_action(wall) %>
+
+      <%= show_rating_action(wall) %>
 
       <%  if !["Learntool"].include?(obj.class.name)  %>
         <div class="com">
@@ -51,7 +51,7 @@
           <%= link_to "Write a Review", "#{url_for(:controller => "learn_tools", :action => "write_review_form")}?tool_id=#{obj.id.to_s}&height=325&width=550", :class => "thickbox", :title => "" %>
         </div>
       <% end %>
-			<%= link_to "Share", "/user_walls/share_lounge?height=350&width=500&wall_id=#{wall.id.to_s}", :class => "thickbox", :title => "Share Lounge" %>
+      <%= link_to "Share", "/user_walls/share_lounge?height=350&width=500&wall_id=#{wall.id.to_s}", :class => "thickbox", :title => "Share Lounge" %>
     </div>
     <!--Comments-->
     <%  if !["Learntool"].include?(obj.class.name)  %>
@@ -91,7 +91,7 @@
     
   $(document).ready(function(){
     $(".assPic").hover(function(){
-			$(".asslinkdownSt", this).show();
+      $(".asslinkdownSt", this).show();
     }, function(){
       $(".asslinkdownSt", this).hide();
     })
@@ -109,8 +109,8 @@
     vtip()
   });
 
-	$().ready(function() {
+  $().ready(function() {
     $('#wall_<%= wall.id %> .AfterDes').jTruncate({
     });
-});
+  });
 </script>
