@@ -9,6 +9,8 @@ class UForumsController < ApplicationController
 
   def show
     @ufo = Ufo.find(params[:id])
+    @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 1)
+
     @ufo_cmt = UfoCmt.new()
   end
 
