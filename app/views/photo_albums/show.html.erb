@@ -16,6 +16,7 @@
                 <%= display_flash_messages_with_raw %>
                 <div id="create_a_album" style="display:none;">
                     <%= render :partial => "photos/widget_form" %>
+										<%= render :partial => "photos/select_photos" %>
                 </div>
                 <div id="my_photos_list">
                     <div class="slsTop">
@@ -42,3 +43,10 @@
     <!--Ads-->
 </div>
 <%= render :partial => "action_photo_box_menu" %>
+<script type="text/javascript" charset="utf-8">
+  $(function(){
+		$('#create_bt').hide();
+		$('#start_uploads').show();
+		$('#photo_photo_album_id').val('<%= @photo_album.id %>');
+});
+</script>
