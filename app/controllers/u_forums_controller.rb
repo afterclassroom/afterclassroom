@@ -64,7 +64,9 @@ class UForumsController < ApplicationController
   end
 
   def index
-    @ufos = current_user.ufos
+ #   @ufos = current_user.ufos
+#    @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 10)
+    @ufos = current_user.ufos.paginate(:page => params[:page], :per_page => 2)
   end
 
   def save_cmt
