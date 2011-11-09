@@ -9,7 +9,7 @@ class UForumsController < ApplicationController
 
   def show
     @ufo = Ufo.find(params[:id])
-    @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 1)
+    @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 10)
 
     @ufo_cmt = UfoCmt.new()
   end
@@ -64,7 +64,7 @@ class UForumsController < ApplicationController
   end
 
   def index
-    @ufos = current_user.ufos
+    @ufos = current_user.ufos.paginate(:page => params[:page], :per_page => 2)
   end
 
   def save_cmt
@@ -81,31 +81,8 @@ class UForumsController < ApplicationController
   end
 
   def post_lounge
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-
     objufo = Ufo.find(params[:id])
+    post_wall(objufo)
 
     puts "==objufo title = #{objufo.title}"
     puts "==TO LOUNGE"

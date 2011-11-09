@@ -10,7 +10,7 @@
                 <%= link_to ufo.title, user_u_forum_path(ufo.user, ufo) %>
 
               </div>
-              <div class="inboxFoSe"><a href="#" onclick=""><span class="span1">Setting</span></a></div>
+              <div class="inboxFoSe"><a href="javascript:;" id="setting<%= ufo.id %>"><span class="span1">Setting</span></a></div>
               <div class="assContFoT">
                 <div class="assContFoD">
                   <div class="assContFoC">
@@ -42,7 +42,8 @@
                           </div>
                           <div style="background: url(&quot;/images/bor-ad.png&quot;) no-repeat scroll left top transparent; padding: 0pt 2px;">
                             <div class="com">
-                              <a href="">Comments (<span id="post_1144_comments">0</span>)</a>
+                              <!-- a href="">Comments (<span id="post_1144_comments">0</span>)</a -->
+                              <%= link_to "Comments", user_u_forum_path(ufo.user, ufo) %>
                             </div>
                           </div>
                         </div>
@@ -53,3 +54,42 @@
               </div>
             </div>
           </div>
+
+
+<div id="item_dlg<%= ufo.id %>" title="Custom settings for <%= ufo.title %>" style="display:none;">
+  <div id="sContent<%= ufo.id %>">
+    <div id="waiting_id<%= ufo.id %>" style="margin-left: 298px; margin-top: 66px;">
+      <img src="/images/ajax-loader-a.gif"/>
+    </div>
+    <div id="item_dlg<%= ufo.id %>"></div>
+
+  </div>
+</div>
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $('#setting<%= ufo.id %>').click(function(){
+
+      var stn_path = "";
+
+      $("#item_dlg<%= ufo.id %>").dialog({
+        open: function ()
+        {
+          //$('item_dlg<%= ufo.id %>').load(stn_path);
+        },
+        model: true,
+        height: 220,
+        width: 650,
+        draggable: false,
+        resizable: false,
+        closeOnEscape: true,
+        beforeClose: function(event, ui) {
+          alert('a');
+        }
+
+      });
+
+
+  });
+});
+</script>
