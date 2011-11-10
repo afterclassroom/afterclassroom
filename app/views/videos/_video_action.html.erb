@@ -1,6 +1,9 @@
 <%= render :partial => "videos/form_add_tag" %>
+
 <% if  @video.user == current_user && @verify_users.size > 0 %>
-  <%= render :partial => "form_decision" %>
+
+  <%= render :partial => "videos/form_decision" %>
+
 <% end %><!-- end if -->
 <div class="stoDbtm">
   <div class="AsDContBtm">
@@ -15,12 +18,6 @@
   <%= hidden_field_tag "comment_content" %>
   <%= hidden_field_tag "video_id", @video.id %>
 <% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
-
-
-<div id="rate_pos" style="padding: 4px 	;width: 81px;float: right; margin-top: -40px; margin-right: 104px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
-  <%= render :partial => "rating_action", :locals => {:post => @video, :controller_name => "videos"}%>
-</div>
-
 <script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide the button Accept/Refuse
   var path = "<%= list_friend_to_tag_user_path(current_user) %>?tagable_id=<%= @video.id %>&tagable_type=<%= @video.class.name %>";
@@ -45,7 +42,6 @@
   });
 
   $(function(){
-    
     // Autocomplete initialization
     var tb = new $.TextboxList('#share_to', {
       unique: true,
@@ -67,28 +63,12 @@
         
   });  
   $(document).ready(function(){
-    $('.textboxlist').width(445);
-    $('div.textboxlist-autocomplete').width(445);
+    $('.textboxlist').width(450);
+    $('div.textboxlist-autocomplete').width(450);
     
     $('#send_btn').click(function(){
       $('form#form_tag_user').submit();
     });
     
   })
-  //BEGIN fix issue of rate up/down position
-  $(document).ready(function(){
-    $('.qashdU').css({
-      'float': 'left',
-      'margin-left': '2px'
-    });
-
-    $('.qashdD').css({
-      'float': 'left', 
-      'margin-left': '14px'
-    });
-    $('.AsDcomItemR').css({
-      'width':'615px'
-    });
-  });
-  //END fix issue of rate up/down position
 </script>

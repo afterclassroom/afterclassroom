@@ -1,4 +1,4 @@
-<div class="photoItem">
+<div class="photoItem" style="width:110px;">
   <div class="photoImg"><%= link_to raw("<div>#{image_tag photo.photo_attach.url(:thumb)}</div>"), show_photo_detail_user_url(current_user, :photo_id => photo), :class => "iframe" %>
   </div>
 </div>
