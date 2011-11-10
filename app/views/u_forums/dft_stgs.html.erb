@@ -73,7 +73,7 @@ $(document).ready(function(){
     SaveSetting(shareto,tolounge);
   });
   $('#bt_close').click(function(){
-    $('span.ui-icon-closethick').click();
+    $('#setting_dlg').parent().find('span.ui-icon-closethick').click();
   });
 
   $('select#ufo_setting').change(function(){

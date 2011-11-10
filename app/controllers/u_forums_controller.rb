@@ -89,6 +89,7 @@ class UForumsController < ApplicationController
   end
 
   def item_setting
+    @objufo = Ufo.find(params[:id])
     render :layout => false
   end
 

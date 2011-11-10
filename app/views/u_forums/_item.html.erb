@@ -70,19 +70,23 @@
 $(document).ready(function(){
   $('#setting<%= ufo.id %>').click(function(){
 
-      var stn_path = "<%= item_setting_user_u_forums_path %>";
+      var stn_path = "<%= item_setting_user_u_forums_path %>?id=<%= ufo.id %>";
 
       $("#item_dlg<%= ufo.id %>").dialog({
         open: function ()
         {
           $('#item_dlg<%= ufo.id %>').load(stn_path);
         },
-        model: true,
+        modal: true,
         height: 220,
         width: 650,
         draggable: false,
         resizable: false,
         closeOnEscape: true,
+        overlay: { 
+            opacity: 0.7, 
+            background: "black" 
+        },
         beforeClose: function(event, ui) {
         }
 
