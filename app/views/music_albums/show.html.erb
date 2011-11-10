@@ -42,3 +42,10 @@
     <!--Ads-->
 </div>
 <%= render :partial => "action_music_box_menu" %>
+<script type="text/javascript" charset="utf-8">
+  $(function(){
+		$('#create_bt').hide();
+		$('#start_uploads').show();
+		$('#music_music_album_id').val('<%= @music_album.id %>');
+});
+</script>

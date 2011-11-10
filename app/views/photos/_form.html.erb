@@ -1,13 +1,12 @@
-<%= form_tag create_album_user_photos_path(current_user), :remote => true, :id => "form_album", :name => "form_album" do %>
-    <div class="photoEx">
-      <div class="stoExItem">
+ <div class="photoEx">
+			<%= form_tag create_album_user_photos_path(current_user), :remote => true, :id => "form_album", :name => "form_album" do %>
+      <div class="stoExItem" id="photo_album_detail">
         <div class="stoExItemL">Photo album name*</div>
         <div class="stoExItemR" ><%= text_field_tag "photo_album[name]", "", :id => "album_name", :class => '{validate:{required:true}}' %></div>
       </div>
-      <div class="stoExBtm">
-        <div class="stoExCre"><a href="javascript:;" onclick="check_form_photo_album();">Create</a></div>
-        <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').hide();">Cancel</a></div>
+			<% end %>
+			<div class="stoExItem" id="photo_album_detail">
+        <div class="stoExItemL"></div>
+        <div class="stoExItemR" ><%= render :partial => "select_photos" %></div>
       </div>
-      <div class="error_photo" style="padding: 10px;"></div>
     </div>
-  <% end %>
