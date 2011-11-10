@@ -3,7 +3,7 @@
   $("#show_jplayer_<%= @wall.id %>").html('<div id="player_<%= @wall.id %>" style="display:block;width:450px;height:310px"></div>');
 
   flowplayer("player_<%= @wall.id %>",
-  {src: "/swfs/flowplayer.commercial-3.2.7.swf", wmode:"opaque"},
+  {src: "/swfs/flowplayer.commercial-3.2.7-6.swf", wmode:"opaque"},
   {	
   key : '#$de9093c019ae644a1da',
   clip : {
@@ -16,7 +16,7 @@
         }
       },
   logo: {
-  url: '/images/logo.png',
+  url: '/images/logo02.png',
   fullscreenOnly: false,
   opacity: 0,
   top: '83%',
@@ -24,7 +24,7 @@
   },
   // gradually show on mouseover
   onMouseOver: function() {
-  this.getPlugin("logo").fadeTo(0.5, 1000);
+  this.getPlugin("logo").fadeTo(1, 1000);
   },
 
   // gradually hide on mouseout
