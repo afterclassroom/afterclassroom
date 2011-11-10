@@ -16,8 +16,8 @@ class AjaxNotLoginController < ApplicationController
     rating = params[:rating]
     @comnt = Comment.find(params[:comment_id])
     @comnt.rate rating.to_i
-    @text = "<div class='AsDcomRe1'><a href='javascript:;'>#{@comnt.total_good}</a></div>"
-    @text << "<div class='AsDcomRe2'><a href='javascript:;'>#{@comnt.total_bad}</a></div>"
+    @text = "<div class='qashdU'><a href='javascript:;'>#{@comnt.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;'>#{@comnt.total_bad}</a></div>"
   end
   
   def view_results
