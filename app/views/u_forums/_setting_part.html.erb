@@ -47,6 +47,7 @@
 
 
 <script type="text/javascript">
+  $('#waiting_id<%= @objufo.id %>').hide();
   $('#bt_close<%= @objufo.id %>').click(function(){
     $("#item_dlg<%= @objufo.id %>").parent().find('span.ui-icon-closethick').click();
   });
