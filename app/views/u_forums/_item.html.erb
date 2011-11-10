@@ -70,12 +70,12 @@
 $(document).ready(function(){
   $('#setting<%= ufo.id %>').click(function(){
 
-      var stn_path = "";
+      var stn_path = "<%= item_setting_user_u_forums_path %>";
 
       $("#item_dlg<%= ufo.id %>").dialog({
         open: function ()
         {
-          //$('item_dlg<%= ufo.id %>').load(stn_path);
+          $('#item_dlg<%= ufo.id %>').load(stn_path);
         },
         model: true,
         height: 220,
@@ -84,7 +84,6 @@ $(document).ready(function(){
         resizable: false,
         closeOnEscape: true,
         beforeClose: function(event, ui) {
-          alert('a');
         }
 
       });

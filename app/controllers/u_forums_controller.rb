@@ -88,4 +88,8 @@ class UForumsController < ApplicationController
     puts "==TO LOUNGE"
   end
 
+  def item_setting
+    render :layout => false
+  end
+
 end
