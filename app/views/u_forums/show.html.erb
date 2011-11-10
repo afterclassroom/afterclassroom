@@ -55,7 +55,6 @@
 
 
                 <div>
-                  <%#= show_tolounge_custom(@ufo) %>
                   <% pr = @ufo.ufo_custom %>
                   <% check = pr ? pr.post_lounge : 0 %>
                   <% if (check == 0 || check == false) %>
@@ -191,7 +190,10 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
 <script type="text/javascript">
 
 var shareto = <%= @ufo.ufo_custom.share_to_index %>;
-var postlounge = <%= @ufo.ufo_custom.post_lounge %>;
+var postlounge = "";
+<% if @ufo.ufo_custom.post_lounge == false %>
+ postlounge = <%= @ufo.ufo_custom.post_lounge %>
+<% end %> 
 
 function SaveCustom(ishareto,ipostlounge ){
   $('#wait_area').show();

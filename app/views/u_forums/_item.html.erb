@@ -75,7 +75,6 @@ $(document).ready(function(){
       itemdlgobj<%= ufo.id %> = $("#item_dlg<%= ufo.id %>").dialog({
         open: function ()
         {
-          //$('#item_cnt<%= ufo.id %>').load(stn_path);
           ajaxobj<%= ufo.id %> = $.ajax({
             url: stn_path,
             type: 'GET',
@@ -84,7 +83,6 @@ $(document).ready(function(){
               id: <%= ufo.id %>,
             })
           });
-
         },
         modal: true,
         height: 220,
@@ -103,8 +101,6 @@ $(document).ready(function(){
         }
 
       });
-
-
   });
 });
 </script>

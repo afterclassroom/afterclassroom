@@ -58,8 +58,6 @@ class UForumsController < ApplicationController
     custom_setting.post_lounge = params[:postlounge]
     custom_setting.save
 
-
-
     render :layout => false 
   end
 
@@ -84,8 +82,10 @@ class UForumsController < ApplicationController
     objufo = Ufo.find(params[:id])
     post_wall(objufo)
 
-    puts "==objufo title = #{objufo.title}"
-    puts "==TO LOUNGE"
+    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.save
+
   end
 
   def item_setting
