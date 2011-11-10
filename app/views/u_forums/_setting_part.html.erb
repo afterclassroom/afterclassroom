@@ -53,8 +53,15 @@
 
 
 <script type="text/javascript">
+  var shareto<%= @objufo.id %> = <%= @objufo.ufo_custom.share_to_index %>;
+
   $('#waiting_id<%= @objufo.id %>').hide();
   $('#bt_close<%= @objufo.id %>').click(function(){
     $("#item_dlg<%= @objufo.id %>").parent().find('span.ui-icon-closethick').click();
+  });
+
+
+  $('#item_dlg<%= @objufo.id %>').find('#ufo_setting').change(function(){
+    alert('1');
   });
 </script>
