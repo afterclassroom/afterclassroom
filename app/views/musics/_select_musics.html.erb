@@ -1,0 +1,172 @@
+<!--Alert-->
+<div id="delete-dialog-message" title="Confirm delete" style="display:none;">
+  <p>
+    Really delete the highlighted element?
+  </p>
+</div>
+<!--Alert-->
+<div class="files">
+    <%= form_for :music, :url => upload_user_musics_url(current_user), :html => { :class => "upload", :multipart => true, :id => "music_form" } do |f| %>
+      <%= hidden_field_tag "music[music_album_id]", "" %>
+      <%= file_field_tag "music[music_attach]", :multiple => true %>
+      <div>
+        Select musics
+      </div>
+    <% end %>
+    <table class="upload_files" width="100%">
+    </table>
+    <div class="stoExBtm">
+			<div class="stoExSave" id="create_bt">
+        <a onclick="create_album();" href="javascript:;">Create</a>
+      </div>
+      <div class="stoExSave" id="start_uploads" style="display:none;">
+        <a href="javascript:;" >Upload</a>
+      </div>
+      <div class="stoExCan"><a href="javascript:;" onclick="$('#create_a_album').hide();">Cancel</a></div>
+    </div>
+    <br/>
+    <table class="download_files" width="100%">
+    </table>
+  </div>
+<script>
+  $(document).ready(function(){
+    $('#music_form').each(function(){
+      // Fix for browsers which support multiple file selection but not the File API:
+      // https://github.com/blueimp/jQuery-File-Upload/issues#issue/36
+      if (typeof File === 'undefined') {
+        $(this).find('input:file').each(function(){
+          $(this).removeAttr('multiple') // Fix for Opera, which ignores just removing the multiple attribute:
+          .replaceWith($(this).clone(true));
+        });
+      }
+    }).fileUploadUI({
+      uploadTable: $('.upload_files'),
+      downloadTable: $('.download_files'),
+      buildUploadRow: function(files, index){
+        var fileNames;
+        if (typeof index == 'number') {
+          fileNames = files[index].name;
+        }
+        else {
+          fileNames = '';
+          for (i = 0; i < files.length; i += 1) {
+            fileNames = fileNames + files[i].name + '<br>';
+          }
+        }
+        return $('<tr><td class="file_upload_preview_music"><\/td>' +
+          '<td class="file_upload_title_music">' +
+          fileNames +
+          '<\/td>' +
+          '<td class="file_upload_txt_title"><input type="text" title="Title" class="musicTitle" value="Title"><\/td>' +
+          '<td class="file_upload_progress"><div><\/div><\/td>' +
+          '<td class="file_upload_start">' +
+          '<button class="ui-state-default ui-corner-all" title="Start Upload">' +
+          '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' +
+          '<\/button><\/td>' +
+          '<td class="file_upload_cancel">' +
+          '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+          '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+          '<\/button><\/td><\/tr>');
+      },
+      buildDownloadRow: function(file){
+        return $('<tr id="file_' + file.id + '"><td>' + file.name + '<\/td>' +
+          '<td class="file_delete"><button title="Delete" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-trash"></span></button></td>' +
+          '<\/tr>');
+      },
+      beforeSend: function(event, files, index, xhr, handler, callBack){
+        var regexp = /\.(mp3)|(wav)|(mpeg3)$/i;
+        // Using the filename extension for our test,
+        // as legacy browsers don't report the mime type
+        if (!regexp.test(files[index].name)) {
+          handler.uploadRow.find('.file_upload_progress').html('ONLY MP3 ALLOWED!');
+          setTimeout(function(){
+            handler.removeNode(handler.uploadRow);
+          }, 10000);
+          return;
+        }
+                    
+        if (files[index].size > 10000000) {
+          handler.uploadRow.find('.file_upload_progress').html('FILE TOO BIG!');
+          setTimeout(function(){
+            handler.removeNode(handler.uploadRow);
+          }, 10000);
+          return;
+        }
+                    
+        handler.uploadRow.find('.file_upload_start button').click(function(){
+          title = handler.uploadRow.find('.file_upload_txt_title input').val();
+          if (title == "Title"){
+            title = "";
+          }
+          handler.formData = {
+            "music[title]": title,
+            "music[music_album_id]": $('#music_music_album_id').val(),
+            "authenticity_token": $('[name="authenticity_token"]').val()
+          };
+          callBack();
+        });
+      }
+    });
+  });
+        
+  $('#start_uploads').click(function(){
+    $('.file_upload_start button').click();
+  });
+    	
+  $('#cancel_uploads').click(function(){
+    $('.file_upload_cancel button').click();
+  });
+		
+  $('.file_delete button').live('click', function () {
+    deleteFile(getKey($(this).closest('tr')));
+    return false;
+  });
+			
+  function deleteItem(node, url, callBack) {
+    node.addClass('ui-state-highlight');
+    $("#delete-dialog-message").dialog({
+      modal: true,
+      buttons: {
+        Delete: function() {
+          $.ajax({
+            url: url,
+            type: 'DELETE',
+            success: function (data) {
+              callBack(data);
+            }
+          });
+        },
+        Cancel: function() {
+          $("#delete-dialog-message").dialog('close');
+          node.removeClass('ui-state-highlight');
+        }
+      }
+    });
+  }
+	
+	function upload_files(){
+		$('.file_upload_start button').click();
+		$('#create_bt').hide();
+		$('#start_uploads').show();
+	}
+
+  function deleteFile(key) {
+    var path = "<%= user_musics_url(current_user)%>/" + key;
+    var node = getFileNode(key);
+    deleteItem(node, path, function (data) {
+      node.fadeOut(function () {
+        $("#delete-dialog-message").dialog('close');
+        $(this).remove();
+      });
+    });
+  }
+		
+  function getKey(node) {
+    return node.attr('id').replace(/\w+?_/, '');
+  }
+			
+  function getFileNode(key) {
+    return $('#file_' + key);
+  }
+
+</script>

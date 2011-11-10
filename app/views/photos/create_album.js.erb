@@ -1,1 +1,3 @@
-$("#create_a_album").html("<%= escape_javascript( render( :partial => "widget_form") ) %>");
+$("#photo_album_detail").html("<%= escape_javascript( render( :partial => "widget_form") ) %>");
+$("#photo_photo_album_id").val("<%= @photo_album.id %>");
+setTimeout(function() { upload_files(); }, 500);
