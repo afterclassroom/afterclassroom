@@ -5,7 +5,7 @@
                 <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
                 <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
                 <div style="margin-top:14px;">
-		  <%= show_share_setting(current_user) %>
+                  <%= show_share_custom(@objufo) %>
                 </div>
               </div>
               <div style="width: 289px; float: right; margin-top: -54px; height: 52px; display: none;">
@@ -23,7 +23,13 @@
               <div style="border: 0px solid black; width: 289px; height: 52px;">
                 <label style="text-align: left; color: #969696;">Post to your lounge?</label>
                 <div>
-		  <%= show_tolounge_setting(current_user) %>
+                  <% pr = @objufo.ufo_custom %>
+                  <% check = pr ? pr.post_lounge : 0 %>
+                  <% if (check == 0 || check == false) %>
+                    <button id="to_lounge">Post to lounge</button>
+                  <% else %>
+                    This topic has been posted to your lounge.
+                  <% end %>
                 </div>
               </div>
               <div style="width: 289px; float: right; margin-top: -54px; height: 52px; display: none;">
@@ -47,8 +53,15 @@
 
 
 <script type="text/javascript">
+  var shareto<%= @objufo.id %> = <%= @objufo.ufo_custom.share_to_index %>;
+
   $('#waiting_id<%= @objufo.id %>').hide();
   $('#bt_close<%= @objufo.id %>').click(function(){
     $("#item_dlg<%= @objufo.id %>").parent().find('span.ui-icon-closethick').click();
+  });
+
+
+  $('#item_dlg<%= @objufo.id %>').find('#ufo_setting').change(function(){
+    alert('1');
   });
 </script>
