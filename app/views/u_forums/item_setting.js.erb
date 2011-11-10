@@ -1,0 +1,2 @@
+$('#waiting_id<%= @objufo.id %>').hide();
+$('#item_cnt<%= @objufo.id %>').html('<%= escape_javascript ( raw(render :partial => "setting_part")) %>');

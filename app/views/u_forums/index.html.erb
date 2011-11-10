@@ -62,14 +62,14 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    var stn_path = "<%= dft_stgs_user_u_forums_path %>"
+    var stn_path = "<%= dft_stgs_user_u_forums_path %>";
     $('#ufo_setngs').click(function(){
       $("#setting_dlg").dialog({
         open: function ()
         {
           $('#mainCnt').load(stn_path);
         },
-        model: true,
+        modal: true,
         height: 220,
         width: 650,
         draggable: false,

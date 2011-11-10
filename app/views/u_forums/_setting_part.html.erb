@@ -5,7 +5,7 @@
                 <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
                 <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
                 <div style="margin-top:14px;">
-		  <%= show_share_setting(current_user) %>
+                  <%= show_share_custom(@objufo) %>
                 </div>
               </div>
               <div style="width: 289px; float: right; margin-top: -54px; height: 52px; display: none;">
@@ -23,7 +23,13 @@
               <div style="border: 0px solid black; width: 289px; height: 52px;">
                 <label style="text-align: left; color: #969696;">Post to your lounge?</label>
                 <div>
-		  <%= show_tolounge_setting(current_user) %>
+                  <% pr = @objufo.ufo_custom %>
+                  <% check = pr ? pr.post_lounge : 0 %>
+                  <% if (check == 0 || check == false) %>
+                    <button id="to_lounge">Post to lounge</button>
+                  <% else %>
+                    This topic has been posted to your lounge.
+                  <% end %>
                 </div>
               </div>
               <div style="width: 289px; float: right; margin-top: -54px; height: 52px; display: none;">
@@ -36,63 +42,26 @@
 
           </div>
 
-
 <div>
   <div style="display: inline; float: right;">
-    <button id="bt_close">Close</button>
+    <button id="bt_close<%= @objufo.id %>">Close</button>
   </div>
   <div style="display: inline; float: right;">
-    <button id="bt_save">Save</button>
+    <button id="bt_save<%= @objufo.id %>">Save</button>
   </div>
 </div>
 
+
 <script type="text/javascript">
-function SaveSetting(ishareto, itolounge){
-  $.ajax({
-    url: "<%= save_setting_user_u_forums_path %>",
-    type: 'POST',
-    dataType: 'script',
-    data: ({
-      shareto: ishareto,
-      postlounge: itolounge
-    })
+  var shareto<%= @objufo.id %> = <%= @objufo.ufo_custom.share_to_index %>;
+
+  $('#waiting_id<%= @objufo.id %>').hide();
+  $('#bt_close<%= @objufo.id %>').click(function(){
+    $("#item_dlg<%= @objufo.id %>").parent().find('span.ui-icon-closethick').click();
   });
 
-}
 
-$(document).ready(function(){
-  $('#waiting_id').hide();
-
-
-  var shareto=<%= current_user.ufo_default.share_to_index %>;
-  var tolounge=<%= current_user.ufo_default.post_lounge %>;
-
-  $('#bt_save').click(function(){
-    $('#waiting_id').show();
-    $('#mainCnt').hide();
-    SaveSetting(shareto,tolounge);
+  $('#item_dlg<%= @objufo.id %>').find('#ufo_setting').change(function(){
+    alert('1');
   });
-  $('#bt_close').click(function(){
-    $('#setting_dlg').parent().find('span.ui-icon-closethick').click();
-  });
-
-  $('select#ufo_setting').change(function(){
-    shareto = $(this).find('option:selected').val();
-  });
-  $('select#lounge_setting').change(function(){
-    tolounge = $(this).find('option:selected').val();
-  });
-});
-
 </script>
-
-
-
-
-
-
-
-
-
-
-

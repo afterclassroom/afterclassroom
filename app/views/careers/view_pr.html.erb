@@ -25,7 +25,7 @@
                     </div>
                   </div>
                   <div class="stoExItem" style="overflow: hidden;">
-                    <div class="stoExItemL" style="display: inline; color: rgb(111, 111, 99); float: left; font-weight: bold; line-height: 21px; width: 75px; margin-left: 13px;">Your story</div>
+                    <div class="stoExItemL" style="display: inline; color: rgb(111, 111, 99); float: left; font-weight: bold; line-height: 21px; width: 75px; margin-left: 13px;">Content</div>
                     <div class="stoExItemR" style="display: inline; float: right; width: 525px; margin-right: 19px;">
                       <%= f.text_area :content, :rows => 2, :style => "width:525px", :class => '{validate:{required:true}}' %>
                       
@@ -36,7 +36,7 @@
                       <a onclick="submitNewPress();" id="save_edit" href="javascript:;" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Save</a>
                     </div>
                     <div style="margin-left: 142px; margin-top: -31px;">
-                      <a href="/press_infos" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Cancel</a>
+                      <a href="/careers" style="padding-left: 1px; padding-top: 5px; color: #FFFFFF; display: block; height: 25px; width: 44px; text-align: center; text-decoration: none; background: url('/images/btm48.png') no-repeat scroll left top transparent;">Cancel</a>
                     </div>
                   </div>
                   <div class="stoError" style="padding: 10px;"></div>
@@ -64,7 +64,7 @@
   
   $(document).ready(function(){
     $('.wysiwyg').css('width','525px');
-    $('#press_info_contentIFrame').css('width','525px');
+    $('#career_contentIFrame').css('width','525px');
 
     $('#save_edit').click(function(){
       $('#form_edit').submit();
@@ -74,7 +74,7 @@
   });
   (function($)
   {
-    $('#press_info_content').wysiwyg({
+    $('#career_content').wysiwyg({
       controls: {
         createLink : { visible : true },
 
