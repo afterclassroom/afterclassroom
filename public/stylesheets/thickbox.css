@@ -31,7 +31,7 @@
 #TB_window {
     position: fixed;
     background: #FFFFFF;
-    z-index: 102;
+    z-index: 99999999;
     color:#000000;
     display:none;
     border: 3px solid #1d98df;

@@ -1,11 +1,12 @@
 <% form_tag url_for(:controller => "videos", :action => "add_tag"), :id => "form_tag_user", :style => "display: none;", :method => :post, :remote => true do %>
   <%= hidden_field_tag "video_id", @video.id %>
 
-  <div class="form_friends" style="margin-left:48px; margin-top: 10px; width: 440px;">
+  <div class="form_friends" style="margin-left: 50px">
     <%= text_field_tag "share_to", "", :style => "width:360px;height:23px" %>
   </div>
-  <div class="submit" style="float: right; margin-top: -25px; margin-right: 100px;" id="send_btn">
+  <div class="submit" style="float: left;margin-left: 410px;margin-top: -26px;" id="send_btn">
     <a onmouseover="this.style.cursor='pointer';">Send</a>
+     <div class="submit_loader"></div>
   </div>
 <% end %>
 <style>
@@ -15,3 +16,21 @@
     height: 51px;
   }
 </style>
+<script>
+  $(document).ready(function(){
+    $(".submit").click(function(){
+      $('.submit').append('<div id="loader_id_submit">');
+      $('.submit_loader').append('<%= show_ajax_loader("loader_submit","display: block; position: absolute; float: right; height: 19px; margin-top: -22px; margin-left: 55px;") %>');
+      $("#loader_id_submit")
+      .height(25)
+      .css({
+        'opacity' : 0.4,
+        'display': 'block',
+        'position': 'absolute',
+        'margin-top': '-25px',
+        'background-color': 'white',
+        'width':'80px'
+      });
+    });
+  });
+</script>
