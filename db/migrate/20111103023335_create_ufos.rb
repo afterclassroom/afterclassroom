@@ -4,6 +4,8 @@ class CreateUfos < ActiveRecord::Migration
       t.belongs_to :user, :null => false
       t.string :title
       t.text :content
+      t.string :rating_status
+
       t.string :ufo_attach_file_name
       t.string :ufo_attach_content_type
       t.integer :ufo_attach_file_size

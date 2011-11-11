@@ -3,9 +3,9 @@
 check = Ufo.find_rated_by(current_user).include?(ufo) if logged_in?
 check ||= false %>
 <div class="qashdU">
-  LINK UP
+  <%= show_rating(ufo.id, ufo.total_good, controller_name, check, 1) %>
 </div>
 <div class="qashdD">
-  link down
+  <%= show_rating(ufo.id, ufo.total_bad, controller_name, check, 0) %>
 </div>
 </div>
