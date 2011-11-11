@@ -134,8 +134,8 @@ Afterclassroom::Application.routes.draw do
 
     resources :u_forums do
       collection do
-        get :dft_stgs, :post_lounge, :item_setting
-        post :save_setting, :save_custom, :save_cmt
+        get :dft_stgs, :post_lounge, :item_setting, :post_lounge_b
+        post :save_setting, :save_custom, :save_cmt, :save_custom_b
       end
       
     end

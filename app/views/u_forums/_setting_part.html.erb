@@ -26,7 +26,7 @@
                   <% pr = @objufo.ufo_custom %>
                   <% check = pr ? pr.post_lounge : 0 %>
                   <% if (check == 0 || check == false) %>
-                    <button id="to_lounge">Post to lounge</button>
+                    <button id="to_lounge<%= @objufo.id %>">Post to lounge</button>
                   <% else %>
                     This topic has been posted to your lounge.
                   <% end %>
@@ -55,7 +55,7 @@
 <script type="text/javascript">
 function SaveSetting<%= @objufo.id %>(ishareto, itolounge){
   $.ajax({
-    url: "<%= save_custom_user_u_forums_path %>",
+    url: "<%= save_custom_b_user_u_forums_path %>",
     type: 'POST',
     dataType: 'script',
     data: ({
@@ -64,8 +64,21 @@ function SaveSetting<%= @objufo.id %>(ishareto, itolounge){
       id: <%= @objufo.id %>
     })
   });
-
 }
+
+function PostLounge<%= @objufo.id %>(){
+  $.ajax({
+    url: '<%= post_lounge_b_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      id: <%= @objufo.id %>
+    },
+    success: function(html){
+    }
+  });
+}
+
 
 $(document).ready(function(){
 
@@ -91,6 +104,11 @@ $(document).ready(function(){
     $('#item_cnt<%= @objufo.id %>').hide();
     SaveSetting<%= @objufo.id %>(shareto<%= @objufo.id %>,tolounge<%= @objufo.id %>);
   });
+
+  $('#to_lounge<%= @objufo.id %>').click(function(){
+    PostLounge<%= @objufo.id %>();
+  });
+
 
 
 });
