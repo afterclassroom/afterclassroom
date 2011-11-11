@@ -53,15 +53,46 @@
 
 
 <script type="text/javascript">
+function SaveSetting<%= @objufo.id %>(ishareto, itolounge){
+  $.ajax({
+    url: "<%= save_custom_user_u_forums_path %>",
+    type: 'POST',
+    dataType: 'script',
+    data: ({
+      shareto: ishareto,
+      postlounge: itolounge,
+      id: <%= @objufo.id %>
+    })
+  });
+
+}
+
+$(document).ready(function(){
+
   var shareto<%= @objufo.id %> = <%= @objufo.ufo_custom.share_to_index %>;
+
+  var tolounge<%= @objufo.id %> = "";
+  <% if @objufo.ufo_custom.post_lounge == false %>
+   tolounge<%= @objufo.id %> = <%= @objufo.ufo_custom.post_lounge %>
+  <% end %> 
+
 
   $('#waiting_id<%= @objufo.id %>').hide();
   $('#bt_close<%= @objufo.id %>').click(function(){
     $("#item_dlg<%= @objufo.id %>").parent().find('span.ui-icon-closethick').click();
   });
 
-
   $('#item_dlg<%= @objufo.id %>').find('#ufo_setting').change(function(){
-    alert('1');
+    shareto<%= @objufo.id %> = $(this).find('option:selected').val();
   });
+
+  $('#bt_save<%= @objufo.id %>').click(function(){
+    $('#waiting_id<%= @objufo.id %>').show();
+    $('#item_cnt<%= @objufo.id %>').hide();
+    SaveSetting<%= @objufo.id %>(shareto<%= @objufo.id %>,tolounge<%= @objufo.id %>);
+  });
+
+
+});
+
 </script>
