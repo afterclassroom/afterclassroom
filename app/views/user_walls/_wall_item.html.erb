@@ -1,5 +1,5 @@
 <div class="AfterItem" id="wall_<%= wall.id %>">
-  <% if wall.user_post == current_user %>
+  <% if wall.user_post == current_user or wall.user == current_user %>
     <div class="del_wall" style="float: right; display: none; cursor: pointer;" onclick="DeleteWall('<%= wall.id %>')">
       <img id="dell_wall_img" src="/images/icon-ing.gif" />
     </div>

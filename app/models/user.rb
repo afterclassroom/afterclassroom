@@ -378,10 +378,13 @@ class User < ActiveRecord::Base
 		user_ids = user_ids - [self.id]
 		user_wall_ids = user_wall_id_follows - user_wall_id_blocks
 		if user_ids.size > 0
-			str_cond = "user_id IN('#{user_ids.join("', '")}')"
-			str_cond = str_cond + " AND user_id_post NOT IN('#{user_id_blocks.join("', '")}')" if user_id_blocks.size > 0
-			str_cond = str_cond + " AND id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
-			str_cond = str_cond + " OR id IN('#{user_wall_ids.join("', '")}')" if user_wall_ids.size > 0
+			str_cond = "(user_id = #{self.id} AND user_id_post <> #{self.id})"
+			if user_ids.size > 0 or user_id_blocks.size > 0 or user_wall_id_blocks.size > 0 or user_wall_ids.size > 0
+				str_cond << "OR (user_id IN('#{user_ids.join("', '")}')" if user_ids.size > 0
+				str_cond << " AND user_id_post NOT IN('#{user_id_blocks.join("', '")}')" if user_id_blocks.size > 0
+				str_cond << " AND id NOT IN('#{user_wall_id_blocks.join("', '")}')" if user_wall_id_blocks.size > 0
+				str_cond << " OR id IN('#{user_wall_ids.join("', '")}'))" if user_wall_ids.size > 0
+			end
 		  return UserWall.where(str_cond).order("updated_at DESC")
 		else
 			return []

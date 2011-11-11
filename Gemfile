@@ -79,4 +79,3 @@ gem 'sunspot-rails-http-basic-auth', '~> 0.0.2'
 gem 'linkedin'
 gem 'email_valid'
 gem 'haml'
-

@@ -30,7 +30,8 @@ class UForumsController < ApplicationController
       custom_setting.save
 
       @ufo = Ufo.new()
-      render :action => "new"
+      #render :action => "new"
+      redirect_to user_u_forums_path(current_user)
     else
       flash[:notice] = "Failed to create new topic."
       render :action => "new"
@@ -53,6 +54,16 @@ class UForumsController < ApplicationController
   end
 
   def save_custom
+    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting.share_to_index = params[:shareto]
+    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.save
+
+    render :layout => false 
+  end
+
+  def save_custom_b
+    @ufo = Ufo.find(params[:id])
     custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
     custom_setting.share_to_index = params[:shareto]
     custom_setting.post_lounge = params[:postlounge]
@@ -85,12 +96,47 @@ class UForumsController < ApplicationController
     custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
     custom_setting.post_lounge = params[:postlounge]
     custom_setting.save
+  end
 
+  def post_lounge_b
+    @objufo = Ufo.find(params[:id])
+    post_wall(@objufo)
+
+    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.save
   end
 
   def item_setting
     @objufo = Ufo.find(params[:id])
     render :layout => false
   end
+
+  def rate
+    rating = params[:rating]
+    @ufo = Ufo.find(params[:post_id])
+    @ufo.rate rating.to_i, current_user
+
+    # Update rating status
+    score_good = @ufo.score_good
+    score_bad = @ufo.score_bad
+    
+    if score_good == score_bad
+      status = "Require Rating"
+    else
+      sort_rating_status = {"Good" => score_good, "Bad" => score_bad}
+      arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+      status = arr_rating_status.last.first
+    end
+    
+    @ufo.rating_status = status
+    @ufo.save
+
+
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@ufo.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@ufo.total_bad}</a></div>"
+
+  end
+
 
 end
