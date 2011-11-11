@@ -214,6 +214,9 @@ function SaveCustom(ishareto,ipostlounge ){
 }
 
 function PostLounge(){
+  $('#setting_area').hide();
+  $('#wait_area').show();
+
   $.ajax({
     url: '<%= post_lounge_user_u_forums_path %>',
     type: 'GET',

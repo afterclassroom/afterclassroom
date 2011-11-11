@@ -91,20 +91,20 @@ class UForumsController < ApplicationController
 
   def post_lounge
     objufo = Ufo.find(params[:id])
-    # post_wall(objufo)
+    post_wall(objufo)
 
-    # custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
-    # custom_setting.post_lounge = params[:postlounge]
-    # custom_setting.save
+    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.save
   end
 
   def post_lounge_b
     @objufo = Ufo.find(params[:id])
-    # post_wall(@objufo)
+    post_wall(@objufo)
 
-    # custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
-    # custom_setting.post_lounge = params[:postlounge]
-    # custom_setting.save
+    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.save
   end
 
   def item_setting
