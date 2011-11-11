@@ -112,4 +112,12 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def rate
+    rating = params[:rating]
+    ufo = Ufo.find(params[:id])
+    post_b = ufo
+    post_b.rate rating.to_i, current_user
+  end
+
+
 end
