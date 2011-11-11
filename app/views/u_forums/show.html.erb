@@ -189,10 +189,15 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
 </div>
 <script type="text/javascript">
 
-var shareto = <%= @ufo.ufo_custom.share_to_index %>;
-var postlounge = "";
-<% if @ufo.ufo_custom.post_lounge == false %>
+var shareto;
+var postlounge;
+
+<% if @ufo.ufo_custom != nil %>
+ shareto = <%= @ufo.ufo_custom.share_to_index %>;
  postlounge = <%= @ufo.ufo_custom.post_lounge %>
+<% else %>
+ shareto = <%= current_user.ufo_default.share_to_index %>;
+ postlounge = <%= current_user.ufo_default.post_lounge %>
 <% end %> 
 
 function SaveCustom(ishareto,ipostlounge ){
@@ -214,6 +219,9 @@ function SaveCustom(ishareto,ipostlounge ){
 }
 
 function PostLounge(){
+  $('#setting_area').hide();
+  $('#wait_area').show();
+
   $.ajax({
     url: '<%= post_lounge_user_u_forums_path %>',
     type: 'GET',

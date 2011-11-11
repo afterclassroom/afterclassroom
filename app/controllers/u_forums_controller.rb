@@ -30,7 +30,8 @@ class UForumsController < ApplicationController
       custom_setting.save
 
       @ufo = Ufo.new()
-      render :action => "new"
+      #render :action => "new"
+      redirect_to user_u_forums_path(current_user)
     else
       flash[:notice] = "Failed to create new topic."
       render :action => "new"
@@ -53,6 +54,16 @@ class UForumsController < ApplicationController
   end
 
   def save_custom
+    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting.share_to_index = params[:shareto]
+    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.save
+
+    render :layout => false 
+  end
+
+  def save_custom_b
+    @ufo = Ufo.find(params[:id])
     custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
     custom_setting.share_to_index = params[:shareto]
     custom_setting.post_lounge = params[:postlounge]
@@ -85,12 +96,28 @@ class UForumsController < ApplicationController
     custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
     custom_setting.post_lounge = params[:postlounge]
     custom_setting.save
+  end
 
+  def post_lounge_b
+    @objufo = Ufo.find(params[:id])
+    post_wall(@objufo)
+
+    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.save
   end
 
   def item_setting
     @objufo = Ufo.find(params[:id])
     render :layout => false
   end
+
+  def rate
+    rating = params[:rating]
+    ufo = Ufo.find(params[:id])
+    post_b = ufo
+    post_b.rate rating.to_i, current_user
+  end
+
 
 end
