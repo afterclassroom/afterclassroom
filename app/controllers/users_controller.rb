@@ -164,6 +164,7 @@ class UsersController < ApplicationController
   def show_story_detail
 		story_id = params[:story_id]
     @story = Story.find(story_id)
+		@user = @story.user
     if check_private_permission(current_user, @user, "my_stories") or check_view_permission(current_user, @story)
 			#finding a list of tagged users for this story
      	@tagged_users = User.find(:all, :joins => "INNER JOIN tag_infos ON tag_infos.tagable_user = users.id", :conditions => ["tag_infos.tagable_id=? and tag_infos.tagable_type=? and tag_infos.verify=?",story_id,"Story",true ] )
@@ -269,6 +270,7 @@ class UsersController < ApplicationController
   def show_detail_video
 		video_id = params[:video_id]
     @video = Video.find(video_id)
+		@user = @video.user
     if check_private_permission(current_user, @user, "my_videos") or check_view_permission(current_user, @video)
       update_view_count(@video)
       as_next = @user.videos.nexts(@video.id).last
