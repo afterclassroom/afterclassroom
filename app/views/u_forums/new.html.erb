@@ -110,7 +110,17 @@
               <div class="inner2" style="margin-top: 8px;">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
-                  <label style="text-align: left; margin-left: 10px; color: #969696;">Notify Friends via email</label>
+                  <label style="text-align: left; margin-left: 10px; color: #969696;">Notify Friends via email
+                    <a id="btn_invite" style="float: right; margin-top: 2px;" href="javascript:;">Invite other members</a>
+
+
+
+                    <div id="friend_pad" style="display: none; width: 100px; height: 100px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px;">
+                      content of friend finding is here
+                    </div>
+
+
+                  </label>
                 </div>
 
                 <div class="assContFoT615" style="float: none;margin-bottom: 8px;">
@@ -163,6 +173,12 @@
 </div>
 <script type="text/javascript">
   $('document').ready(function(){
+    //BEGIN: invite member to join
+      $('#btn_invite').click(function(){
+        $('#friend_pad').toggle('slow');
+      });
+    //END: invite member to join
+
     $('.wysiwyg').css({
       'width':'605px'
     })
