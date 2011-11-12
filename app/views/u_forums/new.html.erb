@@ -174,10 +174,32 @@
   </div>
 </div>
 <script type="text/javascript">
+var ajaxObj;
+
+function LoadFriendPane(){
+  ajaxObj = $.ajax({
+    url: '<%= friend_pad_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+    },
+    success: function(data){
+      //hide needed thing here: e.g ajax loader
+    }
+  });//end ajax
+}
+
   $('document').ready(function(){
     //BEGIN: invite member to join
       $('#btn_invite').click(function(){
-        $('#friend_pad').toggle('slow');
+        $('#friend_pad').toggle('slow', function(){
+          if ( $(this).is(":visible") == true ){
+            LoadFriendPane(); 
+          }
+          else {
+            ajaxObj.abort();
+          }
+        });
       });
     //END: invite member to join
 
