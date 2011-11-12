@@ -53,16 +53,17 @@
             fileNames = fileNames + files[i].name + '<br>';
           }
         }
+				var bt_upload = "";
+				if ($('#music_music_album_id').val() != ""){
+					bt_upload = '<td class="file_upload_start">' + '<button class="ui-state-default ui-corner-all" title="Start Upload">' + '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' + '<\/button><\/td>';
+				}
         return $('<tr><td class="file_upload_preview_music"><\/td>' +
           '<td class="file_upload_title_music">' +
           fileNames +
           '<\/td>' +
           '<td class="file_upload_txt_title"><input type="text" title="Title" class="musicTitle" value="Title"><\/td>' +
           '<td class="file_upload_progress"><div><\/div><\/td>' +
-          '<td class="file_upload_start">' +
-          '<button class="ui-state-default ui-corner-all" title="Start Upload">' +
-          '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' +
-          '<\/button><\/td>' +
+          bt_upload +
           '<td class="file_upload_cancel">' +
           '<button class="ui-state-default ui-corner-all" title="Cancel">' +
           '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
