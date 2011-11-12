@@ -110,7 +110,21 @@
               <div class="inner2" style="margin-top: 8px;">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
-                  <label style="text-align: left; margin-left: 10px; color: #969696;">Notify Friends via email</label>
+                  <label style="text-align: left; margin-left: 10px; color: #969696;">Notify Friends via email
+                    <a id="btn_invite" style="float: right; margin-top: 2px;" href="javascript:;">Invite other members</a>
+
+
+
+                    <div id="friend_pad" style="display: none; width: 280px; min-height: 31px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px; padding: 10px;">
+                      <div id="waiting">
+                        <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
+                      </div>
+                      <div id="control_pane" style="border: 1px solid black;">
+                      </div>
+                    </div>
+
+
+                  </label>
                 </div>
 
                 <div class="assContFoT615" style="float: none;margin-bottom: 8px;">
@@ -162,7 +176,55 @@
   </div>
 </div>
 <script type="text/javascript">
+var ajaxObj;
+var pad_mouse_is_inside = false;
+
+
+function LoadFriendPane(){
+  ajaxObj = $.ajax({
+    url: '<%= friend_pad_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+    },
+    success: function(data){
+      //hide needed thing here: e.g ajax loader
+    }
+  });//end ajax
+}
+
   $('document').ready(function(){
+    //BEGIN: invite member to join
+      $('#btn_invite').click(function(){
+        $('#friend_pad').toggle('slow', function(){
+          if ( $(this).is(":visible") == true ){
+            LoadFriendPane(); 
+          }
+          else {
+            ajaxObj.abort();
+            $('#control_pane').html('');
+            $('#waiting').show();
+          }
+        });
+      });
+      $('#friend_pad').hover(function(){ 
+        pad_mouse_is_inside=true; 
+      }, function(){ 
+        pad_mouse_is_inside=false; 
+      });//end hover
+
+      $("body").mouseup(function(){ 
+        if(! pad_mouse_is_inside){ 
+          if ( $('#friend_pad').is(":visible") == false ){
+            $('#friend_pad').hide('slow');
+            ajaxObj.abort();
+          }
+        }
+      });
+
+
+    //END: invite member to join
+
     $('.wysiwyg').css({
       'width':'605px'
     })
