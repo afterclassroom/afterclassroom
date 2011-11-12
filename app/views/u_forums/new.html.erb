@@ -177,6 +177,8 @@
 </div>
 <script type="text/javascript">
 var ajaxObj;
+var pad_mouse_is_inside = false;
+
 
 function LoadFriendPane(){
   ajaxObj = $.ajax({
@@ -205,6 +207,22 @@ function LoadFriendPane(){
           }
         });
       });
+      $('#friend_pad').hover(function(){ 
+        pad_mouse_is_inside=true; 
+      }, function(){ 
+        pad_mouse_is_inside=false; 
+      });//end hover
+
+      $("body").mouseup(function(){ 
+        if(! pad_mouse_is_inside){ 
+          if ( $('#friend_pad').is(":visible") == false ){
+            $('#friend_pad').hide('slow');
+            ajaxObj.abort();
+          }
+        }
+      });
+
+
     //END: invite member to join
 
     $('.wysiwyg').css({
