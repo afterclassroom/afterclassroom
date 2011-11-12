@@ -114,9 +114,28 @@ class UForumsController < ApplicationController
 
   def rate
     rating = params[:rating]
-    ufo = Ufo.find(params[:id])
-    post_b = ufo
-    post_b.rate rating.to_i, current_user
+    @ufo = Ufo.find(params[:post_id])
+    @ufo.rate rating.to_i, current_user
+
+    # Update rating status
+    score_good = @ufo.score_good
+    score_bad = @ufo.score_bad
+    
+    if score_good == score_bad
+      status = "Require Rating"
+    else
+      sort_rating_status = {"Good" => score_good, "Bad" => score_bad}
+      arr_rating_status = sort_rating_status.sort { |a, b| a[1] <=> b[1] }
+      status = arr_rating_status.last.first
+    end
+    
+    @ufo.rating_status = status
+    @ufo.save
+
+
+    @text = "<div class='qashdU'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@ufo.total_good}</a></div>"
+    @text << "<div class='qashdD'><a href='javascript:;' class='vtip' title='#{configatron.str_rated}'>#{@ufo.total_bad}</a></div>"
+
   end
 
 

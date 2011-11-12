@@ -1,19 +1,21 @@
 <% content_for :menu_top_student_lounge do -%>
   <%= render :partial => 'submenu' %>
 <% end -%>
-<div class="settCont">
-  <div class="settCont1">
-    <div class="settMenu">
-      <ul>
-        <%= render :partial => "setting_menu" %>
-      </ul>
-    </div>
-
-    <%= display_flash_messages_with_raw %>
-			<% @user_blocks.each do |b| %>
-				<%= render :partial => "item_people", :locals => {:block => b} %>
-			<% end %>
-		<div class="settItem">
+<div class="contMainS" style="margin-bottom: 10px">
+  <div class="settCont">
+    <div class="settCont1">
+      <div class="settMenu">
+        <ul>
+          <%= render :partial => "setting_menu" %>
+        </ul>
       </div>
-	</div>
+
+      <%= display_flash_messages_with_raw %>
+      <% @user_blocks.each do |b| %>
+        <%= render :partial => "item_people", :locals => {:block => b} %>
+      <% end %>
+      <div class="settItem">
+      </div>
+    </div>
+  </div>
 </div>

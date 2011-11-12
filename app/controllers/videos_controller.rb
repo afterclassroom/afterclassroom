@@ -224,7 +224,7 @@ class VideosController < ApplicationController
             taginfo.verify = true
             flash[:notice] = "Your friend(s) has been tagged."
           else
-            pr = video.user.private_settings.where(:type_setting => "tag_video").first
+            pr = @video.user.private_settings.where(:type_setting => "tag_video").first
             if (pr != nil)
               if (TAGS_SETTING[pr.share_to][0] != "Verify")#which mean NO VERIFY
                 taginfo.verify = true
