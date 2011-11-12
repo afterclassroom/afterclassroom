@@ -183,6 +183,7 @@
         });
       }else{
         if(countProperties(contacts) > 0){
+					$('#contacts_list').val("");
           $('#contacts_list').append('<li><input type="checkbox" value="" name="check_all" class="checkAll"> Check all </li>');
           for(var key in contacts){
             str = '<li><input class="cb-element" type="checkbox" value="' + contacts[key][1] + '" name="contacts[]">' + contacts[key][1];

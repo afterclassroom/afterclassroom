@@ -757,7 +757,7 @@ module ApplicationHelper
           title = obj.title
           sub_content = truncate_words(obj.description)
           when "MusicAlbum"
-          link = show_music_album_user_url(obj.user, :music_album_id => obj)
+          link = play_list_user_musics_path(obj.user, :music_album_id => obj)
           img_link = link_to image_tag(obj.music_album_attach.url(:thumb), :style => "width:92px;height:68px") + raw("<span class='play_music'></span>"), {:controller => "user_walls", :action => "jplayer_music", :wall_id => wall.id}, :remote => true
           image = get_image_wall(wall.id, img_link)
           title = obj.name

@@ -53,7 +53,7 @@ Afterclassroom::Application.configure do
 	config.after_initialize do
 	config.middleware.use ExceptionNotifier,
 		    :email_prefix => "[ERROR: Afterclassroom] ",
-		    :sender_address => '"Notifier" <notifier@afterclassroom.com>',
+		    :sender_address => '"Notifier" <support@afterclassroom.com>',
 		    :exception_recipients => ['dungtqa@gmail.com']
 	end
   

@@ -138,5 +138,8 @@ class UForumsController < ApplicationController
 
   end
 
+  def friend_pad
+    render :layout => false
+  end
 
 end
