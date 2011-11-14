@@ -156,5 +156,10 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def select_share
+    @share = params[:share]
+    render :layout => false
+  end
+
 
 end

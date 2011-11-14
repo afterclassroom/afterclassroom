@@ -63,9 +63,14 @@
 
                 <div class="assContFoT615" style="float: none">
                   <div class="assContFoD615">
-                    <div class="assContFoC615" style="padding:5px 25px">
+                    <div class="assContFoC615" style="padding:5px 25px" id="setting_pane">
+                        <div id=loading_id" style="margin-left: 282px;">
+                          <img src="/images/ajax-loader-a.gif"/>
+                        </div>
+
                       <div>
-                        <div style="border: 0px solid black; width: 289px; height: 52px;">
+
+                        <div id="join_area" style="width: 289px; height: 52px;">
                           <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
                           <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
                           <div style="margin-top:14px;">
@@ -88,7 +93,7 @@
                       </div>
 
                       <div>
-                        <div style="border: 0px solid black; width: 289px; height: 52px;">
+                        <div id="lounge_area" style="width: 289px; height: 52px;">
                           <label style="text-align: left; color: #969696;">Post to your lounge?</label>
                           <div>
                             <%= show_tolounge_setting(current_user) %>
@@ -200,10 +205,26 @@ function ClosePadWithSync(){
   $('#btn_invite').show();
 }
 
+function SelectShare(str_share){
+  $.ajax({
+    url: '<%= select_share_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      share: str_share
+    },
+    success: function(data){
+      //hide needed thing here: e.g ajax loader
+    }
+  });//end ajax
+}
+
   $('document').ready(function(){
     //BEGIN: load the friend list
     $('#ufo_setting').change(function(){
-      alert('change::'+$(this).find('option:selected').val());
+      //SelectShare($(this).find('option:selected').val());
+      $('#join_area').hide();
+      $('#lounge_area').hide();
     });
     //END: load the friend list
     //BEGIN: invite member to join
