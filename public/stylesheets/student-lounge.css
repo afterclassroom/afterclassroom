@@ -5894,24 +5894,23 @@ div.ufo_sel div.ufo_span2b{
     padding-top: 7px;
 }
 .assContFoC615{
-    background: url("/images/forumTextC615.png") repeat scroll 0 0 transparent;
+    background: url("/images/cen625Fo.png") repeat scroll 0 0 transparent;
     overflow: hidden;
-    width: 615px;
+    width: 625px;
     margin-top: 5px;
     padding: 5px 10px;
 }
 .assContFoD615{
-    background: url("/images/forumTextT615.png") no-repeat scroll left top;
-    width: 615px;
+    background: url("/images/top625Fo.png") no-repeat scroll left top;
+    width: 625px;
     overflow: hidden;
 }
 .assContFoT615{    
-    background: url("/images/forumTextD615.png") no-repeat scroll left bottom transparent;
+    background: url("/images/bot625Fo.png") no-repeat scroll left bottom transparent;
     overflow: hidden;
-    width: 615px;
+    width: 625px;
     float: left;
     padding-bottom: 5px;
-    margin-left: 10px;
     padding-top: 7px;
 }
   .contFoC{
