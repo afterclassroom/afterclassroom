@@ -12,10 +12,9 @@
   <ul>
     <%
     videos = @video.user.videos_same_category(@video)
-    videos = [@video] + videos
   %>
     <% videos.each do |v| %>
-			<% if check_private_permission(current_user, @video.user, v) or check_view_permission(current_user, v) %>
+			<% if check_private_permission(current_user, @video.user, "my_videos") or check_view_permission(current_user, v) %>
 		    <li>
 		      <a href="<%= get_video_path(v.video_file.video_attach.url) %>">
 		        <%= truncate(v.title, :length=>12, :omission=>"...") %>
