@@ -176,7 +176,7 @@
   </div>
 </div>
 <script type="text/javascript">
-var ajaxObj;
+var ajaxObj = null;;
 var pad_mouse_is_inside = false;
 
 
@@ -193,18 +193,22 @@ function LoadFriendPane(){
   });//end ajax
 }
 
+function ClosePadWithSync(){
+  $('#friend_pad').hide('fast',function(){
+      ajaxObj.abort();
+  });
+
+  $('#control_pane').html('');
+  $('#waiting').show();
+  $('#btn_invite').show();
+}
+
   $('document').ready(function(){
     //BEGIN: invite member to join
       $('#btn_invite').click(function(){
-        $('#friend_pad').toggle('slow', function(){
-          if ( $(this).is(":visible") == true ){
+        $('#btn_invite').hide();
+        $('#friend_pad').show('slow', function(){
             LoadFriendPane(); 
-          }
-          else {
-            ajaxObj.abort();
-            $('#control_pane').html('');
-            $('#waiting').show();
-          }
         });
       });
       $('#friend_pad').hover(function(){ 
@@ -214,16 +218,14 @@ function LoadFriendPane(){
       });//end hover
 
       $("body").mouseup(function(){ 
-        if(! pad_mouse_is_inside){ 
-          if ( $('#friend_pad').is(":visible") == false ){
-            $('#friend_pad').hide('slow');
-            ajaxObj.abort();
+        if( pad_mouse_is_inside == false ){ 
+          if ( $('#friend_pad').is(":visible") == true ){
+            ClosePadWithSync();
           }
         }
       });
-
-
     //END: invite member to join
+
 
     $('.wysiwyg').css({
       'width':'605px'
