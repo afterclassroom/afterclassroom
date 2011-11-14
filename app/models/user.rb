@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_many :video_albums, :dependent => :destroy
   has_many :photos, :dependent => :destroy
   has_many :musics, :dependent => :destroy
-  has_many :videos, :dependent => :destroy
+  has_many :videos, :dependent => :destroy, :conditions => ["state = 'converted'"]
   has_many :favorites, :dependent => :destroy
   has_many :flirting_messages, :dependent => :destroy
   has_many :flirting_sharrings, :dependent => :destroy
@@ -388,7 +388,7 @@ class User < ActiveRecord::Base
   end
 
 	def videos_same_category(video)
-		self.videos.where("id <> #{video.id} AND category = '#{video.category}'")
+		self.videos.where("category = '#{video.category}'")
 	end
   
   protected
