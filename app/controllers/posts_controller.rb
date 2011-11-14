@@ -19,6 +19,7 @@ class PostsController < ApplicationController
       @obj_comment.user = current_user
       @obj_comment.save
       obj = eval(commentable_type).find(commentable_id)
+			update_wall(@obj_comment)
       send_notification_when_comment(obj, @obj_comment)
     end
     render :layout => false
@@ -36,7 +37,7 @@ class PostsController < ApplicationController
       @obj_comment.commentable_type = "Post"
       @obj_comment.user = current_user
       @obj_comment.save
-      
+      update_wall(@obj_comment)
       send_notification_when_comment(@post, @obj_comment)
     end
     render :layout => false
@@ -108,6 +109,21 @@ class PostsController < ApplicationController
   def download
   end
   
+	def update_wall(comnd)
+		post_type = comnd.commentable_type
+		post_id = comnd.commentable_id
+		if post_type == "Post"
+			post = Post.find(post_id)
+			if post
+				post_type = post.type_name 
+				post_id = eval(post_type).find_by_post_id(post_id).id
+			end
+		end
+		user_wall_post = UserWallPost.find_by_post_type_and_post_id(post_type, post_id)
+		user_wall = user_wall_post.user_wall if user_wall_post
+		user_wall.update_attribute(:updated_at, Time.now) if user_wall
+	end
+	
   def send_notification_when_comment(obj, comnd)
     u = obj.user
     
