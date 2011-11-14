@@ -1,0 +1,17 @@
+                        <div>
+                          <!-- the following code is just for testing purpose -->
+                          <% list_friends = current_user.user_friends %>
+                          <% list_friends.each do |usr| %>
+
+                            <div class="AsDcomImg" style="padding: 5px;">
+                              <%= show_image_user_post(usr) %>
+
+                              <input style="margin-left: 1px;margin-top: -3px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
+
+                            </div>
+
+
+                          <% end %><!-- end each list friend -->
+
+                        </div>
+

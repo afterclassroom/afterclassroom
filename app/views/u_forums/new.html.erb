@@ -141,25 +141,14 @@
 
                       <input type="checkbox" value="" name="checkfriend" id="checkfriend" style="margin-bottom:15px"/>
                       <span style="color: #969696;text-align: left;font-weight: bold;margin-top: 4px;position: absolute;">All</span>
-                      <% 2.times do %>
-                        <div>
-                          <!-- the following code is just for testing purpose -->
-                          <% list_friends = current_user.user_friends %>
-                          <% list_friends.each do |usr| %>
+                      <div id="user_area">
 
-                            <div class="AsDcomImg" style="padding: 5px;">
-                              <%= show_image_user_post(usr) %>
-
-                              <input style="margin-left: 1px;margin-top: -3px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
-
-                            </div>
-
-
-                          <% end %><!-- end each list friend -->
-
+                        <div id=loading_id" style="margin-left: 298px; margin-top: 66px;">
+                          <img src="/images/ajax-loader-a.gif"/>
                         </div>
-                      <% end %>
 
+
+                      </div>
 
 
                     </div>
@@ -211,6 +200,11 @@ function ClosePadWithSync(){
 }
 
   $('document').ready(function(){
+    //BEGIN: load the friend list
+    $('#ufo_setting').change(function(){
+      alert('change::'+$(this).find('option:selected').val());
+    });
+    //END: load the friend list
     //BEGIN: invite member to join
       $('#btn_invite').click(function(){
         $('#btn_invite').hide();
