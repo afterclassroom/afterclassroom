@@ -16,6 +16,21 @@ class UForumsController < ApplicationController
 
   def new
     @ufo = Ufo.new()
+
+    @share_to=nil
+
+    case current_user.ufo_default.share_to_index.to_i
+    when 0 # Private
+    when 1 # Friend from school
+      fg = FriendGroup.where(:label => "friends_from_school").first
+      @share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
+    when 2 # Friend of friends
+    when 3 # My Family
+    when 4 # My friends
+    when 5 # Friends from work
+    when 6 # Everyone
+    end
+
   end
 
   def save

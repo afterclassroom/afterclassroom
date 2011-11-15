@@ -1,7 +1,10 @@
+<% if nil == @share_to %>
+  There is no result available
+<% else %>
                         <div>
                           <!-- the following code is just for testing purpose -->
                           <% list_friends = current_user.user_friends %>
-                          <% list_friends.each do |usr| %>
+                          <% @share_to.each do |usr| %>
 
                             <div class="AsDcomImg" style="padding: 5px;">
                               <%= show_image_user_post(usr) %>
@@ -14,4 +17,6 @@
                           <% end %><!-- end each list friend -->
 
                         </div>
+
+<% end %>
 
