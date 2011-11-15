@@ -1,4 +1,53 @@
 <% if nil != @share_to %>
 <span class="numPage"><%= page_entries_info @share_to %></span>
 <%= will_paginate @share_to %>
-<% end %>
+
+<script type="text/javascript">
+function LoadUserShare(strpage){
+  pagingAjax = $.ajax({
+    url: '<%= page_share_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      page: strpage
+    },
+    success: function(data){
+    }
+  });//end ajax
+
+}
+
+
+$(document).ready(function(){
+  //BEGIN ajax pagination
+  var curentPage = parseInt('');
+  $('#page_area a').each(function(){
+    $(this).attr('href','javascript:;');
+    $(this).click(function(){
+      if ($(this).text() == 'Next'){
+        //display the ajax loader
+        //clear the whole area with html('')
+        curentPage = curentPage + 1;
+        LoadUserShare(curentPage);
+      }else if ($(this).text() == 'Previous'){
+        //display the ajax loader
+        //clear the whole area with html('')
+        curentPage = curentPage - 1;
+        LoadUserShare(curentPage);
+      }
+      else {
+        //display the ajax loader
+        //clear the whole area with html('')
+        var strp = $(this).text();
+        LoadUserShare(strp);
+      }//end if for .text
+    });
+  });//end .each
+  //END ajax pagination
+
+});
+
+</script>
+
+<% end %><!-- end if -->
+

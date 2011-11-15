@@ -179,35 +179,6 @@ class UForumsController < ApplicationController
     arr_p = [] 
     OPTIONS_SETTING.select {|p| arr_p << p if p[1] == params[:share].to_i} 
 
-
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
-    puts "val == #{arr_p[0][0]} "
     share_to = nil
     case arr_p[0][1]
     when 0 # Private
@@ -222,6 +193,10 @@ class UForumsController < ApplicationController
     end
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
 
+    render :layout => false
+  end
+
+  def page_share
     render :layout => false
   end
 

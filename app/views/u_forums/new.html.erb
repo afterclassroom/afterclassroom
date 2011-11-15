@@ -199,8 +199,9 @@
   </div>
 </div>
 <script type="text/javascript">
-  var ajaxObj = null;;
+  var ajaxObj = null;
   var pad_mouse_is_inside = false;
+  var pagingAjax = null;
 
 
   function LoadFriendPane(){
@@ -250,6 +251,10 @@
       $('#usr_lists').hide();
       $('#page_area').hide();
       $('#page_area').html('');
+      if (pagingAjax != null){
+        pagingAjax.abort();
+        pagingAjax = null;
+      }
     });
     //END: load the friend list
     //BEGIN: invite member to join
