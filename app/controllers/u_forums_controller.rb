@@ -191,7 +191,17 @@ class UForumsController < ApplicationController
     puts "val == #{arr_p[0][0]} "
     puts "val == #{arr_p[0][0]} "
     puts "val == #{arr_p[0][0]} "
-
+    case arr_p[0][1]
+    when 0 # Private
+    when 1 # Friend from school
+      fg = FriendGroup.where(:label => "friends_from_school").first
+      puts "fg == #{fg.name}"
+    when 2 # Friend of friends
+    when 3 # My Family
+    when 4 # My friends
+    when 5 # Friends from work
+    when 6 # Everyone
+    end
 
     render :layout => false
   end
