@@ -158,6 +158,41 @@ class UForumsController < ApplicationController
 
   def select_share
     @share = params[:share]
+
+    arr_p = [] 
+    OPTIONS_SETTING.select {|p| arr_p << p if p[1] == params[:share].to_i} 
+
+
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+    puts "val == #{arr_p[0][0]} "
+
+
     render :layout => false
   end
 
