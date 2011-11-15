@@ -1,22 +1,19 @@
 <% if nil == @share_to %>
   There is no result available
 <% else %>
-                        <div>
-                          <!-- the following code is just for testing purpose -->
-                          <% list_friends = current_user.user_friends %>
-                          <% @share_to.each do |usr| %>
+  <div>
+    <% list_friends = current_user.user_friends %>
+    <% @share_to.each do |usr| %>
 
-                            <div class="AsDcomImg" style="padding: 5px;">
-                              <%= show_image_user_post(usr) %>
+    <div class="AsDcomImg" style="padding: 5px;">
 
-                              <input style="margin-left: 1px;margin-top: -3px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
-
-                            </div>
+    <div><img src="<%= usr.avatar.url(:thumb) %>" class="vtip avatar_<%= usr.id %>" title="<%= usr.name %>"/></div>
 
 
-                          <% end %><!-- end each list friend -->
-
-                        </div>
+    <input style="margin-left: 1px;margin-top: -3px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
+    </div>
+    <% end %><!-- end each list friend -->
+  </div>
 
 <% end %>
 
