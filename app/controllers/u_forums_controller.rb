@@ -191,11 +191,13 @@ class UForumsController < ApplicationController
     puts "val == #{arr_p[0][0]} "
     puts "val == #{arr_p[0][0]} "
     puts "val == #{arr_p[0][0]} "
+    @group = nil
     case arr_p[0][1]
     when 0 # Private
     when 1 # Friend from school
       fg = FriendGroup.where(:label => "friends_from_school").first
       @group = FriendInGroup.where(:user_id => current_user.id, :friend_group_id => fg.id)
+      @users = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
 
       puts "group size == #{@group.size}"
     when 2 # Friend of friends
