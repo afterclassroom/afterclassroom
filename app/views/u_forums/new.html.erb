@@ -68,39 +68,6 @@
                         <img src="/images/ajax-loader-a.gif"/>
                       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                       <div id="inner_setting">
                         <div id="row1">
                           <div id="join_area" style="width: 289px; height: 52px;">
@@ -206,9 +173,10 @@
                       </div>
                       <div id="user_area">
 
-                        <div id=loading_id" style="margin-left: 282px;">
+                        <div id="loading_user" style="margin-left: 282px; display: none;">
                           <img src="/images/ajax-loader-a.gif"/>
                         </div>
+                        <div id="usr_lists" style="">No results found</div>
 
 
                       </div>
@@ -282,6 +250,8 @@
       SelectShare($(this).find('option:selected').val());
       $('#inner_setting').hide();
       $('#loading_id').show();
+      $('#loading_user').show();
+      $('#usr_lists').hide();
     });
     //END: load the friend list
     //BEGIN: invite member to join

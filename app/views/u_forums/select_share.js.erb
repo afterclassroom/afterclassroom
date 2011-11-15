@@ -1,3 +1,7 @@
 //alert('end select share == '+<%= @share %>);
 $('#inner_setting').show();
 $('#loading_id').hide();
+$('#loading_user').hide();
+
+$('#usr_lists').html('display list of users here::<%= @group ? @group.size : "NIL NIL" %>');
+$('#usr_lists').show();

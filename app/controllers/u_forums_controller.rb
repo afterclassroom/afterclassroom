@@ -195,9 +195,9 @@ class UForumsController < ApplicationController
     when 0 # Private
     when 1 # Friend from school
       fg = FriendGroup.where(:label => "friends_from_school").first
-      group = FriendInGroup.where(:user_id => current_user.id, :friend_group_id => fg.id)
+      @group = FriendInGroup.where(:user_id => current_user.id, :friend_group_id => fg.id)
 
-      puts "group size == #{group.size}"
+      puts "group size == #{@group.size}"
     when 2 # Friend of friends
     when 3 # My Family
     when 4 # My friends
