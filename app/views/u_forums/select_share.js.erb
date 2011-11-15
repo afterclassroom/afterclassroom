@@ -5,3 +5,6 @@ $('#loading_user').hide();
 
 $('#usr_lists').html('display list of users here::<%= @group ? @group.size : "NIL NIL" %>, and user size == <%= @users ? @users.size : "ko co user tuong ung" %>');
 $('#usr_lists').show();
+$('#page_area').html('<%= escape_javascript ( raw(render :partial => "paging")) %>');  
+$('#page_area').show();
+

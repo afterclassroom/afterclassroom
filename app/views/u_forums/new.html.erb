@@ -161,36 +161,32 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="assContFoT615" style="float: none;margin-bottom: 8px;">
                   <div class="assContFoD615">
                     <div class="assContFoC615" style="padding:5px 25px">
-
-
-                      <div id="checkfriend" style="display: none">
+                      <div id="checkfriend" style="display: block;">
                         <input type="checkbox" value="" name="" id="" style="margin-bottom:15px"/>
                         <span style="color: #969696;text-align: left;font-weight: bold;margin-top: 4px;position: absolute;">All</span>
                       </div>
                       <div id="user_area">
-
                         <div id="loading_user" style="margin-left: 282px; display: none;">
                           <img src="/images/ajax-loader-a.gif"/>
                         </div>
                         <div id="usr_lists" style="">
                           <%= render :partial => "friend" %>
                         </div>
-
-
                       </div>
-
-
                     </div>
+
                   </div>
                 </div>
 
+                <div id="page_area" class="assPage" style="padding-left:0">
+                  <%= render :partial => "paging" %>
+                </div>
+                &nbsp;<br/>
               </div>
             </div>
-
           </div>
           <div class="bottomline"></div>
           <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
@@ -198,9 +194,7 @@
             <span class="btmComment"><a href="javascript:;">Cancel</a></span>
           </div>
         <% end %><!-- end form_for -->
-
       </div>
-
     </div>
   </div>
 </div>
@@ -254,6 +248,8 @@
       $('#loading_id').show();
       $('#loading_user').show();
       $('#usr_lists').hide();
+      $('#page_area').hide();
+      $('#page_area').html('');
     });
     //END: load the friend list
     //BEGIN: invite member to join
