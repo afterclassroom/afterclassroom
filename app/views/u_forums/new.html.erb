@@ -64,7 +64,7 @@
                 <div class="assContFoT615" style="float: none">
                   <div class="assContFoD615">
                     <div class="assContFoC615" style="padding:5px 25px" id="setting_pane">
-                      <div id=loading_id" style="margin-left: 282px;">
+                      <div id="loading_id" style="margin-left: 282px; display: none;">
                         <img src="/images/ajax-loader-a.gif"/>
                       </div>
 
@@ -281,6 +281,7 @@
     $('#ufo_setting').change(function(){
       SelectShare($(this).find('option:selected').val());
       $('#inner_setting').hide();
+      $('#loading_id').show();
     });
     //END: load the friend list
     //BEGIN: invite member to join
