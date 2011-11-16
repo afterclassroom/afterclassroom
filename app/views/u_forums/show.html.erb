@@ -115,6 +115,11 @@
 
               <label style="text-align: left; margin-top: 18px;">Leave your comment</label>
 
+=====HELLO WORLD == <%= @ufo.ufo_members.size %>
+<% @ufo.ufo_members.each do |a| %>
+val == <%= a.user.name %><br/>
+<% end %>
+
               <!-- textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
 At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
               </textarea --> 
