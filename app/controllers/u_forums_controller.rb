@@ -188,6 +188,11 @@ class UForumsController < ApplicationController
     @cur_page = params[:page]
     render :layout => false
   end
+  def add_usr
+    @usr = User.find(params[:usr_id])
+    render :layout => false
+  end
+
 
   protected
   def get_share(share_value)
@@ -213,9 +218,6 @@ class UForumsController < ApplicationController
     share_to
   end
 
-  def add_usr
-    render :layout => false
-  end
 
 
 end
