@@ -197,6 +197,16 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def remove_usr
+    @usr = User.find(params[:usr_id])
+    arr_p = []
+    session[:list_selected_usrs].select { |p| arr_p << p if p != @usr.id  }
+ 
+    session[:list_selected_usrs] = arr_p
+
+    render :layout => false
+  end
+
   protected
   def get_share(share_value)
     groupType = ""
