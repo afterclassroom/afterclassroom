@@ -202,7 +202,7 @@
   var ajaxObj = null;
   var pad_mouse_is_inside = false;
   var pagingAjax = null;
-  var shareValue = <%= current_user.ufo_default.share_to_index %>;
+  var shareValue = <%= current_user.ufo_default ? current_user.ufo_default.share_to_index : 0 %>;
 
 
   function LoadFriendPane(){

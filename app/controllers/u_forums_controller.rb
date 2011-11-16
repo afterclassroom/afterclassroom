@@ -192,9 +192,10 @@ class UForumsController < ApplicationController
   protected
   def get_share(share_value)
     groupType = ""
-
+    share_to = nil  
     case share_value
     when 0 # Private
+      groupType = -1 #for testing purpose only
     when 1 # Friend from school
       groupType="friends_from_school"
     when 2 # Friend of friends
@@ -206,7 +207,11 @@ class UForumsController < ApplicationController
     end
 
     fg = FriendGroup.where(:label => groupType).first
-    share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
+    if fg != nil
+      share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
+    end
+    share_to
+    
   end
 
 
