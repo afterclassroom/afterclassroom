@@ -4,17 +4,21 @@
 </div>
 <script type="text/javascript">
 function RemoveUser<%= @usr.id %>(){
-    $.ajax({
-      url: '<%= remove_usr_user_u_forums_path %>',
-      type: 'GET',
-      dataType: 'script',
-      data: {
-        usr_id: <%= @usr.id %>
-      },
-      success: function(data){
-        //hide needed thing here: e.g ajax loader
-      }
-    });//end ajax
+  $('#loading_user').show();
+  $('#usr_lists').hide();  
+
+  $.ajax({
+    url: '<%= remove_usr_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      usr_id: <%= @usr.id %>
+    },
+    success: function(data){
+      $('#loading_user').hide();
+      $('#usr_lists').show();  
+    }
+  });//end ajax
 }
 
 $(document).ready(function(){

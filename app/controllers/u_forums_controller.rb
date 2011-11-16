@@ -178,6 +178,9 @@ class UForumsController < ApplicationController
     share_to = get_share(arr_p[0][1])
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
 
+    #reset the selected users
+    session[:list_selected_usrs] = []
+
     render :layout => false
   end
 
