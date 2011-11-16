@@ -18,6 +18,7 @@ class UForumsController < ApplicationController
     @ufo = Ufo.new()
     share_to = get_share(current_user.ufo_default.share_to_index.to_i)
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @cur_page = share_to ? "1" : 0
   end
 
   def save
@@ -179,6 +180,7 @@ class UForumsController < ApplicationController
 
 
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @cur_page = params[:page]
     render :layout => false
   end
 

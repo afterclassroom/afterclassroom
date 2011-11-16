@@ -21,7 +21,7 @@ function LoadUserShare(strpage){
 
 $(document).ready(function(){
   //BEGIN ajax pagination
-  var curentPage = parseInt('');
+  var curentPage = parseInt('<%= @cur_page %>');
   $('#page_area a').each(function(){
     $(this).attr('href','javascript:;');
     $(this).click(function(){
