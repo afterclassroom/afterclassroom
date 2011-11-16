@@ -2,4 +2,14 @@
     <div id="usr_<%= usr.id %>"><img src="<%= usr.avatar.url(:thumb) %>" class="vtip avatar_<%= usr.id %>" title="<%= usr.name %>"/></div>
     <input style="margin-left: 1px;margin-top: -3px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
     </div>
+<script type="text/javascript">
+function AddUser<%= usr.id %>(){
+  console.log('add this user:: <%= usr.id %>');
+}
 
+$(document).ready(function(){
+  $('#usr_<%= usr.id %>').click(function(){
+    AddUser<%= usr.id %>();
+  });
+});
+</script>
