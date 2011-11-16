@@ -16,23 +16,8 @@ class UForumsController < ApplicationController
 
   def new
     @ufo = Ufo.new()
-
-    share_to=nil
-
-    case current_user.ufo_default.share_to_index.to_i
-    when 0 # Private
-    when 1 # Friend from school
-      fg = FriendGroup.where(:label => "friends_from_school").first
-      share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
-    when 2 # Friend of friends
-    when 3 # My Family
-    when 4 # My friends
-    when 5 # Friends from work
-    when 6 # Everyone
-    end
-
+    share_to = get_share(current_user.ufo_default.share_to_index.to_i)
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
-
   end
 
   def save
@@ -179,8 +164,19 @@ class UForumsController < ApplicationController
     arr_p = [] 
     OPTIONS_SETTING.select {|p| arr_p << p if p[1] == params[:share].to_i} 
 
-    share_to = nil
-    case arr_p[0][1]
+    share_to = get_share(arr_p[0][1])
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+
+    render :layout => false
+  end
+
+  def page_share
+
+    puts "==page = #{params[:page]}"
+    puts "==share = #{params[:share]}"
+    share_to=nil
+
+    case params[:share].to_i
     when 0 # Private
     when 1 # Friend from school
       fg = FriendGroup.where(:label => "friends_from_school").first
@@ -189,15 +185,33 @@ class UForumsController < ApplicationController
     when 3 # My Family
     when 4 # My friends
     when 5 # Friends from work
+      fg = FriendGroup.where(:label => "friends_from_school").first
+      share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
     when 6 # Everyone
     end
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
 
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
     render :layout => false
   end
 
-  def page_share
-    render :layout => false
+  protected
+  def get_share(share_value)
+    groupType = ""
+
+    case share_value
+    when 0 # Private
+    when 1 # Friend from school
+      groupType="friends_from_school"
+    when 2 # Friend of friends
+    when 3 # My Family
+    when 4 # My friends
+    when 5 # Friends from work
+      groupType="friends_from_work"
+    when 6 # Everyone
+    end
+
+    fg = FriendGroup.where(:label => groupType).first
+    share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
   end
 
 

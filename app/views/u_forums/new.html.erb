@@ -202,6 +202,7 @@
   var ajaxObj = null;
   var pad_mouse_is_inside = false;
   var pagingAjax = null;
+  var shareValue = <%= current_user.ufo_default.share_to_index %>;
 
 
   function LoadFriendPane(){
@@ -244,7 +245,8 @@
   $('document').ready(function(){
     //BEGIN: load the friend list
     $('#ufo_setting').change(function(){
-      SelectShare($(this).find('option:selected').val());
+      shareValue = $(this).find('option:selected').val();
+      SelectShare(shareValue);
       $('#inner_setting').hide();
       $('#loading_id').show();
       $('#loading_user').show();
