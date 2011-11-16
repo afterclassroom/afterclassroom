@@ -40,8 +40,14 @@ class UForumsController < ApplicationController
       custom_setting.post_lounge = params[:lounge_setting]
       custom_setting.save
 
-      @ufo = Ufo.new()
+      session[:list_selected_usrs].each do |usr_id|
+        member = UfoMember.new
+        member.user_id = usr_id
+        member.ufo_id = @ufo.id
+        member.save
+      end
 
+      @ufo = Ufo.new()
       session[:list_selected_usrs] = [] #reset the session that store the selected users
 
       redirect_to user_u_forums_path(current_user)
