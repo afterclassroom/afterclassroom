@@ -1,0 +1,27 @@
+<div class="AsDcomImg" style="padding: 5px;">
+  <div id="usr_<%= usr.id %>">
+    <img src="<%= usr.avatar.url(:thumb) %>" class="vtip avatar_<%= usr.id %>" title="<%= usr.name %>"/>
+  </div>
+</div>
+
+<script type="text/javascript">
+function AddUser<%= usr.id %>(){
+  $.ajax({
+    url: '<%= add_usr_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      usr_id: <%= usr.id %>
+    },
+    success: function(data){
+      //hide needed thing here: e.g ajax loader
+    }
+  });//end ajax
+}
+
+$(document).ready(function(){
+  $('#usr_<%= usr.id %>').click(function(){
+    AddUser<%= usr.id %>();
+  });
+});
+</script>

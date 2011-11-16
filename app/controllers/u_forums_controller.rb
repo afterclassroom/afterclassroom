@@ -188,6 +188,11 @@ class UForumsController < ApplicationController
     @cur_page = params[:page]
     render :layout => false
   end
+  def add_usr
+    @usr = User.find(params[:usr_id])
+    render :layout => false
+  end
+
 
   protected
   def get_share(share_value)
@@ -211,8 +216,8 @@ class UForumsController < ApplicationController
       share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
     end
     share_to
-    
   end
+
 
 
 end
