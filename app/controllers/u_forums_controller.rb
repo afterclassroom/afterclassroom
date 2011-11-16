@@ -211,7 +211,10 @@ class UForumsController < ApplicationController
       share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
     end
     share_to
-    
+  end
+
+  def add_usr
+    render :layout => false
   end
 
 
