@@ -1,11 +1,14 @@
-<div class="AsDcomImg" style="padding: 5px;">
-  <div id="usr_<%= usr.id %>">
+<div class="AsDcomImg" style="padding: 5px;" id="usr_<%= usr.id %>">
+  <div>
     <img src="<%= usr.avatar.url(:thumb) %>" class="vtip avatar_<%= usr.id %>" title="<%= usr.name %>"/>
   </div>
 </div>
 
 <script type="text/javascript">
 function AddUser<%= usr.id %>(){
+  $('#loading_user').show();
+  $('#usr_lists').hide();
+
   $.ajax({
     url: '<%= add_usr_user_u_forums_path %>',
     type: 'GET',
@@ -14,14 +17,17 @@ function AddUser<%= usr.id %>(){
       usr_id: <%= usr.id %>
     },
     success: function(data){
-      //hide needed thing here: e.g ajax loader
+      $('#loading_user').hide();
+      $('#usr_lists').show();
     }
   });//end ajax
 }
 
 $(document).ready(function(){
-  $('#usr_<%= usr.id %>').click(function(){
-    AddUser<%= usr.id %>();
-  });
+  <% if session[:list_selected_usrs].include?(usr.id) == false %>
+    $('#usr_<%= usr.id %>').click(function(){
+      AddUser<%= usr.id %>();
+    });
+  <% end %>
 });
 </script>

@@ -16,6 +16,9 @@ class UForumsController < ApplicationController
 
   def new
     @ufo = Ufo.new()
+
+    session[:list_selected_usrs] = []
+
     share_to = nil
     if current_user.ufo_default != nil
       share_to = get_share(current_user.ufo_default.share_to_index.to_i)
@@ -38,7 +41,9 @@ class UForumsController < ApplicationController
       custom_setting.save
 
       @ufo = Ufo.new()
-      #render :action => "new"
+
+      session[:list_selected_usrs] = [] #reset the session that store the selected users
+
       redirect_to user_u_forums_path(current_user)
     else
       flash[:notice] = "Failed to create new topic."
@@ -178,21 +183,19 @@ class UForumsController < ApplicationController
 
   def page_share
 
-    puts "==page = #{params[:page]}"
-    puts "==share = #{params[:share]}"
-
     share_to = get_share(params[:share].to_i)
-
 
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
     @cur_page = params[:page]
     render :layout => false
   end
+
   def add_usr
     @usr = User.find(params[:usr_id])
+    session[:list_selected_usrs] << @usr.id
+
     render :layout => false
   end
-
 
   protected
   def get_share(share_value)
