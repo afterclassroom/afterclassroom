@@ -6,6 +6,7 @@
 function RemoveUser<%= @usr.id %>(){
   $('#loading_user').show();
   $('#usr_lists').hide();  
+  $('#selected_users_area').hide();
 
   $.ajax({
     url: '<%= remove_usr_user_u_forums_path %>',
@@ -17,6 +18,7 @@ function RemoveUser<%= @usr.id %>(){
     success: function(data){
       $('#loading_user').hide();
       $('#usr_lists').show();  
+      $('#selected_users_area').show();
     }
   });//end ajax
 }

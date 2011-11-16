@@ -8,6 +8,7 @@
 function AddUser<%= usr.id %>(){
   $('#loading_user').show();
   $('#usr_lists').hide();
+  $('#selected_users_area').hide();
 
   $.ajax({
     url: '<%= add_usr_user_u_forums_path %>',
@@ -19,6 +20,7 @@ function AddUser<%= usr.id %>(){
     success: function(data){
       $('#loading_user').hide();
       $('#usr_lists').show();
+      $('#selected_users_area').show();
     }
   });//end ajax
 }
