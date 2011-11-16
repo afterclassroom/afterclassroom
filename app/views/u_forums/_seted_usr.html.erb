@@ -19,6 +19,7 @@ function RemoveUser<%= @usr.id %>(){
 
 $(document).ready(function(){
   $('#member_<%= @usr.id %>').click(function(){
+    $('#member_div_<%= @usr.id %>').remove();
     RemoveUser<%= @usr.id %>();
   });
 });
