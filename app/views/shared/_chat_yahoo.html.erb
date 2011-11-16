@@ -9,7 +9,7 @@
 <% if get_chat_id(user_post, "skype") != "" %>
 <div class="skype">
   <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
-  <a href="skype:<%= get_chat_id(user_post, "skype") %>?call">
+  <a href="skype:<%= get_chat_id(user_post, "skype") %>?chat">
     <img border="0" width="16" height="14" style="border: medium none;margin-top: 4px" alt="My status" src="http://mystatus.skype.com/smallicon/<%= get_chat_id(user_post, "skype") %>">
     <span style="margin-left: 11px;margin-top: 5px;position: absolute;">Skype</span>
   </a>
