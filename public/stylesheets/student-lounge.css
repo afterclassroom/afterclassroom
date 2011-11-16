@@ -5999,6 +5999,7 @@ div.ufo_sel div.ufo_span2b{
     padding-right: 15px;
     float:left;
     margin-right: 10px;
+    margin-bottom: 5px;
 }
 .forumlist_deletebutton{
     background: url("/images/close.gif") repeat scroll 0 0 transparent;
