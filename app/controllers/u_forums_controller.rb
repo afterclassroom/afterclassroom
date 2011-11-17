@@ -216,6 +216,41 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def remove_member
+    @ufo = Ufo.find(params[:ufo_id])
+    puts "=="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "val =="
+    puts "v == #{params[:user_list]}"
+    redirect_to user_u_forum_path(current_user,@ufo)
+  end
+
   protected
   def get_share(share_value)
     groupType = ""

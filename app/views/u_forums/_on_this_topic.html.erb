@@ -9,19 +9,28 @@
       <div id="remove_usr" style="float: right; margin-top: -13px;">Remove membership</div>
     <% end %>
   </h1>
+
+
+
+<% form_tag url_for(:controller => "u_forums", :action => "remove_member"), :id => "form_member", :method => :post, :remote => false do %>
+  <%= hidden_field_tag "ufo_id", @ufo.id %>
+
+
   <div style="padding: 0px" class="musicRow">
   <% if @ufo.ufo_members != nil%>
     <% @ufo.ufo_members.each do |member| %>
     <div class="AsDcomImg" style="margin-left: 9px;">
       <%= show_image_user_post(member.user) %>
       <% if current_user == @ufo.user %>
-        <input type="checkbox" name="user_list" value="member.user.id" />
+        <input type="checkbox" name="user_list[]" value="<%= member.user.id %>" />
       <% end %>
     </div>
     <% end %>
    <% end %> <!-- end if -->
+
   </div>
-  <a style="float: right;" href="javascript:;">Remove</a>
+  <a style="float: right;" href="javascript:;" id="remove_btn">Remove</a>
+<% end %>
 
 </div>
 </div>
@@ -32,6 +41,9 @@ $(document).ready(function(){
     $(this).css('cursor','pointer');
   }, function(){
     $(this).css('cursor','default');
+  });
+  $('#remove_btn').click(function(){
+    $('form#form_member').submit();
   });
 });
 </script>
