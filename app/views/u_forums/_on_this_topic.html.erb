@@ -3,17 +3,22 @@
 <div class="col300 slStory">
 
 <div class="col300in mostPho">
-    <h1 class="col300Title">Members of this topic</h1>
-    <div style="padding: 0px" class="musicRow">
+  <h1 class="col300Title">Members of this topic</h1>
+  <div style="padding: 0px" class="musicRow">
 
 
+
+    <% @ufo.ufo_members.each do |member| %>
     <div class="AsDcomImg" style="margin-left: 9px;">
-      <%= show_image_user_post(current_user) %>
+      <%= show_image_user_post(member.user) %>
     </div>
+    <% end %>
 
 
 
-    </div>
+
+
+  </div>
 </div>
 
 </div>
