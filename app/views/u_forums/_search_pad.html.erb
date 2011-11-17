@@ -1,7 +1,7 @@
 <div class="searchPInput">
   <div style="height:27px;width:226px" class="searchFri">
     <div style="background-image: none;" class="textS">
-      <input type="text" style="height: 14px;margin-top: 3px;width: 222px;padding-top: 2px;" class="" value="" name="" id="" >
+      <input type="text" style="height: 14px;margin-top: 3px;width: 222px;padding-top: 2px;" class="" value="" name="" id="search_text" >
     </div>
     <div style="float: right;padding-left: 0px;padding-top: 4px" class="btmS">
       <a onclick="javascript:;" href="javascript:;" id="btnSearch">
@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<div id="result_pad" style="border: 1px solid red;"></div>
+<div id="result_pad" style=""></div>
 
 <script type="text/javascript">
 function SearchPeople(){
@@ -20,7 +20,7 @@ function SearchPeople(){
     type: 'GET',
     dataType: 'script',
     data: {
-      search_name: 'david'
+      search_name: $('#search_text').val()
     },
     success: function(data){
       //hide needed thing here: e.g ajax loader
