@@ -57,6 +57,8 @@
 				var bt_upload = "";
 				if ($('#photo_photo_album_id').val() != ""){
 					bt_upload = '<td class="file_upload_start">' + '<button class="ui-state-default ui-corner-all" title="Start Upload">' + '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' + '<\/button><\/td>';
+				}else{
+					bt_upload = '<td class="file_upload_start">' + '<button class="ui-state-default ui-corner-all" title="Start Upload" style="display:none;">' + '<span class="ui-icon ui-icon-circle-arrow-e">Start Upload<\/span>' + '<\/button><\/td>';
 				}
         return $('<tr><td class="file_upload_preview"><\/td>' +
           '<td class="file_upload_title">' +
