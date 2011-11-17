@@ -3,16 +3,25 @@
 <div class="col300 slStory">
 
 <div class="col300in mostPho">
-  <h1 class="col300Title">Members of this topic</h1>
+  <h1 class="col300Title">
+    <label style="text-align: left;">Members of this topic</label>
+    <% if current_user != @ufo.user %>
+      <div style="float: right; margin-top: -13px;">Unsubscribe</div>
+    <% else %>
+      <div style="float: right; margin-top: -13px;">Remove membership</div>
+    <% end %>
+  </h1>
   <div style="padding: 0px" class="musicRow">
 
 
+  <% if @ufo.ufo_members != nil%>
 
     <% @ufo.ufo_members.each do |member| %>
     <div class="AsDcomImg" style="margin-left: 9px;">
       <%= show_image_user_post(member.user) %>
     </div>
     <% end %>
+   <% end %> <!-- end if -->
 
 
 
