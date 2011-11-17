@@ -134,7 +134,7 @@ Afterclassroom::Application.routes.draw do
 
     resources :u_forums do
       collection do
-        get :dft_stgs, :post_lounge, :item_setting, :post_lounge_b, :rate, :friend_pad
+        get :dft_stgs, :post_lounge, :item_setting, :post_lounge_b, :rate, :friend_pad, :find_people, :select_share, :page_share, :add_usr, :remove_usr
         post :save_setting, :save_custom, :save_cmt, :save_custom_b
       end
       
@@ -330,7 +330,7 @@ Afterclassroom::Application.routes.draw do
   #Ajax not login
   resources :ajax_not_login do
     collection do
-      get :show_comment, :rate_comment, :view_results
+      get :show_comment, :rate_comment, :rate_comment_action, :view_results
     end
   end
   

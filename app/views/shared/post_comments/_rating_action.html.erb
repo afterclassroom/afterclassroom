@@ -6,7 +6,7 @@
     <%= link_to comment.total_bad, {:controller => "ajax_not_login", :action => "rate_comment", :comment_id => comment.id, :rating => "0" }, :remote => true %>
   </div>
 </div>
-<div class="com" style="float: left;background: url(/images/icon-comnent.gif) no-repeat scroll left 2px transparent;padding: 0 3px 0 17px;">
+<div class="com" style="float: left;background: url(/images/reportG.gif) no-repeat scroll left 2px transparent;padding: 0 3px 0 17px;">
   <%= show_report_abuse_comment(comment) %>
 </div>
 

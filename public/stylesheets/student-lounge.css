@@ -5894,24 +5894,23 @@ div.ufo_sel div.ufo_span2b{
     padding-top: 7px;
 }
 .assContFoC615{
-    background: url("/images/forumTextC615.png") repeat scroll 0 0 transparent;
+    background: url("/images/cen625Fo.png") repeat scroll 0 0 transparent;
     overflow: hidden;
-    width: 615px;
+    width: 625px;
     margin-top: 5px;
     padding: 5px 10px;
 }
 .assContFoD615{
-    background: url("/images/forumTextT615.png") no-repeat scroll left top;
-    width: 615px;
+    background: url("/images/top625Fo.png") no-repeat scroll left top;
+    width: 625px;
     overflow: hidden;
 }
 .assContFoT615{    
-    background: url("/images/forumTextD615.png") no-repeat scroll left bottom transparent;
+    background: url("/images/bot625Fo.png") no-repeat scroll left bottom transparent;
     overflow: hidden;
-    width: 615px;
+    width: 625px;
     float: left;
     padding-bottom: 5px;
-    margin-left: 10px;
     padding-top: 7px;
 }
   .contFoC{
@@ -5985,7 +5984,38 @@ div.ufo_sel div.ufo_span2b{
     background: url("/images/btmMoreLinkForumH.png") no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
 }
-
+.forumlist:hover {
+    background: none repeat scroll 0 0 #BBCEF1;
+    border: 1px solid #6D95E0;
+}
+.forumlist{
+    -moz-border-radius: 9px 9px 9px 9px;
+    background: none repeat scroll 0 0 #DEE7F8;
+    border: 1px solid #CAD8F3;
+    cursor: default;
+    line-height: 18px;
+    padding: 0 5px;
+    position: relative;
+    padding-right: 15px;
+    float:left;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.forumlist_deletebutton{
+    background: url("/images/close.gif") repeat scroll 0 0 transparent;
+    display: block;
+    font-size: 1px;
+    height: 7px;
+    position: absolute;
+    right: 4px;
+    top: 6px;
+    width: 7px;
+}
+.forumlist_deletebutton:hover {
+    background-position: 7px 50%;
+    border: medium none;
+    text-decoration: none;
+}
 /**** END forum button for studenLounge  *****/
 
 

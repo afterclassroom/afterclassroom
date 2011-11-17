@@ -290,8 +290,9 @@ div.player
 {
     width:380px;
     height:14px;
-    margin-top:5px;
-    padding-left:20px;
+}
+div.player embed{
+    width: 340px;
 }
 
 div.player.inactive

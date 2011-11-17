@@ -65,6 +65,8 @@ class User < ActiveRecord::Base
   has_many :ufos, :dependent => :destroy
   has_many :ufo_cmts, :dependent => :destroy
   has_one :ufo_default, :dependent => :destroy
+  has_many :ufo_members, :dependent => :destroy
+
   
   # Acts_as_network
   acts_as_network :user_friends, :through => :user_invites, :conditions => ["is_accepted = ?", true]

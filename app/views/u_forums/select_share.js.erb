@@ -1,0 +1,13 @@
+//reset all the selected user
+$('#selected_users_area').html('');
+
+$('#inner_setting').show();
+$('#loading_id').hide();
+$('#loading_user').hide();
+
+$('#usr_lists').html('<%= escape_javascript ( raw(render :partial => "friend")) %>');  
+
+$('#usr_lists').show();
+$('#page_area').html('<%= escape_javascript ( raw(render :partial => "paging")) %>');  
+$('#page_area').show();
+

@@ -3,3 +3,8 @@
 <% end %>
 <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => @wall, :obj => @obj} %>
 <%= render :partial => "user_walls/wall_comment", :locals => {:wall => @wall, :obj => @obj} %>
+<script>
+  $(document).ready(function(){
+    tb_init('div.com a.thickbox');//pass where to apply thickbox
+  })
+</script>

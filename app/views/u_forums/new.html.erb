@@ -16,8 +16,8 @@
                 <div id="first_banner" class="inboxCeTop"> 
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Title</label>
                 </div>
-                <div style="padding:8px">
-                  <%= f.text_field :title, :class => '', :style => "width: 615px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
+                <div style="padding:8px 8px 8px 0px">
+                  <%= f.text_field :title, :class => '', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
                 </div>
               </div>
 
@@ -26,7 +26,7 @@
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Content</label>
                 </div>       
-                <div style="padding:8px">
+                <div style="padding:8px 8px 8px 0px">
                   <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => ''%>
                 </div>
               </div>
@@ -35,15 +35,14 @@
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
                 </div>
-                <div class="postItemB" style="background:url(/images/upload_file.png) no-repeat scroll 95% 0 transparent;margin-left: 25px;
-                     margin-top: 5px;">
+                <div class="postItemB" style="background:url(/images/upload_file.png) no-repeat scroll 98% 0 transparent;margin-top: 7px;">
                   <div id="divinputfile">
                     <div class="postItemC">
-                      <input type="file" style="width: 580px; height: 24px; margin-top: 2px;" size="70" onchange="$('#fakefilepc').val(this.value);" name="ufo[ufo_attach]" id="ufo_ufo_attach" class="filepc">
+                      <input type="file" style="width: 617px; height: 24px; margin-top: 2px;" size="76" onchange="$('#fakefilepc').val(this.value);" name="ufo[ufo_attach]" id="ufo_ufo_attach" class="filepc">
 
                     </div>
                     <div style="margin-top: -26px;" id="fakeinputfile">
-                      <input type="text" id="fakefilepc" name="fakefilepc" style="width:508px">
+                      <input type="text" id="fakefilepc" name="fakefilepc" style="width:545px">
                     </div>
                   </div>
                 </div>
@@ -61,47 +60,77 @@
                   <img src="/images/ajax-loader-a.gif"/>
                 </div>
 
+
                 <div class="assContFoT615" style="float: none">
                   <div class="assContFoD615">
-                    <div class="assContFoC615" style="padding:5px 25px">
-                      <div>
-                        <div style="border: 0px solid black; width: 289px; height: 52px;">
-                          <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
-                          <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
-                          <div style="margin-top:14px;">
-                            <%= show_share_setting(current_user)%>
+                    <div class="assContFoC615" style="padding:5px 25px" id="setting_pane">
+                      <div id="loading_id" style="margin-left: 282px; display: none;">
+                        <img src="/images/ajax-loader-a.gif"/>
+                      </div>
+
+                      <div id="inner_setting">
+                        <div id="row1">
+                          <div id="join_area" style="width: 289px; height: 52px;">
+                            <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
+                            <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
+                            <div style="margin-top:14px;">
+                              <%= show_share_setting(current_user)%>
+                            </div>
                           </div>
+
+                          <!-- div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                            <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
+                            <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
+                            <div style="margin-top:12px;">
+                              <select style="width: 100px;">
+                                <option value="1">Yes</option>
+                                <option value="2">No</option>
+                              </select>                       
+                            </div>
+                          </div -->
+
+
                         </div>
 
-                        <!-- div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
-                          <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
-                          <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
-                          <div style="margin-top:12px;">
-                            <select style="width: 100px;">
-                              <option value="1">Yes</option>
-                              <option value="2">No</option>
-                            </select>                       
-                          </div>
-                        </div -->
+                        <div id="row2">
+                          <div id="lounge_area" style="width: 289px; height: 52px;">
+                            <label style="text-align: left; color: #969696;">Post to your lounge?</label>
+                            <div>
+                              <%= show_tolounge_setting(current_user) %>
 
+                            </div>
+                          </div>
+                          <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                            <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
+                            <div>
+                              <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
+                            </div>
+                          </div -->
+                        </div>
 
                       </div>
 
-                      <div>
-                        <div style="border: 0px solid black; width: 289px; height: 52px;">
-                          <label style="text-align: left; color: #969696;">Post to your lounge?</label>
-                          <div>
-                            <%= show_tolounge_setting(current_user) %>
 
-                          </div>
-                        </div>
-                        <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
-                          <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
-                          <div>
-                            <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
-                          </div>
-                        </div -->
-                      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                   </div>
                 </div>
@@ -119,49 +148,46 @@
                       <div id="waiting">
                         <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
                       </div>
-                      <div id="control_pane" style="border: 1px solid black;">
+                      <div id="control_pane" style="">
                       </div>
                     </div>
-
-
                   </label>
                 </div>
 
-                <div class="assContFoT615" style="float: none;margin-bottom: 8px;">
+                <div class="assContFoT615" style="float: none">
                   <div class="assContFoD615">
                     <div class="assContFoC615" style="padding:5px 25px">
-
-
-                      <input type="checkbox" value="" name="checkfriend" id="checkfriend" style="margin-bottom:15px"/>
-                      <span style="color: #969696;text-align: left;font-weight: bold;margin-top: 4px;position: absolute;">All</span>
-                      <% 2.times do %>
-                        <div>
-                          <!-- the following code is just for testing purpose -->
-                          <% list_friends = current_user.user_friends %>
-                          <% list_friends.each do |usr| %>
-
-                            <div class="AsDcomImg" style="padding: 5px;">
-                              <%= show_image_user_post(usr) %>
-
-                              <input style="margin-left: 1px;margin-top: -3px;" type="checkbox" value="<%= usr.id %>" name="tag_checkbox[]" id="tagbox_<%= usr.id %>"/>
-
-                            </div>
-
-
-                          <% end %><!-- end each list friend -->
-
-                        </div>
-                      <% end %>
-
-
-
+                      <div id="selected_users_area" style="width: 620px">
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div class="assContFoT615" style="float: none;margin-bottom: 8px;">
+                  <div class="assContFoD615">
+                    <div class="assContFoC615" style="padding:5px 25px">
+                      <div id="checkfriend" style="display: block;">
+                        <input type="checkbox" value="" name="" id="" style="margin-bottom:15px"/>
+                        <span style="color: #969696;text-align: left;font-weight: bold;margin-top: 4px;position: absolute;">All</span>
+                      </div>
+                      <div id="user_area">
+                        <div id="loading_user" style="margin-left: 282px; display: none;">
+                          <img src="/images/ajax-loader-a.gif"/>
+                        </div>
+                        <div id="usr_lists" style="">
+                          <%= render :partial => "friend" %>
+                        </div>
+                      </div>
+                    </div>
 
+                  </div>
+                </div>
+
+                <div id="page_area" class="assPage" style="padding-left:0">
+                  <%= render :partial => "paging" %>
+                </div>
+                &nbsp;<br/>
               </div>
             </div>
-
           </div>
           <div class="bottomline"></div>
           <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
@@ -169,69 +195,99 @@
             <span class="btmComment"><a href="javascript:;">Cancel</a></span>
           </div>
         <% end %><!-- end form_for -->
-
       </div>
-
     </div>
   </div>
 </div>
 <script type="text/javascript">
-var ajaxObj = null;;
-var pad_mouse_is_inside = false;
+  var ajaxObj = null;
+  var pad_mouse_is_inside = false;
+  var pagingAjax = null;
+  var shareValue = <%= current_user.ufo_default ? current_user.ufo_default.share_to_index : 0 %>;
 
 
-function LoadFriendPane(){
-  ajaxObj = $.ajax({
-    url: '<%= friend_pad_user_u_forums_path %>',
-    type: 'GET',
-    dataType: 'script',
-    data: {
-    },
-    success: function(data){
-      //hide needed thing here: e.g ajax loader
-    }
-  });//end ajax
-}
+  function LoadFriendPane(){
+    ajaxObj = $.ajax({
+      url: '<%= friend_pad_user_u_forums_path %>',
+      type: 'GET',
+      dataType: 'script',
+      data: {
+      },
+      success: function(data){
+        //hide needed thing here: e.g ajax loader
+      }
+    });//end ajax
+  }
 
-function ClosePadWithSync(){
-  $('#friend_pad').hide('fast',function(){
+  function ClosePadWithSync(){
+    $('#friend_pad').hide('fast',function(){
       ajaxObj.abort();
-  });
+    });
 
-  $('#control_pane').html('');
-  $('#waiting').show();
-  $('#btn_invite').show();
-}
+    $('#control_pane').html('');
+    $('#waiting').show();
+    $('#btn_invite').show();
+  }
+
+  function SelectShare(str_share){
+    $.ajax({
+      url: '<%= select_share_user_u_forums_path %>',
+      type: 'GET',
+      dataType: 'script',
+      data: {
+        share: str_share
+      },
+      success: function(data){
+        //hide needed thing here: e.g ajax loader
+      }
+    });//end ajax
+  }
 
   $('document').ready(function(){
+    //BEGIN: load the friend list
+    $('#ufo_setting').change(function(){
+      shareValue = $(this).find('option:selected').val();
+      SelectShare(shareValue);
+      $('#inner_setting').hide();
+      $('#loading_id').show();
+      $('#loading_user').show();
+      $('#usr_lists').hide();
+      $('#page_area').hide();
+      $('#page_area').html('');
+      if (pagingAjax != null){
+        pagingAjax.abort();
+        pagingAjax = null;
+      }
+    });
+    //END: load the friend list
     //BEGIN: invite member to join
-      $('#btn_invite').click(function(){
-        $('#btn_invite').hide();
-        $('#friend_pad').show('slow', function(){
-            LoadFriendPane(); 
-        });
+    $('#btn_invite').click(function(){
+      $('#btn_invite').hide();
+      $('#friend_pad').show('slow', function(){
+        LoadFriendPane(); 
       });
-      $('#friend_pad').hover(function(){ 
-        pad_mouse_is_inside=true; 
-      }, function(){ 
-        pad_mouse_is_inside=false; 
-      });//end hover
+    });
+    $('#friend_pad').hover(function(){ 
+      pad_mouse_is_inside=true; 
+    }, function(){ 
+      pad_mouse_is_inside=false; 
+    });//end hover
 
-      $("body").mouseup(function(){ 
-        if( pad_mouse_is_inside == false ){ 
-          if ( $('#friend_pad').is(":visible") == true ){
-            ClosePadWithSync();
-          }
+    $("body").mouseup(function(){ 
+      if( pad_mouse_is_inside == false ){ 
+        if ( $('#friend_pad').is(":visible") == true ){
+          ClosePadWithSync();
         }
-      });
+      }
+    });
     //END: invite member to join
 
 
     $('.wysiwyg').css({
-      'width':'605px'
+      'width':'614px'
     })
     $('#topic_contentIFrame').css({
-      'width':'605px'
+      'width':'614px'
     })
   });
   function SubmitTopic(){

@@ -1,7 +1,38 @@
-this is the search pad<br/>
-this is the search pad<br/>
-this is the search pad<br/>
-this is the search pad<br/>
-this is the search pad<br/>
-this is the search pad<br/>
+<div class="searchPInput">
+  <div style="height:27px;width:226px" class="searchFri">
+    <div style="background-image: none;" class="textS">
+      <input type="text" style="height: 14px;margin-top: 3px;width: 222px;padding-top: 2px;" class="" value="" name="" id="" >
+    </div>
+    <div style="float: right;padding-left: 0px;padding-top: 4px" class="btmS">
+      <a onclick="javascript:;" href="javascript:;" id="btnSearch">
+        <img style="width:24px;float: right;margin-right: -22px;margin-top: -32px;" src="/images/AsD-iconS.png">
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="result_pad" style="border: 1px solid red;"></div>
+
+<script type="text/javascript">
+function SearchPeople(){
+  ajaxObj = $.ajax({
+    url: '<%= find_people_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      search_name: 'david'
+    },
+    success: function(data){
+      //hide needed thing here: e.g ajax loader
+    }
+  });//end ajax
+}
+
+
+$(document).ready(function(){
+  $('#btnSearch').click(function(){
+    SearchPeople();
+  });
+});
+</script>
 

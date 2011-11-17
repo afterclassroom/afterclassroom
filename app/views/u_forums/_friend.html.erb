@@ -1,0 +1,14 @@
+<% if nil == @share_to %>
+  There is no result available
+<% else %>
+  <div id="list_of_users" style="float: left;">
+    <% list_friends = current_user.user_friends %>
+    <% @share_to.each do |usr| %>
+      <%= render :partial => "usr_item", :locals => {:usr => usr} %>
+    <% end %><!-- end each list friend -->
+  </div>
+<% end %>
+
+<script type="text/javascript">
+vtip();
+</script>
