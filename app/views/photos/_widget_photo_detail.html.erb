@@ -2,55 +2,58 @@
 <link media="screen" type="text/css" href="/stylesheets/styles2.css" rel="stylesheet"/>
 <script type="text/javascript" src="/javascripts/jquery.phototag.test.js"></script>
 <!-- END: library for photo-tag -->       
- <div class="AsDOr RePho">
-          <div id="img_id_loader">
-            Loading tag info ... <img id="" style="height: 15px; margin-top: -1px; float: left; margin-left: 38px;" title="Next" src="/images/ajax-loader-a.gif"/>
-          </div>
-          <div id="container" style="text-align:center;">
-	    <a href="javascript:;" id="stop_tag" style="display:none;position:absolute; z-index:99;">Done</a>
+<div class="AsDOr RePho">
+  <div>
+    <div id="img_id_loader" style="width: 110px;">
+      Loading tag info ... <img id="" style="height: 15px; margin-top: -1px; float: left;" title="Next" src="/images/ajax-loader-a.gif"/>
+    </div>
+  <div style="padding-left:110px">
+    <a href="javascript:;" id="stop_tag" style="display:none;position:absolute; z-index:99;">Done</a>
+ </div>
+  </div>
+  <div id="container" style="text-align:center;">
+    <p>
+      <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
+    </p>
+    <div id="tag_list_place" style="text-align: left; margin-left: 33px; width: 495px;"></div>
+    <%
+    if controller.action_name == 'show'
+    %>
+      <%= @photo.title %>
+    <% end %>
+  </div>
+</div>
+<% if  @photo.user == current_user && @usrs_for_verify.size > 0 %>
+  <div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
+    Verify users have been tagged 
+    <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
+    <a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
+  </div>
+  <% form_tag url_for(:controller => "photos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
+    <%= hidden_field_tag "decision_id" %>
+    <%= hidden_field_tag "photo_id", @photo.id %>
+    <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
+      <% @usrs_for_verify.each do |user| %>
+        <%= render :partial => "photos/item_user", :locals => {:user => user} %>
 
-            <p>
-              <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
-            </p>
-            <div id="tag_list_place" style="text-align: left; margin-left: 33px; width: 495px;"></div>
-						<%
-							if controller.action_name == 'show'
-						%>
-            <%= @photo.title %>
-						<% end %>
-          </div>
-        </div>
-        <% if  @photo.user == current_user && @usrs_for_verify.size > 0 %>
-          <div id="verify_label" style="color: #0A81C4;  margin-left: 37px;  padding: 10px 10px 0;">
-            Verify users have been tagged 
-            <a id="show_or_hide" href="javascript:;" style="margin-left: 8px; color: #0A81C4;">(Hide)</a>
-            <a id="sel_desel_all" href="javascript:;" style="margin-left: 311px; color: #0A81C4;">Select all</a>
-          </div>
-          <% form_tag url_for(:controller => "photos", :action => "tag_decision"), :id => "form_tag_decision", :method => :post, :remote => false do %>
-            <%= hidden_field_tag "decision_id" %>
-            <%= hidden_field_tag "photo_id", @photo.id %>
-            <div id="approve_panel" style="border: 1px solid #CECECE;display: block;margin-left: 48px;margin-top: 10px;overflow: hidden;width: 552px;">
-              <% @usrs_for_verify.each do |user| %>
-                <%= render :partial => "photos/item_user", :locals => {:user => user} %>
+      <% end %>
+    </div>
+    <div class="stoDbtm" style="display:none;" id="btn_pannel">
+      <div class="AsDContBtm" style="float:right; margin-right: 39px;">
+        <span class="btmComment"><a href="javascript:;" id="accept_btn">Accept</a></span>
+        <span class="btmComment"><a href="javascript:;" id="refuse_btn">Refuse</a></span>
+      </div>
+    </div>
+  <% end %><!-- end form -->        
 
-              <% end %>
-            </div>
-            <div class="stoDbtm" style="display:none;" id="btn_pannel">
-              <div class="AsDContBtm" style="float:right; margin-right: 39px;">
-                <span class="btmComment"><a href="javascript:;" id="accept_btn">Accept</a></span>
-                <span class="btmComment"><a href="javascript:;" id="refuse_btn">Refuse</a></span>
-              </div>
-            </div>
-          <% end %><!-- end form -->        
-
-        <% end %><!-- end if  -->
-        <%= render :partial => "photos/photo_action" %>
-        <%= show_post_comments(@photo) %>
-				<% form_tag url_for(:controller => "photos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
-					<%= hidden_field_tag "comment_content" %>
-					<%= hidden_field_tag "photo_id", @photo.id %>
-				<% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
-				<script type="text/javascript">
+<% end %><!-- end if  -->
+<%= render :partial => "photos/photo_action" %>
+<%= show_post_comments(@photo) %>
+<% form_tag url_for(:controller => "photos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
+  <%= hidden_field_tag "comment_content" %>
+  <%= hidden_field_tag "photo_id", @photo.id %>
+<% end %><!-- end form Note: this form is used to send notification to tagged-users when new comment is added -->
+<script type="text/javascript">
   var overallCount = 0;//this variable support for show/hide accept/refuse
   var noOfRemove=0;//this variable support for show/hide ckbox at tag-list
   var begintag = false;//this variable support for phototag
@@ -123,15 +126,15 @@
       //whenver the TAG is hovered, display it again
       $('.photoTag-tag').each(function(){
         $(this).hover( 
-          function(){
-              $(this).find('.innerTag').css('filter','');
-              $(this).find("a[id*='photoTag-delete_']").css('filter','');
-          },
-          function(){
-              $(this).find('.innerTag').css('filter','alpha(opacity:1.0)');
-              $(this).find("a[id*='photoTag-delete_']").css('filter','alpha(opacity:1.0)');
-          }
-        );//end hover
+        function(){
+          $(this).find('.innerTag').css('filter','');
+          $(this).find("a[id*='photoTag-delete_']").css('filter','');
+        },
+        function(){
+          $(this).find('.innerTag').css('filter','alpha(opacity:1.0)');
+          $(this).find("a[id*='photoTag-delete_']").css('filter','alpha(opacity:1.0)');
+        }
+      );//end hover
       });//end each
 
 
@@ -142,42 +145,42 @@
   }//end function
 
   function TagByClick(e){
-      if (begintag == true){
-        $('a#photoTag-add_<%= @photo.id %>').click();
+    if (begintag == true){
+      $('a#photoTag-add_<%= @photo.id %>').click();
 
-        var imageTop = $('#img_to_tag').offset().top;
-        var imageLeft = $('#img_to_tag').offset().left;
+      var imageTop = $('#img_to_tag').offset().top;
+      var imageLeft = $('#img_to_tag').offset().left;
 
-        var imageWidth =  $('#img_to_tag').width();
-        var imageHeight = $('#img_to_tag').height();
+      var imageWidth =  $('#img_to_tag').width();
+      var imageHeight = $('#img_to_tag').height();
 
-        var top = e.pageY - imageTop;
-        var left = e.pageX - imageLeft;
+      var top = e.pageY - imageTop;
+      var left = e.pageX - imageLeft;
 
-        var tagBoxHeight = $('#photoTag-tag_temp').height();
-        var tagBoxWidth = $('#photoTag-tag_temp').width();
+      var tagBoxHeight = $('#photoTag-tag_temp').height();
+      var tagBoxWidth = $('#photoTag-tag_temp').width();
 
-        var formTop = top+tagBoxHeight+10;
+      var formTop = top+tagBoxHeight+10;
 
-        //BEGIN check, whether form is rendered outside the image
-        if ( (e.pageY+tagBoxHeight) > (imageTop+imageHeight) ){
-          top = imageHeight - tagBoxHeight-6;//6 is the DIV's border width
-          formTop = top+tagBoxHeight+10;
-        }
-        if ( (e.pageX+tagBoxWidth) > (imageLeft+imageWidth) ){
-          left = imageWidth - tagBoxWidth-6;//6 is the DIV's border width
-        }
-        //END check, whether form is rendered outside the image
+      //BEGIN check, whether form is rendered outside the image
+      if ( (e.pageY+tagBoxHeight) > (imageTop+imageHeight) ){
+        top = imageHeight - tagBoxHeight-6;//6 is the DIV's border width
+        formTop = top+tagBoxHeight+10;
+      }
+      if ( (e.pageX+tagBoxWidth) > (imageLeft+imageWidth) ){
+        left = imageWidth - tagBoxWidth-6;//6 is the DIV's border width
+      }
+      //END check, whether form is rendered outside the image
 
 
-        $('#tempTagBoxForm').css('left',left);
-        $('#tempTagBoxForm').css('top',formTop);
-        $('#photoTag-tag_temp').css('left',left);
-        $('#photoTag-tag_temp').css('top',top);
+      $('#tempTagBoxForm').css('left',left);
+      $('#tempTagBoxForm').css('top',formTop);
+      $('#photoTag-tag_temp').css('left',left);
+      $('#photoTag-tag_temp').css('top',top);
 
-        //set Done link to be in center of image
+      //set Done link to be in center of image
 
-      }//end if 
+    }//end if 
   }
   
   //BEGIN: code for tag user
@@ -187,23 +190,24 @@
   var strautocompleteUrl = "<%= usrdata_user_photos_url(current_user) %>?photo_id=<%= @photo.id %>";
   $(document).ready(function(){
 
-      $('.photoTag').photoTag({
-        requesTagstUrl: strrequesTagstUrl,
-        deleteTagsUrl: strdeleteTagsUrl,
-        addTagUrl: straddTagUrl,
-        parametersForNewTag: {
-          name: {
-            parameterKey: 'name',
-            isAutocomplete: true,
-            autocompleteUrl: strautocompleteUrl,
-            label: 'Name'
-          }
+    $('.photoTag').photoTag({
+      requesTagstUrl: strrequesTagstUrl,
+      deleteTagsUrl: strdeleteTagsUrl,
+      addTagUrl: straddTagUrl,
+      parametersForNewTag: {
+        name: {
+          parameterKey: 'name',
+          isAutocomplete: true,
+          autocompleteUrl: strautocompleteUrl,
+          label: 'Name'
         }
-      });//end phototag
+      }
+    });//end phototag
 
 
     $('#stop_tag').click(function(){
       $('#photoTag-add_<%= @photo.id %>').show();
+      $('.photoTag-cpanell').show();
       $(this).hide();
       begintag = false;
       $('.inputCancel').click();
@@ -264,6 +268,9 @@
         });
       }      
     });
+  });
+  $(document).ready(function(){
+
   });
   //END: select all
 </script>
