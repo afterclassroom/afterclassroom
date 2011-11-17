@@ -1,16 +1,6 @@
 <% if @users.results.size > 0 %>
   <% @users.each_hit_with_result do |hit, user| %>
-  <div class="flistItem">
-    <div class="assPic">
-      <div>
-        <img src="<%= user.avatar.url(:thumb) %>" class="vtip avatar_<%= user.id %>" title="<%= user.name %>"/>
-      </div>
-    </div>
-    <div class="flistInf" style="width: 195px; margin-top: -14px;">
-      <div class="flistN"><%= user.name %></div>
-      <div class="flistS"><span>at</span><%= user.school.name %></div>
-    </div>
-  </div>
+    <%= render :partial => "people_item", :locals => {:user => user} %>
   <% end %>
 <% else %>
           No entries found	

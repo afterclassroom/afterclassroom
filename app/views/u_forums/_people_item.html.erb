@@ -1,0 +1,12 @@
+  <div class="flistItem">
+    <div class="assPic">
+      <div>
+        <img src="<%= user.avatar.url(:thumb) %>" class="vtip avatar_<%= user.id %>" title="<%= user.name %>"/>
+      </div>
+    </div>
+    <div class="flistInf" style="width: 195px; margin-top: -14px;">
+      <div class="flistN"><%= user.name %></div>
+      <div class="flistS"><span>at</span><%= user.school.name %></div>
+    </div>
+  </div>
+
