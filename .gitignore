@@ -27,4 +27,5 @@ public/system/tool_imgs/**/*
 vendor/gems/**/ext/**/*
 vendor/**/.git/**/*
 vendor/cache/**/*
-solr/**/.git/**/*
+solr/**/
+.git/**/*
