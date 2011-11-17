@@ -36,6 +36,12 @@ $(document).ready(function(){
   $('#btnSearch').click(function(){
     SearchPeople();
   });
+  $('#search_text').keypress(function(e){
+    if(e.which == 13){
+      SearchPeople();
+    }
+  });
+
 });
 </script>
 
