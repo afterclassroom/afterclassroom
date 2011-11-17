@@ -14,6 +14,9 @@ function AddSearchUser_<%= user.id %>(){
   $('#loading_user').show();
   $('#usr_lists').hide();
   $('#selected_users_area').hide();
+  $('#result_pad').hide();
+  $('#waiting').show();
+  $('#control_pane').hide();
 
   $.ajax({
     url: '<%= add_usr_user_u_forums_path %>',
@@ -26,13 +29,19 @@ function AddSearchUser_<%= user.id %>(){
       $('#loading_user').hide();
       $('#usr_lists').show();
       $('#selected_users_area').show();
+      $('#search_item<%= user.id %>').unbind();
+      $('#result_pad').show();
+      $('#waiting').hide();
+      $('#control_pane').show();
     }
   });//end ajax
 }
 
 $(document).ready(function(){
-  $('#search_item<%= user.id %>').click(function(){
-    AddSearchUser_<%= user.id %>();
-  });
+  <% if session[:list_selected_usrs].include?(user.id) == false %>
+    $('#search_item<%= user.id %>').click(function(){
+      AddSearchUser_<%= user.id %>();
+    });
+  <% end %>
 });
 </script>
