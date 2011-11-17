@@ -20,7 +20,7 @@
   <div style="margin-left: 62px;" class="helpT">
   </div>
   <div style="font-weight: bold; margin-left: 62px;" class="forumTit" id="<%= pr.id.to_s  %>">
-    <%= link_to pr.title, {:controller => "careers", :action => "view_detail", :pr_id => pr.id}, :remote => true %>
+    <%= link_to pr.title, {:controller => "ajax_not_login", :action => "view_career_detail", :pr_id => pr.id}, :remote => true %>
   </div>
   <div id="press_<%= pr.id.to_s %>" style="margin-left: 62px; height: 100%;" class="helpD"><%= truncate_html(raw(content), :length => 100, :omission => '...') %></div>
 </div>
