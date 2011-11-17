@@ -50,4 +50,12 @@ class AjaxNotLoginController < ApplicationController
     @chart_url = chart.to_url
     render :layout => false
   end
+
+  def view_press_info_detail
+    @pr = PressInfo.find(params[:pr_id])
+  end
+
+	def view_career_detail
+    @pr = Career.find(params[:pr_id])
+  end
 end

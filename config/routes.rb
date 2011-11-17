@@ -330,7 +330,7 @@ Afterclassroom::Application.routes.draw do
   #Ajax not login
   resources :ajax_not_login do
     collection do
-      get :show_comment, :rate_comment, :rate_comment_action, :view_results
+      get :show_comment, :rate_comment, :rate_comment_action, :view_results, :view_press_info_detail, :view_career_detail
     end
   end
   

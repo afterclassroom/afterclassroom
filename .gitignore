@@ -5,6 +5,7 @@ coverage/*
 nbproject/
 Capfile
 log/*.log
+log/**
 tmp/**/*
 config/database.yml
 solr/**/*
