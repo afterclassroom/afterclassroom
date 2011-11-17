@@ -1,0 +1,37 @@
+<div class="contMainR">
+<div class="col300 slStory">
+<div class="col300in mostPho">
+  <h1 class="col300Title">
+    <label style="text-align: left;">Members of this topic</label>
+    <% if current_user != @ufo.user %>
+      <div id="unsubscribe" style="float: right; margin-top: -13px;">Unsubscribe</div>
+    <% else %>
+      <div id="remove_usr" style="float: right; margin-top: -13px;">Remove membership</div>
+    <% end %>
+  </h1>
+  <div style="padding: 0px" class="musicRow">
+  <% if @ufo.ufo_members != nil%>
+    <% @ufo.ufo_members.each do |member| %>
+    <div class="AsDcomImg" style="margin-left: 9px;">
+      <%= show_image_user_post(member.user) %>
+      <% if current_user == @ufo.user %>
+        <input type="checkbox" name="user_list" value="member.user.id" />
+      <% end %>
+    </div>
+    <% end %>
+   <% end %> <!-- end if -->
+  </div>
+  <a style="float: right;" href="javascript:;">Remove</a>
+
+</div>
+</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#remove_usr").hover(function(){
+    $(this).css('cursor','pointer');
+  }, function(){
+    $(this).css('cursor','default');
+  });
+});
+</script>
