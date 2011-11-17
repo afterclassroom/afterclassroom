@@ -15,6 +15,8 @@
 
 <script type="text/javascript">
 function SearchPeople(){
+  $('#waiting').show();
+  $('#control_pane').hide();
   ajaxObj = $.ajax({
     url: '<%= find_people_user_u_forums_path %>',
     type: 'GET',
@@ -23,7 +25,8 @@ function SearchPeople(){
       search_name: $('#search_text').val()
     },
     success: function(data){
-      //hide needed thing here: e.g ajax loader
+      $('#waiting').hide();
+      $('#control_pane').show();
     }
   });//end ajax
 }
