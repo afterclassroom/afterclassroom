@@ -47,6 +47,12 @@ $(document).ready(function(){
     $('form#form_member').submit();
   });
 
+  $('#remove_usr').click(function(){
+    $('#form_member_area').find('input:checkbox').each(function(){
+      $(this).show();
+    });
+  });
+
 
   //BEGIN ajax pagination
   var curentPage = parseInt('<%= @cur_page %>');
