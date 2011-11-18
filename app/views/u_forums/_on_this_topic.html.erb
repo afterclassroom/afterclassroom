@@ -17,16 +17,38 @@
 
 
   <div style="padding: 0px" class="musicRow">
-  <% if @ufo.ufo_members != nil%>
-    <% @ufo.ufo_members.each do |member| %>
-    <div class="AsDcomImg" style="margin-left: 9px;">
-      <%= show_image_user_post(member.user) %>
-      <% if current_user == @ufo.user %>
-        <input type="checkbox" name="user_list[]" value="<%= member.user.id %>" />
-      <% end %>
-    </div>
-    <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <% if @members != nil%>
+    <%= render :partial => "member_item" %>
    <% end %> <!-- end if -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </div>
   <a style="float: right;" href="javascript:;" id="remove_btn">Remove</a>
