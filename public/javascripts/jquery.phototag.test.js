@@ -393,7 +393,7 @@
             //DatNT modified li to display row by row
             var item = $('<li style="display:inline;" id="'+tagJSON.id+'"></li>');
             if(tagJSON.url){
-                var link = $('<a href="'+ tagJSON.url +'">'+ tagJSON.text +'</a>');
+                var link = $('<a href="'+ tagJSON.url +'" class="namejson_tag">'+ tagJSON.text +'</a>');
                 item.append(link);
             }else{
                 item.append(tagJSON.text);

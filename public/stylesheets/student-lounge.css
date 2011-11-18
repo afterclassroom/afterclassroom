@@ -6136,8 +6136,12 @@ div.ufo_sel div.ufo_span2b{
 .photoTag-cpanell a{
     color: #FFFFFF;
 }
-.photoTag-cpanell:hover{
+.photoTag-cpanell:hover, #remove_btn:hover{
     background: url("/images/btm71Red.png") no-repeat scroll 0 0 transparent;
 }
-
-
+.namejson_tag{
+    font-weight: bold;
+}
+.photoTag-delete:hover, .hover_manage_btn:hover{
+    color: #DD0000;
+}
