@@ -1174,6 +1174,7 @@ div.findIMitem a:hover{
     position:absolute;
     width:150px;
     border-top: 1px black solid;
+    z-index: 1;
 }
 .flistRAdd ul li {
     border-top:1px solid #E3E3E3;
@@ -6136,7 +6137,7 @@ div.ufo_sel div.ufo_span2b{
 .photoTag-cpanell a{
     color: #FFFFFF;
 }
-.photoTag-cpanell:hover, #remove_btn:hover{
+.photoTag-cpanell:hover{
     background: url("/images/btm71Red.png") no-repeat scroll 0 0 transparent;
 }
 .namejson_tag{
@@ -6144,4 +6145,7 @@ div.ufo_sel div.ufo_span2b{
 }
 .photoTag-delete:hover, .hover_manage_btn:hover{
     color: #DD0000;
+}
+#remove_btn:hover{
+    background: url("/images/btm71Red.png") no-repeat scroll 0 0 transparent;
 }

@@ -19,10 +19,10 @@
       <div class="friConnect11 <%= "friSelect" if action_name == "invite" %>">
         <%= link_to("Invite Your Facebook Friends", "#", :id => "invite_fb_friends") %>
       </div>
-			<!--
-      <div class="friConnect11 <%= "friSelect" if action_name == "invite" %>">
-        <%= link_to("Invite Your LinkedIn Friends", "/friends/auth_linkedin", :class => "newWindow") %>
-      </div>
+      <!--
+<div class="friConnect11 <%= "friSelect" if action_name == "invite" %>">
+      <%= link_to("Invite Your LinkedIn Friends", "/friends/auth_linkedin", :class => "newWindow") %>
+</div>
 			-->
     </div>
   </div>
@@ -54,7 +54,7 @@
   </script>
 </div>
 <script>
-   $(document).ready(function(){
+  $(document).ready(function(){
     var windowSizeArray = [ "width=500,height=450", "width=500,height=450,scrollbars=no" ];
     $(document).ready(function(){
       $('.newWindow').click(function (event){
@@ -91,5 +91,13 @@
     $('#flistRclose').click(function(){
       $('.asslinkdownSt_UserR').hide();
     });
+  });
+  $(document).ready(function(){
+    $('.contMainR').hover(function(){
+      $('.asslinkdownSt_UserR').hide();
+    })
+    $('.contMainC').hover(function(){
+      $('.asslinkdownSt_UserL').hide();
+    })
   });
 </script>

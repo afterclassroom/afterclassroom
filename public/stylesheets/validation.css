@@ -6,9 +6,9 @@
 label.error{
     color: red;
     font-weight: bold;
-	 -moz-border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
     -moz-box-shadow: 0 0 6px #000000;
-	position: absolute;
+    position: absolute;
     background: none repeat scroll 0 0 #EE0101;
     border: 2px solid #DDDDDD;
     color: #FFFFFF;
@@ -17,4 +17,7 @@ label.error{
     padding: 4px 10px;
     width: 140px;
     z-index: 5001;
+}
+.findIn label.error{
+    margin-left: 95px;
 }
