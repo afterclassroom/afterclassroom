@@ -19,10 +19,8 @@
 
 
 <script type="text/javascript">
-var usr_checked = []
-<% session[:list_remove_usrs].each do |item| %>
-  usr_checked.push("<%= item %>");
-<% end %>
+var usr_checked = [];
+var listcheck = [];
 
 function LoadMember(strpage){
   //find all the checkbox
@@ -31,6 +29,7 @@ function LoadMember(strpage){
       listcheck.push($(this).attr('id').split('cbox_')[1]);
     }
   });
+  alert('precheck == ' +<%= @prechecked %>+' || new list == '+listcheck);
 
   pagingAjax = $.ajax({
     url: '<%= page_member_user_u_forums_path %>',

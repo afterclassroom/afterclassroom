@@ -11,6 +11,7 @@
       <% strchecked = "" %>
       <% if session[:list_remove_usrs].include?member.user.id.to_s %>
         <% strchecked = "checked" %>
+        <% @prechecked << member.user.id %>
       <% end %>
 
       <input id="cbox_<%= member.user.id %>" <%= strchecked %> type="checkbox" name="user_list[]" value="<%= member.user.id %>" style="<%= strdisplay %>" />

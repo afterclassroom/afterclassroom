@@ -16,6 +16,7 @@ class UForumsController < ApplicationController
 
     @cur_page = "1"
     session[:list_remove_usrs] = []
+    @prechecked = []
   end
 
   def new
@@ -231,43 +232,20 @@ class UForumsController < ApplicationController
 
   def page_member
     #BEGIN analyze selected user to be removed
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++"
-puts "++valu of session"
-    puts "==#{session[:list_remove_usrs]}"
-    puts "SIZE ==#{session[:list_remove_usrs].size}"
     if session[:list_remove_usrs].size == 0
       session[:list_remove_usrs] = params[:listcheck]
-      puts "afterthat == :: #{session[:list_remove_usrs]}"
-#    else
-      #lam sau
+    else
+      params[:listcheck].each do |id|
+        session[:list_remove_usrs] << id
+      end
     end
-    #END
+    @prechecked = [] 
+    #END analyze selected user to be removed
+
     @cur_page = params[:page]
     @ufo = Ufo.find(params[:ufo_id])
     @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+    
 
     @enableCheckbox = params[:enableCheckbox] == "true" ? true : false
 
