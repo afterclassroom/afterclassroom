@@ -8,8 +8,13 @@
   <div class="AsDcomImg" style="margin-left: 9px;">
     <%= show_image_user_post(member.user) %>
     <% if current_user == @ufo.user %>
-      <input type="checkbox" name="user_list[]" value="<%= member.user.id %>" style="<%= strdisplay %>" />
-    <% end %>
+      <% strchecked = "" %>
+      <% if session[:list_remove_usrs].include?member.user.id.to_s %>
+        <% strchecked = "checked" %>
+      <% end %>
+
+      <input id="cbox_<%= member.user.id %>" <%= strchecked %> type="checkbox" name="user_list[]" value="<%= member.user.id %>" style="<%= strdisplay %>" />
+    <% end %> <!-- end if -->
   </div>
 <% end %>
 

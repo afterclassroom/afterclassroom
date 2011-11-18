@@ -1,4 +1,4 @@
-<% form_tag url_for(:controller => "u_forums", :action => "remove_member"), :id => "form_member", :method => :post, :remote => false do %>
+<%= form_tag url_for(:controller => "u_forums", :action => "remove_member"), :id => "form_member", :method => :post, :remote => false do %>
   <%= hidden_field_tag "ufo_id", @ufo.id %>
   <div style="padding: 0px;" class="musicRow">
   <% if @members != nil%>
@@ -15,5 +15,63 @@
   <% else %>
       <div><a style="" href="javascript:;" id="remove_btn">Remove</a></div>
   <% end %>
+<% end %><!-- end form -->
+
+
+<script type="text/javascript">
+var usr_checked = []
+<% session[:list_remove_usrs].each do |item| %>
+  usr_checked.push("<%= item %>");
 <% end %>
+
+function LoadMember(strpage){
+  //find all the checkbox
+  $('form#form_member').find('input:checkbox').each(function(){
+    if ($(this).is(":checked") == true ){
+      listcheck.push($(this).attr('id').split('cbox_')[1]);
+    }
+  });
+
+  pagingAjax = $.ajax({
+    url: '<%= page_member_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      page: strpage,
+      ufo_id: <%= @ufo.id %>,
+      enableCheckbox: enableCheckbox,
+      listcheck: listcheck
+    },
+    success: function(data){
+    }
+  });//end ajax
+}
+
+$(document).ready(function(){
+  //BEGIN ajax pagination
+  var curentPage = parseInt('<%= @cur_page %>');
+  $('#member_paging a').each(function(){
+    $(this).attr('href','javascript:;');
+    $(this).click(function(){
+      if ($(this).text() == 'Next'){
+        curentPage = curentPage + 1;
+        LoadMember(curentPage);
+      }else if ($(this).text() == 'Previous'){
+        curentPage = curentPage - 1;
+        LoadMember(curentPage);
+      }
+      else {
+        var strp = $(this).text();
+        LoadMember(strp);
+      }
+    });
+  });//end .each
+  //END ajax pagination
+
+
+
+});
+
+</script>
+
 

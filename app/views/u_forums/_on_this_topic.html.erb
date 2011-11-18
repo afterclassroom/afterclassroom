@@ -22,21 +22,7 @@
 
 var curentPage = parseInt('<%= @cur_page %>');
 var enableCheckbox = false;
-
-function LoadMember(strpage){
-  pagingAjax = $.ajax({
-    url: '<%= page_member_user_u_forums_path %>',
-    type: 'GET',
-    dataType: 'script',
-    data: {
-      page: strpage,
-      ufo_id: <%= @ufo.id %>,
-      enableCheckbox: enableCheckbox
-    },
-    success: function(data){
-    }
-  });//end ajax
-}
+var listcheck = [];
 
 
 $(document).ready(function(){
@@ -61,26 +47,6 @@ $(document).ready(function(){
     });
   });
 
-
-  //BEGIN ajax pagination
-  var curentPage = parseInt('<%= @cur_page %>');
-  $('#member_paging a').each(function(){
-    $(this).attr('href','javascript:;');
-    $(this).click(function(){
-      if ($(this).text() == 'Next'){
-        curentPage = curentPage + 1;
-        LoadMember(curentPage);
-      }else if ($(this).text() == 'Previous'){
-        curentPage = curentPage - 1;
-        LoadMember(curentPage);
-      }
-      else {
-        var strp = $(this).text();
-        LoadMember(strp);
-      }
-    });
-  });//end .each
-  //END ajax pagination
 
 
 

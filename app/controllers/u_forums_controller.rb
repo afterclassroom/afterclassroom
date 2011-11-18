@@ -15,6 +15,7 @@ class UForumsController < ApplicationController
     @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
 
     @cur_page = "1"
+    session[:list_remove_usrs] = []
   end
 
   def new
@@ -229,34 +230,45 @@ class UForumsController < ApplicationController
   end
 
   def page_member
+    #BEGIN analyze selected user to be removed
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++"
+puts "++valu of session"
+    puts "==#{session[:list_remove_usrs]}"
+    puts "SIZE ==#{session[:list_remove_usrs].size}"
+    if session[:list_remove_usrs].size == 0
+      session[:list_remove_usrs] = params[:listcheck]
+      puts "afterthat == :: #{session[:list_remove_usrs]}"
+#    else
+      #lam sau
+    end
+    #END
     @cur_page = params[:page]
     @ufo = Ufo.find(params[:ufo_id])
     @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "++"
-    puts "====val == ${params[:enableCheckbox]}"
+
     @enableCheckbox = params[:enableCheckbox] == "true" ? true : false
 
     render :layout => false
