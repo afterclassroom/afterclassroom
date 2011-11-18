@@ -16,7 +16,7 @@
   <%= hidden_field_tag "ufo_id", @ufo.id %>
 
 
-  <div style="padding: 0px" class="musicRow">
+  <div style="padding: 0px;" class="musicRow">
 
 
 
@@ -51,7 +51,18 @@
 
 
   </div>
-  <a style="float: right;" href="javascript:;" id="remove_btn">Remove</a>
+  <% if @members != nil %>
+    <div id="member_paging" style="max-width: 216px;">
+
+      <span class="numPage"><%= page_entries_info @members %></span>
+      <%= will_paginate @members %>
+      <div><a style="float: right; float: right; margin-right: -64px; margin-top: -26px;" href="javascript:;" id="remove_btn">Remove</a></div>
+    </div>
+  <% else %>
+      <div><a style="" href="javascript:;" id="remove_btn">Remove</a></div>
+  <% end %>
+
+
 <% end %>
 
 </div>
