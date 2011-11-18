@@ -11,31 +11,32 @@
   </h1>
 
 
-
-<% form_tag url_for(:controller => "u_forums", :action => "remove_member"), :id => "form_member", :method => :post, :remote => false do %>
-  <%= hidden_field_tag "ufo_id", @ufo.id %>
-
-
-  <div style="padding: 0px" class="musicRow">
-  <% if @ufo.ufo_members != nil%>
-    <% @ufo.ufo_members.each do |member| %>
-    <div class="AsDcomImg" style="margin-left: 9px;">
-      <%= show_image_user_post(member.user) %>
-      <% if current_user == @ufo.user %>
-        <input type="checkbox" name="user_list[]" value="<%= member.user.id %>" />
-      <% end %>
-    </div>
-    <% end %>
-   <% end %> <!-- end if -->
-
+  <div id="form_member_area">
+    <%= render :partial => "form_member" %>
   </div>
-  <a style="float: right;" href="javascript:;" id="remove_btn">Remove</a>
-<% end %>
 
 </div>
 </div>
 </div>
 <script type="text/javascript">
+
+var curentPage = parseInt('<%= @cur_page %>');
+
+function LoadMember(strpage){
+  pagingAjax = $.ajax({
+    url: '<%= page_member_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      page: strpage,
+      ufo_id: <%= @ufo.id %>
+    },
+    success: function(data){
+    }
+  });//end ajax
+}
+
+
 $(document).ready(function(){
   $("#remove_usr").hover(function(){
     $(this).css('cursor','pointer');
@@ -45,5 +46,35 @@ $(document).ready(function(){
   $('#remove_btn').click(function(){
     $('form#form_member').submit();
   });
+
+  $('#remove_usr').click(function(){
+    $('#form_member_area').find('input:checkbox').each(function(){
+      $(this).show();
+    });
+  });
+
+
+  //BEGIN ajax pagination
+  var curentPage = parseInt('<%= @cur_page %>');
+  $('#member_paging a').each(function(){
+    $(this).attr('href','javascript:;');
+    $(this).click(function(){
+      if ($(this).text() == 'Next'){
+        curentPage = curentPage + 1;
+        LoadMember(curentPage);
+      }else if ($(this).text() == 'Previous'){
+        curentPage = curentPage - 1;
+        LoadMember(curentPage);
+      }
+      else {
+        var strp = $(this).text();
+        LoadMember(strp);
+      }
+    });
+  });//end .each
+  //END ajax pagination
+
+
+
 });
 </script>

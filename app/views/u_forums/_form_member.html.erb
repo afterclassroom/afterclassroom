@@ -1,0 +1,19 @@
+<% form_tag url_for(:controller => "u_forums", :action => "remove_member"), :id => "form_member", :method => :post, :remote => false do %>
+  <%= hidden_field_tag "ufo_id", @ufo.id %>
+  <div style="padding: 0px;" class="musicRow">
+  <% if @members != nil%>
+    <%= render :partial => "member_item" %>
+   <% end %> <!-- end if -->
+  </div>
+  <% if @members != nil %>
+    <div id="member_paging" style="max-width: 216px;">
+
+      <span class="numPage"><%= page_entries_info @members %></span>
+      <%= will_paginate @members %>
+    </div>
+    <div><a style="margin-top: -27px; float: right;" href="javascript:;" id="remove_btn">Remove</a></div>
+  <% else %>
+      <div><a style="" href="javascript:;" id="remove_btn">Remove</a></div>
+  <% end %>
+<% end %>
+

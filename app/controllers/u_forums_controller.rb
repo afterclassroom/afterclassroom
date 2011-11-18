@@ -12,6 +12,9 @@ class UForumsController < ApplicationController
     @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 10)
 
     @ufo_cmt = UfoCmt.new()
+    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+
+    @cur_page = "1"
   end
 
   def new
@@ -223,6 +226,14 @@ class UForumsController < ApplicationController
       member.destroy
     end 
     redirect_to user_u_forum_path(current_user,@ufo)
+  end
+
+  def page_member
+    @cur_page = params[:page]
+    @ufo = Ufo.find(params[:ufo_id])
+    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+
+    render :layout => false
   end
 
   protected
