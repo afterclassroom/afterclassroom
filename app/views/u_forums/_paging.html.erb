@@ -38,22 +38,16 @@ $(document).ready(function(){
     $(this).attr('href','javascript:;');
     $(this).click(function(){
       if ($(this).text() == 'Next'){
-        //display the ajax loader
-        //clear the whole area with html('')
         curentPage = curentPage + 1;
         LoadUserShare(curentPage);
       }else if ($(this).text() == 'Previous'){
-        //display the ajax loader
-        //clear the whole area with html('')
         curentPage = curentPage - 1;
         LoadUserShare(curentPage);
       }
       else {
-        //display the ajax loader
-        //clear the whole area with html('')
         var strp = $(this).text();
         LoadUserShare(strp);
-      }//end if for .text
+      }
     });
   });//end .each
   //END ajax pagination

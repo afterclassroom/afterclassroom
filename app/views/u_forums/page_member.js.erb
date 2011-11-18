@@ -1,0 +1,24 @@
+$('#form_member_area').html('<%= escape_javascript ( raw(render :partial => "form_member")) %>');
+
+$(document).ready(function(){
+
+  //BEGIN ajax pagination
+  var curentPage = parseInt('<%= @cur_page %>');
+  $('#member_paging a').each(function(){
+    $(this).attr('href','javascript:;');
+    $(this).click(function(){
+      if ($(this).text() == 'Next'){
+        curentPage = curentPage + 1;
+        LoadMember(curentPage);
+      }else if ($(this).text() == 'Previous'){
+        curentPage = curentPage - 1;
+        LoadMember(curentPage);
+      }
+      else {
+        var strp = $(this).text();
+        LoadMember(strp);
+      }
+    });
+  });//end .each
+  //END ajax pagination
+});
