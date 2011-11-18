@@ -1,8 +1,14 @@
+<% if @enableCheckbox != nil && @enableCheckbox == true %>
+  <% strdisplay= "" %>
+<% else %>
+  <% strdisplay= "display: none;" %>
+<% end %>
+
 <% @members.each do |member| %>
   <div class="AsDcomImg" style="margin-left: 9px;">
     <%= show_image_user_post(member.user) %>
     <% if current_user == @ufo.user %>
-      <input type="checkbox" name="user_list[]" value="<%= member.user.id %>" style="display: none;" />
+      <input type="checkbox" name="user_list[]" value="<%= member.user.id %>" style="<%= strdisplay %>" />
     <% end %>
   </div>
 <% end %>

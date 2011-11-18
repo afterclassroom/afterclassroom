@@ -232,6 +232,32 @@ class UForumsController < ApplicationController
     @cur_page = params[:page]
     @ufo = Ufo.find(params[:ufo_id])
     @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "====val == ${params[:enableCheckbox]}"
+    @enableCheckbox = params[:enableCheckbox] == "true" ? true : false
 
     render :layout => false
   end

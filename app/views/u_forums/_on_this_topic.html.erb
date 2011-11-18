@@ -21,6 +21,7 @@
 <script type="text/javascript">
 
 var curentPage = parseInt('<%= @cur_page %>');
+var enableCheckbox = false;
 
 function LoadMember(strpage){
   pagingAjax = $.ajax({
@@ -29,7 +30,8 @@ function LoadMember(strpage){
     dataType: 'script',
     data: {
       page: strpage,
-      ufo_id: <%= @ufo.id %>
+      ufo_id: <%= @ufo.id %>,
+      enableCheckbox: enableCheckbox
     },
     success: function(data){
     }
@@ -48,8 +50,14 @@ $(document).ready(function(){
   });
 
   $('#remove_usr').click(function(){
+    if (enableCheckbox == false ){
+      enableCheckbox = true;
+    }
+    else {
+      enableCheckbox = false;
+    }
     $('#form_member_area').find('input:checkbox').each(function(){
-      $(this).show();
+      $(this).toggle();
     });
   });
 
