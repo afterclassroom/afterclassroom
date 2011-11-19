@@ -22,14 +22,13 @@
 var usr_checked = [];
 var listcheck = [];
 
-function LoadMember(strpage){
+function LoadMember(strpage, preCheck){
   //find all the checkbox
   $('form#form_member').find('input:checkbox').each(function(){
     if ($(this).is(":checked") == true ){
       listcheck.push($(this).attr('id').split('cbox_')[1]);
     }
   });
-  alert('precheck == ' +<%= @prechecked %>+' || new list == '+listcheck);
 
   pagingAjax = $.ajax({
     url: '<%= page_member_user_u_forums_path %>',
@@ -39,7 +38,8 @@ function LoadMember(strpage){
       page: strpage,
       ufo_id: <%= @ufo.id %>,
       enableCheckbox: enableCheckbox,
-      listcheck: listcheck
+      listcheck: listcheck,
+      precheck: preCheck
     },
     success: function(data){
     }
@@ -47,6 +47,17 @@ function LoadMember(strpage){
 }
 
 $(document).ready(function(){
+  //BEGIN: find all the checkbox has been checked when page just load
+  var preCheck = [];
+
+  $('form#form_member').find('input:checkbox').each(function(){
+    if ($(this).is(":checked") == true ){
+      preCheck.push($(this).attr('id').split('cbox_')[1]);
+    }
+  });
+
+  //END: find all the checkbox has been checked when page just load
+
   //BEGIN ajax pagination
   var curentPage = parseInt('<%= @cur_page %>');
   $('#member_paging a').each(function(){
@@ -54,14 +65,14 @@ $(document).ready(function(){
     $(this).click(function(){
       if ($(this).text() == 'Next'){
         curentPage = curentPage + 1;
-        LoadMember(curentPage);
+        LoadMember(curentPage,preCheck);
       }else if ($(this).text() == 'Previous'){
         curentPage = curentPage - 1;
-        LoadMember(curentPage);
+        LoadMember(curentPage,preCheck);
       }
       else {
         var strp = $(this).text();
-        LoadMember(strp);
+        LoadMember(strp,preCheck);
       }
     });
   });//end .each

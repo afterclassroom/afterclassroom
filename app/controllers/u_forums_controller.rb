@@ -231,6 +231,23 @@ class UForumsController < ApplicationController
   end
 
   def page_member
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "==1"
+    puts "value of precheck == precheck == #{params[:precheck]}"
+    puts "and value of list newly check == #{params[:listcheck]}"
+
     #BEGIN analyze selected user to be removed
     if session[:list_remove_usrs].size == 0
       session[:list_remove_usrs] = params[:listcheck]
