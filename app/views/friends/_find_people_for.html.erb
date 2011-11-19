@@ -46,7 +46,9 @@
             </div>
             <div class="suggesAdd">
               <span id="friend_status_<%= u.id %>"><%= show_invite_friend(u) %></span>
+             <%= render :partial => "shared/chat_yahoo", :locals => {:user_post => u} %>
             </div>
+            
           </div>
         <% end %>
       </div>
@@ -107,7 +109,8 @@
       'word-wrap': 'break-word', 
       'width': '70px',
       'float':'left',
-      'overflow':'hidden'
+      'overflow':'hidden',
+      'height': '15px'
     });
     $('.suggesItem .AsDContImg div').css({
       'height': '52px'
