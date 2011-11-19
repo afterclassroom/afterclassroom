@@ -1,5 +1,6 @@
 <%= form_tag url_for(:controller => "u_forums", :action => "remove_member"), :id => "form_member", :method => :post, :remote => false do %>
   <%= hidden_field_tag "ufo_id", @ufo.id %>
+  <%= hidden_field_tag "precheck_list", "" %>
   <div style="padding: 0px;" class="musicRow">
   <% if @members != nil%>
     <%= render :partial => "member_item" %>
@@ -53,6 +54,13 @@ $(document).ready(function(){
   $('form#form_member').find('input:checkbox').each(function(){
     if ($(this).is(":checked") == true ){
       preCheck.push($(this).attr('id').split('cbox_')[1]);
+      var current_val = $('input#precheck_list').val();
+      if (current_val == "")
+        current_val = $(this).attr('id').split('cbox_')[1];
+      else
+        current_val = current_val+","+$(this).attr('id').split('cbox_')[1];
+
+      $('input#precheck_list').val(current_val);
     }
   });
 
@@ -79,6 +87,9 @@ $(document).ready(function(){
   //END ajax pagination
 
 
+  $('#remove_btn').click(function(){
+    $('form#form_member').submit();
+  });
 
 });
 

@@ -212,6 +212,7 @@ class UForumsController < ApplicationController
   end
 
   def remove_usr
+    #this action is used on show page, allow user to manage users to invite to join topic
     @usr = User.find(params[:usr_id])
     arr_p = []
     session[:list_selected_usrs].select { |p| arr_p << p if p != @usr.id  }
@@ -222,11 +223,51 @@ class UForumsController < ApplicationController
   end
 
   def remove_member
+    #BEGIN: synchronize the list of selected user before remove
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "--++"
+    puts "precheck list = #{params[:precheck_list]}"
+    puts "selected recently on page = #{params[:user_list]}"
+    puts "value stored in session == #{session[:list_remove_usrs]}"
+    arr_precheck = nil
+    if params[:precheck_list].length > 0
+      arr_precheck =  params[:precheck_list].split(',')
+    end
+    puts "precheck array == #{ arr_precheck ? arr_precheck : 'NUULL VALUE'}"
+
+    #END: synchronize the list of selected user before remove
+    #session[:list_remove_usrs]
+
     @ufo = Ufo.find(params[:ufo_id])
-    params[:user_list].each do |id|
-      member = @ufo.ufo_members.where(:user_id => id).first
-      member.destroy
-    end 
+    # params[:user_list].each do |id|
+    #   member = @ufo.ufo_members.where(:user_id => id).first
+    #   member.destroy
+    # end 
     redirect_to user_u_forum_path(current_user,@ufo)
   end
 
