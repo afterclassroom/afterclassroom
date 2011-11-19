@@ -231,32 +231,50 @@ class UForumsController < ApplicationController
   end
 
   def page_member
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "==1"
     puts "value of precheck == precheck == #{params[:precheck]}"
     puts "and value of list newly check == #{params[:listcheck]}"
 
     #BEGIN analyze selected user to be removed
-    if session[:list_remove_usrs].size == 0
-      session[:list_remove_usrs] = params[:listcheck]
-    else
-      params[:listcheck].each do |id|
-        session[:list_remove_usrs] << id
-      end
+    #find what id has been newly added >> then add to session
+    # puts " params[:precheck] == #{ params[:precheck]}"
+    # puts "params[:listcheck] == #{params[:listcheck]}"
+    # arr_precheck = params[:precheck].map(&:to_i)
+    # arr_listcheck = params[:listcheck].map(&:to_i)
+    # puts "arr_precheck == #{arr_precheck}"
+    # puts "arr_listcheck == #{arr_listcheck}"
+
+
+    remove_check = nil
+    if params[:listcheck] != nil && params[:precheck] != nil && params[:precheck] != ""
+      remove_check = params[:precheck].select { |id| !params[:listcheck].include?(id) }
     end
-    @prechecked = [] 
+    #find what id has been removed >> then remove from session
+    add_check = nil
+    if params[:listcheck] != nil && params[:precheck] != nil && params[:listcheck] != ""
+      add_check = params[:listcheck].select { |id| !params[:precheck].include?(id) }
+    end
+
+    puts "then remove check == #{remove_check}"
+    puts "and add check == #{add_check}"
+    
+
+
+    if session[:list_remove_usrs].size == 0 && add_check != nil
+      session[:list_remove_usrs] = add_check
+    elsif session[:list_remove_usrs].size > 0
+      if add_check != nil
+        add_check.each do |id|
+          session[:list_remove_usrs] << id
+        end
+      end
+      if remove_check != nil
+        tmp = []
+        tmp = session[:list_remove_usrs].select { |id| !remove_check.include?(id) }
+        session[:list_remove_usrs] = tmp
+      end
+      #remove from remove list
+      #and add from add list
+    end
     #END analyze selected user to be removed
 
     @cur_page = params[:page]
