@@ -224,81 +224,21 @@ class UForumsController < ApplicationController
 
   def remove_member
     #BEGIN: synchronize the list of selected user before remove
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "--++"
-    puts "precheck list = #{params[:precheck_list]}"
-    puts "selected recently on page = #{params[:user_list]}"
-    puts "value stored in session == #{session[:list_remove_usrs]}"
     arr_precheck = nil
     if params[:precheck_list].length > 0
       arr_precheck =  params[:precheck_list].split(',')
     end
-    puts "precheck array == #{ arr_precheck ? arr_precheck : 'NUULL VALUE'}"
-
-    #END: synchronize the list of selected user before remove
-    #session[:list_remove_usrs]
-
-    @ufo = Ufo.find(params[:ufo_id])
-    # params[:user_list].each do |id|
-    #   member = @ufo.ufo_members.where(:user_id => id).first
-    #   member.destroy
-    # end 
-    redirect_to user_u_forum_path(current_user,@ufo)
-  end
-
-  def page_member
-    puts "value of precheck == precheck == #{params[:precheck]}"
-    puts "and value of list newly check == #{params[:listcheck]}"
-
-    #BEGIN analyze selected user to be removed
-    #find what id has been newly added >> then add to session
-    # puts " params[:precheck] == #{ params[:precheck]}"
-    # puts "params[:listcheck] == #{params[:listcheck]}"
-    # arr_precheck = params[:precheck].map(&:to_i)
-    # arr_listcheck = params[:listcheck].map(&:to_i)
-    # puts "arr_precheck == #{arr_precheck}"
-    # puts "arr_listcheck == #{arr_listcheck}"
-
 
     remove_check = nil
-    if params[:listcheck] != nil && params[:precheck] != nil && params[:precheck] != ""
-      remove_check = params[:precheck].select { |id| !params[:listcheck].include?(id) }
+    if arr_precheck != nil && params[:user_list] != nil
+      remove_check = arr_precheck.select { |id| !params[:user_list].include?(id) }
     end
-    #find what id has been removed >> then remove from session
     add_check = nil
-    if params[:listcheck] != nil && params[:precheck] != nil && params[:listcheck] != ""
-      add_check = params[:listcheck].select { |id| !params[:precheck].include?(id) }
+    if arr_precheck != nil && params[:user_list] != nil && params[:user_list] != ""
+      add_check = params[:user_list].select { |id| !arr_precheck.include?(id) }
+    elsif arr_precheck == nil
+      add_check = params[:user_list]
     end
-
-    puts "then remove check == #{remove_check}"
-    puts "and add check == #{add_check}"
-    
-
 
     if session[:list_remove_usrs].size == 0 && add_check != nil
       session[:list_remove_usrs] = add_check
@@ -313,8 +253,42 @@ class UForumsController < ApplicationController
         tmp = session[:list_remove_usrs].select { |id| !remove_check.include?(id) }
         session[:list_remove_usrs] = tmp
       end
-      #remove from remove list
-      #and add from add list
+    end
+    #END: synchronize the list of selected user before remove
+
+    @ufo = Ufo.find(params[:ufo_id])
+    session[:list_remove_usrs].each do |id|
+      member = @ufo.ufo_members.where(:user_id => id).first
+      member.destroy
+    end 
+    redirect_to user_u_forum_path(current_user,@ufo)
+  end
+
+  def page_member
+    #BEGIN analyze selected user to be removed
+    remove_check = nil
+    if params[:listcheck] != nil && params[:precheck] != nil && params[:precheck] != ""
+      remove_check = params[:precheck].select { |id| !params[:listcheck].include?(id) }
+    end
+
+    add_check = nil
+    if params[:listcheck] != nil && params[:precheck] != nil && params[:listcheck] != ""
+      add_check = params[:listcheck].select { |id| !params[:precheck].include?(id) }
+    end
+
+    if session[:list_remove_usrs].size == 0 && add_check != nil
+      session[:list_remove_usrs] = add_check
+    elsif session[:list_remove_usrs].size > 0
+      if add_check != nil
+        add_check.each do |id|
+          session[:list_remove_usrs] << id
+        end
+      end
+      if remove_check != nil
+        tmp = []
+        tmp = session[:list_remove_usrs].select { |id| !remove_check.include?(id) }
+        session[:list_remove_usrs] = tmp
+      end
     end
     #END analyze selected user to be removed
 
