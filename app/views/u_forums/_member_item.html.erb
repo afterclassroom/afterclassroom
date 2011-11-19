@@ -14,6 +14,13 @@
       <% end %>
 
       <input id="cbox_<%= member.user.id %>" <%= strchecked %> type="checkbox" name="user_list[]" value="<%= member.user.id %>" style="<%= strdisplay %>" />
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('#cbox_<%= member.user.id %>').click(function(){
+            alert('click');
+        });
+      });
+</script>
     <% end %> <!-- end if -->
   </div>
 <% end %>
