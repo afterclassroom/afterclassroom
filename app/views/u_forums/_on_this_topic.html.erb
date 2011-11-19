@@ -21,21 +21,7 @@
 <script type="text/javascript">
 
 var curentPage = parseInt('<%= @cur_page %>');
-
-function LoadMember(strpage){
-  pagingAjax = $.ajax({
-    url: '<%= page_member_user_u_forums_path %>',
-    type: 'GET',
-    dataType: 'script',
-    data: {
-      page: strpage,
-      ufo_id: <%= @ufo.id %>
-    },
-    success: function(data){
-    }
-  });//end ajax
-}
-
+var enableCheckbox = false;
 
 $(document).ready(function(){
   $("#remove_usr").hover(function(){
@@ -43,36 +29,19 @@ $(document).ready(function(){
   }, function(){
     $(this).css('cursor','default');
   });
-  $('#remove_btn').click(function(){
-    $('form#form_member').submit();
-  });
 
   $('#remove_usr').click(function(){
+    if (enableCheckbox == false ){
+      enableCheckbox = true;
+    }
+    else {
+      enableCheckbox = false;
+    }
     $('#form_member_area').find('input:checkbox').each(function(){
-      $(this).show();
+      $(this).toggle();
     });
   });
 
-
-  //BEGIN ajax pagination
-  var curentPage = parseInt('<%= @cur_page %>');
-  $('#member_paging a').each(function(){
-    $(this).attr('href','javascript:;');
-    $(this).click(function(){
-      if ($(this).text() == 'Next'){
-        curentPage = curentPage + 1;
-        LoadMember(curentPage);
-      }else if ($(this).text() == 'Previous'){
-        curentPage = curentPage - 1;
-        LoadMember(curentPage);
-      }
-      else {
-        var strp = $(this).text();
-        LoadMember(strp);
-      }
-    });
-  });//end .each
-  //END ajax pagination
 
 
 
