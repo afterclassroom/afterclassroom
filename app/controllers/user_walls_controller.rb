@@ -340,7 +340,7 @@ class UserWallsController < ApplicationController
   def attach_link
     link = params[:link]
     @err = false
-    #begin
+    begin
       url = Domainatrix.parse(link)
       domain = get_domain(url)
       # Build an Hpricot object from a web page:
@@ -380,9 +380,9 @@ class UserWallsController < ApplicationController
       @user_wall_link.image_link = image_link
       @user_wall_link.title = domain
       @user_wall_link.sub_content = p
-    #rescue
-      #@err = true
-    #end
+    rescue
+      @err = true
+    end
     render :layout => false
   end
   
