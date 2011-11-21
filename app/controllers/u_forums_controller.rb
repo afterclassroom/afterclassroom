@@ -17,6 +17,9 @@ class UForumsController < ApplicationController
     @cur_page = "1"
     session[:list_remove_usrs] = []
     @prechecked = []
+
+    session[:list_selected_show] = []
+
   end
 
   def new
@@ -89,7 +92,9 @@ class UForumsController < ApplicationController
     share_to = get_share(arr_p[0][1])
 
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
-
+    
+    #init the session to store the list of selected user to add to friend list
+    session[:list_selected_show]
 
     render :layout => false 
   end
@@ -311,6 +316,9 @@ class UForumsController < ApplicationController
   end
 
   def add_usr_show
+    @usr = User.find(params[:usr_id])
+    session[:list_selected_show] << @usr.id
+
     render :layout => false
   end
 
