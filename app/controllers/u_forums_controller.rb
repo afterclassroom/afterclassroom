@@ -83,6 +83,14 @@ class UForumsController < ApplicationController
     custom_setting.post_lounge = params[:postlounge]
     custom_setting.save
 
+    #load the proper user-friends based on setting
+    arr_p = [] 
+    OPTIONS_SETTING.select {|p| arr_p << p if p[1] == params[:shareto].to_i} 
+    share_to = get_share(arr_p[0][1])
+
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+
+
     render :layout => false 
   end
 
