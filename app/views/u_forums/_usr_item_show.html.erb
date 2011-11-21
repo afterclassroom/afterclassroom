@@ -19,10 +19,12 @@ function AddUser<%= usr.id %>(){
 }
 
 $(document).ready(function(){
-  <% if session[:list_selected_usrs].include?(usr.id) == false %>
+  <% if session[:list_selected_show].include?(usr.id) == false %>
+    <% if @ufo.ufo_members.map(&:user_id).include?(usr.id) == false %>
     $('#usr_<%= usr.id %>').click(function(){
       AddUser<%= usr.id %>();
     });
+    <% end %>
   <% end %>
 });
 </script>

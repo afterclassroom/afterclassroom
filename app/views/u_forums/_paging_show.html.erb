@@ -1,0 +1,47 @@
+<% if nil != @share_to %>
+<span class="numPage"><%= page_entries_info @share_to %></span>
+<%= will_paginate @share_to %>
+
+<script type="text/javascript">
+function LoadUserShare(strpage){
+  pagingAjax = $.ajax({
+    url: '<%= page_share_show_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      page: strpage,
+      share: shareto,
+      ufo_id: <%= @ufo.id %>
+    },
+    success: function(data){
+    }
+  });//end ajax
+}
+
+$(document).ready(function(){
+  //BEGIN ajax pagination
+  var curentPage = parseInt('<%= @cur_page %>');
+  $('#show_paging a').each(function(){
+    $(this).attr('href','javascript:;');
+    $(this).click(function(){
+      if ($(this).text() == 'Next'){
+        curentPage = curentPage + 1;
+        LoadUserShare(curentPage);
+      }else if ($(this).text() == 'Previous'){
+        curentPage = curentPage - 1;
+        LoadUserShare(curentPage);
+      }
+      else {
+        var strp = $(this).text();
+        LoadUserShare(strp);
+      }
+    });
+  });//end .each
+  //END ajax pagination
+
+});
+
+</script>
+
+<% end %><!-- end if -->
+
