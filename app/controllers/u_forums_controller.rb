@@ -345,6 +345,12 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def add_more_member
+    objufo = Ufo.find(params[:ufo_id])
+
+    redirect_to user_u_forum_path(objufo.user, objufo)
+  end
+
   protected
   def get_share(share_value)
     groupType = ""

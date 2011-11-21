@@ -100,16 +100,28 @@
               <div class="bodderTop" id="first_banner"></div>
               <div class="inboxCeTop" id="first_banner">
                 <label style="text-align: left; margin-left: 10px; color: rgb(150, 150, 150);">
-                  tieu de
+                  Invite more friend to the topic
                 </label>
               </div>
 
               <div style="float: none;" class="assContFoT615">
                 <div class="assContFoD615">
-                  <div id="selected_usr"  style="padding: 5px 25px;" class="assContFoC615">
-                  </div>
+
+
+
+
+                  <% form_tag url_for(:controller => "u_forums", :action => "add_more_member"), :id => "form_more_friend", :method => :post, :remote => false do %>
+                    <%= hidden_field_tag "ufo_id", @ufo.id %>
+
+                    <div id="selected_usr"  style="padding: 5px 25px;" class="assContFoC615">
+                    </div>
+
+                  <% end %><!-- end form invite more friend -->
+
+
                 </div>
               </div>
+                    <button id="submit_new_friend">Add</button>
               <div style="float: none; margin-bottom: 8px;" class="assContFoT615">
                 <div class="assContFoD615">
                   <div id="list_usrs" style="padding: 5px 25px;" class="assContFoC615">
@@ -303,6 +315,9 @@ function SaveCustom(ishareto,ipostlounge ){
     });
     $('#to_lounge').click(function(){
       PostLounge();
+    });
+    $('#submit_new_friend').click(function(){
+      $('form#form_more_friend').submit();
     });
   });
 </script>
