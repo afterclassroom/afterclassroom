@@ -1,0 +1,60 @@
+<% if nil != @share_to %>
+<span class="numPage"><%= page_entries_info @share_to %></span>
+<%= will_paginate @share_to %>
+
+<script type="text/javascript">
+function LoadUserShare(strpage){
+  LoadWaiting();
+  pagingAjax = $.ajax({
+    url: '<%= page_share_show_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      page: strpage,
+      share: shareValue
+    },
+    success: function(data){
+      LoadComplete();
+    }
+  });//end ajax
+
+}
+
+function LoadWaiting(){
+  $('#usr_lists').hide();
+  $('#page_area').hide();
+  $('#loading_user').show();
+}
+function LoadComplete(){
+  $('#usr_lists').show();
+  $('#page_area').show();
+  $('#loading_user').hide();
+}
+
+$(document).ready(function(){
+  //BEGIN ajax pagination
+  var curentPage = parseInt('<%= @cur_page %>');
+  $('#page_area a').each(function(){
+    $(this).attr('href','javascript:;');
+    $(this).click(function(){
+      if ($(this).text() == 'Next'){
+        curentPage = curentPage + 1;
+        LoadUserShare(curentPage);
+      }else if ($(this).text() == 'Previous'){
+        curentPage = curentPage - 1;
+        LoadUserShare(curentPage);
+      }
+      else {
+        var strp = $(this).text();
+        LoadUserShare(strp);
+      }
+    });
+  });//end .each
+  //END ajax pagination
+
+});
+
+</script>
+
+<% end %><!-- end if -->
+
