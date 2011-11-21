@@ -329,6 +329,8 @@ class UForumsController < ApplicationController
   end
 
   def page_share_show
+    @ufo = Ufo.find(params[:ufo_id])
+
     share_to = get_share(params[:share].to_i)
 
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil

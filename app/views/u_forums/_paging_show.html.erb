@@ -10,7 +10,8 @@ function LoadUserShare(strpage){
     dataType: 'script',
     data: {
       page: strpage,
-      share: shareto
+      share: shareto,
+      ufo_id: <%= @ufo.id %>
     },
     success: function(data){
     }
