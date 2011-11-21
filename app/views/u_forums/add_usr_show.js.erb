@@ -1,3 +1,2 @@
 $('#selected_usr').append('<%= escape_javascript ( raw(render :partial => "seted_usr_show")) %>');
-
-alert('add user to sessio, and unbind click event:: <%= session[:list_selected_show] %>');
+$('div#usr_<%= @usr.id %>').unbind();
