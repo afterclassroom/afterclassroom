@@ -3,7 +3,7 @@
   </div>
 </div>
 
-<div class="slStoryL">
+<div class="slStoryL" style="margin-bottom: 10px;">
   <div class="contDetL">
     <div class="contDetLin">
       <div class="inboxLeft">
@@ -78,11 +78,43 @@
 
           <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
 
+          <div style="padding: 10px;" class="inner2">
+            <div style="border-right: 1px solid #CECECE;">
+              <div class="bodderTop" id="first_banner"></div>
+              <div class="inboxCeTop" id="first_banner">
+                <label style="text-align: left; margin-left: 10px; color: rgb(150, 150, 150);">
+                  tieu de
+                </label>
+              </div>
+
+              <div style="float: none;" class="assContFoT615">
+                <div class="assContFoD615">
+                  <div style="padding: 5px 25px;" class="assContFoC615">
+                    noi dung
+                  </div>
+                </div>
+              </div>
+              <div style="float: none; margin-bottom: 8px;" class="assContFoT615">
+                <div class="assContFoD615">
+                  <div style="padding: 5px 25px;" class="assContFoC615">
+                    noi dung
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
+
+
+
           <div style="border: 0px solid black; padding: 10px;">
 
             <div style="background: url('/images/ufo_attach.jpg') no-repeat; width: 24px; height: 24px;">
-              <span class="btmDown"><a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow"><span>Download</span></a></span>
-
+              <span class="btmDownfo"><a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow" style="margin-left: 20px;padding-bottom: 14px;padding-left: 90px;">
+                <span class="forums_dow" style="margin-left: -55px;margin-top: 6px;position: absolute;">Download</span> 
+                </a>
+                          
+              </span>
             </div>
             <div style="overflow: auto; height: 300px;">
               <%= @ufo.content  %>
@@ -101,42 +133,41 @@
           </div>
 
 
-
           <%= form_for(@ufo_cmt, :remote => false,:url => url_for(:controller => "u_forums", :action => "save_cmt") , :html => {:multipart => true, :id => "form_cmt", :method => "post" }) do |f| %>
-          <%= hidden_field_tag "ufo_id", @ufo.id %>
+            <%= hidden_field_tag "ufo_id", @ufo.id %>
 
 
-          <div style="background-color: #ebebeb">
-            <div style="background-color: white; min-height: 390px; border: 0px solid black;">
+            <div style="background-color: #ebebeb">
+              <div style="background-color: white; min-height: 390px; border: 0px solid black;">
 
-              <div class="AsDContImg" style="margin: 18px; margin-top: 1px;">
-                <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
-              </div>  
+                <div class="AsDContImg" style="margin: 18px; margin-top: 1px;">
+                  <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
+                </div>  
 
-              <label style="text-align: left; margin-top: 18px;">Leave your comment</label>
+                <label style="text-align: left; margin-top: 18px;">Leave your comment</label>
 
-              <!-- textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
-At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
-              </textarea --> 
-              <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '84', :class => ''%>
+                <!-- textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
+  At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
+                </textarea --> 
+                <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '84', :class => ''%>
 
-              <div style="height: 60px; width: 545px; border: 0px solid red; margin-top: 0px; margin-left: 86px;">
-                <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
-                <div style="width: 545px; margin-top: 10px; margin-left: 5px; height: 28px;">
-                  <!-- input type="file" style=""onchange="" name="topic_attach" id="topic_attach" class="" size="65"/ -->
-                  <%= f.file_field :ucmt_attach, :onchange => "", :size => "76", :class => "", :style => "" %>
+                <div style="height: 60px; width: 545px; border: 0px solid red; margin-top: 0px; margin-left: 86px;">
+                  <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
+                  <div style="width: 545px; margin-top: 10px; margin-left: 5px; height: 28px;">
+                    <!-- input type="file" style=""onchange="" name="topic_attach" id="topic_attach" class="" size="65"/ -->
+                    <%= f.file_field :ucmt_attach, :onchange => "", :size => "76", :class => "", :style => "" %>
+
+                  </div>
+                  <%= f.submit "Add this comment" %>
 
                 </div>
-                <%= f.submit "Add this comment" %>
+
+
 
               </div>
 
-
-
             </div>
-
-          </div>
-<% end %><!-- end form -->
+          <% end %><!-- end form -->
 
 
         </div>
@@ -148,14 +179,14 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
       <div class="contFoC">
 
 
-      <div class="assPage" style="padding-left:0">
-        <span class="numPage"><%= page_entries_info @ufo_cmts %></span>
-        <%= will_paginate @ufo_cmts %> 
-      </div>
+        <div class="assPage" style="padding-left:0">
+          <span class="numPage"><%= page_entries_info @ufo_cmts %></span>
+          <%= will_paginate @ufo_cmts %> 
+        </div>
 
 
         <div style=" min-height: 100px; padding: 10px;">
-          <%# 10.times do %>
+<%# 10.times do %>
           <% @ufo_cmts.each do |cmt| %>
             <div style="border-bottom: 1px solid #D2D9E7; height: 80px; ">
 
@@ -174,9 +205,9 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
                   <img src="/images/icon-ing.gif" id=""/>
                 </div>
                 <div style="float:right;background: url(/images/ufo_attach.jpg) no-repeat scroll 0 0 transparent;height:24px;width: 24px;">
-<a href="javascript:downloadFile('<%= cmt.ucmt_attach.url %>')" class="downarrow"><span>Download</span></a>
+                  <a href="javascript:downloadFile('<%= cmt.ucmt_attach.url %>')" class="downarrow"><span>Download</span></a>
 
-</div>
+                </div>
                 <div style="float: right">button collapse expand</div>
               </div>
             </div>
@@ -197,59 +228,59 @@ At W3Schools you will find all the Web-building tutorials you need, from basic H
 
 <script type="text/javascript">
 
-var shareto;
-var postlounge;
+  var shareto;
+  var postlounge;
 
 <% if @ufo.ufo_custom != nil %>
- shareto = <%= @ufo.ufo_custom.share_to_index %>;
- postlounge = <%= @ufo.ufo_custom.post_lounge %>
+    shareto = <%= @ufo.ufo_custom.share_to_index %>;
+    postlounge = <%= @ufo.ufo_custom.post_lounge %>
 <% else %>
- shareto = <%= current_user.ufo_default.share_to_index %>;
- postlounge = <%= current_user.ufo_default.post_lounge %>
+    shareto = <%= current_user.ufo_default.share_to_index %>;
+    postlounge = <%= current_user.ufo_default.post_lounge %>
 <% end %> 
 
-function SaveCustom(ishareto,ipostlounge ){
-  $('#wait_area').show();
-  $('#setting_area').hide();
+  function SaveCustom(ishareto,ipostlounge ){
+    $('#wait_area').show();
+    $('#setting_area').hide();
 
-  $.ajax({
-    url: '<%= save_custom_user_u_forums_path %>',
-    type: 'POST',
-    dataType: 'script',
-    data: {
-      shareto: ishareto,
-      postlounge: ipostlounge,
-      id: <%= @ufo.id %>
-    },
-    success: function(html){
-    }
+    $.ajax({
+      url: '<%= save_custom_user_u_forums_path %>',
+      type: 'POST',
+      dataType: 'script',
+      data: {
+        shareto: ishareto,
+        postlounge: ipostlounge,
+        id: <%= @ufo.id %>
+      },
+      success: function(html){
+      }
+    });
+  }
+
+  function PostLounge(){
+    $('#setting_area').hide();
+    $('#wait_area').show();
+
+    $.ajax({
+      url: '<%= post_lounge_user_u_forums_path %>',
+      type: 'GET',
+      dataType: 'script',
+      data: {
+        id: <%= @ufo.id %>
+      },
+      success: function(html){
+      }
+    });
+  }
+
+
+  $(document).ready(function(){
+    $('select#ufo_setting').change(function(){
+      shareto = $(this).find('option:selected').val();
+      SaveCustom(shareto,postlounge);
+    });
+    $('#to_lounge').click(function(){
+      PostLounge();
+    });
   });
-}
-
-function PostLounge(){
-  $('#setting_area').hide();
-  $('#wait_area').show();
-
-  $.ajax({
-    url: '<%= post_lounge_user_u_forums_path %>',
-    type: 'GET',
-    dataType: 'script',
-    data: {
-      id: <%= @ufo.id %>
-    },
-    success: function(html){
-    }
-  });
-}
-
-
-$(document).ready(function(){
-  $('select#ufo_setting').change(function(){
-    shareto = $(this).find('option:selected').val();
-    SaveCustom(shareto,postlounge);
-  });
-  $('#to_lounge').click(function(){
-    PostLounge();
-  });
-});
 </script>

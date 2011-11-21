@@ -6017,6 +6017,15 @@ div.ufo_sel div.ufo_span2b{
     border: medium none;
     text-decoration: none;
 }
+span.btmDownfo a {
+    background: url("/images/btmDown.png") no-repeat scroll 0 0 transparent;
+    width: 90px;
+    color: #797979;
+}
+span.btmDownfo a:hover {
+    background: url("/images/btmDownH.png") no-repeat scroll 0 0 transparent;
+    color: #ffffff;
+}
 /**** END forum button for studenLounge  *****/
 
 /* Resizable add new tag
