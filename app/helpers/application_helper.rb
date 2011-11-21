@@ -521,7 +521,7 @@ module ApplicationHelper
       str = link_to_require_login(raw("<span class='span1'><span class='span2'>Be friend</span></span>"))
     else
       if current_user.user_friends.include?(user)
-        str = link_to(raw("<span class='span1'><span class='span2'>Unfriend</span></span>"), unfriend_user_friends_url(current_user, :friend_id => user), :remote => true)
+        str = link_to(raw("<span class='span1'><span class='span2'>Unfriend</span></span>"), unfriend_user_friends_url(current_user, :friend_id => user.id), :remote => true)
       else
         if current_user.user_invites_out.find_by_user_id_target(user.id)
           str = raw('<div class="txtsignup1">Still waiting</div>')
@@ -714,7 +714,7 @@ module ApplicationHelper
     
     if wall.user_wall_link
       link = "/gadgets_proxy/link?url=#{wall.user_wall_link.link}"
-      if wall.user_wall_link.image_link
+      if wall.user_wall_link.image_link != ""
         img_link = link_to(raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank")
         image = get_image_wall(wall.id, img_link)
       end
