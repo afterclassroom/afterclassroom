@@ -714,7 +714,7 @@ module ApplicationHelper
     
     if wall.user_wall_link
       link = "/gadgets_proxy/link?url=#{wall.user_wall_link.link}"
-      if wall.user_wall_link.image_link
+      if wall.user_wall_link.image_link != ""
         img_link = link_to(raw(image_tag(wall.user_wall_link.image_link, :style => "width:92px;height:68px")), link, :target => "_blank")
         image = get_image_wall(wall.id, img_link)
       end

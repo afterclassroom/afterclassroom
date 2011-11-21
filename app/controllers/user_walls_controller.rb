@@ -340,7 +340,7 @@ class UserWallsController < ApplicationController
   def attach_link
     link = params[:link]
     @err = false
-    begin
+    #begin
       url = Domainatrix.parse(link)
       domain = get_domain(url)
       # Build an Hpricot object from a web page:
@@ -348,7 +348,26 @@ class UserWallsController < ApplicationController
       open(link, :proxy => nil).each {|s| my_html << s}
       @web_doc= Hpricot(my_html)
       @arr_img = []
-      @web_doc.search("img").each{ |e| @arr_img << get_img_url(e.attributes['src'], domain) if e.attributes['width'].to_i > 90 }
+      @web_doc.search("img").each do |e|
+				img_url = get_img_url(e.attributes['src'], domain)
+				if e.attributes['width'] != ""
+					@arr_img << img_url if e.attributes['width'].to_i > 90
+				else
+					i_url = URI.parse(img_url)
+					Net::HTTP.start(i_url.host, i_url.port) {|http|
+					resp = http.get(i_url.path)
+					unless resp.nil?
+						tempfile = Tempfile.new('tmp_img.jpg')
+						File.open(tempfile.path, 'wb') do |f|
+							f.write resp.body
+						end
+						image = MiniMagick::Image.open(tempfile.path)
+						@arr_img << img_url if image[:width].to_i > 90
+						
+					end
+				}
+				end
+			end
       image_link = ""
       image_link = @arr_img[0] if @arr_img.size > 0
       arr_p = []
@@ -361,9 +380,9 @@ class UserWallsController < ApplicationController
       @user_wall_link.image_link = image_link
       @user_wall_link.title = domain
       @user_wall_link.sub_content = p
-    rescue
-      @err = true
-    end
+    #rescue
+      #@err = true
+    #end
     render :layout => false
   end
   
