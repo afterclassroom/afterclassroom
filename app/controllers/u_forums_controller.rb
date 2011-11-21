@@ -259,26 +259,8 @@ class UForumsController < ApplicationController
     @ufo = Ufo.find(params[:ufo_id])
     session[:list_remove_usrs].each do |id|
       member = @ufo.ufo_members.where(:user_id => id).first
-      #member.destroy
+      member.destroy
     end 
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "*************"
-    puts "session[:list_remove_usrs] == #{session[:list_remove_usrs]}"
     redirect_to user_u_forum_path(current_user,@ufo)
   end
 
