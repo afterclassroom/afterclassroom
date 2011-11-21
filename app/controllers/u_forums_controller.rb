@@ -310,6 +310,10 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def add_usr_show
+    render :layout => false
+  end
+
   protected
   def get_share(share_value)
     groupType = ""

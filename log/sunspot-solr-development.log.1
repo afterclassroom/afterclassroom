@@ -1,454 +1,231 @@
-<<<<<<< HEAD
-Nov 21, 2011 9:08:17 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-=======
-<<<<<<< HEAD
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
+Nov 21, 2011 1:57:33 PM org.apache.solr.core.SolrResourceLoader locateSolrHome
 INFO: JNDI not configured for solr (NoInitialContextEx)
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: using system property solr.solr.home: /var/www/after/solr
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader <init>
-INFO: Solr home set to '/var/www/after/solr/'
-Nov 18, 2011 9:45:19 AM org.apache.solr.servlet.SolrDispatchFilter init
-INFO: SolrDispatchFilter.init()
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: JNDI not configured for solr (NoInitialContextEx)
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: using system property solr.solr.home: /var/www/after/solr
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.CoreContainer$Initializer initialize
-INFO: looking for solr.xml: /var/www/after/solr/solr.xml
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader <init>
-INFO: Solr home set to '/var/www/after/solr/'
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrConfig initLibs
-INFO: Adding specified lib dirs to ClassLoader
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrConfig <init>
-INFO: Loaded SolrConfig: solrconfig.xml
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrCore <init>
-INFO: Opening new SolrCore at /var/www/after/solr/, dataDir=/var/www/after/solr/data/development/
-Nov 18, 2011 9:45:19 AM org.apache.solr.schema.IndexSchema readSchema
-INFO: Reading Solr Schema
-Nov 18, 2011 9:45:19 AM org.apache.solr.schema.IndexSchema readSchema
-INFO: Schema name=sunspot
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created string: org.apache.solr.schema.StrField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created tdouble: org.apache.solr.schema.TrieDoubleField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created rand: org.apache.solr.schema.RandomSortField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created null: org.apache.solr.analysis.StandardTokenizerFactory
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created null: org.apache.solr.analysis.StandardFilterFactory
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created null: org.apache.solr.analysis.LowerCaseFilterFactory
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created text: org.apache.solr.schema.TextField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created boolean: org.apache.solr.schema.BoolField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created date: org.apache.solr.schema.DateField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created sdouble: org.apache.solr.schema.SortableDoubleField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created sfloat: org.apache.solr.schema.SortableFloatField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created sint: org.apache.solr.schema.SortableIntField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created slong: org.apache.solr.schema.SortableLongField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created tint: org.apache.solr.schema.TrieIntField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created tfloat: org.apache.solr.schema.TrieFloatField
-Nov 18, 2011 9:45:19 AM org.apache.solr.util.plugin.AbstractPluginLoader load
-INFO: created tdate: org.apache.solr.schema.TrieDateField
-Nov 18, 2011 9:45:19 AM org.apache.solr.schema.IndexSchema readSchema
-INFO: default search field is text
-Nov 18, 2011 9:45:19 AM org.apache.solr.schema.IndexSchema readSchema
-INFO: query parser default operator is AND
-Nov 18, 2011 9:45:19 AM org.apache.solr.schema.IndexSchema readSchema
-INFO: unique key field: id
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.JmxMonitoredMap <init>
-INFO: No JMX servers found, not exposing Solr information with JMX.
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrCore initListeners
-INFO: Added SolrEventListener: org.apache.solr.core.QuerySenderListener{queries=[]}
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrCore initListeners
-INFO: Added SolrEventListener: org.apache.solr.core.QuerySenderListener{queries=[{q=solr rocks,start=0,rows=10}, {q=static firstSearcher warming query from solrconfig.xml}]}
-Nov 18, 2011 9:45:19 AM org.apache.solr.request.XSLTResponseWriter init
-INFO: xsltCacheLifetimeSeconds=5
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created standard: solr.SearchHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created dismax: solr.SearchHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created partitioned: solr.SearchHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /spell: solr.SearchHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created tvrh: org.apache.solr.handler.component.SearchHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: adding lazy requestHandler: org.apache.solr.handler.extraction.ExtractingRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /update/extract: org.apache.solr.handler.extraction.ExtractingRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /terms: org.apache.solr.handler.component.SearchHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: adding lazy requestHandler: solr.SearchHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /elevate: solr.SearchHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /update: solr.XmlUpdateRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /update/javabin: solr.BinaryUpdateRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /analysis/document: solr.DocumentAnalysisRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /analysis/field: solr.FieldAnalysisRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: adding lazy requestHandler: solr.CSVRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /update/csv: solr.CSVRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /admin/: org.apache.solr.handler.admin.AdminHandlers
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /admin/ping: PingRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /debug/dump: solr.DumpRequestHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
-INFO: created /mlt: solr.MoreLikeThisHandler
-Nov 18, 2011 9:45:19 AM org.apache.solr.search.SolrIndexSearcher <init>
-INFO: Opening Searcher@a3468f4 main
-Nov 18, 2011 9:45:19 AM org.apache.solr.update.DirectUpdateHandler2$CommitTracker <init>
-INFO: AutoCommit: disabled
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SpellCheckComponent inform
-INFO: Initializing spell checkers
-Nov 18, 2011 9:45:19 AM org.apache.solr.spelling.AbstractLuceneSpellChecker init
-INFO: Using WhitespaceAnalzyer for dictionary: default
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SpellCheckComponent inform
-WARNING: No queryConverter defined, using default converter
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.QueryElevationComponent inform
-INFO: Loading QueryElevation from: /var/www/after/solr/conf/elevate.xml
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@ef894ce
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@61f1680f
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@2fe6e305
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5f4275d4
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@445e228
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@802b249
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@ef894ce
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@61f1680f
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@2fe6e305
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5f4275d4
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@445e228
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@802b249
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@ef894ce
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@61f1680f
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@2fe6e305
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5f4275d4
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@445e228
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@802b249
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@ef894ce
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@61f1680f
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@2fe6e305
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5f4275d4
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@445e228
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.SpellCheckComponent@41021f34
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@802b249
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@ef894ce
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@61f1680f
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@2fe6e305
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5f4275d4
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@445e228
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.TermVectorComponent@724eb043
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@802b249
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.TermsComponent@c163956
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.QuerySenderListener newSearcher
-INFO: QuerySenderListener sending requests to Searcher@a3468f4 main
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.CoreContainer register
-INFO: registering core: 
-Nov 18, 2011 9:45:19 AM org.apache.solr.servlet.SolrDispatchFilter init
-INFO: user.dir=/usr/local/lib/ruby/gems/1.9.1/gems/sunspot-1.2.1/solr
-Nov 18, 2011 9:45:19 AM org.apache.solr.servlet.SolrDispatchFilter init
-INFO: SolrDispatchFilter.init() done
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrCore execute
-INFO: [] webapp=null path=null params={start=0&event=firstSearcher&q=solr+rocks&rows=10} hits=0 status=0 QTime=46 
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrCore execute
-INFO: [] webapp=null path=null params={event=firstSearcher&q=static+firstSearcher+warming+query+from+solrconfig.xml} hits=0 status=0 QTime=1 
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.QuerySenderListener newSearcher
-INFO: QuerySenderListener done.
-Nov 18, 2011 9:45:19 AM org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener newSearcher
-INFO: Loading spell index for spellchecker: default
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrCore registerSearcher
-INFO: [] Registered new searcher Searcher@a3468f4 main
-Nov 18, 2011 9:45:19 AM org.apache.solr.servlet.SolrServlet init
-INFO: SolrServlet.init()
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: JNDI not configured for solr (NoInitialContextEx)
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: using system property solr.solr.home: /var/www/after/solr
-Nov 18, 2011 9:45:19 AM org.apache.solr.servlet.SolrServlet init
-INFO: SolrServlet.init() done
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: JNDI not configured for solr (NoInitialContextEx)
-Nov 18, 2011 9:45:19 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: using system property solr.solr.home: /var/www/after/solr
-Nov 18, 2011 9:45:19 AM org.apache.solr.servlet.SolrUpdateServlet init
-=======
-Nov 21, 2011 8:06:08 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
->>>>>>> 24b03a24826c64ce58d8a482bf72e4c658f8d5ad
-INFO: JNDI not configured for solr (NoInitialContextEx)
-Nov 21, 2011 9:08:17 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
+Nov 21, 2011 1:57:34 PM org.apache.solr.core.SolrResourceLoader locateSolrHome
 INFO: using system property solr.solr.home: /home/datnt/projects/ater/afterclassroom/solr
-Nov 21, 2011 9:08:17 AM org.apache.solr.core.SolrResourceLoader <init>
+Nov 21, 2011 1:57:34 PM org.apache.solr.core.SolrResourceLoader <init>
 INFO: Solr home set to '/home/datnt/projects/ater/afterclassroom/solr/'
-Nov 21, 2011 9:08:18 AM org.apache.solr.servlet.SolrDispatchFilter init
+Nov 21, 2011 1:57:34 PM org.apache.solr.servlet.SolrDispatchFilter init
 INFO: SolrDispatchFilter.init()
-Nov 21, 2011 9:08:18 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
+Nov 21, 2011 1:57:35 PM org.apache.solr.core.SolrResourceLoader locateSolrHome
 INFO: JNDI not configured for solr (NoInitialContextEx)
-Nov 21, 2011 9:08:18 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
+Nov 21, 2011 1:57:35 PM org.apache.solr.core.SolrResourceLoader locateSolrHome
 INFO: using system property solr.solr.home: /home/datnt/projects/ater/afterclassroom/solr
-Nov 21, 2011 9:08:18 AM org.apache.solr.core.CoreContainer$Initializer initialize
+Nov 21, 2011 1:57:35 PM org.apache.solr.core.CoreContainer$Initializer initialize
 INFO: looking for solr.xml: /home/datnt/projects/ater/afterclassroom/solr/solr.xml
-Nov 21, 2011 9:08:18 AM org.apache.solr.core.SolrResourceLoader <init>
+Nov 21, 2011 1:57:35 PM org.apache.solr.core.SolrResourceLoader <init>
 INFO: Solr home set to '/home/datnt/projects/ater/afterclassroom/solr/'
-Nov 21, 2011 9:08:18 AM org.apache.solr.core.SolrConfig initLibs
+Nov 21, 2011 1:57:35 PM org.apache.solr.core.SolrConfig initLibs
 INFO: Adding specified lib dirs to ClassLoader
-Nov 21, 2011 9:08:19 AM org.apache.solr.core.SolrConfig <init>
+Nov 21, 2011 1:57:36 PM org.apache.solr.core.SolrConfig <init>
 INFO: Loaded SolrConfig: solrconfig.xml
-Nov 21, 2011 9:08:19 AM org.apache.solr.core.SolrCore <init>
+Nov 21, 2011 1:57:36 PM org.apache.solr.core.SolrCore <init>
 INFO: Opening new SolrCore at /home/datnt/projects/ater/afterclassroom/solr/, dataDir=/home/datnt/projects/ater/afterclassroom/solr/data/development/
-Nov 21, 2011 9:08:19 AM org.apache.solr.schema.IndexSchema readSchema
+Nov 21, 2011 1:57:36 PM org.apache.solr.schema.IndexSchema readSchema
 INFO: Reading Solr Schema
-Nov 21, 2011 9:08:19 AM org.apache.solr.schema.IndexSchema readSchema
+Nov 21, 2011 1:57:36 PM org.apache.solr.schema.IndexSchema readSchema
 INFO: Schema name=sunspot
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created string: org.apache.solr.schema.StrField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created tdouble: org.apache.solr.schema.TrieDoubleField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created rand: org.apache.solr.schema.RandomSortField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created null: org.apache.solr.analysis.StandardTokenizerFactory
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created null: org.apache.solr.analysis.StandardFilterFactory
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created null: org.apache.solr.analysis.LowerCaseFilterFactory
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created text: org.apache.solr.schema.TextField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created boolean: org.apache.solr.schema.BoolField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created date: org.apache.solr.schema.DateField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created sdouble: org.apache.solr.schema.SortableDoubleField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created sfloat: org.apache.solr.schema.SortableFloatField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created sint: org.apache.solr.schema.SortableIntField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created slong: org.apache.solr.schema.SortableLongField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created tint: org.apache.solr.schema.TrieIntField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created tfloat: org.apache.solr.schema.TrieFloatField
-Nov 21, 2011 9:08:20 AM org.apache.solr.util.plugin.AbstractPluginLoader load
+Nov 21, 2011 1:57:36 PM org.apache.solr.util.plugin.AbstractPluginLoader load
 INFO: created tdate: org.apache.solr.schema.TrieDateField
-Nov 21, 2011 9:08:20 AM org.apache.solr.schema.IndexSchema readSchema
+Nov 21, 2011 1:57:36 PM org.apache.solr.schema.IndexSchema readSchema
 INFO: default search field is text
-Nov 21, 2011 9:08:20 AM org.apache.solr.schema.IndexSchema readSchema
+Nov 21, 2011 1:57:36 PM org.apache.solr.schema.IndexSchema readSchema
 INFO: query parser default operator is AND
-Nov 21, 2011 9:08:20 AM org.apache.solr.schema.IndexSchema readSchema
+Nov 21, 2011 1:57:36 PM org.apache.solr.schema.IndexSchema readSchema
 INFO: unique key field: id
-Nov 21, 2011 9:08:20 AM org.apache.solr.core.JmxMonitoredMap <init>
+Nov 21, 2011 1:57:36 PM org.apache.solr.core.JmxMonitoredMap <init>
 INFO: No JMX servers found, not exposing Solr information with JMX.
-Nov 21, 2011 9:08:20 AM org.apache.solr.core.SolrCore initListeners
+Nov 21, 2011 1:57:36 PM org.apache.solr.core.SolrCore initListeners
 INFO: Added SolrEventListener: org.apache.solr.core.QuerySenderListener{queries=[]}
-Nov 21, 2011 9:08:20 AM org.apache.solr.core.SolrCore initListeners
+Nov 21, 2011 1:57:36 PM org.apache.solr.core.SolrCore initListeners
 INFO: Added SolrEventListener: org.apache.solr.core.QuerySenderListener{queries=[{q=solr rocks,start=0,rows=10}, {q=static firstSearcher warming query from solrconfig.xml}]}
-Nov 21, 2011 9:08:20 AM org.apache.solr.request.XSLTResponseWriter init
+Nov 21, 2011 1:57:36 PM org.apache.solr.request.XSLTResponseWriter init
 INFO: xsltCacheLifetimeSeconds=5
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created standard: solr.SearchHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created dismax: solr.SearchHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created partitioned: solr.SearchHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /spell: solr.SearchHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created tvrh: org.apache.solr.handler.component.SearchHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: adding lazy requestHandler: org.apache.solr.handler.extraction.ExtractingRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /update/extract: org.apache.solr.handler.extraction.ExtractingRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /terms: org.apache.solr.handler.component.SearchHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: adding lazy requestHandler: solr.SearchHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /elevate: solr.SearchHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /update: solr.XmlUpdateRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /update/javabin: solr.BinaryUpdateRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /analysis/document: solr.DocumentAnalysisRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /analysis/field: solr.FieldAnalysisRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: adding lazy requestHandler: solr.CSVRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /update/csv: solr.CSVRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /admin/: org.apache.solr.handler.admin.AdminHandlers
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /admin/ping: PingRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /debug/dump: solr.DumpRequestHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.core.RequestHandlers initHandlersFromConfig
+Nov 21, 2011 1:57:37 PM org.apache.solr.core.RequestHandlers initHandlersFromConfig
 INFO: created /mlt: solr.MoreLikeThisHandler
-Nov 21, 2011 9:08:21 AM org.apache.solr.search.SolrIndexSearcher <init>
-INFO: Opening Searcher@1358f03 main
-Nov 21, 2011 9:08:22 AM org.apache.solr.update.DirectUpdateHandler2$CommitTracker <init>
+Nov 21, 2011 1:57:38 PM org.apache.solr.search.SolrIndexSearcher <init>
+INFO: Opening Searcher@2db19d main
+Nov 21, 2011 1:57:38 PM org.apache.solr.update.DirectUpdateHandler2$CommitTracker <init>
 INFO: AutoCommit: disabled
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SpellCheckComponent inform
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SpellCheckComponent inform
 INFO: Initializing spell checkers
-Nov 21, 2011 9:08:22 AM org.apache.solr.spelling.AbstractLuceneSpellChecker init
+Nov 21, 2011 1:57:38 PM org.apache.solr.spelling.AbstractLuceneSpellChecker init
 INFO: Using WhitespaceAnalzyer for dictionary: default
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SpellCheckComponent inform
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SpellCheckComponent inform
 WARNING: No queryConverter defined, using default converter
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.QueryElevationComponent inform
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.QueryElevationComponent inform
 INFO: Loading QueryElevation from: /home/datnt/projects/ater/afterclassroom/solr/conf/elevate.xml
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@11d2572
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@859a68
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@15c62bc
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5660d6
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@ef83d3
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b7b3f9
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@11d2572
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@859a68
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@15c62bc
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5660d6
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@ef83d3
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b7b3f9
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@11d2572
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@859a68
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@15c62bc
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5660d6
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@ef83d3
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b7b3f9
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@11d2572
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@859a68
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@15c62bc
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5660d6
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@ef83d3
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.SpellCheckComponent@88df60
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b7b3f9
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@11d2572
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@859a68
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@15c62bc
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@5660d6
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@ef83d3
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.TermVectorComponent@1318b
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b7b3f9
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SearchHandler inform
-INFO: Adding  component:org.apache.solr.handler.component.TermsComponent@5bb966
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.QuerySenderListener newSearcher
-INFO: QuerySenderListener sending requests to Searcher@1358f03 main
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.CoreContainer register
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@15e2ccd
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@1cf7491
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@edf730
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@ff94b1
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@17b0998
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b30913
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@15e2ccd
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@1cf7491
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@edf730
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@ff94b1
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@17b0998
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b30913
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@15e2ccd
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@1cf7491
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@edf730
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@ff94b1
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@17b0998
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b30913
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@15e2ccd
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@1cf7491
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@edf730
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@ff94b1
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@17b0998
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.SpellCheckComponent@18f51f
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b30913
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.QueryComponent@15e2ccd
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.FacetComponent@1cf7491
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.MoreLikeThisComponent@edf730
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.HighlightComponent@ff94b1
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.StatsComponent@17b0998
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.TermVectorComponent@84ce7a
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  debug component:org.apache.solr.handler.component.DebugComponent@b30913
+Nov 21, 2011 1:57:38 PM org.apache.solr.handler.component.SearchHandler inform
+INFO: Adding  component:org.apache.solr.handler.component.TermsComponent@10fd7f6
+Nov 21, 2011 1:57:38 PM org.apache.solr.core.QuerySenderListener newSearcher
+INFO: QuerySenderListener sending requests to Searcher@2db19d main
+Nov 21, 2011 1:57:38 PM org.apache.solr.core.CoreContainer register
 INFO: registering core: 
-Nov 21, 2011 9:08:22 AM org.apache.solr.servlet.SolrDispatchFilter init
+Nov 21, 2011 1:57:38 PM org.apache.solr.servlet.SolrDispatchFilter init
 INFO: user.dir=/usr/local/lib/ruby/gems/1.9.1/gems/sunspot-1.2.1/solr
-Nov 21, 2011 9:08:22 AM org.apache.solr.servlet.SolrDispatchFilter init
+Nov 21, 2011 1:57:38 PM org.apache.solr.servlet.SolrDispatchFilter init
 INFO: SolrDispatchFilter.init() done
-Nov 21, 2011 9:08:22 AM org.apache.solr.servlet.SolrServlet init
-INFO: SolrServlet.init()
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: JNDI not configured for solr (NoInitialContextEx)
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: using system property solr.solr.home: /home/datnt/projects/ater/afterclassroom/solr
-Nov 21, 2011 9:08:22 AM org.apache.solr.servlet.SolrServlet init
-INFO: SolrServlet.init() done
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: JNDI not configured for solr (NoInitialContextEx)
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.SolrResourceLoader locateSolrHome
-INFO: using system property solr.solr.home: /home/datnt/projects/ater/afterclassroom/solr
-<<<<<<< HEAD
-Nov 21, 2011 9:08:22 AM org.apache.solr.servlet.SolrUpdateServlet init
-=======
-Nov 21, 2011 8:06:10 AM org.apache.solr.servlet.SolrUpdateServlet init
->>>>>>> 4451e87e4c67c3653e51ad1b3ae097a8ec33b088
->>>>>>> 24b03a24826c64ce58d8a482bf72e4c658f8d5ad
-INFO: SolrUpdateServlet.init() done
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.SolrCore execute
-INFO: [] webapp=null path=null params={start=0&event=firstSearcher&q=solr+rocks&rows=10} hits=0 status=0 QTime=618 
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.SolrCore execute
-INFO: [] webapp=null path=null params={event=firstSearcher&q=static+firstSearcher+warming+query+from+solrconfig.xml} hits=0 status=0 QTime=57 
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.QuerySenderListener newSearcher
+Nov 21, 2011 1:57:39 PM org.apache.solr.core.SolrCore execute
+INFO: [] webapp=null path=null params={start=0&event=firstSearcher&q=solr+rocks&rows=10} hits=0 status=0 QTime=508 
+Nov 21, 2011 1:57:39 PM org.apache.solr.core.SolrCore execute
+INFO: [] webapp=null path=null params={event=firstSearcher&q=static+firstSearcher+warming+query+from+solrconfig.xml} hits=0 status=0 QTime=14 
+Nov 21, 2011 1:57:39 PM org.apache.solr.core.QuerySenderListener newSearcher
 INFO: QuerySenderListener done.
-Nov 21, 2011 9:08:22 AM org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener newSearcher
+Nov 21, 2011 1:57:39 PM org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener newSearcher
 INFO: Loading spell index for spellchecker: default
-Nov 21, 2011 9:08:22 AM org.apache.solr.core.SolrCore registerSearcher
-INFO: [] Registered new searcher Searcher@1358f03 main
+Nov 21, 2011 1:57:39 PM org.apache.solr.core.SolrCore registerSearcher
+INFO: [] Registered new searcher Searcher@2db19d main
+Nov 21, 2011 1:57:39 PM org.apache.solr.servlet.SolrServlet init
+INFO: SolrServlet.init()
+Nov 21, 2011 1:57:39 PM org.apache.solr.core.SolrResourceLoader locateSolrHome
+INFO: JNDI not configured for solr (NoInitialContextEx)
+Nov 21, 2011 1:57:39 PM org.apache.solr.core.SolrResourceLoader locateSolrHome
+INFO: using system property solr.solr.home: /home/datnt/projects/ater/afterclassroom/solr
+Nov 21, 2011 1:57:39 PM org.apache.solr.servlet.SolrServlet init
+INFO: SolrServlet.init() done
+Nov 21, 2011 1:57:39 PM org.apache.solr.core.SolrResourceLoader locateSolrHome
+INFO: JNDI not configured for solr (NoInitialContextEx)
+Nov 21, 2011 1:57:39 PM org.apache.solr.core.SolrResourceLoader locateSolrHome
+INFO: using system property solr.solr.home: /home/datnt/projects/ater/afterclassroom/solr
+Nov 21, 2011 1:57:39 PM org.apache.solr.servlet.SolrUpdateServlet init
+INFO: SolrUpdateServlet.init() done
+Nov 21, 2011 2:01:18 PM org.apache.solr.core.SolrDeletionPolicy onInit
+INFO: SolrDeletionPolicy.onInit: commits:num=1
+	commit{dir=/home/datnt/projects/ater/afterclassroom/solr/data/development/index,segFN=segments_9,version=1321495619815,generation=9,filenames=[_0.tis, _5.fdt, _5.prx, _1.frq, _4.prx, _4.fnm, _2.tii, _3.fdt, _1.fnm, _4.fdx, _7.fnm, _7.tis, _4.frq, _7.nrm, _5.tis, _5.nrm, _7.frq, _0.prx, _3.nrm, _0.fnm, _2.prx, _7.tii, _2.fdt, _2.frq, _7.fdx, _3.prx, _6_1.del, _2.fdx, _5.tii, _7.fdt, _1.fdx, _1.prx, _2.tis, _0.tii, _1.fdt, _0.frq, _6.fdt, _6.nrm, _2.nrm, _1.nrm, _3.frq, _3.tii, _6.frq, _6.fdx, _3.fnm, _6.tis, _1.tii, _4.tis, _2_1.del, _0.nrm, _4.tii, _5.fnm, _1.tis, _6.tii, _4.nrm, _4.fdt, _5.frq, _2.fnm, _7.prx, segments_9, _3.fdx, _6.prx, _5.fdx, _6.fnm, _0.fdx, _5_1.del, _0.fdt, _3.tis]
+Nov 21, 2011 2:01:18 PM org.apache.solr.core.SolrDeletionPolicy updateCommits
+INFO: newest commit = 1321495619815
+Nov 21, 2011 2:01:18 PM org.apache.solr.update.processor.LogUpdateProcessor finish
+INFO: {add=[User 1]} 0 108
+Nov 21, 2011 2:01:18 PM org.apache.solr.core.SolrCore execute
+INFO: [] webapp=/solr path=/update params={wt=ruby} status=0 QTime=108 
