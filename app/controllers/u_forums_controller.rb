@@ -12,6 +12,11 @@ class UForumsController < ApplicationController
     @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 10)
 
     @ufo_cmt = UfoCmt.new()
+    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+
+    @cur_page = "1"
+    session[:list_remove_usrs] = []
+    @prechecked = []
   end
 
   def new
@@ -207,11 +212,110 @@ class UForumsController < ApplicationController
   end
 
   def remove_usr
+    #this action is used on show page, allow user to manage users to invite to join topic
     @usr = User.find(params[:usr_id])
     arr_p = []
     session[:list_selected_usrs].select { |p| arr_p << p if p != @usr.id  }
  
     session[:list_selected_usrs] = arr_p
+
+    render :layout => false
+  end
+
+  def remove_member
+    #BEGIN: synchronize the list of selected user before remove
+    arr_precheck = nil
+    if params[:precheck_list].length > 0
+      arr_precheck =  params[:precheck_list].split(',')
+    end
+
+    remove_check = nil
+    if arr_precheck != nil && params[:user_list] != nil
+      remove_check = arr_precheck.select { |id| !params[:user_list].include?(id) }
+    end
+    add_check = nil
+    if arr_precheck != nil && params[:user_list] != nil && params[:user_list] != ""
+      add_check = params[:user_list].select { |id| !arr_precheck.include?(id) }
+    elsif arr_precheck == nil
+      add_check = params[:user_list]
+    end
+
+    if session[:list_remove_usrs].size == 0 && add_check != nil
+      session[:list_remove_usrs] = add_check
+    elsif session[:list_remove_usrs].size > 0
+      if add_check != nil
+        add_check.each do |id|
+          session[:list_remove_usrs] << id
+        end
+      end
+      if remove_check != nil
+        tmp = []
+        tmp = session[:list_remove_usrs].select { |id| !remove_check.include?(id) }
+        session[:list_remove_usrs] = tmp
+      end
+    end
+    #END: synchronize the list of selected user before remove
+
+    @ufo = Ufo.find(params[:ufo_id])
+    session[:list_remove_usrs].each do |id|
+      member = @ufo.ufo_members.where(:user_id => id).first
+      #member.destroy
+    end 
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "*************"
+    puts "session[:list_remove_usrs] == #{session[:list_remove_usrs]}"
+    redirect_to user_u_forum_path(current_user,@ufo)
+  end
+
+  def page_member
+    #BEGIN analyze selected user to be removed
+    remove_check = nil
+    if params[:listcheck] != nil && params[:precheck] != nil && params[:precheck] != ""
+      remove_check = params[:precheck].select { |id| !params[:listcheck].include?(id) }
+    end
+
+    add_check = nil
+    if params[:listcheck] != nil && params[:precheck] != nil && params[:listcheck] != ""
+      add_check = params[:listcheck].select { |id| !params[:precheck].include?(id) }
+    end
+
+    if session[:list_remove_usrs].size == 0 && add_check != nil
+      session[:list_remove_usrs] = add_check
+    elsif session[:list_remove_usrs].size > 0
+      if add_check != nil
+        add_check.each do |id|
+          session[:list_remove_usrs] << id
+        end
+      end
+      if remove_check != nil
+        tmp = []
+        tmp = session[:list_remove_usrs].select { |id| !remove_check.include?(id) }
+        session[:list_remove_usrs] = tmp
+      end
+    end
+    #END analyze selected user to be removed
+
+    @cur_page = params[:page]
+    @ufo = Ufo.find(params[:ufo_id])
+    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+    
+
+    @enableCheckbox = params[:enableCheckbox] == "true" ? true : false
 
     render :layout => false
   end

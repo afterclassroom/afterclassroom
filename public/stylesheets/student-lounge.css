@@ -1174,6 +1174,7 @@ div.findIMitem a:hover{
     position:absolute;
     width:150px;
     border-top: 1px black solid;
+    z-index: 1;
 }
 .flistRAdd ul li {
     border-top:1px solid #E3E3E3;
@@ -6018,6 +6019,133 @@ div.ufo_sel div.ufo_span2b{
 }
 /**** END forum button for studenLounge  *****/
 
+/* Resizable add new tag
+----------------------------------*/
+.ui-resizable { position: relative;}
+.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 9999; display: block;}
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0px; }
+.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0px; }
+.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0px; height: 100%; }
+.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0px; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
 
-
-
+.photoTag-taglist{ list-style:none;}
+.photoTag-taglist li{margin-left:10px;}
+#tempNewTagForm{
+    background-color: #797979; 
+    padding: 5px 15px;
+    overflow:hidden;
+    position: absolute;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    opacity: 0.8;
+}
+.photoTag-tag{
+    border: 3px #2EACF4 solid;
+    opacity: 0.8;
+}
+.photoTag-tag .photoTag-delete {
+    background:url(x2.png) no-repeat; 
+    width:25px; 
+    height:29px; 
+    display:inline; 
+    z-index:3200; 
+    position:absolute; 
+    top:-17px; 
+    right:-18px; 
+    cursor:pointer;
+    opacity: 0.8;
+}
+#tempNewTagForm input{
+    float: left;
+    display: inline;
+    margin-bottom: 10px;
+}
+#tempNewTagForm label{
+    width: auto;
+    float: left;
+    color: #ffffff;
+}
+#tempNewTagForm .inputSubmit,
+#tempNewTagForm .inputCancel
+{
+    font-size: 13px;
+    padding: 3px;
+    margin-right: 5px;
+    color: #ffffff;
+    background-color: #6dba5d;
+    border: 1px #6dba5d solid;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+}
+#tempNewTagForm .inputCancel
+{
+    background-color: rgb(210,47,47);
+    border: 1px rgb(210,47,47) solid;
+}
+.innerTag{
+    float: left;
+    background-color: #2EACF4;
+    padding: 3px;
+    height: 14px;
+    position: relative;
+    top: -23px;
+    left: -3px;
+    font-size: 12px;
+    color: #ffffff;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+#stop_tag{
+    background: url("/images/btm48.png") no-repeat scroll 0 0 transparent;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 48px;
+    color: #FFFFFF;
+}
+#stop_tag:hover{
+    background: url("/images/btm48Red.png") no-repeat scroll 0 0 transparent;
+}
+.photoTag-cpanell{
+    background:url("/images/btm71.png") no-repeat scroll 0 0 transparent;
+    height:25px;
+    line-height: 25px;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 71px;
+}
+.photoTag-cpanell a{
+    color: #FFFFFF;
+}
+.photoTag-cpanell:hover{
+    background: url("/images/btm71Red.png") no-repeat scroll 0 0 transparent;
+}
+.namejson_tag{
+    font-weight: bold;
+}
+.photoTag-delete:hover, .hover_manage_btn:hover{
+    color: #DD0000;
+}
+#remove_btn:hover{
+    background: url("/images/btm71Red.png") no-repeat scroll 0 0 transparent;
+}

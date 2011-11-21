@@ -1,0 +1,112 @@
+<%= form_tag url_for(:controller => "u_forums", :action => "remove_member"), :id => "form_member", :method => :post, :remote => false do %>
+  <%= hidden_field_tag "ufo_id", @ufo.id %>
+  <%= hidden_field_tag "precheck_list", "" %>
+  <div style="padding: 0px;" class="musicRow">
+  <% if @members != nil%>
+    <%= render :partial => "member_item" %>
+   <% end %> <!-- end if -->
+  </div>
+  <% if @members != nil %>
+    <div id="member_paging" style="max-width: 216px;">
+
+      <span class="numPage"><%= page_entries_info @members %></span>
+      <%= will_paginate @members %>
+    </div>
+    <div><a style="margin-top: -27px; float: right;" href="javascript:;" id="remove_btn">Remove</a></div>
+  <% else %>
+      <div><a style="" href="javascript:;" id="remove_btn">Remove</a></div>
+  <% end %>
+<% end %><!-- end form -->
+
+
+<script type="text/javascript">
+var usr_checked = [];
+var listcheck = [];
+var pivot_list = [];
+<% session[:list_remove_usrs].each do |id| %>
+  pivot_list.push(<%= id %>);
+<% end %>
+
+function LoadMember(strpage, preCheck){
+  //find all the checkbox
+  $('form#form_member').find('input:checkbox').each(function(){
+    if ($(this).is(":checked") == true ){
+      listcheck.push($(this).attr('id').split('cbox_')[1]);
+    }
+  });
+
+  pagingAjax = $.ajax({
+    url: '<%= page_member_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      page: strpage,
+      ufo_id: <%= @ufo.id %>,
+      enableCheckbox: enableCheckbox,
+      listcheck: listcheck,
+      precheck: preCheck
+    },
+    success: function(data){
+    }
+  });//end ajax
+}
+
+$(document).ready(function(){
+  //BEGIN: check whether to show or hide remove button
+  if (pivot_list.length == 0){
+    $('#remove_btn').hide();
+  }
+  else{
+    $('#remove_btn').show();
+  }
+  //END: check whether to show or hide remove button
+
+
+  //BEGIN: find all the checkbox has been checked when page just load
+  var preCheck = [];
+
+  $('form#form_member').find('input:checkbox').each(function(){
+    if ($(this).is(":checked") == true ){
+      preCheck.push($(this).attr('id').split('cbox_')[1]);
+      var current_val = $('input#precheck_list').val();
+      if (current_val == "")
+        current_val = $(this).attr('id').split('cbox_')[1];
+      else
+        current_val = current_val+","+$(this).attr('id').split('cbox_')[1];
+
+      $('input#precheck_list').val(current_val);
+    }
+  });
+
+  //END: find all the checkbox has been checked when page just load
+
+  //BEGIN ajax pagination
+  var curentPage = parseInt('<%= @cur_page %>');
+  $('#member_paging a').each(function(){
+    $(this).attr('href','javascript:;');
+    $(this).click(function(){
+      if ($(this).text() == 'Next'){
+        curentPage = curentPage + 1;
+        LoadMember(curentPage,preCheck);
+      }else if ($(this).text() == 'Previous'){
+        curentPage = curentPage - 1;
+        LoadMember(curentPage,preCheck);
+      }
+      else {
+        var strp = $(this).text();
+        LoadMember(strp,preCheck);
+      }
+    });
+  });//end .each
+  //END ajax pagination
+
+
+  $('#remove_btn').click(function(){
+    $('form#form_member').submit();
+  });
+
+});
+
+</script>
+
+

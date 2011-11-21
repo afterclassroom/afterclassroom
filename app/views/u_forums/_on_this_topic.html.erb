@@ -9,29 +9,41 @@
       <div id="remove_usr" style="float: right; margin-top: -13px;">Remove membership</div>
     <% end %>
   </h1>
-  <div style="padding: 0px" class="musicRow">
-  <% if @ufo.ufo_members != nil%>
-    <% @ufo.ufo_members.each do |member| %>
-    <div class="AsDcomImg" style="margin-left: 9px;">
-      <%= show_image_user_post(member.user) %>
-      <% if current_user == @ufo.user %>
-        <input type="checkbox" name="user_list" value="member.user.id" />
-      <% end %>
-    </div>
-    <% end %>
-   <% end %> <!-- end if -->
+
+
+  <div id="form_member_area">
+    <%= render :partial => "form_member" %>
   </div>
-  <a style="float: right;" href="javascript:;">Remove</a>
 
 </div>
 </div>
 </div>
 <script type="text/javascript">
+
+var curentPage = parseInt('<%= @cur_page %>');
+var enableCheckbox = false;
+
 $(document).ready(function(){
   $("#remove_usr").hover(function(){
     $(this).css('cursor','pointer');
   }, function(){
     $(this).css('cursor','default');
   });
+
+  $('#remove_usr').click(function(){
+    if (enableCheckbox == false ){
+      enableCheckbox = true;
+    }
+    else {
+      enableCheckbox = false;
+    }
+    $('#form_member_area').find('input:checkbox').each(function(){
+      $(this).toggle();
+    });
+  });
+
+
+
+
 });
 </script>

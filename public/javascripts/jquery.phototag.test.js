@@ -79,7 +79,7 @@
                 tagListIdPrefix: 'photoTag-taglist_',
                 tagListRemoveItemIdPrefix: 'photoTag-removeTag',
                 canvasIdPrefix: 'photoTag-canvas_',
-                controlPanelHeight: 25,
+                controlPanelHeight: 25
             },
             showAddTagLinks: true,
             externalAddTagLinks: {
@@ -100,7 +100,7 @@
         var getValueFromClassWithPrefix = function( element, prefix ){
             var value = null;
             if( element.attr('class') ){
-                var classNames = element.attr('class').split(' ');
+                var classNames = element.attr('class').split('');
                 $.each(classNames,function(){
                     if(this.indexOf(prefix) != -1){
                         value = this.substring(this.indexOf(prefix) + prefix.length);
@@ -171,12 +171,13 @@
 		//BEGIN DatNT note: setting this variable to true to allow user continue create tag
 		begintag = true;
 		$(this).hide();
+                $('.photoTag-cpanell').hide();
 		$('#stop_tag').show();
 		//detect firefox browser
 		if  ( $.browser.mozilla && $.browser.version > '2' ){
 		    //do nothing
 		}else {
-		    $('#stop_tag').css('margin-left',''+$('.AsDOr').width()/2+'px');
+		   // $('#stop_tag').css('margin-left',''+$('.AsDOr').width()/2+'px');
 		}
 	        
 
@@ -392,7 +393,7 @@
             //DatNT modified li to display row by row
             var item = $('<li style="display:inline;" id="'+tagJSON.id+'"></li>');
             if(tagJSON.url){
-                var link = $('<a href="'+ tagJSON.url +'">'+ tagJSON.text +'</a>');
+                var link = $('<a href="'+ tagJSON.url +'" class="namejson_tag">'+ tagJSON.text +'</a>');
                 item.append(link);
             }else{
                 item.append(tagJSON.text);
@@ -446,9 +447,9 @@
             var imageHeight = image.height();
             var imageWidth = image.width();
             var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;height:'+ (imageHeight + options.imageWrapBox.controlPanelHeight) +'px;width:'+ imageWidth +'px; display:block;margin:auto;"></div>');
-            var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:absolute;top:20px;left:0;height:'+ imageHeight +'px;width:'+ imageWidth +'px;"></div>');
+            var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:absolute;top:30px;left:0;height:'+ imageHeight +'px;width:'+ imageWidth +'px;"></div>');
             canvas.append(wrapper);
-            var controlPane = $('<div id="'+ options.imageWrapBox.controlPaneIdPrefix + image_id +'"></div>');
+            var controlPane = $('<div id="'+ options.imageWrapBox.controlPaneIdPrefix + image_id +'" class="photoTag-cpanell"></div>');
             canvas.append(controlPane);
             image.wrap(canvas);
             if(!options.externalAddTagLinks.bind)
