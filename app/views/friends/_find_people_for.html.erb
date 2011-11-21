@@ -2,13 +2,13 @@
   <div class="col300in" style="background:#ffffff">
     <div class="searchPInput">
       <div class="searchFri" style="height:27px;width:226px">
-				<%
-				if logged_in?
-					path = find_people_user_friends_url(current_user) 
-				else
-					path = "/friends/find_people_without_login"
-				end 
-				%>
+        <%
+        if logged_in?
+          path = find_people_user_friends_url(current_user) 
+        else
+          path = "/friends/find_people_without_login"
+        end 
+      %>
         <form id="action_people_search" name="search" action="<%= path %>" method="get">
           <div class="textS" style="background-image: none;">
             <input id="search_people_txt" type="text" name="search[query]" value="Search for friends" class="focus_text_field" style="height: 14px;margin-top: 3px;width: 222px;padding-top: 2px;"/>
@@ -30,11 +30,11 @@
     <div id="suggestion_list" class="suggesList" style="float:left;width:100%;">
       <div class="suggesRow">
         <%
-				if current_user
-        	@suggestions = current_user.suggestions
-				else
-					@suggestions = User.order("RAND()").limit(10)
-				end
+        if current_user
+          @suggestions = current_user.suggestions
+        else
+          @suggestions = User.order("RAND()").limit(10)
+        end
       %>
         <% @suggestions.each do |u| %>
           <div class="suggesItem" style="width:140px;">
@@ -46,9 +46,18 @@
             </div>
             <div class="suggesAdd">
               <span id="friend_status_<%= u.id %>"><%= show_invite_friend(u) %></span>
-             <%= render :partial => "shared/chat_yahoo", :locals => {:user_post => u} %>
             </div>
-            
+
+            <div class="yahoo_skype">
+              <a href="ymsgr:sendim?<%= get_chat_id(u, "yahoo") %>">
+                <img src="http://opi.yahoo.com/online?u=<%= get_chat_id(u, "yahoo") %>&m=g&t=0" style="border: 0 none;margin-top: 4px"/>
+              </a>
+              <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+              <a href="skype:<%= get_chat_id(u, "skype") %>?chat">
+                <img border="0" width="16" height="14" style="border: medium none;margin-top: 4px" src="http://mystatus.skype.com/smallicon/<%= get_chat_id(u, "skype") %>">
+              </a>
+            </div>
+
           </div>
         <% end %>
       </div>
