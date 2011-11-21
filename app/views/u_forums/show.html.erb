@@ -106,14 +106,14 @@
 
               <div style="float: none;" class="assContFoT615">
                 <div class="assContFoD615">
-                  <div style="padding: 5px 25px;" class="assContFoC615">
+                  <div id="selected_usr"  style="padding: 5px 25px;" class="assContFoC615">
                     noi dung
                   </div>
                 </div>
               </div>
               <div style="float: none; margin-bottom: 8px;" class="assContFoT615">
                 <div class="assContFoD615">
-                  <div style="padding: 5px 25px;" class="assContFoC615">
+                  <div id="list_usrs" style="padding: 5px 25px;" class="assContFoC615">
                     noi dung
                   </div>
                 </div>
@@ -255,23 +255,25 @@
     postlounge = <%= current_user.ufo_default.post_lounge %>
 <% end %> 
 
-  function SaveCustom(ishareto,ipostlounge ){
-    $('#wait_area').show();
-    $('#setting_area').hide();
+function SaveCustom(ishareto,ipostlounge ){
+  $('#wait_area').show();
+  $('#setting_area').hide();
+  $('#selected_usr').html('');
+  $('#list_usrs').html('');
 
-    $.ajax({
-      url: '<%= save_custom_user_u_forums_path %>',
-      type: 'POST',
-      dataType: 'script',
-      data: {
-        shareto: ishareto,
-        postlounge: ipostlounge,
-        id: <%= @ufo.id %>
-      },
-      success: function(html){
-      }
-    });
-  }
+  $.ajax({
+    url: '<%= save_custom_user_u_forums_path %>',
+    type: 'POST',
+    dataType: 'script',
+    data: {
+      shareto: ishareto,
+      postlounge: ipostlounge,
+      id: <%= @ufo.id %>
+    },
+    success: function(html){
+    }
+  });
+}
 
   function PostLounge(){
     $('#setting_area').hide();
