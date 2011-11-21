@@ -232,7 +232,6 @@ class UForumsController < ApplicationController
   end
 
   def remove_usr
-    #this action is used on show page, allow user to manage users to invite to join topic
     @usr = User.find(params[:usr_id])
     arr_p = []
     session[:list_selected_usrs].select { |p| arr_p << p if p != @usr.id  }
@@ -335,6 +334,14 @@ class UForumsController < ApplicationController
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
     @cur_page = params[:page]
 
+    render :layout => false
+  end
+
+  def remove_usr_show
+    @usr = User.find(params[:usr_id])
+    arr_p = []
+    session[:list_selected_show].select { |p| arr_p << p if p != @usr.id  }
+    session[:list_selected_show] = arr_p
     render :layout => false
   end
 

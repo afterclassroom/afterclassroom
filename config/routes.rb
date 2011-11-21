@@ -135,7 +135,7 @@ Afterclassroom::Application.routes.draw do
     resources :u_forums do
       collection do
         get :dft_stgs, :post_lounge, :item_setting, :post_lounge_b, :rate, :friend_pad, :find_people, 
-        :select_share, :page_share, :add_usr, :remove_usr, :page_member, :add_usr_show, :page_share_show
+        :select_share, :page_share, :add_usr, :remove_usr, :page_member, :add_usr_show, :page_share_show, :remove_usr_show
         post :save_setting, :save_custom, :save_cmt, :save_custom_b, :remove_member
       end
       
