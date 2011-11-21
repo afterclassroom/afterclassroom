@@ -329,6 +329,15 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def page_share_show
+    share_to = get_share(params[:share].to_i)
+
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @cur_page = params[:page]
+
+    render :layout => false
+  end
+
   protected
   def get_share(share_value)
     groupType = ""
