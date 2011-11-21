@@ -1,6 +1,13 @@
 <span>Attach:</span>
-<span class="att1"><%= link_to "", {:controller => "user_walls", :action => "link_image"}, :remote => true, :class => "vtip attach_icon", :title => "Image" %></span>
-<span class="att2"><%= link_to "", {:controller => "user_walls", :action => "link_video"}, :remote => true, :class => "vtip", :title => "Video" %></span>
-<span class="att3"><%= link_to "", {:controller => "user_walls", :action => "link_music"}, :remote => true, :class => "vtip", :title => "Music" %></span>
-<span class="att4"><%= link_to "", {:controller => "user_walls", :action => "link_link"}, :remote => true, :class => "vtip", :title => "Link" %></span>
+<span class="att1" id="click_link"><%= link_to "", {:controller => "user_walls", :action => "link_image"}, :remote => true, :class => "vtip attach_icon", :title => "Image" %></span>
+<span class="att2" id="click_link"><%= link_to "", {:controller => "user_walls", :action => "link_video"}, :remote => true, :class => "vtip", :title => "Video" %></span>
+<span class="att3" id="click_link"><%= link_to "", {:controller => "user_walls", :action => "link_music"}, :remote => true, :class => "vtip", :title => "Music" %></span>
+<span class="att4" id="click_link"><%= link_to "", {:controller => "user_walls", :action => "link_link"}, :remote => true, :class => "vtip", :title => "Link" %></span>
 <img id="load_attach_wall" style="display:none;" src="/images/loaderfile.gif" />
+<script>
+  $(document).ready(function(){
+    $('.att1,.att2,.att3,.att4').click(function(){
+      ShowFeaturedOverlay();
+    })
+  });
+</script>

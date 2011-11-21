@@ -28,7 +28,7 @@
   $('.close').click($.facebox.close);
   
   function update_form(type_select, id){
-		var school_type = $("input[name='school_type']:checked").val();
+    var school_type = $("input[name='school_type']:checked").val();
     ShowFeaturedOverlay();
     $.ajax({
       url: '/users_select_school/update_form',
@@ -38,7 +38,7 @@
       data: ({
         type : type_select,
         id : id,
-				type_school: school_type
+        type_school: school_type
       }),
       success: function(data){
         $('#select_school').html(data);
@@ -59,9 +59,9 @@
     update_form("city", $('#city').val());
   }
 
-	function select_type_school(){
-		select_city();
-	}
+  function select_type_school(){
+    select_city();
+  }
 
   function select_school(){
     var school_id = $('#school').val();
@@ -71,8 +71,8 @@
   }
 
   function select_alphabet(alphabet){
-		var school_type = $("input[name='school_type']:checked").val();
-		ShowFeaturedOverlay();
+    var school_type = $("input[name='school_type']:checked").val();
+    ShowFeaturedOverlay();
     city_id = $('#city').val();
     $.ajax({
       url: '/users_select_school/list_school',
@@ -82,7 +82,7 @@
       data: ({
         city_id : city_id,
         alphabet : alphabet,
-				type_school: school_type
+        type_school: school_type
       }),
       success: function(data){
         $('#select_school').html(data);
