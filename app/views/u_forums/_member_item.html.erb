@@ -17,7 +17,34 @@
       <script type="text/javascript">
         $(document).ready(function(){
           $('#cbox_<%= member.user.id %>').click(function(){
-            alert('click');
+
+          var temp_arr=[];
+          var j = 0;
+          var ilength = pivot_list.length;
+
+          for (i=0; i < pivot_list.length; i++){
+            if (pivot_list[i] == <%= member.user.id %>){
+              //skip this element, do not put it into temp array
+            }else{
+               temp_arr.push(pivot_list[i]);
+               j++;
+            }//end if
+          }//end for
+          pivot_list = temp_arr;
+
+          if (j == ilength)/* which mean this is the first time select  */{
+             pivot_list.push(<%= member.user.id %>);
+          }
+
+          if (pivot_list.length == 0){
+            $('#remove_btn').hide();
+          }
+          else{
+            $('#remove_btn').show();
+          }
+
+
+
         });
       });
 </script>

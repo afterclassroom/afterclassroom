@@ -22,6 +22,10 @@
 <script type="text/javascript">
 var usr_checked = [];
 var listcheck = [];
+var pivot_list = [];
+<% session[:list_remove_usrs].each do |id| %>
+  pivot_list.push(<%= id %>);
+<% end %>
 
 function LoadMember(strpage, preCheck){
   //find all the checkbox
@@ -48,6 +52,16 @@ function LoadMember(strpage, preCheck){
 }
 
 $(document).ready(function(){
+  //BEGIN: check whether to show or hide remove button
+  if (pivot_list.length == 0){
+    $('#remove_btn').hide();
+  }
+  else{
+    $('#remove_btn').show();
+  }
+  //END: check whether to show or hide remove button
+
+
   //BEGIN: find all the checkbox has been checked when page just load
   var preCheck = [];
 
