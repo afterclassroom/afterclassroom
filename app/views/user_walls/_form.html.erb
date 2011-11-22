@@ -6,6 +6,7 @@
       <div class="proques">
         <%= text_field_tag "your_mind", "What's on your mind?", :id => "wall_cotent_txt", :class => "focus_text_field" %>
       </div>
+      <div class="delay_error" style="float: right;margin-top: -14px;color:#DD0000;display:none">???</div>
     </div>
     <div class="proAtt">
       <div class="proAttItem" id="wrap_content_attach">
@@ -29,6 +30,26 @@
 <div class="footWall">
 </div>
 <script type="text/javascript">
+  function ShowAttachLinkOverlay(){
+    $('.proMind_overlay').append('<div id="overlayAttLink"></div>');
+    var position = $('.proMind_overlay').offset();
+    $("#overlayAttLink")
+    .height(143)
+    .css({
+      'display':'block',
+      'opacity' : 0.4,
+      'position': 'absolute',
+      'background':'url("/images/ajax-loader-a.gif") no-repeat center',
+      'background-color': 'black',
+      'width': '571px',
+      'height':'152px',
+      'margin-top':'-121px',
+      '-webkit-border-radius': '5px',
+      '-moz-border-radius': '5px',
+      'border-radius': '5px',
+      'z-index': 5000
+    });
+  }
   function ShowFeaturedOverlay(){
     $('.proMind_overlay').append('<div id="overlay"></div>');
     var position = $('.proMind_overlay').offset();
@@ -54,7 +75,8 @@
     $('#wrap_content_attach').hide();
     $('#attach_icon').show();
   }
-    
+
+
   $(document).ready(function(){
     $('#submit_btn').click(function(event){
       var str_content = $('#wall_cotent_txt').val();

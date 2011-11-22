@@ -4,6 +4,7 @@
 <span class="att3" id="click_link"><%= link_to "", {:controller => "user_walls", :action => "link_music"}, :remote => true, :class => "vtip", :title => "Music" %></span>
 <span class="att4" id="click_link"><%= link_to "", {:controller => "user_walls", :action => "link_link"}, :remote => true, :class => "vtip", :title => "Link" %></span>
 <img id="load_attach_wall" style="display:none;" src="/images/loaderfile.gif" />
+<div class="delay_error" style="float: right;margin-top: 1px;color:#DD0000;display:none">???</div>
 <script>
   $(document).ready(function(){
     $('.att1,.att2,.att3,.att4').click(function(){
