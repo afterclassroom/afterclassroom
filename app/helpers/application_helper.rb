@@ -1154,6 +1154,19 @@ module ApplicationHelper
 		user_id_chat ? user_id_chat.chat_id : ""
   end
   
+	def get_level_list(type_school)
+		case type_school
+			when "HighSchool"
+				LEVEL_1
+			when "University"
+				LEVEL_2
+			when "College"
+				LEVEL_2
+			else
+				LEVEL
+		end
+	end
+
   private
   
   def link_to_require_login(str)

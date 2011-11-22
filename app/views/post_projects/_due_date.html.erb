@@ -11,7 +11,7 @@
         %>
           <div class="dueDItem">
             <div class="dueDTitle"><%= link_to truncate_words(pr.post.title, 4), post_project_path(pr) %></div>
-            <div class="dueDTime"><%= pr.due_date.strftime("%B %d, %Y")%></div>
+            <div class="dueDTime"><%= pr.due_date.getutc.strftime("%B %d, %Y")%></div>
           </div>
         <%
         end

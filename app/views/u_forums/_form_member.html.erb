@@ -1,7 +1,18 @@
 <%= form_tag url_for(:controller => "u_forums", :action => "remove_member"), :id => "form_member", :method => :post, :remote => false do %>
   <%= hidden_field_tag "ufo_id", @ufo.id %>
   <%= hidden_field_tag "precheck_list", "" %>
-  <div style="padding: 0px;" class="musicRow">
+
+
+    <div id="onthis_area" style="margin-left: 126px; margin-top: 6px; display: none;">
+      <img src="/images/ajax-loader-a.gif"/>
+    </div>
+
+
+  <div id="onthis_panel" style="padding: 0px;" class="musicRow">
+
+
+
+
   <% if @members != nil%>
     <%= render :partial => "member_item" %>
    <% end %> <!-- end if -->
@@ -34,6 +45,10 @@ function LoadMember(strpage, preCheck){
       listcheck.push($(this).attr('id').split('cbox_')[1]);
     }
   });
+
+  $('#onthis_panel').hide();
+  $('#onthis_area').show();
+  $('#member_paging').hide();
 
   pagingAjax = $.ajax({
     url: '<%= page_member_user_u_forums_path %>',

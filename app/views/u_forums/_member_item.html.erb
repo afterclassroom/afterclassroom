@@ -5,7 +5,7 @@
 <% end %>
 
 <% @members.each do |member| %>
-  <div class="AsDcomImg" style="margin-left: 9px;">
+  <div class="AsDcomImg" style="margin-left: 9px;" id="member_<%= member.user.id %>">
     <%= show_image_user_post(member.user) %>
     <% if current_user == @ufo.user %>
       <% strchecked = "" %>

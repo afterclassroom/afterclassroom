@@ -4,6 +4,10 @@
 
 <script type="text/javascript">
 function LoadUserShare(strpage){
+  $('#list_usrs_wait').show();
+  $('#show_paging').hide();
+  $('#list_usrs').hide();
+
   pagingAjax = $.ajax({
     url: '<%= page_share_show_user_u_forums_path %>',
     type: 'GET',

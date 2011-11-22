@@ -12,7 +12,7 @@ class UForumsController < ApplicationController
     @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 10)
 
     @ufo_cmt = UfoCmt.new()
-    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 16) : nil
 
     @cur_page = "1"
     session[:list_remove_usrs] = []#this array stores the list of member to be removed
@@ -336,7 +336,7 @@ class UForumsController < ApplicationController
 
     @cur_page = params[:page]
     @ufo = Ufo.find(params[:ufo_id])
-    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 16) : nil
     
 
     @enableCheckbox = params[:enableCheckbox] == "true" ? true : false
@@ -372,8 +372,24 @@ class UForumsController < ApplicationController
 
   def add_more_member
     objufo = Ufo.find(params[:ufo_id])
+    session[:list_selected_show].each do |usr_id|
+      member = UfoMember.new
+      member.user_id = usr_id
+      member.ufo_id = objufo.id
+      member.save
+    end
+
+    session[:list_selected_show] = []
 
     redirect_to user_u_forum_path(objufo.user, objufo)
+  end
+
+  def unsubscribe
+    objufo = Ufo.find(params[:ufo_id])
+    member = objufo.ufo_members.where(:user_id => current_user.id).first
+    member.destroy
+
+    render :layout => false
   end
 
   protected

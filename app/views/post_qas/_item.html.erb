@@ -36,7 +36,7 @@
                 <div class="fav" id="item_favorite_<%= post.id %>">
                     <%= show_favorite("Post", post) %>
                 </div>
-								<%= render :partial => "rating_action", :locals => {:post => post, :controller_name => controller.controller_name}%>
+								<%= render :partial => "post_qas/rating_action", :locals => {:post => post, :controller_name => controller.controller_name}%>
                 <div class="com">
                     <%= show_answer_button(post.id, post.comments.size) %>
                 </div>

@@ -95,7 +95,7 @@
 
           <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
 
-          <div style="padding: 10px;" class="inner2">
+          <div style="padding: 10px; display: none;" class="inner2" id="area_more_friend">
             <div style="border-right: 1px solid #CECECE;">
               <div class="bodderTop" id="first_banner"></div>
               <div class="inboxCeTop" id="first_banner">
@@ -152,9 +152,13 @@
 
                 </div>
               </div>
-                    <button id="submit_new_friend">Add</button>
-              <div style="float: none; margin-bottom: 8px;" class="assContFoT615">
+              <button id="submit_new_friend" style="display: none">Add</button>
+              <div style="float: none; margin-bottom: 8px;" class="assContFoT615" id="friend_panel">
                 <div class="assContFoD615">
+                  <div id="list_usrs_wait" style="margin-left: 298px; margin-top: 6px; display:none;">
+                    <img src="/images/ajax-loader-a.gif"/>
+                </div>
+
                   <div id="list_usrs" style="padding: 5px 25px;" class="assContFoC615">
                     <%= render :partial => "friend_show" %>
                   </div>
@@ -370,6 +374,12 @@ function SaveCustom(ishareto,ipostlounge ){
 
 
   $(document).ready(function(){
+    //BEGIN toggle the add new member area
+    $('#invite_btn').click(function(){
+      $('#area_more_friend').toggle();
+    });
+    //END toggle the add new member area
+
     //BEGIN manage show/hide search panel for other member
     $('#friend_pad').hover(function(){ 
       pad_mouse_is_inside=true; 
