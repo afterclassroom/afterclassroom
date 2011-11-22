@@ -157,7 +157,7 @@ class UserWallsController < ApplicationController
   end
   
   def match_making_send
-    content = params[:content]
+    ct = params[:content]
     recipient = params[:recipient]
     user_id_post = params[:user_id_post]
     usr = User.find(user_id_post)
@@ -171,7 +171,7 @@ class UserWallsController < ApplicationController
         subject_f = "#{current_user.name} introduces someone special to you"
 				content_f = "Hello #{usr.name}, <br/>"
         content_f << "<p><a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> wants to introduce someone special to you."
-        content_f << "#{user_url(current_user)} says: #{content}" if content_f
+        content_f << "#{user_url(current_user)} says: #{content}" if ct
         content_f << "<br />" + "Click #{link_to "here", user_url(u), :target => "blank"} to see if you know #{u.name}</p>"
         send_notification(u, subject_f, content_f, "suggests_a_friend_to_me")
       end
