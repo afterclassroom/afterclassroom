@@ -15,6 +15,8 @@ module ProfileHelper
         render :partial => "/post_projects/item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => "post_projects"}
         when "PostExam"
         render :partial => "/post_exams/item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => "post_exams"}
+				when "PostLectureNote"
+        render :partial => "/post_lecture_notes/item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => "post_lecture_notes"}
         when "PostEvent"
         render :partial => "/post_events/item", :locals => {:post => post, :title => post.title, :description => post.description, :controller_name => "post_events"}
         when "PostQa"
@@ -58,6 +60,8 @@ module ProfileHelper
       when "Video"
       video = Video.find(favorite.favorable_id)
       render :partial => "/videos/item_favorite", :locals => {:video => video}
+			else
+				#Nothing
     end
   end
 end
