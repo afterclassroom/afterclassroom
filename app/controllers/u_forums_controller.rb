@@ -372,6 +372,41 @@ class UForumsController < ApplicationController
 
   def add_more_member
     objufo = Ufo.find(params[:ufo_id])
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++"
+    puts "++jj"
+    puts "== list of selected user == #{session[:list_selected_show]}"
+    session[:list_selected_show].each do |usr_id|
+      member = UfoMember.new
+      member.user_id = usr_id
+      member.ufo_id = objufo.id
+      member.save
+    end
+
+    session[:list_selected_show] = []
 
     redirect_to user_u_forum_path(objufo.user, objufo)
   end
