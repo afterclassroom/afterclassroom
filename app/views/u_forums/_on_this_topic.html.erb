@@ -4,7 +4,9 @@
   <h1 class="col300Title">
     <label style="text-align: left;">Members of this topic</label>
     <% if current_user != @ufo.user %>
-      <div id="unsubscribe" style="float: right; margin-top: -13px;">Unsubscribe</div>
+      <% if @ufo.ufo_members.map(&:user_id).include?(current_user.id) %>
+        <div id="unsubscribe" style="float: right; margin-top: -13px;">Unsubscribe</div>
+      <% end %>
     <% else %>
       <div id="remove_usr" style="float: right; margin-top: -13px;">Manage membership</div>
     <% end %>
@@ -24,6 +26,20 @@ var curentPage = parseInt('<%= @cur_page %>');
 var enableCheckbox = false;
 
 $(document).ready(function(){
+  //BEGIN implement unsubscribe function
+  $('#unsubscribe').hover(
+    function(){
+      $('#unsubscribe').css('cursor','pointer');
+    },
+    function(){
+      $('#unsubscribe').css('cursor','default');
+    }
+  );
+  $('#unsubscribe').click(function(){
+    alert('a');
+  });
+  //END implement unsubscribe function
+
   $("#remove_usr").hover(function(){
     $(this).css('cursor','pointer');
   }, function(){

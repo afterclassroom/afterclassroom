@@ -7,6 +7,11 @@ function RemoveUser<%= @usr.id %>(){
   $('#loading_user').show();
   $('#usr_lists').hide();  
   $('#selected_users_area').hide();
+
+  $('#list_usrs_wait').show();
+  $('#list_usrs').hide();
+  $('#show_paging').hide();
+
   if ( $('#selected_usr').find('.forumlist').length == 0)
   {
     $('#submit_new_friend').hide();
