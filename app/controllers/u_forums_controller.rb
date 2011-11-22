@@ -186,6 +186,7 @@ class UForumsController < ApplicationController
     render :layout => false
   end
   def friend_pad_show
+    @ufo_id = params[:ufo_id]
     render :layout => false
   end
 
@@ -204,8 +205,11 @@ class UForumsController < ApplicationController
   end
 
   def find_people_show
+    puts "val of id = #{params[:ufo_id]}"
+    objufo = Ufo.find(params[:ufo_id])
+
     query = params[:search_name]
-    @users = User.search do
+    objusers = User.search do
       if params[:search_name].present?
         keywords(query) do
           highlight :name
@@ -214,6 +218,7 @@ class UForumsController < ApplicationController
       order_by :created_at, :desc
       paginate :page => params[:page], :per_page => 5
     end
+    @users = objusers.results.select  { |usr| !objufo.ufo_members.map(&:user_id).include?(usr.id) }
     render :layout => false
   end
 
