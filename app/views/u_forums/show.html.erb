@@ -100,23 +100,70 @@
               <div class="bodderTop" id="first_banner"></div>
               <div class="inboxCeTop" id="first_banner">
                 <label style="text-align: left; margin-left: 10px; color: rgb(150, 150, 150);">
-                  tieu de
+                  Invite more friend to the topic
+                  <div id="invite_others" style="float: right; margin-right: 10px;">Invite other member</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div id="friend_pad" style="display: none; width: 280px; min-height: 31px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px; padding: 10px;">
+                      <div id="waiting">
+                        <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
+                      </div>
+                      <div id="control_pane" style="">
+                      </div>
+                    </div>
+
+
+
+
+
+
+
                 </label>
               </div>
 
               <div style="float: none;" class="assContFoT615">
                 <div class="assContFoD615">
-                  <div id="selected_usr"  style="padding: 5px 25px;" class="assContFoC615">
-                    noi dung
-                  </div>
+
+
+
+
+                  <% form_tag url_for(:controller => "u_forums", :action => "add_more_member"), :id => "form_more_friend", :method => :post, :remote => false do %>
+                    <%= hidden_field_tag "ufo_id", @ufo.id %>
+
+                    <div id="selected_usr"  style="padding: 5px 25px;" class="assContFoC615">
+                    </div>
+
+                  <% end %><!-- end form invite more friend -->
+
+
                 </div>
               </div>
+                    <button id="submit_new_friend">Add</button>
               <div style="float: none; margin-bottom: 8px;" class="assContFoT615">
                 <div class="assContFoD615">
                   <div id="list_usrs" style="padding: 5px 25px;" class="assContFoC615">
-                    noi dung
+                    <%= render :partial => "friend_show" %>
                   </div>
                 </div>
+
+                <div id="show_paging" style="margin-left: 25px;">
+                  <%= render :partial => "paging_show" %>
+                </div>
+
               </div>
             </div>
           </div>
@@ -244,8 +291,12 @@
 
 <script type="text/javascript">
 
-  var shareto;
-  var postlounge;
+var shareto;
+var postlounge;
+var pad_mouse_is_inside = false;
+var ajaxObj = null;
+
+
 
 <% if @ufo.ufo_custom != nil %>
     shareto = <%= @ufo.ufo_custom.share_to_index %>;
@@ -254,6 +305,31 @@
     shareto = <%= current_user.ufo_default.share_to_index %>;
     postlounge = <%= current_user.ufo_default.post_lounge %>
 <% end %> 
+
+function LoadFriendPane(){
+  ajaxObj = $.ajax({
+    url: '<%= friend_pad_show_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+    },
+    success: function(data){
+      //hide needed thing here: e.g ajax loader
+    }
+  });//end ajax
+}
+
+function ClosePadWithSync(){
+  $('#friend_pad').hide('fast',function(){
+    ajaxObj.abort();
+  });
+
+  $('#control_pane').html('');
+  $('#waiting').show();
+  $('#invite_others').show();
+}
+
+
 
 function SaveCustom(ishareto,ipostlounge ){
   $('#wait_area').show();
@@ -293,6 +369,23 @@ function SaveCustom(ishareto,ipostlounge ){
 
 
   $(document).ready(function(){
+    //BEGIN manage show/hide search panel for other member
+    $('#friend_pad').hover(function(){ 
+      pad_mouse_is_inside=true; 
+    }, function(){ 
+      pad_mouse_is_inside=false; 
+    });//end hover
+    $("body").mouseup(function(){ 
+      if( pad_mouse_is_inside == false ){ 
+        if ( $('#friend_pad').is(":visible") == true ){
+          ClosePadWithSync();
+        }
+      }
+    });
+    //END manage show/hide search panel for other member
+
+
+
     $('select#ufo_setting').change(function(){
       shareto = $(this).find('option:selected').val();
       SaveCustom(shareto,postlounge);
@@ -300,5 +393,16 @@ function SaveCustom(ishareto,ipostlounge ){
     $('#to_lounge').click(function(){
       PostLounge();
     });
+    $('#submit_new_friend').click(function(){
+      $('form#form_more_friend').submit();
+    });
+
+    $('#invite_others').click(function(){
+      $('#invite_others').hide();
+      $('#friend_pad').show('slow', function(){
+        LoadFriendPane(); 
+      });
+    });
+
   });
 </script>

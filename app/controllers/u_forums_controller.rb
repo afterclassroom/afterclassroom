@@ -15,8 +15,18 @@ class UForumsController < ApplicationController
     @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
 
     @cur_page = "1"
-    session[:list_remove_usrs] = []
+    session[:list_remove_usrs] = []#this array stores the list of member to be removed
     @prechecked = []
+
+    session[:list_selected_show] = []#this array stores the list of member to be added to topic
+
+    #BEGIN load the user-friend based on user-topic-setting
+    str_share = @ufo.ufo_custom.share_to_index
+    arr_p = [] 
+    OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
+    share_to = get_share(arr_p[0][1])
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    #END load the user-friend based on user-topic-setting
   end
 
   def new
@@ -83,13 +93,15 @@ class UForumsController < ApplicationController
     custom_setting.post_lounge = params[:postlounge]
     custom_setting.save
 
-    #load the proper user-friends based on setting
+    #BEGIN load the proper user-friends based on setting
     arr_p = [] 
     OPTIONS_SETTING.select {|p| arr_p << p if p[1] == params[:shareto].to_i} 
     share_to = get_share(arr_p[0][1])
-
     @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
-
+    #END load the proper user-friends based on setting
+    
+    #init the session to store the list of selected user to add to friend list
+    session[:list_selected_show] = []
 
     render :layout => false 
   end
@@ -173,6 +185,9 @@ class UForumsController < ApplicationController
   def friend_pad
     render :layout => false
   end
+  def friend_pad_show
+    render :layout => false
+  end
 
   def find_people
     query = params[:search_name]
@@ -220,7 +235,6 @@ class UForumsController < ApplicationController
   end
 
   def remove_usr
-    #this action is used on show page, allow user to manage users to invite to join topic
     @usr = User.find(params[:usr_id])
     arr_p = []
     session[:list_selected_usrs].select { |p| arr_p << p if p != @usr.id  }
@@ -308,6 +322,38 @@ class UForumsController < ApplicationController
     @enableCheckbox = params[:enableCheckbox] == "true" ? true : false
 
     render :layout => false
+  end
+
+  def add_usr_show
+    @usr = User.find(params[:usr_id])
+    session[:list_selected_show] << @usr.id
+
+    render :layout => false
+  end
+
+  def page_share_show
+    @ufo = Ufo.find(params[:ufo_id])
+
+    share_to = get_share(params[:share].to_i)
+
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @cur_page = params[:page]
+
+    render :layout => false
+  end
+
+  def remove_usr_show
+    @usr = User.find(params[:usr_id])
+    arr_p = []
+    session[:list_selected_show].select { |p| arr_p << p if p != @usr.id  }
+    session[:list_selected_show] = arr_p
+    render :layout => false
+  end
+
+  def add_more_member
+    objufo = Ufo.find(params[:ufo_id])
+
+    redirect_to user_u_forum_path(objufo.user, objufo)
   end
 
   protected

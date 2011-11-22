@@ -1,0 +1,12 @@
+  <div id="list_of_users" style="float: left;">
+    <% list_friends = current_user.user_friends %>
+    <% @share_to.each do |usr| %>
+      <%= render :partial => "usr_item_show", :locals => {:usr => usr} %>
+    <% end %><!-- end each list friend -->
+  </div>
+
+
+
+<script type="text/javascript">
+vtip();
+</script>
