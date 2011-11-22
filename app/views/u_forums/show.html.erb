@@ -312,6 +312,7 @@ function LoadFriendPane(){
     type: 'GET',
     dataType: 'script',
     data: {
+      ufo_id: <%= @ufo.id %>
     },
     success: function(data){
       //hide needed thing here: e.g ajax loader
