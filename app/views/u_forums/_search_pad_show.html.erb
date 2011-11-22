@@ -22,7 +22,8 @@ function SearchPeople(){
     type: 'GET',
     dataType: 'script',
     data: {
-      search_name: $('#search_text').val()
+      search_name: $('#search_text').val(),
+      ufo_id: <%= @ufo_id %>
     },
     success: function(data){
       $('#waiting').hide();

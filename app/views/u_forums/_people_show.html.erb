@@ -1,0 +1,7 @@
+<% if @users.size > 0 %>
+  <% @users.each do |user| %>
+    <%= render :partial => "people_item_show", :locals => {:user => user} %>
+  <% end %>
+<% else %>
+          No entries found	
+<% end %>
