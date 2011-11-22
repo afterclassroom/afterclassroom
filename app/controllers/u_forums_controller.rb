@@ -384,6 +384,14 @@ class UForumsController < ApplicationController
     redirect_to user_u_forum_path(objufo.user, objufo)
   end
 
+  def unsubscribe
+    objufo = Ufo.find(params[:ufo_id])
+    member = objufo.ufo_members.where(:user_id => current_user.id).first
+    member.destroy
+
+    render :layout => false
+  end
+
   protected
   def get_share(share_value)
     groupType = ""

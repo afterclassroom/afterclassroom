@@ -22,8 +22,26 @@
 </div>
 <script type="text/javascript">
 
+
 var curentPage = parseInt('<%= @cur_page %>');
 var enableCheckbox = false;
+
+function Unsubscribe(){
+  $('#onthis_panel').hide();
+  $('#onthis_area').show();
+  $('#member_paging').hide();
+
+  $.ajax({
+    url: '<%= unsubscribe_user_u_forums_path %>',
+    type: 'GET',
+    dataType: 'script',
+    data: {
+      ufo_id: <%= @ufo.id %>
+    },
+    success: function(data){
+    }
+  });//end ajax
+}
 
 $(document).ready(function(){
   //BEGIN implement unsubscribe function
@@ -36,7 +54,7 @@ $(document).ready(function(){
     }
   );
   $('#unsubscribe').click(function(){
-    alert('a');
+    Unsubscribe();
   });
   //END implement unsubscribe function
 
