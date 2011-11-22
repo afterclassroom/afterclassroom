@@ -152,9 +152,13 @@
 
                 </div>
               </div>
-                    <button id="submit_new_friend" style="display: none">Add</button>
-              <div style="float: none; margin-bottom: 8px;" class="assContFoT615">
+              <button id="submit_new_friend" style="display: none">Add</button>
+              <div style="float: none; margin-bottom: 8px;" class="assContFoT615" id="friend_panel">
                 <div class="assContFoD615">
+                  <div id="list_usrs_wait" style="margin-left: 298px; margin-top: 6px; display:none;">
+                    <img src="/images/ajax-loader-a.gif"/>
+                </div>
+
                   <div id="list_usrs" style="padding: 5px 25px;" class="assContFoC615">
                     <%= render :partial => "friend_show" %>
                   </div>
