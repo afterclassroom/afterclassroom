@@ -185,6 +185,9 @@ class UForumsController < ApplicationController
   def friend_pad
     render :layout => false
   end
+  def friend_pad_show
+    render :layout => false
+  end
 
   def find_people
     query = params[:search_name]
@@ -199,6 +202,21 @@ class UForumsController < ApplicationController
     end
     render :layout => false
   end
+
+  def find_people_show
+    query = params[:search_name]
+    @users = User.search do
+      if params[:search_name].present?
+        keywords(query) do
+          highlight :name
+        end
+      end
+      order_by :created_at, :desc
+      paginate :page => params[:page], :per_page => 5
+    end
+    render :layout => false
+  end
+
 
   def select_share
     @share = params[:share]
