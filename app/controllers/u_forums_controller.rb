@@ -12,7 +12,7 @@ class UForumsController < ApplicationController
     @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 10)
 
     @ufo_cmt = UfoCmt.new()
-    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 16) : nil
 
     @cur_page = "1"
     session[:list_remove_usrs] = []#this array stores the list of member to be removed
@@ -336,7 +336,7 @@ class UForumsController < ApplicationController
 
     @cur_page = params[:page]
     @ufo = Ufo.find(params[:ufo_id])
-    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 2) : nil
+    @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 16) : nil
     
 
     @enableCheckbox = params[:enableCheckbox] == "true" ? true : false

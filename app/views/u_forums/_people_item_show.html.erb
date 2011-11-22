@@ -14,6 +14,11 @@ function AddSearchUser_<%= user.id %>(){
   $('#waiting').show();
   $('#control_pane').hide();
 
+  $('#list_usrs_wait').show();
+  $('#list_usrs').hide();
+  $('#show_paging').hide();
+
+
   $.ajax({
     url: '<%= add_usr_show_user_u_forums_path %>',
     type: 'GET',
