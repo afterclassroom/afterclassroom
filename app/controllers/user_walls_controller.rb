@@ -168,12 +168,12 @@ class UserWallsController < ApplicationController
       if u and u != usr
         list_name << "<a href='#{user_url(u)}'>#{u.name}</a>"
         # Email, notification
-        subject = "#{current_user.name} introduces someone special to you"
-				content = "Hello #{usr.name}, <br/>"
-        content << "<p><a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> wants to introduce someone special to you."
-        content << "#{user_url(current_user)} says: #{content}" if content
-        content << "<br />" + "Click #{link_to "here", user_url(u), :target => "blank"} to see if you know #{u.name}</p>"
-        send_notification(u, subject, content, "suggests_a_friend_to_me")
+        subject_f = "#{current_user.name} introduces someone special to you"
+				content_f = "Hello #{usr.name}, <br/>"
+        content_f << "<p><a href='#{user_url(current_user)}' target='blank'>#{current_user.name}</a> wants to introduce someone special to you."
+        content_f << "#{user_url(current_user)} says: #{content}" if content_f
+        content_f << "<br />" + "Click #{link_to "here", user_url(u), :target => "blank"} to see if you know #{u.name}</p>"
+        send_notification(u, subject_f, content_f, "suggests_a_friend_to_me")
       end
     end
     subject = "#{current_user.name} introduces some people special to you."

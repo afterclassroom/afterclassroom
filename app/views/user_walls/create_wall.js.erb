@@ -1,3 +1,5 @@
+$("#wall_form").html("<%= escape_javascript( render( :partial => "user_walls/form") ) %>");
+$("#wall_cotent_txt").focus();
 $("#wall_page_wrap div:first").before("<%= escape_javascript( render( :partial => "wall_item", :locals => {:wall => @user_wall}) ) %>");
 $('#wall_cotent_txt').val("");
 $('#TB_closeWindowButton').click();
