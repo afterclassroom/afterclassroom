@@ -185,6 +185,9 @@ class UForumsController < ApplicationController
   def friend_pad
     render :layout => false
   end
+  def friend_pad_show
+    render :layout => false
+  end
 
   def find_people
     query = params[:search_name]
