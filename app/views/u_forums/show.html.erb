@@ -291,8 +291,12 @@
 
 <script type="text/javascript">
 
-  var shareto;
-  var postlounge;
+var shareto;
+var postlounge;
+var pad_mouse_is_inside = false;
+var ajaxObj = null;
+
+
 
 <% if @ufo.ufo_custom != nil %>
     shareto = <%= @ufo.ufo_custom.share_to_index %>;
@@ -314,6 +318,17 @@ function LoadFriendPane(){
     }
   });//end ajax
 }
+
+function ClosePadWithSync(){
+  $('#friend_pad').hide('fast',function(){
+    ajaxObj.abort();
+  });
+
+  $('#control_pane').html('');
+  $('#waiting').show();
+  $('#invite_others').show();
+}
+
 
 
 function SaveCustom(ishareto,ipostlounge ){
@@ -354,6 +369,23 @@ function SaveCustom(ishareto,ipostlounge ){
 
 
   $(document).ready(function(){
+    //BEGIN manage show/hide search panel for other member
+    $('#friend_pad').hover(function(){ 
+      pad_mouse_is_inside=true; 
+    }, function(){ 
+      pad_mouse_is_inside=false; 
+    });//end hover
+    $("body").mouseup(function(){ 
+      if( pad_mouse_is_inside == false ){ 
+        if ( $('#friend_pad').is(":visible") == true ){
+          ClosePadWithSync();
+        }
+      }
+    });
+    //END manage show/hide search panel for other member
+
+
+
     $('select#ufo_setting').change(function(){
       shareto = $(this).find('option:selected').val();
       SaveCustom(shareto,postlounge);
