@@ -32,7 +32,7 @@
           </div>
           <div class="fInvites">AfterClassroom will send each person above an invite in your name asking them to join AfterClassroom.<!--<a href="#">See Example</a>--></div>
         <% end %>
-        <div class="import"><a href="#">Import Email Addresses</a></div>
+        <div class="import"><a href="javascript:;">Import Email Addresses</a></div>
         <div class="importD">from almost any online email service to invite your friends.</div>
         <%= render :partial => "mailbox_list" %>
         <%= form_for :mail_account, @mail_account, :url => show_list_email_contacts_user_friends_path(current_user), :remote => true, :html => {:id => "form_account_email"} do |f| %>

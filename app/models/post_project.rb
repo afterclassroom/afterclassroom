@@ -53,7 +53,7 @@ class PostProject < ActiveRecord::Base
 
   def self.paginated_post_conditions_with_due_date(params, school)
     posts = []
-    post_as = self.with_school(school).due_date
+    post_as = self.due_date.with_school(school)
     post_as.select {|p| posts << p.post}
     posts.paginate :page => params[:page], :per_page => 10
   end

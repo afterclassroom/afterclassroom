@@ -39,7 +39,7 @@
 <% end %>
 
 <ul id="year_menu" class="mcdropdown_menu">
-  <% LEVEL.each do |year| %>
+  <% get_level_list(session[:your_school_type]).each do |year| %>
     <li rel_year="<%= year[1] %>">
       <%= year[0] %>
     </li>
