@@ -1,72 +1,81 @@
 <%= hidden_field_tag "type", @type %>
 <%= hidden_field_tag "user_wall_id", @user.id %>
-<div class="proMind_overlay">
-  <div class="proMind">
-    <div class="proMindT">
-      <div class="proques">
-        <%= text_field_tag "your_mind", "What's on your mind?", :id => "wall_cotent_txt", :class => "focus_text_field" %>
-      </div>
-      <div class="delay_error" style="float: right;margin-top: -14px;color:#DD0000;display:none">???</div>
-    </div>
-    <div class="proAtt">
-      <div class="proAttItem" id="wrap_content_attach">
-        <div class="wrapItem">
-          <div class="suggesC">
-            <a href="javascript:;" onclick="closeAttach();"><img src="/images/suggesC.png"/></a>
-          </div>
-          <div class="wrapCont" id="attach">
-          </div>
-        </div>
-      </div>
-      <div class="proAttL" id="attach_icon">
-        <%= render :partial => "user_walls/attach_icons" %>
-      </div>
-      <div class="proAttR" style="margin-right: 0px;">
-        <%= submit_tag 'Share', :class => "button", :id => "submit_btn" %>
-      </div>
+<div class="proMind">
+  <div class="proMind_ovelay"></div>
+  <div class="proMindT">
+    <div class="proques">
+      <%= text_field_tag "your_mind", "What's on your mind?", :id => "wall_cotent_txt", :class => "focus_text_field" %>
     </div>
   </div>
+  <div class="proAtt">
+    <div class="proAttItem" id="wrap_content_attach">
+      <div class="wrapItem">
+        <div class="suggesC">
+          <a href="javascript:;" onclick="closeAttach();"><img src="/images/suggesC.png"/></a>
+        </div>
+        <div class="wrapCont" id="attach" style="margin-top: 10px">
+        </div>
+      </div>
+    </div>
+    <div class="proAttL" id="attach_icon">
+      <%= render :partial => "user_walls/attach_icons" %>
+    </div>
+    <div class="proAttR" style="margin-right: 0px;">
+      <%= submit_tag 'Share', :class => "button", :id => "submit_btn" %>
+    </div>
+  </div>
+  <div class="submit_ovelay"></div>
 </div>
 <div class="footWall">
 </div>
 <script type="text/javascript">
+
   function ShowAttachLinkOverlay(){
-    $('.proMind_overlay').append('<div id="overlayAttLink"></div>');
-    var position = $('.proMind_overlay').offset();
+    $('.proMind').append('<div id="overlayAttLink"></div>');
+    var position = $('.proMind').offset();
     $("#overlayAttLink")
-    .height(143)
     .css({
       'display':'block',
       'opacity' : 0.4,
+      'filter':'alpha(opacity=40)',
       'position': 'absolute',
       'background':'url("/images/ajax-loader-a.gif") no-repeat center',
-      'background-color': 'black',
+      'background-color': 'white',
       'width': '571px',
       'height':'152px',
       'margin-top':'-121px',
-      '-webkit-border-radius': '5px',
-      '-moz-border-radius': '5px',
-      'border-radius': '5px',
       'z-index': 5000
     });
   }
   function ShowFeaturedOverlay(){
-    $('.proMind_overlay').append('<div id="overlay"></div>');
-    var position = $('.proMind_overlay').offset();
+    $('.proMind_ovelay').append('<div id="overlay"></div>');
+    var position = $('.proMind_ovelay').offset();
     $("#overlay")
-    .height(143)
     .css({
       'display':'block',
       'opacity' : 0.4,
+      'filter':'alpha(opacity=40)',
       'position': 'absolute',
       'background':'url("/images/ajax-loader-a.gif") no-repeat center',
-      'background-color': 'black',
+      'background-color': 'white',
       'width': '571px',
-      'height':'80px',
-      'margin-top':'-49px',
-      '-webkit-border-radius': '5px',
-      '-moz-border-radius': '5px',
-      'border-radius': '5px',
+      'height':'98px',
+      'z-index': 5000
+    });
+  }
+  function ShowSubmitOverlay(){
+    $('.submit_ovelay').append('<div id="sub_overlay"></div>');
+    var position = $('.submit_ovelay').offset();
+    $("#sub_overlay")
+    .css({
+      'display':'block',
+      'opacity' : 0.4,
+      'filter':'alpha(opacity=40)',
+      'position': 'absolute',
+      'background-color': 'white',
+      'width': '571px',
+      'height':'95px',
+      'margin-top':'-58px',
       'z-index': 5000
     });
   }
@@ -76,13 +85,24 @@
     $('#attach_icon').show();
   }
 
-
   $(document).ready(function(){
     $('#submit_btn').click(function(event){
+                
       var str_content = $('#wall_cotent_txt').val();
+      $("#wall_cotent_txt").focus();
+      
+      var stril_content = $('#link_image, #link_link').val();
+      $("#link_image").focus();
+      
       if (str_content == "What's on your mind?") {
-        return false;
+        return false;      
       }
+      if (stril_content == "http://") {
+        return false;      
+      }
+      ShowSubmitOverlay();
+      ShowFeaturedOverlay();
+      $("#wall_cotent_txt, #link_image, #link_link").blur();
     });
     $('#wall_cotent_txt').keyup(function(){
       var len = this.value.length;
@@ -92,11 +112,14 @@
     });
         
     $("#wall_cotent_txt").bind("paste", function(e){
+      
       var el = $(this);
       setTimeout(function(){
         var text = $(el).val();
         check_attach_link(text);
+        
       }, 100);
+      
     });
   });
   var path_link = '/user_walls/attach_link';
@@ -120,7 +143,7 @@
       else{
         get_link = path_link;
       }
-            
+      ShowFeaturedOverlay();
       $.ajax({
         url: get_link,
         type: 'GET',

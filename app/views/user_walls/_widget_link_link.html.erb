@@ -5,6 +5,13 @@
   var path = '/user_walls/attach_link';
   $(document).ready(function() {
     $("#link_link_attach").click(function() {
+      var stri_content = $('#link_link').val();
+      $("#link_link").focus();
+      if (stri_content == "http://") {
+        return false;      
+      }
+      ShowAttachLinkOverlay();
+      $("#link_link").blur();
       $.ajax({
         url: path,
         type: 'GET',
@@ -15,6 +22,7 @@
         }),
         success: function(data){
           $('#attach').html(data);
+          $('#overlayAttLink').hide();
         }
       });
     });

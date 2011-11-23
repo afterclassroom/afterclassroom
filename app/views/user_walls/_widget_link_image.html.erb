@@ -1,14 +1,19 @@
 <div class="wrapTitle">Image link:</div>
 <div style="float:left; margin-right:3px">
   <input type="text" value="http://" width="450px" name="link_image" id="link_image" class="focus_text_field" />
-<div class="delay_error" style="float: right;margin-top: -14px;color:#DD0000;display:none">???</div>
 </div>
 <div class="submit" style="float:left"><%= link_to "Attach", "javascript:;", :id => "link_image_attach" %></div>
 <script>
   var path = '/user_walls/attach_image';
   $(document).ready(function() {
-    $("#link_image_attach").click(function() {
+    $("#link_image_attach").click(function() { 
+      var stri_content = $('#link_image').val();
+      $("#link_image").focus();
+      if (stri_content == "http://") {
+        return false;      
+      }
       ShowAttachLinkOverlay();
+      $("#link_image").blur();
       $.ajax({
         url: path,
         type: 'GET',
