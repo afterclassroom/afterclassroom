@@ -129,35 +129,49 @@ class UForumsController < ApplicationController
       tmparr = []
 
       @ufos.each do |ufo|
+        check = false
+        #case 1: when author share the topic with current_user's groups
         str_share = ufo.ufo_custom.share_to_index
         arr_p = [] 
         OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
         share_to = get_share(arr_p[0][1])
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++"
-        puts "++s to =="
-        puts "++ shareto == #{share_to}"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------v"
+        puts "-------size == #{share_to.size}"
         if share_to != nil
           if share_to.include?(current_user)
             tmparr << ufo
+            check = true
           end
         end
+        #case 2: author does not share with current_user's groups, but current_user is a member of topic
+        # if !check
+        #   ufo.ufo_members.where(:user_id => current_user.id)
+        # end
       end
 
       @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
@@ -453,27 +467,6 @@ class UForumsController < ApplicationController
       groupType="friends_from_work"
     when 6 # Everyone
     end
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "+abc+"
-    puts "++ groupType == #{groupType}"
 
     fg = FriendGroup.where(:label => groupType).first
     if fg != nil
