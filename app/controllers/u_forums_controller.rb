@@ -5,7 +5,7 @@ class UForumsController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
   before_filter RubyCAS::Filter
   before_filter :cas_user
-  
+  before_filter :get_variables  
 
   def show
     @ufo = Ufo.find(params[:id])
@@ -117,7 +117,66 @@ class UForumsController < ApplicationController
   end
 
   def index
-    @ufos = current_user.ufos.paginate(:page => params[:page], :per_page => 2)
+    #@ufo_author
+    #@ufos = current_user.ufos.paginate(:page => params[:page], :per_page => 2)
+    @ufo = nil
+    if current_user == @ufo_author
+      @ufos = @ufo_author.ufos.paginate(:page => params[:page], :per_page => 2)
+    else
+
+      @ufos = @ufo_author.ufos
+
+      tmparr = []
+
+      @ufos.each do |ufo|
+        check = false
+        #case 1: when author share the topic with current_user's groups
+        str_share = ufo.ufo_custom.share_to_index
+        arr_p = [] 
+        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
+        share_to = get_share(arr_p[0][1])
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------"
+        puts "-------v"
+        puts "-------size == #{share_to.size}"
+        if share_to != nil
+          if share_to.include?(current_user)
+            tmparr << ufo
+            check = true
+          end
+        end
+        #case 2: author does not share with current_user's groups, but current_user is a member of topic
+        # if !check
+        #   ufo.ufo_members.where(:user_id => current_user.id)
+        # end
+      end
+
+      @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
+
+    end
   end
 
   def save_cmt
@@ -392,7 +451,7 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
-  protected
+  private
   def get_share(share_value)
     groupType = ""
     share_to = nil  
@@ -411,11 +470,13 @@ class UForumsController < ApplicationController
 
     fg = FriendGroup.where(:label => groupType).first
     if fg != nil
-      share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
+      share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ] )
     end
     share_to
   end
 
-
+  def get_variables
+    @ufo_author = User.where(:login => params[:user_id]).first
+  end
 
 end
