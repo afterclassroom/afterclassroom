@@ -18,8 +18,8 @@
         <div class="stuItemL" style="float: left"><%= link_to "Quizzes", "#{user_post_managements_url(current_user)}?category=PostAssignment" %></div>
         <div class="stuItemR" style="float: right"><span><%= current_user.get_total_posts_with_type("PostAssignment") %></span></div>
       </div>
-      <div class="stuItem projects">
-        <div class="stuItemL" style="float: left;background:url('/images/footer_menu/projects-1.png') no-repeat scroll -3px 55% transparent;"><%= link_to "Projects", "#{user_post_managements_url(current_user)}?category=PostProject" %></div>
+			<div class="stuItem tests" style="background:url('/images/footer_menu/projects-1.png') no-repeat scroll -3px 55% transparent;">
+        <div class="stuItemL" style="float: left"><%= link_to "Projects", "#{user_post_managements_url(current_user)}?category=PostProject" %></div>
         <div class="stuItemR" style="float: right"><span><%= current_user.get_total_posts_with_type("PostProject") %></span></div>
       </div>
       <div class="stuItem tests" style="background:url('/images/footer_menu/past_tests-1.png') no-repeat scroll -3px 55% transparent;">

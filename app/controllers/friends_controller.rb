@@ -111,13 +111,10 @@ class FriendsController < ApplicationController
   
   def add_to_group
     if params[:check_status] == ""
-      
-      fig = FriendInGroup.new
-      fig.user_id = current_user.id
-      fig.friend_group_id = params[:group_id]
-      fig.user_id_friend = params[:friend_id]
       user = User.find(params[:friend_id])
-      if fig.save
+      fig = FriendInGroup.find_or_create_by_user_id_and_friend_group_id_anduser_id_friend(current_user.id, params[:group_id], params[:friend_id])
+      
+      if fig
         subject = "#{current_user.name} added you as a family member."
         content = "Hello #{user.name},<br/>"
         content << "#{current_user.name} just added you as a family member, click <a href='#{user_url(current_user)}' target='blank'>here</a> to see if you know #{current_user.name}."
@@ -153,6 +150,7 @@ class FriendsController < ApplicationController
       end
     end
     user_invite = current_user.user_invites.find(:first, :conditions => cond.to_sql)
+		current_user.friend_in_groups.where(:user_id_friend => friend_id).destroy_all
 		user_invite.destroy if user_invite
   end
   
@@ -220,6 +218,7 @@ class FriendsController < ApplicationController
       end
     end
     user_invite = @user.user_invites.find(:first, :conditions => cond.to_sql)
+		@user.friend_in_groups.where(:user_id_friend => user_id_friend).destroy_all
 		user_invite.destroy if user_invite
     flash[:notice] = "Delete success."
     redirect_to :action => "index"
