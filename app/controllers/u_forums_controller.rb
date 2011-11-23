@@ -467,7 +467,6 @@ class UForumsController < ApplicationController
       groupType="friends_from_work"
     when 6 # Everyone
     end
-
     fg = FriendGroup.where(:label => groupType).first
     if fg != nil
       share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ] )
