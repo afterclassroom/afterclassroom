@@ -5,7 +5,7 @@ class UForumsController < ApplicationController
   before_filter RubyCAS::Filter::GatewayFilter
   before_filter RubyCAS::Filter
   before_filter :cas_user
-  
+  before_filter :get_variables  
 
   def show
     @ufo = Ufo.find(params[:id])
@@ -117,7 +117,9 @@ class UForumsController < ApplicationController
   end
 
   def index
-    @ufos = current_user.ufos.paginate(:page => params[:page], :per_page => 2)
+    #@ufo_author
+    #@ufos = current_user.ufos.paginate(:page => params[:page], :per_page => 2)
+    @ufos = @ufo_author.ufos.paginate(:page => params[:page], :per_page => 2)
   end
 
   def save_cmt
@@ -392,7 +394,7 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
-  protected
+  private
   def get_share(share_value)
     groupType = ""
     share_to = nil  
@@ -416,6 +418,8 @@ class UForumsController < ApplicationController
     share_to
   end
 
-
+  def get_variables
+    @ufo_author = User.where(:login => params[:user_id]).first
+  end
 
 end
