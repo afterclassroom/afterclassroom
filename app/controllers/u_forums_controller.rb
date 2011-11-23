@@ -119,7 +119,50 @@ class UForumsController < ApplicationController
   def index
     #@ufo_author
     #@ufos = current_user.ufos.paginate(:page => params[:page], :per_page => 2)
-    @ufos = @ufo_author.ufos.paginate(:page => params[:page], :per_page => 2)
+    @ufo = nil
+    if current_user == @ufo_author
+      @ufos = @ufo_author.ufos.paginate(:page => params[:page], :per_page => 2)
+    else
+
+      @ufos = @ufo_author.ufos
+
+      tmparr = []
+
+      @ufos.each do |ufo|
+        str_share = ufo.ufo_custom.share_to_index
+        arr_p = [] 
+        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
+        share_to = get_share(arr_p[0][1])
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++"
+        puts "++s to =="
+        puts "++ shareto == #{share_to}"
+        if share_to != nil
+          if share_to.include?(current_user)
+            tmparr << ufo
+          end
+        end
+      end
+
+      @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
+
+    end
   end
 
   def save_cmt
@@ -410,10 +453,31 @@ class UForumsController < ApplicationController
       groupType="friends_from_work"
     when 6 # Everyone
     end
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "+abc+"
+    puts "++ groupType == #{groupType}"
 
     fg = FriendGroup.where(:label => groupType).first
     if fg != nil
-      share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", current_user.id, fg.id ] )
+      share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ] )
     end
     share_to
   end
