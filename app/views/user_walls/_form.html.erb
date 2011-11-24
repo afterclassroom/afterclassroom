@@ -59,7 +59,7 @@
       'background':'url("/images/ajax-loader-a.gif") no-repeat center',
       'background-color': 'white',
       'width': '571px',
-      'height':'98px',
+      'height':$('#wall_form').height(),
       'z-index': 5000
     });
   }
@@ -100,7 +100,7 @@
       if (stril_content == "http://") {
         return false;      
       }
-      ShowSubmitOverlay();
+      //ShowSubmitOverlay();
       ShowFeaturedOverlay();
       $("#wall_cotent_txt, #link_image, #link_link").blur();
     });
