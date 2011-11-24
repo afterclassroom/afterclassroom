@@ -459,6 +459,13 @@ class UForumsController < ApplicationController
     redirect_to user_u_forum_path(@ufo.user, @ufo)
   end
 
+  def destroy
+    ufo = Ufo.find(params[:id])
+    ufo.destroy
+    redirect_to user_u_forums_path(@ufo_author)
+#    redirect_to user_u_forums_path(current_user)
+  end
+
   private
   def get_share(share_value)
     groupType = ""
