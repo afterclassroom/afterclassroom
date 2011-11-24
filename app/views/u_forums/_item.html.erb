@@ -11,6 +11,10 @@
 
               </div>
               <% if current_user == @ufo_author %>
+
+test edit123123
+<%= link_to( "edit this thing", edit_user_u_forum_path(@ufo_author, ufo), :method => :get) %>
+
                 <div class="inboxFoSe">
                   <a href="javascript:;" id="setting<%= ufo.id %>">
                     <span class="span1">Setting</span>

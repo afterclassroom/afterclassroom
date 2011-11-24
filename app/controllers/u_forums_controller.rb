@@ -449,6 +449,10 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def edit
+    @ufo = Ufo.find(params[:id])
+  end
+
   private
   def get_share(share_value)
     groupType = ""
