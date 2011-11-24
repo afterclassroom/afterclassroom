@@ -5,6 +5,13 @@
   var path = '/user_walls/attach_music';
   $(document).ready(function() {
     $("#link_music_attach").click(function() {
+      var stri_content = $('#link_music').val();
+      $("#link_music").focus();
+      if (stri_content == "http://") {
+        return false;      
+      }
+      ShowFeaturedOverlay();
+      $("#link_music").blur();
       $.ajax({
         url: path,
         type: 'GET',
@@ -15,6 +22,7 @@
         }),
         success: function(data){
           $('#attach').html(data);
+          $('#overlay').hide();
         }
       });
     });

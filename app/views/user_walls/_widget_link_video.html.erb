@@ -5,18 +5,26 @@
   var path = '/user_walls/attach_video';
   $(document).ready(function() {
     $("#link_video_attach").click(function() {
-      $.ajax({
-        url: path,
-        type: 'GET',
-        cache: false,
-        dataType: 'html',
-        data: ({
-          link : $("#link_video").val()
-        }),
-        success: function(data){
-          $('#attach').html(data);
+        var stri_content = $('#link_video').val();
+        $("#link_video").focus();
+        if (stri_content == "http://") {
+          return false;      
         }
+        ShowFeaturedOverlay();
+        $("#link_video").blur();
+        $.ajax({
+          url: path,
+          type: 'GET',
+          cache: false,
+          dataType: 'html',
+          data: ({
+            link : $("#link_video").val()
+          }),
+          success: function(data){
+            $('#attach').html(data);
+            $('#overlay').hide();
+          }
+        });
       });
     });
-  });
 </script>

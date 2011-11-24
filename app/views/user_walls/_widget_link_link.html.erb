@@ -10,7 +10,7 @@
       if (stri_content == "http://") {
         return false;      
       }
-      ShowAttachLinkOverlay();
+      ShowFeaturedOverlay();
       $("#link_link").blur();
       $.ajax({
         url: path,
@@ -22,9 +22,17 @@
         }),
         success: function(data){
           $('#attach').html(data);
-          $('#overlayAttLink').hide();
+          $('#overlay').hide();
         }
       });
+    });
+  });
+  $(document).ready(function(){
+    $('.carrousel_carrousel').css({
+      'width':'77px'
+    });
+    $('.carrousel').css({
+      'width':'77px'
     });
   });
 </script>
