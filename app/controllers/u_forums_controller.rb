@@ -453,6 +453,12 @@ class UForumsController < ApplicationController
     @ufo = Ufo.find(params[:id])
   end
 
+  def update
+    @ufo = Ufo.find(params[:id])
+    @ufo.update_attributes(params[:ufo])
+    redirect_to user_u_forum_path(@ufo.user, @ufo)
+  end
+
   private
   def get_share(share_value)
     groupType = ""

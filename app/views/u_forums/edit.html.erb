@@ -8,13 +8,13 @@
     <div class="contDetLin">
 
       <div class="overall">
-        <%= form_for(@ufo, :url => url_for(:controller => "u_forums", :action => "save") , :html => {:multipart => true, :id => "form_new" }) do |f| %>
+        <%= form_for(@ufo, :url => url_for(:controller => "u_forums", :action => "update") , :html => {:multipart => true, :id => "form_new" }) do |f| %>
           <div style="padding: 10px">
             <div style="border-right: 1px solid #cecece;border-bottom: 1px solid #CECECE;">
               <div class="inner2">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop"> 
-                  <label style="text-align: left; margin-left: 10px; color: #969696;">Title hhhhhhhhhhhhhhhhhhhhhhhhhhhh</label>
+                  <label style="text-align: left; margin-left: 10px; color: #969696;">Title</label>
                 </div>
                 <div style="padding:8px 8px 8px 0px">
                   <%= f.text_field :title, :class => '', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
@@ -35,6 +35,18 @@
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
                 </div>
+                
+                <div>Current file</div>
+                
+            <div style="background: url('/images/ufo_attach.jpg') no-repeat; width: 24px; height: 24px;">
+              <span class="btmDownfo"><a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow" style="margin-left: 20px;padding-bottom: 14px;padding-left: 90px;">
+                <span class="forums_dow" style="margin-left: -55px;margin-top: 6px;position: absolute;">Download</span> 
+                </a>
+                          
+              </span>
+            </div>
+                
+                
                 <div class="postItemB" style="background:url(/images/upload_file.png) no-repeat scroll 98% 0 transparent;margin-top: 7px; margin-bottom: 12px;">
                   <div id="divinputfile">
                     <div class="postItemC">
@@ -46,9 +58,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div style="width: 624px; margin-top: 10px; margin-left: 5px; height: 28px;">%>
-  <%#= f.file_field :ufo_attach, :onchange => "", :size => "76", :class => "", :style => "" %>
-                </div>-->
               </div>
 
             </div>
