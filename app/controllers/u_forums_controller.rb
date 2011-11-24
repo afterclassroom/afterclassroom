@@ -142,11 +142,9 @@ class UForumsController < ApplicationController
   end
 
   def index
-    #@ufo_author
-    #@ufos = current_user.ufos.paginate(:page => params[:page], :per_page => 2)
     @ufo = nil
     if current_user == @ufo_author
-      @ufos = @ufo_author.ufos.paginate(:page => params[:page], :per_page => 2)
+      @ufos = @ufo_author.ufos.order("created_at DESC").paginate(:page => params[:page], :per_page => 2)
     else
 
       @ufos = @ufo_author.ufos
