@@ -5,7 +5,7 @@ class Ufo < ActiveRecord::Base
 
   has_one :rating_statistic
   has_many :ratings
-  has_many :ufo_members
+  has_many :ufo_members, :dependent => :destroy
 
 
   has_attached_file :ufo_attach, {
