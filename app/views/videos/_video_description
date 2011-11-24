@@ -1,0 +1,11 @@
+<div id="action_video">
+					<div class="musicNode">
+					<div class="NodeCont">
+						<p>
+						<span>Category: </span><%= @video.category %>
+						</p>
+						<p>
+						<span>Description:</span> <%= @video.description %>
+						</p>
+					</div>
+				</div>
