@@ -1,4 +1,5 @@
 <div class="login">
+  <div class="view_userLogin"><%= render :partial => 'shared/view_new' %></div>
   <div class="signin">
     <ul>
       <li class="signinSelect"><%= link_to raw("<span>Welcome #{current_user.full_name}</span>"), user_profiles_path(current_user), :class => "signinFrist", :onfocus => "this.value = '';", :onblur => "this.value = this.value || this.defaultValue;" %></li>

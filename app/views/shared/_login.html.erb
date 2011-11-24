@@ -1,7 +1,10 @@
 <div class="login">
+  <% if logged_in? %>    
+    <div class="view_userLogin"><%= render :partial => 'shared/view_new' %></div>
+  <% end %>
   <div class="signin">
-    <% if logged_in? %>
-      <ul>
+    <% if logged_in? %> 
+      <ul>       
         <li class="signinSelect"><%= link_to raw("<span>Welcome #{current_user.full_name}</span>"), user_profiles_path(current_user), :class => "signinFrist" %></li>
         <% if admin? %>
           <li><%= link_to raw("<span>Admin</span>"), "/admin" %></li>
