@@ -28,6 +28,7 @@
           <div id="wait_area" style="margin-left: 298px; margin-top: 6px; display:none;">
             <img src="/images/ajax-loader-a.gif"/>
           </div>
+          <% if current_user == @ufo_author   %>
           <div id="setting_area" style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; min-height: 120px; width: 593px;">
 
             <div style='height: 60px;'>
@@ -90,7 +91,7 @@
             
 
           </div>
-
+          <% end  %> <!-- end if current_user == @ufo_author -->
 
 
           <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
