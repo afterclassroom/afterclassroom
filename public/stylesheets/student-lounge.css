@@ -1,4 +1,4 @@
-/*** column 165 public ***/
+.NodeCont/*** column 165 public ***/
 .contMainC165{
     width:173px;
     float:left;
@@ -5288,12 +5288,10 @@ span.btmTag a:hover{
 .NodeCont{
     padding-right:30px;
     padding-top:15px;
-    background:url('/images/postbgerr.png') no-repeat left 14px;
     padding-left:23px;
     font-size:10px;
 }
 .NodeCont span{
-    text-decoration:underline;
     font-weight:bold;
 }
 .NodeClose{

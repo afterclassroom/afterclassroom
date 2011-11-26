@@ -371,7 +371,7 @@ class User < ActiveRecord::Base
 		user_id_follows = user_ids + [self.id]
 		user_wall_follows = UserWallFollow.where("user_id IN('#{user_id_follows.join("', '")}')")
 		user_wall_follows.each do |f|
-			user_wall_id_follows << f.user_wall_id if check_private_permission(self, f.user_wall.user, "my_lounges")
+			user_wall_id_follows << f.user_wall_id
 		end
 		user_ids = user_ids - [self.id]
 		user_wall_ids = user_wall_id_follows - user_wall_id_blocks

@@ -1,2 +1,3 @@
+$("#video_title_span").html("<%= @video.title %>");
 $("#on_this_videos").html("<%= escape_javascript( render( :partial => "widget_on_this_video") ) %>");
-$('#action_video').html("<%= escape_javascript( render( :partial => "video_action") ) %><%= escape_javascript( show_post_comments(@video) ) %>");
+$('#action_video').html("<%= escape_javascript( render( :partial => "video_description") ) %><%= escape_javascript( render( :partial => "video_action") ) %><%= escape_javascript( show_post_comments(@video) ) %>");

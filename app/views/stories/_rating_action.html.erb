@@ -3,14 +3,22 @@
   check = Story.find_rated_by(current_user).include?(post) if logged_in?
   check ||= false %>
   <div class="qashdU" style="background: none;padding-top: 2px">
-    <%= show_rating(post.id, post.total_good, controller_name, check, 1) %>
+    <% if check_view_permission(current_user, post) %>
+  	<%= show_rating(post.id, post.total_good, controller_name, check, 1) %>
+	<% else %>
+		<%= link_to post.total_good, "javascript:;" %>
+	<% end %>
   </div>
   <div class="qashdD" style="background: none;padding-top: 2px">
-    <%= show_rating(post.id, post.total_bad, controller_name, check, 0) %>
+    <% if check_view_permission(current_user, post) %>
+  	<%= show_rating(post.id, post.total_bad, controller_name, check, 0) %>
+	<% else %>
+		<%= link_to post.total_bad, "javascript:;" %>
+	<% end %>
   </div>
 </div>
 
-
+<% if check_view_permission(current_user, post) %>
 <!-- BEGIN show LIKE comment area -->
 <%= render :partial => "rate_cmts/like_cmts", :locals => {:post => post} %>
 <!-- END show DISLIKE comment area -->
@@ -19,4 +27,4 @@
 <!-- END show DISLIKE comment area -->
 
 <%= render :partial => "rate_cmts/cmt_script_a", :locals => {:post => post, :obj_class_name => post.class.name } %>
-
+<% end %>

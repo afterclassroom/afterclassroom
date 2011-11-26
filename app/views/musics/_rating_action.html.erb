@@ -3,9 +3,17 @@
   check = Music.find_rated_by(current_user).include?(post) if logged_in?
   check ||= false %>
   <div class="qashdU">
-    <%= show_rating(post.id, post.total_good, controller_name, check, 1) %>
+    <% if check_view_permission(current_user, post) %>
+  	<%= show_rating(post.id, post.total_good, controller_name, check, 1) %>
+	<% else %>
+		<%= link_to post.total_good, "javascript:;" %>
+	<% end %>
   </div>
   <div class="qashdD">
-    <%= show_rating(post.id, post.total_bad, controller_name, check, 0) %>
+    <% if check_view_permission(current_user, post) %>
+  	<%= show_rating(post.id, post.total_bad, controller_name, check, 0) %>
+	<% else %>
+		<%= link_to post.total_bad, "javascript:;" %>
+	<% end %>
   </div>
 </div>

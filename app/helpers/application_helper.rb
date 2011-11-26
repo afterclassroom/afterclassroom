@@ -1027,10 +1027,14 @@ module ApplicationHelper
 	def check_view_permission(user_check, obj)
 		check = false
 		if user_check
-			cond = "tagable_type = '#{obj.class.name}' AND tagable_user = #{user_check.id} AND verify = 1 AND tagable_id = #{obj.id}"
-			tg = TagInfo.where(cond)
-			check = true if tg.size > 0
+			if user_check == obj.user
+				check = true
+			else
+				cond = "tagable_type = '#{obj.class.name}' AND tagable_user = #{user_check.id} AND verify = 1 AND tagable_id = #{obj.id}"
+				tg = TagInfo.where(cond)
+				check = true if tg.size > 0
 			end
+		end
 			return check
 	end
   
