@@ -12,7 +12,7 @@
       if (stri_content == "http://") {
         return false;      
       }
-      ShowAttachLinkOverlay();
+      ShowFeaturedOverlay();
       $("#link_image").blur();
       $.ajax({
         url: path,
@@ -24,7 +24,7 @@
         }),
         success: function(data){
           $('#attach').html(data);
-          $('#overlayAttLink').hide();
+          $('#overlay').hide();
         }
       });
     });

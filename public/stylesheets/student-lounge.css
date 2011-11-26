@@ -5912,7 +5912,7 @@ div.ufo_sel div.ufo_span2b{
     padding-bottom: 5px;
     padding-top: 7px;
 }
-  .contFoC{
+.contFoC{
     background: url("/images/cen654Fo.png") repeat scroll 0 0 transparent;
     overflow: hidden;
     width: 654px;
@@ -6156,3 +6156,5 @@ span.btmDownfo a:hover {
 #remove_btn:hover{
     background: url("/images/btm71Red.png") no-repeat scroll 0 0 transparent;
 }
+/*------*/
+

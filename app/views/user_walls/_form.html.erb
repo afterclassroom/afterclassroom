@@ -29,24 +29,6 @@
 <div class="footWall">
 </div>
 <script type="text/javascript">
-
-  function ShowAttachLinkOverlay(){
-    $('.proMind').append('<div id="overlayAttLink"></div>');
-    var position = $('.proMind').offset();
-    $("#overlayAttLink")
-    .css({
-      'display':'block',
-      'opacity' : 0.4,
-      'filter':'alpha(opacity=40)',
-      'position': 'absolute',
-      'background':'url("/images/ajax-loader-a.gif") no-repeat center',
-      'background-color': 'white',
-      'width': '571px',
-      'height':'152px',
-      'margin-top':'-121px',
-      'z-index': 5000
-    });
-  }
   function ShowFeaturedOverlay(){
     $('.proMind_ovelay').append('<div id="overlay"></div>');
     var position = $('.proMind_ovelay').offset();
@@ -63,23 +45,6 @@
       'z-index': 5000
     });
   }
-  function ShowSubmitOverlay(){
-    $('.submit_ovelay').append('<div id="sub_overlay"></div>');
-    var position = $('.submit_ovelay').offset();
-    $("#sub_overlay")
-    .css({
-      'display':'block',
-      'opacity' : 0.4,
-      'filter':'alpha(opacity=40)',
-      'position': 'absolute',
-      'background-color': 'white',
-      'width': '571px',
-      'height':'95px',
-      'margin-top':'-58px',
-      'z-index': 5000
-    });
-  }
-
   function closeAttach(){
     $('#wrap_content_attach').hide();
     $('#attach_icon').show();
@@ -91,7 +56,7 @@
       var str_content = $('#wall_cotent_txt').val();
       $("#wall_cotent_txt").focus();
       
-      var stril_content = $('#link_image, #link_link').val();
+      var stril_content = $('#link_image, #link_link, #link_video, #link_music').val();
       $("#link_image").focus();
       
       if (str_content == "What's on your mind?") {
@@ -100,26 +65,21 @@
       if (stril_content == "http://") {
         return false;      
       }
-      //ShowSubmitOverlay();
       ShowFeaturedOverlay();
-      $("#wall_cotent_txt, #link_image, #link_link").blur();
+      $("#wall_cotent_txt, #link_image, #link_link, #link_video, #link_music").blur();
     });
     $('#wall_cotent_txt').keyup(function(){
       var len = this.value.length;
       if (len >= 500) {
         this.value = this.value.substring(0, 500);
       }
-    });
-        
-    $("#wall_cotent_txt").bind("paste", function(e){
-      
+    });       
+    $("#wall_cotent_txt").bind("paste", function(e){   
       var el = $(this);
       setTimeout(function(){
         var text = $(el).val();
-        check_attach_link(text);
-        
-      }, 100);
-      
+        check_attach_link(text);     
+      }, 100);    
     });
   });
   var path_link = '/user_walls/attach_link';
@@ -182,4 +142,12 @@
   function file_get_ext(filename){
     return typeof filename != "undefined" ? filename.substring(filename.lastIndexOf(".") + 1, filename.length).toLowerCase() : false;
   }
+  $(document).ready(function(){
+    $('.carrousel_carrousel').css({
+      'width':'77px'
+    });
+    $('.carrousel').css({
+      'width':'77px'
+    });
+  });
 </script>

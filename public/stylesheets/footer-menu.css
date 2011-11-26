@@ -484,6 +484,36 @@ a.feedback-tab {
 
 }
 /*------------------- friend search -------------*/
+.view_userLogin{
+    margin-left: 215px;
+    float: left;
+}
+.selectView{
+    background: url("/images/signinR.png") no-repeat scroll right top transparent;
+    height: 23px;
+}
+.selectView a span{
+    background: url("/images/signinL.png") no-repeat scroll left top transparent;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 23px;
+    line-height: 23px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.view_user{
+    background: #F6F6F6;
+    border: 1px solid;
+    color: #969696;
+    display:none;
+    float: right;
+    font-size: 11px;
+    margin-top: 24px;
+    position: absolute;
+    z-index: 1000;
+}
 .asslinkdownSt_UserR{
     background: #F6F6F6;
     border: 1px solid;

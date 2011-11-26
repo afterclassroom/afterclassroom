@@ -449,6 +449,22 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def edit
+    @ufo = Ufo.find(params[:id])
+  end
+
+  def update
+    @ufo = Ufo.find(params[:id])
+    @ufo.update_attributes(params[:ufo])
+    redirect_to user_u_forum_path(@ufo.user, @ufo)
+  end
+
+  def destroy
+    ufo = Ufo.find(params[:id])
+    ufo.destroy
+    redirect_to user_u_forums_path(@ufo_author)
+  end
+
   private
   def get_share(share_value)
     groupType = ""
