@@ -44,7 +44,7 @@
 
       <%  if !["Learntool","Ufo"].include?(obj.class.name)  %>
         <div class="com">
-          <a href="javascript:;" onclick="showCommentForm('<%= obj.class.name %>', '<%= obj.id %>');">Comments (<span id="wall_<%= obj.class.name %>_<%= obj.id %>_comments"><%= obj.comments.size %></span>)</a>
+          <a href="javascript:;" <% if check_view_permission(current_user, obj) %>onclick="showCommentForm('<%= obj.class.name %>', '<%= obj.id %>');"<% end %> >Comments (<span id="wall_<%= obj.class.name %>_<%= obj.id %>_comments"><%= obj.comments.size %></span>)</a>
         </div>
       <% elsif "Learntool" == obj.class.name %>
         <div id="ltool_rev" style="margin-left:-31px;margin-right:5px;" class="vtip" title="Write A Review">

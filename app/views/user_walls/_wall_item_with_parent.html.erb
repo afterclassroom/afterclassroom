@@ -34,7 +34,7 @@
 
       <%= show_rating_action(wall) %>
       <div class="com">
-        <a href="javascript:;" onclick="showCommentForm('<%= wall.class.name %>', '<%= wall.id %>');">Comments (<span id="wall_<%= wall.class.name %>_<%= wall.id %>_comments"><%= wall.comments.size %></span>)</a>
+        <a href="javascript:;" <% if check_view_permission(current_user, wall) %>onclick="showCommentForm('<%= wall.class.name %>', '<%= wall.id %>');"<% end %> >Comments (<span id="wall_<%= wall.class.name %>_<%= wall.id %>_comments"><%= wall.comments.size %></span>)</a>
       </div>
       <%= link_to "Share", "/user_walls/share_lounge?height=350&width=500&wall_id=#{wall.id.to_s}", :class => "thickbox", :title => "Share Lounge" %>
     </div>
