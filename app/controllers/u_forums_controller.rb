@@ -113,6 +113,8 @@ class UForumsController < ApplicationController
   end
 
   def save_custom
+    @ufo = Ufo.find(params[:id])
+
     custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
     custom_setting.share_to_index = params[:shareto]
     custom_setting.post_lounge = params[:postlounge]
