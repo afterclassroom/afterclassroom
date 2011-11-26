@@ -197,7 +197,7 @@ class UForumsController < ApplicationController
     post_wall(objufo)
 
     custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
-    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.post_lounge = true
     custom_setting.save
   end
 
@@ -477,16 +477,27 @@ class UForumsController < ApplicationController
     when 1 # Friend from school
       groupType="friends_from_school"
     when 2 # Friend of friends
+      groupType=-2
     when 3 # My Family
     when 4 # My friends
     when 5 # Friends from work
       groupType="friends_from_work"
     when 6 # Everyone
     end
-    fg = FriendGroup.where(:label => groupType).first
-    if fg != nil
-      share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ] )
+
+    case groupType
+    when -2
+      share_to = current_user.friend_of_friends
+    else
+      fg = FriendGroup.where(:label => groupType).first
+      if fg != nil
+        share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ] )
+      end
     end
+
+
+
+
     share_to
   end
 
