@@ -1,7 +1,7 @@
 <div class="selectView">
-  <a id="click_view" class="fristView">
+  <span id="click_view" class="fristView">
     <span>09</span>
-  </a>
+  </span>
 </div>
 
 
@@ -13,7 +13,8 @@
     <div class="col451s">
       <div class="col451ins">
         <div class="col451Cont">
-          <div style="min-height: 50px;" id="search_friend_list">		<div class="flistItem">
+          <div style="min-height: 50px;" id="search_friend_list">		
+            <div class="flistItem">
               <div class="assPic">
                 <a href="/users/michael/show_lounge"><div><img title="Michael" src="/system/avatars/4/thumb/130630_920.jpg?1302747759" class="vtip avatar_4" alt="130630_920"></div></a>
               </div>
@@ -99,11 +100,18 @@
 </div>
 <script>
   $(document).ready(function(){
-    $('#click_view').click(function(){
-      $('#view_wrap').show();
-    })
+    //   var posi = $(".click_view").offset();
+    $('#click_view').click(function(){       
+      //    $("#view_wrap").css({
+      //      "top":posi.top,
+      //      "left":posi.left
+      //    }).show();
+      $("#view_wrap").show();
+    });
+
     $('#flistRclose').click(function(){
       $('#view_wrap').hide();
     })
   });
+
 </script>
