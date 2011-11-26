@@ -480,12 +480,15 @@ class UForumsController < ApplicationController
       groupType=-2
     when 3 # My Family
     when 4 # My friends
+      groupType=-4
     when 5 # Friends from work
       groupType="friends_from_work"
     when 6 # Everyone
     end
 
     case groupType
+    when -4
+      share_to = @ufo_author.user_friends
     when -2
       share_to = current_user.friend_of_friends
     else
