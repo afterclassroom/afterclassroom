@@ -159,23 +159,27 @@ class UForumsController < ApplicationController
         str_share = ufo.ufo_custom.share_to_index
         arr_p = [] 
         OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
-        share_to = get_share(arr_p[0][1])
-        if share_to != nil
-          if share_to.include?(current_user)
-            tmparr << ufo
-            check = true
+
+        if (arr_p[0][1] == 6)
+          tmparr << ufo
+        else
+          share_to = get_share(arr_p[0][1])
+          if share_to != nil
+            if share_to.include?(current_user)
+              tmparr << ufo
+              check = true
+            end
           end
-        end
-        #case 2: author does not share with current_user's groups, but current_user is a member of topic
-        if !check
-          if ufo.ufo_members.where(:user_id => current_user.id).size > 0 
-            tmparr << ufo
+          #case 2: author does not share with current_user's groups, but current_user is a member of topic
+          if !check
+            if ufo.ufo_members.where(:user_id => current_user.id).size > 0 
+              tmparr << ufo
+            end
           end
         end
       end
 
       @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
-
     end
   end
 
