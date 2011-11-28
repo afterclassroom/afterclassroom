@@ -16,10 +16,17 @@ class UForumsController < ApplicationController
       str_share = @ufo.ufo_custom.share_to_index
       arr_p = [] 
       OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
-      share_to = get_share(arr_p[0][1])
-      if share_to != nil
-        if share_to.include?(current_user)
-          check = true
+
+
+
+      if (arr_p[0][1] == 6)#share to every one
+        check = true
+      else
+        share_to = get_share(arr_p[0][1])
+        if share_to != nil
+          if share_to.include?(current_user)
+            check = true
+          end
         end
       end
       #case 2: author does not share with current_user's groups, but current_user is a member of topic
@@ -28,6 +35,11 @@ class UForumsController < ApplicationController
           check = true
         end
       end
+
+
+
+
+
 
       if !check
         redirect_to warning_user_path(@ufo_author)
