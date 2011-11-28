@@ -254,7 +254,6 @@
 
 
         <div style=" min-height: 100px; padding: 10px;">
-<%# 10.times do %>
           <% @ufo_cmts.each do |cmt| %>
             <div style="border-bottom: 1px solid #D2D9E7; height: 80px; ">
 
@@ -273,10 +272,10 @@
                   <img src="/images/icon-ing.gif" id=""/>
                 </div>
                 <div style="float:right;background: url(/images/ufo_attach.jpg) no-repeat scroll 0 0 transparent;height:24px;width: 24px;">
-                  <a href="javascript:downloadFile('<%= cmt.ucmt_attach.url %>')" class="downarrow"><span>Download</span></a>
+                  <a href="javascript:downloadFile('<%= cmt.ucmt_attach.url %>')" class="downarrow"><span style="display: none;">Download</span></a>
 
                 </div>
-                <div style="float: right">button collapse expand</div>
+                <div style="float: right; display: none;">button collapse expand</div>
               </div>
             </div>
           <% end %>
