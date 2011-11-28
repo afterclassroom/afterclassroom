@@ -1,7 +1,5 @@
-<div style="padding-bottom: 10px;" class="abLink postLink">
-  <div class="abLinkL">You are here:<a href="#"> User's Forums</a>
-  </div>
-</div>
+<%= render :partial => "shared/submenu" %>
+<%= render :partial => "navigation" %>
 
 <div class="slStoryL" style="margin-bottom: 10px;">
   <div class="contDetL">
@@ -177,21 +175,22 @@
 
 
           <div style="border: 0px solid black; padding: 10px;">
+            <% if @ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
+              <div style="background: url('/images/ufo_attach.jpg') no-repeat; width: 24px; height: 24px;">
+                <span class="btmDownfo"><a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow" style="margin-left: 20px;padding-bottom: 14px;padding-left: 90px;">
+                  <span class="forums_dow" style="margin-left: -55px;margin-top: 6px;position: absolute;">Download</span> 
+                  </a>
 
-            <div style="background: url('/images/ufo_attach.jpg') no-repeat; width: 24px; height: 24px;">
-              <span class="btmDownfo"><a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow" style="margin-left: 20px;padding-bottom: 14px;padding-left: 90px;">
-                <span class="forums_dow" style="margin-left: -55px;margin-top: 6px;position: absolute;">Download</span> 
-                </a>
-                          
-              </span>
-            </div>
+                </span>
+              </div>
+            <% end %>
             <div style="overflow: auto; height: 300px;">
               <%= @ufo.content  %>
 
             </div>
           </div>
 
-          <div style="background-color: #ebebeb; height: 28px; padding: 2px;">
+          <div style="background-color: #ebebeb; height: 28px; padding: 2px;" id="show_hide_cmt">
             <div style="background-color: white; width: 88px; height: 24px; margin-top: 2px; margin-left: 2px;">
               <span style="background: url('/images/icon-comnent.gif') no-repeat center; padding-bottom: 10px; padding-left: 36px;"></span>
               <label style="color: #969696; margin-top: -8px; margin-right: 10px;">Comment</label>
@@ -254,31 +253,8 @@
 
 
         <div style=" min-height: 100px; padding: 10px;">
-<%# 10.times do %>
           <% @ufo_cmts.each do |cmt| %>
-            <div style="border-bottom: 1px solid #D2D9E7; height: 80px; ">
-
-              <div class="assPic">
-                <%= show_image_user_post(cmt.user) %>
-              </div>
-
-
-              <div>
-                <div style="color: #0A81C4;">
-                  <%= show_user_post(cmt.user) %>
-                </div>
-                <div style="color: #969696"><%= time_ago_in_words(cmt.created_at, true) %> ago.</div>
-                <div><%= cmt.content %></div>
-                <div style="float: right">
-                  <img src="/images/icon-ing.gif" id=""/>
-                </div>
-                <div style="float:right;background: url(/images/ufo_attach.jpg) no-repeat scroll 0 0 transparent;height:24px;width: 24px;">
-                  <a href="javascript:downloadFile('<%= cmt.ucmt_attach.url %>')" class="downarrow"><span>Download</span></a>
-
-                </div>
-                <div style="float: right">button collapse expand</div>
-              </div>
-            </div>
+            <%= render :partial => "item_cmt", :locals => {:cmt => cmt} %>
           <% end %>
         </div>
       </div>
@@ -337,6 +313,8 @@ var ajaxObj = null;
   $(document).ready(function(){
 
 
+
+
 function SaveCustom(ishareto,ipostlounge ){
   $('#wait_area').show();
   $('#setting_area').hide();
@@ -383,7 +361,10 @@ function SaveCustom(ishareto,ipostlounge ){
         }
       });//end ajax
     }
-
+    
+    $('#show_hide_cmt').click(function(){
+      $('form#form_cmt').toggle();
+    });
 
     //BEGIN toggle the add new member area
     $('#invite_btn').click(function(){

@@ -16,10 +16,14 @@ class UForumsController < ApplicationController
       str_share = @ufo.ufo_custom.share_to_index
       arr_p = [] 
       OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
-      share_to = get_share(arr_p[0][1])
-      if share_to != nil
-        if share_to.include?(current_user)
-          check = true
+      if (arr_p[0][1] == 6)#share to every one
+        check = true
+      else
+        share_to = get_share(arr_p[0][1])
+        if share_to != nil
+          if share_to.include?(current_user)
+            check = true
+          end
         end
       end
       #case 2: author does not share with current_user's groups, but current_user is a member of topic
@@ -28,7 +32,6 @@ class UForumsController < ApplicationController
           check = true
         end
       end
-
       if !check
         redirect_to warning_user_path(@ufo_author)
       end
@@ -50,7 +53,7 @@ class UForumsController < ApplicationController
     arr_p = [] 
     OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
     share_to = get_share(arr_p[0][1])
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     #END load the user-friend based on user-topic-setting
   end
 
@@ -65,7 +68,7 @@ class UForumsController < ApplicationController
     else
       share_to = get_share(0)
     end
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     @cur_page = share_to ? "1" : 0
   end
 
@@ -124,7 +127,7 @@ class UForumsController < ApplicationController
     arr_p = [] 
     OPTIONS_SETTING.select {|p| arr_p << p if p[1] == params[:shareto].to_i} 
     share_to = get_share(arr_p[0][1])
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     #END load the proper user-friends based on setting
     
     #init the session to store the list of selected user to add to friend list
@@ -144,38 +147,10 @@ class UForumsController < ApplicationController
   end
 
   def index
-    @ufo = nil
-    if current_user == @ufo_author
-      @ufos = @ufo_author.ufos.order("created_at DESC").paginate(:page => params[:page], :per_page => 2)
+    if (params[:category] == "friend_topic")
+      load_friend_ufos
     else
-
-      @ufos = @ufo_author.ufos
-
-      tmparr = []
-
-      @ufos.each do |ufo|
-        check = false
-        #case 1: when author share the topic with current_user's groups
-        str_share = ufo.ufo_custom.share_to_index
-        arr_p = [] 
-        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
-        share_to = get_share(arr_p[0][1])
-        if share_to != nil
-          if share_to.include?(current_user)
-            tmparr << ufo
-            check = true
-          end
-        end
-        #case 2: author does not share with current_user's groups, but current_user is a member of topic
-        if !check
-          if ufo.ufo_members.where(:user_id => current_user.id).size > 0 
-            tmparr << ufo
-          end
-        end
-      end
-
-      @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
-
+      load_current_user_ufos
     end
   end
 
@@ -264,7 +239,6 @@ class UForumsController < ApplicationController
   end
 
   def find_people_show
-    puts "val of id = #{params[:ufo_id]}"
     objufo = Ufo.find(params[:ufo_id])
 
     query = params[:search_name]
@@ -289,7 +263,7 @@ class UForumsController < ApplicationController
     OPTIONS_SETTING.select {|p| arr_p << p if p[1] == params[:share].to_i} 
 
     share_to = get_share(arr_p[0][1])
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
 
     #reset the selected users
     session[:list_selected_usrs] = []
@@ -301,7 +275,7 @@ class UForumsController < ApplicationController
 
     share_to = get_share(params[:share].to_i)
 
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     @cur_page = params[:page]
     render :layout => false
   end
@@ -415,7 +389,7 @@ class UForumsController < ApplicationController
 
     share_to = get_share(params[:share].to_i)
 
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     @cur_page = params[:page]
 
     render :layout => false
@@ -451,6 +425,18 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def subscribe
+    @ufo = Ufo.find(params[:ufo_id])
+
+    member = UfoMember.new
+    member.user_id = current_user.id
+    member.ufo_id = @ufo.id
+    member.save
+
+    redirect_to user_u_forum_path(@ufo.user, @ufo)
+  end
+
+
   def edit
     @ufo = Ufo.find(params[:id])
   end
@@ -465,6 +451,13 @@ class UForumsController < ApplicationController
     ufo = Ufo.find(params[:id])
     ufo.destroy
     redirect_to user_u_forums_path(@ufo_author)
+  end
+
+  def del_cmt
+    @ufo = Ufo.find(params[:ufo_id])
+    cmt = @ufo.ufo_cmts.where(:id => params[:cmt_id]).first
+    cmt.destroy
+    redirect_to user_u_forum_path(@ufo.user, @ufo)
   end
 
   private
@@ -486,7 +479,6 @@ class UForumsController < ApplicationController
       groupType="friends_from_work"
     when 6 # Everyone
     end
-
     case groupType
     when -4
       share_to = @ufo_author.user_friends
@@ -496,11 +488,10 @@ class UForumsController < ApplicationController
       fg = FriendGroup.where(:label => groupType).first
       if fg != nil
         share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ] )
+        share_to.each do |testing_user|
+        end
       end
     end
-
-
-
 
     share_to
   end
@@ -508,5 +499,74 @@ class UForumsController < ApplicationController
   def get_variables
     @ufo_author = User.where(:login => params[:user_id]).first
   end
+
+  def load_current_user_ufos
+    @ufo = nil
+    if current_user == @ufo_author
+      @ufos = @ufo_author.ufos.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    else
+      @ufos = @ufo_author.ufos
+      tmparr = []
+      @ufos.each do |ufo|
+        check = false
+        #case 1: when author share the topic with current_user's groups
+        str_share = ufo.ufo_custom.share_to_index
+        arr_p = [] 
+        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
+        if (arr_p[0][1] == 6)
+          tmparr << ufo
+        else
+          share_to = get_share(arr_p[0][1])
+          if share_to != nil
+            if share_to.include?(current_user)
+              tmparr << ufo
+              check = true
+            end
+          end
+          #case 2: author does not share with current_user's groups, but current_user is a member of topic
+          if !check
+            if ufo.ufo_members.where(:user_id => current_user.id).size > 0 
+              tmparr << ufo
+            end
+          end #end if
+        end #end if
+      end #end each
+
+      @ufos = tmparr.paginate(:page => params[:page], :per_page => 10)
+    end
+  end
+
+  def load_friend_ufos
+
+    tmparr = []
+    current_user.user_friends.each do |usr|
+      usr.ufos.each do |ufo|
+        check = false
+        #case 1: when friends share the topic with current_user
+        str_share = ufo.ufo_custom.share_to_index
+        arr_p = [] 
+        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
+        if (arr_p[0][1] == 6)
+          tmparr << ufo
+        else
+          share_to = get_share(arr_p[0][1])
+          if share_to != nil
+            if share_to.include?(current_user)
+              tmparr << ufo
+              check = true
+            end
+          end
+          #case 2: friend does not share with current_user's groups, but current_user is a member of topic
+          if !check
+            if ufo.ufo_members.where(:user_id => current_user.id).size > 0 
+              tmparr << ufo
+            end
+          end #end if
+        end #end if
+
+      end #end ufos.each
+    end
+    @ufos = tmparr.paginate(:page => params[:page], :per_page => 10)
+  end #end load_friend_ufos
 
 end
