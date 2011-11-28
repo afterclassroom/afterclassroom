@@ -509,11 +509,12 @@ a.feedback-tab {
     border: 1px solid;
     color: #969696;
     display:none;
-    float: right;
+    float: left;
     font-size: 11px;
     margin-top: 2px;
     position: absolute;
     z-index: 1000;
+    margin-left: -120px;
 }
 .asslinkdownSt_UserR{
     background: #F6F6F6;
