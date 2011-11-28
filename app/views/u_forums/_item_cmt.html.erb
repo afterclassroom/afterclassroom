@@ -26,12 +26,18 @@
         
       </div>
     <% end %>
+    
+    <% if  cmt.ucmt_attach.url != "/ucmt_attaches/original/missing.png"%>
 
     <div style="float:right;background: url(/images/ufo_attach.jpg) no-repeat scroll 0 0 transparent;height:24px;width: 24px;">
       <a href="javascript:downloadFile('<%= cmt.ucmt_attach.url %>')" class="downarrow">
         <span style="display: none;">Download</span>
       </a>
     </div>
+    <% end %>
+    
+    
+    
     <div style="float: right; display: none;">button collapse expand</div>
   </div>
 </div>
