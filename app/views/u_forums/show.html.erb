@@ -192,7 +192,7 @@
             </div>
           </div>
 
-          <div style="background-color: #ebebeb; height: 28px; padding: 2px;">
+          <div style="background-color: #ebebeb; height: 28px; padding: 2px;" id="show_hide_cmt">
             <div style="background-color: white; width: 88px; height: 24px; margin-top: 2px; margin-left: 2px;">
               <span style="background: url('/images/icon-comnent.gif') no-repeat center; padding-bottom: 10px; padding-left: 36px;"></span>
               <label style="color: #969696; margin-top: -8px; margin-right: 10px;">Comment</label>
@@ -315,6 +315,8 @@ var ajaxObj = null;
   $(document).ready(function(){
 
 
+
+
 function SaveCustom(ishareto,ipostlounge ){
   $('#wait_area').show();
   $('#setting_area').hide();
@@ -361,7 +363,10 @@ function SaveCustom(ishareto,ipostlounge ){
         }
       });//end ajax
     }
-
+    
+    $('#show_hide_cmt').click(function(){
+      $('form#form_cmt').toggle();
+    });
 
     //BEGIN toggle the add new member area
     $('#invite_btn').click(function(){

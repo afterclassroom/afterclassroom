@@ -147,42 +147,10 @@ class UForumsController < ApplicationController
   end
 
   def index
-    @ufo = nil
-    if current_user == @ufo_author
-      @ufos = @ufo_author.ufos.order("created_at DESC").paginate(:page => params[:page], :per_page => 2)
+    if (params[:category] == "friend_topic")
+      load_friend_ufos
     else
-
-      @ufos = @ufo_author.ufos
-
-      tmparr = []
-
-      @ufos.each do |ufo|
-        check = false
-        #case 1: when author share the topic with current_user's groups
-        str_share = ufo.ufo_custom.share_to_index
-        arr_p = [] 
-        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
-
-        if (arr_p[0][1] == 6)
-          tmparr << ufo
-        else
-          share_to = get_share(arr_p[0][1])
-          if share_to != nil
-            if share_to.include?(current_user)
-              tmparr << ufo
-              check = true
-            end
-          end
-          #case 2: author does not share with current_user's groups, but current_user is a member of topic
-          if !check
-            if ufo.ufo_members.where(:user_id => current_user.id).size > 0 
-              tmparr << ufo
-            end
-          end
-        end
-      end
-
-      @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
+      load_current_user_ufos
     end
   end
 
@@ -531,5 +499,74 @@ class UForumsController < ApplicationController
   def get_variables
     @ufo_author = User.where(:login => params[:user_id]).first
   end
+
+  def load_current_user_ufos
+    @ufo = nil
+    if current_user == @ufo_author
+      @ufos = @ufo_author.ufos.order("created_at DESC").paginate(:page => params[:page], :per_page => 2)
+    else
+      @ufos = @ufo_author.ufos
+      tmparr = []
+      @ufos.each do |ufo|
+        check = false
+        #case 1: when author share the topic with current_user's groups
+        str_share = ufo.ufo_custom.share_to_index
+        arr_p = [] 
+        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
+        if (arr_p[0][1] == 6)
+          tmparr << ufo
+        else
+          share_to = get_share(arr_p[0][1])
+          if share_to != nil
+            if share_to.include?(current_user)
+              tmparr << ufo
+              check = true
+            end
+          end
+          #case 2: author does not share with current_user's groups, but current_user is a member of topic
+          if !check
+            if ufo.ufo_members.where(:user_id => current_user.id).size > 0 
+              tmparr << ufo
+            end
+          end #end if
+        end #end if
+      end #end each
+
+      @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
+    end
+  end
+
+  def load_friend_ufos
+
+    tmparr = []
+    current_user.user_friends.each do |usr|
+      usr.ufos.each do |ufo|
+        check = false
+        #case 1: when friends share the topic with current_user
+        str_share = ufo.ufo_custom.share_to_index
+        arr_p = [] 
+        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
+        if (arr_p[0][1] == 6)
+          tmparr << ufo
+        else
+          share_to = get_share(arr_p[0][1])
+          if share_to != nil
+            if share_to.include?(current_user)
+              tmparr << ufo
+              check = true
+            end
+          end
+          #case 2: friend does not share with current_user's groups, but current_user is a member of topic
+          if !check
+            if ufo.ufo_members.where(:user_id => current_user.id).size > 0 
+              tmparr << ufo
+            end
+          end #end if
+        end #end if
+
+      end #end ufos.each
+    end
+    @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
+  end #end load_friend_ufos
 
 end
