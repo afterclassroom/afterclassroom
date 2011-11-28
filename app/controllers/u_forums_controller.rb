@@ -53,7 +53,7 @@ class UForumsController < ApplicationController
     arr_p = [] 
     OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
     share_to = get_share(arr_p[0][1])
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     #END load the user-friend based on user-topic-setting
   end
 
@@ -68,7 +68,7 @@ class UForumsController < ApplicationController
     else
       share_to = get_share(0)
     end
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     @cur_page = share_to ? "1" : 0
   end
 
@@ -127,7 +127,7 @@ class UForumsController < ApplicationController
     arr_p = [] 
     OPTIONS_SETTING.select {|p| arr_p << p if p[1] == params[:shareto].to_i} 
     share_to = get_share(arr_p[0][1])
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     #END load the proper user-friends based on setting
     
     #init the session to store the list of selected user to add to friend list
@@ -263,7 +263,7 @@ class UForumsController < ApplicationController
     OPTIONS_SETTING.select {|p| arr_p << p if p[1] == params[:share].to_i} 
 
     share_to = get_share(arr_p[0][1])
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
 
     #reset the selected users
     session[:list_selected_usrs] = []
@@ -275,7 +275,7 @@ class UForumsController < ApplicationController
 
     share_to = get_share(params[:share].to_i)
 
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     @cur_page = params[:page]
     render :layout => false
   end
@@ -389,7 +389,7 @@ class UForumsController < ApplicationController
 
     share_to = get_share(params[:share].to_i)
 
-    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 2) : nil
+    @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
     @cur_page = params[:page]
 
     render :layout => false
@@ -503,7 +503,7 @@ class UForumsController < ApplicationController
   def load_current_user_ufos
     @ufo = nil
     if current_user == @ufo_author
-      @ufos = @ufo_author.ufos.order("created_at DESC").paginate(:page => params[:page], :per_page => 2)
+      @ufos = @ufo_author.ufos.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     else
       @ufos = @ufo_author.ufos
       tmparr = []
@@ -532,7 +532,7 @@ class UForumsController < ApplicationController
         end #end if
       end #end each
 
-      @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
+      @ufos = tmparr.paginate(:page => params[:page], :per_page => 10)
     end
   end
 
@@ -566,7 +566,7 @@ class UForumsController < ApplicationController
 
       end #end ufos.each
     end
-    @ufos = tmparr.paginate(:page => params[:page], :per_page => 2)
+    @ufos = tmparr.paginate(:page => params[:page], :per_page => 10)
   end #end load_friend_ufos
 
 end
