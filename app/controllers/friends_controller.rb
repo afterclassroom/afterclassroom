@@ -112,7 +112,7 @@ class FriendsController < ApplicationController
   def add_to_group
     if params[:check_status] == ""
       user = User.find(params[:friend_id])
-      fig = FriendInGroup.find_or_create_by_user_id_and_friend_group_id_anduser_id_friend(current_user.id, params[:group_id], params[:friend_id])
+      fig = FriendInGroup.find_or_create_by_user_id_and_friend_group_id_and_user_id_friend(current_user.id, params[:group_id], params[:friend_id])
       
       if fig
         subject = "#{current_user.name} added you as a family member."

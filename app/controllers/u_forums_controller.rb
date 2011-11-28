@@ -479,6 +479,7 @@ class UForumsController < ApplicationController
     when 2 # Friend of friends
       groupType=-2
     when 3 # My Family
+      groupType="family_members"
     when 4 # My friends
       groupType=-4
     when 5 # Friends from work

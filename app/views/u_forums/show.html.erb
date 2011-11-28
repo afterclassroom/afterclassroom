@@ -316,6 +316,27 @@ var ajaxObj = null;
 
 
 
+
+  function PostLounge(){
+    $('#setting_area').hide();
+    $('#wait_area').show();
+
+    $.ajax({
+      url: '<%= post_lounge_user_u_forums_path %>',
+      type: 'GET',
+      dataType: 'script',
+      data: {
+        id: <%= @ufo.id %>
+      },
+      success: function(html){
+      }
+    });
+  }
+
+
+  $(document).ready(function(){
+
+
 function SaveCustom(ishareto,ipostlounge ){
   $('#wait_area').show();
   $('#setting_area').hide();
@@ -336,24 +357,7 @@ function SaveCustom(ishareto,ipostlounge ){
   });
 }
 
-  function PostLounge(){
-    $('#setting_area').hide();
-    $('#wait_area').show();
 
-    $.ajax({
-      url: '<%= post_lounge_user_u_forums_path %>',
-      type: 'GET',
-      dataType: 'script',
-      data: {
-        id: <%= @ufo.id %>
-      },
-      success: function(html){
-      }
-    });
-  }
-
-
-  $(document).ready(function(){
 
     function ClosePadWithSync(){
       $('#friend_pad').hide('fast',function(){
