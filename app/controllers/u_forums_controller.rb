@@ -264,7 +264,6 @@ class UForumsController < ApplicationController
   end
 
   def find_people_show
-    puts "val of id = #{params[:ufo_id]}"
     objufo = Ufo.find(params[:ufo_id])
 
     query = params[:search_name]
@@ -486,7 +485,6 @@ class UForumsController < ApplicationController
       groupType="friends_from_work"
     when 6 # Everyone
     end
-
     case groupType
     when -4
       share_to = @ufo_author.user_friends
@@ -496,11 +494,10 @@ class UForumsController < ApplicationController
       fg = FriendGroup.where(:label => groupType).first
       if fg != nil
         share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ] )
+        share_to.each do |testing_user|
+        end
       end
     end
-
-
-
 
     share_to
   end
