@@ -457,6 +457,18 @@ class UForumsController < ApplicationController
     render :layout => false
   end
 
+  def subscribe
+    @ufo = Ufo.find(params[:ufo_id])
+
+    member = UfoMember.new
+    member.user_id = current_user.id
+    member.ufo_id = @ufo.id
+    member.save
+
+    redirect_to user_u_forum_path(@ufo.user, @ufo)
+  end
+
+
   def edit
     @ufo = Ufo.find(params[:id])
   end

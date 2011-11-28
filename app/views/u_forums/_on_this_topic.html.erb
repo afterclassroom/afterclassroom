@@ -1,51 +1,60 @@
 <div class="contMainR">
-<div class="col300 slStory">
-<div class="col300in mostPho">
-  <h1 class="col300Title">
-    <label style="text-align: left;">Members of this topic</label>
-    <% if current_user != @ufo.user %>
-      <% if @ufo.ufo_members.map(&:user_id).include?(current_user.id) %>
-        <div id="unsubscribe" style="float: right; margin-top: -13px;">Unsubscribe</div>
-      <% end %>
-    <% else %>
-      <div id="remove_usr" style="float: right; margin-top: -13px;">Manage membership</div>
-    <% end %>
-  </h1>
+  <div class="col300 slStory">
+    <div class="col300in mostPho">
+      <h1 class="col300Title">
+        <label style="text-align: left;">Members of this topic</label>
+        <% if current_user != @ufo.user %>
+          <% if @ufo.ufo_members.map(&:user_id).include?(current_user.id) %>
+            <div id="unsubscribe" style="float: right; margin-top: -13px;">Unsubscribe</div>
+          <% else %>
+            <div id="subscribe" style="float: right; margin-top: -13px;">
+
+              <%= link_to( "Subscribe", 
+                {:controller => "u_forums", :action => "subscribe", :ufo_id => @ufo.id }, :remote => false, :style=>"",
+                :method => :get, :class => "vtip", :title => "Subscribe to this topic") %>
 
 
-  <div id="form_member_area">
-    <%= render :partial => "form_member" %>
+            </div>
+          <% end %>
+        <% else %>
+          <div id="remove_usr" style="float: right; margin-top: -13px;">Manage membership</div>
+        <% end %>
+      </h1>
+
+
+      <div id="form_member_area">
+        <%= render :partial => "form_member" %>
+      </div>
+
+    </div>
   </div>
-
-</div>
-</div>
 </div>
 <script type="text/javascript">
 
 
-var curentPage = parseInt('<%= @cur_page %>');
-var enableCheckbox = false;
+  var curentPage = parseInt('<%= @cur_page %>');
+  var enableCheckbox = false;
 
-function Unsubscribe(){
-  $('#onthis_panel').hide();
-  $('#onthis_area').show();
-  $('#member_paging').hide();
+  function Unsubscribe(){
+    $('#onthis_panel').hide();
+    $('#onthis_area').show();
+    $('#member_paging').hide();
 
-  $.ajax({
-    url: '<%= unsubscribe_user_u_forums_path %>',
-    type: 'GET',
-    dataType: 'script',
-    data: {
-      ufo_id: <%= @ufo.id %>
-    },
-    success: function(data){
-    }
-  });//end ajax
-}
+    $.ajax({
+      url: '<%= unsubscribe_user_u_forums_path %>',
+      type: 'GET',
+      dataType: 'script',
+      data: {
+        ufo_id: <%= @ufo.id %>
+      },
+      success: function(data){
+      }
+    });//end ajax
+  }
 
-$(document).ready(function(){
-  //BEGIN implement unsubscribe function
-  $('#unsubscribe').hover(
+  $(document).ready(function(){
+    //BEGIN implement unsubscribe function
+    $('#unsubscribe').hover(
     function(){
       $('#unsubscribe').css('cursor','pointer');
     },
@@ -53,31 +62,31 @@ $(document).ready(function(){
       $('#unsubscribe').css('cursor','default');
     }
   );
-  $('#unsubscribe').click(function(){
-    Unsubscribe();
-  });
-  //END implement unsubscribe function
-
-  $("#remove_usr").hover(function(){
-    $(this).css('cursor','pointer');
-  }, function(){
-    $(this).css('cursor','default');
-  });
-
-  $('#remove_usr').click(function(){
-    if (enableCheckbox == false ){
-      enableCheckbox = true;
-    }
-    else {
-      enableCheckbox = false;
-    }
-    $('#form_member_area').find('input:checkbox').each(function(){
-      $(this).toggle();
+    $('#unsubscribe').click(function(){
+      Unsubscribe();
     });
+    //END implement unsubscribe function
+
+    $("#remove_usr").hover(function(){
+      $(this).css('cursor','pointer');
+    }, function(){
+      $(this).css('cursor','default');
+    });
+
+    $('#remove_usr').click(function(){
+      if (enableCheckbox == false ){
+        enableCheckbox = true;
+      }
+      else {
+        enableCheckbox = false;
+      }
+      $('#form_member_area').find('input:checkbox').each(function(){
+        $(this).toggle();
+      });
+    });
+
+
+
+
   });
-
-
-
-
-});
 </script>
