@@ -473,6 +473,13 @@ class UForumsController < ApplicationController
     redirect_to user_u_forums_path(@ufo_author)
   end
 
+  def del_cmt
+    @ufo = Ufo.find(params[:ufo_id])
+    cmt = @ufo.ufo_cmts.where(:id => params[:cmt_id]).first
+    cmt.destroy
+    redirect_to user_u_forum_path(@ufo.user, @ufo)
+  end
+
   private
   def get_share(share_value)
     groupType = ""

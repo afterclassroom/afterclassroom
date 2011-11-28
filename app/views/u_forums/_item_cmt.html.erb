@@ -14,7 +14,16 @@
 
     <% if current_user == @ufo_author || current_user == cmt.user %>
       <div style="float: right">
-        <img src="/images/icon-ing.gif" id=""/>
+        <!-- img src="/images/icon-ing.gif" id=""/ -->
+        
+        
+    <%= link_to( image_tag("/images/icon-ing.gif"), 
+      {:controller => "u_forums", :action => "del_cmt", :ufo_id => @ufo.id, :cmt_id => cmt.id  }, :remote => false, :style=>"",
+      :method => :get, :confirm => 'Are you sure you want to delete it?', 
+      :class => "vtip", :title => "Delete your comment") %>
+
+        
+        
       </div>
     <% end %>
 
