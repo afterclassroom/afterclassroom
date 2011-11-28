@@ -11,10 +11,12 @@
 
 
 
-
+        <% if current_user == @ufo_author %>
         <div class="inboxFoNew">
           <%= link_to raw('<span class="span1">Post a new topic</span>'), new_user_u_forum_path(current_user) %>
         </div>
+        <% end %>
+
       </div>
 
 
