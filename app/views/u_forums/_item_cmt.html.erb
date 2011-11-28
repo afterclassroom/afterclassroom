@@ -1,0 +1,23 @@
+            <div style="border-bottom: 1px solid #D2D9E7; height: 80px; ">
+
+              <div class="assPic">
+                <%= show_image_user_post(cmt.user) %>
+              </div>
+
+
+              <div>
+                <div style="color: #0A81C4;">
+                  <%= show_user_post(cmt.user) %>
+                </div>
+                <div style="color: #969696"><%= time_ago_in_words(cmt.created_at, true) %> ago.</div>
+                <div><%= cmt.content %></div>
+                <div style="float: right">
+                  <img src="/images/icon-ing.gif" id=""/>
+                </div>
+                <div style="float:right;background: url(/images/ufo_attach.jpg) no-repeat scroll 0 0 transparent;height:24px;width: 24px;">
+                  <a href="javascript:downloadFile('<%= cmt.ucmt_attach.url %>')" class="downarrow"><span style="display: none;">Download</span></a>
+
+                </div>
+                <div style="float: right; display: none;">button collapse expand</div>
+              </div>
+            </div>
