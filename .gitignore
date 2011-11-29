@@ -25,6 +25,7 @@ public/system/resume_cvs/**/*
 public/javascripts/cache/
 public/stylesheets/cache/
 public/system/tool_imgs/**/* 
+public/system/datas/**/*
 vendor/gems/**/ext/**/*
 vendor/**/.git/**/*
 vendor/cache/**/*

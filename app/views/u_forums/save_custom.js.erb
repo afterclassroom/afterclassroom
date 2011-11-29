@@ -2,8 +2,10 @@ $('#wait_area').hide();
 $('#setting_area').show();
 <% if @share_to != nil %>
 $('#list_usrs').html('<%= escape_javascript ( raw(render :partial => "friend_show")) %>');  
+$('#list_usrs').show();
 <% else %>
 $('#list_usrs').html('');
 <% end %>
 $('#show_paging').html('<%= escape_javascript ( raw(render :partial => "paging_show")) %>');  
 $('#show_paging').show();
+$('#list_usrs_wait').hide();

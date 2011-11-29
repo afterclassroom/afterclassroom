@@ -73,8 +73,11 @@ class UForumsController < ApplicationController
   end
 
   def save
+
+
     @ufo = Ufo.new(params[:ufo])
     @ufo.user = current_user
+
     if @ufo.save
       flash[:notice] = "Your topic was successfully submitted."
 
@@ -95,9 +98,13 @@ class UForumsController < ApplicationController
 
       redirect_to user_u_forums_path(current_user)
     else
-      flash[:notice] = "Failed to create new topic."
+      flash[:notice] = "Failed to create new topic. Probably file size is too large."
       render :action => "new"
     end
+
+
+
+
 
   end
 

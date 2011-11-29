@@ -18,7 +18,7 @@ function AddSearchUser_<%= user.id %>(){
   $('#waiting').show();
   $('#control_pane').hide();
 
-  $.ajax({
+  addusrAjax = $.ajax({
     url: '<%= add_usr_user_u_forums_path %>',
     type: 'GET',
     dataType: 'script',

@@ -17,11 +17,11 @@
                     <span class="span1">Setting</span>
                   </a>
                 </div>
-                <div class="inboxFoSe">
-                  <%= link_to( content_tag(:span, "Edit",:class => "span1"), edit_user_u_forum_path(@ufo_author, ufo), :method => :get) %>
+                <div class="inboxFoSedit">
+                  <%= link_to( content_tag(:span, "",:class => "span1"), edit_user_u_forum_path(@ufo_author, ufo), :method => :get) %>
                 </div>
-                <div class="inboxFoSe">
-                  <%= link_to( content_tag(:span, "Remove",:class => "span1"), user_u_forum_path(@ufo_author, ufo), :method => :delete, :confirm => 'Are you sure you want to delete it?') %>
+                <div class="inboxFoSemove">
+                  <%= link_to( content_tag(:span, "",:class => "span1"), user_u_forum_path(@ufo_author, ufo), :method => :delete, :confirm => 'Are you sure you want to delete it?') %>
                 </div>
               <% end %>
 
