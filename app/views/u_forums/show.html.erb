@@ -281,10 +281,10 @@ var ajaxObj = null;
 
 <% if @ufo.ufo_custom != nil %>
     shareto = <%= @ufo.ufo_custom.share_to_index %>;
-    postlounge = <%= @ufo.ufo_custom.post_lounge %>
+    postlounge = <%= @ufo.ufo_custom.post_lounge %>;
 <% else %>
     shareto = <%= current_user.ufo_default.share_to_index %>;
-    postlounge = <%= current_user.ufo_default.post_lounge %>
+    postlounge = <%= current_user.ufo_default.post_lounge %>;
 <% end %> 
 
 
