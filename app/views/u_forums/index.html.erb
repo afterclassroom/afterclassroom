@@ -1,48 +1,31 @@
 <%= render :partial => "shared/submenu" %>
-
 <%= render :partial => "navigation" %>
-
 <div class="slStoryL">
   <div class="contDetL">
     <div class="contDetLin">
       <div class="inboxForum" style="padding:10px">
-
       <%= render :partial => "menu" %>
-
-      <%= display_flash_messages_with_raw %>
-
         <% if current_user == @ufo_author %>
         <div class="inboxFoNew">
           <%= link_to raw('<span class="span1">Post a new topic</span>'), new_user_u_forum_path(current_user) %>
         </div>
         <% end %>
-
       </div>
-
-
       <div class="inboxCenter" style="padding-left:10px;padding-right: 10px;margin-top: -5px">
-
+        <%= display_flash_messages_with_raw %>
         <div class="assItemFo">
           <% @ufos.each do |ufo|%>
             <%= render :partial => "item", :locals => {:ufo => ufo} %>
           <%  end %>
         </div>
-
-
       </div>
-
-
       <div class="assPage" style="padding-left:0">
         <span class="numPage"><%= page_entries_info @ufos %></span>
         <%= will_paginate @ufos %> 
       </div>
-
-
     </div>
   </div>
-
 </div>
-
 <div id="setting_dlg" title="Default Settings for your forums" style="display:none;">
   <div id="sContent">
     <div id="waiting_id" style="margin-left: 298px; margin-top: 66px;">
