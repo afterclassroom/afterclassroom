@@ -5856,6 +5856,25 @@ div.ufo_sel div.ufo_span2b{
     background: url("/images/btmForumSH.png") no-repeat scroll 0 0 transparent;
     color:#ffffff;
 }
+
+.inboxFoSedit a span{
+    margin-left: 34px;
+}
+.inboxFoSedit a{
+    color: #797979;
+    cursor: pointer;
+    line-height: 25px;
+    text-decoration: none;
+    background: url("/images/flistREdit.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    height: 25px;
+    width: 88px;
+    margin-top: -20px;
+}
+.inboxFoSedit a:hover{
+    background: url("/images/flistREditH.png") no-repeat scroll 0 0 transparent;
+    color:#ffffff;
+}
 .assPicFo a{
     font-family: arial;
     font-size: 13px;
@@ -5946,7 +5965,6 @@ div.ufo_sel div.ufo_span2b{
 .markFo {
     background-color: #F6F7F7;
     border-top: 1px solid #E3E3E3;
-    border-bottom: 1px solid #E3E3E3;
     border-right: 1px solid #E3E3E3;
     float: left;
     padding: 0 10px;
@@ -5956,6 +5974,7 @@ div.ufo_sel div.ufo_span2b{
     line-height: 28px;
     overflow: hidden;
     border-bottom: 1px solid #E3E3E3;
+    border-left: 1px solid #E3E3E3;
 }
 .inboxFoTop a, .inboxFoTop a:link, .inboxFoTop a:visited {
     color: #0A81C4;
