@@ -1,0 +1,198 @@
+<div id="tryitnow" >
+  <a class="tryin" style="display:block;position:fixed;top:327px;left:-47px;margin: 0;">
+    <span class="rorate_text">Try It Now</span>
+  </a>
+</div>
+<div id="popupContact">
+  <a id="popupContactClose">x</a>
+  <div style="margin-bottom: 50px;" class="clearFix" id="OverviewBoxes">
+    <div class="contentBox" id="TryNowBox">      
+      <img src="/images/no_login.png" style="border: 0 none"/>
+    </div>
+    <div class="contentBox" id="CreateClassBox">
+      <img src="/images/no_login.png" style="border: 0 none"/>
+    </div>
+    <div class="contentBox" id="StudentEnrollBox">
+      <img src="/images/no_login.png" style="border: 0 none"/>
+    </div>
+  </div>
+</div>
+
+<div id="backgroundPopup"></div>
+
+<script>
+
+  //SETTING UP OUR POPUP
+  //0 means disabled; 1 means enabled;
+  var popupStatus = 0;
+
+  //loading popup with jQuery magic!
+  function loadPopup(){
+    //loads popup only if it is disabled
+    if(popupStatus==0){
+      $("#backgroundPopup").css({
+        "opacity": "0.7"
+      });
+      $("#backgroundPopup").fadeIn("slow");
+      $("#popupContact").fadeIn("slow");
+      popupStatus = 1;
+    }
+  }
+
+  //disabling popup with jQuery magic!
+  function disablePopup(){
+    //disables popup only if it is enabled
+    if(popupStatus==1){
+      $("#backgroundPopup").fadeOut("slow");
+      $("#popupContact").fadeOut("slow");
+      popupStatus = 0;
+    }
+  }
+
+  //centering popup
+  function centerPopup(){
+    //request data for centering
+    var windowWidth = document.documentElement.clientWidth;
+    var windowHeight = document.documentElement.clientHeight;
+    var popupHeight = $("#popupContact").height();
+    var popupWidth = $("#popupContact").width();
+    //centering
+    $("#popupContact").css({
+      "position": "fixed",
+      "top": windowHeight/2-popupHeight/2,
+      "left": windowWidth/2-popupWidth/2
+    });
+    //only need force for IE6
+	
+    $("#backgroundPopup").css({
+      "height": windowHeight
+    });
+	
+  }
+
+
+  //CONTROLLING EVENTS IN jQuery
+  $(document).ready(function(){
+	
+    //LOADING POPUP
+    //Click the button event!
+    $("#tryitnow").click(function(){
+      //centering with css
+      centerPopup();
+      //load popup
+      loadPopup();
+    });
+				
+    //CLOSING POPUP
+    //Click the x event!
+    $("#popupContactClose").click(function(){
+      disablePopup();
+    });
+    //Click out event!
+    $("#backgroundPopup").click(function(){
+      disablePopup();
+    });
+    //Press Escape event!
+    $(document).keypress(function(e){
+      if(e.keyCode==27 && popupStatus==1){
+        disablePopup();
+      }
+    });
+
+  });
+</script>
+
+<style>
+  #backgroundPopup{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    background:#000000;
+    border:1px solid #cecece;
+    z-index:21;
+  }
+  #popupContact{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    background:#FFFFFF;
+    border:2px solid #cecece;
+    z-index:22;
+    padding:12px;
+    font-size:13px;
+  }
+  #popupContact h1{
+    text-align:left;
+    color:#6FA5FD;
+    font-size:22px;
+    font-weight:700;
+    border-bottom:1px dotted #D3D3D3;
+    padding-bottom:2px;
+    margin-bottom:20px;
+  }
+  #popupContactClose{
+    font-size:14px;
+    line-height:14px;
+    right:6px;
+    top:4px;
+    position:absolute;
+    color:#6fa5fd;
+    font-weight:700;
+    display:block;
+    cursor: pointer;
+  }
+  #OverviewBoxes .contentBox {
+    background: #D5E9F2;
+    border: 1px solid #3D76A4;
+    -moz-box-shadow: 0 0 5px #98c7e6;
+    -khtml-box-shadow: 0 0 5px #98c7e6;
+    -webkit-box-shadow: 0 0 5px #98c7e6;
+    box-shadow: 0 0 5px #98c7e6;
+    color: #30424D;
+    float: left;
+    font-size: 13px;
+    padding: 10px 10px;
+    position: relative;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    width: 300px;
+    margin-right: 10px;
+  }
+  .rorate_text{
+    /* Safari */
+    -webkit-transform: rotate(-90deg);
+
+    /* Firefox */
+    -moz-transform: rotate(-90deg);
+
+    /* IE */
+    -ms-transform: rotate(-90deg);
+
+    /* Opera */
+    -o-transform: rotate(-90deg);
+
+    /* Internet Explorer */
+
+    transform:rotate(-90deg);
+    background: none repeat scroll 0 0 red;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 4px;
+    position: absolute;
+    text-indent: 5px;
+    width: 110px;
+    writing-mode: tb-rl;
+    filter: flipv fliph;
+  }
+</style>
