@@ -27,68 +27,68 @@
             <img src="/images/ajax-loader-a.gif"/>
           </div>
           <% if current_user == @ufo_author   %>
-          <div id="setting_area" style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; min-height: 120px; width: 593px;">
+            <div id="setting_area" style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; min-height: 120px; width: 593px;">
 
-            <div style='height: 60px;'>
-              <div style="border: 0px solid black; width: 289px; height: 52px;">
-                <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
-                <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
-                <div style="margin-top:14px;">
-                  <%= show_share_custom(@ufo) %>
+              <div style='height: 60px;'>
+                <div style="border: 0px solid black; width: 289px; height: 52px;">
+                  <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
+                  <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
+                  <div style="margin-top:14px;">
+                    <%= show_share_custom(@ufo) %>
+                  </div>
+                </div>
+                <div style="display: none; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                  <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
+                  <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
+                  <div style="margin-top:12px;">
+                    <select style="width: 100px;">
+                      <option value="1">Yes</option>
+                      <option value="2">No</option>
+                    </select>                       
+                  </div>
                 </div>
               </div>
-              <div style="display: none; width: 289px; float: right; margin-top: -54px; height: 52px;">
-                <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
-                <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
-                <div style="margin-top:12px;">
-                  <select style="width: 100px;">
-                    <option value="1">Yes</option>
-                    <option value="2">No</option>
-                  </select>                       
+              <div style='height: 54px;'>
+                <div style="border: 0px solid black; width: 289px; height: 52px;">
+                  <label style="text-align: left; color: #969696;">Post to your lounge?</label>
+
+
+                  <div>
+                    <% pr = @ufo.ufo_custom %>
+                    <% check = pr ? pr.post_lounge : 0 %>
+                    <% if (check == 0 || check == false) %>
+                      <button id="to_lounge">Post to lounge</button>
+                    <% else %>
+                      This topic has been posted to your lounge.
+                    <% end %>
+                  </div>
+
+
+                </div>
+                <div style="display: none; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                  <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
+                  <div>
+                    <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
+                  </div>
                 </div>
               </div>
+
+
+              <div style='height: 60px;'>
+                <div style="border: 0px solid black; width: 289px; height: 52px;">
+                  <label style="text-align: left; color: #969696; float: left;margin-right: 182px; margin-top: 8px;">Invite</label>
+                  <div style="margin-top:-15px;">
+                    <button id="invite_btn">Invite Friends</button>
+                  </div>
+                </div>
+                <div style="display: none; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                </div>
+              </div>
+
+
+
+
             </div>
-            <div style='height: 54px;'>
-              <div style="border: 0px solid black; width: 289px; height: 52px;">
-                <label style="text-align: left; color: #969696;">Post to your lounge?</label>
-
-
-                <div>
-                  <% pr = @ufo.ufo_custom %>
-                  <% check = pr ? pr.post_lounge : 0 %>
-                  <% if (check == 0 || check == false) %>
-                    <button id="to_lounge">Post to lounge</button>
-                  <% else %>
-                    This topic has been posted to your lounge.
-                  <% end %>
-                </div>
-
-
-              </div>
-              <div style="display: none; width: 289px; float: right; margin-top: -54px; height: 52px;">
-                <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
-                <div>
-                  <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
-                </div>
-              </div>
-            </div>
-
-            
-            <div style='height: 60px;'>
-              <div style="border: 0px solid black; width: 289px; height: 52px;">
-                <label style="text-align: left; color: #969696; float: left;margin-right: 182px; margin-top: 8px;">Invite</label>
-                <div style="margin-top:-15px;">
-                  <button id="invite_btn">Invite Friends</button>
-                </div>
-              </div>
-              <div style="display: none; width: 289px; float: right; margin-top: -54px; height: 52px;">
-              </div>
-            </div>
-            
-            
-            
-
-          </div>
           <% end  %> <!-- end if current_user == @ufo_author -->
 
 
@@ -117,13 +117,13 @@
 
 
 
-                    <div id="friend_pad" style="display: none; width: 280px; min-height: 31px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px; padding: 10px;">
-                      <div id="waiting">
-                        <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
-                      </div>
-                      <div id="control_pane" style="">
-                      </div>
+                  <div id="friend_pad" style="display: none; width: 280px; min-height: 31px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px; padding: 10px;">
+                    <div id="waiting">
+                      <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
                     </div>
+                    <div id="control_pane" style="">
+                    </div>
+                  </div>
 
 
 
@@ -156,7 +156,7 @@
                 <div class="assContFoD615">
                   <div id="list_usrs_wait" style="margin-left: 298px; margin-top: 6px; display:none;">
                     <img src="/images/ajax-loader-a.gif"/>
-                </div>
+                  </div>
 
                   <div id="list_usrs" style="padding: 5px 25px;" class="assContFoC615">
                     <%= render :partial => "friend_show" %>
@@ -178,7 +178,7 @@
             <% if @ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
               <div style="background: url('/images/ufo_attach.jpg') no-repeat; width: 24px; height: 24px;">
                 <span class="btmDownfo"><a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow" style="margin-left: 20px;padding-bottom: 14px;padding-left: 90px;">
-                  <span class="forums_dow" style="margin-left: -55px;margin-top: 6px;position: absolute;">Download</span> 
+                    <span class="forums_dow" style="margin-left: -55px;margin-top: 6px;position: absolute;">Download</span> 
                   </a>
 
                 </span>
@@ -272,10 +272,10 @@
 
 <script type="text/javascript">
 
-var shareto;
-var postlounge;
-var pad_mouse_is_inside = false;
-var ajaxObj = null;
+  var shareto;
+  var postlounge;
+  var pad_mouse_is_inside = false;
+  var ajaxObj = null;
 
 
 
@@ -315,27 +315,27 @@ var ajaxObj = null;
 
 
 
-function SaveCustom(ishareto,ipostlounge ){
-  $('#wait_area').show();
-  $('#setting_area').hide();
-  $('#selected_usr').html('');
-  $('#list_usrs').html('');
-  $('#submit_new_friend').hide();
-  $('#show_paging').hide();
+    function SaveCustom(ishareto,ipostlounge ){
+      $('#wait_area').show();
+      $('#setting_area').hide();
+      $('#selected_usr').html('');
+      $('#list_usrs').html('');
+      $('#submit_new_friend').hide();
+      $('#show_paging').hide();
 
-  $.ajax({
-    url: '<%= save_custom_user_u_forums_path %>',
-    type: 'POST',
-    dataType: 'script',
-    data: {
-      shareto: ishareto,
-      postlounge: ipostlounge,
-      id: <%= @ufo.id %>
-    },
-    success: function(html){
+      $.ajax({
+        url: '<%= save_custom_user_u_forums_path %>',
+        type: 'POST',
+        dataType: 'script',
+        data: {
+          shareto: ishareto,
+          postlounge: ipostlounge,
+          id: <%= @ufo.id %>
+        },
+        success: function(html){
+        }
+      });
     }
-  });
-}
 
 
 
