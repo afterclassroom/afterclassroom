@@ -96,7 +96,6 @@
                             <label style="text-align: left; color: #969696;" class="vtip" title="Select your option whether to post this topic on your lounge">Post to your lounge?</label>
                             <div>
                               <%= show_tolounge_setting(current_user) %>
-
                             </div>
                           </div>
                           <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
@@ -189,6 +188,12 @@
             </div>
           </div>
           <div class="bottomline"></div>
+          
+            <div id="captcha_area" style="margin-left:120px">
+              <%= show_simple_captcha(:label => "CAPTCHA Code *", :class => '{validate:{required:true}}') %>
+            </div>
+          
+          
           <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
             <span class="btmComment"><a href="javascript:;" id="btn_submit">Submit</a></span>
             <span class="btmComment"><a href="javascript:;">Cancel</a></span>
