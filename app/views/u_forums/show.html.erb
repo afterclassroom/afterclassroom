@@ -11,7 +11,7 @@
             <div style="border: 0px solid green; height: 30px; width: 512px; margin-left: 24px; margin-top: -27px;">
               <label style="float: left; font-size: 250%;color: #969696;"><%= @ufo.title %></label>
             </div>
-            <div style="float: left; border: 0px solid black; margin-left: -75px; width: 200px; margin-top: 3px;">
+            <div style="float: left; border: 0px solid black; margin-left: -86px; width: 200px; margin-top: 3px;">
               <label style="text-align: left;color: #969696;">From: <%= @ufo.user.name %></label>
               <label style="text-align: left;color: #969696;">Date : <%= @ufo.created_at.strftime('%B %d, %Y at %I:%M%p') %></label>
 
@@ -27,12 +27,17 @@
             <img src="/images/ajax-loader-a.gif"/>
           </div>
           <% if current_user == @ufo_author   %>
+          
+          
+
             <div id="setting_area" style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; min-height: 120px; width: 593px;">
 
-              <div style='height: 60px;'>
+              <div class="contentBoxFo">
                 <div style="border: 0px solid black; width: 289px; height: 52px;">
+                  <div>
                   <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
-                  <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;" class="vtip" title="Members from your selected group are able to discuss on this topic">Who can joins?</label>
+                  <label style="text-align: left; color: #969696; float: right;margin-right: 175px; margin-top: -12px;" class="vtip" title="Members from your selected group are able to discuss on this topic">Who can joins?</label>
+                  </div>
                   <div style="margin-top:14px;">
                     <%= show_share_custom(@ufo) %>
                   </div>
@@ -48,7 +53,7 @@
                   </div>
                 </div>
               </div>
-              <div style='height: 54px;'>
+              <div class="contentBoxFo">
                 <div style="border: 0px solid black; width: 289px; height: 52px;">
                   <label style="text-align: left; color: #969696;" class="vtip" title="Showing status of whether you had posted this topic to your lounge">Post to your lounge?</label>
 
@@ -74,7 +79,7 @@
               </div>
 
 
-              <div style='height: 60px;'>
+              <div class="contentBoxFo">
                 <div style="border: 0px solid black; width: 289px; height: 52px;">
                   <label style="text-align: left; color: #969696; float: left;margin-right: 182px; margin-top: 8px;" class="vtip" title="Subscribe members to the topic by clicking th button below">Invite</label>
                   <div style="margin-top:-15px;">
@@ -92,7 +97,7 @@
           <% end  %> <!-- end if current_user == @ufo_author -->
 
 
-          <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
+          
 
           <div style="padding: 10px; display: none;" class="inner2" id="area_more_friend">
             <div style="border-right: 1px solid #CECECE;">
@@ -103,20 +108,6 @@
                   <div id="invite_others" style="float: right; margin-right: 10px;">Invite other member</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                   <div id="friend_pad" style="display: none; width: 280px; min-height: 31px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px; padding: 10px;">
                     <div id="waiting">
                       <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
@@ -124,12 +115,6 @@
                     <div id="control_pane" style="">
                     </div>
                   </div>
-
-
-
-
-
-
 
                 </label>
               </div>
@@ -286,12 +271,6 @@
     shareto = <%= current_user.ufo_default.share_to_index %>;
     postlounge = <%= current_user.ufo_default.post_lounge %>;
 <% end %> 
-
-
-
-
-
-
 
   function PostLounge(){
     $('#setting_area').hide();

@@ -1,22 +1,28 @@
 <div id="tryitnow" >
-  <a class="tryin" style="display:block;position:fixed;top:327px;left:-47px;margin: 0;">
-    <span class="rorate_text">Try It Now</span>
+  <a class="tryin" style="display: block; position: fixed; top: 283px; left: -2px; margin: 0pt;cursor: pointer;">
+    <img style="border: 0pt none;" src="/images/try-it-now.png">
   </a>
 </div>
 <div id="popupContact">
-  <a id="popupContactClose">x</a>
+  <a id="popupContactClose"></a>
   <div style="margin-bottom: 50px;" class="clearFix" id="OverviewBoxes">
     <div class="contentBox" id="TryNowBox">      
-      <h3>Learning Resources</h3>
-      <img src="/images/no_login.png" style="border: 0 none"/>
+      <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Resources</span>
+      <a href="#" target="_blank">
+      <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;"/>
+      </a>
     </div>
     <div class="contentBox" id="CreateClassBox">
-      <h3>Social Networking</h3>
-      <img src="/images/no_login.png" style="border: 0 none"/>
+      <span style="color: #30424D;font-size: 15px;font-weight: bold;">Social Networking</span>
+      <a href="#" target="_blank">
+      <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;"/>
+      </a>
     </div>
-    <div class="contentBox" id="StudentEnrollBox">
-      <h3>Learning Tools</h3>
-      <img src="/images/no_login.png" style="border: 0 none"/>
+    <div class="contentBox" id="StudentEnrollBox" style="margin-right:0px">
+      <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Tools</span>
+      <a href="#" target="_blank">
+      <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;"/>
+      </a>
     </div>
   </div>
 </div>
@@ -137,15 +143,14 @@
     margin-bottom:20px;
   }
   #popupContactClose{
-    font-size:14px;
-    line-height:14px;
-    right:6px;
-    top:4px;
-    position:absolute;
-    color:#6fa5fd;
-    font-weight:700;
-    display:block;
+    background: url("/images/Photo/fancybox.png") repeat scroll -40px 0 transparent;
     cursor: pointer;
+    height: 30px;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 30px;
+    z-index: 1103;
   }
   #OverviewBoxes .contentBox {
     background: #D5E9F2;
@@ -167,6 +172,9 @@
     background-clip: padding-box;
     width: 300px;
     margin-right: 10px;
+  }
+  .contentBox span a{
+    cursor: pointer;
   }
   .rorate_text{
     /* Safari */
