@@ -5858,22 +5858,38 @@ div.ufo_sel div.ufo_span2b{
 }
 
 .inboxFoSedit a span{
-    margin-left: 34px;
+    margin-left: 24px;
 }
 .inboxFoSedit a{
     color: #797979;
     cursor: pointer;
-    line-height: 25px;
-    text-decoration: none;
-    background: url("/images/flistREdit.png") no-repeat scroll 0 0 transparent;
-    float: right;
     height: 25px;
-    width: 88px;
+    text-decoration: none;
+    background: url("/images/edit_forum.png") no-repeat scroll 0 0 transparent;
+    float: right;
     margin-top: -20px;
+    margin-right: 5px;
+    width: 29px;
 }
 .inboxFoSedit a:hover{
-    background: url("/images/flistREditH.png") no-repeat scroll 0 0 transparent;
-    color:#ffffff;
+    background: url("/images/edit_forumH.png") no-repeat scroll 0 0 transparent; 
+}
+.inboxFoSemove a span{
+    margin-left: 22px;
+}
+.inboxFoSemove a{
+    color: #797979;
+    cursor: pointer;
+    line-height: 25px;
+    text-decoration: none;
+    background: url("/images/detele_forum.png") no-repeat scroll 0 0 transparent;
+    float: right;
+    margin-top: -20px;
+    margin-right: 5px;
+    width: 29px;
+}
+.inboxFoSemove a:hover{
+    background: url("/images/detele_forumH.png") no-repeat scroll 0 0 transparent;
 }
 .assPicFo a{
     font-family: arial;
