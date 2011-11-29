@@ -2,14 +2,17 @@
 
 <%= render :partial => "navigation" %>
 
+
 <div class="slStoryL">
   <div class="contDetL">
     <div class="contDetLin">
 
       <div class="overall">
-        <%= form_for(@ufo, :url => url_for(:controller => "u_forums", :action => "save") , :html => {:multipart => true, :id => "form_new" }) do |f| %>
+        <%= form_for(@ufo, :url => user_u_forums_path(@ufo_author) , :html => {:multipart => true, :id => "form_new" }, :method => :post) do |f| %>
           <div style="padding: 10px">
             <div style="border-right: 1px solid #cecece;border-bottom: 1px solid #CECECE;">
+              <%= display_flash_messages_with_raw %>
+
               <div class="inner2">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop"> 
