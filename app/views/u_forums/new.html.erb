@@ -2,21 +2,24 @@
 
 <%= render :partial => "navigation" %>
 
+
 <div class="slStoryL">
   <div class="contDetL">
     <div class="contDetLin">
 
       <div class="overall">
-        <%= form_for(@ufo, :url => url_for(:controller => "u_forums", :action => "save") , :html => {:multipart => true, :id => "form_new" }) do |f| %>
+        <%= form_for(@ufo, :url => user_u_forums_path(@ufo_author) , :html => {:multipart => true, :id => "form_new" }, :method => :post) do |f| %>
           <div style="padding: 10px">
             <div style="border-right: 1px solid #cecece;border-bottom: 1px solid #CECECE;">
+              <%= display_flash_messages_with_raw %>
+
               <div class="inner2">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop"> 
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Title</label>
                 </div>
                 <div style="padding:8px 8px 8px 0px">
-                  <%= f.text_field :title, :class => '', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
+                  <%= f.text_field :title, :class => '{validate:{required:true}}', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
                 </div>
               </div>
 
@@ -26,7 +29,7 @@
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Content</label>
                 </div>       
                 <div style="padding:8px 8px 8px 0px">
-                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => ''%>
+                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => '{validate:{required:true}}'%>
                 </div>
               </div>
               <div class="inner2">
@@ -105,43 +108,16 @@
                             </div>
                           </div -->
                         </div>
-
                       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                   </div>
                 </div>
-
               </div>
               <div class="inner2" style="margin-top: 8px;">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Notify Friends via email
                     <a id="btn_invite" style="float: right; margin-top: 2px;" href="javascript:;">Invite other members</a>
-
-
-
                     <div id="friend_pad" style="display: none; width: 280px; min-height: 31px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px; padding: 10px;">
                       <div id="waiting">
                         <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
@@ -151,7 +127,6 @@
                     </div>
                   </label>
                 </div>
-
                 <div class="assContFoT615" style="float: none">
                   <div class="assContFoD615">
                     <div class="assContFoC615" style="padding:5px 25px">
@@ -188,12 +163,9 @@
             </div>
           </div>
           <div class="bottomline"></div>
-          
-            <div id="captcha_area" style="margin-left:120px">
-              <%= show_simple_captcha(:label => "CAPTCHA Code *", :class => '{validate:{required:true}}') %>
-            </div>
-          
-          
+          <div id="captcha_area" style="margin-left:120px">
+            <%= show_simple_captcha(:label => "CAPTCHA Code *", :class => '{validate:{required:true}}') %>
+          </div>
           <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
             <span class="btmComment"><a href="javascript:;" id="btn_submit">Submit</a></span>
             <span class="btmComment"><a href="javascript:;">Cancel</a></span>
@@ -209,7 +181,6 @@
   var pagingAjax = null;
   var shareValue = <%= current_user.ufo_default ? current_user.ufo_default.share_to_index : 0 %>;
   var addusrAjax = null;
-
 
   function LoadFriendPane(){
     ajaxObj = $.ajax({
@@ -302,7 +273,14 @@
     })
   });
   function SubmitTopic(){
-    $("form#form_new").submit();
+    //$("form#form_new").submit();
+    var result = $("form#form_new").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("form#form_new").submit();
+    }
+    
   }
   $(document).ready(function(){
     $('#btn_submit').click(function(){

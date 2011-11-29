@@ -2,3 +2,21 @@ $('#form_member_area').html('<%= escape_javascript ( raw(render :partial => "for
 vtip();
 
 
+    $("#remove_usr").unbind();
+    $("#remove_usr").hover(function(){
+      $(this).css('cursor','pointer');
+    }, function(){
+      $(this).css('cursor','default');
+    });
+
+    $('#remove_usr').click(function(){
+      if (enableCheckbox == false ){
+        enableCheckbox = true;
+      }
+      else {
+        enableCheckbox = false;
+      }
+      $('#form_member_area').find('input:checkbox').each(function(){
+        $(this).toggle();
+      });
+    });
