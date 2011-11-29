@@ -203,6 +203,7 @@
   var pad_mouse_is_inside = false;
   var pagingAjax = null;
   var shareValue = <%= current_user.ufo_default ? current_user.ufo_default.share_to_index : 0 %>;
+  var addusrAjax = null;
 
 
   function LoadFriendPane(){
@@ -229,6 +230,11 @@
   }
 
   function SelectShare(str_share){
+    if (addusrAjax != null){
+      addusrAjax.abort();
+      addusrAjax = null;
+    }
+    
     $.ajax({
       url: '<%= select_share_user_u_forums_path %>',
       type: 'GET',
