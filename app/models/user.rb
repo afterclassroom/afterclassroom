@@ -323,6 +323,7 @@ class User < ActiveRecord::Base
       fof = fof + f.user_friends
     end
     fof = fof + self.user_friends
+		fof = fof.uniq
   end
   
   def set_time_zone_from_ip(ip)
