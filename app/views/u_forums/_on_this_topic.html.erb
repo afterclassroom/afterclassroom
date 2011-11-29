@@ -8,24 +8,18 @@
             <div id="unsubscribe" style="float: right; margin-top: -13px;">Unsubscribe</div>
           <% else %>
             <div id="subscribe" style="float: right; margin-top: -13px;">
-
               <%= link_to( "Subscribe", 
                 {:controller => "u_forums", :action => "subscribe", :ufo_id => @ufo.id }, :remote => false, :style=>"",
                 :method => :get, :class => "vtip", :title => "Subscribe to this topic") %>
-
-
             </div>
           <% end %>
         <% else %>
           <div id="remove_usr" style="float: right; margin-top: -13px;" class="vtip" title="Enable the function to remove members from this topic">Manage membership</div>
         <% end %>
       </h1>
-
-
       <div id="form_member_area">
         <%= render :partial => "form_member" %>
       </div>
-
     </div>
   </div>
 </div>
