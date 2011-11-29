@@ -230,3 +230,12 @@ Nov 29, 2011 8:28:40 AM org.apache.solr.core.SolrCore execute
 INFO: [] webapp=/solr path=/select params={sort=created_at_d+desc&qf=name_texts^2+email_texts&hl.simple.pre=@@@hl@@@&hl.fl=name_texts&wt=ruby&hl=on&rows=5&defType=dismax&fl=*+score&start=0&q=david&hl.simple.post=@@@endhl@@@&fq=type:User} hits=1 status=0 QTime=2 
 Nov 29, 2011 8:43:23 AM org.apache.solr.core.SolrCore execute
 INFO: [] webapp=/solr path=/select params={sort=created_at_d+desc&qf=name_texts^2+email_texts&hl.simple.pre=@@@hl@@@&hl.fl=name_texts&wt=ruby&hl=on&rows=5&defType=dismax&fl=*+score&start=0&q=susan&hl.simple.post=@@@endhl@@@&fq=type:User} hits=1 status=0 QTime=2 
+Nov 29, 2011 10:24:03 AM org.apache.solr.core.SolrDeletionPolicy onInit
+INFO: SolrDeletionPolicy.onInit: commits:num=1
+	commit{dir=/home/datnt/projects/ater/afterclassroom/solr/data/development/index,segFN=segments_6,version=1321495619812,generation=6,filenames=[_0.tis, _3.tii, _3.frq, _1.frq, _4.prx, _4.fnm, _3.fdt, _3.fnm, _2.tii, _1.fnm, _4.fdx, _4.frq, _1.tii, _4.tis, _0.prx, _3.nrm, _4.tii, _0.nrm, _1.tis, _0.fnm, _2.prx, _4.nrm, _2.frq, _2.fdt, _4.fdt, _3.prx, _2.fdx, _2.fnm, _3.fdx, _1.prx, _1.fdx, _2.tis, _0.tii, _1.fdt, _0.frq, _0.fdx, segments_6, _0.fdt, _1.nrm, _2.nrm, _3.tis]
+Nov 29, 2011 10:24:03 AM org.apache.solr.core.SolrDeletionPolicy updateCommits
+INFO: newest commit = 1321495619812
+Nov 29, 2011 10:24:04 AM org.apache.solr.update.processor.LogUpdateProcessor finish
+INFO: {add=[User 4]} 0 5054
+Nov 29, 2011 10:24:04 AM org.apache.solr.core.SolrCore execute
+INFO: [] webapp=/solr path=/update params={wt=ruby} status=0 QTime=5054 

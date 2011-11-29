@@ -268,8 +268,6 @@
 
 
 
-
-
 <script type="text/javascript">
 
   var shareto;
@@ -277,6 +275,7 @@
   var pad_mouse_is_inside = false;
   var ajaxObj = null;
   var pagingAjax = null;
+  var addusrajax = null;
 
 
 
@@ -328,6 +327,10 @@
         pagingAjax.abort();
         pagingAjax = null;
         $('#list_usrs_wait').hide();
+      }
+      
+      if (addusrajax != null){
+        addusrajax.abort();
       }
 
       $.ajax({

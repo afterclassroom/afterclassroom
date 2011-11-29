@@ -10,7 +10,7 @@ function AddUser<%= usr.id %>(){
   $('#list_usrs').hide();
   $('#show_paging').hide();
 
-  $.ajax({
+  addusrajax = $.ajax({
     url: '<%= add_usr_show_user_u_forums_path %>',
     type: 'GET',
     dataType: 'script',
