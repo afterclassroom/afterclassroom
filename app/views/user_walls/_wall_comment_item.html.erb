@@ -6,7 +6,7 @@
   <% end %>
   <div class="proListPic"><%= show_image_user_post(comment.user) %></div>
   <div class="proListR" style="width: 84%">
-    <div class="AfterClCom"><%= show_user_post(comment.user) %> - <%= comment.comment %></div>
+    <div class="AfterClCom"><%= show_user_post(comment.user) %> - <%= raw(comment.comment) %></div>
     <div class="proListCont">
       <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %>
       <%= render :partial => "shared/post_comments/rating_action", :locals => {:comment => comment} %>

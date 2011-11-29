@@ -34,6 +34,9 @@ body input, body textarea, body select{
 .contMainC{
     width:203px;float:left;
 }
+.contMainC165{
+    width:173px;float:left;
+}
 .contMainR{
     width:300px;float:right;
     overflow:hidden;

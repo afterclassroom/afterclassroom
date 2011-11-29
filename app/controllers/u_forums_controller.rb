@@ -58,7 +58,9 @@ class UForumsController < ApplicationController
   end
 
   def new
-    @ufo = Ufo.new()
+    if @ufo == nil
+      @ufo = Ufo.new()
+    end
 
     session[:list_selected_usrs] = []
 
@@ -72,40 +74,41 @@ class UForumsController < ApplicationController
     @cur_page = share_to ? "1" : 0
   end
 
-  def save
-
+  def create
 
     @ufo = Ufo.new(params[:ufo])
-    @ufo.user = current_user
 
-    if @ufo.save
-      flash[:notice] = "Your topic was successfully submitted."
+    if simple_captcha_valid?
+      @ufo = Ufo.new(params[:ufo])
+      @ufo.user = current_user
 
-      custom_setting = UfoCustom.find_or_create_by_ufo_id(@ufo.id)
-      custom_setting.share_to_index = params[:ufo_setting]
-      custom_setting.post_lounge = params[:lounge_setting]
-      custom_setting.save
+      if @ufo.save
+        flash[:notice] = "Your topic was successfully submitted."
 
-      session[:list_selected_usrs].each do |usr_id|
-        member = UfoMember.new
-        member.user_id = usr_id
-        member.ufo_id = @ufo.id
-        member.save
+        custom_setting = UfoCustom.find_or_create_by_ufo_id(@ufo.id)
+        custom_setting.share_to_index = params[:ufo_setting]
+        custom_setting.post_lounge = params[:lounge_setting]
+        custom_setting.save
+
+        session[:list_selected_usrs].each do |usr_id|
+          member = UfoMember.new
+          member.user_id = usr_id
+          member.ufo_id = @ufo.id
+          member.save
+        end
+
+        @ufo = Ufo.new()
+        session[:list_selected_usrs] = [] #reset the session that store the selected users
+
+        redirect_to user_u_forums_path(current_user)
+      else
+        flash[:notice] = "Failed to create new topic. Probably file size is too large."
+        render :action => "new"
       end
-
-      @ufo = Ufo.new()
-      session[:list_selected_usrs] = [] #reset the session that store the selected users
-
-      redirect_to user_u_forums_path(current_user)
     else
-      flash[:notice] = "Failed to create new topic. Probably file size is too large."
+      flash[:warning] = "Captcha does not match."
       render :action => "new"
     end
-
-
-
-
-
   end
 
   def dft_stgs
@@ -494,7 +497,11 @@ class UForumsController < ApplicationController
     else
       fg = FriendGroup.where(:label => groupType).first
       if fg != nil
-        share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ], :select => "DISTINCT users.id")
+        if @ufo_author == nil
+          @ufo_author = current_user #this line support for fix bug when add new with wrong captcha
+          share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ], :select => "DISTINCT users.id")
+        end
+        
       end
     end
 
