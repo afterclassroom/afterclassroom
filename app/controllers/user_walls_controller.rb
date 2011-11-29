@@ -353,19 +353,21 @@ class UserWallsController < ApplicationController
 				if e.attributes['width'] != ""
 					@arr_img << img_url if e.attributes['width'].to_i > 90
 				else
-					i_url = URI.parse(img_url)
-					Net::HTTP.start(i_url.host, i_url.port) {|http|
-					resp = http.get(i_url.path)
-					unless resp.nil?
-						tempfile = Tempfile.new('tmp_img.jpg')
-						File.open(tempfile.path, 'wb') do |f|
-							f.write resp.body
+					begin
+						i_url = URI.parse(img_url)
+						Net::HTTP.start(i_url.host, i_url.port) {|http|
+						resp = http.get(i_url.path)
+						unless resp.nil?
+							tempfile = Tempfile.new('tmp_img.jpg')
+							File.open(tempfile.path, 'wb') do |f|
+								f.write resp.body
+							end
+							image = MiniMagick::Image.open(tempfile.path)
+							@arr_img << img_url if image[:width].to_i > 90
 						end
-						image = MiniMagick::Image.open(tempfile.path)
-						@arr_img << img_url if image[:width].to_i > 90
-						
+					rescue
+						# Nothing
 					end
-				}
 				end
 			end
       image_link = ""

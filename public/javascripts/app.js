@@ -241,8 +241,8 @@ function formatLinkForPaginationComment(){
     });
 }
 
-function send_answer(post_id){
-    comment = $('#comment').val();
+function send_answer(post_id){ 
+    comment = KE.html('answereditor');
     if (comment != "") {
         $.ajax({
             url: '/post_qas/create_comment',
@@ -251,12 +251,12 @@ function send_answer(post_id){
             dataType: 'html',
             data: ({
                 post_id: post_id,
-                comment: comment.substring(0, 500),
+                comment: comment,
                 show: $('#show').val()
             }),
             success: function(data){
                 $('#list_comments').html(data);
-                $('#comment').val('');
+                KE.html('answereditor', '');
                 $('#form_comment').toggle('slow');
             }
         });

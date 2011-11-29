@@ -880,7 +880,7 @@ span.btmDown a:hover {
 }
 
 .reqEn {
-    height: 100px;
+    min-height: 100px;
 }
 
 .reqEn textarea {
@@ -1122,6 +1122,7 @@ span.btmDown a:hover {
 
 .AsDcomIn .submit {
     padding-left: 8px;
+		padding-top: 10px;
 }
 
 .AsDcomL {

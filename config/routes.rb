@@ -1,4 +1,8 @@
 Afterclassroom::Application.routes.draw do
+  get 'kindeditor/images_list'
+
+  post 'kindeditor/upload'
+
   # RESTful rewrites
   match '/signup' => 'users#new', :as => :signup
   match '/activate/:activation_code' => 'users#activate', :as => :activate
