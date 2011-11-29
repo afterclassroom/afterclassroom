@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116090556) do
+ActiveRecord::Schema.define(:version => 20111128032310) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -105,9 +105,9 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.string   "key",           :limit => 40
     t.string   "secret",        :limit => 40
     t.integer  "user_id"
+    t.boolean  "xauth_enabled",               :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "xauth_enabled", :limit => 1,  :default => 0
   end
 
   add_index "client_applications", ["key"], :name => "index_client_applications_on_key", :unique => true
@@ -224,9 +224,9 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
   end
 
   create_table "forums", :force => true do |t|
-    t.string   "title"
-    t.string   "content"
     t.integer  "user_id",    :null => false
+    t.string   "title"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -304,6 +304,15 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.datetime "updated_at"
   end
 
+  create_table "kindeditor_images", :force => true do |t|
+    t.string   "data_file_name"
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.datetime "data_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "learn_tool_cates", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -347,13 +356,13 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
   create_table "music_albums", :force => true do |t|
     t.integer  "user_id",                                        :null => false
     t.string   "name",                                           :null => false
+    t.integer  "count_view",                      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "music_album_attach_file_name"
     t.string   "music_album_attach_content_type"
     t.integer  "music_album_attach_file_size"
     t.datetime "music_album_attach_updated_at"
-    t.integer  "count_view",                      :default => 0, :null => false
   end
 
   create_table "musics", :force => true do |t|
@@ -473,9 +482,9 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
   create_table "photo_albums", :force => true do |t|
     t.integer  "user_id",                   :null => false
     t.string   "name",                      :null => false
+    t.integer  "count_view", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "count_view", :default => 0, :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -531,11 +540,11 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
   create_table "post_events", :force => true do |t|
     t.integer  "post_id"
     t.integer  "event_type_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string   "address"
     t.string   "phone"
     t.string   "rating_status"
-    t.datetime "start_time"
-    t.datetime "end_time"
   end
 
   create_table "post_exam_schedules", :force => true do |t|
@@ -623,13 +632,8 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.datetime "due_date"
   end
 
-  create_table "post_qa_categories", :force => true do |t|
-    t.string "name"
-  end
-
   create_table "post_qas", :force => true do |t|
     t.integer "post_id"
-    t.integer "post_qa_category_id"
     t.string  "rating_status"
   end
 
@@ -669,8 +673,7 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.integer  "attach_file_size"
     t.datetime "attach_updated_at"
     t.integer  "count_view",          :default => 0
-    t.boolean  "delta",               :default => true,  :null => false
-    t.string   "slug"
+    t.string   "slug",                                   :null => false
   end
 
   create_table "press_infos", :force => true do |t|
@@ -728,18 +731,6 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "rates", :force => true do |t|
-    t.integer  "post_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.integer  "stars"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rates", ["post_id"], :name => "index_rates_on_post_id"
-  add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
 
   create_table "rating_statistics", :force => true do |t|
     t.integer "rated_id"
@@ -1108,6 +1099,8 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.string   "password_reset_code"
     t.datetime "activated_at"
     t.datetime "deleted_at"
+    t.string   "time_zone"
+    t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id"
@@ -1117,19 +1110,9 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "online",                                   :default => false
-    t.boolean  "delta",                                    :default => true,      :null => false
-    t.string   "time_zone"
-    t.string   "slug"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-
-  create_table "video_albums", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "name",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "video_files", :force => true do |t|
     t.integer  "video_id",                  :null => false
@@ -1140,18 +1123,18 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
   end
 
   create_table "videos", :force => true do |t|
-    t.integer  "user_id",                                   :null => false
+    t.integer  "user_id",                                  :null => false
     t.string   "title"
     t.text     "description"
+    t.string   "category"
+    t.integer  "count_view",                :default => 0
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "video_attach_file_name"
     t.string   "video_attach_content_type"
     t.integer  "video_attach_file_size"
     t.datetime "video_attach_updated_at"
-    t.string   "category",                  :default => "", :null => false
-    t.integer  "count_view",                :default => 0,  :null => false
-    t.string   "state",                                     :null => false
   end
 
 end

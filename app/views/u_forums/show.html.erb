@@ -321,6 +321,7 @@ function SaveCustom(ishareto,ipostlounge ){
   $('#selected_usr').html('');
   $('#list_usrs').html('');
   $('#submit_new_friend').hide();
+  $('#show_paging').hide();
 
   $.ajax({
     url: '<%= save_custom_user_u_forums_path %>',

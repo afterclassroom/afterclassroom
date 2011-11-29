@@ -26,7 +26,7 @@ You are here: <a href="/">Home</a>
                 </div>
                 <div class="AsDContLdes">
                     <span>Description:</span>
-                    <%= @post.description %>
+                    <%= raw(@post.description) %>
                 </div>
                 <div class="AsDContLinf">
                     <span>Asked by:</span>
@@ -51,9 +51,9 @@ You are here: <a href="/">Home</a>
             </div>
             <div class="AsDcomIn">
                 <form name="form_comment" id="form_comment" action="" method="get">
-                    <div class="AsDcomTxt">
-                        <div class="AsDcomTexta">
-                            <%= text_area_tag :comment, "" %>
+                    <div class="">
+                        <div class="">
+                            <%= text_area_tag :comment, "", :id => "answereditor", :style => "width:100%; height:200px" %>
                         </div>
                     </div>
                     <div class="submit">

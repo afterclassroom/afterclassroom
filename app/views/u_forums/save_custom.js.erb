@@ -5,4 +5,5 @@ $('#list_usrs').html('<%= escape_javascript ( raw(render :partial => "friend_sho
 <% else %>
 $('#list_usrs').html('');
 <% end %>
-$('#submit_new_friend').show();
+$('#show_paging').html('<%= escape_javascript ( raw(render :partial => "paging_show")) %>');  
+$('#show_paging').show();
