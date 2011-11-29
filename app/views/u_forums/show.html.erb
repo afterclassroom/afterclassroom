@@ -361,6 +361,7 @@
 
 
     function LoadSearchMember(){
+      $('#waiting').show();
       ajaxObj = $.ajax({
         url: '<%= friend_pad_show_user_u_forums_path %>',
         type: 'GET',
