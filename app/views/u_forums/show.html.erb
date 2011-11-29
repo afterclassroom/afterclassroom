@@ -276,6 +276,7 @@
   var postlounge;
   var pad_mouse_is_inside = false;
   var ajaxObj = null;
+  var pagingAjax = null;
 
 
 
@@ -322,6 +323,12 @@
       $('#list_usrs').html('');
       $('#submit_new_friend').hide();
       $('#show_paging').hide();
+      
+      if (pagingAjax != null){
+        pagingAjax.abort();
+        pagingAjax = null;
+        $('#list_usrs_wait').hide();
+      }
 
       $.ajax({
         url: '<%= save_custom_user_u_forums_path %>',
