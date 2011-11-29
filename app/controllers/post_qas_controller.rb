@@ -168,7 +168,7 @@ class PostQasController < ApplicationController
       sc = School.find(@school)
       sc.tag(@post_qa, :with => @tag_list, :on => :tags)
       @post_qa.post = @post
-      if @post_qa.save
+      if @post_qa.save!
         flash[:notice] = "Your post was successfully created."
         post_wall(@post_qa)
         redirect_to post_qa_url(@post_qa)

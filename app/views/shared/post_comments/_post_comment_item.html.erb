@@ -8,7 +8,7 @@
     </div>
     <div class="proListR">
         <div class="AfterClCom">
-            <%= show_user_post(comment.user) %> - <%= comment.comment %>
+            <%= show_user_post(comment.user) %> - <%= raw(comment.comment) %>
         </div>
         <div class="proListCont">
             <%= distance_of_time_in_words_to_now(comment.created_at, false) + " ago." %>
