@@ -1,11 +1,14 @@
-        <div class="inboxFoTop">
-          <div class="markFo">
-            <!-- a href="javascript:;">User's Topics</a -->
-            <%= link_to( "User's Topics", {:controller => "u_forums", :action => "index" }, :remote => false, :style=>"", :method => :get) %>
+<div class="inboxFoTop">
+  <div class="markFo">
+    <!-- a href="javascript:;">User's Topics</a -->
+    <%= link_to( "User's Topics", {:controller => "u_forums", :action => "index" }, :remote => false, :style=>"", :method => :get) %>
 
-          </div>
-          <div class="markFo">
-            <%= link_to( "Friend Invited Topics", {:controller => "u_forums", :action => "index", :category => "friend_topic" }, :remote => false, :style=>"", :method => :get) %>
-          </div>
-          <div class="markFo"><a href="javascript:;" id="ufo_setngs">Default Settings </a></div>
-        </div>
+  </div>
+  <div class="markFo">
+    <%= link_to( "Friend Invited Topics", {:controller => "u_forums", :action => "index", :category => "friend_topic" }, :remote => false, :style=>"", :method => :get) %>
+  </div>
+  <% if current_user == @ufo_author %>
+  <div class="markFo"><a href="javascript:;" id="ufo_setngs">Default Settings </a></div>
+  <%  end %>
+  
+</div>
