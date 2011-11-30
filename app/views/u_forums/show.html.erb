@@ -33,12 +33,12 @@
             <div id="setting_area" style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; min-height: 120px; width: 593px;">
 
               <div class="contentBoxFo">
-                <div style="border: 0px solid black; width: 289px; height: 52px;">
+                <div>
                   <div>
-                  <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
-                  <label style="text-align: left; color: #969696; float: right;margin-right: 175px; margin-top: -12px;" class="vtip" title="Members from your selected group are able to discuss on this topic">Who can joins?</label>
+                  <span style="padding-top: 4px;padding-left: 33px; padding-bottom: 7px; background: url('/images/friend_forum.png') no-repeat"></span>
+                  <label style="background-color: #1FA6F3;color: #FFFFFF;float: left;height: 25px;line-height: 25px;margin-left: 28px;margin-top: -22px;text-align: left;text-indent: 5px;width: 228px;" class="vtip" title="Members from your selected group are able to discuss on this topic">Who can joins?</label>
                   </div>
-                  <div style="margin-top:14px;">
+                  <div style="margin-top:15px;">
                     <%= show_share_custom(@ufo) %>
                   </div>
                 </div>
@@ -54,11 +54,10 @@
                 </div>
               </div>
               <div class="contentBoxFo">
-                <div style="border: 0px solid black; width: 289px; height: 52px;">
-                  <label style="text-align: left; color: #969696;" class="vtip" title="Showing status of whether you had posted this topic to your lounge">Post to your lounge?</label>
-
-
-                  <div>
+                <div>
+                  <span style="padding-top: 4px;padding-left: 33px; padding-bottom: 7px; background: url('/images/post_forum.png') no-repeat"></span>
+                  <label style="background-color: #1FA6F3;color: #FFFFFF;float: left;height: 25px;line-height: 25px;margin-left: 28px;margin-top: -22px;text-align: left;text-indent: 5px;width: 228px;" class="vtip" title="Showing status of whether you had posted this topic to your lounge">Post to your lounge?</label>
+                  <div style="margin-top:15px;">
                     <% pr = @ufo.ufo_custom %>
                     <% check = pr ? pr.post_lounge : 0 %>
                     <% if (check == 0 || check == false) %>
@@ -80,9 +79,10 @@
 
 
               <div class="contentBoxFo">
-                <div style="border: 0px solid black; width: 289px; height: 52px;">
-                  <label style="text-align: left; color: #969696; float: left;margin-right: 182px; margin-top: 8px;" class="vtip" title="Subscribe members to the topic by clicking th button below">Invite</label>
-                  <div style="margin-top:-15px;">
+                <div>
+                  <span style="padding-top: 4px;padding-left: 33px; padding-bottom: 7px; background: url('/images/invite_forum.png') no-repeat"></span>
+                  <label style="background-color: #1FA6F3;color: #FFFFFF;float: left;height: 25px;line-height: 25px;margin-left: 28px;margin-top: -22px;text-align: left;text-indent: 5px;width: 228px;" class="vtip" title="Subscribe members to the topic by clicking th button below">Invite</label>
+                  <div style="margin-top:15px;">
                     <button id="invite_btn" class="vtip" title="Click here to display your friends">Invite Friends</button>
                   </div>
                 </div>
