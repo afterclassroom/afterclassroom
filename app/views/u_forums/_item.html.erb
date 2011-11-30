@@ -10,8 +10,10 @@
                 <%= link_to ufo.title, user_u_forum_path(ufo.user, ufo) %>
 
               </div>
-              <% if current_user == @ufo_author %>
+              <%# if current_user == @ufo_author %>
 
+              <% if current_user == ufo.user %>
+              
                 <div class="inboxFoSe">
                   <a href="javascript:;" id="setting<%= ufo.id %>">
                     <span class="span1">Setting</span>
