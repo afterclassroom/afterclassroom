@@ -5733,8 +5733,21 @@ span.btmTag a:hover{
     background: url("/images/msplayH.png") no-repeat scroll left top transparent;
 }
 
-
 /**** BEGIN forum button for studenLounge  *****/
+.submit_add_comforum span input{
+    background: url("/images/btm106.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    width: 106px;
+    color: #FFFFFF;
+}
+.submit_add_comforum span input:hover{
+    background: url("/images/btm106Red.png") no-repeat scroll 0 0 transparent;
+}
 .contentBoxFo {
     background: #E5EBEA;
     -moz-box-shadow: 0 0 5px #98c7e6;
@@ -5754,7 +5767,7 @@ span.btmTag a:hover{
     width: 250px;
     margin-right: 10px;
     margin-bottom: 10px;
-  }
+}
 div.ufo {
     display: inline-block;
     float:left;
@@ -6181,7 +6194,7 @@ div.ufo_sel div.ufo_span2b{
     -moz-border-radius-topright: 5px;
     -webkit-border-top-right-radius: 5px;
 }
-#stop_tag{
+#stop_tagv{
     background: url("/images/btm48.png") no-repeat scroll 0 0 transparent;
     height: 25px;
     line-height: 25px;
@@ -6190,10 +6203,10 @@ div.ufo_sel div.ufo_span2b{
     width: 48px;
     color: #FFFFFF;
 }
-#stop_tag:hover{
+#stop_tagv:hover{
     background: url("/images/btm48Red.png") no-repeat scroll 0 0 transparent;
 }
-.photoTag-cpanell{
+.photoTag-cpanellv{
     background:url("/images/btm71.png") no-repeat scroll 0 0 transparent;
     height:25px;
     line-height: 25px;
@@ -6201,10 +6214,10 @@ div.ufo_sel div.ufo_span2b{
     text-align: center;
     width: 71px;
 }
-.photoTag-cpanell a{
+.photoTag-cpanellv a{
     color: #FFFFFF;
 }
-.photoTag-cpanell:hover{
+.photoTag-cpanellv:hover{
     background: url("/images/btm71Red.png") no-repeat scroll 0 0 transparent;
 }
 .namejson_tag{
