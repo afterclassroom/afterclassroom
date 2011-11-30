@@ -42,7 +42,7 @@
                       </div>
                     </div>
                     <div class="assDes">
-                      <%= ufo.content %>
+                      <%= raw(ufo.content) %>
                     </div>
                     <div class="assItbodderTopemB">
                       <div class="assInfT">
@@ -73,7 +73,7 @@
           </div>
 
 
-<div id="item_dlg<%= ufo.id %>" title="Custom settings for <%= ufo.title %>" style="display:none;">
+<div id="item_dlg<%= ufo.id %>" title="Custom settings for <%= raw (ufo.title) %>" style="display:none;">
   <div id="sContent<%= ufo.id %>">
     <div id="waiting_id<%= ufo.id %>" style="margin-left: 298px; margin-top: 66px;">
       <img src="/images/ajax-loader-a.gif"/>
