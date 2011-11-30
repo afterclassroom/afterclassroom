@@ -19,9 +19,10 @@
   </div>
   <% if @members != nil %>
     <div id="member_paging" style="max-width: 216px;">
-
-      <span class="numPage"><%= page_entries_info @members %></span>
-      <%= will_paginate @members %>
+      <div class="assPage">
+        <span class="numPage"><%= page_entries_info @members %></span>
+        <%= will_paginate @members %>
+      </div>
     </div>
     <div><a style="margin-top: -27px; float: right;" href="javascript:;" id="remove_btn">Remove</a></div>
   <% else %>

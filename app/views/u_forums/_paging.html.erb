@@ -1,7 +1,8 @@
 <% if nil != @share_to %>
-<span class="numPage"><%= page_entries_info @share_to %></span>
-<%= will_paginate @share_to %>
-
+<div class="assPage">
+  <span class="numPage"><%= page_entries_info @share_to %></span>
+  <%= will_paginate @share_to %>
+</div>
 <script type="text/javascript">
 function LoadUserShare(strpage){
   LoadWaiting();
