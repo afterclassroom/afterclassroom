@@ -8,7 +8,7 @@
 
               <div style="float: left; width: 500px;" class="assPicFo">
                 <%= link_to truncate_html(ufo.title, :length => 55, :omission => '...'), user_u_forum_path(ufo.user, ufo) %>
-<%#= truncate_html(ufo.title, :length => 15, :omission => '...') %>
+
               </div>
 
               <% if current_user == ufo.user %>
@@ -42,7 +42,8 @@
                       </div>
                     </div>
                     <div class="assDes">
-                      <%= raw(ufo.content) %>
+                      <%= raw( truncate_html(ufo.content, :length => 400, :omission => '...') ) %>
+                      <%#= truncate_html(ufo.content, :length => 400, :omission => '...') %>
                     </div>
                     <div class="assItbodderTopemB">
                       <div class="assInfT">
