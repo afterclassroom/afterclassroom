@@ -21,7 +21,7 @@ module Postwall
         content = "Add new music to album: <a href='#{play_list_user_musics_path(post.music_album.user, :music_album_id => post.music_album)}' target='_blank'>#{post.music_album.name}</a>"
       when "Video"
         user_id = post.user.id
-        content = "Add new video: <a href='#{show_detail_video_user_url(post.user, :video_id => post.id)}' target='_blank'>#{post.title}</a>"
+        content = "Add new video: <a href='#{user_video_url(post.user, post)}' target='_blank'>#{post.title}</a>"
       when "Story"
         user_id = post.user.id
         content = "Post a story"

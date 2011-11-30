@@ -1,5 +1,2 @@
-<% if logged_in? %>
-<div class="reqLa"><label style="color:red">This option is avaible only to registered users</label></div>
-<% end %>
 <div class="reqLa"><label>Title*</label></div>
 <div class="reqTi"><%= p.text_field :title, :value => "", :class => '{validate:{required:true}}' %></div>

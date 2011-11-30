@@ -551,7 +551,7 @@ class UForumsController < ApplicationController
   def load_friend_ufos
 
     tmparr = []
-    current_user.user_friends.each do |usr|
+    @ufo_author.user_friends.each do |usr|
       usr.ufos.each do |ufo|
         check = false
         #case 1: when friends share the topic with current_user
