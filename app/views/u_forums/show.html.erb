@@ -290,6 +290,43 @@
 
 
   $(document).ready(function(){
+    //BEGIN create rich text editor for post comment
+    (function($){
+      $('#topic_content').wysiwyg({
+      controls: {
+        createLink: {
+          visible: true
+        },
+                
+        insertImage: {
+          visible: true
+        },
+                
+        separator05: {
+          visible: false
+        },
+                
+        separator06: {
+          visible: false
+        },
+                
+        h1: {
+          visible: false
+        },
+        h2: {
+          visible: false
+        },
+        h3: {
+          visible: false
+        },
+                
+        removeFormat: {
+          visible: true
+        }
+      }
+    });
+    })(jQuery);
+    //END create rich text editor for post comment
 
 
 
