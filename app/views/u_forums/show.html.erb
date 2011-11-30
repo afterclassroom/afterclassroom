@@ -151,8 +151,9 @@
                 </div>
               </div>
             <% end %>
-            <div style="overflow: hidden;padding-top: 10px; width: 635px;">
-              <%= @ufo.content  %>
+            <div style="overflow: auto; height: 300px;">
+              <%= raw(@ufo.content)  %>
+
             </div>
           </div>
 
