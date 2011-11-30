@@ -1,26 +1,28 @@
 <div class="login">
   <div class="signin01" style="float: right">
-  <div class="signin02" style="float: left"> 
-      <div class="view_userLogin"><%= render :partial => 'shared/view_new' %></div>
+    <div class="signin02" style="float: left"> 
+      <% if logged_in? %> 
+        <div class="view_userLogin"><%= render :partial => 'shared/view_new' %></div>
+      <% end %>
+    </div>
+    <div class="signin">
+      <% if logged_in? %> 
+        <ul>       
+          <li class="signinSelect"><%= link_to raw("<span>Welcome #{current_user.full_name}</span>"), user_profiles_path(current_user), :class => "signinFrist" %></li>
+          <% if admin? %>
+            <li><%= link_to raw("<span>Admin</span>"), "/admin" %></li>
+          <% end %>
+          <li><%= raw link_to raw("<span>Sign out</span>"), logout_url, :method => :delete %></li>
+          <li><%= link_to content_tag(:span, 'Help'), :controller => 'forums', :action => 'index' %></li>
+        </ul>
+      <% else %>
+        <ul>
+          <li><%= link_to content_tag(:span, 'Help'), :controller => 'forums', :action => 'index' %></li>
+          <li><%= link_to raw("<span>Sign in</span>"), RubyCAS::Filter.login_url(controller) %></li>
+          <li><%= link_to raw("<span>Simple sign up</span>"), signup_url %></li>
+          <li><%= link_to raw("<span>Forget password</span>"), user_forgot_password_url %></li>
+        </ul>
+      <% end %>
+    </div>
   </div>
-  <div class="signin">
-    <% if logged_in? %> 
-      <ul>       
-        <li class="signinSelect"><%= link_to raw("<span>Welcome #{current_user.full_name}</span>"), user_profiles_path(current_user), :class => "signinFrist" %></li>
-        <% if admin? %>
-          <li><%= link_to raw("<span>Admin</span>"), "/admin" %></li>
-        <% end %>
-        <li><%= raw link_to raw("<span>Sign out</span>"), logout_url, :method => :delete %></li>
-        <li><%= link_to content_tag(:span, 'Help'), :controller => 'forums', :action => 'index' %></li>
-      </ul>
-    <% else %>
-      <ul>
-        <li><%= link_to content_tag(:span, 'Help'), :controller => 'forums', :action => 'index' %></li>
-        <li><%= link_to raw("<span>Sign in</span>"), RubyCAS::Filter.login_url(controller) %></li>
-        <li><%= link_to raw("<span>Simple sign up</span>"), signup_url %></li>
-        <li><%= link_to raw("<span>Forget password</span>"), user_forgot_password_url %></li>
-      </ul>
-    <% end %>
-  </div>
-</div>
 </div>
