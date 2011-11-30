@@ -15,7 +15,7 @@
   </div>
   <%
   sub = [["Share on my lounge", 0], ["Share for a friend", 1]] %>
-  <ul id="share_type_menu" class="mcdropdown_menu">
+  <ul id="share_type_menu" class="mcdropdown_menu" style="z-index: 999999999;">
     <% sub.each do |s| %>
       <li rel_sub="<%= s[1] %>">
         <%= s[0] %>
@@ -82,6 +82,7 @@
         buttons: {
           Ok: function(){
             $("#dialog-message").dialog('close');
+            $("#share_type_menu").hide();
           }
         }
       });
