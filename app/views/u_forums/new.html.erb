@@ -18,8 +18,8 @@
                 <div id="first_banner" class="inboxCeTop"> 
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Title</label>
                 </div>
-                <div style="padding:8px 8px 8px 0px">
-                  <%= f.text_field :title, :class => '{validate:{required:true}}', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
+                <div style="padding:8px 8px 8px 0px" class="vtip" title="The title is limited to 40 characters">
+                  <%= f.text_field :title, :size => 40,:maxlength => 40, :class => '{validate:{required:true}}', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
                 </div>
               </div>
 

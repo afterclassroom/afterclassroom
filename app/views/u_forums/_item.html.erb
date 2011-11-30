@@ -7,7 +7,7 @@
               </div>
 
               <div style="float: left; width: 500px;" class="assPicFo">
-                <%= link_to ufo.title, user_u_forum_path(ufo.user, ufo) %>
+                <%= link_to truncate_html(ufo.title, :length => 55, :omission => '...'), user_u_forum_path(ufo.user, ufo) %>
 
               </div>
 
@@ -29,7 +29,7 @@
               <div class="assContFoT">
                 <div class="assContFoD">
                   <div class="assContFoC">
-                    <div class="assInfT">
+                    <div class="assInfT" style="padding-bottom: 8px;">
                       <div class="assInfL">
                         <div>
                           <span>Posted by:</span>
@@ -42,7 +42,8 @@
                       </div>
                     </div>
                     <div class="assDes">
-                      <%= ufo.content %>
+                      <%= raw( truncate_html(ufo.content, :length => 400, :omission => '...') ) %>
+                      <%#= truncate_html(ufo.content, :length => 400, :omission => '...') %>
                     </div>
                     <div class="assItbodderTopemB">
                       <div class="assInfT">
@@ -73,7 +74,7 @@
           </div>
 
 
-<div id="item_dlg<%= ufo.id %>" title="Custom settings for <%= ufo.title %>" style="display:none;">
+<div id="item_dlg<%= ufo.id %>" title="Custom settings for <%= raw (ufo.title) %>" style="display:none;">
   <div id="sContent<%= ufo.id %>">
     <div id="waiting_id<%= ufo.id %>" style="margin-left: 298px; margin-top: 66px;">
       <img src="/images/ajax-loader-a.gif"/>

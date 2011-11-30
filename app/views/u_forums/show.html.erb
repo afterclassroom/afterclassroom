@@ -85,9 +85,6 @@
             </div>
           <% end  %> <!-- end if current_user == @ufo_author -->
 
-
-
-
           <div style="padding: 10px; display: none;" class="inner2" id="area_more_friend">
             <div style="border-right: 1px solid #CECECE;">
               <div class="bodderTop" id="first_banner"></div>
@@ -111,9 +108,6 @@
               <div style="float: none;" class="assContFoT615">
                 <div class="assContFoD615">
 
-
-
-
                   <% form_tag url_for(:controller => "u_forums", :action => "add_more_member"), :id => "form_more_friend", :method => :post, :remote => false do %>
                     <%= hidden_field_tag "ufo_id", @ufo.id %>
 
@@ -135,11 +129,12 @@
                   <div id="list_usrs" style="padding: 5px 25px;" class="assContFoC615">
                     <%= render :partial => "friend_show" %>
                   </div>
-                </div>
-
-                <div id="show_paging" style="margin-left: 25px;">
+                  <div id="show_paging" style="margin-left: 25px;">
                   <%= render :partial => "paging_show" %>
                 </div>
+                </div>
+
+                
 
               </div>
             </div>
@@ -156,8 +151,9 @@
                 </div>
               </div>
             <% end %>
-            <div style="overflow: hidden;padding-top: 10px; width: 635px;">
-              <%= @ufo.content  %>
+            <div style="overflow: auto; height: 300px;">
+              <%= raw(@ufo.content)  %>
+
             </div>
           </div>
 
@@ -166,8 +162,6 @@
               <span style="background: url('/images/icon-comnent.gif') no-repeat center; padding-bottom: 10px; padding-left: 36px;"></span>
               <label style="color: #969696; margin-top: -8px; margin-right: 10px;">Comment</label>
             </div>
-
-
           </div>
 
 
@@ -187,23 +181,26 @@
                 <!-- textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
   At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
                 </textarea --> 
-                <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '84', :class => ''%>
-
-                <div style="height: 60px; width: 545px; border: 0px solid red; margin-top: 0px; margin-left: 86px;">
-                  <label style="margin-top: -4px; text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
-                  <div style="width: 545px; margin-top: 10px; margin-left: 5px; height: 28px;">
-                    <!-- input type="file" style=""onchange="" name="topic_attach" id="topic_attach" class="" size="65"/ -->
-                    <%= f.file_field :ucmt_attach, :onchange => "", :size => "76", :class => "", :style => "" %>
-
-                  </div>
-                  <%= f.submit "Add this comment" %>
-
+                <div style="overflow: hidden;">
+                  <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '75', :class => ''%>
                 </div>
 
-
-
+                <div style="height: 60px; width: 545px; border: 0px solid red; margin-top: 0px; margin-left: 86px;">
+                  <div class="postItemB" style="margin-left: 6px;margin-top: 10px;width: 552px;">
+                    <div id="divinputfile">
+                      <div class="postItemC">
+                        <input type="file" style="width: 550px; height: 24px; margin-top: 2px;" size="66" onchange="$('#fakefilepc').val(this.value);" name="ufo_cmt[ucmt_attach]" id="ufo_cmt_ucmt_attach" class=" filepc">
+                      </div>
+                      <div style="margin-top: -26px;" id="fakeinputfile">
+                        <input type="text" id="fakefilepc" name="fakefilepc" style="width: 478px;">
+                      </div>
+                    </div>
+                  </div>
+                  <div style="  float:right;margin-right: -13px;margin-top: 15px;" class="submit_add_comforum">
+                    <span><%= f.submit "Add this comment" %></span>
+                  </div>
+                </div>
               </div>
-
             </div>
           <% end %><!-- end form -->
 
@@ -276,6 +273,7 @@
 
 
   $(document).ready(function(){
+    
     //BEGIN create rich text editor for post comment
     (function($){
       $('#topic_content').wysiwyg({
@@ -422,5 +420,13 @@
       });
     });
 
+  });
+  $(document).ready(function(){
+    $('.wysiwyg').css({
+      'width':'540px'
+    })
+    $('#topic_contentIFrame').css({
+      'width':'540px'
+    })
   });
 </script>
