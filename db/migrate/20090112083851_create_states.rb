@@ -3,7 +3,7 @@ class CreateStates < ActiveRecord::Migration
     create_table :states do |t|
       t.belongs_to :country, :null => false
       t.string :name, :limit => 50, :null => false
-      t.string :alias, :limit => 10, :null => false
+      t.string :alias, :limit => 10
     end
   end
 

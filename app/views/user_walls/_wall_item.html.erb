@@ -69,14 +69,13 @@
           <% obj.comments.find(:all, :limit => 2, :order => "created_at DESC").reverse.each do |cm| %>
             <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => wall, :obj => obj, :comment => cm} %>
           <% end %>
-          <%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall, :obj => obj} %>
+					<% if check_view_permission(current_user, obj) %>
+          	<%= render :partial => "user_walls/wall_comment", :locals => {:wall => wall, :obj => obj} %>
+					<% end %>
         <% end %>
         <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => wall, :obj => obj} %>
       </div>
     <% end %>
-
-
-
     <!--Comments-->
   </div>
 </div>

@@ -2,7 +2,9 @@
   <%= render :partial => "user_walls/wall_comment_item", :locals => {:wall => @wall, :obj => @obj, :comment => cm} %>
 <% end %>
 <%= render :partial => "user_walls/wall_comment_form", :locals => {:wall => @wall, :obj => @obj} %>
+<% if check_view_permission(current_user, @obj) %>
 <%= render :partial => "user_walls/wall_comment", :locals => {:wall => @wall, :obj => @obj} %>
+<% end %>
 <script>
   $(document).ready(function(){
     tb_init('div.com a.thickbox');//pass where to apply thickbox

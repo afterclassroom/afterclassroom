@@ -5,6 +5,9 @@ type ||= 1 %>
   <div class="col300in">
     <h1 class="col300Title">Quick post for Book</h1>
     <div class="col300Cont">
+			<% if !logged_in? %>
+			<div class="reqLa"><label style="color:red">This option is avaible only to registered users</label></div>
+			<% end %>
       <%= form_for :post_book, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
         <%
         book_type = BookType.find_by_label("your_friends_needed_books") %>
