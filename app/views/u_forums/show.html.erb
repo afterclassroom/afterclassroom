@@ -201,19 +201,11 @@
   <div class="contFoT">
     <div class="contFoD">
       <div class="contFoC">
-<<<<<<< HEAD
         <div class="assPage">
           <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
             <span class="numPage"><%= page_entries_info @ufo_cmts %></span>
             <%= will_paginate @ufo_cmts %> 
           </div>
-=======
-
-
-        <div class="assPage" style="padding-left:10px">
-          <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => 'comment'  %></span>
-          <%= will_paginate @ufo_cmts %> 
->>>>>>> 90f27eada2745a1bcb80df0ba2154e47b3bfe6c9
         </div>
         <div style=" min-height: 100px; padding: 10px;">
           <% @ufo_cmts.each do |cmt| %>
