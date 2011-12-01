@@ -18,10 +18,10 @@
                     <span class="span1">Setting</span>
                   </a>
                 </div>
-                <div class="inboxFoSedit">
+                <div class="inboxFoSedit vtip" title="Edit this topic">
                   <%= link_to( content_tag(:span, "",:class => "span1"), edit_user_u_forum_path(@ufo_author, ufo), :method => :get) %>
                 </div>
-                <div class="inboxFoSemove">
+                <div class="inboxFoSemove vtip" title="Delete this topic">
                   <%= link_to( content_tag(:span, "",:class => "span1"), user_u_forum_path(@ufo_author, ufo), :method => :delete, :confirm => 'Are you sure you want to delete this topic?') %>
                 </div>
               <% end %>

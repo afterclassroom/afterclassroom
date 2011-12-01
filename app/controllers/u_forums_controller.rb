@@ -100,6 +100,10 @@ class UForumsController < ApplicationController
         @ufo = Ufo.new()
         session[:list_selected_usrs] = [] #reset the session that store the selected users
 
+        #test send mail
+        UfoMail.testufo().deliver
+
+
         redirect_to user_u_forums_path(current_user)
       else
         flash[:notice] = "Failed to create new topic. Probably file size is too large."
