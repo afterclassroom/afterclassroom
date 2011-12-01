@@ -122,7 +122,7 @@
               <button id="submit_new_friend" style="display: none">Add</button>
               <div style="float: none; margin-bottom: 8px;" class="assContFoT615" id="friend_panel">
                 <div class="assContFoD615">
-                  <div> class="assContFoC615"
+                  <div class="assContFoC615">
                     <div id="list_usrs_wait" style="margin-left: 298px; margin-top: 6px; display:none;">
                       <img src="/images/ajax-loader-a.gif"/>
                     </div>
@@ -144,7 +144,7 @@
           <div style="border-bottom: 2px solid #ebebeb; margin-left: 10px;"></div>
           <div style="border: 0px solid black; padding: 10px;">
             <% if @ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
-              <div>
+              <div style="overflow:hidden">
                 <div class="btmDownfo">
                   <a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow">
                     <span class="forums_dow" style="margin-left: 34px;">Download</span> 
@@ -152,10 +152,9 @@
                 </div>
               </div>
             <% end %>
-            <div style="overflow: auto; height: 300px;">
+              <div style="padding-top: 10px;">
               <%= raw(@ufo.content)  %>
-
-            </div>
+              </div>
           </div>
 
           <div style="background-color: #ebebeb; height: 28px; padding: 2px;" id="show_hide_cmt">
@@ -171,7 +170,7 @@
 
 
             <div style="background-color: #ebebeb">
-              <div style="background-color: white; min-height: 390px; border: 0px solid black;">
+              <div style="background-color: white;">
 
                 <div class="AsDContImg" style="margin: 18px; margin-top: 1px;">
                   <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
@@ -186,7 +185,7 @@
                   <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '75', :class => ''%>
                 </div>
 
-                <div style="height: 60px; width: 545px; border: 0px solid red; margin-top: 0px; margin-left: 86px;">
+                <div style="padding-bottom: 20px;height: 60px; width: 545px; margin-top: 0px; margin-left: 86px;">
                   <div class="postItemB" style="margin-left: 6px;margin-top: 10px;width: 552px;">
                     <div id="divinputfile">
                       <div class="postItemC">
@@ -215,7 +214,7 @@
       <div class="contFoC">
 
 
-        <div class="assPage" style="padding-left:0">
+        <div class="assPage" style="padding-left:10px">
           <span class="numPage"><%= page_entries_info @ufo_cmts %></span>
           <%= will_paginate @ufo_cmts %> 
         </div>
@@ -431,3 +430,8 @@
     })
   });
 </script>
+<style>
+  .item_cmt_img img{
+    border:0 none;
+  }
+</style>
