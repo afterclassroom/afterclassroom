@@ -90,18 +90,21 @@ class UForumsController < ApplicationController
         custom_setting.post_lounge = params[:lounge_setting]
         custom_setting.save
 
+        bcc_arr = []
+
         session[:list_selected_usrs].each do |usr_id|
           member = UfoMember.new
           member.user_id = usr_id
           member.ufo_id = @ufo.id
           member.save
+          bcc_arr << User.find(usr_id).email
         end
 
         @ufo = Ufo.new()
         session[:list_selected_usrs] = [] #reset the session that store the selected users
 
         #test send mail
-        UfoMail.testufo().deliver
+        UfoMail.inviteinform(bcc_arr,@ufo_author).deliver
 
 
         redirect_to user_u_forums_path(current_user)

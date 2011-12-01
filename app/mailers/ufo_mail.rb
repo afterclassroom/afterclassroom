@@ -6,4 +6,13 @@ class UfoMail < ActionMailer::Base
     mail :to => "datefield@yahoo.com", :subject => "test send mail"
   end
   
+  def inviteinform(arr_bcc,ufo_author)
+    test = []
+    test << "datefield@yahoo.com"
+    test << "ngothiendat@gmail.com"
+    @listbcc = arr_bcc
+    mail :to => ["datefield@yahoo.com","ngothiendat@gmail.com"], :subject => "#{ufo_author.name} invite you to join a topic."
+    
+  end
+  
 end
