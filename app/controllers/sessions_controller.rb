@@ -4,30 +4,8 @@ class SessionsController < ApplicationController
   include AuthenticatedSystem
   
   before_filter RubyCAS::Filter::GatewayFilter
-  before_filter RubyCAS::Filter, :except => [:index, :new, :change_school]
-  before_filter :cas_user, :except => [:index]
-
-	def index
-		if self.current_user == nil
-			type = params[:type]
-			self.current_user = User.find_by_email("demotoyou@gmail.com")
-		  self.current_user.update_attribute("online", true)
-		  self.current_user.set_time_zone_from_ip(request.remote_ip)
-		  # Set session your school
-		  session[:your_school] = self.current_user.school.id
-			session[:your_school_type] = self.current_user.school.type_school
-			case type
-				when "tools"
-					redirect_to user_learn_tools_path(self.current_user)
-				when "networking"
-					redirect_to user_student_lounges_path(self.current_user)
-				else
-					redirect_to "/"
-			end
-		else
-			redirect_to user_student_lounges_path(self.current_user)
-		end
-	end
+  before_filter RubyCAS::Filter, :except => [:new, :change_school]
+  before_filter :cas_user
   
   def new
     if logged_in?
@@ -40,11 +18,7 @@ class SessionsController < ApplicationController
   def destroy
     flash[:notice] = "You have been logged out."
     self.current_user.update_attribute("online", false)
-		if self.current_user.email == "demotoyou@gmail.com"
-			self.current_user = nil
-		else
-    	RubyCAS::Filter.logout(self, root_url) and return
-		end
+		RubyCAS::Filter.logout(self, root_url) and return
   end
   
   def change_school

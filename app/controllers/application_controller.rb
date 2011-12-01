@@ -89,7 +89,11 @@ class ApplicationController < ActionController::Base
       # Set session your school
       session[:your_school] = self.current_user.school.id
 			session[:your_school_type] = self.current_user.school.type_school
-			redirect_to user_student_lounges_path(self.current_user)
+			if self.current_user.email == "demotoyou@gmail.com"
+				redirect_to path	
+			else
+				redirect_to user_student_lounges_path(self.current_user)
+			end
     end
   end
   
