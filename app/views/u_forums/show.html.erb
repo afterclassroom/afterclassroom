@@ -182,7 +182,7 @@
   At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
                 </textarea --> 
                 <div style="overflow: hidden;">
-                  <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '75', :class => ''%>
+                  <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '75', :class => '{validate:{required:true}}'%>
                 </div>
 
                 <div style="padding-bottom: 20px;height: 60px; width: 545px; margin-top: 0px; margin-left: 86px;">
@@ -197,7 +197,9 @@
                     </div>
                   </div>
                   <div style="  float:right;margin-right: -13px;margin-top: 15px;" class="submit_add_comforum">
-                    <span><%= f.submit "Add this comment" %></span>
+                    <span><%#= f.submit "Add this comment" %>
+                      <input type="submit" value="Add this comment" name="commit" id="ufo_cmt_submit"/>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -271,9 +273,22 @@
     });
   }
 
+  function SubmitComment(){
+    //$("form#form_new").submit();
+    var result = $("form#form_cmt").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("form#form_cmt").submit();
+    }
+    
+  }
 
   $(document).ready(function(){
-    
+  
+    $('#ufo_cmt_submit').click(function(){
+      SubmitComment();
+    });
     //BEGIN create rich text editor for post comment
     (function($){
       $('#topic_content').wysiwyg({
