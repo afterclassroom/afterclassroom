@@ -16,7 +16,7 @@
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Title</label>
                 </div>
                 <div style="padding:8px 8px 8px 0px">
-                  <%= f.text_field :title, :class => '', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
+                  <%= f.text_field :title, :class => '{validate:{required:true}}', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
                 </div>
               </div>
 
@@ -26,7 +26,7 @@
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Content</label>
                 </div>       
                 <div style="padding:8px 8px 8px 0px">
-                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => ''%>
+                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => '{validate:{required:true}}' %>
                 </div>
               </div>
               <div class="inner2">
@@ -81,7 +81,14 @@
     })
   });
   function SubmitTopic(){
-    $("form#form_new").submit();
+    //$("form#form_new").submit();
+    var result = $("form#form_new").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("form#form_new").submit();
+    }
+    
   }
   $(document).ready(function(){
     $('#btn_submit').click(function(){

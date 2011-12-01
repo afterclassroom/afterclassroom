@@ -274,14 +274,12 @@
     })
   });
   function SubmitTopic(){
-    //$("form#form_new").submit();
     var result = $("form#form_new").validate({
       meta: "validate"
     });
     if (result) {
       $("form#form_new").submit();
     }
-    
   }
   $(document).ready(function(){
     $('#btn_submit').click(function(){

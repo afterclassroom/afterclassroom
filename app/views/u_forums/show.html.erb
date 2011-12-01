@@ -197,7 +197,7 @@
                     </div>
                   </div>
                   <div style="  float:right;margin-right: -13px;margin-top: 15px;" class="submit_add_comforum">
-                    <span><%#= f.submit "Add this comment" %>
+                    <span>
                       <input type="submit" value="Add this comment" name="commit" id="ufo_cmt_submit"/>
                     </span>
                   </div>
@@ -274,7 +274,6 @@
   }
 
   function SubmitComment(){
-    //$("form#form_new").submit();
     var result = $("form#form_cmt").validate({
       meta: "validate"
     });
