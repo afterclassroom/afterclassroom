@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="assPage" style="padding-left:0">
-        <span class="numPage"><%= page_entries_info @ufos %></span>
+        <span class="numPage"><%= page_entries_info @ufos, :entry_name => 'topic' %></span>
         <%= will_paginate @ufos %> 
       </div>
     </div>
