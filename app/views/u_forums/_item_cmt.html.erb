@@ -1,5 +1,4 @@
 <div id="cmt_content_item<%= cmt.id %>" style="border-bottom: 1px solid #D2D9E7; min-height: 80px;">
-
   <div class="assPic">
     <%= show_image_user_post(cmt.user) %>
   </div>
@@ -22,7 +21,7 @@
         </div>
       <% end %>
     </div>
-    <div style="color: #0A81C4;">
+    <div class="item_cmt_user">
       <%= show_user_post(cmt.user) %>
     </div>
     <div style="color: #969696"><%= time_ago_in_words(cmt.created_at, true) %> ago.</div>

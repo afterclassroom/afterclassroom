@@ -19,10 +19,7 @@
             <div class="AsDContImg" style="float: right; margin-right: 9px; margin-top: -30px;">
               <%= show_image_user_post(@ufo.user) %>
             </div>  
-
-
           </div>
-
           <div id="wait_area" style="margin-left: 298px; margin-top: 6px; display:none;">
             <img src="/images/ajax-loader-a.gif"/>
           </div>
@@ -91,9 +88,7 @@
               <div class="inboxCeTop" id="first_banner">
                 <label style="text-align: left; margin-left: 10px; color: rgb(150, 150, 150);">
                   Invite more friend to the topic
-                  <div id="invite_others" style="float: right; margin-right: 10px;">Invite other member</div>
-
-
+                  <div id="invite_others" style="float: right; margin-right: 10px;margin-top:-26px;color:#1988C7;cursor:pointer;">Invite other member</div>
                   <div id="friend_pad" style="display: none; width: 280px; min-height: 31px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px; padding: 10px;">
                     <div id="waiting">
                       <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
@@ -101,32 +96,28 @@
                     <div id="control_pane" style="">
                     </div>
                   </div>
-
                 </label>
               </div>
 
               <div style="float: none;" class="assContFoT615">
                 <div class="assContFoD615">
-
                   <% form_tag url_for(:controller => "u_forums", :action => "add_more_member"), :id => "form_more_friend", :method => :post, :remote => false do %>
                     <%= hidden_field_tag "ufo_id", @ufo.id %>
-
                     <div id="selected_usr"  style="padding: 5px 25px;" class="assContFoC615">
                     </div>
-
                   <% end %><!-- end form invite more friend -->
-
-
                 </div>
               </div>
               <button id="submit_new_friend" style="display: none">Add</button>
+              <div style="margin-top: 5px;" class="submit">
+                <a onclick="request_form_submit();" href="javascript:;"><input type="submit" value="Submit" name="commit"></a>
+              </div>
               <div style="float: none; margin-bottom: 8px;" class="assContFoT615" id="friend_panel">
                 <div class="assContFoD615">
                   <div class="assContFoC615">
                     <div id="list_usrs_wait" style="margin-left: 298px; margin-top: 6px; display:none;">
                       <img src="/images/ajax-loader-a.gif"/>
                     </div>
-
                     <div id="list_usrs" style="padding: 5px 25px;">
                       <%= render :partial => "friend_show" %>
                     </div>
@@ -135,8 +126,6 @@
                     </div>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div>
@@ -147,14 +136,14 @@
               <div style="overflow:hidden">
                 <div class="btmDownfo">
                   <a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow">
-                    <span class="forums_dow" style="margin-left: 34px;">Download</span> 
+                    <span class="forums_dow" style="margin-left: 28px;">Download</span> 
                   </a>
                 </div>
               </div>
             <% end %>
-              <div style="padding-top: 10px;">
+            <div style="padding-top: 10px;">
               <%= raw(@ufo.content)  %>
-              </div>
+            </div>
           </div>
 
           <div style="background-color: #ebebeb; height: 28px; padding: 2px;" id="show_hide_cmt">
@@ -171,11 +160,9 @@
 
             <div style="background-color: #ebebeb">
               <div style="background-color: white;">
-
                 <div class="AsDContImg" style="margin: 18px; margin-top: 1px;">
                   <a href="/users/5/show_lounge"><div style="height: 52px;"><img title="William" src="/system/avatars/5/thumb/wily_avatar.jpg?1315449632" class="vtip avatar_5" alt="Wily_avatar"></div></a>
                 </div>  
-
                 <label style="text-align: left; margin-top: 18px;">Leave your comment</label>
 
                 <!-- textarea rows="19" cols="74" id="topic_content" style="float: right; margin-right:28px; margin-right: 16px;">
@@ -212,14 +199,12 @@
   <div class="contFoT">
     <div class="contFoD">
       <div class="contFoC">
-
-
-        <div class="assPage" style="padding-left:10px">
-          <span class="numPage"><%= page_entries_info @ufo_cmts %></span>
-          <%= will_paginate @ufo_cmts %> 
+        <div class="assPage">
+          <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
+            <span class="numPage"><%= page_entries_info @ufo_cmts %></span>
+            <%= will_paginate @ufo_cmts %> 
+          </div>
         </div>
-
-
         <div style=" min-height: 100px; padding: 10px;">
           <% @ufo_cmts.each do |cmt| %>
             <%= render :partial => "item_cmt", :locals => {:cmt => cmt} %>

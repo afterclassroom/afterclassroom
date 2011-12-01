@@ -5734,6 +5734,9 @@ span.btmTag a:hover{
 }
 
 /**** BEGIN forum button for studenLounge  *****/
+.item_cmt_user a{
+    color: #0A81C4;
+}
 .AsDContBtm span.btmComment a:hover{
     background: url("/images/btm71Red.png") no-repeat scroll 0 0 transparent;
 }
@@ -6013,7 +6016,6 @@ div.ufo_sel div.ufo_span2b{
     font-weight: bold;
     height: 30px;
     line-height: 28px;
-    overflow: hidden;
     background: url("/images/u_forum_U.png") no-repeat scroll 0 0 #F6F7F7;
     margin-top: -1px;
 }
@@ -6090,9 +6092,9 @@ div.ufo_sel div.ufo_span2b{
     text-decoration: none;
 }
 .btmDownfo a {
-    background: url("/images/btmDown.png") no-repeat scroll 0 0 transparent;
+    background: url("/images/ufo_attach.jpg") no-repeat scroll 0 0 transparent;
     width: 90px;
-    color: #797979;
+    color: #1988C7;
     cursor: pointer;
     float: left;
     height: 25px;
@@ -6100,8 +6102,11 @@ div.ufo_sel div.ufo_span2b{
     text-decoration: none;
 }
 .btmDownfo a:hover {
-    background: url("/images/btmDownH.png") no-repeat scroll 0 0 transparent;
-    color: #ffffff;
+    background: url("/images/ufo_attach.jpg") no-repeat scroll 0 0 transparent;
+    color: #DD0000;
+}
+.invite_others:hover{
+    color: #DD0000;
 }
 /**** END forum button for studenLounge  *****/
 
