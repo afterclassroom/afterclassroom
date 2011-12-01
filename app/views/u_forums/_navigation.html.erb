@@ -1,15 +1,30 @@
-hello test value::
+<% if current_user == @ufo_author %>
+  <% if @index_category == "friend_topic" %>
+    <% str_action = "Your invited topics" %>
+  <% else %>
+    <% str_action = "Your topics" %>
+  <% end %>
+<% else %>
+  <% if @index_category == "friend_topic" %>
+    <% str_action = "#{@ufo_author.name}'s invited topics" %>
+  <% else %>
+    <% str_action = "#{@ufo_author.name}'s topics" %>
+  <% end %>
+<% end %>
+
 <div style="padding-bottom: 10px;" class="abLink postLink">
 
-
-
   <div class="abLinkL">You are here: <a href="<%= user_u_forums_path(@ufo_author) %>"><%= @ufo_author == current_user ? "Your " : "#{@ufo_author.name}'s" %> Forums</a>
-  <a class="abLink-detail" href="javascript:;"><%= controller.action_name %></a>
+  <a class="abLink-detail" href="javascript:;">
+    <% if controller.action_name == "index" %>
+      <%= str_action %>
+    <% elsif controller.action_name == "show" %>
+      <%= @ufo.title %>
+    <% elsif controller.action_name == "edit" %>
+      Edit
+    <% end %>
+  </a>
   </div>
-
-
-
-
 
 </div>
 
