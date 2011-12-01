@@ -217,7 +217,7 @@
 
 
         <div class="assPage" style="padding-left:10px">
-          <span class="numPage"><%= page_entries_info @ufo_cmts %></span>
+          <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => 'comment'  %></span>
           <%= will_paginate @ufo_cmts %> 
         </div>
 
