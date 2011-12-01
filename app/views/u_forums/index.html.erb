@@ -7,7 +7,7 @@
       <%= render :partial => "menu" %>
         <% if current_user == @ufo_author %>
         <div class="inboxFoNew">
-          <%= link_to raw('<span class="span1">Post a new topic</span>'), new_user_u_forum_path(current_user) %>
+          <%= link_to raw('<span class="span1 vtip" title="Create a new topic and share with your friend.">Post a new topic</span>'), new_user_u_forum_path(current_user) %>
         </div>
         <% end %>
       </div>
