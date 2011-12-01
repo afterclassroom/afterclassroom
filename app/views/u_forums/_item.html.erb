@@ -41,15 +41,14 @@
                         </div>
                       </div>
                     </div>
-                    <div class="assDes">
+                    <div class="assDes" style="width: 521px;">
                       <%= raw( truncate_html(ufo.content, :length => 400, :omission => '...') ) %>
-                      <%#= truncate_html(ufo.content, :length => 400, :omission => '...') %>
                     </div>
                     <div class="assItbodderTopemB">
                       <div class="assInfT">
                         <div class="assInfB">
 
-<%= render :partial => "rating_action", :locals => {:ufo => ufo } %>
+                          <%= render :partial => "rating_action", :locals => {:ufo => ufo } %>
                           <!-- div id="rate_1144">
                             <div style="background: none repeat scroll 0% 0% transparent;" class="qashdU">
                               <a href="">0</a>

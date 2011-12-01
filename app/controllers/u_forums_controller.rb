@@ -159,8 +159,10 @@ class UForumsController < ApplicationController
   def index
     if (params[:category] == "friend_topic")
       load_friend_ufos
+      @index_category = params[:category]
     else
       load_current_user_ufos
+      @index_category = ""
     end
   end
 
