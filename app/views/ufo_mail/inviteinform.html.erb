@@ -1,12 +1,11 @@
 <html>
   <body>
-    <div id="detail_window">
-       Hello , <br/>
+    <div>
+       Hello <%= @friend.name %>, <br/>
        
-       This email send to your from ufo of afterclassroom
+      <%= @ufo_author.name %> invite you to join a 
+      <%= link_to "topic", user_u_forum_path(@ufo_author, @ufo) %>.
        
-       list of bcc = <%= @listbcc %>
-      
       Yours sincerely, <br/>
       Afterclassroom Support Team.
       
