@@ -146,7 +146,7 @@
             </div>
           </div>
 
-          <div style="background-color: #ebebeb; height: 28px; padding: 2px;" id="show_hide_cmt">
+          <div style="background-color: #ebebeb; height: 28px; padding: 2px;" id="show_hide_cmt" class="vtip" title="Show or Hide the comment area">
             <div style="background-color: white; width: 88px; height: 24px; margin-top: 2px; margin-left: 2px;">
               <span style="background: url('/images/icon-comnent.gif') no-repeat center; padding-bottom: 10px; padding-left: 36px;"></span>
               <label style="color: #969696; margin-top: -8px; margin-right: 10px;">Comment</label>
@@ -169,7 +169,7 @@
   At W3Schools you will find all the Web-building tutorials you need, from basic HTML to advanced XML, SQL, ASP, and PHP.
                 </textarea --> 
                 <div style="overflow: hidden;">
-                  <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '75', :class => ''%>
+                  <%= f.text_area :content, :id => 'topic_content', :rows => '10', :cols => '75', :class => '{validate:{required:true}}'%>
                 </div>
 
                 <div style="padding-bottom: 20px;height: 60px; width: 545px; margin-top: 0px; margin-left: 86px;">
@@ -184,7 +184,9 @@
                     </div>
                   </div>
                   <div style="  float:right;margin-right: -13px;margin-top: 15px;" class="submit_add_comforum">
-                    <span><%= f.submit "Add this comment" %></span>
+                    <span>
+                      <input type="submit" value="Add this comment" name="commit" id="ufo_cmt_submit"/>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -199,11 +201,19 @@
   <div class="contFoT">
     <div class="contFoD">
       <div class="contFoC">
+<<<<<<< HEAD
         <div class="assPage">
           <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
             <span class="numPage"><%= page_entries_info @ufo_cmts %></span>
             <%= will_paginate @ufo_cmts %> 
           </div>
+=======
+
+
+        <div class="assPage" style="padding-left:10px">
+          <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => 'comment'  %></span>
+          <%= will_paginate @ufo_cmts %> 
+>>>>>>> 90f27eada2745a1bcb80df0ba2154e47b3bfe6c9
         </div>
         <div style=" min-height: 100px; padding: 10px;">
           <% @ufo_cmts.each do |cmt| %>
@@ -256,9 +266,21 @@
     });
   }
 
+  function SubmitComment(){
+    var result = $("form#form_cmt").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("form#form_cmt").submit();
+    }
+    
+  }
 
   $(document).ready(function(){
-    
+  
+    $('#ufo_cmt_submit').click(function(){
+      SubmitComment();
+    });
     //BEGIN create rich text editor for post comment
     (function($){
       $('#topic_content').wysiwyg({
