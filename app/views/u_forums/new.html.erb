@@ -73,7 +73,7 @@
                       <div id="inner_setting">
                         <div id="row1">
                           <div id="join_area" style="width: 289px; height: 52px;">
-                            <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
+                            <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/friend_forum.png') no-repeat"></span>
                             <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;" class="vtip" title="Members from your selected group are able to discuss on this topic">Who can joins?</label>
                             <div style="margin-top:14px;">
                               <%= show_share_setting(current_user)%>
@@ -95,8 +95,9 @@
                         </div>
 
                         <div id="row2">
-                          <div id="lounge_area" style="width: 289px; height: 52px;">
-                            <label style="text-align: left; color: #969696;" class="vtip" title="Select your option whether to post this topic on your lounge">Post to your lounge?</label>
+                          <div id="lounge_area" style="width: 289px; height: 52px;margin-top: 10px;">
+                            <span style="float: left;padding-top: 4px; padding-left: 33px; padding-bottom: 19px; background: url(&quot;/images/post_forum.png&quot;) no-repeat scroll 0% 0% transparent;"></span>
+                            <label style="line-height: 25px;text-align: left; color: #969696;" class="vtip" title="Select your option whether to post this topic on your lounge">Post to your lounge?</label>
                             <div>
                               <%= show_tolounge_setting(current_user) %>
                             </div>
@@ -273,14 +274,12 @@
     })
   });
   function SubmitTopic(){
-    //$("form#form_new").submit();
     var result = $("form#form_new").validate({
       meta: "validate"
     });
     if (result) {
       $("form#form_new").submit();
     }
-    
   }
   $(document).ready(function(){
     $('#btn_submit').click(function(){

@@ -16,7 +16,7 @@
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Title</label>
                 </div>
                 <div style="padding:8px 8px 8px 0px">
-                  <%= f.text_field :title, :class => '', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
+                  <%= f.text_field :title, :class => '{validate:{required:true}}', :style => "width: 625px; height: 20px;background-color: transparent;border: 1px solid #CECECE;" %>
                 </div>
               </div>
 
@@ -26,7 +26,7 @@
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Content</label>
                 </div>       
                 <div style="padding:8px 8px 8px 0px">
-                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => ''%>
+                  <%= f.text_area :content, :id => 'topic_content', :rows => '19', :cols => '84', :class => '{validate:{required:true}}' %>
                 </div>
               </div>
               <div class="inner2">
@@ -34,26 +34,25 @@
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
                 </div>
-                
-                <div>Current file</div>
-                
-            <div style="background: url('/images/ufo_attach.jpg') no-repeat; width: 24px; height: 24px;">
-              <span class="btmDownfo"><a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow" style="margin-left: 20px;padding-bottom: 14px;padding-left: 90px;">
-                <span class="forums_dow" style="margin-left: -55px;margin-top: 6px;position: absolute;">Download</span> 
-                </a>
-                          
-              </span>
-            </div>
-                
-                
-                <div class="postItemB" style="background:url(/images/upload_file.png) no-repeat scroll 98% 0 transparent;margin-top: 7px; margin-bottom: 12px;">
-                  <div id="divinputfile">
-                    <div class="postItemC">
-                      <input type="file" style="width: 617px; height: 24px; margin-top: 2px;" size="76" onchange="$('#fakefilepc').val(this.value);" name="ufo[ufo_attach]" id="ufo_ufo_attach" class="filepc">
-
-                    </div>
-                    <div style="margin-top: -26px;" id="fakeinputfile">
-                      <input type="text" id="fakefilepc" name="fakefilepc" style="width:545px">
+                <div style="margin-top: 10px">
+                  <div style="margin-left: 10px">Current file</div>
+                  <div>
+                    <span class="btmDownfo">
+                      <a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow" style="margin-left: 10px">
+                      <span class="forums_dow" style="margin-left: 28px;">Download</span>
+                      </a>                                              
+                    </span>
+                  </div>
+                </div>
+                <div style="padding-top: 20px">
+                  <div class="postItemB" style="background:url(/images/upload_file.png) no-repeat scroll 98% 0 transparent;margin-top: 7px; margin-bottom: 12px;">
+                    <div id="divinputfile">
+                      <div class="postItemC">
+                        <input type="file" style="width: 617px; height: 24px; margin-top: 2px;" size="76" onchange="$('#fakefilepc').val(this.value);" name="ufo[ufo_attach]" id="ufo_ufo_attach" class="filepc">
+                      </div>
+                      <div style="margin-top: -26px;" id="fakeinputfile">
+                        <input type="text" id="fakefilepc" name="fakefilepc" style="width:545px">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -64,7 +63,10 @@
           <div class="bottomline"></div>
           <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
             <span class="btmComment"><a href="javascript:;" id="btn_submit">Submit</a></span>
-            <span class="btmComment"><a href="javascript:;">Cancel</a></span>
+            <span class="btmComment">
+              <!-- a href="javascript:;"  id="btn_cancel">Cancel</a -->
+              <%= link_to "Cancel", user_u_forums_path(current_user) %>
+            </span>
           </div>
         <% end %><!-- end form_for -->
       </div>
@@ -81,7 +83,14 @@
     })
   });
   function SubmitTopic(){
-    $("form#form_new").submit();
+    //$("form#form_new").submit();
+    var result = $("form#form_new").validate({
+      meta: "validate"
+    });
+    if (result) {
+      $("form#form_new").submit();
+    }
+    
   }
   $(document).ready(function(){
     $('#btn_submit').click(function(){

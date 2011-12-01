@@ -13,15 +13,15 @@
 
               <% if current_user == ufo.user %>
               
-                <div class="inboxFoSe">
+                <div class="inboxFoSe vtip" title="Custom setting of each topic will override the default setting.">
                   <a href="javascript:;" id="setting<%= ufo.id %>">
                     <span class="span1">Setting</span>
                   </a>
                 </div>
-                <div class="inboxFoSedit">
+                <div class="inboxFoSedit vtip" title="Edit this topic">
                   <%= link_to( content_tag(:span, "",:class => "span1"), edit_user_u_forum_path(@ufo_author, ufo), :method => :get) %>
                 </div>
-                <div class="inboxFoSemove">
+                <div class="inboxFoSemove vtip" title="Delete this topic">
                   <%= link_to( content_tag(:span, "",:class => "span1"), user_u_forum_path(@ufo_author, ufo), :method => :delete, :confirm => 'Are you sure you want to delete this topic?') %>
                 </div>
               <% end %>
@@ -41,15 +41,14 @@
                         </div>
                       </div>
                     </div>
-                    <div class="assDes">
+                    <div class="assDes" style="width: 521px;">
                       <%= raw( truncate_html(ufo.content, :length => 400, :omission => '...') ) %>
-                      <%#= truncate_html(ufo.content, :length => 400, :omission => '...') %>
                     </div>
                     <div class="assItbodderTopemB">
                       <div class="assInfT">
                         <div class="assInfB">
 
-<%= render :partial => "rating_action", :locals => {:ufo => ufo } %>
+                          <%= render :partial => "rating_action", :locals => {:ufo => ufo } %>
                           <!-- div id="rate_1144">
                             <div style="background: none repeat scroll 0% 0% transparent;" class="qashdU">
                               <a href="">0</a>
@@ -61,7 +60,7 @@
                           <div style="background: url(&quot;/images/bor-ad.png&quot;) no-repeat scroll left top transparent; padding: 0pt 2px;">
                             <div class="com">
                               <!-- a href="">Comments (<span id="post_1144_comments">0</span>)</a -->
-                              <%= link_to "Comments", user_u_forum_path(ufo.user, ufo) %>
+                              <%= link_to "Comments", user_u_forum_path(ufo.user, ufo) %> (<%= ufo.ufo_cmts.size %>)
                             </div>
                           </div>
                         </div>

@@ -10,7 +10,7 @@
   </div>
   <div id="container">
     <div>
-      <a href="javascript:;" id="stop_tag" style="display:none;position:absolute; z-index:99;font-weight: bold;margin-left:300px;">Done</a>
+      <a href="javascript:;" id="stop_tag" style="display:none;position:absolute; z-index:99;font-weight: bold;margin-left:40px;">Done</a>
     </div>
     <p style="text-align:center">
       <%= image_tag @photo.photo_attach.url(:medium), :class => "photoTag", :id => "img_to_tag" %>
@@ -19,7 +19,7 @@
     <%
     if controller.action_name == 'show'
     %>
-    <div style="text-align:center;"><%= @photo.title %></div>
+      <div style="text-align:center;"><%= @photo.title %></div>
     <% end %>
   </div>
 </div>
@@ -48,6 +48,9 @@
 
 <% end %><!-- end if  -->
 <%= render :partial => "photos/photo_action" %>
+<div id="rate_pos" style="padding: 4px;width: 81px;float:left; margin-top: -40px; margin-left: 384px; height: 25px;background: url(/images/btm_hdug_hdd.png) no-repeat scroll 0 0 transparent;">
+  <%= render :partial => "photo_albums/rating_action", :locals => {:post => @photo_album, :controller_name => "photo_albums"}%>
+</div>
 <%= show_post_comments(@photo) %>
 <% form_tag url_for(:controller => "photos", :action => "comment_inform"), :id => "form_cmt_inf", :method => :post, :remote => true do %>
   <%= hidden_field_tag "comment_content" %>
@@ -270,7 +273,15 @@
     });
   });
   $(document).ready(function(){
+    $('.qashdU').css({
+      'float': 'left',
+      'margin-left': '2px'
+    });
 
+    $('.qashdD').css({
+      'float': 'left', 
+      'margin-left': '14px'
+    });
   });
   //END: select all
 </script>

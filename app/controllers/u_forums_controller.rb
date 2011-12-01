@@ -90,15 +90,21 @@ class UForumsController < ApplicationController
         custom_setting.post_lounge = params[:lounge_setting]
         custom_setting.save
 
+
         session[:list_selected_usrs].each do |usr_id|
           member = UfoMember.new
           member.user_id = usr_id
           member.ufo_id = @ufo.id
           member.save
+          friend = User.find(usr_id)
+          UfoMail.inviteinform(friend,@ufo_author,@ufo).deliver
         end
 
         @ufo = Ufo.new()
         session[:list_selected_usrs] = [] #reset the session that store the selected users
+
+        #test send mail
+
 
         redirect_to user_u_forums_path(current_user)
       else
@@ -159,8 +165,10 @@ class UForumsController < ApplicationController
   def index
     if (params[:category] == "friend_topic")
       load_friend_ufos
+      @index_category = params[:category]
     else
       load_current_user_ufos
+      @index_category = ""
     end
   end
 

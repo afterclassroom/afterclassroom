@@ -1,14 +1,20 @@
+<% menu_title = "" %>
+<% if current_user == @ufo_author %>
+  <% menu_title = "Your Topics" %>
+<% else %>
+  <% menu_title = "#{@ufo_author.name}'s Topics" %>
+<% end %>
 <div class="inboxFoTop">
   <div class="markFo">
     <!-- a href="javascript:;">User's Topics</a -->
-    <%= link_to( "User's Topics", {:controller => "u_forums", :action => "index" }, :remote => false, :style=>"", :method => :get) %>
+    <%= link_to( menu_title, {:controller => "u_forums", :action => "index" }, :remote => false, :style=>"", :method => :get) %>
 
   </div>
   <div class="markFo">
-    <%= link_to( "Friend Invited Topics", {:controller => "u_forums", :action => "index", :category => "friend_topic" }, :remote => false, :style=>"", :method => :get) %>
+    <%= link_to( "Friend Invited Topics", {:controller => "u_forums", :action => "index", :category => "friend_topic" }, :remote => false, :style=>"", :method => :get, :class => "vtip", :title => "Topics that your friend share with you.") %>
   </div>
   <% if current_user == @ufo_author %>
-  <div class="markFo"><a href="javascript:;" id="ufo_setngs">Default Settings </a></div>
+  <div class="markFo"><a href="javascript:;" id="ufo_setngs" class="vtip" title="Default setting will be applied when you create a new topic.">Default Settings </a></div>
   <%  end %>
   
 </div>
