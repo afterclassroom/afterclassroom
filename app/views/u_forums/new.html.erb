@@ -97,9 +97,7 @@
 
 
 
-
-
-<%= fields_for @custom_setting do |custom| %> 
+                      <%= fields_for @custom_setting do |custom| %> 
                       <div id="inner_setting">
                         <div id="row1">
                           <div id="join_area" style="width: 289px; height: 52px;">
@@ -141,7 +139,7 @@
                           </div -->
                         </div>
                       </div>
-<% end %> <!-- end fields_for custom -->
+                      <% end %> <!-- end fields_for custom -->
 
 
 
@@ -313,8 +311,8 @@
 
   $('document').ready(function(){
     //BEGIN: load the friend list
-    $('#ufo_setting').change(function(){
-    //$('#ufo_custom_share_to_index').change(function(){
+    //$('#ufo_setting').change(function(){
+    $('#ufo_custom_share_to_index').change(function(){
       shareValue = $(this).find('option:selected').val();
       SelectShare(shareValue);
       $('#inner_setting').hide();

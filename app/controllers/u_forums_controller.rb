@@ -58,23 +58,14 @@ class UForumsController < ApplicationController
   end
 
   def new
-    if @ufo == nil
-      @ufo = Ufo.new()
-      @custom_setting = UfoCustom.new()
+    @ufo = Ufo.new()
+    @custom_setting = UfoCustom.new()
       
-      
-      #init custom_setting with default setting
-      default = current_user.ufo_default
-      @custom_setting.share_to_index = default ? default.share_to_index : 0
-      @custom_setting.post_lounge = default ? default.post_lounge : false
-      
-      session[:list_selected_usrs] = []
-    else
-      @current_selection = @custom_setting.share_to_index
-      @current_tolounge = @custom_setting.post_lounge
-    end
-
-
+    #init custom_setting with default setting
+    default = current_user.ufo_default
+    @custom_setting.share_to_index = default ? default.share_to_index : 0
+    @custom_setting.post_lounge = default ? default.post_lounge : false
+    session[:list_selected_usrs] = []
     share_to = nil
     if current_user.ufo_default != nil
       share_to = get_share(current_user.ufo_default.share_to_index.to_i)
@@ -100,12 +91,6 @@ class UForumsController < ApplicationController
         @custom_setting.ufo = @ufo
         @custom_setting.save
 
-#        custom_setting = UfoCustom.find_or_create_by_ufo_id(@ufo.id)
-#        custom_setting.share_to_index = params[:ufo_setting]
-#        custom_setting.post_lounge = params[:lounge_setting]
-#        custom_setting.save
-
-
         session[:list_selected_usrs].each do |usr_id|
           member = UfoMember.new
           member.user_id = usr_id
@@ -118,9 +103,6 @@ class UForumsController < ApplicationController
         @ufo = Ufo.new()
         session[:list_selected_usrs] = [] #reset the session that store the selected users
 
-        #test send mail
-
-
         redirect_to user_u_forums_path(current_user)
       else
         flash[:notice] = "Failed to create new topic. Probably file size is too large."
@@ -128,6 +110,11 @@ class UForumsController < ApplicationController
       end
     else
       flash[:warning] = "Captcha does not match."
+      
+      share_to = get_share(@custom_setting.share_to_index.to_i)
+      @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
+      @cur_page = share_to ? "1" : 0
+      
       render :action => "new"
     end
   end
@@ -517,6 +504,7 @@ class UForumsController < ApplicationController
       share_to = @ufo_author.user_friends
     when -2
       share_to = current_user.friend_of_friends
+
     else
       fg = FriendGroup.where(:label => groupType).first
       if fg != nil
