@@ -34,6 +34,11 @@ every 1.day, :at => '1:00 am' do
   runner "Share.del_share_expire", :environment => :production
 end
 
+# Delete data user demo
+every 1.day, :at => '1:00 am' do 
+  runner "User.delete_data_user_demo", :environment => :production
+end
+
 # Backup database every 3 days
 every 3.day, :at => '1:00 am' do 
   rake "db:backup"

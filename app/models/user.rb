@@ -32,7 +32,6 @@ class User < ActiveRecord::Base
   has_many :stories, :dependent => :destroy
   has_many :photo_albums, :dependent => :destroy
   has_many :music_albums, :dependent => :destroy
-  has_many :video_albums, :dependent => :destroy
   has_many :photos, :dependent => :destroy
   has_many :musics, :dependent => :destroy
   has_many :videos, :dependent => :destroy, :conditions => ["state = 'converted'"]
@@ -47,7 +46,6 @@ class User < ActiveRecord::Base
   has_many :jobs_lists, :dependent => :destroy
   has_many :partys_lists, :dependent => :destroy
   has_many :post_awarenesses_supports, :dependent => :destroy
-  has_many :post_events, :dependent => :destroy
   has_many :my_shares, :class_name => "Share", :foreign_key => "sender_id"
   has_many :private_settings
   has_many :forums, :dependent => :destroy
@@ -383,6 +381,37 @@ class User < ActiveRecord::Base
 	def videos_same_category(video)
 		self.videos.where("category = '#{video.category}'")
 	end
+
+  def self.delete_data_user_demo
+    user_demo = User.find_by_email("demotoyou@gmail.com")
+		if user_demo
+			user_demo.posts.destroy_all
+			user_demo.selling_items.destroy_all
+			user_demo.stories.destroy_all
+			user_demo.photo_albums.destroy_all
+			user_demo.music_albums.destroy_all
+			user_demo.photos.destroy_all
+			user_demo.musics.destroy_all
+			user_demo.videos.destroy_all
+			user_demo.favorites.destroy_all
+			user_demo.user_walls.destroy_all
+			user_demo.jobs_lists.destroy_all
+			user_demo.partys_lists.destroy_all
+			user_demo.my_shares.destroy_all
+			user_demo.forums.destroy_all
+			user_demo.learntools.destroy_all
+			user_demo.my_tools.destroy_all
+  		user_demo.tool_reviews.destroy_all
+			user_demo.user_blocks.destroy_all
+			user_demo.user_wall_blocks.destroy_all
+			user_demo.user_wall_follows.destroy_all
+			user_demo.user_wall_posts.destroy_all
+  		user_demo.ufos.destroy_all
+  		user_demo.ufo_cmts.destroy_all
+  		user_demo.ufo_default.destroy_all
+  		user_demo.ufo_members.destroy_all
+		end
+  end
   
   protected
   
