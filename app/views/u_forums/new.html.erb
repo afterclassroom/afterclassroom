@@ -6,13 +6,11 @@
 <div class="slStoryL">
   <div class="contDetL">
     <div class="contDetLin">
-
       <div class="overall">
         <%= form_for(@ufo, :url => user_u_forums_path(@ufo_author) , :html => {:multipart => true, :id => "form_new" }, :method => :post) do |f| %>
           <div style="padding: 10px">
             <div style="border-right: 1px solid #cecece;border-bottom: 1px solid #CECECE;">
               <%= display_flash_messages_with_raw %>
-
               <div class="inner2">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop"> 
@@ -48,9 +46,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div style="width: 624px; margin-top: 10px; margin-left: 5px; height: 28px;">%>
-  <%#= f.file_field :ufo_attach, :onchange => "", :size => "76", :class => "", :style => "" %>
-                </div>-->
               </div>
 
               <div class="inner2" style="margin-top: 8px;">
@@ -69,33 +64,6 @@
                       <div id="loading_id" style="margin-left: 282px; display: none;">
                         <img src="/images/ajax-loader-a.gif"/>
                       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                       <%= fields_for @custom_setting do |custom| %> 
                       <div id="inner_setting">
@@ -140,60 +108,6 @@
                         </div>
                       </div>
                       <% end %> <!-- end fields_for custom -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                   </div>
                 </div>
@@ -216,6 +130,12 @@
                   <div class="assContFoD615">
                     <div class="assContFoC615" style="padding:5px 25px">
                       <div id="selected_users_area" style="width: 620px">
+                        <% if session[:list_selected_usrs].size > 0 %>
+                          <% session[:list_selected_usrs].each do |usr_id| %>
+                            <% @usr = User.find(usr_id) %>
+                            <%= render :partial => "seted_usr" %>
+                          <% end %><!-- end .each -->
+                        <% end %><!-- end if -->
                       </div>
                     </div>
                   </div>
@@ -239,7 +159,6 @@
 
                   </div>
                 </div>
-
                 <div id="page_area" class="assPage" style="padding-left:0">
                   <%= render :partial => "paging" %>
                 </div>
