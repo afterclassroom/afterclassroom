@@ -29,7 +29,7 @@
               <div class="contentBoxFo">
                 <div>
                   <div>
-                    <span style="padding-top: 4px;padding-left: 33px; padding-bottom: 7px; background: url('/images/friend_forum.png') no-repeat"></span>
+                    <span style="margin-left: -4px;padding-top: 8px;padding-left: 30px; padding-bottom: 7px; background: url('/images/who_join.png') no-repeat"></span>
                     <label style="background-color: #1FA6F3;color: #FFFFFF;float: left;height: 25px;line-height: 25px;margin-left: 28px;margin-top: -22px;text-align: left;text-indent: 5px;width: 228px;" class="vtip" title="Members from your selected group are able to discuss on this topic">Who can joins?</label>
                   </div>
                   <div style="margin-top:15px;">
@@ -70,7 +70,7 @@
               </div>
               <div class="contentBoxFo">
                 <div>
-                  <span style="padding-top: 4px;padding-left: 33px; padding-bottom: 7px; background: url('/images/invite_forum.png') no-repeat"></span>
+                  <span style="margin-left: -4px;padding-top: 7px;padding-left: 30px; padding-bottom: 7px; background: url('/images/invite_more.png') no-repeat"></span>
                   <label style="background-color: #1FA6F3;color: #FFFFFF;float: left;height: 25px;line-height: 25px;margin-left: 28px;margin-top: -22px;text-align: left;text-indent: 5px;width: 228px;" class="vtip" title="Subscribe members to the topic by clicking th button below">Invite</label>
                   <div style="margin-top:15px;">
                     <button id="invite_btn" class="vtip" title="Click here to display your friends">Invite Friends</button>
@@ -88,7 +88,7 @@
               <div class="inboxCeTop" id="first_banner">
                 <label style="text-align: left; margin-left: 10px; color: rgb(150, 150, 150);">
                   Invite more friend to the topic
-                  <div id="invite_others" style="float: right; margin-right: 10px;margin-top:-26px;color:#1988C7;cursor:pointer;">Invite other member</div>
+                  <div id="invite_others" style="text-align: right; margin-right: 10px;margin-top:-26px;color:#1988C7;cursor:pointer;"><span>Invite other member</span></div>
                   <div id="friend_pad" style="display: none; width: 280px; min-height: 31px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px; padding: 10px;">
                     <div id="waiting">
                       <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
@@ -108,8 +108,8 @@
                   <% end %><!-- end form invite more friend -->
                 </div>
               </div>
-              <div style="margin-top: 5px;" class="submit">
-                <a><input id="submit_new_friend" value="Add" style="display: none"></input></a>
+              <div id="submit_new_friend" style="margin-top: 5px;display: none" class="submit">
+                <a><input value="Add" type="submit" name="commit"></input></a>
               </div>
               <div style="float: none; margin-bottom: 8px;" class="assContFoT615" id="friend_panel">
                 <div class="assContFoD615">
@@ -134,9 +134,8 @@
             <% if @ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
               <div style="overflow:hidden">
                 <div class="btmDownfo">
-                  <a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow">
-                    <span class="forums_dow" style="margin-left: 28px;">Download</span> 
-                  </a>
+                  <a href="javascript:downloadFile('<%= @ufo.ufo_attach.url %>')" class="downarrow"></a>
+                  <span class="forums_dow" style="color: #1988C7;margin-top: 5px;position: absolute;">Download</span> 
                 </div>
               </div>
             <% end %>
@@ -428,8 +427,3 @@
     })
   });
 </script>
-<style>
-  .item_cmt_img img{
-    border:0 none;
-  }
-</style>
