@@ -215,8 +215,59 @@
                 <div class="assContFoT615" style="float: none">
                   <div class="assContFoD615">
                     <div class="assContFoC615" style="padding:5px 25px">
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
                       <div id="selected_users_area" style="width: 620px">
+                        <% if session[:list_selected_usrs].size > 0 %>
+                          <% session[:list_selected_usrs].each do |usr_id| %>
+                            <% @usr = User.find(usr_id) %>
+                            <%= render :partial => "seted_usr" %>
+                          <% end %><!-- end .each -->
+                        <% end %><!-- end if -->
+                        
                       </div>
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
                     </div>
                   </div>
                 </div>
