@@ -1,3 +1,10 @@
+<%
+	cas_base = "https://login.afterclassroom.com" 
+    client = CASClient::Client.new( 
+      :cas_base_url => cas_base 
+      ) 
+		@lt = client.request_login_ticket()
+%>
 <div id="tryitnow" >
   <a class="tryin" style="display: block; position: fixed; top: 283px; left: -2px; margin: 0pt;cursor: pointer;">
     <img style="border: 0pt none;" src="/images/try-it-now.png">
@@ -6,21 +13,39 @@
 <div id="popupContact">
   <a id="popupContactClose"></a>
   <div style="margin-bottom: 50px;" class="clearFix" id="OverviewBoxes">
-    <div class="contentBox" id="TryNowBox">      
+    <div class="contentBox" id="TryNowBox"> 
+			<form id="login-form-without-login" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+				<input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+				<input type="hidden" value="<%= request.protocol + request.host_with_port %>" name="service" id="service">
+				<input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+				<input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+			</form>     
       <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Resources</span>
-      <a href="/sessions">
+      <a href="javascript:$('#login-form-without-login').submit();">
       <img src="/images/no_login.png" style="margin-top: 10px;border: 0 none;"/>
       </a>
     </div>
     <div class="contentBox" id="CreateClassBox">
+			<form id="login-form-networking" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+				<input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+				<input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/student_lounges" name="service" id="service">
+				<input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+				<input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+			</form>
       <span style="color: #30424D;font-size: 15px;font-weight: bold;">Social Networking</span>
-      <a href="/sessions?type=networking">
+      <a href="javascript:$('#login-form-networking').submit();">
       <img src="/images/profile_user.png" style="margin-top: 10px;border: 0 none;"/>
       </a>
     </div>
     <div class="contentBox" id="StudentEnrollBox" style="margin-right:0px">
+			<form id="login-form-learn-tools" action="https://login.afterclassroom.com/login" method="post" style="display:none;">
+				<input type="hidden" value="<%= @lt %>" name="lt" id="lt">
+				<input type="hidden" value="<%= request.protocol + request.host_with_port %>/users/demotoyou/learn_tools" name="service" id="service">
+				<input type="text" accesskey="u" tabindex="1" size="32" name="username" id="username" value="demotoyou@gmail.com">
+				<input type="text" autocomplete="off" accesskey="p" tabindex="2" size="32" name="password" id="password" value="demo01">
+			</form>
       <span style="color: #30424D;font-size: 15px;font-weight: bold;">Learning Tools</span>
-      <a href="/sessions?type=tools">
+      <a href="javascript:$('#login-form-learn-tools').submit();">
       <img src="/images/learning_tool.png" style="margin-top: 10px;border: 0 none;"/>
       </a>
     </div>
