@@ -60,9 +60,20 @@ class UForumsController < ApplicationController
   def new
     if @ufo == nil
       @ufo = Ufo.new()
+      @custom_setting = UfoCustom.new()
+      
+      
+      #init custom_setting with default setting
+      default = current_user.ufo_default
+      @custom_setting.share_to_index = default ? default.share_to_index : 0
+      @custom_setting.post_lounge = default ? default.post_lounge : false
+      
+      session[:list_selected_usrs] = []
+    else
+      @current_selection = @custom_setting.share_to_index
+      @current_tolounge = @custom_setting.post_lounge
     end
 
-    session[:list_selected_usrs] = []
 
     share_to = nil
     if current_user.ufo_default != nil
@@ -77,18 +88,22 @@ class UForumsController < ApplicationController
   def create
 
     @ufo = Ufo.new(params[:ufo])
-
+    @custom_setting = UfoCustom.new(params[:ufo_custom])
+    
     if simple_captcha_valid?
       @ufo = Ufo.new(params[:ufo])
       @ufo.user = current_user
 
       if @ufo.save
         flash[:notice] = "Your topic was successfully submitted."
+        
+        @custom_setting.ufo = @ufo
+        @custom_setting.save
 
-        custom_setting = UfoCustom.find_or_create_by_ufo_id(@ufo.id)
-        custom_setting.share_to_index = params[:ufo_setting]
-        custom_setting.post_lounge = params[:lounge_setting]
-        custom_setting.save
+#        custom_setting = UfoCustom.find_or_create_by_ufo_id(@ufo.id)
+#        custom_setting.share_to_index = params[:ufo_setting]
+#        custom_setting.post_lounge = params[:lounge_setting]
+#        custom_setting.save
 
 
         session[:list_selected_usrs].each do |usr_id|
