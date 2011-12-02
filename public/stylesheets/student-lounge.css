@@ -3536,7 +3536,7 @@ div.helpAdv2{
 .settMenu{
     background:url('/images/bg963T.png') no-repeat left 29px;
     overflow:hidden;
-    background-color:#E5EBEF;
+    background-color:#EBEBEB;
     padding-left:180px;
     padding-bottom:7px;
     _height:100%;
@@ -5737,6 +5737,9 @@ span.btmTag a:hover{
 .item_cmt_img img{
     border:0 none;
 }
+.item_cmt_img img:hover{
+    background: url("/images/decom_forumH.png") no-repeat scroll 0 0 transparent;
+}
 #invite_others span:hover{
     color: #DD0000;
 }
@@ -5945,7 +5948,7 @@ div.ufo_sel div.ufo_span2b{
     font-weight: bold;
 }
 .assPicFo{
-    background: url("/images/start_1.png") no-repeat scroll 0 0 transparent;
+    background: url("/images/start_forum.png") no-repeat scroll 0 0 transparent;
     height: 16px;
     margin-top: -8px;
     padding-left: 20px;
@@ -5996,18 +5999,18 @@ div.ufo_sel div.ufo_span2b{
     padding-top: 7px;
 }
 .contFoC{
-    background: url("/images/cen654Fo.png") repeat scroll 0 0 transparent;
+    background: url("/images/cen654For.png") repeat scroll 0 0 transparent;
     overflow: hidden;
     width: 654px;
     margin-top: 7px;
 }
 .contFoD{
-    background: url("/images/top654Fo.png") no-repeat scroll left top;
+    background: url("/images/top654For.png") no-repeat scroll left top;
     width: 654px;
     overflow: hidden;
 }
 .contFoT{    
-    background: url("/images/bot654Fo.png") no-repeat scroll left bottom transparent;
+    background: url("/images/bot654For.png") no-repeat scroll left bottom transparent;
     overflow: hidden;
     width: 654px;
     float: left;
@@ -6109,6 +6112,19 @@ div.ufo_sel div.ufo_span2b{
 }
 .btmDownfo a:hover {
     background: url("/images/attach_forumH.png") no-repeat scroll 0 0 transparent;
+}
+.item_cmt_img a {
+    background: url("/images/decom_forum.png") no-repeat scroll 7px 5px transparent;
+    width: 30px;
+    color: #1988C7;
+    cursor: pointer;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    text-decoration: none;
+}
+.item_cmt_img a:hover {
+    background: url("/images/decom_forumH.png") no-repeat scroll 0 0 transparent;
 }
 .invite_others:hover{
     color: #DD0000;
