@@ -70,16 +70,47 @@
                         <img src="/images/ajax-loader-a.gif"/>
                       </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <%= fields_for @custom_setting do |custom| %> 
                       <div id="inner_setting">
                         <div id="row1">
                           <div id="join_area" style="width: 289px; height: 52px;">
                             <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/friend_forum.png') no-repeat"></span>
                             <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;" class="vtip" title="Members from your selected group are able to discuss on this topic">Who can joins?</label>
                             <div style="margin-top:14px;">
-                              <%= show_share_setting(current_user)%>
+                              <%#= show_share_setting(current_user)%>
+                              <%= custom.select :share_to_index, OPTIONS_SETTING, :selected => @custom_setting.share_to_index %>
                             </div>
                           </div>
-
+                          
+                            
+                          
                           <!-- div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
                             <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
                             <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
@@ -90,16 +121,14 @@
                               </select>                       
                             </div>
                           </div -->
-
-
                         </div>
-
                         <div id="row2">
                           <div id="lounge_area" style="width: 289px; height: 52px;margin-top: 10px;">
                             <span style="float: left;padding-top: 4px; padding-left: 33px; padding-bottom: 19px; background: url(&quot;/images/post_forum.png&quot;) no-repeat scroll 0% 0% transparent;"></span>
                             <label style="line-height: 25px;text-align: left; color: #969696;" class="vtip" title="Select your option whether to post this topic on your lounge">Post to your lounge?</label>
                             <div>
-                              <%= show_tolounge_setting(current_user) %>
+                              <%@lounge_setting = [["No", false], ["Yes", true]]%>
+                              <%= custom.select :post_lounge, @lounge_setting, :selected => @custom_setting.post_lounge %>
                             </div>
                           </div>
                           <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
@@ -110,6 +139,61 @@
                           </div -->
                         </div>
                       </div>
+                      <% end %> <!-- end fields_for custom -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                   </div>
                 </div>
@@ -227,7 +311,8 @@
 
   $('document').ready(function(){
     //BEGIN: load the friend list
-    $('#ufo_setting').change(function(){
+    //$('#ufo_setting').change(function(){
+    $('#ufo_custom_share_to_index').change(function(){
       shareValue = $(this).find('option:selected').val();
       SelectShare(shareValue);
       $('#inner_setting').hide();
