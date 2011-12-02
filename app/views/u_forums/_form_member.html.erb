@@ -24,9 +24,9 @@
         <%= will_paginate @members %>
       </div>
     </div>
-    <div><a style="margin-top: -27px; float: right;" href="javascript:;" id="remove_btn">Remove</a></div>
+<div class="inboxFoSemove" style="margin-top: 30px;"><a style="margin-top: -27px; float: right;" href="javascript:;" id="remove_btn_forum"><span></span></a></div>
   <% else %>
-      <div><a style="" href="javascript:;" id="remove_btn">Remove</a></div>
+    <div><a style="" href="javascript:;" id="remove_btn_forum"><span>Remove</span></a></div>
   <% end %>
 <% end %><!-- end form -->
 
@@ -71,10 +71,10 @@ $(document).ready(function(){
 
   //BEGIN: check whether to show or hide remove button
   if (pivot_list.length == 0){
-    $('#remove_btn').hide();
+    $('#remove_btn_forum').hide();
   }
   else{
-    $('#remove_btn').show();
+    $('#remove_btn_forum').show();
   }
   //END: check whether to show or hide remove button
 
@@ -118,7 +118,7 @@ $(document).ready(function(){
   //END ajax pagination
 
 
-  $('#remove_btn').click(function(){
+  $('#remove_btn_forum').click(function(){
     $('form#form_member').submit();
   });
 
