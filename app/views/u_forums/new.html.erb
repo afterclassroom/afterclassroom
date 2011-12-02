@@ -6,13 +6,11 @@
 <div class="slStoryL">
   <div class="contDetL">
     <div class="contDetLin">
-
       <div class="overall">
         <%= form_for(@ufo, :url => user_u_forums_path(@ufo_author) , :html => {:multipart => true, :id => "form_new" }, :method => :post) do |f| %>
           <div style="padding: 10px">
             <div style="border-right: 1px solid #cecece;border-bottom: 1px solid #CECECE;">
               <%= display_flash_messages_with_raw %>
-
               <div class="inner2">
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop"> 
@@ -48,9 +46,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div style="width: 624px; margin-top: 10px; margin-left: 5px; height: 28px;">%>
-  <%#= f.file_field :ufo_attach, :onchange => "", :size => "76", :class => "", :style => "" %>
-                </div>-->
               </div>
 
               <div class="inner2" style="margin-top: 8px;">
@@ -70,16 +65,20 @@
                         <img src="/images/ajax-loader-a.gif"/>
                       </div>
 
+                      <%= fields_for @custom_setting do |custom| %> 
                       <div id="inner_setting">
                         <div id="row1">
                           <div id="join_area" style="width: 289px; height: 52px;">
                             <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/friend_forum.png') no-repeat"></span>
                             <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;" class="vtip" title="Members from your selected group are able to discuss on this topic">Who can joins?</label>
                             <div style="margin-top:14px;">
-                              <%= show_share_setting(current_user)%>
+                              <%#= show_share_setting(current_user)%>
+                              <%= custom.select :share_to_index, OPTIONS_SETTING, :selected => @custom_setting.share_to_index %>
                             </div>
                           </div>
-
+                          
+                            
+                          
                           <!-- div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
                             <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
                             <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
@@ -90,16 +89,14 @@
                               </select>                       
                             </div>
                           </div -->
-
-
                         </div>
-
                         <div id="row2">
                           <div id="lounge_area" style="width: 289px; height: 52px;margin-top: 10px;">
                             <span style="float: left;padding-top: 4px; padding-left: 33px; padding-bottom: 19px; background: url(&quot;/images/post_forum.png&quot;) no-repeat scroll 0% 0% transparent;"></span>
                             <label style="line-height: 25px;text-align: left; color: #969696;" class="vtip" title="Select your option whether to post this topic on your lounge">Post to your lounge?</label>
                             <div>
-                              <%= show_tolounge_setting(current_user) %>
+                              <%@lounge_setting = [["No", false], ["Yes", true]]%>
+                              <%= custom.select :post_lounge, @lounge_setting, :selected => @custom_setting.post_lounge %>
                             </div>
                           </div>
                           <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
@@ -110,6 +107,7 @@
                           </div -->
                         </div>
                       </div>
+                      <% end %> <!-- end fields_for custom -->
                     </div>
                   </div>
                 </div>
@@ -118,7 +116,7 @@
                 <div id="first_banner" class="bodderTop"></div>
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Notify Friends via email
-                    <a id="btn_invite" style="float: right; margin-top: 2px;" href="javascript:;">Invite other members</a>
+                    <a id="btn_invite" style="color: #1988C7;float: right; margin-top: 2px;" href="javascript:;"><span>Invite other members</span></a>
                     <div id="friend_pad" style="display: none; width: 280px; min-height: 31px; background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECE; border-radius: 10px 10px 10px 10px; overflow: auto; position: absolute; z-index: 999999; margin-left: 620px; padding: 10px;">
                       <div id="waiting">
                         <img src="/images/ajax-loader-a.gif" style="width: 18px;"/>
@@ -132,6 +130,12 @@
                   <div class="assContFoD615">
                     <div class="assContFoC615" style="padding:5px 25px">
                       <div id="selected_users_area" style="width: 620px">
+                        <% if session[:list_selected_usrs].size > 0 %>
+                          <% session[:list_selected_usrs].each do |usr_id| %>
+                            <% @usr = User.find(usr_id) %>
+                            <%= render :partial => "seted_usr" %>
+                          <% end %><!-- end .each -->
+                        <% end %><!-- end if -->
                       </div>
                     </div>
                   </div>
@@ -155,7 +159,6 @@
 
                   </div>
                 </div>
-
                 <div id="page_area" class="assPage" style="padding-left:0">
                   <%= render :partial => "paging" %>
                 </div>
@@ -227,7 +230,8 @@
 
   $('document').ready(function(){
     //BEGIN: load the friend list
-    $('#ufo_setting').change(function(){
+    //$('#ufo_setting').change(function(){
+    $('#ufo_custom_share_to_index').change(function(){
       shareValue = $(this).find('option:selected').val();
       SelectShare(shareValue);
       $('#inner_setting').hide();

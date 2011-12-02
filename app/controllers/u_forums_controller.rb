@@ -58,12 +58,14 @@ class UForumsController < ApplicationController
   end
 
   def new
-    if @ufo == nil
-      @ufo = Ufo.new()
-    end
-
+    @ufo = Ufo.new()
+    @custom_setting = UfoCustom.new()
+      
+    #init custom_setting with default setting
+    default = current_user.ufo_default
+    @custom_setting.share_to_index = default ? default.share_to_index : 0
+    @custom_setting.post_lounge = default ? default.post_lounge : false
     session[:list_selected_usrs] = []
-
     share_to = nil
     if current_user.ufo_default != nil
       share_to = get_share(current_user.ufo_default.share_to_index.to_i)
@@ -75,22 +77,15 @@ class UForumsController < ApplicationController
   end
 
   def create
-
     @ufo = Ufo.new(params[:ufo])
-
+    @custom_setting = UfoCustom.new(params[:ufo_custom])
     if simple_captcha_valid?
       @ufo = Ufo.new(params[:ufo])
       @ufo.user = current_user
-
       if @ufo.save
         flash[:notice] = "Your topic was successfully submitted."
-
-        custom_setting = UfoCustom.find_or_create_by_ufo_id(@ufo.id)
-        custom_setting.share_to_index = params[:ufo_setting]
-        custom_setting.post_lounge = params[:lounge_setting]
-        custom_setting.save
-
-
+        @custom_setting.ufo = @ufo
+        @custom_setting.save
         session[:list_selected_usrs].each do |usr_id|
           member = UfoMember.new
           member.user_id = usr_id
@@ -99,13 +94,8 @@ class UForumsController < ApplicationController
           friend = User.find(usr_id)
           UfoMail.inviteinform(friend,@ufo_author,@ufo).deliver
         end
-
         @ufo = Ufo.new()
         session[:list_selected_usrs] = [] #reset the session that store the selected users
-
-        #test send mail
-
-
         redirect_to user_u_forums_path(current_user)
       else
         flash[:notice] = "Failed to create new topic. Probably file size is too large."
@@ -113,6 +103,9 @@ class UForumsController < ApplicationController
       end
     else
       flash[:warning] = "Captcha does not match."
+      share_to = get_share(@custom_setting.share_to_index.to_i)
+      @share_to = share_to ? share_to.paginate(:page => params[:page], :per_page => 8) : nil
+      @cur_page = share_to ? "1" : 0
       render :action => "new"
     end
   end
@@ -509,10 +502,8 @@ class UForumsController < ApplicationController
           @ufo_author = current_user #this line support for fix bug when add new with wrong captcha
           share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ], :select => "DISTINCT users.id")
         end
-        
       end
     end
-
     share_to
   end
 
