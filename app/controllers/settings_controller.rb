@@ -96,7 +96,7 @@ class SettingsController < ApplicationController
   end
   
   def save_psw
-    if current_user == @user
+    if current_user == @user and @user.email != "demotoyou@gmail.com"
       current_password, new_password, new_password_confirmation = params[:current_password], params[:new_password], params[:new_password_confirmation]
       if User.password_digest(current_password, @user.salt) == @user.crypted_password
         if new_password == new_password_confirmation
@@ -125,7 +125,7 @@ class SettingsController < ApplicationController
   end
   
   def save_name
-    if current_user == @user
+    if current_user == @user and @user.email != "demotoyou@gmail.com"
       @user = current_user
       @user.name = params[:changed_value]
       if @user.save
@@ -144,7 +144,7 @@ class SettingsController < ApplicationController
   end
   
   def save_user_name
-    if current_user == @user
+    if current_user == @user and @user.email != "demotoyou@gmail.com"
       @user = current_user
 			login = params[:username]
 			logins = User.where(:login => login.downcase)
@@ -169,7 +169,7 @@ class SettingsController < ApplicationController
   end
   
   def save_email
-    if current_user == @user
+    if current_user == @user and @user.email != "demotoyou@gmail.com"
       if @user.update_attributes(:email => params[:email])
         flash[:notice] = "Your email address has been updated."
       else

@@ -6,9 +6,9 @@
     <div class="postInp"><%= post.text_field :title, :class => '{validate:{required:true}}', :style => "width:360px;" %></div>
   </div>
   <div class="postItem">
-    <div class="postTit">Content</div>
+    <div class="postTit">Content*</div>
     <div class="postInput">
-      <div class="postInp"><%= post.text_area :description, :id => "kindeditor" %></div>
+      <div class="postInp"><%= post.text_area :description, :id => "kindeditor", :style => "height: 150px" %></div>
     </div>
   </div>
   <%= render :partial => "/shared/form_post/select_school" %>

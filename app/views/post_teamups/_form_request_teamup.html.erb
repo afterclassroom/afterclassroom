@@ -6,7 +6,7 @@ type ||= 1 %>
         <h1 class="col300Title">I want to establish a group</h1>
         <div class="col300Cont">
 						<% if !logged_in? %>
-			<div class="reqLa"><label style="color:red">This option is avaible only to registered users</label></div>
+			<div class="reqLa"><label style="color:red">This option is only available to registered users</label></div>
 			<% end %>
             <%= form_for :post_teamup, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
             <%= fields_for :post do |p| %>
