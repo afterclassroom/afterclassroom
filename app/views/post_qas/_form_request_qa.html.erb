@@ -5,7 +5,7 @@
 					<% if !logged_in? %>
 			<div class="reqLa"><label style="color:red">This option is only available to registered users</label></div>
 			<% end %>
-            <%= form_for :post_qa, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post"} do |f| %>
+            <%= form_for :post_qa, :url => {:action => "create"}, :html =>{:multipart => true, :id => "form_post", :onsubmit => "alert('hello');return fales;"} do |f| %>
 		          <%= fields_for :post do |p| %>
 				        <%= render :partial => "/shared/form_request_post/select_department", :locals => {:p => p} %>
 				        <%= render :partial => "/shared/form_request_post/select_school_year", :locals => {:p => p} %>
@@ -19,11 +19,12 @@
 				        </div>
 				        <div class="reqLa">
 				            <label>
-				                Content
+				                Content*
 				            </label>
 				        </div>
 				        <div class="reqEn">
-				            <%= text_area_tag "post[description]", "", :id => "kindeditor" %>
+				            <%= text_area_tag "post[description]", "", :id => "kindeditor", :style => "height: 150px" %>
+										<label for="kindeditor" id="kindeditor_error" generated="true" class="error" style="display:none;">This field is required.</label>
 				        </div>
 				        <%= render :partial => "/shared/form_request_post/select_tag" %>
 				        <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
