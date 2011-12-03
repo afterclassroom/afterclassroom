@@ -45,8 +45,18 @@ function request_form_submit(){
         }
     });
     if (result) {
-        $("#form_post").submit();
-    }
+				if ($('#kindeditor')){
+					if (KE.html('kindeditor') == ""){
+						$('#kindeditor_error').show();
+					}else{
+						$("#form_post").submit();
+					}
+				}else{
+					$("#form_post").submit();
+				}   
+    }else{
+			return false;
+		}
 }
 
 function compare(start, end){
