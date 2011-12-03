@@ -3,6 +3,7 @@ class CreatePostQas < ActiveRecord::Migration
     create_table :post_qas do |t|
       t.belongs_to :post
       t.string :rating_status
+			t.boolean :anonymous
     end
   end
 

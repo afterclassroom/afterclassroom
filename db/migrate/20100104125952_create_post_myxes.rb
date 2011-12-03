@@ -4,6 +4,7 @@ class CreatePostMyxes < ActiveRecord::Migration
       t.belongs_to :post
       t.string :professor
       t.string :rating_status
+			t.boolean :anonymous
     end
 
   end
