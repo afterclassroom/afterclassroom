@@ -1,4 +1,5 @@
 <div class="col300 Request">
+<<<<<<< HEAD
     <div class="col300in">
         <h1 class="col300Title">Got questions? Ask experts now</h1>
         <div class="col300Cont">
@@ -35,19 +36,25 @@
             <% end %>
         </div>
     </div>
+  </div>
 </div>
 <script>
-    $(function(){
-        $('#department_menu,#year_menu').hover(function(){
-            $(this).stop().show();
-        }, function(){
-            $(this).stop().hide();
-        });
+  $(function(){
+    $('#department_menu,#year_menu').hover(function(){
+      $(this).stop().show();
+    }, function(){
+      $(this).stop().hide();
     });
-    $(function(){
-        $('div.reqLa,div.col300Cont').hover(function(){
-        }, function(){
-            $('#department_menu,#year_menu').stop().hide();
-        });
+  });
+  $(function(){
+    $('div.reqLa,div.col300Cont').hover(function(){
+    }, function(){
+      $('#department_menu,#year_menu').stop().hide();
     });
+  });
+  $(document).ready(function(){
+    $('.ke-iframe').css({
+      'height':'120px'
+    });
+  });
 </script>

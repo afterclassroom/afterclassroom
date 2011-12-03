@@ -14,7 +14,7 @@ html, body {
     padding-bottom: 165px;
 }
 body{
-    font-family:Arial;font-size:11px;background-color:#E5EBEF;margin:0px;
+    font-family:Arial;font-size:11px;background-color:#EBEBEB;margin:0px;
 }
 body input, body textarea, body select{
     font-family:Arial;font-size:11px;color:#646464;
@@ -168,7 +168,7 @@ div.signin ul li.select a:hover{
 }
 .menu{
     height:31px;
-    background:url('/images/menu-verH.png') repeat-x;
+    background:url('/images/menu-ver.png') repeat-x;
 }
 .menusearch{
     width:962px;

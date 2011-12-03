@@ -5,8 +5,8 @@
   <div style="margin-top: 10px;">
     <div class="item_cmt_doimg">
       <% if current_user == @ufo_author || current_user == cmt.user %>
-        <div style="float: right" class="item_cmt_img">
-          <%= link_to( image_tag("/images/icon-ing.gif"), 
+        <div style="float: right;margin-top: -8px" class="item_cmt_img">
+          <%= link_to(content_tag(:span), 
             {:controller => "u_forums", :action => "del_cmt", :ufo_id => @ufo.id, :cmt_id => cmt.id  }, :remote => false, :style=>"",
             :method => :get, :confirm => 'Are you sure you want to delete this comment?', 
             :class => "vtip", :title => "Delete this comment") %>

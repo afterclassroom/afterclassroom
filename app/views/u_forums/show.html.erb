@@ -8,8 +8,8 @@
         <div class="overall" style="height: 885;">
           <div style="margin-left: 10px; margin-top: 10px; padding-top: 5px; height: 50px; border-bottom: solid 2px #ebebeb; padding-bottom: 10px;">
             <div style="background: url('/images/ufo_gstar.png') no-repeat; width: 18px; height: 18px; margin-top: 2px;"></div>
-            <div style="border: 0px solid green; height: 30px; width: 512px; margin-left: 24px; margin-top: -27px;">
-              <label style="float: left; font-size: 20px;color: #969696;margin-top: 6px;"><%= @ufo.title %></label>
+            <div style="overflow: hidden; height: 30px; width: 542px; margin-left: 24px; margin-top: -27px;">
+              <label style="float: left; font-size: 17px;color: #969696;margin-top: 6px;"><%= @ufo.title %></label>
             </div>
             <div style="float: left; border: 0px solid black; margin-left: 24px; width: 200px; margin-top: 3px;">
               <label style="text-align: left;color: #969696;">From: <%= @ufo.user.name %></label>
@@ -144,10 +144,9 @@
             </div>
           </div>
 
-          <div style="background-color: #ebebeb; height: 28px; padding: 2px;" id="show_hide_cmt" class="vtip" title="Show or Hide the comment area">
-            <div style="background-color: white; width: 88px; height: 24px; margin-top: 2px; margin-left: 2px;">
-              <span style="background: url('/images/icon-comnent.gif') no-repeat center; padding-bottom: 10px; padding-left: 36px;"></span>
-              <label style="color: #969696; margin-top: -8px; margin-right: 10px;">Comment</label>
+          <div style="background-color: #ebebeb; height: 28px; padding: 2px 2px 9px;" id="show_hide_cmt">
+            <div style="background-color: white; width: 88px; height: 33px;padding-bottom: 2px;margin-left: 2px;">
+              <span class="vtip" title="Show or Hide the comment area" style="cursor: pointer;background: url('/images/btm_cmt.png') no-repeat center;height: 30px;margin-bottom: 20px;padding-bottom: 23px;padding-left: 82px;width: 60px;"></span>
             </div>
           </div>
 
