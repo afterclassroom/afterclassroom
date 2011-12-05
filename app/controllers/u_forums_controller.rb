@@ -515,6 +515,37 @@ class UForumsController < ApplicationController
   def get_variables
     @ufo_author = User.where(:login => params[:user_id]).first
   end
+  
+  def membership_validate(ufo)
+    check = false
+    valid_ufo = nil
+    #case 1: when friends share the topic with author's group
+    #NOTE: within this action, I have to check membership for both @ufo_author
+    #and current_user to make a proper display (on view) in the case current_user
+    #viewing "friend invited topic" of other member
+    
+    str_share = ufo.ufo_custom.share_to_index
+    arr_p = [] 
+    OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
+    if (arr_p[0][1] == 6)#share to every one
+      valid_ufo = ufo
+    else
+      share_to = get_share(arr_p[0][1])
+      if share_to != nil
+        if share_to.include?(current_user) && share_to.include?(@ufo_author)
+          valid_ufo = ufo
+          check = true
+        end
+      end
+      #case 2: friend does not share with author's groups, but current_user is a member of topic
+      if !check
+        if (ufo.ufo_members.where(:user_id => @ufo_author.id).size > 0 )  && (ufo.ufo_members.where(:user_id => current_user.id).size > 0)
+          valid_ufo = ufo
+        end
+      end #end if
+    end #end if
+    valid_ufo
+  end
 
   def load_current_user_ufos
     @ufo = nil
@@ -552,33 +583,22 @@ class UForumsController < ApplicationController
     end
   end
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
   def load_friend_ufos
     tmparr = []
     @ufo_author.user_friends.each do |usr|
       usr.ufos.each do |ufo|
-        check = false
-        #case 1: when friends share the topic with author's group
-        str_share = ufo.ufo_custom.share_to_index
-        arr_p = [] 
-        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
-        if (arr_p[0][1] == 6)#share to every one
+        if membership_validate(ufo) != nil
           tmparr << ufo
-        else
-          share_to = get_share(arr_p[0][1])
-          if share_to != nil
-            if share_to.include?(current_user) && share_to.include?(@ufo_author)
-              tmparr << ufo
-              check = true
-            end
-          end
-          #case 2: friend does not share with author's groups, but current_user is a member of topic
-          if !check
-            if (ufo.ufo_members.where(:user_id => @ufo_author.id).size > 0 )  && (ufo.ufo_members.where(:user_id => current_user.id).size > 0)
-              tmparr << ufo
-            end
-          end #end if
-        end #end if
-
+        end
       end #end ufos.each
     end #end user_friends each
     #case 3: the exception topic which invited author
@@ -586,76 +606,13 @@ class UForumsController < ApplicationController
     remain_memberships = @ufo_author.ufo_members.where('ufo_id not in (?)',added_ids)
     if remain_memberships != nil
       remain_memberships.each do |ufo_member|
-        #tmparr << ufo_member.ufo
         ufo = ufo_member.ufo
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        check = false
-        #case 1: when friends share the topic with author's group
-        str_share = ufo.ufo_custom.share_to_index
-        arr_p = [] 
-        OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
-        if (arr_p[0][1] == 6)#share to every one
+        if membership_validate(ufo) != nil
           tmparr << ufo
-        else
-          share_to = get_share(arr_p[0][1])
-          if share_to != nil
-            if share_to.include?(current_user) && share_to.include?(@ufo_author)
-              tmparr << ufo
-              check = true
-            end
-          end
-          #case 2: friend does not share with author's groups, but current_user is a member of topic
-          if !check
-            if (ufo.ufo_members.where(:user_id => @ufo_author.id).size > 0 )  && (ufo.ufo_members.where(:user_id => current_user.id).size > 0)
-              tmparr << ufo
-            end
-          end #end if
-        end #end if
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+        end
       end
     end
     #END case 3
-    
-    #case 4: when current user view the friend-invited of other member
-    #we do not display the friend invited topic of other member which
-    #current user is not allowed to see
-    #UfoMember.find(:all, :condition => (ufo_id in tmparr.maps(&:ufo_id)))
-    #END case 4
     
     @ufos = tmparr.paginate(:page => params[:page], :per_page => 10)
   end #end load_friend_ufos
