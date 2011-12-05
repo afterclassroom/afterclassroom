@@ -139,6 +139,17 @@ class UForumsController < ApplicationController
       @index_category = params[:category]
     else
       load_current_user_ufos
+      #init the default setting for the first time user view forum
+      #because default setting is not set for all user at the first time they 
+      #view the page
+      if current_user.ufo_default == nil
+        ufo_df = UfoDefault.new()
+        ufo_df.share_to_index = 0
+        ufo_df.post_lounge = false
+        ufo_df.user = current_user
+        ufo_df.save
+      end
+      
       @index_category = ""
     end
   end
