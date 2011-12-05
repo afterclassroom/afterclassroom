@@ -1,52 +1,21 @@
-<div class="AsDContImg"><%= show_image_user_post(user) %>
+<div class="AsDContImg" style="margin-left: 582px;position: absolute;">
+  <%= show_image_user_post(user) %>
   <% if current_user != user %>
-    <span class="asslinkdownSt">
-      <span class="making wall_page">
-        <a title="Match making for" class="thickbox" id="myaclick">Match making</a>
-      </span>
-      <span class="like wall_page">
-        <a title="I like you" class="thickbox" id="myaclick">I like you</a>
-      </span>
-      <span class="love wall_page">
-        <a title="I love you" class="thickbox" id="myaclick">I love you</a>
-      </span>
-      <span class="hate wall_page">
-        <a title="I hate you" class="thickbox" id="myaclick">I hate you</a>
-      </span>
+    <span class="AsDContR">   
+      <span class="fan" style="background: url(/images/icon-fan.png) no-repeat scroll left 0 transparent;line-height: 20px;padding:4px 0 5px 25px;"><%= show_become_a_fan(user) %></span>
+      <span style="background: url(/images/icon-friend.png) no-repeat scroll left 0 transparent;line-height: 20px;padding: 4px 0 5px 25px;" class="friend" id="friend_status_<%= user.id %>"><%= show_invite_friend(user) %></span>
+      <!--<div class="chat"><%#= show_invite_chat(user) %></div>-->
+      <span style="background: url(/images/icon-mail.png) no-repeat scroll left 3px transparent;line-height: 20px;padding: 4px 0 5px 25px;" class="mail"><%= show_email(post) %></span>
+      <%= render :partial => "shared/chat_yahoo", :locals => {:user_post => user} %>   
     </span>
-  <% end %>
-</div>
-<div class="AsDContR">
-  <% if current_user != user %>
-    <div class="fan"><%= show_become_a_fan(user) %>  </div>
-    <div class="friend" id="friend_status_<%= user.id %>"><%= show_invite_friend(user) %></div>
-    <!--<div class="chat"><%#= show_invite_chat(user) %></div>-->
-    <div class="mail"><%= show_email(post) %></div>
-    <%= render :partial => "shared/chat_yahoo", :locals => {:user_post => user} %>
   <% end %>
 </div>
 <script>
   $(document).ready(function(){
     $(".AsDContImg").hover(function(){
-      $(".asslinkdownSt", this).show();
+      $(".AsDContR", this).show();
     }, function(){
-      $(".asslinkdownSt", this).hide();
+      $(".AsDContR", this).hide();
     })
   });
 </script>
-<style>
-  .asslinkdownSt {
-    background: none repeat scroll 0 0 white;
-    border: 1px solid;
-    color: #969696;
-    display: none;
-    float: right;
-    font-size: 11px;
-    margin-left: -122px;
-    margin-top: -54px;
-    padding: 10px;
-    position: absolute;
-    width: 100px;
-    z-index: 1000;
-  }
-</style>

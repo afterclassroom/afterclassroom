@@ -369,12 +369,12 @@
     float: right;
     font-size: 11px;
     margin-left: -122px;
-		margin-top: -54px;
+    margin-top: -54px;
     padding: 10px;
     position: absolute;
     width: 100px;
     z-index: 1000;
-		display: none;
+    display: none;
 }
 
 .assPic .asslinkdownSt div {
@@ -575,12 +575,12 @@
 }
 
 .AsDCont {
-    padding: 5px 5px 5px 20px;
+    padding: 5px 5px 5px 10px;
 }
 
 .AsDContL {
     float: left;
-    width: 395px;
+    width: 100%;
     padding-right: 10px;
     word-wrap: break-word;
 }
@@ -646,6 +646,21 @@
 
 .AsDContR a:visited {
     color: #9a9a82;
+}
+
+.AsDContR {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid;
+    color: #969696;
+    float: right;
+    font-size: 11px;
+    margin-left: -117px;
+    margin-top: -54px;
+    padding: 5px 5px 5px 10px;
+    position: absolute;
+    width: 100px;
+    z-index: 1000;
+    display: none;
 }
 
 .fan {
@@ -1122,7 +1137,7 @@ span.btmDown a:hover {
 
 .AsDcomIn .submit {
     padding-left: 8px;
-		padding-top: 10px;
+    padding-top: 10px;
 }
 
 .AsDcomL {
@@ -2973,7 +2988,7 @@ span.btmFan a:hover {
     float: left;
     font-size: 10px;
     color: #6f6f63;
-		width: 100%;
+    width: 100%;
 }
 
 .proListCont a, .proListCont a:link, .proListCont a:visited {
@@ -3419,7 +3434,7 @@ div.navigation-container {
 }
 div.navigation {
     float: left;
-  /*  position: relative;*/
+    /*  position: relative;*/
     left: -50%;
 }
 div.navigation a.pageLink {

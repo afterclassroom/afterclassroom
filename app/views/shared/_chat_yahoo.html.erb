@@ -1,17 +1,16 @@
 <% if get_chat_id(user_post, "yahoo") != "" %>
-<div class="yahoo">
+<span class="yahoo" style="float: left;line-height: 20px;margin-top: 2px;">
   <a href="ymsgr:sendim?<%= get_chat_id(user_post, "yahoo") %>">
-    <img src="/gadgets_proxy/link?url=http://opi.yahoo.com/online?u=<%= get_chat_id(user_post, "yahoo") %>&m=g&t=0" style="border: 0 none;margin-top: 4px"/>
-    <span style="margin-left: 14px;margin-top: 5px;position: absolute;">Yahoo</span>
+    <span style="margin-left: 13px;margin-top: 5px;">Yahoo</span>
+    <img src="/gadgets_proxy/link?url=http://opi.yahoo.com/online?u=<%= get_chat_id(user_post, "yahoo") %>&m=g&t=0" style="float: left;border: 0 none;margin-top: 4px;height: 12px;width: 12px"/>
   </a>
-</div>
+</span>
 <% end %>
 <% if get_chat_id(user_post, "skype") != "" %>
-<div class="skype">
-  <script type="text/javascript" src="/gadgets_proxy/link?url=http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+<span class="skype" style="float: left;line-height: 20px">
   <a href="skype:<%= get_chat_id(user_post, "skype") %>?chat">
-    <img border="0" width="16" height="14" style="border: medium none;margin-top: 4px" alt="My status" src="/gadgets_proxy/link?url=http://mystatus.skype.com/smallicon/<%= get_chat_id(user_post, "skype") %>">
-    <span style="margin-left: 11px;margin-top: 5px;position: absolute;">Skype</span>
+    <span style="margin-left: 9px;margin-top: 5px;">Skype</span>
+    <img style="float: left;border: medium none;margin-top: 4px;height: 16px;width: 16px" alt="My status" src="/gadgets_proxy/link?url=http://mystatus.skype.com/smallicon/<%= get_chat_id(user_post, "skype") %>">
   </a>
-</div>
+</span>
 <% end %>
