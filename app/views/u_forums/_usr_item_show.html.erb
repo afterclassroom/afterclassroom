@@ -1,34 +1,57 @@
-<div class="AsDcomImg" style="padding: 5px;" id="usr_<%= usr.id %>">
-  <div>
-    <img src="<%= usr.avatar.url(:thumb) %>" class="vtip avatar_<%= usr.id %>" title="<%= usr.name %>"/>
-  </div>
+<div class="AsImgSelect" style="padding: 5px;" id="usr_<%= usr.id %>">
+  <a>
+    <div>
+      <img src="<%= usr.avatar.url(:thumb) %>" class="vtip avatar_<%= usr.id %>" title="<%= usr.name %>"/>
+    </div>
+  </a>
 </div>
 
+
 <script type="text/javascript">
-function AddUser<%= usr.id %>(){
-  $('#list_usrs_wait').show();
-  $('#list_usrs').hide();
-  $('#show_paging').hide();
+  //class="AsDcomImg"
+  function AddUser<%= usr.id %>(){
+    $('#list_usrs_wait').show();
+    $('#list_usrs').hide();
+    $('#show_paging').hide();
 
-  addusrajax = $.ajax({
-    url: '<%= add_usr_show_user_u_forums_path %>',
-    type: 'GET',
-    dataType: 'script',
-    data: {
-      usr_id: <%= usr.id %>
-    },
-    success: function(data){
-    }
-  });//end ajax
-}
+    addusrajax = $.ajax({
+      url: '<%= add_usr_show_user_u_forums_path %>',
+      type: 'GET',
+      dataType: 'script',
+      data: {
+        usr_id: <%= usr.id %>
+      },
+      success: function(data){
+      }
+    });//end ajax
+  }
 
-$(document).ready(function(){
-  <% if session[:list_selected_show].include?(usr.id) == false %>
-    <% if @ufo.ufo_members.map(&:user_id).include?(usr.id) == false %>
-    $('#usr_<%= usr.id %>').click(function(){
-      AddUser<%= usr.id %>();
-    });
-    <% end %>
+  $(document).ready(function(){
+<% if session[:list_selected_show].include?(usr.id) == false %>
+  <% if @ufo.ufo_members.map(&:user_id).include?(usr.id) == false %>
+        $('#usr_<%= usr.id %>').click(function(){
+          AddUser<%= usr.id %>();
+        });
   <% end %>
-});
+<% end %>
+  });
 </script>
+<style>
+  .AsImgSelect {
+    float: left;
+    width: 60px;
+    opacity:0.3;
+  }
+
+  .AsImgSelect div {
+    padding: 3px;
+    background: url('/images/bgi-colx300.png') no-repeat;
+    height: 51px;
+  }
+  
+  .AsImgSelect img {
+    width: 45px;
+    height: 45px;
+    border: 0px;
+  }
+</style>

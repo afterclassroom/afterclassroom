@@ -9,45 +9,20 @@ class UForumsController < ApplicationController
 
   def show
     @ufo = Ufo.find(params[:id])
-
+    
     if current_user != @ufo_author
-      check = false
-      #case 1: when author share the topic with current_user's groups
-      str_share = @ufo.ufo_custom.share_to_index
-      arr_p = [] 
-      OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
-      if (arr_p[0][1] == 6)#share to every one
-        check = true
-      else
-        share_to = get_share(arr_p[0][1])
-        if share_to != nil
-          if share_to.include?(current_user)
-            check = true
-          end
-        end
-      end
-      #case 2: author does not share with current_user's groups, but current_user is a member of topic
-      if !check
-        if @ufo.ufo_members.where(:user_id => current_user.id).size > 0 
-          check = true
-        end
-      end
-      if !check
+      if membership_validate(@ufo) == nil
         redirect_to warning_user_path(@ufo_author)
       end
     end
-
+    
     @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 10)
-
     @ufo_cmt = UfoCmt.new()
     @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 16) : nil
-
     @cur_page = "1"
     session[:list_remove_usrs] = []#this array stores the list of member to be removed
     @prechecked = []
-
     session[:list_selected_show] = []#this array stores the list of member to be added to topic
-
     #BEGIN load the user-friend based on user-topic-setting
     str_share = @ufo.ufo_custom.share_to_index
     arr_p = [] 
@@ -132,9 +107,8 @@ class UForumsController < ApplicationController
   def save_custom
     @ufo = Ufo.find(params[:id])
 
-    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting = UfoCustom.find(params[:id])
     custom_setting.share_to_index = params[:shareto]
-    custom_setting.post_lounge = params[:postlounge]
     custom_setting.save
 
     #BEGIN load the proper user-friends based on setting
@@ -152,9 +126,8 @@ class UForumsController < ApplicationController
 
   def save_custom_b
     @ufo = Ufo.find(params[:id])
-    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting = UfoCustom.find(params[:id])
     custom_setting.share_to_index = params[:shareto]
-    custom_setting.post_lounge = params[:postlounge]
     custom_setting.save
 
     render :layout => false 
@@ -166,6 +139,17 @@ class UForumsController < ApplicationController
       @index_category = params[:category]
     else
       load_current_user_ufos
+      #init the default setting for the first time user view forum
+      #because default setting is not set for all user at the first time they 
+      #view the page
+      if current_user.ufo_default == nil
+        ufo_df = UfoDefault.new()
+        ufo_df.share_to_index = 0
+        ufo_df.post_lounge = false
+        ufo_df.user = current_user
+        ufo_df.save
+      end
+      
       @index_category = ""
     end
   end
@@ -452,7 +436,6 @@ class UForumsController < ApplicationController
     redirect_to user_u_forum_path(@ufo.user, @ufo)
   end
 
-
   def edit
     @ufo = Ufo.find(params[:id])
   end
@@ -582,15 +565,6 @@ class UForumsController < ApplicationController
       @ufos = tmparr.paginate(:page => params[:page], :per_page => 10)
     end
   end
-
-  
-  
-  
-  
-  
-  
-  
-  
   
   def load_friend_ufos
     tmparr = []
@@ -616,5 +590,4 @@ class UForumsController < ApplicationController
     
     @ufos = tmparr.paginate(:page => params[:page], :per_page => 10)
   end #end load_friend_ufos
-
 end

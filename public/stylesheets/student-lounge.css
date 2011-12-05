@@ -5766,6 +5766,20 @@ span.btmTag a:hover{
 .submit_add_comforum span input:hover{
     background: url("/images/btm106Red.png") no-repeat scroll 0 0 transparent;
 }
+.add_invite_comforum span input{
+    background: url("/images/btm80.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    width: 80px;
+    color: #FFFFFF;
+}
+.add_invite_comforum span input:hover{
+    background: url("/images/btm80Red.png") no-repeat scroll 0 0 transparent;
+}
 .contentBoxFo {
     background: #E5EBEA;
     -moz-box-shadow: 0 0 5px #98c7e6;

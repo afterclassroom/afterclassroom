@@ -73,7 +73,13 @@
                   <span style="margin-left: -4px;padding-top: 7px;padding-left: 30px; padding-bottom: 7px; background: url('/images/invite_more.png') no-repeat"></span>
                   <label style="background-color: #1FA6F3;color: #FFFFFF;float: left;height: 25px;line-height: 25px;margin-left: 28px;margin-top: -22px;text-align: left;text-indent: 5px;width: 228px;" class="vtip" title="Subscribe members to the topic by clicking th button below">Invite</label>
                   <div style="margin-top:15px;">
-                    <button id="invite_btn" class="vtip" title="Click here to display your friends">Invite Friends</button>
+                                        
+                    <div class="add_invite_comforum" style="margin-right: -13px; margin-top: 15px;">
+                    <span>
+                      <input type="submit" id="invite_btn" class="vtip" title="Click here to display your friends" name="commit" value="Invite Friends">
+                    </span>
+                  </div>
+                    
                   </div>
                 </div>
                 <div style="display: none; width: 289px; float: right; margin-top: -54px; height: 52px;">
@@ -209,6 +215,13 @@
             <%= render :partial => "item_cmt", :locals => {:cmt => cmt} %>
           <% end %>
         </div>
+        <div class="assPage">
+          <div style="border-bottom: 1px solid #D2D9E7;margin-top: 5px;padding-bottom: 5px;width: 633px;">
+            <span class="numPage"><%= page_entries_info @ufo_cmts, :entry_name => "topic comments" %></span>
+            <%= will_paginate @ufo_cmts %> 
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -217,20 +230,13 @@
 
 
 <%= render :partial => "on_this_topic" %>
-
-
-
 <script type="text/javascript">
-
   var shareto;
   var postlounge;
   var pad_mouse_is_inside = false;
   var ajaxObj = null;
   var pagingAjax = null;
   var addusrajax = null;
-
-
-
 <% if @ufo.ufo_custom != nil %>
     shareto = <%= @ufo.ufo_custom.share_to_index %>;
     postlounge = <%= @ufo.ufo_custom.post_lounge %>;
@@ -238,7 +244,6 @@
     shareto = <%= current_user.ufo_default.share_to_index %>;
     postlounge = <%= current_user.ufo_default.post_lounge %>;
 <% end %> 
-
   function PostLounge(){
     $('#setting_area').hide();
     $('#wait_area').show();

@@ -60,53 +60,56 @@
 
                 <div class="assContFoT615" style="float: none">
                   <div class="assContFoD615">
-                    <div class="assContFoC615" style="padding:5px 25px" id="setting_pane">
+                    <div class="assContFoC615" style="padding:5px 10px" id="setting_pane">
                       <div id="loading_id" style="margin-left: 282px; display: none;">
                         <img src="/images/ajax-loader-a.gif"/>
                       </div>
 
                       <%= fields_for @custom_setting do |custom| %> 
-                      <div id="inner_setting">
-                        <div id="row1">
-                          <div id="join_area" style="width: 289px; height: 52px;">
-                            <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/friend_forum.png') no-repeat"></span>
-                            <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;" class="vtip" title="Members from your selected group are able to discuss on this topic">Who can joins?</label>
-                            <div style="margin-top:14px;">
-                              <%#= show_share_setting(current_user)%>
-                              <%= custom.select :share_to_index, OPTIONS_SETTING, :selected => @custom_setting.share_to_index %>
+                        <div id="inner_setting">
+                          <div id="row1">
+                            <div class="contentBoxFo">
+                              <div id="join_area" style="line-height: 31px;margin-top: -15px;">
+                                <span style="padding-left: 33px; padding-bottom: 15px; background: url('/images/who_join.png') no-repeat"></span>
+                                <label title="Members from your selected group are able to discuss on this topic" class="vtip" style="background-color: rgb(31, 166, 243); color: rgb(255, 255, 255); float: left; height: 25px; line-height: 25px; margin-left: 28px; margin-top: -22px; text-align: left; text-indent: 5px; width: 228px;">Who can joins?</label>
+                                <div style="margin-top:10px;">
+    <%#= show_share_setting(current_user)%>
+                                  <%= custom.select :share_to_index, OPTIONS_SETTING, :selected => @custom_setting.share_to_index %>
+                                </div>
+                              </div>
                             </div>
+
+
+                            <!-- div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                              <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
+                              <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
+                              <div style="margin-top:12px;">
+                                <select style="width: 100px;">
+                                  <option value="1">Yes</option>
+                                  <option value="2">No</option>
+                                </select>                       
+                              </div>
+                            </div -->
                           </div>
-                          
-                            
-                          
-                          <!-- div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
-                            <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
-                            <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
-                            <div style="margin-top:12px;">
-                              <select style="width: 100px;">
-                                <option value="1">Yes</option>
-                                <option value="2">No</option>
-                              </select>                       
+                          <div id="row2">
+                            <div class="contentBoxFo">
+                              <div id="lounge_area">
+                                <span style="padding-top: 4px; padding-left: 33px; padding-bottom: 19px; background: url(&quot;/images/post_forum.png&quot;) no-repeat scroll 0% 0% transparent;"></span>
+                                <label title="Select your option whether to post this topic on your lounge" class="vtip" style="background-color: rgb(31, 166, 243); color: rgb(255, 255, 255);height: 25px; line-height: 25px; margin-left: 28px; margin-top: -22px; text-align: left; text-indent: 5px; width: 228px;">Post to your lounge?</label>                                
+                                <div style="margin-top: 10px">
+                                  <%@lounge_setting = [["No", false], ["Yes", true]]%>
+                                  <%= custom.select :post_lounge, @lounge_setting, :selected => @custom_setting.post_lounge %>
+                                </div>
+                              </div>
                             </div>
-                          </div -->
-                        </div>
-                        <div id="row2">
-                          <div id="lounge_area" style="width: 289px; height: 52px;margin-top: 10px;">
-                            <span style="float: left;padding-top: 4px; padding-left: 33px; padding-bottom: 19px; background: url(&quot;/images/post_forum.png&quot;) no-repeat scroll 0% 0% transparent;"></span>
-                            <label style="line-height: 25px;text-align: left; color: #969696;" class="vtip" title="Select your option whether to post this topic on your lounge">Post to your lounge?</label>
-                            <div>
-                              <%@lounge_setting = [["No", false], ["Yes", true]]%>
-                              <%= custom.select :post_lounge, @lounge_setting, :selected => @custom_setting.post_lounge %>
-                            </div>
+                            <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
+                              <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
+                              <div>
+                                <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
+                              </div>
+                            </div -->
                           </div>
-                          <!--div style="border: 0px solid black; width: 289px; float: right; margin-top: -54px; height: 52px;">
-                            <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
-                            <div>
-                              <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
-                            </div>
-                          </div -->
                         </div>
-                      </div>
                       <% end %> <!-- end fields_for custom -->
                     </div>
                   </div>
