@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
       school_id = params[:school_id]
       school = School.find(school_id)
       session[:your_school] = school.id
-			session[:your_school_type] = self.current_user.school.type_school
+			session[:your_school_type] = school.type_school
 			if session[:return_to] and session[:return_to].include?("setting")
 				current_user.school = school
 				current_user.save!
