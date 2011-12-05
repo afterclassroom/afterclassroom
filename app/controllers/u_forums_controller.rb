@@ -197,7 +197,7 @@ class UForumsController < ApplicationController
     post_wall(@objufo)
 
     custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
-    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.post_lounge = true
     custom_setting.save
   end
 
