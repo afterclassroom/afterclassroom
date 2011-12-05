@@ -13,9 +13,14 @@
           <%= render :partial => "/shared/form_request_post/description", :locals => {:p => p} %>
           <div class="reqLa"><label>Professor*</label></div>
           <div class="reqTi"><%= f.text_field :professor, :class => "{validate:{required:true}}" %></div>
+					<div class="reqLa">
+				            <label>
+				                Anonymous <%= f.check_box :anonymous %> 
+				            </label>
+				        </div>
           <%= render :partial => "/shared/form_request_post/file", :locals => {:p => p, :only_img => true} %>
           <%= render :partial => "/shared/form_request_post/select_tag" %>
-		  <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
+		  		<%= show_simple_captcha(:label => "CAPTCHA Code *") %>
           <div class="submit" style="margin-top: 5px;"><%= show_submit_form() %></div>
         <% end %>
       <% end %>

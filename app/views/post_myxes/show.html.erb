@@ -44,7 +44,7 @@
         <% end %>
         <div class="AsDContLinf">
           <span>Posted by:</span>
-          <%= show_user_post(@post.user) %> - <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+					<%= @post_myx.anonymous ? "Anonymous" : show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
         </div>
         <% if @post_myx.tags_from(@post.school).size > 0 %>
           <div class="AsDContLinf">
@@ -54,7 +54,7 @@
           </div>
         <% end %>
       </div>
-      <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
+      <%= render(:partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post})  if !@post_myx.anonymous %>
       <%= render :partial => "post_actions", :locals => {:post => @post} %>
     </div>
 

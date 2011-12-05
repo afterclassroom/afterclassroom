@@ -16,8 +16,18 @@ function submitForm(){
         }
     });
     if (result) {
-        $("#form_post").submit();
-    }
+				if ($('#kindeditor').length){
+					if (KE.html('kindeditor') == ""){
+						$('#kindeditor_error').show();
+					}else{
+						$("#form_post").submit();
+					}
+				}else{
+					$("#form_post").submit();
+				}   
+    }else{
+			return false;
+		}
 }
 
 function forget_password(){
@@ -45,7 +55,7 @@ function request_form_submit(){
         }
     });
     if (result) {
-				if ($('#kindeditor')){
+				if ($('#kindeditor').length){
 					if (KE.html('kindeditor') == ""){
 						$('#kindeditor_error').show();
 					}else{

@@ -25,7 +25,7 @@
                 <div class="assInfL">
                     <div>
                         <span>Asked by:</span>
-                        <%= show_user_post(post.user) %>
+                        <%= post.post_qa.anonymous ? "Anonymous" : show_user_post(post.user) %>
                     </div>
                 </div>
             </div>
