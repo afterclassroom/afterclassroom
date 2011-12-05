@@ -9,62 +9,18 @@ class UForumsController < ApplicationController
 
   def show
     @ufo = Ufo.find(params[:id])
-
     if current_user != @ufo_author
-      
-#      check = false
-#      #case 1: when author share the topic with current_user's groups
-#      str_share = @ufo.ufo_custom.share_to_index
-#      arr_p = [] 
-#      OPTIONS_SETTING.select {|p| arr_p << p if p[1] == str_share.to_i} 
-#      if (arr_p[0][1] == 6)#share to every one
-#        check = true
-#      else
-#        share_to = get_share(arr_p[0][1])
-#        if share_to != nil
-#          if share_to.include?(current_user)
-#            check = true
-#          end
-#        end
-#      end
-#      #case 2: author does not share with current_user's groups, but current_user is a member of topic
-#      if !check
-#        if @ufo.ufo_members.where(:user_id => current_user.id).size > 0 
-#          check = true
-#        end
-#      end
-      
-      
-#      if !check
-#        redirect_to warning_user_path(@ufo_author)
-#      end
-      
       if membership_validate(@ufo) == nil
         redirect_to warning_user_path(@ufo_author)
       end
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
     end
-
     @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 10)
-
     @ufo_cmt = UfoCmt.new()
     @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 16) : nil
-
     @cur_page = "1"
     session[:list_remove_usrs] = []#this array stores the list of member to be removed
     @prechecked = []
-
     session[:list_selected_show] = []#this array stores the list of member to be added to topic
-
     #BEGIN load the user-friend based on user-topic-setting
     str_share = @ufo.ufo_custom.share_to_index
     arr_p = [] 
