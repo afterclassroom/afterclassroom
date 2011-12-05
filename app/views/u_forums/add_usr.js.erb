@@ -1,3 +1,4 @@
 $('#selected_users_area').append('<%= escape_javascript ( raw(render :partial => "seted_usr")) %>');
 $('div#usr_<%= @usr.id %>').unbind();
+$('div#usr_<%= @usr.id %>').attr('class', 'AsImgSelect');
 
