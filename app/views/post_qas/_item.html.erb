@@ -10,11 +10,13 @@
                 <%= link_to post.school.name, :controller => "post_qas", :action => "index", :from_school => post.school %>
             </div>
             <div class="assDes">
+								<% if !check_image_in_content(post.description) %>
                 <div class="assImg">
                     <div>
                         <%= link_to image_post_thumb(controller_name, post), post.post_qa %>
                     </div>
                 </div>
+								<% end %>
                 <%= truncate_html(description, :length => 250, :omission => '...') %>
             </div>
         </div>

@@ -1201,6 +1201,13 @@ module ApplicationHelper
 		end
 	end
 
+	def check_image_in_content(content)
+		web_doc = Hpricot(content)
+    arr_img = []
+    web_doc.search("img").each{ |e| arr_img << e.attributes['src'] }
+    return arr_img.size > 0
+	end
+
   private
   
   def link_to_require_login(str)
