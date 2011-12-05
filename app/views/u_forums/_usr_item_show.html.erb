@@ -1,4 +1,4 @@
-<div class="AsImgSelect" style="padding: 5px;" id="usr_<%= usr.id %>">
+<div class="AsDcomImg" style="padding: 5px;" id="usr_<%= usr.id %>">
   <a>
     <div>
       <img src="<%= usr.avatar.url(:thumb) %>" class="vtip avatar_<%= usr.id %>" title="<%= usr.name %>"/>
@@ -8,7 +8,7 @@
 
 
 <script type="text/javascript">
-  //class="AsDcomImg"
+  //class="AsImgSelect"
   function AddUser<%= usr.id %>(){
     $('#list_usrs_wait').show();
     $('#list_usrs').hide();
@@ -32,6 +32,9 @@
         $('#usr_<%= usr.id %>').click(function(){
           AddUser<%= usr.id %>();
         });
+  <% else %>
+      $('#usr_<%= usr.id %>').attr('class', 'AsImgSelect');
+
   <% end %>
 <% end %>
   });
