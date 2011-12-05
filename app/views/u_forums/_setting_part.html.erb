@@ -1,119 +1,115 @@
-         <div style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; height: 120px; width: 593px;">
+<div style="border: 0px solid black; margin-left: 10px; margin-top: 10px; padding-top: 5px; height: 120px; width: 593px;">
 
-            <div style='height: 60px;'>
-              <div style="border: 0px solid black; width: 289px; height: 52px;">
-                <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_join.png') no-repeat"></span>
-                <label style="text-align: left; color: #969696; float: right;margin-right: 182px; margin-top: 8px;">Who can joins?</label>
-                <div style="margin-top:14px;">
-                  <%= show_share_custom(@objufo) %>
-                </div>
-              </div>
-              <div style="width: 289px; float: right; margin-top: -54px; height: 52px; display: none;">
-                <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
-                <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
-                <div style="margin-top:12px;">
-                  <select style="width: 100px;">
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                  </select>                       
-                </div>
-              </div>
-            </div>
-            <div style='height: 81px;'>
-              <div style="border: 0px solid black; width: 289px; height: 52px;">
-                <label style="text-align: left; color: #969696;">Post to your lounge?</label>
-                <div>
-                  <% pr = @objufo.ufo_custom %>
-                  <% check = pr ? pr.post_lounge : 0 %>
-                  <% if (check == 0 || check == false) %>
-                    <button id="to_lounge<%= @objufo.id %>">Post to lounge</button>
-                  <% else %>
-                    This topic has been posted to your lounge.
-                  <% end %>
-                </div>
-              </div>
-              <div style="width: 289px; float: right; margin-top: -54px; height: 52px; display: none;">
-                <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
-                <div>
-                  <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-<div>
-  <div style="display: inline; float: right;">
-    <button id="bt_close<%= @objufo.id %>">Close</button>
+  <div class="contentBoxFo">
+    <span style="margin-left: -4px; padding-top: 8px; padding-left: 30px; padding-bottom: 7px; background: url(&quot;/images/who_join.png&quot;) no-repeat scroll 0% 0% transparent;"></span>
+    <label style="background-color: rgb(31, 166, 243); color: rgb(255, 255, 255); float: left; height: 25px; line-height: 25px; margin-left: 28px; margin-top: -22px; text-align: left; text-indent: 5px; width: 228px;">Who can joins?</label>
+    <div style="margin-top:14px;">
+      <%= show_share_custom(@objufo) %>
+    </div>          
   </div>
-  <div style="display: inline; float: right;">
-    <button id="bt_save<%= @objufo.id %>">Save</button>
+
+  <div style="width: 289px; float: right; margin-top: -54px; height: 52px; display: none;">
+    <span style="padding-left: 33px; padding-bottom: 7px; background: url('/images/ufo_colapse.png') no-repeat"></span>
+    <label style="color: #969696; text-align: left;float: right;margin-right: 147px; margin-top: 6px;">Enable collapse mode</label>
+    <div style="margin-top:12px;">
+      <select style="width: 100px;">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>                       
+    </div>
   </div>
+
+  <div class="contentBoxFo">
+    <span style="padding-top: 4px; padding-left: 33px; padding-bottom: 7px; background: url(&quot;/images/post_forum.png&quot;) no-repeat scroll 0% 0% transparent;"></span>
+    <label style="background-color: rgb(31, 166, 243); color: rgb(255, 255, 255); float: left; height: 25px; line-height: 25px; margin-left: 28px; margin-top: -22px; text-align: left; text-indent: 5px; width: 228px;">Post to your lounge?</label>
+    <div style="margin-top: 15px;">
+      <% pr = @objufo.ufo_custom %>
+      <% check = pr ? pr.post_lounge : 0 %>
+      <% if (check == 0 || check == false) %>
+        <button id="to_lounge<%= @objufo.id %>">Post to lounge</button>
+      <% else %>
+        This topic has been posted to your lounge.
+      <% end %>
+    </div>
+  </div>
+  <div style="width: 289px; float: right; margin-top: -54px; height: 52px; display: none;">
+    <label style="text-align: left; color: #969696;">Words count for collapse mode (Default is 100 words)</label>
+    <div>
+      <input type="text" value="" name="wrd_count" id="wrd_count" style="width: 93px; height: 20px;"/>                      
+    </div>
+  </div>
+
+
+</div>
+
+<div style="border-bottom: 0px none; float: right; margin-top: 5px;" class="AsDContBtm">
+  <span class="btmComment"><a id="bt_save<%= @objufo.id %>" href="javascript:;">Save</a></span>
+  <span class="btmComment"><a id="bt_close<%= @objufo.id %>" href="javascript:;">Close</a></span>
 </div>
 
 
 <script type="text/javascript">
-function SaveSetting<%= @objufo.id %>(ishareto, itolounge){
-  $.ajax({
-    url: "<%= save_custom_b_user_u_forums_path %>",
-    type: 'POST',
-    dataType: 'script',
-    data: ({
-      shareto: ishareto,
-      postlounge: itolounge,
-      id: <%= @objufo.id %>
-    })
-  });
-}
+  function SaveSetting<%= @objufo.id %>(ishareto, itolounge){
+    $.ajax({
+      url: "<%= save_custom_b_user_u_forums_path %>",
+      type: 'POST',
+      dataType: 'script',
+      data: ({
+        shareto: ishareto,
+        postlounge: itolounge,
+        id: <%= @objufo.id %>
+      })
+    });
+  }
 
-function PostLounge<%= @objufo.id %>(){
-  $('#item_cnt<%= @objufo.id %>').hide();
-  $('#waiting_id<%= @objufo.id %>').show();
-
-  $.ajax({
-    url: '<%= post_lounge_b_user_u_forums_path %>',
-    type: 'GET',
-    dataType: 'script',
-    data: {
-      id: <%= @objufo.id %>
-    },
-    success: function(html){
-    }
-  });
-}
-
-
-$(document).ready(function(){
-
-  var shareto<%= @objufo.id %> = <%= @objufo.ufo_custom.share_to_index %>;
-
-  var tolounge<%= @objufo.id %> = "";
-  <% if @objufo.ufo_custom.post_lounge == false %>
-   tolounge<%= @objufo.id %> = <%= @objufo.ufo_custom.post_lounge %>
-  <% end %> 
-
-
-  $('#waiting_id<%= @objufo.id %>').hide();
-  $('#bt_close<%= @objufo.id %>').click(function(){
-    $("#item_dlg<%= @objufo.id %>").parent().find('span.ui-icon-closethick').click();
-  });
-
-  $('#item_dlg<%= @objufo.id %>').find('#ufo_setting').change(function(){
-    shareto<%= @objufo.id %> = $(this).find('option:selected').val();
-  });
-
-  $('#bt_save<%= @objufo.id %>').click(function(){
-    $('#waiting_id<%= @objufo.id %>').show();
+  function PostLounge<%= @objufo.id %>(){
     $('#item_cnt<%= @objufo.id %>').hide();
-    SaveSetting<%= @objufo.id %>(shareto<%= @objufo.id %>,tolounge<%= @objufo.id %>);
+    $('#waiting_id<%= @objufo.id %>').show();
+
+    $.ajax({
+      url: '<%= post_lounge_b_user_u_forums_path %>',
+      type: 'GET',
+      dataType: 'script',
+      data: {
+        id: <%= @objufo.id %>
+      },
+      success: function(html){
+      }
+    });
+  }
+
+
+  $(document).ready(function(){
+
+    var shareto<%= @objufo.id %> = <%= @objufo.ufo_custom.share_to_index %>;
+
+    var tolounge<%= @objufo.id %> = "";
+<% if @objufo.ufo_custom.post_lounge == false %>
+      tolounge<%= @objufo.id %> = <%= @objufo.ufo_custom.post_lounge %>
+<% end %> 
+
+
+    $('#waiting_id<%= @objufo.id %>').hide();
+    $('#bt_close<%= @objufo.id %>').click(function(){
+      $("#item_dlg<%= @objufo.id %>").parent().find('span.ui-icon-closethick').click();
+    });
+
+    $('#item_dlg<%= @objufo.id %>').find('#ufo_setting').change(function(){
+      shareto<%= @objufo.id %> = $(this).find('option:selected').val();
+    });
+
+    $('#bt_save<%= @objufo.id %>').click(function(){
+      $('#waiting_id<%= @objufo.id %>').show();
+      $('#item_cnt<%= @objufo.id %>').hide();
+      SaveSetting<%= @objufo.id %>(shareto<%= @objufo.id %>,tolounge<%= @objufo.id %>);
+    });
+
+    $('#to_lounge<%= @objufo.id %>').click(function(){
+      PostLounge<%= @objufo.id %>();
+    });
+
+
+
   });
-
-  $('#to_lounge<%= @objufo.id %>').click(function(){
-    PostLounge<%= @objufo.id %>();
-  });
-
-
-
-});
 
 </script>
