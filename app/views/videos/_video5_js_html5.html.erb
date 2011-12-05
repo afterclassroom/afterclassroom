@@ -1,0 +1,122 @@
+<script type="text/javascript" src="/javascripts/jquery.jcarousel.js"></script>
+<script type="text/javascript" src="/javascripts/cuepoint.js"></script>
+
+
+<a 
+  href="<%= get_video_path(@video.video_file.video_attach.url) %>" 
+  style="display:block;width:530px;height:360px;margin-left: 15px;" 
+  id="player">
+</a>
+
+
+<div id="mycarousel" class="jcarousel-skin-tango" style="float: right">
+
+  <ul>
+    <%
+    videos = @video.user.videos_same_category(@video)
+  %>
+    <% videos.each do |v| %>
+      <% if check_private_permission(current_user, @video.user, "my_videos") or check_view_permission(current_user, v) %>
+        <li>
+          <a href="<%= get_video_path(v.video_file.video_attach.url) %>" rel="<%= v.id %>">
+            <%= truncate(v.title, :length=>12, :omission=>"...") %>
+            <div class="jcarousel-skin-tango-img"><%= display_image_video(v) %></div>
+            <span class="play_videoJ"></span>
+          </a>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+</div>
+<!-- let rest of the page float normally -->
+<br clear="all" />
+
+<script>
+  //  install Flowplayer inside a#player
+  $f("player", 
+  {src: "/swfs/flowplayer.commercial-3.2.7-6.swf", wmode:"opaque"}, 
+  {
+    key: '#$de9093c019ae644a1da',
+    clip: {
+      // use first frame of the clip as a splash screen
+      autoPlay: true,
+      autoBuffering: true
+
+    }, 
+    logo: {
+      url: '/images/logo02.png',
+      fullscreenOnly: false,
+      top: '85%',
+      left: '20%'
+    },
+    // gradually show on mouseover
+    onMouseOver: function() {
+      this.getPlugin("logo").fadeTo(1, 1000);
+    },
+    // gradually hide on mouseout
+    onMouseOut: function() {
+      this.getPlugin("logo").fadeTo(0, 1000);
+    }
+    
+
+  });
+  // get all links that are inside div#clips
+  var links = document.getElementById("mycarousel").getElementsByTagName("a");
+
+  // loop those links and alter their click behaviour
+  for (var i = 0; i < links.length; i++) {
+    links[i].onclick = function() {
+		
+      // play the clip specified in href- attribute with Flowplayer
+      load_on_this_video(this.getAttribute("rel", 2), this.getAttribute("href", 2));
+		
+      // by returning false normal link behaviour is skipped
+      return false;
+    }
+  }
+  // Ride the carousel...
+  jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel();
+    
+  }); 
+
+  function load_on_this_video(video_id, link){
+    $.ajax({
+      url: '/videos/get_on_this_video',
+      dataType: 'script',
+      data: {
+        video_id: video_id
+      },
+      beforeSend: function() {
+        $('#on_this_videos').val("");
+        $('#action_video').val("");
+      },
+      success: function(r){
+        $f().play(link);
+      }
+    });
+  }
+  
+  $(document).ready(function(){
+    //Slides object with a time (integer) and a html string
+    var slides = {
+      0: "This is the first subtitle. You can put html in here if you like",
+      4: "A fluffy thing eating some grass.",
+      12: "Oh look it's a castle on a hill. Nice",
+      23: "Some horses",
+      34: "Wow look at those woolly sheep eating grass.",
+      40: "For more information on this plugin visit github/owainlewis or email owain@owainlewis.com",
+      50: "Cuepoint.js is an open source plugin for adding subtitles and cue-points to your HTML5 video"
+    }
+    //Start cuepoint and pass in our the subtitles we want
+    cuepoint.init(slides);
+
+    //You can set your own skip to links by using the cuepoint.setTime(seconds) function
+    $('#1').click(function(){ cuepoint.setTime(40)});
+    $('#2').click(function(){ cuepoint.setTime(80)});
+    $('#3').click(function(){ cuepoint.setTime(60)});
+    $('#4').click(function(){ cuepoint.setTime(60)});
+  });
+
+</script>

@@ -5734,6 +5734,23 @@ span.btmTag a:hover{
 }
 
 /**** BEGIN forum button for studenLounge  *****/
+.AsImgSelect {
+    float: left;
+    width: 60px;
+    opacity:0.3;
+}
+
+.AsImgSelect div {
+    padding: 3px;
+    background: url('/images/bgi-colx300.png') no-repeat;
+    height: 51px;
+}
+
+.AsImgSelect img {
+    width: 45px;
+    height: 45px;
+    border: 0px;
+}
 .item_cmt_img img{
     border:0 none;
 }
