@@ -1,9 +1,21 @@
 <% cache "select_department_post_#{@school}" do %>
-  <div class="postItemDep">
+<%
+	str_cond = case session[:your_school_type]
+			when "HighSchool"
+				"type_school = 'HighSchool'"
+			when "University"
+				"type_school <> 'HighSchool' or type_school is null"
+			when "College"
+				"type_school <> 'HighSchool' or type_school is null"
+			else
+				"1=1"
+		end
+%>  
+<div class="postItemDep">
     <div class="postTit">Program</div>
     <div class="postDep"><%= post.text_field :department_id, :id => "department" %></div>
   </div>
-  <% depcate = DepartmentCategory.find(:all, :order => "department_categories.name ASC") %>
+  <% depcate = DepartmentCategory.find(:all, :conditions => str_cond, :order => "department_categories.name ASC") %>
 
   <ul id="department_menu" class="mcdropdown_menu">
     <li rel_department="">
