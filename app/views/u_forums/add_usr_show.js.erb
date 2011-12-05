@@ -1,5 +1,6 @@
 $('#selected_usr').append('<%= escape_javascript ( raw(render :partial => "seted_usr_show")) %>');
 $('div#usr_<%= @usr.id %>').unbind();
+$('div#usr_<%= @usr.id %>').attr('class', 'AsImgSelect');
 $('#search_item<%= @usr.id %>').unbind();
 
 $('#submit_new_friend').show();
