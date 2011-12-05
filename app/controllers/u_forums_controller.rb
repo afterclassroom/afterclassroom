@@ -9,11 +9,13 @@ class UForumsController < ApplicationController
 
   def show
     @ufo = Ufo.find(params[:id])
+    
     if current_user != @ufo_author
       if membership_validate(@ufo) == nil
         redirect_to warning_user_path(@ufo_author)
       end
     end
+    
     @ufo_cmts = @ufo.ufo_cmts.paginate(:page => params[:page], :per_page => 10)
     @ufo_cmt = UfoCmt.new()
     @members = @ufo.ufo_members ? @ufo.ufo_members.paginate(:page => params[:page], :per_page => 16) : nil
@@ -105,9 +107,8 @@ class UForumsController < ApplicationController
   def save_custom
     @ufo = Ufo.find(params[:id])
 
-    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting = UfoCustom.find(params[:id])
     custom_setting.share_to_index = params[:shareto]
-    custom_setting.post_lounge = params[:postlounge]
     custom_setting.save
 
     #BEGIN load the proper user-friends based on setting
@@ -125,9 +126,8 @@ class UForumsController < ApplicationController
 
   def save_custom_b
     @ufo = Ufo.find(params[:id])
-    custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
+    custom_setting = UfoCustom.find(params[:id])
     custom_setting.share_to_index = params[:shareto]
-    custom_setting.post_lounge = params[:postlounge]
     custom_setting.save
 
     render :layout => false 
