@@ -86,6 +86,11 @@ class UForumsController < ApplicationController
         flash[:notice] = "Your topic was successfully submitted."
         @custom_setting.ufo = @ufo
         @custom_setting.save
+        
+        if (@custom_setting.post_lounge == true)
+          post_wall(@ufo)
+        end
+        
         session[:list_selected_usrs].each do |usr_id|
           member = UfoMember.new
           member.user_id = usr_id
@@ -192,7 +197,7 @@ class UForumsController < ApplicationController
     post_wall(@objufo)
 
     custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
-    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.post_lounge = true
     custom_setting.save
   end
 

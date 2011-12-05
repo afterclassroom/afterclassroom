@@ -1,4 +1,21 @@
-<div class="AsDContImg"><%= show_image_user_post(user) %></div>
+<div class="AsDContImg"><%= show_image_user_post(user) %>
+  <% if current_user != user %>
+    <span class="asslinkdownSt">
+      <span class="making wall_page">
+        <a title="Match making for" class="thickbox" id="myaclick">Match making</a>
+      </span>
+      <span class="like wall_page">
+        <a title="I like you" class="thickbox" id="myaclick">I like you</a>
+      </span>
+      <span class="love wall_page">
+        <a title="I love you" class="thickbox" id="myaclick">I love you</a>
+      </span>
+      <span class="hate wall_page">
+        <a title="I hate you" class="thickbox" id="myaclick">I hate you</a>
+      </span>
+    </span>
+  <% end %>
+</div>
 <div class="AsDContR">
   <% if current_user != user %>
     <div class="fan"><%= show_become_a_fan(user) %>  </div>
@@ -8,3 +25,28 @@
     <%= render :partial => "shared/chat_yahoo", :locals => {:user_post => user} %>
   <% end %>
 </div>
+<script>
+  $(document).ready(function(){
+    $(".AsDContImg").hover(function(){
+      $(".asslinkdownSt", this).show();
+    }, function(){
+      $(".asslinkdownSt", this).hide();
+    })
+  });
+</script>
+<style>
+  .asslinkdownSt {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid;
+    color: #969696;
+    display: none;
+    float: right;
+    font-size: 11px;
+    margin-left: -122px;
+    margin-top: -54px;
+    padding: 10px;
+    position: absolute;
+    width: 100px;
+    z-index: 1000;
+  }
+</style>
