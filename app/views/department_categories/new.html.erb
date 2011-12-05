@@ -21,6 +21,10 @@
               <th valign="top">Name*:</th>
               <td class="inp-form"><%= f.text_field :name, :class => '{validate:{required:true}}' %></td>
             </tr>
+						<tr>
+              <th valign="top">Type School:</th>
+              <td class="inp-form"><%= select_tag "department_category[type_school]", options_for_select([ "University", "College", "HighSchool" ], "University") %></td>
+            </tr>
             <tr>
               <td></td>
               <td class="form-buttom"><a href="javascript:;" onclick="submit();">Create</a></td>

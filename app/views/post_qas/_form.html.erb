@@ -8,7 +8,18 @@
   <div class="postItem">
     <div class="postTit">Content*</div>
     <div class="postInput">
-      <div class="postInp"><%= post.text_area :description, :id => "kindeditor", :style => "height: 150px" %></div>
+      <div class="postInp">
+				<%= post.text_area :description, :id => "kindeditor", :style => "height: 150px" %>
+				<label for="kindeditor" id="kindeditor_error" class="error" style="display:none;">This field is required.</label>
+			</div>
+    </div>
+  </div>
+	<div class="postItem">
+    <div class="postTit">Anonymous</div>
+		<div class="postInput">
+      <div class="postInp">
+				<%= f.check_box :anonymous %>
+			</div>
     </div>
   </div>
   <%= render :partial => "/shared/form_post/select_school" %>

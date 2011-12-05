@@ -10,6 +10,14 @@
     <div class="postTit">Professor*</div>
     <div class="postInp"><%= f.text_field :professor, :class => '{validate:{required:true}}', :style => "width:208px" %></div>
   </div>
+	<div class="postItem">
+    <div class="postTit">Anonymous</div>
+		<div class="postInput">
+      <div class="postInp">
+				<%= f.check_box :anonymous %>
+			</div>
+    </div>
+  </div>
   <%= render :partial => "/shared/form_post/attach_file" %>
   <%= render :partial => "/shared/form_post/file", :locals => {:post => post, :only_img => true} %>
   <%= render :partial => "/shared/form_post/select_tag" %>

@@ -30,7 +30,7 @@ You are here: <a href="/">Home</a>
                 </div>
                 <div class="AsDContLinf">
                     <span>Asked by:</span>
-                    <%= show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
+                    <%= @post_qa.anonymous ? "Anonymous" : show_user_post(@post.user) %>- <%= time_ago_in_words(@post.created_at, true) + " ago." %>
                 </div>
                 <% if @post_qa.tags_from(@post.school).size > 0 %>
                 <div class="AsDContLinf">
@@ -40,7 +40,7 @@ You are here: <a href="/">Home</a>
                 </div>
                 <% end %>
             </div>
-            <%= render :partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post} %>
+            <%= render(:partial => "shared/user_infor", :locals => {:user => @post.user, :post => @post}) if !@post_qa.anonymous %>
             <%= render :partial => "post_actions", :locals => {:post => @post} %>
         </div>
         <div class="AsDcom" id="form_comment" style="display: none">

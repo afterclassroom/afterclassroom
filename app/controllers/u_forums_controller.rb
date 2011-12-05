@@ -86,6 +86,11 @@ class UForumsController < ApplicationController
         flash[:notice] = "Your topic was successfully submitted."
         @custom_setting.ufo = @ufo
         @custom_setting.save
+        
+        if (@custom_setting.post_lounge == true)
+          post_wall(@ufo)
+        end
+        
         session[:list_selected_usrs].each do |usr_id|
           member = UfoMember.new
           member.user_id = usr_id
@@ -192,7 +197,7 @@ class UForumsController < ApplicationController
     post_wall(@objufo)
 
     custom_setting = UfoCustom.find_or_create_by_ufo_id(params[:id])
-    custom_setting.post_lounge = params[:postlounge]
+    custom_setting.post_lounge = true
     custom_setting.save
   end
 
@@ -548,7 +553,6 @@ class UForumsController < ApplicationController
   end
 
   def load_friend_ufos
-
     tmparr = []
     @ufo_author.user_friends.each do |usr|
       usr.ufos.each do |ufo|
@@ -569,14 +573,24 @@ class UForumsController < ApplicationController
           end
           #case 2: friend does not share with current_user's groups, but current_user is a member of topic
           if !check
-            if ufo.ufo_members.where(:user_id => current_user.id).size > 0 
+            if ufo.ufo_members.where(:user_id => @ufo_author.id).size > 0 
               tmparr << ufo
             end
           end #end if
         end #end if
 
       end #end ufos.each
+    end #end user_friends each
+    #case 3: the exception topic which invited current user
+    added_ids = tmparr.map(&:id)
+    remain_ufos = @ufo_author.ufo_members.where('ufo_id not in (?)',added_ids)
+    if remain_ufos != nil
+      remain_ufos.each do |ufo_member|
+        tmparr << ufo_member.ufo
+      end
     end
+    #END case 3
+    
     @ufos = tmparr.paginate(:page => params[:page], :per_page => 10)
   end #end load_friend_ufos
 

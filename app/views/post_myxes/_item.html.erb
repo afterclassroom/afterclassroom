@@ -25,7 +25,7 @@
                 <div class="assInfL">
                     <div>
                         <span>Posted by:</span>
-                        <%= show_user_post(post.user) %>
+                        <%= post.post_myx.anonymous ? "Anonymous" : show_user_post(post.user) %>
                     </div>
                 </div>
             </div>
