@@ -17,4 +17,7 @@ class UfoMail < ActionMailer::Base
     mail :to => friend.email, :subject => "#{ufo_author.name} invite you to join a topic."
   end
   
+  def subscribeinform()
+  end
+  
 end
