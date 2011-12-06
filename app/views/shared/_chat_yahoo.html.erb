@@ -1,16 +1,16 @@
 <% if get_chat_id(user_post, "yahoo") != "" %>
-<span class="yahoo" style="float: left;line-height: 20px;margin-top: 2px;">
-  <a href="ymsgr:sendim?<%= get_chat_id(user_post, "yahoo") %>">
-    <span style="margin-left: 13px;margin-top: 5px;">Yahoo</span>
-    <img src="/gadgets_proxy/link?url=http://opi.yahoo.com/online?u=<%= get_chat_id(user_post, "yahoo") %>&m=g&t=0" style="float: left;border: 0 none;margin-top: 4px;height: 12px;width: 12px"/>
-  </a>
-</span>
+  <span class="yahoo" style="float: left;line-height: 20px;margin-top: 2px;">
+    <a href="ymsgr:sendim?<%= get_chat_id(user_post, "yahoo") %>">
+      <span style="margin-left: 13px;margin-top: 5px;">Yahoo</span>
+      <img src="/gadgets_proxy/link?url=http://opi.yahoo.com/online?u=<%= get_chat_id(user_post, "yahoo") %>&m=g&t=0" style="float: left;border: 0 none;margin-top: 4px;height: 12px;width: 12px"/>
+    </a>
+  </span>
 <% end %>
 <% if get_chat_id(user_post, "skype") != "" %>
-<span class="skype" style="float: left;line-height: 20px">
-  <a href="skype:<%= get_chat_id(user_post, "skype") %>?chat">
-    <span style="margin-left: 9px;margin-top: 5px;">Skype</span>
-    <img style="float: left;border: medium none;margin-top: 4px;height: 16px;width: 16px" alt="My status" src="/gadgets_proxy/link?url=http://mystatus.skype.com/smallicon/<%= get_chat_id(user_post, "skype") %>">
-  </a>
-</span>
+  <span class="skype" style="float: left;line-height: 20px">
+    <a href="skype:<%= get_chat_id(user_post, "skype") %>?chat">
+      <span style="margin-left: 9px;margin-top: 5px;">Skype</span>
+      <img style="float: left;border: medium none;margin-top: 4px;height: 16px;width: 16px" alt="My status" src="/gadgets_proxy/link?url=http://mystatus.skype.com/smallicon/<%= get_chat_id(user_post, "skype") %>">
+    </a>
+  </span>
 <% end %>
