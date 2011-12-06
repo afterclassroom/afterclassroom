@@ -34,6 +34,11 @@
                 <div id="first_banner" class="inboxCeTop">
                   <label style="text-align: left; margin-left: 10px; color: #969696;">Choose file</label>
                 </div>
+                
+                
+                
+                <% if @ufo.ufo_attach.url != "/ufo_attaches/original/missing.png" %>
+                
                 <div style="margin-top: 10px">
                   <div style="margin-left: 10px">Current file</div>
                   <div>
@@ -44,6 +49,11 @@
                     </span>
                   </div>
                 </div>
+                <% end %>
+                
+                
+                
+                
                 <div style="padding-top: 20px">
                   <div class="postItemB" style="background:url(/images/upload_file.png) no-repeat scroll 98% 0 transparent;margin-top: 7px; margin-bottom: 12px;">
                     <div id="divinputfile">
