@@ -175,7 +175,7 @@
           </div>
           <div class="AsDContBtm" style="border-bottom: 0px; float: right; margin-top: 5px;">
             <span class="btmComment"><a href="javascript:;" id="btn_submit">Submit</a></span>
-            <span class="btmComment"><a href="javascript:;">Cancel</a></span>
+            <span class="btmComment"><a href="javascript:;" id="reset_form">Cancel</a></span>
           </div>
         <% end %><!-- end form_for -->
       </div>
@@ -238,6 +238,10 @@
         $('#btn_submit').click();
       }
     });
+    $('#reset_form').click(function(){
+      document.getElementById('form_new').reset();
+    });
+    
     //BEGIN: load the friend list
     //$('#ufo_setting').change(function(){
     $('#ufo_custom_share_to_index').change(function(){

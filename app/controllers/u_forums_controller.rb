@@ -163,7 +163,6 @@ class UForumsController < ApplicationController
     ufo_cmt.ufo = objufo
     ufo_cmt.save
 
-    #render :layout => false 
     redirect_to user_u_forum_path(objufo.user, objufo)
 
   end
