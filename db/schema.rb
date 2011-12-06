@@ -10,7 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116090556) do
+ActiveRecord::Schema.define(:version => 20111128032310) do
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.integer  "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +34,24 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.string   "item_type"
     t.datetime "created_at"
   end
+
+  create_table "admin_users", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
+  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "awareness_types", :force => true do |t|
     t.string "name"
@@ -48,6 +81,14 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
   create_table "book_types", :force => true do |t|
     t.string "name"
     t.string "label"
+  end
+
+  create_table "careers", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "cities", :force => true do |t|
@@ -106,7 +147,8 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "department_categories", :force => true do |t|
-    t.string "name", :null => false
+    t.string "name",                      :null => false
+    t.string "type_school", :limit => 40, :null => false
   end
 
   create_table "departments", :force => true do |t|
@@ -259,6 +301,15 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
   create_table "jobs_lists", :force => true do |t|
     t.integer  "user_id"
     t.integer  "post_job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "kindeditor_images", :force => true do |t|
+    t.string   "data_file_name"
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.datetime "data_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -934,7 +985,6 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.datetime "ufo_attach_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "rating_status"
   end
 
   create_table "user_blocks", :force => true do |t|
@@ -1052,6 +1102,7 @@ ActiveRecord::Schema.define(:version => 20111116090556) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
   end
 
   create_table "users", :force => true do |t|
