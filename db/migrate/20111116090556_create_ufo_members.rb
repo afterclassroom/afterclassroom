@@ -3,6 +3,7 @@ class CreateUfoMembers < ActiveRecord::Migration
     create_table :ufo_members do |t|
       t.belongs_to :user, :null => false
       t.belongs_to :ufo, :null => false
+      t.boolean :recev_mail
 
       t.timestamps
     end
