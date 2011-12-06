@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  before_filter :oauth_required
+  #before_filter :oauth_required
   
   respond_to :json, :xml
   def show
