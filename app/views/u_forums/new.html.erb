@@ -72,7 +72,7 @@
                               <div id="join_area" style="line-height: 31px;margin-top: -15px;">
                                 <span style="padding-left: 33px; padding-bottom: 15px; background: url('/images/who_join.png') no-repeat"></span>
                                 <label title="Members from your selected group are able to discuss on this topic" class="vtip" style="background-color: rgb(31, 166, 243); color: rgb(255, 255, 255); float: left; height: 25px; line-height: 25px; margin-left: 28px; margin-top: -22px; text-align: left; text-indent: 5px; width: 228px;">Who can joins?</label>
-                                <div style="margin-top:10px;">
+                                <div style="margin-top:10px;margin-left: 28px;">
     <%#= show_share_setting(current_user)%>
                                   <%= custom.select :share_to_index, OPTIONS_SETTING, :selected => @custom_setting.share_to_index %>
                                 </div>
@@ -96,7 +96,7 @@
                               <div id="lounge_area">
                                 <span style="padding-top: 4px; padding-left: 33px; padding-bottom: 19px; background: url(&quot;/images/post_forum.png&quot;) no-repeat scroll 0% 0% transparent;"></span>
                                 <label title="Select your option whether to post this topic on your lounge" class="vtip" style="background-color: rgb(31, 166, 243); color: rgb(255, 255, 255);height: 25px; line-height: 25px; margin-left: 28px; margin-top: -22px; text-align: left; text-indent: 5px; width: 228px;">Post to your lounge?</label>                                
-                                <div style="margin-top: 10px">
+                                <div style="margin-top: 10px;margin-left: 28px;">
                                   <%@lounge_setting = [["No", false], ["Yes", true]]%>
                                   <%= custom.select :post_lounge, @lounge_setting, :selected => @custom_setting.post_lounge %>
                                 </div>
