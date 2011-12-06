@@ -410,6 +410,7 @@ class UForumsController < ApplicationController
       member = UfoMember.new
       member.user_id = usr_id
       member.ufo_id = objufo.id
+      member.recev_mail = true
       member.save
     end
 
