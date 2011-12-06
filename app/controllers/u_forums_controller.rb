@@ -422,18 +422,26 @@ class UForumsController < ApplicationController
   def unsubscribe
     objufo = Ufo.find(params[:ufo_id])
     member = objufo.ufo_members.where(:user_id => current_user.id).first
-    member.destroy
+    member.recev_mail = false
+    member.save
 
     render :layout => false
   end
 
   def subscribe
     @ufo = Ufo.find(params[:ufo_id])
+    member = current_user.ufo_members.where(:ufo_id =>@ufo.id).first
+    if (member != nil)
+      member.recev_mail = true
+      member.save
+    else
+      member = UfoMember.new
+      member.user_id = current_user.id
+      member.ufo_id = @ufo.id
+      member.recev_mail = true
+      member.save
+    end
 
-    member = UfoMember.new
-    member.user_id = current_user.id
-    member.ufo_id = @ufo.id
-    member.save
 
     redirect_to user_u_forum_path(@ufo.user, @ufo)
   end
