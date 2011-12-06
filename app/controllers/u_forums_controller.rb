@@ -463,6 +463,42 @@ class UForumsController < ApplicationController
   def get_share(share_value)
     groupType = ""
     share_to = nil  
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "=="
+    puts "==share_value"
+    puts "==share_value==#{share_value}"
     case share_value
     when 0 # Private
       groupType = -1 #for testing purpose only
@@ -488,8 +524,11 @@ class UForumsController < ApplicationController
       if fg != nil
         if @ufo_author == nil
           @ufo_author = current_user #this line support for fix bug when add new with wrong captcha
-          share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ], :select => "DISTINCT users.id")
         end
+          share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ])
+          share_to.group_by { |item| item.id }
+
+        
       end
     end
     share_to
