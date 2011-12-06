@@ -232,6 +232,12 @@
   }
 
   $('document').ready(function(){
+    //click enter on captcha to submit
+    $('input#captcha').keypress(function(event){
+      if ( event.which == 13 ){
+        $('#btn_submit').click();
+      }
+    });
     //BEGIN: load the friend list
     //$('#ufo_setting').change(function(){
     $('#ufo_custom_share_to_index').change(function(){
