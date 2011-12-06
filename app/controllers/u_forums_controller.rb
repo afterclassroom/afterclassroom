@@ -70,6 +70,7 @@ class UForumsController < ApplicationController
           member = UfoMember.new
           member.user_id = usr_id
           member.ufo_id = @ufo.id
+          member.recev_mail = true
           member.save
           friend = User.find(usr_id)
           UfoMail.inviteinform(friend,@ufo_author,@ufo).deliver
@@ -463,42 +464,6 @@ class UForumsController < ApplicationController
   def get_share(share_value)
     groupType = ""
     share_to = nil  
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "=="
-    puts "==share_value"
-    puts "==share_value==#{share_value}"
     case share_value
     when 0 # Private
       groupType = -1 #for testing purpose only
@@ -527,8 +492,6 @@ class UForumsController < ApplicationController
         end
           share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ])
           share_to.group_by { |item| item.id }
-
-        
       end
     end
     share_to
