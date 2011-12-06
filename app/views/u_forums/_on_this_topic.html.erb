@@ -5,7 +5,18 @@
         <label style="text-align: left;">Members of this topic</label>
         <% if current_user != @ufo.user %>
           <% if @ufo.ufo_members.map(&:user_id).include?(current_user.id) %>
-            <div id="unsubscribe" style="float: right; margin-top: -13px;">Unsubscribe</div>
+        
+              <% if current_user.ufo_members.where(:ufo_id =>@ufo.id).first.recev_mail == true %>    
+              <div id="unsubscribe" style="float: right; margin-top: -13px;">Unsubscribe</div>
+              <% else %>
+                <div id="subscribe" style="float: right; margin-top: -13px;">
+                  <%= link_to( "Subscribe", 
+                    {:controller => "u_forums", :action => "subscribe", :ufo_id => @ufo.id }, :remote => false, :style=>"",
+                    :method => :get, :class => "vtip", :title => "Subscribe to this topic") %>
+                </div>
+              
+              <% end %>
+            
           <% else %>
             <div id="subscribe" style="float: right; margin-top: -13px;">
               <%= link_to( "Subscribe", 

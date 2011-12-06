@@ -5,7 +5,14 @@
 <% end %>
 
 <% @members.each do |member| %>
-  <div class="AsDcomImg" style="margin-left: 9px;" id="member_<%= member.user.id %>">
+  <% usr_class = "AsDcomImg" %>
+  <% if member.recev_mail == false %>
+    <% usr_class = "AsImgSelect" %>
+  <% end %>
+
+
+
+  <div class="<%= usr_class %>" style="margin-left: 9px;" id="member_<%= member.user.id %>">
     <%= show_image_user_post(member.user) %>
     <% if current_user == @ufo.user %>
       <% strchecked = "" %>

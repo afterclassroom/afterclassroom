@@ -70,6 +70,7 @@ class UForumsController < ApplicationController
           member = UfoMember.new
           member.user_id = usr_id
           member.ufo_id = @ufo.id
+          member.recev_mail = true
           member.save
           friend = User.find(usr_id)
           UfoMail.inviteinform(friend,@ufo_author,@ufo).deliver
@@ -162,7 +163,6 @@ class UForumsController < ApplicationController
     ufo_cmt.ufo = objufo
     ufo_cmt.save
 
-    #render :layout => false 
     redirect_to user_u_forum_path(objufo.user, objufo)
 
   end
@@ -409,6 +409,7 @@ class UForumsController < ApplicationController
       member = UfoMember.new
       member.user_id = usr_id
       member.ufo_id = objufo.id
+      member.recev_mail = true
       member.save
     end
 
@@ -420,18 +421,26 @@ class UForumsController < ApplicationController
   def unsubscribe
     objufo = Ufo.find(params[:ufo_id])
     member = objufo.ufo_members.where(:user_id => current_user.id).first
-    member.destroy
+    member.recev_mail = false
+    member.save
 
     render :layout => false
   end
 
   def subscribe
     @ufo = Ufo.find(params[:ufo_id])
+    member = current_user.ufo_members.where(:ufo_id =>@ufo.id).first
+    if (member != nil)
+      member.recev_mail = true
+      member.save
+    else
+      member = UfoMember.new
+      member.user_id = current_user.id
+      member.ufo_id = @ufo.id
+      member.recev_mail = true
+      member.save
+    end
 
-    member = UfoMember.new
-    member.user_id = current_user.id
-    member.ufo_id = @ufo.id
-    member.save
 
     redirect_to user_u_forum_path(@ufo.user, @ufo)
   end
@@ -488,8 +497,9 @@ class UForumsController < ApplicationController
       if fg != nil
         if @ufo_author == nil
           @ufo_author = current_user #this line support for fix bug when add new with wrong captcha
-          share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ], :select => "DISTINCT users.id")
         end
+          share_to = User.find(:all, :joins => "INNER JOIN friend_in_groups ON friend_in_groups.user_id_friend = users.id", :conditions => ["friend_in_groups.user_id=? and friend_group_id=?", @ufo_author.id, fg.id ])
+          share_to.group_by { |item| item.id }
       end
     end
     share_to
