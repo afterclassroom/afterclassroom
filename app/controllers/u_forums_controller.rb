@@ -168,9 +168,7 @@ class UForumsController < ApplicationController
           UfoMail.cmtinform(current_user, member.user,@ufo_author,objufo).deliver
       end
     end
-
     redirect_to user_u_forum_path(objufo.user, objufo)
-
   end
 
   def post_lounge
@@ -417,6 +415,7 @@ class UForumsController < ApplicationController
       member.ufo_id = objufo.id
       member.recev_mail = true
       member.save
+      UfoMail.inviteinform(member.user,@ufo_author,objufo).deliver
     end
 
     session[:list_selected_show] = []
