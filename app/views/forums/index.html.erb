@@ -113,7 +113,7 @@
             <%= show_simple_captcha(:label => "CAPTCHA Code *") %>
             <% if logged_in? %>
               <div style="margin-top: 5px;" class="submit">
-                <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom" onclick="submitQ();"/>
+                <input id="add_new_fr" type="submit" value="Submit" name="commit" class="buttonCom"/>
               </div>
             <% else %>
               <div style="margin-top: 5px;" class="submit">
@@ -191,6 +191,10 @@
 
 
   $(document).ready(function() {
+    $('#add_new_fr').click(function(){
+      hideFlashes();//fix bug related to ie8, reported on bugtracker
+      submitQ();
+    });
     
     /*perform toggle for view detail after display search result */
     $("div[id*='res_handler_']").click(function(){
