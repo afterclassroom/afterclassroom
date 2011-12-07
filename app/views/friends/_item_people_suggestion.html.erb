@@ -5,14 +5,38 @@
     <div class="flistS"><span>at</span><%= user.school.name %></div>
     <div class="yahoo_skype">
       <% if get_chat_id(user, "yahoo") != "" %>
-      <a href="ymsgr:sendim?<%= get_chat_id(user, "yahoo") %>">
-        <img src="/gadgets_proxy/link?url=http://opi.yahoo.com/online?u=<%= get_chat_id(user, "yahoo") %>&m=g&t=0" style="border: 0 none;margin-top: 4px"/>
-      </a>
+        <span id="Test_Result_yahoo"></span>
+        <script>
+          $(document).ready(function(){
+            TestYahooID("<%= get_chat_id(user, "yahoo") %>");
+          });
+          function TestYahooID(IDyahoo)
+          { 
+            Test_Result1 = document.getElementById('Test_Result_yahoo');	
+            if (IDyahoo !='')
+              option_test = '<p><a href="ymsgr:SendIM?'+IDyahoo+'"><img src="http://opi.yahoo.com/online?u='+IDyahoo+'&m=g&t=0" border="0" style="height:12px;width:12px;float:left;margin-top:-8px"></a>';
+            else
+              option_test = '<p align="center"><b>IDtest</b>';
+            Test_Result1.innerHTML = option_test;
+          }
+        </script>
       <% end %>
       <% if get_chat_id(user, "skype") != "" %>
-      <a href="skype:<%= get_chat_id(user, "skype") %>?chat">
-        <img border="0" width="16" height="14" style="border: medium none;margin-top: 4px" src="/gadgets_proxy/link?url=http://mystatus.skype.com/smallicon/<%= get_chat_id(user, "skype") %>">
-      </a>
+        <span id="Test_Result_Skype"></span>
+        <script>
+          $(document).ready(function(){
+            TestSkypeID("<%= get_chat_id(user, "skype") %>");
+          });
+          function TestSkypeID(IDskype)
+          { 
+            Test_Result2 = document.getElementById('Test_Result_Skype');	
+            if (IDskype !='')
+              option_test2 = '<p align="center"><a href="skype:'+IDskype+'?chat"><img src="http://mystatus.skype.com/smallicon/'+IDskype+'" border="0" style="float: left;height: 16px;width: 16px;margin-top:-8px"></a>';
+            else
+              option_test2 = '<p align="center"><b>Introduce un ID pentru test</b>';
+            Test_Result2.innerHTML = option_test2;
+          }
+        </script>
       <% end %>
     </div>
   </div>

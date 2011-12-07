@@ -56,7 +56,7 @@ Afterclassroom::Application.routes.draw do
 					:change_email, :save_email,
           :change_time_zone, :save_time_zone, :blocks, :unblock,
 					:change_school, :save_school,
-					:change_chat_id, :save_chat_id
+					:change_chat_id, :change_chat_yahoo_id, :save_chat_id
         post :save_setting, :save_private_setting, :check_login
       end
     end

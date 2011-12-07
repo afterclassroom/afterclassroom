@@ -189,6 +189,11 @@ class SettingsController < ApplicationController
 		@type = params[:type]
 		render :layout => false
 	end
+  
+  def change_chat_yahoo_id
+		@type = params[:type]
+		render :layout => false
+	end
 
 	def save_chat_id
 		chat_id = params[:chat_id]
