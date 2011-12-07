@@ -603,7 +603,6 @@ class UForumsController < ApplicationController
     else
       remain_memberships = @ufo_author.ufo_members
     end
-    puts "size == #{remain_memberships.size}"
     if remain_memberships != nil
       remain_memberships.each do |ufo_member|
         ufo = ufo_member.ufo
