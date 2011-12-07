@@ -6,7 +6,7 @@ class UfoMail < ActionMailer::Base
     @friend = friend
     @ufo_author = ufo_author
     @ufo = ufo
-    mail :to => friend.email, :subject => "#{ufo_author.name} invite you to join a topic."
+    mail :to => friend.email, :subject => "#{ufo_author.name} invites you to join a topic."
   end
   
   def cmtinform(current_user,friend,ufo_author,ufo)
@@ -14,7 +14,7 @@ class UfoMail < ActionMailer::Base
     @ufo_author = ufo_author
     @ufo = ufo
     @current_user=current_user
-    mail :to => friend.email, :subject => "#{ufo_author.name} invite you to join a topic."
+    mail :to => friend.email, :subject => "#{ufo_author.name} comments a topic."
   end
   
   def subscribeinform()

@@ -108,7 +108,7 @@ class UForumsController < ApplicationController
   def save_custom
     @ufo = Ufo.find(params[:id])
 
-    custom_setting = UfoCustom.find(params[:id])
+    custom_setting = UfoCustom.where(:ufo_id => params[:id]).first
     custom_setting.share_to_index = params[:shareto]
     custom_setting.save
 
@@ -121,13 +121,15 @@ class UForumsController < ApplicationController
     
     #init the session to store the list of selected user to add to friend list
     session[:list_selected_show] = []
+    
+    @cur_page = share_to ? "1" : "0"
 
     render :layout => false 
   end
 
   def save_custom_b
     @ufo = Ufo.find(params[:id])
-    custom_setting = UfoCustom.find(params[:id])
+    custom_setting = UfoCustom.where(:ufo_id => params[:id]).first
     custom_setting.share_to_index = params[:shareto]
     custom_setting.save
 
@@ -165,7 +167,9 @@ class UForumsController < ApplicationController
     
     objufo.ufo_members.each do |member|
       if member.recev_mail
+        if member.user != current_user #stop send mail to author of comment
           UfoMail.cmtinform(current_user, member.user,@ufo_author,objufo).deliver
+        end
       end
     end
     redirect_to user_u_forum_path(objufo.user, objufo)
@@ -596,7 +600,13 @@ class UForumsController < ApplicationController
     end #end user_friends each
     #case 3: the exception topic which invited author
     added_ids = tmparr.map(&:id)
-    remain_memberships = @ufo_author.ufo_members.where('ufo_id not in (?)',added_ids)
+
+    remain_memberships = nil
+    if added_ids.size > 0
+      remain_memberships = @ufo_author.ufo_members.where('ufo_id not in (?)',added_ids)
+    else
+      remain_memberships = @ufo_author.ufo_members
+    end
     if remain_memberships != nil
       remain_memberships.each do |ufo_member|
         ufo = ufo_member.ufo

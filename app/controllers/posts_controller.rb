@@ -121,7 +121,10 @@ class PostsController < ApplicationController
 		end
 		user_wall_post = UserWallPost.find_by_post_type_and_post_id(post_type, post_id)
 		user_wall = user_wall_post.user_wall if user_wall_post
-		user_wall.update_attribute(:updated_at, Time.now) if user_wall
+		if user_wall		
+			user_wall.update_attribute(:updated_at, Time.now) 
+			update_user_wall_follow(user_wall, current_user)
+		end
 	end
 	
   def send_notification_when_comment(obj, comnd)
